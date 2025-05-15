@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Hero, Footer } from './components'
 import ResetPassword from './pages/ResetPassword'
 import { lazy, Suspense } from 'react'
+import NotFound from './pages/NotFound'
 
 // Use lazy loading for the ConfirmSuccess component
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
@@ -102,6 +103,7 @@ function App() {
             } />
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/confirm-success" element={<ConfirmSuccess />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </ChakraProvider>
