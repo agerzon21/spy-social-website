@@ -8,6 +8,7 @@ const ResetPassword = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
   const [token, setToken] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const toast = useToast()
@@ -86,6 +87,9 @@ const ResetPassword = () => {
         throw new Error(`Update error: ${updateResult.error.message}`)
       }
       
+      // Mark as successful to keep the button disabled
+      setSuccess(true)
+      
       toast({
         title: 'Password reset successful',
         description: 'Your password has been updated.',
@@ -150,6 +154,15 @@ const ResetPassword = () => {
                   Return to Home
                 </Button>
               </VStack>
+            ) : success ? (
+              <VStack spacing={6} width="100%" py={4}>
+                <Text color="green.500" fontWeight="bold">
+                  Your password has been reset successfully!
+                </Text>
+                <Text>
+                  You will be redirected to the homepage in a moment...
+                </Text>
+              </VStack>
             ) : (
               <Box as="form" width="100%" onSubmit={handleResetPassword}>
                 <VStack spacing={4} align="flex-start" width="100%">
@@ -161,6 +174,7 @@ const ResetPassword = () => {
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="Enter your new password"
                       minLength={8}
+                      isDisabled={loading || success}
                     />
                   </FormControl>
                   
@@ -171,6 +185,7 @@ const ResetPassword = () => {
                       value={confirmPassword}
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       placeholder="Confirm your new password"
+                      isDisabled={loading || success}
                     />
                   </FormControl>
                   
@@ -180,6 +195,7 @@ const ResetPassword = () => {
                     width="100%"
                     mt={4}
                     isLoading={loading}
+                    isDisabled={loading || success}
                   >
                     Reset Password
                   </Button>
@@ -187,7 +203,7 @@ const ResetPassword = () => {
               </Box>
             )}
             
-            {!error && (
+            {!error && !success && (
               <Box textAlign="center" pt={4}>
                 <ChakraLink as={Link} to="/" color="blue.500">
                   Return to Home
