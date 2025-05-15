@@ -1,4 +1,4 @@
-import { Box, Text, VStack, Container, HStack, Flex, Icon, Image } from '@chakra-ui/react'
+import { Box, Text, VStack, Container, Stack, Flex, Icon, Image } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
 
 const Hero = () => {
@@ -40,7 +40,12 @@ const Hero = () => {
             The thrilling mobile party game of social deception.
           </Text>
 
-          <HStack spacing={8} pt={8}>
+          <Stack 
+            spacing={{ base: 6, md: 8 }} 
+            pt={8}
+            direction={{ base: "column", md: "row" }}
+            align="center"
+          >
             <Box
               as="a"
               href="#"
@@ -134,7 +139,7 @@ const Hero = () => {
                 </Flex>
               </Flex>
             </Box>
-          </HStack>
+          </Stack>
         </VStack>
       </Container>
     </Box>

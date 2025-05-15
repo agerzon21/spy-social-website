@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Text, VStack, HStack, useColorModeValue, Flex, Icon } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, Stack, useColorModeValue, Flex, Icon } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
 import { IoLogoGooglePlaystore } from 'react-icons/io5'
 
@@ -20,10 +20,11 @@ const Download = () => {
             Gather your friends, download the game, and start uncovering who's the spy! Available for iOS and Android.
           </Text>
 
-          <HStack 
-            spacing={{ base: 4, sm: 6 }} 
+          <Stack 
+            spacing={{ base: 6, md: 6 }} 
             mt={6} 
-            flexDir={{ base: 'column', sm: 'row' }}
+            direction={{ base: 'column', md: 'row' }}
+            align="center"
           >
             <Box
               as="a"
@@ -76,7 +77,7 @@ const Download = () => {
                 </Text>
               </Flex>
             </Box>
-          </HStack>
+          </Stack>
         </VStack>
       </Container>
     </Box>

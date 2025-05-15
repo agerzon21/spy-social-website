@@ -18,11 +18,10 @@ const Footer = () => {
         spacing={8}
       >
         <Stack direction={'row'} spacing={6} justify={'center'} flexWrap="wrap">
-          <Link href={'#'}>Privacy Policy</Link>
-          <Link href={'#'}>Terms of Service</Link>
+          <Link href={'#'}>Privacy</Link>
+          <Link href={'#'}>Terms</Link>
           <Link href={'#'}>Contact Us</Link>
           <Link href={'#'}>About</Link>
-          <Link href={'#'}>Careers</Link>
         </Stack>
         
         <Flex
