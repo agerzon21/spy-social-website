@@ -14,7 +14,7 @@ const ResetPassword = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Extract the token from the URL hash
+    // Extract the token from the URL hash to support both approaches
     const hash = window.location.hash
     const tokenMatch = hash.match(/#access_token=([^&]+)/)
     
@@ -22,18 +22,28 @@ const ResetPassword = () => {
       setToken(tokenMatch[1])
       console.log('Found reset token in URL')
     } else {
-      setError('Invalid or expired reset link')
-      console.error('No token found in URL hash')
+      // Check if we're already authenticated via session
+      const checkSession = async () => {
+        try {
+          const { data } = await supabase.auth.getSession()
+          if (data && data.session) {
+            console.log('Active session found')
+          } else {
+            console.error('No token or active session found')
+            setError('Invalid or expired reset link. Please request a new password reset link.')
+          }
+        } catch (err) {
+          console.error('Error checking session:', err)
+          setError('An error occurred. Please try again or request a new password reset link.')
+        }
+      }
+      
+      checkSession()
     }
   }, [])
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    if (!token) {
-      setError('Invalid or expired reset link')
-      return
-    }
     
     if (password !== confirmPassword) {
       toast({
@@ -48,25 +58,32 @@ const ResetPassword = () => {
     setLoading(true)
     
     try {
-      console.log('Attempting to reset password with token')
+      console.log('Attempting to reset password')
       
-      // Set the auth session with the token first
-      const sessionResult = await supabase.auth.setSession({
-        access_token: token,
-        refresh_token: '',
-      })
-      
-      if (sessionResult.error) {
-        throw new Error(`Session error: ${sessionResult.error.message}`)
+      // Try token-based approach first if we have a token
+      if (token) {
+        try {
+          // Try to set the session with the token first
+          const sessionResult = await supabase.auth.setSession({
+            access_token: token,
+            refresh_token: '',
+          })
+          
+          if (sessionResult.error) {
+            console.error('Session error:', sessionResult.error)
+          }
+        } catch (sessionErr) {
+          console.error('Error setting session:', sessionErr)
+        }
       }
-
-      // Then update the user's password
-      const { error } = await supabase.auth.updateUser({
+      
+      // Now try to update the password (works with both approaches)
+      const updateResult = await supabase.auth.updateUser({
         password
       })
       
-      if (error) {
-        throw new Error(`Update error: ${error.message}`)
+      if (updateResult.error) {
+        throw new Error(`Update error: ${updateResult.error.message}`)
       }
       
       toast({
@@ -76,6 +93,13 @@ const ResetPassword = () => {
         duration: 5000,
         isClosable: true,
       })
+      
+      // Try to sign out
+      try {
+        await supabase.auth.signOut()
+      } catch (signOutErr) {
+        console.error('Error signing out:', signOutErr)
+      }
       
       // Redirect to home page after successful reset
       setTimeout(() => navigate('/'), 2000)

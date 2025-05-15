@@ -24,6 +24,14 @@ const mockClient = {
     updateUser: async (params: UpdateUserParams) => {
       console.log('Mock: Updating user with:', params)
       return { data: {}, error: null }
+    },
+    getSession: async () => {
+      console.log('Mock: Getting current session')
+      return { data: { session: null }, error: null }
+    },
+    signOut: async () => {
+      console.log('Mock: Signing out user')
+      return { error: null }
     }
   }
 }
