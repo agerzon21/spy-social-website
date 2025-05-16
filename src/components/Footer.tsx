@@ -1,4 +1,5 @@
-import { Box, Container, Link, Stack, Text, Flex, useColorModeValue } from '@chakra-ui/react'
+import { Box, Container, Link as ChakraLink, Stack, Text, Flex, useColorModeValue } from '@chakra-ui/react'
+import { Link as RouterLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -18,10 +19,10 @@ const Footer = () => {
         spacing={8}
       >
         <Stack direction={'row'} spacing={6} justify={'center'} flexWrap="wrap">
-          <Link href={'#'}>Privacy</Link>
-          <Link href={'#'}>Terms</Link>
-          <Link href={'#'}>Contact Us</Link>
-          <Link href={'#'}>About</Link>
+          <ChakraLink as={RouterLink} to={'/privacy'}>Privacy</ChakraLink>
+          <ChakraLink as={RouterLink} to={'/terms'}>Terms</ChakraLink>
+          <ChakraLink href={'#'}>Contact Us</ChakraLink>
+          <ChakraLink href={'#'}>About</ChakraLink>
         </Stack>
         
         <Flex
