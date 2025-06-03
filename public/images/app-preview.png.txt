@@ -1,5 +1,5 @@
 This is a placeholder for the app-preview.png image.
 
 Place your actual app screenshot or mockup image here, and rename this file to app-preview.png.
-
+ 
 The recommended size is around 700x400 pixels or similar aspect ratio with a transparent or white background. 

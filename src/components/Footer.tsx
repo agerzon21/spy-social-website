@@ -21,8 +21,7 @@ const Footer = () => {
         <Stack direction={'row'} spacing={6} justify={'center'} flexWrap="wrap">
           <ChakraLink as={RouterLink} to={'/privacy'}>Privacy</ChakraLink>
           <ChakraLink as={RouterLink} to={'/terms'}>Terms</ChakraLink>
-          <ChakraLink href={'#'}>Contact Us</ChakraLink>
-          <ChakraLink href={'#'}>About</ChakraLink>
+          <ChakraLink as={RouterLink} to={'/support'}>Contact Us</ChakraLink>
         </Stack>
         
         <Flex
