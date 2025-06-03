@@ -198,7 +198,15 @@ const Privacy: React.FC = () => {
               <ListItem>Withdraw consent where processing is based on consent</ListItem>
             </UnorderedList>
             <Text mt={2}>
-              To exercise these rights, please contact us at support@spysocial.app.
+              To exercise these rights, please contact us at{' '}
+              <ChakraLink 
+                as={Link}
+                to="/contact-us"
+                color="blue.500"
+                _hover={{ textDecoration: 'underline' }}
+              >
+                support@spysocial.app
+              </ChakraLink>
             </Text>
             
             <Heading as="h2" size="lg" mt={4}>
@@ -255,7 +263,14 @@ const Privacy: React.FC = () => {
               If you have any questions about this privacy policy or our data practices, please contact us at:
             </Text>
             <Text mt={2} fontWeight="medium">
-              support@spysocial.app
+              <ChakraLink 
+                as={Link}
+                to="/contact-us"
+                color="blue.500"
+                _hover={{ textDecoration: 'underline' }}
+              >
+                support@spysocial.app
+              </ChakraLink>
             </Text>
             
             <Box width="100%" textAlign="center" mt={8}>

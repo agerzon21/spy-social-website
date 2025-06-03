@@ -222,7 +222,14 @@ const Terms: React.FC = () => {
               If you have any questions about these Terms, please contact us at:
             </Text>
             <Text mt={2} fontWeight="medium">
-              support@spysocial.app
+              <ChakraLink 
+                as={Link}
+                to="/contact-us"
+                color="blue.500"
+                _hover={{ textDecoration: 'underline' }}
+              >
+                support@spysocial.app
+              </ChakraLink>
             </Text>
             
             <Box width="100%" textAlign="center" mt={8}>

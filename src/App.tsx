@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Support from './pages/Support'
+import FAQ from './pages/FAQ'
 
 // Use lazy loading for the ConfirmSuccess component
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
@@ -108,7 +109,8 @@ function App() {
             <Route path="/confirm-success" element={<ConfirmSuccess />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
-            <Route path="/support" element={<Support />} />
+            <Route path="/contact-us" element={<Support />} />
+            <Route path="/support" element={<FAQ />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
