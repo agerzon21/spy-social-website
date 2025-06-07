@@ -1,8 +1,22 @@
-import { Box, Container, Heading, Text, VStack, Stack, useColorModeValue, Flex, Icon } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, Stack, useColorModeValue, Flex, Icon, useToast } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
 import { IoLogoGooglePlaystore } from 'react-icons/io5'
 
 const Download = () => {
+  const toast = useToast()
+
+  const handleAndroidClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    toast({
+      title: "Coming Soon!",
+      description: "SpySocial will be available on Android soon. Stay tuned!",
+      status: "info",
+      duration: 3000,
+      isClosable: true,
+      position: "top"
+    })
+  }
+
   return (
     <Box 
       id="download" 
@@ -28,7 +42,9 @@ const Download = () => {
           >
             <Box
               as="a"
-              href="#"
+              href="https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390"
+              target="_blank"
+              rel="noopener noreferrer"
               display="inline-flex"
               alignItems="center"
               justifyContent="center"
@@ -55,6 +71,7 @@ const Download = () => {
             <Box
               as="a"
               href="#"
+              onClick={handleAndroidClick}
               display="inline-flex"
               alignItems="center"
               justifyContent="center"

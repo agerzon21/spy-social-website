@@ -9,6 +9,7 @@ import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Support from './pages/Support'
 import FAQ from './pages/FAQ'
+import BreakingNewsBanner from './components/BreakingNewsBanner'
 
 // Use lazy loading for the ConfirmSuccess component
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
@@ -17,6 +18,7 @@ function App() {
   return (
     <HelmetProvider>
       <ChakraProvider>
+        <BreakingNewsBanner />
         <Suspense fallback={
           <Flex 
             width="100vw" 
