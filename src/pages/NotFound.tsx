@@ -1,47 +1,21 @@
-import { Box, Button, Container, Heading, Text, VStack, Icon } from '@chakra-ui/react'
+import { Box, Button, Container, Heading, Text, VStack } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { BiErrorCircle } from 'react-icons/bi'
-import { Footer, PageBackground } from '../components'
 
 const NotFound: React.FC = () => {
   return (
-    <Box 
-      minH="100vh" 
-      display="flex" 
-      flexDirection="column" 
-      width="100vw" 
-      maxWidth="100%" 
-      overflowX="hidden"
-    >
-      <PageBackground>
-        <Container maxW="container.sm" centerContent py={{ base: 28, md: 20 }}>
-          <VStack 
-            spacing={6} 
-            bg="white" 
-            p={8} 
-            borderRadius="md" 
-            boxShadow="xl"
-            width="100%"
-          >
-            <Icon as={BiErrorCircle} w={16} h={16} color="blue.500" />
-            
-            <Heading as="h1" size="xl" textAlign="center">
-              Page Not Found
-            </Heading>
-            
-            <Text fontSize="lg" textAlign="center">
-              Oops! The page you're looking for doesn't exist or has been moved.
-            </Text>
-            
-            <Button as={Link} to="/" colorScheme="blue" size="md" mt={4}>
-              Return to Home
-            </Button>
-          </VStack>
-        </Container>
-      </PageBackground>
-      <Footer />
+    <Box flex="1" display="flex" alignItems="center" pt={{ base: 10, md: 16 }} pb={{ base: 24, md: 28 }}>
+      <Container maxW="container.sm" centerContent>
+        <VStack spacing={4}>
+          <Text fontSize="6xl" fontWeight="700" color="whiteAlpha.100">404</Text>
+          <Heading as="h1" size="md" color="white">Page Not Found</Heading>
+          <Text fontSize="sm" color="whiteAlpha.500">The page you're looking for doesn't exist.</Text>
+          <Button as={Link} to="/" bg="white" color="gray.900" size="sm" mt={2} _hover={{ bg: 'gray.100' }}>
+            Go Home
+          </Button>
+        </VStack>
+      </Container>
     </Box>
   )
 }
 
-export default NotFound 
+export default NotFound
