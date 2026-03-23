@@ -1,146 +1,137 @@
-import { 
-  Box, 
-  Container, 
-  Heading, 
-  Text, 
-  VStack, 
-  Link as ChakraLink, 
-  Image, 
-  Flex,
-  useToast,
-  HStack,
-  Icon
-} from '@chakra-ui/react'
-import { keyframes } from '@emotion/react'
-import { Link } from 'react-router-dom'
-import { Footer, PageBackground } from '../components'
+import { Box, Container, Heading, Text, VStack, HStack, Icon, Link as ChakraLink, useToast } from '@chakra-ui/react'
 import { useState } from 'react'
-import { FiCopy, FiCheck } from 'react-icons/fi'
+import { FiCopy, FiCheck, FiMail } from 'react-icons/fi'
+import { FaApple } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Support = () => {
   const [copied, setCopied] = useState(false)
   const toast = useToast()
   const email = 'support@spysocial.app'
 
-  const pulse = keyframes`
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  `
-
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(email)
       setCopied(true)
-      toast({
-        title: 'Email copied!',
-        description: 'You can now paste it in your email client',
-        status: 'success',
-        duration: 2000,
-        isClosable: true,
-      })
+      toast({ title: 'Email copied!', status: 'success', duration: 2000, isClosable: true })
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      toast({
-        title: 'Failed to copy',
-        description: 'Please select and copy the email manually',
-        status: 'error',
-        duration: 2000,
-        isClosable: true,
-      })
+      toast({ title: 'Failed to copy', status: 'error', duration: 2000, isClosable: true })
     }
   }
 
   return (
-    <Box 
-      minH="100vh" 
-      display="flex" 
-      flexDirection="column" 
-      width="100vw" 
-      maxWidth="100%" 
-      overflowX="hidden"
-    >
-      <PageBackground>
-        <Flex justify="center" pt={{ base: 8, md: 10 }} pb={{ base: 6, md: 10 }}>
-          <ChakraLink as={Link} to="/">
-            <Image 
-              src="/images/logo.svg" 
-              alt="SpySocial Logo"
-              width={{ base: "60%", md: "350px" }}
-              maxWidth="350px"
-              height="auto"
-              filter="drop-shadow(0 0 25px rgba(64, 146, 255, 0.4))"
-              transition="all 0.2s"
-              _hover={{ 
-                transform: "scale(1.05)",
-                filter: "drop-shadow(0 0 15px rgba(64, 146, 255, 0.6))"
-              }}
-              mx="auto"
-            />
-          </ChakraLink>
-        </Flex>
-
-        <Container maxW="container.sm" pb={{ base: 16, md: 20 }}>
-          <VStack 
-            spacing={8} 
-            bg="white" 
-            p={{ base: 6, md: 10 }}
-            borderRadius="md" 
-            boxShadow="xl"
-            width="100%"
-            align="center"
-          >
-            <Heading as="h1" size="xl" textAlign="center">
-              Contact Support
+    <Box flex="1" pt={{ base: 16, md: 24 }} pb={{ base: 24, md: 28 }}>
+      <Container maxW="container.sm">
+        <VStack spacing={10} align="stretch">
+          {/* Header */}
+          <VStack spacing={3} textAlign="center">
+            <Heading as="h1" size="xl" color="white" fontWeight="600" letterSpacing="-0.02em">
+              How can we help?
             </Heading>
-            
-            <Text fontSize="lg" textAlign="center" color="gray.600">
-              Need help with SpySocial? Send us an email and we'll get back to you as soon as possible.
+            <Text fontSize="md" color="whiteAlpha.500" maxW="400px">
+              We're here to help with any questions or issues you have with SpySocial.
             </Text>
+          </VStack>
 
-            <VStack spacing={4} width="100%">
+          {/* Contact card */}
+          <Box
+            bg="whiteAlpha.50"
+            borderRadius="xl"
+            border="1px solid"
+            borderColor="whiteAlpha.100"
+            p={{ base: 6, md: 8 }}
+          >
+            <VStack spacing={4} align="stretch">
+              <HStack spacing={3}>
+                <Box
+                  w="36px"
+                  h="36px"
+                  borderRadius="lg"
+                  bg="blue.500"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  flexShrink={0}
+                >
+                  <Icon as={FiMail} color="white" boxSize={4} />
+                </Box>
+                <Box>
+                  <Text fontSize="sm" fontWeight="600" color="white">Email us</Text>
+                  <Text fontSize="xs" color="whiteAlpha.500">We typically respond within 24 hours</Text>
+                </Box>
+              </HStack>
+
               <Box
-                p={6}
-                bg="blue.50"
+                px={4}
+                py={3}
+                bg="whiteAlpha.100"
                 borderRadius="lg"
-                width="100%"
-                position="relative"
                 cursor="pointer"
                 onClick={handleCopy}
                 transition="all 0.2s"
-                _hover={{
-                  transform: 'translateY(-2px)',
-                  boxShadow: 'md'
-                }}
-                animation={copied ? `${pulse} 0.3s ease-in-out` : undefined}
+                _hover={{ bg: 'whiteAlpha.150' }}
               >
-                <HStack spacing={4} justify="center">
-                  <Text 
-                    fontSize="xl" 
-                    fontWeight="medium" 
-                    color="blue.600"
-                    letterSpacing="wide"
-                  >
-                    {email}
-                  </Text>
-                  <Icon 
-                    as={copied ? FiCheck : FiCopy} 
-                    color={copied ? "green.500" : "blue.500"}
-                    boxSize={5}
-                  />
+                <HStack spacing={3} justify="space-between">
+                  <Text fontSize="sm" fontWeight="500" color="blue.300">{email}</Text>
+                  <Icon as={copied ? FiCheck : FiCopy} color={copied ? "green.400" : "whiteAlpha.400"} boxSize={4} />
                 </HStack>
               </Box>
-
-              <Text fontSize="sm" color="gray.500" textAlign="center">
-                Click to copy our support email address
-              </Text>
             </VStack>
+          </Box>
+
+          {/* Quick links */}
+          <VStack spacing={3} align="stretch">
+            <Text fontSize="xs" fontWeight="600" textTransform="uppercase" letterSpacing="0.08em" color="whiteAlpha.400">
+              Quick links
+            </Text>
+
+            <ChakraLink
+              as={Link}
+              to="/support"
+              _hover={{ textDecoration: 'none' }}
+            >
+              <HStack
+                spacing={3}
+                p={4}
+                bg="whiteAlpha.50"
+                borderRadius="lg"
+                border="1px solid"
+                borderColor="whiteAlpha.100"
+                transition="all 0.2s"
+                _hover={{ bg: 'whiteAlpha.100' }}
+              >
+                <Text fontSize="sm" color="whiteAlpha.700" flex="1">FAQ & Troubleshooting</Text>
+                <Text color="whiteAlpha.300">&rarr;</Text>
+              </HStack>
+            </ChakraLink>
+
+            <Box
+              as="a"
+              href="https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <HStack
+                spacing={3}
+                p={4}
+                bg="whiteAlpha.50"
+                borderRadius="lg"
+                border="1px solid"
+                borderColor="whiteAlpha.100"
+                transition="all 0.2s"
+                _hover={{ bg: 'whiteAlpha.100' }}
+              >
+                <Icon as={FaApple} color="whiteAlpha.600" boxSize={4} />
+                <Text fontSize="sm" color="whiteAlpha.700" flex="1">Rate us on the App Store</Text>
+                <Text color="whiteAlpha.300">&rarr;</Text>
+              </HStack>
+            </Box>
           </VStack>
-        </Container>
-      </PageBackground>
-      <Footer />
+        </VStack>
+      </Container>
     </Box>
   )
 }
 
-export default Support 
+export default Support
