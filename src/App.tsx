@@ -9,6 +9,7 @@ import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Support from './pages/Support'
 import FAQ from './pages/FAQ'
+import Join from './pages/Join'
 
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
 
@@ -34,6 +35,7 @@ function App() {
               <Route path="/terms" element={<><Terms /><Footer showLogo /></>} />
               <Route path="/contact-us" element={<><Support /><Footer showLogo /></>} />
               <Route path="/support" element={<><FAQ /><Footer showLogo /></>} />
+              <Route path="/join/:code" element={<><Join /><Footer showLogo /></>} />
               <Route path="*" element={<><NotFound /><Footer showLogo /></>} />
             </Routes>
           </Suspense>
