@@ -32,7 +32,7 @@ const Join = () => {
   }
 
   return (
-    <Box flex="1" pt={{ base: 16, md: 24 }} pb={{ base: 24, md: 28 }}>
+    <Box flex="1" pt={{ base: 12, md: 20 }} pb={{ base: 12, md: 16 }}>
       <Container maxW="container.sm">
         <VStack spacing={10} align="stretch">
           <VStack spacing={3} textAlign="center">

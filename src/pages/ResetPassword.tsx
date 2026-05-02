@@ -1,19 +1,29 @@
 import { useState, useEffect } from 'react'
-import { Box, Button, Container, FormControl, FormLabel, Heading, Input, Text, useToast, VStack, Link as ChakraLink } from '@chakra-ui/react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Box, Button, Container, FormControl, FormLabel, Heading, Input, Text, VStack, Link as ChakraLink } from '@chakra-ui/react'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
+import { useThemedToast } from '../lib/useThemedToast'
+
+type PreviewMode = 'form' | 'error' | 'success' | null
 
 const ResetPassword = () => {
+  const [searchParams] = useSearchParams()
+  const previewMode = (searchParams.get('preview') as PreviewMode) ?? null
+  const isPreview = previewMode !== null
+
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(previewMode === 'success')
   const [token, setToken] = useState<string | null>(null)
-  const [error, setError] = useState<string | null>(null)
-  const toast = useToast()
+  const [error, setError] = useState<string | null>(
+    previewMode === 'error' ? 'Invalid or expired reset link. Please request a new one.' : null
+  )
+  const toast = useThemedToast()
   const navigate = useNavigate()
 
   useEffect(() => {
+    if (isPreview) return
     const hash = window.location.hash
     const tokenMatch = hash.match(/#access_token=([^&]+)/)
     if (tokenMatch && tokenMatch[1]) {
@@ -29,12 +39,17 @@ const ResetPassword = () => {
       }
       checkSession()
     }
-  }, [])
+  }, [isPreview])
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault()
     if (password !== confirmPassword) {
       toast({ title: 'Passwords do not match', status: 'error', duration: 3000, isClosable: true })
+      return
+    }
+    if (isPreview) {
+      setSuccess(true)
+      toast({ title: 'Preview: password reset successful', status: 'success', duration: 3000, isClosable: true })
       return
     }
     setLoading(true)
@@ -56,7 +71,7 @@ const ResetPassword = () => {
   }
 
   return (
-    <Box flex="1" display="flex" alignItems="center" pt={{ base: 10, md: 16 }} pb={{ base: 24, md: 28 }}>
+    <Box flex="1" display="flex" alignItems="center" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
       <Container maxW="400px">
         <VStack spacing={5} align="stretch">
           <Heading as="h1" size="md" color="white" textAlign="center">Reset Your Password</Heading>
@@ -90,6 +105,14 @@ const ResetPassword = () => {
           {!error && !success && (
             <Box textAlign="center" pt={2}>
               <ChakraLink as={Link} to="/" color="whiteAlpha.400" fontSize="xs" _hover={{ color: 'whiteAlpha.700' }}>Cancel</ChakraLink>
+            </Box>
+          )}
+
+          {isPreview && (
+            <Box mt={4} p={3} bg="yellow.900" borderRadius="md" borderWidth="1px" borderColor="yellow.700">
+              <Text fontSize="xs" color="yellow.200" textAlign="center">
+                Preview mode: <b>{previewMode}</b>. Submitting won't hit Supabase.
+              </Text>
             </Box>
           )}
         </VStack>

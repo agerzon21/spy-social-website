@@ -1,4 +1,5 @@
-import { Box, Text, VStack, Container, Flex, Icon, Image, useToast, HStack } from '@chakra-ui/react'
+import { Box, Text, VStack, Container, Flex, Icon, Image, HStack } from '@chakra-ui/react'
+import { useThemedToast } from '../lib/useThemedToast'
 import { FaApple } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
@@ -8,7 +9,7 @@ const MotionImage = motion(Image)
 
 const PhoneMockup = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const screenshots = ['/images/1.JPG', '/images/2.JPG', '/images/3.JPG', '/images/4.JPG']
+  const screenshots = ['/images/1.png', '/images/2.png', '/images/3.png', '/images/4.png', '/images/5.png', '/images/6.png']
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -74,7 +75,7 @@ const PhoneMockup = () => {
 }
 
 const Hero = () => {
-  const toast = useToast()
+  const toast = useThemedToast()
 
   const handleAndroidClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -83,8 +84,6 @@ const Hero = () => {
       description: "SpySocial will be available on Android soon.",
       status: "info",
       duration: 3000,
-      isClosable: true,
-      position: "top"
     })
   }
 

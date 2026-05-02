@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const NotFound: React.FC = () => {
   return (
-    <Box flex="1" display="flex" alignItems="center" pt={{ base: 10, md: 16 }} pb={{ base: 24, md: 28 }}>
+    <Box flex="1" display="flex" alignItems="center" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
       <Container maxW="container.sm" centerContent>
         <VStack spacing={4}>
           <Text fontSize="6xl" fontWeight="700" color="whiteAlpha.100">404</Text>

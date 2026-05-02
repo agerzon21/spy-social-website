@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 
 const Privacy: React.FC = () => {
   return (
-    <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 20, md: 24 }}>
+    <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
       <Container maxW="container.md">
         <VStack spacing={5} align="start">
           <Box>
             <Heading as="h1" size="lg" color="white" mb={2}>Privacy Policy for SpySocial</Heading>
-            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: May 16, 2025</Text>
+            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: May 1, 2026</Text>
           </Box>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Introduction</Heading>
@@ -21,11 +21,13 @@ const Privacy: React.FC = () => {
           <Heading as="h2" size="sm" color="white" mt={4}>Information We Collect</Heading>
           <Text fontSize="sm" lineHeight="1.8">When you use SpySocial, we collect the following information:</Text>
           <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Account Information:</Text> Display name, username, and optional avatar image you provide when creating an account</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Game Data:</Text> Information related to games you've played, including your role assignments and game results</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Usage Data:</Text> Anonymous information about how you interact with the app to improve functionality</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Device Information:</Text> Basic information about your device such as model, operating system version, and unique device identifiers</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Connection Information:</Text> IP address and network status information to optimize gameplay connections</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Account Information:</Text> Display name, username, optional avatar image, and email address you provide when creating an account. You may also play as a guest without providing an email; guest profiles can later be upgraded to full accounts.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Profile Preferences:</Text> Your interface language (e.g. English, Spanish, Russian) so the app can be displayed in your preferred language.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Game Data:</Text> Information related to games you've played, including your role assignments and game results.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">In-Game Notes:</Text> Notes you write in the in-game Notebook are private to you and are not shared with other players.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Usage Data:</Text> Anonymous information about how you interact with the app to improve functionality.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Device Information:</Text> Basic information about your device such as model, operating system version, and unique device identifiers.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Connection Information:</Text> IP address and network status information to optimize gameplay connections. The app may make periodic lightweight network probes to verify connectivity.</ListItem>
           </UnorderedList>
 
           <Heading as="h2" size="sm" color="white" mt={4}>How We Use Your Information</Heading>

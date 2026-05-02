@@ -1,9 +1,10 @@
-import { Box, Container, Heading, Text, VStack, Stack, useColorModeValue, Flex, Icon, useToast } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, Stack, useColorModeValue, Flex, Icon } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
 import { IoLogoGooglePlaystore } from 'react-icons/io5'
+import { useThemedToast } from '../lib/useThemedToast'
 
 const Download = () => {
-  const toast = useToast()
+  const toast = useThemedToast()
 
   const handleAndroidClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -12,8 +13,6 @@ const Download = () => {
       description: "SpySocial will be available on Android soon. Stay tuned!",
       status: "info",
       duration: 3000,
-      isClosable: true,
-      position: "top"
     })
   }
 

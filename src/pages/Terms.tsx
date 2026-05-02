@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 
 const Terms: React.FC = () => {
   return (
-    <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 20, md: 24 }}>
+    <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
       <Container maxW="container.md">
         <VStack spacing={5} align="start">
           <Box>
             <Heading as="h1" size="lg" color="white" mb={2}>Terms of Service for SpySocial</Heading>
-            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: May 16, 2025</Text>
+            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: May 1, 2026</Text>
           </Box>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Agreement to Terms</Heading>
@@ -27,9 +27,10 @@ const Terms: React.FC = () => {
 
           <Text fontSize="sm" lineHeight="1.8" color="whiteAlpha.800" fontWeight="500">Account Creation</Text>
           <Text fontSize="sm" lineHeight="1.8">
-            To use certain features of the App, you may need to create an account and provide certain information.
-            You are responsible for maintaining the confidentiality of your account information and are fully
-            responsible for all activities under your account.
+            You may use the App as a guest without creating an account, or you may create a full account by
+            providing an email address and password. Guest profiles can be upgraded to full accounts at any time
+            without losing your profile or progress. You are responsible for maintaining the confidentiality of
+            your account information and are fully responsible for all activities under your account.
           </Text>
 
           <Text fontSize="sm" lineHeight="1.8" color="whiteAlpha.800" fontWeight="500">Account Requirements</Text>
