@@ -12,9 +12,10 @@ const DeleteAccount: React.FC = () => {
           </Box>
 
           <Text fontSize="sm" lineHeight="1.8">
-            SpySocial (developed by Alex Gerzon, contact:{' '}
+            SpySocial lets you permanently delete your account and all associated data at any time. For any
+            questions, contact us at{' '}
             <ChakraLink as={Link} to="/contact-us" color="blue.300" _hover={{ color: 'blue.200' }}>support@spysocial.app</ChakraLink>
-            ) lets you permanently delete your account and all associated data at any time.
+            .
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>How to delete your account from the app</Heading>
