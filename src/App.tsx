@@ -11,6 +11,7 @@ import Support from './pages/Support'
 import FAQ from './pages/FAQ'
 import Join from './pages/Join'
 import WhatsNew from './pages/WhatsNew'
+import DeleteAccount from './pages/DeleteAccount'
 
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
 
@@ -37,6 +38,7 @@ function App() {
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
+              <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
               <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
