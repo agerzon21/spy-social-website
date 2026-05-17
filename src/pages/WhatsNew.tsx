@@ -27,6 +27,54 @@ interface Release {
 
 const releases: Release[] = [
   {
+    version: '2.1.0',
+    date: 'May 15, 2026',
+    tag: 'Polish Update',
+    summary:
+      'A polish release: a redesigned Welcome screen, refreshed Game Over and Account screens, iPad layout improvements, and a stack of stability and quality fixes under the hood.',
+    sections: [
+      {
+        label: 'New Features',
+        icon: FaWandSparkles,
+        accent: 'blue.300',
+        items: [
+          { title: 'Welcome screen redesign', text: 'New layered surface with a soft sky-blue gradient and faint spy-themed background details (radar rings, crosshair), an orange "SOCIAL DEDUCTION" eyebrow pill, a tagline beneath the logo, icon-prefixed Login / Sign Up buttons, an OR divider, and a lightweight "Continue as Guest" link. Version badge is now a subtle pill at the bottom of the screen.' },
+          { title: 'Account "confirmation pending" flow', text: 'When a guest upgrades to a full account, the Account screen now shows a clear pending state with Resend / Cancel / Refresh actions so they know exactly where they are in the email-confirm process.' },
+        ],
+      },
+      {
+        label: 'Visual Revamp',
+        icon: FaPalette,
+        accent: 'purple.300',
+        items: [
+          { title: 'Game Over screen redesigned', text: 'Single-surface player cards with a soft gradient and left-edge color accent, a trophy hero with a glow halo, gold-accented winning-team sections, location card with a map-pin icon, and a sky-blue gradient "Return to Lobby" footer button.' },
+          { title: 'Account screen redesign', text: 'Single cohesive list, consistent uppercase section headers across every group (Profile, Preferences, Account & Security, Support & Legal, Danger Zone), iOS-Settings-style menu rows for Support / Legal, Danger Zone moved to the bottom.' },
+          { title: 'iPad UI polish', text: 'Lobby player cards in 6 columns (was 3), role-reveal card capped at 420pt, larger in-game player tiles (140×178) with a taller container so the third row never clips, notebook column auto-sizes to the role card, home/play deck row sized for iPad with larger HomeCard typography.' },
+        ],
+      },
+      {
+        label: 'Improvements',
+        icon: FaWrench,
+        accent: 'teal.300',
+        items: [
+          { title: 'Server-synced clock', text: 'Every "seconds remaining" computation now subtracts a measured offset against the server clock (via a new server_now() Postgres function) instead of trusting the device clock. Fixes occasional nonsense countdown values on devices with imperfect time sync.' },
+          { title: 'Auth flows consolidated', text: 'Signup, resend confirmation, password reset, and email change all dispatch through a single Edge Function with a shared client wrapper, removing the drift risk across the four UI call sites. New migrations add an idempotency key to signup, extend auth_attempts to cover the additional flow kinds, and add a cancel-email-change RPC.' },
+          { title: 'Account: mailto fallback', text: 'Support / Legal email rows now copy the address to the clipboard with a friendly alert when no mail client is configured, instead of throwing an unhandled error.' },
+          { text: 'Translation parity maintained across English, Spanish, and Russian for all new keys (welcome eyebrow / tagline, account upgrade-pending strings, etc).' },
+        ],
+      },
+      {
+        label: 'Technical',
+        icon: FaGears,
+        accent: 'gray.300',
+        items: [
+          { text: 'tsconfig.json now excludes supabase/functions/** — those are Deno Edge Function files with a different module resolution target.' },
+          { text: 'Version bumped to 2.1.0; iOS build number incremented for App Store submission.' },
+        ],
+      },
+    ],
+  },
+  {
     version: '2.0.0',
     date: 'April 30, 2026',
     tag: 'Major Update',
