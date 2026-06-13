@@ -1,5 +1,4 @@
 import { Box, Text, VStack, Container, Flex, Icon, Image, HStack } from '@chakra-ui/react'
-import { useThemedToast } from '../lib/useThemedToast'
 import { FaApple } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
@@ -75,18 +74,6 @@ const PhoneMockup = () => {
 }
 
 const Hero = () => {
-  const toast = useThemedToast()
-
-  const handleAndroidClick = (e: React.MouseEvent) => {
-    e.preventDefault()
-    toast({
-      title: "Coming Soon!",
-      description: "SpySocial will be available on Android soon.",
-      status: "info",
-      duration: 3000,
-    })
-  }
-
   return (
     <Box
       as="section"
@@ -220,20 +207,19 @@ const Hero = () => {
 
                 <Box
                   as="a"
-                  href="#"
-                  onClick={handleAndroidClick}
+                  href="https://play.google.com/store/apps/details?id=com.gerz.spysocial"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   display="inline-flex"
                   alignItems="center"
                   justifyContent="center"
-                  bg="whiteAlpha.100"
-                  color="white"
+                  bg="white"
+                  color="gray.900"
                   borderRadius="xl"
                   w="180px"
                   h="54px"
-                  border="1px solid"
-                  borderColor="whiteAlpha.200"
                   _hover={{
-                    bg: "whiteAlpha.200",
+                    bg: "gray.100",
                     transform: "translateY(-2px)",
                   }}
                   transition="all 0.2s"
@@ -248,8 +234,8 @@ const Hero = () => {
                       </svg>
                     </Box>
                     <Flex direction="column" align="flex-start">
-                      <Text fontSize="10px" fontWeight="normal" lineHeight="1" mb={0.5} opacity={0.7}>
-                        Coming soon on
+                      <Text fontSize="10px" fontWeight="normal" lineHeight="1" mb={0.5}>
+                        GET IT ON
                       </Text>
                       <Text fontSize="md" fontWeight="600" lineHeight="1">
                         Google Play

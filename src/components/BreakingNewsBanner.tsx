@@ -41,8 +41,8 @@ const BreakingNewsBanner = () => {
       <Flex align="center" justify="center" position="relative" width="100%">
         <Box as={FaRegNewspaper} boxSize={6} mr={3} filter="drop-shadow(0 0 6px #fff)" />
         <Text as="span" textShadow="0 2px 8px rgba(0,0,0,0.18)">
-          🚨 <b>SpySocial</b> just released: <u>LIVE</u> on the App Store!{' '}
-          <a href="https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit', fontWeight: 600 }}>
+          🤖 <b>SpySocial</b> is now <u>LIVE</u> on Google Play!{' '}
+          <a href="https://play.google.com/store/apps/details?id=com.gerz.spysocial" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit', fontWeight: 600 }}>
             Download now
           </a>{' '}and outwit your friends!
         </Text>

@@ -1,5 +1,5 @@
 import { Box, Container, Heading, Text, VStack, HStack, Badge, Stack, Icon } from '@chakra-ui/react'
-import { FaWandSparkles, FaPalette, FaWrench, FaBug, FaGears } from 'react-icons/fa6'
+import { FaWandSparkles, FaPalette, FaWrench, FaBug, FaGears, FaRocket, FaAndroid } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
 
@@ -27,6 +27,47 @@ interface Release {
 
 const releases: Release[] = [
   {
+    version: '2.1.1',
+    date: 'June 13, 2026',
+    tag: 'Android Launch',
+    summary:
+      'SpySocial is officially live on the Google Play Store — the first public production release on Android, paired with pre-launch polish from closed-test QA on real Android devices.',
+    sections: [
+      {
+        label: 'Now Available',
+        icon: FaRocket,
+        accent: 'orange.300',
+        items: [
+          { title: 'Android 2.1.1', text: 'Live on Google Play as of June 13, 2026.' },
+          { title: 'iOS 2.1.1', text: 'Same fixes, submitted to App Store Connect.' },
+        ],
+      },
+      {
+        label: 'Pre-launch Polish',
+        icon: FaWrench,
+        accent: 'teal.300',
+        items: [
+          { title: 'Delete Account button no longer clipped', text: 'The Account screen content now respects the device safe-area bottom inset and reserves room for the unsaved-changes snackbar — Google Play requires in-app account deletion to be reachable.' },
+          { title: 'Lobby Leave Room / Start Game buttons', text: 'Now sit above the Android gesture-nav bar via dynamic safe-area insets.' },
+          { title: 'Start Game feedback', text: "Now surfaces what's missing (need 3+ players, all-ready, at least one category) when prerequisites aren't met. Previously the button was hard-disabled with no feedback." },
+          { title: 'Categories screen', text: 'Back control and "Categories & Locations" title no longer crowd each other. Back button is icon-only on Android (Material convention); title font size trimmed.' },
+          { title: 'How to Play modal', text: "Duplicate back button on Android removed (the modal's close X and the inherited stack back button were both rendering)." },
+          { title: 'Onboarding tutorial', text: 'Skip is now reachable on every step, not just the first slide.' },
+          { title: 'Guest sign-up banner', text: 'Reframed as an invitation ("Unlock Your Full Account") with a sparkles icon and a clear CTA button — was previously styled like a system warning, which felt discouraging.' },
+          { title: 'Game results & How to Play screens', text: 'Emojis replaced with Ionicons / FontAwesome glyphs. Emojis render inconsistently across Android vendors; vector icons stay consistent.' },
+        ],
+      },
+      {
+        label: 'Infrastructure',
+        icon: FaGears,
+        accent: 'gray.300',
+        items: [
+          { text: 'expo-updates now installed and configured against the EAS project. Future JS-only fixes can ship via over-the-air updates without going through Play Store / App Store review.' },
+        ],
+      },
+    ],
+  },
+  {
     version: '2.1.0',
     date: 'May 15, 2026',
     tag: 'Polish Update',
@@ -50,6 +91,17 @@ const releases: Release[] = [
           { title: 'Game Over screen redesigned', text: 'Single-surface player cards with a soft gradient and left-edge color accent, a trophy hero with a glow halo, gold-accented winning-team sections, location card with a map-pin icon, and a sky-blue gradient "Return to Lobby" footer button.' },
           { title: 'Account screen redesign', text: 'Single cohesive list, consistent uppercase section headers across every group (Profile, Preferences, Account & Security, Support & Legal, Danger Zone), iOS-Settings-style menu rows for Support / Legal, Danger Zone moved to the bottom.' },
           { title: 'iPad UI polish', text: 'Lobby player cards in 6 columns (was 3), role-reveal card capped at 420pt, larger in-game player tiles (140×178) with a taller container so the third row never clips, notebook column auto-sizes to the role card, home/play deck row sized for iPad with larger HomeCard typography.' },
+        ],
+      },
+      {
+        label: 'Android-Specific Fixes',
+        icon: FaAndroid,
+        accent: 'green.300',
+        items: [
+          { title: 'Back-gesture guard', text: "The Android-10+ system back swipe (and the hardware back button) now route through the same Leave confirmation dialog as tapping the header's Leave button. Previously, Android users could swipe back out of an in-game screen or the lobby with zero confirmation; gestureEnabled: false only stops the iOS swipe gesture. Implemented via a shared useBackPressGuard hook combining navigation.addListener('beforeRemove') with BackHandler.hardwareBackPress." },
+          { title: '"Box-in-box" rendering artifact', text: "Android's compositor was rendering a visible inner edge inside every vote / vote-results / game-over card. Root cause: translucent rgba background + translucent hairline border + borderRadius + overflow:hidden — the rounded clip layer's own edge was showing through the semi-transparent border. Fixed across VotePlayerRow, VoteResultRankCard, VoteOutcomeCard, and the game-over player card." },
+          { title: 'Game Over header gap', text: "The screen's SafeAreaView was double-counting the top inset on top of the Stack header, leaving a visible strip of the GameBackground gradient between the header and where scroll content started clipping. Now scoped to ['bottom','left','right'], matching the voting / vote_results screens." },
+          { title: 'WheelPicker', text: 'Pure-JS replacement for @react-native-picker/picker. The native picker silently ignores itemStyle on Android (which made our white-text styling render as unreadable black-on-dark) and has long-standing NullPointerException crashes during dismissal — both upstream library bugs. The replacement renders identical UX on both platforms via a ScrollView + snap-to-interval.' },
         ],
       },
       {

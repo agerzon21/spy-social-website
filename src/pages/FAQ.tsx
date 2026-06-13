@@ -118,7 +118,7 @@ const faqSections: FAQSection[] = [
         answer: (
           <UnorderedList spacing={1.5}>
             <ListItem>Yes — links like <Strong>spysocial.app/join/&lt;code&gt;</Strong> open the app directly into the room</ListItem>
-            <ListItem>If they don't have the app, the link takes them to the App Store</ListItem>
+            <ListItem>If they don't have the app, the link takes them to the App Store or Google Play</ListItem>
           </UnorderedList>
         )
       }
