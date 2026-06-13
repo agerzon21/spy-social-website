@@ -73,6 +73,53 @@ const PhoneMockup = () => {
   )
 }
 
+// Radar rings + crosshair detail, echoing the app's redesigned Welcome screen.
+// Pure SVG so it scales crisp at any DPR, low opacity so it sits as background texture.
+const RadarBackdrop = () => (
+  <Box
+    position="absolute"
+    right={{ base: '-180px', md: '-8%' }}
+    top={{ base: '8%', md: '6%' }}
+    w={{ base: '560px', md: '720px' }}
+    h={{ base: '560px', md: '720px' }}
+    opacity={{ base: 0.07, md: 0.09 }}
+    pointerEvents="none"
+    zIndex={0}
+  >
+    <svg viewBox="0 0 600 600" width="100%" height="100%" fill="none" stroke="white">
+      {/* Concentric rings */}
+      <circle cx="300" cy="300" r="80" strokeWidth="1" />
+      <circle cx="300" cy="300" r="150" strokeWidth="1" />
+      <circle cx="300" cy="300" r="220" strokeWidth="1" />
+      <circle cx="300" cy="300" r="290" strokeWidth="0.8" strokeDasharray="2 6" />
+      {/* Crosshair lines, dashed so they read as a target */}
+      <line x1="300" y1="20" x2="300" y2="580" strokeWidth="0.8" strokeDasharray="3 8" />
+      <line x1="20" y1="300" x2="580" y2="300" strokeWidth="0.8" strokeDasharray="3 8" />
+      {/* Center tick */}
+      <circle cx="300" cy="300" r="3" fill="white" stroke="none" />
+      <line x1="290" y1="300" x2="310" y2="300" strokeWidth="1" />
+      <line x1="300" y1="290" x2="300" y2="310" strokeWidth="1" />
+    </svg>
+  </Box>
+)
+
+// 4-color Google Play triangle, approximating the official brand badge.
+// Uses a gradient stop ramp (cyan → green → yellow → red) on a single play-triangle path —
+// cleaner than 4 separate path slices and still reads as the multi-color icon.
+const GooglePlayIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22">
+    <defs>
+      <linearGradient id="gp-color-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#00D2FF" />
+        <stop offset="33%" stopColor="#43E97B" />
+        <stop offset="66%" stopColor="#FFCE00" />
+        <stop offset="100%" stopColor="#FF3D00" />
+      </linearGradient>
+    </defs>
+    <path fill="url(#gp-color-grad)" d="M3 2.5v19c0 .4.5.7.8.4l13-9.5c.3-.2.3-.6 0-.8l-13-9.5c-.3-.3-.8 0-.8.4z" />
+  </svg>
+)
+
 const Hero = () => {
   return (
     <Box
@@ -84,7 +131,40 @@ const Hero = () => {
       overflow="hidden"
       color="white"
     >
-      {/* Subtle background accents */}
+      {/* Vertical depth: subtle linear gradient deepens the navy toward the bottom */}
+      <Box
+        position="absolute"
+        inset={0}
+        bgGradient="linear(to-b, rgba(60, 90, 160, 0.18) 0%, transparent 35%, rgba(15, 20, 45, 0.45) 100%)"
+        pointerEvents="none"
+      />
+      {/* Sky-blue zone, top-left (matches the app's new Welcome screen accent) */}
+      <Box
+        position="absolute"
+        top="-15%"
+        left="-10%"
+        w="600px"
+        h="600px"
+        borderRadius="full"
+        bg="#4A8FE7"
+        opacity={0.10}
+        filter="blur(130px)"
+        pointerEvents="none"
+      />
+      {/* Warm orange glow, bottom-right — brings warmth & balances the cool top */}
+      <Box
+        position="absolute"
+        bottom="-15%"
+        right="-10%"
+        w="500px"
+        h="500px"
+        borderRadius="full"
+        bg="#FF8A3D"
+        opacity={0.07}
+        filter="blur(120px)"
+        pointerEvents="none"
+      />
+      {/* Existing purple highlight, dimmed */}
       <Box
         position="absolute"
         top="-20%"
@@ -95,20 +175,13 @@ const Hero = () => {
         bg="purple.600"
         opacity={0.05}
         filter="blur(120px)"
-      />
-      <Box
-        position="absolute"
-        bottom="-10%"
-        left="-10%"
-        w="500px"
-        h="500px"
-        borderRadius="full"
-        bg="blue.500"
-        opacity={0.05}
-        filter="blur(100px)"
+        pointerEvents="none"
       />
 
-      <Container maxW="container.lg" py={{ base: 20, md: 0 }} pb={{ base: 24, md: 20 }}>
+      {/* Radar rings + crosshair detail */}
+      <RadarBackdrop />
+
+      <Container maxW="container.lg" py={{ base: 20, md: 0 }} pb={{ base: 24, md: 20 }} position="relative" zIndex={1}>
         <Flex
           direction={{ base: "column", md: "row" }}
           align="center"
@@ -122,10 +195,35 @@ const Hero = () => {
             flex="1"
             textAlign={{ base: "center", md: "left" }}
           >
+            {/* Brand eyebrow pill — echoes the app's Welcome screen "SOCIAL DEDUCTION" tag */}
+            <MotionBox
+              initial={{ y: 12, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Box
+                display="inline-flex"
+                alignItems="center"
+                bg="rgba(255, 138, 61, 0.12)"
+                borderWidth="1px"
+                borderColor="rgba(255, 138, 61, 0.45)"
+                color="#FFB48C"
+                px={3}
+                py={1}
+                borderRadius="full"
+                fontSize="xs"
+                fontWeight="700"
+                letterSpacing="0.18em"
+                textTransform="uppercase"
+              >
+                Social Deduction
+              </Box>
+            </MotionBox>
+
             <MotionBox
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.05 }}
             >
               <Image
                 src="/images/logo.svg"
@@ -165,7 +263,7 @@ const Hero = () => {
               </HStack>
             </MotionBox>
 
-            {/* Download buttons */}
+            {/* Download buttons — both rendered as official "black badge" style */}
             <MotionBox
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -181,14 +279,17 @@ const Hero = () => {
                   display="inline-flex"
                   alignItems="center"
                   justifyContent="center"
-                  bg="white"
-                  color="gray.900"
+                  bg="black"
+                  color="white"
                   borderRadius="xl"
                   w="180px"
                   h="54px"
+                  borderWidth="1px"
+                  borderColor="whiteAlpha.200"
                   _hover={{
-                    bg: "gray.100",
+                    bg: "gray.800",
                     transform: "translateY(-2px)",
+                    boxShadow: "0 10px 30px rgba(74,143,231,0.15)",
                   }}
                   transition="all 0.2s"
                 >
@@ -213,25 +314,23 @@ const Hero = () => {
                   display="inline-flex"
                   alignItems="center"
                   justifyContent="center"
-                  bg="white"
-                  color="gray.900"
+                  bg="black"
+                  color="white"
                   borderRadius="xl"
                   w="180px"
                   h="54px"
+                  borderWidth="1px"
+                  borderColor="whiteAlpha.200"
                   _hover={{
-                    bg: "gray.100",
+                    bg: "gray.800",
                     transform: "translateY(-2px)",
+                    boxShadow: "0 10px 30px rgba(255,138,61,0.18)",
                   }}
                   transition="all 0.2s"
                 >
                   <Flex alignItems="center" px={4} gap={3}>
-                    <Box flexShrink={0}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="24" height="24">
-                        <path
-                          fill="currentColor"
-                          d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.6 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"
-                        />
-                      </svg>
+                    <Box flexShrink={0} display="flex" alignItems="center">
+                      <GooglePlayIcon />
                     </Box>
                     <Flex direction="column" align="flex-start">
                       <Text fontSize="10px" fontWeight="normal" lineHeight="1" mb={0.5}>
@@ -248,7 +347,7 @@ const Hero = () => {
           </VStack>
 
           {/* Right side — phone mockup */}
-          <Box flexShrink={0}>
+          <Box flexShrink={0} position="relative" zIndex={1}>
             <PhoneMockup />
           </Box>
         </Flex>
