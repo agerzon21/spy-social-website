@@ -37,7 +37,7 @@ const Header = () => {
           <Image
             src="/images/logo.svg"
             alt="SpySocial"
-            h={{ base: '36px', md: '40px' }}
+            h={{ base: '45px', md: '50px' }}
             w="auto"
             opacity={0.85}
             _hover={{ opacity: 1 }}

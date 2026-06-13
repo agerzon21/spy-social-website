@@ -287,9 +287,9 @@ const Hero = () => {
                   borderWidth="1px"
                   borderColor="whiteAlpha.200"
                   _hover={{
-                    bg: "gray.800",
-                    transform: "translateY(-2px)",
-                    boxShadow: "0 10px 30px rgba(74,143,231,0.15)",
+                    borderColor: "whiteAlpha.300",
+                    transform: "translateY(-1px)",
+                    boxShadow: "0 6px 16px rgba(0,0,0,0.3)",
                   }}
                   transition="all 0.2s"
                 >
@@ -322,9 +322,9 @@ const Hero = () => {
                   borderWidth="1px"
                   borderColor="whiteAlpha.200"
                   _hover={{
-                    bg: "gray.800",
-                    transform: "translateY(-2px)",
-                    boxShadow: "0 10px 30px rgba(255,138,61,0.18)",
+                    borderColor: "whiteAlpha.300",
+                    transform: "translateY(-1px)",
+                    boxShadow: "0 6px 16px rgba(0,0,0,0.3)",
                   }}
                   transition="all 0.2s"
                 >
