@@ -2,20 +2,36 @@ import { Box, Text, VStack, Container, Flex, Icon, Image, HStack } from '@chakra
 import { FaApple } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import screenshot1 from '../assets/screenshots/1.webp'
+import screenshot2 from '../assets/screenshots/2.webp'
+import screenshot3 from '../assets/screenshots/3.webp'
+import screenshot4 from '../assets/screenshots/4.webp'
+import screenshot5 from '../assets/screenshots/5.webp'
+import screenshot6 from '../assets/screenshots/6.webp'
 
 const MotionBox = motion(Box)
 const MotionImage = motion(Image)
 
+// Sized for 3x screens at the mockup's 220px width. Imported (not in /public) so Vite
+// fingerprints them and they can be cached as immutable.
+const screenshots = [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5, screenshot6]
+
 const PhoneMockup = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const screenshots = ['/images/1.png', '/images/2.png', '/images/3.png', '/images/4.png', '/images/5.png', '/images/6.png']
+  // Screenshots are stacked in view (hidden via opacity), so `loading="lazy"` can't defer them.
+  // Mount only the current one plus the next, so a visitor who bounces fetches two, not six.
+  const [mountedCount, setMountedCount] = useState(2)
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % screenshots.length)
     }, 3500)
     return () => clearInterval(timer)
-  }, [screenshots.length])
+  }, [])
+
+  useEffect(() => {
+    setMountedCount((count) => Math.max(count, Math.min(currentIndex + 2, screenshots.length)))
+  }, [currentIndex])
 
   return (
     <MotionBox
@@ -51,7 +67,7 @@ const PhoneMockup = () => {
           overflow="hidden"
           position="relative"
         >
-          {screenshots.map((src, index) => (
+          {screenshots.slice(0, mountedCount).map((src, index) => (
             <MotionImage
               key={src}
               src={src}
@@ -62,9 +78,10 @@ const PhoneMockup = () => {
               position="absolute"
               top={0}
               left={0}
+              // Start at the target opacity so a screenshot mounted mid-rotation doesn't flash in
+              initial={false}
               animate={{ opacity: index === currentIndex ? 1 : 0 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
-              loading={index === 0 ? "eager" : "lazy"}
             />
           ))}
         </Box>
