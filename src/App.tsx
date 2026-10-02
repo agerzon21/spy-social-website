@@ -7,9 +7,11 @@ import { lazy, Suspense } from 'react'
 import NotFound from './pages/NotFound'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
+import Rules from './pages/Rules'
 import Support from './pages/Support'
 import FAQ from './pages/FAQ'
 import Join from './pages/Join'
+import JoinEvent from './pages/JoinEvent'
 import WhatsNew from './pages/WhatsNew'
 import DeleteAccount from './pages/DeleteAccount'
 
@@ -35,10 +37,12 @@ function App() {
               <Route path="/confirm-success" element={<Layout><ConfirmSuccess /></Layout>} />
               <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
               <Route path="/terms" element={<Layout><Terms /></Layout>} />
+              <Route path="/rules" element={<Layout><Rules /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
+              <Route path="/join/e/:id" element={<Layout><JoinEvent /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
               <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>

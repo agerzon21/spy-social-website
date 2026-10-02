@@ -30,6 +30,7 @@ const Footer = ({ sticky = false }: FooterProps) => {
             <ChakraLink as={RouterLink} to="/whats-new" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">What's New</ChakraLink>
             <ChakraLink as={RouterLink} to="/privacy" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Privacy</ChakraLink>
             <ChakraLink as={RouterLink} to="/terms" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Terms</ChakraLink>
+            <ChakraLink as={RouterLink} to="/rules" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Rules</ChakraLink>
             <ChakraLink as={RouterLink} to="/support" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Support</ChakraLink>
             <ChakraLink as={RouterLink} to="/contact-us" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Contact</ChakraLink>
             <ChakraLink as={RouterLink} to="/delete-account" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Delete Account</ChakraLink>
