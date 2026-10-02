@@ -1,7 +1,7 @@
 import { Box, Container, Heading, Text, VStack, Button, HStack } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
 import { IoLogoGooglePlaystore } from 'react-icons/io5'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useMemo } from 'react'
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390'
@@ -9,7 +9,14 @@ const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.gerz.s
 
 const Join = () => {
   const { code = '' } = useParams<{ code: string }>()
-  const displayCode = code.toUpperCase()
+  const [searchParams] = useSearchParams()
+
+  // A private room whose host changed its code carries that code as ?p=.
+  // Forward it to the app so the invite still joins in one tap, and show it
+  // here because it's the code the player would type.
+  const passcode = (searchParams.get('p') ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12)
+  const displayCode = passcode || code.toUpperCase()
+  const appLink = `spysocial://join/${encodeURIComponent(code)}${passcode ? `?p=${encodeURIComponent(passcode)}` : ''}`
 
   const platform = useMemo<'ios' | 'android' | 'desktop'>(() => {
     if (typeof navigator === 'undefined') return 'desktop'
@@ -27,12 +34,12 @@ const Join = () => {
   // (or the App Links / Universal Links verification hasn't propagated yet).
   useEffect(() => {
     if (isMobile && code) {
-      window.location.href = `spysocial://join/${code}`
+      window.location.href = appLink
     }
-  }, [isMobile, code])
+  }, [isMobile, code, appLink])
 
   const handleOpenInApp = () => {
-    window.location.href = `spysocial://join/${code}`
+    window.location.href = appLink
   }
 
   return (
