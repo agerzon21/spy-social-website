@@ -158,11 +158,12 @@ const Privacy: React.FC = () => {
               <Item label="Drawing Checks">
                 In public rooms, every drawing turn in a Spy Sketch game is checked automatically for content that breaks
                 our Community Rules, and so is any drawing someone reports, in any room. For each check, our servers send
-                OpenAI an image of the drawing and the round's secret word, which helps tell an innocent drawing from an
-                offensive one, and nothing else: not your name, your account or your device's IP address. According to
-                OpenAI, it doesn't use what it receives to train its models, and keeps it for up to 30 days to watch for
-                misuse of its service, unless the law requires it to keep it longer. We keep the result of each check, and
-                any lines a check took off a drawing, for as long as we need them to handle reports and appeals.
+                OpenAI an image of the drawing, the round's secret word (which helps tell an innocent drawing from an
+                offensive one) and a code made from your account ID that doesn't reveal who you are, which OpenAI uses to
+                detect misuse of its service. They never send your name, your email address or your device's IP address.
+                According to OpenAI, it doesn't use what it receives to train its models, and keeps it for up to 30 days to
+                watch for misuse, unless the law requires it to keep it longer. We keep the result of each check, and any
+                lines a check took off a drawing, for as long as we need them to handle reports and appeals.
               </Item>
             )}
             <Item label="Age">
