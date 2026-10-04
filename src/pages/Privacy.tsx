@@ -101,7 +101,7 @@ const Privacy: React.FC = () => {
               {avatarsLive() && photosInUse() && ' Versions of the app before 2.2 also let you add a profile photo.'}
               {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
               {LIVE.socialSignIn &&
-                ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them.'}
+                ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, under Google\'s privacy policy.'}
             </Item>
             <Item label="Profile Preferences">
               Your interface language (one of the ten languages the app offers), your color and similar settings, so the app
@@ -243,7 +243,8 @@ const Privacy: React.FC = () => {
                 (such as free memory, screen size and language), the app's version, and an ID for the app's installation
                 that isn't linked to your account (on Android, a random ID the crash reporter creates; on iPhones, a code
                 made from the identifier iOS gives our apps on your device). Reports don't include your name, email
-                address, account or messages, and the app sends nothing to Sentry while everything works. Sentry
+                address, account or messages. A report is also sent when the app freezes (stops responding for a few
+                seconds), with the same details; the app sends nothing to Sentry while everything works. Sentry
                 receives your device's IP address when a report arrives but is set not to store it, and deletes reports
                 within 90 days.
               </Item>

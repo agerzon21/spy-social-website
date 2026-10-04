@@ -334,8 +334,8 @@ const Safety: React.FC = () => {
               {LIVE.oldAppsInUse && ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)'}
             </ListItem>
             <ListItem>
-              Scroll to the <B>Danger Zone</B> and tap <B>Delete Account</B>. For a guest account, <B>Sign Out</B> deletes
-              it.
+              Scroll to the <B>Danger Zone</B> and tap <B>Delete Account</B>. A guest account is deleted with <B>Sign Out</B>
+              instead (in Account, under Sign-In).
             </ListItem>
           </OrderedList>
           <P>

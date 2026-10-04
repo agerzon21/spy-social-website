@@ -38,8 +38,9 @@ const DeleteAccount: React.FC = () => {
 
           <Heading as="h2" size="sm" color="white" mt={4}>Guest accounts</Heading>
           <Text fontSize="sm" lineHeight="1.8">
-            A guest account is deleted the moment you tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Sign Out</Text> in
-            the Danger Zone. A guest can't sign back in, so there is no recovery.
+            A guest account is deleted the moment you tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Sign Out</Text> (in
+            Account, under Sign-In; in versions before 2.2, under Account &amp; Security) and confirm. A guest can't sign back
+            in, so there is no recovery.
             {LIVE.purchases &&
               ' Purchases are the exception, as for any deleted account: anything you bought as a guest comes back with Restore Purchases, on the App Store or Google Play account you paid with.'}
           </Text>
