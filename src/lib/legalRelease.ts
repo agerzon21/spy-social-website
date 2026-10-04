@@ -14,9 +14,9 @@ export const LIVE = {
    * fix/account-photo-cleanup's housekeeping migration (20261004132500) applied: chat, translations,
    * usage events and security logs are deleted on a clock, not only when traffic happens to prune.
    */
-  scheduledRetention: false,
+  scheduledRetention: true,
   /** fix/account-photo-cleanup deployed (migration 20261004132000 and purge-avatars): a deleted account's photo file is deleted. */
-  photoCleanup: false,
+  photoCleanup: true,
   /** merge/avatars-1 deployed: profile photos are checked by Azure AI Content Safety (moderate-avatar). */
   photoScreening: false,
   /** feature/age-terms-gate in the released app: everyone gives a birth year before their first game. */
