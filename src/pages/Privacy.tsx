@@ -113,6 +113,14 @@ const Privacy: React.FC = () => {
               results. We use it to run the game, keep score, award experience points, levels and achievements, and check
               that games are played fairly.
             </Item>
+            {LIVE.playOnline && (
+              <Item label="Play Online">
+                When you use Play Online, our servers keep what you searched for (Spy Talk or Spy Sketch, the table size,
+                and when), the table you're seated at, when you tap Ready, and the breaks you get for missing a start or
+                leaving a game that has started. We use this to seat you with other players and to keep games fair.
+                Searches are deleted 30 days after they end, and breaks and the matchmaking log after 90 days.
+              </Item>
+            )}
             <Item label="Chat Messages">
               Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, and the chat for players
               who are out) are stored on our servers so the other players in the room can read them.{' '}
@@ -303,7 +311,11 @@ const Privacy: React.FC = () => {
           <P>
             We keep your account information and game data for as long as you have an account.{' '}
             {chatRetention(LIVE.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
-            made to deliver them live are deleted within 3 days. Translations are kept for 24 hours. Usage events are kept
+            made to deliver them live are deleted within 3 days. Translations are kept for 24 hours.
+            {LIVE.playOnline
+              ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
+              : ''}{' '}
+            Usage events are kept
             for 180 days
             {LIVE.scheduledRetention
               ? ', and security logs (such as sign-ups, sign-ins, password resets and email changes, which can include your email address and IP address) for 180 days.'

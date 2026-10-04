@@ -46,6 +46,12 @@ const Rules: React.FC = () => {
             <ListItem>Lying and bluffing are the game. They are never a reason to report anyone.</ListItem>
             <ListItem>Revealing the word or location, or agreeing with other players outside the game, is cheating.</ListItem>
             <ListItem>Leaving games on purpose, going idle or stalling a round spoils it for the rest of the room.</ListItem>
+            {LIVE.playOnline && (
+              <ListItem>
+                In Play Online, missing a start or leaving a game that has started gives you a short break from public
+                games (5 minutes, longer if you keep leaving).
+              </ListItem>
+            )}
           </UnorderedList>
 
           <Heading as="h2" size="sm" color="white" mt={4}>

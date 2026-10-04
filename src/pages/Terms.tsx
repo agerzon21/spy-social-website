@@ -175,6 +175,16 @@ const Terms: React.FC = () => {
             app and join: a saved account with a confirmed email address, being 13 or older, and agreeing to the
             Community Rules. In a public room, players can vote to remove a player or to end a game.
           </P>
+          {LIVE.playOnline && (
+            <P>
+              Play Online seats you at a table with other players for a game with standard settings, under the same
+              requirements. If you don't tap Ready in time, leave a table that is starting, are away when the game
+              starts, or leave a game that has started, you get a short break from Play Online and from other public
+              rooms (never from private rooms or events): 5 minutes, and for leaving started games again within 24
+              hours, 15 and then 60 minutes. The first time in a day that you're away when a game starts, there's no
+              break.
+            </P>
+          )}
           <P>
             Events are public games we schedule for a set time, with settings and packs we choose. We may change, move
             or cancel an event, limit how many players can join it, and decide who hosts it.

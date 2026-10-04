@@ -15,8 +15,8 @@
 // checking each one's condition in its comment: avatarCreator,
 // ageGateEveryone, birthMonth, under13Deletion, storeAgeSignals, crashReports,
 // notifications, socialSignIn, purchases, onDeviceTranslation,
-// storedQuestions, qrScanner; myMemory to what the translate function does
-// then; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
+// storedQuestions, qrScanner, playOnline (before the play_online switch goes
+// 'on', runbook 3.8c); myMemory to what the translate function does then; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
 // photosRemoved once no photo file is left. Not at launch unless its own
 // condition holds by then: revenueCatDeletion (the delete flow deletes the
 // RevenueCat customer) and drawingCheck (the game itself checks drawings;
@@ -111,8 +111,12 @@ export const LIVE = {
   purchases: false,
   /**
    * Deleting an account also deletes the player's RevenueCat customer record within 30 days (a server-side
-   * call to RevenueCat's DELETE /v1/subscribers in the delete flow). Not built yet: until it is, the pages
-   * say RevenueCat keeps its record and that we have it deleted on request.
+   * call to RevenueCat's DELETE /v1/subscribers in the delete flow). Built and live since 2026-10-04: migration
+   * 20261006140000_revenuecat_customer_deletion queues every deleted account (a BEFORE DELETE trigger) and
+   * pg_cron's revenuecat-purge-tick runs purge-revenuecat, which retries until RevenueCat answers 200 or 404.
+   * It can only work once REVENUECAT_SECRET_KEY is set in the function secrets (owner setup prompt 4): flip
+   * when it is and one test deletion has emptied its revenuecat_purges row. Until then the pages say
+   * RevenueCat keeps its record and that we have it deleted on request.
    */
   revenueCatDeletion: false,
   /**
@@ -146,6 +150,18 @@ export const LIVE = {
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
   qrScanner: false,
+  /**
+   * Play Online (feature/play-online-server, migrations 20261006160000 to 160500): FIND A GAME seats saved
+   * accounts at standard tables. The server keeps match_searches (what was asked for: Spy Talk / Spy Sketch /
+   * either, the table size, when; deleted with the account, finished ones after 30 days), match_seats (the
+   * table, last seen, Ready taps; gone when the seat is), match_penalties (breaks: not_ready, declined, absent,
+   * unseen_card 5 minutes, left_game 5 / 15 / 60 within 24 hours, the first absence in 24 hours free; deleted
+   * with the account, otherwise after 90 days) and match_events (the matchmaking log, with the user id and no
+   * link to the profile, so it outlives a deletion; deleted after 90 days). Breaks cover standard tables and
+   * custom public rooms, never private rooms or game nights. Same requirements as public rooms (_public_gate).
+   * Flip before app_config.play_online goes 'on' for everyone (runbook 3.8c), in website update 1.
+   */
+  playOnline: false,
   /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
