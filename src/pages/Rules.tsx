@@ -1,9 +1,10 @@
 import { Box, Container, Heading, Link as ChakraLink, ListItem, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { LEGAL_LAST_UPDATED } from '../lib/legalRelease'
 
-// The community rules the app links to before a player's first public room
-// (www.spysocial.app/rules). Short on purpose: the app shows the same four
-// rules; this page adds what counts, what happens and how to appeal.
+// The community rules the app links to (www.spysocial.app/rules), part of the
+// Terms of Service. Short on purpose: the app shows the same rules; this page
+// adds what counts, what happens, child safety and how to appeal.
 const Rules: React.FC = () => {
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
@@ -14,13 +15,17 @@ const Rules: React.FC = () => {
               Community rules
             </Heading>
             <Text fontSize="xs" color="whiteAlpha.400">
-              Last updated: October 2, 2026
+              Last updated: {LEGAL_LAST_UPDATED}
             </Text>
           </Box>
 
           <Text fontSize="sm" lineHeight="1.8">
-            Public rooms put you in a game with people you don't know. These rules keep it fun for everyone. They
-            apply to names, photos, chat, drawings and how you play, in public and private rooms.
+            Public rooms put you in a game with people you don't know. These rules keep it fun for everyone. They apply to
+            names, photos, chat, drawings and how you play, in public and private rooms, and they're part of our{' '}
+            <ChakraLink as={Link} to="/terms" color="orange.300">
+              Terms of Service
+            </ChakraLink>
+            .
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>
@@ -53,9 +58,26 @@ const Rules: React.FC = () => {
             4. A person reads reports
           </Heading>
           <Text fontSize="sm" lineHeight="1.8">
-            Long-press a player or a message to report or block them. A person reads every report, usually within 72
-            hours (24 hours for personal information, sexual content or a self-harm concern). Public chat is kept for
-            14 days so reports can be checked; the player you report isn't told who sent it.
+            Long-press a player to report or block them. A person reads every report within 24 hours. Public chat is kept
+            for 14 days so reports can be checked; the player you report isn't told who sent it.
+          </Text>
+
+          <Heading as="h2" size="sm" color="white" mt={4}>
+            Child safety
+          </Heading>
+          <Text fontSize="sm" lineHeight="1.8">
+            We never allow sexual content involving anyone under 18, or anyone trying to groom, sexualize or exploit a
+            child. We remove it, ban the accounts involved, and report it to the National Center for Missing & Exploited
+            Children (NCMEC) as the law requires. If you see anything like this, email{' '}
+            <ChakraLink href="mailto:support@spysocial.app?subject=Child%20safety" color="orange.300">
+              support@spysocial.app
+            </ChakraLink>{' '}
+            with "Child safety" in the subject, and report the player in the app if you shared a room with them. You can
+            also report it directly to NCMEC's{' '}
+            <ChakraLink href="https://report.cybertip.org" isExternal color="orange.300">
+              CyberTipline
+            </ChakraLink>{' '}
+            (1-800-843-5678). If a child is in immediate danger, call your local emergency number first.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>
@@ -63,16 +85,16 @@ const Rules: React.FC = () => {
           </Heading>
           <Text fontSize="sm" lineHeight="1.8">
             Usually a warning first. Repeated or serious problems lead to a chat mute (1 hour to 7 days), a pause from
-            public rooms and events (1 to 30 days), or a ban. Sharing someone's personal information can mean an
-            immediate ban. Every notice in the app says what is limited, why, and until when, with an ID like S-207.
+            public rooms and events (1 to 30 days), or a ban. Sharing someone's personal information, or anything that
+            sexualizes a child, can mean an immediate ban. Every notice in the app says what is limited, why, and until
+            when, with an ID like S-207.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>
             Age
           </Heading>
           <Text fontSize="sm" lineHeight="1.8">
-            Public rooms and events are for players 13 and older. Younger players can play in private rooms with
-            people they know.
+            SpySocial is for players 13 and older.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>
