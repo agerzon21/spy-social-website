@@ -1,9 +1,10 @@
 import { Link as ChakraLink, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { LIVE, photosInUse } from '../../lib/legalRelease'
+import { PRIVACY, photosInUse } from '../../lib/legalRelease'
 
 // What deleting an account removes and what stays, for the Privacy Policy and
 // the Delete Account page (Google Play links to it), so the two never differ.
+// They read PRIVACY, which can run ahead of the Terms (legalRelease.ts).
 // Checked against the live database (2026-10-03): the profile's foreign keys
 // delete stats, XP, achievements, blocks, warnings, mutes and bans, game-night
 // history and rewards, age and terms answers and entitlements with it; reports
@@ -22,8 +23,8 @@ const SupportEmail = () => (
 export const AfterDeletionList = () => (
   <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
     <ListItem>
-      Chat messages{LIVE.storedQuestions ? ' and typed questions and answers' : ''} you sent stay in their room until{' '}
-      {LIVE.scheduledRetention
+      Chat messages{PRIVACY.storedQuestions ? ' and typed questions and answers' : ''} you sent stay in their room until{' '}
+      {PRIVACY.scheduledRetention
         ? "they're deleted: about 24 hours after you sent them in a private room, 14 days after in a public room."
         : 'they expire (after 24 hours in private rooms, 14 days in public rooms); after that nobody can read them.'}
     </ListItem>
@@ -34,9 +35,9 @@ export const AfterDeletionList = () => (
     <ListItem>
       Records of games you played (such as moves, votes and results) stay with those games. They identify players only
       by a random ID, which no longer leads to your account. Usage events, which use the same ID, are deleted after 180
-      days{LIVE.playOnline ? ", and Play Online's matchmaking log, which uses it too, after 90 days" : ''}.
+      days{PRIVACY.playOnline ? ", and Play Online's matchmaking log, which uses it too, after 90 days" : ''}.
     </ListItem>
-    {LIVE.drawingCheck && (
+    {PRIVACY.drawingCheck && (
       <ListItem>
         A drawing kept as evidence (see Data Retention) stays until its period ends, even if the account that drew it is
         deleted.
@@ -44,11 +45,11 @@ export const AfterDeletionList = () => (
     )}
     <ListItem>
       Security logs of account activity (such as sign-ups, sign-ins, password resets and email changes), which can include
-      your email address and IP address, are kept{LIVE.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
+      your email address and IP address, are kept{PRIVACY.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
       prevent abuse.
     </ListItem>
-    {photosInUse() &&
-      (LIVE.photoCleanup ? (
+    {photosInUse(PRIVACY) &&
+      (PRIVACY.photoCleanup ? (
         <ListItem>
           A copy of your profile photo that our content delivery network cached can still open by its link for up to an
           hour.
@@ -59,9 +60,9 @@ export const AfterDeletionList = () => (
           delete it within one month.
         </ListItem>
       ))}
-    {LIVE.purchases && (
+    {PRIVACY.purchases && (
       <ListItem>
-        {LIVE.revenueCatDeletion ? (
+        {PRIVACY.revenueCatDeletion ? (
           <>
             RevenueCat's record of your purchases (an ID linked to your account, and what you bought) is deleted within
             30 days.

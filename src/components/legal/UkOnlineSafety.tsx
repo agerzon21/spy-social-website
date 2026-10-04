@@ -15,7 +15,7 @@ import { LIVE, OPERATOR, photosInUse } from '../../lib/legalRelease'
 export const UK_SECTION_NUMBER = 22
 
 const UkOnlineSafety = () => {
-  const photos = photosInUse()
+  const photos = photosInUse(LIVE)
   const dc = LIVE.drawingCheck
   const without = [
     'direct messages',

@@ -33,6 +33,21 @@
 // Update 2 columns), not only with everything on. The Safety page
 // (src/pages/Safety.tsx) and the Terms' UK online safety section
 // (components/legal/UkOnlineSafety.tsx) follow the same switches.
+//
+// THE PRIVACY POLICY CAN GO FIRST (PRIVACY_AHEAD, below LIVE). Store reviewers
+// compare the Privacy Policy with the App Store privacy labels and Google Play's
+// Data safety form, so it describes the 2.2 build from the day 2.2 is submitted,
+// while the Terms and the Community Rules wait for the launch hour (publishing the
+// Terms again makes everyone agree again). The pages that share the Privacy
+// Policy's data facts read PRIVACY = LIVE with PRIVACY_AHEAD on top: Privacy,
+// Delete Account, components/legal/AfterDeletion and lib/legalText. The Terms,
+// the Community Rules, the Terms' UK online safety section and the Safety page
+// keep reading LIVE (the Safety page's switch lines say what the app offers
+// players and parents, not what data we process). While a switch runs ahead,
+// 2.1.1 is still the store version, so what a 2.1.1 player would take for their
+// own app's behavior says "from version 2.2" while oldAppsInUse (Privacy.tsx).
+// At the launch, flip the same switches in LIVE, empty PRIVACY_AHEAD and set
+// PRIVACY_LAST_UPDATED back to LEGAL_LAST_UPDATED.
 
 export const LIVE = {
   /**
@@ -93,7 +108,9 @@ export const LIVE = {
    * auto-init (on unless the manifest says otherwise) fetches a token at launch once google-services.json is in
    * the build, so Google gets a Firebase installation ID and app and device details from every Android player.
    * Set false if the store build turns auto-init off (meta-data firebase_messaging_auto_init_enabled=false):
-   * a token is then fetched only by the owner's report-alert switch, and the text about it goes.
+   * a token is then fetched only by the owner's report-alert switch, and the text about it goes. The app branch
+   * chore/fcm-auto-init-off does this; 2.1.1 has no Firebase at all, so this switch describes only 2.2 and is set
+   * here (never in PRIVACY_AHEAD) to match the submitted Android build, as soon as it's known.
    */
   fcmAutoInit: true,
   /**
@@ -171,17 +188,71 @@ export const LIVE = {
   oldAppsInUse: true,
 }
 
+/** A set of switches: LIVE, or PRIVACY on the pages that share the Privacy Policy's data facts. */
+export type Switches = typeof LIVE
+
+type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : never }[keyof Switches]
+
+/**
+ * The switches that may run ahead on the Privacy pages: each one only ADDS a disclosure when it's on (saying we do
+ * something before every player's app does it is fine; leaving something out, or saying we stopped doing something,
+ * is not). Set one ahead when the submitted 2.2 build (or, for a server piece, the live server) does what its text
+ * says, by its comment in LIVE:
+ *   avatarCreator, ageGateEveryone, storeAgeSignals, crashReports, notifications, socialSignIn, purchases,
+ *   onDeviceTranslation, qrScanner: in the submitted build;
+ *   birthMonth, under13Deletion, storedQuestions: their migrations live (all three since 2026-10-04) and the
+ *   submitted build uses them;
+ *   playOnline: its migrations live and the build has FIND A GAME (even while app_config.play_online is 'testers');
+ *   revenueCatDeletion: only when its own condition holds (the key works and a test deletion emptied its row);
+ *   drawingCheck: only when the build has the wiring and the check is on, or will be switched on at the launch
+ *   (runbook 3.5) and the store forms declare drawings sent to OpenAI.
+ * Never ahead: photosRemoved (says the photos are deleted), oldAppsInUse (false drops what versions before 2.2 do
+ * while 2.1.1 is the store version), myMemory (any other value drops or moves a disclosure; 'off' says there's no
+ * backup), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), scheduledRetention and
+ * photoCleanup (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
+ * (npm run build); PRIVACY below also ignores anything else.
+ */
+const AHEAD_SAFE = [
+  'avatarCreator',
+  'ageGateEveryone',
+  'birthMonth',
+  'under13Deletion',
+  'storeAgeSignals',
+  'crashReports',
+  'notifications',
+  'socialSignIn',
+  'purchases',
+  'revenueCatDeletion',
+  'drawingCheck',
+  'onDeviceTranslation',
+  'storedQuestions',
+  'qrScanner',
+  'playOnline',
+] as const satisfies readonly BooleanSwitch[]
+
+/**
+ * Switches on for the Privacy pages before they're on in LIVE (see the top of this file and AHEAD_SAFE). All off
+ * until the 2.2 submission day; emptied at the launch, once LIVE has them.
+ */
+export const PRIVACY_AHEAD: { readonly [K in (typeof AHEAD_SAFE)[number]]?: true } = {}
+
+/** What the Privacy Policy, Delete Account, AfterDeletion and legalText read: LIVE, with PRIVACY_AHEAD on top. */
+export const PRIVACY: Switches = {
+  ...LIVE,
+  ...Object.fromEntries(AHEAD_SAFE.filter((key) => PRIVACY_AHEAD[key] === true).map((key) => [key, true])),
+}
+
 /** Whether any player can still have a profile photo: before 2.2's avatars, or while versions before 2.2 connect. */
-export const photosInUse = (): boolean => !LIVE.photosRemoved || LIVE.oldAppsInUse
+export const photosInUse = (s: Switches): boolean => !s.photosRemoved || s.oldAppsInUse
 
 /** Whether the released app has the avatar creator (from the 2.2 launch; the photo removal implies it). */
-export const avatarsLive = (): boolean => LIVE.avatarCreator || LIVE.photosRemoved
+export const avatarsLive = (s: Switches): boolean => s.avatarCreator || s.photosRemoved
 
 /**
  * Whether the Android app uses Google's ML Kit: it translates on the phone (onDeviceTranslation) and reads
  * QR codes (qrScanner). On iPhones, Apple's own frameworks do both.
  */
-export const usesMlKit = (): boolean => LIVE.onDeviceTranslation || LIVE.qrScanner
+export const usesMlKit = (s: Switches): boolean => s.onDeviceTranslation || s.qrScanner
 
 /**
  * Who runs SpySocial: the legal name and a postal address, shown on the
@@ -193,8 +264,17 @@ export const OPERATOR: { name: string | null; address: string | null } = {
   address: '55 Ash Gap Road, Clifton Township, PA 18424-7702, United States',
 }
 
-/** "Last Updated" on the Privacy Policy, the Terms, the Community Rules and Delete Account: the day a change is published. */
+/**
+ * "Last Updated" on the Terms, the Community Rules and the Safety page, and (through PRIVACY_LAST_UPDATED) on the
+ * Privacy Policy and Delete Account: the day a change is published.
+ */
 export const LEGAL_LAST_UPDATED = 'October 4, 2026'
+
+/**
+ * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
+ * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
+ */
+export const PRIVACY_LAST_UPDATED: string = LEGAL_LAST_UPDATED
 
 /**
  * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.

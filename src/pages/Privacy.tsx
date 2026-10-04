@@ -3,9 +3,10 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
-import { LEGAL_LAST_UPDATED, LIVE, OPERATOR, avatarsLive, photosInUse, usesMlKit } from '../lib/legalRelease'
+import { OPERATOR, PRIVACY, PRIVACY_LAST_UPDATED, avatarsLive, photosInUse, usesMlKit } from '../lib/legalRelease'
 
 // What each passage says depends on what has shipped: see src/lib/legalRelease.ts.
+// This page reads PRIVACY, which can run ahead of the Terms (PRIVACY_AHEAD there).
 
 const H2 = ({ children }: { children: ReactNode }) => (
   <Heading as="h2" size="sm" color="white" mt={4}>
@@ -43,31 +44,34 @@ const SupportEmail = () => (
 
 /** How long chat lines stay, for the Chat Messages item and Data Retention. */
 const chatRetention = (what: string) =>
-  LIVE.scheduledRetention
+  PRIVACY.scheduledRetention
     ? `${what} in private rooms are deleted about 24 hours after they're sent; in public rooms they're kept for 14 days so that reports can be reviewed, and then deleted.`
     : `${what} in private rooms can be read for 24 hours, and in public rooms for 14 days so that reports can be reviewed; after that nobody can read them, and our servers delete them.`
 
 const Privacy: React.FC = () => {
   const backupTranslation =
-    LIVE.myMemory === 'server'
+    PRIVACY.myMemory === 'server'
       ? " If Microsoft can't translate it (for example after a daily limit), our service sends the text to MyMemory, a free translation service run by Translated srl, instead."
-      : LIVE.myMemory === 'device'
+      : PRIVACY.myMemory === 'device'
         ? " If our service can't answer (for example after a daily limit), the app sends the text from your device to MyMemory, a free translation service run by Translated srl, which then also receives your device's IP address."
         : ''
   // Versions before 2.2 never call MyMemory (2.1.1 has no chat), so only the current app's setting counts.
-  const usesMyMemory = LIVE.myMemory !== 'off'
+  const usesMyMemory = PRIVACY.myMemory !== 'off'
+  // While versions before 2.2 connect (and while this page runs ahead of the 2.2 release, with 2.1.1 the store
+  // version: legalRelease PRIVACY_AHEAD), what only 2.2 does by itself, or asks of everyone, says so.
+  const from22 = PRIVACY.oldAppsInUse
   // Android registers with Firebase Cloud Messaging at launch (legalRelease fcmAutoInit).
-  const fcmAtLaunch = LIVE.notifications && LIVE.fcmAutoInit
+  const fcmAtLaunch = PRIVACY.notifications && PRIVACY.fcmAutoInit
   // What Google's ML Kit does in the Android app (usesMlKit).
   const mlKitUses = [
-    LIVE.onDeviceTranslation ? 'translate messages on your device' : null,
-    LIVE.qrScanner ? 'read QR codes' : null,
+    PRIVACY.onDeviceTranslation ? 'translate messages on your device' : null,
+    PRIVACY.qrScanner ? 'read QR codes' : null,
   ]
     .filter(Boolean)
     .join(' and ')
   const mlKitKeeps = [
-    LIVE.onDeviceTranslation ? 'the text it translates' : null,
-    LIVE.qrScanner ? 'what the camera sees' : null,
+    PRIVACY.onDeviceTranslation ? 'the text it translates' : null,
+    PRIVACY.qrScanner ? 'what the camera sees' : null,
   ]
     .filter(Boolean)
     .join(' and ')
@@ -78,7 +82,7 @@ const Privacy: React.FC = () => {
         <VStack spacing={5} align="start">
           <Box>
             <Heading as="h1" size="lg" color="white" mb={2}>Privacy Policy for SpySocial</Heading>
-            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: {LEGAL_LAST_UPDATED}</Text>
+            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: {PRIVACY_LAST_UPDATED}</Text>
           </Box>
 
           <H2>Introduction</H2>
@@ -95,12 +99,16 @@ const Privacy: React.FC = () => {
           <P>When you use SpySocial, we collect the following information:</P>
           <Bullets>
             <Item label="Account Information">
-              {avatarsLive()
+              {avatarsLive(PRIVACY)
                 ? 'Display name, username, the avatar you put together in the app from the parts it offers (and the avatar items you unlocked), and the email address you give when you save your account.'
                 : 'Display name, username, optional profile photo, and the email address you give when you save your account.'}
-              {avatarsLive() && photosInUse() && ' Versions of the app before 2.2 also let you add a profile photo.'}
+              {avatarsLive(PRIVACY) &&
+                photosInUse(PRIVACY) &&
+                (from22
+                  ? ' Avatars are new in version 2.2; versions before 2.2 let you add a profile photo instead.'
+                  : ' Versions of the app before 2.2 also let you add a profile photo.')}
               {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
-              {LIVE.socialSignIn &&
+              {PRIVACY.socialSignIn &&
                 ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, under Google\'s privacy policy.'}
             </Item>
             <Item label="Profile Preferences">
@@ -114,7 +122,7 @@ const Privacy: React.FC = () => {
               fairly. A game's drawing, including lines a player drew and then undid, is deleted 24 hours after the game
               ends in a private room, or 14 days after in a public room; a record of which player drew each turn is kept for 90 days so reports can be checked.
             </Item>
-            {LIVE.playOnline && (
+            {PRIVACY.playOnline && (
               <Item label="Play Online">
                 When you use Play Online, our servers keep what you searched for (Spy Talk or Spy Sketch, the table size,
                 and when), the table you're seated at, when you tap Ready, and the breaks you get for missing a start or
@@ -128,7 +136,7 @@ const Privacy: React.FC = () => {
               {chatRetention('Messages')} Copies made to deliver messages live are deleted within 3 days.
             </Item>
             <Item label="Questions and Answers">
-              {LIVE.storedQuestions
+              {PRIVACY.storedQuestions
                 ? `The questions and answers you type in a Spy Talk interrogation go through our servers to the other players and are kept like chat messages, so they can be checked if someone reports them. ${chatRetention('Those')}`
                 : "The questions and answers you type in a Spy Talk interrogation go to the other players in the game through our servers as they're sent; we don't store them."}
             </Item>
@@ -141,7 +149,7 @@ const Privacy: React.FC = () => {
               When you tap Translate on a message, the app asks our translation service, which sends the text to
               Microsoft Translator (Azure AI Translator) and keeps the translation for 24 hours, so other players reading
               the same message get it without sending it again.{backupTranslation}
-              {LIVE.onDeviceTranslation &&
+              {PRIVACY.onDeviceTranslation &&
                 " When our service can't translate a message, your device may translate it itself with Apple's or Google's on-device translation; the text then doesn't leave your device. The first time, your device may download that language's translation files from Apple or Google."}{' '}
               Only the message text and the two languages are sent, never your name or account.
               {usesMyMemory &&
@@ -161,15 +169,15 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Safety Information">
               Reports you make or that are made about you (in public rooms a report includes the room's recent chat as
-              evidence{LIVE.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}), players you block,
+              evidence{PRIVACY.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}), players you block,
               removals from rooms, and any warnings, mutes or bans on your account
-              {LIVE.drawingCheck
+              {PRIVACY.drawingCheck
                 ? ", including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave. When a drawing is taken off or a player removed, the room's chat says whose drawing it was or who was removed"
                 : ''}
               . When we remove a message or a drawing, or replace a name that breaks the rules, our moderation log keeps a
               copy of what we removed and the old name, for as long as we keep reports.
             </Item>
-            {LIVE.drawingCheck && (
+            {PRIVACY.drawingCheck && (
               <Item label="Drawing Checks">
                 In public rooms (including Play Online tables and events), every drawing turn in a Spy Sketch game is
                 checked automatically for content that breaks our Community Rules; in any room, a drawing is checked when
@@ -190,22 +198,22 @@ const Privacy: React.FC = () => {
               </Item>
             )}
             <Item label="Age">
-              {LIVE.ageGateEveryone
-                ? 'Your birth year, which the app asks everyone before their first game.'
+              {PRIVACY.ageGateEveryone
+                ? `Your birth year, which the app${from22 ? ' (from version 2.2)' : ''} asks everyone before their first game.`
                 : 'Your birth year, which the app asks before your first public room or event.'}
-              {LIVE.birthMonth &&
+              {PRIVACY.birthMonth &&
                 " If you turn 13 this year, the app also asks your birth month, because the year alone can't tell whether you're 13 yet; we keep the month only in that case."}
-              {LIVE.storeAgeSignals &&
-                " On some phones, Apple or Google also tell the app an age range for your account (Apple's Declared Age Range, Google Play's Age Signals); the app uses it on your device."}{' '}
+              {PRIVACY.storeAgeSignals &&
+                `${from22 ? ' From version 2.2, on' : ' On'} some phones, Apple or Google also tell the app an age range for your account (Apple's Declared Age Range, Google Play's Age Signals); the app uses it on your device.`}{' '}
               We use your age only to apply age limits, and other players never see it.
             </Item>
-            {LIVE.ageGateEveryone && (
+            {PRIVACY.ageGateEveryone && (
               <Item label="Agreement">
                 Which version of our Terms of Service and Community Rules you agreed to in the app, when, and the version
                 of the app you used.
               </Item>
             )}
-            {LIVE.purchases && (
+            {PRIVACY.purchases && (
               <Item label="Purchases">
                 When you buy a pack or a membership (guests can buy too), Apple or Google handles the payment; we never
                 see your payment details. To check and restore purchases, the app and our servers use RevenueCat, which
@@ -217,12 +225,12 @@ const Privacy: React.FC = () => {
                 for as long as you have an account; if you use Restore Purchases while signed in to another account, your
                 purchases move to that account. The updates RevenueCat sends us about a purchase (such as a renewal or a
                 refund) are deleted after 90 days.{' '}
-                {LIVE.revenueCatDeletion
+                {PRIVACY.revenueCatDeletion
                   ? 'RevenueCat keeps its record of your purchases until you delete your account, and deletes it within 30 days after that.'
                   : 'RevenueCat keeps its own record of your purchases until we ask it to delete it (see When you delete your account below).'}
               </Item>
             )}
-            {LIVE.notifications && (
+            {PRIVACY.notifications && (
               <Item label="Reminders and Notifications">
                 When you tap Remind Me on a game night, we record it so the reminder reaches every device you play on;
                 other players see only how many people asked to be reminded, never who. The reminder is a notification
@@ -232,14 +240,14 @@ const Privacy: React.FC = () => {
                 push service and Apple's or Google's, and say only what kind of report it is and its case number, never a
                 player's name or what was said.
                 {fcmAtLaunch &&
-                  " On Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. That address stays on your device: we never receive it."}
+                  `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. That address stays on your device: we never receive it.`}
               </Item>
             )}
-            {LIVE.crashReports && (
+            {PRIVACY.crashReports && (
               <Item label="Crash Reports">
-                If the app crashes or hits an error, it sends a report to Sentry, our crash-reporting service: what went
-                wrong and where in the app, a short trail of what the app did just before (such as the screens it opened,
-                with room codes removed), your device's model, operating system version and similar technical details
+                {from22 ? 'From version 2.2, if' : 'If'} the app crashes or hits an error, it sends a report to Sentry, our
+                crash-reporting service: what went wrong and where in the app, a short trail of what the app did just
+                before (such as the screens it opened, with room codes removed), your device's model, operating system version and similar technical details
                 (such as free memory, screen size and language), the app's version, and an ID for the app's installation
                 that isn't linked to your account (on Android, a random ID the crash reporter creates; on iPhones, a code
                 made from the identifier iOS gives our apps on your device). Reports don't include your name, email
@@ -249,19 +257,20 @@ const Privacy: React.FC = () => {
                 within 90 days.
               </Item>
             )}
-            {LIVE.qrScanner && (
+            {PRIVACY.qrScanner && (
               <Item label="Camera">
                 If you scan a room's QR code in the app, the camera is used only to read the code on your device. No
                 picture is taken, kept or sent.
               </Item>
             )}
-            {usesMlKit() && (
+            {usesMlKit(PRIVACY) && (
               <Item label="Google ML Kit (Android)">
-                On Android, the app uses Google's ML Kit to {mlKitUses}. ML Kit does this on your device, so{' '}
-                {mlKitKeeps} {LIVE.onDeviceTranslation && LIVE.qrScanner ? 'stay' : 'stays'} there. It does send Google
+                {from22 ? 'From version 2.2, on' : 'On'} Android, the app uses Google's ML Kit to {mlKitUses}. ML Kit does
+                this on your device, so{' '}
+                {mlKitKeeps} {PRIVACY.onDeviceTranslation && PRIVACY.qrScanner ? 'stay' : 'stays'} there. It does send Google
                 technical information about how it works: your device's model and Android version, the app's name and
                 version, a random ID for the app's installation that isn't linked to your account,
-                {LIVE.onDeviceTranslation ? ' the two languages of each translation,' : ''} and performance figures,
+                {PRIVACY.onDeviceTranslation ? ' the two languages of each translation,' : ''} and performance figures,
                 such as how long each task took. Google uses this to measure, fix and improve ML Kit and to detect misuse.
               </Item>
             )}
@@ -283,14 +292,14 @@ const Privacy: React.FC = () => {
           <Bullets>
             <ListItem>Create and manage your account</ListItem>
             <ListItem>Enable multiplayer game functionality, chat and translation</ListItem>
-            {LIVE.purchases && <ListItem>Provide and restore what you buy</ListItem>}
-            {LIVE.notifications && <ListItem>Remind you of the game nights you asked to be reminded about</ListItem>}
+            {PRIVACY.purchases && <ListItem>Provide and restore what you buy</ListItem>}
+            {PRIVACY.notifications && <ListItem>Remind you of the game nights you asked to be reminded about</ListItem>}
             <ListItem>Improve and optimize the app experience</ListItem>
-            <ListItem>Troubleshoot issues{LIVE.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
+            <ListItem>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
             <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
             <ListItem>Protect against fraudulent or unauthorized activity</ListItem>
             <ListItem>
-              Keep players safe: review reports{LIVE.drawingCheck ? ', check drawings' : ''}, apply age limits, and enforce
+              Keep players safe: review reports{PRIVACY.drawingCheck ? ', check drawings' : ''}, apply age limits, and enforce
               our Terms of Service and Community Rules
             </ListItem>
           </Bullets>
@@ -300,19 +309,19 @@ const Privacy: React.FC = () => {
           <Bullets>
             <Item label="Performance of Contract">
               To run your account and your games, deliver your chat, translate what you ask us to translate
-              {LIVE.purchases ? ', provide what you buy' : ''}
-              {LIVE.notifications ? ' and remind you of the game nights you asked about' : ''}.
+              {PRIVACY.purchases ? ', provide what you buy' : ''}
+              {PRIVACY.notifications ? ' and remind you of the game nights you asked about' : ''}.
             </Item>
             <Item label="Legitimate Interests">
-              To keep players safe (reports, the word filter{LIVE.drawingCheck ? ', drawing checks' : ''}, moderation, age
+              To keep players safe (reports, the word filter{PRIVACY.drawingCheck ? ', drawing checks' : ''}, moderation, age
               limits), protect accounts and prevent abuse
-              (security logs), keep the app working{LIVE.crashReports ? ' (crash reports)' : ''}, and improve it (usage
+              (security logs), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
               events). You can object to this processing at any time by emailing <SupportEmail />.
             </Item>
             <Item label="Consent">
               For your device's permissions (the microphone and speech recognition
-              {LIVE.notifications ? ', notifications' : ''}
-              {LIVE.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings.
+              {PRIVACY.notifications ? ', notifications' : ''}
+              {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings.
             </Item>
             <Item label="Legal Obligations">
               To comply with the law, for example to answer lawful requests and to report child sexual exploitation.
@@ -322,17 +331,17 @@ const Privacy: React.FC = () => {
           <H2>Data Retention</H2>
           <P>
             We keep your account information and game data for as long as you have an account.{' '}
-            {chatRetention(LIVE.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
+            {chatRetention(PRIVACY.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
             made to deliver them live are deleted within 3 days. Translations are kept for 24 hours.
-            {LIVE.playOnline
+            {PRIVACY.playOnline
               ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
               : ''}
-            {LIVE.drawingCheck
+            {PRIVACY.drawingCheck
               ? ' The results of drawing checks are kept for 90 days. A drawing taken off or reported is kept as evidence for 90 days, or longer while its report is still open. A drawing we must report as child sexual exploitation is kept for 1 year after we report it to NCMEC, as US law requires, in restricted storage, and shared with no one except the authorities.'
               : ''}{' '}
             Usage events are kept
             for 180 days
-            {LIVE.scheduledRetention
+            {PRIVACY.scheduledRetention
               ? ', and security logs (such as sign-ups, sign-ins, password resets and email changes, which can include your email address and IP address) for 180 days.'
               : '.'}
           </P>
@@ -360,7 +369,7 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Expo">
               (https://expo.dev) Builds and delivers our app and its updates
-              {LIVE.notifications ? ', and delivers the report alerts our moderators get' : ''}. When the app checks for an
+              {PRIVACY.notifications ? ', and delivers the report alerts our moderators get' : ''}. When the app checks for an
               update, Expo receives your device's IP address and platform, the app's version, and a random ID the app
               creates for that installation, which isn't linked to your account.
             </Item>
@@ -368,7 +377,7 @@ const Privacy: React.FC = () => {
               (Azure AI Translator, https://azure.microsoft.com/products/ai-services/ai-translator) Translates the text of a
               message when you tap Translate.
             </Item>
-            {LIVE.drawingCheck && (
+            {PRIVACY.drawingCheck && (
               <Item label="OpenAI">
                 (https://openai.com) Checks drawings for content that breaks our Community Rules: every drawing turn in
                 public rooms, and drawings players report. Under OpenAI's API terms and its Data Processing Addendum, it
@@ -378,24 +387,24 @@ const Privacy: React.FC = () => {
             {usesMyMemory && (
               <Item label="Translated srl">
                 (MyMemory, https://mymemory.translated.net) Backup translation of a message's text when Microsoft can't
-                translate it{LIVE.myMemory === 'server' ? ', sent from our servers' : ', sent from your device'}.
+                translate it{PRIVACY.myMemory === 'server' ? ', sent from our servers' : ', sent from your device'}.
                 MyMemory's terms say it may keep the text it receives and use it to improve its services.
               </Item>
             )}
-            {LIVE.purchases && (
+            {PRIVACY.purchases && (
               <Item label="RevenueCat">(https://www.revenuecat.com) Checks and restores purchases made through Apple and Google.</Item>
             )}
-            {LIVE.crashReports && (
+            {PRIVACY.crashReports && (
               <Item label="Sentry">(Functional Software, Inc., https://sentry.io) Receives crash and error reports.</Item>
             )}
             <Item label="Apple and Google">
               Speech recognition when you use the microphone (they may receive the recording)
-              {LIVE.socialSignIn ? ', Sign in with Apple and Google' : ''}
-              {LIVE.purchases ? ', payments for purchases' : ''}
-              {LIVE.onDeviceTranslation ? ', on-device translation files' : ''}
-              {usesMlKit() ? ", Google's ML Kit in the Android app" : ''}
+              {PRIVACY.socialSignIn ? ', Sign in with Apple and Google' : ''}
+              {PRIVACY.purchases ? ', payments for purchases' : ''}
+              {PRIVACY.onDeviceTranslation ? ', on-device translation files' : ''}
+              {usesMlKit(PRIVACY) ? ", Google's ML Kit in the Android app" : ''}
               {fcmAtLaunch ? ", Google's Firebase Cloud Messaging in the Android app" : ''}
-              {LIVE.storeAgeSignals ? ', age signals' : ''}, and distribution of the app through the App Store and Google
+              {PRIVACY.storeAgeSignals ? ', age signals' : ''}, and distribution of the app through the App Store and Google
               Play. On iPhones, the app's connection check contacts Google.
             </Item>
             <Item label="Vercel">(https://vercel.com) Hosts our website, spysocial.app, and receives the IP address of its visitors.</Item>
@@ -405,9 +414,9 @@ const Privacy: React.FC = () => {
           </Bullets>
           <P>
             We give these providers only the data they need to provide their service. Supabase, Expo, Microsoft
-            {LIVE.drawingCheck ? ', OpenAI' : ''}
-            {LIVE.purchases ? ', RevenueCat' : ''}
-            {LIVE.crashReports ? ', Sentry' : ''} and Vercel process it for us under contracts that bind them to protect it
+            {PRIVACY.drawingCheck ? ', OpenAI' : ''}
+            {PRIVACY.purchases ? ', RevenueCat' : ''}
+            {PRIVACY.crashReports ? ', Sentry' : ''} and Vercel process it for us under contracts that bind them to protect it
             at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''} and ImprovMX
             handle what they receive under their own terms and privacy policies.
           </P>
@@ -432,7 +441,7 @@ const Privacy: React.FC = () => {
           <H2>Data Sharing</H2>
           <P>
             We do not sell your personal information or share it for targeted advertising. Other players in your room see
-            your display name, username, {photosInUse() ? 'profile photo or avatar' : 'avatar'}, color, level, badges
+            your display name, username, {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
             (including a membership badge) and achievements, the language you play in, whether you've stepped away (and
             for how long), and the messages you send there. Public rooms, with their hosts' display names and avatars, are listed for all players. Reports are
             reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
@@ -475,17 +484,18 @@ const Privacy: React.FC = () => {
           <H2>Children's Privacy</H2>
           <P>
             SpySocial is for players 13 and older.{' '}
-            {LIVE.ageGateEveryone && "The app asks every player's birth year before their first game. "}
-            {LIVE.under13Deletion
+            {PRIVACY.ageGateEveryone &&
+              `${from22 ? 'From version 2.2, the' : 'The'} app asks every player's birth year before their first game. `}
+            {PRIVACY.under13Deletion
               ? "If the birth year entered in the app is under 13, the app stops, remembers this on the device and doesn't let them play, and we delete the account at once, as if they had deleted it themselves (see When you delete your account, above, for what stays for a while). "
-              : LIVE.ageGateEveryone
+              : PRIVACY.ageGateEveryone
                 ? "If the answer is under 13, the app stops and doesn't let them play, and remembers this on the device. "
                 : ''}
-            {LIVE.storeAgeSignals &&
+            {PRIVACY.storeAgeSignals &&
               "If the age range Apple or Google share with the app is under 13, the app stops in the same way, without asking. That range stays on the device and isn't sent to us, so it doesn't delete the account. "}
             We don't knowingly collect personal information from children under 13. When we learn
-            {LIVE.under13Deletion ? ' in any other way' : ''} that an account belongs to a child under 13
-            {LIVE.under13Deletion ? ', we delete it in the same way.' : ', including from the birth year entered in the app, we delete the account and its information.'}{' '}
+            {PRIVACY.under13Deletion ? ' in any other way' : ''} that an account belongs to a child under 13
+            {PRIVACY.under13Deletion ? ', we delete it in the same way.' : ', including from the birth year entered in the app, we delete the account and its information.'}{' '}
             If you believe a child under 13 is using SpySocial, email <SupportEmail /> and we'll delete their account.
           </P>
 

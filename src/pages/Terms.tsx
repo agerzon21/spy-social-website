@@ -60,7 +60,7 @@ const SupportEmail = () => <PageLink to="/contact-us">support@spysocial.app</Pag
 const Terms: React.FC = () => {
   const state = GOVERNING_STATE
   const we = OPERATOR.name ? `${OPERATOR.name}, the operator of SpySocial` : 'SpySocial'
-  const photos = photosInUse()
+  const photos = photosInUse(LIVE)
 
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>

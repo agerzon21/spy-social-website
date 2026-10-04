@@ -2,7 +2,7 @@ import { Box, Container, Heading, Text, VStack, Link as ChakraLink, ListItem, Or
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
-import { LEGAL_LAST_UPDATED, LIVE, avatarsLive } from '../lib/legalRelease'
+import { PRIVACY, PRIVACY_LAST_UPDATED, avatarsLive } from '../lib/legalRelease'
 
 // Google Play's account deletion link. What a deletion removes and keeps comes
 // from components/legal/AfterDeletion, the same text as the Privacy Policy.
@@ -13,7 +13,7 @@ const DeleteAccount: React.FC = () => {
         <VStack spacing={5} align="start">
           <Box>
             <Heading as="h1" size="lg" color="white" mb={2}>Delete Your SpySocial Account</Heading>
-            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: {LEGAL_LAST_UPDATED}</Text>
+            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: {PRIVACY_LAST_UPDATED}</Text>
           </Box>
 
           <Text fontSize="sm" lineHeight="1.8">
@@ -27,9 +27,9 @@ const DeleteAccount: React.FC = () => {
           <OrderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
             <ListItem>Open SpySocial.</ListItem>
             <ListItem>
-              Tap your {avatarsLive() ? 'avatar' : 'picture'} at the top of the home screen to open{' '}
+              Tap your {avatarsLive(PRIVACY) ? 'avatar' : 'picture'} at the top of the home screen to open{' '}
               <Text as="span" fontWeight="600" color="whiteAlpha.800">Account</Text>.
-              {LIVE.oldAppsInUse && ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)'}
+              {PRIVACY.oldAppsInUse && ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)'}
             </ListItem>
             <ListItem>Scroll to the <Text as="span" fontWeight="600" color="whiteAlpha.800">Danger Zone</Text> at the bottom.</ListItem>
             <ListItem>Tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Delete Account</Text> and confirm.</ListItem>
@@ -41,7 +41,7 @@ const DeleteAccount: React.FC = () => {
             A guest account is deleted the moment you tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Sign Out</Text> (in
             Account, under Sign-In; in versions before 2.2, under Account &amp; Security) and confirm. A guest can't sign back
             in, so there is no recovery.
-            {LIVE.purchases &&
+            {PRIVACY.purchases &&
               ' Purchases are the exception, as for any deleted account: anything you bought as a guest comes back with Restore Purchases, on the App Store or Google Play account you paid with.'}
           </Text>
 

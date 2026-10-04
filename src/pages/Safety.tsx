@@ -61,8 +61,8 @@ const Callout = ({ title, children }: { title: string; children: ReactNode }) =>
 )
 
 const Safety: React.FC = () => {
-  const photos = photosInUse()
-  const avatars = avatarsLive()
+  const photos = photosInUse(LIVE)
+  const avatars = avatarsLive(LIVE)
 
   const names = avatars
     ? photos

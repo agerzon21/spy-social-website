@@ -6,7 +6,7 @@ import { LEGAL_LAST_UPDATED, LIVE, photosInUse } from '../lib/legalRelease'
 // Terms of Service. Short on purpose: the app shows the same rules; this page
 // adds what counts, what happens, child safety and how to appeal.
 const Rules: React.FC = () => {
-  const photos = photosInUse()
+  const photos = photosInUse(LIVE)
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
       <Container maxW="container.md">
