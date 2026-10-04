@@ -1,41 +1,14 @@
 import { Box, Container, Heading, Link as ChakraLink, ListItem, OrderedList, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { LEGAL_LAST_UPDATED, LIVE, OPERATOR } from '../lib/legalRelease'
 
-// ---------------------------------------------------------------------------
-// Owner choices: set these before publishing. Until ageRule and
-// governingState are set, the page is a draft: it says so at the top and
-// shows every option boxed and labeled. When publishing, also set
-// LAST_UPDATED and raise app_config.terms_version so everyone agrees again.
-// ---------------------------------------------------------------------------
-type AgeRule = 'thirteen-plus' | 'under-13-private-rooms'
-
-const OWNER_CHOICES: {
-  /**
-   * 'thirteen-plus': everyone, guests included, must be 13 or older (Option A,
-   * the release audit's recommendation; the app then asks every player's
-   * birth year before the first game).
-   * 'under-13-private-rooms': players under 13 may play private rooms only
-   * (Option B, how the app works today).
-   */
-  ageRule: AgeRule | null
-  /** The US state whose law governs these Terms and whose courts hear disputes, e.g. 'New York'. */
-  governingState: string | null
-  /** true once buying packs and membership ships in the app. */
-  purchasesLive: boolean
-  /** Optional: the legal name of the person or company that runs SpySocial. */
-  operator: string | null
-} = {
-  ageRule: null,
-  governingState: null,
-  purchasesLive: false,
-  operator: null,
-}
-
-/** The day this version is published. */
-const LAST_UPDATED = 'October 3, 2026'
-
-const isDraft = OWNER_CHOICES.ageRule === null || OWNER_CHOICES.governingState === null
+// The owner's choices (2026-10-03): 13 and older only, everyone included;
+// Pennsylvania law; buying in 2.2 (shown once LIVE.purchases is on). What
+// else depends on what has shipped is in src/lib/legalRelease.ts. When
+// publishing a change, update LEGAL_LAST_UPDATED there and raise
+// app_config.terms_version so everyone agrees again.
+const GOVERNING_STATE = 'Pennsylvania'
 
 const H2 = ({ children }: { children: ReactNode }) => (
   <Heading as="h2" size="sm" color="white" mt={4}>
@@ -75,34 +48,9 @@ const OutLink = ({ href, children }: { href: string; children: ReactNode }) => (
 
 const SupportEmail = () => <PageLink to="/contact-us">support@spysocial.app</PageLink>
 
-/** Something the owner still has to fill in; only reachable while the page is a draft. */
-const Blank = ({ children }: { children: ReactNode }) => (
-  <Text as="span" color="orange.300" fontWeight="700">
-    {children}
-  </Text>
-)
-
-/**
- * A passage that depends on an owner choice. On the published page it shows
- * only when chosen; while the page is a draft it is boxed and labeled.
- */
-const OwnerOption = ({ label, chosen, children }: { label: string; chosen: boolean; children: ReactNode }) => {
-  if (!isDraft) return chosen ? <>{children}</> : null
-  return (
-    <Box w="100%" borderWidth="1px" borderStyle="dashed" borderColor="orange.300" borderRadius="md" p={4}>
-      <Text fontSize="xs" fontWeight="700" color="orange.300" mb={3}>
-        {label}
-      </Text>
-      <VStack spacing={4} align="start">
-        {children}
-      </VStack>
-    </Box>
-  )
-}
-
 const Terms: React.FC = () => {
-  const state = OWNER_CHOICES.governingState ?? <Blank>[STATE: owner to choose]</Blank>
-  const we = OWNER_CHOICES.operator ? `${OWNER_CHOICES.operator}, the operator of SpySocial` : 'SpySocial'
+  const state = GOVERNING_STATE
+  const we = OPERATOR.name ? `${OPERATOR.name}, the operator of SpySocial` : 'SpySocial'
 
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
@@ -110,23 +58,8 @@ const Terms: React.FC = () => {
         <VStack spacing={5} align="start">
           <Box>
             <Heading as="h1" size="lg" color="white" mb={2}>Terms of Service for SpySocial</Heading>
-            <Text fontSize="xs" color="whiteAlpha.400">
-              {isDraft ? 'Draft, not in effect' : `Last Updated: ${LAST_UPDATED}`}
-            </Text>
+            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: {LEGAL_LAST_UPDATED}</Text>
           </Box>
-
-          {isDraft && (
-            <Box w="100%" bg="orange.900" borderLeftWidth="4px" borderColor="orange.300" borderRadius="md" p={4}>
-              <Text fontSize="sm" lineHeight="1.8" color="orange.100" fontWeight="600">
-                Draft for review. These Terms are not in effect yet.
-              </Text>
-              <Text fontSize="sm" lineHeight="1.8" color="orange.100">
-                Before publishing, set OWNER_CHOICES at the top of src/pages/Terms.tsx: the age rule (Option A or B
-                in section 2), the governing state (section 17), and purchasesLive once buying ships (section 9).
-                The boxed passages are the options.
-              </Text>
-            </Box>
-          )}
 
           <P>
             These Terms of Service ("Terms") are the rules for using SpySocial: the SpySocial app, our website at
@@ -157,27 +90,14 @@ const Terms: React.FC = () => {
           </P>
 
           <H2>2. Who Can Use SpySocial</H2>
-          <OwnerOption
-            label="Option A · 13 and older only (the release audit's recommendation)"
-            chosen={OWNER_CHOICES.ageRule === 'thirteen-plus'}
-          >
-            <P>
-              You must be at least 13 years old to use SpySocial. The app asks for your birth year before your first
-              game, and you must answer truthfully. If you're under 13, you can't use SpySocial, and if we learn that
-              an account belongs to someone under 13, we'll delete it.
-            </P>
-          </OwnerOption>
-          <OwnerOption
-            label="Option B · Under 13 in private rooms only (how the app works today)"
-            chosen={OWNER_CHOICES.ageRule === 'under-13-private-rooms'}
-          >
-            <P>
-              Public rooms and events are for players 13 and older. Players under 13 may use SpySocial only in
-              private rooms with people they know, and only with a parent's or guardian's permission. The app asks
-              for your birth year before your first public room or event, and you must answer truthfully. If you tell
-              us you're under 13, you can't join public rooms or events, or add a profile photo.
-            </P>
-          </OwnerOption>
+          <P>
+            You must be at least 13 years old to use SpySocial.{' '}
+            {LIVE.ageGateEveryone
+              ? 'The app asks for your birth year before your first game, and you must answer truthfully.'
+              : 'When the app asks for your birth year, you must answer truthfully.'}{' '}
+            If you're under 13, you can't use SpySocial, and if we learn that an account belongs to someone under 13,
+            we'll delete it.
+          </P>
           <P>
             If you're under 18, or under the age of majority where you live, you need a parent's or guardian's
             permission to use SpySocial and to buy anything in it. Your parent or guardian accepts these Terms for you
@@ -190,13 +110,15 @@ const Terms: React.FC = () => {
           <P>
             You can play as a guest without giving us an email address. A guest account lives on your device: signing
             out of it deletes it for good, and you may lose it if you delete the app or lose your device. To keep your
-            name, progress and packs on any device, save your account with an email address and a password. Public
-            rooms and events need a saved account with a confirmed email address.
+            name, progress and packs on any device, save your account with an email address and a password
+            {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Public rooms and events need a saved
+            account with a confirmed email address.
           </P>
           <H3>Keeping your account safe</H3>
           <P>
-            Keep your password to yourself. You're responsible for what happens on your account. If you think someone
-            else has used it, change your password and tell us.
+            Keep your password{LIVE.socialSignIn ? ' (and your Apple or Google account)' : ''} to yourself. You're
+            responsible for what happens on your account. If you think someone else has used it, change your password and
+            tell us.
           </P>
           <H3>Rules for accounts</H3>
           <Bullets>
@@ -293,10 +215,10 @@ const Terms: React.FC = () => {
             Child sexual abuse and exploitation are never allowed. Never share, ask for or create sexual content
             involving anyone under 18, and never use SpySocial to groom, sexualize or exploit a child. We remove such
             content, ban the accounts involved, and report it to the National Center for Missing & Exploited Children
-            (NCMEC) and other authorities as the law requires. If you see anything like this, report it in the app or
-            email <SupportEmail /> with "Child safety" in the subject; you can also report it directly to NCMEC's{' '}
-            <OutLink href="https://report.cybertip.org">CyberTipline</OutLink>. If a child is in immediate danger,
-            contact your local emergency services first.
+            (NCMEC) and other authorities as the law requires. If you see anything like this, email <SupportEmail /> with
+            "Child safety" in the subject, and report the player in the app if you shared a room with them. You can also
+            report it directly to NCMEC's <OutLink href="https://report.cybertip.org">CyberTipline</OutLink>. If a child
+            is in immediate danger, contact your local emergency services first.
           </P>
           <H3>Technical abuse</H3>
           <Bullets>
@@ -366,7 +288,8 @@ const Terms: React.FC = () => {
             <ListItem>When someone in a room has unlocked a pack, everyone in that room can play it while they're there. We may change how this sharing works.</ListItem>
             <ListItem>If your account is deleted or banned, you lose the virtual items on it.</ListItem>
           </Bullets>
-          <OwnerOption label="Only once buying ships (purchasesLive: true)" chosen={OWNER_CHOICES.purchasesLive}>
+          {LIVE.purchases && (
+            <>
             <H3>Buying packs and membership</H3>
             <Bullets>
               <ListItem>You can buy premium packs, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
@@ -378,20 +301,22 @@ const Terms: React.FC = () => {
               <ListItem>To get your purchases back on another device, sign in to the same account and use Restore Purchases in the app.</ListItem>
               <ListItem>Nothing in these Terms takes away rights you have under consumer law, for example if something you bought doesn't work as described.</ListItem>
             </Bullets>
-          </OwnerOption>
+            </>
+          )}
 
           <H2>10. Translation and Other Services</H2>
           <H3>Translations</H3>
           <P>
-            When you tap Translate, the message's text is sent to Microsoft Translator, or to MyMemory if that doesn't
-            answer, and you get a machine translation. Other players can translate your messages the same way. Machine
-            translations can be wrong or miss the tone, so don't rely on them for anything important; we're not
-            responsible for them.
+            When you tap Translate, the message's text is sent to Microsoft Translator
+            {LIVE.myMemory !== 'off' || LIVE.oldAppsInUse ? ", or to MyMemory if that doesn't answer" : ''}
+            {LIVE.onDeviceTranslation ? ", or translated on your device when our service can't" : ''}, and you get a
+            machine translation. Other players can translate your messages the same way. Machine translations can be
+            wrong or miss the tone, so don't rely on them for anything important; we're not responsible for them.
           </P>
           <H3>Voice input</H3>
           <P>
-            If you use the microphone, your device's speech recognition, from Apple or Google, turns your speech into
-            text under their terms. We receive only the text.
+            If you use the microphone, Apple's or Google's speech recognition turns what you say into text under their
+            terms, and may send the recording to Apple or Google to do this. We receive only the text.
           </P>
           <H3>Other services</H3>
           <P>
@@ -418,7 +343,10 @@ const Terms: React.FC = () => {
             <ListItem>You confirm that you're not located in a country that is subject to a US government embargo or that the US government has designated as a "terrorist supporting" country, and that you're not on any US government list of prohibited or restricted parties.</ListItem>
             <ListItem>When you use the app, you must also follow any third-party terms that apply to you, such as your mobile carrier's.</ListItem>
             <ListItem>Apple and its subsidiaries are third-party beneficiaries of these Terms, and once you accept them, Apple has the right to enforce them against you.</ListItem>
-            <ListItem>Questions, complaints or claims about the app go to us at <SupportEmail />.</ListItem>
+            <ListItem>
+              Questions, complaints or claims about the app go to us at <SupportEmail />
+              {OPERATOR.name && OPERATOR.address ? `, or by post to ${OPERATOR.name}, ${OPERATOR.address}` : ''}.
+            </ListItem>
           </Bullets>
           <P>
             If you got SpySocial from Google Play, the{' '}
@@ -440,9 +368,10 @@ const Terms: React.FC = () => {
           </P>
           <P>
             We may suspend or close your account, or limit what you can do, if you break these Terms or the Community
-            Rules, if the law requires it, if your account puts other players or SpySocial at risk, or if you haven't
-            used it for 12 months. If we close your account, you lose access to it and to everything on it, including
-            virtual items, except where the law says otherwise. The parts of these Terms that by their nature should
+            Rules, if the law requires it, or if your account puts other players or SpySocial at risk. We may also close
+            an account that hasn't been used for 12 months, after telling you in the app or by email where we can; we
+            never close an account for this reason while it holds a purchase or a membership. If we close your account,
+            you lose access to it and to everything on it, including virtual items, except where the law says otherwise. The parts of these Terms that by their nature should
             continue, such as the license for copies we keep, the disclaimers, the limits on liability and the rules
             on disputes, still apply after your account ends.
           </P>
@@ -521,8 +450,10 @@ const Terms: React.FC = () => {
 
           <H2>21. Contact Us</H2>
           <P>
-            For questions, complaints or legal notices about SpySocial, email <SupportEmail />. You can write to us in
-            English or in any language the app offers.
+            For questions, complaints or legal notices about SpySocial, email <SupportEmail />
+            {OPERATOR.name && OPERATOR.address ? `, or write to ${OPERATOR.name}, ${OPERATOR.address}` : ''}. You can
+            write to us in English or in any language the app offers. support@spysocial.app is also our point of contact
+            for players and authorities under the EU Digital Services Act.
           </P>
         </VStack>
       </Container>
