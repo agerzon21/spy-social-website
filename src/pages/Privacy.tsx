@@ -162,21 +162,30 @@ const Privacy: React.FC = () => {
             <Item label="Safety Information">
               Reports you make or that are made about you (in public rooms a report includes the room's recent chat as
               evidence{LIVE.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}), players you block,
-              removals from rooms, and any warnings, mutes or bans on your account.
+              removals from rooms, and any warnings, mutes or bans on your account
+              {LIVE.drawingCheck
+                ? ", including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave. When a drawing is taken off or a player removed, the room's chat says whose drawing it was or who was removed"
+                : ''}
+              .
             </Item>
             {LIVE.drawingCheck && (
               <Item label="Drawing Checks">
-                In public rooms, every drawing turn in a Spy Sketch game is checked automatically for content that breaks
-                our Community Rules; in private rooms, a drawing is checked when someone reports it. For each check, our
-                servers send OpenAI an image of the drawing, the round's secret word (which helps tell an innocent drawing
-                from an offensive one) and a code made from your account ID that doesn't reveal who you are, which OpenAI
-                uses to detect misuse of its service. They never send your name, your email address or your device's IP
-                address. According to OpenAI, it doesn't use what it receives to train its models, and keeps it for up to
-                30 days to watch for misuse, unless the law requires it to keep it longer. The check acts by itself: it
-                can take a turn off the drawing, give a strike (which can lead to a pause or a ban from public rooms and
-                events), or remove a player from the game and ban them from public rooms and events, as our Community
-                Rules explain. If you appeal, a person looks at it again. We keep the result of each check, and any lines a
-                check took off a drawing, for as long as we need them to handle reports and appeals.
+                In public rooms (including Play Online tables and events), every drawing turn in a Spy Sketch game is
+                checked automatically for content that breaks our Community Rules; in any room, a drawing is checked when
+                someone reports it. The app tells you once, before your drawings can be checked, that they're sent to
+                OpenAI. For each check, our servers make a picture of the turn (the earlier drawing in light grey, and any
+                lines the player drew and then undid) and send it to OpenAI with the round's secret word (which helps tell
+                an innocent drawing from an offensive one) and a code made from your account ID that doesn't reveal who
+                you are, which OpenAI uses to detect misuse of its service. They never send your name, username, email
+                address, chat or your device's IP address. According to OpenAI, it doesn't use what it receives to train
+                its models, and keeps it for up to 30 days to watch for misuse, unless the law requires it to keep it
+                longer. The check acts by itself: it can take a turn off the drawing for everyone in the game, give a
+                strike (which can lead to a pause or a ban from public rooms and events), or remove a player from the game
+                and ban them from public rooms and events, as our Community Rules explain. A drawing that sexualizes a
+                child is taken off, the account is banned from SpySocial, and the drawing is reported to the National
+                Center for Missing & Exploited Children (NCMEC), as US law requires. A person reviews every permanent
+                decision within 24 hours, and you can appeal by email with the code in the notice (except a decision about
+                child sexual exploitation); a person then looks at it again.
               </Item>
             )}
             <Item label="Age">
@@ -315,6 +324,9 @@ const Privacy: React.FC = () => {
             made to deliver them live are deleted within 3 days. Translations are kept for 24 hours.
             {LIVE.playOnline
               ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
+              : ''}
+            {LIVE.drawingCheck
+              ? ' The results of drawing checks are kept for 90 days. A drawing taken off or reported is kept as evidence for 90 days, or longer while its report is still open. A drawing we must report as child sexual exploitation is kept for 1 year after we report it to NCMEC, as US law requires, in restricted storage, and shared with no one except the authorities.'
               : ''}{' '}
             Usage events are kept
             for 180 days
@@ -357,7 +369,8 @@ const Privacy: React.FC = () => {
             {LIVE.drawingCheck && (
               <Item label="OpenAI">
                 (https://openai.com) Checks drawings for content that breaks our Community Rules: every drawing turn in
-                public rooms, and drawings reported in private rooms.
+                public rooms, and drawings players report. Under OpenAI's API terms and its Data Processing Addendum, it
+                doesn't use them to train its models and keeps them for at most 30 days to monitor abuse.
               </Item>
             )}
             {usesMyMemory && (

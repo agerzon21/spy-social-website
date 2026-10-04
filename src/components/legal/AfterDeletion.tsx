@@ -36,6 +36,12 @@ export const AfterDeletionList = () => (
       by a random ID, which no longer leads to your account. Usage events, which use the same ID, are deleted after 180
       days{LIVE.playOnline ? ", and Play Online's matchmaking log, which uses it too, after 90 days" : ''}.
     </ListItem>
+    {LIVE.drawingCheck && (
+      <ListItem>
+        A drawing kept as evidence (see Data Retention) stays until its period ends, even if the account that drew it is
+        deleted.
+      </ListItem>
+    )}
     <ListItem>
       Security logs of account activity (such as sign-ups, sign-ins, password resets and email changes), which can include
       your email address and IP address, are kept{LIVE.scheduledRetention ? ' for 180 days' : ''} to protect accounts and

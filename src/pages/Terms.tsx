@@ -278,14 +278,19 @@ const Terms: React.FC = () => {
               ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
             {LIVE.drawingCheck ? (
               <>
-                {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms, and at a drawing
-                reported in a private room. In a public room, when it finds that a turn breaks the Community Rules, it
-                takes that turn off the drawing and gives the player a strike, which can lead to a pause or a ban from
-                public rooms and events. In any room, a hate symbol, a slur or hate aimed at someone gets the player
-                removed from the game and banned from public rooms and events for good, and a drawing that sexualizes a
-                child is taken off. In a private room, the check does nothing by itself about anything less serious. If
-                you think it got it wrong, you can appeal (see Appeals below), and a person will look at it. Other
-                decisions on reports and penalties are made by a person.
+                {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms (including Play Online
+                tables and events), and at any drawing someone reports. In a public room, when it finds that a turn
+                breaks the Community Rules, it takes that turn off the drawing and gives the player a strike: a warning
+                first, then 3, 7 and 30 days without public rooms and events, and at the fifth strike within 90 days no
+                public rooms or events for good. In any room, a flagrant drawing (a hate symbol, including a swastika,
+                unless the round's word makes a religious meaning clear; a written slur; or written hate or harassment
+                aimed at someone) gets the player removed from the game and banned from public rooms and events for good,
+                once a second check agrees. If that removal decides the game, it ends with no winner and doesn't count. A
+                drawing that sexualizes a child ends the account, with no appeal, and is reported to NCMEC. Gore and
+                monsters are not against the drawing rules. In a private room, the check does nothing by itself about
+                anything less serious. A person reviews every permanent decision within 24 hours. If you think the check
+                got it wrong, you can appeal by email with the code in the notice (see Appeals below), and a person will
+                look at it. Other decisions on reports and penalties are made by a person.
               </>
             ) : (
               ' Decisions on reports and penalties are made by a person.'
