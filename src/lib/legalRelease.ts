@@ -55,7 +55,7 @@ export const LIVE = {
  */
 export const OPERATOR: { name: string | null; address: string | null } = {
   name: 'Aleksandr Gerzon',
-  address: null,
+  address: '55 Ash Gap Road, Clifton Township, PA 18424-7702, United States',
 }
 
 /** "Last Updated" on the Privacy Policy, the Terms, the Community Rules and Delete Account: the day a change is published. */
