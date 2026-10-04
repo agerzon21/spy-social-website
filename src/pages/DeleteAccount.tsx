@@ -1,6 +1,11 @@
-import { Box, Container, Heading, Text, VStack, Link as ChakraLink, ListItem, OrderedList, UnorderedList } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, Link as ChakraLink, ListItem, OrderedList } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
+import { deletedAlso, deletedSummary } from '../lib/legalText'
+import { LEGAL_LAST_UPDATED } from '../lib/legalRelease'
 
+// Google Play's account deletion link. What a deletion removes and keeps comes
+// from components/legal/AfterDeletion, the same text as the Privacy Policy.
 const DeleteAccount: React.FC = () => {
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
@@ -8,24 +13,33 @@ const DeleteAccount: React.FC = () => {
         <VStack spacing={5} align="start">
           <Box>
             <Heading as="h1" size="lg" color="white" mb={2}>Delete Your SpySocial Account</Heading>
-            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: May 15, 2026</Text>
+            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: {LEGAL_LAST_UPDATED}</Text>
           </Box>
 
           <Text fontSize="sm" lineHeight="1.8">
-            SpySocial lets you permanently delete your account and all associated data at any time. For any
-            questions, contact us at{' '}
+            You can delete your SpySocial account and the personal data linked to it at any time, in the app or by email.
+            For any questions, contact us at{' '}
             <ChakraLink as={Link} to="/contact-us" color="blue.300" _hover={{ color: 'blue.200' }}>support@spysocial.app</ChakraLink>
             .
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>How to delete your account from the app</Heading>
           <OrderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
-            <ListItem>Open SpySocial and sign in.</ListItem>
-            <ListItem>Tap the <Text as="span" fontWeight="600" color="whiteAlpha.800">Account</Text> icon in the bottom right of the home screen.</ListItem>
-            <ListItem>Scroll to the <Text as="span" fontWeight="600" color="whiteAlpha.800">Danger Zone</Text> at the bottom of the Account screen.</ListItem>
+            <ListItem>Open SpySocial.</ListItem>
+            <ListItem>
+              Tap your picture at the top of the home screen to open <Text as="span" fontWeight="600" color="whiteAlpha.800">Account</Text>.
+              (In versions before 2.2, Account is the icon at the bottom right of the home screen.)
+            </ListItem>
+            <ListItem>Scroll to the <Text as="span" fontWeight="600" color="whiteAlpha.800">Danger Zone</Text> at the bottom.</ListItem>
             <ListItem>Tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Delete Account</Text> and confirm.</ListItem>
           </OrderedList>
-          <Text fontSize="sm" lineHeight="1.8">Your account is deleted immediately.</Text>
+          <Text fontSize="sm" lineHeight="1.8">Your account is deleted at once.</Text>
+
+          <Heading as="h2" size="sm" color="white" mt={4}>Guest accounts</Heading>
+          <Text fontSize="sm" lineHeight="1.8">
+            A guest account is deleted the moment you tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Sign Out</Text> in
+            the Danger Zone. A guest can't sign back in, so there is no recovery.
+          </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Don't have the app installed anymore?</Heading>
           <Text fontSize="sm" lineHeight="1.8">
@@ -35,23 +49,17 @@ const DeleteAccount: React.FC = () => {
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>What is deleted</Heading>
-          <Text fontSize="sm" lineHeight="1.8">The following are permanently deleted at the time of the request:</Text>
-          <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
-            <ListItem>Your email address and password hash</ListItem>
-            <ListItem>Your display name and profile photo</ListItem>
-            <ListItem>Your game history and room participation records</ListItem>
-            <ListItem>Your preferences (language, color, in-game settings)</ListItem>
-          </UnorderedList>
-
-          <Heading as="h2" size="sm" color="white" mt={4}>What may be retained</Heading>
-          <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
-            <ListItem>Anonymized analytics that are no longer linked to you personally</ListItem>
-            <ListItem>Encrypted database backups, which expire within 30 days</ListItem>
-          </UnorderedList>
-
-          <Heading as="h2" size="sm" color="white" mt={4}>Guest accounts</Heading>
           <Text fontSize="sm" lineHeight="1.8">
-            Guest accounts are automatically and permanently deleted the moment you sign out. There is no recovery.
+            Your account and the personal data linked to it: {deletedSummary()}.{deletedAlso()}
+          </Text>
+
+          <Heading as="h2" size="sm" color="white" mt={4}>What stays, and for how long</Heading>
+          <AfterDeletionList />
+          <AfterDeletionLaw />
+          <Text fontSize="sm" lineHeight="1.8">
+            Our{' '}
+            <ChakraLink as={Link} to="/privacy" color="blue.300" _hover={{ color: 'blue.200' }}>Privacy Policy</ChakraLink>
+            {' '}has the details.
           </Text>
         </VStack>
       </Container>
