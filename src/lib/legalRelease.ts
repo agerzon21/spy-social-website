@@ -54,7 +54,7 @@ export const LIVE = {
  * Apple's minimum end-user terms). Owner to fill in.
  */
 export const OPERATOR: { name: string | null; address: string | null } = {
-  name: 'Alex Gerzon',
+  name: 'Aleksandr Gerzon',
   address: null,
 }
 
