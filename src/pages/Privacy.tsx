@@ -1,6 +1,12 @@
 import { Box, Container, Heading, Text, VStack, Link as ChakraLink, ListItem, UnorderedList } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
+// Photo screening (the moderate-avatar function, Microsoft Azure AI Content
+// Safety). Set to true in the same pass that deploys moderate-avatar and runs
+// the backfill sweep, and update "Last Updated"; until then the policy
+// doesn't mention it.
+const PHOTO_SCREENING_LIVE: boolean = false
+
 const Privacy: React.FC = () => {
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
@@ -23,15 +29,19 @@ const Privacy: React.FC = () => {
           <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Account Information:</Text> Display name, username, optional avatar image, and email address you provide when creating an account. You may also play as a guest without providing an email; guest profiles can later be upgraded to full accounts.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Profile Preferences:</Text> Your interface language (one of the ten languages the app offers) so the app can be displayed in your preferred language.</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Game Data:</Text> Information related to games you've played: your role, the actions you take in a game (such as when you ask and answer, vote, guess, or leave), and the results. We use it to run the game, keep score, award experience points, levels and achievements, and check that games are played fairly.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Game Data:</Text> Information related to games you've played: your role, the actions you take in a game (such as when you ask and answer, vote, guess, or leave), the drawings made in a Spy Sketch game (saved with the game), and the results. We use it to run the game, keep score, award experience points, levels and achievements, and check that games are played fairly.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Chat Messages:</Text> Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, and the chat for players who are out) are stored on our servers so the other players in the room can read them. Messages in private rooms are kept for 24 hours; messages in public rooms are kept for 14 days so that reports can be reviewed.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Voice Input:</Text> If you use the microphone to say your question or answer, your device's speech recognition (provided by Apple or Google) turns your speech into text. We receive only the text you choose to send, never the audio.</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Translations:</Text> When you tap Translate on a message, its text is sent to our translation service, which uses Microsoft Translator (Azure AI Translator) and keeps the translation for 24 hours so other players reading the same message get it without sending it again. If that service can't answer (for example after a daily limit), your device sends the text to MyMemory, a translation service run by Translated srl. Only the message text and the two languages are sent, not your name or account.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Translations:</Text> When you tap Translate on a message, its text is sent to our translation service, which uses Microsoft Translator (Azure AI Translator) and keeps the translation for 24 hours so other players reading the same message get it without sending it again. If that service can't answer (for example after a daily limit), your device sends the text to MyMemory, a translation service run by Translated srl. Only the message text and the two languages are sent, not your name or account. Because your device contacts MyMemory directly, MyMemory also receives your device's IP address.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Presence:</Text> While you're in a game, the app tells our servers every few seconds that it's still open, so other players can see if you've stepped away and the game can skip a player who isn't there.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">In-Game Notes:</Text> Notes you write in the in-game Notebook are private to you and are not shared with other players.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Usage Data:</Text> Simple events about how the app is used (for example which screens are opened and which features are used), recorded by our own servers and kept for 180 days. They contain no message text. We don't use third-party analytics or advertising trackers.</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Safety Information:</Text> Reports you make or that are made about you (in public rooms a report includes the room's recent chat as evidence), players you block, removals from rooms, and the birth year you give when you create an account, which we use to apply age-appropriate limits.</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Device Information:</Text> Basic information about your device such as model, operating system version, and unique device identifiers.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Safety Information:</Text> Reports you make or that are made about you (in public rooms a report includes the room's recent chat as evidence), players you block, and removals from rooms.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Age:</Text> The birth year you enter when the app asks for it, which it does before your first public room or event. We use it only to apply age limits, and other players never see it.</ListItem>
+            {PHOTO_SCREENING_LIVE && (
+              <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Profile Photo Checks:</Text> When you add a profile photo, our servers send the image, and nothing else (not your name or account), to Microsoft's Azure AI Content Safety, which checks it for sexual, hateful, violent or self-harm content. A photo that may break our community rules is removed. We keep the result of each check (the scores and the date) until you delete your account, never a copy of the photo. According to Microsoft, the service doesn't store the images it checks or use them to train its models. Profile photos are for players 13 and older: if you tell us you're younger, we remove your photo.</ListItem>
+            )}
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Device Information:</Text> Your device's platform (iOS or Android) and the version of the app, which the app sends with its requests so our servers can work with every version of the app.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Connection Information:</Text> IP address and network status information to optimize gameplay connections. The app may make periodic lightweight network probes to verify connectivity.</ListItem>
           </UnorderedList>
 
@@ -44,6 +54,7 @@ const Privacy: React.FC = () => {
             <ListItem>Troubleshoot issues and provide support</ListItem>
             <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
             <ListItem>Protect against fraudulent or unauthorized activity</ListItem>
+            <ListItem>Keep players safe: review reports, apply age limits, and enforce our Terms of Service and Community Rules</ListItem>
           </UnorderedList>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Legal Basis for Processing</Heading>
@@ -59,21 +70,46 @@ const Privacy: React.FC = () => {
           <Text fontSize="sm" lineHeight="1.8">
             We store your account information and game data for as long as you maintain an account with us.
             Chat messages are kept for 24 hours in private rooms and 14 days in public rooms. Translations are
-            kept for 24 hours. Usage events are kept for 180 days. Inactive accounts may be removed after 12
-            months of inactivity. You can delete your account in the app or request deletion of your data at any
-            time by contacting us.
+            kept for 24 hours. Usage events are kept for 180 days.
+          </Text>
+          <Text fontSize="sm" lineHeight="1.8">
+            We may remove accounts that haven't been used for 12 months. This cleanup doesn't run automatically
+            yet, so for now an unused account stays until you delete it or ask us to delete it.
+          </Text>
+          <Text fontSize="sm" lineHeight="1.8" color="whiteAlpha.800" fontWeight="500">When you delete your account</Text>
+          <Text fontSize="sm" lineHeight="1.8">
+            You can delete your account in the app at any time (Account, then Delete Account; signing out of a
+            guest account deletes it), or ask us to delete it. We then delete your account and the personal data
+            linked to it, except for the following:
+          </Text>
+          <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
+            <ListItem>Chat messages you sent stay in their room until they expire (24 hours in private rooms, 14 days in public rooms) and are then deleted.</ListItem>
+            <ListItem>Reports and moderation records, including the names and chat lines attached to them, are kept for as long as we need them to keep players safe, handle appeals and meet legal obligations. They are no longer linked to your account.</ListItem>
+            <ListItem>Records of games you played in rooms hosted by other players (such as moves, votes and results) stay with those games. They identify players only by a random ID, which no longer leads to your account. Usage events, which use the same ID, are deleted after 180 days.</ListItem>
+            <ListItem>Security logs of account activity (such as sign-ups, sign-ins, password resets and email changes), which can include your email address, are kept to protect accounts and prevent abuse.</ListItem>
+            <ListItem>Copies in our database backups are deleted as those backups expire, within 30 days.</ListItem>
+          </UnorderedList>
+          <Text fontSize="sm" lineHeight="1.8">
+            We may also keep information for longer when the law requires it, for example when we have to report
+            illegal content to the authorities.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Third-Party Service Providers</Heading>
           <Text fontSize="sm" lineHeight="1.8">We use the following service providers to help deliver our services:</Text>
           <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Supabase</Text> (https://supabase.io): Our database service provider that helps us store and manage your data securely</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Expo</Text> (https://expo.dev): Development platform used to build and maintain our app</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Expo</Text> (https://expo.dev): Development platform used to build and maintain our app, and to deliver app updates. When the app checks for an update, Expo receives your device's IP address and platform, the app's version, and a random ID the app creates for that installation, which isn't linked to your account</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Microsoft</Text> (Azure AI Translator, https://azure.microsoft.com/products/ai-services/ai-translator): Translates the text of a message when you tap Translate</ListItem>
+            {PHOTO_SCREENING_LIVE && (
+              <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Microsoft</Text> (Azure AI Content Safety, https://azure.microsoft.com/products/ai-services/ai-content-safety): Checks each profile photo for content that breaks our community rules</ListItem>
+            )}
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Translated srl</Text> (MyMemory, https://mymemory.translated.net): Backup translation of a message's text, sent from your device when our translation service can't answer</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Apple and Google</Text>: Speech recognition on your device when you use the microphone, and distribution of the app through the App Store and Google Play</ListItem>
           </UnorderedList>
-          <Text fontSize="sm" lineHeight="1.8">These providers process your data only to provide their service to us, under their own privacy terms.</Text>
+          <Text fontSize="sm" lineHeight="1.8">
+            We give these providers only the data they need to provide their service, and we only use providers
+            that are bound to protect it at least as well as this policy does.
+          </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Data Storage and Security</Heading>
           <Text fontSize="sm" lineHeight="1.8">
@@ -93,9 +129,14 @@ const Privacy: React.FC = () => {
           <Heading as="h2" size="sm" color="white" mt={4}>Data Sharing</Heading>
           <Text fontSize="sm" lineHeight="1.8">
             We do not sell your personal information to third parties. Other players in your room see your display
-            name, avatar, level and badges, and the messages you send there. Public rooms, with their hosts' display
-            names, are listed for all players. Reports are reviewed by our moderators. We may share anonymous,
-            aggregated data for analytics purposes.
+            name, avatar, level, badges and achievements, and the messages you send there. Public rooms, with their
+            hosts' display names and avatars, are listed for all players. Reports are reviewed by our moderators. We
+            may share anonymous, aggregated data for analytics purposes.
+          </Text>
+          <Text fontSize="sm" lineHeight="1.8">
+            We may also share information when the law requires it (for example, to report child sexual
+            exploitation to the National Center for Missing & Exploited Children), or when we believe in good faith
+            that it's needed to protect someone's life or safety.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Your Rights</Heading>
@@ -111,6 +152,8 @@ const Privacy: React.FC = () => {
           <Text fontSize="sm" lineHeight="1.8" mt={2}>
             To exercise these rights, please contact us at{' '}
             <ChakraLink as={Link} to="/contact-us" color="blue.300" _hover={{ color: 'blue.200' }}>support@spysocial.app</ChakraLink>
+            . So we know a request is really yours, please write from the email address on your account. We reply
+            within one month.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>California Privacy Rights</Heading>
