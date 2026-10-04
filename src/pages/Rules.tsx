@@ -37,6 +37,10 @@ const Rules: React.FC = () => {
             <ListItem>No hate or harassment: no insults aimed at a player, slurs, or attacks on anyone's identity.</ListItem>
             <ListItem>No sexual content in chat, names{photos ? ', photos' : ''} or drawings.</ListItem>
             <ListItem>No threats, and nothing that encourages anyone to hurt themselves.</ListItem>
+            <ListItem>
+              Nothing that encourages, promotes or gives instructions for suicide, self-harm, eating disorders or dangerous
+              challenges. This goes for everyone, in every room.
+            </ListItem>
           </UnorderedList>
 
           <Heading as="h2" size="sm" color="white" mt={4}>

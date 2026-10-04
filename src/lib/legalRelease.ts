@@ -30,7 +30,9 @@
 //
 // Check the text each setting turns on before launch day: render the four
 // pages with the settings of each website update (the runbook's Update 1 and
-// Update 2 columns), not only with everything on.
+// Update 2 columns), not only with everything on. The Safety page
+// (src/pages/Safety.tsx) and the Terms' UK online safety section
+// (components/legal/UkOnlineSafety.tsx) follow the same switches.
 
 export const LIVE = {
   /**

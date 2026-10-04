@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Rules from './pages/Rules'
+import Safety from './pages/Safety'
 import Support from './pages/Support'
 import FAQ from './pages/FAQ'
 import Join from './pages/Join'
@@ -38,6 +39,7 @@ function App() {
               <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
               <Route path="/terms" element={<Layout><Terms /></Layout>} />
               <Route path="/rules" element={<Layout><Rules /></Layout>} />
+              <Route path="/safety" element={<Layout><Safety /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />

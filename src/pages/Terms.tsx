@@ -1,6 +1,7 @@
 import { Box, Container, Heading, Link as ChakraLink, ListItem, OrderedList, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import UkOnlineSafety, { UK_SECTION_NUMBER } from '../components/legal/UkOnlineSafety'
 import {
   LEGAL_LAST_UPDATED,
   LIVE,
@@ -238,6 +239,7 @@ const Terms: React.FC = () => {
             <ListItem>is hateful or harassing, insults or targets other players, or attacks anyone for who they are</ListItem>
             <ListItem>is sexual or shows nudity</ListItem>
             <ListItem>threatens or promotes violence, or encourages anyone to hurt themselves</ListItem>
+            <ListItem>encourages, promotes or gives instructions for suicide, self-harm, eating disorders or dangerous challenges (this applies to everyone, whatever their age, in every room)</ListItem>
             <ListItem>shares anyone's personal information, such as a real name, address, phone number or social media handle, yours included</ListItem>
             <ListItem>is spam, an ad or a scam, or puts links in public rooms</ListItem>
             <ListItem>pretends to be someone else, including us</ListItem>
@@ -322,6 +324,10 @@ const Terms: React.FC = () => {
           <P>
             We may share information with the police or other authorities when the law requires it, or when we
             believe someone's life or safety is at risk.
+          </P>
+          <P>
+            Section {UK_SECTION_NUMBER} sets out, kind by kind, how we deal with illegal content and content harmful to
+            children, and every way to complain, including about our automated tools.
           </P>
 
           <H2>9. Packs, XP and Other Virtual Items</H2>
@@ -512,6 +518,8 @@ const Terms: React.FC = () => {
             write to us in English or in any language the app offers. support@spysocial.app is also our point of contact
             for players and authorities under the EU Digital Services Act.
           </P>
+
+          <UkOnlineSafety />
         </VStack>
       </Container>
     </Box>
