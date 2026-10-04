@@ -1,6 +1,6 @@
 import { Box, Container, Heading, Link as ChakraLink, ListItem, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { LEGAL_LAST_UPDATED, LIVE, photosInUse } from '../lib/legalRelease'
+import { LEGAL_LAST_UPDATED, LIVE, ONLINE_SAFETY_TEXT, photosInUse } from '../lib/legalRelease'
 
 // The community rules the app links to (www.spysocial.app/rules), part of the
 // Terms of Service. Short on purpose: the app shows the same rules; this page
@@ -37,10 +37,12 @@ const Rules: React.FC = () => {
             <ListItem>No hate or harassment: no insults aimed at a player, slurs, or attacks on anyone's identity.</ListItem>
             <ListItem>No sexual content in chat, names{photos ? ', photos' : ''} or drawings.</ListItem>
             <ListItem>No threats, and nothing that encourages anyone to hurt themselves.</ListItem>
-            <ListItem>
-              Nothing that encourages, promotes or gives instructions for suicide, self-harm, eating disorders or dangerous
-              challenges. This goes for everyone, in every room.
-            </ListItem>
+            {ONLINE_SAFETY_TEXT && (
+              <ListItem>
+                Nothing that encourages, promotes or gives instructions for suicide, self-harm, eating disorders or
+                dangerous challenges. This goes for everyone, in every room.
+              </ListItem>
+            )}
           </UnorderedList>
 
           <Heading as="h2" size="sm" color="white" mt={4}>

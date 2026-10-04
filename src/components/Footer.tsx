@@ -1,5 +1,6 @@
 import { Box, Container, Link as ChakraLink, Text, Flex, HStack } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
+import { ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 
 interface FooterProps {
   sticky?: boolean
@@ -31,7 +32,9 @@ const Footer = ({ sticky = false }: FooterProps) => {
             <ChakraLink as={RouterLink} to="/privacy" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Privacy</ChakraLink>
             <ChakraLink as={RouterLink} to="/terms" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Terms</ChakraLink>
             <ChakraLink as={RouterLink} to="/rules" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Rules</ChakraLink>
-            <ChakraLink as={RouterLink} to="/safety" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Safety</ChakraLink>
+            {ONLINE_SAFETY_TEXT && (
+              <ChakraLink as={RouterLink} to="/safety" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Safety</ChakraLink>
+            )}
             <ChakraLink as={RouterLink} to="/support" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Support</ChakraLink>
             <ChakraLink as={RouterLink} to="/contact-us" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Contact</ChakraLink>
             <ChakraLink as={RouterLink} to="/delete-account" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Delete Account</ChakraLink>

@@ -15,6 +15,7 @@ import Join from './pages/Join'
 import JoinEvent from './pages/JoinEvent'
 import WhatsNew from './pages/WhatsNew'
 import DeleteAccount from './pages/DeleteAccount'
+import { ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
 
@@ -39,7 +40,7 @@ function App() {
               <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
               <Route path="/terms" element={<Layout><Terms /></Layout>} />
               <Route path="/rules" element={<Layout><Rules /></Layout>} />
-              <Route path="/safety" element={<Layout><Safety /></Layout>} />
+              {ONLINE_SAFETY_TEXT && <Route path="/safety" element={<Layout><Safety /></Layout>} />}
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />

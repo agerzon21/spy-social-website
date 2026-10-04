@@ -46,8 +46,11 @@
 // players and parents, not what data we process). While a switch runs ahead,
 // 2.1.1 is still the store version, so what a 2.1.1 player would take for their
 // own app's behavior says "from version 2.2" while oldAppsInUse (Privacy.tsx).
-// At the launch, flip the same switches in LIVE, empty PRIVACY_AHEAD and set
-// PRIVACY_LAST_UPDATED back to LEGAL_LAST_UPDATED.
+// Merging this branch into main before the launch would also publish the UK
+// online safety text in the Terms and the Rules, and the Safety page: set
+// ONLINE_SAFETY_TEXT (below LEGAL_LAST_UPDATED) false in that merge. At the
+// launch, flip the same switches in LIVE, empty PRIVACY_AHEAD, set
+// PRIVACY_LAST_UPDATED back to LEGAL_LAST_UPDATED and ONLINE_SAFETY_TEXT to true.
 
 export const LIVE = {
   /**
@@ -275,6 +278,17 @@ export const LEGAL_LAST_UPDATED = 'October 4, 2026'
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
 export const PRIVACY_LAST_UPDATED: string = LEGAL_LAST_UPDATED
+
+/**
+ * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
+ * self-harm, eating disorders and dangerous challenges, section 8's pointer to section 22, section 22 itself
+ * (components/legal/UkOnlineSafety), and the Community Rules' matching line) and the Safety page (/safety, its route
+ * and its footer link; it points to section 22). false holds all of it back, so the Terms, the Rules and the site
+ * render as on the website's main before this branch: set it false whenever this branch reaches main before the
+ * launch (the 2.2 submission day, with PRIVACY_AHEAD), and true again at the launch, when the Terms are published
+ * again. Its own text follows the feature switches in LIVE, like the rest of the Terms.
+ */
+export const ONLINE_SAFETY_TEXT: boolean = true
 
 /**
  * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.
