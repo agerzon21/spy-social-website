@@ -136,7 +136,9 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Safety Information">
               Reports you make or that are made about you (in public rooms a report includes the room's recent chat as
-              evidence), players you block, removals from rooms, and any warnings, mutes or bans on your account.
+              evidence), players you block, removals from rooms, and any warnings, mutes or bans on your account. When we
+              remove a message or a drawing, or replace a name that breaks the rules, our moderation log keeps a copy of
+              what we removed and the old name, for as long as we keep reports.
             </Item>
             <Item label="Age">
               {LIVE.ageGateEveryone
