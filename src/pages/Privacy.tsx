@@ -166,7 +166,8 @@ const Privacy: React.FC = () => {
               {LIVE.drawingCheck
                 ? ", including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave. When a drawing is taken off or a player removed, the room's chat says whose drawing it was or who was removed"
                 : ''}
-              .
+              . When we remove a message or a drawing, or replace a name that breaks the rules, our moderation log keeps a
+              copy of what we removed and the old name, for as long as we keep reports.
             </Item>
             {LIVE.drawingCheck && (
               <Item label="Drawing Checks">
