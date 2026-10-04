@@ -8,7 +8,7 @@ const Privacy: React.FC = () => {
         <VStack spacing={5} align="start">
           <Box>
             <Heading as="h1" size="lg" color="white" mb={2}>Privacy Policy for SpySocial</Heading>
-            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: May 1, 2026</Text>
+            <Text fontSize="xs" color="whiteAlpha.400">Last Updated: October 3, 2026</Text>
           </Box>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Introduction</Heading>
@@ -22,10 +22,15 @@ const Privacy: React.FC = () => {
           <Text fontSize="sm" lineHeight="1.8">When you use SpySocial, we collect the following information:</Text>
           <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Account Information:</Text> Display name, username, optional avatar image, and email address you provide when creating an account. You may also play as a guest without providing an email; guest profiles can later be upgraded to full accounts.</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Profile Preferences:</Text> Your interface language (e.g. English, Spanish, Russian) so the app can be displayed in your preferred language.</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Game Data:</Text> Information related to games you've played, including your role assignments and game results.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Profile Preferences:</Text> Your interface language (one of the ten languages the app offers) so the app can be displayed in your preferred language.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Game Data:</Text> Information related to games you've played: your role, the actions you take in a game (such as when you ask and answer, vote, guess, or leave), and the results. We use it to run the game, keep score, award experience points, levels and achievements, and check that games are played fairly.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Chat Messages:</Text> Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, and the chat for players who are out) are stored on our servers so the other players in the room can read them. Messages in private rooms are kept for 24 hours; messages in public rooms are kept for 14 days so that reports can be reviewed.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Voice Input:</Text> If you use the microphone to say your question or answer, your device's speech recognition (provided by Apple or Google) turns your speech into text. We receive only the text you choose to send, never the audio.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Translations:</Text> When you tap Translate on a message, its text is sent to our translation service, which uses Microsoft Translator (Azure AI Translator) and keeps the translation for 24 hours so other players reading the same message get it without sending it again. If that service can't answer (for example after a daily limit), your device sends the text to MyMemory, a translation service run by Translated srl. Only the message text and the two languages are sent, not your name or account.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Presence:</Text> While you're in a game, the app tells our servers every few seconds that it's still open, so other players can see if you've stepped away and the game can skip a player who isn't there.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">In-Game Notes:</Text> Notes you write in the in-game Notebook are private to you and are not shared with other players.</ListItem>
-            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Usage Data:</Text> Anonymous information about how you interact with the app to improve functionality.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Usage Data:</Text> Simple events about how the app is used (for example which screens are opened and which features are used), recorded by our own servers and kept for 180 days. They contain no message text. We don't use third-party analytics or advertising trackers.</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Safety Information:</Text> Reports you make or that are made about you (in public rooms a report includes the room's recent chat as evidence), players you block, removals from rooms, and the birth year you give when you create an account, which we use to apply age-appropriate limits.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Device Information:</Text> Basic information about your device such as model, operating system version, and unique device identifiers.</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Connection Information:</Text> IP address and network status information to optimize gameplay connections. The app may make periodic lightweight network probes to verify connectivity.</ListItem>
           </UnorderedList>
@@ -53,8 +58,10 @@ const Privacy: React.FC = () => {
           <Heading as="h2" size="sm" color="white" mt={4}>Data Retention</Heading>
           <Text fontSize="sm" lineHeight="1.8">
             We store your account information and game data for as long as you maintain an account with us.
-            Inactive accounts may be removed after 12 months of inactivity. You can request deletion of your
-            data at any time by contacting us.
+            Chat messages are kept for 24 hours in private rooms and 14 days in public rooms. Translations are
+            kept for 24 hours. Usage events are kept for 180 days. Inactive accounts may be removed after 12
+            months of inactivity. You can delete your account in the app or request deletion of your data at any
+            time by contacting us.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Third-Party Service Providers</Heading>
@@ -62,8 +69,11 @@ const Privacy: React.FC = () => {
           <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Supabase</Text> (https://supabase.io): Our database service provider that helps us store and manage your data securely</ListItem>
             <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Expo</Text> (https://expo.dev): Development platform used to build and maintain our app</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Microsoft</Text> (Azure AI Translator, https://azure.microsoft.com/products/ai-services/ai-translator): Translates the text of a message when you tap Translate</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Translated srl</Text> (MyMemory, https://mymemory.translated.net): Backup translation of a message's text, sent from your device when our translation service can't answer</ListItem>
+            <ListItem><Text as="span" fontWeight="600" color="whiteAlpha.800">Apple and Google</Text>: Speech recognition on your device when you use the microphone, and distribution of the app through the App Store and Google Play</ListItem>
           </UnorderedList>
-          <Text fontSize="sm" lineHeight="1.8">These providers are contractually bound to handle your data in accordance with this privacy policy.</Text>
+          <Text fontSize="sm" lineHeight="1.8">These providers process your data only to provide their service to us, under their own privacy terms.</Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Data Storage and Security</Heading>
           <Text fontSize="sm" lineHeight="1.8">
@@ -82,8 +92,10 @@ const Privacy: React.FC = () => {
 
           <Heading as="h2" size="sm" color="white" mt={4}>Data Sharing</Heading>
           <Text fontSize="sm" lineHeight="1.8">
-            We do not sell your personal information to third parties. Your display name and avatar may be visible
-            to other players during multiplayer games. We may share anonymous, aggregated data for analytics purposes.
+            We do not sell your personal information to third parties. Other players in your room see your display
+            name, avatar, level and badges, and the messages you send there. Public rooms, with their hosts' display
+            names, are listed for all players. Reports are reviewed by our moderators. We may share anonymous,
+            aggregated data for analytics purposes.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Your Rights</Heading>
