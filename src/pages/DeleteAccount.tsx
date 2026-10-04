@@ -2,7 +2,7 @@ import { Box, Container, Heading, Text, VStack, Link as ChakraLink, ListItem, Or
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
-import { LEGAL_LAST_UPDATED } from '../lib/legalRelease'
+import { LEGAL_LAST_UPDATED, LIVE } from '../lib/legalRelease'
 
 // Google Play's account deletion link. What a deletion removes and keeps comes
 // from components/legal/AfterDeletion, the same text as the Privacy Policy.
@@ -27,8 +27,9 @@ const DeleteAccount: React.FC = () => {
           <OrderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
             <ListItem>Open SpySocial.</ListItem>
             <ListItem>
-              Tap your picture at the top of the home screen to open <Text as="span" fontWeight="600" color="whiteAlpha.800">Account</Text>.
-              (In versions before 2.2, Account is the icon at the bottom right of the home screen.)
+              Tap your {LIVE.photosRemoved ? 'avatar' : 'picture'} at the top of the home screen to open{' '}
+              <Text as="span" fontWeight="600" color="whiteAlpha.800">Account</Text>.
+              {LIVE.oldAppsInUse && ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)'}
             </ListItem>
             <ListItem>Scroll to the <Text as="span" fontWeight="600" color="whiteAlpha.800">Danger Zone</Text> at the bottom.</ListItem>
             <ListItem>Tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Delete Account</Text> and confirm.</ListItem>
@@ -39,6 +40,8 @@ const DeleteAccount: React.FC = () => {
           <Text fontSize="sm" lineHeight="1.8">
             A guest account is deleted the moment you tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Sign Out</Text> in
             the Danger Zone. A guest can't sign back in, so there is no recovery.
+            {LIVE.purchases &&
+              ' Purchases are the exception: anything you bought as a guest comes back with Restore Purchases, on the App Store or Google Play account you paid with.'}
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Don't have the app installed anymore?</Heading>

@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
-import { LEGAL_LAST_UPDATED, LIVE, OPERATOR } from '../lib/legalRelease'
+import { LEGAL_LAST_UPDATED, LIVE, OPERATOR, photosInUse, usesMlKit } from '../lib/legalRelease'
 
 // What each passage says depends on what has shipped: see src/lib/legalRelease.ts.
 
@@ -55,6 +55,19 @@ const Privacy: React.FC = () => {
         ? " If our service can't answer (for example after a daily limit), the app sends the text from your device to MyMemory, a free translation service run by Translated srl, which then also receives your device's IP address."
         : ''
   const usesMyMemory = LIVE.myMemory !== 'off' || LIVE.oldAppsInUse
+  // What Google's ML Kit does in the Android app (usesMlKit).
+  const mlKitUses = [
+    LIVE.onDeviceTranslation ? 'translate messages on your device' : null,
+    LIVE.qrScanner ? 'read QR codes' : null,
+  ]
+    .filter(Boolean)
+    .join(' and ')
+  const mlKitKeeps = [
+    LIVE.onDeviceTranslation ? 'the text it translates' : null,
+    LIVE.qrScanner ? 'what the camera sees' : null,
+  ]
+    .filter(Boolean)
+    .join(' and ')
 
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
@@ -79,10 +92,13 @@ const Privacy: React.FC = () => {
           <P>When you use SpySocial, we collect the following information:</P>
           <Bullets>
             <Item label="Account Information">
-              Display name, username, optional profile photo, and the email address you give when you save your account.
-              You can also play as a guest without giving an email address; a guest account can be saved later.
+              {LIVE.photosRemoved
+                ? 'Display name, username, the avatar you put together in the app from the parts it offers (and the avatar items you unlocked), and the email address you give when you save your account.'
+                : 'Display name, username, optional profile photo, and the email address you give when you save your account.'}
+              {LIVE.photosRemoved && LIVE.oldAppsInUse && ' Versions of the app before 2.2 also let you add a profile photo.'}
+              {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
               {LIVE.socialSignIn &&
-                ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share.'}
+                ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them.'}
             </Item>
             <Item label="Profile Preferences">
               Your interface language (one of the ten languages the app offers), your color and similar settings, so the app
@@ -135,55 +151,87 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Safety Information">
               Reports you make or that are made about you (in public rooms a report includes the room's recent chat as
-              evidence), players you block, removals from rooms, and any warnings, mutes or bans on your account.
+              evidence{LIVE.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}), players you block,
+              removals from rooms, and any warnings, mutes or bans on your account.
             </Item>
+            {LIVE.drawingCheck && (
+              <Item label="Drawing Checks">
+                In public rooms, every drawing turn in a Spy Sketch game is checked automatically for content that breaks
+                our Community Rules, and so is any drawing someone reports, in any room. For each check, our servers send
+                OpenAI an image of the drawing and the round's secret word, which helps tell an innocent drawing from an
+                offensive one, and nothing else: not your name, your account or your device's IP address. According to
+                OpenAI, it doesn't use what it receives to train its models, and keeps it for up to 30 days to watch for
+                misuse of its service, unless the law requires it to keep it longer. We keep the result of each check, and
+                any lines a check took off a drawing, for as long as we need them to handle reports and appeals.
+              </Item>
+            )}
             <Item label="Age">
               {LIVE.ageGateEveryone
                 ? 'Your birth year, which the app asks everyone before their first game.'
                 : 'Your birth year, which the app asks before your first public room or event.'}
+              {LIVE.birthMonth &&
+                " If you turn 13 this year, the app also asks your birth month, because the year alone can't tell whether you're 13 yet; we keep the month only in that case."}
               {LIVE.storeAgeSignals &&
                 " On some phones, Apple or Google also tell the app an age range for your account (Apple's Declared Age Range, Google Play's Age Signals); the app uses it on your device."}{' '}
               We use your age only to apply age limits, and other players never see it.
             </Item>
-            {LIVE.photoScreening && (
-              <Item label="Profile Photo Checks">
-                When you add a profile photo, our servers send the image, and nothing else (not your name or account), to
-                Microsoft's Azure AI Content Safety, which checks it for sexual, hateful, violent or self-harm content. A
-                photo that may break our community rules is removed. We keep the result of each check (the scores and the
-                date) until you delete your account. We don't keep a copy of a removed photo, unless the law requires us
-                to (for example, when we must report it to the authorities). According to Microsoft, the service doesn't
-                store the images it checks or use them to train its models.
+            {LIVE.ageGateEveryone && (
+              <Item label="Agreement">
+                Which version of our Terms of Service and Community Rules you agreed to in the app, when, and the version
+                of the app you used.
               </Item>
             )}
             {LIVE.purchases && (
               <Item label="Purchases">
-                When you buy a pack or a membership, Apple or Google handles the payment; we never see your payment
-                details. To check and restore purchases, the app and our servers use RevenueCat, which receives your
-                SpySocial user ID, what you bought, the store's transaction IDs, prices and dates, and your device's IP
-                address and platform. We keep a record of what your purchases unlock, and when a membership renews or
-                ends, for as long as you have an account.
+                When you buy a pack or a membership (guests can buy too), Apple or Google handles the payment; we never
+                see your payment details. To check and restore purchases, the app and our servers use RevenueCat, which
+                receives your SpySocial user ID, what you bought, the store's transaction IDs, prices and dates, and your
+                device's IP address and platform. The app first connects to RevenueCat when you open a screen where you
+                can buy something. We keep a record of what your purchases unlock, and when a membership renews or ends,
+                for as long as you have an account; if you use Restore Purchases while signed in to another account, your
+                purchases move to that account. The updates RevenueCat sends us about a purchase (such as a renewal or a
+                refund) are deleted after 90 days.{' '}
+                {LIVE.revenueCatDeletion
+                  ? 'RevenueCat keeps its record of your purchases until you delete your account, and deletes it within 30 days after that.'
+                  : 'RevenueCat keeps its own record of your purchases until we ask it to delete it (see When you delete your account below).'}
               </Item>
             )}
-            {LIVE.pushNotifications && (
-              <Item label="Notifications">
-                If you allow notifications, the app gives our servers a push token, an address for your device that Apple
-                or Google issues, so we can send you the notifications you asked for (such as a reminder for a game night
-                you signed up for). Notifications reach you through Expo's push service and Apple's or Google's. We keep
-                the token until you turn notifications off, sign out or delete your account.
+            {LIVE.notifications && (
+              <Item label="Reminders and Notifications">
+                When you tap Remind Me on a game night, we record it so the reminder reaches every device you play on;
+                other players see only how many people asked to be reminded, never who. The reminder is a notification
+                your device schedules and shows by itself, if you allow notifications: we don't receive a push token or
+                any other address for your device, and we don't send players push notifications. The only push
+                notifications we send go to our moderators' phones when a new report comes in. They pass through Expo's
+                push service and Apple's or Google's, and say only what kind of report it is and its case number, never a
+                player's name or what was said.
               </Item>
             )}
             {LIVE.crashReports && (
               <Item label="Crash Reports">
                 If the app crashes or hits an error, it sends a report to Sentry, our crash-reporting service: what went
-                wrong and where in the app, your device's model and operating system version, and the app's version.
-                Sentry also receives your device's IP address. Crash reports don't include your name, email address or
-                messages, and Sentry deletes them after 30 days.
+                wrong and where in the app, a short trail of what the app did just before (such as the screens it opened,
+                with room codes removed), your device's model, operating system version and similar technical details
+                (such as free memory, screen size and language), and the app's version. Reports don't include your name,
+                email address, account or messages, or any ID for you, your device or the app's installation, and the
+                app sends nothing to Sentry while everything works. Sentry receives your device's IP address when a
+                report arrives but is set not to store it, and deletes reports within 90 days.
               </Item>
             )}
             {LIVE.qrScanner && (
               <Item label="Camera">
                 If you scan a room's QR code in the app, the camera is used only to read the code on your device. No
                 picture is taken, kept or sent.
+              </Item>
+            )}
+            {usesMlKit() && (
+              <Item label="Google ML Kit (Android)">
+                On Android, the app uses Google's ML Kit to {mlKitUses}. ML Kit does this on your device, so{' '}
+                {mlKitKeeps} {LIVE.onDeviceTranslation && LIVE.qrScanner ? 'stay' : 'stays'} there. It does send Google
+                technical information about how it works: your device's model and Android version, the app's name and
+                version, a random ID for the app's installation that isn't linked to your account,
+                {LIVE.onDeviceTranslation ? ' the two languages of each translation,' : ''} and performance figures,
+                such as how long each task took. Google uses this to measure, fix and improve ML Kit and to detect misuse.
               </Item>
             )}
             <Item label="Device Information">
@@ -205,12 +253,15 @@ const Privacy: React.FC = () => {
             <ListItem>Create and manage your account</ListItem>
             <ListItem>Enable multiplayer game functionality, chat and translation</ListItem>
             {LIVE.purchases && <ListItem>Provide and restore what you buy</ListItem>}
-            {LIVE.pushNotifications && <ListItem>Send you the notifications you turned on</ListItem>}
+            {LIVE.notifications && <ListItem>Remind you of the game nights you asked to be reminded about</ListItem>}
             <ListItem>Improve and optimize the app experience</ListItem>
             <ListItem>Troubleshoot issues{LIVE.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
             <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
             <ListItem>Protect against fraudulent or unauthorized activity</ListItem>
-            <ListItem>Keep players safe: review reports, apply age limits, and enforce our Terms of Service and Community Rules</ListItem>
+            <ListItem>
+              Keep players safe: review reports{LIVE.drawingCheck ? ', check drawings' : ''}, apply age limits, and enforce
+              our Terms of Service and Community Rules
+            </ListItem>
           </Bullets>
 
           <H2>Legal Basis for Processing</H2>
@@ -219,16 +270,17 @@ const Privacy: React.FC = () => {
             <Item label="Performance of Contract">
               To run your account and your games, deliver your chat, translate what you ask us to translate
               {LIVE.purchases ? ', provide what you buy' : ''}
-              {LIVE.pushNotifications ? ' and send the notifications you turned on' : ''}.
+              {LIVE.notifications ? ' and remind you of the game nights you asked about' : ''}.
             </Item>
             <Item label="Legitimate Interests">
-              To keep players safe (reports, the word filter, moderation, age limits), protect accounts and prevent abuse
+              To keep players safe (reports, the word filter{LIVE.drawingCheck ? ', drawing checks' : ''}, moderation, age
+              limits), protect accounts and prevent abuse
               (security logs), keep the app working{LIVE.crashReports ? ' (crash reports)' : ''}, and improve it (usage
               events). You can object to this processing at any time by emailing <SupportEmail />.
             </Item>
             <Item label="Consent">
               For your device's permissions (the microphone and speech recognition
-              {LIVE.pushNotifications ? ', notifications' : ''}
+              {LIVE.notifications ? ', notifications' : ''}
               {LIVE.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings.
             </Item>
             <Item label="Legal Obligations">
@@ -270,18 +322,18 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Expo">
               (https://expo.dev) Builds and delivers our app and its updates
-              {LIVE.pushNotifications ? ', and delivers our notifications' : ''}. When the app checks for an update, Expo
-              receives your device's IP address and platform, the app's version, and a random ID the app creates for that
-              installation, which isn't linked to your account.
+              {LIVE.notifications ? ', and delivers the report alerts our moderators get' : ''}. When the app checks for an
+              update, Expo receives your device's IP address and platform, the app's version, and a random ID the app
+              creates for that installation, which isn't linked to your account.
             </Item>
             <Item label="Microsoft">
               (Azure AI Translator, https://azure.microsoft.com/products/ai-services/ai-translator) Translates the text of a
               message when you tap Translate.
             </Item>
-            {LIVE.photoScreening && (
-              <Item label="Microsoft">
-                (Azure AI Content Safety, https://azure.microsoft.com/products/ai-services/ai-content-safety) Checks each
-                profile photo for content that breaks our community rules.
+            {LIVE.drawingCheck && (
+              <Item label="OpenAI">
+                (https://openai.com) Checks drawings for content that breaks our Community Rules: every drawing turn in
+                public rooms, and any drawing that's reported.
               </Item>
             )}
             {usesMyMemory && (
@@ -303,8 +355,8 @@ const Privacy: React.FC = () => {
               Speech recognition when you use the microphone (they may receive the recording)
               {LIVE.socialSignIn ? ', Sign in with Apple and Google' : ''}
               {LIVE.purchases ? ', payments for purchases' : ''}
-              {LIVE.pushNotifications ? ', delivering notifications' : ''}
               {LIVE.onDeviceTranslation ? ', on-device translation files' : ''}
+              {usesMlKit() ? ", Google's ML Kit in the Android app" : ''}
               {LIVE.storeAgeSignals ? ', age signals' : ''}, and distribution of the app through the App Store and Google
               Play. On iPhones, the app's connection check contacts Google.
             </Item>
@@ -315,6 +367,7 @@ const Privacy: React.FC = () => {
           </Bullets>
           <P>
             We give these providers only the data they need to provide their service. Supabase, Expo, Microsoft
+            {LIVE.drawingCheck ? ', OpenAI' : ''}
             {LIVE.purchases ? ', RevenueCat' : ''}
             {LIVE.crashReports ? ', Sentry' : ''} and Vercel process it for us under contracts that bind them to protect it
             at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''} and ImprovMX
@@ -341,9 +394,9 @@ const Privacy: React.FC = () => {
           <H2>Data Sharing</H2>
           <P>
             We do not sell your personal information or share it for targeted advertising. Other players in your room see
-            your display name, username, profile photo or avatar, color, level, badges (including a membership badge) and
-            achievements, the language you play in, whether you've stepped away (and for how long), and the messages you
-            send there. Public rooms, with their hosts' display names and avatars, are listed for all players. Reports are
+            your display name, username, {photosInUse() ? 'profile photo or avatar' : 'avatar'}, color, level, badges
+            (including a membership badge) and achievements, the language you play in, whether you've stepped away (and
+            for how long), and the messages you send there. Public rooms, with their hosts' display names and avatars, are listed for all players. Reports are
             reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
           </P>
           <P>
@@ -384,12 +437,17 @@ const Privacy: React.FC = () => {
           <H2>Children's Privacy</H2>
           <P>
             SpySocial is for players 13 and older.{' '}
-            {LIVE.ageGateEveryone &&
-              "The app asks every player's birth year before their first game. If the answer is under 13, the app stops and doesn't let them play, and remembers this on the device. "}
-            We don't knowingly collect personal information from children under 13. When we learn that an account belongs
-            to a child under 13, including from the birth year entered in the app, we delete the account and its
-            information. If you believe a child under 13 is using SpySocial, email <SupportEmail /> and we'll delete their
-            account.
+            {LIVE.ageGateEveryone && "The app asks every player's birth year before their first game. "}
+            {LIVE.under13Deletion
+              ? "If the birth year entered in the app is under 13, the app stops, remembers this on the device and doesn't let them play, and we delete the account and its information at once. "
+              : LIVE.ageGateEveryone
+                ? "If the answer is under 13, the app stops and doesn't let them play, and remembers this on the device. "
+                : ''}
+            We don't knowingly collect personal information from children under 13. When we learn
+            {LIVE.under13Deletion ? ' in any other way' : ''} that an account belongs to a child under 13
+            {LIVE.under13Deletion ? ',' : ', including from the birth year entered in the app,'} we delete the account and
+            its information. If you believe a child under 13 is using SpySocial, email <SupportEmail /> and we'll delete
+            their account.
           </P>
 
           <H2>Do Not Track Signals</H2>

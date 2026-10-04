@@ -1,7 +1,15 @@
 import { Box, Container, Heading, Link as ChakraLink, ListItem, OrderedList, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { LEGAL_LAST_UPDATED, LIVE, OPERATOR, TERMS_EFFECTIVE_FOR_EXISTING, TERMS_PREVIOUS, TERMS_PUBLISHED } from '../lib/legalRelease'
+import {
+  LEGAL_LAST_UPDATED,
+  LIVE,
+  OPERATOR,
+  TERMS_EFFECTIVE_FOR_EXISTING,
+  TERMS_PREVIOUS,
+  TERMS_PUBLISHED,
+  photosInUse,
+} from '../lib/legalRelease'
 
 // The owner's choices (2026-10-03): 13 and older only, everyone included;
 // Pennsylvania law; buying in 2.2 (shown once LIVE.purchases is on). What
@@ -51,6 +59,7 @@ const SupportEmail = () => <PageLink to="/contact-us">support@spysocial.app</Pag
 const Terms: React.FC = () => {
   const state = GOVERNING_STATE
   const we = OPERATOR.name ? `${OPERATOR.name}, the operator of SpySocial` : 'SpySocial'
+  const photos = photosInUse()
 
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
@@ -77,7 +86,10 @@ const Terms: React.FC = () => {
             <Text fontSize="sm" lineHeight="1.8" color="whiteAlpha.800" fontWeight="600" mb={2}>The short version</Text>
             <Bullets>
               <ListItem>Be kind and play fair, and follow our Community Rules. We don't tolerate objectionable content or abusive players.</ListItem>
-              <ListItem>What you add (your name, photo, messages and drawings) stays yours, but other players see it, and you let us use it to run SpySocial.</ListItem>
+              <ListItem>
+                What you add (your name, {photos ? 'photo, ' : ''}messages and drawings) stays yours, but other players see it,
+                and you let us use it to run SpySocial.
+              </ListItem>
               <ListItem>Public rooms put you in games with people you don't know. Keep your personal information to yourself.</ListItem>
               <ListItem>If you break the rules, we can remove your content and limit or ban your account.</ListItem>
               <ListItem>SpySocial is provided as it is, and our responsibility is limited as far as the law allows.</ListItem>
@@ -99,10 +111,11 @@ const Terms: React.FC = () => {
           <P>
             You must be at least 13 years old to use SpySocial.{' '}
             {LIVE.ageGateEveryone
-              ? 'The app asks for your birth year before your first game, and you must answer truthfully.'
+              ? `The app asks for your birth year${LIVE.birthMonth ? ' (and, if you turn 13 this year, your birth month)' : ''} before your first game, and you must answer truthfully.`
               : 'When the app asks for your birth year, you must answer truthfully.'}{' '}
-            If you're under 13, you can't use SpySocial, and if we learn that an account belongs to someone under 13,
-            we'll delete it.
+            {LIVE.under13Deletion
+              ? "If you're under 13, you can't use SpySocial: an answer under 13 deletes the account, and if we learn in any other way that an account belongs to someone under 13, we'll delete it."
+              : "If you're under 13, you can't use SpySocial, and if we learn that an account belongs to someone under 13, we'll delete it."}
           </P>
           <P>
             If you're under 18, or under the age of majority where you live, you need a parent's or guardian's
@@ -119,6 +132,8 @@ const Terms: React.FC = () => {
             name, progress and packs on any device, save your account with an email address and a password
             {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Public rooms and events need a saved
             account with a confirmed email address.
+            {LIVE.purchases &&
+              " Guests can buy packs and memberships too. A guest's purchases belong to the guest account; if you lose it, Restore Purchases brings them back (see section 9)."}
           </P>
           <H3>Keeping your account safe</H3>
           <P>
@@ -172,26 +187,27 @@ const Terms: React.FC = () => {
 
           <H2>6. Your Content</H2>
           <P>
-            "Your content" means everything you add to SpySocial: your display name, username, profile photo and any
-            room code you choose; your chat messages, including in the spy chat and the chat for players who are out;
-            the questions and answers you type; your Spy Sketch drawings; and the reports you send.
+            "Your content" means everything you add to SpySocial: your display name, username
+            {photos ? ', profile photo' : ''} and any room code you choose; your chat messages, including in the spy
+            chat and the chat for players who are out; the questions and answers you type; your Spy Sketch drawings;
+            and the reports you send.
           </P>
           <H3>You own it, and you let us use it</H3>
           <P>
             You keep ownership of your content. To run SpySocial, we need your permission to use it, so you give us a
             worldwide, non-exclusive, royalty-free license to store, copy, send, show, translate and adapt it (for
-            example, resize a photo or translate a message), and to let other players see it. This includes showing
-            it to the players in your room, in room lists and game results, and to the people who review reports. The
-            license ends when your content is deleted from SpySocial, except for copies we keep as our Privacy Policy
-            describes (for example, content attached to a report). We won't use your photo or your messages in our
-            advertising without asking you first.
+            example, {photos ? 'resize a photo or translate a message' : 'translate a message'}), and to let other
+            players see it. This includes showing it to the players in your room, in room lists and game results, and
+            to the people who review reports. The license ends when your content is deleted from SpySocial, except for
+            copies we keep as our Privacy Policy describes (for example, content attached to a report). We won't use
+            your {photos ? 'photo or your messages' : 'messages'} in our advertising without asking you first.
           </P>
           <H3>Your responsibility</H3>
           <P>
-            You're responsible for your content. Only add content you have the right to share (for example, don't
-            upload a photo of someone else without their permission), and make sure it follows these Terms and the
-            Community Rules. Other players can see, remember and take screenshots of what you share in a room, and we
-            can't control what they do with it, so think before you share.
+            You're responsible for your content. Only add content you have the right to share
+            {photos ? " (for example, don't upload a photo of someone else without their permission)" : ''}, and make
+            sure it follows these Terms and the Community Rules. Other players can see, remember and take screenshots of
+            what you share in a room, and we can't control what they do with it, so think before you share.
           </P>
           <H3>Other players' content</H3>
           <P>
@@ -203,9 +219,9 @@ const Terms: React.FC = () => {
 
           <H2>7. Community Rules and Zero Tolerance</H2>
           <P>
-            Our <PageLink to="/rules">Community Rules</PageLink> are part of these Terms. They apply to names, photos,
-            chat, drawings and how you play, in public and private rooms. We have zero tolerance for objectionable
-            content and abusive players. Don't post, send, draw or do anything that:
+            Our <PageLink to="/rules">Community Rules</PageLink> are part of these Terms. They apply to names,
+            {photos ? ' photos,' : ''} chat, drawings and how you play, in public and private rooms. We have zero
+            tolerance for objectionable content and abusive players. Don't post, send, draw or do anything that:
           </P>
           <Bullets>
             <ListItem>is hateful or harassing, insults or targets other players, or attacks anyone for who they are</ListItem>
@@ -236,21 +252,33 @@ const Terms: React.FC = () => {
           <H2>8. Reports, Moderation and Appeals</H2>
           <H3>Reporting and blocking</H3>
           <P>
-            You can report or block a player from their name in the app. A person reads every report, and our
-            Community Rules say how soon. The player you report isn't told who reported them. To check a report, we
-            look at what's attached to it and at the records we keep, as our Privacy Policy describes.
+            You can report or block a player from their name in the app{LIVE.drawingCheck ? ', and report a drawing' : ''}.
+            A person reads every report, and our Community Rules say how soon. The player you report isn't told who
+            reported them. To check a report, we look at what's attached to it and at the records we keep, as our
+            Privacy Policy describes.
           </P>
           <H3>Automated tools</H3>
           <P>
             We also use automated tools to keep SpySocial safe: a word filter that can block certain words in names,
-            usernames, room codes and chat messages, and limits on how often some actions can be repeated. We may also
-            use an automated service to check profile photos and remove ones that may break the rules. Decisions on
-            reports and penalties are made by a person.
+            usernames, room codes and chat messages, and limits on how often some actions can be repeated.
+            {photos &&
+              ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
+            {LIVE.drawingCheck ? (
+              <>
+                {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms, and at any drawing
+                that is reported, in any room. When it finds that a turn breaks the Community Rules, it takes that turn
+                off the drawing, and it can give the player a strike, remove them from the game, or pause or ban them
+                from public rooms and events. If you think it got it wrong, you can appeal (see Appeals below), and a
+                person will look at it. Other decisions on reports and penalties are made by a person.
+              </>
+            ) : (
+              ' Decisions on reports and penalties are made by a person.'
+            )}
           </P>
           <H3>What we can do</H3>
           <P>If you break these Terms or the Community Rules, we may:</P>
           <Bullets>
-            <ListItem>remove or hide your content, or change your name or remove your photo</ListItem>
+            <ListItem>remove or hide your content, or change your name{photos ? ' or remove your photo' : ''}</ListItem>
             <ListItem>give you a warning</ListItem>
             <ListItem>mute your chat for a while</ListItem>
             <ListItem>pause you from public rooms and events for a while</ListItem>
@@ -304,7 +332,7 @@ const Terms: React.FC = () => {
               <ListItem>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</ListItem>
               <ListItem>A pack you buy stays yours for as long as we offer SpySocial. We may update its words and locations, and if we ever have to withdraw a pack you bought, we'll give you a comparable one where we reasonably can.</ListItem>
               <ListItem>Refunds are handled by Apple or Google under their policies. If a purchase is refunded, we remove what it unlocked.</ListItem>
-              <ListItem>To get your purchases back on another device, sign in to the same account and use Restore Purchases in the app.</ListItem>
+              <ListItem>To get your purchases back on another device, or after losing a guest account, use Restore Purchases in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring moves your purchases to the SpySocial account you're using.</ListItem>
               <ListItem>Nothing in these Terms takes away rights you have under consumer law, for example if something you bought doesn't work as described.</ListItem>
             </Bullets>
             </>

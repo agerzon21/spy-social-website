@@ -1,6 +1,6 @@
 import { Link as ChakraLink, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { LIVE } from '../../lib/legalRelease'
+import { LIVE, photosInUse } from '../../lib/legalRelease'
 
 // What deleting an account removes and what stays, for the Privacy Policy and
 // the Delete Account page (Google Play links to it), so the two never differ.
@@ -41,23 +41,33 @@ export const AfterDeletionList = () => (
       your email address and IP address, are kept{LIVE.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
       prevent abuse.
     </ListItem>
-    {LIVE.photoCleanup ? (
-      <ListItem>
-        A copy of your profile photo that our content delivery network cached can still open by its link for up to an
-        hour.
-      </ListItem>
-    ) : (
-      <ListItem>
-        Your profile photo's file isn't deleted automatically yet. If you had one, email <SupportEmail /> and we'll delete
-        it within one month.
-      </ListItem>
-    )}
-    {LIVE.purchases && (
-      <ListItem>
-        Apple, Google and RevenueCat keep their own records of your purchases, under their policies and the law. Deleting
-        your account doesn't cancel a subscription: cancel it in your App Store or Google Play settings.
-      </ListItem>
-    )}
+    {photosInUse() &&
+      (LIVE.photoCleanup ? (
+        <ListItem>
+          A copy of your profile photo that our content delivery network cached can still open by its link for up to an
+          hour.
+        </ListItem>
+      ) : (
+        <ListItem>
+          Your profile photo's file isn't deleted automatically yet. If you had one, email <SupportEmail /> and we'll
+          delete it within one month.
+        </ListItem>
+      ))}
+    {LIVE.purchases &&
+      (LIVE.revenueCatDeletion ? (
+        <ListItem>
+          RevenueCat's record of your purchases (your SpySocial user ID and what you bought) is deleted within 30 days.
+          Apple and Google keep their own records of your purchases, under their policies and the law. Deleting your
+          account doesn't cancel a subscription: cancel it in your App Store or Google Play settings.
+        </ListItem>
+      ) : (
+        <ListItem>
+          RevenueCat keeps its record of your purchases (your SpySocial user ID and what you bought); email{' '}
+          <SupportEmail /> and we'll have it deleted within one month. Apple and Google keep their own records of your
+          purchases, under their policies and the law. Deleting your account doesn't cancel a subscription: cancel it in
+          your App Store or Google Play settings.
+        </ListItem>
+      ))}
     <ListItem>Copies in our database backups are deleted as those backups expire, within 30 days.</ListItem>
   </UnorderedList>
 )

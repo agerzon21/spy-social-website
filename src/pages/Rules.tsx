@@ -1,11 +1,12 @@
 import { Box, Container, Heading, Link as ChakraLink, ListItem, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { LEGAL_LAST_UPDATED } from '../lib/legalRelease'
+import { LEGAL_LAST_UPDATED, LIVE, photosInUse } from '../lib/legalRelease'
 
 // The community rules the app links to (www.spysocial.app/rules), part of the
 // Terms of Service. Short on purpose: the app shows the same rules; this page
 // adds what counts, what happens, child safety and how to appeal.
 const Rules: React.FC = () => {
+  const photos = photosInUse()
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
       <Container maxW="container.md">
@@ -21,7 +22,8 @@ const Rules: React.FC = () => {
 
           <Text fontSize="sm" lineHeight="1.8">
             Public rooms put you in a game with people you don't know. These rules keep it fun for everyone. They apply to
-            names, photos, chat, drawings and how you play, in public and private rooms, and they're part of our{' '}
+            names,{photos ? ' photos,' : ''} chat, drawings and how you play, in public and private rooms, and they're part
+            of our{' '}
             <ChakraLink as={Link} to="/terms" color="orange.300">
               Terms of Service
             </ChakraLink>
@@ -33,7 +35,7 @@ const Rules: React.FC = () => {
           </Heading>
           <UnorderedList fontSize="sm" lineHeight="1.8" spacing={1}>
             <ListItem>No hate or harassment: no insults aimed at a player, slurs, or attacks on anyone's identity.</ListItem>
-            <ListItem>No sexual content in chat, names, photos or drawings.</ListItem>
+            <ListItem>No sexual content in chat, names{photos ? ', photos' : ''} or drawings.</ListItem>
             <ListItem>No threats, and nothing that encourages anyone to hurt themselves.</ListItem>
           </UnorderedList>
 
@@ -58,8 +60,9 @@ const Rules: React.FC = () => {
             4. A person reads reports
           </Heading>
           <Text fontSize="sm" lineHeight="1.8">
-            Long-press a player to report or block them. A person reads every report within 24 hours. Public chat is kept
-            for 14 days so reports can be checked; the player you report isn't told who sent it.
+            Long-press a player to report or block them.{LIVE.drawingCheck ? ' You can also report a drawing.' : ''} A
+            person reads every report within 24 hours. Public chat is kept for 14 days so reports can be checked; the
+            player you report isn't told who sent it.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>
@@ -89,6 +92,14 @@ const Rules: React.FC = () => {
             sexualizes a child, can mean an immediate ban. Every notice in the app says what is limited, why, and until
             when, with an ID like S-207.
           </Text>
+          {LIVE.drawingCheck && (
+            <Text fontSize="sm" lineHeight="1.8">
+              Every drawing turn in a public room is checked automatically, and so is any drawing that's reported, in any
+              room. A turn that breaks these rules is taken off the drawing and counts as a strike: a warning first, then
+              longer pauses from public rooms and events, and after repeated strikes a permanent one. A drawing that is
+              plainly hateful or sexual can remove the player from the game and from public rooms and events straight away.
+            </Text>
+          )}
 
           <Heading as="h2" size="sm" color="white" mt={4}>
             Age

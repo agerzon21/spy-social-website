@@ -6,8 +6,19 @@
 // turns on against the shipped code, and update LEGAL_LAST_UPDATED.
 //
 // The 2.1.1 store app stays in use for a while after 2.2: oldAppsInUse keeps
-// the lines about what older versions do (MyMemory called from the phone)
-// until 2.1.1 can no longer connect.
+// the lines about what older versions do (MyMemory called from the phone,
+// profile photos) until 2.1.1 can no longer connect.
+//
+// AT THE 2.2 LAUNCH (the hour 2.2 is out on both stores), flip, after
+// checking each one's condition in its comment: photosRemoved, ageGateEveryone,
+// birthMonth, under13Deletion, storeAgeSignals, crashReports, notifications,
+// socialSignIn, purchases, drawingCheck, onDeviceTranslation, storedQuestions,
+// qrScanner; revenueCatDeletion only once the delete flow deletes the
+// RevenueCat customer; myMemory to what the translate function does then;
+// oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out. Then set
+// LEGAL_LAST_UPDATED to the launch day, and, since the Terms change
+// (purchases, automated drawing checks), raise app_config.terms_version so
+// the app asks everyone to agree again.
 
 export const LIVE = {
   /**
@@ -17,20 +28,57 @@ export const LIVE = {
   scheduledRetention: true,
   /** fix/account-photo-cleanup deployed (migration 20261004132000 and purge-avatars): a deleted account's photo file is deleted. */
   photoCleanup: true,
-  /** merge/avatars-1 deployed: profile photos are checked by Azure AI Content Safety (moderate-avatar). */
-  photoScreening: false,
+  /**
+   * Profile photos are gone: the released app (2.2) shows only the avatar each player designs, and the
+   * photos uploaded before 2.2 have been deleted from storage. While oldAppsInUse, the pages still
+   * describe the photo that versions before 2.2 let a player add (see photosInUse below).
+   */
+  photosRemoved: false,
   /** feature/age-terms-gate in the released app: everyone gives a birth year before their first game. */
   ageGateEveryone: false,
+  /**
+   * Migration 20261005100200_birth_month applied with the 2.2 app: only a player born in this year less 13
+   * (the one year where the year alone can't tell 12 from 13) is asked the month too, and only then is it kept.
+   */
+  birthMonth: false,
+  /**
+   * Migration 20261005100100_under_13_account_removal applied: a birth year under 13 deletes the account at
+   * once (set_birth_year runs the player's own deletion), and the phone keeps refusing every room.
+   */
+  under13Deletion: false,
   /** The native age signals in the released app: Apple's Declared Age Range, Google Play Age Signals. */
   storeAgeSignals: false,
-  /** Crash reports go to Sentry (the 2.2 native build). */
+  /**
+   * Crash reports go to Sentry (the 2.2 native build). Flip only once the Sentry project's
+   * "Prevent Storing of IP Addresses" is on (owner setup); the text says Sentry doesn't keep the IP address.
+   */
   crashReports: false,
-  /** Push notifications: push tokens on our servers, delivery through Expo, APNs and FCM. */
-  pushNotifications: false,
+  /**
+   * The 2.2 notifications: Remind Me on a game night schedules a notification on the phone (no push token
+   * leaves a player's phone), and the only server pushes are report alerts to the owner's phones (push
+   * tokens, Expo's push service, APNs, FCM).
+   */
+  notifications: false,
   /** Sign in with Apple and Google (feature/social-sign-in), including Apple token revocation on deletion. */
   socialSignIn: false,
-  /** Buying packs and memberships through the App Store and Google Play, checked with RevenueCat (feature/buying). */
+  /**
+   * Buying packs and memberships through the App Store and Google Play, checked with RevenueCat
+   * (feature/buying). Guests can buy, and Restore Purchases moves purchases to the account in use.
+   */
   purchases: false,
+  /**
+   * Deleting an account also deletes the player's RevenueCat customer record within 30 days (a server-side
+   * call to RevenueCat's DELETE /v1/subscribers in the delete flow). Not built yet: until it is, the pages
+   * say RevenueCat keeps its record and that we have it deleted on request.
+   */
+  revenueCatDeletion: false,
+  /**
+   * The drawing check (feature/drawing-check deployed with OPENAI_API_KEY): OpenAI judges every drawing
+   * turn in public rooms and any reported drawing, from an image of the drawing and the round's word.
+   * Before flipping, check the Drawing Checks text (Privacy) and the automated-tools text (Terms, Rules)
+   * against what the build sends, keeps and does.
+   */
+  drawingCheck: false,
   /** The phone translates by itself when our service can't (feature/on-device-translation). */
   onDeviceTranslation: false,
   /**
@@ -44,9 +92,18 @@ export const LIVE = {
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
   qrScanner: false,
-  /** App versions before 2.2 still connect (they call MyMemory from the phone). */
+  /** App versions before 2.2 still connect (they call MyMemory from the phone, and can add a profile photo). */
   oldAppsInUse: true,
 }
+
+/** Whether any player can still have a profile photo: before 2.2's avatars, or while versions before 2.2 connect. */
+export const photosInUse = (): boolean => !LIVE.photosRemoved || LIVE.oldAppsInUse
+
+/**
+ * Whether the Android app uses Google's ML Kit: it translates on the phone (onDeviceTranslation) and reads
+ * QR codes (qrScanner). On iPhones, Apple's own frameworks do both.
+ */
+export const usesMlKit = (): boolean => LIVE.onDeviceTranslation || LIVE.qrScanner
 
 /**
  * Who runs SpySocial: the legal name and a postal address, shown on the
@@ -69,4 +126,3 @@ export const LEGAL_LAST_UPDATED = 'October 4, 2026'
 export const TERMS_PUBLISHED = 'October 4, 2026'
 export const TERMS_EFFECTIVE_FOR_EXISTING = 'November 3, 2026'
 export const TERMS_PREVIOUS = 'May 1, 2026'
-
