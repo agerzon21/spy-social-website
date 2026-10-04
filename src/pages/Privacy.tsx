@@ -71,7 +71,7 @@ const Privacy: React.FC = () => {
             personal data. This privacy policy explains how we handle your personal information when you use our app and
             our website, spysocial.app, and tells you about your privacy rights.
             {OPERATOR.name
-              ? ` SpySocial is run by ${OPERATOR.name}${OPERATOR.address ? `, ${OPERATOR.address}` : ''}, which is responsible for your personal data (the "controller").`
+              ? ` SpySocial is run by ${OPERATOR.name}${OPERATOR.address ? `, ${OPERATOR.address}` : ''}, who is responsible for your personal data (the "controller").`
               : ''}
           </P>
 

@@ -1,7 +1,7 @@
 import { Box, Container, Heading, Link as ChakraLink, ListItem, OrderedList, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { LEGAL_LAST_UPDATED, LIVE, OPERATOR } from '../lib/legalRelease'
+import { LEGAL_LAST_UPDATED, LIVE, OPERATOR, TERMS_EFFECTIVE_FOR_EXISTING, TERMS_PREVIOUS, TERMS_PUBLISHED } from '../lib/legalRelease'
 
 // The owner's choices (2026-10-03): 13 and older only, everyone included;
 // Pennsylvania law; buying in 2.2 (shown once LIVE.purchases is on). What
@@ -65,6 +65,12 @@ const Terms: React.FC = () => {
             These Terms of Service ("Terms") are the rules for using SpySocial: the SpySocial app, our website at
             spysocial.app, and everything we offer through them. "We", "us" and "our" mean {we}. "You" means you, the
             player. Please read them: they include limits on what we're responsible for.
+          </P>
+
+          <P>
+            These Terms were published on {TERMS_PUBLISHED} and replace the Terms of {TERMS_PREVIOUS}. If you started
+            using SpySocial before {TERMS_PUBLISHED}, they apply to you from {TERMS_EFFECTIVE_FOR_EXISTING}, or sooner
+            if you accept them in the app. For everyone else, they apply from the first time you use SpySocial.
           </P>
 
           <Box w="100%" bg="whiteAlpha.50" borderWidth="1px" borderColor="whiteAlpha.200" borderRadius="md" p={4}>

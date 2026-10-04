@@ -54,10 +54,19 @@ export const LIVE = {
  * Apple's minimum end-user terms). Owner to fill in.
  */
 export const OPERATOR: { name: string | null; address: string | null } = {
-  name: null,
+  name: 'Alex Gerzon',
   address: null,
 }
 
 /** "Last Updated" on the Privacy Policy, the Terms, the Community Rules and Delete Account: the day a change is published. */
-export const LEGAL_LAST_UPDATED = 'October 3, 2026'
+export const LEGAL_LAST_UPDATED = 'October 4, 2026'
+
+/**
+ * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.
+ * People who used SpySocial before these Terms were published are bound by them from TERMS_EFFECTIVE_FOR_EXISTING,
+ * or earlier if they accept them in the app; everyone else from their first use or acceptance.
+ */
+export const TERMS_PUBLISHED = 'October 4, 2026'
+export const TERMS_EFFECTIVE_FOR_EXISTING = 'November 3, 2026'
+export const TERMS_PREVIOUS = 'May 1, 2026'
 
