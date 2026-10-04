@@ -77,7 +77,8 @@ const Terms: React.FC = () => {
           </P>
 
           <P>
-            These Terms were published on {TERMS_PUBLISHED} and replace the Terms of {TERMS_PREVIOUS}. If you started
+            These Terms were published on {TERMS_PUBLISHED} and replace the Terms of{' '}
+            {TERMS_PREVIOUS.join(' and the Terms of ')}. If you started
             using SpySocial before {TERMS_PUBLISHED}, they apply to you from {TERMS_EFFECTIVE_FOR_EXISTING}, or sooner
             if you accept them in the app. For everyone else, they apply from the first time you use SpySocial.
           </P>
@@ -265,11 +266,14 @@ const Terms: React.FC = () => {
               ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
             {LIVE.drawingCheck ? (
               <>
-                {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms, and at any drawing
-                that is reported, in any room. When it finds that a turn breaks the Community Rules, it takes that turn
-                off the drawing, and it can give the player a strike, remove them from the game, or pause or ban them
-                from public rooms and events. If you think it got it wrong, you can appeal (see Appeals below), and a
-                person will look at it. Other decisions on reports and penalties are made by a person.
+                {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms, and at a drawing
+                reported in a private room. In a public room, when it finds that a turn breaks the Community Rules, it
+                takes that turn off the drawing and gives the player a strike, which can lead to a pause or a ban from
+                public rooms and events. In any room, a hate symbol, a slur or hate aimed at someone gets the player
+                removed from the game and banned from public rooms and events for good, and a drawing that sexualizes a
+                child is taken off. In a private room, the check does nothing by itself about anything less serious. If
+                you think it got it wrong, you can appeal (see Appeals below), and a person will look at it. Other
+                decisions on reports and penalties are made by a person.
               </>
             ) : (
               ' Decisions on reports and penalties are made by a person.'
@@ -317,10 +321,19 @@ const Terms: React.FC = () => {
             example for playing in events.
           </P>
           <Bullets>
-            <ListItem>Virtual items have no value in real money. You can't sell or trade them, move them to another account, or exchange them for money.</ListItem>
+            <ListItem>
+              Virtual items have no value in real money. You can't sell or trade them, move them to another account, or
+              exchange them for money.
+              {LIVE.purchases &&
+                " The one exception is Restore Purchases, which moves what you bought to the SpySocial account you're using (see Buying packs and membership below)."}
+            </ListItem>
             <ListItem>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</ListItem>
             <ListItem>When someone in a room has unlocked a pack, everyone in that room can play it while they're there. We may change how this sharing works.</ListItem>
-            <ListItem>If your account is deleted or banned, you lose the virtual items on it.</ListItem>
+            <ListItem>
+              If your account is deleted or banned, you lose the virtual items on it.
+              {LIVE.purchases &&
+                ' After a deletion, though, what you bought through the App Store or Google Play can come back on another SpySocial account with Restore Purchases.'}
+            </ListItem>
           </Bullets>
           {LIVE.purchases && (
             <>
@@ -332,7 +345,7 @@ const Terms: React.FC = () => {
               <ListItem>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</ListItem>
               <ListItem>A pack you buy stays yours for as long as we offer SpySocial. We may update its words and locations, and if we ever have to withdraw a pack you bought, we'll give you a comparable one where we reasonably can.</ListItem>
               <ListItem>Refunds are handled by Apple or Google under their policies. If a purchase is refunded, we remove what it unlocked.</ListItem>
-              <ListItem>To get your purchases back on another device, or after losing a guest account, use Restore Purchases in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring moves your purchases to the SpySocial account you're using.</ListItem>
+              <ListItem>To get your purchases back on another device, or after losing or deleting an account, use Restore Purchases in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring moves your purchases to the SpySocial account you're using, away from any other account they were on.</ListItem>
               <ListItem>Nothing in these Terms takes away rights you have under consumer law, for example if something you bought doesn't work as described.</ListItem>
             </Bullets>
             </>
@@ -342,7 +355,7 @@ const Terms: React.FC = () => {
           <H3>Translations</H3>
           <P>
             When you tap Translate, the message's text is sent to Microsoft Translator
-            {LIVE.myMemory !== 'off' || LIVE.oldAppsInUse ? ", or to MyMemory if that doesn't answer" : ''}
+            {LIVE.myMemory !== 'off' ? ", or to MyMemory if that doesn't answer" : ''}
             {LIVE.onDeviceTranslation ? ", or translated on your device when our service can't" : ''}, and you get a
             machine translation. Other players can translate your messages the same way. Machine translations can be
             wrong or miss the tone, so don't rely on them for anything important; we're not responsible for them.

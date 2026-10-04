@@ -53,21 +53,25 @@ export const AfterDeletionList = () => (
           delete it within one month.
         </ListItem>
       ))}
-    {LIVE.purchases &&
-      (LIVE.revenueCatDeletion ? (
-        <ListItem>
-          RevenueCat's record of your purchases (your SpySocial user ID and what you bought) is deleted within 30 days.
-          Apple and Google keep their own records of your purchases, under their policies and the law. Deleting your
-          account doesn't cancel a subscription: cancel it in your App Store or Google Play settings.
-        </ListItem>
-      ) : (
-        <ListItem>
-          RevenueCat keeps its record of your purchases (your SpySocial user ID and what you bought); email{' '}
-          <SupportEmail /> and we'll have it deleted within one month. Apple and Google keep their own records of your
-          purchases, under their policies and the law. Deleting your account doesn't cancel a subscription: cancel it in
-          your App Store or Google Play settings.
-        </ListItem>
-      ))}
+    {LIVE.purchases && (
+      <ListItem>
+        {LIVE.revenueCatDeletion ? (
+          <>
+            RevenueCat's record of your purchases (an ID linked to your account, and what you bought) is deleted within
+            30 days.
+          </>
+        ) : (
+          <>
+            RevenueCat keeps its record of your purchases (an ID linked to your account, and what you bought); email{' '}
+            <SupportEmail /> and we'll have it deleted within one month.
+          </>
+        )}{' '}
+        Apple and Google keep their own records of your purchases, under their policies and the law, so what you bought
+        can come back on another SpySocial account with Restore Purchases, on the App Store or Google Play account you
+        paid with. Deleting your account doesn't cancel a subscription: cancel it in your App Store or Google Play
+        settings.
+      </ListItem>
+    )}
     <ListItem>Copies in our database backups are deleted as those backups expire, within 30 days.</ListItem>
   </UnorderedList>
 )

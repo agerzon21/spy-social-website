@@ -94,10 +94,13 @@ const Rules: React.FC = () => {
           </Text>
           {LIVE.drawingCheck && (
             <Text fontSize="sm" lineHeight="1.8">
-              Every drawing turn in a public room is checked automatically, and so is any drawing that's reported, in any
-              room. A turn that breaks these rules is taken off the drawing and counts as a strike: a warning first, then
-              longer pauses from public rooms and events, and after repeated strikes a permanent one. A drawing that is
-              plainly hateful or sexual can remove the player from the game and from public rooms and events straight away.
+              Every drawing turn in a public room is checked automatically, and so is a drawing that's reported in a
+              private room. In a public room, a turn that breaks these rules is taken off the drawing and counts as a
+              strike: a warning first, then longer pauses from public rooms and events, and after repeated strikes a
+              permanent one. In any room, a hate symbol, a slur or hate aimed at someone removes the player from the game
+              and from public rooms and events for good, and a drawing that sexualizes a child is taken off and handled
+              as Child safety says above. In a private room, a reported drawing is acted on automatically only when it's
+              that serious; anything else is up to the person who reads the report.
             </Text>
           )}
 

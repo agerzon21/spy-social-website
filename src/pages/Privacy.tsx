@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
-import { LEGAL_LAST_UPDATED, LIVE, OPERATOR, photosInUse, usesMlKit } from '../lib/legalRelease'
+import { LEGAL_LAST_UPDATED, LIVE, OPERATOR, avatarsLive, photosInUse, usesMlKit } from '../lib/legalRelease'
 
 // What each passage says depends on what has shipped: see src/lib/legalRelease.ts.
 
@@ -54,7 +54,10 @@ const Privacy: React.FC = () => {
       : LIVE.myMemory === 'device'
         ? " If our service can't answer (for example after a daily limit), the app sends the text from your device to MyMemory, a free translation service run by Translated srl, which then also receives your device's IP address."
         : ''
-  const usesMyMemory = LIVE.myMemory !== 'off' || LIVE.oldAppsInUse
+  // Versions before 2.2 never call MyMemory (2.1.1 has no chat), so only the current app's setting counts.
+  const usesMyMemory = LIVE.myMemory !== 'off'
+  // Android registers with Firebase Cloud Messaging at launch (legalRelease fcmAutoInit).
+  const fcmAtLaunch = LIVE.notifications && LIVE.fcmAutoInit
   // What Google's ML Kit does in the Android app (usesMlKit).
   const mlKitUses = [
     LIVE.onDeviceTranslation ? 'translate messages on your device' : null,
@@ -92,10 +95,10 @@ const Privacy: React.FC = () => {
           <P>When you use SpySocial, we collect the following information:</P>
           <Bullets>
             <Item label="Account Information">
-              {LIVE.photosRemoved
+              {avatarsLive()
                 ? 'Display name, username, the avatar you put together in the app from the parts it offers (and the avatar items you unlocked), and the email address you give when you save your account.'
                 : 'Display name, username, optional profile photo, and the email address you give when you save your account.'}
-              {LIVE.photosRemoved && LIVE.oldAppsInUse && ' Versions of the app before 2.2 also let you add a profile photo.'}
+              {avatarsLive() && photosInUse() && ' Versions of the app before 2.2 also let you add a profile photo.'}
               {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
               {LIVE.socialSignIn &&
                 ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them.'}
@@ -130,9 +133,7 @@ const Privacy: React.FC = () => {
               Microsoft Translator (Azure AI Translator) and keeps the translation for 24 hours, so other players reading
               the same message get it without sending it again.{backupTranslation}
               {LIVE.onDeviceTranslation &&
-                " When our service can't translate a message, your device may translate it itself with Apple's or Google's on-device translation; the text then doesn't leave your device. The first time, your device may download that language's translation files from Apple or Google."}
-              {LIVE.oldAppsInUse &&
-                ` Versions of the app before 2.2 send every translation straight from your device to MyMemory${LIVE.myMemory === 'device' ? '.' : ", which then also receives your device's IP address."}`}{' '}
+                " When our service can't translate a message, your device may translate it itself with Apple's or Google's on-device translation; the text then doesn't leave your device. The first time, your device may download that language's translation files from Apple or Google."}{' '}
               Only the message text and the two languages are sent, never your name or account.
               {usesMyMemory &&
                 " MyMemory's terms say it may keep the text it receives and use it to improve its services."}
@@ -157,13 +158,16 @@ const Privacy: React.FC = () => {
             {LIVE.drawingCheck && (
               <Item label="Drawing Checks">
                 In public rooms, every drawing turn in a Spy Sketch game is checked automatically for content that breaks
-                our Community Rules, and so is any drawing someone reports, in any room. For each check, our servers send
-                OpenAI an image of the drawing, the round's secret word (which helps tell an innocent drawing from an
-                offensive one) and a code made from your account ID that doesn't reveal who you are, which OpenAI uses to
-                detect misuse of its service. They never send your name, your email address or your device's IP address.
-                According to OpenAI, it doesn't use what it receives to train its models, and keeps it for up to 30 days to
-                watch for misuse, unless the law requires it to keep it longer. We keep the result of each check, and any
-                lines a check took off a drawing, for as long as we need them to handle reports and appeals.
+                our Community Rules; in private rooms, a drawing is checked when someone reports it. For each check, our
+                servers send OpenAI an image of the drawing, the round's secret word (which helps tell an innocent drawing
+                from an offensive one) and a code made from your account ID that doesn't reveal who you are, which OpenAI
+                uses to detect misuse of its service. They never send your name, your email address or your device's IP
+                address. According to OpenAI, it doesn't use what it receives to train its models, and keeps it for up to
+                30 days to watch for misuse, unless the law requires it to keep it longer. The check acts by itself: it
+                can take a turn off the drawing, give a strike (which can lead to a pause or a ban from public rooms and
+                events), or remove a player from the game and ban them from public rooms and events, as our Community
+                Rules explain. If you appeal, a person looks at it again. We keep the result of each check, and any lines a
+                check took off a drawing, for as long as we need them to handle reports and appeals.
               </Item>
             )}
             <Item label="Age">
@@ -186,9 +190,11 @@ const Privacy: React.FC = () => {
               <Item label="Purchases">
                 When you buy a pack or a membership (guests can buy too), Apple or Google handles the payment; we never
                 see your payment details. To check and restore purchases, the app and our servers use RevenueCat, which
-                receives your SpySocial user ID, what you bought, the store's transaction IDs, prices and dates, and your
-                device's IP address and platform. The app first connects to RevenueCat when you open a screen where you
-                can buy something. We keep a record of what your purchases unlock, and when a membership renews or ends,
+                receives an ID linked to your SpySocial account, what you bought, the store's transaction IDs, prices and
+                dates, your device's IP address, platform, model, language settings and store country, and on iPhones the
+                identifier iOS gives our apps on your device. The app first connects to RevenueCat when you open a screen
+                where you can buy something; after that, it connects each time it starts on that device, for whoever is
+                signed in. We keep a record of what your purchases unlock, and when a membership renews or ends,
                 for as long as you have an account; if you use Restore Purchases while signed in to another account, your
                 purchases move to that account. The updates RevenueCat sends us about a purchase (such as a renewal or a
                 refund) are deleted after 90 days.{' '}
@@ -206,6 +212,8 @@ const Privacy: React.FC = () => {
                 notifications we send go to our moderators' phones when a new report comes in. They pass through Expo's
                 push service and Apple's or Google's, and say only what kind of report it is and its case number, never a
                 player's name or what was said.
+                {fcmAtLaunch &&
+                  " On Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. That address stays on your device: we never receive it."}
               </Item>
             )}
             {LIVE.crashReports && (
@@ -213,10 +221,12 @@ const Privacy: React.FC = () => {
                 If the app crashes or hits an error, it sends a report to Sentry, our crash-reporting service: what went
                 wrong and where in the app, a short trail of what the app did just before (such as the screens it opened,
                 with room codes removed), your device's model, operating system version and similar technical details
-                (such as free memory, screen size and language), and the app's version. Reports don't include your name,
-                email address, account or messages, or any ID for you, your device or the app's installation, and the
-                app sends nothing to Sentry while everything works. Sentry receives your device's IP address when a
-                report arrives but is set not to store it, and deletes reports within 90 days.
+                (such as free memory, screen size and language), the app's version, and an ID for the app's installation
+                that isn't linked to your account (on Android, a random ID the crash reporter creates; on iPhones, a code
+                made from the identifier iOS gives our apps on your device). Reports don't include your name, email
+                address, account or messages, and the app sends nothing to Sentry while everything works. Sentry
+                receives your device's IP address when a report arrives but is set not to store it, and deletes reports
+                within 90 days.
               </Item>
             )}
             {LIVE.qrScanner && (
@@ -334,15 +344,13 @@ const Privacy: React.FC = () => {
             {LIVE.drawingCheck && (
               <Item label="OpenAI">
                 (https://openai.com) Checks drawings for content that breaks our Community Rules: every drawing turn in
-                public rooms, and any drawing that's reported.
+                public rooms, and drawings reported in private rooms.
               </Item>
             )}
             {usesMyMemory && (
               <Item label="Translated srl">
                 (MyMemory, https://mymemory.translated.net) Backup translation of a message's text when Microsoft can't
-                translate it
-                {LIVE.myMemory === 'server' ? ', sent from our servers' : LIVE.myMemory === 'device' ? ', sent from your device' : ''}
-                {LIVE.oldAppsInUse && LIVE.myMemory !== 'device' ? ' (from your device in versions of the app before 2.2)' : ''}.
+                translate it{LIVE.myMemory === 'server' ? ', sent from our servers' : ', sent from your device'}.
                 MyMemory's terms say it may keep the text it receives and use it to improve its services.
               </Item>
             )}
@@ -358,6 +366,7 @@ const Privacy: React.FC = () => {
               {LIVE.purchases ? ', payments for purchases' : ''}
               {LIVE.onDeviceTranslation ? ', on-device translation files' : ''}
               {usesMlKit() ? ", Google's ML Kit in the Android app" : ''}
+              {fcmAtLaunch ? ", Google's Firebase Cloud Messaging in the Android app" : ''}
               {LIVE.storeAgeSignals ? ', age signals' : ''}, and distribution of the app through the App Store and Google
               Play. On iPhones, the app's connection check contacts Google.
             </Item>
@@ -440,15 +449,16 @@ const Privacy: React.FC = () => {
             SpySocial is for players 13 and older.{' '}
             {LIVE.ageGateEveryone && "The app asks every player's birth year before their first game. "}
             {LIVE.under13Deletion
-              ? "If the birth year entered in the app is under 13, the app stops, remembers this on the device and doesn't let them play, and we delete the account and its information at once. "
+              ? "If the birth year entered in the app is under 13, the app stops, remembers this on the device and doesn't let them play, and we delete the account at once, as if they had deleted it themselves (see When you delete your account, above, for what stays for a while). "
               : LIVE.ageGateEveryone
                 ? "If the answer is under 13, the app stops and doesn't let them play, and remembers this on the device. "
                 : ''}
+            {LIVE.storeAgeSignals &&
+              "If the age range Apple or Google share with the app is under 13, the app stops in the same way, without asking. That range stays on the device and isn't sent to us, so it doesn't delete the account. "}
             We don't knowingly collect personal information from children under 13. When we learn
             {LIVE.under13Deletion ? ' in any other way' : ''} that an account belongs to a child under 13
-            {LIVE.under13Deletion ? ',' : ', including from the birth year entered in the app,'} we delete the account and
-            its information. If you believe a child under 13 is using SpySocial, email <SupportEmail /> and we'll delete
-            their account.
+            {LIVE.under13Deletion ? ', we delete it in the same way.' : ', including from the birth year entered in the app, we delete the account and its information.'}{' '}
+            If you believe a child under 13 is using SpySocial, email <SupportEmail /> and we'll delete their account.
           </P>
 
           <H2>Do Not Track Signals</H2>
