@@ -93,7 +93,7 @@ const Privacy: React.FC = () => {
               and answer, vote, guess, or leave), the drawings made in a Spy Sketch game, and the results. We use it to
               run the game, keep score, award experience points, levels and achievements, and check that games are played
               fairly. A game's drawing, including lines a player drew and then undid, is deleted 24 hours after the game
-              ends in a private room, or 14 days after in a public room; a record of which player drew each turn is kept for 90 days so reports can be checked.
+              ends in a private room, or 14 days after in a public room; a record of which player drew each turn is kept for 90 days so reports can be checked. When you leave a room or are removed from one, we note for 24 hours how your place in it ended (you left, the host removed you, or the game did), so your other devices can tell you what happened.
             </Item>
             <Item label="Chat Messages">
               Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, and the chat for players
