@@ -91,7 +91,7 @@ const ResetPassword = () => {
               <VStack spacing={4}>
                 <FormControl isRequired>
                   <FormLabel fontSize="sm" color="whiteAlpha.600">New Password</FormLabel>
-                  <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter new password" minLength={8} isDisabled={loading} bg="whiteAlpha.100" border="1px solid" borderColor="whiteAlpha.200" color="white" _placeholder={{ color: 'whiteAlpha.300' }} _hover={{ borderColor: 'whiteAlpha.300' }} _focus={{ borderColor: 'blue.400', boxShadow: 'none' }} />
+                  <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter new password" minLength={6} isDisabled={loading} bg="whiteAlpha.100" border="1px solid" borderColor="whiteAlpha.200" color="white" _placeholder={{ color: 'whiteAlpha.300' }} _hover={{ borderColor: 'whiteAlpha.300' }} _focus={{ borderColor: 'blue.400', boxShadow: 'none' }} />
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel fontSize="sm" color="whiteAlpha.600">Confirm Password</FormLabel>
