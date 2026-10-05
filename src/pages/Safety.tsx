@@ -194,7 +194,7 @@ const Safety: React.FC = () => {
             <Step n={1} icon={FiLogOut} title="Leave">
               You can always leave a room or a game: tap <B>Leave</B>. Your safety matters more than any game.
               {LIVE.playOnline &&
-                ' In Play Online, leaving a game that has started gives you a short break from public games. Leave anyway, and report the player if they were the reason.'}
+                ` In Play Online, leaving a game that has started gives you a short break from ${LIVE.onePool ? 'Play Online' : 'public games'}. Leave anyway, and report the player if they were the reason.`}
             </Step>
             <Step n={2} icon={FiSlash} title="Block">
               Long-press the player and tap <B>Block</B>. You won't see their chat, and neither of you can join a room the
@@ -257,10 +257,18 @@ const Safety: React.FC = () => {
               <B>Private rooms:</B> only people with the room's code, link or QR code can join, and the host can remove a
               player.
             </ListItem>
-            <ListItem>
-              <B>Public rooms and events</B> with players your child doesn't know
-              {LIVE.playOnline ? ', including Play Online, which seats players at a table automatically' : ''}.
-            </ListItem>
+            {LIVE.onePool ? (
+              <ListItem>
+                <B>Public rooms</B> with players your child doesn't know: Play Online's tables, where the app seats
+                players automatically and everyone plays by the same standard rules, and game nights we host at a set
+                time. Players can't create public rooms, and no player hosts one.
+              </ListItem>
+            ) : (
+              <ListItem>
+                <B>Public rooms and events</B> with players your child doesn't know
+                {LIVE.playOnline ? ', including Play Online, which seats players at a table automatically' : ''}.
+              </ListItem>
+            )}
             {LIVE.purchases && (
               <ListItem>
                 <B>Things to buy:</B> packs and memberships, through the App Store or Google Play.

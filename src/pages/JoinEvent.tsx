@@ -3,6 +3,7 @@ import { FaApple } from 'react-icons/fa'
 import { IoLogoGooglePlaystore } from 'react-icons/io5'
 import { useParams } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
+import { LIVE } from '../lib/legalRelease'
 import { supabase } from '../lib/supabase'
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390'
@@ -151,7 +152,8 @@ const JoinEvent = () => {
                 <Text color="whiteAlpha.800">{pick(event.description, lang)}</Text>
               ) : null}
               <Text color="whiteAlpha.600" fontSize="sm">
-                {[event.game_type, event.game_mode, event.room_language.toUpperCase(), event.host_name ? `hosted by ${event.host_name}` : null]
+                {/* One pool (LIVE.onePool): a game night has no language, every player sees it in their own. */}
+                {[event.game_type, event.game_mode, LIVE.onePool ? null : event.room_language.toUpperCase(), event.host_name ? `hosted by ${event.host_name}` : null]
                   .filter(Boolean)
                   .join(' · ')}
               </Text>

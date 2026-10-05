@@ -21,7 +21,8 @@ const Rules: React.FC = () => {
           </Box>
 
           <Text fontSize="sm" lineHeight="1.8">
-            Public rooms put you in a game with people you don't know. These rules keep it fun for everyone. They apply to
+            Public rooms{LIVE.onePool ? " (Play Online's tables and our game nights)" : ''} put you in a game with people
+            you don't know. These rules keep it fun for everyone. They apply to
             names,{photos ? ' photos,' : ''} chat, drawings and how you play, in public and private rooms, and they're part
             of our{' '}
             <ChakraLink as={Link} to="/terms" color="orange.300">
@@ -54,8 +55,8 @@ const Rules: React.FC = () => {
             <ListItem>Leaving games on purpose, going idle or stalling a round spoils it for the rest of the room.</ListItem>
             {LIVE.playOnline && (
               <ListItem>
-                In Play Online, missing a start or leaving a game that has started gives you a short break from public
-                games (5 minutes, longer if you keep leaving).
+                In Play Online, missing a start or leaving a game that has started gives you a short break from{' '}
+                {LIVE.onePool ? 'Play Online' : 'public games'} (5 minutes, longer if you keep leaving).
               </ListItem>
             )}
           </UnorderedList>

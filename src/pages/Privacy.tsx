@@ -114,6 +114,8 @@ const Privacy: React.FC = () => {
             <Item label="Profile Preferences">
               Your interface language (one of the ten languages the app offers), your color and similar settings, so the app
               looks and reads the way you chose.
+              {PRIVACY.onePool &&
+                " Our servers also use your language to show you the game (the secret word or location, its description and the spy's list) in it, and to count the different languages at a table for an achievement."}
             </Item>
             <Item label="Game Data">
               Information related to games you've played: your role, the actions you take in a game (such as when you ask
@@ -179,7 +181,7 @@ const Privacy: React.FC = () => {
             </Item>
             {PRIVACY.drawingCheck && (
               <Item label="Drawing Checks">
-                In public rooms (including Play Online tables and events), every drawing turn in a Spy Sketch game is
+                In public rooms ({PRIVACY.onePool ? 'Play Online tables and events' : 'including Play Online tables and events'}), every drawing turn in a Spy Sketch game is
                 checked automatically for content that breaks our Community Rules; in any room, a drawing is checked when
                 someone reports it. The app tells you once, before your drawings can be checked, that they're sent to
                 OpenAI. For each check, our servers make a picture of the turn (the earlier drawing in light grey, and any
@@ -443,7 +445,11 @@ const Privacy: React.FC = () => {
             We do not sell your personal information or share it for targeted advertising. Other players in your room see
             your display name, username, {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
             (including a membership badge) and achievements, the language you play in, whether you've stepped away (and
-            for how long), and the messages you send there. Public rooms, with their hosts' display names and avatars, are listed for all players. Reports are
+            for how long), and the messages you send there.{' '}
+            {PRIVACY.onePool
+              ? "Private rooms waiting for players, and game nights, are listed for all players with their hosts' display names and avatars (a private room still needs its code to join); Play Online's tables are listed without names."
+              : "Public rooms, with their hosts' display names and avatars, are listed for all players."}{' '}
+            Reports are
             reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
           </P>
           <P>

@@ -16,7 +16,7 @@
 // ageGateEveryone, birthMonth, under13Deletion, storeAgeSignals, crashReports,
 // notifications, socialSignIn, purchases, onDeviceTranslation,
 // storedQuestions, qrScanner, playOnline (before the play_online switch goes
-// 'on', runbook 3.8c); myMemory to what the translate function does then; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
+// 'on', runbook 3.8c), onePool; myMemory to what the translate function does then; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
 // photosRemoved once no photo file is left. Not at launch unless its own
 // condition holds by then: revenueCatDeletion (the delete flow deletes the
 // RevenueCat customer) and drawingCheck (the game itself checks drawings;
@@ -179,11 +179,25 @@ export const LIVE = {
    * table, last seen, Ready taps; gone when the seat is), match_penalties (breaks: not_ready, declined, absent,
    * unseen_card 5 minutes, left_game 5 / 15 / 60 within 24 hours, the first absence in 24 hours free; deleted
    * with the account, otherwise after 90 days) and match_events (the matchmaking log, with the user id and no
-   * link to the profile, so it outlives a deletion; deleted after 90 days). Breaks cover standard tables and
-   * custom public rooms, never private rooms or game nights. Same requirements as public rooms (_public_gate).
+   * link to the profile, so it outlives a deletion; deleted after 90 days). Breaks cover Play Online's standard
+   * tables (and, before onePool, players' public rooms), never private rooms or game nights. Same requirements
+   * as public rooms (_public_gate).
    * Flip before app_config.play_online goes 'on' for everyone (runbook 3.8c), in website update 1.
    */
   playOnline: false,
+  /**
+   * One pool (owner decision 2026-10-05; app feat/one-pool, migrations 20261006340000_one_pool_private_rooms and
+   * 20261006340100_one_pool_languages): players make private rooms only (create_room and set_room_visibility refuse
+   * public), so public rooms are Play Online's standard tables (standard rules, the free packs, and the members'
+   * packs when a member sits at the table; no host) and the game nights we schedule and host. A room has no
+   * language: every player sees the game (the secret and its description, the spy's list, the hints) in their own
+   * app language (profiles.preferred_language, read by the server), chat stays as typed with Translate, and the
+   * Globetrotter achievement counts the app languages at a table. 2.1.1 never made public rooms, but its rooms
+   * have a host-picked game language, which the FAQ describes until this is on. Flip at the launch, with the
+   * migrations live and the released app built from feat/one-pool or later. Not ahead-safe: the Privacy pages
+   * follow LIVE for it.
+   */
+  onePool: false,
   /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)

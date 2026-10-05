@@ -1,5 +1,6 @@
 import { Box, Container, Heading, Text, VStack, Link as ChakraLink, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, UnorderedList, ListItem } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
+import { LIVE } from '../lib/legalRelease'
 
 interface FAQSection {
   title: string
@@ -80,8 +81,14 @@ const faqSections: FAQSection[] = [
         question: "How do hints work across languages?",
         answer: (
           <UnorderedList spacing={1.5}>
-            <ListItem>Hints are always shown in the <Strong>game language</Strong> so everyone at the table reads the same prompt</ListItem>
-            <ListItem>If your interface language is different, tap the hint to see it translated for you</ListItem>
+            {LIVE.onePool ? (
+              <ListItem>Hints are shown in <Strong>your own app language</Strong>, like the rest of the game</ListItem>
+            ) : (
+              <>
+                <ListItem>Hints are always shown in the <Strong>game language</Strong> so everyone at the table reads the same prompt</ListItem>
+                <ListItem>If your interface language is different, tap the hint to see it translated for you</ListItem>
+              </>
+            )}
             <ListItem>Use the dedicated reload icon to refresh a hint — tapping the sentence won't accidentally re-roll it</ListItem>
           </UnorderedList>
         )
@@ -132,9 +139,17 @@ const faqSections: FAQSection[] = [
         answer: (
           <UnorderedList spacing={1.5}>
             <ListItem>Set your interface language in your profile</ListItem>
-            <ListItem>The host picks the game language for locations and hints</ListItem>
+            {LIVE.onePool ? (
+              <>
+                <ListItem>Rooms don't have a language: every player sees the game in their own, including the secret location or word, its description, the spy's list and the hints</ListItem>
+                <ListItem>So friends who speak different languages can play in the same room, or at the same Play Online table</ListItem>
+                <ListItem>Chat messages stay as they were written: tap <Strong>Translate</Strong> to read one in your language</ListItem>
+              </>
+            ) : (
+              <ListItem>The host picks the game language for locations and hints</ListItem>
+            )}
             <ListItem>SpySocial supports full parity across <Strong>English, Spanish, and Russian</Strong></ListItem>
-            <ListItem>If your language differs from the host's, you'll see translations where it matters</ListItem>
+            {!LIVE.onePool && <ListItem>If your language differs from the host's, you'll see translations where it matters</ListItem>}
           </UnorderedList>
         )
       }
@@ -148,7 +163,7 @@ const faqSections: FAQSection[] = [
         answer: (
           <UnorderedList spacing={1.5}>
             <ListItem>Number of spies and game mode</ListItem>
-            <ListItem>Game language and turn duration</ListItem>
+            <ListItem>{LIVE.onePool ? 'Turn duration' : 'Game language and turn duration'}</ListItem>
             <ListItem>Voting rules and whether the vote-caller is revealed</ListItem>
             <ListItem>Location packs to draw from</ListItem>
           </UnorderedList>

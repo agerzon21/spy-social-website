@@ -293,7 +293,10 @@ const UkOnlineSafety = () => {
       <P>
         Much of the protection comes from what SpySocial doesn't have: there are no {without.slice(0, -1).join(', ')}, or{' '}
         {without[without.length - 1]}. Players meet only inside a game room, chat only with the players in that room, and
-        can't look each other up afterwards. Chat messages{LIVE.storedQuestions ? ' and typed questions and answers' : ''}{' '}
+        can't look each other up afterwards.
+        {LIVE.onePool &&
+          " Players can't create public rooms, and no player hosts one: the public rooms are Play Online's tables, where the app seats players automatically under the same standard rules, and game nights we host."}{' '}
+        Chat messages{LIVE.storedQuestions ? ' and typed questions and answers' : ''}{' '}
         are deleted about 24 hours after they're sent in a private room, and 14 days after in a public room. Public rooms
         and events need a saved account, an age of 13 or older and agreement to the Community Rules, and a player with a
         pause or a ban can't join them.

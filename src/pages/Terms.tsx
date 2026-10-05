@@ -156,11 +156,15 @@ const Terms: React.FC = () => {
           <P>
             SpySocial is a party game of bluffing and deduction, with games such as Spy Talk and Spy Sketch. Every
             player uses their own device, whether you're in the same place or far apart.
+            {LIVE.onePool &&
+              ' Each player sees the game, including the secret word or location and the hints, in the language their own app is set to.'}
           </P>
           <H3>Private rooms</H3>
           <P>
-            A private room is for people you invite with its code, a link or a QR code. Anyone who has the code or the
-            link can join, so share it only with people you want to play with. The host of a private room can remove
+            {LIVE.onePool
+              ? "Every room you create is private: it's for the people you invite with its code, a link or a QR code."
+              : 'A private room is for people you invite with its code, a link or a QR code.'}{' '}
+            Anyone who has the code or the link can join, so share it only with people you want to play with. The host of a private room can remove
             a player, who then can't come back unless the host allows it.
           </P>
           <H3>Fair play</H3>
@@ -173,16 +177,21 @@ const Terms: React.FC = () => {
 
           <H2>5. Public Rooms and Events</H2>
           <P>
-            Public rooms are open to players you don't know. Anyone who meets the requirements can find them in the
-            app and join: a saved account with a confirmed email address, being 13 or older, and agreeing to the
+            {LIVE.onePool
+              ? "Public rooms are Play Online's tables and the events we schedule; players can't create public rooms. They're open to players you don't know."
+              : "Public rooms are open to players you don't know."}{' '}
+            Anyone who meets the requirements can find them in the app and join: a saved account with a confirmed email address, being 13 or older, and agreeing to the
             Community Rules. In a public room, players can vote to remove a player or to end a game.
           </P>
           {LIVE.playOnline && (
             <P>
-              Play Online seats you at a table with other players for a game with standard settings, under the same
-              requirements. If you don't tap Ready in time, leave a table that is starting, are away when the game
-              starts, or leave a game that has started, you get a short break from Play Online and from other public
-              rooms (never from private rooms or events): 5 minutes, and for leaving started games again within 24
+              Play Online seats you at a table with other players for a game with standard settings
+              {LIVE.onePool
+                ? " and the free packs, plus the members' packs when a member sits at the table. Nobody hosts a table, and the same requirements apply"
+                : ', under the same requirements'}
+              . If you don't tap Ready in time, leave a table that is starting, are away when the game starts, or
+              leave a game that has started, you get a short break from Play Online
+              {LIVE.onePool ? '' : ' and from other public rooms'} (never from private rooms or events): 5 minutes, and for leaving started games again within 24
               hours, 15 and then 60 minutes. The first time in a day that you're away when a game starts, there's no
               break.
             </P>
@@ -194,7 +203,8 @@ const Terms: React.FC = () => {
           <P>
             Be careful with people you don't know. Don't share personal information, such as your real name, address,
             phone number or social media handles, and use Block, Report or Leave whenever something feels wrong. We
-            may limit who can use public rooms and events (for example by age, region or language), and we may switch
+            may limit who can use public rooms and events (for example by{' '}
+            {LIVE.onePool ? 'age or region' : 'age, region or language'}), and we may switch
             them off.
           </P>
 
@@ -281,8 +291,9 @@ const Terms: React.FC = () => {
               ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
             {LIVE.drawingCheck ? (
               <>
-                {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms (including Play Online
-                tables and events), and at any drawing someone reports. In a public room, when it finds that a turn
+                {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms (
+                {LIVE.onePool ? 'Play Online tables and events' : 'including Play Online tables and events'}), and at
+                any drawing someone reports. In a public room, when it finds that a turn
                 breaks the Community Rules, it takes that turn off the drawing and gives the player a strike: a warning
                 first, then 3, 7 and 30 days without public rooms and events, and at the fifth strike within 90 days no
                 public rooms or events for good. In any room, a flagrant drawing (a hate symbol, including a swastika,
