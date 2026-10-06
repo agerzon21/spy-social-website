@@ -236,13 +236,15 @@ const Privacy: React.FC = () => {
               <Item label="Reminders and Notifications">
                 When you tap Remind Me on a game night, we record it so the reminder reaches every device you play on;
                 other players see only how many people asked to be reminded, never who. The reminder is a notification
-                your device schedules and shows by itself, if you allow notifications: we don't receive a push token or
-                any other address for your device, and we don't send players push notifications. The only push
-                notifications we send go to our moderators' phones when a new report comes in. They pass through Expo's
-                push service and Apple's or Google's, and say only what kind of report it is and its case number, never a
-                player's name or what was said.
+                your device schedules and shows by itself, if you allow notifications.{' '}
+                {PRIVACY.onePool
+                  ? 'The first time you tap Find a Game in Play Online, the app asks whether we may tell you when a match is found. If you allow it, your device\'s push address (a push token from Expo, which works through Apple\'s or Google\'s push service) is stored with your account, so we can send "Match found!" while the app is in the background. That notification says only that a match was found and for which game, never who is in it. The app refreshes the token daily, and it is deleted when you sign out, turn notifications off or delete your account; a match notification waiting to be sent is kept for one day. Apart from that, the only other'
+                  : "We don't receive a push token or any other address for your device, and we don't send players push notifications. The only"}{' '}
+                push notifications we send go to our moderators' phones when a new report comes in. They pass
+                through Expo's push service and Apple's or Google's, and say only what kind of report it is and its case
+                number, never a player's name or what was said.
                 {fcmAtLaunch &&
-                  `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. That address stays on your device: we never receive it.`}
+                  `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. ${PRIVACY.onePool ? 'We receive that address only if you allow match notifications (above).' : 'That address stays on your device: we never receive it.'}`}
               </Item>
             )}
             {PRIVACY.crashReports && (
@@ -449,7 +451,7 @@ const Privacy: React.FC = () => {
             is running can watch it until the next game: they see the same things, the drawing and the room's chat, but
             never anyone's role, the secret word or votes.{' '}
             {PRIVACY.onePool
-              ? "Private rooms waiting for players, and game nights, are listed for all players with their hosts' display names and avatars (a private room still needs its code to join); Play Online's tables are listed without names."
+              ? "Private rooms waiting for players, and game nights, are listed for all players with their hosts' display names and avatars (a private room still needs its code to join); Play Online shows only how many players are searching and playing, never who."
               : "Public rooms, with their hosts' display names and avatars, are listed for all players."}{' '}
             Reports are
             reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
