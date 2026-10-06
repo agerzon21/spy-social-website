@@ -424,7 +424,12 @@ const Terms: React.FC = () => {
           </P>
 
           <H2>18. Copyright Complaints</H2>
-          <P>If you believe something in SpySocial infringes your copyright, email <SupportEmail /> with:</P>
+          <P>
+            If you believe something in SpySocial infringes your copyright, send a notice to our designated copyright
+            agent, Aleksandr Gerzon, by email to <SupportEmail />, or by mail to 55 Ash Gap Road, Clifton Township, PA
+            18424-7702, United States (phone (570) 445-3516; U.S. Copyright Office registration DMCA-1082037). The
+            notice must include:
+          </P>
           <OrderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
             <ListItem>your name, address, phone number and email address;</ListItem>
             <ListItem>a description of the work you believe is infringed;</ListItem>

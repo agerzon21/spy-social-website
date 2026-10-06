@@ -59,7 +59,7 @@ export const OPERATOR: { name: string | null; address: string | null } = {
 }
 
 /** "Last Updated" on the Privacy Policy, the Terms, the Community Rules and Delete Account: the day a change is published. */
-export const LEGAL_LAST_UPDATED = 'October 5, 2026'
+export const LEGAL_LAST_UPDATED = 'October 6, 2026'
 
 /**
  * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.
