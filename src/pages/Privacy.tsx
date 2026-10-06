@@ -445,7 +445,9 @@ const Privacy: React.FC = () => {
             We do not sell your personal information or share it for targeted advertising. Other players in your room see
             your display name, username, {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
             (including a membership badge) and achievements, the language you play in, whether you've stepped away (and
-            for how long), and the messages you send there.{' '}
+            for how long), and the messages you send there. Someone who opens a room's link or code while a Spy Sketch game
+            is running can watch it until the next game: they see the same things, the drawing and the room's chat, but
+            never anyone's role, the secret word or votes.{' '}
             {PRIVACY.onePool
               ? "Private rooms waiting for players, and game nights, are listed for all players with their hosts' display names and avatars (a private room still needs its code to join); Play Online's tables are listed without names."
               : "Public rooms, with their hosts' display names and avatars, are listed for all players."}{' '}

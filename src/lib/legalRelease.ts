@@ -285,7 +285,7 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  * "Last Updated" on the Terms, the Community Rules and the Safety page, and (through PRIVACY_LAST_UPDATED) on the
  * Privacy Policy and Delete Account: the day a change is published.
  */
-export const LEGAL_LAST_UPDATED = 'October 5, 2026'
+export const LEGAL_LAST_UPDATED = 'October 6, 2026'
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
