@@ -135,9 +135,10 @@ const Privacy: React.FC = () => {
               analytics or advertising trackers.
             </Item>
             <Item label="Safety Information">
-              Reports you make or that are made about you (in public rooms a report includes the room's recent chat as
-              evidence), players you block, removals from rooms, and any warnings, mutes or bans on your account. When we
-              remove a message or a drawing, or replace a name that breaks the rules, our moderation log keeps a copy of
+              Reports you make or that are made about you, players you block, removals from rooms, and any warnings,
+              mutes or bans on your account. As evidence, a report includes our servers' own copy of the room's last 50
+              messages that the person reporting could read there (every chat, in a public room). When we remove a
+              message or a drawing, or replace a name that breaks the rules, our moderation log keeps a copy of
               what we removed and the old name, for as long as we keep reports.
             </Item>
             <Item label="Age">
@@ -353,8 +354,9 @@ const Privacy: React.FC = () => {
             We do not sell your personal information or share it for targeted advertising. Other players in your room see
             your display name, username, profile photo or avatar, color, level, badges (including a membership badge) and
             achievements, the language you play in, whether you've stepped away (and for how long), and the messages you
-            send there. Public rooms, with their hosts' display names and avatars, are listed for all players. Reports are
-            reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
+            send there. Private rooms waiting for players, and game nights, are listed for all players with their hosts'
+            display names and avatars (a private room still needs its code to join). Reports are reviewed by our
+            moderators. We may share anonymous, aggregated data for analytics purposes.
           </P>
           <P>
             We may also share information when the law requires it (for example, to report child sexual exploitation to
