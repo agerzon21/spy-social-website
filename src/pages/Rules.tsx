@@ -73,8 +73,10 @@ const Rules: React.FC = () => {
             4. A person reads reports
           </Heading>
           <Text fontSize="sm" lineHeight="1.8">
-            Long-press a player to report or block them.{LIVE.drawingCheck ? ' You can also report a drawing.' : ''} A
-            person reads every report within 24 hours. Public chat is kept for 14 days so reports can be checked; the
+            Long-press a player to report or block them.
+            {LIVE.messageReports &&
+              ' Long-press a message, question or answer to report it: the report includes it and the chat around it.'}
+            {LIVE.drawingCheck ? ' You can also report a drawing.' : ''} A person reads every report within 24 hours. Public chat is kept for 14 days so reports can be checked; the
             player you report isn't told who sent it.
           </Text>
 

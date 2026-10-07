@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Box, Button, Container, FormControl, FormLabel, Heading, Input, Text, VStack, Link as ChakraLink } from '@chakra-ui/react'
+import { Box, Button, Container, FormControl, FormHelperText, FormLabel, Heading, Input, Text, VStack, Link as ChakraLink } from '@chakra-ui/react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { useThemedToast } from '../lib/useThemedToast'
@@ -92,6 +92,7 @@ const ResetPassword = () => {
                 <FormControl isRequired>
                   <FormLabel fontSize="sm" color="whiteAlpha.600">New Password</FormLabel>
                   <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter new password" minLength={6} isDisabled={loading} bg="whiteAlpha.100" border="1px solid" borderColor="whiteAlpha.200" color="white" _placeholder={{ color: 'whiteAlpha.300' }} _hover={{ borderColor: 'whiteAlpha.300' }} _focus={{ borderColor: 'blue.400', boxShadow: 'none' }} />
+                  <FormHelperText fontSize="xs" color="whiteAlpha.500">At least 6 characters.</FormHelperText>
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel fontSize="sm" color="whiteAlpha.600">Confirm Password</FormLabel>

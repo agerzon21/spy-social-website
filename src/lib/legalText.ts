@@ -22,9 +22,10 @@ export const deletedSummary = (): string =>
     namesAndPicture(),
     'your stats, XP, levels and achievements',
     'your game-night history and rewards',
-    PRIVACY.purchases ? 'the packs and memberships linked to your account' : null,
+    PRIVACY.purchases ? 'the purchases linked to your account (such as packs, avatar items and memberships)' : null,
     'the players you blocked, and the warnings, mutes and bans on your account',
     'your settings and the answers you gave the app (such as your birth year)',
+    PRIVACY.notifications ? "your devices' push addresses" : null,
   ]
     .filter(Boolean)
     .join('; ')

@@ -10,6 +10,7 @@ import {
   TERMS_EFFECTIVE_FOR_EXISTING,
   TERMS_PREVIOUS,
   TERMS_PUBLISHED,
+  avatarsLive,
   photosInUse,
 } from '../lib/legalRelease'
 
@@ -278,7 +279,9 @@ const Terms: React.FC = () => {
           <H2>8. Reports, Moderation and Appeals</H2>
           <H3>Reporting and blocking</H3>
           <P>
-            You can report or block a player from their name in the app{LIVE.drawingCheck ? ', and report a drawing' : ''}.
+            You can report or block a player from their name in the app
+            {LIVE.messageReports ? ', report a message, question or answer by long-pressing it' : ''}
+            {LIVE.drawingCheck ? ', and report a drawing' : ''}.
             A person reads every report, and our Community Rules say how soon. The player you report isn't told who
             reported them. To check a report, we look at what's attached to it and at the records we keep, as our
             Privacy Policy describes.
@@ -353,8 +356,9 @@ const Terms: React.FC = () => {
 
           <H2>9. Packs, XP and Other Virtual Items</H2>
           <P>
-            SpySocial has virtual items, such as packs of words and locations, avatar items (hats, glasses, colours and the like), XP, levels, prestige, achievements,
-            badges and event rewards. Some are free, some you earn by playing, and some may be given to you, for
+            SpySocial has virtual items, such as packs of words and locations,
+            {avatarsLive(LIVE) ? ' avatar items (hats, glasses, colours and the like),' : ''} XP, levels, prestige,
+            achievements, badges and event rewards. Some are free, some you earn by playing, and some may be given to you, for
             example for playing in events.
           </P>
           <Bullets>

@@ -60,8 +60,6 @@ const Privacy: React.FC = () => {
   // While versions before 2.2 connect (and while this page runs ahead of the 2.2 release, with 2.1.1 the store
   // version: legalRelease PRIVACY_AHEAD), what only 2.2 does by itself, or asks of everyone, says so.
   const from22 = PRIVACY.oldAppsInUse
-  // Android registers with Firebase Cloud Messaging at launch (legalRelease fcmAutoInit).
-  const fcmAtLaunch = PRIVACY.notifications && PRIVACY.fcmAutoInit
   // What Google's ML Kit does in the Android app (usesMlKit).
   const mlKitUses = [
     PRIVACY.onDeviceTranslation ? 'translate messages on your device' : null,
@@ -113,9 +111,9 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Profile Preferences">
               Your interface language (one of the ten languages the app offers), your color and similar settings, so the app
-              looks and reads the way you chose.
-              {PRIVACY.onePool &&
-                " Our servers also use your language to show you the game (the secret word or location, its description and the spy's list) in it, and to count the different languages at a table for an achievement."}
+              looks and reads the way you chose. Our servers also use your language to show you the game (the secret
+              word or location, its description and the spy's list) in it, and to count the different languages at a
+              table for an achievement.
             </Item>
             <Item label="Game Data">
               Information related to games you've played: your role, the actions you take in a game (such as when you ask
@@ -170,25 +168,34 @@ const Privacy: React.FC = () => {
               analytics or advertising trackers.
             </Item>
             <Item label="Safety Information">
-              Reports you make or that are made about you (in public rooms a report includes the room's recent chat as
-              evidence{PRIVACY.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}), players you block,
-              removals from rooms, and any warnings, mutes or bans on your account
+              Reports you make or that are made about you, players you block, removals from rooms, and any warnings,
+              mutes or bans on your account
               {PRIVACY.drawingCheck
-                ? ", including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave. When a drawing is taken off or a player removed, the room's chat says whose drawing it was or who was removed"
+                ? ', including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave'
                 : ''}
-              . When we remove a message or a drawing, or replace a name that breaks the rules, our moderation log keeps a
-              copy of what we removed and the old name, for as long as we keep reports.
+              .
+              {PRIVACY.drawingCheck &&
+                " When a drawing is taken off or a player removed, the room's chat says whose drawing it was or who was removed."}{' '}
+              As evidence, a report includes our servers' own copy of the room's last 50 messages that the person
+              reporting could read there (every chat, in a public room). A report about a message, a question or an
+              answer also includes that message and the chat around it (up to 20 messages before it and 10 after)
+              {PRIVACY.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}. Only messages we still
+              keep are attached (see Chat Messages above). When we remove a message or a drawing, or replace a name that
+              breaks the rules, our moderation log keeps a copy of what we removed and the old name, for as long as we
+              keep reports.
             </Item>
             {PRIVACY.drawingCheck && (
               <Item label="Drawing Checks">
-                In public rooms ({PRIVACY.onePool ? 'Play Online tables and events' : 'including Play Online tables and events'}), every drawing turn in a Spy Sketch game is
-                checked automatically for content that breaks our Community Rules; in any room, a drawing is checked when
-                someone reports it. The app tells you once, before your drawings can be checked, that they're sent to
-                OpenAI. For each check, our servers make a picture of the turn (the earlier drawing in light grey, and any
+                In public rooms (Play Online tables and events), every drawing turn in a Spy Sketch game is checked
+                automatically for content that breaks our Community Rules; in any room, a drawing is checked when someone
+                reports it. The app tells you once, before your drawings can be checked, that they're sent to OpenAI, and
+                in a room where every turn is checked you draw only after you agree. For each check, our servers make a picture of the turn (the earlier drawing in light grey, and any
                 lines the player drew and then undid) and send it to OpenAI with the round's secret word (which helps tell
                 an innocent drawing from an offensive one) and a code made from your account ID that doesn't reveal who
-                you are, which OpenAI uses to detect misuse of its service. They never send your name, username, email
-                address, chat or your device's IP address. According to OpenAI, it doesn't use what it receives to train
+                you are, which OpenAI uses to detect misuse of its service. If that check can't give an answer (for
+                example when it's unavailable), OpenAI's moderation service checks a picture of the turn's own lines
+                instead, with nothing else. Our servers never send your name, username, email address, chat or your
+                device's IP address. According to OpenAI, it doesn't use what it receives to train
                 its models, and keeps it for up to 30 days to watch for misuse, unless the law requires it to keep it
                 longer. The check acts by itself: it can take a turn off the drawing for everyone in the game, give a
                 strike (which can lead to a pause or a ban from public rooms and events), or remove a player from the game
@@ -217,7 +224,8 @@ const Privacy: React.FC = () => {
             )}
             {PRIVACY.purchases && (
               <Item label="Purchases">
-                When you buy a pack or a membership (guests can buy too), Apple or Google handles the payment; we never
+                When you buy something in the app, such as a pack, an avatar item or a membership (guests can buy too),
+                Apple or Google handles the payment; we never
                 see your payment details. To check and restore purchases, the app and our servers use RevenueCat, which
                 receives an ID linked to your SpySocial account, what you bought, the store's transaction IDs, prices and
                 dates, your device's IP address, platform, model, language settings and store country, and on iPhones the
@@ -236,15 +244,21 @@ const Privacy: React.FC = () => {
               <Item label="Reminders and Notifications">
                 When you tap Remind Me on a game night, we record it so the reminder reaches every device you play on;
                 other players see only how many people asked to be reminded, never who. The reminder is a notification
-                your device schedules and shows by itself, if you allow notifications.{' '}
-                {PRIVACY.onePool
-                  ? 'The first time you tap Find a Game in Play Online, the app asks whether we may tell you when a match is found. If you allow it, your device\'s push address (a push token from Expo, which works through Apple\'s or Google\'s push service) is stored with your account, so we can send "Match found!" while the app is in the background. That notification says only that a match was found and for which game, never who is in it. The app refreshes the token daily, and it is deleted when you sign out, turn notifications off or delete your account; a match notification waiting to be sent is kept for one day. Apart from that, the only other'
-                  : "We don't receive a push token or any other address for your device, and we don't send players push notifications. The only"}{' '}
-                push notifications we send go to our moderators' phones when a new report comes in. They pass
-                through Expo's push service and Apple's or Google's, and say only what kind of report it is and its case
-                number, never a player's name or what was said.
-                {fcmAtLaunch &&
-                  `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. ${PRIVACY.onePool ? 'We receive that address only if you allow match notifications (above).' : 'That address stays on your device: we never receive it.'}`}
+                your device schedules and shows by itself, if you allow notifications. Play Online can also tell you
+                when a match is found while the app is in the background: the first time you tap Find a Game, the app asks
+                whether you allow notifications (unless you already answered). If you do, tapping Find a Game stores your
+                device's push address with your account (a push token from Expo, which works through Apple's or Google's
+                push service), with your device's platform, the app's version and the sign-in it was registered under; we
+                send to it only while that sign-in lasts. The "Match found!" notification says only that a match was found,
+                for which game and how many players, never who is in it. The app refreshes the token at most once a day,
+                and the token is deleted when you sign out in the app, turn off notifications for SpySocial (the next time
+                the app opens) or delete your account. A match notification waiting to be sent is kept for one day. Guests
+                don't send a push token. Apart from that, the only other push notifications we send go to our moderators'
+                phones when a new report comes in. They pass through Expo's push service and Apple's or Google's, and say
+                only what kind of report it is and its case number, never a player's name or what was said.
+                {PRIVACY.fcmAutoInit
+                  ? `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. We receive that address only for match notifications, as described above.`
+                  : " On Android, the push address comes from Google's Firebase Cloud Messaging (the service that delivers push notifications on Android), which the app contacts only to get one, for match notifications. Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device."}
               </Item>
             )}
             {PRIVACY.crashReports && (
@@ -297,7 +311,9 @@ const Privacy: React.FC = () => {
             <ListItem>Create and manage your account</ListItem>
             <ListItem>Enable multiplayer game functionality, chat and translation</ListItem>
             {PRIVACY.purchases && <ListItem>Provide and restore what you buy</ListItem>}
-            {PRIVACY.notifications && <ListItem>Remind you of the game nights you asked to be reminded about</ListItem>}
+            {PRIVACY.notifications && (
+              <ListItem>Remind you of the game nights you asked about, and tell you when a Play Online match is found</ListItem>
+            )}
             <ListItem>Improve and optimize the app experience</ListItem>
             <ListItem>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
             <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
@@ -314,7 +330,7 @@ const Privacy: React.FC = () => {
             <Item label="Performance of Contract">
               To run your account and your games, deliver your chat, translate what you ask us to translate
               {PRIVACY.purchases ? ', provide what you buy' : ''}
-              {PRIVACY.notifications ? ' and remind you of the game nights you asked about' : ''}.
+              {PRIVACY.notifications ? ', remind you of the game nights you asked about and tell you when a match is found' : ''}.
             </Item>
             <Item label="Legitimate Interests">
               To keep players safe (reports, the word filter{PRIVACY.drawingCheck ? ', drawing checks' : ''}, moderation, age
@@ -373,7 +389,10 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Expo">
               (https://expo.dev) Builds and delivers our app and its updates
-              {PRIVACY.notifications ? ', and delivers the report alerts our moderators get' : ''}. When the app checks for an
+              {PRIVACY.notifications
+                ? ', and delivers our push notifications (match notifications and the report alerts our moderators get)'
+                : ''}
+              . When the app checks for an
               update, Expo receives your device's IP address and platform, the app's version, and a random ID the app
               creates for that installation, which isn't linked to your account.
             </Item>
@@ -407,7 +426,7 @@ const Privacy: React.FC = () => {
               {PRIVACY.purchases ? ', payments for purchases' : ''}
               {PRIVACY.onDeviceTranslation ? ', on-device translation files' : ''}
               {usesMlKit(PRIVACY) ? ", Google's ML Kit in the Android app" : ''}
-              {fcmAtLaunch ? ", Google's Firebase Cloud Messaging in the Android app" : ''}
+              {PRIVACY.notifications ? ", delivering push notifications (in the Android app, Google's Firebase Cloud Messaging)" : ''}
               {PRIVACY.storeAgeSignals ? ', age signals' : ''}, and distribution of the app through the App Store and Google
               Play. On iPhones, the app's connection check contacts Google.
             </Item>
@@ -457,9 +476,9 @@ const Privacy: React.FC = () => {
             for how long), and the messages you send there. Someone who opens a room's link or code while a Spy Sketch game
             is running can watch it until the next game: they see the same things, the drawing and the room's chat, but
             never anyone's role, the secret word or votes.{' '}
-            {PRIVACY.onePool
-              ? "Private rooms waiting for players, and game nights, are listed for all players with their hosts' display names and avatars (a private room still needs its code to join); Play Online shows only how many players are searching and playing, never who."
-              : "Public rooms, with their hosts' display names and avatars, are listed for all players."}{' '}
+            Private rooms waiting for players, and game nights, are listed for all players with their hosts' display
+            names and avatars (a private room still needs its code to join).
+            {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}{' '}
             Reports are
             reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
           </P>

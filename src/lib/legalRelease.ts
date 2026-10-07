@@ -16,7 +16,7 @@
 // ageGateEveryone, birthMonth, under13Deletion, storeAgeSignals, crashReports,
 // notifications, socialSignIn, purchases, onDeviceTranslation,
 // storedQuestions, qrScanner, playOnline (before the play_online switch goes
-// 'on', runbook 3.8c), onePool; myMemory to what the translate function does then; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
+// 'on', runbook 3.8c), onePool, messageReports; myMemory to what the translate function does then; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
 // photosRemoved once no photo file is left. Not at launch unless its own
 // condition holds by then: revenueCatDeletion (the delete flow deletes the
 // RevenueCat customer) and drawingCheck (the game itself checks drawings;
@@ -100,20 +100,26 @@ export const LIVE = {
    */
   crashReports: false,
   /**
-   * The 2.2 notifications: Remind Me on a game night schedules a notification on the phone (no push token
-   * leaves a player's phone), and the only server pushes are report alerts to the owner's phones (push
-   * tokens, Expo's push service, APNs, FCM).
+   * The 2.2 notifications (expo-notifications in the build): Remind Me on a game night schedules a notification on
+   * the phone; Play Online's "Match found!" push (lib/matchPush.ts, the match-push Edge Function): the first FIND A
+   * GAME asks for permission, and where notifications are allowed a saved player's Expo push token goes to
+   * push_tokens (token, platform, app version, session_id since 20261007400000_push_token_sessions: pushes only while
+   * that sign-in stands), refreshed at most daily, removed at sign-out, when permission is gone (next open) and with the
+   * account; match_push_queue rows kept a day; guests never register. The owner's report alerts use the same table.
+   * Ahead-safe: the push-token text reads this switch (not onePool), so the Privacy pages declare the token from the
+   * submission day, as the store forms do.
    */
   notifications: false,
   /**
-   * Shown with notifications: the Android build registers every phone with Firebase Cloud Messaging when the
-   * app starts. expo-notifications brings firebase-messaging 24.0.1, whose component is always eager and whose
+   * Shown with notifications: true says the Android build registers every phone with Firebase Cloud Messaging when
+   * the app starts. expo-notifications brings firebase-messaging 24.0.1, whose component is always eager and whose
    * auto-init (on unless the manifest says otherwise) fetches a token at launch once google-services.json is in
    * the build, so Google gets a Firebase installation ID and app and device details from every Android player.
-   * Set false if the store build turns auto-init off (meta-data firebase_messaging_auto_init_enabled=false):
-   * a token is then fetched only by the owner's report-alert switch, and the text about it goes. The app branch
-   * chore/fcm-auto-init-off does this; 2.1.1 has no Firebase at all, so this switch describes only 2.2 and is set
-   * here (never in PRIVACY_AHEAD) to match the submitted Android build, as soon as it's known.
+   * false: the build turns auto-init off (meta-data firebase_messaging_auto_init_enabled=false, app commit 44bdde6e,
+   * plugins/withFcmAutoInitOff.js), so a token is fetched only when the app asks for one (match notifications, the
+   * owner's report alerts), and the text says Google hears from the phone only then. 44bdde6e is in bb1a1ca2 (builds
+   * iOS 27 / Android 10) and every later build. 2.1.1 has no Firebase at all, so this switch describes only 2.2 and is
+   * set here (never in PRIVACY_AHEAD) to match the submitted Android build (runbook 1K step 2).
    */
   fcmAutoInit: true,
   /**
@@ -194,10 +200,20 @@ export const LIVE = {
    * app language (profiles.preferred_language, read by the server), chat stays as typed with Translate, and the
    * Globetrotter achievement counts the app languages at a table. 2.1.1 never made public rooms, but its rooms
    * have a host-picked game language, which the FAQ describes until this is on. Flip at the launch, with the
-   * migrations live and the released app built from feat/one-pool or later. Not ahead-safe: the Privacy pages
-   * follow LIVE for it.
+   * migrations live and the released app built from feat/one-pool or later. Not ahead-safe, and the Privacy pages
+   * don't read it: their data facts from one pool (the server shows the game in each player's app language and
+   * counts it for Globetrotter; list_rooms lists private rooms and game nights with their hosts) are live since
+   * 2026-10-05 and stated without a switch, and the Play Online push token follows notifications.
    */
   onePool: false,
+  /**
+   * Report Message in the released app (2.2): a long-press on a chat line, a question or an answer opens the report
+   * sheet on it (lib/messageReport), and report_user attaches the server's copy of that line and the chat around it
+   * (20 before, 10 after; 20261006120100_report_user_message_evidence, live since 2026-10-04). The Terms (section 8)
+   * and the Community Rules say so when it's on; the Privacy pages describe the evidence without it (a server fact).
+   * Flip at the launch with the rest (Update 1).
+   */
+  messageReports: false,
   /**
    * Account emails (sign-up confirmations, password resets, email changes) go out through Resend (Supabase Auth's
    * SMTP, smtp.resend.com, sender noreply@mail.spysocial.app) instead of ImprovMX: live since 2026-10-07. ImprovMX
@@ -221,16 +237,20 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * something before every player's app does it is fine; leaving something out, or saying we stopped doing something,
  * is not). Set one ahead when the submitted 2.2 build (or, for a server piece, the live server) does what its text
  * says, by its comment in LIVE:
- *   avatarCreator, ageGateEveryone, storeAgeSignals, crashReports, notifications, socialSignIn, purchases,
- *   onDeviceTranslation, qrScanner: in the submitted build;
+ *   avatarCreator, ageGateEveryone, storeAgeSignals, notifications, socialSignIn, purchases, onDeviceTranslation,
+ *   qrScanner: in the submitted build;
+ *   crashReports: Sentry in the submitted build and the Sentry project's "Prevent Storing of IP Addresses" on (the
+ *   text says Sentry doesn't keep the IP address);
  *   birthMonth, under13Deletion, storedQuestions: their migrations live (all three since 2026-10-04) and the
  *   submitted build uses them;
  *   playOnline: its migrations live and the build has FIND A GAME (even while app_config.play_online is 'testers');
  *   revenueCatDeletion: only when its own condition holds (the key works and a test deletion emptied its row);
  *   drawingCheck: only when the build has the wiring and the check is on, or will be switched on at the launch
  *   (runbook 3.5) and the store forms declare drawings sent to OpenAI.
- * Never ahead: photosRemoved (says the photos are deleted), oldAppsInUse (false drops what versions before 2.2 do
- * while 2.1.1 is the store version), myMemory (any other value drops or moves a disclosure; 'off' says there's no
+ * Never ahead (and not in AHEAD_SAFE): onePool and messageReports (the Privacy pages don't read them; they change the
+ * Terms, the Rules and the FAQ, which wait for the launch), photosRemoved (says the photos are deleted), oldAppsInUse
+ * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (any other value drops or
+ * moves a disclosure; 'off' says there's no
  * backup), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
