@@ -121,7 +121,7 @@ export const LIVE = {
    * iOS 27 / Android 10) and every later build. 2.1.1 has no Firebase at all, so this switch describes only 2.2 and is
    * set here (never in PRIVACY_AHEAD) to match the submitted Android build (runbook 1K step 2).
    */
-  fcmAutoInit: true,
+  fcmAutoInit: false,
   /**
    * Sign in with Apple and Google (feature/social-sign-in). Apple's access is revoked (apple-revoke) only when the
    * account is deleted in the app on an Apple device and Apple's sheet confirms it, and the text says only that.
@@ -277,7 +277,22 @@ const AHEAD_SAFE = [
  * Switches on for the Privacy pages before they're on in LIVE (see the top of this file and AHEAD_SAFE). All off
  * until the 2.2 submission day; emptied at the launch, once LIVE has them.
  */
-export const PRIVACY_AHEAD: { readonly [K in (typeof AHEAD_SAFE)[number]]?: true } = {}
+export const PRIVACY_AHEAD: { readonly [K in (typeof AHEAD_SAFE)[number]]?: true } = {
+  avatarCreator: true,
+  ageGateEveryone: true,
+  birthMonth: true,
+  under13Deletion: true,
+  storeAgeSignals: true,
+  crashReports: true,
+  notifications: true,
+  socialSignIn: true,
+  purchases: true,
+  drawingCheck: true,
+  onDeviceTranslation: true,
+  storedQuestions: true,
+  qrScanner: true,
+  playOnline: true,
+}
 
 /** What the Privacy Policy, Delete Account, AfterDeletion and legalText read: LIVE, with PRIVACY_AHEAD on top. */
 export const PRIVACY: Switches = {
@@ -317,7 +332,7 @@ export const LEGAL_LAST_UPDATED = 'October 7, 2026'
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = LEGAL_LAST_UPDATED
+export const PRIVACY_LAST_UPDATED: string = 'October DD, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
@@ -328,7 +343,7 @@ export const PRIVACY_LAST_UPDATED: string = LEGAL_LAST_UPDATED
  * launch (the 2.2 submission day, with PRIVACY_AHEAD), and true again at the launch, when the Terms are published
  * again. Its own text follows the feature switches in LIVE, like the rest of the Terms.
  */
-export const ONLINE_SAFETY_TEXT: boolean = true
+export const ONLINE_SAFETY_TEXT: boolean = false
 
 /**
  * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.
