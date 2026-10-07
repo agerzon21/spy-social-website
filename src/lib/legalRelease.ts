@@ -16,8 +16,10 @@
 // ageGateEveryone, birthMonth, under13Deletion, storeAgeSignals, crashReports,
 // notifications, socialSignIn, purchases, onDeviceTranslation,
 // storedQuestions, qrScanner, playOnline (before the play_online switch goes
-// 'on', runbook 3.8c), onePool, messageReports; myMemory to what the translate function does then; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
-// photosRemoved once no photo file is left. Not at launch unless its own
+// 'on', runbook 3.8c), onePool, messageReports; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
+// photosRemoved once no photo file is left. myMemory is already 'off' (the
+// translate function's MyMemory backup is off from the 2.2 submissions, owner
+// 2026-10-07): it stays 'off' unless the backup comes back. Not at launch unless its own
 // condition holds by then: revenueCatDeletion (the delete flow deletes the
 // RevenueCat customer) and drawingCheck (the game itself checks drawings;
 // deploying check-drawing is not enough). Then set LEGAL_LAST_UPDATED to the
@@ -170,10 +172,15 @@ export const LIVE = {
   /**
    * Where the current app's backup translation goes when Microsoft can't answer:
    * 'device'  the phone calls MyMemory (main before feature/small-compliance)
-   * 'server'  the translate function calls MyMemory (feature/small-compliance)
-   * 'off'     no backup (the function's TRANSLATE_BACKUP=off)
+   * 'server'  the translate function calls MyMemory (feature/small-compliance, TRANSLATE_BACKUP=mymemory)
+   * 'off'     no backup: the translate function's MyMemory backup is off (app fix/mymemory-off: off unless
+   *           TRANSLATE_BACKUP=mymemory; live TRANSLATE_BACKUP=off), so the text goes only to Microsoft, and
+   *           with onDeviceTranslation the phone translates by itself when our service can't
+   * 'off' from the 2.2 submission day (owner, 2026-10-07: Google Play's Data safety keeps "No data shared with
+   * third parties"). The server switch covers every app version at once (2.1.1 never calls MyMemory), so 'off'
+   * is true for everyone as soon as the backup is off live: set it in LIVE, on the Terms too (section 10).
    */
-  myMemory: 'device' as 'device' | 'server' | 'off',
+  myMemory: 'off' as 'device' | 'server' | 'off',
   /** Typed interrogation questions and answers go through the server and are stored like chat (M7 send_interrogation_line). */
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
@@ -249,9 +256,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  *   (runbook 3.5) and the store forms declare drawings sent to OpenAI.
  * Never ahead (and not in AHEAD_SAFE): onePool and messageReports (the Privacy pages don't read them; they change the
  * Terms, the Rules and the FAQ, which wait for the launch), photosRemoved (says the photos are deleted), oldAppsInUse
- * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (any other value drops or
- * moves a disclosure; 'off' says there's no
- * backup), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), scheduledRetention,
+ * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (a server switch for every
+ * app version at once: set in LIVE to what the translate function does, 'off' since the submission day), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
