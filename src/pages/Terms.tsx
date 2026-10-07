@@ -357,7 +357,8 @@ const Terms: React.FC = () => {
           <H2>9. Packs, XP and Other Virtual Items</H2>
           <P>
             SpySocial has virtual items, such as packs of words and locations,
-            {avatarsLive(LIVE) ? ' avatar items (hats, glasses, colours and the like),' : ''} XP, levels, prestige,
+            {avatarsLive(LIVE) ? ' avatar items (hats, glasses, colours and the like, and celebrations),' : ''} XP, levels,
+            prestige,
             achievements, badges and event rewards. Some are free, some you earn by playing, and some may be given to you, for
             example for playing in events.
           </P>
@@ -370,6 +371,14 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</ListItem>
             <ListItem>When someone in a room has unlocked a pack, everyone in that room can play it while they're there. We may change how this sharing works.</ListItem>
+            {avatarsLive(LIVE) && (
+              <ListItem>
+                Celebrations are avatar items: short animations that everyone at the table sees at a game's big moments, such
+                as a spy guessing the secret or being caught. Ink Burst and Ink Check are free; Paper Storm and Cuffed are
+                earned by playing (the app shows how); Gold Storm comes with Lifetime; Searchlight, Most Wanted, The End,
+                Curtain Call, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board are sold one by one.
+              </ListItem>
+            )}
             <ListItem>
               If your account is deleted or banned, you lose the virtual items on it.
               {LIVE.purchases &&
@@ -380,12 +389,12 @@ const Terms: React.FC = () => {
             <>
             <H3>Buying packs, items and membership</H3>
             <Bullets>
-              <ListItem>You can buy premium packs, avatar items, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
+              <ListItem>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
               <ListItem>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</ListItem>
               <ListItem>Lifetime means for as long as we offer SpySocial, not for your lifetime.</ListItem>
               <ListItem>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</ListItem>
               <ListItem>A pack you buy stays yours for as long as we offer SpySocial. We may update its words and locations, and if we ever have to withdraw a pack you bought, we'll give you a comparable one where we reasonably can.</ListItem>
-              <ListItem>An avatar item you buy only changes how your agent looks, never how you play. It stays yours for as long as we offer SpySocial; if we ever have to withdraw one, we'll give you a comparable one where we reasonably can. Lifetime includes only the items the app says it includes.</ListItem>
+              <ListItem>An avatar item you buy only changes how your agent looks{avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. It stays yours for as long as we offer SpySocial; if we ever have to withdraw one, we'll give you a comparable one where we reasonably can. Lifetime includes only the items the app says it includes.</ListItem>
               <ListItem>Refunds are handled by Apple or Google under their policies. If a purchase is refunded, we remove what it unlocked.</ListItem>
               <ListItem>To get your purchases back on another device, or after losing or deleting an account, use Restore Purchases in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring moves your purchases to the SpySocial account you're using, away from any other account they were on.</ListItem>
               <ListItem>Nothing in these Terms takes away rights you have under consumer law, for example if something you bought doesn't work as described.</ListItem>
