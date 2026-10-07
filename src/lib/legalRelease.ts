@@ -44,6 +44,8 @@ export const LIVE = {
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
   qrScanner: false,
+  /** Account emails (sign-up confirmations, password resets) go out through Resend instead of ImprovMX (Supabase Auth's SMTP). */
+  resendAccountEmail: true,
   /** App versions before 2.2 still connect (they call MyMemory from the phone). */
   oldAppsInUse: true,
 }
@@ -59,7 +61,7 @@ export const OPERATOR: { name: string | null; address: string | null } = {
 }
 
 /** "Last Updated" on the Privacy Policy, the Terms, the Community Rules and Delete Account: the day a change is published. */
-export const LEGAL_LAST_UPDATED = 'October 6, 2026'
+export const LEGAL_LAST_UPDATED = 'October 7, 2026'
 
 /**
  * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.
