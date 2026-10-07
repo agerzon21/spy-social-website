@@ -411,6 +411,12 @@ const Privacy: React.FC = () => {
               {PRIVACY.storeAgeSignals ? ', age signals' : ''}, and distribution of the app through the App Store and Google
               Play. On iPhones, the app's connection check contacts Google.
             </Item>
+            {PRIVACY.resendAccountEmail && (
+              <Item label="Resend">
+                (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as sign-up confirmations and
+                password resets, so it receives your email address and the email it delivers.
+              </Item>
+            )}
             <Item label="Vercel">(https://vercel.com) Hosts our website, spysocial.app, and receives the IP address of its visitors.</Item>
             <Item label="ImprovMX and Google">
               Email you send to support@spysocial.app is forwarded by ImprovMX and read in Google's Gmail.
@@ -420,7 +426,8 @@ const Privacy: React.FC = () => {
             We give these providers only the data they need to provide their service. Supabase, Expo, Microsoft
             {PRIVACY.drawingCheck ? ', OpenAI' : ''}
             {PRIVACY.purchases ? ', RevenueCat' : ''}
-            {PRIVACY.crashReports ? ', Sentry' : ''} and Vercel process it for us under contracts that bind them to protect it
+            {PRIVACY.crashReports ? ', Sentry' : ''}
+            {PRIVACY.resendAccountEmail ? ', Resend' : ''} and Vercel process it for us under contracts that bind them to protect it
             at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''} and ImprovMX
             handle what they receive under their own terms and privacy policies.
           </P>

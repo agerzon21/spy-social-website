@@ -199,6 +199,12 @@ export const LIVE = {
    */
   onePool: false,
   /**
+   * Account emails (sign-up confirmations, password resets, email changes) go out through Resend (Supabase Auth's
+   * SMTP, smtp.resend.com, sender noreply@mail.spysocial.app) instead of ImprovMX: live since 2026-10-07. ImprovMX
+   * still forwards mail sent to support@.
+   */
+  resendAccountEmail: true,
+  /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -225,8 +231,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  *   (runbook 3.5) and the store forms declare drawings sent to OpenAI.
  * Never ahead: photosRemoved (says the photos are deleted), oldAppsInUse (false drops what versions before 2.2 do
  * while 2.1.1 is the store version), myMemory (any other value drops or moves a disclosure; 'off' says there's no
- * backup), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), scheduledRetention and
- * photoCleanup (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
+ * backup), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), scheduledRetention,
+ * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
 const AHEAD_SAFE = [
@@ -285,7 +291,7 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  * "Last Updated" on the Terms, the Community Rules and the Safety page, and (through PRIVACY_LAST_UPDATED) on the
  * Privacy Policy and Delete Account: the day a change is published.
  */
-export const LEGAL_LAST_UPDATED = 'October 6, 2026'
+export const LEGAL_LAST_UPDATED = 'October 7, 2026'
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the

@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import { LIVE } from '../lib/legalRelease'
 import { supabase } from '../lib/supabase'
+import { currentPlatform } from '../lib/platform'
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390'
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.gerz.spysocial'
@@ -43,13 +44,8 @@ const JoinEvent = () => {
   const appLink = `spysocial://join/e/${encodeURIComponent(linkId)}`
   const lang = (typeof navigator !== 'undefined' ? navigator.language : 'en').slice(0, 2)
 
-  const platform = useMemo<'ios' | 'android' | 'desktop'>(() => {
-    if (typeof navigator === 'undefined') return 'desktop'
-    const ua = navigator.userAgent || ''
-    if (/iPhone|iPad|iPod/i.test(ua)) return 'ios'
-    if (/Android/i.test(ua)) return 'android'
-    return 'desktop'
-  }, [])
+  // iPadOS Safari says "Macintosh" (desktop-class browsing): lib/platform tells it by touch (QA F207).
+  const platform = useMemo(currentPlatform, [])
   const isMobile = platform !== 'desktop'
 
   useEffect(() => {
