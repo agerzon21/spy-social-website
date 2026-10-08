@@ -305,6 +305,14 @@ const Privacy: React.FC = () => {
               ends when you sign out or delete your account. To check that it's online, the app contacts our servers now and then; on iPhones it also contacts
               Google (clients3.google.com), which receives your device's IP address and nothing else about you.
             </Item>
+            <Item label="Signed Agreements">
+              If you sign an agreement with SpySocial on our website (for example a creator or partner agreement), we
+              record your name, email address, the details you enter (such as your legal or company name and channel),
+              your typed and any drawn signature, the time you signed, your IP address and your browser's user agent. We
+              keep them with the signed agreement and its audit trail, which we email to every party, and use them only
+              as a record of the agreement and to establish, exercise or defend legal claims, for 7 years after the
+              agreement ends.
+            </Item>
           </Bullets>
 
           <H2>How We Use Your Information</H2>
