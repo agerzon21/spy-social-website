@@ -32,6 +32,7 @@ const Footer = ({ sticky = false }: FooterProps) => {
             <ChakraLink as={RouterLink} to="/privacy" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Privacy</ChakraLink>
             <ChakraLink as={RouterLink} to="/terms" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Terms</ChakraLink>
             <ChakraLink as={RouterLink} to="/rules" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Rules</ChakraLink>
+            <ChakraLink as={RouterLink} to="/child-safety" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Child Safety</ChakraLink>
             {ONLINE_SAFETY_TEXT && (
               <ChakraLink as={RouterLink} to="/safety" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Safety</ChakraLink>
             )}
