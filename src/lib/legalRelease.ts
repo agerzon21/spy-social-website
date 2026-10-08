@@ -344,6 +344,6 @@ export const ONLINE_SAFETY_TEXT: boolean = true
  * day they go up, TERMS_EFFECTIVE_FOR_EXISTING 30 days later, and the version they replace first in TERMS_PREVIOUS
  * (newest first; the page names each one).
  */
-export const TERMS_PUBLISHED = 'October 4, 2026'
-export const TERMS_EFFECTIVE_FOR_EXISTING = 'November 3, 2026'
-export const TERMS_PREVIOUS: readonly string[] = ['May 1, 2026']
+export const TERMS_PUBLISHED = 'November 10, 2026'
+export const TERMS_EFFECTIVE_FOR_EXISTING = 'December 10, 2026'
+export const TERMS_PREVIOUS: readonly string[] = ['October 4, 2026', 'May 1, 2026']
