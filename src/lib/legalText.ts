@@ -31,11 +31,13 @@ export const deletedSummary = (): string =>
     .join('; ')
 
 /**
- * After deletedSummary(): what else a deletion does, or ''. Apple's access is revoked only from Delete Account
- * in the app on an Apple device, once Apple's sheet confirms the account (apple-revoke needs that fresh code);
- * never on Android, for a deletion asked by email, or for the under-13 deletion on the server.
+ * After deletedSummary(): what else a deletion does. Apple's access is revoked only from Delete Account in the
+ * app on an Apple device, once Apple's sheet confirms the account (apple-revoke needs that fresh code); never on
+ * Android, for a deletion asked by email, or for the under-13 deletion on the server. An account we delete
+ * ourselves (a request by email, a safety or legal reason: the owner console's Delete Account,
+ * owner_delete_account, runs the player's own deletion as the player) goes the same way, without Apple's step.
  */
 export const deletedAlso = (): string =>
   PRIVACY.socialSignIn
-    ? " If you signed in with Apple and delete your account in the app on an iPhone or iPad, the app has you confirm with Apple, and we then also ask Apple to end SpySocial's access to your Apple ID. You can end that access yourself at any time in your Apple ID settings, under Sign in with Apple."
-    : ''
+    ? " If you signed in with Apple and delete your account in the app on an iPhone or iPad, the app has you confirm with Apple, and we then also ask Apple to end SpySocial's access to your Apple ID. An account we delete ourselves, at your request or for safety reasons, is deleted the same way, but without that request to Apple, which needs your confirmation in the app. You can end that access yourself at any time in your Apple ID settings, under Sign in with Apple."
+    : ' An account we delete ourselves, at your request or for safety reasons, is deleted the same way.'
