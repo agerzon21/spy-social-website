@@ -338,7 +338,7 @@ export const LEGAL_LAST_UPDATED = 'October 7, 2026'
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October DD, 2026'
+export const PRIVACY_LAST_UPDATED: string = 'October 8, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
