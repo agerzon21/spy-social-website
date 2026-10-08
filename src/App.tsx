@@ -9,6 +9,7 @@ import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import Rules from './pages/Rules'
 import Safety from './pages/Safety'
+import ChildSafety from './pages/ChildSafety'
 import Support from './pages/Support'
 import FAQ from './pages/FAQ'
 import Join from './pages/Join'
@@ -41,6 +42,7 @@ function App() {
               <Route path="/terms" element={<Layout><Terms /></Layout>} />
               <Route path="/rules" element={<Layout><Rules /></Layout>} />
               {ONLINE_SAFETY_TEXT && <Route path="/safety" element={<Layout><Safety /></Layout>} />}
+              <Route path="/child-safety" element={<Layout><ChildSafety /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />

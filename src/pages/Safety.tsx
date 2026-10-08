@@ -2,6 +2,8 @@ import { Box, Container, Flex, Heading, Icon, Link as ChakraLink, ListItem, Orde
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { FiFlag, FiLogOut, FiMessageCircle, FiSlash } from 'react-icons/fi'
+import { Callout } from '../components/legal/Callout'
+import { ChildSafetyContacts } from '../components/legal/ChildSafetyContacts'
 import { InfoTable, type InfoRow } from '../components/legal/InfoTable'
 import { B, Bullets, H2, H3, OutLink, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { UK_SECTION_NUMBER } from '../components/legal/UkOnlineSafety'
@@ -50,16 +52,6 @@ const Step = ({ n, icon, title, children }: { n: number; icon: IconType; title: 
   </Flex>
 )
 
-/** A highlighted box, like the Terms' short version. */
-const Callout = ({ title, children }: { title: string; children: ReactNode }) => (
-  <Box w="100%" bg="whiteAlpha.50" borderWidth="1px" borderColor="whiteAlpha.200" borderRadius="md" p={4}>
-    <Text fontSize="sm" lineHeight="1.8" color="whiteAlpha.800" fontWeight="600" mb={1}>
-      {title}
-    </Text>
-    {children}
-  </Box>
-)
-
 const Safety: React.FC = () => {
   const photos = photosInUse(LIVE)
   const avatars = avatarsLive(LIVE)
@@ -69,50 +61,6 @@ const Safety: React.FC = () => {
       ? 'a display name, a username and an avatar built from parts the app offers. Versions of the app before 2.2 can still add a profile photo.'
       : "a display name, a username and an avatar built from parts the app offers. Players can't add photos."
     : 'a display name, a username and an optional profile photo.'
-
-  const childSafety: InfoRow[] = [
-    {
-      label: 'A child is in danger right now',
-      cells: [
-        <>
-          Call the police: <B>999</B> in the UK, <B>911</B> in the US, <B>112</B> in the EU, or your local emergency
-          number. Do this first, before anything else on this page.
-        </>,
-      ],
-    },
-    {
-      label: 'NCMEC CyberTipline',
-      note: 'Child sexual exploitation, from any country',
-      cells: [
-        <>
-          Report online at <OutLink href="https://report.cybertip.org">report.cybertip.org</OutLink>, or call
-          1-800-843-5678 (1-800-THE-LOST), any time. Run by the National Center for Missing &amp; Exploited Children.
-        </>,
-      ],
-    },
-    {
-      label: 'CEOP',
-      note: 'In the UK',
-      cells: [
-        <>
-          If you're worried about online sexual abuse, or about the way someone has been talking to a child online,
-          report it to CEOP, part of the National Crime Agency:{' '}
-          <OutLink href="https://www.ceop.police.uk/Safety-Centre/">ceop.police.uk/Safety-Centre</OutLink>. Young people
-          can report too, and a Child Protection Advisor reads every report.
-        </>,
-      ],
-    },
-    {
-      label: 'SpySocial',
-      cells: [
-        <>
-          Report the player in the app and choose <B>Child Safety</B>, and email <SupportEmail subject="Child safety" />{' '}
-          with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC and
-          other authorities as the law requires.
-        </>,
-      ],
-    },
-  ]
 
   const helplines: InfoRow[] = [
     {
@@ -362,7 +310,11 @@ const Safety: React.FC = () => {
           </P>
 
           <H2 id="child-safety">Child safety contacts</H2>
-          <InfoTable head={['Who', 'How']} rows={childSafety} firstWidth="30%" />
+          <ChildSafetyContacts />
+          <P>
+            Our <PageLink to="/child-safety">Child Safety Standards</PageLink> set out what we prohibit, how to report
+            it and what we do about it.
+          </P>
 
           <H2 id="help">Places to get help</H2>
           <P>
