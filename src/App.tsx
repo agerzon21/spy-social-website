@@ -19,6 +19,7 @@ import DeleteAccount from './pages/DeleteAccount'
 import { ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
+const Agree = lazy(() => import('./pages/Agree'))
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
               <Route path="/join/e/:id" element={<Layout><JoinEvent /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
               <Route path="/join" element={<Layout><Join /></Layout>} />
+              <Route path="/agree/:token" element={<Layout><Agree /></Layout>} />
               <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
           </Suspense>
