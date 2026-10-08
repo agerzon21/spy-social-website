@@ -51,6 +51,9 @@ interface Release {
 // store-pack/listing.md, blocks W-EN and R-ALL); "Noir" is the avatar style's internal name, the app says
 // Your Agent.
 const V2_2_DATE = 'November 10, 2026' // the launch day; if the launch moves, change it here
+// Owner W1 (2026-10-08): the game nights line shows only once a first game night is on the calendar for launch
+// week. Set true when one is published in the owner console.
+const GAME_NIGHT_SCHEDULED = false
 const V2_2_OUT = avatarsLive(LIVE)
 
 const reportWhat = [
@@ -90,6 +93,7 @@ const releases: Release[] = [
           },
           {
             title: 'Game nights',
+            show: GAME_NIGHT_SCHEDULED,
             text: LIVE.notifications
               ? "Scheduled online games. Tap Remind Me and we'll remind you before they start."
               : 'Scheduled online games.',
