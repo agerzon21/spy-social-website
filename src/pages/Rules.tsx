@@ -95,7 +95,11 @@ const Rules: React.FC = () => {
             <ChakraLink href="https://report.cybertip.org" isExternal color="orange.300">
               CyberTipline
             </ChakraLink>{' '}
-            (1-800-843-5678). If a child is in immediate danger, call your local emergency number first.
+            (1-800-843-5678). If a child is in immediate danger, call your local emergency number first. Our{' '}
+            <ChakraLink as={Link} to="/child-safety" color="orange.300">
+              Child Safety Standards
+            </ChakraLink>{' '}
+            say more.
           </Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>
