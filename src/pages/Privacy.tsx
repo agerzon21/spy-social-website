@@ -182,7 +182,9 @@ const Privacy: React.FC = () => {
               {PRIVACY.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}. Only messages we still
               keep are attached (see Chat Messages above). When we remove a message or a drawing, or replace a name that
               breaks the rules, our moderation log keeps a copy of what we removed and the old name, for as long as we
-              keep reports.
+              keep reports. For each player who reports, our moderators can see how many of their reports led to action
+              and how many were dismissed. We work this out from the reports we already keep, use it only to review
+              reports and to find players who might help us moderate, and never show it to other players.
             </Item>
             {PRIVACY.drawingCheck && (
               <Item label="Drawing Checks">
