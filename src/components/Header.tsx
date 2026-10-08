@@ -1,5 +1,6 @@
-import { Box, Flex, Image, Link as ChakraLink } from '@chakra-ui/react'
+import { Box, Flex, Link as ChakraLink } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
+import Wordmark from './Wordmark'
 
 export const HEADER_HEIGHT = 68
 
@@ -34,10 +35,8 @@ const Header = () => {
           _hover={{ opacity: 1 }}
           _focus={{ boxShadow: 'none' }}
         >
-          <Image
-            src="/images/logo.svg"
-            alt="SpySocial"
-            h={{ base: '45px', md: '50px' }}
+          <Wordmark
+            h={{ base: '48px', md: '54px' }}
             w="auto"
             opacity={0.85}
             _hover={{ opacity: 1 }}

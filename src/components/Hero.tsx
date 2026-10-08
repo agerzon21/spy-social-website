@@ -8,6 +8,7 @@ import screenshot3 from '../assets/screenshots/3.webp'
 import screenshot4 from '../assets/screenshots/4.webp'
 import screenshot5 from '../assets/screenshots/5.webp'
 import screenshot6 from '../assets/screenshots/6.webp'
+import Wordmark from './Wordmark'
 
 const MotionBox = motion(Box)
 const MotionImage = motion(Image)
@@ -242,9 +243,7 @@ const Hero = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.05 }}
             >
-              <Image
-                src="/images/logo.svg"
-                alt="SpySocial"
+              <Wordmark
                 maxW={{ base: "220px", md: "280px" }}
                 h="auto"
                 mb={2}
