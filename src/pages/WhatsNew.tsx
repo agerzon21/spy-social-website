@@ -1,13 +1,27 @@
 import { Box, Container, Heading, Text, VStack, HStack, Badge, Stack, Icon } from '@chakra-ui/react'
-import { FaWandSparkles, FaPalette, FaWrench, FaBug, FaGears, FaRocket, FaAndroid } from 'react-icons/fa6'
+import {
+  FaWandSparkles,
+  FaPalette,
+  FaWrench,
+  FaBug,
+  FaGears,
+  FaRocket,
+  FaAndroid,
+  FaComments,
+  FaTrophy,
+  FaShieldHalved,
+} from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
+import { LIVE, avatarsLive } from '../lib/legalRelease'
 
 const MotionBox = motion(Box)
 
 interface BulletItem {
   title?: string
   text: string
+  /** false hides the line (a feature whose switch in src/lib/legalRelease.ts is still off). */
+  show?: boolean
 }
 
 interface Section {
@@ -23,9 +37,147 @@ interface Release {
   tag?: string
   summary: string
   sections: Section[]
+  /** false hides the whole release (one that isn't out yet). */
+  show?: boolean
 }
 
+// SpySocial 2.2. Like the legal pages, this entry follows src/lib/legalRelease.ts, so it never announces
+// something the launch switches haven't turned on: the entry shows from the 2.2 launch (website Update 1,
+// which turns the avatar creator on with the rest; avatarsLive), and each line about a switched feature
+// shows only while its switch is on. Play Online stays out while the owner keeps it a closed beta
+// (playOnline false), reporting a drawing while the drawing check is off (the Terms and the Rules do the
+// same), buying while purchases is off. Spy Sketch is never said to be played online (public Sketch opens
+// only with the drawing check). The wording follows the stores' 2.2 What's New (handoff
+// store-pack/listing.md, blocks W-EN and R-ALL); "Noir" is the avatar style's internal name, the app says
+// Your Agent.
+const V2_2_DATE = 'November 10, 2026' // the launch day; if the launch moves, change it here
+const V2_2_OUT = avatarsLive(LIVE)
+
+const reportWhat = [
+  'a player',
+  ...(LIVE.messageReports ? ['a message'] : []),
+  ...(LIVE.drawingCheck ? ['a drawing'] : []),
+]
+const reportList =
+  reportWhat.length > 1 ? `${reportWhat.slice(0, -1).join(', ')} or ${reportWhat[reportWhat.length - 1]}` : reportWhat[0]
+
 const releases: Release[] = [
+  {
+    version: '2.2.0',
+    date: V2_2_DATE,
+    tag: 'Biggest Update Yet',
+    show: V2_2_OUT,
+    summary: `SpySocial 2.2 is our biggest update yet: ${
+      LIVE.playOnline ? 'Play Online, ' : ''
+    }Spy Sketch, chat with translation in 10 languages, your own spy avatar, and a new look on every screen.`,
+    sections: [
+      {
+        label: 'New Ways to Play',
+        icon: FaWandSparkles,
+        accent: 'blue.300',
+        items: [
+          { title: 'Spy Sketch', text: 'A new way to play: draw the secret word on one shared whiteboard and catch the spies faking it.' },
+          {
+            title: 'Play Online',
+            show: LIVE.playOnline,
+            text: 'Tap Find a Game for a table of 4 or 8 players with standard rules. When a match is found, everyone taps Ready; after the game, Find Another Game starts a new search. Play Online needs a free account.',
+          },
+          {
+            title: 'Private Room',
+            text: LIVE.qrScanner
+              ? 'Create a room for your friends, or join theirs by scanning its QR code right in the app.'
+              : 'Create a room for your friends, with your own rules and packs.',
+          },
+          {
+            title: 'Game nights',
+            text: LIVE.notifications
+              ? "Scheduled online games. Tap Remind Me and we'll remind you before they start."
+              : 'Scheduled online games.',
+          },
+          { title: 'Spy Mafia', text: 'The spies now share a secret chat.' },
+        ],
+      },
+      {
+        label: 'Chat and Languages',
+        icon: FaComments,
+        accent: 'teal.300',
+        items: [
+          {
+            title: 'Chat',
+            text: `Chat in the lobby and during the game, with translation for every message.${
+              LIVE.onDeviceTranslation ? " If our translation service can't answer, your phone translates by itself." : ''
+            } Speak instead of typing: the mic turns what you say into text.`,
+          },
+          {
+            title: '10 languages',
+            text: `SpySocial now speaks English, Spanish, Russian, French, Brazilian Portuguese, Simplified Chinese, Hindi, Arabic, Bengali and Indonesian${
+              LIVE.onePool
+                ? ', and every player sees the game in their own language, the secret and the hints included, so friends who speak different languages can play together'
+                : ''
+            }.`,
+          },
+        ],
+      },
+      {
+        label: 'Packs and Progress',
+        icon: FaTrophy,
+        accent: 'orange.300',
+        items: [
+          { title: 'XP, levels and achievements', text: 'Earn XP as you play, level up and unlock achievements.' },
+          {
+            title: 'Reworked packs',
+            text: 'Every pack is marked Easy, Medium or Hard, and every location and word has a one-line description. The hints now offer 188 questions.',
+          },
+          {
+            title: 'Packs and membership',
+            show: LIVE.purchases,
+            text: 'Free packs for everyone, plus premium packs, bundles, the Pack Pass (monthly or yearly) and Lifetime as optional in-app purchases. Two new Hard packs come with All Packs, the Pack Pass and Lifetime. When anyone in a private room has a pack, everyone in that room can play it, and members get bonus XP and a badge frame.',
+          },
+          {
+            title: 'Shop',
+            show: LIVE.purchases,
+            text: 'Packs, membership, avatar items and celebrations in one place. Avatar items and celebrations are cosmetic only: they change how you look, never how you play.',
+          },
+        ],
+      },
+      {
+        label: 'Make It Yours',
+        icon: FaPalette,
+        accent: 'purple.300',
+        items: [
+          { title: 'Your Agent', text: 'Profile photos are gone: make your own spy avatar instead.' },
+          {
+            title: 'Celebrations',
+            text: `A moment that plays full screen when you guess the secret as the spy, or call the vote that catches one. Earn some by playing${
+              LIVE.purchases ? ', and find more in the Shop' : ''
+            }.`,
+          },
+          { title: 'A new look', text: "Every screen is new, with new moments for votes, the spy's guess and the end of the game." },
+          {
+            title: 'Out of the game?',
+            text: 'Chat with the other players who are out (Ghost Chat), name who you think the spy is (Call It), or play a quick mini-game while the game finishes.',
+          },
+        ],
+      },
+      {
+        label: 'Accounts and Safety',
+        icon: FaShieldHalved,
+        accent: 'green.300',
+        items: [
+          { title: 'Sign in with Apple or Google', show: LIVE.socialSignIn, text: 'Sign in with Apple on iPhone and iPad, or with Google.' },
+          {
+            title: 'Ages 13 and up',
+            show: LIVE.ageGateEveryone,
+            text: 'SpySocial is now for ages 13 and up: everyone confirms their birth year before their first game.',
+          },
+          {
+            title: 'Report and block',
+            text: `${reportWhat.length > 1 ? `Report ${reportList}, and block players.` : 'Report and block players.'} Chat has a word filter.`,
+          },
+        ],
+      },
+    ],
+  },
   {
     version: '2.1.1',
     date: 'June 13, 2026',
@@ -247,7 +399,7 @@ const SectionBlock = ({ section }: { section: Section }) => (
       </Text>
     </HStack>
     <Stack spacing={2.5} pl={1}>
-      {section.items.map((item, idx) => (
+      {section.items.filter((item) => item.show !== false).map((item, idx) => (
         <HStack key={idx} align="flex-start" spacing={3}>
           <Box w="6px" h="6px" mt="9px" borderRadius="full" bg="whiteAlpha.300" flexShrink={0} />
           <Text fontSize="sm" color="whiteAlpha.700" lineHeight="1.7">
@@ -265,74 +417,78 @@ const SectionBlock = ({ section }: { section: Section }) => (
   </Box>
 )
 
-const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean }) => (
-  <MotionBox
-    initial={{ y: 20, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    transition={{ duration: 0.5 }}
-    bg="whiteAlpha.50"
-    borderRadius="2xl"
-    border="1px solid"
-    borderColor="whiteAlpha.100"
-    p={{ base: 6, md: 8 }}
-    position="relative"
-    overflow="hidden"
-  >
-    {isFirst && (
-      <Box
-        position="absolute"
-        top="-100px"
-        right="-100px"
-        w="300px"
-        h="300px"
-        borderRadius="full"
-        bg="blue.500"
-        opacity={0.06}
-        filter="blur(80px)"
-        pointerEvents="none"
-      />
-    )}
-
-    <VStack spacing={6} align="stretch" position="relative">
-      <Box>
-        <HStack spacing={3} mb={2} flexWrap="wrap">
-          <Heading as="h2" size="lg" color="white" fontWeight="700" letterSpacing="-0.02em">
-            v{release.version}
-          </Heading>
-          {release.tag && (
-            <Badge
-              bg="blue.500"
-              color="white"
-              fontSize="2xs"
-              textTransform="uppercase"
-              letterSpacing="0.08em"
-              px={2}
-              py={0.5}
-              borderRadius="md"
-              fontWeight="600"
-            >
-              {release.tag}
-            </Badge>
-          )}
-        </HStack>
-        <Text fontSize="xs" color="whiteAlpha.400" mb={4}>
-          {release.date}
-        </Text>
-        <Text fontSize="md" color="whiteAlpha.700" lineHeight="1.7">
-          {release.summary}
-        </Text>
-      </Box>
-
-      {release.sections.length > 0 && (
-        <VStack spacing={6} align="stretch" pt={2}>
-          {release.sections.map((section, idx) => (
-            <SectionBlock key={idx} section={section} />
-          ))}
-        </VStack>
+const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean }) => {
+  // A section whose every line is switched off isn't shown.
+  const sections = release.sections.filter((section) => section.items.some((item) => item.show !== false))
+  return (
+    <MotionBox
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      bg="whiteAlpha.50"
+      borderRadius="2xl"
+      border="1px solid"
+      borderColor="whiteAlpha.100"
+      p={{ base: 6, md: 8 }}
+      position="relative"
+      overflow="hidden"
+    >
+      {isFirst && (
+        <Box
+          position="absolute"
+          top="-100px"
+          right="-100px"
+          w="300px"
+          h="300px"
+          borderRadius="full"
+          bg="blue.500"
+          opacity={0.06}
+          filter="blur(80px)"
+          pointerEvents="none"
+        />
       )}
-    </VStack>
-  </MotionBox>
-)
+
+      <VStack spacing={6} align="stretch" position="relative">
+        <Box>
+          <HStack spacing={3} mb={2} flexWrap="wrap">
+            <Heading as="h2" size="lg" color="white" fontWeight="700" letterSpacing="-0.02em">
+              v{release.version}
+            </Heading>
+            {release.tag && (
+              <Badge
+                bg="blue.500"
+                color="white"
+                fontSize="2xs"
+                textTransform="uppercase"
+                letterSpacing="0.08em"
+                px={2}
+                py={0.5}
+                borderRadius="md"
+                fontWeight="600"
+              >
+                {release.tag}
+              </Badge>
+            )}
+          </HStack>
+          <Text fontSize="xs" color="whiteAlpha.400" mb={4}>
+            {release.date}
+          </Text>
+          <Text fontSize="md" color="whiteAlpha.700" lineHeight="1.7">
+            {release.summary}
+          </Text>
+        </Box>
+
+        {sections.length > 0 && (
+          <VStack spacing={6} align="stretch" pt={2}>
+            {sections.map((section, idx) => (
+              <SectionBlock key={idx} section={section} />
+            ))}
+          </VStack>
+        )}
+      </VStack>
+    </MotionBox>
+  )
+}
 
 const WhatsNew = () => {
   return (
@@ -349,7 +505,7 @@ const WhatsNew = () => {
           </VStack>
 
           <VStack spacing={6} align="stretch">
-            {releases.map((release, idx) => (
+            {releases.filter((release) => release.show !== false).map((release, idx) => (
               <ReleaseBlock key={release.version} release={release} isFirst={idx === 0} />
             ))}
           </VStack>
