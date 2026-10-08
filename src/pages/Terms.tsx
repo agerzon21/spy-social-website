@@ -374,9 +374,10 @@ const Terms: React.FC = () => {
             {avatarsLive(LIVE) && (
               <ListItem>
                 Celebrations are avatar items: short animations that everyone at the table sees at a game's big moments, such
-                as a spy guessing the secret or being caught. Ink Burst and Ink Check are free; Paper Storm and Cuffed are
-                earned by playing (the app shows how); Gold Storm comes with Lifetime; Searchlight, Most Wanted, The End,
-                Curtain Call, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board are sold one by one.
+                as a spy guessing the secret or being caught. Ink Burst and Ink Check are free; Paper Storm and Case Closed
+                are earned by playing (the app shows how); Gold Storm comes with Lifetime; Searchlight, Most Wanted, The End,
+                Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board are sold one by
+                one. Players who earned Cuffed before it went on sale keep it.
               </ListItem>
             )}
             <ListItem>
