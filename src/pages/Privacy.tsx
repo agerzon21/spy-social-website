@@ -188,15 +188,20 @@ const Privacy: React.FC = () => {
             </Item>
             {PRIVACY.drawingCheck && (
               <Item label="Drawing Checks">
-                In public rooms (Play Online tables and events), every drawing turn in a Spy Sketch game is checked
-                automatically for content that breaks our Community Rules; in any room, a drawing is checked when someone
-                reports it. The app tells you once, before your drawings can be checked, that they're sent to OpenAI, and
-                in a room where every turn is checked you draw only after you agree. For each check, our servers make a picture of the turn (the earlier drawing in light grey, and any
-                lines the player drew and then undid) and send it to OpenAI with the round's secret word (which helps tell
-                an innocent drawing from an offensive one) and a code made from your account ID that doesn't reveal who
-                you are, which OpenAI uses to detect misuse of its service. If that check can't give an answer (for
-                example when it's unavailable), OpenAI's moderation service checks a picture of the turn's own lines
-                instead, with nothing else. Our servers never send your name, username, email address, chat or your
+                In public rooms (Play Online tables and events), every drawing turn in a Spy Sketch game goes through an
+                automated check by OpenAI for content that breaks our Community Rules, and some are also checked by a
+                second, more detailed OpenAI model. In any room, a drawing is checked by both when someone reports it. The
+                app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
+                every turn is checked you draw only after you agree. For the first check, our servers send OpenAI's
+                moderation service a picture of the turn's own lines (and any lines the player drew and then undid), with
+                nothing else. The second check gets a picture of the turn (the earlier drawing in light grey) with the
+                round's secret word (which helps tell an innocent drawing from an offensive one) and a code made from your
+                account ID that doesn't reveal who you are, which OpenAI uses to detect misuse of its service. Our servers
+                pick which drawings get the second check: every reported drawing, every drawing the first check flags, and a
+                share of the rest that depends on what we already keep about the account (how many games it has played, how
+                old it is, whether it's saved, and any strikes or upheld reports). We don't use this for anything else or
+                show it to other players. If the second check can't give an answer, the first check's answer is used. Our
+                servers never send your name, username, email address, chat or your
                 device's IP address. According to OpenAI, it doesn't use what it receives to train
                 its models, and keeps it for up to 30 days to watch for misuse, unless the law requires it to keep it
                 longer. The check acts by itself: it can take a turn off the drawing for everyone in the game, give a
@@ -413,7 +418,8 @@ const Privacy: React.FC = () => {
             {PRIVACY.drawingCheck && (
               <Item label="OpenAI">
                 (https://openai.com) Checks drawings for content that breaks our Community Rules: every drawing turn in
-                public rooms, and drawings players report. Under OpenAI's API terms and its Data Processing Addendum, it
+                public rooms gets an automated check, some also get a second, more detailed check, and so do drawings players
+                report. Under OpenAI's API terms and its Data Processing Addendum, it
                 doesn't use them to train its models and keeps them for at most 30 days to monitor abuse.
               </Item>
             )}

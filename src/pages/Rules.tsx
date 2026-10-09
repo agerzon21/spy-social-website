@@ -113,8 +113,9 @@ const Rules: React.FC = () => {
           </Text>
           {LIVE.drawingCheck && (
             <Text fontSize="sm" lineHeight="1.8">
-              Every drawing turn in a public room is checked automatically, and so is any drawing that's reported. In a
-              public room, a turn that breaks these rules is taken off the drawing and counts as a strike: a warning
+              Drawings in public rooms and events may be checked automatically at any time, and any drawing that's
+              reported is checked. If a drawing you made breaks these rules, your account can be paused or banned from
+              public rooms and events, however long you've played. In a public room, a turn that breaks these rules is taken off the drawing and counts as a strike: a warning
               first, then 3, 7 and 30 days without public rooms and events, and at the fifth strike in 90 days, for good.
               In any room, a hate symbol (a swastika counts, unless the round's word makes a religious meaning clear), a
               written slur or hate aimed at someone removes the player from the game and from public rooms and events for
