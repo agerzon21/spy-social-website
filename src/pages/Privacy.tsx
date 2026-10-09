@@ -110,7 +110,7 @@ const Privacy: React.FC = () => {
                 ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, and collect a device identifier and usage information for Google\'s own analytics, under Google\'s privacy policy.'}
             </Item>
             <Item label="Profile Preferences">
-              Your interface language (one of the ten languages the app offers), your color and similar settings, so the app
+              Your interface language (one of the ten languages the app offers), your colors (a 1st, 2nd and 3rd choice: each room gives you the first one that's free) and similar settings, so the app
               looks and reads the way you chose. Our servers also use your language to show you the game (the secret
               word or location, its description and the spy's list) in it, and to count the different languages at a
               table for an achievement.
@@ -486,8 +486,10 @@ const Privacy: React.FC = () => {
 
           <H2>Data Sharing</H2>
           <P>
-            We do not sell your personal information or share it for targeted advertising. Other players in your room see
-            your display name, username, {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
+            We do not sell your personal information or share it for targeted advertising. At Play Online tables and game
+            nights (public play), other players see you as an agent named after your color (for example, "Agent Blue"),
+            never by your display name; your display name is shown only in private rooms. Other players in your room see
+            your display name (private rooms) or agent name (public play), username, {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
             (including a membership badge) and achievements,
             {/* One pool: no language badges; versions before 2.2 show the language a room is played in. */}
             {PRIVACY.oldAppsInUse ? ' the language you play in,' : ''} whether you've stepped away (and
