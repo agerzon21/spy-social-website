@@ -228,6 +228,20 @@ export const LIVE = {
    */
   resendAccountEmail: true,
   /**
+   * Agent Colours phase 2 (app feat/agent-colours-2, migration 20261021000000_agent_colours_phase2): at Play Online
+   * tables and game nights the server stops sending other players' display names and pre-2.2 profile photos. Another
+   * player there gets your agent name, your username (in play too, and so do watchers: owner D1) and your drawn
+   * avatar, never your profile photo (get_my_game_view / get_watch_view send a photo only to its owner; profiles
+   * aren't readable there); watchers are nameless to the players (a count, the "Agent <colour> is watching" line); a
+   * game night's stand-in host is listed (list_rooms) and named on its page (_event_json) by agent name, with no
+   * photo. Private rooms are unchanged. Flip when 20261021000000 is applied live (it ships after the launch batch,
+   * whose 20261020000200 profiles read rule it narrows) and app_config.public_names isn't "display" (that setting
+   * reverts phase 2 too: flip back if it's ever set), and set PRIVACY_LAST_UPDATED to the day it goes up. A server
+   * switch for every app version at once (what the server sends, whatever app reads it): set in LIVE, never in
+   * PRIVACY_AHEAD.
+   */
+  agentColoursPhase2: false,
+  /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -257,7 +271,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * Never ahead (and not in AHEAD_SAFE): onePool and messageReports (the Privacy pages don't read them; they change the
  * Terms, the Rules and the FAQ, which wait for the launch), photosRemoved (says the photos are deleted), oldAppsInUse
  * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (a server switch for every
- * app version at once: set in LIVE to what the translate function does, 'off' since the submission day), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), scheduledRetention,
+ * app version at once: set in LIVE to what the translate function does, 'off' since the submission day), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
+ * (says other players no longer see things; a server switch, set in LIVE), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
