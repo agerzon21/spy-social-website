@@ -4,8 +4,15 @@
     "details": [
       {
         "appID": "GZHMFT3JNF.com.gerz.spysocial",
-        "paths": ["/join/*"]
+        "paths": [
+          "/join/*"
+        ]
       }
+    ]
+  },
+  "webcredentials": {
+    "apps": [
+      "GZHMFT3JNF.com.gerz.spysocial"
     ]
   }
 }
