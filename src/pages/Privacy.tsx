@@ -125,8 +125,8 @@ const Privacy: React.FC = () => {
             {PRIVACY.playOnline && (
               <Item label="Play Online">
                 When you use Play Online, our servers keep what you searched for (Spy Talk or Spy Sketch, the table size,
-                and when), the table you're seated at, when you tap Ready, and the breaks you get for missing a start or
-                leaving a game that has started. We use this to seat you with other players and to keep games fair.
+                and when), the table you're seated at, when you tap Ready, and the breaks you get for declining a match,
+                missing a start or leaving a game that has started. We use this to seat you with other players and to keep games fair.
                 Searches are deleted 30 days after they end, and breaks and the matchmaking log after 90 days.
               </Item>
             )}
@@ -488,12 +488,14 @@ const Privacy: React.FC = () => {
           <P>
             We do not sell your personal information or share it for targeted advertising. Other players in your room see
             your display name, username, {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
-            (including a membership badge) and achievements, the language you play in, whether you've stepped away (and
+            (including a membership badge) and achievements,
+            {/* One pool: no language badges; versions before 2.2 show the language a room is played in. */}
+            {PRIVACY.oldAppsInUse ? ' the language you play in,' : ''} whether you've stepped away (and
             for how long), and the messages you send there. Someone who opens a room's link or code while a Spy Sketch game
             is running can watch it until the next game: they see the same things, the drawing and the room's chat, but
-            never anyone's role, the secret word or votes.{' '}
-            Private rooms waiting for players, and game nights, are listed for all players with their hosts' display
-            names and avatars (a private room still needs its code to join).
+            never a role or the secret word before every player can see it, or anyone's vote.{' '}
+            Private rooms that aren't locked, whether waiting for players or playing a game, and game nights, are listed
+            for all players with their hosts' display names and avatars (a private room still needs its code to join).
             {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}{' '}
             Reports are
             reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
