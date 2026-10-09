@@ -66,7 +66,7 @@ const UkOnlineSafety = () => {
       cells: [
         <>
           In public rooms the word filter blocks slurs and the worst insults; in private rooms it blocks the most serious
-          of them. Block hides a player's chat and keeps you out of each other's rooms, and with no direct messages, search
+          of them. Block hides a player's chat and keeps you out of each other's rooms (game nights aside), and with no direct messages, search
           or follows, nobody can reach you outside a room or find you again after it. Penalties go from a warning to a
           ban (section 8).
         </>,
@@ -174,8 +174,8 @@ const UkOnlineSafety = () => {
       cells: [
         <>
           Not allowed: no insulting or targeting other players (section 7). Accusing other players is part of the game;
-          insulting them isn't. You can block, report or leave at any time, and in a public room players can vote to
-          remove someone.
+          insulting them isn't. You can block, report or leave at any time, and{' '}
+          {LIVE.onePool ? 'at a game night' : 'in a public room'} players can vote to remove someone.
         </>,
       ],
     },

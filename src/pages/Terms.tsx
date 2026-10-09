@@ -181,17 +181,20 @@ const Terms: React.FC = () => {
             {LIVE.onePool
               ? "Public rooms are Play Online's tables and the events we schedule; players can't create public rooms. They're open to players you don't know."
               : "Public rooms are open to players you don't know."}{' '}
-            Anyone who meets the requirements can find them in the app and join: a saved account with a confirmed email address, being 13 or older, and agreeing to the
-            Community Rules. In a public room, players can vote to remove a player or to end a game.
+            Anyone who meets the requirements can {LIVE.onePool ? 'play in them' : 'find them in the app and join'}: a saved account with a confirmed email address, being 13 or older, and agreeing to the
+            Community Rules.{' '}
+            {LIVE.onePool
+              ? "At an event, players can vote to remove a player or to end the game; Play Online's games have no such votes."
+              : 'In a public room, players can vote to remove a player or to end a game.'}
           </P>
           {LIVE.playOnline && (
             <P>
               Play Online seats you at a table with other players for a game with standard settings
               {LIVE.onePool
-                ? " and the free packs, plus the members' packs when a member sits at the table. Nobody hosts a table, and the same requirements apply"
+                ? ' and the free packs, plus the packs the players at the table have unlocked (see section 9). Nobody hosts a table, and the same requirements apply'
                 : ', under the same requirements'}
-              . If you don't tap Ready in time, leave a table that is starting, are away when the game starts, or
-              leave a game that has started, you get a short break from Play Online
+              . If you decline a match or don't tap Ready in time, are away when the game starts, or leave a game that
+              has started, you get a short break from Play Online
               {LIVE.onePool ? '' : ' and from other public rooms'} (never from private rooms or events): 5 minutes, and for leaving started games again within 24
               hours, 15 and then 60 minutes. The first time in a day that you're away when a game starts, there's no
               break.
@@ -279,8 +282,10 @@ const Terms: React.FC = () => {
           <H2>8. Reports, Moderation and Appeals</H2>
           <H3>Reporting and blocking</H3>
           <P>
-            You can report or block a player from their name in the app
-            {LIVE.messageReports ? ', report a message, question or answer by long-pressing it' : ''}
+            You can report or block a player {LIVE.messageReports ? 'by long-pressing them in the app' : 'from their name in the app'}
+            {LIVE.messageReports
+              ? `${LIVE.drawingCheck ? ',' : ' and'} report a message, question or answer by long-pressing it`
+              : ''}
             {LIVE.drawingCheck ? ', and report a drawing' : ''}.
             A person reads every report, and our Community Rules say how soon. The player you report isn't told who
             reported them. To check a report, we look at what's attached to it and at the records we keep, as our

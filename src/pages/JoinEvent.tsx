@@ -119,7 +119,10 @@ const JoinEvent = () => {
                 <Heading as="h1" size="lg" color="white">
                   This event link doesn't work
                 </Heading>
-                <Text color="whiteAlpha.700">Check it, or open SpySocial and browse rooms.</Text>
+                <Text color="whiteAlpha.700">
+                  {/* One pool (LIVE.onePool): 2.2 has no public room list; game nights show in Play Online. */}
+                  {LIVE.onePool ? 'Check it, or open SpySocial: game nights show in Play Online.' : 'Check it, or open SpySocial and browse rooms.'}
+                </Text>
               </>
             )}
           </VStack>

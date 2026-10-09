@@ -55,7 +55,8 @@ const Rules: React.FC = () => {
             <ListItem>Leaving games on purpose, going idle or stalling a round spoils it for the rest of the room.</ListItem>
             {LIVE.playOnline && (
               <ListItem>
-                In Play Online, missing a start or leaving a game that has started gives you a short break from{' '}
+                In Play Online, declining a match, missing a start or leaving a game that has started gives you a short
+                break from{' '}
                 {LIVE.onePool ? 'Play Online' : 'public games'} (5 minutes, longer if you keep leaving).
               </ListItem>
             )}

@@ -146,7 +146,7 @@ const Safety: React.FC = () => {
             </Step>
             <Step n={2} icon={FiSlash} title="Block">
               Long-press the player and tap <B>Block</B>. You won't see their chat, and neither of you can join a room the
-              other is in. They aren't told. You can unblock them any time in Account, under Blocked Players.
+              other is in, apart from game nights. They aren't told. You can unblock them any time in Account, under Blocked Players.
             </Step>
             <Step n={3} icon={FiFlag} title="Report">
               Long-press the player, or something they wrote in the chat, and tap <B>Report</B>. Pick what happened, add
@@ -191,7 +191,7 @@ const Safety: React.FC = () => {
           <H3>What SpySocial has</H3>
           <Bullets>
             <ListItem>
-              <B>Text chat inside a room:</B> the room's chat, the game chat, a private chat for the spies when a game has
+              <B>Text chat inside a room:</B> the room's chat, the game chat, a private chat for the spies when a Spy Mafia game has
               more than one, and a chat for players who are out. Chat is deleted about 24 hours after it's sent in a
               private room, and 14 days after in a public room.
             </ListItem>
@@ -219,7 +219,11 @@ const Safety: React.FC = () => {
             )}
             {LIVE.purchases && (
               <ListItem>
-                <B>Things to buy:</B> packs and memberships, through the App Store or Google Play.
+                <B>Things to buy:</B>{' '}
+                {avatars
+                  ? 'packs, memberships and avatar items (such as celebrations, which change only how a player looks)'
+                  : 'packs and memberships'}
+                , through the App Store or Google Play.
               </ListItem>
             )}
           </Bullets>
@@ -290,7 +294,7 @@ const Safety: React.FC = () => {
               {LIVE.oldAppsInUse && ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)'}
             </ListItem>
             <ListItem>
-              Scroll to the <B>Danger Zone</B> and tap <B>Delete Account</B>. A guest account is deleted with <B>Sign Out</B>
+              Scroll to the <B>Danger Zone</B> and tap <B>Delete Account</B>. A guest account is deleted with <B>Sign Out</B>{' '}
               instead (in Account, under Sign-In).
             </ListItem>
           </OrderedList>

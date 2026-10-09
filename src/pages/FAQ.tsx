@@ -2,6 +2,10 @@ import { Box, Container, Heading, Text, VStack, Link as ChakraLink, Accordion, A
 import { Link } from 'react-router-dom'
 import { LIVE } from '../lib/legalRelease'
 
+// The FAQ describes the app in the stores. The 2.2 answers show from the launch: most follow LIVE.onePool, which
+// flips with the 2.2 release (its home, rooms and languages); the rest follow their own feature's switch.
+const v22 = LIVE.onePool
+
 interface FAQSection {
   title: string
   items: { question: string; answer: React.ReactNode }[]
@@ -19,7 +23,14 @@ const faqSections: FAQSection[] = [
         question: "How do I start a game?",
         answer: (
           <UnorderedList spacing={1.5}>
-            <ListItem>Tap <Strong>Create Room</Strong> to host, or join with a 5-character room code</ListItem>
+            {v22 ? (
+              <ListItem>
+                Tap <Strong>Private Room</Strong>, then <Strong>Create a Room</Strong> to host, or{' '}
+                <Strong>Join a Friend's Room</Strong> to join with its room code or QR code
+              </ListItem>
+            ) : (
+              <ListItem>Tap <Strong>Create Room</Strong> to host, or join with a 5-character room code</ListItem>
+            )}
             <ListItem>You need at least 3 players to start a round</ListItem>
             <ListItem>Share the room with friends via the share sheet, QR code, or link</ListItem>
           </UnorderedList>
@@ -29,9 +40,13 @@ const faqSections: FAQSection[] = [
         question: "First time playing?",
         answer: (
           <UnorderedList spacing={1.5}>
-            <ListItem>The app walks you through a quick tutorial on first launch</ListItem>
+            {!v22 && <ListItem>The app walks you through a quick tutorial on first launch</ListItem>}
             <ListItem>You'll be prompted to set up a profile (display name and optional avatar)</ListItem>
             <ListItem>Then you're dropped onto the home screen, ready to host or join</ListItem>
+            {v22 && <ListItem>A quick tour shows you around the home screen, and you can watch a 1-minute intro to the game</ListItem>}
+            {LIVE.ageGateEveryone && (
+              <ListItem>Before your first game, you enter your birth year and agree to our rules: SpySocial is for ages 13 and up</ListItem>
+            )}
           </UnorderedList>
         )
       },
@@ -39,7 +54,9 @@ const faqSections: FAQSection[] = [
         question: "How many players can play?",
         answer: (
           <Box>
-            <Text mb={2}>3 to 21 players. Recommended spies:</Text>
+            <Text mb={2}>
+              3 to 21 players{LIVE.playOnline ? " in a private room, and 4 or 8 in a Play Online game" : ''}. Recommended spies:
+            </Text>
             <UnorderedList spacing={1.5}>
               <ListItem>3–5 players: 1 spy</ListItem>
               <ListItem>6–8 players: 2 spies</ListItem>
@@ -57,8 +74,16 @@ const faqSections: FAQSection[] = [
         question: "What game modes are available?",
         answer: (
           <UnorderedList spacing={1.5}>
+            {v22 && (
+              <ListItem>
+                Two games: <Strong>Spy Talk</Strong> (ask and answer questions) and <Strong>Spy Sketch</Strong> (take turns
+                drawing the secret word), each in either mode:
+              </ListItem>
+            )}
             <ListItem><Strong>Classic:</Strong> Spies don't know each other</ListItem>
-            <ListItem><Strong>Spy Mafia:</Strong> Spies can see who the other spies are</ListItem>
+            <ListItem>
+              <Strong>Spy Mafia:</Strong> Spies can see who the other spies are{v22 ? ', and share a private chat' : ''}
+            </ListItem>
           </UnorderedList>
         )
       }
@@ -71,7 +96,11 @@ const faqSections: FAQSection[] = [
         question: "What is the Notebook?",
         answer: (
           <UnorderedList spacing={1.5}>
-            <ListItem>Tap the notebook icon during a round to jot down notes about who said what</ListItem>
+            <ListItem>
+              {v22
+                ? "Tap any player's card during a round to open your notebook: jot down notes and mark suspects"
+                : 'Tap the notebook icon during a round to jot down notes about who said what'}
+            </ListItem>
             <ListItem>Players are smart-sorted: active players with notes first, then other active players, then eliminated players last</ListItem>
             <ListItem>Notes are private — only you can see them</ListItem>
           </UnorderedList>
@@ -116,7 +145,7 @@ const faqSections: FAQSection[] = [
           <UnorderedList spacing={1.5}>
             <ListItem><Strong>Share sheet:</Strong> Use your phone's native share sheet to send the link anywhere</ListItem>
             <ListItem><Strong>QR code:</Strong> Friends nearby can scan to join instantly</ListItem>
-            <ListItem><Strong>Verbal:</Strong> Just read out the 5-character code</ListItem>
+            <ListItem><Strong>Verbal:</Strong> Just read out the {v22 ? 'room code' : '5-character code'}</ListItem>
           </UnorderedList>
         )
       },
@@ -138,7 +167,15 @@ const faqSections: FAQSection[] = [
         question: "How do languages work?",
         answer: (
           <UnorderedList spacing={1.5}>
-            <ListItem>Set your interface language in your profile</ListItem>
+            <ListItem>
+              {v22 ? (
+                <>
+                  Set your language in <Strong>Account</Strong>, under Preferences
+                </>
+              ) : (
+                'Set your interface language in your profile'
+              )}
+            </ListItem>
             {LIVE.onePool ? (
               <>
                 <ListItem>Rooms don't have a language: every player sees the game in their own, including the secret location or word, its description, the spy's list and the hints</ListItem>
@@ -148,7 +185,14 @@ const faqSections: FAQSection[] = [
             ) : (
               <ListItem>The host picks the game language for locations and hints</ListItem>
             )}
-            <ListItem>SpySocial supports full parity across <Strong>English, Spanish, and Russian</Strong></ListItem>
+            {v22 ? (
+              <ListItem>
+                SpySocial speaks 10 languages. <Strong>English, Spanish and Russian</Strong> are fully tested; French,
+                Brazilian Portuguese, Simplified Chinese, Hindi, Arabic, Bengali and Indonesian are in Beta
+              </ListItem>
+            ) : (
+              <ListItem>SpySocial supports full parity across <Strong>English, Spanish, and Russian</Strong></ListItem>
+            )}
             {!LIVE.onePool && <ListItem>If your language differs from the host's, you'll see translations where it matters</ListItem>}
           </UnorderedList>
         )
@@ -162,17 +206,37 @@ const faqSections: FAQSection[] = [
         question: "What can the host customize?",
         answer: (
           <UnorderedList spacing={1.5}>
-            <ListItem>Number of spies and game mode</ListItem>
-            <ListItem>{LIVE.onePool ? 'Turn duration' : 'Game language and turn duration'}</ListItem>
-            <ListItem>Voting rules and whether the vote-caller is revealed</ListItem>
-            <ListItem>Location packs to draw from</ListItem>
+            {v22 ? (
+              <>
+                <ListItem>The game (Spy Talk or Spy Sketch), the game mode and the number of spies</ListItem>
+                <ListItem>Game time: the length of turns, discussion or drawing, and of the game</ListItem>
+                <ListItem>The voting mode, Reveal Roles, and whether the vote caller is shown</ListItem>
+                <ListItem>The packs to draw from</ListItem>
+                <ListItem>The room code, the most players allowed (3 to 21), and locking the room</ListItem>
+              </>
+            ) : (
+              <>
+                <ListItem>Number of spies and game mode</ListItem>
+                <ListItem>Game language and turn duration</ListItem>
+                <ListItem>Voting rules and whether the vote-caller is revealed</ListItem>
+                <ListItem>Location packs to draw from</ListItem>
+              </>
+            )}
           </UnorderedList>
         )
       },
       {
         question: "Can the host end a game early?",
         answer: (
-          <Text>Yes — hosts have an <Strong>End Game</Strong> control to wrap things up at any point during play.</Text>
+          v22 ? (
+            <Text>
+              Yes — in a private room, the host taps <Strong>Leave</Strong>, then <Strong>End Game for Everyone</Strong>, to
+              wrap things up at any point during play. At a game night, players can vote to end the game instead, and Play
+              Online games have no host.
+            </Text>
+          ) : (
+            <Text>Yes — hosts have an <Strong>End Game</Strong> control to wrap things up at any point during play.</Text>
+          )
         )
       }
     ]
@@ -184,7 +248,10 @@ const faqSections: FAQSection[] = [
         question: "Do I need an account?",
         answer: (
           <UnorderedList spacing={1.5}>
-            <ListItem>You can play as a guest without signing up</ListItem>
+            <ListItem>
+              You can play as a guest without signing up
+              {LIVE.playOnline ? ' (Play Online and game nights need a saved account)' : ''}
+            </ListItem>
             <ListItem>Creating an account lets you keep your profile and progress across devices</ListItem>
             <ListItem>You can upgrade a guest profile to a full account at any time without losing anything</ListItem>
           </UnorderedList>
@@ -209,8 +276,20 @@ const faqSections: FAQSection[] = [
         question: "Room code isn't working?",
         answer: (
           <UnorderedList spacing={1.5}>
-            <ListItem>Codes are now <Strong>5 characters</Strong> (older 6-character codes still work)</ListItem>
-            <ListItem>Make sure the host hasn't closed the room or started the game</ListItem>
+            {v22 ? (
+              <>
+                <ListItem>Check the code with the host: they can change it (codes are 4 to 8 characters)</ListItem>
+                <ListItem>
+                  Make sure the host hasn't closed or locked the room, and that it isn't full. If a Spy Talk game is running,
+                  you can join when it ends; during a Spy Sketch game, you can watch until the next one
+                </ListItem>
+              </>
+            ) : (
+              <>
+                <ListItem>Codes are now <Strong>5 characters</Strong> (older 6-character codes still work)</ListItem>
+                <ListItem>Make sure the host hasn't closed the room or started the game</ListItem>
+              </>
+            )}
             <ListItem>Check your internet connection</ListItem>
           </UnorderedList>
         )
