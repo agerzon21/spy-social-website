@@ -1,7 +1,8 @@
 import { Box, Text, VStack, Container, Flex, Icon, Image, HStack } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo, type ReactNode } from 'react'
+import { IoDesktopOutline } from 'react-icons/io5'
 import screenshot1 from '../assets/screenshots/1.webp'
 import screenshot2 from '../assets/screenshots/2.webp'
 import screenshot3 from '../assets/screenshots/3.webp'
@@ -9,6 +10,9 @@ import screenshot4 from '../assets/screenshots/4.webp'
 import screenshot5 from '../assets/screenshots/5.webp'
 import screenshot6 from '../assets/screenshots/6.webp'
 import Wordmark from './Wordmark'
+import { LIVE } from '../lib/legalRelease'
+import { currentPlatform } from '../lib/platform'
+import { PLAY_URL } from '../lib/playUrl'
 
 const MotionBox = motion(Box)
 const MotionImage = motion(Image)
@@ -138,7 +142,62 @@ const GooglePlayIcon = () => (
   </svg>
 )
 
+// One download / play badge, the official "black badge" look. Store badges open in a new tab; the
+// browser version opens in this one (sameTab).
+const HeroBadge = ({
+  href,
+  icon,
+  small,
+  big,
+  sameTab = false,
+}: {
+  href: string
+  icon: ReactNode
+  small: string
+  big: string
+  sameTab?: boolean
+}) => (
+  <Box
+    as="a"
+    href={href}
+    {...(sameTab ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+    display="inline-flex"
+    alignItems="center"
+    justifyContent="center"
+    bg="black"
+    color="white"
+    borderRadius="xl"
+    w="180px"
+    h="54px"
+    borderWidth="1px"
+    borderColor="whiteAlpha.200"
+    _hover={{
+      borderColor: "whiteAlpha.300",
+      transform: "translateY(-1px)",
+      boxShadow: "0 6px 16px rgba(0,0,0,0.3)",
+    }}
+    transition="all 0.2s"
+  >
+    <Flex alignItems="center" px={4} gap={3}>
+      <Box flexShrink={0} display="flex" alignItems="center">
+        {icon}
+      </Box>
+      <Flex direction="column" align="flex-start">
+        <Text fontSize="10px" fontWeight="normal" lineHeight="1" mb={0.5}>
+          {small}
+        </Text>
+        <Text fontSize="md" fontWeight="600" lineHeight="1">
+          {big}
+        </Text>
+      </Flex>
+    </Flex>
+  </Box>
+)
+
 const Hero = () => {
+  // The browser version, on a computer once it's live (LIVE.browserVersion); phones get the stores.
+  const showBrowser = useMemo(() => LIVE.browserVersion && currentPlatform() === 'desktop', [])
+
   return (
     <Box
       as="section"
@@ -286,78 +345,28 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               pt={2}
             >
-              <Flex gap={3} direction={{ base: "column", sm: "row" }} align={{ base: "center", md: "start" }}>
-                <Box
-                  as="a"
+              <Flex gap={3} direction={{ base: "column", sm: "row" }} align={{ base: "center", md: "start" }} flexWrap="wrap">
+                <HeroBadge
                   href="https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  display="inline-flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  bg="black"
-                  color="white"
-                  borderRadius="xl"
-                  w="180px"
-                  h="54px"
-                  borderWidth="1px"
-                  borderColor="whiteAlpha.200"
-                  _hover={{
-                    borderColor: "whiteAlpha.300",
-                    transform: "translateY(-1px)",
-                    boxShadow: "0 6px 16px rgba(0,0,0,0.3)",
-                  }}
-                  transition="all 0.2s"
-                >
-                  <Flex alignItems="center" px={4} gap={3}>
-                    <Icon as={FaApple} boxSize={7} />
-                    <Flex direction="column" align="flex-start">
-                      <Text fontSize="10px" fontWeight="normal" lineHeight="1" mb={0.5}>
-                        Download on the
-                      </Text>
-                      <Text fontSize="md" fontWeight="600" lineHeight="1">
-                        App Store
-                      </Text>
-                    </Flex>
-                  </Flex>
-                </Box>
-
-                <Box
-                  as="a"
+                  icon={<Icon as={FaApple} boxSize={7} />}
+                  small="Download on the"
+                  big="App Store"
+                />
+                <HeroBadge
                   href="https://play.google.com/store/apps/details?id=com.gerz.spysocial"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  display="inline-flex"
-                  alignItems="center"
-                  justifyContent="center"
-                  bg="black"
-                  color="white"
-                  borderRadius="xl"
-                  w="180px"
-                  h="54px"
-                  borderWidth="1px"
-                  borderColor="whiteAlpha.200"
-                  _hover={{
-                    borderColor: "whiteAlpha.300",
-                    transform: "translateY(-1px)",
-                    boxShadow: "0 6px 16px rgba(0,0,0,0.3)",
-                  }}
-                  transition="all 0.2s"
-                >
-                  <Flex alignItems="center" px={4} gap={3}>
-                    <Box flexShrink={0} display="flex" alignItems="center">
-                      <GooglePlayIcon />
-                    </Box>
-                    <Flex direction="column" align="flex-start">
-                      <Text fontSize="10px" fontWeight="normal" lineHeight="1" mb={0.5}>
-                        GET IT ON
-                      </Text>
-                      <Text fontSize="md" fontWeight="600" lineHeight="1">
-                        Google Play
-                      </Text>
-                    </Flex>
-                  </Flex>
-                </Box>
+                  icon={<GooglePlayIcon />}
+                  small="GET IT ON"
+                  big="Google Play"
+                />
+                {showBrowser && (
+                  <HeroBadge
+                    href={PLAY_URL}
+                    icon={<Icon as={IoDesktopOutline} boxSize={6} />}
+                    small="Play in your"
+                    big="Browser"
+                    sameTab
+                  />
+                )}
               </Flex>
             </MotionBox>
           </VStack>

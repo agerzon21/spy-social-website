@@ -1,9 +1,10 @@
 import { Box, Container, Heading, Text, VStack, Button, HStack } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
-import { IoLogoGooglePlaystore } from 'react-icons/io5'
+import { IoDesktopOutline, IoLogoGooglePlaystore } from 'react-icons/io5'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useMemo } from 'react'
 import { currentPlatform } from '../lib/platform'
+import { playJoinUrl } from '../lib/playUrl'
 
 const APP_STORE_URL = 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390'
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.gerz.spysocial'
@@ -18,11 +19,15 @@ const Join = () => {
   const passcode = (searchParams.get('p') ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12)
   const displayCode = passcode || code.toUpperCase()
   const appLink = `spysocial://join/${encodeURIComponent(code)}${passcode ? `?p=${encodeURIComponent(passcode)}` : ''}`
+  // A friend on a computer: the same room in the browser version (code and ?p=), once LIVE.browserVersion is on.
+  const webLink = playJoinUrl(code, passcode)
 
   // iPadOS Safari says "Macintosh" (desktop-class browsing): lib/platform tells it by touch (QA F207).
   const platform = useMemo(currentPlatform, [])
 
   const isMobile = platform === 'ios' || platform === 'android'
+  // The store buttons step back (outlined) when something above them is the main way in.
+  const storesSecondary = isMobile || (platform === 'desktop' && !!webLink)
 
   // On mobile, try to open the app immediately via the custom scheme.
   // If the universal/app link matched, the OS would have handed off to the app
@@ -47,9 +52,11 @@ const Join = () => {
               Join Game
             </Heading>
             <Text color="whiteAlpha.700" fontSize="lg">
-              {code
-                ? 'Open SpySocial to join the room'
-                : 'No room code provided'}
+              {!code
+                ? 'No room code provided'
+                : platform === 'desktop' && webLink
+                  ? 'Play in your browser, or on your phone with the app'
+                  : 'Open SpySocial to join the room'}
             </Text>
           </VStack>
 
@@ -80,6 +87,24 @@ const Join = () => {
           )}
 
           <VStack spacing={4} align="stretch">
+            {platform === 'desktop' && webLink && (
+              <Button
+                as="a"
+                href={webLink}
+                size="lg"
+                height="56px"
+                bg="white"
+                color="black"
+                fontWeight="600"
+                _hover={{ bg: 'whiteAlpha.900' }}
+              >
+                <HStack spacing={3}>
+                  <IoDesktopOutline size={22} />
+                  <Text>Play in Your Browser</Text>
+                </HStack>
+              </Button>
+            )}
+
             {isMobile && code && (
               <Button
                 size="lg"
@@ -102,12 +127,12 @@ const Join = () => {
                 rel="noopener noreferrer"
                 size="lg"
                 height="56px"
-                bg={platform === 'ios' ? 'whiteAlpha.100' : 'white'}
-                color={platform === 'ios' ? 'white' : 'black'}
-                borderWidth={platform === 'ios' ? '1px' : '0'}
+                bg={storesSecondary ? 'whiteAlpha.100' : 'white'}
+                color={storesSecondary ? 'white' : 'black'}
+                borderWidth={storesSecondary ? '1px' : '0'}
                 borderColor="whiteAlpha.300"
                 fontWeight="600"
-                _hover={{ bg: platform === 'ios' ? 'whiteAlpha.200' : 'whiteAlpha.900' }}
+                _hover={{ bg: storesSecondary ? 'whiteAlpha.200' : 'whiteAlpha.900' }}
               >
                 <HStack spacing={3}>
                   <FaApple size={22} />
@@ -126,12 +151,12 @@ const Join = () => {
                 rel="noopener noreferrer"
                 size="lg"
                 height="56px"
-                bg={platform === 'android' ? 'whiteAlpha.100' : 'white'}
-                color={platform === 'android' ? 'white' : 'black'}
-                borderWidth={platform === 'android' ? '1px' : '0'}
+                bg={storesSecondary ? 'whiteAlpha.100' : 'white'}
+                color={storesSecondary ? 'white' : 'black'}
+                borderWidth={storesSecondary ? '1px' : '0'}
                 borderColor="whiteAlpha.300"
                 fontWeight="600"
-                _hover={{ bg: platform === 'android' ? 'whiteAlpha.200' : 'whiteAlpha.900' }}
+                _hover={{ bg: storesSecondary ? 'whiteAlpha.200' : 'whiteAlpha.900' }}
               >
                 <HStack spacing={3}>
                   <IoLogoGooglePlaystore size={22} />

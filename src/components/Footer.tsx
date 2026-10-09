@@ -1,12 +1,18 @@
 import { Box, Container, Link as ChakraLink, Text, Flex, HStack } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
-import { ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
+import { useMemo } from 'react'
+import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
+import { currentPlatform } from '../lib/platform'
+import { PLAY_URL } from '../lib/playUrl'
 
 interface FooterProps {
   sticky?: boolean
 }
 
 const Footer = ({ sticky = false }: FooterProps) => {
+  // The browser version, on a computer once it's live (LIVE.browserVersion); phones keep the app.
+  const showBrowser = useMemo(() => LIVE.browserVersion && currentPlatform() === 'desktop', [])
+
   return (
     <Box
       as="footer"
@@ -28,6 +34,9 @@ const Footer = ({ sticky = false }: FooterProps) => {
           gap={3}
         >
           <HStack spacing={5} flexWrap="wrap" justify="center">
+            {showBrowser && (
+              <ChakraLink href={PLAY_URL} fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Play in Your Browser</ChakraLink>
+            )}
             <ChakraLink as={RouterLink} to="/whats-new" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">What's New</ChakraLink>
             <ChakraLink as={RouterLink} to="/privacy" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Privacy</ChakraLink>
             <ChakraLink as={RouterLink} to="/terms" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Terms</ChakraLink>
