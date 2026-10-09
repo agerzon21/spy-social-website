@@ -86,7 +86,8 @@ const Privacy: React.FC = () => {
           <H2>Introduction</H2>
           <P>
             Welcome to SpySocial ("we," "our," or "us"). We respect your privacy and are committed to protecting your
-            personal data. This privacy policy explains how we handle your personal information when you use our app and
+            personal data. This privacy policy explains how we handle your personal information when you use our app
+            {PRIVACY.browserVersion ? ' (on your phone, or in a browser at play.spysocial.app, the browser version)' : ''} and
             our website, spysocial.app, and tells you about your privacy rights.
             {OPERATOR.name
               ? ` SpySocial is run by ${OPERATOR.name}${OPERATOR.address ? `, ${OPERATOR.address}` : ''}, who is responsible for your personal data (the "controller").`
@@ -151,7 +152,11 @@ const Privacy: React.FC = () => {
             <Item label="Voice Input">
               When you use the microphone to say a chat message, a question or an answer, Apple's or Google's speech
               recognition on your device turns what you say into text, and may send the recording to Apple or Google to
-              do this, under their privacy policies. We receive only the text you choose to send, never the audio.
+              do this, under their privacy policies.
+              {PRIVACY.browserVersion
+                ? " In the browser version, your browser's own speech recognition does this, where the browser has it, and the browser's maker (for example Google in Chrome, Microsoft in Edge, Apple in Safari) may receive the recording, under its privacy policy."
+                : ''}{' '}
+              We receive only the text you choose to send, never the audio.
             </Item>
             <Item label="Translations">
               When you tap Translate on a message, the app asks our translation service, which sends the text to
@@ -288,6 +293,9 @@ const Privacy: React.FC = () => {
                 seconds), with the same details; the app sends nothing to Sentry while everything works. Sentry
                 receives your device's IP address when a report arrives but is set not to store it, and deletes reports
                 within 90 days.
+                {PRIVACY.browserVersion
+                  ? ' A report from the browser version names your browser, its version and your operating system instead of the device details, and carries no installation ID.'
+                  : ''}
               </Item>
             )}
             {PRIVACY.qrScanner && (
@@ -308,15 +316,35 @@ const Privacy: React.FC = () => {
               </Item>
             )}
             <Item label="Device Information">
-              Your device's platform (iOS or Android) and the version of the app, which the app sends with its requests so
-              our servers can work with every version of the app.
+              Your device's platform (iOS or Android{PRIVACY.browserVersion ? ', or web for the browser version' : ''}) and
+              the version of the app, which the app sends with its requests so our servers can work with every version of
+              the app.
             </Item>
+            {PRIVACY.browserVersion && (
+              <Item label="Your Browser">
+                The browser version keeps your sign-in and your choices on that computer (such as your language and the
+                tips you've seen) in your browser's storage, and while you're signed in, some game data so it loads
+                quickly (such as recent room codes and other players' avatars). Signing out removes your sign-in and that
+                game data from the browser; your choices stay until you clear the browser's data. It uses no cookies, and
+                we don't use your browser's storage for advertising or tracking.
+              </Item>
+            )}
             <Item label="IP Address">
               Our servers and service providers see your device's IP address whenever the app connects to them, as any
               internet service does. Our sign-in service keeps the IP address and user agent (a short description of the
               app and device making the request) of each signed-in session, to protect your account, until the session
               ends when you sign out or delete your account. To check that it's online, the app contacts our servers now and then; on iPhones it also contacts
               Google (clients3.google.com), which receives your device's IP address and nothing else about you.
+              {PRIVACY.fairPlaySignals ? (
+                <>
+                  {' '}To keep public games fair, when you join a room, watch a game, search Play Online or play, we keep a coded form of
+                  your network (your IP address, or for IPv6 its first half), made with a key that changes daily and is
+                  deleted when the day ends; we never store the address. We use it only to notice several accounts playing
+                  from one network: to avoid seating them at the same Play Online table, for our experience-point rules on
+                  alternate accounts, and for moderation reviews. Codes are kept 14 days; the record that two accounts in a
+                  game shared a network, 30 days.
+                </>
+              ) : null}
             </Item>
             <Item label="Signed Agreements">
               If you sign an agreement with SpySocial on our website (for example a creator or partner agreement), we
@@ -364,7 +392,8 @@ const Privacy: React.FC = () => {
             <Item label="Consent">
               For your device's permissions (the microphone and speech recognition
               {PRIVACY.notifications ? ', notifications' : ''}
-              {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings.
+              {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings
+              {PRIVACY.browserVersion ? " (in the browser version, in your browser's settings for the site)" : ''}.
             </Item>
             <Item label="Legal Obligations">
               To comply with the law, for example to answer lawful requests and to report child sexual exploitation.
@@ -460,7 +489,12 @@ const Privacy: React.FC = () => {
                 password resets, so it receives your email address and the email it delivers.
               </Item>
             )}
-            <Item label="Vercel">(https://vercel.com) Hosts our website, spysocial.app, and receives the IP address of its visitors.</Item>
+            <Item label="Vercel">
+              (https://vercel.com) Hosts our website, spysocial.app,
+              {PRIVACY.browserVersion
+                ? ' and the browser version of the game, play.spysocial.app, and receives the IP address of their visitors.'
+                : ' and receives the IP address of its visitors.'}
+            </Item>
             <Item label="ImprovMX and Google">
               Email you send to support@spysocial.app is forwarded by ImprovMX and read in Google's Gmail.
             </Item>

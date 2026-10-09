@@ -131,8 +131,10 @@ const Terms: React.FC = () => {
           <H2>3. Your Account</H2>
           <H3>Guests and saved accounts</H3>
           <P>
-            You can play as a guest without giving us an email address. A guest account lives on your device: signing
-            out of it deletes it for good, and you may lose it if you delete the app or lose your device. To keep your
+            You can play as a guest without giving us an email address. A guest account lives on your device
+            {LIVE.browserVersion ? ' (in the browser version, in that browser)' : ''}: signing out of it deletes it for
+            good, and you may lose it if you delete the app{LIVE.browserVersion ? ", clear your browser's data" : ''} or
+            lose your device. To keep your
             name, progress and packs on any device, save your account with an email address and a password
             {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Public rooms and events need a saved
             account with a confirmed email address.
@@ -420,7 +422,11 @@ const Terms: React.FC = () => {
           <H3>Voice input</H3>
           <P>
             If you use the microphone, Apple's or Google's speech recognition turns what you say into text under their
-            terms, and may send the recording to Apple or Google to do this. We receive only the text.
+            terms, and may send the recording to Apple or Google to do this.
+            {LIVE.browserVersion
+              ? " In the browser version, your browser's own speech recognition does it, under the terms of the browser's maker, who may receive the recording."
+              : ''}{' '}
+            We receive only the text.
           </P>
           <H3>Other services</H3>
           <P>
