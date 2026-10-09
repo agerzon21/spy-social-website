@@ -240,7 +240,7 @@ export const LIVE = {
    * switch for every app version at once (what the server sends, whatever app reads it): set in LIVE, never in
    * PRIVACY_AHEAD.
    */
-  agentColoursPhase2: false,
+  agentColoursPhase2: true,
   /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
