@@ -242,6 +242,24 @@ export const LIVE = {
    */
   agentColoursPhase2: true,
   /**
+   * The browser version (play.spysocial.app, the app repo's web branch) open to players, the closed beta included.
+   * Turns on the site's ways in (Play in Your Browser on /join/<code> on a computer, on the home page on a computer,
+   * and in the footer; lib/playUrl) and its legal text: Privacy (the browser's storage, platform "web", the
+   * browser's own speech recognition, crash reports from a browser, Vercel hosting it) and the Terms (a guest
+   * account in a browser). The browser version keeps the sign-in and the device's choices (language, the tour,
+   * tips) in localStorage, and while signed in some game data (recent room codes, other players' avatars, drafts,
+   * notices seen); sign-out removes the session and that game data (app lib/webPlatform BROWSER_ACCOUNT_KEYS), the
+   * choices stay. Requests say platform=web (lib/clientInfo). Flip when players are let in, and set
+   * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED to that day. VITE_PLAY_URL (Vercel env) can point the links
+   * elsewhere (a preview); unset, they go to https://play.spysocial.app. Not ahead-safe: it changes the Terms too.
+   */
+  browserVersion: false,
+  /**
+   * The fair-play network codes recorded (migration 20261006480200_web_fair_play_signals, app_config
+   * fair_play.record true): a keyed, daily-rotated code of the network, never the address.
+   */
+  fairPlaySignals: false,
+  /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -272,7 +290,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * Terms, the Rules and the FAQ, which wait for the launch), photosRemoved (says the photos are deleted), oldAppsInUse
  * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (a server switch for every
  * app version at once: set in LIVE to what the translate function does, 'off' since the submission day), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
- * (says other players no longer see things; a server switch, set in LIVE), scheduledRetention,
+ * (says other players no longer see things; a server switch, set in LIVE), browserVersion (changes the Terms too and
+ * turns on the site's links to the browser version) and fairPlaySignals (a server switch), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
