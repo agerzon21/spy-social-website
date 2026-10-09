@@ -122,6 +122,14 @@ const Privacy: React.FC = () => {
               fairly. A game's drawing, including lines a player drew and then undid, is deleted 24 hours after the game
               ends in a private room, or 14 days after in a public room; a record of which player drew each turn is kept for 90 days so reports can be checked. When you leave a room or are removed from one, we note for 24 hours how your place in it ended (you left, the host removed you, or the game did), so your other devices can tell you what happened.
             </Item>
+            <Item label="Mini-Game">
+              Players who are out of a game can play a mini-game, Night Glide, while the game goes on. For each game, we
+              store your best Night Glide score with the game, how many scores you sent and when, so we can show the best
+              scores and check that a score could be reached in the time you played. A Call It pick (a player who is out
+              naming the player they think is a spy) is also kept with the game; nobody else can see it until the game is
+              over. Some scores and correct Call It picks earn achievements, and some achievements unlock cosmetic
+              rewards.
+            </Item>
             {PRIVACY.playOnline && (
               <Item label="Play Online">
                 When you use Play Online, our servers keep what you searched for (Spy Talk or Spy Sketch, the table size,
@@ -489,15 +497,33 @@ const Privacy: React.FC = () => {
             We do not sell your personal information or share it for targeted advertising. At Play Online tables and game
             nights (public play), other players see you as an agent named after your color (for example, "Agent Blue"),
             never by your display name; your display name is shown only in private rooms. Other players in your room see
-            your display name (private rooms) or agent name (public play), username, {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
+            your display name (private rooms) or agent name (public play), username
+            {PRIVACY.agentColoursPhase2 ? ' (in public play too, including during a game)' : ''},{' '}
+            {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
             (including a membership badge) and achievements,
             {/* One pool: no language badges; versions before 2.2 show the language a room is played in. */}
             {PRIVACY.oldAppsInUse ? ' the language you play in,' : ''} whether you've stepped away (and
-            for how long), and the messages you send there. Someone who opens a room's link or code while a Spy Sketch game
-            is running can watch it until the next game: they see the same things, the drawing and the room's chat, but
-            never a role or the secret word before every player can see it, or anyone's vote.{' '}
+            for how long), and the messages you send there.
+            {/* Agent Colours phase 2: get_my_game_view and get_watch_view send a pre-2.2 photo only to its owner at public tables. */}
+            {PRIVACY.agentColoursPhase2 &&
+              photosInUse(PRIVACY) &&
+              ' A profile photo added with a version of the app before 2.2 is never shown to other players at Play Online tables or game nights; only private rooms show it.'}{' '}
+            Someone who opens a room's link or code while a Spy Sketch game
+            is running can watch it until the next game: they see the same things
+            {PRIVACY.agentColoursPhase2
+              ? ' the players do (in public play, agent names and usernames, never a display name or profile photo)'
+              : ''}
+            , the drawing and the room's chat, but
+            never a role or the secret word before every player can see it, or anyone's vote.
+            {PRIVACY.agentColoursPhase2 &&
+              " In a private room, the players see who is watching by display name; in public play, they see only how many people are watching and an agent name for each."}{' '}
+            When you play the mini-game, players who are out of that game and, once it's over, everyone who played it see
+            the game's best score and the room's best score ever, with the name of the player who set it: their display
+            name in private rooms, and in public play their agent name (or "A player" if they weren't in that game).{' '}
             Private rooms that aren't locked, whether waiting for players or playing a game, and game nights, are listed
             for all players with their hosts' display names and avatars (a private room still needs its code to join).
+            {PRIVACY.agentColoursPhase2 &&
+              ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosInUse(PRIVACY) ? ', with no profile photo' : ''}.`}
             {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}{' '}
             Reports are
             reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.

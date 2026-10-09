@@ -20,7 +20,7 @@ export const deletedSummary = (): string =>
     'your email address and password',
     PRIVACY.socialSignIn ? 'the Apple or Google sign-in linked to your account' : null,
     namesAndPicture(),
-    'your stats, XP, levels and achievements',
+    'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
     'your game-night history and rewards',
     PRIVACY.purchases ? 'the purchases linked to your account (such as packs, avatar items and memberships)' : null,
     'the players you blocked, and the warnings, mutes and bans on your account',
