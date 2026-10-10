@@ -242,18 +242,32 @@ export const LIVE = {
    */
   agentColoursPhase2: true,
   /**
-   * The browser version (play.spysocial.app, the app repo's web branch) open to players, the closed beta included.
-   * Turns on the site's ways in (Play in Your Browser on /join/<code> on a computer, on the home page on a computer,
-   * and in the footer; lib/playUrl) and its legal text: Privacy (the browser's storage, platform "web", the
-   * browser's own speech recognition, crash reports from a browser, Vercel hosting it) and the Terms (a guest
-   * account in a browser). The browser version keeps the sign-in and the device's choices (language, the tour,
-   * tips) in localStorage, and while signed in some game data (recent room codes, other players' avatars, drafts,
-   * notices seen); sign-out removes the session and that game data (app lib/webPlatform BROWSER_ACCOUNT_KEYS), the
-   * choices stay. Requests say platform=web (lib/clientInfo). Flip when players are let in, and set
-   * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED to that day. VITE_PLAY_URL (Vercel env) can point the links
-   * elsewhere (a preview); unset, they go to https://play.spysocial.app. Not ahead-safe: it changes the Terms too.
+   * The browser version (play.spysocial.app, the app repo's web branch) open to everyone for an account: anyone can
+   * sign in or make a guest there and use the account side (Account, the agent, colours, settings, language, Delete
+   * Account, How to Play, the Shop, the rules). Playing in it (rooms, Play Online, game nights, watching) is a separate
+   * gate: invite-only while the server's web_beta gate is on (app lib/webBeta, components/web/WebPlayGuard; everyone
+   * else sees "Browser Play Coming Soon"). Turns on the legal text: Privacy (the browser version named in the
+   * introduction, the browser's storage, platform "web", the browser's own speech recognition when someone plays in
+   * the browser, crash reports from a browser, the microphone permission in the browser's settings, Vercel hosting
+   * play.spysocial.app) and the Terms (a guest account in a browser, the browser's speech recognition when someone
+   * plays in the browser). The browser version keeps the sign-in and the device's choices (language, the tour, tips)
+   * in localStorage, and while signed in some game data (recent room codes, other players' avatars, drafts, notices
+   * seen); sign-out removes the session and that game data (app lib/webPlatform BROWSER_ACCOUNT_KEYS), the choices
+   * stay. Requests say platform=web (lib/clientInfo). On since 2026-10-10 (the account side opened to everyone that
+   * day; LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED set to it). Off only if the browser version closes to players
+   * again. Not ahead-safe: it changes the Terms too.
    */
-  browserVersion: false,
+  browserLegal: true,
+  /**
+   * The site's ways into the browser version: Play in Your Browser on /join/<code> on a computer, the home page's
+   * badge on a computer, and the footer link (lib/playUrl, components/Hero, components/Footer, pages/Join). Off while
+   * playing in the browser is invite-only (owner 2026-10-10: the links wait until browser play opens to everyone).
+   * Flip when the server's web_beta gate goes off (every account can play in a browser). No legal text reads it, so
+   * flipping it alone changes no Last Updated date; check that the Privacy and Terms text under browserLegal still
+   * fits open play then. VITE_PLAY_URL (Vercel env) can point the links elsewhere (a preview); unset, they go to
+   * https://play.spysocial.app.
+   */
+  browserLinks: false,
   /**
    * The fair-play network codes recorded (migration 20261006480200_web_fair_play_signals, app_config
    * fair_play.record true): a keyed, daily-rotated code of the network, never the address.
@@ -290,8 +304,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * Terms, the Rules and the FAQ, which wait for the launch), photosRemoved (says the photos are deleted), oldAppsInUse
  * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (a server switch for every
  * app version at once: set in LIVE to what the translate function does, 'off' since the submission day), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
- * (says other players no longer see things; a server switch, set in LIVE), browserVersion (changes the Terms too and
- * turns on the site's links to the browser version) and fairPlaySignals (a server switch), scheduledRetention,
+ * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
+ * in LIVE), browserLinks (the site's links to the browser version, no legal text) and fairPlaySignals (a server switch), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
@@ -366,13 +380,13 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  * "Last Updated" on the Terms, the Community Rules and the Safety page, and (through PRIVACY_LAST_UPDATED) on the
  * Privacy Policy and Delete Account: the day a change is published.
  */
-export const LEGAL_LAST_UPDATED = 'October 7, 2026'
+export const LEGAL_LAST_UPDATED = 'October 10, 2026'
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October 9, 2026'
+export const PRIVACY_LAST_UPDATED: string = 'October 10, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

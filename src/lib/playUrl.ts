@@ -1,6 +1,6 @@
 /**
  * The browser version of SpySocial (play.spysocial.app): where the site's
- * "Play in Your Browser" links go, once LIVE.browserVersion is on.
+ * "Play in Your Browser" links go, once LIVE.browserLinks is on.
  *
  * VITE_PLAY_URL (the website's Vercel env, read at build time) can point the
  * links at another origin, such as a preview deploy. Only an https origin is
@@ -28,6 +28,6 @@ export const PLAY_URL: string = (() => {
  * the browser version is off or without a code.
  */
 export function playJoinUrl(code: string, passcode = ''): string | null {
-  if (!LIVE.browserVersion || !code) return null
+  if (!LIVE.browserLinks || !code) return null
   return `${PLAY_URL}/join/${encodeURIComponent(code)}${passcode ? `?p=${encodeURIComponent(passcode)}` : ''}`
 }

@@ -10,8 +10,8 @@ interface FooterProps {
 }
 
 const Footer = ({ sticky = false }: FooterProps) => {
-  // The browser version, on a computer once it's live (LIVE.browserVersion); phones keep the app.
-  const showBrowser = useMemo(() => LIVE.browserVersion && currentPlatform() === 'desktop', [])
+  // The browser version, on a computer once it's live (LIVE.browserLinks); phones keep the app.
+  const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
 
   return (
     <Box
