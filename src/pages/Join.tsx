@@ -19,7 +19,7 @@ const Join = () => {
   const passcode = (searchParams.get('p') ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12)
   const displayCode = passcode || code.toUpperCase()
   const appLink = `spysocial://join/${encodeURIComponent(code)}${passcode ? `?p=${encodeURIComponent(passcode)}` : ''}`
-  // A friend on a computer: the same room in the browser version (code and ?p=), once LIVE.browserVersion is on.
+  // A friend on a computer: the same room in the browser version (code and ?p=), once LIVE.browserLinks is on.
   const webLink = playJoinUrl(code, passcode)
 
   // iPadOS Safari says "Macintosh" (desktop-class browsing): lib/platform tells it by touch (QA F207).

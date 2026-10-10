@@ -195,8 +195,8 @@ const HeroBadge = ({
 )
 
 const Hero = () => {
-  // The browser version, on a computer once it's live (LIVE.browserVersion); phones get the stores.
-  const showBrowser = useMemo(() => LIVE.browserVersion && currentPlatform() === 'desktop', [])
+  // The browser version, on a computer once it's live (LIVE.browserLinks); phones get the stores.
+  const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
 
   return (
     <Box

@@ -87,7 +87,7 @@ const Privacy: React.FC = () => {
           <P>
             Welcome to SpySocial ("we," "our," or "us"). We respect your privacy and are committed to protecting your
             personal data. This privacy policy explains how we handle your personal information when you use our app
-            {PRIVACY.browserVersion ? ' (on your phone, or in a browser at play.spysocial.app, the browser version)' : ''} and
+            {PRIVACY.browserLegal ? ' (on your phone, or in a browser at play.spysocial.app, the browser version)' : ''} and
             our website, spysocial.app, and tells you about your privacy rights.
             {OPERATOR.name
               ? ` SpySocial is run by ${OPERATOR.name}${OPERATOR.address ? `, ${OPERATOR.address}` : ''}, who is responsible for your personal data (the "controller").`
@@ -153,8 +153,8 @@ const Privacy: React.FC = () => {
               When you use the microphone to say a chat message, a question or an answer, Apple's or Google's speech
               recognition on your device turns what you say into text, and may send the recording to Apple or Google to
               do this, under their privacy policies.
-              {PRIVACY.browserVersion
-                ? " In the browser version, your browser's own speech recognition does this, where the browser has it, and the browser's maker (for example Google in Chrome, Microsoft in Edge, Apple in Safari) may receive the recording, under its privacy policy."
+              {PRIVACY.browserLegal
+                ? " When you play in the browser version, your browser's own speech recognition does this instead, where the browser has it, and the browser's maker (for example Google in Chrome, Microsoft in Edge, Apple in Safari) may receive the recording, under its privacy policy."
                 : ''}{' '}
               We receive only the text you choose to send, never the audio.
             </Item>
@@ -293,7 +293,7 @@ const Privacy: React.FC = () => {
                 seconds), with the same details; the app sends nothing to Sentry while everything works. Sentry
                 receives your device's IP address when a report arrives but is set not to store it, and deletes reports
                 within 90 days.
-                {PRIVACY.browserVersion
+                {PRIVACY.browserLegal
                   ? ' A report from the browser version names your browser, its version and your operating system instead of the device details, and carries no installation ID.'
                   : ''}
               </Item>
@@ -316,15 +316,15 @@ const Privacy: React.FC = () => {
               </Item>
             )}
             <Item label="Device Information">
-              Your device's platform (iOS or Android{PRIVACY.browserVersion ? ', or web for the browser version' : ''}) and
+              Your device's platform (iOS or Android{PRIVACY.browserLegal ? ', or web for the browser version' : ''}) and
               the version of the app, which the app sends with its requests so our servers can work with every version of
               the app.
             </Item>
-            {PRIVACY.browserVersion && (
+            {PRIVACY.browserLegal && (
               <Item label="Your Browser">
                 The browser version keeps your sign-in and your choices on that computer (such as your language and the
                 tips you've seen) in your browser's storage, and while you're signed in, some game data so it loads
-                quickly (such as recent room codes and other players' avatars). Signing out removes your sign-in and that
+                quickly (such as recent room codes and, once you play, other players' avatars). Signing out removes your sign-in and that
                 game data from the browser; your choices stay until you clear the browser's data. It uses no cookies, and
                 we don't use your browser's storage for advertising or tracking.
               </Item>
@@ -393,7 +393,7 @@ const Privacy: React.FC = () => {
               For your device's permissions (the microphone and speech recognition
               {PRIVACY.notifications ? ', notifications' : ''}
               {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings
-              {PRIVACY.browserVersion ? " (in the browser version, in your browser's settings for the site)" : ''}.
+              {PRIVACY.browserLegal ? " (in the browser version, in your browser's settings for the site)" : ''}.
             </Item>
             <Item label="Legal Obligations">
               To comply with the law, for example to answer lawful requests and to report child sexual exploitation.
@@ -491,7 +491,7 @@ const Privacy: React.FC = () => {
             )}
             <Item label="Vercel">
               (https://vercel.com) Hosts our website, spysocial.app,
-              {PRIVACY.browserVersion
+              {PRIVACY.browserLegal
                 ? ' and the browser version of the game, play.spysocial.app, and receives the IP address of their visitors.'
                 : ' and receives the IP address of its visitors.'}
             </Item>
