@@ -4,3 +4,4 @@ export { default as Footer } from './Footer';
 export { default as Layout } from './Layout';
 export { default as PageBackground } from './PageBackground';
 export { default as Wordmark } from './Wordmark';
+export { default as SocialLinks } from './SocialLinks';

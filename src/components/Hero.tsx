@@ -258,7 +258,7 @@ const Hero = () => {
       {/* Radar rings + crosshair detail */}
       <RadarBackdrop />
 
-      <Container maxW="container.lg" py={{ base: 20, md: 0 }} pb={{ base: 24, md: 20 }} position="relative" zIndex={1}>
+      <Container maxW="container.lg" py={{ base: 20, md: 0 }} pb={{ base: '132px', md: 20 }} position="relative" zIndex={1}>
         <Flex
           direction={{ base: "column", md: "row" }}
           align="center"

@@ -1,6 +1,7 @@
 import { Box, Container, Heading, Text, VStack, Link as ChakraLink, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, UnorderedList, ListItem } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { LIVE } from '../lib/legalRelease'
+import SocialLinks from '../components/SocialLinks'
 
 interface FAQSection {
   title: string
@@ -274,6 +275,8 @@ const FAQ = () => {
             Need more help?{' '}
             <ChakraLink as={Link} to="/contact-us" color="blue.300" _hover={{ color: 'blue.200' }}>support@spysocial.app</ChakraLink>
           </Text>
+
+          <SocialLinks variant="list" />
         </VStack>
       </Container>
     </Box>

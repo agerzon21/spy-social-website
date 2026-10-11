@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
 import { PLAY_URL } from '../lib/playUrl'
+import SocialLinks from './SocialLinks'
 
 interface FooterProps {
   sticky?: boolean
@@ -50,9 +51,12 @@ const Footer = ({ sticky = false }: FooterProps) => {
             <ChakraLink as={RouterLink} to="/delete-account" fontSize="xs" _hover={{ color: 'whiteAlpha.700', textDecoration: 'none' }} transition="all 0.2s">Delete Account</ChakraLink>
           </HStack>
 
-          <Text fontSize="xs" color="whiteAlpha.300">
-            &copy; {new Date().getFullYear()} SpySocial. All rights reserved
-          </Text>
+          <Flex direction={{ base: 'column', lg: 'row' }} align="center" gap={{ base: 1, lg: 4 }}>
+            <SocialLinks />
+            <Text fontSize="xs" color="whiteAlpha.300" whiteSpace="nowrap">
+              &copy; {new Date().getFullYear()} SpySocial. All rights reserved
+            </Text>
+          </Flex>
         </Flex>
       </Container>
     </Box>
