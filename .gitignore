@@ -28,3 +28,6 @@ dist-ssr
 .env
 .env.*
 !.env.example
+
+# Extra branch checkouts (git worktree), kept inside the repo folder
+.worktrees/
