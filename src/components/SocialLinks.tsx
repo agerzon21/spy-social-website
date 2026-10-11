@@ -1,6 +1,6 @@
 import { HStack, Icon, Link as ChakraLink, Text, VStack } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
-import { FaInstagram, FaThreads, FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6'
+import { FaDiscord, FaInstagram, FaThreads, FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6'
 
 // Plain outbound links only: nothing is embedded and no third-party script or image loads, so the
 // CSP in vercel.json and the Privacy page need no change. The icons are inline SVG from react-icons.
@@ -11,13 +11,13 @@ interface SocialAccount {
   icon: IconType
 }
 
-// TODO(discord): add Discord (FaDiscord) once the server has a permanent invite link.
 const SOCIAL_ACCOUNTS: SocialAccount[] = [
   { name: 'Instagram', handle: '@spysocial.game', url: 'https://www.instagram.com/spysocial.game', icon: FaInstagram },
   { name: 'TikTok', handle: '@spysocial.game', url: 'https://www.tiktok.com/@spysocial.game', icon: FaTiktok },
   { name: 'YouTube', handle: '@SpySocialGame', url: 'https://www.youtube.com/@SpySocialGame', icon: FaYoutube },
   { name: 'X', handle: '@spysocialgame', url: 'https://x.com/spysocialgame', icon: FaXTwitter },
   { name: 'Threads', handle: '@spysocial.game', url: 'https://www.threads.com/@spysocial.game', icon: FaThreads },
+  { name: 'Discord', handle: 'SpySocial server', url: 'https://discord.gg/B8MG3xrV6f', icon: FaDiscord },
 ]
 
 const label = (a: SocialAccount) => `SpySocial on ${a.name}`
