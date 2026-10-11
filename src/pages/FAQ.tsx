@@ -1,6 +1,7 @@
 import { Box, Container, Heading, Text, VStack, Link as ChakraLink, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, UnorderedList, ListItem } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { LIVE } from '../lib/legalRelease'
+import SocialLinks from '../components/SocialLinks'
 
 // The FAQ describes the app in the stores. The 2.2 answers show from the launch: most follow LIVE.onePool, which
 // flips with the 2.2 release (its home, rooms and languages); the rest follow their own feature's switch.
@@ -353,6 +354,8 @@ const FAQ = () => {
             Need more help?{' '}
             <ChakraLink as={Link} to="/contact-us" color="blue.300" _hover={{ color: 'blue.200' }}>support@spysocial.app</ChakraLink>
           </Text>
+
+          <SocialLinks variant="list" />
         </VStack>
       </Container>
     </Box>

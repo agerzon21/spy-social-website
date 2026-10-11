@@ -4,6 +4,7 @@ import { FiCopy, FiCheck, FiMail } from 'react-icons/fi'
 import { FaApple } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useThemedToast } from '../lib/useThemedToast'
+import SocialLinks from '../components/SocialLinks'
 
 const Support = () => {
   const [copied, setCopied] = useState(false)
@@ -129,6 +130,8 @@ const Support = () => {
               </HStack>
             </Box>
           </VStack>
+
+          <SocialLinks variant="list" />
         </VStack>
       </Container>
     </Box>
