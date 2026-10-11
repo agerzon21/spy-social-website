@@ -178,7 +178,9 @@ const Privacy: React.FC = () => {
             <Item label="Usage Data">
               Simple events about how the app is used (for example which screens are opened and which features are used),
               recorded by our own servers and kept for 180 days. They contain no message text. We don't use third-party
-              analytics or advertising trackers.
+              analytics or advertising trackers. Until version 2.2's launch on November 10, 2026, we also use these events
+              and your device's platform to recognize saved accounts that used a test version of the app (on iPhone, Android
+              or the web) and give them a Beta Pin for their avatar as a thank-you; we keep only that the account has it.
             </Item>
             <Item label="Safety Information">
               Reports you make or that are made about you, players you block, removals from rooms, and any warnings,
