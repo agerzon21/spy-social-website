@@ -146,7 +146,7 @@ const Safety: React.FC = () => {
             </Step>
             <Step n={2} icon={FiSlash} title="Block">
               Long-press the player and tap <B>Block</B>. You won't see their chat, and neither of you can join a room the
-              other is in. They aren't told. You can unblock them any time in Account, under Blocked Players.
+              other is in. They aren't told. You can unblock them any time in Settings, under Privacy &amp; Safety: Blocked Players.
             </Step>
             <Step n={3} icon={FiFlag} title="Report">
               Long-press the player, or something they wrote in the chat, and tap <B>Report</B>. Pick what happened, add
@@ -290,8 +290,9 @@ const Safety: React.FC = () => {
               {LIVE.oldAppsInUse && ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)'}
             </ListItem>
             <ListItem>
-              Scroll to the <B>Danger Zone</B> and tap <B>Delete Account</B>. A guest account is deleted with <B>Sign Out</B>
-              instead (in Account, under Sign-In).
+              Tap <B>Settings</B> at the top right, then, under <B>Account &amp; Sign-In</B>, <B>Delete Account</B> (the last
+              row). A guest account is deleted with <B>Sign Out</B> instead, in the same place.
+              {LIVE.oldAppsInUse && ' (In versions before 2.2, Delete Account is in the Danger Zone at the bottom of Account.)'}
             </ListItem>
           </OrderedList>
           <P>
