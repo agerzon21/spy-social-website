@@ -55,8 +55,8 @@ const UkOnlineSafety = () => {
           the rules, and public chat refuses links, email addresses and phone numbers. Every chat message is kept on our
           servers for the times above, so a report comes with the words actually sent. Child Safety is an urgent report
           reason.{dc ? ' The drawing check takes a drawing that sexualizes a child off the board in any room.' : ''} We remove the content, ban the accounts involved, keep the evidence the law requires,
-          and report it to the National Center for Missing &amp; Exploited Children (NCMEC) or, where UK law requires,
-          to the UK's National Crime Agency.
+          and report it to the National Center for Missing &amp; Exploited Children (NCMEC), which passes reports linked
+          to the UK to the UK's National Crime Agency.
         </>,
       ],
     },

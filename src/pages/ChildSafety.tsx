@@ -177,9 +177,9 @@ const ChildSafety: React.FC = () => {
             </ListItem>
             <ListItem>We keep the evidence the law requires us to keep.</ListItem>
             <ListItem>
-              We report it to the National Center for Missing &amp; Exploited Children (NCMEC), as US law requires, or,
-              where UK law requires, to the UK's National Crime Agency. If we believe a child's life or safety is at risk,
-              we tell the police.
+              We report it to the National Center for Missing &amp; Exploited Children (NCMEC), as US law requires. NCMEC
+              passes reports linked to the UK to the UK's National Crime Agency, so we never report the same case twice.
+              If we believe a child's life or safety is at risk, we tell the police.
             </ListItem>
           </OrderedList>
 
