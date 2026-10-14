@@ -274,6 +274,17 @@ export const LIVE = {
    */
   fairPlaySignals: false,
   /**
+   * Player Stats (app fix/player-stats, migrations 20261028000000_game_stats_context and 20261028000100_get_my_stats):
+   * the server keeps each game's secret location or word and the kind of room with the game's record, and works out a
+   * player's own stats from their game records for the app's Stats screen (games, wins, roles, votes, calls, answers,
+   * guesses, time played, games per week). Members (Pack Pass or Lifetime, 13 and over) also get their most-played
+   * locations and words and a playstyle label worked out from their stats. Each player's stats go only to that player:
+   * never to other players, on player cards or in any list. Flip when the two migrations are applied live (the
+   * processing starts then, whatever app_config.player_stats says) and set PRIVACY_LAST_UPDATED to the day it goes up.
+   * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  playerStats: false,
+  /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -305,7 +316,7 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (a server switch for every
  * app version at once: set in LIVE to what the translate function does, 'off' since the submission day), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
  * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
- * in LIVE), browserLinks (the site's links to the browser version, no legal text) and fairPlaySignals (a server switch), scheduledRetention,
+ * in LIVE), browserLinks (the site's links to the browser version, no legal text), fairPlaySignals and playerStats (server switches), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */

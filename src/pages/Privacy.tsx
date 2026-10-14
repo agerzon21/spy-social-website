@@ -122,6 +122,8 @@ const Privacy: React.FC = () => {
               run the game, keep score, award experience points, levels and achievements, and check that games are played
               fairly. A game's drawing, including lines a player drew and then undid, is deleted 24 hours after the game
               ends in a private room, or 14 days after in a public room; a record of which player drew each turn is kept for 90 days so reports can be checked. When you leave a room or are removed from one, we note for 24 hours how your place in it ended (you left, the host removed you, or the game did), so your other devices can tell you what happened.
+              {PRIVACY.playerStats &&
+                " We also use your game records (each game's result, your role, your votes, vote calls, answers and guesses, how long you played, and the game's location or word) to show you your own stats in the app. If you're a member, you also see the locations and words that came up most in your games and a playstyle label worked out from your stats. Only you see your stats: we don't show them to other players or share them with anyone."}
             </Item>
             <Item label="Mini-Game">
               Players who are out of a game can play a mini-game, Night Glide, while the game goes on. For each game, we
