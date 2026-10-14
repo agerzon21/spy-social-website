@@ -99,7 +99,7 @@ const Privacy: React.FC = () => {
           <Bullets>
             <Item label="Account Information">
               {avatarsLive(PRIVACY)
-                ? 'Display name, username, the avatar you put together in the app from the parts it offers (and the avatar items you unlocked), and the email address you give when you save your account.'
+                ? 'Display name, username, the avatar you put together in the app from the parts it offers (and the avatar items, titles and borders you unlocked, and the title and border you choose to wear), and the email address you give when you save your account.'
                 : 'Display name, username, optional profile photo, and the email address you give when you save your account.'}
               {avatarsLive(PRIVACY) &&
                 photosInUse(PRIVACY) &&
@@ -542,7 +542,7 @@ const Privacy: React.FC = () => {
             your display name (private rooms) or agent name (public play), username
             {PRIVACY.agentColoursPhase2 ? ' (in public play too, including during a game)' : ''},{' '}
             {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
-            (including a membership badge) and achievements,
+            (including a membership badge), the title and border you wear, and achievements,
             {/* One pool: no language badges; versions before 2.2 show the language a room is played in. */}
             {PRIVACY.oldAppsInUse ? ' the language you play in,' : ''} whether you've stepped away (and
             for how long), and the messages you send there.
@@ -563,7 +563,7 @@ const Privacy: React.FC = () => {
             the game's best score and the room's best score ever, with the name of the player who set it: their display
             name in private rooms, and in public play their agent name (or "A player" if they weren't in that game).{' '}
             Private rooms that aren't locked, whether waiting for players or playing a game, and game nights, are listed
-            for all players with their hosts' display names and avatars (a private room still needs its code to join).
+            for all players with their hosts' display names, avatars and titles (a private room still needs its code to join).
             {PRIVACY.agentColoursPhase2 &&
               ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosInUse(PRIVACY) ? ', with no profile photo' : ''}.`}
             {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}{' '}
