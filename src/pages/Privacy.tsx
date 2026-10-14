@@ -432,7 +432,7 @@ const Privacy: React.FC = () => {
           </P>
           <Text fontSize="sm" lineHeight="1.8" color="whiteAlpha.800" fontWeight="500">When you delete your account</Text>
           <P>
-            You can delete your account in the app at any time (Account, then Delete Account; signing out of a guest
+            You can delete your account in the app at any time (Account, then Settings, then Delete Account; signing out of a guest
             account deletes it), or ask us to delete it (see{' '}
             <ChakraLink as={Link} to="/delete-account" color="blue.300" _hover={{ color: 'blue.200' }}>Delete Your Account</ChakraLink>).
             We then delete your account and the personal data linked to it: {deletedSummary()}.{deletedAlso()} Some

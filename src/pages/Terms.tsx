@@ -468,7 +468,7 @@ const Terms: React.FC = () => {
 
           <H2>13. Ending Your Use of SpySocial</H2>
           <P>
-            You can stop using SpySocial at any time. To delete a saved account, go to Account, then Delete Account; to
+            You can stop using SpySocial at any time. To delete a saved account, go to Account, then Settings, then Delete Account; to
             delete a guest account, sign out of it. Our Privacy Policy explains what we keep afterwards.
           </P>
           <P>
