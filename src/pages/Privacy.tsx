@@ -263,6 +263,9 @@ const Privacy: React.FC = () => {
                 {PRIVACY.revenueCatDeletion
                   ? 'RevenueCat keeps its record of your purchases until you delete your account, and deletes it within 30 days after that.'
                   : 'RevenueCat keeps its own record of your purchases until we ask it to delete it (see When you delete your account below).'}
+                {' '}The SpySocial team can also give you a pack, a membership or an item as a gift. We keep a record of the gift
+                for as long as you have an account, show you a thank-you in the app, and may say in the chat of the room you're
+                in that you received it.
               </Item>
             )}
             {PRIVACY.notifications && (
