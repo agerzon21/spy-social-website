@@ -31,15 +31,21 @@ const DeleteAccount: React.FC = () => {
               <Text as="span" fontWeight="600" color="whiteAlpha.800">Account</Text>.
               {PRIVACY.oldAppsInUse && ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)'}
             </ListItem>
-            <ListItem>Scroll to the <Text as="span" fontWeight="600" color="whiteAlpha.800">Danger Zone</Text> at the bottom.</ListItem>
-            <ListItem>Tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Delete Account</Text> and confirm.</ListItem>
+            <ListItem>
+              Tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Settings</Text> at the top right.
+            </ListItem>
+            <ListItem>
+              Under <Text as="span" fontWeight="600" color="whiteAlpha.800">Account &amp; Sign-In</Text>, tap{' '}
+              <Text as="span" fontWeight="600" color="whiteAlpha.800">Delete Account</Text> (the last row, in red) and confirm.
+              {PRIVACY.oldAppsInUse && ' (In versions before 2.2, Delete Account is in the Danger Zone at the bottom of Account.)'}
+            </ListItem>
           </OrderedList>
           <Text fontSize="sm" lineHeight="1.8">Your account is deleted at once.</Text>
 
           <Heading as="h2" size="sm" color="white" mt={4}>Guest accounts</Heading>
           <Text fontSize="sm" lineHeight="1.8">
             A guest account is deleted the moment you tap <Text as="span" fontWeight="600" color="whiteAlpha.800">Sign Out</Text> (in
-            Account, under Sign-In; in versions before 2.2, under Account &amp; Security) and confirm. A guest can't sign back
+            Settings, under Account &amp; Sign-In; in versions before 2.2, in Account under Account &amp; Security) and confirm. A guest can't sign back
             in, so there is no recovery.
             {PRIVACY.purchases &&
               ' Purchases are the exception, as for any deleted account: anything you bought as a guest comes back with Restore Purchases, on the App Store or Google Play account you paid with.'}
