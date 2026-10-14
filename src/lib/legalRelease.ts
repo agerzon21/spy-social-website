@@ -283,7 +283,7 @@ export const LIVE = {
    * processing starts then, whatever app_config.player_stats says) and set PRIVACY_LAST_UPDATED to the day it goes up.
    * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
-  playerStats: false,
+  playerStats: true,
   /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
@@ -397,7 +397,7 @@ export const LEGAL_LAST_UPDATED = 'October 10, 2026'
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October 13, 2026'
+export const PRIVACY_LAST_UPDATED: string = 'October 14, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
