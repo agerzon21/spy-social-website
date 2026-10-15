@@ -102,6 +102,20 @@ export const LIVE = {
    */
   crashReports: false,
   /**
+   * Sentry keeps an approximate location with each crash report. Read by the Crash Reports text (with crashReports).
+   * Sentry looks up the sender's IP address as a report arrives and stores what it finds as user.geo (country code,
+   * region and city) even with "Prevent Storing of IP Addresses" on (on for the org and the project, read through the
+   * API 2026-10-15): the re-test sweep's probe event ac56eb8a (web, 2026-10-15 13:24 UTC) has ip_address null and
+   * geo {country_code US, region, city}. The IP is dropped after the lookup, so the IP sentence stays true. Our own
+   * scrubbing can't stop it (the lookup is Sentry's, from the connection, after beforeSend; the SDK already sends
+   * infer_ip 'never'). Set false once an Advanced Data Scrubbing rule in the Sentry project removes $user.geo and a
+   * fresh labelled test event read back through the API has no geo (the owner adds the rule; QA F1158), and set
+   * PRIVACY_LAST_UPDATED to that day. A Sentry-side fact for every app version at once: set in LIVE, never in
+   * PRIVACY_AHEAD. While it's true, the store forms should declare an approximate location for crash reports (Google
+   * Data safety: Approximate location; Apple: Coarse Location's reason), so the owner's rule is the better fix.
+   */
+  crashReportLocation: true,
+  /**
    * The 2.2 notifications (expo-notifications in the build): Remind Me on a game night schedules a notification on
    * the phone; Play Online's "Match found!" push (lib/matchPush.ts, the match-push Edge Function): the first FIND A
    * GAME asks for permission, and where notifications are allowed a saved player's Expo push token goes to
@@ -365,7 +379,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * openAiTranslation (a server switch for every app version at once, which the Terms read too: set in LIVE, and its
  * "or" wording lets it go on before the engine does), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
  * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
- * in LIVE), browserLinks (the site's links to the browser version, no legal text), fairPlaySignals and playerStats (server switches), scheduledRetention,
+ * in LIVE), browserLinks (the site's links to the browser version, no legal text), fairPlaySignals and playerStats (server switches),
+ * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
@@ -447,7 +462,7 @@ export const LEGAL_LAST_UPDATED = 'October 10, 2026'
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October 14, 2026'
+export const PRIVACY_LAST_UPDATED: string = 'October 15, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
