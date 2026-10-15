@@ -201,12 +201,17 @@ export const LIVE = {
   /**
    * The translate function can use OpenAI: app_config.translation_engine is 'openai' on the live server ('microsoft'
    * is the default; 'device_first' asks the phone first and the server, through Microsoft, only when the phone
-   * can't). With 'openai', our translate function (on the server, never the phone) sends OpenAI, with store: false
-   * and no safety_identifier: the text of the line(s) being translated; as context, up to the three lines said just
-   * before in the same chat (text only, not who said them); the names not to translate (the display names of the
-   * players at a private room's table, and the fixed "Agent <Colour>" names); and the two languages. Never the
-   * account, user id or a code made from it, email, IP address, device details, the secret word or location, or
-   * anyone's role. On, it turns on: Privacy's Translations names OpenAI ("Microsoft Translator (Azure AI Translator)
+   * can't). With 'openai', our translate function (on the server, never the phone; only for apps whose one-time note
+   * named OpenAI, the request's consent: others go to Microsoft) sends OpenAI's Responses API, with store: false, no
+   * safety_identifier and a fixed prompt_cache_key: the text of the line(s) being translated; as context, up to three
+   * lines of the same chat (those said just before, else its latest three; text only, not who said them); the names
+   * not to translate (the table's seat names: display names, or the username where there's none, in private rooms;
+   * agent names at public tables; plus the fixed "Agent <Colour>" list); and the languages. Never the account, user
+   * id or a code made from it, email, IP address, device details, the secret word or location, or anyone's role. The
+   * text quotes OpenAI's data page (developers.openai.com/api/docs/guides/your-data, read 2026-10-15): no training
+   * on API data unless opted in (our organization's data sharing is off), abuse-monitoring logs up to 30 days with
+   * its exceptions, and extended prompt caching's encrypted cache up to 24 hours (every query of an organization
+   * without Zero Data Retention). Check that page again before flipping. On, it turns on: Privacy's Translations names OpenAI ("Microsoft Translator (Azure AI Translator)
    * or OpenAI, depending on which our service uses") and says what OpenAI receives, the OpenAI provider item adds
    * translation (it shows with drawingCheck or this), the Microsoft line says "rather than OpenAI", and OpenAI joins
    * the contracts sentence; the Terms' section 10 names OpenAI too. Flip in the same change as the engine goes
