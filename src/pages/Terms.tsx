@@ -1,6 +1,7 @@
 import { Box, Container, Heading, Link as ChakraLink, ListItem, OrderedList, Text, UnorderedList, VStack } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { ShopLink } from '../components/legal/ShopLink'
 import UkOnlineSafety, { UK_SECTION_NUMBER } from '../components/legal/UkOnlineSafety'
 import {
   LEGAL_LAST_UPDATED,
@@ -434,6 +435,15 @@ const Terms: React.FC = () => {
               : ''}{' '}
             We receive only the text.
           </P>
+          {LIVE.merchShop && (
+            <>
+              <H3>Merch</H3>
+              <P>
+                SpySocial merch bought at <ShopLink /> is sold and fulfilled by Fourthwall, under Fourthwall's terms and
+                returns policy.
+              </P>
+            </>
+          )}
           <H3>Other services</H3>
           <P>
             SpySocial relies on other companies' services to run; our Privacy Policy lists them. We're not responsible

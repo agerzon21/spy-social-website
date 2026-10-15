@@ -2,6 +2,7 @@ import { Box, Container, Heading, Text, VStack, Link as ChakraLink, ListItem, Un
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
+import { ShopLink } from '../components/legal/ShopLink'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
 import { OPERATOR, PRIVACY, PRIVACY_LAST_UPDATED, avatarsLive, photosInUse, usesMlKit } from '../lib/legalRelease'
 
@@ -94,7 +95,7 @@ const Privacy: React.FC = () => {
             Welcome to SpySocial ("we," "our," or "us"). We respect your privacy and are committed to protecting your
             personal data. This privacy policy explains how we handle your personal information when you use our app
             {PRIVACY.browserLegal ? ' (on your phone, or in a browser at play.spysocial.app, the browser version)' : ''} and
-            our website, spysocial.app, and tells you about your privacy rights.
+            our website, spysocial.app,{PRIVACY.merchShop ? ' or buy from our merch shop, shop.spysocial.app,' : ''} and tells you about your privacy rights.
             {OPERATOR.name
               ? ` SpySocial is run by ${OPERATOR.name}${OPERATOR.address ? `, ${OPERATOR.address}` : ''}, who is responsible for your personal data (the "controller").`
               : ''}
@@ -549,6 +550,12 @@ const Privacy: React.FC = () => {
                 ? ' and the browser version of the game, play.spysocial.app, and receives the IP address of their visitors.'
                 : ' and receives the IP address of its visitors.'}
             </Item>
+            {PRIVACY.merchShop && (
+              <Item label="Fourthwall">
+                (Fourthwall, Inc., https://fourthwall.com) Runs our merch shop, shop.spysocial.app, and sells and ships its
+                orders (see Merch Shop below).
+              </Item>
+            )}
             <Item label="ImprovMX and Google">
               Email you send to support@spysocial.app is forwarded by ImprovMX and read in Google's Gmail. When you use
               Report a Problem in the app's Settings, the email it prepares also lists the app's version and update, your
@@ -565,6 +572,35 @@ const Privacy: React.FC = () => {
             at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''} and ImprovMX
             handle what they receive under their own terms and privacy policies.
           </P>
+
+          {PRIVACY.merchShop && (
+            <>
+              <H2>Merch Shop</H2>
+              <P>
+                SpySocial merch is sold and fulfilled by Fourthwall (Fourthwall, Inc.), which runs our shop at{' '}
+                <ShopLink /> for us. To take and ship your order, Fourthwall processes your order data: your name,
+                shipping address and email address, what you order, and your order history. You pay through Fourthwall's
+                payment processors, such as Stripe and PayPal, which receive your payment details (such as your card
+                number and billing address); we never see your card details. Fourthwall's print partners and carriers get
+                what they need to print and deliver your order, such as your name and shipping address.
+              </P>
+              <P>
+                We receive the details of each order (what was bought, and the name, shipping address and email address it
+                was ordered with) for our records and to help with questions about it. Shop orders aren't linked to your
+                SpySocial account, so deleting your account doesn't delete them.
+              </P>
+              <P>
+                Fourthwall is responsible for payment, tax and returns, under its own terms. Its{' '}
+                <ChakraLink href="https://fourthwall.com/privacy-policy" isExternal color="blue.300" _hover={{ color: 'blue.200' }}>
+                  privacy policy
+                </ChakraLink>{' '}
+                gives no fixed period for keeping order data: it keeps it as long as needed for orders, tax and legal
+                obligations, and then deletes it or keeps it in a form that no longer identifies you. To see, correct or
+                delete your order data, or for any other privacy request about the shop, email <SupportEmail /> or
+                Fourthwall at privacy@fourthwall.com.
+              </P>
+            </>
+          )}
 
           <H2>Data Storage and Security</H2>
           <P>
