@@ -177,7 +177,7 @@ const Privacy: React.FC = () => {
                   ? " Your device may also translate a message itself with Apple's or Google's on-device translation instead of asking our service (for example when our service can't translate it); the text then doesn't leave your device. Your device may first download that language's translation files from Apple or Google. On Android, the app can download them ahead of time in a room's lobby when players at your table use other languages (on Wi-Fi, or on mobile data only if you agree); during a game, only when you tap Download for that language."
                   : " When our service can't translate a message, your device may translate it itself with Apple's or Google's on-device translation; the text then doesn't leave your device. The first time, your device may download that language's translation files from Apple or Google.")}{' '}
               {PRIVACY.openAiTranslation
-                ? 'Microsoft receives only the message text and the two languages, never your name or account. OpenAI receives the text of the messages being translated and the two languages. So that a translation fits the conversation, it also receives up to three other recent messages from the same chat, normally the ones said just before (their text only, not who said them), and a list of names to leave as they are: the game\'s agent names (such as "Agent Blue") and, in a private room, the display names of the players there (or the username of a player who has none). We send these messages to OpenAI only to translate them. For translation, our service never sends OpenAI your account or a code made from it, your email address, your device\'s IP address or details, the game\'s secret word or location, or anyone\'s role. OpenAI doesn\'t use them to train its models: it doesn\'t train on what is sent to its API unless the sender opts in, and we haven\'t. Our service also asks OpenAI not to store these requests or its answers, so they aren\'t kept as saved responses. Like everything sent to its API, they go into OpenAI\'s abuse-monitoring logs, which it keeps for up to 30 days, unless the law requires it to keep them longer or keeping them is reasonably necessary to protect its services or anyone else from harm. OpenAI may also keep an encrypted cache made from a request on its servers for up to 24 hours, so that similar requests run faster.'
+                ? 'When our service uses OpenAI, it sends OpenAI only messages written by players who told us they\'re 16 or older (from the birth year the app asks for); other messages, including those from players who haven\'t told us their age, go to Microsoft Translator. Microsoft receives only the message text and the two languages, never your name or account. OpenAI receives the text of the messages being translated and the two languages. So that a translation fits the conversation, it also receives up to three other recent messages from the same chat by players 16 or older, normally the ones said just before (their text only, not who said them), and a list of names to leave as they are: the game\'s agent names (such as "Agent Blue") and, in a private room, the display names of the players there who are 16 or older (or the username of a player who has none). It never receives anyone\'s age. We send these messages to OpenAI only to translate them. For translation, our service never sends OpenAI your account or a code made from it, your email address, your device\'s IP address or details, the game\'s secret word or location, or anyone\'s role. OpenAI doesn\'t use them to train its models: it doesn\'t train on what is sent to its API unless the sender opts in, and we haven\'t. Our service also asks OpenAI not to store these requests or its answers, so they aren\'t kept as saved responses. Like everything sent to its API, they go into OpenAI\'s abuse-monitoring logs, which it keeps for up to 30 days, unless the law requires it to keep them longer or keeping them is reasonably necessary to protect its services or anyone else from harm. OpenAI may also keep an encrypted cache made from a request on its servers for up to 24 hours, so that similar requests run faster.'
                 : 'Only the message text and the two languages are sent, never your name or account.'}
               {usesMyMemory &&
                 " MyMemory's terms say it may keep the text it receives and use it to improve its services."}
@@ -251,7 +251,9 @@ const Privacy: React.FC = () => {
                 " If you turn 13 this year, the app also asks your birth month, because the year alone can't tell whether you're 13 yet; we keep the month only in that case."}
               {PRIVACY.storeAgeSignals &&
                 `${from22 ? ' From version 2.2, on' : ' On'} some phones, Apple or Google also tell the app an age range for your account (Apple's Declared Age Range, Google Play's Age Signals); the app uses it on your device.`}{' '}
-              We use your age only to apply age limits, and other players never see it.
+              We use your age only to apply age limits
+              {PRIVACY.openAiTranslation ? ' and to choose which service translates your messages (see Translations)' : ''}, and
+              other players never see it.
             </Item>
             {PRIVACY.ageGateEveryone && (
               <Item label="Agreement">
@@ -475,7 +477,10 @@ const Privacy: React.FC = () => {
               {PRIVACY.autoTranslation
                 ? 'when the app translates it for you (automatically, or when you tap Translate)'
                 : 'when you tap Translate'}
-              {PRIVACY.openAiTranslation ? ', if our translation service uses Microsoft rather than OpenAI' : ''}.
+              {PRIVACY.openAiTranslation
+                ? ", if our translation service uses Microsoft rather than OpenAI, and always for messages from players under 16 or who haven't told us their age"
+                : ''}
+              .
             </Item>
             {usesOpenAi && (
               <Item label="OpenAI">
@@ -483,7 +488,7 @@ const Privacy: React.FC = () => {
                 {PRIVACY.drawingCheck &&
                   'Checks drawings for content that breaks our Community Rules: every drawing turn in public rooms gets an automated check, some also get a second, more detailed check, and so do drawings players report. '}
                 {PRIVACY.openAiTranslation &&
-                  `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages when our translation service uses it (see Translations above), and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat (without who said them), a list of names to leave as they are (agent names and, in private rooms, the players' display names) and the two languages, never your account. Our service asks OpenAI not to store these requests or its answers. `}
+                  `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages when our translation service uses it (see Translations above), only messages written by players who told us they're 16 or older, and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat by players 16 or older (without who said them), a list of names to leave as they are (agent names and, in private rooms, the display names of players 16 or older) and the two languages, never your account or anyone's age. Our service asks OpenAI not to store these requests or its answers. `}
                 Under OpenAI's API terms and its Data Processing Addendum, it{' '}
                 {PRIVACY.openAiTranslation
                   ? "doesn't use what it receives to train its models, and keeps it for up to 30 days to monitor abuse, unless the law requires it to keep it longer or keeping it is reasonably necessary to protect its services or anyone else from harm."

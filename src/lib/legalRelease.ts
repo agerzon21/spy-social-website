@@ -211,10 +211,15 @@ export const LIVE = {
    * text quotes OpenAI's data page (developers.openai.com/api/docs/guides/your-data, read 2026-10-15): no training
    * on API data unless opted in (our organization's data sharing is off), abuse-monitoring logs up to 30 days with
    * its exceptions, and extended prompt caching's encrypted cache up to 24 hours (every query of an organization
-   * without Zero Data Retention). Check that page again before flipping. On, it turns on: Privacy's Translations names OpenAI ("Microsoft Translator (Azure AI Translator)
-   * or OpenAI, depending on which our service uses") and says what OpenAI receives, the OpenAI provider item adds
-   * translation (it shows with drawingCheck or this), the Microsoft line says "rather than OpenAI", and OpenAI joins
-   * the contracts sentence; the Terms' section 10 names OpenAI too. Flip in the same change as the engine goes
+   * without Zero Data Retention). Check that page again before flipping. Only lines whose authors all declared 16 or
+   * older at the age gate go to OpenAI (app_config.translation_openai_min_author_age, 16; the rest, unknown ages
+   * included, go to Microsoft), and the context lines and private-room names are only of such players: if the owner
+   * changes that number, change "16" in Privacy's Translations, Microsoft and OpenAI items. On, it turns on: Privacy's
+   * Translations names OpenAI ("Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service
+   * uses") and says that only 16+ players' lines go to OpenAI and what it receives, the OpenAI provider item adds
+   * translation (it shows with drawingCheck or this), the Microsoft line says "rather than OpenAI, and always for
+   * messages from players under 16 or who haven't told us their age", the Age item adds choosing the translator to
+   * what the age is used for, and OpenAI joins the contracts sentence; the Terms' section 10 names OpenAI too. Flip in the same change as the engine goes
    * 'openai' on the live server, or before it (the "or" wording stays true under 'microsoft' and 'device_first'),
    * never after, and set PRIVACY_LAST_UPDATED and LEGAL_LAST_UPDATED (the Terms change too) to that day. Keep it on
    * while the engine might go back to 'openai'; off only once OpenAI is out of the translate function for good. A
