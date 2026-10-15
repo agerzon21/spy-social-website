@@ -181,6 +181,51 @@ export const LIVE = {
    * is true for everyone as soon as the backup is off live: set it in LIVE, on the Terms too (section 10).
    */
   myMemory: 'off' as 'device' | 'server' | 'off',
+  /**
+   * Automatic translation in the released app (app feat/auto-translate): a chat line (lobby, game, spy, out players)
+   * or an interrogation question or answer written in another language than the reader's app language is translated
+   * without a tap. Settings' "Translate messages automatically" (on by default) turns it off; off is the old
+   * tap-to-translate. Lines in the reader's language and the app's own text are never sent to be translated, and the
+   * 24-hour cache still serves only the players of the same chat. The same update lets the phone translate before
+   * asking our service (app_config.translation_engine 'device_first') and lets the Android app download a language's
+   * files ahead of time in a room's lobby when players at the table use other languages (on Wi-Fi; mobile data only
+   * after asking; never ahead of time on iPhone); during a game, only when the player taps "Download <Language>".
+   * On, it turns on: Privacy's Translations (automatic unless turned off in Settings, tap wording otherwise; the
+   * phone may translate first; Android's downloads ahead of time), the Microsoft provider line and the Legal Basis
+   * line; the Terms' section 10 and the FAQ's languages answer (they read LIVE). Flip when the app update that has it
+   * is out to players (the store build released, or the OTA published), and set PRIVACY_LAST_UPDATED and
+   * LEGAL_LAST_UPDATED (the Terms change too) to that day. Ahead-safe: the text only adds (the tap wording stays for
+   * players who turn it off, and for older apps); see AHEAD_SAFE.
+   */
+  autoTranslation: false,
+  /**
+   * The translate function can use OpenAI: app_config.translation_engine is 'openai' on the live server ('microsoft'
+   * is the default; 'device_first' asks the phone first and the server, through Microsoft, only when the phone
+   * can't). With 'openai', our translate function (on the server, never the phone; only for apps whose one-time note
+   * named OpenAI, the request's consent: others go to Microsoft) sends OpenAI's Responses API, with store: false, no
+   * safety_identifier and a fixed prompt_cache_key: the text of the line(s) being translated; as context, up to three
+   * lines of the same chat (those said just before, else its latest three; text only, not who said them); the names
+   * not to translate (the table's seat names: display names, or the username where there's none, in private rooms;
+   * agent names at public tables; plus the fixed "Agent <Colour>" list); and the languages. Never the account, user
+   * id or a code made from it, email, IP address, device details, the secret word or location, or anyone's role. The
+   * text quotes OpenAI's data page (developers.openai.com/api/docs/guides/your-data, read 2026-10-15): no training
+   * on API data unless opted in (our organization's data sharing is off), abuse-monitoring logs up to 30 days with
+   * its exceptions, and extended prompt caching's encrypted cache up to 24 hours (every query of an organization
+   * without Zero Data Retention). Check that page again before flipping. Only lines whose authors all declared 16 or
+   * older at the age gate go to OpenAI (app_config.translation_openai_min_author_age, 16; the rest, unknown ages
+   * included, go to Microsoft), and the context lines and private-room names are only of such players: if the owner
+   * changes that number, change "16" in Privacy's Translations, Microsoft and OpenAI items. On, it turns on: Privacy's
+   * Translations names OpenAI ("Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service
+   * uses") and says that only 16+ players' lines go to OpenAI and what it receives, the OpenAI provider item adds
+   * translation (it shows with drawingCheck or this), the Microsoft line says "rather than OpenAI, and always for
+   * messages from players under 16 or who haven't told us their age", the Age item adds choosing the translator to
+   * what the age is used for, and OpenAI joins the contracts sentence; the Terms' section 10 names OpenAI too. Flip in the same change as the engine goes
+   * 'openai' on the live server, or before it (the "or" wording stays true under 'microsoft' and 'device_first'),
+   * never after, and set PRIVACY_LAST_UPDATED and LEGAL_LAST_UPDATED (the Terms change too) to that day. Keep it on
+   * while the engine might go back to 'openai'; off only once OpenAI is out of the translate function for good. A
+   * server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD (see AHEAD_SAFE).
+   */
+  openAiTranslation: false,
   /** Typed interrogation questions and answers go through the server and are stored like chat (M7 send_interrogation_line). */
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
@@ -310,11 +355,15 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  *   playOnline: its migrations live and the build has FIND A GAME (even while app_config.play_online is 'testers');
  *   revenueCatDeletion: only when its own condition holds (the key works and a test deletion emptied its row);
  *   drawingCheck: only when the build has the wiring and the check is on, or will be switched on at the launch
- *   (runbook 3.5) and the store forms declare drawings sent to OpenAI.
+ *   (runbook 3.5) and the store forms declare drawings sent to OpenAI;
+ *   autoTranslation: in the submitted build that has it (the store review compares the policy with the app), or
+ *   from the day before an OTA with it goes out; the Terms' section 10 and the FAQ keep the tap wording until LIVE.
  * Never ahead (and not in AHEAD_SAFE): onePool and messageReports (the Privacy pages don't read them; they change the
  * Terms, the Rules and the FAQ, which wait for the launch), photosRemoved (says the photos are deleted), oldAppsInUse
  * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (a server switch for every
- * app version at once: set in LIVE to what the translate function does, 'off' since the submission day), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
+ * app version at once: set in LIVE to what the translate function does, 'off' since the submission day),
+ * openAiTranslation (a server switch for every app version at once, which the Terms read too: set in LIVE, and its
+ * "or" wording lets it go on before the engine does), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
  * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
  * in LIVE), browserLinks (the site's links to the browser version, no legal text), fairPlaySignals and playerStats (server switches), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
@@ -336,6 +385,7 @@ const AHEAD_SAFE = [
   'storedQuestions',
   'qrScanner',
   'playOnline',
+  'autoTranslation',
 ] as const satisfies readonly BooleanSwitch[]
 
 /**

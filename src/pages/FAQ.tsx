@@ -144,7 +144,11 @@ const faqSections: FAQSection[] = [
               <>
                 <ListItem>Rooms don't have a language: every player sees the game in their own, including the secret location or word, its description, the spy's list and the hints</ListItem>
                 <ListItem>So friends who speak different languages can play in the same room, or at the same Play Online table</ListItem>
-                <ListItem>Chat messages stay as they were written: tap <Strong>Translate</Strong> to read one in your language</ListItem>
+                {LIVE.autoTranslation ? (
+                  <ListItem>Chat messages stay as they were written, and one in another language is translated into yours automatically (to tap <Strong>Translate</Strong> instead, turn off <Strong>Translate messages automatically</Strong> in Settings)</ListItem>
+                ) : (
+                  <ListItem>Chat messages stay as they were written: tap <Strong>Translate</Strong> to read one in your language</ListItem>
+                )}
               </>
             ) : (
               <ListItem>The host picks the game language for locations and hints</ListItem>

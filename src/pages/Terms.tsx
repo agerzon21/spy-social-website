@@ -408,10 +408,21 @@ const Terms: React.FC = () => {
           <H2>10. Translation and Other Services</H2>
           <H3>Translations</H3>
           <P>
-            When you tap Translate, the message's text is sent to Microsoft Translator
+            {LIVE.autoTranslation
+              ? "When the app translates a message for you (when you tap Translate, or by itself when the message is in a language other than your app's, unless you turn that off in Settings)"
+              : 'When you tap Translate'}
+            , the message's text is sent to Microsoft Translator{LIVE.openAiTranslation ? ' or OpenAI' : ''}
             {LIVE.myMemory !== 'off' ? ", or to MyMemory if that doesn't answer" : ''}
-            {LIVE.onDeviceTranslation ? ", or translated on your device when our service can't" : ''}, and you get a
-            machine translation. Other players can translate your messages the same way. Machine translations can be
+            {LIVE.onDeviceTranslation
+              ? LIVE.autoTranslation
+                ? ', or translated on your device'
+                : ", or translated on your device when our service can't"
+              : ''}
+            , and you get a machine translation.{' '}
+            {LIVE.autoTranslation
+              ? 'Your messages are translated for other players the same way.'
+              : 'Other players can translate your messages the same way.'}{' '}
+            Machine translations can be
             wrong or miss the tone, so don't rely on them for anything important; we're not responsible for them.
           </P>
           <H3>Voice input</H3>
