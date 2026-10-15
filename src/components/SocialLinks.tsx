@@ -64,7 +64,7 @@ const SocialLinks = ({ variant = 'icons' }: SocialLinksProps) => {
         fontWeight="600"
         textTransform="uppercase"
         letterSpacing="0.08em"
-        color="whiteAlpha.400"
+        color="whiteAlpha.700"
       >
         Follow SpySocial
       </Text>
@@ -89,7 +89,7 @@ const SocialLinks = ({ variant = 'icons' }: SocialLinksProps) => {
           >
             <Icon as={a.icon} color="whiteAlpha.600" boxSize={4} aria-hidden focusable={false} />
             <Text fontSize="sm" color="whiteAlpha.700" flex="1">{a.name}</Text>
-            <Text fontSize="xs" color="whiteAlpha.400">{a.handle}</Text>
+            <Text fontSize="xs" color="whiteAlpha.700">{a.handle}</Text>
             <Text color="whiteAlpha.300" aria-hidden>&#8599;</Text>
           </HStack>
         </ChakraLink>
