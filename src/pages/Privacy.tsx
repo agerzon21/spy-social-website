@@ -73,6 +73,12 @@ const Privacy: React.FC = () => {
   ]
     .filter(Boolean)
     .join(' and ')
+  // Who translates on our servers: Microsoft, or OpenAI when app_config.translation_engine is 'openai'.
+  const serverTranslator = PRIVACY.openAiTranslation
+    ? 'Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service uses,'
+    : 'Microsoft Translator (Azure AI Translator)'
+  // OpenAI is a provider for drawing checks, translation or both.
+  const usesOpenAi = PRIVACY.drawingCheck || PRIVACY.openAiTranslation
 
   return (
     <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
@@ -114,7 +120,8 @@ const Privacy: React.FC = () => {
               Your interface language (one of the ten languages the app offers), your colors (a 1st, 2nd and 3rd choice: each room gives you the first one that's free) and similar settings, so the app
               looks and reads the way you chose. Our servers also use your language to show you the game (the secret
               word or location, its description and the spy's list) in it, and to count the different languages at a
-              table for an achievement.
+              table for an achievement. The app can also tell the players in a room which app languages are used at their
+              table, never whose.
             </Item>
             <Item label="Game Data">
               Information related to games you've played: your role, the actions you take in a game (such as when you ask
@@ -142,8 +149,9 @@ const Privacy: React.FC = () => {
               </Item>
             )}
             <Item label="Chat Messages">
-              Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, and the chat for players
-              who are out) are stored on our servers so the other players in the room can read them.{' '}
+              Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, the chat for players
+              who are out, and the game's chat on Game Over, which stays open to the players of that game for a few
+              minutes after it ends) are stored on our servers so the other players in the room can read them.{' '}
               {chatRetention('Messages')} Copies made to deliver messages live are deleted within 3 days.
             </Item>
             <Item label="Questions and Answers">
@@ -161,14 +169,23 @@ const Privacy: React.FC = () => {
               We receive only the text you choose to send, never the audio.
             </Item>
             <Item label="Translations">
-              When you tap Translate on a message, the app asks our translation service, which sends the text to
-              Microsoft Translator (Azure AI Translator) and keeps the translation for 24 hours, so other players reading
-              the same message get it without sending it again.{backupTranslation}
+              {PRIVACY.autoTranslation &&
+                "Chat messages, questions and answers written in a language other than your app's language are translated for you automatically, unless you turn off Translate messages automatically in the app's Settings; then a message is translated only when you tap Translate on it. Messages in your own language aren't translated. "}
+              {PRIVACY.autoTranslation ? 'To translate a message' : 'When you tap Translate on a message'}, the app asks
+              our translation service, which sends the text to {serverTranslator} and keeps the translation for 24 hours,
+              so other players reading the same message get it without sending it again.{backupTranslation}
               {PRIVACY.onDeviceTranslation &&
-                " When our service can't translate a message, your device may translate it itself with Apple's or Google's on-device translation; the text then doesn't leave your device. The first time, your device may download that language's translation files from Apple or Google."}{' '}
-              Only the message text and the two languages are sent, never your name or account.
+                (PRIVACY.autoTranslation
+                  ? " Your device may also translate a message itself with Apple's or Google's on-device translation instead of asking our service (for example when our service can't translate it); the text then doesn't leave your device. Your device may first download that language's translation files from Apple or Google. On Android, the app can download them ahead of time in a room's lobby when players at your table use other languages (on Wi-Fi, or on mobile data only if you agree); during a game, only when you tap Download for that language."
+                  : " When our service can't translate a message, your device may translate it itself with Apple's or Google's on-device translation; the text then doesn't leave your device. The first time, your device may download that language's translation files from Apple or Google.")}{' '}
+              {PRIVACY.openAiTranslation
+                ? 'When our service uses OpenAI, it sends OpenAI only messages written by players who told us they\'re 16 or older (from the birth year the app asks for); other messages, including those from players who haven\'t told us their age, go to Microsoft Translator. Microsoft receives only the message text and the two languages, never your name or account. OpenAI receives the text of the messages being translated and the two languages. So that a translation fits the conversation, it also receives up to three other recent messages from the same chat by players 16 or older, normally the ones said just before (their text only, not who said them), and a list of names to leave as they are: the game\'s agent names (such as "Agent Blue") and, in a private room, the display names of the players there who are 16 or older (or the username of a player who has none). It never receives anyone\'s age. We send these messages to OpenAI only to translate them. For translation, our service never sends OpenAI your account or a code made from it, your email address, your device\'s IP address or details, the game\'s secret word or location, or anyone\'s role. OpenAI doesn\'t use them to train its models: it doesn\'t train on what is sent to its API unless the sender opts in, and we haven\'t. Our service also asks OpenAI not to store these requests or its answers, so they aren\'t kept as saved responses. Like everything sent to its API, they go into OpenAI\'s abuse-monitoring logs, which it keeps for up to 30 days, unless the law requires it to keep them longer or keeping them is reasonably necessary to protect its services or anyone else from harm. OpenAI may also keep an encrypted cache made from a request on its servers for up to 24 hours, so that similar requests run faster.'
+                : 'Only the message text and the two languages are sent, never your name or account.'}
               {usesMyMemory &&
-                " MyMemory's terms say it may keep the text it receives and use it to improve its services."}
+                " MyMemory's terms say it may keep the text it receives and use it to improve its services."}{' '}
+              To keep translation within its limits and stop abuse, our servers count, for each player and day, the
+              translation requests they made, the messages and characters sent to be translated, and an estimate of
+              what translating them cost; these counts are deleted after 14 days.
             </Item>
             <Item label="Presence">
               While you're in a game, the app tells our servers every few seconds that it's still open, so other players
@@ -183,7 +200,15 @@ const Privacy: React.FC = () => {
               analytics or advertising trackers. Until version 2.2's launch on November 10, 2026, we also use these events
               and your device's platform to recognize saved accounts that used a test version of the app (on iPhone, Android
               or the web) and were created before November 3, 2026, and give them a Beta Pin for their avatar as a thank-you;
-              we keep only that the account has it.
+              we keep only that the account has it. Until the launch, we also use them, with the app's version, to let saved
+              accounts that recently used a test version on a phone try features that aren't open to everyone yet, such as
+              Play Online.
+            </Item>
+            <Item label="Rate Limits">
+              To stop floods, guessing at room codes and other abuse, our servers note when an account does certain things
+              (such as sending a message, joining or trying to join a room, poking a player, or saving its avatar or title),
+              without what was said. Notes about joining rooms are deleted after 24 hours and the others after 2 days, even if
+              the account is deleted first.
             </Item>
             <Item label="Safety Information">
               Reports you make or that are made about you, players you block, removals from rooms, and any warnings,
@@ -239,7 +264,9 @@ const Privacy: React.FC = () => {
                 " If you turn 13 this year, the app also asks your birth month, because the year alone can't tell whether you're 13 yet; we keep the month only in that case."}
               {PRIVACY.storeAgeSignals &&
                 `${from22 ? ' From version 2.2, on' : ' On'} some phones, Apple or Google also tell the app an age range for your account (Apple's Declared Age Range, Google Play's Age Signals); the app uses it on your device.`}{' '}
-              We use your age only to apply age limits, and other players never see it.
+              We use your age only to apply age limits
+              {PRIVACY.openAiTranslation ? ' and to choose which service translates your messages (see Translations)' : ''}, and
+              other players never see it.
             </Item>
             {PRIVACY.ageGateEveryone && (
               <Item label="Agreement">
@@ -263,7 +290,7 @@ const Privacy: React.FC = () => {
                 {PRIVACY.revenueCatDeletion
                   ? 'RevenueCat keeps its record of your purchases until you delete your account, and deletes it within 30 days after that.'
                   : 'RevenueCat keeps its own record of your purchases until we ask it to delete it (see When you delete your account below).'}
-                {' '}The SpySocial team can also give you a pack, a membership or an item as a gift. We keep a record of the gift
+                {' '}The SpySocial team can also give you a pack, a membership, an avatar item, a title or a border as a gift. We keep a record of the gift
                 for as long as you have an account, show you a thank-you in the app, and may say in the chat of the room you're
                 in that you received it.
               </Item>
@@ -299,7 +326,10 @@ const Privacy: React.FC = () => {
                 made from the identifier iOS gives our apps on your device). Reports don't include your name, email
                 address, account or messages. A report is also sent when the app freezes (stops responding for a few
                 seconds), with the same details; the app sends nothing to Sentry while everything works. Sentry
-                receives your device's IP address when a report arrives but is set not to store it, and deletes reports
+                receives your device's IP address when a report arrives but is set not to store it
+                {PRIVACY.crashReportLocation
+                  ? '. Before it drops the address, Sentry uses it to estimate an approximate location (country, region and city), which it keeps with the report. Sentry deletes reports'
+                  : ', and deletes reports'}{' '}
                 within 90 days.
                 {PRIVACY.browserLegal
                   ? ' A report from the browser version names your browser, its version and your operating system instead of the device details, and carries no installation ID.'
@@ -387,7 +417,8 @@ const Privacy: React.FC = () => {
           <P>Where the law asks for one (for example in the European Economic Area and the UK), we rely on:</P>
           <Bullets>
             <Item label="Performance of Contract">
-              To run your account and your games, deliver your chat, translate what you ask us to translate
+              To run your account and your games, deliver your chat,{' '}
+              {PRIVACY.autoTranslation ? 'translate messages for you' : 'translate what you ask us to translate'}
               {PRIVACY.purchases ? ', provide what you buy' : ''}
               {PRIVACY.notifications ? ', remind you of the game nights you asked about and tell you when a match is found' : ''}.
             </Item>
@@ -412,7 +443,8 @@ const Privacy: React.FC = () => {
           <P>
             We keep your account information and game data for as long as you have an account.{' '}
             {chatRetention(PRIVACY.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
-            made to deliver them live are deleted within 3 days. Translations are kept for 24 hours.
+            made to deliver them live are deleted within 3 days. Translations are kept for 24 hours, and daily translation
+            counts for 14 days.
             {PRIVACY.playOnline
               ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
               : ''}
@@ -423,7 +455,8 @@ const Privacy: React.FC = () => {
             for 180 days
             {PRIVACY.scheduledRetention
               ? ', and security logs (such as sign-ups, sign-ins, password resets and email changes, which can include your email address and IP address) for 180 days.'
-              : '.'}
+              : '.'}{' '}
+            Rate-limit notes are deleted after 2 days, and notes about joining rooms after 24 hours.
           </P>
           <P>
             We may remove accounts that haven't been used for 12 months, after telling you in the app or by email where
@@ -458,14 +491,26 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Microsoft">
               (Azure AI Translator, https://azure.microsoft.com/products/ai-services/ai-translator) Translates the text of a
-              message when you tap Translate.
+              message{' '}
+              {PRIVACY.autoTranslation
+                ? 'when the app translates it for you (automatically, or when you tap Translate)'
+                : 'when you tap Translate'}
+              {PRIVACY.openAiTranslation
+                ? ", if our translation service uses Microsoft rather than OpenAI, and always for messages from players under 16 or who haven't told us their age"
+                : ''}
+              .
             </Item>
-            {PRIVACY.drawingCheck && (
+            {usesOpenAi && (
               <Item label="OpenAI">
-                (https://openai.com) Checks drawings for content that breaks our Community Rules: every drawing turn in
-                public rooms gets an automated check, some also get a second, more detailed check, and so do drawings players
-                report. Under OpenAI's API terms and its Data Processing Addendum, it
-                doesn't use them to train its models and keeps them for at most 30 days to monitor abuse.
+                (https://openai.com){' '}
+                {PRIVACY.drawingCheck &&
+                  'Checks drawings for content that breaks our Community Rules: every drawing turn in public rooms gets an automated check, some also get a second, more detailed check, and so do drawings players report. '}
+                {PRIVACY.openAiTranslation &&
+                  `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages when our translation service uses it (see Translations above), only messages written by players who told us they're 16 or older, and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat by players 16 or older (without who said them), a list of names to leave as they are (agent names and, in private rooms, the display names of players 16 or older) and the two languages, never your account or anyone's age. Our service asks OpenAI not to store these requests or its answers. `}
+                Under OpenAI's API terms and its Data Processing Addendum, it{' '}
+                {PRIVACY.openAiTranslation
+                  ? "doesn't use what it receives to train its models, and keeps it for up to 30 days to monitor abuse, unless the law requires it to keep it longer or keeping it is reasonably necessary to protect its services or anyone else from harm."
+                  : "doesn't use them to train its models and keeps them for at most 30 days to monitor abuse."}
               </Item>
             )}
             {usesMyMemory && (
@@ -494,7 +539,8 @@ const Privacy: React.FC = () => {
             {PRIVACY.resendAccountEmail && (
               <Item label="Resend">
                 (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as sign-up confirmations and
-                password resets, so it receives your email address and the email it delivers.
+                password resets, and the emails for agreements signed on our website (the signed agreement and its audit
+                trail), so it receives the email addresses and the emails it delivers.
               </Item>
             )}
             <Item label="Vercel">
@@ -512,7 +558,7 @@ const Privacy: React.FC = () => {
           </Bullets>
           <P>
             We give these providers only the data they need to provide their service. Supabase, Expo, Microsoft
-            {PRIVACY.drawingCheck ? ', OpenAI' : ''}
+            {usesOpenAi ? ', OpenAI' : ''}
             {PRIVACY.purchases ? ', RevenueCat' : ''}
             {PRIVACY.crashReports ? ', Sentry' : ''}
             {PRIVACY.resendAccountEmail ? ', Resend' : ''} and Vercel process it for us under contracts that bind them to protect it
@@ -548,7 +594,10 @@ const Privacy: React.FC = () => {
             (including a membership badge), the title and border you wear, and achievements,
             {/* One pool: no language badges; versions before 2.2 show the language a room is played in. */}
             {PRIVACY.oldAppsInUse ? ' the language you play in,' : ''} whether you've stepped away (and
-            for how long), and the messages you send there.
+            for how long), and the messages you send there. If you're a member, your title and border show your
+            membership (for example, the Spymaster title and its gold border) unless you choose another title and border,
+            or None; a title or border that shows a membership is shown only to players who share a room with you or played
+            a game with you in the last 24 hours, and with a room you host in the room list.
             {/* Agent Colours phase 2: get_my_game_view and get_watch_view send a pre-2.2 photo only to its owner at public tables. */}
             {PRIVACY.agentColoursPhase2 &&
               photosInUse(PRIVACY) &&
@@ -566,7 +615,8 @@ const Privacy: React.FC = () => {
             the game's best score and the room's best score ever, with the name of the player who set it: their display
             name in private rooms, and in public play their agent name (or "A player" if they weren't in that game).{' '}
             Private rooms that aren't locked, whether waiting for players or playing a game, and game nights, are listed
-            for all players with their hosts' display names, avatars and titles (a private room still needs its code to join).
+            for all players with their hosts' display names, avatars, titles and borders (a private room still needs its code
+            to join).
             {PRIVACY.agentColoursPhase2 &&
               ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosInUse(PRIVACY) ? ', with no profile photo' : ''}.`}
             {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}{' '}
