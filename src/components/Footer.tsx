@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
 import { PLAY_URL } from '../lib/playUrl'
+import { SHOP_URL } from '../lib/shop'
 import SocialLinks from './SocialLinks'
 
 interface FooterProps {
@@ -37,6 +38,9 @@ const Footer = ({ sticky = false }: FooterProps) => {
           <HStack spacing={5} flexWrap="wrap" justify="center">
             {showBrowser && (
               <ChakraLink href={PLAY_URL} fontSize="xs" _hover={{ color: 'white', textDecoration: 'none' }} transition="all 0.2s">Play in Your Browser</ChakraLink>
+            )}
+            {LIVE.merchShop && (
+              <ChakraLink href={SHOP_URL} fontSize="xs" _hover={{ color: 'white', textDecoration: 'none' }} transition="all 0.2s">Shop</ChakraLink>
             )}
             <ChakraLink as={RouterLink} to="/whats-new" fontSize="xs" _hover={{ color: 'white', textDecoration: 'none' }} transition="all 0.2s">What's New</ChakraLink>
             <ChakraLink as={RouterLink} to="/privacy" fontSize="xs" _hover={{ color: 'white', textDecoration: 'none' }} transition="all 0.2s">Privacy</ChakraLink>

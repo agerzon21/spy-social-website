@@ -1,5 +1,7 @@
 import { Box, Flex, Link as ChakraLink } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
+import { LIVE } from '../lib/legalRelease'
+import { SHOP_URL } from '../lib/shop'
 import Wordmark from './Wordmark'
 
 export const HEADER_HEIGHT = 68
@@ -27,6 +29,8 @@ const Header = () => {
         height="100%"
         align="center"
         justify="center"
+        // The Shop link sits at the right edge while the wordmark stays centered (LIVE.merchShop).
+        position={LIVE.merchShop ? 'relative' : undefined}
       >
         <ChakraLink
           as={RouterLink}
@@ -43,6 +47,25 @@ const Header = () => {
             transition="opacity 0.2s"
           />
         </ChakraLink>
+        {LIVE.merchShop && (
+          <ChakraLink
+            href={SHOP_URL}
+            position="absolute"
+            // Padded for a comfortable tap target; the text still lines up with the page's edge.
+            right={{ base: 2, md: 4 }}
+            top="50%"
+            transform="translateY(-50%)"
+            px={2}
+            py={2}
+            fontSize="sm"
+            fontWeight="500"
+            color="whiteAlpha.700"
+            _hover={{ color: 'white', textDecoration: 'none' }}
+            transition="all 0.2s"
+          >
+            Shop
+          </ChakraLink>
+        )}
       </Flex>
     </Box>
   )

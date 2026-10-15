@@ -344,6 +344,27 @@ export const LIVE = {
    */
   playerStats: true,
   /**
+   * The merch shop at shop.spysocial.app (lib/shop SHOP_URL): SpySocial merch sold and fulfilled by Fourthwall, the
+   * seller of record (it takes payment through its processors such as Stripe and PayPal, collects sales tax and VAT,
+   * and handles returns under its own terms). On, it shows a "Shop" link in the header (every page but Home, which has
+   * no header) and the footer (every page), both to shop.spysocial.app in the same tab, and turns on the legal text:
+   * Privacy (the shop named in the introduction, the Merch Shop section, Fourthwall in the providers list) and the
+   * Terms (section 10's Merch line). Off, the site renders exactly as before this switch existed.
+   * Flip when the owner says "open the shop" (planned for the 2.2 launch, Tuesday November 10, 2026), and only once the
+   * shop is connected and approved: Fourthwall's custom domain serves shop.spysocial.app over HTTPS, the owner has
+   * approved the sample, and the shop's password page is off. Check the Merch Shop text against the live shop then:
+   * what it collects and who gets it (Fourthwall's privacy policy, https://fourthwall.com/privacy-policy, last read
+   * 2026-10-15, Last Updated October 1, 2025: it handles shoppers' data "as a data processor and service provider on
+   * our Customers' behalf", names Stripe and PayPal, and gives no fixed retention period, only "no longer necessary"
+   * and "mandatory retention periods provided by law"), that orders still aren't linked to SpySocial accounts (no
+   * creator codes, member discounts or account sign-in at the shop), and that the shop's footer links to
+   * spysocial.app/privacy. In the same change, set PRIVACY_LAST_UPDATED and LEGAL_LAST_UPDATED (the Terms change too)
+   * to that day; if it flips with the launch, the launch's dates and the Terms' new publication cover it. The Terms
+   * line adds no duty for players, so it needs no new app_config.terms_version by itself. A website fact for every app
+   * version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  merchShop: false,
+  /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -379,7 +400,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * openAiTranslation (a server switch for every app version at once, which the Terms read too: set in LIVE, and its
  * "or" wording lets it go on before the engine does), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
  * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
- * in LIVE), browserLinks (the site's links to the browser version, no legal text), fairPlaySignals and playerStats (server switches),
+ * in LIVE), browserLinks (the site's links to the browser version, no legal text), merchShop (the shop links and
+ * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
