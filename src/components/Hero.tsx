@@ -3,12 +3,13 @@ import { FaApple } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { useState, useEffect, useMemo, type ReactNode } from 'react'
 import { IoDesktopOutline } from 'react-icons/io5'
-import screenshot1 from '../assets/screenshots/1.webp'
-import screenshot2 from '../assets/screenshots/2.webp'
-import screenshot3 from '../assets/screenshots/3.webp'
-import screenshot4 from '../assets/screenshots/4.webp'
-import screenshot5 from '../assets/screenshots/5.webp'
-import screenshot6 from '../assets/screenshots/6.webp'
+import roleSpy from '../assets/screenshots/role-spy.webp'
+import roleLocal from '../assets/screenshots/role-local.webp'
+import spyTalk from '../assets/screenshots/spy-talk.webp'
+import vote from '../assets/screenshots/vote.webp'
+import solve from '../assets/screenshots/solve.webp'
+import spySketch from '../assets/screenshots/spy-sketch.webp'
+import translate from '../assets/screenshots/translate.webp'
 import Wordmark from './Wordmark'
 import { LIVE } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
@@ -17,14 +18,24 @@ import { PLAY_URL } from '../lib/playUrl'
 const MotionBox = motion(Box)
 const MotionImage = motion(Image)
 
-// Sized for 3x screens at the mockup's 220px width. Imported (not in /public) so Vite
-// fingerprints them and they can be cached as immutable.
-const screenshots = [screenshot1, screenshot2, screenshot3, screenshot4, screenshot5, screenshot6]
+// Sized for 3x screens at the mockup's 220px width: 660x1428 WebP, quality 85. Imported (not in /public) so Vite
+// fingerprints them and they can be cached as immutable. The App Store screenshots (v2 set, iPhone 6.9", English,
+// shot Oct 9-10 2026, uploaded Oct 12), cut from their caption backgrounds; their status bar is the simulator's
+// clean 9:41 and the Dynamic Island is in the capture.
+const screenshots = [
+  { src: roleSpy, alt: "Role reveal: the spy's card says Spy, so they have to find out where everyone is" },
+  { src: roleLocal, alt: "Role reveal: a Local's card shows the secret location, Theater" },
+  { src: spyTalk, alt: 'Spy Talk: each player asks one question and another player answers' },
+  { src: vote, alt: 'Voting: everyone votes for the player they suspect is the spy' },
+  { src: solve, alt: 'The spy picks the location from the list to win the round' },
+  { src: spySketch, alt: 'Spy Sketch: players take turns drawing the secret word while the spy fakes it' },
+  { src: translate, alt: 'Chat translation: a Spanish message in the lobby chat shown in English' },
+]
 
 const PhoneMockup = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   // Screenshots are stacked in view (hidden via opacity), so `loading="lazy"` can't defer them.
-  // Mount only the current one plus the next, so a visitor who bounces fetches two, not six.
+  // Mount only the current one plus the next, so a visitor who bounces fetches two, not all of them.
   const [mountedCount, setMountedCount] = useState(2)
 
   useEffect(() => {
@@ -52,18 +63,7 @@ const PhoneMockup = () => {
         position="relative"
         mx="auto"
       >
-        {/* Notch */}
-        <Box
-          position="absolute"
-          top="8px"
-          left="50%"
-          transform="translateX(-50%)"
-          w="80px"
-          h="6px"
-          bg="gray.800"
-          borderRadius="full"
-          zIndex={3}
-        />
+        {/* No drawn notch: the screenshots carry the Dynamic Island */}
         <Box
           w={{ base: "200px", md: "220px" }}
           h={{ base: "430px", md: "475px" }}
@@ -72,11 +72,11 @@ const PhoneMockup = () => {
           overflow="hidden"
           position="relative"
         >
-          {screenshots.slice(0, mountedCount).map((src, index) => (
+          {screenshots.slice(0, mountedCount).map(({ src, alt }, index) => (
             <MotionImage
               key={src}
               src={src}
-              alt={`SpySocial screenshot ${index + 1}`}
+              alt={alt}
               objectFit="cover"
               w="100%"
               h="100%"
