@@ -42,14 +42,15 @@ const SocialLinks = ({ variant = 'icons' }: SocialLinksProps) => {
             display="inline-flex"
             alignItems="center"
             justifyContent="center"
-            w="32px"
-            h="32px"
+            w="36px"
+            h="36px"
             borderRadius="md"
-            color="whiteAlpha.500"
-            transition="all 0.2s"
-            _hover={{ color: 'whiteAlpha.800' }}
+            color="whiteAlpha.700"
+            transition="color 0.2s"
+            _hover={{ color: 'white' }}
+            _focusVisible={{ outline: '2px solid white', outlineOffset: '-2px', boxShadow: 'none' }}
           >
-            <Icon as={a.icon} boxSize={4} aria-hidden focusable={false} />
+            <Icon as={a.icon} boxSize="18px" aria-hidden focusable={false} />
           </ChakraLink>
         ))}
       </HStack>

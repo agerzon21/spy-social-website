@@ -21,7 +21,7 @@ const Layout = ({ children, isHome = false }: LayoutProps) => {
       >
         {children}
       </Box>
-      <Footer sticky={isHome} />
+      <Footer />
     </Box>
   )
 }
