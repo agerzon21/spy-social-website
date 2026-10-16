@@ -366,7 +366,7 @@ export const LIVE = {
    * line adds no duty for players, so it needs no new app_config.terms_version by itself. A website fact for every app
    * version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
-  merchShop: false,
+  merchShop: true,
   /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
@@ -481,13 +481,13 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  * "Last Updated" on the Terms, the Community Rules and the Safety page, and (through PRIVACY_LAST_UPDATED) on the
  * Privacy Policy and Delete Account: the day a change is published.
  */
-export const LEGAL_LAST_UPDATED = 'October 15, 2026'
+export const LEGAL_LAST_UPDATED = 'October 16, 2026'
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October 15, 2026'
+export const PRIVACY_LAST_UPDATED: string = 'October 16, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
