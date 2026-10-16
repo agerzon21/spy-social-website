@@ -1,15 +1,19 @@
 import { extendTheme } from '@chakra-ui/react'
 import { noir } from './skins/noir'
-import type { Skin, SkinColors } from './skins/types'
+import type { Palette, Skin, SkinColors } from './skins/types'
+import { PALETTES, pageTheme } from './mode'
 import './fonts.css'
 
 /**
- * The site's look comes from one skin (src/theme/skins). This file turns it into:
- * - CSS variables on :root (--ss-page, --ss-text, --ss-font-display, --ss-radius-card...), which the CSS modules of
- *   the shared components (src/components/ui, src/components/home) read;
+ * The site's look comes from one skin (src/theme/skins) worn in two themes, dark and light (src/theme/mode.ts).
+ * This file turns them into:
+ * - CSS variables (--ss-page, --ss-text, --ss-font-display, --ss-radius-card, --ss-art-wall...): the skin's type
+ *   and shape and the dark palette on :root, the light palette on :root[data-theme="light"]. The CSS modules of
+ *   the shared components (src/components/ui, src/components/home) read them;
  * - Chakra semantic tokens (ss.page, ss.text, ss.link...), which the pages' Chakra props read, and the heading,
  *   link and button styles.
- * To change direction, point SKIN at another skin. Nothing else names a colour or a typeface.
+ * Both themes are in the page at once; the header's switch only changes the attribute. To change direction, point
+ * SKIN at another skin and PALETTES (mode.ts) at its two palettes. Nothing else names a colour or a typeface.
  * The variables go in as plain CSS (SKIN_CSS, App.tsx's <Global>): Chakra's global styles cut a font list at its
  * commas.
  */
@@ -18,9 +22,18 @@ export const SKIN: Skin = noir
 const kebab = (s: string) => s.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)
 const px = ([phone, desk]: [number, number]) => ({ base: `${phone}px`, md: `${desk}px` })
 
-function cssVariables(skin: Skin): Record<string, string> {
+/** A theme's colours, shadows and hero art. */
+function paletteVariables(palette: Palette): Record<string, string> {
   const vars: Record<string, string> = {}
-  for (const [k, v] of Object.entries(skin.colors)) vars[`--ss-${kebab(k)}`] = v
+  for (const [k, v] of Object.entries(palette.colors)) vars[`--ss-${kebab(k)}`] = v
+  for (const [k, v] of Object.entries(palette.shadows)) vars[`--ss-shadow-${kebab(k)}`] = v
+  for (const [k, v] of Object.entries(palette.art)) vars[`--ss-art-${kebab(k)}`] = v
+  return vars
+}
+
+/** The skin's type, radii and rules: the same in both themes. */
+function shapeVariables(skin: Skin): Record<string, string> {
+  const vars: Record<string, string> = {}
   vars['--ss-font-display'] = skin.fonts.display
   vars['--ss-font-body'] = skin.fonts.body
   vars['--ss-font-code'] = skin.fonts.code
@@ -32,14 +45,18 @@ function cssVariables(skin: Skin): Record<string, string> {
   for (const [k, v] of Object.entries(skin.radii)) vars[`--ss-radius-${kebab(k)}`] = v
   vars['--ss-hairline'] = skin.borders.hairline
   vars['--ss-card-border'] = skin.borders.card
-  for (const [k, v] of Object.entries(skin.shadows)) vars[`--ss-shadow-${kebab(k)}`] = v
   return vars
 }
 
-/** The active skin as CSS variables on :root, for App.tsx's <Global>. */
-export const SKIN_CSS = `:root{${Object.entries(cssVariables(SKIN))
-  .map(([k, v]) => `${k}:${v};`)
-  .join('')}color-scheme:${SKIN.scheme};}`
+const block = (selector: string, vars: Record<string, string>, scheme: string) =>
+  `${selector}{${Object.entries(vars)
+    .map(([k, v]) => `${k}:${v};`)
+    .join('')}color-scheme:${scheme};}`
+
+/** Both themes as CSS variables, for App.tsx's <Global>: dark on :root (the default), light under its attribute. */
+export const SKIN_CSS =
+  block(':root', { ...shapeVariables(SKIN), ...paletteVariables(PALETTES.dark) }, PALETTES.dark.scheme) +
+  block(':root[data-theme="light"]', paletteVariables(PALETTES.light), PALETTES.light.scheme)
 
 // ss.page -> var(--ss-page): the Chakra props and the CSS modules share one set of values.
 const colorTokens = Object.fromEntries(
@@ -49,6 +66,9 @@ const colorTokens = Object.fromEntries(
 const H = SKIN.type.headings
 
 export const theme = extendTheme({
+  // Chakra's colour mode is the page's theme (mode.ts): it starts on the theme public/theme.js set, and the
+  // header's switch fades the page itself (switchTheme), so Chakra's own no-transition flash stays off.
+  config: { initialColorMode: pageTheme(), useSystemColorMode: false, disableTransitionOnChange: false },
   fonts: {
     heading: 'var(--ss-font-display)',
     body: 'var(--ss-font-body)',

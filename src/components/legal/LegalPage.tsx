@@ -28,7 +28,7 @@ export const LegalPage = ({ title, updated, children }: { title: ReactNode; upda
         spacing={5}
         align="start"
         // The title's rule already opens the page: a first section heading needs no second one.
-        sx={{ '& li::marker': { color: 'var(--ss-accent)' }, '& > h2:first-of-type:first-child': { borderTop: 0, pt: 0, mt: 0 } }}
+        sx={{ '& li::marker': { color: 'var(--ss-accent-text)' }, '& > h2:first-of-type:first-child': { borderTop: 0, pt: 0, mt: 0 } }}
       >
         {children}
       </VStack>

@@ -13,6 +13,31 @@ body {
   background-color: #0a111c;
   color: #fefaea;
 }
+/* The light theme's page, for a visitor who chose it (public/theme.js sets the attribute before this paints). */
+:root[data-theme='light'] body {
+  background-color: #f8f6f0;
+  color: #0a0a0a;
+}
+
+/*
+ * Switching theme (src/theme/mode.ts): the new page spreads over the old one in a circle from the switch (the
+ * circle is mode.ts's animation; no cross-fade), while the switch itself shows live on top with its knob sliding
+ * (its old picture is dropped). No other transition replays while the colours change.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(ss-theme-toggle) {
+  display: none;
+}
+::view-transition-new(ss-theme-toggle) {
+  animation: none;
+}
+html.ss-theme-switching *:not([data-theme-toggle], [data-theme-toggle] *) {
+  transition: none !important;
+}
 
 #root {
   width: 100%;

@@ -101,10 +101,11 @@ export function SignaturePad({ onChange, isDisabled }: { onChange: (path: string
           onPointerCancel={up}
           onPointerLeave={up}
         >
-          <line x1={24} y1={160} x2={PAD_WIDTH - 24} y2={160} stroke="rgba(255,255,255,0.18)" strokeWidth={1.5} />
-          <path d={shown} fill="none" stroke="white" strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round" />
+          {/* The ink is the page's text colour, so a signature shows in either theme. */}
+          <line x1={24} y1={160} x2={PAD_WIDTH - 24} y2={160} style={{ stroke: 'var(--ss-line-strong)' }} strokeWidth={1.5} />
+          <path d={shown} fill="none" style={{ stroke: 'var(--ss-text)' }} strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round" />
           {dots.map(([[x, y]], i) => (
-            <circle key={i} cx={x} cy={y} r={1.8} fill="white" />
+            <circle key={i} cx={x} cy={y} r={1.8} style={{ fill: 'var(--ss-text)' }} />
           ))}
         </svg>
         {count === 0 && (

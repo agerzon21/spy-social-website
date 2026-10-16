@@ -5,6 +5,7 @@ import type { Skin } from './types'
  * thing to tap. Tall condensed Big Shoulders Display for posters and headings, Barlow for reading.
  * Contrast (WCAG 2.1, on page #0a111c): text 18.1:1, body 12.8:1, muted 9.1:1, link 13.1:1, accent 8.6:1, control
  * 5.1:1, onAccent on accent 9.0:1; muted stays 8:1 or more on band, deep and the surfaces.
+ * The site's dark theme (the default); its light theme is ./daylight.ts, on this skin's type and layout.
  */
 export const noir: Skin = {
   id: 'noir',
@@ -29,6 +30,7 @@ export const noir: Skin = {
     accent: '#ff9500',
     accentHover: '#ffab3d',
     onAccent: '#0a0a0a',
+    accentText: '#ff9500',
     highlight: '#ffd166',
     focus: '#ffd166',
     success: '#8fe3a8',
@@ -55,6 +57,27 @@ export const noir: Skin = {
     card: 'none',
     phone: '0 0 0 1.5px rgba(254, 250, 234, 0.18), 0 30px 60px -20px rgba(0, 0, 0, 0.8), -14px -10px 50px -18px rgba(255, 240, 205, 0.18)',
     button: 'none',
+  },
+  // A cold sky over a navy height wall, one warm spotlight; the suspects out of it sink into the dark.
+  art: {
+    heroSky: 'rgba(78, 140, 255, 0.16)',
+    heroMid: '#0c1726',
+    heroEnd: '#0e1a2b',
+    wallTop: '#132338',
+    wallBottom: '#0d1828',
+    wallLine: 'rgba(254, 250, 234, 0.12)',
+    wallMark: 'rgba(254, 250, 234, 0.4)',
+    floor: '#000',
+    beamFrom: 'rgba(255, 240, 205, 0)',
+    beamMid: 'rgba(255, 240, 205, 0.2)',
+    beamTo: 'rgba(255, 240, 205, 0.26)',
+    beamBlend: 'screen',
+    pool: 'rgba(255, 240, 205, 0.32)',
+    plate: '#05080d',
+    plateText: '#fefaea',
+    plateLine: 'rgba(254, 250, 234, 0.5)',
+    stamp: 'rgba(5, 8, 13, 0.86)',
+    dim: 'brightness(0.62) saturate(0.8)',
   },
   wordmark: 'cream',
 }
