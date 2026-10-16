@@ -214,7 +214,7 @@ export const LIVE = {
    * LEGAL_LAST_UPDATED (the Terms change too) to that day. Ahead-safe: the text only adds (the tap wording stays for
    * players who turn it off, and for older apps); see AHEAD_SAFE.
    */
-  autoTranslation: false,
+  autoTranslation: true,
   /**
    * The translate function can use OpenAI: app_config.translation_engine is 'openai' on the live server ('microsoft'
    * is the default; 'device_first' asks the phone first and the server, through Microsoft, only when the phone
@@ -247,7 +247,7 @@ export const LIVE = {
    * while the engine might go back to 'openai'; off only once OpenAI is out of the translate function for good. A
    * server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD (see AHEAD_SAFE).
    */
-  openAiTranslation: false,
+  openAiTranslation: true,
   /** Typed interrogation questions and answers go through the server and are stored like chat (M7 send_interrogation_line). */
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
