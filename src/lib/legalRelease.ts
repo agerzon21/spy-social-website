@@ -231,7 +231,12 @@ export const LIVE = {
    * without Zero Data Retention). Check that page again before flipping. Only lines whose authors all declared 16 or
    * older at the age gate go to OpenAI (app_config.translation_openai_min_author_age, 16; the rest, unknown ages
    * included, go to Microsoft), and the context lines and private-room names are only of such players: if the owner
-   * changes that number, change "16" in Privacy's Translations, Microsoft and OpenAI items. On, it turns on: Privacy's
+   * changes that number, change "16" in Privacy's Translations, Microsoft and OpenAI items. And only lines whose
+   * authors all agreed themselves (server 20261031100000_translate_author_consent, app feat/auto-translate
+   * lib/translationConsent.ts: TRANSLATE on the note naming OpenAI; NOT NOW, or automatic translation turned off,
+   * takes it back; older apps never agree), so Privacy's three items say "who agreed in the app" and that we keep
+   * the answer (the note's version and when) until it changes or the account is deleted (translation_consents, rows
+   * deleted with the profile). Flip only once that migration is live. On, it turns on: Privacy's
    * Translations names OpenAI ("Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service
    * uses") and says that only 16+ players' lines go to OpenAI and what it receives, the OpenAI provider item adds
    * translation (it shows with drawingCheck or this), the Microsoft line says "rather than OpenAI, and always for
