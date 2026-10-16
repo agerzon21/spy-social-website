@@ -52,9 +52,10 @@ const UkOnlineSafety = () => {
         <>
           Never allowed (see Child safety in section 7). There are no direct messages, friend lists or player search, so
           nobody can contact a player outside a shared room. Sharing contact details or social media handles is against
-          the rules, and public chat refuses links, email addresses and phone numbers. Every chat message is kept on our
-          servers for the times above, so a report comes with the words actually sent. Child Safety is an urgent report
-          reason.{dc ? ' The drawing check takes a drawing that sexualizes a child off the board in any room.' : ''} We remove the content, ban the accounts involved, keep the evidence the law requires,
+          the rules. In any room with a player under 18, chat refuses links, email addresses, phone numbers and social
+          accounts for everyone, and Play Online tables and game nights always refuse them. Every chat message is kept on
+          our servers for the times above, so a report comes with the words actually sent. Child Safety is an urgent
+          report reason, and any report involving a player under 18 is urgent too.{dc ? ' The drawing check takes a drawing that sexualizes a child off the board in any room.' : ''} We remove the content, ban the accounts involved, keep the evidence the law requires,
           and report it to the National Center for Missing &amp; Exploited Children (NCMEC), which passes reports linked
           to the UK to the UK's National Crime Agency.
         </>,
@@ -306,7 +307,7 @@ const UkOnlineSafety = () => {
       <Bullets>
         <ListItem>
           A person reads every report within 24 hours. Reports about child safety, self-harm, sexual content and personal
-          information are marked urgent and read first.
+          information, and reports involving a player under 18, are marked urgent and read first.
         </ListItem>
         <ListItem>
           A report comes with our own copy of the chat around it, so we can check it without waiting for screenshots.
@@ -325,9 +326,10 @@ const UkOnlineSafety = () => {
         <ListItem>
           <B>Word filter.</B> Names, usernames and room codes are checked against our whole list of blocked words. Chat
           messages{LIVE.storedQuestions ? ' and typed questions and answers' : ''} are checked before anyone else sees
-          them: in public rooms for slurs, explicit sexual words, insults and other blocked words, with links, email
-          addresses and phone numbers refused; in private rooms for the most serious words, such as slurs, sexual insults
-          and telling someone to kill themselves. The filter works best in English, Spanish and Russian. It stops a
+          them: in public rooms for slurs, explicit sexual words, insults and other blocked words; in private rooms for the
+          most serious words, such as slurs, sexual insults and telling someone to kill themselves. Links, email
+          addresses, phone numbers and social accounts are refused for everyone at Play Online tables and game nights,
+          and in any room with a player under 18 or one who hasn't told us their age. The filter works best in English, Spanish and Russian. It stops a
           message or a name from going out; it never penalizes anyone by itself.
         </ListItem>
         {dc ? (
