@@ -1,0 +1,21 @@
+/* A full-width row that links somewhere: icon, label, an optional note, an arrow. */
+.list { display: grid; gap: 0; }
+.row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 4px;
+  border-bottom: var(--ss-hairline) solid var(--ss-line);
+  color: var(--ss-text);
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+.list > .row:first-child, .list > :first-child .row { border-top: var(--ss-hairline) solid var(--ss-line); }
+.row:hover { background: var(--ss-surface); color: var(--ss-highlight); }
+.icon { flex: none; width: 18px; height: 18px; color: var(--ss-muted); }
+.label { flex: 1; min-width: 0; font-size: 16px; line-height: 1.35; }
+.note { font-size: 14px; color: var(--ss-muted); white-space: nowrap; }
+.arrow { flex: none; color: var(--ss-subtle); font-size: 18px; line-height: 1; }
+.row:hover .arrow { color: var(--ss-highlight); }
+.icon svg { width: 100%; height: 100%; display: block; }

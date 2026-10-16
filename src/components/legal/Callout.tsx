@@ -3,10 +3,28 @@ import type { ReactNode } from 'react'
 
 /** A highlighted box with a bold first line, like the Terms' short version (Safety, Child Safety). */
 export const Callout = ({ title, children }: { title: string; children: ReactNode }) => (
-  <Box w="100%" bg="whiteAlpha.50" borderWidth="1px" borderColor="whiteAlpha.200" borderRadius="md" p={4}>
-    <Text fontSize="sm" lineHeight="1.8" color="whiteAlpha.800" fontWeight="600" mb={1}>
+  <CalloutBox>
+    <Text textStyle="body" color="ss.text" fontWeight="700" mb={1}>
       {title}
     </Text>
+    {children}
+  </CalloutBox>
+)
+
+/** The box itself, for a callout whose first line isn't a plain title (the Terms' short version). */
+export const CalloutBox = ({ children }: { children: ReactNode }) => (
+  <Box
+    w="100%"
+    bg="ss.surface"
+    border="var(--ss-card-border) solid"
+    borderColor="ss.line"
+    borderLeft="3px solid"
+    borderLeftColor="ss.accent"
+    borderRadius="var(--ss-radius-card)"
+    boxShadow="var(--ss-shadow-card)"
+    px={{ base: 4, md: 5 }}
+    py={4}
+  >
     {children}
   </Box>
 )

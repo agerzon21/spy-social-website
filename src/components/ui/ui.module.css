@@ -1,0 +1,140 @@
+/* Shared building blocks. Every value comes from the skin's --ss-* variables (src/theme). */
+
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* A small label over a heading, led by a short rule. */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  font: 600 12px/1.2 var(--ss-font-body);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}
+@media (max-width: 479px) {
+  .eyebrow { letter-spacing: 0.14em; }
+}
+.eyebrow::before {
+  content: '';
+  flex: none;
+  width: 28px;
+  height: var(--ss-hairline);
+  background: currentColor;
+}
+
+/* Poster headings: the skin's display face, weight, case and leading. */
+.display {
+  margin: 0;
+  font-family: var(--ss-font-display);
+  font-weight: var(--ss-display-weight);
+  font-stretch: var(--ss-display-stretch);
+  text-transform: var(--ss-display-transform);
+  letter-spacing: var(--ss-display-tracking);
+  line-height: var(--ss-display-leading);
+  color: var(--ss-text);
+  text-wrap: balance;
+}
+.display1 { font-size: clamp(72px, 23vw, 184px); line-height: calc(var(--ss-display-leading) - 0.04); }
+.display2 { font-size: clamp(46px, 13vw, 104px); margin-bottom: 18px; }
+.display3 { font-size: clamp(34px, 9vw, 52px); line-height: 0.92; margin-bottom: 10px; }
+.display4 { font-size: clamp(28px, 7vw, 36px); line-height: 0.95; margin-bottom: 10px; }
+
+.lede {
+  margin: 0 0 32px;
+  max-width: 34em;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ss-muted);
+}
+
+/* Buttons and button-like links (44 px or taller). */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 54px;
+  padding: 0 24px;
+  border: var(--ss-hairline) solid transparent;
+  border-radius: var(--ss-radius-button);
+  font: 800 20px/1 var(--ss-font-display);
+  letter-spacing: 0.1em;
+  text-transform: var(--ss-display-transform);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.primary {
+  background: var(--ss-accent);
+  color: var(--ss-on-accent);
+  box-shadow: var(--ss-shadow-button);
+}
+.primary:hover { background: var(--ss-accent-hover); }
+.secondary {
+  background: transparent;
+  color: var(--ss-text);
+  border-color: var(--ss-control);
+}
+.secondary:hover { background: var(--ss-surface-strong); border-color: var(--ss-text); }
+.btn[aria-disabled='true'],
+.btn:disabled {
+  background: var(--ss-surface-hover);
+  color: var(--ss-muted);
+  border-color: transparent;
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* An inline text link with an icon, underlined by a hairline that warms on hover. */
+.iconLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font: 700 15px/1.2 var(--ss-font-body);
+  color: var(--ss-text);
+  text-decoration: none;
+  border-bottom: var(--ss-hairline) solid var(--ss-line);
+}
+.iconLink:hover { border-color: var(--ss-highlight); }
+.iconLink svg { width: 17px; height: 17px; flex: none; }
+
+/* A phone screenshot in a thin dark frame. */
+.phone {
+  position: relative;
+  padding: 5px;
+  border-radius: var(--ss-radius-phone);
+  background: #05080d;
+  box-shadow: var(--ss-shadow-phone);
+}
+.phone img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 660 / 1428;
+  object-fit: cover;
+  border-radius: calc(var(--ss-radius-phone) - 5px);
+  background: var(--ss-band);
+}
+.phoneSmall { padding: 3px; border-radius: calc(var(--ss-radius-phone) * 0.66); }
+.phoneSmall img { border-radius: calc(var(--ss-radius-phone) * 0.66 - 3px); }
+
+.rule {
+  height: var(--ss-hairline);
+  margin: 0;
+  border: 0;
+  background: var(--ss-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+}

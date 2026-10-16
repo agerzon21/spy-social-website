@@ -1,10 +1,11 @@
-import { Box, Container, Heading, Text, VStack, HStack, Icon, Link as ChakraLink } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, HStack, Icon } from '@chakra-ui/react'
 import { useState } from 'react'
 import { FiCopy, FiCheck, FiMail } from 'react-icons/fi'
 import { FaApple } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 import { useThemedToast } from '../lib/useThemedToast'
 import SocialLinks from '../components/SocialLinks'
+import { LinkRow, LinkRows } from '../components/ui/LinkRow'
+import { APP_STORE_URL } from '../lib/stores'
 
 const Support = () => {
   const [copied, setCopied] = useState(false)
@@ -23,60 +24,69 @@ const Support = () => {
   }
 
   return (
-    <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
-      <Container maxW="container.sm">
+    <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="radial-gradient(70% 320px at 50% 0, var(--ss-glow), transparent 70%)">
+      <Container maxW="560px" px={{ base: 4, md: 6 }}>
         <VStack spacing={10} align="stretch">
           {/* Header */}
-          <VStack spacing={3} textAlign="center">
-            <Heading as="h1" size="xl" color="white" fontWeight="600" letterSpacing="-0.02em">
+          <VStack spacing={4} textAlign="center">
+            <Heading as="h1" size="xl">
               How can we help?
             </Heading>
-            <Text fontSize="md" color="whiteAlpha.500" maxW="400px">
+            <Text fontSize={{ base: '17px', md: '18px' }} color="ss.muted" maxW="400px">
               We're here to help with any questions or issues you have with SpySocial.
             </Text>
           </VStack>
 
           {/* Contact card */}
           <Box
-            bg="whiteAlpha.50"
-            borderRadius="xl"
-            border="1px solid"
-            borderColor="whiteAlpha.100"
-            p={{ base: 6, md: 8 }}
+            bg="ss.surface"
+            borderRadius="var(--ss-radius-card)"
+            border="var(--ss-card-border) solid"
+            borderColor="ss.lineStrong"
+            boxShadow="var(--ss-shadow-card)"
+            p={{ base: 5, md: 7 }}
           >
             <VStack spacing={4} align="stretch">
               <HStack spacing={3}>
                 <Box
-                  w="36px"
-                  h="36px"
-                  borderRadius="lg"
-                  bg="blue.500"
+                  w="40px"
+                  h="40px"
+                  borderRadius="var(--ss-radius-control)"
+                  bg="ss.accent"
                   display="flex"
                   alignItems="center"
                   justifyContent="center"
                   flexShrink={0}
+                  aria-hidden
                 >
-                  <Icon as={FiMail} color="white" boxSize={4} />
+                  <Icon as={FiMail} color="ss.onAccent" boxSize={5} />
                 </Box>
                 <Box>
-                  <Text fontSize="sm" fontWeight="600" color="white">Email us</Text>
-                  <Text fontSize="xs" color="whiteAlpha.500">We typically respond within 24 hours</Text>
+                  <Text fontSize="17px" fontWeight="700" color="ss.text">Email us</Text>
+                  <Text fontSize="14px" color="ss.muted">We typically respond within 24 hours</Text>
                 </Box>
               </HStack>
 
               <Box
+                as="button"
+                type="button"
+                w="100%"
+                minH="52px"
                 px={4}
                 py={3}
-                bg="whiteAlpha.100"
-                borderRadius="lg"
+                bg="ss.deep"
+                border="var(--ss-hairline) solid"
+                borderColor="ss.control"
+                borderRadius="var(--ss-radius-control)"
                 cursor="pointer"
                 onClick={handleCopy}
-                transition="all 0.2s"
-                _hover={{ bg: 'whiteAlpha.150' }}
+                aria-label={`Copy ${email}`}
+                transition="border-color 0.15s"
+                _hover={{ borderColor: 'ss.text' }}
               >
                 <HStack spacing={3} justify="space-between">
-                  <Text fontSize="sm" fontWeight="500" color="blue.300">{email}</Text>
-                  <Icon as={copied ? FiCheck : FiCopy} color={copied ? "green.400" : "whiteAlpha.400"} boxSize={4} />
+                  <Text fontSize="17px" fontWeight="600" color="ss.link">{email}</Text>
+                  <Icon as={copied ? FiCheck : FiCopy} color={copied ? 'ss.success' : 'ss.muted'} boxSize={5} />
                 </HStack>
               </Box>
             </VStack>
@@ -84,51 +94,13 @@ const Support = () => {
 
           {/* Quick links */}
           <VStack spacing={3} align="stretch">
-            <Text fontSize="xs" fontWeight="600" textTransform="uppercase" letterSpacing="0.08em" color="whiteAlpha.400">
+            <Text textStyle="label">
               Quick links
             </Text>
-
-            <ChakraLink
-              as={Link}
-              to="/support"
-              _hover={{ textDecoration: 'none' }}
-            >
-              <HStack
-                spacing={3}
-                p={4}
-                bg="whiteAlpha.50"
-                borderRadius="lg"
-                border="1px solid"
-                borderColor="whiteAlpha.100"
-                transition="all 0.2s"
-                _hover={{ bg: 'whiteAlpha.100' }}
-              >
-                <Text fontSize="sm" color="whiteAlpha.700" flex="1">FAQ & Troubleshooting</Text>
-                <Text color="whiteAlpha.300">&rarr;</Text>
-              </HStack>
-            </ChakraLink>
-
-            <Box
-              as="a"
-              href="https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <HStack
-                spacing={3}
-                p={4}
-                bg="whiteAlpha.50"
-                borderRadius="lg"
-                border="1px solid"
-                borderColor="whiteAlpha.100"
-                transition="all 0.2s"
-                _hover={{ bg: 'whiteAlpha.100' }}
-              >
-                <Icon as={FaApple} color="whiteAlpha.600" boxSize={4} />
-                <Text fontSize="sm" color="whiteAlpha.700" flex="1">Rate us on the App Store</Text>
-                <Text color="whiteAlpha.300">&rarr;</Text>
-              </HStack>
-            </Box>
+            <LinkRows>
+              <LinkRow to="/support" label="FAQ & Troubleshooting" />
+              <LinkRow href={APP_STORE_URL} newTab icon={<FaApple />} label="Rate us on the App Store" />
+            </LinkRows>
           </VStack>
 
           <SocialLinks variant="list" />

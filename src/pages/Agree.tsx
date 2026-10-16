@@ -79,13 +79,14 @@ const when = (iso: string) =>
 const day = (iso: string) => new Intl.DateTimeFormat(undefined, { dateStyle: 'long' }).format(new Date(iso))
 
 const inputStyle = {
-  bg: 'whiteAlpha.100',
-  border: '1px solid',
-  borderColor: 'whiteAlpha.200',
-  color: 'white',
-  _placeholder: { color: 'whiteAlpha.300' },
-  _hover: { borderColor: 'whiteAlpha.300' },
-  _focus: { borderColor: 'blue.400', boxShadow: 'none' },
+  bg: 'ss.deep',
+  border: 'var(--ss-hairline) solid',
+  borderColor: 'ss.control',
+  borderRadius: 'var(--ss-radius-control)',
+  color: 'ss.text',
+  _placeholder: { color: 'ss.muted' },
+  _hover: { borderColor: 'ss.text' },
+  _focus: { borderColor: 'ss.focus', boxShadow: '0 0 0 1px var(--ss-focus)' },
 } as const
 
 const LOAD_ERRORS: Record<string, string> = {
@@ -98,11 +99,11 @@ const LOAD_ERRORS: Record<string, string> = {
 /** A filled-in value inside the text, or the field's name while it's still blank. */
 function Blank({ value, label }: { value: string; label: string }) {
   return value ? (
-    <Text as="span" color="white" bg="whiteAlpha.200" px={1} borderRadius="sm">
+    <Text as="span" color="ss.text" bg="ss.surfaceHover" px={1} borderRadius="sm">
       {value}
     </Text>
   ) : (
-    <Text as="span" color="yellow.200" borderBottom="1px dashed" borderColor="yellow.200">
+    <Text as="span" color="ss.warn" borderBottom="1px dashed" borderColor="ss.warn">
       [{label}]
     </Text>
   )
@@ -216,7 +217,7 @@ const Agree = () => {
   const finalSent = view?.final_sent ?? false
 
   return (
-    <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
+    <Box flex="1" color="ss.body" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
       <Helmet>
         <title>{view ? `${view.agreement.title} · SpySocial` : 'Agreement · SpySocial'}</title>
         <meta name="robots" content="noindex, nofollow, noarchive" />
@@ -225,24 +226,24 @@ const Agree = () => {
       <Container maxW="container.md">
         {!view && !loadError && (
           <VStack py={20}>
-            <Spinner color="white" />
+            <Spinner color="ss.text" />
           </VStack>
         )}
 
         {!view && loadError && (
           <VStack spacing={4} py={10} textAlign="center">
-            <Heading as="h1" size="lg" color="white">
+            <Heading as="h1" size="lg" color="ss.text">
               {LOAD_ERRORS[loadError.error] ?? "Couldn't open the agreement"}
             </Heading>
-            <Text fontSize="sm" lineHeight="1.8" maxW="md">
+            <Text textStyle="body" maxW="md">
               {loadError.message}
             </Text>
             {(loadError.error === 'network' || loadError.error === 'server_error') && (
-              <Button size="sm" bg="white" color="gray.900" _hover={{ bg: 'gray.100' }} onClick={() => void load()}>
+              <Button size="sm" variant="primary" onClick={() => void load()}>
                 Try Again
               </Button>
             )}
-            <Text fontSize="xs" color="whiteAlpha.500">
+            <Text fontSize="xs" color="ss.muted">
               Questions? <SupportEmail subject="Agreement link" />
             </Text>
           </VStack>
@@ -251,18 +252,18 @@ const Agree = () => {
         {view && (
           <VStack spacing={5} align="start">
             <Box>
-              <Text fontSize="xs" fontWeight="700" letterSpacing="0.12em" textTransform="uppercase" color="whiteAlpha.500" mb={2}>
+              <Text fontSize="xs" fontWeight="700" letterSpacing="0.12em" textTransform="uppercase" color="ss.muted" mb={2}>
                 Agreement from SpySocial
               </Text>
-              <Heading as="h1" size="lg" color="white">
+              <Heading as="h1" size="lg" color="ss.text">
                 {blocks[0]?.kind === 'title' ? inline(blocks[0].text) : view.agreement.title}
               </Heading>
             </Box>
 
             <Box w="100%" fontSize="sm">
               {parties.map((p) => (
-                <Text key={p.role} fontSize="sm" lineHeight="1.8">
-                  <Text as="span" fontWeight="600" color="whiteAlpha.800">
+                <Text key={p.role} textStyle="body">
+                  <Text as="span" fontWeight="600" color="ss.text">
                     {p.label}
                     {p.you ? ' (you)' : ''}:
                   </Text>{' '}
@@ -277,7 +278,7 @@ const Agree = () => {
 
             {notice && (
               <Callout title="The agreement changed">
-                <Text fontSize="sm" lineHeight="1.8">
+                <Text textStyle="body">
                   {notice}
                 </Text>
               </Callout>
@@ -285,7 +286,7 @@ const Agree = () => {
 
             {hasSigned && (
               <Callout title={signed ? 'Signed. Thank you!' : 'You have signed this agreement'}>
-                <Text fontSize="sm" lineHeight="1.8">
+                <Text textStyle="body">
                   You signed as {view.you.label} on {when((signed?.signed_at ?? view.you.signed_at) as string)}.{' '}
                   {finalSent || signed?.final_sent
                     ? 'Everyone has signed: the signed PDF, with its audit trail, has been emailed to each party.'
@@ -321,9 +322,9 @@ const Agree = () => {
                 w="100%"
                 mt={6}
                 p={{ base: 4, md: 6 }}
-                bg="whiteAlpha.50"
+                bg="ss.surface"
                 borderWidth="1px"
-                borderColor="whiteAlpha.200"
+                borderColor="ss.lineStrong"
                 borderRadius="lg"
                 onSubmit={(e: React.FormEvent) => {
                   e.preventDefault()
@@ -331,13 +332,13 @@ const Agree = () => {
                 }}
               >
                 <VStack spacing={5} align="stretch">
-                  <Heading as="h2" size="md" color="white">
+                  <Heading as="h2" size="md" color="ss.text">
                     Sign as {view.you.label}
                   </Heading>
 
                   {mine.map((f) => (
                     <FormControl key={f.key} isRequired isInvalid={Boolean(fieldError(`fields.${f.key}`))}>
-                      <FormLabel fontSize="sm" color="whiteAlpha.700">
+                      <FormLabel fontSize="sm" color="ss.body">
                         {f.label}
                       </FormLabel>
                       <Input
@@ -350,7 +351,7 @@ const Agree = () => {
                       {fieldError(`fields.${f.key}`) ? (
                         <FormErrorMessage>{fieldError(`fields.${f.key}`)}</FormErrorMessage>
                       ) : f.hint ? (
-                        <FormHelperText fontSize="xs" color="whiteAlpha.500">
+                        <FormHelperText fontSize="xs" color="ss.muted">
                           {f.hint}
                         </FormHelperText>
                       ) : null}
@@ -358,21 +359,21 @@ const Agree = () => {
                   ))}
 
                   <FormControl isRequired isInvalid={Boolean(fieldError('name'))}>
-                    <FormLabel fontSize="sm" color="whiteAlpha.700">
+                    <FormLabel fontSize="sm" color="ss.body">
                       Your full name
                     </FormLabel>
                     <Input {...inputStyle} value={name} maxLength={120} autoComplete="name" onChange={(e) => setName(e.target.value)} isDisabled={submitting} />
                     {fieldError('name') ? (
                       <FormErrorMessage>{fieldError('name')}</FormErrorMessage>
                     ) : (
-                      <FormHelperText fontSize="xs" color="whiteAlpha.500">
+                      <FormHelperText fontSize="xs" color="ss.muted">
                         The person signing.
                       </FormHelperText>
                     )}
                   </FormControl>
 
                   <FormControl isRequired isInvalid={Boolean(fieldError('email'))}>
-                    <FormLabel fontSize="sm" color="whiteAlpha.700">
+                    <FormLabel fontSize="sm" color="ss.body">
                       Your email
                     </FormLabel>
                     <Input
@@ -388,14 +389,14 @@ const Agree = () => {
                     {fieldError('email') ? (
                       <FormErrorMessage>{fieldError('email')}</FormErrorMessage>
                     ) : (
-                      <FormHelperText fontSize="xs" color="whiteAlpha.500">
+                      <FormHelperText fontSize="xs" color="ss.muted">
                         Where the signed PDF goes.
                       </FormHelperText>
                     )}
                   </FormControl>
 
                   <FormControl isRequired isInvalid={Boolean(fieldError('typed_signature')) || (typed !== '' && !typedOk)}>
-                    <FormLabel fontSize="sm" color="whiteAlpha.700">
+                    <FormLabel fontSize="sm" color="ss.body">
                       Signature: type your full name
                     </FormLabel>
                     <Input {...inputStyle} value={typed} maxLength={120} autoComplete="off" onChange={(e) => setTyped(e.target.value)} isDisabled={submitting} />
@@ -405,14 +406,14 @@ const Agree = () => {
                       <FormErrorMessage>{fieldError('typed_signature')}</FormErrorMessage>
                     ) : null}
                     {typedOk && (
-                      <Text mt={3} fontSize="2xl" color="white" fontFamily="Georgia, 'Times New Roman', serif" fontStyle="italic" lineHeight="1.2">
+                      <Text mt={3} fontSize="2xl" color="ss.text" fontFamily="Georgia, 'Times New Roman', serif" fontStyle="italic" lineHeight="1.2">
                         {cleanLine(typed)}
                       </Text>
                     )}
                   </FormControl>
 
                   <FormControl isInvalid={Boolean(fieldError('drawn_signature'))}>
-                    <FormLabel fontSize="sm" color="whiteAlpha.700">
+                    <FormLabel fontSize="sm" color="ss.body">
                       Draw your signature (optional)
                     </FormLabel>
                     <SignaturePad onChange={setDrawn} isDisabled={submitting} />
@@ -427,7 +428,7 @@ const Agree = () => {
                       alignItems="flex-start"
                       colorScheme="blue"
                     >
-                      <Text as="span" fontSize="sm" lineHeight="1.6" color="whiteAlpha.800">
+                      <Text as="span" fontSize="sm" lineHeight="1.6" color="ss.text">
                         {view.consent_text}
                       </Text>
                     </Checkbox>
@@ -435,16 +436,14 @@ const Agree = () => {
                   </FormControl>
 
                   {formError && !formError.field && (
-                    <Text color="red.300" fontSize="sm">
+                    <Text color="ss.danger" fontSize="sm">
                       {formError.message}
                     </Text>
                   )}
 
                   <Button
                     type="submit"
-                    bg="white"
-                    color="gray.900"
-                    _hover={{ bg: 'gray.100' }}
+                    variant="primary"
                     isLoading={submitting}
                     isDisabled={!ready}
                     w={{ base: '100%', md: 'auto' }}
@@ -454,7 +453,7 @@ const Agree = () => {
                     Sign
                   </Button>
 
-                  <Text fontSize="xs" lineHeight="1.7" color="whiteAlpha.500">
+                  <Text textStyle="small" color="ss.muted">
                     Signing records your name, email, the details above, your signature, the time, your IP address and your
                     browser, and keeps them with the agreement as its audit trail (see our{' '}
                     <PageLink to="/privacy">Privacy Policy</PageLink>). When everyone has signed, both parties get the signed
@@ -465,7 +464,7 @@ const Agree = () => {
               </Box>
             )}
 
-            <Text fontSize="xs" color="whiteAlpha.500" pt={4}>
+            <Text fontSize="xs" color="ss.muted" pt={4}>
               Questions about this agreement? <SupportEmail subject={`Agreement: ${view.agreement.title}`} />
             </Text>
           </VStack>

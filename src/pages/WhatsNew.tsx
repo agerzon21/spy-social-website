@@ -13,7 +13,6 @@ interface BulletItem {
 interface Section {
   label: string
   icon: IconType
-  accent: string
   items: BulletItem[]
 }
 
@@ -36,7 +35,6 @@ const releases: Release[] = [
       {
         label: 'Now Available',
         icon: FaRocket,
-        accent: 'orange.300',
         items: [
           { title: 'Android 2.1.1', text: 'Live on Google Play as of June 13, 2026.' },
           { title: 'iOS 2.1.1', text: 'Same fixes, submitted to App Store Connect.' },
@@ -45,7 +43,6 @@ const releases: Release[] = [
       {
         label: 'Pre-launch Polish',
         icon: FaWrench,
-        accent: 'teal.300',
         items: [
           { title: 'Delete Account button no longer clipped', text: 'The Account screen content now respects the device safe-area bottom inset and reserves room for the unsaved-changes snackbar — Google Play requires in-app account deletion to be reachable.' },
           { title: 'Lobby Leave Room / Start Game buttons', text: 'Now sit above the Android gesture-nav bar via dynamic safe-area insets.' },
@@ -60,7 +57,6 @@ const releases: Release[] = [
       {
         label: 'Infrastructure',
         icon: FaGears,
-        accent: 'gray.300',
         items: [
           { text: 'expo-updates now installed and configured against the EAS project. Future JS-only fixes can ship via over-the-air updates without going through Play Store / App Store review.' },
         ],
@@ -77,7 +73,6 @@ const releases: Release[] = [
       {
         label: 'New Features',
         icon: FaWandSparkles,
-        accent: 'blue.300',
         items: [
           { title: 'Welcome screen redesign', text: 'New layered surface with a soft sky-blue gradient and faint spy-themed background details (radar rings, crosshair), an orange "SOCIAL DEDUCTION" eyebrow pill, a tagline beneath the logo, icon-prefixed Login / Sign Up buttons, an OR divider, and a lightweight "Continue as Guest" link. Version badge is now a subtle pill at the bottom of the screen.' },
           { title: 'Account "confirmation pending" flow', text: 'When a guest upgrades to a full account, the Account screen now shows a clear pending state with Resend / Cancel / Refresh actions so they know exactly where they are in the email-confirm process.' },
@@ -86,7 +81,6 @@ const releases: Release[] = [
       {
         label: 'Visual Revamp',
         icon: FaPalette,
-        accent: 'purple.300',
         items: [
           { title: 'Game Over screen redesigned', text: 'Single-surface player cards with a soft gradient and left-edge color accent, a trophy hero with a glow halo, gold-accented winning-team sections, location card with a map-pin icon, and a sky-blue gradient "Return to Lobby" footer button.' },
           { title: 'Account screen redesign', text: 'Single cohesive list, consistent uppercase section headers across every group (Profile, Preferences, Account & Security, Support & Legal, Danger Zone), iOS-Settings-style menu rows for Support / Legal, Danger Zone moved to the bottom.' },
@@ -96,7 +90,6 @@ const releases: Release[] = [
       {
         label: 'Android-Specific Fixes',
         icon: FaAndroid,
-        accent: 'green.300',
         items: [
           { title: 'Back-gesture guard', text: "The Android-10+ system back swipe (and the hardware back button) now route through the same Leave confirmation dialog as tapping the header's Leave button. Previously, Android users could swipe back out of an in-game screen or the lobby with zero confirmation; gestureEnabled: false only stops the iOS swipe gesture. Implemented via a shared useBackPressGuard hook combining navigation.addListener('beforeRemove') with BackHandler.hardwareBackPress." },
           { title: '"Box-in-box" rendering artifact', text: "Android's compositor was rendering a visible inner edge inside every vote / vote-results / game-over card. Root cause: translucent rgba background + translucent hairline border + borderRadius + overflow:hidden — the rounded clip layer's own edge was showing through the semi-transparent border. Fixed across VotePlayerRow, VoteResultRankCard, VoteOutcomeCard, and the game-over player card." },
@@ -107,7 +100,6 @@ const releases: Release[] = [
       {
         label: 'Improvements',
         icon: FaWrench,
-        accent: 'teal.300',
         items: [
           { title: 'Server-synced clock', text: 'Every "seconds remaining" computation now subtracts a measured offset against the server clock (via a new server_now() Postgres function) instead of trusting the device clock. Fixes occasional nonsense countdown values on devices with imperfect time sync.' },
           { title: 'Auth flows consolidated', text: 'Signup, resend confirmation, password reset, and email change all dispatch through a single Edge Function with a shared client wrapper, removing the drift risk across the four UI call sites. New migrations add an idempotency key to signup, extend auth_attempts to cover the additional flow kinds, and add a cancel-email-change RPC.' },
@@ -118,7 +110,6 @@ const releases: Release[] = [
       {
         label: 'Technical',
         icon: FaGears,
-        accent: 'gray.300',
         items: [
           { text: 'tsconfig.json now excludes supabase/functions/** — those are Deno Edge Function files with a different module resolution target.' },
           { text: 'Version bumped to 2.1.0; iOS build number incremented for App Store submission.' },
@@ -136,7 +127,6 @@ const releases: Release[] = [
       {
         label: 'New Features',
         icon: FaWandSparkles,
-        accent: 'blue.300',
         items: [
           { title: 'Tutorial & profile setup', text: 'First-time players are walked through the game and prompted to set up their profile.' },
           { title: 'In-game Notebook', text: 'Jot down notes about who said what during the round. Players are smart-sorted: active players with notes first, then other active players, then eliminated players last.' },
@@ -154,7 +144,6 @@ const releases: Release[] = [
       {
         label: 'Visual Revamp',
         icon: FaPalette,
-        accent: 'purple.300',
         items: [
           { text: 'Lobby UI completely modernized with interactive player cards.' },
           { text: 'Lobby settings screen redesigned (with a reusable PickerModal under the hood).' },
@@ -171,7 +160,6 @@ const releases: Release[] = [
       {
         label: 'Improvements',
         icon: FaWrench,
-        accent: 'teal.300',
         items: [
           { title: 'Network resilience overhaul', text: 'Fixes a long-standing iOS quirk where NetInfo could lie ("offline") after a long background sleep, leaving screens stuck in reconnect states even though the network was actually fine. The shared useNetwork hook now verifies any "offline" claim with a real HTTP probe to Supabase; all in-game and pre-game screens consume this same hook.' },
           { text: "The Play screen now trusts actual fetch results over NetInfo's stale state, retries automatically every 5 seconds while offline, serializes concurrent fetches, and never falsely shows the logged-out fallback when the user is merely offline." },
@@ -191,7 +179,6 @@ const releases: Release[] = [
       {
         label: 'Bug Fixes',
         icon: FaBug,
-        accent: 'red.300',
         items: [
           { text: 'Fixed vote / end-of-game race condition.' },
           { text: 'Fixed double-tally and timer-end edge cases on votes.' },
@@ -207,7 +194,6 @@ const releases: Release[] = [
       {
         label: 'Technical',
         icon: FaGears,
-        accent: 'gray.300',
         items: [
           { text: 'Migrated state management to useRoom and useGame hooks.' },
           { text: 'Flattened routing — dropped the (tabs) route group in favor of flat routes.' },
@@ -234,25 +220,26 @@ const SectionBlock = ({ section }: { section: Section }) => (
       <Box
         w="32px"
         h="32px"
-        borderRadius="lg"
-        bg="whiteAlpha.100"
+        borderRadius="var(--ss-radius-control)"
+        bg="ss.surfaceStrong"
         display="flex"
         alignItems="center"
         justifyContent="center"
+        aria-hidden
       >
-        <Icon as={section.icon} color={section.accent} boxSize={4} />
+        <Icon as={section.icon} color="ss.highlight" boxSize={4} />
       </Box>
-      <Text fontSize="sm" fontWeight="600" textTransform="uppercase" letterSpacing="0.08em" color={section.accent}>
+      <Text textStyle="label">
         {section.label}
       </Text>
     </HStack>
-    <Stack spacing={2.5} pl={1}>
+    <Stack spacing={3} pl={1}>
       {section.items.map((item, idx) => (
         <HStack key={idx} align="flex-start" spacing={3}>
-          <Box w="6px" h="6px" mt="9px" borderRadius="full" bg="whiteAlpha.300" flexShrink={0} />
-          <Text fontSize="sm" color="whiteAlpha.700" lineHeight="1.7">
+          <Box w="6px" h="6px" mt="10px" bg="ss.accent" transform="rotate(45deg)" flexShrink={0} aria-hidden />
+          <Text fontSize="16px" color="ss.body" lineHeight="1.65">
             {item.title && (
-              <Text as="span" color="white" fontWeight="600">
+              <Text as="span" color="ss.text" fontWeight="700">
                 {item.title}
               </Text>
             )}
@@ -270,55 +257,43 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
     initial={{ y: 20, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.5 }}
-    bg="whiteAlpha.50"
-    borderRadius="2xl"
-    border="1px solid"
-    borderColor="whiteAlpha.100"
-    p={{ base: 6, md: 8 }}
+    bg="ss.surface"
+    borderRadius="var(--ss-radius-card)"
+    border="var(--ss-card-border) solid"
+    borderColor={isFirst ? 'ss.lineStrong' : 'ss.line'}
+    borderTop={isFirst ? '3px solid' : undefined}
+    borderTopColor={isFirst ? 'ss.accent' : undefined}
+    boxShadow="var(--ss-shadow-card)"
+    p={{ base: 5, md: 8 }}
     position="relative"
     overflow="hidden"
   >
-    {isFirst && (
-      <Box
-        position="absolute"
-        top="-100px"
-        right="-100px"
-        w="300px"
-        h="300px"
-        borderRadius="full"
-        bg="blue.500"
-        opacity={0.06}
-        filter="blur(80px)"
-        pointerEvents="none"
-      />
-    )}
-
     <VStack spacing={6} align="stretch" position="relative">
       <Box>
         <HStack spacing={3} mb={2} flexWrap="wrap">
-          <Heading as="h2" size="lg" color="white" fontWeight="700" letterSpacing="-0.02em">
+          <Heading as="h2" size="lg">
             v{release.version}
           </Heading>
           {release.tag && (
             <Badge
-              bg="blue.500"
-              color="white"
-              fontSize="2xs"
+              bg="ss.accent"
+              color="ss.onAccent"
+              fontSize="12px"
               textTransform="uppercase"
               letterSpacing="0.08em"
               px={2}
               py={0.5}
-              borderRadius="md"
-              fontWeight="600"
+              borderRadius="var(--ss-radius-control)"
+              fontWeight="700"
             >
               {release.tag}
             </Badge>
           )}
         </HStack>
-        <Text fontSize="xs" color="whiteAlpha.400" mb={4}>
+        <Text textStyle="meta" mb={4}>
           {release.date}
         </Text>
-        <Text fontSize="md" color="whiteAlpha.700" lineHeight="1.7">
+        <Text fontSize={{ base: '17px', md: '18px' }} color="ss.body" lineHeight="1.6">
           {release.summary}
         </Text>
       </Box>
@@ -336,14 +311,14 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
 
 const WhatsNew = () => {
   return (
-    <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
-      <Container maxW="container.md">
+    <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="linear-gradient(180deg, var(--ss-band) 0, var(--ss-page) 360px)">
+      <Container maxW="760px" px={{ base: 4, md: 6 }}>
         <VStack spacing={10} align="stretch">
-          <VStack spacing={3} textAlign="center">
-            <Heading as="h1" size="xl" color="white" fontWeight="600" letterSpacing="-0.02em">
+          <VStack spacing={4} textAlign="center">
+            <Heading as="h1" size="xl">
               What's New
             </Heading>
-            <Text fontSize="md" color="whiteAlpha.500" maxW="500px">
+            <Text fontSize={{ base: '17px', md: '18px' }} color="ss.muted" maxW="500px">
               Release notes for SpySocial. Major updates, new features, and improvements as we ship them.
             </Text>
           </VStack>

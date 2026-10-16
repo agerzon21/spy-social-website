@@ -14,14 +14,14 @@ import { PRIVACY, photosInUse } from '../../lib/legalRelease'
 // addresses until the housekeeping job deletes them.
 
 const SupportEmail = () => (
-  <ChakraLink as={Link} to="/contact-us" color="blue.300" _hover={{ color: 'blue.200' }}>
+  <ChakraLink as={Link} to="/contact-us">
     support@spysocial.app
   </ChakraLink>
 )
 
 /** What stays after a deletion, and for how long. */
 export const AfterDeletionList = () => (
-  <UnorderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
+  <UnorderedList spacing={2} pl={4} textStyle="body">
     <ListItem>
       Chat messages{PRIVACY.storedQuestions ? ' and typed questions and answers' : ''} you sent stay in their room until{' '}
       {PRIVACY.scheduledRetention
@@ -85,7 +85,7 @@ export const AfterDeletionList = () => (
 
 /** The closing line both pages show under the list. */
 export const AfterDeletionLaw = () => (
-  <Text fontSize="sm" lineHeight="1.8">
+  <Text textStyle="body">
     We may also keep information for longer when the law requires it, for example when we have to report illegal content
     to the authorities.
   </Text>

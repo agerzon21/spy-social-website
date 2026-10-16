@@ -6,9 +6,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { LIVE } from '../lib/legalRelease'
 import { supabase } from '../lib/supabase'
 import { currentPlatform } from '../lib/platform'
+import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 
-const APP_STORE_URL = 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390'
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.gerz.spysocial'
 
 type I18n = Partial<Record<'en' | 'es' | 'ru', string>>
 
@@ -101,53 +100,53 @@ const JoinEvent = () => {
     : null
 
   return (
-    <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
-      <Container maxW="container.sm">
+    <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="radial-gradient(70% 320px at 50% 0, var(--ss-glow), transparent 70%)">
+      <Container maxW="560px" px={{ base: 4, md: 6 }}>
         <VStack spacing={8} align="stretch">
           <VStack spacing={2} textAlign="center">
-            <Text color="orange.300" fontSize="sm" fontWeight="700" letterSpacing="0.12em" textTransform="uppercase">
+            <Text textStyle="label">
               Public event
             </Text>
             {status === 'loading' ? (
-              <Spinner color="white" />
+              <Spinner color="ss.text" />
             ) : status === 'ok' && event ? (
-              <Heading as="h1" size="xl" color="white" fontWeight="700" letterSpacing="-0.02em" textDecoration={event.state === 'cancelled' ? 'line-through' : undefined}>
+              <Heading as="h1" size="xl" textDecoration={event.state === 'cancelled' ? 'line-through' : undefined}>
                 {pick(event.title, lang)}
               </Heading>
             ) : (
               <>
-                <Heading as="h1" size="lg" color="white">
+                <Heading as="h1" size="lg">
                   This event link doesn't work
                 </Heading>
-                <Text color="whiteAlpha.700">Check it, or open SpySocial and browse rooms.</Text>
+                <Text color="ss.body">Check it, or open SpySocial and browse rooms.</Text>
               </>
             )}
           </VStack>
 
           {status === 'ok' && event ? (
-            <VStack spacing={4} py={7} px={6} bg="whiteAlpha.50" borderRadius="xl" borderWidth="1px" borderColor="whiteAlpha.200" align="stretch">
+            <VStack spacing={4} py={7} px={6} bg="ss.surface" borderRadius="var(--ss-radius-card)" border="var(--ss-card-border) solid" borderColor="ss.lineStrong" boxShadow="var(--ss-shadow-card)" align="stretch">
               <HStack justify="space-between" align="center">
                 {stateBadge ? <Badge colorScheme={stateBadge.scheme}>{stateBadge.label}</Badge> : null}
                 {event.state === 'live' && event.room ? (
-                  <Text color="whiteAlpha.700" fontSize="sm">
+                  <Text color="ss.body" fontSize="sm">
                     {event.room.full ? 'Full right now' : `${event.room.player_count} / ${event.capacity} in the room`}
                   </Text>
                 ) : null}
               </HStack>
               <Box>
-                <Text color="white" fontSize="xl" fontWeight="700">
+                <Text color="ss.text" fontFamily="heading" fontSize="28px" lineHeight="1.1" fontWeight="800">
                   {viewerWhen}
                 </Text>
-                <Text color="whiteAlpha.600" fontSize="sm">
+                <Text color="ss.muted" fontSize="sm">
                   Your time{differs ? ` · ${event.host_name ?? 'The host'}'s time: ${hostWhen}` : ''}
                 </Text>
               </Box>
               {event.state === 'cancelled' && event.cancel_reason ? (
-                <Text color="whiteAlpha.800">“{pick(event.cancel_reason, lang)}”</Text>
+                <Text color="ss.text">“{pick(event.cancel_reason, lang)}”</Text>
               ) : pick(event.description, lang) ? (
-                <Text color="whiteAlpha.800">{pick(event.description, lang)}</Text>
+                <Text color="ss.text">{pick(event.description, lang)}</Text>
               ) : null}
-              <Text color="whiteAlpha.600" fontSize="sm">
+              <Text color="ss.muted" fontSize="sm">
                 {/* One pool (LIVE.onePool): a game night has no language, every player sees it in their own. */}
                 {[event.game_type, event.game_mode, LIVE.onePool ? null : event.room_language.toUpperCase(), event.host_name ? `hosted by ${event.host_name}` : null]
                   .filter(Boolean)
@@ -158,7 +157,7 @@ const JoinEvent = () => {
 
           <VStack spacing={4} align="stretch">
             {isMobile && linkId ? (
-              <Button size="lg" height="56px" bg="white" color="black" fontWeight="600" _hover={{ bg: 'whiteAlpha.900' }} onClick={() => (window.location.href = appLink)}>
+              <Button size="lg" variant="primary" onClick={() => (window.location.href = appLink)}>
                 Open in SpySocial
               </Button>
             ) : null}
@@ -169,17 +168,10 @@ const JoinEvent = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="lg"
-                height="56px"
-                bg={platform === 'ios' ? 'whiteAlpha.100' : 'white'}
-                color={platform === 'ios' ? 'white' : 'black'}
-                borderWidth={platform === 'ios' ? '1px' : '0'}
-                borderColor="whiteAlpha.300"
-                fontWeight="600"
+                variant={platform === 'ios' ? 'secondary' : 'primary'}
+                leftIcon={<FaApple size={22} />}
               >
-                <HStack spacing={3}>
-                  <FaApple size={22} />
-                  <Text>{platform === 'ios' ? "Don't have the app? Download" : 'Download on the App Store'}</Text>
-                </HStack>
+                {platform === 'ios' ? "Don't have the app? Download" : 'Download on the App Store'}
               </Button>
             )}
             {(platform === 'android' || platform === 'desktop') && (
@@ -189,17 +181,10 @@ const JoinEvent = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="lg"
-                height="56px"
-                bg={platform === 'android' ? 'whiteAlpha.100' : 'white'}
-                color={platform === 'android' ? 'white' : 'black'}
-                borderWidth={platform === 'android' ? '1px' : '0'}
-                borderColor="whiteAlpha.300"
-                fontWeight="600"
+                variant={platform === 'android' ? 'secondary' : 'primary'}
+                leftIcon={<IoLogoGooglePlaystore size={22} />}
               >
-                <HStack spacing={3}>
-                  <IoLogoGooglePlaystore size={22} />
-                  <Text>{platform === 'android' ? "Don't have the app? Get it" : 'Get it on Google Play'}</Text>
-                </HStack>
+                {platform === 'android' ? "Don't have the app? Get it" : 'Get it on Google Play'}
               </Button>
             )}
           </VStack>

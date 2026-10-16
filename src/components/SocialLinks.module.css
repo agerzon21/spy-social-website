@@ -1,0 +1,20 @@
+.icons { display: flex; margin-left: -12px; }
+.icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  color: var(--ss-muted);
+  transition: color 0.15s;
+}
+.icon:hover { color: var(--ss-text); }
+.icon svg { width: 20px; height: 20px; }
+.section { display: grid; gap: 12px; }
+.title {
+  margin: 0;
+  font: 600 12px/1.2 var(--ss-font-body);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}

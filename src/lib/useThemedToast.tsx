@@ -29,11 +29,11 @@ export function useThemedToast() {
         <Box
           minW={{ base: '280px', md: '340px' }}
           maxW="420px"
-          bg="rgba(44, 50, 82, 0.95)"
+          bg="ss.band"
           backdropFilter="blur(16px)"
           borderRadius="xl"
           border="1px solid"
-          borderColor="whiteAlpha.200"
+          borderColor="ss.lineStrong"
           boxShadow="0 20px 40px rgba(0, 0, 0, 0.5)"
           overflow="hidden"
           position="relative"
@@ -55,12 +55,12 @@ export function useThemedToast() {
             </Box>
             <VStack align="stretch" spacing={opts.description ? 1 : 0} flex="1" minW={0} pt="6px">
               {opts.title && (
-                <Text fontSize="sm" fontWeight="600" color="white" lineHeight="1.4">
+                <Text fontSize="sm" fontWeight="600" color="ss.text" lineHeight="1.4">
                   {opts.title}
                 </Text>
               )}
               {opts.description && (
-                <Text fontSize="xs" color="whiteAlpha.700" lineHeight="1.6">
+                <Text fontSize="xs" color="ss.body" lineHeight="1.6">
                   {opts.description}
                 </Text>
               )}
@@ -71,8 +71,8 @@ export function useThemedToast() {
                 icon={<CloseIcon boxSize={2} />}
                 size="xs"
                 variant="ghost"
-                color="whiteAlpha.400"
-                _hover={{ color: 'white', bg: 'whiteAlpha.100' }}
+                color="ss.muted"
+                _hover={{ color: 'ss.text', bg: 'ss.surfaceStrong' }}
                 onClick={onClose}
               />
             )}

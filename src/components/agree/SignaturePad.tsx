@@ -83,9 +83,9 @@ export function SignaturePad({ onChange, isDisabled }: { onChange: (path: string
       <Box
         borderWidth="1px"
         borderStyle="dashed"
-        borderColor="whiteAlpha.300"
+        borderColor="ss.control"
         borderRadius="md"
-        bg="whiteAlpha.50"
+        bg="ss.surface"
         position="relative"
         opacity={isDisabled ? 0.5 : 1}
       >
@@ -108,13 +108,13 @@ export function SignaturePad({ onChange, isDisabled }: { onChange: (path: string
           ))}
         </svg>
         {count === 0 && (
-          <Text position="absolute" top="38%" left={0} right={0} textAlign="center" fontSize="sm" color="whiteAlpha.400" pointerEvents="none">
+          <Text position="absolute" top="38%" left={0} right={0} textAlign="center" fontSize="sm" color="ss.muted" pointerEvents="none">
             Draw here with your finger or mouse
           </Text>
         )}
       </Box>
       <HStack justify="flex-end" mt={1}>
-        <Button variant="link" size="xs" color="whiteAlpha.600" onClick={clear} isDisabled={isDisabled || count === 0}>
+        <Button variant="link" size="xs" color="ss.muted" onClick={clear} isDisabled={isDisabled || count === 0}>
           Clear drawing
         </Button>
       </HStack>

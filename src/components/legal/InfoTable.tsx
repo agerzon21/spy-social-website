@@ -24,23 +24,24 @@ export const InfoTable = ({
   rows: InfoRow[]
   firstWidth?: string
 }) => (
-  <Box w="100%" overflowX="auto" borderWidth="1px" borderColor="whiteAlpha.200" borderRadius="md">
+  <Box w="100%" overflowX="auto" border="var(--ss-card-border) solid" borderColor="ss.lineStrong" borderRadius="var(--ss-radius-card)" boxShadow="var(--ss-shadow-card)">
     <Table size="sm" variant="unstyled" sx={{ tableLayout: 'fixed' }}>
-      <Thead bg="whiteAlpha.50">
+      <Thead bg="ss.surfaceStrong">
         <Tr>
           {head.map((h, i) => (
             <Th
               key={h}
               w={i === 0 ? firstWidth : undefined}
-              color="whiteAlpha.700"
-              fontSize="xs"
+              color="ss.highlight"
+              fontFamily="body"
+              fontSize="14px"
               textTransform="none"
-              letterSpacing="normal"
-              fontWeight="600"
-              py={2}
+              letterSpacing="0.02em"
+              fontWeight="700"
+              py={3}
               px={3}
-              borderBottomWidth="1px"
-              borderColor="whiteAlpha.200"
+              borderBottom="var(--ss-hairline) solid"
+              borderColor="ss.lineStrong"
             >
               {h}
             </Th>
@@ -49,19 +50,19 @@ export const InfoTable = ({
       </Thead>
       <Tbody>
         {rows.map((row, r) => (
-          <Tr key={r} borderTopWidth={r === 0 ? 0 : '1px'} borderColor="whiteAlpha.100">
-            <Td verticalAlign="top" whiteSpace="normal" py={3} px={3} fontSize="sm" lineHeight="1.7">
-              <Text as="span" fontWeight="600" color="whiteAlpha.800">
+          <Tr key={r} borderTop={r === 0 ? 0 : 'var(--ss-hairline) solid'} borderColor="ss.line">
+            <Td verticalAlign="top" whiteSpace="normal" py={3} px={3} fontSize={{ base: '15px', md: '16px' }} lineHeight="1.6">
+              <Text as="span" fontWeight="700" color="ss.text">
                 {row.label}
               </Text>
               {row.note && (
-                <Text fontSize="xs" lineHeight="1.6" color="whiteAlpha.500" mt={1}>
+                <Text textStyle="small" color="ss.muted" mt={1}>
                   {row.note}
                 </Text>
               )}
             </Td>
             {row.cells.map((cell, c) => (
-              <Td key={c} verticalAlign="top" whiteSpace="normal" py={3} px={3} fontSize="sm" lineHeight="1.7">
+              <Td key={c} verticalAlign="top" whiteSpace="normal" py={3} px={3} fontSize={{ base: '15px', md: '16px' }} lineHeight="1.6">
                 {cell}
               </Td>
             ))}

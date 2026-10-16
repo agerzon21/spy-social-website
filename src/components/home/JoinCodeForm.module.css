@@ -1,0 +1,23 @@
+.form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; }
+.label {
+  grid-column: 1 / -1;
+  font: 600 12px/1.2 var(--ss-font-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}
+.input {
+  min-width: 0;
+  height: 54px;
+  padding: 0 14px;
+  border: var(--ss-hairline) solid var(--ss-control);
+  border-radius: var(--ss-radius-control);
+  background: var(--ss-deep);
+  color: var(--ss-text);
+  font: 800 24px/1 var(--ss-font-code);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.input::placeholder { color: var(--ss-muted); opacity: 1; }
+.input:focus { outline: none; border-color: var(--ss-focus); box-shadow: 0 0 0 1px var(--ss-focus); }
+.note { grid-column: 1 / -1; margin: 0; font-size: 14px; line-height: 1.4; color: var(--ss-muted); }

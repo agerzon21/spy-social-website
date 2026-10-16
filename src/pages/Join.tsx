@@ -1,13 +1,13 @@
-import { Box, Container, Heading, Text, VStack, Button, HStack } from '@chakra-ui/react'
+import { Box, Container, Heading, Text, VStack, Button } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
 import { IoDesktopOutline, IoLogoGooglePlaystore } from 'react-icons/io5'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useMemo } from 'react'
 import { currentPlatform } from '../lib/platform'
 import { playJoinUrl } from '../lib/playUrl'
+import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
+import { RoomCodePlate } from '../components/ui/RoomCodePlate'
 
-const APP_STORE_URL = 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390'
-const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.gerz.spysocial'
 
 const Join = () => {
   const { code = '' } = useParams<{ code: string }>()
@@ -44,14 +44,14 @@ const Join = () => {
   }
 
   return (
-    <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
-      <Container maxW="container.sm">
-        <VStack spacing={10} align="stretch">
-          <VStack spacing={3} textAlign="center">
-            <Heading as="h1" size="xl" color="white" fontWeight="600" letterSpacing="-0.02em">
+    <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="radial-gradient(70% 320px at 50% 0, var(--ss-glow), transparent 70%)">
+      <Container maxW="560px" px={{ base: 4, md: 6 }}>
+        <VStack spacing={8} align="stretch">
+          <VStack spacing={4} textAlign="center">
+            <Heading as="h1" size="xl">
               Join Game
             </Heading>
-            <Text color="whiteAlpha.700" fontSize="lg">
+            <Text color="ss.muted" fontSize={{ base: '18px', md: '20px' }} lineHeight="1.45">
               {!code
                 ? 'No room code provided'
                 : platform === 'desktop' && webLink
@@ -60,61 +60,17 @@ const Join = () => {
             </Text>
           </VStack>
 
-          {code && (
-            <VStack
-              spacing={3}
-              py={8}
-              px={6}
-              bg="whiteAlpha.50"
-              borderRadius="xl"
-              borderWidth="1px"
-              borderColor="whiteAlpha.200"
-            >
-              <Text color="whiteAlpha.600" fontSize="sm" textTransform="uppercase" letterSpacing="0.1em">
-                Room Code
-              </Text>
-              <Heading
-                as="div"
-                color="white"
-                fontSize={{ base: '4xl', md: '5xl' }}
-                fontWeight="700"
-                letterSpacing="0.15em"
-                fontFamily="mono"
-              >
-                {displayCode}
-              </Heading>
-            </VStack>
-          )}
+          {code && <RoomCodePlate code={displayCode} />}
 
-          <VStack spacing={4} align="stretch">
+          <VStack spacing={3} align="stretch">
             {platform === 'desktop' && webLink && (
-              <Button
-                as="a"
-                href={webLink}
-                size="lg"
-                height="56px"
-                bg="white"
-                color="black"
-                fontWeight="600"
-                _hover={{ bg: 'whiteAlpha.900' }}
-              >
-                <HStack spacing={3}>
-                  <IoDesktopOutline size={22} />
-                  <Text>Play in Your Browser</Text>
-                </HStack>
+              <Button as="a" href={webLink} size="lg" variant="primary" leftIcon={<IoDesktopOutline size={22} />}>
+                Play in Your Browser
               </Button>
             )}
 
             {isMobile && code && (
-              <Button
-                size="lg"
-                height="56px"
-                bg="white"
-                color="black"
-                fontWeight="600"
-                _hover={{ bg: 'whiteAlpha.900' }}
-                onClick={handleOpenInApp}
-              >
+              <Button size="lg" variant="primary" onClick={handleOpenInApp}>
                 Open in SpySocial
               </Button>
             )}
@@ -126,20 +82,10 @@ const Join = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="lg"
-                height="56px"
-                bg={storesSecondary ? 'whiteAlpha.100' : 'white'}
-                color={storesSecondary ? 'white' : 'black'}
-                borderWidth={storesSecondary ? '1px' : '0'}
-                borderColor="whiteAlpha.300"
-                fontWeight="600"
-                _hover={{ bg: storesSecondary ? 'whiteAlpha.200' : 'whiteAlpha.900' }}
+                variant={storesSecondary ? 'secondary' : 'primary'}
+                leftIcon={<FaApple size={22} />}
               >
-                <HStack spacing={3}>
-                  <FaApple size={22} />
-                  <Text>
-                    {platform === 'ios' ? "Don't have the app? Download" : 'Download on the App Store'}
-                  </Text>
-                </HStack>
+                {platform === 'ios' ? "Don't have the app? Download" : 'Download on the App Store'}
               </Button>
             )}
 
@@ -150,20 +96,10 @@ const Join = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 size="lg"
-                height="56px"
-                bg={storesSecondary ? 'whiteAlpha.100' : 'white'}
-                color={storesSecondary ? 'white' : 'black'}
-                borderWidth={storesSecondary ? '1px' : '0'}
-                borderColor="whiteAlpha.300"
-                fontWeight="600"
-                _hover={{ bg: storesSecondary ? 'whiteAlpha.200' : 'whiteAlpha.900' }}
+                variant={storesSecondary ? 'secondary' : 'primary'}
+                leftIcon={<IoLogoGooglePlaystore size={22} />}
               >
-                <HStack spacing={3}>
-                  <IoLogoGooglePlaystore size={22} />
-                  <Text>
-                    {platform === 'android' ? "Don't have the app? Get it" : 'Get it on Google Play'}
-                  </Text>
-                </HStack>
+                {platform === 'android' ? "Don't have the app? Get it" : 'Get it on Google Play'}
               </Button>
             )}
           </VStack>

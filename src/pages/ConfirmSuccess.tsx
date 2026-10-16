@@ -11,31 +11,30 @@ const ConfirmSuccess: React.FC = () => {
             w="64px"
             h="64px"
             borderRadius="full"
-            bg="green.500"
+            bg="ss.accent"
             display="flex"
             alignItems="center"
             justifyContent="center"
-            boxShadow="0 0 0 8px rgba(72, 187, 120, 0.12)"
+            boxShadow="0 0 0 8px var(--ss-surface-strong)"
+            aria-hidden
           >
-            <Icon as={FaCheckCircle} w={8} h={8} color="white" />
+            <Icon as={FaCheckCircle} w={8} h={8} color="ss.onAccent" />
           </Box>
 
-          <Heading as="h1" size="lg" color="white" fontWeight="600" letterSpacing="-0.02em">
+          <Heading as="h1" size="lg">
             Email Confirmed
           </Heading>
 
-          <Text fontSize="md" color="whiteAlpha.700" maxW="400px" lineHeight="1.7">
+          <Text fontSize="17px" color="ss.body" maxW="400px" lineHeight="1.6">
             Your email has been successfully verified. You can now use all features of the SpySocial app.
           </Text>
 
           <Button
             as={Link}
             to="/"
-            bg="white"
-            color="gray.900"
+            variant="primary"
             size="md"
             mt={2}
-            _hover={{ bg: 'gray.100' }}
           >
             Return to Home
           </Button>

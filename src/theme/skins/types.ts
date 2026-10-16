@@ -1,0 +1,108 @@
+/**
+ * A skin is one design direction's look: every colour, typeface, radius and shadow the site uses. The pages and
+ * components never name a colour or a font; they read these through the `ss.*` Chakra tokens and the `--ss-*` CSS
+ * variables that src/theme/index.ts makes from the active skin. Switching direction (Noir to Paper, say) is a new
+ * skin file and one line in src/theme/index.ts, plus the few art pieces that belong to a direction (the home hero's
+ * line-up, for one), not a rewrite of the pages.
+ */
+export interface SkinColors {
+  /** The page. */
+  page: string
+  /** A band that sets a section apart from the page (the home page's "One round"). */
+  band: string
+  /** The deepest ground: the footer. */
+  deep: string
+  /** The sticky header bar (translucent over the page). */
+  header: string
+  /** Headings and strong text. */
+  text: string
+  /** Running text. */
+  body: string
+  /** Secondary text: dates, notes, captions. AA (4.5:1) on page, band and deep. */
+  muted: string
+  /** Decorative glyphs only (arrows, separators): never text someone has to read. */
+  subtle: string
+  /** Hairline rules and dividers. */
+  line: string
+  /** Card and table borders. */
+  lineStrong: string
+  /** The outline of an input or an outlined button: 3:1 against the page. */
+  control: string
+  /** A raised box on the page. */
+  surface: string
+  /** A box inside a box, or a hovered row. */
+  surfaceStrong: string
+  surfaceHover: string
+  /** Links in running text. */
+  link: string
+  linkHover: string
+  /** The main action: filled buttons. */
+  accent: string
+  accentHover: string
+  /** Text and icons on the accent fill. */
+  onAccent: string
+  /** Eyebrow labels and small highlights. */
+  highlight: string
+  /** The keyboard focus ring. */
+  focus: string
+  success: string
+  danger: string
+  warn: string
+  warnSurface: string
+  warnLine: string
+  /** A soft light (the Noir spotlight, the Paper sticker glow). */
+  glow: string
+}
+
+export interface Skin {
+  id: string
+  /** The browser's own controls and scrollbars follow it. */
+  scheme: 'dark' | 'light'
+  colors: SkinColors
+  fonts: {
+    /** Poster headings. */
+    display: string
+    /** Everything else. */
+    body: string
+    /** Room codes. */
+    code: string
+  }
+  /**
+   * Type sizes in px, [phone, desktop]: running text, and the Chakra Heading sizes the pages use (xl: a page's
+   * big title, lg: a legal page's title, md: a short page's title, sm: a section heading, xs: a sub-heading).
+   */
+  type: {
+    body: [number, number]
+    headingWeight: number
+    headings: Record<'xl' | 'lg' | 'md' | 'sm' | 'xs', [number, number]>
+  }
+  /** How the poster headings (DisplayHeading) and buttons are set. The pages' own headings never change case. */
+  display: {
+    weight: number
+    transform: 'uppercase' | 'none'
+    /** Line height of a big poster line. */
+    leading: number
+    tracking: string
+    /** font-stretch, for faces with a width axis. */
+    stretch: string
+  }
+  radii: {
+    card: string
+    control: string
+    button: string
+    phone: string
+  }
+  borders: {
+    /** Rules, dividers, card outlines. */
+    hairline: string
+    /** A card's outline when the skin draws cards with a heavy line (Paper). */
+    card: string
+  }
+  shadows: {
+    card: string
+    phone: string
+    button: string
+  }
+  /** Which wordmark artwork reads on this skin's page. */
+  wordmark: 'cream' | 'ink'
+}

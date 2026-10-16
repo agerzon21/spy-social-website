@@ -1,0 +1,98 @@
+/* The header and footer on every page. */
+
+/* ---- header: the wordmark home, Join a room and the Shop; it stays at the top while the page scrolls ---- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--ss-header);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: var(--ss-hairline) solid var(--ss-line);
+}
+.headerHome { border-bottom-color: transparent; }
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  height: 64px;
+}
+.home {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  border-radius: 4px;
+}
+.home img { height: 34px; width: auto; display: block; }
+.nav { display: flex; align-items: center; margin-right: -10px; }
+.navLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 10px;
+  font: 700 14px/1 var(--ss-font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--ss-muted);
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+.navLink:hover { color: var(--ss-text); }
+@media (max-width: 359px) {
+  .navLink { padding: 0 8px; font-size: 13px; letter-spacing: 0.06em; }
+  .home img { height: 30px; }
+}
+@media (min-width: 1000px) {
+  .bar { height: 76px; }
+  .home img { height: 42px; }
+}
+
+/* ---- footer ---- */
+.footer {
+  background: var(--ss-deep);
+  border-top: var(--ss-hairline) solid var(--ss-line);
+  padding-block: 44px 30px;
+  color: var(--ss-muted);
+}
+.top { display: grid; gap: 28px; }
+.brand img { height: 42px; width: auto; display: block; }
+.brandLink { display: inline-flex; align-items: center; min-height: 48px; border-radius: 4px; }
+.tagline { margin: 10px 0 0; font-size: 15px; line-height: 1.5; color: var(--ss-muted); }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.colTitle {
+  margin: 0 0 6px;
+  font: 600 12px/1.2 var(--ss-font-body);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}
+.list { list-style: none; margin: 0; padding: 0; }
+.link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--ss-text);
+  text-decoration: none;
+  border-radius: 2px;
+  transition: color 0.15s;
+}
+.link:hover { color: var(--ss-highlight); text-decoration: underline; text-underline-offset: 3px; }
+.bottom {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 14px;
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: var(--ss-hairline) solid var(--ss-line);
+}
+.copy { margin: 0; font-size: 13px; color: var(--ss-muted); }
+@media (min-width: 760px) {
+  .top { grid-template-columns: minmax(0, 1fr) auto; }
+  .cols { gap: 80px; grid-template-columns: repeat(2, minmax(150px, auto)); }
+  .bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+}

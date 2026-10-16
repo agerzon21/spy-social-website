@@ -9,7 +9,7 @@ interface FAQSection {
 }
 
 const Strong = ({ children }: { children: React.ReactNode }) => (
-  <Text as="span" fontWeight="500" color="whiteAlpha.800">{children}</Text>
+  <Text as="span" fontWeight="700" color="ss.text">{children}</Text>
 )
 
 const faqSections: FAQSection[] = [
@@ -242,31 +242,41 @@ const faqSections: FAQSection[] = [
 
 const FAQ = () => {
   return (
-    <Box flex="1" color="whiteAlpha.700" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
-      <Container maxW="container.md">
-        <VStack spacing={8} align="stretch">
-          <Heading as="h1" size="lg" color="white">Support & FAQ</Heading>
+    <Box
+      flex="1"
+      color="ss.body"
+      pt={{ base: 10, md: 16 }}
+      pb={{ base: 16, md: 24 }}
+      bgImage="linear-gradient(180deg, var(--ss-band) 0, var(--ss-page) 360px)"
+    >
+      <Container maxW="760px" px={{ base: 4, md: 6 }}>
+        <VStack spacing={10} align="stretch" sx={{ '& li::marker': { color: 'var(--ss-accent)' } }}>
+          <Heading as="h1" size="lg">Support & FAQ</Heading>
 
           {faqSections.map((section, idx) => (
             <Box key={idx}>
-              <Text fontSize="xs" fontWeight="600" textTransform="uppercase" letterSpacing="0.08em" color="whiteAlpha.400" mb={3}>
+              <Text textStyle="label" mb={3}>
                 {section.title}
               </Text>
-              <Accordion allowMultiple>
+              <Accordion allowMultiple borderTop="var(--ss-hairline) solid" borderColor="ss.line">
                 {section.items.map((item, itemIdx) => (
-                  <AccordionItem key={itemIdx} border="none" mb={2}>
+                  <AccordionItem key={itemIdx} borderTop="none" borderBottom="var(--ss-hairline) solid" borderColor="ss.line">
                     <AccordionButton
-                      bg="whiteAlpha.50"
-                      _hover={{ bg: 'whiteAlpha.100' }}
-                      _expanded={{ bg: 'whiteAlpha.100' }}
-                      borderRadius="lg"
-                      px={4}
+                      minH="56px"
+                      px={1}
                       py={3}
+                      gap={3}
+                      transition="background-color 0.15s"
+                      _hover={{ bg: 'ss.surface' }}
+                      _expanded={{ color: 'ss.highlight' }}
+                      _focusVisible={{ boxShadow: 'none', outline: '3px solid var(--ss-focus)', outlineOffset: '-3px' }}
                     >
-                      <Box flex="1" textAlign="left" fontWeight="500" fontSize="sm" color="whiteAlpha.800">{item.question}</Box>
-                      <AccordionIcon color="whiteAlpha.400" />
+                      <Box flex="1" textAlign="left" fontWeight="600" fontSize={{ base: '17px', md: '18px' }} lineHeight="1.35" color="inherit">
+                        {item.question}
+                      </Box>
+                      <AccordionIcon color="ss.highlight" boxSize={6} />
                     </AccordionButton>
-                    <AccordionPanel pb={3} pt={3} px={4} fontSize="sm" color="whiteAlpha.600">
+                    <AccordionPanel pb={5} pt={1} px={1} textStyle="body" color="ss.body">
                       {item.answer}
                     </AccordionPanel>
                   </AccordionItem>
@@ -275,9 +285,9 @@ const FAQ = () => {
             </Box>
           ))}
 
-          <Text fontSize="sm" color="whiteAlpha.400" pt={4}>
+          <Text textStyle="body" color="ss.muted">
             Need more help?{' '}
-            <ChakraLink as={Link} to="/contact-us" color="blue.300" _hover={{ color: 'blue.200' }}>support@spysocial.app</ChakraLink>
+            <ChakraLink as={Link} to="/contact-us">support@spysocial.app</ChakraLink>
           </Text>
 
           <SocialLinks variant="list" />

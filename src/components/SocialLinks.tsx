@@ -1,6 +1,7 @@
-import { HStack, Icon, Link as ChakraLink, Text, VStack } from '@chakra-ui/react'
 import type { IconType } from 'react-icons'
 import { FaDiscord, FaInstagram, FaThreads, FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6'
+import { LinkRow, LinkRows } from './ui/LinkRow'
+import s from './SocialLinks.module.css'
 
 // Plain outbound links only: nothing is embedded and no third-party script or image loads, so the
 // CSP in vercel.json and the Privacy page need no change. The icons are inline SVG from react-icons.
@@ -30,72 +31,36 @@ interface SocialLinksProps {
 const SocialLinks = ({ variant = 'icons' }: SocialLinksProps) => {
   if (variant === 'icons') {
     return (
-      <HStack as="nav" aria-label="Follow SpySocial" spacing={1}>
+      <nav aria-label="Follow SpySocial" className={s.icons}>
         {SOCIAL_ACCOUNTS.map((a) => (
-          <ChakraLink
-            key={a.name}
-            href={a.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={label(a)}
-            title={label(a)}
-            display="inline-flex"
-            alignItems="center"
-            justifyContent="center"
-            w="36px"
-            h="36px"
-            borderRadius="md"
-            color="whiteAlpha.700"
-            transition="color 0.2s"
-            _hover={{ color: 'white' }}
-            _focusVisible={{ outline: '2px solid white', outlineOffset: '-2px', boxShadow: 'none' }}
-          >
-            <Icon as={a.icon} boxSize="18px" aria-hidden focusable={false} />
-          </ChakraLink>
+          <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" aria-label={label(a)} title={label(a)} className={s.icon}>
+            <a.icon aria-hidden focusable={false} />
+          </a>
         ))}
-      </HStack>
+      </nav>
     )
   }
 
   return (
-    <VStack as="section" aria-labelledby="follow-spysocial" spacing={3} align="stretch">
-      <Text
-        id="follow-spysocial"
-        fontSize="xs"
-        fontWeight="600"
-        textTransform="uppercase"
-        letterSpacing="0.08em"
-        color="whiteAlpha.700"
-      >
+    <section aria-labelledby="follow-spysocial" className={s.section}>
+      <p id="follow-spysocial" className={s.title}>
         Follow SpySocial
-      </Text>
-      {SOCIAL_ACCOUNTS.map((a) => (
-        <ChakraLink
-          key={a.name}
-          href={a.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={label(a)}
-          _hover={{ textDecoration: 'none' }}
-        >
-          <HStack
-            spacing={3}
-            p={4}
-            bg="whiteAlpha.50"
-            borderRadius="lg"
-            border="1px solid"
-            borderColor="whiteAlpha.100"
-            transition="all 0.2s"
-            _hover={{ bg: 'whiteAlpha.100' }}
-          >
-            <Icon as={a.icon} color="whiteAlpha.600" boxSize={4} aria-hidden focusable={false} />
-            <Text fontSize="sm" color="whiteAlpha.700" flex="1">{a.name}</Text>
-            <Text fontSize="xs" color="whiteAlpha.700">{a.handle}</Text>
-            <Text color="whiteAlpha.300" aria-hidden>&#8599;</Text>
-          </HStack>
-        </ChakraLink>
-      ))}
-    </VStack>
+      </p>
+      <LinkRows>
+        {SOCIAL_ACCOUNTS.map((a) => (
+          <LinkRow
+            key={a.name}
+            href={a.url}
+            newTab
+            ariaLabel={label(a)}
+            icon={<a.icon aria-hidden focusable={false} />}
+            label={a.name}
+            note={a.handle}
+            arrow={'↗'}
+          />
+        ))}
+      </LinkRows>
+    </section>
   )
 }
 
