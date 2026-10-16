@@ -224,7 +224,9 @@ const Privacy: React.FC = () => {
               reporting could read there (every chat, in a public room). A report about a message, a question or an
               answer also includes that message and the chat around it (up to 20 messages before it and 10 after)
               {PRIVACY.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}. Only messages we still
-              keep are attached (see Chat Messages above). When we remove a message or a drawing, or replace a name that
+              keep are attached (see Chat Messages above). A report is marked urgent and read first when the person
+              reporting, the player reported or anyone in that room or game is under 18 or hasn't told us their age; the
+              report notes only a yes or no for this, never anyone's age. When we remove a message or a drawing, or replace a name that
               breaks the rules, our moderation log keeps a copy of what we removed and the old name, for as long as we
               keep reports. For each player who reports, our moderators can see how many of their reports led to action
               and how many were dismissed. We work this out from the reports we already keep, use it only to review
@@ -262,12 +264,17 @@ const Privacy: React.FC = () => {
                 ? `Your birth year, which the app${from22 ? ' (from version 2.2)' : ''} asks everyone before their first game.`
                 : 'Your birth year, which the app asks before your first public room or event.'}
               {PRIVACY.birthMonth &&
-                " If you turn 13 this year, the app also asks your birth month, because the year alone can't tell whether you're 13 yet; we keep the month only in that case."}
+                " If you turn 13 to 16 in the year you answer, the app also asks your birth month, because the year alone can't tell whether you've had your birthday yet; we keep the month only in that case."}
               {PRIVACY.storeAgeSignals &&
                 `${from22 ? ' From version 2.2, on' : ' On'} some phones, Apple or Google also tell the app an age range for your account (Apple's Declared Age Range, Google Play's Age Signals); the app uses it on your device.`}{' '}
               We use your age only to apply age limits
-              {PRIVACY.openAiTranslation ? ' and to choose which service translates your messages (see Translations)' : ''}, and
-              other players never see it.
+              {PRIVACY.openAiTranslation ? ', to choose which service translates your messages (see Translations)' : ''} and
+              to protect players under 18.
+              In any room or game where anyone, watchers included, is under 18 or hasn't told us their age, its chats and
+              typed questions and answers block links, email addresses, websites, phone numbers and social media accounts
+              and handles, for everyone there. Reports involving a player under 18 are read first (see Safety
+              Information), and the app shows players under 18 a one-time "Playing Safe" note with tips. Other players
+              never see your age.
             </Item>
             {PRIVACY.ageGateEveryone && (
               <Item label="Agreement">
@@ -409,8 +416,8 @@ const Privacy: React.FC = () => {
             <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
             <ListItem>Protect against fraudulent or unauthorized activity</ListItem>
             <ListItem>
-              Keep players safe: review reports{PRIVACY.drawingCheck ? ', check drawings' : ''}, apply age limits, and enforce
-              our Terms of Service and Community Rules
+              Keep players safe: review reports{PRIVACY.drawingCheck ? ', check drawings' : ''}, apply age limits, protect
+              players under 18, and enforce our Terms of Service and Community Rules
             </ListItem>
           </Bullets>
 
@@ -425,7 +432,7 @@ const Privacy: React.FC = () => {
             </Item>
             <Item label="Legitimate Interests">
               To keep players safe (reports, the word filter{PRIVACY.drawingCheck ? ', drawing checks' : ''}, moderation, age
-              limits), protect accounts and prevent abuse
+              limits and the protections for players under 18), protect accounts and prevent abuse
               (security logs), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
               events). You can object to this processing at any time by emailing <SupportEmail />.
             </Item>

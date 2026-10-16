@@ -116,7 +116,7 @@ const Terms: React.FC = () => {
           <P>
             You must be at least 13 years old to use SpySocial.{' '}
             {LIVE.ageGateEveryone
-              ? `The app asks for your birth year${LIVE.birthMonth ? ' (and, if you turn 13 this year, your birth month)' : ''} before your first game, and you must answer truthfully.`
+              ? `The app asks for your birth year${LIVE.birthMonth ? ' (and, if you turn 13 to 16 in the year you answer, your birth month)' : ''} before your first game, and you must answer truthfully.`
               : 'When the app asks for your birth year, you must answer truthfully.'}{' '}
             {LIVE.under13Deletion
               ? "If you're under 13, you can't use SpySocial: an answer under 13 deletes the account, and if we learn in any other way that an account belongs to someone under 13, we'll delete it."

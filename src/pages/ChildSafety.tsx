@@ -112,9 +112,10 @@ const ChildSafety: React.FC = () => {
             </ListItem>
             <ListItem>
               <B>Chat filter:</B> names and chat are checked before anyone else sees them. In public rooms, explicit sexual
-              words are blocked, and so are links, email addresses and phone numbers; in private rooms, the most serious
-              words are blocked. Sharing real names, addresses, phone numbers or social media handles is against our
-              Community Rules.
+              words are blocked; in private rooms, the most serious words are blocked. In any room with a player under 18,
+              links, email addresses, phone numbers and social accounts are blocked for everyone. At Play Online tables
+              and game nights they're always blocked. Sharing real names, addresses, phone numbers or social media handles
+              is against our Community Rules.
             </ListItem>
             <ListItem>
               <B>Evidence:</B> chat is kept on our servers for a while (about 24 hours in a private room, 14 days in a
@@ -168,7 +169,8 @@ const ChildSafety: React.FC = () => {
           <H2 id="response">4. What we do</H2>
           <OrderedList spacing={2} pl={4} fontSize="sm" lineHeight="1.8">
             <ListItem>
-              A person reads every report within 24 hours. Reports about child safety are marked urgent and read first.
+              A person reads every report within 24 hours. Reports about child safety, and reports involving a player
+              under 18, are marked urgent and read first.
             </ListItem>
             <ListItem>We take the content down: the message, the drawing or the name.</ListItem>
             <ListItem>

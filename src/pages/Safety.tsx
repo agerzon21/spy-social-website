@@ -160,7 +160,7 @@ const Safety: React.FC = () => {
 
           <H3>What happens after you report</H3>
           <Bullets>
-            <ListItem>A person, not a robot, reads every report within 24 hours. Reports about child safety, self-harm, sexual content or personal information are read first.</ListItem>
+            <ListItem>A person, not a robot, reads every report within 24 hours. Reports about child safety, self-harm, sexual content or personal information are read first, and so are reports involving a player under 18.</ListItem>
             <ListItem>The player you report isn't told who reported them.</ListItem>
             <ListItem>If they broke the rules, we may warn them, mute their chat, pause them from public rooms, or ban them.</ListItem>
             <ListItem>We don't send you the outcome, but every report is read and acted on.</ListItem>
@@ -255,12 +255,13 @@ const Safety: React.FC = () => {
             </ListItem>
             <ListItem>
               <B>Chat filter:</B> names and chat are checked before anyone sees them. In public rooms, slurs, explicit
-              sexual words and insults are blocked, and so are links, email addresses and phone numbers. In private rooms,
-              the most serious words are blocked.
+              sexual words and insults are blocked. In private rooms, the most serious words are blocked. In any room with
+              a player under 18, links, email addresses, phone numbers and social accounts are blocked for everyone. At
+              Play Online tables and game nights they're always blocked.
             </ListItem>
             <ListItem>
               <B>Reports, blocks and penalties:</B> a person reads every report within 24 hours, and the reported player
-              isn't told who sent it. Penalties go from a warning to a chat mute, a pause from public rooms, or a ban. Our{' '}
+              isn't told who sent it. Reports involving a player under 18 are read first. Penalties go from a warning to a chat mute, a pause from public rooms, or a ban. Our{' '}
               <PageLink to="/rules">Community Rules</PageLink> list what isn't allowed.
             </ListItem>
             {LIVE.drawingCheck && (

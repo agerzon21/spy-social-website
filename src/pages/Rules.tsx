@@ -67,6 +67,10 @@ const Rules: React.FC = () => {
           <UnorderedList fontSize="sm" lineHeight="1.8" spacing={1}>
             <ListItem>Don't share real names, addresses, phone numbers or social handles, yours or anyone else's.</ListItem>
             <ListItem>No ads, spam or links in public rooms.</ListItem>
+            <ListItem>
+              In any room with a player under 18, links, email addresses, phone numbers and social accounts are blocked
+              for everyone. At Play Online tables and game nights they're always blocked.
+            </ListItem>
           </UnorderedList>
 
           <Heading as="h2" size="sm" color="white" mt={4}>

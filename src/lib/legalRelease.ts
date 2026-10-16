@@ -79,6 +79,9 @@ export const LIVE = {
   /**
    * Migration 20261005100200_birth_month applied with the 2.2 app: only a player born in this year less 13
    * (the one year where the year alone can't tell 12 from 13) is asked the month too, and only then is it kept.
+   * Widened by 20261030900000_birth_month_16 (live with the website change of 2026-10-15): set_birth_year keeps
+   * the month for a player turning 13 to 16 in the year they answer (born this year less 16 to less 13), and the
+   * app asks those players for it (app c7af0733). The Privacy Age item and the Terms' section 2 say "13 to 16".
    */
   birthMonth: false,
   /**
@@ -478,7 +481,7 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  * "Last Updated" on the Terms, the Community Rules and the Safety page, and (through PRIVACY_LAST_UPDATED) on the
  * Privacy Policy and Delete Account: the day a change is published.
  */
-export const LEGAL_LAST_UPDATED = 'October 10, 2026'
+export const LEGAL_LAST_UPDATED = 'October 15, 2026'
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
