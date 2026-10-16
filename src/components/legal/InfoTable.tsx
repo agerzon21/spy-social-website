@@ -25,7 +25,8 @@ export const InfoTable = ({
   firstWidth?: string
 }) => (
   <Box w="100%" overflowX="auto" border="var(--ss-card-border) solid" borderColor="ss.lineStrong" borderRadius="var(--ss-radius-card)" boxShadow="var(--ss-shadow-card)">
-    <Table size="sm" variant="unstyled" sx={{ tableLayout: 'fixed' }}>
+    {/* Long names in the narrow first column break at a hyphen, not mid-word. */}
+    <Table size="sm" variant="unstyled" sx={{ tableLayout: 'fixed', hyphens: 'auto', WebkitHyphens: 'auto' }}>
       <Thead bg="ss.surfaceStrong">
         <Tr>
           {head.map((h, i) => (
