@@ -1,9 +1,9 @@
 /**
  * A skin is one design direction's look: every colour, typeface, radius and shadow the site uses. The pages and
  * components never name a colour or a font; they read these through the `ss.*` Chakra tokens and the `--ss-*` CSS
- * variables that src/theme/index.ts makes from the active skin. Switching direction (Noir to Paper, say) is a new
- * skin file and one line in src/theme/index.ts, plus the few art pieces that belong to a direction (the home hero's
- * line-up, for one), not a rewrite of the pages.
+ * variables that src/theme/index.ts makes from the skins. The site has two themes, dark and light (the header's
+ * switch): both share one skin's type, radii and rules, and each brings its own Palette (colours, shadows, the home
+ * hero's art and the wordmark), so switching theme never moves the layout.
  */
 export interface SkinColors {
   /** The page. */
@@ -41,6 +41,11 @@ export interface SkinColors {
   accentHover: string
   /** Text and icons on the accent fill. */
   onAccent: string
+  /**
+   * The accent as type or a mark on the page (the hero's full stop, step numbers, list markers, 404). AA (4.5:1) on
+   * page, band and deep: the accent fill itself is too pale for that on a light page.
+   */
+  accentText: string
   /** Eyebrow labels and small highlights. */
   highlight: string
   /** The keyboard focus ring. */
@@ -54,11 +59,55 @@ export interface SkinColors {
   glow: string
 }
 
-export interface Skin {
+/**
+ * The home hero's art (the line-up): a sky over a height wall, a spotlight and its pool on the floor, the
+ * suspects' number plates and verdict stamps, and how a suspect out of the light is dimmed. CSS values: colours,
+ * plus a blend mode and a filter.
+ */
+export interface SkinArt {
+  /** The hero's ground: a soft light at the top, then down to the wall. */
+  heroSky: string
+  heroMid: string
+  heroEnd: string
+  /** The height wall, its lines and the feet marks (decoration). */
+  wallTop: string
+  wallBottom: string
+  wallLine: string
+  wallMark: string
+  /** The floor line under the wall. */
+  floor: string
+  /** The spotlight: a beam and its pool, and how the beam mixes with the wall. */
+  beamFrom: string
+  beamMid: string
+  beamTo: string
+  beamBlend: string
+  pool: string
+  /** The number plates (text: plateText on plate) and the verdict stamp's ground (text: text / accentText). */
+  plate: string
+  plateText: string
+  plateLine: string
+  stamp: string
+  /** A CSS filter for the suspects outside the light. */
+  dim: string
+}
+
+/** What a theme changes: everything a dark or a light page needs, nothing that moves the layout. */
+export interface Palette {
   id: string
   /** The browser's own controls and scrollbars follow it. */
   scheme: 'dark' | 'light'
   colors: SkinColors
+  shadows: {
+    card: string
+    phone: string
+    button: string
+  }
+  art: SkinArt
+  /** Which wordmark artwork reads on this palette's page. */
+  wordmark: 'cream' | 'ink'
+}
+
+export interface Skin extends Palette {
   fonts: {
     /** Poster headings. */
     display: string
@@ -98,11 +147,4 @@ export interface Skin {
     /** A card's outline when the skin draws cards with a heavy line (Paper). */
     card: string
   }
-  shadows: {
-    card: string
-    phone: string
-    button: string
-  }
-  /** Which wordmark artwork reads on this skin's page. */
-  wordmark: 'cream' | 'ink'
 }

@@ -250,7 +250,7 @@ const FAQ = () => {
       bgImage="linear-gradient(180deg, var(--ss-band) 0, var(--ss-page) 360px)"
     >
       <Container maxW="760px" px={{ base: 4, md: 6 }}>
-        <VStack spacing={10} align="stretch" sx={{ '& li::marker': { color: 'var(--ss-accent)' } }}>
+        <VStack spacing={10} align="stretch" sx={{ '& li::marker': { color: 'var(--ss-accent-text)' } }}>
           <Heading as="h1" size="lg">Support & FAQ</Heading>
 
           {faqSections.map((section, idx) => (

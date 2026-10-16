@@ -6,11 +6,13 @@ import type { IconType } from 'react-icons'
 
 type Status = 'success' | 'error' | 'info' | 'warning'
 
+// The skin's status colours (AA on the band in both themes), the icon's disc a soft tint of the same.
+const tint = (v: string) => `color-mix(in srgb, var(${v}) 15%, transparent)`
 const accents: Record<Status, { color: string; bg: string; icon: IconType }> = {
-  success: { color: '#48bb78', bg: 'rgba(72, 187, 120, 0.15)', icon: FaCheck },
-  error:   { color: '#f56565', bg: 'rgba(245, 101, 101, 0.15)', icon: FaXmark },
-  info:    { color: '#63b3ed', bg: 'rgba(99, 179, 237, 0.15)', icon: FaInfo },
-  warning: { color: '#ecc94b', bg: 'rgba(236, 201, 75, 0.15)', icon: FaTriangleExclamation },
+  success: { color: 'ss.success', bg: tint('--ss-success'), icon: FaCheck },
+  error:   { color: 'ss.danger', bg: tint('--ss-danger'), icon: FaXmark },
+  info:    { color: 'ss.link', bg: tint('--ss-link'), icon: FaInfo },
+  warning: { color: 'ss.warn', bg: tint('--ss-warn'), icon: FaTriangleExclamation },
 }
 
 export function useThemedToast() {

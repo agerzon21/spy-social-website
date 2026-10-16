@@ -22,6 +22,7 @@ import WhatsNew from './pages/WhatsNew'
 import DeleteAccount from './pages/DeleteAccount'
 import { ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 import { SKIN_CSS, theme } from './theme'
+import { colorModeManager } from './theme/mode'
 
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
 const Agree = lazy(() => import('./pages/Agree'))
@@ -29,7 +30,8 @@ const Agree = lazy(() => import('./pages/Agree'))
 function App() {
   return (
     <HelmetProvider>
-      <ChakraProvider theme={theme}>
+      {/* Chakra's colour mode reads the page's theme (public/theme.js, the header's switch) and stores nothing itself. */}
+      <ChakraProvider theme={theme} colorModeManager={colorModeManager}>
         <Global styles={SKIN_CSS} />
         {/* Framer animations (What's New) stop under Reduce Motion, like the CSS ones (src/theme). */}
         <MotionConfig reducedMotion="user">

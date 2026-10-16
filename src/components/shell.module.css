@@ -1,6 +1,7 @@
 /* The header and footer on every page. */
 
-/* ---- header: the wordmark home, Join a room and the Shop; it stays at the top while the page scrolls ---- */
+/* ---- header: the wordmark home, Join a room, the Shop and the light / dark switch; it stays at the top while the
+   page scrolls ---- */
 .header {
   position: sticky;
   top: 0;
@@ -24,8 +25,16 @@
   min-height: 44px;
   border-radius: 4px;
 }
-.home img { height: 34px; width: auto; display: block; }
-.nav { display: flex; align-items: center; margin-right: -10px; }
+/*
+ * The wordmark's letters are the same size in both artworks: the ink one (no outline round its letters) is drawn
+ * 85.55 / 100.25 as tall, inside the same box (padding), so nothing around it moves between themes.
+ */
+.home img, .brand img { --wm: 1; }
+.home img[data-wordmark='ink'], .brand img[data-wordmark='ink'] { --wm: 0.8534; }
+.home img { height: 34px; padding-block: calc(17px * (1 - var(--wm))); width: auto; display: block; }
+/* The links, then the switch; the pill's right edge lines up with the page's edge. */
+.tools { display: flex; align-items: center; min-width: 0; margin-right: -2px; }
+.nav { display: flex; align-items: center; }
 .navLink {
   display: inline-flex;
   align-items: center;
@@ -41,13 +50,17 @@
   transition: color 0.15s;
 }
 .navLink:hover { color: var(--ss-text); }
+/* Room for the switch on the narrowest phones: the links' padding gives way first (each stays a 44 px target). */
+@media (max-width: 374px) {
+  .navLink { padding: 0 8px; }
+}
 @media (max-width: 359px) {
-  .navLink { padding: 0 8px; font-size: 13px; letter-spacing: 0.06em; }
-  .home img { height: 30px; }
+  .navLink { padding: 0 6px; font-size: 13px; letter-spacing: 0.06em; }
+  .home img { height: 30px; padding-block: calc(15px * (1 - var(--wm))); }
 }
 @media (min-width: 1000px) {
   .bar { height: 76px; }
-  .home img { height: 42px; }
+  .home img { height: 42px; padding-block: calc(21px * (1 - var(--wm))); }
 }
 
 /* ---- footer ---- */
@@ -58,7 +71,7 @@
   color: var(--ss-muted);
 }
 .top { display: grid; gap: 28px; }
-.brand img { height: 42px; width: auto; display: block; }
+.brand img { height: 42px; padding-block: calc(21px * (1 - var(--wm))); width: auto; display: block; }
 .brandLink { display: inline-flex; align-items: center; min-height: 48px; border-radius: 4px; }
 .tagline { margin: 10px 0 0; font-size: 15px; line-height: 1.5; color: var(--ss-muted); }
 .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }

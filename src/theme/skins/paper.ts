@@ -1,3 +1,4 @@
+import { daylight } from './daylight'
 import type { Skin } from './types'
 
 /**
@@ -6,6 +7,7 @@ import type { Skin } from './types'
  * bundled yet: add their woff2 files to src/theme/fonts.css when this skin goes live; until then the fallbacks show.
  * Contrast on paper #f8f6f0 (WCAG 2.1): text 18.3:1, body 13.1:1, muted 6.8:1, link 6.4:1, accent 4.7:1, onAccent on
  * accent 5.0:1; every text pair is AA on paper, band and deep.
+ * The site's light theme borrows this ground on Noir's type: ./daylight.ts.
  */
 export const paper: Skin = {
   id: 'paper',
@@ -30,6 +32,7 @@ export const paper: Skin = {
     accent: '#386ad4',
     accentHover: '#2f5cbd',
     onAccent: '#ffffff',
+    accentText: '#2b56b0',
     highlight: '#0a0a0a',
     focus: '#386ad4',
     success: '#2f6b4a',
@@ -57,5 +60,6 @@ export const paper: Skin = {
     phone: '6px 6px 0 #0a0a0a',
     button: '3px 3px 0 #0a0a0a',
   },
+  art: daylight.art,
   wordmark: 'ink',
 }

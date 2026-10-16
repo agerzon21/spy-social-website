@@ -1,0 +1,81 @@
+/*
+ * The light / dark switch (ThemeToggle.tsx): a 44 px target around a slim pill. Off (dark): the knob sits left with
+ * the moon in it, a faint sun at the far end. On (light): the knob slides right and turns into the sun.
+ * Colours from the skin: the track's outline is the control colour (3:1 or more on the header in both themes),
+ * the knob the text colour.
+ */
+.toggle {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--ss-text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  /* Its own layer in the page's cross-fade (src/index.css), so the knob slides instead of fading. */
+  view-transition-name: ss-theme-toggle;
+}
+.track {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  width: 40px;
+  height: 22px;
+  border: 1.5px solid var(--ss-control);
+  border-radius: 999px;
+  /* Opaque (the header's surface tint over the page), so mid-switch the pill shows its new theme whole. */
+  background: color-mix(in srgb, var(--ss-text) 8%, var(--ss-page));
+  transition: border-color 0.15s;
+}
+.toggle:hover .track { border-color: var(--ss-text); }
+/* The focus ring goes round the pill, not the square target. */
+.toggle:focus-visible { outline: none; }
+.toggle:focus-visible .track { outline: 3px solid var(--ss-focus); outline-offset: 3px; }
+
+/* Where the knob would go: the sun at the right end while it's dark, the moon at the left while it's light. */
+.end {
+  position: absolute;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  margin-top: -5.5px;
+  color: var(--ss-muted);
+  transition: opacity 0.2s;
+}
+.endSun { right: 3.5px; }
+.endMoon { left: 3.5px; opacity: 0; }
+.toggle[aria-checked='true'] .endSun { opacity: 0; }
+.toggle[aria-checked='true'] .endMoon { opacity: 1; }
+
+.knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--ss-text);
+  color: var(--ss-page);
+  transition: transform 0.3s cubic-bezier(0.45, 0, 0.2, 1);
+}
+.toggle[aria-checked='true'] .knob { transform: translateX(18px); }
+.glyph {
+  grid-area: 1 / 1;
+  width: 10px;
+  height: 10px;
+  transition: opacity 0.2s, transform 0.3s cubic-bezier(0.45, 0, 0.2, 1);
+}
+.sun { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+.toggle[aria-checked='true'] .sun { opacity: 1; transform: none; }
+.toggle[aria-checked='true'] .moon { opacity: 0; transform: rotate(90deg) scale(0.6); }
+
+@media (prefers-reduced-motion: reduce) {
+  .track, .end, .knob, .glyph { transition: none; }
+}
