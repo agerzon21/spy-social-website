@@ -216,7 +216,7 @@ const bn: Strings = {
       text: "TRUST NO ONE. হুডি, I'm Not the Spy টি-শার্ট আর আরও অনেক কিছু। ছাপা আর পাঠানোর কাজ করে আমাদের শপ পার্টনার।",
       cta: 'শপে যান',
       hoodieAlt: 'হুডির পিঠের ছাপ: TRUST NO ONE., ওপর থেকে উঁকি দিচ্ছে গুপ্তচরের মাথা',
-      teeAlt: 'টি-শার্টের পিঠের ছাপ: (I WAS THE SPY.)',
+      teeAlt: 'টি-শার্টের পিঠের ছাপ: (I WAS THE SPY 😂)',
     },
     final: {
       title: 'আপনার টেবিল অপেক্ষায়',

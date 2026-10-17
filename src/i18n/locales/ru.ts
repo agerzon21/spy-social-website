@@ -217,7 +217,7 @@ const ru: Strings = {
       text: 'Худи TRUST NO ONE., футболка I’m Not the Spy и не только. Печатает и доставляет наш партнёр.',
       cta: 'В магазин',
       hoodieAlt: 'Принт на спине худи: TRUST NO ONE., а сверху выглядывает голова шпиона',
-      teeAlt: 'Принт на спине футболки: (I WAS THE SPY.)',
+      teeAlt: 'Принт на спине футболки: (I WAS THE SPY 😂)',
     },
     final: {
       title: 'Ваш стол ждёт',

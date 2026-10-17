@@ -252,7 +252,7 @@ const en = {
       text: "The TRUST NO ONE. hoodie, the I'm Not the Spy tee and more. Printed and shipped by our shop partner.",
       cta: 'Visit the shop',
       hoodieAlt: "The hoodie's back print: TRUST NO ONE. with the spy head peeking over the top",
-      teeAlt: "The tee's back print: (I WAS THE SPY.)",
+      teeAlt: "The tee's back print: (I WAS THE SPY 😂)",
     },
     final: {
       title: 'Your table is waiting',

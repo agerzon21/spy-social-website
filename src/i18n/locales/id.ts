@@ -217,7 +217,7 @@ const id: Strings = {
       text: 'Hoodie TRUST NO ONE., kaus I’m Not the Spy, dan lainnya. Dicetak dan dikirim oleh mitra toko kami.',
       cta: 'Kunjungi toko',
       hoodieAlt: 'Sablon belakang hoodie: TRUST NO ONE. dengan kepala mata-mata mengintip dari atas',
-      teeAlt: 'Sablon belakang kaus: (I WAS THE SPY.)',
+      teeAlt: 'Sablon belakang kaus: (I WAS THE SPY 😂)',
     },
     final: {
       title: 'Mejamu menanti',

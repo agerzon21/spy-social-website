@@ -216,7 +216,7 @@ const zhHans: Strings = {
       text: 'TRUST NO ONE. 连帽衫、I\'m Not the Spy T 恤，还有更多。由我们的商店合作伙伴印制并发货。',
       cta: '逛逛商店',
       hoodieAlt: '连帽衫背面印花：TRUST NO ONE.，卧底的脑袋从上方探出来',
-      teeAlt: 'T 恤背面印花：(I WAS THE SPY.)',
+      teeAlt: 'T 恤背面印花：(I WAS THE SPY 😂)',
     },
     final: {
       title: '就等你入座',

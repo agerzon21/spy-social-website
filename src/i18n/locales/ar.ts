@@ -216,7 +216,7 @@ const ar: Strings = {
       text: 'هودي TRUST NO ONE. وتيشيرت I\'m Not the Spy وغيرهما. يطبعها ويشحنها شريكنا في المتجر.',
       cta: 'زيارة المتجر',
       hoodieAlt: 'الطباعة على ظهر الهودي: TRUST NO ONE. ورأس الجاسوس يطل من أعلاها',
-      teeAlt: 'الطباعة على ظهر التيشيرت: (I WAS THE SPY.)',
+      teeAlt: 'الطباعة على ظهر التيشيرت: (I WAS THE SPY 😂)',
     },
     final: {
       title: 'طاولتك بانتظارك',

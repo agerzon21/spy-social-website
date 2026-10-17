@@ -217,7 +217,7 @@ const ptBR: Strings = {
       text: "O moletom TRUST NO ONE., a camiseta I'm Not the Spy e mais. Impressos e enviados pela nossa loja parceira.",
       cta: 'Visitar a loja',
       hoodieAlt: 'A estampa nas costas do moletom: TRUST NO ONE. com a cabeça do espião espiando por cima',
-      teeAlt: 'A estampa nas costas da camiseta: (I WAS THE SPY.)',
+      teeAlt: 'A estampa nas costas da camiseta: (I WAS THE SPY 😂)',
     },
     final: {
       title: 'Sua mesa aguarda',

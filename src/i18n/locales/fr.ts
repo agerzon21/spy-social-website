@@ -216,7 +216,7 @@ const fr: Strings = {
       text: "Le sweat à capuche TRUST NO ONE., le tee-shirt I'm Not the Spy et plus encore. Imprimés et expédiés par notre partenaire boutique.",
       cta: 'Voir la boutique',
       hoodieAlt: "L'impression au dos du sweat\u00A0: TRUST NO ONE. avec la tête de l'espion qui dépasse en haut",
-      teeAlt: "L'impression au dos du tee-shirt\u00A0: (I WAS THE SPY.)",
+      teeAlt: "L'impression au dos du tee-shirt\u00A0: (I WAS THE SPY 😂)",
     },
     final: {
       title: "Ta table t'attend",

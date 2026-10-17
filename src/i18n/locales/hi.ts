@@ -216,7 +216,7 @@ const hi: Strings = {
       text: "TRUST NO ONE. हुडी, I'm Not the Spy टी-शर्ट और भी बहुत कुछ। हमारे शॉप पार्टनर इन्हें प्रिंट करके भेजते हैं।",
       cta: 'शॉप पर जाएँ',
       hoodieAlt: 'हुडी की पीठ का प्रिंट: TRUST NO ONE. और ऊपर से झाँकता जासूस का सिर',
-      teeAlt: 'टी-शर्ट की पीठ का प्रिंट: (I WAS THE SPY.)',
+      teeAlt: 'टी-शर्ट की पीठ का प्रिंट: (I WAS THE SPY 😂)',
     },
     final: {
       title: 'आपकी टेबल तैयार है',
