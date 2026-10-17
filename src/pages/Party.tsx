@@ -80,7 +80,7 @@ const Party = () => {
         <DisplayHeading as="h1" size={1} className={s.title}>
           Happy 30th, Megan<span className={s.accent}>!</span>
         </DisplayHeading>
-        <p className={s.lede}>Want to try SpySocial, the party game Alex is making? Here's how to get it in a minute.</p>
+        <p className={s.lede}>A little party game for anyone who wants to join in. Setup takes about a minute.</p>
 
         <h2 className={s.label}>Get the app</h2>
         <div className={s.choices}>
