@@ -109,6 +109,8 @@ const fr: Strings = {
       stampSpy: 'Espion\u00A0!',
       stampLocal: 'Local',
       tap: 'Appuie sur un suspect pour l\'accuser',
+      eggFound: 'Œil de lynx\u00A0! Tu as trouvé l\'espion du premier coup.',
+      eggWhere: 'Ton code pour un titre secret dans l\'appli (Compte > Réglages > Saisir un code)\u00A0:',
     },
     how: {
       eyebrow: 'Comment ça se joue',

@@ -110,6 +110,8 @@ const ptBR: Strings = {
       stampSpy: 'Espião!',
       stampLocal: 'Local',
       tap: 'Toque num suspeito para acusar',
+      eggFound: 'Olho de lince! Você achou o espião na primeira tentativa.',
+      eggWhere: 'Seu código para um título secreto no app (Conta > Ajustes > Inserir um código):',
     },
     how: {
       eyebrow: 'Como se joga',

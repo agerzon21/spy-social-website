@@ -109,6 +109,8 @@ const zhHans: Strings = {
       stampSpy: '卧底！',
       stampLocal: '平民',
       tap: '点击嫌疑人来指认',
+      eggFound: '火眼金睛！你第一次就找到了间谍。',
+      eggWhere: '在应用里领取秘密称号的代码（账号 > 设置 > 输入代码）：',
     },
     how: {
       eyebrow: '怎么玩',
