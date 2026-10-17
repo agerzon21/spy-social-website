@@ -7,6 +7,9 @@ const ORIGIN = 'https://spysocial.app'
 
 type PageKey = keyof Strings['meta']['titles']
 
+/** Pages shared by link only (noindex): no alternates for search engines. They set their own title. */
+const UNLISTED = new Set(['/megan'])
+
 /** Which page a path is, for its title. The home page and anything unknown take the site's own title. */
 function pageOf(path: string): PageKey | null {
   if (path === '/') return null
@@ -47,10 +50,9 @@ const SiteHead = () => {
       <title>{title}</title>
       <meta name="description" content={t.meta.description} />
       <meta property="og:locale" content={language.og} />
-      {LANGUAGES.map((l) => (
-        <link key={l.code} rel="alternate" hrefLang={l.code} href={`${here}?lang=${l.code}`} />
-      ))}
-      <link rel="alternate" hrefLang="x-default" href={here} />
+      {!UNLISTED.has(pathname) &&
+        LANGUAGES.map((l) => <link key={l.code} rel="alternate" hrefLang={l.code} href={`${here}?lang=${l.code}`} />)}
+      {!UNLISTED.has(pathname) && <link rel="alternate" hrefLang="x-default" href={here} />}
     </Helmet>
   )
 }
