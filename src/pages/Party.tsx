@@ -80,7 +80,7 @@ const Party = () => {
         <DisplayHeading as="h1" size={1} className={s.title}>
           Happy 30th, Megan<span className={s.accent}>!</span>
         </DisplayHeading>
-        <p className={s.lede}>Tonight we're playing SpySocial. One of us is the spy. Find them.</p>
+        <p className={s.lede}>Want to try SpySocial, the party game Alex is making? Here's how to get it in a minute.</p>
 
         <h2 className={s.label}>Get the app</h2>
         <div className={s.choices}>
@@ -122,7 +122,7 @@ const Party = () => {
           <li>Tap Join a room</li>
           <li>Type the code Alex shows you</li>
         </ol>
-        <p className={s.note}>Tonight: Spy Talk and Spy Sketch.</p>
+        <p className={s.note}>Two games inside: Spy Talk and Spy Sketch.</p>
 
         <h2 className={s.label}>How to play in 20 seconds</h2>
         <ul className={s.rules}>
@@ -133,14 +133,32 @@ const Party = () => {
 
         <h2 className={s.label}>Thank you</h2>
         <p className={s.pin}>
-          <b>Thanks for helping us test!</b> SpySocial launches on November 10. If you have fun tonight, tell your friends: it
-          would mean a lot to us.
+          <b>Thanks for helping us test!</b> We hope you enjoyed it. SpySocial launches on November 10. If you liked it, tell
+          your friends: it would mean a lot to us.
         </p>
         <p className={s.note}>
-          Want it after tonight? It's free on the{' '}
+          Want it later? It's free on the{' '}
           <a className={s.inlineLink} href={APP_STORE_URL}>App Store</a> and{' '}
           <a className={s.inlineLink} href={PLAY_STORE_URL}>Google Play</a>, and the new version arrives there on launch day.
         </p>
+
+        <details className={s.host}>
+          <summary className={s.hostSummary}>For Alex (host)</summary>
+          <div className={s.hostBody}>
+            <h3 className={s.hostHead}>An Android guest gave you their Gmail</h3>
+            <ol className={s.hostSteps}>
+              <li>On your laptop, open <b>play.google.com/console</b> → SpySocial.</li>
+              <li>Test and release → Testing → <b>Internal testing</b> → the <b>Testers</b> tab.</li>
+              <li>Open the email list <b>Alex</b> (the arrow next to it), add their Gmail, then <b>Save changes</b>. That's all: nothing to publish.</li>
+              <li>Tell them: tap <b>I have an Android</b> → <b>Open after Alex adds you</b> → Accept invite → install from Google Play. Their Play Store must use that same Gmail.</li>
+              <li>"App not available"? Wait 5 minutes and open the link again. Still stuck: the browser link.</li>
+            </ol>
+            <h3 className={s.hostHead}>iPhone guests</h3>
+            <p className={s.hostText}>Nothing for you to do. If TestFlight says the beta is full, raise the limit in App Store Connect → TestFlight → Friends &amp; Family → Public Link.</p>
+            <h3 className={s.hostHead}>Hosting</h3>
+            <p className={s.hostText}>Open SpySocial → <b>Private Room</b> → pick Spy Talk or Spy Sketch → show the code or share the link. One room takes 3 to 21 players.</p>
+          </div>
+        </details>
       </div>
     </div>
   )
