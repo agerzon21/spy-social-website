@@ -14,8 +14,9 @@ const PlayMark = () => (
 )
 
 /**
- * The two store badges; they open the stores in a new tab. The small line is each store's own wording in the page's
- * language; the badges stay left to right (icon, then words) in Arabic too, as the stores draw them.
+ * The two store badges; they open the stores in a new tab. The small lines are each store's own badge wording in the
+ * page's language (over the name, or under it where the store's badge has it there; Apple has no Arabic, Hindi or
+ * Bengali badge, so those keep its English one); the badges stay left to right (icon, then words) in Arabic too, as the stores draw them.
  */
 const StoreBadges = ({ center = false }: { center?: boolean }) => {
   const t = useT().badges
@@ -24,15 +25,17 @@ const StoreBadges = ({ center = false }: { center?: boolean }) => {
       <a className={s.badge} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label={t.appStoreLabel} dir="ltr">
         <FaApple className={s.icon} aria-hidden focusable={false} />
         <span className={s.text}>
-          <span className={s.small} dir="auto">{t.appStoreSmall}</span>
-          <span className={s.large}>App Store</span>
+          {t.appStoreSmall && <span className={s.small} dir="auto">{t.appStoreSmall}</span>}
+          <span className={s.large}>{t.appStoreName}</span>
+          {t.appStoreAfter && <span className={s.small} dir="auto">{t.appStoreAfter}</span>}
         </span>
       </a>
       <a className={s.badge} href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label={t.playLabel} dir="ltr">
         <PlayMark />
         <span className={s.text}>
-          <span className={`${s.small} ${s.caps}`} dir="auto">{t.playSmall}</span>
-          <span className={s.large}>Google Play</span>
+          {t.playSmall && <span className={`${s.small} ${s.caps}`} dir="auto">{t.playSmall}</span>}
+          <span className={s.large}>{t.playName}</span>
+          {t.playAfter && <span className={s.small} dir="auto">{t.playAfter}</span>}
         </span>
       </a>
     </div>

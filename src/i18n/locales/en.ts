@@ -108,9 +108,17 @@ const en = {
 
   /** The store badges: the small line over the store's name, as each store words its badge in the language. */
   badges: {
+    /** The line over the store's name ('' if the store's badge has none in the language). */
     appStoreSmall: 'Download on the',
+    /** The store's name as the badge writes it (French: l’App Store). */
+    appStoreName: 'App Store',
+    /** A line under the name, where the store's badge puts its words after it (Chinese: 下载). Usually ''. */
+    appStoreAfter: '',
     appStoreLabel: 'Download on the App Store',
     playSmall: 'Get it on',
+    playName: 'Google Play',
+    /** A line under the name (Hindi: पर पाएं). Usually ''. */
+    playAfter: '',
     playLabel: 'Get it on Google Play',
   },
 
@@ -269,7 +277,7 @@ const en = {
     startGame: {
       q: 'How do I start a game?',
       a: [
-        'Tap <b>Create Room</b> to host, or join with a 5-character room code',
+        'Tap <b>Create Room</b> to host, or join with a room code of 4 to 8 letters and numbers',
         'You need at least 3 players to start a round',
         'Share the room with friends via the share sheet, QR code, or link',
       ],
@@ -289,7 +297,7 @@ const en = {
     },
     gameModes: {
       q: 'What game modes are available?',
-      a: ["<b>Classic:</b> Spies don't know each other", '<b>Spy Mafia:</b> Spies can see who the other spies are'],
+      a: ['Two games: <b>Spy Talk</b>, where the secret is a location and everyone asks and answers questions, and <b>Spy Sketch</b>, where the secret is a word and everyone takes turns drawing it', "<b>Classic:</b> Spies don't know each other", '<b>Spy Mafia:</b> Spies can see who the other spies are'],
     },
     notebook: {
       q: 'What is the Notebook?',
@@ -321,7 +329,7 @@ const en = {
       a: [
         "<b>Share sheet:</b> Use your phone's native share sheet to send the link anywhere",
         '<b>QR code:</b> Friends nearby can scan to join instantly',
-        '<b>Verbal:</b> Just read out the 5-character code',
+        '<b>Verbal:</b> Just read out the room code',
       ],
     },
     link: {
@@ -342,7 +350,7 @@ const en = {
         'Chat messages stay as they were written, and one in another language is translated into yours automatically (to tap <b>Translate</b> instead, turn off <b>Translate messages automatically</b> in Settings)',
       chatTap: 'Chat messages stay as they were written: tap <b>Translate</b> to read one in your language',
       hostPicks: 'The host picks the game language for locations and hints',
-      parity: 'SpySocial supports full parity across <b>English, Spanish, and Russian</b>',
+      parity: 'SpySocial is in <b>10 languages</b>: English, Spanish, Russian, Simplified Chinese, Hindi, Arabic, French, Bengali, Brazilian Portuguese and Indonesian',
       differs: "If your language differs from the host's, you'll see translations where it matters",
     },
     customize: {
@@ -374,7 +382,7 @@ const en = {
     code: {
       q: "Room code isn't working?",
       a: [
-        'Codes are now <b>5 characters</b> (older 6-character codes still work)',
+        'Room codes are <b>4 to 8 letters and numbers</b>: type the code exactly as the host\'s screen shows it',
         "Make sure the host hasn't closed the room or started the game",
         'Check your internet connection',
       ],

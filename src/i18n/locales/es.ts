@@ -83,8 +83,12 @@ const es: Strings = {
 
   badges: {
     appStoreSmall: 'Descárgalo en el',
+    appStoreName: 'App Store',
+    appStoreAfter: '',
     appStoreLabel: 'Descárgalo en el App Store',
     playSmall: 'DISPONIBLE EN',
+    playName: 'Google Play',
+    playAfter: '',
     playLabel: 'Disponible en Google Play',
   },
 
@@ -94,7 +98,7 @@ const es: Strings = {
       title: 'Desconfía de todos',
       titleMark: '.',
       lede: '<b>Encuentra al espía, o engáñalos a todos.</b> Uno de tus amigos es el espía. Todos los demás conocen la ubicación secreta. Haz preguntas o dibuja pistas, y vota antes de que el espía descubra dónde están.',
-      facts: ['3–21 jugadores', 'Multijugador en tiempo real', 'Gratis'],
+      facts: ['De 3 a 21 jugadores', 'Multijugador en tiempo real', 'Gratis'],
       browser: 'Juega en tu navegador',
       joinCode: 'Únete con un código de sala',
     },
@@ -238,7 +242,7 @@ const es: Strings = {
     startGame: {
       q: '¿Cómo empiezo una partida?',
       a: [
-        'Toca <b>Crear sala</b> para ser el anfitrión, o únete con un código de sala de 5 caracteres',
+        'Toca <b>Crear sala</b> para ser el anfitrión, o únete con un código de sala de 4 a 8 letras y números',
         'Se necesitan al menos 3 jugadores para empezar una ronda',
         'Comparte la sala con tus amigos desde el menú de compartir, con el código QR o con un enlace',
       ],
@@ -258,7 +262,7 @@ const es: Strings = {
     },
     gameModes: {
       q: '¿Qué modos de juego hay?',
-      a: ['<b>Clásico:</b> los espías no se conocen entre sí', '<b>Espía Mafia:</b> los espías pueden ver quiénes son los otros espías'],
+      a: ['Dos juegos: <b>Spy Talk</b>, donde el secreto es una ubicación y todos hacen y responden preguntas, y <b>Spy Sketch</b>, donde el secreto es una palabra y todos se turnan para dibujarla', '<b>Clásico:</b> los espías no se conocen entre sí', '<b>Espía Mafia:</b> los espías pueden ver quiénes son los otros espías'],
     },
     notebook: {
       q: '¿Qué es la libreta?',
@@ -290,7 +294,7 @@ const es: Strings = {
       a: [
         '<b>Menú de compartir:</b> usa el menú de compartir de tu teléfono para enviar el enlace a donde quieras',
         '<b>Código QR:</b> los amigos que estén cerca pueden escanearlo para unirse al instante',
-        '<b>En voz alta:</b> solo di el código de 5 caracteres',
+        '<b>En voz alta:</b> solo di el código de la sala',
       ],
     },
     link: {
@@ -311,7 +315,7 @@ const es: Strings = {
         'Los mensajes del chat se quedan como se escribieron, y uno en otro idioma se traduce al tuyo automáticamente (si prefieres tocar <b>Traducir</b>, desactiva <b>Traducir mensajes automáticamente</b> en Ajustes)',
       chatTap: 'Los mensajes del chat se quedan como se escribieron: toca <b>Traducir</b> para leer uno en tu idioma',
       hostPicks: 'El anfitrión elige el idioma de la partida para las ubicaciones y las pistas',
-      parity: 'SpySocial está completo en <b>inglés, español y ruso</b>',
+      parity: 'SpySocial está en <b>10 idiomas</b>: inglés, español, ruso, chino simplificado, hindi, árabe, francés, bengalí, portugués de Brasil e indonesio',
       differs: 'Si tu idioma es distinto al del anfitrión, verás traducciones donde importa',
     },
     customize: {
@@ -343,7 +347,7 @@ const es: Strings = {
     code: {
       q: '¿El código de sala no funciona?',
       a: [
-        'Los códigos ahora tienen <b>5 caracteres</b> (los códigos antiguos de 6 caracteres siguen funcionando)',
+        'Los códigos de sala tienen <b>de 4 a 8 letras y números</b>: escríbelo tal como aparece en la pantalla del anfitrión',
         'Asegúrate de que el anfitrión no haya cerrado la sala ni empezado la partida',
         'Revisa tu conexión a internet',
       ],

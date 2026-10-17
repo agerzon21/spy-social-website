@@ -83,9 +83,13 @@ const id: Strings = {
 
   badges: {
     appStoreSmall: 'Download di',
+    appStoreName: 'App Store',
+    appStoreAfter: '',
     appStoreLabel: 'Download di App Store',
-    playSmall: 'TERSEDIA DI',
-    playLabel: 'Tersedia di Google Play',
+    playSmall: 'TEMUKAN DI',
+    playName: 'Google Play',
+    playAfter: '',
+    playLabel: 'Temukan di Google Play',
   },
 
   home: {
@@ -238,7 +242,7 @@ const id: Strings = {
     startGame: {
       q: 'Bagaimana cara memulai permainan?',
       a: [
-        'Ketuk <b>Buat room</b> untuk jadi host, atau gabung dengan kode room 5 karakter',
+        'Ketuk <b>Buat room</b> untuk jadi host, atau gabung dengan kode room berisi 4 sampai 8 huruf dan angka',
         'Kamu butuh minimal 3 pemain untuk memulai ronde',
         'Bagikan room ke teman lewat menu berbagi, kode QR, atau link',
       ],
@@ -258,7 +262,7 @@ const id: Strings = {
     },
     gameModes: {
       q: 'Ada mode permainan apa saja?',
-      a: ['<b>Klasik:</b> para mata-mata tidak saling kenal', '<b>Mafia:</b> para mata-mata bisa melihat siapa saja mata-mata lainnya'],
+      a: ['Dua permainan: <b>Spy Talk</b>, rahasianya sebuah lokasi dan semua bergiliran bertanya dan menjawab, dan <b>Spy Sketch</b>, rahasianya sebuah kata dan semua bergiliran menggambarnya', '<b>Klasik:</b> para mata-mata tidak saling kenal', '<b>Mafia:</b> para mata-mata bisa melihat siapa saja mata-mata lainnya'],
     },
     notebook: {
       q: 'Apa itu Catatan?',
@@ -290,7 +294,7 @@ const id: Strings = {
       a: [
         '<b>Menu berbagi:</b> pakai menu berbagi bawaan HP-mu untuk mengirim link ke mana saja',
         '<b>Kode QR:</b> teman di dekatmu bisa memindainya untuk langsung gabung',
-        '<b>Lisan:</b> cukup bacakan kode 5 karakternya',
+        '<b>Lisan:</b> cukup bacakan kode room-nya',
       ],
     },
     link: {
@@ -311,7 +315,7 @@ const id: Strings = {
         'Pesan chat tetap seperti yang ditulis, dan pesan dalam bahasa lain otomatis diterjemahkan ke bahasamu (kalau mau mengetuk <b>Terjemahkan</b> sendiri, matikan <b>Terjemahkan pesan otomatis</b> di Pengaturan)',
       chatTap: 'Pesan chat tetap seperti yang ditulis: ketuk <b>Terjemahkan</b> untuk membacanya dalam bahasamu',
       hostPicks: 'Host memilih bahasa permainan untuk lokasi dan petunjuk',
-      parity: 'SpySocial mendukung penuh <b>bahasa Inggris, Spanyol, dan Rusia</b> secara setara',
+      parity: 'SpySocial tersedia dalam <b>10 bahasa</b>: Inggris, Spanyol, Rusia, Mandarin Sederhana, Hindi, Arab, Prancis, Bengali, Portugis Brasil, dan Indonesia',
       differs: 'Kalau bahasamu berbeda dari bahasa host, kamu akan melihat terjemahan di bagian yang penting',
     },
     customize: {
@@ -343,7 +347,7 @@ const id: Strings = {
     code: {
       q: 'Kode room tidak berfungsi?',
       a: [
-        'Kode sekarang terdiri dari <b>5 karakter</b> (kode lama 6 karakter masih bisa dipakai)',
+        'Kode room terdiri dari <b>4 sampai 8 huruf dan angka</b>: ketik persis seperti yang tampil di layar host',
         'Pastikan host belum menutup room atau memulai permainan',
         'Periksa koneksi internetmu',
       ],

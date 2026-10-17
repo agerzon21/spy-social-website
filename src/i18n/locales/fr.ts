@@ -81,9 +81,13 @@ const fr: Strings = {
   },
 
   badges: {
-    appStoreSmall: "Télécharger dans l'",
-    appStoreLabel: "Télécharger dans l'App Store",
-    playSmall: 'Disponible sur',
+    appStoreSmall: 'Télécharger dans',
+    appStoreName: 'l’App Store',
+    appStoreAfter: '',
+    appStoreLabel: 'Télécharger dans l’App Store',
+    playSmall: 'DISPONIBLE SUR',
+    playName: 'Google Play',
+    playAfter: '',
     playLabel: 'Disponible sur Google Play',
   },
 
@@ -237,7 +241,7 @@ const fr: Strings = {
     startGame: {
       q: 'Comment lancer une partie\u00A0?',
       a: [
-        'Appuie sur <b>Créer un salon</b> pour être l\'hôte, ou rejoins un salon avec un code de 5 caractères',
+        'Appuie sur <b>Créer un salon</b> pour être l\'hôte, ou rejoins un salon avec un code de 4 à 8 lettres et chiffres',
         'Il faut au moins 3 joueurs pour lancer une manche',
         'Partage le salon avec tes amis par le menu de partage, un QR code ou un lien',
       ],
@@ -257,7 +261,7 @@ const fr: Strings = {
     },
     gameModes: {
       q: 'Quels sont les modes de jeu\u00A0?',
-      a: ['<b>Classique\u00A0:</b> les espions ne se connaissent pas', '<b>Mafia\u00A0:</b> les espions savent qui sont les autres espions'],
+      a: ['Deux jeux\u00A0: <b>Spy Talk</b>, où le secret est un lieu et où chacun pose des questions et y répond à tour de rôle, et <b>Spy Sketch</b>, où le secret est un mot que chacun dessine à tour de rôle', '<b>Classique\u00A0:</b> les espions ne se connaissent pas', '<b>Mafia\u00A0:</b> les espions savent qui sont les autres espions'],
     },
     notebook: {
       q: "C'est quoi, les notes\u00A0?",
@@ -289,7 +293,7 @@ const fr: Strings = {
       a: [
         '<b>Menu de partage\u00A0:</b> utilise le menu de partage de ton téléphone pour envoyer le lien où tu veux',
         '<b>QR code\u00A0:</b> tes amis à côté de toi le scannent et entrent tout de suite',
-        '<b>À voix haute\u00A0:</b> lis simplement le code de 5 caractères',
+        '<b>À voix haute\u00A0:</b> lis simplement le code du salon',
       ],
     },
     link: {
@@ -310,7 +314,7 @@ const fr: Strings = {
         "Les messages du chat restent tels qu'ils ont été écrits, et un message dans une autre langue est traduit automatiquement dans la tienne (pour appuyer plutôt sur <b>Traduire</b>, désactive <b>Traduire les messages automatiquement</b> dans les Réglages)",
       chatTap: "Les messages du chat restent tels qu'ils ont été écrits\u00A0: appuie sur <b>Traduire</b> pour en lire un dans ta langue",
       hostPicks: "L'hôte choisit la langue de la partie pour les lieux et les indices",
-      parity: 'SpySocial est entièrement disponible en <b>anglais, espagnol et russe</b>',
+      parity: 'SpySocial est disponible en <b>10 langues</b>\u00A0: anglais, espagnol, russe, chinois simplifié, hindi, arabe, français, bengali, portugais du Brésil et indonésien',
       differs: "Si ta langue n'est pas celle de l'hôte, tu verras des traductions là où ça compte",
     },
     customize: {
@@ -342,7 +346,7 @@ const fr: Strings = {
     code: {
       q: 'Le code du salon ne marche pas\u00A0?',
       a: [
-        'Les codes font maintenant <b>5 caractères</b> (les anciens codes de 6 caractères marchent encore)',
+        'Les codes de salon font <b>4 à 8 lettres et chiffres</b>\u00A0: tape-le exactement comme il s\'affiche sur l\'écran de l\'hôte',
         "Vérifie que l'hôte n'a pas fermé le salon ni lancé la partie",
         'Vérifie ta connexion internet',
       ],

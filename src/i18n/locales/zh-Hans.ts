@@ -81,9 +81,13 @@ const zhHans: Strings = {
   },
 
   badges: {
-    appStoreSmall: '下载于',
+    appStoreSmall: '',
+    appStoreName: 'App Store',
+    appStoreAfter: '下载',
     appStoreLabel: '在 App Store 下载',
     playSmall: '下载应用，请到',
+    playName: 'Google Play',
+    playAfter: '',
     playLabel: '下载应用，请到 Google Play',
   },
 
@@ -237,7 +241,7 @@ const zhHans: Strings = {
     startGame: {
       q: '怎么开始一局游戏？',
       a: [
-        '点击<b>创建房间</b>当房主，或者用 5 位房间码加入',
+        '点击<b>创建房间</b>当房主，或者用 4 到 8 位字母和数字的房间码加入',
         '至少需要 3 名玩家才能开始一轮',
         '通过分享面板、二维码或链接把房间分享给朋友',
       ],
@@ -257,7 +261,7 @@ const zhHans: Strings = {
     },
     gameModes: {
       q: '有哪些游戏模式？',
-      a: ['<b>经典：</b>卧底之间互不相识', '<b>黑手党：</b>卧底能看到其他卧底是谁'],
+      a: ['两种玩法：<b>Spy Talk</b>，秘密是一个地点，大家轮流提问和回答；<b>Spy Sketch</b>，秘密是一个词语，大家轮流把它画出来', '<b>经典：</b>卧底之间互不相识', '<b>黑手党：</b>卧底能看到其他卧底是谁'],
     },
     notebook: {
       q: '笔记本是什么？',
@@ -289,7 +293,7 @@ const zhHans: Strings = {
       a: [
         '<b>分享面板：</b>用手机自带的分享面板把链接发到任何地方',
         '<b>二维码：</b>身边的朋友扫一扫就能立刻加入',
-        '<b>口头告诉：</b>直接念出 5 位房间码',
+        '<b>口头告诉：</b>直接念出房间码',
       ],
     },
     link: {
@@ -310,7 +314,7 @@ const zhHans: Strings = {
         '聊天消息保持原样，其他语言的消息会自动翻译成你的语言（如果想改为手动点<b>翻译</b>，请在设置中关闭<b>自动翻译消息</b>）',
       chatTap: '聊天消息保持原样：点击<b>翻译</b>即可用你的语言阅读',
       hostPicks: '地点和提示使用的游戏语言由房主选择',
-      parity: 'SpySocial 完整支持<b>英语、西班牙语和俄语</b>',
+      parity: 'SpySocial 支持 <b>10 种语言</b>：英语、西班牙语、俄语、简体中文、印地语、阿拉伯语、法语、孟加拉语、巴西葡萄牙语和印尼语',
       differs: '如果你的语言和房主的不同，你会在关键的地方看到译文',
     },
     customize: {
@@ -342,7 +346,7 @@ const zhHans: Strings = {
     code: {
       q: '房间码用不了？',
       a: [
-        '房间码现在是 <b>5 位</b>（旧的 6 位房间码仍然可用）',
+        '房间码由 <b>4 到 8 位字母和数字</b>组成：照房主屏幕上显示的输入即可',
         '确认房主没有关闭房间，也没有开始游戏',
         '检查你的网络连接',
       ],

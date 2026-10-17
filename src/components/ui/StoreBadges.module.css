@@ -35,6 +35,8 @@
 .icon { flex: none; width: 24px; height: 27px; }
 .play { width: 24px; height: 24px; }
 .text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+/* Three lines (a line over the name and one under it: Bengali's Google Play) sit closer. */
+.text:has(> :nth-child(3)) { gap: 1px; }
 .small { font-size: 10.5px; font-weight: 500; letter-spacing: 0.01em; white-space: nowrap; }
 .caps { text-transform: uppercase; font-size: 9.5px; letter-spacing: 0.07em; }
 .large { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; }
