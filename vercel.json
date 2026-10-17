@@ -29,6 +29,15 @@
       ]
     },
     {
+      "source": "/megan",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/agree/(.*)",
       "headers": [
         {
@@ -75,6 +84,11 @@
         }
       ],
       "destination": "https://www.spysocial.app/$1",
+      "permanent": false
+    },
+    {
+      "source": "/megans-party",
+      "destination": "/megan",
       "permanent": false
     }
   ],
