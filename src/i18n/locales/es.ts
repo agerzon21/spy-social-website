@@ -216,8 +216,8 @@ const es: Strings = {
       title: 'Ponte la coartada',
       text: "La sudadera TRUST NO ONE., la camiseta I'm Not the Spy y más. Impresas y enviadas por nuestro socio de la tienda.",
       cta: 'Visitar la tienda',
-      hoodieAlt: 'El estampado trasero de la sudadera: TRUST NO ONE. con la cabeza del espía asomándose por arriba',
-      teeAlt: 'El estampado trasero de la camiseta: (I WAS THE SPY 😂)',
+      hoodieAlt: 'El estampado trasero de la sudadera: NO CONFÍES EN NADIE. con la cabeza del espía asomándose por arriba',
+      teeAlt: 'El estampado trasero de la camiseta: (EL ESPÍA ERA YO 😂)',
     },
     final: {
       title: 'Tu mesa te espera',
