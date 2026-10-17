@@ -1,5 +1,6 @@
 import { useColorMode } from '@chakra-ui/react'
 import type { MouseEvent } from 'react'
+import { useT } from '../i18n'
 import { rememberTheme, switchTheme, type ThemeName } from '../theme/mode'
 import s from './ThemeToggle.module.css'
 
@@ -29,6 +30,7 @@ const Sun = ({ className }: { className: string }) => (
 const ThemeToggle = () => {
   const { colorMode, setColorMode } = useColorMode()
   const light = colorMode === 'light'
+  const t = useT()
 
   const flip = (e: MouseEvent<HTMLButtonElement>) => {
     const next: ThemeName = light ? 'dark' : 'light'
@@ -41,9 +43,10 @@ const ThemeToggle = () => {
       type="button"
       role="switch"
       aria-checked={light}
-      aria-label={light ? 'Switch to dark mode' : 'Switch to light mode'}
+      aria-label={light ? t.header.toDark : t.header.toLight}
       className={s.toggle}
       data-theme-toggle=""
+      dir="ltr"
       onClick={flip}
     >
       <span className={s.track} aria-hidden="true">

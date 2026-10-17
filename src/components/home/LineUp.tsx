@@ -4,6 +4,7 @@ import orange from '../../assets/home/agents/f-orange.svg'
 import fedora from '../../assets/home/agents/f-spy.svg'
 import lime from '../../assets/home/agents/f-lime.svg'
 import lilac from '../../assets/home/agents/f-lilac.svg'
+import { useT } from '../../i18n'
 import s from './home.module.css'
 
 // Five Noir agents against a height wall. The one in the trench coat, fedora and shades stands in the spotlight;
@@ -21,16 +22,17 @@ const LineUp = () => {
   const [lit, setLit] = useState(2)
   const [shown, setShown] = useState<Set<number>>(() => new Set())
   const [said, setSaid] = useState('')
+  const t = useT().home.lineup
 
   const accuse = (i: number) => {
     setLit(i)
     setShown((prev) => new Set(prev).add(i))
-    setSaid(SUSPECTS[i].spy ? `Suspect ${i + 1} was the spy` : `Suspect ${i + 1} is a Local`)
+    setSaid(SUSPECTS[i].spy ? t.wasSpy(i + 1) : t.isLocal(i + 1))
   }
 
   return (
     <div className={s.lineupWrap}>
-      <div className={s.lineup} role="group" aria-label="A line-up of five agents. Tap one to accuse them.">
+      <div className={s.lineup} role="group" aria-label={t.group}>
         <div className={s.marks} aria-hidden="true">
           {MARKS.map((m) => (
             <span key={m}>{m}</span>
@@ -44,12 +46,12 @@ const LineUp = () => {
               key={x.src}
               type="button"
               className={[s.suspect, lit === i ? s.lit : '', shown.has(i) ? s.shown : ''].filter(Boolean).join(' ')}
-              aria-label={`Accuse suspect ${i + 1}`}
+              aria-label={t.accuse(i + 1)}
               onClick={() => accuse(i)}
             >
               <span className={s.plate}>{i + 1}</span>
               <span className={`${s.verdict} ${x.spy ? s.spy : s.local}`} aria-hidden="true">
-                {x.spy ? 'Spy!' : 'Local'}
+                {x.spy ? t.stampSpy : t.stampLocal}
               </span>
               <img src={x.src} alt="" width={512} height={818} />
             </button>
@@ -57,7 +59,7 @@ const LineUp = () => {
         </div>
       </div>
       <p className={s.tapnote}>
-        <span>Tap a suspect to accuse</span>
+        <span>{t.tap}</span>
         <span aria-live="polite">{said}</span>
       </p>
     </div>

@@ -2,6 +2,8 @@ import { Box, Container, Heading, Text, VStack, HStack, Badge, Stack, Icon } fro
 import { FaWandSparkles, FaPalette, FaWrench, FaBug, FaGears, FaRocket, FaAndroid } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
+import { useLang, useT, type Strings } from '../i18n'
+import { formatDate } from '../i18n/rich'
 
 const MotionBox = motion(Box)
 
@@ -24,195 +26,30 @@ interface Release {
   sections: Section[]
 }
 
-const releases: Release[] = [
-  {
-    version: '2.1.1',
-    date: 'June 13, 2026',
-    tag: 'Android Launch',
-    summary:
-      'SpySocial is officially live on the Google Play Store — the first public production release on Android, paired with pre-launch polish from closed-test QA on real Android devices.',
-    sections: [
-      {
-        label: 'Now Available',
-        icon: FaRocket,
-        items: [
-          { title: 'Android 2.1.1', text: 'Live on Google Play as of June 13, 2026.' },
-          { title: 'iOS 2.1.1', text: 'Same fixes, submitted to App Store Connect.' },
-        ],
-      },
-      {
-        label: 'Pre-launch Polish',
-        icon: FaWrench,
-        items: [
-          { title: 'Delete Account button no longer clipped', text: 'The Account screen content now respects the device safe-area bottom inset and reserves room for the unsaved-changes snackbar — Google Play requires in-app account deletion to be reachable.' },
-          { title: 'Lobby Leave Room / Start Game buttons', text: 'Now sit above the Android gesture-nav bar via dynamic safe-area insets.' },
-          { title: 'Start Game feedback', text: "Now surfaces what's missing (need 3+ players, all-ready, at least one category) when prerequisites aren't met. Previously the button was hard-disabled with no feedback." },
-          { title: 'Categories screen', text: 'Back control and "Categories & Locations" title no longer crowd each other. Back button is icon-only on Android (Material convention); title font size trimmed.' },
-          { title: 'How to Play modal', text: "Duplicate back button on Android removed (the modal's close X and the inherited stack back button were both rendering)." },
-          { title: 'Onboarding tutorial', text: 'Skip is now reachable on every step, not just the first slide.' },
-          { title: 'Guest sign-up banner', text: 'Reframed as an invitation ("Unlock Your Full Account") with a sparkles icon and a clear CTA button — was previously styled like a system warning, which felt discouraging.' },
-          { title: 'Game results & How to Play screens', text: 'Emojis replaced with Ionicons / FontAwesome glyphs. Emojis render inconsistently across Android vendors; vector icons stay consistent.' },
-        ],
-      },
-      {
-        label: 'Infrastructure',
-        icon: FaGears,
-        items: [
-          { text: 'expo-updates now installed and configured against the EAS project. Future JS-only fixes can ship via over-the-air updates without going through Play Store / App Store review.' },
-        ],
-      },
-    ],
-  },
-  {
-    version: '2.1.0',
-    date: 'May 15, 2026',
-    tag: 'Polish Update',
-    summary:
-      'A polish release: a redesigned Welcome screen, refreshed Game Over and Account screens, iPad layout improvements, and a stack of stability and quality fixes under the hood.',
-    sections: [
-      {
-        label: 'New Features',
-        icon: FaWandSparkles,
-        items: [
-          { title: 'Welcome screen redesign', text: 'New layered surface with a soft sky-blue gradient and faint spy-themed background details (radar rings, crosshair), an orange "SOCIAL DEDUCTION" eyebrow pill, a tagline beneath the logo, icon-prefixed Login / Sign Up buttons, an OR divider, and a lightweight "Continue as Guest" link. Version badge is now a subtle pill at the bottom of the screen.' },
-          { title: 'Account "confirmation pending" flow', text: 'When a guest upgrades to a full account, the Account screen now shows a clear pending state with Resend / Cancel / Refresh actions so they know exactly where they are in the email-confirm process.' },
-        ],
-      },
-      {
-        label: 'Visual Revamp',
-        icon: FaPalette,
-        items: [
-          { title: 'Game Over screen redesigned', text: 'Single-surface player cards with a soft gradient and left-edge color accent, a trophy hero with a glow halo, gold-accented winning-team sections, location card with a map-pin icon, and a sky-blue gradient "Return to Lobby" footer button.' },
-          { title: 'Account screen redesign', text: 'Single cohesive list, consistent uppercase section headers across every group (Profile, Preferences, Account & Security, Support & Legal, Danger Zone), iOS-Settings-style menu rows for Support / Legal, Danger Zone moved to the bottom.' },
-          { title: 'iPad UI polish', text: 'Lobby player cards in 6 columns (was 3), role-reveal card capped at 420pt, larger in-game player tiles (140×178) with a taller container so the third row never clips, notebook column auto-sizes to the role card, home/play deck row sized for iPad with larger HomeCard typography.' },
-        ],
-      },
-      {
-        label: 'Android-Specific Fixes',
-        icon: FaAndroid,
-        items: [
-          { title: 'Back-gesture guard', text: "The Android-10+ system back swipe (and the hardware back button) now route through the same Leave confirmation dialog as tapping the header's Leave button. Previously, Android users could swipe back out of an in-game screen or the lobby with zero confirmation; gestureEnabled: false only stops the iOS swipe gesture. Implemented via a shared useBackPressGuard hook combining navigation.addListener('beforeRemove') with BackHandler.hardwareBackPress." },
-          { title: '"Box-in-box" rendering artifact', text: "Android's compositor was rendering a visible inner edge inside every vote / vote-results / game-over card. Root cause: translucent rgba background + translucent hairline border + borderRadius + overflow:hidden — the rounded clip layer's own edge was showing through the semi-transparent border. Fixed across VotePlayerRow, VoteResultRankCard, VoteOutcomeCard, and the game-over player card." },
-          { title: 'Game Over header gap', text: "The screen's SafeAreaView was double-counting the top inset on top of the Stack header, leaving a visible strip of the GameBackground gradient between the header and where scroll content started clipping. Now scoped to ['bottom','left','right'], matching the voting / vote_results screens." },
-          { title: 'WheelPicker', text: 'Pure-JS replacement for @react-native-picker/picker. The native picker silently ignores itemStyle on Android (which made our white-text styling render as unreadable black-on-dark) and has long-standing NullPointerException crashes during dismissal — both upstream library bugs. The replacement renders identical UX on both platforms via a ScrollView + snap-to-interval.' },
-        ],
-      },
-      {
-        label: 'Improvements',
-        icon: FaWrench,
-        items: [
-          { title: 'Server-synced clock', text: 'Every "seconds remaining" computation now subtracts a measured offset against the server clock (via a new server_now() Postgres function) instead of trusting the device clock. Fixes occasional nonsense countdown values on devices with imperfect time sync.' },
-          { title: 'Auth flows consolidated', text: 'Signup, resend confirmation, password reset, and email change all dispatch through a single Edge Function with a shared client wrapper, removing the drift risk across the four UI call sites. New migrations add an idempotency key to signup, extend auth_attempts to cover the additional flow kinds, and add a cancel-email-change RPC.' },
-          { title: 'Account: mailto fallback', text: 'Support / Legal email rows now copy the address to the clipboard with a friendly alert when no mail client is configured, instead of throwing an unhandled error.' },
-          { text: 'Translation parity maintained across English, Spanish, and Russian for all new keys (welcome eyebrow / tagline, account upgrade-pending strings, etc).' },
-        ],
-      },
-      {
-        label: 'Technical',
-        icon: FaGears,
-        items: [
-          { text: 'tsconfig.json now excludes supabase/functions/** — those are Deno Edge Function files with a different module resolution target.' },
-          { text: 'Version bumped to 2.1.0; iOS build number incremented for App Store submission.' },
-        ],
-      },
-    ],
-  },
-  {
-    version: '2.0.0',
-    date: 'April 30, 2026',
-    tag: 'Major Update',
-    summary:
-      'A full rebuild of the multiplayer experience: every screen has been redesigned, the realtime engine has been rewritten for stability, and a stack of new features lands together.',
-    sections: [
-      {
-        label: 'New Features',
-        icon: FaWandSparkles,
-        items: [
-          { title: 'Tutorial & profile setup', text: 'First-time players are walked through the game and prompted to set up their profile.' },
-          { title: 'In-game Notebook', text: 'Jot down notes about who said what during the round. Players are smart-sorted: active players with notes first, then other active players, then eliminated players last.' },
-          { title: 'Hint translation', text: 'When your UI language differs from the game language, tap a hint to see the same question in your language. Hints stay in the game language so every player at the table reads the same prompt.' },
-          { title: 'Player pokes', text: "Tap a teammate's card in the lobby to send them a poke." },
-          { title: 'QR-code sharing', text: 'Share rooms via a native share sheet with a scannable QR code.' },
-          { title: 'Universal links', text: 'spysocial.app/join/<code> opens the app and drops you straight into the room (with cold-launch handling).' },
-          { title: '5-character room codes', text: 'Shorter codes that are easier to share verbally. Legacy 6-character codes still work.' },
-          { title: 'Reveal Vote Caller', text: 'Lobby setting to optionally show who triggered the vote.' },
-          { title: 'Host End Game', text: 'Hosts can now end a game early.' },
-          { title: 'Extra 1 location pack', text: 'A new batch of locations to play with.' },
-          { title: 'In-game Leave button', text: 'Quick exit from active games without backing all the way out.' },
-        ],
-      },
-      {
-        label: 'Visual Revamp',
-        icon: FaPalette,
-        items: [
-          { text: 'Lobby UI completely modernized with interactive player cards.' },
-          { text: 'Lobby settings screen redesigned (with a reusable PickerModal under the hood).' },
-          { text: 'Game screen redesigned.' },
-          { text: 'Voting screen redesigned with a vote-caller display and progress UI.' },
-          { text: 'Vote results screen redesigned, with standardized results / eliminated UX.' },
-          { text: "Role-reveal phase polished — shows waiting players' names, extended to 60 seconds." },
-          { text: 'Home cards now auto-fit text; refresh button slimmed down.' },
-          { text: 'All in-game screens now share the same dark-navy header (Solve and Solve Results no longer use white/transparent variants).' },
-          { text: 'Offline banner standardized across every screen — consistent height, safe-area aware, no longer crashes into the Dynamic Island.' },
-          { text: 'Account screen has a polished offline empty state with a cloud-offline icon.' },
-        ],
-      },
-      {
-        label: 'Improvements',
-        icon: FaWrench,
-        items: [
-          { title: 'Network resilience overhaul', text: 'Fixes a long-standing iOS quirk where NetInfo could lie ("offline") after a long background sleep, leaving screens stuck in reconnect states even though the network was actually fine. The shared useNetwork hook now verifies any "offline" claim with a real HTTP probe to Supabase; all in-game and pre-game screens consume this same hook.' },
-          { text: "The Play screen now trusts actual fetch results over NetInfo's stale state, retries automatically every 5 seconds while offline, serializes concurrent fetches, and never falsely shows the logged-out fallback when the user is merely offline." },
-          { text: 'Realtime sync stability hardened across every phase (lobby, role reveal, game, voting, results).' },
-          { text: 'Game timer is now server-synced — clock drift fixed.' },
-          { text: 'Stronger offline handling and reconnection logic.' },
-          { text: 'Auth & login flows tightened: signup hardening, reset-password flow, and the guest-upgrade flow.' },
-          { text: 'Account screen polish with a redesigned snackbar messaging system.' },
-          { text: 'Full translation parity across English, Spanish, and Russian (171 hint suggestions per language, indexed by stable position so future translation features just work).' },
-          { text: 'Notebook UX: keyboard no longer pops automatically when selecting a player; sheet sizes itself appropriately.' },
-          { text: 'Hint drawer: tapping the hint sentence no longer accidentally re-rolls the hint — the dedicated reload icon is the only way to refresh.' },
-          { text: 'iOS 26 compatibility — opted out of the Liquid Glass capsule on header bar items.' },
-          { text: 'Header consolidated into a shared useGameScreenHeader hook for consistency across screens.' },
-          { text: 'Production logging stripped from release builds.' },
-        ],
-      },
-      {
-        label: 'Bug Fixes',
-        icon: FaBug,
-        items: [
-          { text: 'Fixed vote / end-of-game race condition.' },
-          { text: 'Fixed double-tally and timer-end edge cases on votes.' },
-          { text: 'Fixed Plurality tally vs. abstain handling; abstain now pinned to the action dock.' },
-          { text: 'Fixed solve-results header overlap (body crashing into transparent header).' },
-          { text: 'Fixed animation initial-state bleed-through on the game screen.' },
-          { text: 'Fixed Reanimated render-write warnings on the voting screen.' },
-          { text: 'Fixed guest-upgrade flow that was unintentionally signing the guest out.' },
-          { text: 'Fixed Account email field.' },
-          { text: 'Fixed home-card text truncation and Spanish header trims.' },
-        ],
-      },
-      {
-        label: 'Technical',
-        icon: FaGears,
-        items: [
-          { text: 'Migrated state management to useRoom and useGame hooks.' },
-          { text: 'Flattened routing — dropped the (tabs) route group in favor of flat routes.' },
-          { text: 'Pinned react-native-screens to ~4.18 for expo-router 6.0.23 compatibility.' },
-          { text: 'Realtime publication fix on the Supabase side.' },
-          { text: 'Question suggestions restructured into parallel translation triples ({ en, es, ru }) — single source of truth.' },
-          { text: 'Removed deprecated Expo schema fields (privacy, privacyPolicyUrl, termsOfServiceUrl); privacy/terms URLs are owned by App Store Connect.' },
-        ],
-      },
-    ],
-  },
-  {
-    version: '1.0.1',
-    date: 'May 16, 2025',
-    tag: 'Initial Release',
-    summary: 'First public release of SpySocial on the App Store.',
-    sections: [],
-  },
+/**
+ * The releases, newest first: the version, the day (written "June 13, 2026", shown in the page's language) and each
+ * section's icon. Their words are the page's language's (src/i18n: whatsNew.releases, same order).
+ */
+const RELEASES: { version: string; date: string; icons: IconType[] }[] = [
+  { version: '2.1.1', date: 'June 13, 2026', icons: [FaRocket, FaWrench, FaGears] },
+  { version: '2.1.0', date: 'May 15, 2026', icons: [FaWandSparkles, FaPalette, FaAndroid, FaWrench, FaGears] },
+  { version: '2.0.0', date: 'April 30, 2026', icons: [FaWandSparkles, FaPalette, FaWrench, FaBug, FaGears] },
+  { version: '1.0.1', date: 'May 16, 2025', icons: [] },
 ]
+
+function releasesIn(words: Strings['whatsNew']['releases'], locale: string): Release[] {
+  return RELEASES.map((r, i) => ({
+    version: r.version,
+    date: formatDate(r.date, locale),
+    tag: words[i].tag,
+    summary: words[i].summary,
+    sections: words[i].sections.map((section, j) => ({
+      label: section.label,
+      icon: r.icons[j] ?? FaWrench,
+      items: section.items.map((item) => ({ title: item.title || undefined, text: item.text })),
+    })),
+  }))
+}
 
 const SectionBlock = ({ section }: { section: Section }) => (
   <Box>
@@ -233,11 +70,11 @@ const SectionBlock = ({ section }: { section: Section }) => (
         {section.label}
       </Text>
     </HStack>
-    <Stack spacing={3} pl={1}>
+    <Stack spacing={3} ps={1}>
       {section.items.map((item, idx) => (
         <HStack key={idx} align="flex-start" spacing={3}>
           <Box w="6px" h="6px" mt="10px" bg="ss.accent" transform="rotate(45deg)" flexShrink={0} aria-hidden />
-          <Text fontSize="16px" color="ss.body" lineHeight="1.65">
+          <Text fontSize="16px" color="ss.body" lineHeight="1.65" overflowWrap="anywhere">
             {item.title && (
               <Text as="span" color="ss.text" fontWeight="700">
                 {item.title}
@@ -271,7 +108,7 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
     <VStack spacing={6} align="stretch" position="relative">
       <Box>
         <HStack spacing={3} mb={2} flexWrap="wrap">
-          <Heading as="h2" size="lg">
+          <Heading as="h2" size="lg" dir="ltr">
             v{release.version}
           </Heading>
           {release.tag && (
@@ -310,16 +147,19 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
 )
 
 const WhatsNew = () => {
+  const t = useT().whatsNew
+  const { language } = useLang()
+  const releases = releasesIn(t.releases, language.locale)
   return (
     <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="linear-gradient(180deg, var(--ss-band) 0, var(--ss-page) 360px)">
       <Container maxW="760px" px={{ base: 4, md: 6 }}>
         <VStack spacing={10} align="stretch">
           <VStack spacing={4} textAlign="center">
             <Heading as="h1" size="xl">
-              What's New
+              {t.title}
             </Heading>
             <Text fontSize={{ base: '17px', md: '18px' }} color="ss.muted" maxW="500px">
-              Release notes for SpySocial. Major updates, new features, and improvements as we ship them.
+              {t.sub}
             </Text>
           </VStack>
 

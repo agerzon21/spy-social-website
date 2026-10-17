@@ -18,8 +18,8 @@ export const CalloutBox = ({ children }: { children: ReactNode }) => (
     bg="ss.surface"
     border="var(--ss-card-border) solid"
     borderColor="ss.line"
-    borderLeft="3px solid"
-    borderLeftColor="ss.accent"
+    borderInlineStart="3px solid"
+    borderInlineStartColor="ss.accent"
     borderRadius="var(--ss-radius-card)"
     boxShadow="var(--ss-shadow-card)"
     px={{ base: 4, md: 5 }}

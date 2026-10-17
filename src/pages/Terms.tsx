@@ -31,7 +31,7 @@ const Terms: React.FC = () => {
   const photos = photosInUse(LIVE)
 
   return (
-    <LegalPage title="Terms of Service for SpySocial" updated={<>Last Updated: {LEGAL_LAST_UPDATED}</>}>
+    <LegalPage english title="Terms of Service for SpySocial" updated={<>Last Updated: {LEGAL_LAST_UPDATED}</>}>
 
       <P>
         These Terms of Service ("Terms") are the rules for using SpySocial: the SpySocial app, our website at

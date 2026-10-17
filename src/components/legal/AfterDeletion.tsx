@@ -21,7 +21,7 @@ const SupportEmail = () => (
 
 /** What stays after a deletion, and for how long. */
 export const AfterDeletionList = () => (
-  <UnorderedList spacing={2} pl={4} textStyle="body">
+  <UnorderedList spacing={2} ps={4} textStyle="body">
     <ListItem>
       Chat messages{PRIVACY.storedQuestions ? ' and typed questions and answers' : ''} you sent stay in their room until{' '}
       {PRIVACY.scheduledRetention

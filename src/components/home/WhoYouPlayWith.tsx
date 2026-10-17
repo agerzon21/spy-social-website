@@ -6,6 +6,8 @@ import yellow from '../../assets/home/agents/b-yellow.svg'
 import lilac from '../../assets/home/agents/b-lilac.svg'
 import blue from '../../assets/home/agents/b-blue.svg'
 import mint from '../../assets/home/agents/b-mint.svg'
+import { useT } from '../../i18n'
+import { bold, rich } from '../../i18n/rich'
 import { LIVE } from '../../lib/legalRelease'
 import DisplayHeading from '../ui/DisplayHeading'
 import Eyebrow from '../ui/Eyebrow'
@@ -30,54 +32,43 @@ const AGENTS = [
  */
 const WhoYouPlayWith = () => {
   const online = LIVE.playOnline
+  const t = useT().home.who
   return (
     <section id="join" className={`${s.section} ${s.join}`} aria-labelledby="ways-title">
       <div className={ui.wrap}>
-        <Eyebrow>Who you play with</Eyebrow>
-        <DisplayHeading id="ways-title">{online ? 'Your crew. Or strangers.' : 'Bring your crew.'}</DisplayHeading>
-        <p className={s.sub}>Everyone plays on their own phone or tablet, around one table or on a call.</p>
+        <Eyebrow>{t.eyebrow}</Eyebrow>
+        <DisplayHeading id="ways-title">{online ? t.titleOnline : t.titleCrew}</DisplayHeading>
+        <p className={s.sub}>{t.sub}</p>
         <div className={online ? s.ways : `${s.ways} ${s.waysSingle}`}>
           <article className={s.way}>
             <div>
               <DisplayHeading as="h3" size={4}>
-                Private room
+                {t.privateTitle}
               </DisplayHeading>
-              <p className={s.wayText}>
-                Up to 21 players. Friends join with a QR code, an invite link or the room code. You pick the mode and
-                the rules.
-              </p>
+              <p className={s.wayText}>{t.privateText}</p>
             </div>
             <ul className={s.howJoin}>
-              <li>
-                <b>Scan</b> the QR code on the host's screen
-              </li>
-              <li>
-                <b>Tap</b> the invite link they send
-              </li>
-              <li>
-                <b>Type</b> the room code here or in the app
-              </li>
+              {t.howJoin.map((line) => (
+                <li key={line}>{rich(line, { b: bold })}</li>
+              ))}
             </ul>
             <JoinCodeForm />
           </article>
           {online && (
             <article className={s.way}>
               <DisplayHeading as="h3" size={4}>
-                Play Online
+                {t.onlineTitle}
               </DisplayHeading>
-              <p className={s.wayText}>
-                Find a Game seats you at a table of 4 or 8. Strangers never see your name, only your Agent Color.
-                Scheduled game nights too.
-              </p>
-              <ul className={s.agents} aria-label="Agent Colors">
+              <p className={s.wayText}>{t.onlineText}</p>
+              <ul className={s.agents} aria-label={t.agentsLabel}>
                 {AGENTS.map(([name, src]) => (
                   <li key={name}>
                     <img src={src} alt="" width={200} height={200} loading="lazy" decoding="async" />
-                    Agent {name}
+                    {t.agents[name]}
                   </li>
                 ))}
               </ul>
-              <p className={s.note}>Play Online needs a free account.</p>
+              <p className={s.note}>{t.needsAccount}</p>
             </article>
           )}
         </div>

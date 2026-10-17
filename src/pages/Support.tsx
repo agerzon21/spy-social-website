@@ -6,20 +6,22 @@ import { useThemedToast } from '../lib/useThemedToast'
 import SocialLinks from '../components/SocialLinks'
 import { LinkRow, LinkRows } from '../components/ui/LinkRow'
 import { APP_STORE_URL } from '../lib/stores'
+import { useT } from '../i18n'
 
 const Support = () => {
   const [copied, setCopied] = useState(false)
   const toast = useThemedToast()
+  const t = useT().support
   const email = 'support@spysocial.app'
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(email)
       setCopied(true)
-      toast({ title: 'Email copied!', status: 'success', duration: 2000, isClosable: true })
+      toast({ title: t.copied, status: 'success', duration: 2000, isClosable: true })
       setTimeout(() => setCopied(false), 2000)
     } catch {
-      toast({ title: 'Failed to copy', status: 'error', duration: 2000, isClosable: true })
+      toast({ title: t.copyFailed, status: 'error', duration: 2000, isClosable: true })
     }
   }
 
@@ -30,10 +32,10 @@ const Support = () => {
           {/* Header */}
           <VStack spacing={4} textAlign="center">
             <Heading as="h1" size="xl">
-              How can we help?
+              {t.title}
             </Heading>
             <Text fontSize={{ base: '17px', md: '18px' }} color="ss.muted" maxW="400px">
-              We're here to help with any questions or issues you have with SpySocial.
+              {t.sub}
             </Text>
           </VStack>
 
@@ -62,8 +64,8 @@ const Support = () => {
                   <Icon as={FiMail} color="ss.onAccent" boxSize={5} />
                 </Box>
                 <Box>
-                  <Text fontSize="17px" fontWeight="700" color="ss.text">Email us</Text>
-                  <Text fontSize="14px" color="ss.muted">We typically respond within 24 hours</Text>
+                  <Text fontSize="17px" fontWeight="700" color="ss.text">{t.emailUs}</Text>
+                  <Text fontSize="14px" color="ss.muted">{t.respond}</Text>
                 </Box>
               </HStack>
 
@@ -80,12 +82,12 @@ const Support = () => {
                 borderRadius="var(--ss-radius-control)"
                 cursor="pointer"
                 onClick={handleCopy}
-                aria-label={`Copy ${email}`}
+                aria-label={t.copy(email)}
                 transition="border-color 0.15s"
                 _hover={{ borderColor: 'ss.text' }}
               >
                 <HStack spacing={3} justify="space-between">
-                  <Text fontSize="17px" fontWeight="600" color="ss.link">{email}</Text>
+                  <Text fontSize="17px" fontWeight="600" color="ss.link" dir="ltr">{email}</Text>
                   <Icon as={copied ? FiCheck : FiCopy} color={copied ? 'ss.success' : 'ss.muted'} boxSize={5} />
                 </HStack>
               </Box>
@@ -95,11 +97,11 @@ const Support = () => {
           {/* Quick links */}
           <VStack spacing={3} align="stretch">
             <Text textStyle="label">
-              Quick links
+              {t.quickLinks}
             </Text>
             <LinkRows>
-              <LinkRow to="/support" label="FAQ & Troubleshooting" />
-              <LinkRow href={APP_STORE_URL} newTab icon={<FaApple />} label="Rate us on the App Store" />
+              <LinkRow to="/support" label={t.faqLink} />
+              <LinkRow href={APP_STORE_URL} newTab icon={<FaApple />} label={t.rate} />
             </LinkRows>
           </VStack>
 

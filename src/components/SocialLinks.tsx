@@ -1,5 +1,6 @@
 import type { IconType } from 'react-icons'
 import { FaDiscord, FaInstagram, FaThreads, FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6'
+import { useT } from '../i18n'
 import { LinkRow, LinkRows } from './ui/LinkRow'
 import s from './SocialLinks.module.css'
 
@@ -21,17 +22,17 @@ const SOCIAL_ACCOUNTS: SocialAccount[] = [
   { name: 'Discord', handle: 'SpySocial server', url: 'https://discord.gg/B8MG3xrV6f', icon: FaDiscord },
 ]
 
-const label = (a: SocialAccount) => `SpySocial on ${a.name}`
-
 interface SocialLinksProps {
   // 'icons': a compact icon row (footer). 'list': a titled section of rows (Support pages).
   variant?: 'icons' | 'list'
 }
 
 const SocialLinks = ({ variant = 'icons' }: SocialLinksProps) => {
+  const t = useT()
+  const label = (a: SocialAccount) => t.footer.on(a.name)
   if (variant === 'icons') {
     return (
-      <nav aria-label="Follow SpySocial" className={s.icons}>
+      <nav aria-label={t.footer.follow} className={s.icons}>
         {SOCIAL_ACCOUNTS.map((a) => (
           <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" aria-label={label(a)} title={label(a)} className={s.icon}>
             <a.icon aria-hidden focusable={false} />
@@ -44,7 +45,7 @@ const SocialLinks = ({ variant = 'icons' }: SocialLinksProps) => {
   return (
     <section aria-labelledby="follow-spysocial" className={s.section}>
       <p id="follow-spysocial" className={s.title}>
-        Follow SpySocial
+        {t.footer.follow}
       </p>
       <LinkRows>
         {SOCIAL_ACCOUNTS.map((a) => (
@@ -55,7 +56,7 @@ const SocialLinks = ({ variant = 'icons' }: SocialLinksProps) => {
             ariaLabel={label(a)}
             icon={<a.icon aria-hidden focusable={false} />}
             label={a.name}
-            note={a.handle}
+            note={a.name === 'Discord' ? t.footer.discordHandle : <bdi>{a.handle}</bdi>}
             arrow={'↗'}
           />
         ))}

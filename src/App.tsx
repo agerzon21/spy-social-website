@@ -1,4 +1,4 @@
-import { ChakraProvider, Box } from '@chakra-ui/react'
+import { ChakraProvider, Box, extendTheme } from '@chakra-ui/react'
 import { HelmetProvider } from 'react-helmet-async'
 import { MotionConfig } from 'framer-motion'
 import { Global } from '@emotion/react'
@@ -7,7 +7,7 @@ import { Layout } from './components'
 import ScrollManager from './components/ScrollManager'
 import Home from './pages/Home'
 import ResetPassword from './pages/ResetPassword'
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useMemo } from 'react'
 import NotFound from './pages/NotFound'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
@@ -23,15 +23,19 @@ import DeleteAccount from './pages/DeleteAccount'
 import { ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 import { SKIN_CSS, theme } from './theme'
 import { colorModeManager } from './theme/mode'
+import { useLang } from './i18n'
 
 const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
 const Agree = lazy(() => import('./pages/Agree'))
 
 function App() {
+  // Arabic lays Chakra's own components out right to left too.
+  const rtl = useLang().language.rtl
+  const themed = useMemo(() => (rtl ? extendTheme({ direction: 'rtl' }, theme) : theme), [rtl])
   return (
     <HelmetProvider>
       {/* Chakra's colour mode reads the page's theme (public/theme.js, the header's switch) and stores nothing itself. */}
-      <ChakraProvider theme={theme} colorModeManager={colorModeManager}>
+      <ChakraProvider theme={themed} colorModeManager={colorModeManager}>
         <Global styles={SKIN_CSS} />
         {/* Framer animations (What's New) stop under Reduce Motion, like the CSS ones (src/theme). */}
         <MotionConfig reducedMotion="user">

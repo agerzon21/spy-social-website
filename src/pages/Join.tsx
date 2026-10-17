@@ -7,11 +7,15 @@ import { currentPlatform } from '../lib/platform'
 import { playJoinUrl } from '../lib/playUrl'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 import { RoomCodePlate } from '../components/ui/RoomCodePlate'
+import { useT } from '../i18n'
 
 
 const Join = () => {
   const { code = '' } = useParams<{ code: string }>()
   const [searchParams] = useSearchParams()
+  const strings = useT()
+  const t = strings.join
+  const c = strings.common
 
   // A private room whose host changed its code carries that code as ?p=.
   // Forward it to the app so the invite still joins in one tap, and show it
@@ -49,29 +53,25 @@ const Join = () => {
         <VStack spacing={8} align="stretch">
           <VStack spacing={4} textAlign="center">
             <Heading as="h1" size="xl">
-              Join Game
+              {t.title}
             </Heading>
             <Text color="ss.muted" fontSize={{ base: '18px', md: '20px' }} lineHeight="1.45">
-              {!code
-                ? 'No room code provided'
-                : platform === 'desktop' && webLink
-                  ? 'Play in your browser, or on your phone with the app'
-                  : 'Open SpySocial to join the room'}
+              {!code ? t.noCode : platform === 'desktop' && webLink ? t.browserOrPhone : t.openToJoin}
             </Text>
           </VStack>
 
-          {code && <RoomCodePlate code={displayCode} />}
+          {code && <RoomCodePlate code={displayCode} label={t.roomCode} />}
 
           <VStack spacing={3} align="stretch">
             {platform === 'desktop' && webLink && (
               <Button as="a" href={webLink} size="lg" variant="primary" leftIcon={<IoDesktopOutline size={22} />}>
-                Play in Your Browser
+                {c.playInBrowser}
               </Button>
             )}
 
             {isMobile && code && (
               <Button size="lg" variant="primary" onClick={handleOpenInApp}>
-                Open in SpySocial
+                {c.openInApp}
               </Button>
             )}
 
@@ -85,7 +85,7 @@ const Join = () => {
                 variant={storesSecondary ? 'secondary' : 'primary'}
                 leftIcon={<FaApple size={22} />}
               >
-                {platform === 'ios' ? "Don't have the app? Download" : 'Download on the App Store'}
+                {platform === 'ios' ? c.noAppIos : c.appStore}
               </Button>
             )}
 
@@ -99,7 +99,7 @@ const Join = () => {
                 variant={storesSecondary ? 'secondary' : 'primary'}
                 leftIcon={<IoLogoGooglePlaystore size={22} />}
               >
-                {platform === 'android' ? "Don't have the app? Get it" : 'Get it on Google Play'}
+                {platform === 'android' ? c.noAppAndroid : c.googlePlay}
               </Button>
             )}
           </VStack>

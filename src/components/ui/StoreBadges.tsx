@@ -1,4 +1,5 @@
 import { FaApple } from 'react-icons/fa'
+import { useT } from '../../i18n'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../../lib/stores'
 import s from './StoreBadges.module.css'
 
@@ -12,24 +13,30 @@ const PlayMark = () => (
   </svg>
 )
 
-/** The two store badges; they open the stores in a new tab. */
-const StoreBadges = ({ center = false }: { center?: boolean }) => (
-  <div className={center ? `${s.row} ${s.center}` : s.row}>
-    <a className={s.badge} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label="Download on the App Store">
-      <FaApple className={s.icon} aria-hidden focusable={false} />
-      <span className={s.text}>
-        <span className={s.small}>Download on the</span>
-        <span className={s.large}>App Store</span>
-      </span>
-    </a>
-    <a className={s.badge} href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play">
-      <PlayMark />
-      <span className={s.text}>
-        <span className={`${s.small} ${s.caps}`}>Get it on</span>
-        <span className={s.large}>Google Play</span>
-      </span>
-    </a>
-  </div>
-)
+/**
+ * The two store badges; they open the stores in a new tab. The small line is each store's own wording in the page's
+ * language; the badges stay left to right (icon, then words) in Arabic too, as the stores draw them.
+ */
+const StoreBadges = ({ center = false }: { center?: boolean }) => {
+  const t = useT().badges
+  return (
+    <div className={center ? `${s.row} ${s.center}` : s.row}>
+      <a className={s.badge} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label={t.appStoreLabel} dir="ltr">
+        <FaApple className={s.icon} aria-hidden focusable={false} />
+        <span className={s.text}>
+          <span className={s.small} dir="auto">{t.appStoreSmall}</span>
+          <span className={s.large}>App Store</span>
+        </span>
+      </a>
+      <a className={s.badge} href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label={t.playLabel} dir="ltr">
+        <PlayMark />
+        <span className={s.text}>
+          <span className={`${s.small} ${s.caps}`} dir="auto">{t.playSmall}</span>
+          <span className={s.large}>Google Play</span>
+        </span>
+      </a>
+    </div>
+  )
+}
 
 export default StoreBadges

@@ -3,6 +3,7 @@ import type { UseToastOptions } from '@chakra-ui/react'
 import { CloseIcon } from '@chakra-ui/icons'
 import { FaCheck, FaXmark, FaInfo, FaTriangleExclamation } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
+import { useT } from '../i18n'
 
 type Status = 'success' | 'error' | 'info' | 'warning'
 
@@ -17,6 +18,7 @@ const accents: Record<Status, { color: string; bg: string; icon: IconType }> = {
 
 export function useThemedToast() {
   const toast = useToast()
+  const close = useT().common.close
 
   return (opts: UseToastOptions) => {
     const status = (opts.status ?? 'info') as Status
@@ -41,8 +43,8 @@ export function useThemedToast() {
           position="relative"
           mt={2}
         >
-          <Box position="absolute" left={0} top={0} bottom={0} w="3px" bg={color} />
-          <HStack p={4} pl={5} spacing={3} align="flex-start">
+          <Box position="absolute" insetStart={0} top={0} bottom={0} w="3px" bg={color} />
+          <HStack p={4} ps={5} spacing={3} align="flex-start">
             <Box
               w="32px"
               h="32px"
@@ -69,7 +71,7 @@ export function useThemedToast() {
             </VStack>
             {isClosable && (
               <IconButton
-                aria-label="Close"
+                aria-label={close}
                 icon={<CloseIcon boxSize={2} />}
                 size="xs"
                 variant="ghost"

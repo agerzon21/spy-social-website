@@ -1,246 +1,131 @@
 import { Box, Container, Heading, Text, VStack, Link as ChakraLink, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, UnorderedList, ListItem } from '@chakra-ui/react'
+import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { useT, type Strings } from '../i18n'
+import { rich } from '../i18n/rich'
 import { LIVE } from '../lib/legalRelease'
 import SocialLinks from '../components/SocialLinks'
 
 interface FAQSection {
   title: string
-  items: { question: string; answer: React.ReactNode }[]
+  items: { question: string; answer: ReactNode }[]
 }
 
-const Strong = ({ children }: { children: React.ReactNode }) => (
+const Strong = ({ children }: { children: ReactNode }) => (
   <Text as="span" fontWeight="700" color="ss.text">{children}</Text>
 )
 
-const faqSections: FAQSection[] = [
-  {
-    title: "Getting Started",
-    items: [
-      {
-        question: "How do I start a game?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>Tap <Strong>Create Room</Strong> to host, or join with a 5-character room code</ListItem>
-            <ListItem>You need at least 3 players to start a round</ListItem>
-            <ListItem>Share the room with friends via the share sheet, QR code, or link</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "First time playing?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>The app walks you through a quick tutorial on first launch</ListItem>
-            <ListItem>You'll be prompted to set up a profile (display name and optional avatar)</ListItem>
-            <ListItem>Then you're dropped onto the home screen, ready to host or join</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "How many players can play?",
-        answer: (
-          <Box>
-            <Text mb={2}>3 to 21 players. Recommended spies:</Text>
-            <UnorderedList spacing={1.5}>
-              <ListItem>3–5 players: 1 spy</ListItem>
-              <ListItem>6–8 players: 2 spies</ListItem>
-              <ListItem>9+ players: 3 spies</ListItem>
-            </UnorderedList>
-          </Box>
-        )
-      }
-    ]
-  },
-  {
-    title: "Game Modes",
-    items: [
-      {
-        question: "What game modes are available?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem><Strong>Classic:</Strong> Spies don't know each other</ListItem>
-            <ListItem><Strong>Spy Mafia:</Strong> Spies can see who the other spies are</ListItem>
-          </UnorderedList>
-        )
-      }
-    ]
-  },
-  {
-    title: "In-Game Features",
-    items: [
-      {
-        question: "What is the Notebook?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>Tap the notebook icon during a round to jot down notes about who said what</ListItem>
-            <ListItem>Players are smart-sorted: active players with notes first, then other active players, then eliminated players last</ListItem>
-            <ListItem>Notes are private — only you can see them</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "How do hints work across languages?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            {LIVE.onePool ? (
-              <ListItem>Hints are shown in <Strong>your own app language</Strong>, like the rest of the game</ListItem>
-            ) : (
-              <>
-                <ListItem>Hints are always shown in the <Strong>game language</Strong> so everyone at the table reads the same prompt</ListItem>
-                <ListItem>If your interface language is different, tap the hint to see it translated for you</ListItem>
-              </>
-            )}
-            <ListItem>Use the dedicated reload icon to refresh a hint — tapping the sentence won't accidentally re-roll it</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "What's a poke?",
-        answer: (
-          <Text>Tap a teammate's card in the lobby to send them a quick poke — handy for getting attention before the round starts.</Text>
-        )
-      },
-      {
-        question: "Can I leave mid-game?",
-        answer: (
-          <Text>Yes — every in-game screen has a Leave button so you can exit without backing all the way out.</Text>
-        )
-      }
-    ]
-  },
-  {
-    title: "Sharing & Joining Rooms",
-    items: [
-      {
-        question: "How do I share a room with friends?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem><Strong>Share sheet:</Strong> Use your phone's native share sheet to send the link anywhere</ListItem>
-            <ListItem><Strong>QR code:</Strong> Friends nearby can scan to join instantly</ListItem>
-            <ListItem><Strong>Verbal:</Strong> Just read out the 5-character code</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "Can someone join from a link?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>Yes — links like <Strong>spysocial.app/join/&lt;code&gt;</Strong> open the app directly into the room</ListItem>
-            <ListItem>If they don't have the app, the link takes them to the App Store or Google Play</ListItem>
-          </UnorderedList>
-        )
-      }
-    ]
-  },
-  {
-    title: "Language Support",
-    items: [
-      {
-        question: "How do languages work?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>Set your interface language in your profile</ListItem>
-            {LIVE.onePool ? (
-              <>
-                <ListItem>Rooms don't have a language: every player sees the game in their own, including the secret location or word, its description, the spy's list and the hints</ListItem>
-                <ListItem>So friends who speak different languages can play in the same room, or at the same Play Online table</ListItem>
-                {LIVE.autoTranslation ? (
-                  <ListItem>Chat messages stay as they were written, and one in another language is translated into yours automatically (to tap <Strong>Translate</Strong> instead, turn off <Strong>Translate messages automatically</Strong> in Settings)</ListItem>
-                ) : (
-                  <ListItem>Chat messages stay as they were written: tap <Strong>Translate</Strong> to read one in your language</ListItem>
-                )}
-              </>
-            ) : (
-              <ListItem>The host picks the game language for locations and hints</ListItem>
-            )}
-            <ListItem>SpySocial supports full parity across <Strong>English, Spanish, and Russian</Strong></ListItem>
-            {!LIVE.onePool && <ListItem>If your language differs from the host's, you'll see translations where it matters</ListItem>}
-          </UnorderedList>
-        )
-      }
-    ]
-  },
-  {
-    title: "Host Controls",
-    items: [
-      {
-        question: "What can the host customize?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>Number of spies and game mode</ListItem>
-            <ListItem>{LIVE.onePool ? 'Turn duration' : 'Game language and turn duration'}</ListItem>
-            <ListItem>Voting rules and whether the vote-caller is revealed</ListItem>
-            <ListItem>Location packs to draw from</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "Can the host end a game early?",
-        answer: (
-          <Text>Yes — hosts have an <Strong>End Game</Strong> control to wrap things up at any point during play.</Text>
-        )
-      }
-    ]
-  },
-  {
-    title: "Account & Sign-in",
-    items: [
-      {
-        question: "Do I need an account?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>You can play as a guest without signing up</ListItem>
-            <ListItem>Creating an account lets you keep your profile and progress across devices</ListItem>
-            <ListItem>You can upgrade a guest profile to a full account at any time without losing anything</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "I forgot my password",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>Tap "Forgot password" on the login screen and enter your email</ListItem>
-            <ListItem>You'll get a reset link — opening it brings you to a secure reset page</ListItem>
-            <ListItem>If the link expired, just request a new one</ListItem>
-          </UnorderedList>
-        )
-      }
-    ]
-  },
-  {
-    title: "Troubleshooting",
-    items: [
-      {
-        question: "Room code isn't working?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>Codes are now <Strong>5 characters</Strong> (older 6-character codes still work)</ListItem>
-            <ListItem>Make sure the host hasn't closed the room or started the game</ListItem>
-            <ListItem>Check your internet connection</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "Lost connection?",
-        answer: (
-          <UnorderedList spacing={1.5}>
-            <ListItem>The app reconnects automatically — there's no need to reload</ListItem>
-            <ListItem>Your role and progress are preserved while you're away</ListItem>
-            <ListItem>If you're stuck on a "reconnecting" screen for more than a few seconds, your network may be off — toggle airplane mode or switch Wi-Fi/cellular</ListItem>
-          </UnorderedList>
-        )
-      },
-      {
-        question: "App says I'm offline but I'm not?",
-        answer: (
-          <Text>This was an iOS quirk in older versions; v2.0.0 verifies your connection with a real network probe before showing the offline state. If it still happens, force-close and reopen the app.</Text>
-        )
-      }
-    ]
-  }
-]
+/** A translated line with its <b> parts in bold. */
+const r = (text: string) => rich(text, { b: (c) => <Strong>{c}</Strong> })
+
+const Bullets = ({ lines }: { lines: string[] }) => (
+  <UnorderedList spacing={1.5}>
+    {lines.map((line) => (
+      <ListItem key={line}>{r(line)}</ListItem>
+    ))}
+  </UnorderedList>
+)
+
+/** The questions in their sections; what the app doesn't do yet stays off with its LIVE switch. */
+function faqSections(f: Strings['faq']): FAQSection[] {
+  return [
+    {
+      title: f.sections.start,
+      items: [
+        { question: f.startGame.q, answer: <Bullets lines={f.startGame.a} /> },
+        { question: f.firstTime.q, answer: <Bullets lines={f.firstTime.a} /> },
+        {
+          question: f.howMany.q,
+          answer: (
+            <Box>
+              <Text mb={2}>{f.howMany.intro}</Text>
+              <Bullets lines={f.howMany.a} />
+            </Box>
+          ),
+        },
+      ],
+    },
+    {
+      title: f.sections.modes,
+      items: [{ question: f.gameModes.q, answer: <Bullets lines={f.gameModes.a} /> }],
+    },
+    {
+      title: f.sections.features,
+      items: [
+        { question: f.notebook.q, answer: <Bullets lines={f.notebook.a} /> },
+        {
+          question: f.hints.q,
+          answer: <Bullets lines={[...(LIVE.onePool ? [f.hints.onePool] : f.hints.gameLanguage), f.hints.reload]} />,
+        },
+        { question: f.poke.q, answer: <Text>{f.poke.a}</Text> },
+        { question: f.leave.q, answer: <Text>{f.leave.a}</Text> },
+      ],
+    },
+    {
+      title: f.sections.sharing,
+      items: [
+        { question: f.share.q, answer: <Bullets lines={f.share.a} /> },
+        { question: f.link.q, answer: <Bullets lines={f.link.a} /> },
+      ],
+    },
+    {
+      title: f.sections.languages,
+      items: [
+        {
+          question: f.languages.q,
+          answer: (
+            <Bullets
+              lines={[
+                f.languages.setLanguage,
+                ...(LIVE.onePool
+                  ? [...f.languages.onePool, LIVE.autoTranslation ? f.languages.chatAuto : f.languages.chatTap]
+                  : [f.languages.hostPicks]),
+                f.languages.parity,
+                ...(LIVE.onePool ? [] : [f.languages.differs]),
+              ]}
+            />
+          ),
+        },
+      ],
+    },
+    {
+      title: f.sections.host,
+      items: [
+        {
+          question: f.customize.q,
+          answer: (
+            <Bullets
+              lines={[
+                f.customize.a[0],
+                LIVE.onePool ? f.customize.turnOnly : f.customize.languageAndTurn,
+                ...f.customize.a.slice(1),
+              ]}
+            />
+          ),
+        },
+        { question: f.endEarly.q, answer: <Text>{r(f.endEarly.a)}</Text> },
+      ],
+    },
+    {
+      title: f.sections.account,
+      items: [
+        { question: f.needAccount.q, answer: <Bullets lines={f.needAccount.a} /> },
+        { question: f.forgot.q, answer: <Bullets lines={f.forgot.a} /> },
+      ],
+    },
+    {
+      title: f.sections.trouble,
+      items: [
+        { question: f.code.q, answer: <Bullets lines={f.code.a} /> },
+        { question: f.connection.q, answer: <Bullets lines={f.connection.a} /> },
+        { question: f.offline.q, answer: <Text>{f.offline.a}</Text> },
+      ],
+    },
+  ]
+}
 
 const FAQ = () => {
+  const f = useT().faq
   return (
     <Box
       flex="1"
@@ -251,9 +136,9 @@ const FAQ = () => {
     >
       <Container maxW="760px" px={{ base: 4, md: 6 }}>
         <VStack spacing={10} align="stretch" sx={{ '& li::marker': { color: 'var(--ss-accent-text)' } }}>
-          <Heading as="h1" size="lg">Support & FAQ</Heading>
+          <Heading as="h1" size="lg">{f.title}</Heading>
 
-          {faqSections.map((section, idx) => (
+          {faqSections(f).map((section, idx) => (
             <Box key={idx}>
               <Text textStyle="label" mb={3}>
                 {section.title}
@@ -271,7 +156,7 @@ const FAQ = () => {
                       _expanded={{ color: 'ss.highlight' }}
                       _focusVisible={{ boxShadow: 'none', outline: '3px solid var(--ss-focus)', outlineOffset: '-3px' }}
                     >
-                      <Box flex="1" textAlign="left" fontWeight="600" fontSize={{ base: '17px', md: '18px' }} lineHeight="1.35" color="inherit">
+                      <Box flex="1" textAlign="start" fontWeight="600" fontSize={{ base: '17px', md: '18px' }} lineHeight="1.35" color="inherit">
                         {item.question}
                       </Box>
                       <AccordionIcon color="ss.highlight" boxSize={6} />
@@ -286,7 +171,7 @@ const FAQ = () => {
           ))}
 
           <Text textStyle="body" color="ss.muted">
-            Need more help?{' '}
+            {f.needMore}{' '}
             <ChakraLink as={Link} to="/contact-us">support@spysocial.app</ChakraLink>
           </Text>
 

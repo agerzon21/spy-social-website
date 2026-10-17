@@ -14,7 +14,7 @@ const corner = (pos: Record<string, string>, sides: string) => (
 )
 
 /** A room code, shown big on a plate: /join's "Room Code" and the code the player would type. */
-export const RoomCodePlate = ({ code, label = 'Room Code' }: { code: string; label?: string }) => (
+export const RoomCodePlate = ({ code, label }: { code: string; label: string }) => (
   <Box
     position="relative"
     textAlign="center"
@@ -42,6 +42,7 @@ export const RoomCodePlate = ({ code, label = 'Room Code' }: { code: string; lab
       letterSpacing="0.14em"
       color="ss.text"
       overflowWrap="anywhere"
+      dir="ltr"
     >
       {code}
     </Text>
