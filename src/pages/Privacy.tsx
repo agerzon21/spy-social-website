@@ -71,7 +71,7 @@ const Privacy: React.FC = () => {
     : 'chose Translate in the app\'s "Before You Translate" note that names OpenAI, and haven\'t since chosen Not Now there'
 
   return (
-    <LegalPage title="Privacy Policy for SpySocial" updated={<>Last Updated: {PRIVACY_LAST_UPDATED}</>}>
+    <LegalPage english title="Privacy Policy for SpySocial" updated={<>Last Updated: {PRIVACY_LAST_UPDATED}</>}>
 
       <H2>Introduction</H2>
       <P>

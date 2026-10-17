@@ -29,7 +29,7 @@ const ChildSafety: React.FC = () => {
   const developer = OPERATOR.name ? `, made by ${OPERATOR.name}` : ''
 
   return (
-    <LegalPage title="Child Safety Standards" updated={<>Last updated: {later(PUBLISHED, LEGAL_LAST_UPDATED)}</>}>
+    <LegalPage english title="Child Safety Standards" updated={<>Last updated: {later(PUBLISHED, LEGAL_LAST_UPDATED)}</>}>
 
       <P>
         SpySocial is a party game for players 13 and older{developer}. These are SpySocial's standards against child

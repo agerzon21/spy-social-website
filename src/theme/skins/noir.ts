@@ -41,7 +41,8 @@ export const noir: Skin = {
     glow: 'rgba(255, 240, 205, 0.2)',
   },
   fonts: {
-    display: '"Big Shoulders Display", "Arial Narrow", Impact, sans-serif',
+    // Oswald draws the Cyrillic headlines (Big Shoulders has no Cyrillic): src/theme/fonts.css.
+    display: '"Big Shoulders Display", Oswald, "Arial Narrow", Impact, sans-serif',
     body: 'Barlow, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
     code: '"Big Shoulders Display", "Arial Narrow", sans-serif',
   },

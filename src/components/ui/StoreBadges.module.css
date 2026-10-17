@@ -16,7 +16,7 @@
   align-items: center;
   gap: 9px;
   box-sizing: border-box;
-  width: 164px;
+  min-width: 164px;
   height: 52px;
   padding: 0 12px;
   border: 1px solid #a6a6a6;
@@ -35,12 +35,14 @@
 .icon { flex: none; width: 24px; height: 27px; }
 .play { width: 24px; height: 24px; }
 .text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+/* Three lines (a line over the name and one under it: Bengali's Google Play) sit closer. */
+.text:has(> :nth-child(3)) { gap: 1px; }
 .small { font-size: 10.5px; font-weight: 500; letter-spacing: 0.01em; white-space: nowrap; }
 .caps { text-transform: uppercase; font-size: 9.5px; letter-spacing: 0.07em; }
 .large { font-size: 19px; font-weight: 600; letter-spacing: -0.02em; white-space: nowrap; }
 
 @media (max-width: 359px) {
-  .badge { width: 140px; padding: 0 9px; gap: 7px; }
+  .badge { min-width: 140px; padding: 0 9px; gap: 7px; }
   .large { font-size: 16px; }
   .small { font-size: 9.5px; }
 }

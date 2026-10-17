@@ -1,6 +1,7 @@
 import { useMemo, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { joinPath, keepCodeChars, looksLikeLink } from '../../lib/roomCode'
+import { useT } from '../../i18n'
 import ui from '../ui/ui.module.css'
 import s from './JoinCodeForm.module.css'
 
@@ -13,6 +14,7 @@ const JoinCodeForm = () => {
   const navigate = useNavigate()
   const [value, setValue] = useState('')
   const target = useMemo(() => joinPath(value), [value])
+  const t = useT().home.joinForm
 
   const onChange = (raw: string) => setValue(looksLikeLink(raw) ? raw : keepCodeChars(raw))
   const onSubmit = (e: FormEvent) => {
@@ -23,7 +25,7 @@ const JoinCodeForm = () => {
   return (
     <form className={s.form} onSubmit={onSubmit} noValidate>
       <label htmlFor="room-code" className={s.label}>
-        Room code
+        {t.label}
       </label>
       <input
         id="room-code"
@@ -40,12 +42,14 @@ const JoinCodeForm = () => {
         maxLength={200}
         placeholder="ABC123"
         aria-describedby="room-code-note"
+        // Codes and links read left to right in every language.
+        dir="ltr"
       />
       <button type="submit" className={`${ui.btn} ${ui.primary}`} aria-disabled={!target}>
-        Join
+        {t.button}
       </button>
       <p id="room-code-note" className={s.note}>
-        The code on the host's screen, 4 to 8 letters and numbers.
+        {t.note}
       </p>
     </form>
   )

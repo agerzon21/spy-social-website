@@ -39,6 +39,23 @@ html.ss-theme-switching *:not([data-theme-toggle], [data-theme-toggle] *) {
   transition: none !important;
 }
 
+/*
+ * Letter-spacing pulls apart the joined letters of Arabic, Devanagari and Bengali: none on those pages, except in
+ * the parts that stay Latin and left to right (room codes).
+ */
+html:is([lang='ar'], [lang='hi'], [lang='bn']) body *:not([dir='ltr'], [dir='ltr'] *) {
+  letter-spacing: 0 !important;
+}
+/* Spanish, French and Portuguese hero lines have longer words than English's: the poster face a size down. */
+html:is([lang='es'], [lang='fr'], [lang='pt-BR']) {
+  --ss-fit: 0.8;
+}
+/* Running Russian text breaks a long word at a hyphenation point, never anywhere else. */
+html[lang='ru'] :is(p, li, td) {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
 #root {
   width: 100%;
   height: 100%;

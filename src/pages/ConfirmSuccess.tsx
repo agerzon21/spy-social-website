@@ -1,8 +1,10 @@
 import { Box, Button, Container, Heading, Text, VStack, Icon } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { FaCheckCircle } from 'react-icons/fa'
+import { useT } from '../i18n'
 
 const ConfirmSuccess: React.FC = () => {
+  const t = useT().confirmSuccess
   return (
     <Box flex="1" display="flex" alignItems="center" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
       <Container maxW="container.sm">
@@ -22,11 +24,11 @@ const ConfirmSuccess: React.FC = () => {
           </Box>
 
           <Heading as="h1" size="lg">
-            Email Confirmed
+            {t.title}
           </Heading>
 
           <Text fontSize="17px" color="ss.body" maxW="400px" lineHeight="1.6">
-            Your email has been successfully verified. You can now use all features of the SpySocial app.
+            {t.text}
           </Text>
 
           <Button
@@ -36,7 +38,7 @@ const ConfirmSuccess: React.FC = () => {
             size="md"
             mt={2}
           >
-            Return to Home
+            {t.home}
           </Button>
         </VStack>
       </Container>

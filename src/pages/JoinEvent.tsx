@@ -7,6 +7,7 @@ import { LIVE } from '../lib/legalRelease'
 import { supabase } from '../lib/supabase'
 import { currentPlatform } from '../lib/platform'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
+import { useLang, useT } from '../i18n'
 
 
 type I18n = Partial<Record<'en' | 'es' | 'ru', string>>
@@ -41,7 +42,12 @@ const JoinEvent = () => {
   const [event, setEvent] = useState<EventInfo | null>(null)
   const [status, setStatus] = useState<'loading' | 'ok' | 'missing' | 'error'>('loading')
   const appLink = `spysocial://join/e/${encodeURIComponent(linkId)}`
-  const lang = (typeof navigator !== 'undefined' ? navigator.language : 'en').slice(0, 2)
+  // The event's own words come in English, Spanish and Russian: the site's language when it's one of them.
+  const { lang: siteLang, language } = useLang()
+  const lang = siteLang.slice(0, 2)
+  const strings = useT()
+  const t = strings.joinEvent
+  const c = strings.common
 
   // iPadOS Safari says "Macintosh" (desktop-class browsing): lib/platform tells it by touch (QA F207).
   const platform = useMemo(currentPlatform, [])
@@ -77,7 +83,7 @@ const JoinEvent = () => {
   }, [isMobile, linkId, appLink])
 
   const fmt = (iso: string, opts: Intl.DateTimeFormatOptions, timeZone?: string) =>
-    new Intl.DateTimeFormat(undefined, timeZone ? { ...opts, timeZone } : opts).format(new Date(iso))
+    new Intl.DateTimeFormat(language.locale, timeZone ? { ...opts, timeZone } : opts).format(new Date(iso))
   const viewerWhen = event
     ? `${fmt(event.starts_at, { weekday: 'long', month: 'long', day: 'numeric' })} · ${fmt(event.starts_at, { hour: 'numeric', minute: '2-digit' })} – ${fmt(event.ends_at, { hour: 'numeric', minute: '2-digit' })}`
     : ''
@@ -91,12 +97,12 @@ const JoinEvent = () => {
 
   const stateBadge = event
     ? event.state === 'live'
-      ? { label: 'Live now', scheme: 'red' }
+      ? { label: t.live, scheme: 'red' }
       : event.state === 'cancelled'
-        ? { label: 'Cancelled', scheme: 'gray' }
+        ? { label: t.cancelled, scheme: 'gray' }
         : event.state === 'ended'
-          ? { label: 'Ended', scheme: 'gray' }
-          : { label: 'Upcoming', scheme: 'yellow' }
+          ? { label: t.ended, scheme: 'gray' }
+          : { label: t.upcoming, scheme: 'yellow' }
     : null
 
   return (
@@ -105,7 +111,7 @@ const JoinEvent = () => {
         <VStack spacing={8} align="stretch">
           <VStack spacing={2} textAlign="center">
             <Text textStyle="label">
-              Public event
+              {t.label}
             </Text>
             {status === 'loading' ? (
               <Spinner color="ss.text" />
@@ -116,9 +122,9 @@ const JoinEvent = () => {
             ) : (
               <>
                 <Heading as="h1" size="lg">
-                  This event link doesn't work
+                  {t.broken}
                 </Heading>
-                <Text color="ss.body">Check it, or open SpySocial and browse rooms.</Text>
+                <Text color="ss.body">{t.brokenHelp}</Text>
               </>
             )}
           </VStack>
@@ -129,7 +135,7 @@ const JoinEvent = () => {
                 {stateBadge ? <Badge colorScheme={stateBadge.scheme}>{stateBadge.label}</Badge> : null}
                 {event.state === 'live' && event.room ? (
                   <Text color="ss.body" fontSize="sm">
-                    {event.room.full ? 'Full right now' : `${event.room.player_count} / ${event.capacity} in the room`}
+                    {event.room.full ? t.full : t.inRoom(event.room.player_count, event.capacity)}
                   </Text>
                 ) : null}
               </HStack>
@@ -138,7 +144,8 @@ const JoinEvent = () => {
                   {viewerWhen}
                 </Text>
                 <Text color="ss.muted" fontSize="sm">
-                  Your time{differs ? ` · ${event.host_name ?? 'The host'}'s time: ${hostWhen}` : ''}
+                  {t.yourTime}
+                  {differs ? ` · ${t.hostTime(event.host_name ?? t.theHost, hostWhen)}` : ''}
                 </Text>
               </Box>
               {event.state === 'cancelled' && event.cancel_reason ? (
@@ -148,7 +155,7 @@ const JoinEvent = () => {
               ) : null}
               <Text color="ss.muted" fontSize="sm">
                 {/* One pool (LIVE.onePool): a game night has no language, every player sees it in their own. */}
-                {[event.game_type, event.game_mode, LIVE.onePool ? null : event.room_language.toUpperCase(), event.host_name ? `hosted by ${event.host_name}` : null]
+                {[event.game_type, event.game_mode, LIVE.onePool ? null : event.room_language.toUpperCase(), event.host_name ? t.hostedBy(event.host_name) : null]
                   .filter(Boolean)
                   .join(' · ')}
               </Text>
@@ -158,7 +165,7 @@ const JoinEvent = () => {
           <VStack spacing={4} align="stretch">
             {isMobile && linkId ? (
               <Button size="lg" variant="primary" onClick={() => (window.location.href = appLink)}>
-                Open in SpySocial
+                {c.openInApp}
               </Button>
             ) : null}
             {(platform === 'ios' || platform === 'desktop') && (
@@ -171,7 +178,7 @@ const JoinEvent = () => {
                 variant={platform === 'ios' ? 'secondary' : 'primary'}
                 leftIcon={<FaApple size={22} />}
               >
-                {platform === 'ios' ? "Don't have the app? Download" : 'Download on the App Store'}
+                {platform === 'ios' ? c.noAppIos : c.appStore}
               </Button>
             )}
             {(platform === 'android' || platform === 'desktop') && (
@@ -184,7 +191,7 @@ const JoinEvent = () => {
                 variant={platform === 'android' ? 'secondary' : 'primary'}
                 leftIcon={<IoLogoGooglePlaystore size={22} />}
               >
-                {platform === 'android' ? "Don't have the app? Get it" : 'Get it on Google Play'}
+                {platform === 'android' ? c.noAppAndroid : c.googlePlay}
               </Button>
             )}
           </VStack>

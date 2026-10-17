@@ -1,4 +1,4 @@
-.icons { display: flex; margin-left: -12px; }
+.icons { display: flex; margin-inline-start: -12px; }
 .icon {
   display: grid;
   place-items: center;

@@ -1,7 +1,7 @@
 /* The header and footer on every page. */
 
-/* ---- header: the wordmark home, Join a room, the Shop and the light / dark switch; it stays at the top while the
-   page scrolls ---- */
+/* ---- header: the wordmark home, Join a room, the Shop, the language menu and the light / dark switch; it stays at
+   the top while the page scrolls ---- */
 .header {
   position: sticky;
   top: 0;
@@ -32,9 +32,10 @@
 .home img, .brand img { --wm: 1; }
 .home img[data-wordmark='ink'], .brand img[data-wordmark='ink'] { --wm: 0.8534; }
 .home img { height: 34px; padding-block: calc(17px * (1 - var(--wm))); width: auto; display: block; }
-/* The links, then the switch; the pill's right edge lines up with the page's edge. */
-.tools { display: flex; align-items: center; min-width: 0; margin-right: -2px; }
-.nav { display: flex; align-items: center; }
+/* The links, then the two controls; the theme pill's outer edge lines up with the page's edge. */
+.tools { display: flex; align-items: center; min-width: 0; margin-inline-end: -2px; }
+.nav { display: flex; align-items: center; min-width: 0; }
+.controls { display: flex; align-items: center; flex: none; margin-inline-start: 4px; }
 .navLink {
   display: inline-flex;
   align-items: center;
@@ -50,14 +51,38 @@
   transition: color 0.15s;
 }
 .navLink:hover { color: var(--ss-text); }
-/* Room for the switch on the narrowest phones: the links' padding gives way first (each stays a 44 px target). */
-@media (max-width: 374px) {
-  .navLink { padding: 0 8px; }
+/* Join a room's label: the whole one, and on a phone the short one (the whole one stays its name for screen readers). */
+.short { display: none; }
+@media (max-width: 559px) {
+  .long {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .short { display: inline; }
+  .navLink { padding: 0 7px; font-size: 13px; letter-spacing: 0.08em; }
 }
-@media (max-width: 359px) {
-  .navLink { padding: 0 6px; font-size: 13px; letter-spacing: 0.06em; }
+@media (max-width: 419px) {
   .home img { height: 30px; padding-block: calc(15px * (1 - var(--wm))); }
 }
+/* Room for the controls on the narrowest phones: the links' padding gives way first (each stays a 44 px target). */
+@media (max-width: 374px) {
+  .navLink { padding: 0 5px; letter-spacing: 0.05em; }
+  .controls { margin-inline-start: 0; }
+}
+@media (max-width: 359px) {
+  .navLink { padding: 0 4px; font-size: 12.5px; letter-spacing: 0.03em; }
+  .home img { height: 27px; padding-block: calc(13.5px * (1 - var(--wm))); }
+}
+/* Russian and French labels run longest (Cyrillic capitals are wide): a size down on the narrowest phones. */
+@media (max-width: 359px) {
+  :global(html:is([lang='ru'], [lang='fr'])) .navLink { font-size: 12px; letter-spacing: 0; padding: 0 4px; }
+}
+/* Scripts with no capitals (and Cyrillic, set wide) need no tracking to read as a label. */
+:global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) .navLink { letter-spacing: 0.02em; }
 @media (min-width: 1000px) {
   .bar { height: 76px; }
   .home img { height: 42px; padding-block: calc(21px * (1 - var(--wm))); }

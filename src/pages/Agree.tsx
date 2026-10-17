@@ -20,6 +20,7 @@ import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
 import { SignaturePad } from '../components/agree/SignaturePad'
 import { Callout } from '../components/legal/Callout'
+import { LanguageNotice } from '../components/legal/LanguageNotice'
 import { Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { cleanLine, looksLikeEmail, parseBody, sameName, segments } from '../lib/agreementText'
 
@@ -224,6 +225,9 @@ const Agree = () => {
         <meta name="referrer" content="no-referrer" />
       </Helmet>
       <Container maxW="container.md">
+        {/* The agreement and its page are English only for now: a note in the visitor's language says so. */}
+        <LanguageNotice kind="english" />
+        <Box lang="en" dir="ltr">
         {!view && !loadError && (
           <VStack py={20}>
             <Spinner color="ss.text" />
@@ -469,6 +473,7 @@ const Agree = () => {
             </Text>
           </VStack>
         )}
+        </Box>
       </Container>
     </Box>
   )

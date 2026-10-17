@@ -1,5 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom'
 import { useMemo } from 'react'
+import { useT } from '../i18n'
 import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
 import { PLAY_URL } from '../lib/playUrl'
@@ -30,7 +31,7 @@ const FooterColumn = ({ id, title, links }: { id: string; title: string; links: 
     </p>
     <ul className={s.list}>
       {links.map((link) => (
-        <li key={link.label}>
+        <li key={link.to ?? link.href}>
           <FooterLink {...link} />
         </li>
       ))}
@@ -45,20 +46,22 @@ const Footer = () => {
   // The browser version, on a computer once it's live (LIVE.browserLinks); phones keep the app.
   const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
 
+  const t = useT()
+  const f = t.footer
   const play: FooterLinkItem[] = [
-    ...(showBrowser ? [{ label: 'Play in Your Browser', href: PLAY_URL }] : []),
-    { label: "What's New", to: '/whats-new' },
-    { label: 'Rules', to: '/rules' },
-    { label: 'Support', to: '/support' },
-    { label: 'Contact', to: '/contact-us' },
-    ...(LIVE.merchShop ? [{ label: 'Shop', href: SHOP_URL }] : []),
+    ...(showBrowser ? [{ label: f.browser, href: PLAY_URL }] : []),
+    { label: f.whatsNew, to: '/whats-new' },
+    { label: f.rules, to: '/rules' },
+    { label: f.support, to: '/support' },
+    { label: f.contact, to: '/contact-us' },
+    ...(LIVE.merchShop ? [{ label: f.shop, href: SHOP_URL }] : []),
   ]
   const legal: FooterLinkItem[] = [
-    { label: 'Privacy', to: '/privacy' },
-    { label: 'Terms', to: '/terms' },
-    { label: 'Child Safety', to: '/child-safety' },
-    ...(ONLINE_SAFETY_TEXT ? [{ label: 'Safety', to: '/safety' }] : []),
-    { label: 'Delete Account', to: '/delete-account' },
+    { label: f.privacy, to: '/privacy' },
+    { label: f.terms, to: '/terms' },
+    { label: f.childSafety, to: '/child-safety' },
+    ...(ONLINE_SAFETY_TEXT ? [{ label: f.safety, to: '/safety' }] : []),
+    { label: f.deleteAccount, to: '/delete-account' },
   ]
 
   return (
@@ -66,18 +69,18 @@ const Footer = () => {
       <div className={ui.wrap}>
         <div className={s.top}>
           <div className={s.brand}>
-            <RouterLink to="/" aria-label="SpySocial home" className={s.brandLink}>
+            <RouterLink to="/" aria-label={t.header.home} className={s.brandLink}>
               <Wordmark />
             </RouterLink>
-            <p className={s.tagline}>The party game of social deception.</p>
+            <p className={s.tagline}>{f.tagline}</p>
           </div>
           <div className={s.cols}>
-            <FooterColumn id="footer-play" title="Play" links={play} />
-            <FooterColumn id="footer-legal" title="Legal & Safety" links={legal} />
+            <FooterColumn id="footer-play" title={f.play} links={play} />
+            <FooterColumn id="footer-legal" title={f.legal} links={legal} />
           </div>
         </div>
         <div className={s.bottom}>
-          <p className={s.copy}>&copy; {new Date().getFullYear()} SpySocial. All rights reserved</p>
+          <p className={s.copy}>{f.rights(new Date().getFullYear())}</p>
           <SocialLinks />
         </div>
       </div>

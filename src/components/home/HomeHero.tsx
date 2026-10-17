@@ -1,4 +1,6 @@
 import { useMemo } from 'react'
+import { useT } from '../../i18n'
+import { rich } from '../../i18n/rich'
 import { LIVE } from '../../lib/legalRelease'
 import { currentPlatform } from '../../lib/platform'
 import { PLAY_URL } from '../../lib/playUrl'
@@ -25,33 +27,32 @@ const ArrowIcon = () => (
 const HomeHero = () => {
   // The browser version, on a computer once it's live (LIVE.browserLinks); phones get the stores.
   const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
+  const t = useT().home.hero
 
   return (
     <section className={s.hero} aria-labelledby="hero-title">
       <div className={`${ui.wrap} ${s.heroGrid}`}>
         <div className={s.heroCopy}>
-          <Eyebrow>The party game of social deception</Eyebrow>
+          <Eyebrow>{t.eyebrow}</Eyebrow>
           <DisplayHeading as="h1" size={1} id="hero-title">
-            Trust no one<span className={s.accent}>.</span>
+            {t.title}
+            <span className={s.accent}>{t.titleMark}</span>
           </DisplayHeading>
-          <p className={s.heroLede}>
-            <strong>Find the spy — or fool everyone trying.</strong> One of your friends is the spy. Everyone else knows
-            the secret location. Ask questions or draw clues, then vote before the spy works out where you are.
-          </p>
+          <p className={s.heroLede}>{rich(t.lede, { b: (c) => <strong>{c}</strong> })}</p>
           <StoreBadges />
           <ul className={s.facts}>
-            <li>3–21 players</li>
-            <li>Real-time multiplayer</li>
-            <li>Free to play</li>
+            {t.facts.map((fact) => (
+              <li key={fact}>{fact}</li>
+            ))}
           </ul>
           <div className={s.alt}>
             {showBrowser && (
               <IconLink href={PLAY_URL} icon={<ScreenIcon />}>
-                Play in your browser
+                {t.browser}
               </IconLink>
             )}
             <IconLink to="/#join" icon={<ArrowIcon />}>
-              Join with a room code
+              {t.joinCode}
             </IconLink>
           </div>
         </div>

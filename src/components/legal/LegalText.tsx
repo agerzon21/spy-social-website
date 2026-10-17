@@ -20,13 +20,13 @@ export const H3 = ({ children }: { children: ReactNode }) => (
 export const P = ({ children }: { children: ReactNode }) => <Text textStyle="body">{children}</Text>
 
 export const Bullets = ({ children }: { children: ReactNode }) => (
-  <UnorderedList spacing={2} pl={4} textStyle="body">
+  <UnorderedList spacing={2} ps={4} textStyle="body">
     {children}
   </UnorderedList>
 )
 
 export const Numbered = ({ children }: { children: ReactNode }) => (
-  <OrderedList spacing={2} pl={4} textStyle="body">
+  <OrderedList spacing={2} ps={4} textStyle="body">
     {children}
   </OrderedList>
 )

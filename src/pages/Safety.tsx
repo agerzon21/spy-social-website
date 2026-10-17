@@ -9,13 +9,16 @@ import { B, Bullets, H2, H3, OutLink, P, PageLink, SupportEmail } from '../compo
 import { UK_SECTION_NUMBER } from '../components/legal/UkOnlineSafety'
 import { LEGAL_LAST_UPDATED, LIVE, avatarsLive, photosInUse } from '../lib/legalRelease'
 import { LegalPage } from '../components/legal/LegalPage'
+import { useLang, useT } from '../i18n'
+import { formatDate, rich, type Parts } from '../i18n/rich'
 
 // The safety page (www.spysocial.app/safety): for players 13 to 17, for
 // parents and carers, child-safety contacts and support lines (UK Online
 // Safety Act records, gap G7; Ofcom's Protection of Children Code F1). It
 // says only what the app does today: what depends on a release follows
 // src/lib/legalRelease.ts, like the legal pages. Helpline details checked on
-// each organization's own site on 2026-10-04.
+// each organization's own site on 2026-10-04. Translated (src/i18n: safety),
+// with a note that the English version applies.
 
 /** One numbered step with an icon, for the teens' section. */
 const Step = ({ n, icon, title, children }: { n: number; icon: IconType; title: string; children: ReactNode }) => (
@@ -57,270 +60,125 @@ const Step = ({ n, icon, title, children }: { n: number; icon: IconType; title: 
 const Safety: React.FC = () => {
   const photos = photosInUse(LIVE)
   const avatars = avatarsLive(LIVE)
+  const { language } = useLang()
+  const strings = useT()
+  const t = strings.safety
+  const p = t.parents
 
-  const names = avatars
-    ? photos
-      ? 'a display name, a username and an avatar built from parts the app offers. Versions of the app before 2.2 can still add a profile photo.'
-      : "a display name, a username and an avatar built from parts the app offers. Players can't add photos."
-    : 'a display name, a username and an optional profile photo.'
+  const b: Parts['b'] = (c) => <B>{c}</B>
+  const hash = (id: string) => (c: ReactNode) => <ChakraLink href={`#${id}`}>{c}</ChakraLink>
+  const page = (to: string) => (c: ReactNode) => <PageLink to={to}>{c}</PageLink>
+  const out = (href: string) => (c: ReactNode) => <OutLink href={href}>{c}</OutLink>
+  const r = (text: string, parts: Parts = {}) => rich(text, { b, ...parts })
 
   const helplines: InfoRow[] = [
-    {
-      label: 'Childline',
-      note: 'UK, for anyone under 19',
-      cells: [
-        <>
-          Call <B>0800 1111</B>, free, any time, or chat with a counsellor online at{' '}
-          <OutLink href="https://www.childline.org.uk">childline.org.uk</OutLink>. Calls don't show on your phone bill.
-        </>,
-      ],
-    },
-    {
-      label: 'Samaritans',
-      note: 'UK and Ireland, any age',
-      cells: [
-        <>
-          Call <B>116 123</B>, free, any time, day or night (
-          <OutLink href="https://www.samaritans.org">samaritans.org</OutLink>).
-        </>,
-      ],
-    },
-    {
-      label: '988 Suicide & Crisis Lifeline',
-      note: 'US',
-      cells: [
-        <>
-          Call or text <B>988</B>, or chat at <OutLink href="https://988lifeline.org">988lifeline.org</OutLink>, free, any
-          time.
-        </>,
-      ],
-    },
-    {
-      label: 'Find A Helpline',
-      note: 'Every other country',
-      cells: [
-        <>
-          <OutLink href="https://findahelpline.com">findahelpline.com</OutLink> finds free, confidential helplines in more
-          than 175 countries, by phone, text or chat.
-        </>,
-      ],
-    },
+    { label: 'Childline', note: t.helplines.childline.note, cells: [r(t.helplines.childline.text, { link: out('https://www.childline.org.uk') })] },
+    { label: 'Samaritans', note: t.helplines.samaritans.note, cells: [r(t.helplines.samaritans.text, { link: out('https://www.samaritans.org') })] },
+    { label: '988 Suicide & Crisis Lifeline', note: t.helplines.lifeline.note, cells: [r(t.helplines.lifeline.text, { link: out('https://988lifeline.org') })] },
+    { label: 'Find A Helpline', note: t.helplines.findHelpline.note, cells: [r(t.helplines.findHelpline.text, { link: out('https://findahelpline.com') })] },
   ]
 
   return (
-    <LegalPage title="Safety at SpySocial" updated={<>Last updated: {LEGAL_LAST_UPDATED}</>}>
+    <LegalPage translated title={t.title} updated={strings.common.lastUpdated(formatDate(LEGAL_LAST_UPDATED, language.locale))}>
 
-      <P>
-        SpySocial is a party game for players 13 and older. This page is for teens who play it, and for parents and
-        carers who want to know what it's like. Jump to:{' '}
-        <ChakraLink href="#teens">players 13 to 17</ChakraLink>,{' '}
-        <ChakraLink href="#parents">parents and carers</ChakraLink>,{' '}
-        <ChakraLink href="#child-safety">child safety contacts</ChakraLink>,{' '}
-        <ChakraLink href="#help">places to get help</ChakraLink>.
-      </P>
+      <P>{r(t.intro, { link: hash('teens'), link2: hash('parents'), link3: hash('child-safety'), link4: hash('help') })}</P>
 
-      <Callout title="Is someone in danger right now?">
-        <Text textStyle="body">
-          Call your local emergency number: 999 in the UK, 911 in the US, 112 in the EU. Then report it to us.
-        </Text>
+      <Callout title={t.danger.title}>
+        <Text textStyle="body">{t.danger.text}</Text>
       </Callout>
 
-      <H2 id="teens">For players 13 to 17</H2>
-      <P>
-        SpySocial should be fun. If someone makes you feel uncomfortable, scared or upset, you can do something about
-        it straight away, and you won't be in trouble for it.
-      </P>
+      <H2 id="teens">{t.teens.title}</H2>
+      <P>{t.teens.intro}</P>
       <VStack spacing={3} w="100%" align="stretch">
-        <Step n={1} icon={FiLogOut} title="Leave">
-          You can always leave a room or a game: tap <B>Leave</B>. Your safety matters more than any game.
-          {LIVE.playOnline &&
-            ` In Play Online, leaving a game that has started gives you a short break from ${LIVE.onePool ? 'Play Online' : 'public games'}. Leave anyway, and report the player if they were the reason.`}
+        <Step n={1} icon={FiLogOut} title={t.teens.leave.title}>
+          {r(t.teens.leave.text)}
+          {LIVE.playOnline && ` ${t.teens.leave.online(LIVE.onePool)}`}
         </Step>
-        <Step n={2} icon={FiSlash} title="Block">
-          Long-press the player and tap <B>Block</B>. You won't see their chat, and neither of you can join a room the
-          other is in. They aren't told. You can unblock them any time in Settings, under Privacy &amp; Safety: Blocked Players.
+        <Step n={2} icon={FiSlash} title={t.teens.block.title}>
+          {r(t.teens.block.text)}
         </Step>
-        <Step n={3} icon={FiFlag} title="Report">
-          Long-press the player, or something they wrote in the chat, and tap <B>Report</B>. Pick what happened, add
-          details if you like, and send. We attach the chat for you, so you don't need screenshots.
+        <Step n={3} icon={FiFlag} title={t.teens.report.title}>
+          {r(t.teens.report.text)}
         </Step>
-        <Step n={4} icon={FiMessageCircle} title="Tell someone">
-          Talk to a parent, a carer, a teacher or another adult you trust. If you'd rather talk to someone you don't
-          know, the <ChakraLink href="#help">helplines below</ChakraLink> are free and confidential.
+        <Step n={4} icon={FiMessageCircle} title={t.teens.tell.title}>
+          {r(t.teens.tell.text, { link: hash('help') })}
         </Step>
       </VStack>
 
-      <H3>What happens after you report</H3>
+      <H3>{t.teens.afterTitle}</H3>
       <Bullets>
-        <ListItem>A person, not a robot, reads every report within 24 hours. Reports about child safety, self-harm, sexual content or personal information are read first, and so are reports involving a player under 18.</ListItem>
-        <ListItem>The player you report isn't told who reported them.</ListItem>
-        <ListItem>If they broke the rules, we may warn them, mute their chat, pause them from public rooms, or ban them.</ListItem>
-        <ListItem>We don't send you the outcome, but every report is read and acted on.</ListItem>
-        <ListItem>Bluffing and lying about your role are part of the game, so they're not something to report.</ListItem>
+        {t.teens.after.map((line) => (
+          <ListItem key={line}>{line}</ListItem>
+        ))}
       </Bullets>
 
-      <H3>It's never OK if someone</H3>
+      <H3>{t.teens.neverTitle}</H3>
       <Bullets>
-        <ListItem>asks how old you are, where you live or which school you go to</ListItem>
-        <ListItem>asks for photos, or for your phone number or social media, or to talk in another app</ListItem>
-        <ListItem>talks about sex, or sends sexual messages or drawings</ListItem>
-        <ListItem>offers you gifts or money, or asks you to keep a secret</ListItem>
-        <ListItem>tells you to hurt yourself, or bullies you</ListItem>
+        {t.teens.never.map((line) => (
+          <ListItem key={line}>{line}</ListItem>
+        ))}
       </Bullets>
-      <P>
-        Block them, report them (choose <B>Child Safety</B> if they're asking for photos, sexual talk or meeting up),
-        and tell an adult you trust. Keep your real name, address, school, phone number and social media to yourself,
-        and never share your password: nobody from SpySocial will ever ask for it.
-      </P>
+      <P>{r(t.teens.neverWhat)}</P>
 
-      <H2 id="parents">For parents and carers</H2>
-      <P>
-        SpySocial is a party game of bluffing and deduction: one or more players are secretly spies, and everyone tries
-        to work out who. Each player uses their own phone, in the same room or far apart. Teens need a parent's or
-        guardian's permission to play (see our <PageLink to="/terms">Terms of Service</PageLink>, section 2).
-      </P>
+      <H2 id="parents">{p.title}</H2>
+      <P>{r(p.intro, { link: page('/terms') })}</P>
 
-      <H3>What SpySocial has</H3>
+      <H3>{p.hasTitle}</H3>
       <Bullets>
-        <ListItem>
-          <B>Text chat inside a room:</B> the room's chat, the game chat, a private chat for the spies when a game has
-          more than one, and a chat for players who are out. Chat is deleted about 24 hours after it's sent in a
-          private room, and 14 days after in a public room.
-        </ListItem>
-        <ListItem>
-          <B>Spy Sketch:</B> players take turns drawing with a finger.
-        </ListItem>
-        <ListItem>
-          <B>Names and pictures:</B> {names}
-        </ListItem>
-        <ListItem>
-          <B>Private rooms:</B> only people with the room's code, link or QR code can join, and the host can remove a
-          player.
-        </ListItem>
-        {LIVE.onePool ? (
-          <ListItem>
-            <B>Public rooms</B> with players your child doesn't know: Play Online's tables, where the app seats
-            players automatically and everyone plays by the same standard rules, and game nights we host at a set
-            time. Players can't create public rooms, and no player hosts one.
-          </ListItem>
-        ) : (
-          <ListItem>
-            <B>Public rooms and events</B> with players your child doesn't know
-            {LIVE.playOnline ? ', including Play Online, which seats players at a table automatically' : ''}.
-          </ListItem>
-        )}
-        {LIVE.purchases && (
-          <ListItem>
-            <B>Things to buy:</B> packs and memberships, through the App Store or Google Play.
-          </ListItem>
-        )}
+        <ListItem>{r(p.chat)}</ListItem>
+        <ListItem>{r(p.sketch)}</ListItem>
+        <ListItem>{r(p.names({ avatars, photos }))}</ListItem>
+        <ListItem>{r(p.private)}</ListItem>
+        <ListItem>{LIVE.onePool ? r(p.publicOnePool) : r(p.public(LIVE.playOnline))}</ListItem>
+        {LIVE.purchases && <ListItem>{r(p.buy)}</ListItem>}
       </Bullets>
 
-      <H3>What SpySocial doesn't have</H3>
+      <H3>{p.hasNotTitle}</H3>
       <Bullets>
-        <ListItem>
-          No direct messages: players can only chat inside a room, with the players in it. The spies' chat lasts one
-          game and is filtered, stored and reportable like the rest.
-        </ListItem>
-        <ListItem>No friend or follower lists, no player search, no profiles to browse and no bios, so nobody can look your child up or contact them outside a room.</ListItem>
-        <ListItem>
-          No voice or video chat: the microphone button only turns speech into text, and other players never hear
-          anyone's voice.{photos ? '' : ' No photo or video uploads either.'}
-        </ListItem>
-        <ListItem>No location sharing and no ads.</ListItem>
+        <ListItem>{p.noDms}</ListItem>
+        <ListItem>{p.noFriends}</ListItem>
+        <ListItem>{p.noVoice(photos)}</ListItem>
+        <ListItem>{p.noLocation}</ListItem>
       </Bullets>
 
-      <H3>How we keep it safe</H3>
+      <H3>{p.safeTitle}</H3>
       <Bullets>
         <ListItem>
-          <B>Age:</B> SpySocial is for players 13 and older.
-          {LIVE.ageGateEveryone &&
-            ` Before the first game, the app asks for a birth year${LIVE.under13Deletion ? ', and an answer under 13 deletes the account' : ''}.`}
-          {LIVE.storeAgeSignals &&
-            " If Apple or Google tells the app that its user is under 13, the app doesn't let them play."}{' '}
-          We don't verify ages, so if you find that a child under 13 has an account, email us and we'll delete it.
+          {r(p.age({ gate: LIVE.ageGateEveryone, under13Deletion: LIVE.under13Deletion, storeSignals: LIVE.storeAgeSignals }))}
         </ListItem>
-        <ListItem>
-          <B>Public rooms</B> need a saved account with a confirmed email address, an age of 13 or older and agreement
-          to our Community Rules. Guests can play only in private rooms, and players with a pause or a ban can't join
-          public rooms.
-        </ListItem>
-        <ListItem>
-          <B>Chat filter:</B> names and chat are checked before anyone sees them. In public rooms, slurs, explicit
-          sexual words and insults are blocked. In private rooms, the most serious words are blocked. In any room with
-          a player under 18, links, email addresses, phone numbers and social accounts are blocked for everyone. At
-          Play Online tables and game nights they're always blocked.
-        </ListItem>
-        <ListItem>
-          <B>Reports, blocks and penalties:</B> a person reads every report within 24 hours, and the reported player
-          isn't told who sent it. Reports involving a player under 18 are read first. Penalties go from a warning to a chat mute, a pause from public rooms, or a ban. Our{' '}
-          <PageLink to="/rules">Community Rules</PageLink> list what isn't allowed.
-        </ListItem>
-        {LIVE.drawingCheck && (
-          <ListItem>
-            <B>Drawing check:</B> every drawing turn in a public room is checked automatically, and a turn that breaks
-            the rules is taken off the drawing.
-          </ListItem>
-        )}
+        <ListItem>{r(p.publicRooms)}</ListItem>
+        <ListItem>{r(p.filter)}</ListItem>
+        <ListItem>{r(p.reports, { link: page('/rules') })}</ListItem>
+        {LIVE.drawingCheck && <ListItem>{r(p.drawingCheck)}</ListItem>}
       </Bullets>
 
       {LIVE.purchases && (
         <>
-          <H3>Buying</H3>
-          <P>
-            Teens need a parent's or guardian's permission to buy anything. Purchases go through the App Store or
-            Google Play, so their parental controls, such as Apple's Ask to Buy and purchase approvals in Google Family
-            Link, work as usual. A Pack Pass renews until it's cancelled in the store's settings.
-          </P>
+          <H3>{p.buyTitle}</H3>
+          <P>{p.buyText}</P>
         </>
       )}
 
-      <H3>Deleting an account</H3>
-      <OrderedList spacing={2} pl={4} textStyle="body">
-        <ListItem>Open SpySocial.</ListItem>
-        <ListItem>
-          Tap the {avatars ? 'avatar' : 'picture'} at the top of the home screen to open <B>Account</B>.
-          {LIVE.oldAppsInUse && ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)'}
-        </ListItem>
-        <ListItem>
-          Tap <B>Settings</B> at the top right, then, under <B>Account &amp; Sign-In</B>, <B>Delete Account</B> (the last
-          row). A guest account is deleted with <B>Sign Out</B> instead, in the same place.
-          {LIVE.oldAppsInUse && ' (In versions before 2.2, Delete Account is in the Danger Zone at the bottom of Account.)'}
-        </ListItem>
+      <H3>{p.deleteTitle}</H3>
+      <OrderedList spacing={2} ps={4} textStyle="body">
+        {p.deleteSteps({ avatars, oldApps: LIVE.oldAppsInUse }).map((step) => (
+          <ListItem key={step}>{r(step)}</ListItem>
+        ))}
       </OrderedList>
-      <P>
-        Or email <SupportEmail subject="Delete my SpySocial account" /> from the address on the account, with the
-        subject "Delete my SpySocial account". If you can't write from that address, email us anyway with the
-        username and we'll help. Our <PageLink to="/delete-account">Delete Account</PageLink> page says what's deleted
-        and what we keep.
-      </P>
+      <P>{r(p.deleteEmail, { email: () => <SupportEmail subject={p.deleteSubject} />, link: page('/delete-account') })}</P>
 
-      <H3>Contact us</H3>
-      <P>
-        Email <SupportEmail /> about anything on this page. For anything about a child's safety, put "Child safety" in
-        the subject and we'll deal with it first. To appeal a decision or make a complaint, including about how we
-        meet the UK's Online Safety Act, see section {UK_SECTION_NUMBER} of our{' '}
-        <PageLink to="/terms">Terms of Service</PageLink>.
-      </P>
+      <H3>{p.contactTitle}</H3>
+      <P>{r(p.contact(UK_SECTION_NUMBER), { email: () => <SupportEmail />, link: page('/terms') })}</P>
 
-      <H2 id="child-safety">Child safety contacts</H2>
-      <ChildSafetyContacts />
-      <P>
-        Our <PageLink to="/child-safety">Child Safety Standards</PageLink> set out what we prohibit, how to report
-        it and what we do about it.
-      </P>
+      <H2 id="child-safety">{t.contactsTitle}</H2>
+      <ChildSafetyContacts localized />
+      <P>{r(t.contactsAfter, { link: page('/child-safety') })}</P>
 
-      <H2 id="help">Places to get help</H2>
-      <P>
-        If you're struggling, or you're worried about someone, these services are free and confidential, and you can
-        talk to them about anything.
-      </P>
-      <InfoTable head={['Who', 'How']} rows={helplines} firstWidth="30%" />
+      <H2 id="help">{t.helpTitle}</H2>
+      <P>{t.helpIntro}</P>
+      <InfoTable head={[t.tableWho, t.tableHow]} rows={helplines} firstWidth="30%" />
 
-      <P>
-        See also our <PageLink to="/rules">Community Rules</PageLink>,{' '}
-        <PageLink to="/terms">Terms of Service</PageLink> and <PageLink to="/privacy">Privacy Policy</PageLink>.
-      </P>
+      <P>{r(t.seeAlso, { link: page('/rules'), link2: page('/terms'), link3: page('/privacy') })}</P>
     </LegalPage>
   )
 }
