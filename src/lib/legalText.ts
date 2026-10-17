@@ -23,6 +23,7 @@ export const deletedSummary = (): string =>
     'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
     'your game-night history and rewards',
     PRIVACY.purchases ? 'the purchases linked to your account (such as packs, avatar items and memberships)' : null,
+    PRIVACY.creatorCodes ? 'the link between your account and the creator code and reward codes you entered' : null,
     'the players you blocked, and the warnings, mutes and bans on your account',
     'your settings and the answers you gave the app (such as your birth year)',
     PRIVACY.notifications ? "your devices' push addresses" : null,

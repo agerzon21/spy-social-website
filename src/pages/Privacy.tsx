@@ -286,6 +286,22 @@ const Privacy: React.FC = () => {
             in that you received it.
           </Item>
         )}
+        {PRIVACY.creatorCodes && (
+          <Item label="Creator and Reward Codes">
+            If you enter a code in the app (Settings, then Enter a Code; you need a saved account, not a guest one), we
+            record which code you entered and when, and give you its reward (such as a title or an avatar item). A
+            reward code works once per account. A creator code comes from a content creator in our creator program:
+            you can enter one creator code, once, and it stays with your account. From then on, so that we can pay the
+            creator a share of what we earn from players who entered their code, we credit to that creator each
+            purchase you make in the app, and each refund of one: we keep the store, what you bought, its price in US
+            dollars, the share the store kept for its fees and taxes, the date, and a scrambled form of the store's
+            transaction ID (to match a refund to its purchase). This record holds no name, email or country. You don't
+            pay anything extra. The creator never learns who entered their code or what anyone bought: we tell them
+            only totals for their code (such as how many players entered it and how much their share comes to). If
+            you're a content creator in the program, we link your account to your code and show a CONTENT CREATOR
+            badge on your profile and player card (see Data Sharing); your own purchases never count toward your share.
+          </Item>
+        )}
         {PRIVACY.notifications && (
           <Item label="Reminders and Notifications">
             When you tap Remind Me on a game night, we record it so the reminder reaches every device you play on;
@@ -391,6 +407,9 @@ const Privacy: React.FC = () => {
         <ListItem>Create and manage your account</ListItem>
         <ListItem>Enable multiplayer game functionality, chat and translation</ListItem>
         {PRIVACY.purchases && <ListItem>Provide and restore what you buy</ListItem>}
+        {PRIVACY.creatorCodes && (
+          <ListItem>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</ListItem>
+        )}
         {PRIVACY.notifications && (
           <ListItem>Remind you of the game nights you asked about, and tell you when a Play Online match is found</ListItem>
         )}
@@ -411,13 +430,15 @@ const Privacy: React.FC = () => {
           To run your account and your games, deliver your chat,{' '}
           {PRIVACY.autoTranslation ? 'translate messages for you' : 'translate what you ask us to translate'}
           {PRIVACY.purchases ? ', provide what you buy' : ''}
+          {PRIVACY.creatorCodes ? ", give you a code's reward" : ''}
           {PRIVACY.notifications ? ', remind you of the game nights you asked about and tell you when a match is found' : ''}.
         </Item>
         <Item label="Legitimate Interests">
           To keep players safe (reports, the word filter{PRIVACY.drawingCheck ? ', drawing checks' : ''}, moderation, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
-          events). You can object to this processing at any time by emailing <SupportEmail />.
+          events){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
+          You can object to this processing at any time by emailing <SupportEmail />.
         </Item>
         <Item label="Consent">
           For your device's permissions (the microphone and speech recognition
@@ -448,6 +469,9 @@ const Privacy: React.FC = () => {
           ? ', and security logs (such as sign-ups, sign-ins, password resets and email changes, which can include your email address and IP address) for 180 days.'
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, and notes about joining rooms after 24 hours.
+        {PRIVACY.creatorCodes
+          ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
+          : ''}
       </P>
       <P>
         We may remove accounts that haven't been used for 12 months, after telling you in the app or by email where
@@ -624,6 +648,8 @@ const Privacy: React.FC = () => {
         membership (for example, the Spymaster title and its gold border) unless you choose another title and border,
         or None; a title or border that shows a membership is shown only to players who share a room with you or played
         a game with you in the last 24 hours, and with a room you host in the room list.
+        {PRIVACY.creatorCodes &&
+          " A content creator in our creator program shows a CONTENT CREATOR badge on their profile and player card to the players who share a private room with them or played a game in one with them in the last 24 hours; it isn't shown in public play. A title a creator code or a reward code gave you shows like any other title. We tell a content creator only totals for their code, never who entered it or what anyone bought."}
         {/* Agent Colours phase 2: get_my_game_view and get_watch_view send a pre-2.2 photo only to its owner at public tables. */}
         {PRIVACY.agentColoursPhase2 &&
           photosInUse(PRIVACY) &&
