@@ -152,3 +152,6 @@
 @media (prefers-reduced-motion: reduce) {
   .chevron { transition: none; }
 }
+
+/* Store links in the thank-you note. */
+.inlineLink { color: var(--ss-highlight); text-decoration: underline; text-underline-offset: 3px; }

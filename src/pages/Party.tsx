@@ -5,6 +5,7 @@ import { FiGlobe } from 'react-icons/fi'
 import DisplayHeading from '../components/ui/DisplayHeading'
 import ui from '../components/ui/ui.module.css'
 import s from './Party.module.css'
+import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 
 /**
  * /megan: the one link the owner sends round at Megan's birthday (unlisted: noindex, in no nav; /megans-party
@@ -129,6 +130,17 @@ const Party = () => {
           <li>Take turns asking and answering questions, or drawing clues.</li>
           <li>Vote out the spy before they guess the secret.</li>
         </ul>
+
+        <h2 className={s.label}>Thank you</h2>
+        <p className={s.pin}>
+          <b>Thanks for helping us test!</b> SpySocial launches on November 10. If you have fun tonight, tell your friends: it
+          would mean a lot to us.
+        </p>
+        <p className={s.note}>
+          Want it after tonight? It's free on the{' '}
+          <a className={s.inlineLink} href={APP_STORE_URL}>App Store</a> and{' '}
+          <a className={s.inlineLink} href={PLAY_STORE_URL}>Google Play</a>, and the new version arrives there on launch day.
+        </p>
       </div>
     </div>
   )
