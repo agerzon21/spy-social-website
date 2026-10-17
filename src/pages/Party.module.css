@@ -163,3 +163,5 @@
 .hostHead { margin: 8px 0 0; font-size: 15px; color: var(--ss-highlight); }
 .hostSteps { margin: 0; padding-inline-start: 20px; display: grid; gap: 6px; color: var(--ss-text); line-height: 1.45; }
 .hostText { margin: 0; color: var(--ss-text); line-height: 1.45; }
+
+.replay { cursor: pointer; -webkit-tap-highlight-color: transparent; }

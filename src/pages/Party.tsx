@@ -5,6 +5,7 @@ import { FiGlobe } from 'react-icons/fi'
 import DisplayHeading from '../components/ui/DisplayHeading'
 import ui from '../components/ui/ui.module.css'
 import s from './Party.module.css'
+import { useCelebration } from './PartyCelebration'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 
 /**
@@ -61,6 +62,7 @@ const Party = () => {
   const [open, setOpen] = useState<Way | null>(null)
   const browserRef = useRef<HTMLAnchorElement>(null)
   const toggle = (way: Way) => setOpen((now) => (now === way ? null : way))
+  const celebrate = useCelebration()
 
   // The Android box's "play in your browser" brings the browser link into view and onto the focus.
   const toBrowser = () => {
@@ -77,9 +79,12 @@ const Party = () => {
       </Helmet>
       <div className={`${ui.wrap} ${s.inner}`}>
         <p className={s.kicker}>Megan &amp; Kyung's party</p>
-        <DisplayHeading as="h1" size={1} className={s.title}>
-          Happy 30th, Megan<span className={s.accent}>!</span>
-        </DisplayHeading>
+        {/* Tapping the headline plays the fireworks again. */}
+        <div className={s.replay} onClick={celebrate}>
+          <DisplayHeading as="h1" size={1} className={s.title}>
+            Happy 30th, Megan<span className={s.accent}>!</span>
+          </DisplayHeading>
+        </div>
         <p className={s.lede}>A little party game for anyone who wants to join in. Setup takes about a minute.</p>
 
         <h2 className={s.label}>Get the app</h2>
