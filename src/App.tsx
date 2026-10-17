@@ -25,9 +25,27 @@ import { SKIN_CSS, theme } from './theme'
 import { colorModeManager } from './theme/mode'
 import { useLang } from './i18n'
 
-const ConfirmSuccess = lazy(() => import('./pages/ConfirmSuccess'))
-const Agree = lazy(() => import('./pages/Agree'))
-const Party = lazy(() => import('./pages/Party'))
+// A page opened before a deploy asks for chunks the new deploy no longer has: reload once to fetch the new ones,
+// instead of leaving a blank screen. The flag stops a reload loop if the chunk is really missing.
+const page = <T,>(load: () => Promise<T>) =>
+  lazy(() =>
+    load()
+      .then((mod) => {
+        try { sessionStorage.removeItem('ss-chunk-reload') } catch { /* no storage: nothing to clear */ }
+        return mod
+      })
+      .catch((err) => {
+        let again = false
+        try { again = sessionStorage.getItem('ss-chunk-reload') === '1'; sessionStorage.setItem('ss-chunk-reload', '1') } catch { again = true }
+        if (again) throw err
+        window.location.reload()
+        return new Promise<T>(() => {})
+      }) as Promise<{ default: React.ComponentType<object> }>
+  )
+
+const ConfirmSuccess = page(() => import('./pages/ConfirmSuccess'))
+const Agree = page(() => import('./pages/Agree'))
+const Party = page(() => import('./pages/Party'))
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
