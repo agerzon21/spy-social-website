@@ -1,7 +1,6 @@
-import { useRef, useState, type ReactNode } from 'react'
+import { useState, type ReactNode } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FaAndroid, FaApple } from 'react-icons/fa'
-import { FiGlobe } from 'react-icons/fi'
 import DisplayHeading from '../components/ui/DisplayHeading'
 import ui from '../components/ui/ui.module.css'
 import s from './Party.module.css'
@@ -12,13 +11,12 @@ import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
  * /megan: the one link the owner sends round at Megan's birthday (unlisted: noindex, in no nav; /megans-party
  * redirects here). Phone first, for a noisy room: a poster greeting, the two big "which phone" buttons (the app first:
  * everyone gets the same game and the Beta Pin), each opening a short box with the one link it needs, the Beta Pin
- * line, the browser version as a smaller way in, then how to join and how to play in a few lines. English only, so its
+ * line, then how to join and how to play in a few lines. English only, so its
  * words live here, outside the site's ten-language tables. No forms, nothing collected.
  */
 
 const TESTFLIGHT_URL = 'https://testflight.apple.com/join/dBMZkzhf'
 const PLAY_TEST_URL = 'https://play.google.com/apps/internaltest/4700842666167568102'
-const BROWSER_URL = 'https://play.spysocial.app'
 
 type Way = 'iphone' | 'android'
 
@@ -60,16 +58,8 @@ const Choice = ({
 
 const Party = () => {
   const [open, setOpen] = useState<Way | null>(null)
-  const browserRef = useRef<HTMLAnchorElement>(null)
   const toggle = (way: Way) => setOpen((now) => (now === way ? null : way))
   const celebrate = useCelebration()
-
-  // The Android box's "play in your browser" brings the browser link into view and onto the focus.
-  const toBrowser = () => {
-    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    browserRef.current?.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'center' })
-    browserRef.current?.focus({ preventScroll: true })
-  }
 
   return (
     <div className={s.page} lang="en" dir="ltr">
@@ -102,9 +92,6 @@ const Party = () => {
             <a className={`${ui.btn} ${ui.primary} ${s.go}`} href={PLAY_TEST_URL}>
               Open after Alex adds you
             </a>
-            <button type="button" className={s.textBtn} onClick={toBrowser}>
-              Don't want to wait? Play in your browser ↓
-            </button>
           </Choice>
         </div>
 
@@ -112,13 +99,6 @@ const Party = () => {
           <b>Make a free account in the app:</b> your agent gets the Beta Pin, only for people who test before launch.
         </p>
 
-        <div className={s.browser}>
-          <a ref={browserRef} className={s.browserLink} href={BROWSER_URL}>
-            <FiGlobe aria-hidden focusable={false} />
-            Can't install? Play in your browser
-          </a>
-          <p className={s.note}>Works on any phone. Add it to your home screen if you like.</p>
-        </div>
 
         <h2 className={s.label}>Then</h2>
         <ol className={s.steps}>
@@ -156,7 +136,7 @@ const Party = () => {
               <li>Test and release → Testing → <b>Internal testing</b> → the <b>Testers</b> tab.</li>
               <li>Open the email list <b>Alex</b> (the arrow next to it), add their Gmail, then <b>Save changes</b>. That's all: nothing to publish.</li>
               <li>Tell them: tap <b>I have an Android</b> → <b>Open after Alex adds you</b> → Accept invite → install from Google Play. Their Play Store must use that same Gmail.</li>
-              <li>"App not available"? Wait 5 minutes and open the link again. Still stuck: the browser link.</li>
+              <li>"App not available"? Wait 5 minutes and open the link again.</li>
             </ol>
             <h3 className={s.hostHead}>iPhone guests</h3>
             <p className={s.hostText}>Nothing for you to do. If TestFlight says the beta is full, raise the limit in App Store Connect → TestFlight → Friends &amp; Family → Public Link.</p>
