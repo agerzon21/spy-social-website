@@ -111,9 +111,9 @@ const Party = () => {
 
         <h2 className={s.label}>How to play in 20 seconds</h2>
         <ul className={s.rules}>
-          <li>Everyone gets the secret location or word, except the spy.</li>
+          <li>Everyone gets the secret location or word, except the spies.</li>
           <li>Take turns asking and answering questions, or drawing clues.</li>
-          <li>Vote out the spy before they guess the secret.</li>
+          <li>Vote out the spies before they guess the secret.</li>
         </ul>
 
         <h2 className={s.label}>Thank you</h2>
