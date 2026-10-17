@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react'
 
-// Fireworks and confetti over the party page: once on a visitor's first open, and again whenever the headline is tapped.
+// Fireworks and confetti over the party page: every time it opens, and again whenever the headline is tapped.
 // A canvas drawn on top of the page (it never takes a tap), removed when the show ends. Skipped for reduced motion.
 
 const COLOURS = ['#ff9500', '#ffd23f', '#fefaea', '#ff5d8f', '#b07cff', '#3ec6ff']
-const SEEN_KEY = 'ss-megan-celebrated'
 
 type Bit = {
   x: number; y: number; vx: number; vy: number
@@ -104,11 +103,8 @@ export function useCelebration() {
     frame = requestAnimationFrame(tick)
   }, [])
 
-  // First open in this browser: play once, shortly after the page shows.
+  // Every open of the page: play shortly after it shows.
   useEffect(() => {
-    let seen = false
-    try { seen = localStorage.getItem(SEEN_KEY) === '1'; localStorage.setItem(SEEN_KEY, '1') } catch { /* private mode: just play */ }
-    if (seen) return
     const t = window.setTimeout(play, 300)
     return () => window.clearTimeout(t)
   }, [play])
