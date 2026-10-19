@@ -143,6 +143,9 @@ const en = {
       stampSpy: 'Spy!',
       stampLocal: 'Local',
       tap: 'Tap a suspect to accuse',
+      /** The Easter egg (owner 2026-10-17): the spy accused on the very first try shows the reward code SPOTTED. */
+      eggFound: 'Sharp eye! You spotted the spy on your first try.',
+      eggWhere: 'Your code for a secret title in the app (Account > Settings > Enter a Code):',
     },
     how: {
       eyebrow: 'How it plays',

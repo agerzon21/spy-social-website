@@ -110,6 +110,8 @@ const id: Strings = {
       stampSpy: 'Mata-mata!',
       stampLocal: 'Warga',
       tap: 'Ketuk tersangka untuk menuduh',
+      eggFound: 'Mata elang! Kamu menemukan mata-matanya di percobaan pertama.',
+      eggWhere: 'Kode untuk gelar rahasia di aplikasi (Akun > Pengaturan > Masukkan Kode):',
     },
     how: {
       eyebrow: 'Cara mainnya',

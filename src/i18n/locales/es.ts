@@ -110,6 +110,8 @@ const es: Strings = {
       stampSpy: '¡Espía!',
       stampLocal: 'Local',
       tap: 'Toca a un sospechoso para acusarlo',
+      eggFound: '¡Ojo de lince! Encontraste al espía al primer intento.',
+      eggWhere: 'Tu código para un título secreto en la app (Cuenta > Ajustes > Introducir un código):',
     },
     how: {
       eyebrow: 'Cómo se juega',

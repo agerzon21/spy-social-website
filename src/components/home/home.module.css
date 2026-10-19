@@ -95,6 +95,17 @@
   font: 600 13px/1.3 var(--ss-font-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ss-muted);
 }
 .tapnote span:last-child { color: var(--ss-highlight); text-align: end; }
+/* The Easter egg: the first try's spy shows the reward code (LineUp EGG_CODE). */
+.egg {
+  margin: 14px 0 0; padding: 12px 14px; border: 2px dashed var(--ss-accent-text); border-radius: 10px;
+  font: 500 15px/1.45 var(--ss-font-body); color: var(--ss-text);
+}
+.eggFound { font-weight: 800; color: var(--ss-accent-text); }
+.eggCode {
+  display: inline-block; padding: 2px 8px; border: 2px solid currentColor; border-radius: 6px;
+  font: 900 18px/1.2 var(--ss-font-display); letter-spacing: 0.12em; color: var(--ss-highlight);
+  user-select: all;
+}
 
 /* ---- how it plays ---- */
 .modes { display: grid; gap: 44px; grid-template-columns: minmax(0, 1fr); }

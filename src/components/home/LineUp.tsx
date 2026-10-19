@@ -17,14 +17,22 @@ const SUSPECTS = [
   { src: lilac, spy: true },
 ]
 const MARKS = ["7'", "6'", "5'", "4'", "3'", "2'", "1'"]
+/**
+ * The Easter egg (owner 2026-10-17): accuse the real spy on the very first try and the page shows SPOTTED, a reward
+ * code the app takes in Settings > Enter a Code (the app's migration 20261031900000_creator_codes: the secret title
+ * "Sharp Eye", once per account). One code for everyone; the owner accepts it will leak (a reload gives another try).
+ */
+const EGG_CODE = 'SPOTTED'
 
 const LineUp = () => {
   const [lit, setLit] = useState(2)
   const [shown, setShown] = useState<Set<number>>(() => new Set())
   const [said, setSaid] = useState('')
+  const [egg, setEgg] = useState(false)
   const t = useT().home.lineup
 
   const accuse = (i: number) => {
+    if (shown.size === 0 && SUSPECTS[i].spy) setEgg(true)
     setLit(i)
     setShown((prev) => new Set(prev).add(i))
     setSaid(SUSPECTS[i].spy ? t.wasSpy(i + 1) : t.isLocal(i + 1))
@@ -62,6 +70,14 @@ const LineUp = () => {
         <span>{t.tap}</span>
         <span aria-live="polite">{said}</span>
       </p>
+      {egg ? (
+        <p className={s.egg} role="status">
+          <span className={s.eggFound}>{t.eggFound}</span> <span>{t.eggWhere}</span>{' '}
+          <strong className={s.eggCode} translate="no">
+            {EGG_CODE}
+          </strong>
+        </p>
+      ) : null}
     </div>
   )
 }
