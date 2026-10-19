@@ -79,6 +79,13 @@ export const AfterDeletionList = () => (
         settings.
       </ListItem>
     )}
+    {PRIVACY.creatorCodes && (
+      <ListItem>
+        If you entered a creator code, the record that a player entered it, and the amounts of the purchases credited to
+        the creator, stay so we can pay the creator and keep our accounting records. Nothing in them leads to your
+        account any more.
+      </ListItem>
+    )}
     <ListItem>Copies in our database backups are deleted as those backups expire, within 30 days.</ListItem>
   </UnorderedList>
 )

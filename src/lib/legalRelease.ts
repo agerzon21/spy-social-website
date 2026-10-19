@@ -373,6 +373,24 @@ export const LIVE = {
    */
   merchShop: true,
   /**
+   * Creator codes and reward codes (app feat/creator-codes, migration 20261031900000_creator_codes, owner 2026-10-17):
+   * an account (never a guest) enters a code in Settings > Enter a Code. The server records which code it entered and
+   * when (creator_redemptions, reward_code_redemptions), and grants the code's title and item. A creator code (one per
+   * account, for good) links the account to that content creator: from then on each payment it makes through the
+   * app (and each refund of one) goes on the creator's ledger (creator_sales: the store, our product id, RevenueCat's
+   * price in USD, the store's tax / commission / take-home percentages, the date, the creator's share rate, and an MD5
+   * of the store's transaction ids to match a refund; no user id, no country), so the owner can work out the creator's
+   * share (a percentage of the proceeds; the player pays nothing extra). A deleted account leaves its redemption and
+   * the ledger rows without anything that leads to it. A creator's own attached account shows a CONTENT CREATOR badge
+   * to the players who see it by name (get_content_creators: _co_player_ids, private rooms only while public play uses
+   * agent names). The creator sees totals only, from the owner. Turns on the Privacy text: Creator and Reward Codes
+   * (Information We Collect), how we use it, the legal bases, Data Retention, Data Sharing (the badge, totals for the
+   * creator) and AfterDeletion. Flip in LIVE when the migration is applied live (processing can start then, whatever
+   * build a player has); ahead-safe (PRIVACY_AHEAD) from the day the build or the migration that has it is submitted
+   * or applied, and set PRIVACY_LAST_UPDATED that day. No Terms text reads it.
+   */
+  creatorCodes: false,
+  /**
    * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
    * right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -400,7 +418,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  *   drawingCheck: only when the build has the wiring and the check is on, or will be switched on at the launch
  *   (runbook 3.5) and the store forms declare drawings sent to OpenAI;
  *   autoTranslation: in the submitted build that has it (the store review compares the policy with the app), or
- *   from the day before an OTA with it goes out; the Terms' section 10 and the FAQ keep the tap wording until LIVE.
+ *   from the day before an OTA with it goes out; the Terms' section 10 and the FAQ keep the tap wording until LIVE;
+ *   creatorCodes: in the submitted build (Settings > Enter a Code) or once its migration (20261031900000) is live.
  * Never ahead (and not in AHEAD_SAFE): onePool and messageReports (the Privacy pages don't read them; they change the
  * Terms, the Rules and the FAQ, which wait for the launch), photosRemoved (says the photos are deleted), oldAppsInUse
  * (false drops what versions before 2.2 do while 2.1.1 is the store version), myMemory (a server switch for every
@@ -431,6 +450,7 @@ const AHEAD_SAFE = [
   'qrScanner',
   'playOnline',
   'autoTranslation',
+  'creatorCodes',
 ] as const satisfies readonly BooleanSwitch[]
 
 /**
@@ -452,6 +472,10 @@ export const PRIVACY_AHEAD: { readonly [K in (typeof AHEAD_SAFE)[number]]?: true
   storedQuestions: true,
   qrScanner: true,
   playOnline: true,
+  // Creator and reward codes (20261031900000; 2026-10-17, branch site/creator-codes-policy): in the build that goes to
+  // review (~Oct 30) and on once the migration is live. Ahead from the day this branch is merged and deployed (before
+  // the migration's apply); set PRIVACY_LAST_UPDATED to that day in the merge.
+  creatorCodes: true,
 }
 
 /** What the Privacy Policy, Delete Account, AfterDeletion and legalText read: LIVE, with PRIVACY_AHEAD on top. */
@@ -492,7 +516,7 @@ export const LEGAL_LAST_UPDATED = 'October 16, 2026'
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October 16, 2026'
+export const PRIVACY_LAST_UPDATED: string = 'October 17, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
