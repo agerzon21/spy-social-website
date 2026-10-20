@@ -45,7 +45,6 @@ const page = <T,>(load: () => Promise<T>) =>
 
 const ConfirmSuccess = page(() => import('./pages/ConfirmSuccess'))
 const Agree = page(() => import('./pages/Agree'))
-const Party = page(() => import('./pages/Party'))
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
@@ -87,8 +86,6 @@ function App() {
               <Route path="/join" element={<Layout><Join /></Layout>} />
               <Route path="/agree/:token" element={<Layout><Agree /></Layout>} />
               {/* Unlisted: the link the owner sends round at Megan's party (noindex, in no nav). */}
-              <Route path="/megan" element={<Layout><Party /></Layout>} />
-              <Route path="/megans-party" element={<Navigate to="/megan" replace />} />
               <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
           </Suspense>

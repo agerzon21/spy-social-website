@@ -79,7 +79,12 @@
     },
     {
       "source": "/megans-party",
-      "destination": "/megan",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/megan",
+      "destination": "/",
       "permanent": false
     }
   ],
