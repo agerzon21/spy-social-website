@@ -854,6 +854,9 @@ const ptBR: Strings = {
     home: 'Voltar ao início',
     expiredTitle: 'Link expirado',
     expired: 'Este link expirou ou já foi usado. Abra o SpySocial e toque em <b>Reenviar</b>.',
+    browserText: 'Seu e-mail foi verificado com sucesso. Volte ao SpySocial no navegador e entre.',
+    browserPhoneText: 'Seu e-mail foi verificado com sucesso. Volte ao SpySocial no computador em que você se cadastrou e entre.',
+    browserButton: 'Voltar ao SpySocial',
   },
 }
 

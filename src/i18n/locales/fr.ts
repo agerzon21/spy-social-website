@@ -856,6 +856,9 @@ const fr: Strings = {
     home: "Retour à l'accueil",
     expiredTitle: 'Lien expiré',
     expired: 'Ce lien a expiré ou a déjà été utilisé. Ouvre SpySocial et appuie sur <b>Renvoyer</b>.',
+    browserText: 'Ton adresse e-mail a bien été vérifiée. Retourne sur SpySocial dans ton navigateur et connecte-toi.',
+    browserPhoneText: "Ton adresse e-mail a bien été vérifiée. Retourne sur SpySocial sur l'ordinateur utilisé pour l'inscription et connecte-toi.",
+    browserButton: 'Retour à SpySocial',
   },
 }
 

@@ -853,6 +853,9 @@ const zhHans: Strings = {
     home: '返回首页',
     expiredTitle: '链接已失效',
     expired: '此链接已过期或已被使用。请打开 SpySocial，点击<b>重新发送</b>。',
+    browserText: '你的邮箱已成功验证。请回到浏览器里的 SpySocial 并登录。',
+    browserPhoneText: '你的邮箱已成功验证。请回到注册时用的电脑上的 SpySocial 并登录。',
+    browserButton: '返回 SpySocial',
   },
 }
 

@@ -897,6 +897,11 @@ const en = {
     home: 'Return to Home',
     expiredTitle: 'Link Expired',
     expired: 'This link has expired or was already used. Open SpySocial and tap <b>Resend</b>.',
+    /** A sign-up made in the browser version (the signup function's ?from=browser): on a computer, the way back to it. */
+    browserText: 'Your email has been verified. Go back to SpySocial in your browser and log in.',
+    /** The same e-mail opened on a phone: back to the computer the sign-up was made on. */
+    browserPhoneText: 'Your email has been verified. Go back to SpySocial on the computer where you signed up, and log in.',
+    browserButton: 'Back to SpySocial',
   },
 }
 

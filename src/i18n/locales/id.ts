@@ -854,6 +854,9 @@ const id: Strings = {
     home: 'Kembali ke beranda',
     expiredTitle: 'Link kedaluwarsa',
     expired: 'Link ini sudah kedaluwarsa atau sudah dipakai. Buka SpySocial lalu ketuk <b>Kirim ulang</b>.',
+    browserText: 'Emailmu berhasil diverifikasi. Kembali ke SpySocial di browser-mu, lalu masuk.',
+    browserPhoneText: 'Emailmu berhasil diverifikasi. Kembali ke SpySocial di komputer tempat kamu mendaftar, lalu masuk.',
+    browserButton: 'Kembali ke SpySocial',
   },
 }
 

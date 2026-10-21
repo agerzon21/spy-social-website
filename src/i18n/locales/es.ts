@@ -854,6 +854,9 @@ const es: Strings = {
     home: 'Volver al inicio',
     expiredTitle: 'Enlace vencido',
     expired: 'Este enlace venció o ya se usó. Abre SpySocial y toca <b>Reenviar</b>.',
+    browserText: 'Tu correo se verificó correctamente. Vuelve a SpySocial en tu navegador e inicia sesión.',
+    browserPhoneText: 'Tu correo se verificó correctamente. Vuelve a SpySocial en la computadora donde te registraste e inicia sesión.',
+    browserButton: 'Volver a SpySocial',
   },
 }
 
