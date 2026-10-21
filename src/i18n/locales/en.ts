@@ -879,6 +879,11 @@ const en = {
     title: 'Email Confirmed',
     text: 'Your email has been successfully verified. You can now use all features of the SpySocial app.',
     home: 'Return to Home',
+    /** A sign-up made in the browser version (the signup function's ?from=browser): on a computer, the way back to it. */
+    browserText: 'Your email has been verified. Go back to SpySocial in your browser and log in.',
+    /** The same e-mail opened on a phone: back to the computer the sign-up was made on. */
+    browserPhoneText: 'Your email has been verified. Go back to SpySocial on the computer where you signed up, and log in.',
+    browserButton: 'Back to SpySocial',
   },
 }
 

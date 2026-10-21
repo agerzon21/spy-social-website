@@ -837,6 +837,9 @@ const id: Strings = {
     title: 'Email dikonfirmasi',
     text: 'Emailmu berhasil diverifikasi. Sekarang kamu bisa memakai semua fitur aplikasi SpySocial.',
     home: 'Kembali ke beranda',
+    browserText: 'Emailmu berhasil diverifikasi. Kembali ke SpySocial di browser-mu, lalu masuk.',
+    browserPhoneText: 'Emailmu berhasil diverifikasi. Kembali ke SpySocial di komputer tempat kamu mendaftar, lalu masuk.',
+    browserButton: 'Kembali ke SpySocial',
   },
 }
 

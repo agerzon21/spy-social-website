@@ -839,6 +839,9 @@ const fr: Strings = {
     title: 'E-mail confirmé',
     text: "Ton adresse e-mail a bien été vérifiée. Tu peux maintenant utiliser toutes les fonctions de l'appli SpySocial.",
     home: "Retour à l'accueil",
+    browserText: 'Ton adresse e-mail a bien été vérifiée. Retourne sur SpySocial dans ton navigateur et connecte-toi.',
+    browserPhoneText: "Ton adresse e-mail a bien été vérifiée. Retourne sur SpySocial sur l'ordinateur utilisé pour l'inscription et connecte-toi.",
+    browserButton: 'Retour à SpySocial',
   },
 }
 

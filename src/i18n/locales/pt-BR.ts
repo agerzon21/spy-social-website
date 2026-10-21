@@ -837,6 +837,9 @@ const ptBR: Strings = {
     title: 'E-mail confirmado',
     text: 'Seu e-mail foi verificado com sucesso. Agora você pode usar todos os recursos do app SpySocial.',
     home: 'Voltar ao início',
+    browserText: 'Seu e-mail foi verificado com sucesso. Volte ao SpySocial no navegador e entre.',
+    browserPhoneText: 'Seu e-mail foi verificado com sucesso. Volte ao SpySocial no computador em que você se cadastrou e entre.',
+    browserButton: 'Voltar ao SpySocial',
   },
 }
 

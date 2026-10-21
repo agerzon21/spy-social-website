@@ -836,6 +836,9 @@ const zhHans: Strings = {
     title: '邮箱已确认',
     text: '你的邮箱已成功验证。现在你可以使用 SpySocial 应用的全部功能了。',
     home: '返回首页',
+    browserText: '你的邮箱已成功验证。请回到浏览器里的 SpySocial 并登录。',
+    browserPhoneText: '你的邮箱已成功验证。请回到注册时用的电脑上的 SpySocial 并登录。',
+    browserButton: '返回 SpySocial',
   },
 }
 

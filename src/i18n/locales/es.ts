@@ -837,6 +837,9 @@ const es: Strings = {
     title: 'Correo confirmado',
     text: 'Tu correo se verificó correctamente. Ya puedes usar todas las funciones de la app SpySocial.',
     home: 'Volver al inicio',
+    browserText: 'Tu correo se verificó correctamente. Vuelve a SpySocial en tu navegador e inicia sesión.',
+    browserPhoneText: 'Tu correo se verificó correctamente. Vuelve a SpySocial en la computadora donde te registraste e inicia sesión.',
+    browserButton: 'Volver a SpySocial',
   },
 }
 
