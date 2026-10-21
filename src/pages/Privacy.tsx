@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
 import { ShopLink } from '../components/legal/ShopLink'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
-import { OPERATOR, PRIVACY, PRIVACY_LAST_UPDATED, avatarsLive, photosInUse, usesMlKit } from '../lib/legalRelease'
+import { OPERATOR, PRIVACY, PRIVACY_LAST_UPDATED, avatarsLive, photosInUse, photosShown, usesMlKit } from '../lib/legalRelease'
 import { LegalPage } from '../components/legal/LegalPage'
 import { Bullets, H2, P } from '../components/legal/LegalText'
 
@@ -90,12 +90,16 @@ const Privacy: React.FC = () => {
         <Item label="Account Information">
           {avatarsLive(PRIVACY)
             ? 'Display name, username, the avatar you put together in the app from the parts it offers (and the avatar items, titles and borders you unlocked, and the title and border you choose to wear), and the email address you give when you save your account.'
-            : 'Display name, username, optional profile photo, and the email address you give when you save your account.'}
+            : PRIVACY.photosPrivate
+              ? 'Display name, username, the profile photo you added before October 20, 2026, if any (it isn\'t shown to anyone), and the email address you give when you save your account.'
+              : 'Display name, username, optional profile photo, and the email address you give when you save your account.'}
           {avatarsLive(PRIVACY) &&
             photosInUse(PRIVACY) &&
-            (from22
-              ? ' Avatars are new in version 2.2; versions before 2.2 let you add a profile photo instead.'
-              : ' Versions of the app before 2.2 also let you add a profile photo.')}
+            (PRIVACY.photosPrivate
+              ? `${from22 ? ' Avatars are new in version 2.2. Until October 20, 2026, versions before 2.2 let you add a profile photo instead' : ' Until October 20, 2026, versions of the app before 2.2 also let you add a profile photo'}; since then, no one can add or change one, and the photos added before aren't shown to anyone. We keep each one in private storage, where only the account that added it can still open it, and delete it with the account.`
+              : from22
+                ? ' Avatars are new in version 2.2; versions before 2.2 let you add a profile photo instead.'
+                : ' Versions of the app before 2.2 also let you add a profile photo.')}
           {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
           {PRIVACY.socialSignIn &&
             ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, and collect a device identifier and usage information for Google\'s own analytics, under Google\'s privacy policy.'}
@@ -136,7 +140,7 @@ const Privacy: React.FC = () => {
           Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, the chat for players
           who are out, and the game's chat on Game Over, which stays open to the players of that game for a few
           minutes after it ends) are stored on our servers so the other players in the room can read them.{' '}
-          {chatRetention('Messages')} Copies made to deliver messages live are deleted within 3 days.
+          {chatRetention('Messages')} Copies made to deliver messages live are deleted within 4 days.
         </Item>
         <Item label="Questions and Answers">
           {PRIVACY.storedQuestions
@@ -147,6 +151,7 @@ const Privacy: React.FC = () => {
           When you use the microphone to say a chat message, a question or an answer, Apple's or Google's speech
           recognition on your device turns what you say into text, and may send the recording to Apple or Google to
           do this, under their privacy policies.
+          {`${from22 ? ' From version 2.2, on' : ' On'} iPhone and iPad, when you say a question or an answer, the app also gives Apple's speech recognition the names of the players in your game (as the game shows them), to help it recognize them.`}
           {PRIVACY.browserLegal
             ? " When you play in the browser version, your browser's own speech recognition does this instead, where the browser has it, and the browser's maker (for example Google in Chrome, Microsoft in Edge, Apple in Safari) may receive the recording, under its privacy policy."
             : ''}{' '}
@@ -192,7 +197,12 @@ const Privacy: React.FC = () => {
           To stop floods, guessing at room codes and other abuse, our servers note when an account does certain things
           (such as sending a message, joining or trying to join a room, poking a player, or saving its avatar or title),
           without what was said. Notes about joining rooms are deleted after 24 hours and the others after 2 days, even if
-          the account is deleted first.
+          the account is deleted first. To limit account emails, when you sign up, save a guest account, ask for a new
+          confirmation link, reset your password or change your email address, our servers keep a record of each email
+          they send: a coded form of the email address and of your network (your IP address, or for IPv6 its first
+          half), made with a secret key, the kind of email and when, never the address or the IP address itself. Under
+          the same code, they also count how many of these requests come from each network in an hour. These records
+          are deleted after a day.
         </Item>
         <Item label="Safety Information">
           Reports you make or that are made about you, players you block, removals from rooms, and any warnings,
@@ -371,7 +381,10 @@ const Privacy: React.FC = () => {
             tips you've seen) in your browser's storage, and while you're signed in, some game data so it loads
             quickly (such as recent room codes and, once you play, other players' avatars). Signing out removes your sign-in and that
             game data from the browser; your choices stay until you clear the browser's data. It uses no cookies, and
-            we don't use your browser's storage for advertising or tracking.
+            we don't use your browser's storage for advertising or tracking. While playing in the browser version is
+            invite-only, we keep a list of the players we've invited to play in it (the email address or account we
+            invited, with a short note), use it only to let them play there, and delete it once playing in a browser
+            opens to everyone.
           </Item>
         )}
         <Item label="IP Address">
@@ -455,7 +468,7 @@ const Privacy: React.FC = () => {
       <P>
         We keep your account information and game data for as long as you have an account.{' '}
         {chatRetention(PRIVACY.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
-        made to deliver them live are deleted within 3 days. Translations are kept for 24 hours, and daily translation
+        made to deliver them live are deleted within 4 days. Translations are kept for 24 hours, and daily translation
         counts for 14 days.
         {PRIVACY.playOnline
           ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
@@ -468,7 +481,8 @@ const Privacy: React.FC = () => {
         {PRIVACY.scheduledRetention
           ? ', and security logs (such as sign-ups, sign-ins, password resets and email changes, which can include your email address and IP address) for 180 days.'
           : '.'}{' '}
-        Rate-limit notes are deleted after 2 days, and notes about joining rooms after 24 hours.
+        Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
+        account emails and sign-up requests after a day.
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
           : ''}
@@ -605,7 +619,7 @@ const Privacy: React.FC = () => {
           </P>
           <P>
             Fourthwall is responsible for payment, tax and returns, under its own terms. Its{' '}
-            <ChakraLink href="https://fourthwall.com/privacy-policy" isExternal>
+            <ChakraLink href="https://fourthwall.com/legal/privacy-policy" isExternal>
               privacy policy
             </ChakraLink>{' '}
             gives no fixed period for keeping order data: it keeps it as long as needed for orders, tax and legal
@@ -640,7 +654,7 @@ const Privacy: React.FC = () => {
         never by your display name; your display name is shown only in private rooms. Other players in your room see
         your display name (private rooms) or agent name (public play), username
         {PRIVACY.agentColoursPhase2 ? ' (in public play too, including during a game)' : ''},{' '}
-        {photosInUse(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
+        {photosShown(PRIVACY) ? 'profile photo or avatar' : 'avatar'}, color, level, badges
         (including a membership badge), the title and border you wear, and achievements,
         {/* One pool: no language badges; versions before 2.2 show the language a room is played in. */}
         {PRIVACY.oldAppsInUse ? ' the language you play in,' : ''} whether you've stepped away (and
@@ -652,8 +666,12 @@ const Privacy: React.FC = () => {
           " A content creator in our creator program shows a CONTENT CREATOR badge on their profile and player card to the players who share a private room with them or played a game in one with them in the last 24 hours; it isn't shown in public play. A title a creator code or a reward code gave you shows like any other title. We tell a content creator only totals for their code, never who entered it or what anyone bought."}
         {/* Agent Colours phase 2: get_my_game_view and get_watch_view send a pre-2.2 photo only to its owner at public tables. */}
         {PRIVACY.agentColoursPhase2 &&
+          photosShown(PRIVACY) &&
+          ' A profile photo added with a version of the app before 2.2 is never shown to other players at Play Online tables or game nights; only private rooms show it.'}
+        {/* photosPrivate (2026-10-20): the photos are in private storage; no app shows them to anyone. */}
+        {PRIVACY.photosPrivate &&
           photosInUse(PRIVACY) &&
-          ' A profile photo added with a version of the app before 2.2 is never shown to other players at Play Online tables or game nights; only private rooms show it.'}{' '}
+          " Profile photos added with versions of the app before 2.2 aren't shown to other players anywhere."}{' '}
         Someone who opens a room's link or code while a Spy Sketch game
         is running can watch it until the next game: they see the same things
         {PRIVACY.agentColoursPhase2
@@ -670,7 +688,7 @@ const Privacy: React.FC = () => {
         for all players with their hosts' display names, avatars, titles and borders (a private room still needs its code
         to join).
         {PRIVACY.agentColoursPhase2 &&
-          ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosInUse(PRIVACY) ? ', with no profile photo' : ''}.`}
+          ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosShown(PRIVACY) ? ', with no profile photo' : ''}.`}
         {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}{' '}
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.

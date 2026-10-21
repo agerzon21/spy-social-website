@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang, useT } from '../i18n'
 import { formatDate, rich } from '../i18n/rich'
-import { LEGAL_LAST_UPDATED, LIVE, ONLINE_SAFETY_TEXT, photosInUse } from '../lib/legalRelease'
+import { LEGAL_LAST_UPDATED, LIVE, ONLINE_SAFETY_TEXT, drawingCheckLive, drawingCheckTestersOnly, photosShown } from '../lib/legalRelease'
 import { LegalPage } from '../components/legal/LegalPage'
 
 const PageLink = ({ to, children }: { to: string; children: ReactNode }) => (
@@ -17,11 +17,13 @@ const PageLink = ({ to, children }: { to: string; children: ReactNode }) => (
 // adds what counts, what happens, child safety and how to appeal. Translated
 // (src/i18n: rules), with a note that the English version applies.
 const Rules: React.FC = () => {
-  const photos = photosInUse(LIVE)
+  // Photos the rules can still apply to: shown to other players and addable (none since 2026-10-20, photosPrivate).
+  const photos = photosShown(LIVE)
   const { language } = useLang()
   const strings = useT()
   const t = strings.rules
-  const tools = { messages: LIVE.messageReports, drawings: LIVE.drawingCheck }
+  const drawings = drawingCheckLive(LIVE)
+  const tools = { messages: LIVE.messageReports, drawings }
 
   return (
     <LegalPage
@@ -86,7 +88,8 @@ const Rules: React.FC = () => {
         {t.breaking.title}
       </Heading>
       <Text textStyle="body">{t.breaking.text}</Text>
-      {LIVE.drawingCheck && <Text textStyle="body">{t.breaking.drawings}</Text>}
+      {drawingCheckTestersOnly(LIVE) && <Text textStyle="body">{t.breaking.drawingsTesters}</Text>}
+      {drawings && <Text textStyle="body">{t.breaking.drawings}</Text>}
 
       <Heading as="h2" size="sm" variant="section">
         {t.age.title}

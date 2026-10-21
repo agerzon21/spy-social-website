@@ -85,7 +85,6 @@ function App() {
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
               <Route path="/join" element={<Layout><Join /></Layout>} />
               <Route path="/agree/:token" element={<Layout><Agree /></Layout>} />
-              {/* Unlisted: the link the owner sends round at Megan's party (noindex, in no nav). */}
               <Route path="*" element={<Layout><NotFound /></Layout>} />
             </Routes>
           </Suspense>

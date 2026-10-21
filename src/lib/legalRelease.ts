@@ -23,7 +23,8 @@
 // condition holds by then: revenueCatDeletion (the delete flow deletes the
 // RevenueCat customer) and drawingCheck (the game itself checks drawings;
 // deploying check-drawing is not enough). Then set LEGAL_LAST_UPDATED to the
-// launch day. The Terms gain material sections at launch (buying, Restore
+// launch day. drawingCheckTesters goes off in the same change as drawingCheck goes on (it only adds "for now,
+// only in testers' games" to drawingCheck's text). The Terms gain material sections at launch (buying, Restore
 // Purchases moving purchases between accounts, and the automated drawing
 // check once it's on), so they're published again: set TERMS_PUBLISHED to
 // the launch day, TERMS_EFFECTIVE_FOR_EXISTING to 30 days after it and
@@ -74,6 +75,21 @@ export const LIVE = {
    * describe the photo that versions before 2.2 let a player add (see photosInUse below).
    */
   photosRemoved: false,
+  /**
+   * Profile photos are private and can't be added any more (server, every app version at once): the storage bucket
+   * 'avatars' went private on 2026-10-20 at 18:44 UTC (20261103000000_avatars_bucket_private, the record of that
+   * change), so a photo's public link no longer opens and 2.1.1, which shows photos only by that link, shows none,
+   * not even its owner's; and 20261103300000_avatars_no_client_writes (live 2026-10-20) dropped the upload and
+   * update policies, so no app can add or change a photo (2.1.1's upload now fails). The photos already uploaded
+   * (49 on 2026-10-20) stay in the bucket: only their owner's own account can still read or delete its file
+   * through the storage API (the two kept policies), and the server's photo purge (purge-avatars, service role)
+   * deletes a deleted account's file. On, it turns on: no photo shown to other players anywhere (Privacy's Data
+   * Sharing, Child Safety, the Terms' summary, the Community Rules), no photo uploads, no cached-photo line after a
+   * deletion, and Privacy's Account Information says photos could be added until October 20, 2026 (photosShown
+   * below). The photos themselves are still data we hold (photosInUse). Off only if photos come back. A server
+   * switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  photosPrivate: true,
   /** feature/age-terms-gate in the released app: everyone gives a birth year before their first game. */
   ageGateEveryone: false,
   /**
@@ -184,6 +200,24 @@ export const LIVE = {
    * wiring that shipped before flipping.
    */
   drawingCheck: false,
+  /**
+   * The drawing check runs for the testers only: app_config drawing_check.enabled is "testers" on the live server
+   * (since 2026-10-05, 20261006300100_drawing_check_testers; public_every_turn true). A room is checked only when
+   * every member of it (room_players, its Play Online seats and every player of its running game) is a tester
+   * (match_testers: the QA accounts and the saved accounts that used a 2.2 test build) or an admin, and a check is
+   * sent only when every player of its game is one; nobody else's drawing ever goes to OpenAI, Spy Sketch stays
+   * closed in public rooms for everyone else, and report_user answers drawing_check 'none' for them. Spy Sketch is
+   * 2.2 only (2.1.1 has none). In those testers' games the check does everything drawingCheck's text says: every
+   * public turn and every reported drawing, strikes and the ladder (_drawing_ladder: a warning, 3, 7 and 30 days,
+   * then for good), flagrant removals with a second check, the child-safety path. On (and drawingCheck off), the
+   * Terms (section 8, Automated tools), the Community Rules and Child Safety show drawingCheck's approved text with
+   * one more sentence: for now, while we test it, only in games where every player is one of our testers
+   * (drawingCheckLive, drawingCheckTestersOnly below). The Privacy pages describe the check through drawingCheck
+   * (PRIVACY_AHEAD) and don't read this. At the launch (drawing_check.enabled true for everyone, runbook 3.5) flip
+   * drawingCheck on and this off. Off also if the switch goes back to false. A server switch: set in LIVE, never in
+   * PRIVACY_AHEAD.
+   */
+  drawingCheckTesters: true,
   /** The phone translates by itself when our service can't (feature/on-device-translation). */
   onDeviceTranslation: false,
   /**
@@ -387,12 +421,13 @@ export const LIVE = {
    * (Information We Collect), how we use it, the legal bases, Data Retention, Data Sharing (the badge, totals for the
    * creator) and AfterDeletion. Flip in LIVE when the migration is applied live (processing can start then, whatever
    * build a player has); ahead-safe (PRIVACY_AHEAD) from the day the build or the migration that has it is submitted
-   * or applied, and set PRIVACY_LAST_UPDATED that day. No Terms text reads it.
+   * or applied, and set PRIVACY_LAST_UPDATED that day. No Terms text reads it. On in LIVE since 2026-10-21 (the
+   * migration has been live since 2026-10-18; before that the text ran ahead).
    */
-  creatorCodes: false,
+  creatorCodes: true,
   /**
-   * App versions before 2.2 still connect: they can add a profile photo, and Account is the icon at the bottom
-   * right of their home screen. (They have no chat and never call MyMemory.)
+   * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
+   * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
   oldAppsInUse: true,
 }
@@ -429,7 +464,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
  * in LIVE), browserLinks (the site's links to the browser version, no legal text), merchShop (the shop links and
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
- * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), scheduledRetention,
+ * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
+ * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
@@ -472,10 +508,7 @@ export const PRIVACY_AHEAD: { readonly [K in (typeof AHEAD_SAFE)[number]]?: true
   storedQuestions: true,
   qrScanner: true,
   playOnline: true,
-  // Creator and reward codes (20261031900000; 2026-10-17, branch site/creator-codes-policy): in the build that goes to
-  // review (~Oct 30) and on once the migration is live. Ahead from the day this branch is merged and deployed (before
-  // the migration's apply); set PRIVACY_LAST_UPDATED to that day in the merge.
-  creatorCodes: true,
+  // creatorCodes ran ahead from 2026-10-18 (site/creator-codes-policy) until LIVE turned it on (2026-10-21).
 }
 
 /** What the Privacy Policy, Delete Account, AfterDeletion and legalText read: LIVE, with PRIVACY_AHEAD on top. */
@@ -486,6 +519,19 @@ export const PRIVACY: Switches = {
 
 /** Whether any player can still have a profile photo: before 2.2's avatars, or while versions before 2.2 connect. */
 export const photosInUse = (s: Switches): boolean => !s.photosRemoved || s.oldAppsInUse
+
+/**
+ * Whether profile photos still show to other players and can still be added: photos in use and not private
+ * (photosPrivate, 2026-10-20). Where a page says what other players see, what players can add or upload, or what the
+ * rules cover, it reads this; where it says what data we hold or delete, photosInUse.
+ */
+export const photosShown = (s: Switches): boolean => photosInUse(s) && !s.photosPrivate
+
+/** Whether the drawing check runs for anyone: for everyone (drawingCheck) or for the testers only (drawingCheckTesters). */
+export const drawingCheckLive = (s: Switches): boolean => s.drawingCheck || s.drawingCheckTesters
+
+/** Whether the drawing check runs for the testers only, so its text says so. */
+export const drawingCheckTestersOnly = (s: Switches): boolean => !s.drawingCheck && s.drawingCheckTesters
 
 /** Whether the released app has the avatar creator (from the 2.2 launch; the photo removal implies it). */
 export const avatarsLive = (s: Switches): boolean => s.avatarCreator || s.photosRemoved
@@ -510,13 +556,13 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  * "Last Updated" on the Terms, the Community Rules and the Safety page, and (through PRIVACY_LAST_UPDATED) on the
  * Privacy Policy and Delete Account: the day a change is published.
  */
-export const LEGAL_LAST_UPDATED = 'October 16, 2026'
+export const LEGAL_LAST_UPDATED = 'October 21, 2026'
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October 17, 2026'
+export const PRIVACY_LAST_UPDATED: string = 'October 21, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

@@ -40,6 +40,18 @@ const en = {
       confirmSuccess: 'Email confirmed',
       notFound: 'Page not found',
     },
+    /** Each page's own description for search results; the home page and the unlisted pages use `description`. */
+    descriptions: {
+      faq: 'Answers to common SpySocial questions: getting started, game modes, sharing and joining rooms, languages, host controls, your account and troubleshooting.',
+      contact: 'Contact the SpySocial team: email support@spysocial.app for help with the app, your account or anything else.',
+      rules: "SpySocial's community rules: be kind, bluff but don't cheat, keep personal information private, and what happens when someone breaks the rules.",
+      safety: 'Safety at SpySocial for players 13 to 17 and for parents and carers: how to leave, block and report, and where to get help.',
+      privacy: 'How SpySocial collects, uses and protects your personal data, who receives it, how long we keep it, and your privacy rights.',
+      terms: 'The terms for using SpySocial: who can play, your account and content, public rooms, the community rules, moderation and appeals.',
+      childSafety: "SpySocial's standards against child sexual abuse and exploitation: what we prohibit, how to report a concern, what we do, and our child safety contact.",
+      whatsNew: 'Release notes for SpySocial: new features, fixes and improvements in each version of the app.',
+      deleteAccount: 'How to delete your SpySocial account and its data, in the app or by email, and what stays for a while after.',
+    },
   },
 
   /** The header's language menu. */
@@ -450,6 +462,8 @@ const en = {
       text: "Usually a warning first. Repeated or serious problems lead to a chat mute (1 hour to 7 days), a pause from public rooms and events (1 to 30 days), or a ban. Sharing someone's personal information, or anything that sexualizes a child, can mean an immediate ban. Every notice in the app says what is limited, why, and until when, with an ID like S-207.",
       drawings:
         "Drawings in public rooms and events may be checked automatically at any time, and any drawing that's reported is checked. If a drawing you made breaks these rules, your account can be paused or banned from public rooms and events, however long you've played. In a public room, a turn that breaks these rules is taken off the drawing and counts as a strike: a warning first, then 3, 7 and 30 days without public rooms and events, and at the fifth strike in 90 days, for good. In any room, a hate symbol (a swastika counts, unless the round's word makes a religious meaning clear), a written slur or hate aimed at someone removes the player from the game and from public rooms and events for good, and a drawing that sexualizes a child ends the account and is handled as Child safety says above. Gore and monsters are fine. In a private room, a reported drawing is acted on automatically only when it's that serious; anything else is up to the person who reads the report. To appeal, email us the code from your notice.",
+      drawingsTesters:
+        'For now, while we test it, the automatic drawing check runs only in games where every player is one of our testers (players trying a test version of the app).',
     },
     age: { title: 'Age', text: 'SpySocial is for players 13 and older.' },
     appeal: {
@@ -619,6 +633,7 @@ const en = {
     quickLinks: 'Quick links',
     faqLink: 'FAQ & Troubleshooting',
     rate: 'Rate us on the App Store',
+    ratePlay: 'Rate us on Google Play',
   },
 
   whatsNew: {
@@ -635,7 +650,7 @@ const en = {
             label: 'Now Available',
             items: [
               { title: 'Android 2.1.1', text: 'Live on Google Play as of June 13, 2026.' },
-              { title: 'iOS 2.1.1', text: 'Same fixes, submitted to App Store Connect.' },
+              { title: 'iOS 2.1.1', text: 'Same fixes, now live on the App Store.' },
             ],
           },
           {
@@ -800,6 +815,7 @@ const en = {
     noCode: 'No room code provided',
     browserOrPhone: 'Play in your browser, or on your phone with the app',
     openToJoin: 'Open SpySocial to join the room',
+    onPhone: 'Open this link on your phone to join the room',
     roomCode: 'Room Code',
   },
 
@@ -879,6 +895,8 @@ const en = {
     title: 'Email Confirmed',
     text: 'Your email has been successfully verified. You can now use all features of the SpySocial app.',
     home: 'Return to Home',
+    expiredTitle: 'Link Expired',
+    expired: 'This link has expired or was already used. Open SpySocial and tap <b>Resend</b>.',
   },
 }
 

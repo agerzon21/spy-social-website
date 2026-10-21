@@ -29,11 +29,11 @@
       ]
     },
     {
-      "source": "/megan",
+      "source": "/(join|reset-password|confirm-success)(.*)",
       "headers": [
         {
           "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
+          "value": "noindex"
         }
       ]
     },

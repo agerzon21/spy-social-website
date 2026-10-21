@@ -36,10 +36,8 @@ const mockClient = {
   }
 }
 
-// Log info about which client we're using
-if (hasValidCredentials) {
-  console.log('Using real Supabase client with provided credentials')
-} else {
+// Say so when the build has no credentials (a local build without .env); a real build stays quiet.
+if (!hasValidCredentials) {
   console.warn('Using mock Supabase client - missing valid credentials')
 }
 

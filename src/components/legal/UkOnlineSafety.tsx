@@ -1,7 +1,7 @@
 import { ListItem } from '@chakra-ui/react'
 import { InfoTable, type InfoRow } from './InfoTable'
 import { B, Bullets, H2, H3, P, PageLink, SupportEmail } from './LegalText'
-import { LIVE, OPERATOR, photosInUse } from '../../lib/legalRelease'
+import { LIVE, OPERATOR, photosShown } from '../../lib/legalRelease'
 
 // Terms of Service section 22: what the UK Online Safety Act 2023 asks a
 // service's terms to say (s10(5), (7) and s12(9)-(11), s21; Ofcom's Illegal
@@ -15,7 +15,8 @@ import { LIVE, OPERATOR, photosInUse } from '../../lib/legalRelease'
 export const UK_SECTION_NUMBER = 22
 
 const UkOnlineSafety = () => {
-  const photos = photosInUse(LIVE)
+  // Photos other players can see or players can add: none since 2026-10-20 (photosPrivate).
+  const photos = photosShown(LIVE)
   const dc = LIVE.drawingCheck
   const without = [
     'direct messages',

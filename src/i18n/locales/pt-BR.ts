@@ -23,6 +23,17 @@ const ptBR: Strings = {
       confirmSuccess: 'E-mail confirmado',
       notFound: 'Página não encontrada',
     },
+    descriptions: {
+      faq: 'Respostas para as dúvidas mais comuns sobre o SpySocial: como começar, modos de jogo, compartilhar e entrar em salas, idiomas, controles do anfitrião, sua conta e solução de problemas.',
+      contact: 'Fale com a equipe do SpySocial: escreva para support@spysocial.app se precisar de ajuda com o app, sua conta ou qualquer outra coisa.',
+      rules: 'As regras da comunidade do SpySocial: seja gentil, blefe sem trapacear, mantenha a privacidade e o que acontece quando alguém quebra as regras.',
+      safety: 'Segurança no SpySocial para jogadores de 13 a 17 anos e para pais e responsáveis: como sair, bloquear e denunciar, e onde buscar ajuda.',
+      privacy: 'Como o SpySocial coleta, usa e protege seus dados pessoais, quem os recebe, por quanto tempo os guardamos e quais são seus direitos de privacidade.',
+      terms: 'Os termos para usar o SpySocial: quem pode jogar, sua conta e seu conteúdo, salas públicas, regras da comunidade, moderação e recursos.',
+      childSafety: 'Os padrões do SpySocial contra o abuso e a exploração sexual infantil: o que proibimos, como denunciar um problema, o que fazemos e nosso contato de segurança infantil.',
+      whatsNew: 'Notas de versão do SpySocial: novos recursos, correções e melhorias em cada versão do app.',
+      deleteAccount: 'Como excluir sua conta do SpySocial e os dados dela, no app ou por e-mail, e o que ainda fica guardado por um tempo.',
+    },
   },
 
   language: {
@@ -412,6 +423,8 @@ const ptBR: Strings = {
       text: 'Normalmente, primeiro vem uma advertência. Problemas repetidos ou graves levam a um bloqueio do chat (de 1 hora a 7 dias), uma pausa nas salas públicas e nos eventos (de 1 a 30 dias) ou um banimento. Compartilhar dados pessoais de alguém, ou qualquer coisa que sexualize uma criança, pode levar a um banimento imediato. Cada aviso no app diz o que está limitado, por quê e até quando, com um ID como S-207.',
       drawings:
         'Os desenhos em salas públicas e eventos podem ser verificados automaticamente a qualquer momento, e todo desenho denunciado é verificado. Se um desenho seu quebrar estas regras, sua conta pode ser pausada ou banida das salas públicas e dos eventos, não importa há quanto tempo você joga. Numa sala pública, uma vez de desenhar que quebra estas regras é removida do desenho e conta como uma infração: primeiro uma advertência, depois 3, 7 e 30 dias sem salas públicas e eventos e, na quinta infração em 90 dias, para sempre. Em qualquer sala, um símbolo de ódio (uma suástica conta, a menos que a palavra da rodada deixe claro um sentido religioso), uma ofensa discriminatória escrita ou ódio contra alguém tira o jogador da partida e das salas públicas e dos eventos para sempre, e um desenho que sexualiza uma criança encerra a conta e é tratado como diz a seção Segurança infantil acima. Sangue e monstros são permitidos. Numa sala privada, um desenho denunciado só gera uma ação automática quando é grave a esse ponto; o resto fica a critério da pessoa que lê a denúncia. Para recorrer, mande para nós por e-mail o código do seu aviso.',
+      drawingsTesters:
+        'Por ora, a verificação automática de desenhos está em teste e só funciona em partidas em que todos os jogadores são nossos testadores (quem usa uma versão de teste do app).',
     },
     age: { title: 'Idade', text: 'O SpySocial é para jogadores de 13 anos ou mais.' },
     appeal: {
@@ -579,6 +592,7 @@ const ptBR: Strings = {
     quickLinks: 'Links rápidos',
     faqLink: 'Perguntas e solução de problemas',
     rate: 'Avalie a gente na App Store',
+    ratePlay: 'Avalie a gente no Google Play',
   },
 
   whatsNew: {
@@ -594,7 +608,7 @@ const ptBR: Strings = {
             label: 'Já disponível',
             items: [
               { title: 'Android 2.1.1', text: 'No Google Play desde 13 de junho de 2026.' },
-              { title: 'iOS 2.1.1', text: 'As mesmas correções, enviadas ao App Store Connect.' },
+              { title: 'iOS 2.1.1', text: 'As mesmas correções, agora disponíveis na App Store.' },
             ],
           },
           {
@@ -759,6 +773,7 @@ const ptBR: Strings = {
     noCode: 'Nenhum código da sala informado',
     browserOrPhone: 'Jogue no navegador, ou no celular com o app',
     openToJoin: 'Abra o SpySocial para entrar na sala',
+    onPhone: 'Abra este link no celular para entrar na sala',
     roomCode: 'Código da sala',
   },
 
@@ -837,6 +852,8 @@ const ptBR: Strings = {
     title: 'E-mail confirmado',
     text: 'Seu e-mail foi verificado com sucesso. Agora você pode usar todos os recursos do app SpySocial.',
     home: 'Voltar ao início',
+    expiredTitle: 'Link expirado',
+    expired: 'Este link expirou ou já foi usado. Abra o SpySocial e toque em <b>Reenviar</b>.',
   },
 }
 

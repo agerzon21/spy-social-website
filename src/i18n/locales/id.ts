@@ -23,6 +23,17 @@ const id: Strings = {
       confirmSuccess: 'Email dikonfirmasi',
       notFound: 'Halaman tidak ditemukan',
     },
+    descriptions: {
+      faq: 'Jawaban atas pertanyaan umum tentang SpySocial: cara mulai, mode permainan, berbagi dan gabung ke room, bahasa, kontrol host, akunmu, dan cara mengatasi masalah.',
+      contact: 'Hubungi tim SpySocial: kirim email ke support@spysocial.app kalau kamu butuh bantuan soal aplikasi, akunmu, atau hal lainnya.',
+      rules: 'Aturan komunitas SpySocial: bersikap baik, menggertak boleh tapi curang jangan, jaga privasi, dan apa yang terjadi kalau ada yang melanggar aturan.',
+      safety: 'Keamanan di SpySocial untuk pemain usia 13 sampai 17 tahun dan untuk orang tua serta wali: cara keluar, memblokir, dan melapor, serta tempat mencari bantuan.',
+      privacy: 'Cara SpySocial mengumpulkan, memakai, dan melindungi data pribadimu, siapa yang menerimanya, berapa lama kami menyimpannya, dan hak privasimu.',
+      terms: 'Ketentuan memakai SpySocial: siapa yang boleh bermain, akun dan kontenmu, room publik, aturan komunitas, moderasi, dan banding.',
+      childSafety: 'Standar SpySocial melawan pelecehan dan eksploitasi seksual anak: apa yang kami larang, cara melaporkan masalah, apa yang kami lakukan, dan kontak keselamatan anak kami.',
+      whatsNew: 'Catatan rilis SpySocial: fitur baru, perbaikan, dan peningkatan di setiap versi aplikasi.',
+      deleteAccount: 'Cara menghapus akun SpySocial dan datanya, lewat aplikasi atau email, serta apa yang masih disimpan untuk sementara.',
+    },
   },
 
   language: {
@@ -412,6 +423,8 @@ const id: Strings = {
       text: 'Biasanya peringatan dulu. Masalah yang berulang atau serius bisa berujung pada chat dibisukan (1 jam sampai 7 hari), jeda dari room publik dan event (1 sampai 30 hari), atau pemblokiran akun. Membagikan informasi pribadi orang lain, atau apa pun yang menyeksualisasi anak, bisa langsung berujung pemblokiran akun. Setiap pemberitahuan di aplikasi menyebutkan apa yang dibatasi, alasannya, dan sampai kapan, dengan ID seperti S-207.',
       drawings:
         'Gambar di room publik dan event bisa diperiksa otomatis kapan saja, dan setiap gambar yang dilaporkan pasti diperiksa. Kalau gambar buatanmu melanggar aturan ini, akunmu bisa dijeda atau diblokir dari room publik dan event, tak peduli sudah berapa lama kamu bermain. Di room publik, giliran yang melanggar aturan ini dihapus dari gambar dan dihitung sebagai pelanggaran: pertama peringatan, lalu 3, 7, dan 30 hari tanpa room publik dan event, dan pada pelanggaran kelima dalam 90 hari, untuk selamanya. Di room mana pun, simbol kebencian (termasuk swastika, kecuali kata di ronde itu jelas menunjukkan makna keagamaan), cercaan tertulis, atau kebencian yang ditujukan ke seseorang membuat pemainnya dikeluarkan dari permainan serta dari room publik dan event untuk selamanya, dan gambar yang menyeksualisasi anak mengakhiri akunnya dan ditangani seperti yang dijelaskan di bagian Keselamatan anak di atas. Darah dan monster boleh saja. Di room privat, gambar yang dilaporkan hanya ditindak otomatis kalau seserius itu; selebihnya diputuskan oleh orang yang membaca laporannya. Untuk mengajukan banding, kirimkan kode dari pemberitahuanmu ke email kami.',
+      drawingsTesters:
+        'Untuk sekarang, pemeriksaan gambar otomatis masih diuji dan hanya berjalan di permainan yang semua pemainnya adalah penguji kami (pemain yang mencoba versi uji aplikasi).',
     },
     age: { title: 'Usia', text: 'SpySocial untuk pemain berusia 13 tahun ke atas.' },
     appeal: {
@@ -579,6 +592,7 @@ const id: Strings = {
     quickLinks: 'Link cepat',
     faqLink: 'FAQ & mengatasi masalah',
     rate: 'Beri kami rating di App Store',
+    ratePlay: 'Beri kami rating di Google Play',
   },
 
   whatsNew: {
@@ -594,7 +608,7 @@ const id: Strings = {
             label: 'Sudah tersedia',
             items: [
               { title: 'Android 2.1.1', text: 'Tersedia di Google Play sejak 13 Juni 2026.' },
-              { title: 'iOS 2.1.1', text: 'Perbaikan yang sama, sudah dikirim ke App Store Connect.' },
+              { title: 'iOS 2.1.1', text: 'Perbaikan yang sama, sekarang sudah tersedia di App Store.' },
             ],
           },
           {
@@ -759,6 +773,7 @@ const id: Strings = {
     noCode: 'Tidak ada kode room',
     browserOrPhone: 'Main di browser, atau di HP dengan aplikasinya',
     openToJoin: 'Buka SpySocial untuk gabung ke room',
+    onPhone: 'Buka link ini di HP-mu untuk gabung ke room',
     roomCode: 'Kode room',
   },
 
@@ -837,6 +852,8 @@ const id: Strings = {
     title: 'Email dikonfirmasi',
     text: 'Emailmu berhasil diverifikasi. Sekarang kamu bisa memakai semua fitur aplikasi SpySocial.',
     home: 'Kembali ke beranda',
+    expiredTitle: 'Link kedaluwarsa',
+    expired: 'Link ini sudah kedaluwarsa atau sudah dipakai. Buka SpySocial lalu ketuk <b>Kirim ulang</b>.',
   },
 }
 

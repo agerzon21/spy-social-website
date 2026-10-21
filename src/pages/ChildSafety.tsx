@@ -3,7 +3,16 @@ import { Callout } from '../components/legal/Callout'
 import { ChildSafetyContacts } from '../components/legal/ChildSafetyContacts'
 import { B, Bullets, H2, H3, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { UK_SECTION_NUMBER } from '../components/legal/UkOnlineSafety'
-import { LEGAL_LAST_UPDATED, LIVE, ONLINE_SAFETY_TEXT, OPERATOR, photosInUse } from '../lib/legalRelease'
+import {
+  LEGAL_LAST_UPDATED,
+  LIVE,
+  ONLINE_SAFETY_TEXT,
+  OPERATOR,
+  drawingCheckLive,
+  drawingCheckTestersOnly,
+  photosInUse,
+  photosShown,
+} from '../lib/legalRelease'
 import { LegalPage } from '../components/legal/LegalPage'
 
 // SpySocial's child sexual abuse and exploitation (CSAE) standards
@@ -25,7 +34,10 @@ const PUBLISHED = 'October 8, 2026'
 const later = (a: string, b: string): string => (new Date(a).getTime() >= new Date(b).getTime() ? a : b)
 
 const ChildSafety: React.FC = () => {
-  const photos = photosInUse(LIVE)
+  // Profile photos other players can see (photosShown); photosPrivate: kept, but shown to no one since 2026-10-20.
+  const photos = photosShown(LIVE)
+  const photosKept = photosInUse(LIVE) && LIVE.photosPrivate
+  const drawings = drawingCheckLive(LIVE)
   const developer = OPERATOR.name ? `, made by ${OPERATOR.name}` : ''
 
   return (
@@ -95,6 +107,8 @@ const ChildSafety: React.FC = () => {
           {photos
             ? ' Versions of the app before 2.2 let a player add a profile photo, which only shows next to their name.'
             : " The only pictures are Spy Sketch drawings, drawn with a finger during a turn, and avatars built from the parts the app offers."}
+          {photosKept &&
+            " Until October 20, 2026, versions of the app before 2.2 let a player add a profile photo, which only showed next to their name; no one can add one now, and those photos aren't shown to anyone."}
         </ListItem>
         <ListItem>
           <B>Rooms:</B> only people with a private room's code, link or QR code can join it, and the host can remove a
@@ -112,11 +126,13 @@ const ChildSafety: React.FC = () => {
           <B>Evidence:</B> chat is kept on our servers for a while (about 24 hours in a private room, 14 days in a
           public room), so a report comes with the words actually sent.
         </ListItem>
-        {LIVE.drawingCheck ? (
+        {drawings ? (
           <ListItem>
             <B>Drawing check:</B> every Spy Sketch drawing turn in a public room is checked automatically, and so is a
             drawing reported in a private room. A drawing that sexualizes a child is taken off the board in any room,
             the account is banned with no appeal, and the drawing is reported to NCMEC.
+            {drawingCheckTestersOnly(LIVE) &&
+              ' For now, while we test it, the check runs only in games where every player is one of our testers (players trying a test version of the app); in other games, a person reviews the drawings players report.'}
           </ListItem>
         ) : (
           <ListItem>
@@ -130,7 +146,7 @@ const ChildSafety: React.FC = () => {
       <OrderedList spacing={2} pl={4} textStyle="body">
         <ListItem>
           Long-press the player{LIVE.messageReports ? ', or something they wrote in the chat,' : ''} and tap{' '}
-          <B>Report</B>.{LIVE.drawingCheck ? ' You can also report a drawing.' : ''}
+          <B>Report</B>.{drawings ? ' You can also report a drawing.' : ''}
         </ListItem>
         <ListItem>
           Choose <B>Child Safety</B> ("Sexual talk with a minor, or a child at risk"), add details if you like, and
@@ -166,7 +182,7 @@ const ChildSafety: React.FC = () => {
         <ListItem>We take the content down: the message, the drawing or the name.</ListItem>
         <ListItem>
           We ban the accounts involved.
-          {LIVE.drawingCheck ? ' A drawing that sexualizes a child ends the account, with no appeal.' : ''}
+          {drawings ? ' A drawing that sexualizes a child ends the account, with no appeal.' : ''}
         </ListItem>
         <ListItem>We keep the evidence the law requires us to keep.</ListItem>
         <ListItem>

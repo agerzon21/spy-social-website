@@ -1,6 +1,6 @@
 import { Link as ChakraLink, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
-import { PRIVACY, photosInUse } from '../../lib/legalRelease'
+import { PRIVACY, photosInUse, photosShown } from '../../lib/legalRelease'
 
 // What deleting an account removes and what stays, for the Privacy Policy and
 // the Delete Account page (Google Play links to it), so the two never differ.
@@ -48,12 +48,15 @@ export const AfterDeletionList = () => (
       your email address and IP address, are kept{PRIVACY.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
       prevent abuse.
     </ListItem>
+    {/* photosPrivate: a photo's public link no longer opens at all (the bucket is private), so no cached copy either. */}
     {photosInUse(PRIVACY) &&
       (PRIVACY.photoCleanup ? (
-        <ListItem>
-          A copy of your profile photo that our content delivery network cached can still open by its link for up to an
-          hour.
-        </ListItem>
+        photosShown(PRIVACY) && (
+          <ListItem>
+            A copy of your profile photo that our content delivery network cached can still open by its link for up to
+            an hour.
+          </ListItem>
+        )
       ) : (
         <ListItem>
           Your profile photo's file isn't deleted automatically yet. If you had one, email <SupportEmail /> and we'll

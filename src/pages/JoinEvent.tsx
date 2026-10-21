@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
 import { LIVE } from '../lib/legalRelease'
 import { supabase } from '../lib/supabase'
+import { openAppHref, tryAppOnLoad, tryAppOnce } from '../lib/appLink'
 import { currentPlatform } from '../lib/platform'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 import { useLang, useT } from '../i18n'
@@ -41,7 +42,7 @@ const JoinEvent = () => {
   const linkId = id.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6)
   const [event, setEvent] = useState<EventInfo | null>(null)
   const [status, setStatus] = useState<'loading' | 'ok' | 'missing' | 'error'>('loading')
-  const appLink = `spysocial://join/e/${encodeURIComponent(linkId)}`
+  const appPath = `join/e/${encodeURIComponent(linkId)}`
   // The event's own words come in English, Spanish and Russian: the site's language when it's one of them.
   const { lang: siteLang, language } = useLang()
   const lang = siteLang.slice(0, 2)
@@ -52,6 +53,8 @@ const JoinEvent = () => {
   // iPadOS Safari says "Macintosh" (desktop-class browsing): lib/platform tells it by touch (QA F207).
   const platform = useMemo(currentPlatform, [])
   const isMobile = platform !== 'desktop'
+  // spysocial:// on iPhone and iPad, intent:// (with the Play listing as its fallback) on Android: lib/appLink.
+  const appLink = openAppHref(appPath, platform)
 
   useEffect(() => {
     let cancelled = false
@@ -77,10 +80,10 @@ const JoinEvent = () => {
     }
   }, [linkId])
 
-  // On a phone, try the app first, as the room invite page does.
+  // As the room invite page: nothing opens by itself, except once in an in-app browser on iOS (lib/appLink).
   useEffect(() => {
-    if (isMobile && linkId) window.location.href = appLink
-  }, [isMobile, linkId, appLink])
+    if (linkId && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
+  }, [platform, linkId, appPath])
 
   const fmt = (iso: string, opts: Intl.DateTimeFormatOptions, timeZone?: string) =>
     new Intl.DateTimeFormat(language.locale, timeZone ? { ...opts, timeZone } : opts).format(new Date(iso))
@@ -164,7 +167,7 @@ const JoinEvent = () => {
 
           <VStack spacing={4} align="stretch">
             {isMobile && linkId ? (
-              <Button size="lg" variant="primary" onClick={() => (window.location.href = appLink)}>
+              <Button as="a" href={appLink} size="lg" variant="primary">
                 {c.openInApp}
               </Button>
             ) : null}

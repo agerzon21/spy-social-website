@@ -7,7 +7,7 @@ import { ChildSafetyContacts } from '../components/legal/ChildSafetyContacts'
 import { InfoTable, type InfoRow } from '../components/legal/InfoTable'
 import { B, Bullets, H2, H3, OutLink, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { UK_SECTION_NUMBER } from '../components/legal/UkOnlineSafety'
-import { LEGAL_LAST_UPDATED, LIVE, avatarsLive, photosInUse } from '../lib/legalRelease'
+import { LEGAL_LAST_UPDATED, LIVE, avatarsLive, photosShown } from '../lib/legalRelease'
 import { LegalPage } from '../components/legal/LegalPage'
 import { useLang, useT } from '../i18n'
 import { formatDate, rich, type Parts } from '../i18n/rich'
@@ -58,7 +58,8 @@ const Step = ({ n, icon, title, children }: { n: number; icon: IconType; title: 
 )
 
 const Safety: React.FC = () => {
-  const photos = photosInUse(LIVE)
+  // Photos other players can see or players can add: none since 2026-10-20 (photosPrivate).
+  const photos = photosShown(LIVE)
   const avatars = avatarsLive(LIVE)
   const { language } = useLang()
   const strings = useT()

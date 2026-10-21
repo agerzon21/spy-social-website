@@ -23,6 +23,17 @@ const fr: Strings = {
       confirmSuccess: 'E-mail confirmé',
       notFound: 'Page introuvable',
     },
+    descriptions: {
+      faq: "Réponses aux questions fréquentes sur SpySocial\u00A0: débuter, modes de jeu, partager un salon et le rejoindre, langues, options de l'hôte, ton compte et dépannage.",
+      contact: "Contacte l'équipe SpySocial\u00A0: écris à support@spysocial.app pour de l'aide avec l'appli, ton compte ou autre chose.",
+      rules: "Les règles de la communauté SpySocial\u00A0: sois sympa, bluffe sans tricher, garde ta vie privée, et ce qui arrive quand quelqu'un enfreint les règles.",
+      safety: "La sécurité sur SpySocial pour les joueurs de 13 à 17\u00A0ans et pour les parents\u00A0: comment quitter, bloquer et signaler, et où trouver de l'aide.",
+      privacy: 'Comment SpySocial collecte, utilise et protège tes données personnelles, qui les reçoit, combien de temps nous les gardons et quels sont tes droits.',
+      terms: "Les conditions d'utilisation de SpySocial\u00A0: qui peut jouer, ton compte et ton contenu, les salons publics, les règles de la communauté, la modération et les recours.",
+      childSafety: "Les standards de SpySocial contre les abus et l'exploitation sexuels des enfants\u00A0: ce que nous interdisons, comment signaler un problème, ce que nous faisons et notre contact pour la protection des enfants.",
+      whatsNew: "Les notes de version de SpySocial\u00A0: nouveautés, corrections et améliorations de chaque version de l'appli.",
+      deleteAccount: "Comment supprimer ton compte SpySocial et ses données, dans l'appli ou par e-mail, et ce qui reste conservé un moment.",
+    },
   },
 
   language: {
@@ -411,6 +422,8 @@ const fr: Strings = {
       text: "En général, d'abord un avertissement. Les problèmes répétés ou graves entraînent un blocage du chat (de 1 heure à 7 jours), une pause des salons publics et des événements (de 1 à 30 jours), ou un bannissement. Partager les informations personnelles de quelqu'un, ou quoi que ce soit qui sexualise un enfant, peut entraîner un bannissement immédiat. Chaque notification dans l'appli indique ce qui est limité, pourquoi et jusqu'à quand, avec un identifiant comme S-207.",
       drawings:
         "Les dessins des salons publics et des événements peuvent être vérifiés automatiquement à tout moment, et tout dessin signalé est vérifié. Si un dessin que tu as fait enfreint ces règles, ton compte peut être suspendu ou banni des salons publics et des événements, quelle que soit ton ancienneté. Dans un salon public, un tour qui enfreint ces règles est retiré du dessin et compte comme une sanction\u00A0: d'abord un avertissement, puis 3, 7 et 30 jours sans salons publics ni événements, et à la cinquième sanction en 90 jours, pour de bon. Dans tous les salons, un symbole de haine (une croix gammée en est un, sauf si le mot de la manche lui donne clairement un sens religieux), une injure écrite ou un message de haine visant quelqu'un exclut le joueur de la partie, et des salons publics et des événements pour de bon, et un dessin qui sexualise un enfant entraîne la suppression du compte et est traité comme l'indique la section Protection des enfants ci-dessus. Le gore et les monstres sont autorisés. Dans un salon privé, un dessin signalé n'entraîne une mesure automatique que s'il est aussi grave\u00A0; pour tout le reste, c'est la personne qui lit le signalement qui décide. Pour faire appel, envoie-nous par e-mail le code de ta notification.",
+      drawingsTesters:
+        "Pour l'instant, la vérification automatique des dessins est en test\u00A0: elle ne fonctionne que dans les parties où tous les joueurs sont nos testeurs (des joueurs qui essaient une version de test de l'appli).",
     },
     age: { title: 'Âge', text: 'SpySocial est réservé aux joueurs de 13 ans et plus.' },
     appeal: {
@@ -578,6 +591,7 @@ const fr: Strings = {
     quickLinks: 'Liens rapides',
     faqLink: 'FAQ et dépannage',
     rate: "Note-nous sur l'App Store",
+    ratePlay: 'Note-nous sur Google Play',
   },
 
   whatsNew: {
@@ -593,7 +607,7 @@ const fr: Strings = {
             label: 'Disponible',
             items: [
               { title: 'Android 2.1.1', text: 'Sur Google Play depuis le 13 juin 2026.' },
-              { title: 'iOS 2.1.1', text: 'Les mêmes corrections, envoyées sur App Store Connect.' },
+              { title: 'iOS 2.1.1', text: "Les mêmes corrections, désormais disponibles sur l'App Store." },
             ],
           },
           {
@@ -758,6 +772,7 @@ const fr: Strings = {
     noCode: 'Aucun code de salon fourni',
     browserOrPhone: "Joue dans ton navigateur, ou sur ton téléphone avec l'appli",
     openToJoin: 'Ouvre SpySocial pour rejoindre le salon',
+    onPhone: 'Ouvre ce lien sur ton téléphone pour rejoindre le salon',
     roomCode: 'Code du salon',
   },
 
@@ -839,6 +854,8 @@ const fr: Strings = {
     title: 'E-mail confirmé',
     text: "Ton adresse e-mail a bien été vérifiée. Tu peux maintenant utiliser toutes les fonctions de l'appli SpySocial.",
     home: "Retour à l'accueil",
+    expiredTitle: 'Lien expiré',
+    expired: 'Ce lien a expiré ou a déjà été utilisé. Ouvre SpySocial et appuie sur <b>Renvoyer</b>.',
   },
 }
 

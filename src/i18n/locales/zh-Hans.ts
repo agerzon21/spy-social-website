@@ -23,6 +23,17 @@ const zhHans: Strings = {
       confirmSuccess: '邮箱已确认',
       notFound: '页面不存在',
     },
+    descriptions: {
+      faq: 'SpySocial 常见问题解答：如何开始、游戏模式、分享和加入房间、语言、房主控制、你的账号以及故障排除。',
+      contact: '联系 SpySocial 团队：如需应用、账号或其他方面的帮助，请发邮件至 support@spysocial.app。',
+      rules: 'SpySocial 社区规则：友善待人，可以唬人但不能作弊，保护隐私，以及违反规则会怎样。',
+      safety: 'SpySocial 安全指南，写给 13 至 17 岁的玩家和家长及监护人：如何离开、屏蔽和举报，以及去哪里寻求帮助。',
+      privacy: 'SpySocial 如何收集、使用和保护你的个人数据，谁会收到这些数据，我们保留多久，以及你的隐私权利。',
+      terms: 'SpySocial 服务条款：谁可以玩、你的账号和内容、公开房间、社区规则、内容审核与申诉。',
+      childSafety: 'SpySocial 打击儿童性虐待和性剥削的标准：我们禁止什么、如何举报问题、我们会怎么做，以及我们的儿童安全联系人。',
+      whatsNew: 'SpySocial 版本说明：应用每个版本的新功能、修复和改进。',
+      deleteAccount: '如何在应用内或通过邮件删除你的 SpySocial 账号及其数据，以及删除后哪些内容会暂时保留。',
+    },
   },
 
   language: {
@@ -411,6 +422,8 @@ const zhHans: Strings = {
       text: '通常先给予警告。屡次违规或情节严重的，会被禁言（1 小时至 7 天）、暂停参加公开房间和活动（1 至 30 天），或被封禁。泄露他人个人信息，或任何性化儿童的行为，可能会被立即封禁。应用中的每条通知都会说明限制了什么、原因和截止时间，并附有编号，例如 S-207。',
       drawings:
         '公开房间和活动中的画作随时可能被自动检查，被举报的画作都会被检查。如果你的画作违反了这些规则，无论你玩了多久，你的账号都可能被暂停或禁止参加公开房间和活动。在公开房间中，违反规则的一笔会从画作上撤下，并记一次违规：第一次警告，之后分别 3 天、7 天和 30 天不能参加公开房间和活动，90 天内第五次违规则永久禁止。在任何房间里，仇恨符号（纳粹卍字也算，除非本轮的词语明确表明是宗教含义）、写出的侮辱性称呼或针对他人的仇恨内容，会让该玩家被移出游戏，并永久禁止参加公开房间和活动；性化儿童的画作会导致账号被终止，并按上文“儿童安全”所述处理。血腥和怪物没问题。在私密房间中，只有达到这种严重程度的被举报画作才会被自动处理；其他情况由查看举报的人决定。如需申诉，请把通知中的编号发邮件给我们。',
+      drawingsTesters:
+        '目前画作自动检查仍在测试中，只在所有玩家都是我们的测试玩家（正在试用应用测试版的玩家）的游戏中进行。',
     },
     age: { title: '年龄', text: 'SpySocial 面向 13 岁及以上的玩家。' },
     appeal: {
@@ -578,6 +591,7 @@ const zhHans: Strings = {
     quickLinks: '快速链接',
     faqLink: '常见问题与故障排除',
     rate: '在 App Store 给我们评分',
+    ratePlay: '在 Google Play 给我们评分',
   },
 
   whatsNew: {
@@ -593,7 +607,7 @@ const zhHans: Strings = {
             label: '现已推出',
             items: [
               { title: 'Android 2.1.1', text: '2026 年 6 月 13 日起已在 Google Play 上线。' },
-              { title: 'iOS 2.1.1', text: '同样的修复，已提交至 App Store Connect。' },
+              { title: 'iOS 2.1.1', text: '同样的修复，现已在 App Store 上线。' },
             ],
           },
           {
@@ -758,6 +772,7 @@ const zhHans: Strings = {
     noCode: '没有提供房间码',
     browserOrPhone: '在浏览器中玩，或在手机上用应用玩',
     openToJoin: '打开 SpySocial 加入房间',
+    onPhone: '在手机上打开此链接即可加入房间',
     roomCode: '房间码',
   },
 
@@ -836,6 +851,8 @@ const zhHans: Strings = {
     title: '邮箱已确认',
     text: '你的邮箱已成功验证。现在你可以使用 SpySocial 应用的全部功能了。',
     home: '返回首页',
+    expiredTitle: '链接已失效',
+    expired: '此链接已过期或已被使用。请打开 SpySocial，点击<b>重新发送</b>。',
   },
 }
 

@@ -44,9 +44,12 @@ const Languages = () => {
           {t.sub}
         </p>
         <ul className={s.tongues} aria-label={t.listLabel}>
+          {/* The name sits in its own direction inside the item, so the "/" after it follows the page's (QA F4519). */}
           {TONGUES.map(([lang, name]) => (
-            <li key={lang} lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
-              {name}
+            <li key={lang}>
+              <span lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+                {name}
+              </span>
             </li>
           ))}
         </ul>

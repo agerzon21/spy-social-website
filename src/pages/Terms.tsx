@@ -13,7 +13,10 @@ import {
   TERMS_PREVIOUS,
   TERMS_PUBLISHED,
   avatarsLive,
+  drawingCheckLive,
+  drawingCheckTestersOnly,
   photosInUse,
+  photosShown,
 } from '../lib/legalRelease'
 
 // The owner's choices (2026-10-03): 13 and older only, everyone included;
@@ -28,7 +31,10 @@ const SupportEmail = () => <PageLink to="/contact-us">support@spysocial.app</Pag
 const Terms: React.FC = () => {
   const state = GOVERNING_STATE
   const we = OPERATOR.name ? `${OPERATOR.name}, the operator of SpySocial` : 'SpySocial'
+  // Profile photos we still hold (photosInUse) and ones other players can still see or players can add (photosShown).
   const photos = photosInUse(LIVE)
+  const photosSeen = photosShown(LIVE)
+  const drawings = drawingCheckLive(LIVE)
 
   return (
     <LegalPage english title="Terms of Service for SpySocial" updated={<>Last Updated: {LEGAL_LAST_UPDATED}</>}>
@@ -51,7 +57,7 @@ const Terms: React.FC = () => {
         <Bullets>
           <ListItem>Be kind and play fair, and follow our Community Rules. We don't tolerate objectionable content or abusive players.</ListItem>
           <ListItem>
-            What you add (your name, {photos ? 'photo, ' : ''}messages and drawings) stays yours, but other players see it,
+            What you add (your name, {photosSeen ? 'photo, ' : ''}messages and drawings) stays yours, but other players see it,
             and you let us use it to run SpySocial.
           </ListItem>
           <ListItem>Public rooms put you in games with people you don't know. Keep your personal information to yourself.</ListItem>
@@ -191,7 +197,7 @@ const Terms: React.FC = () => {
       <H3>Your responsibility</H3>
       <P>
         You're responsible for your content. Only add content you have the right to share
-        {photos ? " (for example, don't upload a photo of someone else without their permission)" : ''}, and make
+        {photosSeen ? " (for example, don't upload a photo of someone else without their permission)" : ''}, and make
         sure it follows these Terms and the Community Rules. Other players can see, remember and take screenshots of
         what you share in a room, and we can't control what they do with it, so think before you share.
       </P>
@@ -206,7 +212,7 @@ const Terms: React.FC = () => {
       <H2>7. Community Rules and Zero Tolerance</H2>
       <P>
         Our <PageLink to="/rules">Community Rules</PageLink> are part of these Terms. They apply to names,
-        {photos ? ' photos,' : ''} chat, drawings and how you play, in public and private rooms. We have zero
+        {photosSeen ? ' photos,' : ''} chat, drawings and how you play, in public and private rooms. We have zero
         tolerance for objectionable content and abusive players. Don't post, send, draw or do anything that:
       </P>
       <Bullets>
@@ -243,7 +249,7 @@ const Terms: React.FC = () => {
       <P>
         You can report or block a player from their name in the app
         {LIVE.messageReports ? ', report a message, question or answer by long-pressing it' : ''}
-        {LIVE.drawingCheck ? ', and report a drawing' : ''}.
+        {drawings ? ', and report a drawing' : ''}.
         A person reads every report, and our Community Rules say how soon. The player you report isn't told who
         reported them. To check a report, we look at what's attached to it and at the records we keep, as our
         Privacy Policy describes.
@@ -252,13 +258,16 @@ const Terms: React.FC = () => {
       <P>
         We also use automated tools to keep SpySocial safe: a word filter that can block certain words in names,
         usernames, room codes and chat messages, and limits on how often some actions can be repeated.
-        {photos &&
+        {photosSeen &&
           ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
-        {LIVE.drawingCheck ? (
+        {drawings ? (
           <>
             {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms (
             {LIVE.onePool ? 'Play Online tables and events' : 'including Play Online tables and events'}), and at
-            any drawing someone reports. In a public room, when it finds that a turn
+            any drawing someone reports.
+            {drawingCheckTestersOnly(LIVE) &&
+              ' For now, while we test it, it does this only in games where every player is one of our testers (players trying a test version of the app).'}{' '}
+            In a public room, when it finds that a turn
             breaks the Community Rules, it takes that turn off the drawing and gives the player a strike: a warning
             first, then 3, 7 and 30 days without public rooms and events, and at the fifth strike within 90 days no
             public rooms or events for good. In any room, a flagrant drawing (a hate symbol, including a swastika,

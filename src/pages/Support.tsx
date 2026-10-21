@@ -2,10 +2,11 @@ import { Box, Container, Heading, Text, VStack, HStack, Icon } from '@chakra-ui/
 import { useState } from 'react'
 import { FiCopy, FiCheck, FiMail } from 'react-icons/fi'
 import { FaApple } from 'react-icons/fa'
+import { IoLogoGooglePlaystore } from 'react-icons/io5'
 import { useThemedToast } from '../lib/useThemedToast'
 import SocialLinks from '../components/SocialLinks'
 import { LinkRow, LinkRows } from '../components/ui/LinkRow'
-import { APP_STORE_URL } from '../lib/stores'
+import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 import { useT } from '../i18n'
 
 const Support = () => {
@@ -102,6 +103,7 @@ const Support = () => {
             <LinkRows>
               <LinkRow to="/support" label={t.faqLink} />
               <LinkRow href={APP_STORE_URL} newTab icon={<FaApple />} label={t.rate} />
+              <LinkRow href={PLAY_STORE_URL} newTab icon={<IoLogoGooglePlaystore />} label={t.ratePlay} />
             </LinkRows>
           </VStack>
 
