@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Every page search engines index (components/SiteHead.tsx: not the invites, account-email landings or
      the 404 page), bare and with ?lang= for each of the ten languages. /safety joins with the launch text
-     (ONLINE_SAFETY_TEXT). Keep in step with App.tsx's routes and SiteHead.tsx. -->
+     (ONLINE_SAFETY_TEXT). The build adds the pages that wait for a LIVE switch once it's on (vite.config.ts,
+     SWITCHED_PAGES). Keep in step with App.tsx's routes and SiteHead.tsx. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.spysocial.app/</loc>

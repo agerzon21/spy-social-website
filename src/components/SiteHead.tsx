@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import { LANGUAGES, matchLang, useLang, useT, type Strings } from '../i18n'
-import { ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
+import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 
 /** The address search engines know the site by: the bare spysocial.app redirects here (vercel.json). */
 const ORIGIN = 'https://www.spysocial.app'
@@ -10,11 +10,19 @@ type PageKey = keyof Strings['meta']['titles']
 type DescribedPage = keyof Strings['meta']['descriptions']
 
 /**
- * Pages search engines shouldn't index: invites (/join, /join/<code>, /join/e/<id>), the account-email landings and
- * anything unknown (the 404 page, which the server answers with 200 like every route). They get noindex and no
- * alternates or canonical; vercel.json also sends X-Robots-Tag for the fixed ones.
+ * Pages search engines shouldn't index: invites (/join, /join/<code>, /join/e/<id>), the account-email landings,
+ * anything unknown (the 404 page, which the server answers with 200 like every route) and the roadmap until it's
+ * announced (LIVE.roadmap). They get noindex and no alternates or canonical; vercel.json also sends X-Robots-Tag for
+ * the fixed ones.
  */
-const UNLISTED = new Set<PageKey>(['join', 'joinEvent', 'resetPassword', 'confirmSuccess', 'notFound'])
+const UNLISTED = new Set<PageKey>([
+  'join',
+  'joinEvent',
+  'resetPassword',
+  'confirmSuccess',
+  'notFound',
+  ...(LIVE.roadmap ? [] : (['roadmap'] as const)),
+])
 
 /** Which page a path is, for its title. The home page takes the site's own title, anything unknown notFound's. */
 function pageOf(path: string): PageKey | null {
@@ -31,6 +39,7 @@ function pageOf(path: string): PageKey | null {
     '/terms': 'terms',
     '/child-safety': 'childSafety',
     '/whats-new': 'whatsNew',
+    '/roadmap': 'roadmap',
     '/delete-account': 'deleteAccount',
     '/reset-password': 'resetPassword',
     '/confirm-success': 'confirmSuccess',

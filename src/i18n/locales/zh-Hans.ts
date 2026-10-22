@@ -16,6 +16,7 @@ const zhHans: Strings = {
       terms: '服务条款',
       childSafety: '儿童安全标准',
       whatsNew: '更新内容',
+      roadmap: '路线图',
       deleteAccount: '删除你的账号',
       join: '加入游戏',
       joinEvent: '公开活动',
@@ -32,6 +33,7 @@ const zhHans: Strings = {
       terms: 'SpySocial 服务条款：谁可以玩、你的账号和内容、公开房间、社区规则、内容审核与申诉。',
       childSafety: 'SpySocial 打击儿童性虐待和性剥削的标准：我们禁止什么、如何举报问题、我们会怎么做，以及我们的儿童安全联系人。',
       whatsNew: 'SpySocial 版本说明：应用每个版本的新功能、修复和改进。',
+      roadmap: 'SpySocial 即将推出的内容：2.2 版本的全部更新，从在线游戏、Spy Sketch 到聊天自动翻译，以及之后的计划：排位赛、赛季和锦标赛。',
       deleteAccount: '如何在应用内或通过邮件删除你的 SpySocial 账号及其数据，以及删除后哪些内容会暂时保留。',
     },
   },
@@ -57,6 +59,7 @@ const zhHans: Strings = {
     legal: '法律与安全',
     browser: '在浏览器中玩',
     whatsNew: '更新内容',
+    roadmap: '路线图',
     rules: '规则',
     support: '帮助',
     contact: '联系我们',
@@ -765,6 +768,51 @@ const zhHans: Strings = {
         sections: [] as { label: string; items: { title: string; text: string }[] }[],
       },
     ],
+  },
+
+  roadmap: {
+    eyebrow: '路线图',
+    title: '即将到来',
+    lede: (day: string) => `SpySocial\u00A02.2 将于 ${day}上线。来看看这次更新有什么，以及我们接下来在做什么。`,
+    ledeOut: 'SpySocial\u00A02.2 现已上线。来看看这次更新有什么，以及我们接下来在做什么。',
+    now: {
+      coming: (day: string) => `${day}上线`,
+      out: '现已上线',
+      title: 'SpySocial 2.2',
+      sub: '我们迄今最大的一次更新。',
+      features: [
+        { title: '在线游戏', text: '点击“开始匹配”，加入 4 人或 8 人游戏桌，所有人都用同一套标准规则。只需一个免费账号。' },
+        { title: 'Spy Sketch', text: '全新玩法：在一块共享白板上画出秘密词语，揪出假装知道的卧底。' },
+        { title: '自动翻译', text: '在大厅和游戏中聊天，支持 10 种语言：其他语言的消息一到，就会翻译成你的语言。' },
+        {
+          title: '你的特工和商店',
+          text: '打造你自己的卧底头像。商店里有主题包、会员、头像物品和庆祝动画：全部可选，也都不会改变游戏玩法。',
+        },
+        { title: '活动', text: '定时举办的在线游戏。点击“提醒我”，开始前我们会提醒你。' },
+        {
+          title: '特工颜色',
+          text: '在线游戏和活动中，陌生人只能看到你的特工颜色，比如“蓝绿色特工”，看不到你的名字。选出你最喜欢的三种颜色。',
+        },
+        { title: '创作者代码', text: '拿到了创作者或 SpySocial 给的代码？在“设置”里输入，就能获得称号或其他奖励。' },
+        {
+          title: '安全保障',
+          text: 'SpySocial 面向 13 岁及以上的玩家。聊天有敏感词过滤，你可以举报或屏蔽任何玩家；在有未满 18 岁玩家的房间里，聊天会屏蔽链接、电话号码和社交账号。',
+        },
+      ],
+      more: '另外还有玩家数据、可解锁的称号和边框、最高 100 级的等级与威望，以及全新的界面设计。',
+    },
+    next: {
+      status: '计划中',
+      noDates: '暂无日期',
+      title: '接下来',
+      sub: '2.2 之后，我们将打造 SpySocial 的竞技玩法。',
+      plans: [
+        { title: '排位赛', text: '参加排位赛，你的段位会显示在个人资料上。系统按段位为你匹配水平相近的玩家。' },
+        { title: '赛季', text: '每个赛季都有专属奖励，比如称号和边框，根据你达到的段位和参与的对局发放。' },
+        { title: '锦标赛', text: '提前报名定时举办的锦标赛，在小桌上进行淘汰赛。胜者逐轮晋级，直到决赛桌，并按名次获得奖励。' },
+      ],
+    },
+    outro: '计划可能会变。关注我们，获取最新消息。',
   },
 
   join: {

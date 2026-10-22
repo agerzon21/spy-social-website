@@ -16,6 +16,7 @@ const ptBR: Strings = {
       terms: 'Termos de uso',
       childSafety: 'Padrões de segurança infantil',
       whatsNew: 'Novidades',
+      roadmap: 'Roadmap',
       deleteAccount: 'Excluir sua conta',
       join: 'Entrar numa partida',
       joinEvent: 'Evento público',
@@ -32,6 +33,8 @@ const ptBR: Strings = {
       terms: 'Os termos para usar o SpySocial: quem pode jogar, sua conta e seu conteúdo, salas públicas, regras da comunidade, moderação e recursos.',
       childSafety: 'Os padrões do SpySocial contra o abuso e a exploração sexual infantil: o que proibimos, como denunciar um problema, o que fazemos e nosso contato de segurança infantil.',
       whatsNew: 'Notas de versão do SpySocial: novos recursos, correções e melhorias em cada versão do app.',
+      roadmap:
+        'O que vem aí no SpySocial: tudo da versão 2.2, do Jogar online e do Spy Sketch à tradução automática do chat, e o que está planejado depois: partidas ranqueadas, temporadas e torneios.',
       deleteAccount: 'Como excluir sua conta do SpySocial e os dados dela, no app ou por e-mail, e o que ainda fica guardado por um tempo.',
     },
   },
@@ -57,6 +60,7 @@ const ptBR: Strings = {
     legal: 'Legal e segurança',
     browser: 'Jogue no navegador',
     whatsNew: 'Novidades',
+    roadmap: 'Roadmap',
     rules: 'Regras',
     support: 'Suporte',
     contact: 'Contato',
@@ -766,6 +770,72 @@ const ptBR: Strings = {
         sections: [] as { label: string; items: { title: string; text: string }[] }[],
       },
     ],
+  },
+
+  roadmap: {
+    eyebrow: 'Roadmap',
+    title: 'O que vem aí',
+    lede: (day: string) => `O SpySocial\u00A02.2 chega em ${day}. Veja o que vem nele e o que estamos preparando depois.`,
+    ledeOut: 'O SpySocial\u00A02.2 já chegou. Veja o que vem nele e o que estamos preparando depois.',
+    now: {
+      coming: (day: string) => `Chega em ${day}`,
+      out: 'Já disponível',
+      title: 'SpySocial 2.2',
+      sub: 'Nossa maior atualização até agora.',
+      features: [
+        {
+          title: 'Jogar online',
+          text: 'Toque em “Buscar partida” para uma mesa de 4 ou 8 jogadores, com as mesmas regras padrão para todos. Você só precisa de uma conta grátis.',
+        },
+        {
+          title: 'Spy Sketch',
+          text: 'Uma nova forma de jogar: desenhe a palavra secreta num quadro compartilhado e pegue os espiões que estão só fingindo.',
+        },
+        {
+          title: 'Tradução automática',
+          text: 'Converse na sala e durante a partida em qualquer um dos 10 idiomas: mensagens em outros idiomas chegam traduzidas para o seu.',
+        },
+        {
+          title: 'Seu agente e a Loja',
+          text: 'Crie seu próprio avatar de espião. A Loja tem pacotes, assinaturas, itens de avatar e comemorações: tudo opcional, e nada disso muda o jeito de jogar.',
+        },
+        { title: 'Noites de jogos', text: 'Partidas online com hora marcada. Toque em “Me avise” e a gente avisa antes de começar.' },
+        {
+          title: 'Cores de agente',
+          text: 'Nas mesas do Jogar online e nas noites de jogos, estranhos veem sua cor de agente, como Agente Turquesa, nunca o seu nome. Escolha suas três cores favoritas.',
+        },
+        {
+          title: 'Códigos de criadores',
+          text: 'Ganhou um código de um criador ou do SpySocial? Insira o código em Ajustes e ganhe um título ou outra recompensa.',
+        },
+        {
+          title: 'Segurança',
+          text: 'O SpySocial é para maiores de 13 anos. O chat tem filtro de palavras, você pode denunciar ou bloquear qualquer jogador, e nas salas com alguém menor de 18 anos o chat bloqueia links, números de telefone e redes sociais.',
+        },
+      ],
+      more: 'E mais: estatísticas, títulos e molduras para desbloquear, níveis até o 100 com prestígio e um visual novo em todas as telas.',
+    },
+    next: {
+      status: 'Planejado',
+      noDates: 'Ainda sem data',
+      title: 'Próximos passos',
+      sub: 'Depois da 2.2, vamos construir o lado competitivo do SpySocial.',
+      plans: [
+        {
+          title: 'Modo ranqueado',
+          text: 'Jogue partidas ranqueadas e mostre seu rank no perfil. O matchmaking junta você com jogadores de rank parecido.',
+        },
+        {
+          title: 'Temporadas',
+          text: 'Cada temporada traz recompensas próprias, como títulos e molduras, pelo rank que você alcançar e pelas partidas que jogar.',
+        },
+        {
+          title: 'Torneios',
+          text: 'Inscreva-se com antecedência num torneio com data marcada e jogue rodadas eliminatórias em mesas pequenas. Os vencedores avançam, rodada a rodada, até a mesa final, com recompensas pela colocação.',
+        },
+      ],
+    },
+    outro: 'Os planos podem mudar. Siga a gente para ficar por dentro.',
   },
 
   join: {

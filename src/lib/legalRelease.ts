@@ -426,6 +426,15 @@ export const LIVE = {
    */
   creatorCodes: true,
   /**
+   * The roadmap page (/roadmap, pages/Roadmap.tsx; owner 2026-10-21): what 2.2 brings on the launch day and what's
+   * planned next (ranked, seasons, tournaments), with no dates beyond the launch. Its route works either way, so the
+   * owner can read it before it goes up. On, the page is announced: the footer links to it (components/Footer),
+   * search engines may index it (components/SiteHead) and the build adds it to sitemap.xml (vite.config.ts reads
+   * this switch). Off until the owner approves the text. No legal text reads it, so flipping it changes no Last
+   * Updated date. A website fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  roadmap: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -462,7 +471,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * openAiTranslation (a server switch for every app version at once, which the Terms read too: set in LIVE, and its
  * "or" wording lets it go on before the engine does), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
  * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
- * in LIVE), browserLinks (the site's links to the browser version, no legal text), merchShop (the shop links and
+ * in LIVE), browserLinks (the site's links to the browser version, no legal text), roadmap (the roadmap page's link,
+ * indexing and sitemap entry, no legal text), merchShop (the shop links and
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
  * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), scheduledRetention,

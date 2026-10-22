@@ -33,6 +33,7 @@ const en = {
       terms: 'Terms of Service',
       childSafety: 'Child Safety Standards',
       whatsNew: "What's New",
+      roadmap: 'Roadmap',
       deleteAccount: 'Delete your account',
       join: 'Join a game',
       joinEvent: 'Public event',
@@ -50,6 +51,8 @@ const en = {
       terms: 'The terms for using SpySocial: who can play, your account and content, public rooms, the community rules, moderation and appeals.',
       childSafety: "SpySocial's standards against child sexual abuse and exploitation: what we prohibit, how to report a concern, what we do, and our child safety contact.",
       whatsNew: 'Release notes for SpySocial: new features, fixes and improvements in each version of the app.',
+      roadmap:
+        "What's coming to SpySocial: everything in version 2.2, from Play Online and Spy Sketch to automatic chat translation, and what's planned next: ranked games, seasons and tournaments.",
       deleteAccount: 'How to delete your SpySocial account and its data, in the app or by email, and what stays for a while after.',
     },
   },
@@ -79,6 +82,8 @@ const en = {
     legal: 'Legal & Safety',
     browser: 'Play in Your Browser',
     whatsNew: "What's New",
+    /** The link to the roadmap page, once it's announced (LIVE.roadmap). */
+    roadmap: 'Roadmap',
     rules: 'Rules',
     support: 'Support',
     contact: 'Contact',
@@ -808,6 +813,83 @@ const en = {
         sections: [] as { label: string; items: { title: string; text: string }[] }[],
       },
     ],
+  },
+
+  /**
+   * The roadmap (/roadmap): what 2.2 brings on the launch day, then what's planned, with no other dates. Short and
+   * player-facing, in the app's own words (the stores' 2.2 What's New). Say "planned", never promise.
+   */
+  roadmap: {
+    eyebrow: 'Roadmap',
+    /** The poster line, set huge, before the home hero's full stop (home.hero.titleMark). Short: it must fit a 320 px phone. */
+    title: "What's coming",
+    /** Under it until 2.2 is out. `day` is the launch day in the page's language, without the year ("November 10", "10 ноября"). */
+    lede: (day: string) => `SpySocial\u00A02.2 lands on ${day}. See what's in it, and what we're building next.`,
+    /** The same once 2.2 is out. */
+    ledeOut: "SpySocial\u00A02.2 is out now. See what's in it, and what we're building next.",
+    now: {
+      /** Over the 2.2 heading until it's out (a short label in capitals). */
+      coming: (day: string) => `Coming ${day}`,
+      /** The same label once it's out. */
+      out: 'Out now',
+      title: 'SpySocial 2.2',
+      sub: 'Our biggest update yet.',
+      /** The cards, in this order: the page gives them their icons by position. Button names are the app's. */
+      features: [
+        {
+          title: 'Play Online',
+          text: 'Tap Find a Game for a table of 4 or 8 players, with the same standard rules for everyone. All you need is a free account.',
+        },
+        { title: 'Spy Sketch', text: 'A new way to play: draw the secret word on one shared whiteboard, and catch the spies faking it.' },
+        {
+          title: 'Automatic translation',
+          text: 'Chat in the lobby and during the game, in any of 10 languages: messages in other languages translate into yours as they arrive.',
+        },
+        {
+          title: 'Your agent and the Shop',
+          text: 'Build your own spy avatar. The Shop has packs, memberships, avatar items and celebrations: all optional, and none of it changes how the game plays.',
+        },
+        { title: 'Game nights', text: "Scheduled online games. Tap Remind Me and we'll remind you before they start." },
+        {
+          title: 'Agent Colors',
+          text: 'At Play Online tables and game nights, strangers see your Agent Color, like Agent Teal, never your name. Pick your three favorite colors.',
+        },
+        {
+          title: 'Creator codes',
+          text: 'Got a code from a creator or from SpySocial? Enter it in Settings for a title or another reward.',
+        },
+        {
+          title: 'Safety built in',
+          text: 'SpySocial is for ages 13 and up. Chat has a word filter, you can report or block any player, and rooms with a player under 18 block links, phone numbers and social accounts in chat.',
+        },
+      ],
+      /** One line under the cards. */
+      more: 'Plus Player Stats, titles and borders to unlock, levels up to 100 with prestige, and a new look on every screen.',
+    },
+    next: {
+      /** A stamp: these are plans. */
+      status: 'Planned',
+      noDates: 'No dates yet',
+      title: 'Up next',
+      sub: "After 2.2, we're building the competitive side of SpySocial.",
+      /** In this order (icons by position): ranked, seasons, tournaments. */
+      plans: [
+        {
+          title: 'Ranked',
+          text: 'Play ranked games for a rank that shows on your profile. Matchmaking puts you with players near your rank.',
+        },
+        {
+          title: 'Seasons',
+          text: 'Each season comes with its own rewards, like titles and borders, for the rank you reach and the games you play.',
+        },
+        {
+          title: 'Tournaments',
+          text: 'Sign up ahead for a scheduled tournament and play knockout rounds at small tables. Winners move on, round by round, to the final table, with rewards for placing.',
+        },
+      ],
+    },
+    /** The last line, over the social accounts. */
+    outro: 'Plans can change. Follow us for news.',
   },
 
   join: {

@@ -32,15 +32,16 @@ export const bold: Parts['b'] = (c) => <b>{c}</b>
 
 /**
  * A date written "October 16, 2026" (legalRelease.ts, the release notes) in the page's language:
- * "16 октября 2026 г.", "2026年10月16日". Anything it can't read stays as written.
+ * "16 октября 2026 г.", "2026年10月16日". `year: false` leaves the year out ("16 октября", "10月16日"). Anything it
+ * can't read stays as written.
  */
 const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
-export function formatDate(text: string, locale: string): string {
+export function formatDate(text: string, locale: string, { year = true }: { year?: boolean } = {}): string {
   const m = /^([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})$/.exec(text.trim())
   const month = m ? MONTHS.indexOf(m[1].toLowerCase()) : -1
   if (!m || month < 0) return text
   try {
-    return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' }).format(
+    return new Intl.DateTimeFormat(locale, { year: year ? 'numeric' : undefined, month: 'long', day: 'numeric', timeZone: 'UTC' }).format(
       new Date(Date.UTC(Number(m[3]), month, Number(m[2]))),
     )
   } catch {

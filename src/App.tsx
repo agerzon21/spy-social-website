@@ -45,6 +45,8 @@ const page = <T,>(load: () => Promise<T>) =>
 
 const ConfirmSuccess = page(() => import('./pages/ConfirmSuccess'))
 const Agree = page(() => import('./pages/Agree'))
+// Its own chunk: nothing links to it until LIVE.roadmap is on (the route works either way).
+const Roadmap = page(() => import('./pages/Roadmap'))
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
@@ -80,6 +82,7 @@ function App() {
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
+              <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
               <Route path="/join/e/:id" element={<Layout><JoinEvent /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />

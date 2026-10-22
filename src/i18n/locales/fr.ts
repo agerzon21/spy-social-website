@@ -16,6 +16,7 @@ const fr: Strings = {
       terms: "Conditions d'utilisation",
       childSafety: 'Protection des enfants',
       whatsNew: 'Nouveautés',
+      roadmap: 'Feuille de route',
       deleteAccount: 'Supprimer ton compte',
       join: 'Rejoindre une partie',
       joinEvent: 'Événement public',
@@ -32,6 +33,8 @@ const fr: Strings = {
       terms: "Les conditions d'utilisation de SpySocial\u00A0: qui peut jouer, ton compte et ton contenu, les salons publics, les règles de la communauté, la modération et les recours.",
       childSafety: "Les standards de SpySocial contre les abus et l'exploitation sexuels des enfants\u00A0: ce que nous interdisons, comment signaler un problème, ce que nous faisons et notre contact pour la protection des enfants.",
       whatsNew: "Les notes de version de SpySocial\u00A0: nouveautés, corrections et améliorations de chaque version de l'appli.",
+      roadmap:
+        "Ce qui arrive sur SpySocial : tout sur la version 2.2, de « Jouer en ligne » et Spy Sketch à la traduction automatique du chat, et ce qui est prévu ensuite : mode classé, saisons et tournois.",
       deleteAccount: "Comment supprimer ton compte SpySocial et ses données, dans l'appli ou par e-mail, et ce qui reste conservé un moment.",
     },
   },
@@ -57,6 +60,7 @@ const fr: Strings = {
     legal: 'Mentions légales et sécurité',
     browser: 'Jouer dans le navigateur',
     whatsNew: 'Nouveautés',
+    roadmap: 'Feuille de route',
     rules: 'Règles',
     support: 'Aide',
     contact: 'Contact',
@@ -765,6 +769,75 @@ const fr: Strings = {
         sections: [] as { label: string; items: { title: string; text: string }[] }[],
       },
     ],
+  },
+
+  roadmap: {
+    eyebrow: 'Feuille de route',
+    title: 'À venir',
+    lede: (day: string) => `La mise à jour SpySocial\u00A02.2 arrive le ${day}. Découvre ce qu'elle apporte et ce qu'on prépare pour la suite.`,
+    ledeOut: "La mise à jour SpySocial\u00A02.2 est là. Découvre ce qu'elle apporte et ce qu'on prépare pour la suite.",
+    now: {
+      coming: (day: string) => `Disponible le ${day}`,
+      out: 'Disponible',
+      title: 'SpySocial 2.2',
+      sub: 'Notre plus grosse mise à jour.',
+      features: [
+        {
+          title: 'Jouer en ligne',
+          text: 'Appuie sur « Trouver une partie » pour une table de 4 ou 8 joueurs, avec les mêmes règles standard pour tous. Il te faut juste un compte gratuit.',
+        },
+        {
+          title: 'Spy Sketch',
+          text: 'Une nouvelle façon de jouer : dessine le mot secret sur un tableau commun et démasque les espions qui font semblant.',
+        },
+        {
+          title: 'Traduction automatique',
+          text: "Discute dans le salon et pendant la partie, dans l'une des 10 langues : les messages dans une autre langue sont traduits dans la tienne dès leur arrivée.",
+        },
+        {
+          title: 'Ton agent et la boutique',
+          text: "Crée ton propre avatar d'espion. La boutique propose des packs, des abonnements, des objets d'avatar et des célébrations : tout est facultatif, et rien ne change la façon de jouer.",
+        },
+        {
+          title: 'Soirées jeux',
+          text: 'Des parties en ligne programmées. Appuie sur « Me le rappeler » et on te préviendra avant le début.',
+        },
+        {
+          title: "Couleurs d'agent",
+          text: "Aux tables de « Jouer en ligne » et aux soirées jeux, les inconnus voient ta couleur d'agent, comme Agent Turquoise, jamais ton nom. Choisis tes trois couleurs préférées.",
+        },
+        {
+          title: 'Codes de créateurs',
+          text: "Un créateur ou SpySocial t'a donné un code ? Saisis-le dans les Réglages pour obtenir un titre ou une autre récompense.",
+        },
+        {
+          title: 'Sécurité',
+          text: "SpySocial est réservé aux 13 ans et plus. Le chat a un filtre de mots, tu peux signaler ou bloquer n'importe quel joueur, et dans les salons avec un joueur de moins de 18 ans, le chat bloque les liens, les numéros de téléphone et les réseaux sociaux.",
+        },
+      ],
+      more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, et un nouveau look sur chaque écran.",
+    },
+    next: {
+      status: 'Prévu',
+      noDates: 'Pas encore de date',
+      title: 'Ensuite',
+      sub: "Après la 2.2, on s'attaque au côté compétitif de SpySocial.",
+      plans: [
+        {
+          title: 'Mode classé',
+          text: 'Joue des parties classées et affiche ton rang sur ton profil. Le matchmaking te place avec des joueurs de ton niveau.',
+        },
+        {
+          title: 'Saisons',
+          text: 'Chaque saison a ses propres récompenses, comme des titres et des cadres, selon le rang atteint et les parties jouées.',
+        },
+        {
+          title: 'Tournois',
+          text: "Inscris-toi à l'avance à un tournoi programmé et joue des manches à élimination à de petites tables. Les gagnants avancent, manche après manche, jusqu'à la table finale, avec des récompenses selon le classement.",
+        },
+      ],
+    },
+    outro: 'Les plans peuvent changer. Suis nos réseaux pour ne rien manquer.',
   },
 
   join: {

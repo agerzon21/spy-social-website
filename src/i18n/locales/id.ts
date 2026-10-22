@@ -16,6 +16,7 @@ const id: Strings = {
       terms: 'Ketentuan Layanan',
       childSafety: 'Standar Keselamatan Anak',
       whatsNew: 'Yang baru',
+      roadmap: 'Roadmap',
       deleteAccount: 'Hapus akunmu',
       join: 'Gabung ke permainan',
       joinEvent: 'Event publik',
@@ -32,6 +33,8 @@ const id: Strings = {
       terms: 'Ketentuan memakai SpySocial: siapa yang boleh bermain, akun dan kontenmu, room publik, aturan komunitas, moderasi, dan banding.',
       childSafety: 'Standar SpySocial melawan pelecehan dan eksploitasi seksual anak: apa yang kami larang, cara melaporkan masalah, apa yang kami lakukan, dan kontak keselamatan anak kami.',
       whatsNew: 'Catatan rilis SpySocial: fitur baru, perbaikan, dan peningkatan di setiap versi aplikasi.',
+      roadmap:
+        'Yang akan datang di SpySocial: semua isi versi 2.2, dari Main online dan Spy Sketch sampai terjemahan otomatis chat, dan rencana berikutnya: ranked, season, dan turnamen.',
       deleteAccount: 'Cara menghapus akun SpySocial dan datanya, lewat aplikasi atau email, serta apa yang masih disimpan untuk sementara.',
     },
   },
@@ -57,6 +60,7 @@ const id: Strings = {
     legal: 'Hukum & keamanan',
     browser: 'Main di browser',
     whatsNew: 'Yang baru',
+    roadmap: 'Roadmap',
     rules: 'Aturan',
     support: 'Bantuan',
     contact: 'Kontak',
@@ -766,6 +770,72 @@ const id: Strings = {
         sections: [],
       },
     ],
+  },
+
+  roadmap: {
+    eyebrow: 'Roadmap',
+    title: 'Yang akan datang',
+    lede: (day: string) => `SpySocial\u00A02.2 hadir pada ${day}. Lihat apa saja isinya dan apa yang kami siapkan berikutnya.`,
+    ledeOut: 'SpySocial\u00A02.2 sudah hadir. Lihat apa saja isinya dan apa yang kami siapkan berikutnya.',
+    now: {
+      coming: (day: string) => `Hadir ${day}`,
+      out: 'Sudah tersedia',
+      title: 'SpySocial 2.2',
+      sub: 'Update terbesar kami sejauh ini.',
+      features: [
+        {
+          title: 'Main online',
+          text: 'Ketuk “Cari permainan” untuk meja berisi 4 atau 8 pemain, dengan aturan standar yang sama untuk semua. Cukup pakai akun gratis.',
+        },
+        {
+          title: 'Spy Sketch',
+          text: 'Cara main baru: gambar kata rahasianya di satu papan bersama dan tangkap mata-mata yang cuma pura-pura tahu.',
+        },
+        {
+          title: 'Terjemahan otomatis',
+          text: 'Ngobrol di lobi dan selama permainan dalam 10 bahasa: pesan dalam bahasa lain langsung diterjemahkan ke bahasamu begitu masuk.',
+        },
+        {
+          title: 'Agenmu dan Toko',
+          text: 'Buat avatar mata-matamu sendiri. Di Toko ada paket, keanggotaan, item avatar, dan selebrasi: semuanya opsional, dan tidak ada yang mengubah cara bermain.',
+        },
+        { title: 'Event', text: 'Permainan online terjadwal. Ketuk “Ingatkan aku” dan kami akan mengingatkanmu sebelum dimulai.' },
+        {
+          title: 'Warna Agen',
+          text: 'Di meja Main online dan di event, orang asing melihat warna Agen-mu, seperti Agen Toska, bukan namamu. Pilih tiga warna favoritmu.',
+        },
+        {
+          title: 'Kode kreator',
+          text: 'Dapat kode dari kreator atau dari SpySocial? Masukkan di Pengaturan untuk mendapat gelar atau hadiah lain.',
+        },
+        {
+          title: 'Keamanan',
+          text: 'SpySocial untuk usia 13 tahun ke atas. Chat punya filter kata, kamu bisa melaporkan atau memblokir pemain mana pun, dan room yang ada pemain di bawah 18 tahun memblokir tautan, nomor telepon, dan akun media sosial di chat.',
+        },
+      ],
+      more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, dan tampilan baru di setiap layar.',
+    },
+    next: {
+      status: 'Direncanakan',
+      noDates: 'Belum ada tanggal',
+      title: 'Berikutnya',
+      sub: 'Setelah 2.2, kami akan membangun sisi kompetitif SpySocial.',
+      plans: [
+        {
+          title: 'Ranked',
+          text: 'Main ranked dan pamerkan rank-mu di profil. Matchmaking mempertemukanmu dengan pemain yang rank-nya mirip.',
+        },
+        {
+          title: 'Season',
+          text: 'Setiap season punya hadiahnya sendiri, seperti gelar dan bingkai, sesuai rank yang kamu capai dan permainan yang kamu mainkan.',
+        },
+        {
+          title: 'Turnamen',
+          text: 'Daftar lebih dulu untuk turnamen terjadwal dan main babak gugur di meja-meja kecil. Pemenang lanjut, babak demi babak, sampai meja final, dengan hadiah sesuai peringkat.',
+        },
+      ],
+    },
+    outro: 'Rencana bisa berubah. Ikuti kami untuk kabar terbaru.',
   },
 
   join: {
