@@ -224,6 +224,8 @@ const Privacy: React.FC = () => {
           keep reports. For each player who reports, our moderators can see how many of their reports led to action
           and how many were dismissed. We work this out from the reports we already keep, use it only to review
           reports and to find players who might help us moderate, and never show it to other players.
+          {PRIVACY.groomingFlag &&
+            " We automatically flag possible grooming language in rooms with minors for human review: in any room or game where anyone, watchers included, is under 18 or hasn't told us their age, our servers check the messages adults write there for phrases that can be part of grooming (for example asking a younger player's age or school, asking them to keep secrets, to talk somewhere else, to meet up or to send photos, or offering gifts), and a message that has one is flagged for one of our team to review. A flag doesn't block, hide or change the message, isn't shown to any player and isn't a report to anyone; we decide what to do, as with a report. A flag keeps only which message it was and what kind of phrase it had, with the player's report case, for as long as we keep reports. The message itself is still deleted on the chat schedule (see Chat Messages above)."}
         </Item>
         {PRIVACY.drawingCheck && (
           <Item label="Drawing Checks">
@@ -265,7 +267,10 @@ const Privacy: React.FC = () => {
           to protect players under 18.
           In any room or game where anyone, watchers included, is under 18 or hasn't told us their age, its chats and
           typed questions and answers block links, email addresses, websites, phone numbers and social media accounts
-          and handles, for everyone there. Reports involving a player under 18 are read first (see Safety
+          and handles, for everyone there.
+          {PRIVACY.groomingFlag &&
+            " Messages adults write there that may be grooming are flagged automatically for one of our team to review (see Safety Information)."}{' '}
+          Reports involving a player under 18 are read first (see Safety
           Information), and the app shows players under 18 a one-time "Playing Safe" note with tips. Other players
           never see your age.
         </Item>
@@ -447,7 +452,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.notifications ? ', remind you of the game nights you asked about and tell you when a match is found' : ''}.
         </Item>
         <Item label="Legitimate Interests">
-          To keep players safe (reports, the word filter{PRIVACY.drawingCheck ? ', drawing checks' : ''}, moderation, age
+          To keep players safe (reports, the word filter{PRIVACY.groomingFlag ? ', flags of possible grooming' : ''}
+          {PRIVACY.drawingCheck ? ', drawing checks' : ''}, moderation, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
           events){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
