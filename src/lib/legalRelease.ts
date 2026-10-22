@@ -20,9 +20,9 @@
 // photosRemoved once no photo file is left. myMemory is already 'off' (the
 // translate function's MyMemory backup is off from the 2.2 submissions, owner
 // 2026-10-07): it stays 'off' unless the backup comes back. Not at launch unless its own
-// condition holds by then: revenueCatDeletion (the delete flow deletes the
-// RevenueCat customer) and drawingCheck (the game itself checks drawings;
-// deploying check-drawing is not enough). Then set LEGAL_LAST_UPDATED to the
+// condition holds by then: drawingCheck (the game itself checks drawings;
+// deploying check-drawing is not enough). revenueCatDeletion is on already
+// (2026-10-22: the delete flow deletes the RevenueCat customer). Then set LEGAL_LAST_UPDATED to the
 // launch day. drawingCheckTesters goes off in the same change as drawingCheck goes on (it only adds "for now,
 // only in testers' games" to drawingCheck's text). The Terms gain material sections at launch (buying, Restore
 // Purchases moving purchases between accounts, and the automated drawing
@@ -179,9 +179,14 @@ export const LIVE = {
    * pg_cron's revenuecat-purge-tick runs purge-revenuecat, which retries until RevenueCat answers 200 or 404.
    * It can only work once REVENUECAT_SECRET_KEY is set in the function secrets (owner setup prompt 4): flip
    * when it is and one test deletion has emptied its revenuecat_purges row. Until then the pages say
-   * RevenueCat keeps its record and that we have it deleted on request.
+   * RevenueCat keeps its record and that we have it deleted on request. On since 2026-10-22: the key is set,
+   * and a throwaway guest made and deleted on live through the app's own calls (signInAnonymously, then
+   * delete_guest_user, as Sign Out does) was queued at 08:52:38 UTC and its row emptied by the 08:55 tick
+   * (purge-revenuecat 200 {"purged":1,"absent":1,"failed":0}; a wrong key would have stopped the run, 401/403);
+   * every purge run in the logs since 2026-10-21 finished the same way. A server switch for every app version
+   * at once: set in LIVE.
    */
-  revenueCatDeletion: false,
+  revenueCatDeletion: true,
   /**
    * The drawing check is live in the game, not only deployed. feature/drawing-check's check-drawing (31a1820)
    * is the engine alone: the game doesn't call it (a committed turn answers 501 not_wired), it stores nothing
@@ -572,7 +577,7 @@ export const LEGAL_LAST_UPDATED = 'October 21, 2026'
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
  * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October 21, 2026'
+export const PRIVACY_LAST_UPDATED: string = 'October 22, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

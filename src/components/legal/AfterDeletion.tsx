@@ -12,6 +12,11 @@ import { PRIVACY, photosInUse, photosShown } from '../../lib/legalRelease'
 // chat lines, game_events, room_votes and app_events keep a user ID that no
 // longer leads anywhere; auth_attempts and the Auth audit log hold e-mail
 // addresses until the housekeeping job deletes them.
+// Run again end to end on 2026-10-22 (a throwaway guest, deleted as Sign Out
+// does): auth.users, its sessions and refresh tokens, the profile and its
+// owned categories all went, nothing else held its id, and the RevenueCat
+// queue (revenuecat_purges, filled by the profile's BEFORE DELETE trigger)
+// emptied at the next 5-minute tick (revenueCatDeletion).
 
 const SupportEmail = () => (
   <ChakraLink as={Link} to="/contact-us">
