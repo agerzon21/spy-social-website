@@ -433,7 +433,7 @@ export const LIVE = {
    * this switch). Off until the owner approves the text. No legal text reads it, so flipping it changes no Last
    * Updated date. A website fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
-  roadmap: false,
+  roadmap: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
