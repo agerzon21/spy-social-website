@@ -440,6 +440,15 @@ export const LIVE = {
    */
   roadmap: true,
   /**
+   * The launch-week game nights' days and hours (owner Console Events > Launch Week Game Nights, app
+   * feat/launch-console): Spy Talk on Tuesday, November 10, Spy Sketch on Friday, November 13 and Spy Mafia on
+   * Saturday, November 14, 2026, each 8 to 10 PM ET. On, the Roadmap's Game nights card and What's New's 2.2 Game
+   * nights line name them (src/i18n: roadmap.now.launchWeek, whatsNew.v22's launchWeek). Off until the owner OKs the
+   * schedule and the nights are published (app_config.events_enabled on); if a day or hour changes, change those
+   * lines in all 10 languages first. No legal text reads it. A website fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  launchGameNights: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -477,7 +486,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * "or" wording lets it go on before the engine does), fcmAutoInit (false drops the Firebase text; set it in LIVE to match the build), agentColoursPhase2
  * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
  * in LIVE), browserLinks (the site's links to the browser version, no legal text), roadmap (the roadmap page's link,
- * indexing and sitemap entry, no legal text), merchShop (the shop links and
+ * indexing and sitemap entry, no legal text), launchGameNights (the game nights' days on the Roadmap and What's New, no
+ * legal text), merchShop (the shop links and
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
  * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), scheduledRetention,

@@ -4,10 +4,12 @@ import {
   FaLanguage,
   FaMedal,
   FaMoon,
+  FaMusic,
   FaPalette,
   FaPencil,
   FaRankingStar,
   FaShieldHalved,
+  FaStopwatch,
   FaTicket,
   FaTrophy,
   FaUserSecret,
@@ -26,7 +28,9 @@ import s from './Roadmap.module.css'
 const LAUNCH_DAY = 'November 10, 2026'
 
 /** The icons of the 2.2 cards and of the plans, by position (src/i18n: roadmap.now.features, roadmap.next.plans). */
-const FEATURE_ICONS: IconType[] = [FaGlobe, FaPencil, FaLanguage, FaUserSecret, FaMoon, FaPalette, FaTicket, FaShieldHalved]
+const FEATURE_ICONS: IconType[] = [FaGlobe, FaPencil, FaLanguage, FaUserSecret, FaMoon, FaPalette, FaTicket, FaMusic, FaStopwatch, FaShieldHalved]
+/** The Game nights card's position: it names the launch-week nights once LIVE.launchGameNights is on (roadmap.now.launchWeek). */
+const GAME_NIGHTS_CARD = 4
 const PLAN_ICONS: IconType[] = [FaRankingStar, FaMedal, FaTrophy]
 
 /**
@@ -72,13 +76,14 @@ const Roadmap = () => {
               <ul className={s.features}>
                 {r.now.features.map((feature, i) => {
                   const Icon = FEATURE_ICONS[i] ?? FaGlobe
+                  const text = i === GAME_NIGHTS_CARD && LIVE.launchGameNights ? `${feature.text} ${r.now.launchWeek}` : feature.text
                   return (
                     <li key={feature.title} className={s.feature}>
                       <DisplayHeading as="h3" size={4} className={s.featureTitle}>
                         <Icon className={s.icon} aria-hidden focusable={false} />
                         <span>{feature.title}</span>
                       </DisplayHeading>
-                      <p className={s.text}>{feature.text}</p>
+                      <p className={s.text}>{text}</p>
                     </li>
                   )
                 })}

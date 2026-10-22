@@ -784,7 +784,7 @@ const fr: Strings = {
       features: [
         {
           title: 'Jouer en ligne',
-          text: 'Appuie sur « Trouver une partie » pour une table de 4 ou 8 joueurs, avec les mêmes règles standard pour tous. Il te faut juste un compte gratuit.',
+          text: "Appuie sur « Trouver une partie » pour une table de 4 ou 8 joueurs, avec les mêmes règles standard pour tous. Si un espion est démasqué, chacun récupère son vote ; quand plus personne n'en a, la partie passe directement à sa fin. Il te faut juste un compte gratuit.",
         },
         {
           title: 'Spy Sketch',
@@ -792,7 +792,7 @@ const fr: Strings = {
         },
         {
           title: 'Traduction automatique',
-          text: "Discute dans le salon et pendant la partie, dans l'une des 10 langues : les messages dans une autre langue sont traduits dans la tienne dès leur arrivée.",
+          text: "Discute dans le salon et pendant la partie, dans l'une des 10 langues : les messages dans une autre langue sont traduits dans la tienne dès leur arrivée. Les réponses de Spy Talk sont traduites avec leur question, pour garder tout leur sens.",
         },
         {
           title: 'Ton agent et la boutique',
@@ -811,11 +811,20 @@ const fr: Strings = {
           text: "Un créateur ou SpySocial t'a donné un code ? Saisis-le dans les Réglages pour obtenir un titre ou une autre récompense.",
         },
         {
+          title: 'Musique et sons',
+          text: 'Trois morceaux lounge se relaient dans les menus, Spy Talk et Spy Sketch ont chacun le leur, et de nouveaux sons marquent les dernières secondes, la révélation de Spy Sketch et la victoire. Choisis la musique des menus dans les Réglages, ou coupe-la.',
+        },
+        {
+          title: 'Temps de jeu conseillé',
+          text: "Les règles du salon indiquent un temps de jeu conseillé selon le nombre de joueurs, dans Spy Talk comme dans Spy Sketch. L'hôte garde le dernier mot.",
+        },
+        {
           title: 'Sécurité',
           text: "SpySocial est réservé aux 13 ans et plus. Le chat a un filtre de mots, tu peux signaler ou bloquer n'importe quel joueur, et dans les salons avec un joueur de moins de 18 ans, le chat bloque les liens, les numéros de téléphone et les réseaux sociaux.",
         },
       ],
-      more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, et un nouveau look sur chaque écran.",
+      more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, de l'XP même pour les parties courtes, un retour en partie sans accroc quand ton téléphone se met en veille, des liens d'invitation qui marchent tout simplement, et un nouveau look sur chaque écran.",
+      launchWeek: "Semaine de lancement : Spy Talk le mardi 10 novembre, Spy Sketch le vendredi 13 novembre et Mafia le samedi 14 novembre, chaque fois de 20 h à 22 h, heure de l'Est américain (ET).",
     },
     next: {
       status: 'Prévu',

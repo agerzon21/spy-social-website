@@ -785,7 +785,7 @@ const id: Strings = {
       features: [
         {
           title: 'Main online',
-          text: 'Ketuk “Cari permainan” untuk meja berisi 4 atau 8 pemain, dengan aturan standar yang sama untuk semua. Cukup pakai akun gratis.',
+          text: 'Ketuk “Cari permainan” untuk meja berisi 4 atau 8 pemain, dengan aturan standar yang sama untuk semua. Kalau mata-mata tertangkap, semua dapat jatah voting lagi; kalau jatah semua pemain habis, permainan langsung ke akhirnya. Cukup pakai akun gratis.',
         },
         {
           title: 'Spy Sketch',
@@ -793,7 +793,7 @@ const id: Strings = {
         },
         {
           title: 'Terjemahan otomatis',
-          text: 'Ngobrol di lobi dan selama permainan dalam 10 bahasa: pesan dalam bahasa lain langsung diterjemahkan ke bahasamu begitu masuk.',
+          text: 'Ngobrol di lobi dan selama permainan dalam 10 bahasa: pesan dalam bahasa lain langsung diterjemahkan ke bahasamu begitu masuk. Jawaban di Spy Talk diterjemahkan bersama pertanyaannya, jadi maknanya tetap terjaga.',
         },
         {
           title: 'Agenmu dan Toko',
@@ -809,11 +809,20 @@ const id: Strings = {
           text: 'Dapat kode dari kreator atau dari SpySocial? Masukkan di Pengaturan untuk mendapat gelar atau hadiah lain.',
         },
         {
+          title: 'Musik dan suara',
+          text: 'Tiga lagu lounge bergantian di menu, Spy Talk dan Spy Sketch masing-masing punya lagu sendiri, dan suara baru menandai detik-detik terakhir, momen pengungkapan di Spy Sketch, dan kemenangan. Pilih lagu menu di Pengaturan, atau matikan musiknya.',
+        },
+        {
+          title: 'Waktu permainan yang disarankan',
+          text: 'Aturan room menampilkan waktu permainan yang disarankan sesuai jumlah pemain, di Spy Talk dan Spy Sketch. Keputusannya tetap di tangan host.',
+        },
+        {
           title: 'Keamanan',
           text: 'SpySocial untuk usia 13 tahun ke atas. Chat punya filter kata, kamu bisa melaporkan atau memblokir pemain mana pun, dan room yang ada pemain di bawah 18 tahun memblokir tautan, nomor telepon, dan akun media sosial di chat.',
         },
       ],
-      more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, dan tampilan baru di setiap layar.',
+      more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, tautan undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
+      launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 10 November, Spy Sketch hari Jumat, 13 November, dan Mafia hari Sabtu, 14 November, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
     },
     next: {
       status: 'Direncanakan',

@@ -838,12 +838,12 @@ const en = {
       features: [
         {
           title: 'Play Online',
-          text: 'Tap Find a Game for a table of 4 or 8 players, with the same standard rules for everyone. All you need is a free account.',
+          text: 'Tap Find a Game for a table of 4 or 8 players, with the same standard rules for everyone. Catch a spy and everyone gets their vote call back; once nobody has one left, the game goes straight to its end. All you need is a free account.',
         },
         { title: 'Spy Sketch', text: 'A new way to play: draw the secret word on one shared whiteboard, and catch the spies faking it.' },
         {
           title: 'Automatic translation',
-          text: 'Chat in the lobby and during the game, in any of 10 languages: messages in other languages translate into yours as they arrive.',
+          text: 'Chat in the lobby and during the game, in any of 10 languages: messages in other languages translate into yours as they arrive. Spy Talk answers are translated together with their question, so they keep their meaning.',
         },
         {
           title: 'Your agent and the Shop',
@@ -859,12 +859,23 @@ const en = {
           text: 'Got a code from a creator or from SpySocial? Enter it in Settings for a title or another reward.',
         },
         {
+          title: 'Music and sounds',
+          text: 'Three lounge songs take turns in the menus, Spy Talk and Spy Sketch each have a song of their own, and new sounds mark the final seconds, the Spy Sketch reveal and the win. Pick your menu song in Settings, or turn the music off.',
+        },
+        {
+          title: 'Recommended game time',
+          text: "Your room's rules show a recommended game time for the number of players, in Spy Talk and Spy Sketch. The host still decides.",
+        },
+        {
           title: 'Safety built in',
           text: 'SpySocial is for ages 13 and up. Chat has a word filter, you can report or block any player, and rooms with a player under 18 block links, phone numbers and social accounts in chat.',
         },
       ],
       /** One line under the cards. */
-      more: 'Plus Player Stats, titles and borders to unlock, levels up to 100 with prestige, and a new look on every screen.',
+      more: 'Plus Player Stats, titles and borders to unlock, levels up to 100 with prestige, XP for quick games too, smooth rejoining after your phone sleeps, invite links that just work, and a new look on every screen.',
+      /** Added to the Game nights card once LIVE.launchGameNights is on (owner to OK the days first). If a day or
+       * hour changes, change it in all 10 languages. */
+      launchWeek: 'Launch week: Spy Talk on Tuesday, November 10, Spy Sketch on Friday, November 13, and Spy Mafia on Saturday, November 14, each from 8 to 10 PM ET.',
     },
     next: {
       /** A stamp: these are plans. */
