@@ -449,6 +449,21 @@ export const LIVE = {
    */
   launchGameNights: false,
   /**
+   * The grooming flag (app repo feat/child-safety-flag, migration 20261105200000_grooming_flag; owner-approved plan item
+   * 10, 2026-10-22): every minute, the server's scan (pg_cron grooming-flags) reads the chat lines just written, and in a
+   * room or game with anyone under 18 or without a birth year (members, seats, running watchers: the contact block's
+   * rule), an adult's line (game chat, the lobby, spy chat, the out chat, a typed question or answer) with a phrase that
+   * can be part of grooming (its age or school, secrecy, moving elsewhere, meeting, photos, gifts; the app's ten
+   * languages) gets a tag on the owner's Moderation Console: public.chat_flags keeps the case, the line's id and the
+   * kinds of phrase, nothing else; the line itself stays in chat_messages for chat's own retention. It blocks, hides and
+   * reports nothing and is shown to no player; it opens or joins the player's case like a report, kept as reports are.
+   * Turns on the Privacy text: Safety Information (the flag, what it keeps, how long), the Age item's pointer to it, and
+   * Legitimate Interests. POLICY FIRST: deploy the site with it on before the migration is applied (the policy rule),
+   * and set PRIVACY_LAST_UPDATED to that day. Off only if the migration is rolled back. A server switch for every app
+   * version at once: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
+   */
+  groomingFlag: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -490,7 +505,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * legal text), merchShop (the shop links and
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
- * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), scheduledRetention,
+ * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag (a server
+ * switch for every app version at once: set in LIVE), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
