@@ -477,7 +477,7 @@ export const LIVE = {
    * date to the deploy day if later. Off only if the server file is rolled back. A server switch for every app version
    * at once: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
    */
-  groomingScope: false,
+  groomingScope: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -621,7 +621,7 @@ export const LEGAL_LAST_UPDATED = 'October 21, 2026'
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
 export const PRIVACY_LAST_UPDATED: string = LIVE.groomingScope
-  ? 'October 23, 2026' // the grooming scope's text: set to the day the site goes up with it on, if later
+  ? 'October 22, 2026' // the grooming scope's text: set to the day the site goes up with it on, if later
   : 'October 22, 2026'
 
 /**
