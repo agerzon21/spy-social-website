@@ -8,6 +8,8 @@ const id: Strings = {
     description:
       'Kumpulkan temanmu dan temukan mata-matanya, atau kelabui semua orang. Game pesta multipemain real-time gratis untuk 3–21 pemain. Di iOS dan Google Play.',
     titles: {
+      /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
+      gameNightRules: "Aturan Malam Permainan",
       faq: 'Bantuan & FAQ',
       contact: 'Hubungi kami',
       rules: 'Aturan komunitas',
@@ -25,6 +27,7 @@ const id: Strings = {
       notFound: 'Halaman tidak ditemukan',
     },
     descriptions: {
+      gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara kerja hadiah mingguan, dan hadiah bonus dari pengembang.",
       faq: 'Jawaban atas pertanyaan umum tentang SpySocial: cara mulai, mode permainan, berbagi dan gabung ke room, bahasa, kontrol host, akunmu, dan cara mengatasi masalah.',
       contact: 'Hubungi tim SpySocial: kirim email ke support@spysocial.app kalau kamu butuh bantuan soal aplikasi, akunmu, atau hal lainnya.',
       rules: 'Aturan komunitas SpySocial: bersikap baik, menggertak boleh tapi curang jangan, jaga privasi, dan apa yang terjadi kalau ada yang melanggar aturan.',
@@ -55,6 +58,8 @@ const id: Strings = {
   },
 
   footer: {
+    /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
+    gameNightRules: "Aturan Malam Permainan",
     tagline: 'Game pesta tipu-tipuan sosial.',
     play: 'Main',
     legal: 'Hukum & keamanan',

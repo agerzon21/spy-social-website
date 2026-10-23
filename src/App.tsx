@@ -20,7 +20,7 @@ import Join from './pages/Join'
 import JoinEvent from './pages/JoinEvent'
 import WhatsNew from './pages/WhatsNew'
 import DeleteAccount from './pages/DeleteAccount'
-import { ONLINE_SAFETY_TEXT } from './lib/legalRelease'
+import { LIVE, ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 import { SKIN_CSS, theme } from './theme'
 import { colorModeManager } from './theme/mode'
 import { useLang } from './i18n'
@@ -47,6 +47,8 @@ const ConfirmSuccess = page(() => import('./pages/ConfirmSuccess'))
 const Agree = page(() => import('./pages/Agree'))
 // Its own chunk: nothing links to it until LIVE.roadmap is on (the route works either way).
 const Roadmap = page(() => import('./pages/Roadmap'))
+// The Game Night rules: the route exists only while LIVE.gameNightRules is on (off: the 404 page).
+const GameNightRules = page(() => import('./pages/GameNightRules'))
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
@@ -78,6 +80,7 @@ function App() {
               <Route path="/terms" element={<Layout><Terms /></Layout>} />
               <Route path="/rules" element={<Layout><Rules /></Layout>} />
               {ONLINE_SAFETY_TEXT && <Route path="/safety" element={<Layout><Safety /></Layout>} />}
+              {LIVE.gameNightRules && <Route path="/game-night-rules" element={<Layout><GameNightRules /></Layout>} />}
               <Route path="/child-safety" element={<Layout><ChildSafety /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />

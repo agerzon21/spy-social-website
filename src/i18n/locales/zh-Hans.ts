@@ -8,6 +8,8 @@ const zhHans: Strings = {
     description:
       '叫上朋友，找出卧底，或者骗过所有人。免费实时多人派对游戏，支持 3–21 名玩家。iOS 和 Google Play 均可下载。',
     titles: {
+      /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
+      gameNightRules: "游戏之夜规则",
       faq: '帮助与常见问题',
       contact: '联系我们',
       rules: '社区规则',
@@ -25,6 +27,7 @@ const zhHans: Strings = {
       notFound: '页面不存在',
     },
     descriptions: {
+      gameNightRules: "SpySocial 每周游戏之夜的规则：举办时间、参与资格、每周奖励的发放方式，以及开发者的额外奖励。",
       faq: 'SpySocial 常见问题解答：如何开始、游戏模式、分享和加入房间、语言、房主控制、你的账号以及故障排除。',
       contact: '联系 SpySocial 团队：如需应用、账号或其他方面的帮助，请发邮件至 support@spysocial.app。',
       rules: 'SpySocial 社区规则：友善待人，可以唬人但不能作弊，保护隐私，以及违反规则会怎样。',
@@ -54,6 +57,8 @@ const zhHans: Strings = {
   },
 
   footer: {
+    /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
+    gameNightRules: "游戏之夜规则",
     tagline: '社交推理派对游戏。',
     play: '开玩',
     legal: '法律与安全',

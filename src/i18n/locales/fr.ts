@@ -8,6 +8,8 @@ const fr: Strings = {
     description:
       "Réunis tes amis et démasque l'espion, ou bluffe tout le monde. Jeu d'ambiance gratuit en temps réel pour 3 à 21 joueurs, sur iOS et Google Play.",
     titles: {
+      /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
+      gameNightRules: "Règles de la soirée jeux",
       faq: 'Aide et FAQ',
       contact: 'Nous contacter',
       rules: 'Règles de la communauté',
@@ -25,6 +27,7 @@ const fr: Strings = {
       notFound: 'Page introuvable',
     },
     descriptions: {
+      gameNightRules: "Les règles de la soirée jeux hebdomadaire de SpySocial : quand elle a lieu, qui peut participer, comment fonctionne le prix de la semaine et le prix bonus du développeur.",
       faq: "Réponses aux questions fréquentes sur SpySocial\u00A0: débuter, modes de jeu, partager un salon et le rejoindre, langues, options de l'hôte, ton compte et dépannage.",
       contact: "Contacte l'équipe SpySocial\u00A0: écris à support@spysocial.app pour de l'aide avec l'appli, ton compte ou autre chose.",
       rules: "Les règles de la communauté SpySocial\u00A0: sois sympa, bluffe sans tricher, garde ta vie privée, et ce qui arrive quand quelqu'un enfreint les règles.",
@@ -55,6 +58,8 @@ const fr: Strings = {
   },
 
   footer: {
+    /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
+    gameNightRules: "Règles de la soirée jeux",
     tagline: "Le jeu d'ambiance de bluff et de déduction.",
     play: 'Jouer',
     legal: 'Mentions légales et sécurité',

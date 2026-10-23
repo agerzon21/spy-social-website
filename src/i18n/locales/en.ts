@@ -25,6 +25,8 @@ const en = {
     description:
       'Gather your friends and find the spy — or fool everyone trying. Free real-time multiplayer party game for 3–21 players. Available on iOS and Google Play.',
     titles: {
+      /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
+      gameNightRules: "Game Night rules",
       faq: 'Support & FAQ',
       contact: 'Contact us',
       rules: 'Community rules',
@@ -43,6 +45,7 @@ const en = {
     },
     /** Each page's own description for search results; the home page and the unlisted pages use `description`. */
     descriptions: {
+      gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how the weekly prize works, and the developer's bonus prize.",
       faq: 'Answers to common SpySocial questions: getting started, game modes, sharing and joining rooms, languages, host controls, your account and troubleshooting.',
       contact: 'Contact the SpySocial team: email support@spysocial.app for help with the app, your account or anything else.',
       rules: "SpySocial's community rules: be kind, bluff but don't cheat, keep personal information private, and what happens when someone breaks the rules.",
@@ -77,6 +80,8 @@ const en = {
   },
 
   footer: {
+    /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
+    gameNightRules: "Game Night Rules",
     tagline: 'The party game of social deception.',
     play: 'Play',
     legal: 'Legal & Safety',
