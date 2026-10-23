@@ -479,6 +479,19 @@ export const LIVE = {
    */
   groomingScope: true,
   /**
+   * The developer's visible watch (app repo: the DEV watcher at Play Online tables and game nights): SpySocial's
+   * developer can join a live public table as a watcher. The table's chat says "The developer has joined.", he counts
+   * among its watchers and gets only the watch view (public names, the questions, answers and general chat, what the
+   * game shows everyone; never a role, the word or location, votes before the reveal, or the spy or out chats). His
+   * lines show as "DEV Developer" and go through the same chat filters and safety checks, including the grooming flag's
+   * review in rooms with players under 18. The moderation log records each watch (the table, the game, the time). He
+   * never takes a seat or changes a result. Turns on one passage in Privacy's Data Sharing (after the watchers). POLICY
+   * FIRST: deploy the site with it on before the feature goes live; flipping it also moves PRIVACY_LAST_UPDATED (below)
+   * to its date: set that date to the deploy day if later. A server switch for every app version at once: set in LIVE,
+   * never in PRIVACY_AHEAD. No Terms or Rules text reads it.
+   */
+  developerWatch: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -520,8 +533,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * legal text), merchShop (the shop links and
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
- * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag and
- * groomingScope (server switches for every app version at once: set in LIVE), scheduledRetention,
+ * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag,
+ * groomingScope and developerWatch (server switches for every app version at once: set in LIVE), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
@@ -620,9 +633,9 @@ export const LEGAL_LAST_UPDATED = 'October 21, 2026'
  * goes live can carry its date here (LIVE.<switch> ? its day : the current date), so the one-line flip in LIVE moves
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
-export const PRIVACY_LAST_UPDATED: string = LIVE.groomingScope
-  ? 'October 22, 2026' // the grooming scope's text: set to the day the site goes up with it on, if later
-  : 'October 22, 2026'
+export const PRIVACY_LAST_UPDATED: string = LIVE.developerWatch
+  ? 'October 23, 2026' // the developer's watch text: set to the day the site goes up with it on, if later
+  : 'October 22, 2026' // groomingScope's date (it's on: folded in here)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

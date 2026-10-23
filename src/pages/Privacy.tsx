@@ -688,7 +688,10 @@ const Privacy: React.FC = () => {
         , the drawing and the room's chat, but
         never a role or the secret word before every player can see it, or anyone's vote.
         {PRIVACY.agentColoursPhase2 &&
-          " In a private room, the players see who is watching by display name; in public play, they see only how many people are watching and an agent name for each."}{' '}
+          " In a private room, the players see who is watching by display name; in public play, they see only how many people are watching and an agent name for each."}
+        {/* LIVE.developerWatch: the developer's visible watch at public tables (legalRelease). */}
+        {PRIVACY.developerWatch &&
+          ` SpySocial's developer may join game night tables, and other live Play Online tables, as a visible watcher. The table is told when he joins ("The developer has joined.") and he counts among its watchers. He sees only what any watcher sees: the players' public names, the questions, answers and general chat, and what the game shows everyone; never anyone's role, the secret word or location, votes before they're revealed, or the spies' chat or the chat for players who are out. His messages show as "DEV Developer" and go through the same chat filters and safety checks as everyone's${PRIVACY.groomingFlag ? ', including the automated grooming check in rooms with players under 18 (see Safety Information)' : ''}. We keep a record in our moderation log that he watched a table (the table, the game and the time). He never takes a seat or changes a game's result.`}{' '}
         When you play the mini-game, players who are out of that game and, once it's over, everyone who played it see
         the game's best score and the room's best score ever, with the name of the player who set it: their display
         name in private rooms, and in public play their agent name (or "A player" if they weren't in that game).{' '}
