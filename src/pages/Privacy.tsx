@@ -225,7 +225,7 @@ const Privacy: React.FC = () => {
           and how many were dismissed. We work this out from the reports we already keep, use it only to review
           reports and to find players who might help us moderate, and never show it to other players.
           {PRIVACY.groomingFlag &&
-            " We automatically flag possible grooming language in rooms with minors for human review: in any room or game where anyone, watchers included, is under 18 or hasn't told us their age, our servers check the messages adults write there for phrases that can be part of grooming (for example asking a younger player's age or school, asking them to keep secrets, to talk somewhere else, to meet up or to send photos, or offering gifts), and a message that has one is flagged for one of our team to review. A flag doesn't block, hide or change the message, isn't shown to any player and isn't a report to anyone; we decide what to do, as with a report. A flag keeps only which message it was and what kind of phrase it had, with the player's report case, for as long as we keep reports. The message itself is still deleted on the chat schedule (see Chat Messages above)."}
+            ` We automatically flag possible grooming language in rooms with minors for human review: ${PRIVACY.groomingScope ? "in any room or game where anyone else, watchers included, is under 18 or hasn't told us their age, our servers check the messages written there by adults and by players who haven't told us their age (such as guests)" : "in any room or game where anyone, watchers included, is under 18 or hasn't told us their age, our servers check the messages adults write there"} for phrases that can be part of grooming (for example asking a younger player's age or school, asking them to keep secrets, to talk somewhere else, to meet up or to send photos, or offering gifts), and a message that has one is flagged for one of our team to review.${PRIVACY.groomingScope ? " So that this still works after a younger player leaves, our servers also note which messages were sent while someone else there was under 18 or hadn't told us their age: only the message's ID, kept on our servers and never shown to any player, for as long as we keep the message itself." : ''} A flag doesn't block, hide or change the message, isn't shown to any player and isn't a report to anyone; we decide what to do, as with a report. A flag keeps only which message it was and what kind of phrase it had, with the player's report case, for as long as we keep reports. The message itself is still deleted on the chat schedule (see Chat Messages above).`}
         </Item>
         {PRIVACY.drawingCheck && (
           <Item label="Drawing Checks">
@@ -269,7 +269,9 @@ const Privacy: React.FC = () => {
           typed questions and answers block links, email addresses, websites, phone numbers and social media accounts
           and handles, for everyone there.
           {PRIVACY.groomingFlag &&
-            " Messages adults write there that may be grooming are flagged automatically for one of our team to review (see Safety Information)."}{' '}
+            (PRIVACY.groomingScope
+              ? " Messages there that may be grooming, from adults or from players who haven't told us their age, are flagged automatically for one of our team to review (see Safety Information)."
+              : ' Messages adults write there that may be grooming are flagged automatically for one of our team to review (see Safety Information).')}{' '}
           Reports involving a player under 18 are read first (see Safety
           Information), and the app shows players under 18 a one-time "Playing Safe" note with tips. Other players
           never see your age.

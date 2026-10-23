@@ -464,6 +464,21 @@ export const LIVE = {
    */
   groomingFlag: true,
   /**
+   * The grooming flag's wider scope (app repo fix/sec-oct23, server file 20261106200000_grooming_flag_fixes, findings 3
+   * and 4 of the Oct 23 security review): the scan also reads the lines of senders without a birth year (guests, a
+   * skipped question); every sender but a declared minor is read, and a line counts only for someone else's age
+   * (_minor_present_besides). New table public.chat_minor_lines (the line's id only, deleted with the line; RLS on, no
+   * policy, service_role SELECT; never in chat_messages.meta, which players get) stamps, at the send, each player's
+   * line sent while someone else in the room or game was under 18 or without a birth year, so the scan still reads it
+   * after the minor leaves. Nothing leaves the server, no new provider, nothing new shown to players. Turns on the
+   * Privacy text inside groomingFlag's: Safety Information (who is read, the record, kept as long as the line) and the
+   * Age item's pointer. Needs groomingFlag (its text sits inside groomingFlag's). POLICY FIRST: deploy the site with it
+   * on before the server file is applied; flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set that
+   * date to the deploy day if later. Off only if the server file is rolled back. A server switch for every app version
+   * at once: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
+   */
+  groomingScope: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -505,8 +520,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * legal text), merchShop (the shop links and
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
- * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag (a server
- * switch for every app version at once: set in LIVE), scheduledRetention,
+ * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag and
+ * groomingScope (server switches for every app version at once: set in LIVE), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
@@ -601,9 +616,13 @@ export const LEGAL_LAST_UPDATED = 'October 21, 2026'
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
- * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch.
+ * day the ahead text goes up. Back to LEGAL_LAST_UPDATED at the launch. A switch prepared before its server side
+ * goes live can carry its date here (LIVE.<switch> ? its day : the current date), so the one-line flip in LIVE moves
+ * the date too; once the switch is on for good, fold this back to a plain string.
  */
-export const PRIVACY_LAST_UPDATED: string = 'October 22, 2026'
+export const PRIVACY_LAST_UPDATED: string = LIVE.groomingScope
+  ? 'October 23, 2026' // the grooming scope's text: set to the day the site goes up with it on, if later
+  : 'October 22, 2026'
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
