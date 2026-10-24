@@ -384,8 +384,8 @@ const Terms: React.FC = () => {
             Intel is earned only by playing: it can't be bought, and like every virtual item it has no cash value and
             can't be sold, traded or moved to another account. You can spend it only on the items the app offers for
             Intel. We may change how much Intel games and daily streaks give, which items it unlocks and what they cost;
-            we may correct a balance that's wrong or was earned by cheating, and reset balances if we change or stop
-            Intel. An item you've already unlocked with Intel stays yours like the other items you've earned.
+            we may correct a balance that's wrong or was earned by cheating. An item you've already unlocked with Intel
+            stays yours like the other items you've earned.
           </ListItem>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}
