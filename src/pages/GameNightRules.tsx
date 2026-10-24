@@ -9,7 +9,7 @@ import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/L
 // the Spy winner's, the developer's bonus), each once per account per night. Change it first if any of that changes.
 
 /** The day this page's text was last changed: set it to the day the switch goes on, if later. */
-const UPDATED = 'November 3, 2026'
+const UPDATED = 'October 24, 2026'
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>

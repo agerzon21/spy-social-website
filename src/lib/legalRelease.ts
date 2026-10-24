@@ -492,7 +492,7 @@ export const LIVE = {
    * to its date: set that date to the deploy day if later. A server switch for every app version at once: set in LIVE,
    * never in PRIVACY_AHEAD. No Terms or Rules text reads it.
    */
-  developerWatch: false,
+  developerWatch: true,
   /**
    * Game Night v2 (app repo feat/gamenight-v2, server files 20261106100000-150000; QA 110, integrate/postlaunch steps 3-8):
    * each night's titles (the night's, the Local winner's, the Spy winner's) and the developer's bonus title are recorded
@@ -510,7 +510,7 @@ export const LIVE = {
    * that date to the deploy day. Off only if the Game Night v2 files are rolled back. A server switch for every app
    * version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
-  gameNightPrizes: false,
+  gameNightPrizes: true,
   /**
    * The Game Night rules page (/game-night-rules, src/pages/GameNightRules.tsx): the weekly Game Night's official
    * rules (no purchase, up to four cosmetic titles a night with no cash value, each once per account per night, the
@@ -524,7 +524,7 @@ export const LIVE = {
    * gameNightPrizes (the same deploy), and in any case before the owner turns the first night on. If the night's day
    * or hours change, change the page first. No Privacy text reads it: set in LIVE, never in PRIVACY_AHEAD.
    */
-  gameNightRules: false,
+  gameNightRules: true,
   /**
    * Intel, the earned shop currency, and the daily streak (app repo feat/coins-streak c79e29ed, server file
    * 20261121000000_coins_streak, switched on by 20261121100000_release_switches: QA 110, integrate/postlaunch steps 9
@@ -552,7 +552,7 @@ export const LIVE = {
    * Off only if the file is rolled back (an item bought with Intel stays the player's, as a grant). A server switch for
    * every app version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
-  intel: false,
+  intel: true,
   /**
    * Ranked v2 (app repo feat/ranked-v2 06584ff7, server files 20261120000000_ranked_schema, 20261120100000_ranked_matcher,
    * 20261120200000_ranked_scoring; NOT in QA 110: owner 2026-10-24, a later release). HELD: off until those files are
@@ -748,9 +748,7 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
-    : LIVE.intel || LIVE.gameNightRules
-      ? 'October 26, 2026' // Intel's section 9 line and the Game Night rules pointer (QA 110): the deploy day
-      : 'October 21, 2026'
+    : 'October 24, 2026' // QA 110: Intel's section 9 line and the Game Night rules pointer
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -762,11 +760,7 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // the Ranked item: set to the day the site goes up with it on
-    : LIVE.intel || LIVE.gameNightPrizes
-      ? 'October 26, 2026' // QA 110: Intel and Daily Streak, Game Night v2: set to the day the site goes up with them on
-      : LIVE.developerWatch
-        ? 'October 24, 2026' // the developer's watch text: set to the day the site goes up with it on
-        : 'October 24, 2026' // crashReportLocation off (groomingScope's Oct 22 folded in)
+    : 'October 24, 2026' // QA 110 (Intel and Daily Streak, Game Night v2, the developer's watch; crashReportLocation off and groomingScope folded in)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
