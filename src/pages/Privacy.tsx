@@ -143,8 +143,55 @@ const Privacy: React.FC = () => {
             played there counted toward the night's titles, and, when you get titles (the night's titles, or a bonus
             title the developer gives at a table he visits), which titles, the game they came from (if any) and when.
             We use this to give each account each title once, to show you a notice in the app, and to check that
-            titles are won fairly. The titles are cosmetic and kept with your account, and this information is
-            deleted with it. It doesn't leave our servers and isn't shared with anyone.
+            titles are won fairly. Game Night seats you through Play Online, so your Game Night search is kept like a
+            Play Online search{PRIVACY.playOnline ? ' (see Play Online above)' : ''}, with the night it was for. When
+            the developer gives a bonus title at a table, that table's chat says who got it, by the name the table
+            shows. The titles are cosmetic and kept with your account, and this information is deleted with it. Apart
+            from that chat line, it doesn't leave our servers and isn't shared with anyone.
+          </Item>
+        )}
+        {/* LIVE.intel: Intel (the server's "coins") and the daily streak (legalRelease). */}
+        {PRIVACY.intel && (
+          <Item label="Intel and Daily Streak">
+            Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought. When a game you
+            played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
+            for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
+            also keep your balance, how much Intel you've earned and spent in all, and your daily streak: how many days
+            in a row you've played a game that counts, your best streak, the last day you did, and any streak freeze
+            you hold. When you unlock an item with Intel, we record which item, its price and when, and add the item
+            to your account. All of this is worked out from the games you play (games that give no experience points,
+            for example a game you left or one our fair-play checks flag, give no Intel). We use it to give you Intel,
+            your streak and the items you choose, to show them to you in the app, and to check that Intel is earned
+            fairly. Other players never see your Intel or your streak, and we look at Intel only as totals across all
+            players (for example to set prices). It's kept with your account and deleted with it, and it doesn't leave
+            our servers.
+          </Item>
+        )}
+        {/* LIVE.ranked: Ranked's rating, ranks, seasons and leaderboards (legalRelease). */}
+        {PRIVACY.ranked && (
+          <Item label="Ranked">
+            When you play Ranked, our servers work out a skill rating (MMR) for you in each Ranked game (Spy Talk and
+            Spy Sketch) and season, from the results of your Ranked games only, never from your questions, answers,
+            chat, drawings or votes. We keep your rating and how certain it is, your rank and your best rank in the
+            season, how many Ranked games you've played, won and left, a record of each Ranked game (its result,
+            whether it counted for you and why not, and your rating and rank before and after), the breaks you get for
+            declining or leaving Ranked games, the season rewards (titles and borders) you earned, and whether you
+            chose to show your username on the leaderboards. We use this to match you with players of similar skill,
+            to show you your rank, rating and rewards, to run the leaderboards (see Data Sharing) and to keep Ranked
+            fair. Your Ranked searches are kept like Play Online searches. The rest is kept with your account and
+            deleted with it.
+          </Item>
+        )}
+        {/* LIVE.tournaments: tournament entries, standings and Tournament Tokens (legalRelease). */}
+        {PRIVACY.tournaments && (
+          <Item label="Tournaments">
+            When you sign up for a tournament, our servers keep your entry: when you signed up and checked in, your
+            Ranked rank then, the tables you played at, your points, wins and place in each stage, and whether you
+            withdrew, didn't show up for a game, left one or were disqualified. They also keep the Tournament Tokens
+            you earned (for your place, your rank and your wins) and spent, and what you bought with them. Results are
+            checked for fair play for up to 48 hours before they're final. We use this to run tournaments, give their
+            titles and tokens, apply the pause for missed games and keep tournaments fair. A tournament's standings
+            and winners are shown to other players (see Data Sharing). It's kept with your account and deleted with it.
           </Item>
         )}
         <Item label="Chat Messages">
@@ -441,6 +488,14 @@ const Privacy: React.FC = () => {
         {PRIVACY.creatorCodes && (
           <ListItem>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</ListItem>
         )}
+        {PRIVACY.intel && <ListItem>Give you Intel, your daily streak and the items you unlock with Intel</ListItem>}
+        {(PRIVACY.ranked || PRIVACY.tournaments) && (
+          <ListItem>
+            Run {PRIVACY.ranked ? 'Ranked and its leaderboards' : ''}
+            {PRIVACY.ranked && PRIVACY.tournaments ? ', and ' : ''}
+            {PRIVACY.tournaments ? 'tournaments, their standings and Tournament Tokens' : ''}
+          </ListItem>
+        )}
         {PRIVACY.notifications && (
           <ListItem>Remind you of the game nights you asked about, and tell you when a Play Online match is found</ListItem>
         )}
@@ -462,6 +517,9 @@ const Privacy: React.FC = () => {
           {PRIVACY.autoTranslation ? 'translate messages for you' : 'translate what you ask us to translate'}
           {PRIVACY.purchases ? ', provide what you buy' : ''}
           {PRIVACY.creatorCodes ? ", give you a code's reward" : ''}
+          {PRIVACY.intel ? ', give you Intel and what you unlock with it' : ''}
+          {PRIVACY.ranked ? ', run Ranked and its leaderboards' : ''}
+          {PRIVACY.tournaments ? ', run tournaments' : ''}
           {PRIVACY.notifications ? ', remind you of the game nights you asked about and tell you when a match is found' : ''}.
         </Item>
         <Item label="Legitimate Interests">
@@ -502,6 +560,9 @@ const Privacy: React.FC = () => {
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests after a day.
+        {PRIVACY.intel ? ' Your Intel, its history and your daily streak are kept for as long as you have an account.' : ''}
+        {PRIVACY.ranked ? ' Your Ranked ratings, game records, breaks and rewards are kept for as long as you have an account.' : ''}
+        {PRIVACY.tournaments ? ' Your tournament entries, results and Tournament Tokens are kept for as long as you have an account.' : ''}
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
           : ''}
@@ -711,7 +772,13 @@ const Privacy: React.FC = () => {
         to join).
         {PRIVACY.agentColoursPhase2 &&
           ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosShown(PRIVACY) ? ', with no profile photo' : ''}.`}
-        {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}{' '}
+        {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}
+        {/* LIVE.ranked: get_ranked_leaderboard (adults only; @username only when chosen). */}
+        {PRIVACY.ranked &&
+          ' Ranked leaderboards show the top 100 players of each Ranked game in a season, with their rank and rating, to every player who opens them: by agent name (for example, "Agent Blue"), or by username if the player chose that in the app. Players under 18, and players who haven\'t told us their age, are never shown on a leaderboard.'}
+        {/* LIVE.tournaments: get_tournament (standings between stages, the winners). */}
+        {PRIVACY.tournaments &&
+          " A tournament's standings (after each stage, never during one) and its winners are shown, with their points and places, to every player who opens that tournament in the app: by username, or by agent name for players under 18 and players who haven't told us their age."}{' '}
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
       </P>

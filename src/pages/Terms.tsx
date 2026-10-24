@@ -168,7 +168,42 @@ const Terms: React.FC = () => {
       <P>
         Events are public games we schedule for a set time, with settings and packs we choose. We may change, move
         or cancel an event, limit how many players can join it, and decide who hosts it.
+        {/* LIVE.gameNightRules: the rules page says it's part of these Terms. */}
+        {LIVE.gameNightRules && (
+          <>
+            {' '}Game Night, our weekly event, is played at Play Online tables; its titles and how to get them are set
+            out in the <PageLink to="/game-night-rules">Game Night Rules</PageLink>, which are part of these Terms.
+          </>
+        )}
       </P>
+      {/* LIVE.ranked: Ranked v2 (material: it adds Ranked's own breaks; see legalRelease). */}
+      {LIVE.ranked && (
+        <P>
+          Ranked is a Play Online mode where the results of your games move a skill rating (MMR) and a rank, season by
+          season. Only a game's result counts; a game without a result, or one our fair-play checks flag, doesn't. How
+          placement games, ranks, rank drops, the reset at the start of a season and season rewards work is shown in
+          the app, and we may change these rules, usually between seasons. Ranked has breaks of its own, on top of Play
+          Online's: for declining a Ranked match (5, then 15, then 60 minutes within 24 hours), for leaving a Ranked
+          game that has started (15 minutes, then 2 hours, then 24 hours within 24 hours), and 3 days without Ranked
+          for leaving 3 of your last 20 Ranked games. We may correct a rating or rank that's wrong, and take back a
+          rating, rank or reward that was earned by cheating. Ratings, ranks and season rewards are virtual items
+          (section 9).
+        </P>
+      )}
+      {/* LIVE.tournaments: Tournaments v1 (material: new rules and a pause; see legalRelease). */}
+      {LIVE.tournaments && (
+        <P>
+          Tournaments are free cups we schedule for Ranked players: you can sign up for one that's open to your Ranked
+          rank, and you have to check in before it starts. A tournament is played in stages at tables of four; the
+          top half of each stage go on to the next, and the top half of the last stage win. If you don't show up for
+          a game (for example, you don't tap Ready) or leave one, you're out of that tournament, and 2 missed games
+          within 60 days mean no tournaments for 30 days. When a tournament ends, its results are checked for fair
+          play for up to 48 hours before they're final; we may disqualify a player who cheated and change the results
+          and rewards. Titles and Tournament Tokens are given as the app shows for each tournament. We may change,
+          move or cancel a tournament (for example, when too few players check in), limit how many players can join
+          it, or change its format and rewards.
+        </P>
+      )}
       <P>
         Be careful with people you don't know. Don't share personal information, such as your real name, address,
         phone number or social media handles, and use Block, Report or Leave whenever something feels wrong. We
@@ -330,7 +365,8 @@ const Terms: React.FC = () => {
         SpySocial has virtual items, such as packs of words and locations,
         {avatarsLive(LIVE) ? ' avatar items (hats, glasses, colours and the like, and celebrations),' : ''} XP, levels,
         prestige,
-        achievements, badges and event rewards. Some are free, some you earn by playing, and some may be given to you, for
+        achievements, badges{LIVE.intel ? ', Intel' : ''}{LIVE.ranked ? ', Ranked ratings and ranks' : ''}
+        {LIVE.tournaments ? ', Tournament Tokens' : ''} and event rewards. Some are free, some you earn by playing, and some may be given to you, for
         example for playing in events.
       </P>
       <Bullets>
@@ -342,6 +378,25 @@ const Terms: React.FC = () => {
         </ListItem>
         <ListItem>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</ListItem>
         <ListItem>When someone in a room has unlocked a pack, everyone in that room can play it while they're there. We may change how this sharing works.</ListItem>
+        {/* LIVE.intel: Intel (the server's "coins"), earned only. */}
+        {LIVE.intel && (
+          <ListItem>
+            Intel is earned only by playing: it can't be bought, and like every virtual item it has no cash value and
+            can't be sold, traded or moved to another account. You can spend it only on the items the app offers for
+            Intel. We may change how much Intel games and daily streaks give, which items it unlocks and what they cost;
+            we may correct a balance that's wrong or was earned by cheating, and reset balances if we change or stop
+            Intel. An item you've already unlocked with Intel stays yours like the other items you've earned.
+          </ListItem>
+        )}
+        {/* LIVE.tournaments: Tournament Tokens, earned only. */}
+        {LIVE.tournaments && (
+          <ListItem>
+            Tournament Tokens are earned only by playing in tournaments: they can't be bought, and like every virtual
+            item they have no cash value and can't be sold, traded or moved to another account. You can spend them only
+            in the Tournament Shop, whose items and prices can change each season. We may correct a balance that's
+            wrong or was earned by cheating, and reset balances if we change or stop Tournament Tokens.
+          </ListItem>
+        )}
         {avatarsLive(LIVE) && (
           <ListItem>
             Celebrations are avatar items: short animations that everyone at the table sees at a game's big moments, such

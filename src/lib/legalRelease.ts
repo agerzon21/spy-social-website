@@ -494,25 +494,117 @@ export const LIVE = {
    */
   developerWatch: false,
   /**
-   * Game Night titles (app repo feat/gamenight-v2, server files 20261106100000-150000): each night's titles (the
-   * night's, the Local winner's, the Spy winner's) and the developer's bonus title are recorded with the account: which
-   * week, whether each game played there counted, the game a prize came from (if any) and when (public.gamenight_*).
-   * Cosmetic only, no new provider, nothing leaves our servers. Turns on Privacy's Game Night item (after Play Online).
-   * POLICY FIRST: deploy the site with it on before the server files are applied with app_config gamenight.enabled
-   * on; flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set that date to the deploy day if later. A
-   * server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * Game Night v2 (app repo feat/gamenight-v2, server files 20261106100000-150000; QA 110, integrate/postlaunch steps 3-8):
+   * each night's titles (the night's, the Local winner's, the Spy winner's) and the developer's bonus title are recorded
+   * with the account: which week, each Game Night seat's outcome (whether the game counted, and why not), the game a
+   * title came from (if any: the close's last-table rule gives one with no game) and when (public.gamenight_prizes,
+   * gamenight_results, gamenight_bonus; ON DELETE CASCADE with the profile). Seating is Play Online's: a Game Night
+   * search is a match_searches row with the night's event_id (kept as Play Online searches are; a search the night's
+   * close ends, 'gn_over', gives no break), and the tables are Play Online tables. The developer's bonus title is
+   * announced at the table by the gold chat line "DEV Developer granted <the seat's name> <the title>." (_grant_chat_line),
+   * so the item says the table's chat names who got it. Cosmetic only, no new provider; nothing else leaves our servers.
+   * Turns on Privacy's Game Night item (after Play Online). The developer's watch at these tables is developerWatch's
+   * text (20261106130000): flip both in the same deploy. POLICY FIRST: deploy the site with it on before the server
+   * files are applied (QA 110 step 3), even though app_config gamenight.enabled stays false until the owner turns the
+   * first night on (Fri Nov 13, 2026, 7:55 PM ET); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
+   * that date to the deploy day. Off only if the Game Night v2 files are rolled back. A server switch for every app
+   * version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
   gameNightPrizes: false,
   /**
    * The Game Night rules page (/game-night-rules, src/pages/GameNightRules.tsx): the weekly Game Night's official
    * rules (no purchase, up to four cosmetic titles a night with no cash value, each once per account per night, the
-   * developer's bonus title).
+   * developer's bonus title). The page says it is part of the Terms, so on, the Terms' section 5 (Events) also points
+   * to it (one sentence: Game Night, its titles, the rules page), and flipping it moves LEGAL_LAST_UPDATED (below) to
+   * its date. That sentence adds no duty or penalty a player didn't already have (Game Night tables are Play Online
+   * tables, and the titles are virtual items under section 9), so it isn't a material change: no new TERMS_PUBLISHED,
+   * no app_config.terms_version raise by itself.
    * Off: the route doesn't exist (the 404 page), nothing links to it and it isn't in the sitemap. On: the route, the
-   * footer's link and the sitemap entry (vite.config.ts SWITCHED_PAGES). Turn it on with gameNightPrizes, before the
-   * first night is published. If the night's day or hours change, change the page first. No Privacy text reads it: set
-   * in LIVE, never in PRIVACY_AHEAD.
+   * footer's link and the sitemap entry (vite.config.ts SWITCHED_PAGES), and the Terms' sentence. Turn it on with
+   * gameNightPrizes (the same deploy), and in any case before the owner turns the first night on. If the night's day
+   * or hours change, change the page first. No Privacy text reads it: set in LIVE, never in PRIVACY_AHEAD.
    */
   gameNightRules: false,
+  /**
+   * Intel, the earned shop currency, and the daily streak (app repo feat/coins-streak c79e29ed, server file
+   * 20261121000000_coins_streak, switched on by 20261121100000_release_switches: QA 110, integrate/postlaunch steps 9
+   * and 11). Players see "Intel"; the server says "coins". Once app_config.coins.enabled is true, the xp_awards trigger
+   * (_coins_on_award) pays Intel for every paid XP award (xp > 0, no zero reason: nothing for a left / removed / absent
+   * seat, no result, too short, flagged, alone, idle or farm game), whatever app the player has: 5 a game for the first
+   * 10 of the stats day (UTC), 20 for the day's first, a streak bonus 5 x days up to 35, a streak freeze every 7 days
+   * (at most 1). It stores, per account: coin_wallets (balance, earned and spent totals, streak days, best streak, the
+   * last stats day with a paid game, freezes) and coin_ledger (one row per paid game: game id, day, the amount and its
+   * parts, the balance after; one row per item bought: item, price, day; kept while the account exists). buy_with_coins
+   * spends it on the items coin_prices lists (never Lifetime's, a membership's, an item sold for money, secret or
+   * default ones) and adds an unlock row (source 'grant', ref 'coins:<ledger id>'). Every coin table cascades with the
+   * profile. Shown only to the player (get_my_coins, get_my_game_coins: Home's streak, the Shop, the Locker, Game Over);
+   * the owner's console shows totals across players and logs his config changes (mod_actions 'coins_config'). Intel is
+   * never sold (no store product; if it ever is, the stores' virtual-currency rules and a new Terms section apply) and
+   * no provider gets anything. Turns on: Privacy's "Intel and Daily Streak" item (after Game Night), How We Use, the
+   * contract legal basis, Data Retention, and deletedSummary (lib/legalText: Delete Account too); the Terms' section 9
+   * (Intel by name: earned only, no cash value, can't be bought, sold or moved, prices and earning can change, balances
+   * corrected or reset). The Terms line only names Intel under section 9's existing rules for virtual items (no money
+   * value, no transfer, "we may change how they work", removal for cheating, lost with the account), so it is not a
+   * material change: LEGAL_LAST_UPDATED moves (below), no new TERMS_PUBLISHED or terms_version by itself; the 2.2
+   * launch's re-publication (TERMS_PUBLISHED, 30 days' notice) carries it anyway if it's on by then. POLICY FIRST:
+   * deploy the site with it on before 20261121000000_coins_streak is applied (QA 110 step 9; the processing starts at
+   * step 11, coins.enabled true), and set PRIVACY_LAST_UPDATED's and LEGAL_LAST_UPDATED's intel dates to the deploy day.
+   * Off only if the file is rolled back (an item bought with Intel stays the player's, as a grant). A server switch for
+   * every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  intel: false,
+  /**
+   * Ranked v2 (app repo feat/ranked-v2 06584ff7, server files 20261120000000_ranked_schema, 20261120100000_ranked_matcher,
+   * 20261120200000_ranked_scoring; NOT in QA 110: owner 2026-10-24, a later release). HELD: off until those files are
+   * applied live. Stores, per account and ladder (Spy Talk 4, Spy Sketch 4) and season: ranked_ratings (the visible
+   * skill rating, MMR, with its uncertainty; games, wins, leaves, placements left, the rank shown and the season's peak,
+   * wins at each reward level), ranked_results (one row per seat per ranked game: the outcome, whether it counted and
+   * why not, the rating and rank before and after, the points shown), ranked_penalties (Ranked's own breaks: declining
+   * 5 / 15 / 60 min within 24 h, leaving 15 min / 2 h / 24 h within 24 h, 3 leaves in 20 ranked games 3 days, or the
+   * owner's), ranked_rewards (each season's titles and borders), ranked_public (the leaderboard choice: @username, or
+   * "Agent <Colour>" by default), and a Ranked search's ladders in match_searches. Every table cascades with the profile.
+   * Only the result moves the rating (never questions, chat, drawings or votes); a farm, flagged or parallel seat isn't
+   * counted. get_ranked_leaderboard: the top 100 of a ladder's season with rank and MMR, adults only (a birth year 18+;
+   * under 18 or unknown never on a public board), @username only for accounts that chose it, else "Agent <Colour>";
+   * opens at 200 placed. Players see their own MMR, points and rank; Game Over shows each player their own change. No
+   * provider. Turns on: Privacy's Ranked item, Data Sharing's leaderboard sentence, Data Retention, deletedSummary;
+   * the Terms' Ranked paragraph in section 5 (its breaks, seasons, the soft reset, placement, rewards; ranks have no
+   * cash value). That Terms paragraph adds penalties (Ranked's breaks), so it IS material for existing players: flip it
+   * in a Terms re-publication (TERMS_PUBLISHED the deploy day, TERMS_EFFECTIVE_FOR_EXISTING 30 days later, the version
+   * it replaces first in TERMS_PREVIOUS, app_config.terms_version raised so everyone agrees again in the app); players
+   * who accept in the app are bound at once, so Ranked can open to them the same day. Before flipping, check the text
+   * against the files that ship (they were reworked once already: v1 -> v2), and the Privacy draft in
+   * migrations_pending/README.md ("Ranked v2"). POLICY FIRST: deploy before the files are applied, and set the ranked
+   * dates (PRIVACY_LAST_UPDATED, LEGAL_LAST_UPDATED) to the deploy day. A server switch: set in LIVE, never in
+   * PRIVACY_AHEAD.
+   */
+  ranked: false,
+  /**
+   * Tournaments v1 (app repo feat/tournaments-v1 992471d3, server files 20261121000000_tournaments_schema and
+   * 20261121100000_tournaments_engine: NOTE those numbers collide with Intel's 20261121000000_coins_streak and
+   * 20261121100000_release_switches, so one pair gets renumbered before either ships; the text here doesn't depend on
+   * the numbers). HELD: needs Ranked (ranked must be on first); off until the files are applied live. 4-seat cups by
+   * Ranked rank bracket: sign-up, check-in, three pod stages (a new table every game, everyone the spy once a stage),
+   * the top half advance, byes; stores per account: tournament_entries (signed up, checked in, status: reserve,
+   * playing, out, winner, no-show, left, withdrawn, disqualified; the rank at sign-up, the stage reached, wins,
+   * points, place, tokens and title given), tournament_stage_players, tournament_tables, tournament_points (per game:
+   * spy win 3, Locals' win 1, bye 1, leave or no-show 0), tournament_tokens (the Tournament Tokens ledger: earned by
+   * placement, rank bracket and wins, spent in the shop, the owner's adjustments; never sold), tournament_purchases
+   * (the season's shop, bought directly, never random). The 48-hour fair-play hold before results are final (the owner
+   * can hold, disqualify or release). 2 no-shows in 60 days: no tournaments for 30 days. get_tournament: standings
+   * between stages (never live) and the winners show @username for adults and "Agent <Colour>" for players under 18
+   * (or without a birth year), with points and place, to any signed-in player who opens that tournament in the app
+   * (get_tournament checks only that tournaments are open to the viewer); never anyone's spy game. Every table cascades with the profile (created_by SET NULL). No
+   * provider. Turns on: Privacy's Tournaments item, Data Sharing's standings sentence, Data Retention, deletedSummary;
+   * the Terms' Tournaments section in section 9 and the tokens' line (free entry, eligibility, check-in, no-shows and
+   * their 30-day pause, leaving, byes, the fair-play hold, disqualification, titles and tokens with no cash value, not
+   * transferable, can't be bought, shop items and prices can change, we may change, move or cancel a tournament). Material
+   * (new rules and a penalty): flip it in a Terms re-publication, as ranked says (the same one if they ship together).
+   * Before flipping, check the text against the files that ship and the README's draft line ("Tournaments v1"). POLICY
+   * FIRST: deploy before the files are applied; set the tournaments dates to the deploy day. A server switch: set in
+   * LIVE, never in PRIVACY_AHEAD.
+   */
+  tournaments: false,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -556,8 +648,9 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
  * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag,
- * groomingScope, developerWatch and gameNightPrizes (server switches for every app version at once: set in LIVE),
- * gameNightRules (the Game Night rules page, no Privacy text), scheduledRetention,
+ * groomingScope, developerWatch, gameNightPrizes, intel, ranked and tournaments (server switches for every app version at
+ * once: set in LIVE), gameNightRules (the Game Night rules page and the Terms' pointer to it, no Privacy text),
+ * scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
@@ -646,9 +739,18 @@ export const OPERATOR: { name: string | null; address: string | null } = {
 
 /**
  * "Last Updated" on the Terms, the Community Rules and the Safety page, and (through PRIVACY_LAST_UPDATED) on the
- * Privacy Policy and Delete Account: the day a change is published.
+ * Privacy Policy and Delete Account: the day a change is published. Like PRIVACY_LAST_UPDATED below, a switch prepared
+ * before its feature goes live carries its date here (newest first), so its one-line flip in LIVE moves the date too;
+ * set each date to its deploy day when flipping. The first switch that's on wins, so a later change that isn't one of
+ * these switches (the 2.2 launch's, for one) must fold the chain back to a plain string first, then set it.
  */
-export const LEGAL_LAST_UPDATED = 'October 21, 2026'
+export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
+  ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.ranked
+    ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
+    : LIVE.intel || LIVE.gameNightRules
+      ? 'October 26, 2026' // Intel's section 9 line and the Game Night rules pointer (QA 110): the deploy day
+      : 'October 21, 2026'
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -656,11 +758,15 @@ export const LEGAL_LAST_UPDATED = 'October 21, 2026'
  * goes live can carry its date here (LIVE.<switch> ? its day : the current date), so the one-line flip in LIVE moves
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
-export const PRIVACY_LAST_UPDATED: string = LIVE.gameNightPrizes
-  ? 'November 3, 2026' // the Game Night prizes item: set to the day the site goes up with it on, if later
-  : LIVE.developerWatch
-    ? 'October 24, 2026' // the developer's watch text: set to the day the site goes up with it on
-    : 'October 24, 2026' // crashReportLocation off (groomingScope's Oct 22 folded in)
+export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
+  ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.ranked
+    ? 'December 4, 2026' // the Ranked item: set to the day the site goes up with it on
+    : LIVE.intel || LIVE.gameNightPrizes
+      ? 'October 26, 2026' // QA 110: Intel and Daily Streak, Game Night v2: set to the day the site goes up with them on
+      : LIVE.developerWatch
+        ? 'October 24, 2026' // the developer's watch text: set to the day the site goes up with it on
+        : 'October 24, 2026' // crashReportLocation off (groomingScope's Oct 22 folded in)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
