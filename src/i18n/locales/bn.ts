@@ -8,6 +8,8 @@ const bn: Strings = {
     description:
       'বন্ধুদের জড়ো করুন, গুপ্তচরকে খুঁজে বের করুন — নয়তো সবাইকে বোকা বানান। 3–21 জনের জন্য ফ্রি রিয়েল-টাইম মাল্টিপ্লেয়ার পার্টি গেম। iOS আর Google Play-তে পাওয়া যাচ্ছে।',
     titles: {
+      /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
+      gameNightRules: "গেম নাইটের নিয়ম",
       faq: 'সহায়তা ও প্রশ্নোত্তর',
       contact: 'যোগাযোগ',
       rules: 'কমিউনিটির নিয়ম',
@@ -25,6 +27,7 @@ const bn: Strings = {
       notFound: 'পেজ পাওয়া যায়নি',
     },
     descriptions: {
+      gameNightRules: "SpySocial-এর সাপ্তাহিক গেম নাইটের নিয়ম: কখন হয়, কারা অংশ নিতে পারে, রাতের টাইটেলগুলো কীভাবে পাওয়া যায় এবং ডেভেলপারের বোনাস টাইটেল।",
       faq: 'SpySocial নিয়ে সাধারণ প্রশ্নের উত্তর: কীভাবে শুরু করবেন, গেম মোড, রুম শেয়ার করা ও তাতে যোগ দেওয়া, ভাষা, হোস্টের নিয়ন্ত্রণ, আপনার অ্যাকাউন্ট আর সমস্যার সমাধান।',
       contact: 'SpySocial টিমের সঙ্গে যোগাযোগ করুন: অ্যাপ, আপনার অ্যাকাউন্ট বা অন্য যেকোনো বিষয়ে সাহায্যের জন্য support@spysocial.app-এ ইমেইল করুন।',
       rules: 'SpySocial-এর কমিউনিটির নিয়ম: ভালো ব্যবহার করুন, ধোঁকা দিন কিন্তু প্রতারণা নয়, ব্যক্তিগত তথ্য গোপন রাখুন, আর কেউ নিয়ম ভাঙলে কী হয়।',
@@ -55,6 +58,8 @@ const bn: Strings = {
   },
 
   footer: {
+    /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
+    gameNightRules: "গেম নাইটের নিয়ম",
     tagline: 'ছলচাতুরীর পার্টি গেম।',
     play: 'খেলুন',
     legal: 'আইনি তথ্য ও নিরাপত্তা',

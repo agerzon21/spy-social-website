@@ -8,6 +8,8 @@ const ptBR: Strings = {
     description:
       'Junte os amigos e descubra o espião — ou engane todo mundo. Jogo de festa multijogador grátis em tempo real, de 3–21 jogadores. Para iOS e Google Play.',
     titles: {
+      /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
+      gameNightRules: "Regras da Noite de Jogo",
       faq: 'Suporte e perguntas',
       contact: 'Fale conosco',
       rules: 'Regras da comunidade',
@@ -25,6 +27,7 @@ const ptBR: Strings = {
       notFound: 'Página não encontrada',
     },
     descriptions: {
+      gameNightRules: "As regras da Noite de Jogo semanal do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
       faq: 'Respostas para as dúvidas mais comuns sobre o SpySocial: como começar, modos de jogo, compartilhar e entrar em salas, idiomas, controles do anfitrião, sua conta e solução de problemas.',
       contact: 'Fale com a equipe do SpySocial: escreva para support@spysocial.app se precisar de ajuda com o app, sua conta ou qualquer outra coisa.',
       rules: 'As regras da comunidade do SpySocial: seja gentil, blefe sem trapacear, mantenha a privacidade e o que acontece quando alguém quebra as regras.',
@@ -55,6 +58,8 @@ const ptBR: Strings = {
   },
 
   footer: {
+    /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
+    gameNightRules: "Regras da Noite de Jogo",
     tagline: 'O jogo de festa da dedução social.',
     play: 'Jogar',
     legal: 'Legal e segurança',

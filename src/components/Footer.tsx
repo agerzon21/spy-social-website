@@ -54,6 +54,8 @@ const Footer = () => {
     // The roadmap, once the owner has approved it (LIVE.roadmap).
     ...(LIVE.roadmap ? [{ label: f.roadmap, to: '/roadmap' }] : []),
     { label: f.rules, to: '/rules' },
+    // The Game Night rules, once they're live (LIVE.gameNightRules).
+    ...(LIVE.gameNightRules ? [{ label: f.gameNightRules, to: '/game-night-rules' }] : []),
     { label: f.support, to: '/support' },
     { label: f.contact, to: '/contact-us' },
     ...(LIVE.merchShop ? [{ label: f.shop, href: SHOP_URL }] : []),

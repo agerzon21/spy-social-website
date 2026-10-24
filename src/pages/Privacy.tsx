@@ -136,6 +136,17 @@ const Privacy: React.FC = () => {
             Searches are deleted 30 days after they end, and breaks and the matchmaking log after 90 days.
           </Item>
         )}
+        {/* LIVE.gameNightPrizes: each Game Night's titles and the developer's bonus title (legalRelease). */}
+        {PRIVACY.gameNightPrizes && (
+          <Item label="Game Night">
+            When you play in our weekly Game Night, our servers keep which week you played, whether each game you
+            played there counted toward the night's titles, and, when you get titles (the night's titles, or a bonus
+            title the developer gives at a table he visits), which titles, the game they came from (if any) and when.
+            We use this to give each account each title once, to show you a notice in the app, and to check that
+            titles are won fairly. The titles are cosmetic and kept with your account, and this information is
+            deleted with it. It doesn't leave our servers and isn't shared with anyone.
+          </Item>
+        )}
         <Item label="Chat Messages">
           Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, the chat for players
           who are out, and the game's chat on Game Over, which stays open to the players of that game for a few

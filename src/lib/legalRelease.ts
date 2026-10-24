@@ -494,6 +494,26 @@ export const LIVE = {
    */
   developerWatch: false,
   /**
+   * Game Night titles (app repo feat/gamenight-v2, server files 20261106100000-150000): each night's titles (the
+   * night's, the Local winner's, the Spy winner's) and the developer's bonus title are recorded with the account: which
+   * week, whether each game played there counted, the game a prize came from (if any) and when (public.gamenight_*).
+   * Cosmetic only, no new provider, nothing leaves our servers. Turns on Privacy's Game Night item (after Play Online).
+   * POLICY FIRST: deploy the site with it on before the server files are applied with app_config gamenight.enabled
+   * on; flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set that date to the deploy day if later. A
+   * server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  gameNightPrizes: false,
+  /**
+   * The Game Night rules page (/game-night-rules, src/pages/GameNightRules.tsx): the weekly Game Night's official
+   * rules (no purchase, up to four cosmetic titles a night with no cash value, each once per account per night, the
+   * developer's bonus title).
+   * Off: the route doesn't exist (the 404 page), nothing links to it and it isn't in the sitemap. On: the route, the
+   * footer's link and the sitemap entry (vite.config.ts SWITCHED_PAGES). Turn it on with gameNightPrizes, before the
+   * first night is published. If the night's day or hours change, change the page first. No Privacy text reads it: set
+   * in LIVE, never in PRIVACY_AHEAD.
+   */
+  gameNightRules: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -536,7 +556,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
  * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag,
- * groomingScope and developerWatch (server switches for every app version at once: set in LIVE), scheduledRetention,
+ * groomingScope, developerWatch and gameNightPrizes (server switches for every app version at once: set in LIVE),
+ * gameNightRules (the Game Night rules page, no Privacy text), scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
  */
@@ -635,9 +656,11 @@ export const LEGAL_LAST_UPDATED = 'October 21, 2026'
  * goes live can carry its date here (LIVE.<switch> ? its day : the current date), so the one-line flip in LIVE moves
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
-export const PRIVACY_LAST_UPDATED: string = LIVE.developerWatch
-  ? 'October 24, 2026' // the developer's watch text: set to the day the site goes up with it on
-  : 'October 24, 2026' // crashReportLocation off (groomingScope's Oct 22 folded in)
+export const PRIVACY_LAST_UPDATED: string = LIVE.gameNightPrizes
+  ? 'November 3, 2026' // the Game Night prizes item: set to the day the site goes up with it on, if later
+  : LIVE.developerWatch
+    ? 'October 24, 2026' // the developer's watch text: set to the day the site goes up with it on
+    : 'October 24, 2026' // crashReportLocation off (groomingScope's Oct 22 folded in)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
