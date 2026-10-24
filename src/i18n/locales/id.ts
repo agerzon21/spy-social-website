@@ -27,7 +27,7 @@ const id: Strings = {
       notFound: 'Halaman tidak ditemukan',
     },
     descriptions: {
-      gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara kerja hadiah mingguan, dan hadiah bonus dari pengembang.",
+      gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara mendapatkan gelar malam itu, dan gelar bonus dari pengembang.",
       faq: 'Jawaban atas pertanyaan umum tentang SpySocial: cara mulai, mode permainan, berbagi dan gabung ke room, bahasa, kontrol host, akunmu, dan cara mengatasi masalah.',
       contact: 'Hubungi tim SpySocial: kirim email ke support@spysocial.app kalau kamu butuh bantuan soal aplikasi, akunmu, atau hal lainnya.',
       rules: 'Aturan komunitas SpySocial: bersikap baik, menggertak boleh tapi curang jangan, jaga privasi, dan apa yang terjadi kalau ada yang melanggar aturan.',

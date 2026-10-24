@@ -45,7 +45,7 @@ const en = {
     },
     /** Each page's own description for search results; the home page and the unlisted pages use `description`. */
     descriptions: {
-      gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how the weekly prize works, and the developer's bonus prize.",
+      gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
       faq: 'Answers to common SpySocial questions: getting started, game modes, sharing and joining rooms, languages, host controls, your account and troubleshooting.',
       contact: 'Contact the SpySocial team: email support@spysocial.app for help with the app, your account or anything else.',
       rules: "SpySocial's community rules: be kind, bluff but don't cheat, keep personal information private, and what happens when someone breaks the rules.",

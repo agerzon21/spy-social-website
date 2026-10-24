@@ -27,7 +27,7 @@ const zhHans: Strings = {
       notFound: '页面不存在',
     },
     descriptions: {
-      gameNightRules: "SpySocial 每周游戏之夜的规则：举办时间、参与资格、每周奖励的发放方式，以及开发者的额外奖励。",
+      gameNightRules: "SpySocial 每周游戏之夜的规则：举办时间、参与资格、如何获得当晚的称号，以及开发者的额外称号。",
       faq: 'SpySocial 常见问题解答：如何开始、游戏模式、分享和加入房间、语言、房主控制、你的账号以及故障排除。',
       contact: '联系 SpySocial 团队：如需应用、账号或其他方面的帮助，请发邮件至 support@spysocial.app。',
       rules: 'SpySocial 社区规则：友善待人，可以唬人但不能作弊，保护隐私，以及违反规则会怎样。',

@@ -492,8 +492,8 @@ export const LIVE = {
    */
   developerWatch: false,
   /**
-   * Game Night prizes (app repo feat/gamenight-v2, server files 20261106100000-150000): the weekly Game Night's prize
-   * (a title, border, avatar item or celebration) and the developer's bonus prize are recorded with the account: which
+   * Game Night titles (app repo feat/gamenight-v2, server files 20261106100000-150000): each night's titles (the
+   * night's, the Local winner's, the Spy winner's) and the developer's bonus title are recorded with the account: which
    * week, whether each game played there counted, the game a prize came from (if any) and when (public.gamenight_*).
    * Cosmetic only, no new provider, nothing leaves our servers. Turns on Privacy's Game Night item (after Play Online).
    * POLICY FIRST: deploy the site with it on before the server files are applied with app_config gamenight.enabled
@@ -503,7 +503,8 @@ export const LIVE = {
   gameNightPrizes: false,
   /**
    * The Game Night rules page (/game-night-rules, src/pages/GameNightRules.tsx): the weekly Game Night's official
-   * rules (no purchase, cosmetic prizes with no cash value, one per account per week, the developer's bonus prize).
+   * rules (no purchase, up to four cosmetic titles a night with no cash value, each once per account per night, the
+   * developer's bonus title).
    * Off: the route doesn't exist (the 404 page), nothing links to it and it isn't in the sitemap. On: the route, the
    * footer's link and the sitemap entry (vite.config.ts SWITCHED_PAGES). Turn it on with gameNightPrizes, before the
    * first night is published. If the night's day or hours change, change the page first. No Privacy text reads it: set

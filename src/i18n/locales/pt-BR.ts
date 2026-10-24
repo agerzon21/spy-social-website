@@ -27,7 +27,7 @@ const ptBR: Strings = {
       notFound: 'Página não encontrada',
     },
     descriptions: {
-      gameNightRules: "As regras da Noite de Jogo semanal do SpySocial: quando acontece, quem pode participar, como funciona o prêmio da semana e o prêmio bônus do desenvolvedor.",
+      gameNightRules: "As regras da Noite de Jogo semanal do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
       faq: 'Respostas para as dúvidas mais comuns sobre o SpySocial: como começar, modos de jogo, compartilhar e entrar em salas, idiomas, controles do anfitrião, sua conta e solução de problemas.',
       contact: 'Fale com a equipe do SpySocial: escreva para support@spysocial.app se precisar de ajuda com o app, sua conta ou qualquer outra coisa.',
       rules: 'As regras da comunidade do SpySocial: seja gentil, blefe sem trapacear, mantenha a privacidade e o que acontece quando alguém quebra as regras.',
