@@ -132,8 +132,10 @@ export const LIVE = {
    * PRIVACY_LAST_UPDATED to that day. A Sentry-side fact for every app version at once: set in LIVE, never in
    * PRIVACY_AHEAD. While it's true, the store forms should declare an approximate location for crash reports (Google
    * Data safety: Approximate location; Apple: Coarse Location's reason), so the owner's rule is the better fix.
+   * Off 2026-10-24: the org-level rule (Remove, Anything, $user.geo.**) is in place, and the owner's test crash of
+   * 2026-10-24 10:01 UTC reads back through the API with geo {} and ip_address null.
    */
-  crashReportLocation: true,
+  crashReportLocation: false,
   /**
    * The 2.2 notifications (expo-notifications in the build): Remind Me on a game night schedules a notification on
    * the phone; Play Online's "Match found!" push (lib/matchPush.ts, the match-push Edge Function): the first FIND A
@@ -634,8 +636,8 @@ export const LEGAL_LAST_UPDATED = 'October 21, 2026'
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
 export const PRIVACY_LAST_UPDATED: string = LIVE.developerWatch
-  ? 'October 23, 2026' // the developer's watch text: set to the day the site goes up with it on, if later
-  : 'October 22, 2026' // groomingScope's date (it's on: folded in here)
+  ? 'October 24, 2026' // the developer's watch text: set to the day the site goes up with it on
+  : 'October 24, 2026' // crashReportLocation off (groomingScope's Oct 22 folded in)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
