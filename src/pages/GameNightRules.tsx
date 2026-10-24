@@ -96,6 +96,11 @@ const GameNightRules: React.FC = () => (
       counts. These rules are part of our <PageLink to="/terms">Terms of Service</PageLink>.
     </P>
 
+    <H2>Who runs Game Night</H2>
+    <P>
+      Game Night is run by SpySocial alone. <B>Apple and Google are not sponsors</B> and are not involved in any way.
+    </P>
+
     <H2>Questions</H2>
     <P>
       Email <SupportEmail subject="Game Night" /> with any question about Game Night or a title.
