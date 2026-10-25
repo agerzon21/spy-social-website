@@ -487,7 +487,16 @@ export const LIVE = {
    * game shows everyone; never a role, the word or location, votes before the reveal, or the spy or out chats). His
    * lines show as "DEV Developer" and go through the same chat filters and safety checks, including the grooming flag's
    * review in rooms with players under 18. The moderation log records each watch (the table, the game, the time). He
-   * never takes a seat or changes a result. Turns on one passage in Privacy's Data Sharing (after the watchers). POLICY
+   * never takes a seat. Since the app repo's 20261121600000_owner_live_moderation (feat/owner-live-moderation), he may
+   * act from the watch for safety or a broken rule (owner_table_action, owner_end_game): mute a player for the rest of
+   * that game (their general-chat lines there deleted, new ones refused), remove a player (out of the game and the
+   * room, no win from it), ban the account (24 hours, 7 days or permanent), or end the game for everyone with no result
+   * (cancel_reason 'developer'). A removal or an ending puts a gold line in the table's chat with no name in it; a mute
+   * tells the table nothing. Each action files a case and the developer's report with the server's evidence (the
+   * game's last 50 general-chat, system and Q&A lines and the player's own general-chat and Q&A lines there; never the
+   * spies' or out players' chat), kept as reports are, and a mod_actions row. The Privacy passage says so, dated
+   * PRIVACY_LAST_UPDATED's October 25, 2026 (no new data type, provider or purpose: the Safety Information already
+   * covers reports, removals, mutes and bans). Turns on one passage in Privacy's Data Sharing (after the watchers). POLICY
    * FIRST: deploy the site with it on before the feature goes live; flipping it also moves PRIVACY_LAST_UPDATED (below)
    * to its date: set that date to the deploy day if later. A server switch for every app version at once: set in LIVE,
    * never in PRIVACY_AHEAD. No Terms or Rules text reads it.
@@ -760,7 +769,7 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // the Ranked item: set to the day the site goes up with it on
-    : 'October 24, 2026' // QA 110 (Intel and Daily Streak, Game Night v2, the developer's watch; crashReportLocation off and groomingScope folded in)
+    : 'October 25, 2026' // the developer's watch may end a game or mute, remove or ban a player (owner live moderation); before it, October 24 (QA 110: Intel and Daily Streak, Game Night v2, the developer's watch; crashReportLocation off and groomingScope folded in)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
