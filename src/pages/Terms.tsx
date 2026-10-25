@@ -246,7 +246,7 @@ const Terms: React.FC = () => {
         players see it. This includes showing it to the players in your room, in room lists and game results, and
         to the people who review reports.
         {LIVE.communityPacks &&
-          ' For a custom pack you submit to Community Packs, it also lets us review it and, once we approve it, show it to every player, list it in search and in collections, show its ratings and how many players added it, and let any player add it to their packs, rate it and play it.'}
+          ' For a custom pack you submit to Community Packs, it also lets us review it and, once we approve it, show it to every player with your display name as its creator, list it in search and in collections, show its ratings and how many players added it, and let any player add it to their packs, rate it and play it.'}
         {LIVE.featuredPacks &&
           ' If we feature your pack, it also lets us edit it (for example to fix spelling or take out an entry that doesn\'t fit), translate it into the languages the app offers, and play it at Play Online tables and events.'}{' '}
         The license ends when your content is deleted from SpySocial, except for
@@ -276,24 +276,26 @@ const Terms: React.FC = () => {
             them in your private rooms, where everyone in the room plays them with you. Making and playing custom packs
             is a membership benefit; a pack you made stays on your account if your membership ends, until you delete it
             or your account is deleted. Only make packs that are your own work and that follow the Community Rules: no
-            personal information, no real people you know, and no ads or links.
+            personal information, no real people you know, and no ads or links. An automated check reads every pack's
+            text before anyone else plays it or sees it (see section 8), and checks it again whenever you change it.
             {LIVE.communityPacks && (
               <>
-                {' '}You can also submit a pack to Community Packs, where other players can find it. A person on our team
-                reviews every submitted pack before anyone else can see it: we may approve it, send it back for changes
-                or turn it down, and we may later take a Community Pack out if it breaks these Terms or the Community
-                Rules, or if we decide not to keep it. When we turn down or take out your pack, the app tells you why,
-                and you can appeal (see section 8). You can take your pack out of Community Packs, or delete it, at any
-                time.
+                {' '}You can also submit a pack to Community Packs, where every player can find it, with your display
+                name as its creator. A person on our team reviews every submitted pack before anyone else can see it
+                (we aim to do it within 72 hours): we may approve it, send it back for changes or turn it down, and we
+                may later hold a Community Pack while we look at it (for example after reports) or take it out if it
+                breaks these Terms or the Community Rules, or if we decide not to keep it. When we turn down or take out
+                your pack, the app tells you why, and you can appeal (see section 8). You can take your pack out of
+                Community Packs, or delete it, at any time. Creators get the Pack Maker title, which counts their
+                approved packs.
               </>
             )}
             {LIVE.featuredPacks && (
               <>
-                {' '}We may also feature a Community Pack: play it at Play Online tables and events, and translate it. If
-                we feature yours, we may give you a reward we choose,
-                {LIVE.intercepts ? ' such as a Unique item or Intercepts' : ' such as an avatar item'}. Rewards are
-                virtual items (see section 9). We don't pay money for packs, and which packs we feature, and their
-                rewards, are up to us.
+                {' '}We may also feature a Community Pack: translate it and play it at Play Online tables and events. If
+                we feature yours, you get the Featured Creator title and border, which count your featured packs. These
+                titles and the border are virtual items bound to your account (see section 9). We don't pay money or
+                give other rewards for packs, and which packs we feature is up to us.
               </>
             )}
           </P>
@@ -356,6 +358,8 @@ const Terms: React.FC = () => {
         on how often some actions can be repeated.
         {photosSeen &&
           ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
+        {LIVE.customPacks &&
+          ` Another automated check reads the name, description and entries of every custom pack before anyone but you and our team can play or see it; until it passes, or a person on our team clears it, the pack can't be played${LIVE.communityPacks ? ' or shared' : ''}.`}
         {drawings ? (
           <>
             {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms (
@@ -391,7 +395,7 @@ const Terms: React.FC = () => {
         <ListItem>remove you from a room or end a game</ListItem>
         {LIVE.customPacks && (
           <ListItem>
-            remove or change a custom pack{LIVE.communityPacks ? ', take it out of Community Packs,' : ''} or stop you
+            remove or change a custom pack{LIVE.communityPacks ? ', hold it or take it out of Community Packs,' : ''} or stop you
             from making{LIVE.communityPacks ? ' or sharing' : ''} packs
           </ListItem>
         )}
@@ -454,22 +458,33 @@ const Terms: React.FC = () => {
             Intel. We may change how much Intel games and daily streaks give, which items it unlocks and what they cost;
             we may correct a balance that's wrong or was earned by cheating. An item you've already unlocked with Intel
             stays yours like the other items you've earned.
+            {LIVE.intercepts &&
+              " With Intel you can also requisition one item you don't have yet, of Common to Epic rarity, from the ones the app lists for Intercepts, at the price the app shows (once per item). Intel we add to your account ourselves is locked: you can spend it, but it can never be traded or moved."}
           </ListItem>
         )}
         {/* LIVE.intercepts: Intercepts (the server's "crates"), earned only, odds shown (see legalRelease). */}
         {LIVE.intercepts && (
           <ListItem>
-            Intercepts are sealed rewards you earn only by playing: for wins at Play Online tables, for your daily play
-            and streaks, at Game Night and as other rewards the app shows. Each one opens into one random item. You can't
-            buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and
-            a membership doesn't give you more of them. Before you open one, the app shows the chance of each tier and
-            rarity, the items each can give and any guarantee. We set those odds for each series of items before it
-            starts and change them only between series, after telling you in the app. An item you already have turns
-            into Intel instead, at the amount the app shows. A Unique is a copy of an item with a colour and a number
-            that no other copy of it has. Like every virtual item, Intercepts and what's in them have no cash value and
-            can't be sold, traded or moved to another account, unopened or opened. We may take back Intercepts or items
-            that were given by mistake or earned by cheating; an item you've opened otherwise stays yours like the other
-            items you've earned.
+            Intercepts are sealed rewards you earn only by playing, or that we give you. You get them for wins at Play
+            Online tables (Game Night's included; never in a private room, or for a game that gives no Intel): every 10
+            wins that count give you 5 Intercepts, 4 of a random tier and 1 of the Secret tier or better. Your first
+            Play Online game of each day gives you a daily Intercept (on top of that day's Intel): every 7th day you
+            play, it's Secret or better, and your streak's milestones give higher tiers. Game Night's winners get an
+            Enigma Intercept. A free creator code gives its creator's fan title and 1 Intercept of the Secret tier or
+            better, once per account; codes tied to a purchase never give Intercepts. We may also give Intercepts, and
+            memberships, as gifts, but never the items that come from Intercepts. Each Intercept opens into one random
+            item. You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in
+            any other way, and a membership doesn't give you more of them. Before you open one, the app shows the
+            chance of each tier and rarity, the items each can give and any guarantee. We set those odds for each
+            series of items before it starts and change them only between series, after telling you in the app. If you
+            get an item you already have, you keep the extra copy and can shred it for Intel, at the amount the app
+            shows. A Unique is a copy of an item with a colour and a number that no other copy of it has (it can't be
+            shredded). Like every virtual item, Intercepts and what's in them have no cash value and can't be sold,
+            traded or moved to another account, unopened or opened. When Intercepts start (with SpySocial 2.2), every
+            item that from then on comes only from Intercepts is taken back from the accounts that had it, except the
+            Beta Pin, so that everyone gets these items the same way; the items a membership includes stay. We may take
+            back Intercepts or items that were given by mistake or earned by cheating; an item you've opened otherwise
+            stays yours like the other items you've earned.
           </ListItem>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}
@@ -487,7 +502,7 @@ const Terms: React.FC = () => {
             as a spy guessing the secret or being caught. Ink Burst and Ink Check are free; Paper Storm and Case Closed
             are earned by playing (the app shows how); Gold Storm comes with Lifetime;
             {LIVE.membershipsOnly
-              ? ` the others, such as Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board, aren't sold: they come ${LIVE.intercepts ? 'from Intercepts or as other rewards' : 'as rewards'}, and the app shows how to get each one. Players who earned Cuffed earlier keep it.`
+              ? ` the others, such as Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board, aren't sold: they come ${LIVE.intercepts ? 'only from Intercepts (some also by requisition with Intel)' : 'as rewards'}, and the app shows how to get each one.${LIVE.intercepts ? '' : ' Players who earned Cuffed earlier keep it.'}`
               : ' Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board are sold one by one. Players who earned Cuffed before it went on sale keep it.'}
           </ListItem>
         )}
@@ -502,14 +517,14 @@ const Terms: React.FC = () => {
         <H3>{LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'}</H3>
         <Bullets>
           {LIVE.membershipsOnly ? (
-            <ListItem>The only things you can buy in SpySocial are memberships: the Pack Pass (monthly or yearly) and Lifetime. {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
+            <ListItem>The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
           ) : (
             <ListItem>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
           )}
           <ListItem>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</ListItem>
           <ListItem>Lifetime means for as long as we offer SpySocial, not for your lifetime.</ListItem>
           {LIVE.membershipsOnly && (
-            <ListItem>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those.</ListItem>
+            <ListItem>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift; it works like a bought one for as long as we give it, and nothing is charged for it.</ListItem>
           )}
           <ListItem>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</ListItem>
           {LIVE.membershipsOnly ? (

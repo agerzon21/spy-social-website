@@ -126,9 +126,10 @@ const ChildSafety: React.FC = () => {
         {/* LIVE.communityPacks: shared packs are reviewed before anyone else sees them (legalRelease). */}
         {LIVE.communityPacks && (
           <ListItem>
-            <B>Community Packs:</B> a person on our team reads every pack a member shares before anyone else can see it,
-            names and entries go through our word filter, any player can report a Community Pack, and a pack made by a
-            player under 18 shows no creator name.
+            <B>Community Packs:</B> every pack's text goes through our word filter and an automated check (OpenAI's
+            moderation model) before anyone else can play or see it, and a pack it flags for child sexual content is
+            logged for our child-safety review; a person on our team reads every pack a member shares before anyone
+            else can see it, and any player can report a Community Pack.
           </ListItem>
         )}
         <ListItem>

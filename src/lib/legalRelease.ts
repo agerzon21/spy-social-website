@@ -615,8 +615,9 @@ export const LIVE = {
    */
   tournaments: false,
   /**
-   * Money buys only memberships (owner 2026-10-25, top priority for 2.2): the Pack Pass (monthly, the AGENT badge;
-   * yearly, ELITE) and Lifetime (SPYMASTER) are the only products for sale. The other 19 (the six packs
+   * Money buys only memberships (owner 2026-10-25, top priority for 2.2; final rules the same day): Agent (the monthly
+   * Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime) are the only products for sale; the owner may also
+   * gift a membership (the Terms say so). The other 19 (the six packs
    * spysocial.pack.*, spysocial.all_packs, the bundles Grand Tour and Night In, the Masquerade Mask and the nine
    * celebrations spysocial.cosmetic.*) are off sale: never live in store_products, removed from sale in App Store
    * Connect and deactivated on Google Play (app repo .claude/handoff/scratchpad/store-pack/review-v8.md). The free packs
@@ -636,14 +637,24 @@ export const LIVE = {
   /**
    * Intercepts (app repo feat/crates-server, server file 20261127000000_crates.sql, "crates" in code; app
    * feat/intercepts-client; owner 2026-10-25): sealed containers earned only by playing, each opening into one random
-   * item (an avatar item, celebrations among them, or a title). Earned: 3 for every 10 counted wins at Play Online
-   * tables (Game Night tables count; never a private room, never a game that pays no Intel: farm, idle, alt-farm, left
-   * or removed, no result), plus the daily and streak Intercepts, Game Night rewards and our own rewards (a featured
-   * Community Pack's creator: featuredPacks). Five tiers (Restricted, Confidential, Secret, Top Secret and a fifth whose
-   * name is still open), each rolled when the Intercept is earned and capping the best rarity inside; seven rarities
+   * item (an avatar item, celebrations among them, or a title). Final rules (owner 2026-10-25): every 10 counted wins
+   * at Play Online tables give 5 (4 of a random tier + 1 Secret or better; Game Night tables count; never a private
+   * room, never a game that pays no Intel: farm, idle, alt-farm, left or removed, no result; cap 20 wins a day); a
+   * daily Intercept for the stats day's first counted Play Online game, on top of daily Intel (every 7th day played:
+   * Secret or better; streak milestones 14 / 30 Top Secret, 60 / 100 Enigma, once each); a Game Night winner (Local or
+   * Spy) 1 Enigma, once a night; a free creator code the fan title + 1 Secret-or-better Intercept once per account
+   * (creators.gives_intercept false for a code tied to a purchase; reward codes never); the owner's gifts (a tier or
+   * Secret or better, with a reason; never a pool item directly). Never a featured pack's creator (that's the bound
+   * Featured Creator title and border). Spare copies are kept and can be shredded for Intel (never a Unique);
+   * requisitions: Intel buys a chosen Common-Epic item not owned, once per item; Intel the owner adds is locked
+   * (spendable, never tradable). At the 2.2 release (20261127190000_crates_reset) every pool item given out before is
+   * taken back from every account except the Beta Pin, with a crate_revocations record (cascades). Five tiers
+   * (Restricted, Confidential, Secret, Top Secret, Enigma), each rolled when the Intercept is earned and capping the
+   * best rarity inside; seven rarities
    * (Common, Uncommon, Rare, Epic, Mythic, Legendary, Unique: a Unique is a one-of-one copy of a Legendary item, with a
    * colour that never repeats for that item and a serial number). Opening rolls a rarity from the tier's published
-   * odds, then an item; a guarantee may decide it; a duplicate becomes Intel at a fixed amount per rarity. Never sold:
+   * odds, then an item; a guarantee may decide it; a duplicate is kept as a spare copy, shreddable for Intel at a fixed
+   * amount per rarity. Never sold:
    * no store product, no Intel price, no keys, re-rolls or speed-ups, an unopened one never moves to another account,
    * and a membership gives none extra. The odds are the server's own tables, the ones the roll uses (get_crate_odds,
    * readable without an account), shown in the app before opening. Stored per account: each Intercept (tier, when, how,
@@ -653,10 +664,13 @@ export const LIVE = {
    * provider. Turns on: Privacy's Intercepts item (after Intel), How We Use, the contract basis, Data Retention and
    * deletedSummary; the Terms' section 9 (Intercepts by name: earned only, never bought with money or Intel, no cash
    * value, no trading or transfer, odds shown before opening and changed only between series after notice in the app,
-   * duplicates to Intel, Uniques, corrections) and its celebrations bullet (from Intercepts); the Safety page's parents
-   * line; the Game Night rules' Intercepts paragraph (it promises that a night giving Intercepts says so on its banner). Like LIVE.intel, the Terms text names Intercepts under section
-   * 9's existing rules for virtual items and adds a promise (odds change only between series), no duty or penalty, so
-   * it isn't a material change by itself; the 2.2 launch's re-publication carries it anyway if it's on by then. Check
+   * the sources and their numbers, creator codes, gifts, spare copies shredded for Intel, Uniques, the 2.2 reset,
+   * corrections), the Intel bullet's requisitions and locked Intel, and its celebrations bullet (only from Intercepts);
+   * Privacy's Intel item (shred, requisition, locked); the Safety page's parents line; the Game Night rules' Intercepts
+   * paragraph (a winner's Enigma Intercept). Like LIVE.intel, the Terms text names Intercepts under section
+   * 9's existing rules for virtual items and adds a promise (odds change only between series), no duty or penalty;
+   * but its reset sentence takes back items players hold (section 9 already lets us "retire an item"), so carry it in
+   * the 2.2 launch's re-publication rather than as a silent edit (owner's call if it ships separately). Check
    * every line against the server file that ships (the sources, the guarantee, the duplicate rule, what other players
    * see of a Unique) and the app's own word for Intercepts in each language. POLICY FIRST: deploy the site with it on
    * before 20261127000000 is applied live, and set the intercepts dates (PRIVACY_LAST_UPDATED, LEGAL_LAST_UPDATED, the
@@ -666,10 +680,12 @@ export const LIVE = {
   intercepts: false,
   /**
    * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Pack
-   * Pass or Lifetime) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
+   * Pass or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
    * least 30 entries) and plays it in their private rooms, where the room's players see its name and what the game deals
    * and shows from it (the location or word, the spy's list, the hints). Names and entries go through the word filter
-   * when saved. Kept with the account (cascade) until the creator deletes the pack; a pack stays on the account if the
+   * when saved, and every pack's text through OpenAI's moderation model (check-pack, omni-moderation-latest; only the
+   * texts) before anyone but the creator and the owner plays or sees it; the result and flags are kept with the pack,
+   * a change checks again, a sexual/minors flag logs a child-safety record with a snapshot. Kept with the account (cascade) until the creator deletes the pack; a pack stays on the account if the
    * membership ends. Turns on: Privacy's Custom Packs item, How We Use, the contract basis, Data Retention and
    * deletedSummary; the Terms' section 6 (custom packs in "your content", the Custom packs paragraph), section 7 (the
    * rules cover packs) and section 8 (the word filter covers packs; removing a pack, stopping someone from making or
@@ -684,16 +700,18 @@ export const LIVE = {
   customPacks: false,
   /**
    * Community Packs (the same branches; needs customPacks): a member submits a custom pack, and a person on our team
-   * reviews it before anyone else can see it (approved, sent back for changes or declined, with a reason; who reviewed
-   * it and when are recorded). An approved pack is shown to every player: its name, description, game, language and
-   * entries, its creator's username (no name for a creator under 18 or without a birth year), when it was added, the
-   * average and number of its 1 to 5 star ratings, and how many players added it. Players search the packs (never by
-   * creator: the Safety page says there's no player search), browse our collections, add a pack to their own packs and
-   * rate it (one rating per account and pack, kept with the account; other players and the creator see only totals).
+   * reviews it before anyone else can see it (72-hour target, review_hours; approved, sent back for changes, rejected,
+   * removed or held, with a reason; who reviewed it and when are recorded with a snapshot). An approved pack is shown to
+   * every player, under-18s included (owner 2026-10-25: Community is the same for every age): its name, description,
+   * game, language and entries, its creator's display name (_player_name, every age), when it was added, the average
+   * and number of its 1 to 5 star ratings, and how many players added it (downloads). Players search the packs (the
+   * search also matches the creator's display name and username: the Safety page's "no player search" means people,
+   * not packs), browse our collections, add a pack to their collection and rate it (one rating per account and pack, kept with the account; other players and the creator see only totals).
    * A Community Pack can be reported: the report keeps the pack as it was, the reason and the reporter's text, and a
    * person reads it within 24 hours like any report; a removed pack's copy stays in the moderation log as long as
    * reports are kept. The creator can take a pack out of Community Packs or delete it; deleting the account removes the
-   * creator's packs from Community Packs and deletes the account's ratings and added packs. Turns on: Privacy's
+   * creator's packs from Community Packs and deletes the account's ratings and added packs. Creators get the bound
+   * "Pack Maker" title (counts approved packs). Turns on: Privacy's
    * Community Packs paragraph (in Custom Packs), Data Sharing's sentence, Data Retention, the legitimate-interests line
    * (the review) and deletedSummary; the Terms' Community Packs sentences (the licence to show, list and translate an
    * approved pack and let players add, rate and play it; review, removal with a reason, appeal) and section 8's "report
@@ -709,11 +727,12 @@ export const LIVE = {
    * plays at Play Online tables and events (where players see its name and creator as Community Packs shows them), and
    * its name, description and entries are translated into the app's ten languages by our translation service (only the
    * pack's text and the languages go to OpenAI or Microsoft Translator, never the creator's account, name or age; the
-   * translations are kept with the pack). We may edit a featured pack (spelling, an entry that doesn't fit). Its creator
-   * gets a reward we choose, such as a Unique item or Intercepts (kept like other gifts). Turns on: Privacy's featured
+   * translations are kept with the pack; OpenAI only for a creator 16+ who agreed, else Microsoft). We may edit a
+   * featured pack (spelling, an entry that doesn't fit). Its creator gets the bound "Featured Creator" title and border,
+   * which count featured packs (owner 2026-10-25, final: never Intercepts, never a Unique). Turns on: Privacy's featured
    * sentences (Community Packs) and the OpenAI and Microsoft provider lines; the Terms' Play Online line (featured packs
-   * at tables), the licence's featuring clause (edit, translate, play online) and the rewards sentence (our choice,
-   * virtual items, never money). Before flipping, check which translator the pack translation uses and whether a pack by
+   * at tables), the licence's featuring clause (edit, translate, play online) and the Featured Creator sentence (bound
+   * title and border, never money or other rewards). Before flipping, check which translator the pack translation uses and whether a pack by
    * a player under 16 goes to OpenAI (chat sends only 16+ authors' lines there), and that the app's Submit step names
    * the translator (Apple 5.1.2(i)). POLICY FIRST: deploy before the first pack is featured; set the featured dates to
    * that day. A server switch: set in LIVE, never in PRIVACY_AHEAD.

@@ -45,7 +45,7 @@ const GameNightRules: React.FC = () => (
     <H2>No purchase necessary</H2>
     <P>
       Taking part is free. Nothing you buy in SpySocial
-      {LIVE.membershipsOnly ? ' (a membership: the Pack Pass or Lifetime)' : ' (a pack, a Pack Pass, a membership)'} gives
+      {LIVE.membershipsOnly ? ' (a membership: Agent, Elite or Spymaster)' : ' (a pack, a Pack Pass, a membership)'} gives
       you a better chance of getting a title{LIVE.intercepts ? ' or an Intercept' : ''}, and you never need to buy
       anything to take part or to get one.
     </P>
@@ -96,13 +96,15 @@ const GameNightRules: React.FC = () => (
       buying anything.
     </P>
 
-    {/* LIVE.intercepts: Game Night wins count toward Intercepts; a night may give Intercepts too (legalRelease). */}
+    {/* LIVE.intercepts: Game Night wins count toward Intercepts; the night's winners get an Enigma Intercept (crates seed, earn.game_night). */}
     {LIVE.intercepts && (
       <>
         <H2>Intercepts</H2>
         <P>
           Game Night tables are Play Online tables, so a win there counts toward your Intercepts like any Play Online
-          win. A night may also give Intercepts as a reward; when it does, the Game Night banner says so. Intercepts
+          win, and your first game of the day there gives your daily Intercept. Every player who gets the Local winner's
+          or the Spy winner's title also gets one Enigma Intercept, the highest tier (one a night, even with both
+          titles). Intercepts
           work as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe: earned only, never sold,
           with the odds shown in the app before you open one.
         </P>
