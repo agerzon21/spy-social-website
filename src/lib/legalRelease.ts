@@ -757,7 +757,7 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
-    : 'October 24, 2026' // QA 110: Intel's section 9 line and the Game Night rules pointer
+    : 'October 25, 2026' // section 5: no votes at Play Online tables (Game Night's included); before it, October 24 (QA 110: Intel's section 9 line and the Game Night rules pointer)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
