@@ -654,7 +654,7 @@ export const LIVE = {
    * deletedSummary; the Terms' section 9 (Intercepts by name: earned only, never bought with money or Intel, no cash
    * value, no trading or transfer, odds shown before opening and changed only between series after notice in the app,
    * duplicates to Intel, Uniques, corrections) and its celebrations bullet (from Intercepts); the Safety page's parents
-   * line; the Game Night rules' Intercepts paragraph. Like LIVE.intel, the Terms text names Intercepts under section
+   * line; the Game Night rules' Intercepts paragraph (it promises that a night giving Intercepts says so on its banner). Like LIVE.intel, the Terms text names Intercepts under section
    * 9's existing rules for virtual items and adds a promise (odds change only between series), no duty or penalty, so
    * it isn't a material change by itself; the 2.2 launch's re-publication carries it anyway if it's on by then. Check
    * every line against the server file that ships (the sources, the guarantee, the duplicate rule, what other players
