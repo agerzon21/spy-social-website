@@ -8,8 +8,11 @@ import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/L
 // feat/gamenight-v2, server files 20261106100000-150000): up to four titles a night (the night's, the Local winner's,
 // the Spy winner's, the developer's bonus), each once per account per night. Change it first if any of that changes.
 
-/** The day this page's text was last changed: set it to the day the switch goes on, if later. */
-const UPDATED = 'October 24, 2026'
+/**
+ * The day this page's text was last changed: set it to the day the switch goes on, if later. October 25, 2026: the
+ * tables' safety tools corrected (Play Online tables have no vote to remove a player; the developer's actions).
+ */
+const UPDATED = 'October 25, 2026'
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -27,7 +30,9 @@ const GameNightRules: React.FC = () => (
       Anyone who can play Play Online can take part: a SpySocial account with a confirmed email address or Apple or
       Google sign-in, aged 13 or older, who has accepted our <PageLink to="/terms">Terms of Service</PageLink>. Game
       Night tables are Play Online tables: the <PageLink to="/rules">Community Rules</PageLink> and every safety tool
-      apply as at any other table (Report, Block, the vote to remove a player, the chat filters).
+      apply as at any other Play Online table (Report, Block, Leave and the chat filters). Like every Play Online table,
+      they have no votes to remove a player or to end a game; a person reads every report, and SpySocial's developer,
+      when he watches a table, can mute, remove or ban a player, or end the game, for safety or a broken rule.
     </P>
 
     <H2>No purchase necessary</H2>

@@ -103,7 +103,7 @@ const Terms: React.FC = () => {
         lose your device. To keep your
         name, progress and packs on any device, save your account with an email address and a password
         {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Public rooms and events need a saved
-        account with a confirmed email address.
+        account with a confirmed email address{LIVE.socialSignIn ? ', or one that signs in with Apple or Google' : ''}.
         {LIVE.purchases &&
           " Guests can buy packs and memberships too. A guest's purchases belong to the guest account; if you lose it, Restore Purchases brings them back (see section 9)."}
       </P>
@@ -149,8 +149,14 @@ const Terms: React.FC = () => {
         {LIVE.onePool
           ? "Public rooms are Play Online's tables and the events we schedule; players can't create public rooms. They're open to players you don't know."
           : "Public rooms are open to players you don't know."}{' '}
-        Anyone who meets the requirements can find them in the app and join: a saved account with a confirmed email address, being 13 or older, and agreeing to the
-        Community Rules. In a public room, players can vote to remove a player or to end a game.
+        Anyone who meets the requirements can play in them: a saved account with a confirmed email address
+        {LIVE.socialSignIn ? ' (or Apple or Google sign-in)' : ''}, being 13 or older, and agreeing to the Community Rules.
+        {/* Play Online's presets all have rules.room_votes_in_game false (live, 2026-10-25), call_room_vote refuses kick and
+            end votes in a standard game, and a Play Online table has no lobby; only a hosted event room (events.format
+            'room', off while app_config.events_enabled is false) has them. */}
+        {' '}Play Online's tables, Game Night's included, have no votes to remove a player or to end a game: Report, Block
+        and Leave are always there (see section 8). Players can vote to remove a player or to end a game only in an event
+        we host in a room of its own.
       </P>
       {LIVE.playOnline && (
         <P>
@@ -158,10 +164,11 @@ const Terms: React.FC = () => {
           {LIVE.onePool
             ? " and the free packs, plus the members' packs when a member sits at the table. Nobody hosts a table, and the same requirements apply"
             : ', under the same requirements'}
-          . If you don't tap Ready in time, leave a table that is starting, are away when the game starts, or
-          leave a game that has started, you get a short break from Play Online
-          {LIVE.onePool ? '' : ' and from other public rooms'} (never from private rooms or events): 5 minutes, and for leaving started games again within 24
-          hours, 15 and then 60 minutes. The first time in a day that you're away when a game starts, there's no
+          . If you don't tap Ready in time, leave a table that is starting, don't open your role card in time, are
+          away when the game starts, or leave a game that has started, you get a short break from Play Online (Game
+          Night's tables included){LIVE.onePool ? '' : ' and from other public rooms'}, never from private rooms or the
+          events we host in a room of their own: 5 minutes, and for leaving started games again within 24 hours, 15 and
+          then 60 minutes. The first time in a day that you're away when a game starts, there's no
           break.
         </P>
       )}

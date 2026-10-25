@@ -176,8 +176,8 @@ const UkOnlineSafety = () => {
       cells: [
         <>
           Not allowed: no insulting or targeting other players (section 7). Accusing other players is part of the game;
-          insulting them isn't. You can block, report or leave at any time, and in a public room players can vote to
-          remove someone.
+          insulting them isn't. You can block, report or leave at any time, and a person reads every report within 24
+          hours.
         </>,
       ],
     },
