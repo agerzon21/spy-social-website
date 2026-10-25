@@ -479,10 +479,10 @@ const Terms: React.FC = () => {
             Intercepts are sealed rewards you earn only by playing, or that we give you. You get them for wins at Play
             Online tables (Game Night's included; never in a private room, or for a game that gives no Intel): every 10
             wins that count give you 5 Intercepts, 4 of a random tier and 1 of the Secret tier or better. Your first
-            Play Online game of each day gives you a daily Intercept (on top of that day's Intel): every 7th day you
-            play, it's Secret or better, and your streak's milestones give higher tiers. Game Night's winners get an
-            Enigma Intercept. A free creator code gives its creator's fan title and 1 Intercept of the Secret tier or
-            better, once per account; codes tied to a purchase never give Intercepts. We may also give Intercepts, and
+            Play Online game of each day gives you a daily Intercept of a random tier (on top of that day's Intel):
+            every 7th day you play, it's Secret or better, and your streak's milestones give higher tiers. Game Night's winners get an
+            Enigma Intercept. A free creator code gives its creator's fan title and 5 Intercepts, one of each tier,
+            once per account; codes tied to a purchase (such as merch codes) give the title only, never Intercepts. We may also give Intercepts, and
             memberships, as gifts, but never the items that come from Intercepts. Each Intercept opens into one random
             item. You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in
             any other way, and a membership doesn't give you more of them. Before you open one, the app shows the

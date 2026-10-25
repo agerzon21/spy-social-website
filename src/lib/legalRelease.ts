@@ -640,10 +640,13 @@ export const LIVE = {
    * item (an avatar item, celebrations among them, or a title). Final rules (owner 2026-10-25): every 10 counted wins
    * at Play Online tables give 5 (4 of a random tier + 1 Secret or better; Game Night tables count; never a private
    * room, never a game that pays no Intel: farm, idle, alt-farm, left or removed, no result; cap 20 wins a day); a
-   * daily Intercept for the stats day's first counted Play Online game, on top of daily Intel (every 7th day played:
-   * Secret or better; streak milestones 14 / 30 Top Secret, 60 / 100 Enigma, once each); a Game Night winner (Local or
-   * Spy) 1 Enigma, once a night; a free creator code the fan title + 1 Secret-or-better Intercept once per account
-   * (creators.gives_intercept false for a code tied to a purchase; reward codes never); the owner's gifts (a tier or
+   * daily Intercept for the stats day's first counted Play Online game, on top of daily Intel (its tier rolled from
+   * the tier odds; every 7th day played: Secret or better; streak milestones: day 14 Top Secret, then days 30, 60, 90
+   * and every 30 days after Enigma, once each per account; rules v2, live 2026-10-25 18:16 EDT,
+   * 20261127700000_crates_rules_v2); a Game Night winner (Local or Spy) 1 Enigma, once a night; a free creator code
+   * the fan title + 5 Intercepts, one of each tier (Restricted to Enigma), once per account (rules v2; was 1 Secret
+   * or better); a code tied to a purchase (merch: creators.gives_intercept false) gives the title only, and reward
+   * codes never give one; the owner's gifts (a tier or
    * Secret or better, with a reason; never a pool item directly). Never a featured pack's creator (that's the bound
    * Featured Creator title and border). Spare copies are kept and can be shredded for Intel (never a Unique);
    * trade-ups (owner, later Oct 25): 5 spare copies of one rarity -> 1 random item of the next rarity, 5 Legendary
