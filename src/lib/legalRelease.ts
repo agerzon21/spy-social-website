@@ -709,9 +709,9 @@ export const LIVE = {
    * reviews it before anyone else can see it (72-hour target, review_hours; approved, sent back for changes, rejected,
    * removed or held, with a reason; who reviewed it and when are recorded with a snapshot). An approved pack is shown to
    * every player, under-18s included (owner 2026-10-25: Community is the same for every age): its name, description,
-   * game, language and entries, its creator's display name (_player_name, every age), when it was added, the average
+   * game, language and entries, its creator's username (never the display name; every age; owner 2026-10-25, fix/packs-show-username), when it was added, the average
    * and number of its 1 to 5 star ratings, and how many players added it (downloads). Players search the packs (the
-   * search also matches the creator's display name and username: the Safety page's "no player search" means people,
+   * search also matches the creator's username, never the display name: the Safety page's "no player search" means people,
    * not packs), browse our collections, add a pack to their collection and rate it (one rating per account and pack, kept with the account; other players and the creator see only totals).
    * A Community Pack can be reported: the report keeps the pack as it was, the reason and the reporter's text, and a
    * person reads it within 24 hours like any report; a removed pack's copy stays in the moderation log as long as

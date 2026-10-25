@@ -246,7 +246,7 @@ const Terms: React.FC = () => {
         players see it. This includes showing it to the players in your room, in room lists and game results, and
         to the people who review reports.
         {LIVE.communityPacks &&
-          ' For a custom pack you submit to Community Packs, it also lets us review it and, once we approve it, show it to every player with your display name as its creator, list it in search and in collections, show its ratings and how many players added it, and let any player add it to their packs, rate it and play it.'}
+          ' For a custom pack you submit to Community Packs, it also lets us review it and, once we approve it, show it to every player with your username as its creator, list it in search and in collections, show its ratings and how many players added it, and let any player add it to their packs, rate it and play it.'}
         {LIVE.featuredPacks &&
           ' If we feature your pack, it also lets us edit it (for example to fix spelling or take out an entry that doesn\'t fit), translate it into the languages the app offers, and play it at Play Online tables and events.'}{' '}
         The license ends when your content is deleted from SpySocial, except for
