@@ -1,6 +1,7 @@
 import { ListItem } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/LegalText'
+import { LIVE } from '../lib/legalRelease'
 
 // The Game Night rules (www.spysocial.app/game-night-rules): the weekly Game Night's official rules, in English
 // like the other legal pages. The route, the footer's link and the sitemap entry exist only while
@@ -8,8 +9,15 @@ import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/L
 // feat/gamenight-v2, server files 20261106100000-150000): up to four titles a night (the night's, the Local winner's,
 // the Spy winner's, the developer's bonus), each once per account per night. Change it first if any of that changes.
 
-/** The day this page's text was last changed: set it to the day the switch goes on, if later. */
-const UPDATED = 'October 24, 2026'
+/**
+ * The day this page's text was last changed: set it to the day the switch goes on, if later. LIVE.intercepts adds the
+ * Intercepts paragraph and LIVE.membershipsOnly changes the no-purchase line: set their dates to the deploy day.
+ */
+const UPDATED = LIVE.intercepts
+  ? 'November 2, 2026' // the Intercepts paragraph: set to the day the site goes up with it on
+  : LIVE.membershipsOnly
+    ? 'November 2, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
+    : 'October 24, 2026'
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -32,8 +40,10 @@ const GameNightRules: React.FC = () => (
 
     <H2>No purchase necessary</H2>
     <P>
-      Taking part is free. Nothing you buy in SpySocial (a pack, a Pack Pass, a membership) gives you a better
-      chance of getting a title, and you never need to buy anything to take part or to get one.
+      Taking part is free. Nothing you buy in SpySocial
+      {LIVE.membershipsOnly ? ' (a membership: the Pack Pass or Lifetime)' : ' (a pack, a Pack Pass, a membership)'} gives
+      you a better chance of getting a title{LIVE.intercepts ? ' or an Intercept' : ''}, and you never need to buy
+      anything to take part or to get one.
     </P>
 
     <H2>The night's titles</H2>
@@ -81,6 +91,19 @@ const GameNightRules: React.FC = () => (
       table's chat says who got it. It doesn't depend on winning the game, and it's never a payment or a reward for
       buying anything.
     </P>
+
+    {/* LIVE.intercepts: Game Night wins count toward Intercepts; a night may give Intercepts too (legalRelease). */}
+    {LIVE.intercepts && (
+      <>
+        <H2>Intercepts</H2>
+        <P>
+          Game Night tables are Play Online tables, so a win there counts toward your Intercepts like any Play Online
+          win. A night may also give Intercepts as a reward; when it does, the Game Night banner says so. Intercepts
+          work as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe: earned only, never sold,
+          with the odds shown in the app before you open one.
+        </P>
+      </>
+    )}
 
     <H2>About the titles</H2>
     <P>

@@ -245,6 +245,8 @@ const ptBR: Strings = {
       title: 'Sua mesa aguarda',
       text: 'Grátis para jogar, sem anúncios.',
       purchases: 'Pacotes opcionais se você quiser mais lugares e palavras.',
+      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
+      purchasesMembers: 'Assinaturas opcionais se você quiser mais lugares e palavras.',
     },
   },
 
@@ -422,6 +424,18 @@ const ptBR: Strings = {
           o.messages ? ' Toque e segure numa mensagem, pergunta ou resposta para denunciá-la: a denúncia a inclui, junto com o chat ao redor.' : ''
         }${o.drawings ? ' Você também pode denunciar um desenho.' : ''} Uma pessoa lê cada denúncia em até 24 horas. O chat público fica guardado por 14 dias para que as denúncias possam ser verificadas; o jogador denunciado não fica sabendo quem fez a denúncia.`,
     },
+    /** Section 5, once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+    packs: {
+      title: '5. Pacotes personalizados',
+      intro: 'Os pacotes que os membros criam também seguem estas regras: o nome, a descrição e cada item.',
+      rules: [
+        'Nada do que estas regras proíbem em outros lugares: nada de ódio, conteúdo sexual ou ameaças, e nada impróprio para jogadores a partir de 13 anos.',
+        'Nada de informações pessoais nem de pessoas reais que você conhece: nada de colegas de classe, professores ou vizinhos, nem endereços, números de telefone, escolas ou perfis de redes sociais.',
+        'Nada de anúncios, links ou spam, e só trabalho seu.',
+      ],
+      community:
+        'Pacotes da comunidade: uma pessoa da nossa equipe lê cada pacote antes que qualquer outra pessoa possa vê-lo. Se um pacote violar estas regras, podemos recusá-lo, tirá-lo dos Pacotes da comunidade ou impedir que essa conta compartilhe pacotes. Qualquer jogador pode denunciar um pacote da comunidade, e uma pessoa lê cada denúncia em até 24 horas.',
+    },
     child: {
       title: 'Segurança infantil',
       text: 'Nunca permitimos conteúdo sexual envolvendo menores de 18 anos, nem que alguém tente aliciar, sexualizar ou explorar uma criança. Removemos esse conteúdo, banimos as contas envolvidas e o denunciamos ao National Center for Missing & Exploited Children (NCMEC), como a lei exige. Se você vir algo assim, escreva para <email/> com “Child safety” (segurança infantil) no assunto e denuncie o jogador no app se vocês estiveram na mesma sala. Você também pode denunciar direto na <link>CyberTipline</link> do NCMEC (1-800-843-5678). Se uma criança estiver em perigo imediato, ligue primeiro para o número de emergência local. Nossos <link2>Padrões de segurança infantil</link2> explicam mais.',
@@ -511,6 +525,17 @@ const ptBR: Strings = {
       public: (playOnline: boolean) =>
         `<b>Salas públicas e eventos</b> com jogadores que seu filho ou sua filha não conhece${playOnline ? ', inclusive o Jogar online, que coloca os jogadores numa mesa automaticamente' : ''}.`,
       buy: '<b>Itens para comprar:</b> pacotes e assinaturas, pela App Store ou pelo Google Play.',
+      /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
+      buyMembers:
+        '<b>Itens para comprar:</b> só assinaturas (o Pack Pass, mensal ou anual, e o Passe vitalício), pela App Store ou pelo Google Play. Uma assinatura libera os pacotes que não são grátis; nada mais é vendido.',
+      /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
+      intercepts:
+        '<b>Interceptações:</b> recompensas ganhas jogando, cada uma com um item aleatório, como um visual novo para o agente. Não podem ser compradas, nem com dinheiro nem com a moeda ganha no jogo, e o app mostra as chances antes de alguém abrir uma.',
+      /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+      customPacks: (community: boolean) =>
+        `<b>Pacotes personalizados:</b> os membros podem criar os próprios pacotes de lugares ou palavras para as salas privadas deles.${
+          community ? ' Nossa equipe lê cada pacote compartilhado nos Pacotes da comunidade antes que qualquer outra pessoa possa vê-lo, e qualquer jogador pode denunciá-lo.' : ''
+        }`,
       hasNotTitle: 'O que o SpySocial não tem',
       noDms:
         'Nada de mensagens diretas: os jogadores só conversam dentro de uma sala, com os jogadores que estão nela. O chat dos espiões dura uma partida e é filtrado, guardado e pode ser denunciado como o resto.',
@@ -828,6 +853,9 @@ const ptBR: Strings = {
       ],
       more: 'E mais: estatísticas, títulos e molduras para desbloquear, níveis até o 100 com prestígio, XP até nas partidas rápidas, volta ao jogo sem tropeços quando o celular entra em repouso, links de convite que simplesmente funcionam e um visual novo em todas as telas.',
       launchWeek: 'Semana de lançamento: Spy Talk na terça, 10 de novembro, Spy Sketch na sexta, 13 de novembro, e Máfia no sábado, 14 de novembro, sempre das 20h às 22h no horário do leste dos EUA (ET).',
+      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
+      shopMembers: (customPacks: boolean) =>
+        `Crie seu próprio avatar de espião e ganhe visuais novos jogando. A Loja vende só assinaturas, que liberam todos os pacotes${customPacks ? ' e permitem criar os seus' : ''}: tudo opcional, e nada disso muda o jeito de jogar.`,
     },
     next: {
       status: 'Planejado',

@@ -244,6 +244,8 @@ const fr: Strings = {
       title: "Ta table t'attend",
       text: 'Gratuit, sans pub.',
       purchases: "Des packs en option si tu veux plus de lieux et de mots.",
+      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
+      purchasesMembers: 'Des abonnements en option si tu veux plus de lieux et de mots.',
     },
   },
 
@@ -421,6 +423,18 @@ const fr: Strings = {
           o.messages ? " Appuie longuement sur un message, une question ou une réponse pour le signaler\u00A0: le signalement l'inclut, avec le chat autour." : ''
         }${o.drawings ? ' Tu peux aussi signaler un dessin.' : ''} Une personne lit chaque signalement sous 24 heures. Le chat public est conservé 14 jours pour que les signalements puissent être vérifiés\u00A0; le joueur signalé ne sait pas qui l'a signalé.`,
     },
+    /** Section 5, once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+    packs: {
+      title: '5. Packs personnalisés',
+      intro: 'Les packs que créent les membres suivent aussi ces règles\u00A0: le nom, la description et chaque entrée.',
+      rules: [
+        "Rien de ce que ces règles interdisent ailleurs\u00A0: pas de haine, de contenu sexuel ni de menaces, et rien qui ne convienne pas aux joueurs de 13\u00A0ans et plus.",
+        "Pas d'informations personnelles ni de vraies personnes que tu connais\u00A0: pas de camarades de classe, de profs ni de voisins, ni d'adresses, de numéros de téléphone, d'écoles ou de pseudos de réseaux sociaux.",
+        'Pas de pub, de liens ni de spam, et uniquement ton propre travail.',
+      ],
+      community:
+        "Packs de la communauté\u00A0: une personne de notre équipe lit chaque pack avant que quiconque puisse le voir. Si un pack enfreint ces règles, nous pouvons le refuser, le retirer des Packs de la communauté ou empêcher ce compte de partager des packs. Tout joueur peut signaler un pack de la communauté, et une personne lit chaque signalement sous 24\u00A0heures.",
+    },
     child: {
       title: 'Protection des enfants',
       text: "Nous n'autorisons jamais de contenu sexuel impliquant une personne de moins de 18 ans, ni personne qui cherche à manipuler, sexualiser ou exploiter un enfant. Nous le supprimons, bannissons les comptes concernés et le signalons au National Center for Missing & Exploited Children (NCMEC), comme la loi l'exige. Si tu vois quelque chose de ce genre, écris à <email/> avec «\u00A0Child safety\u00A0» en objet, et signale le joueur dans l'appli si tu as partagé un salon avec lui. Tu peux aussi le signaler directement à la <link>CyberTipline</link> du NCMEC (1-800-843-5678). Si un enfant est en danger immédiat, appelle d'abord le numéro d'urgence local. Nos <link2>normes de protection des enfants</link2> en disent plus.",
@@ -510,6 +524,17 @@ const fr: Strings = {
       public: (playOnline: boolean) =>
         `<b>Salons publics et événements</b> avec des joueurs que ton enfant ne connaît pas${playOnline ? ', dont «\u00A0Jouer en ligne\u00A0», qui place automatiquement les joueurs à une table' : ''}.`,
       buy: "<b>Des achats\u00A0:</b> packs et abonnements, via l'App Store ou Google Play.",
+      /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
+      buyMembers:
+        "<b>Des achats\u00A0:</b> uniquement des abonnements (l'abonnement aux packs, mensuel ou annuel, et l'Accès à vie), via l'App Store ou Google Play. Un abonnement débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
+      /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
+      intercepts:
+        "<b>Interceptions\u00A0:</b> des récompenses gagnées en jouant, chacune avec un objet au hasard, comme un nouveau look pour l'agent. Elles ne s'achètent pas, ni avec de l'argent ni avec la monnaie gagnée dans le jeu, et l'appli affiche les chances avant qu'on en ouvre une.",
+      /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+      customPacks: (community: boolean) =>
+        `<b>Packs personnalisés\u00A0:</b> les membres peuvent créer leurs propres packs de lieux ou de mots pour leurs salons privés.${
+          community ? " Notre équipe lit chaque pack partagé dans les Packs de la communauté avant que quiconque puisse le voir, et tout joueur peut le signaler." : ''
+        }`,
       hasNotTitle: "Ce que SpySocial ne propose pas",
       noDms:
         "Pas de messages privés\u00A0: les joueurs ne peuvent discuter que dans un salon, avec les joueurs qui s'y trouvent. Le chat des espions dure une partie et il est filtré, conservé et signalable comme le reste.",
@@ -830,6 +855,9 @@ const fr: Strings = {
       ],
       more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, de l'XP même pour les parties courtes, un retour en partie sans accroc quand ton téléphone se met en veille, des liens d'invitation qui marchent tout simplement, et un nouveau look sur chaque écran.",
       launchWeek: "Semaine de lancement : Spy Talk le mardi 10 novembre, Spy Sketch le vendredi 13 novembre et Mafia le samedi 14 novembre, chaque fois de 20 h à 22 h, heure de l'Est américain (ET).",
+      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
+      shopMembers: (customPacks: boolean) =>
+        `Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. La boutique ne vend que des abonnements, qui débloquent tous les packs${customPacks ? ' et te permettent de créer les tiens' : ''}\u00A0: tout est facultatif, et rien ne change la façon de jouer.`,
     },
     next: {
       status: 'Prévu',

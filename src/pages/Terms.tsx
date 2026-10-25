@@ -35,6 +35,15 @@ const Terms: React.FC = () => {
   const photos = photosInUse(LIVE)
   const photosSeen = photosShown(LIVE)
   const drawings = drawingCheckLive(LIVE)
+  // With LIVE.membershipsOnly: what isn't sold, as one list ("Packs, avatar items, celebrations, Intercepts and Intel").
+  const notSoldItems = [
+    'Packs',
+    'avatar items',
+    avatarsLive(LIVE) ? 'celebrations' : null,
+    LIVE.intercepts ? 'Intercepts' : null,
+    LIVE.intel ? 'Intel' : null,
+  ].filter((item): item is string => item !== null)
+  const notSold = `${notSoldItems.slice(0, -1).join(', ')} and ${notSoldItems[notSoldItems.length - 1]}`
 
   return (
     <LegalPage english title="Terms of Service for SpySocial" updated={<>Last Updated: {LEGAL_LAST_UPDATED}</>}>
@@ -57,8 +66,8 @@ const Terms: React.FC = () => {
         <Bullets>
           <ListItem>Be kind and play fair, and follow our Community Rules. We don't tolerate objectionable content or abusive players.</ListItem>
           <ListItem>
-            What you add (your name, {photosSeen ? 'photo, ' : ''}messages and drawings) stays yours, but other players see it,
-            and you let us use it to run SpySocial.
+            What you add (your name, {photosSeen ? 'photo, ' : ''}messages{LIVE.customPacks ? ', drawings and packs' : ' and drawings'})
+            stays yours, but other players see it, and you let us use it to run SpySocial.
           </ListItem>
           <ListItem>Public rooms put you in games with people you don't know. Keep your personal information to yourself.</ListItem>
           <ListItem>If you break the rules, we can remove your content and limit or ban your account.</ListItem>
@@ -105,7 +114,9 @@ const Terms: React.FC = () => {
         {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Public rooms and events need a saved
         account with a confirmed email address.
         {LIVE.purchases &&
-          " Guests can buy packs and memberships too. A guest's purchases belong to the guest account; if you lose it, Restore Purchases brings them back (see section 9)."}
+          (LIVE.membershipsOnly
+            ? " Guests can buy a membership too. A guest's membership belongs to the guest account; if you lose it, Restore Purchases brings it back (see section 9)."
+            : " Guests can buy packs and memberships too. A guest's purchases belong to the guest account; if you lose it, Restore Purchases brings them back (see section 9).")}
       </P>
       <H3>Keeping your account safe</H3>
       <P>
@@ -156,7 +167,7 @@ const Terms: React.FC = () => {
         <P>
           Play Online seats you at a table with other players for a game with standard settings
           {LIVE.onePool
-            ? " and the free packs, plus the members' packs when a member sits at the table. Nobody hosts a table, and the same requirements apply"
+            ? ` and the free packs, plus the members' packs when a member sits at the table${LIVE.featuredPacks ? ', and the Community Packs we feature' : ''}. Nobody hosts a table, and the same requirements apply`
             : ', under the same requirements'}
           . If you don't tap Ready in time, leave a table that is starting, are away when the game starts, or
           leave a game that has started, you get a short break from Play Online
@@ -217,7 +228,8 @@ const Terms: React.FC = () => {
         "Your content" means everything you add to SpySocial: your display name, username
         {photos ? ', profile photo' : ''} and any room code you choose; your chat messages, including in the spy
         chat and the chat for players who are out; the questions and answers you type; your Spy Sketch drawings;
-        and the reports you send.
+        {LIVE.customPacks ? ' the custom packs you make (their names, descriptions and entries);' : ''}
+        {LIVE.communityPacks ? ' the ratings you give Community Packs;' : ''} and the reports you send.
       </P>
       <H3>You own it, and you let us use it</H3>
       <P>
@@ -225,7 +237,12 @@ const Terms: React.FC = () => {
         worldwide, non-exclusive, royalty-free license to store, copy, send, show, translate and adapt it (for
         example, {photos ? 'resize a photo or translate a message' : 'translate a message'}), and to let other
         players see it. This includes showing it to the players in your room, in room lists and game results, and
-        to the people who review reports. The license ends when your content is deleted from SpySocial, except for
+        to the people who review reports.
+        {LIVE.communityPacks &&
+          ' For a custom pack you submit to Community Packs, it also lets us review it and, once we approve it, show it to every player, list it in search and in collections, show its ratings and how many players added it, and let any player add it to their packs, rate it and play it.'}
+        {LIVE.featuredPacks &&
+          ' If we feature your pack, it also lets us edit it (for example to fix spelling or take out an entry that doesn\'t fit), translate it into the languages the app offers, and play it at Play Online tables and events.'}{' '}
+        The license ends when your content is deleted from SpySocial, except for
         copies we keep as our Privacy Policy describes (for example, content attached to a report). We won't use
         your {photos ? 'photo or your messages' : 'messages'} in our advertising without asking you first.
       </P>
@@ -240,14 +257,49 @@ const Terms: React.FC = () => {
       <P>
         Content from other players belongs to them. We don't check everything before it appears and we're not
         responsible for it, but we act on what's reported to us.
+        {LIVE.communityPacks &&
+          ' We do read every pack submitted to Community Packs before other players can see it, but it still belongs to the player who made it.'}
       </P>
+      {/* LIVE.customPacks: Custom Packs, with Community Packs (communityPacks) and featuring (featuredPacks). */}
+      {LIVE.customPacks && (
+        <>
+          <H3>Custom packs{LIVE.communityPacks ? ' and Community Packs' : ''}</H3>
+          <P>
+            With a membership, you can make your own packs of locations or words (at least 30 entries each) and play
+            them in your private rooms, where everyone in the room plays them with you. Making and playing custom packs
+            is a membership benefit; a pack you made stays on your account if your membership ends, until you delete it
+            or your account is deleted. Only make packs that are your own work and that follow the Community Rules: no
+            personal information, no real people you know, and no ads or links.
+            {LIVE.communityPacks && (
+              <>
+                {' '}You can also submit a pack to Community Packs, where other players can find it. A person on our team
+                reviews every submitted pack before anyone else can see it: we may approve it, send it back for changes
+                or turn it down, and we may later take a Community Pack out if it breaks these Terms or the Community
+                Rules, or if we decide not to keep it. When we turn down or take out your pack, the app tells you why,
+                and you can appeal (see section 8). You can take your pack out of Community Packs, or delete it, at any
+                time.
+              </>
+            )}
+            {LIVE.featuredPacks && (
+              <>
+                {' '}We may also feature a Community Pack: play it at Play Online tables and events, and translate it. If
+                we feature yours, we may give you a reward we choose,
+                {LIVE.intercepts ? ' such as a Unique item or Intercepts' : ' such as an avatar item'}. Rewards are
+                virtual items (see section 9). We don't pay money for packs, and which packs we feature, and their
+                rewards, are up to us.
+              </>
+            )}
+          </P>
+        </>
+      )}
       <H3>Ideas and feedback</H3>
       <P>If you send us ideas or suggestions, we may use them freely, without owing you anything.</P>
 
       <H2>7. Community Rules and Zero Tolerance</H2>
       <P>
         Our <PageLink to="/rules">Community Rules</PageLink> are part of these Terms. They apply to names,
-        {photosSeen ? ' photos,' : ''} chat, drawings and how you play, in public and private rooms. We have zero
+        {photosSeen ? ' photos,' : ''} chat, drawings{LIVE.customPacks ? ', custom packs' : ''} and how you play, in
+        public and private rooms. We have zero
         tolerance for objectionable content and abusive players. Don't post, send, draw or do anything that:
       </P>
       <Bullets>
@@ -284,7 +336,8 @@ const Terms: React.FC = () => {
       <P>
         You can report or block a player from their name in the app
         {LIVE.messageReports ? ', report a message, question or answer by long-pressing it' : ''}
-        {drawings ? ', and report a drawing' : ''}.
+        {drawings ? (LIVE.communityPacks ? ', report a drawing' : ', and report a drawing') : ''}
+        {LIVE.communityPacks ? ', and report a Community Pack from its page' : ''}.
         A person reads every report, and our Community Rules say how soon. The player you report isn't told who
         reported them. To check a report, we look at what's attached to it and at the records we keep, as our
         Privacy Policy describes.
@@ -292,7 +345,8 @@ const Terms: React.FC = () => {
       <H3>Automated tools</H3>
       <P>
         We also use automated tools to keep SpySocial safe: a word filter that can block certain words in names,
-        usernames, room codes and chat messages, and limits on how often some actions can be repeated.
+        usernames, room codes{LIVE.customPacks ? ', chat messages and custom packs' : ' and chat messages'}, and limits
+        on how often some actions can be repeated.
         {photosSeen &&
           ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
         {drawings ? (
@@ -328,6 +382,12 @@ const Terms: React.FC = () => {
         <ListItem>pause you from public rooms and events for a while</ListItem>
         <ListItem>ban your account</ListItem>
         <ListItem>remove you from a room or end a game</ListItem>
+        {LIVE.customPacks && (
+          <ListItem>
+            remove or change a custom pack{LIVE.communityPacks ? ', take it out of Community Packs,' : ''} or stop you
+            from making{LIVE.communityPacks ? ' or sharing' : ''} packs
+          </ListItem>
+        )}
       </Bullets>
       <P>
         Usually you'll get a warning first, but serious cases, such as threats, sharing someone's personal
@@ -365,7 +425,8 @@ const Terms: React.FC = () => {
         SpySocial has virtual items, such as packs of words and locations,
         {avatarsLive(LIVE) ? ' avatar items (hats, glasses, colours and the like, and celebrations),' : ''} XP, levels,
         prestige,
-        achievements, badges{LIVE.intel ? ', Intel' : ''}{LIVE.ranked ? ', Ranked ratings and ranks' : ''}
+        achievements, badges{LIVE.intel ? ', Intel' : ''}{LIVE.intercepts ? ', Intercepts' : ''}
+        {LIVE.ranked ? ', Ranked ratings and ranks' : ''}
         {LIVE.tournaments ? ', Tournament Tokens' : ''} and event rewards. Some are free, some you earn by playing, and some may be given to you, for
         example for playing in events.
       </P>
@@ -374,7 +435,7 @@ const Terms: React.FC = () => {
           Virtual items have no value in real money. You can't sell or trade them, move them to another account, or
           exchange them for money.
           {LIVE.purchases &&
-            " The one exception is Restore Purchases, which moves what you bought to the SpySocial account you're using (see Buying packs, items and membership below)."}
+            ` The one exception is Restore Purchases, which moves what you bought to the SpySocial account you're using (see ${LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'} below).`}
         </ListItem>
         <ListItem>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</ListItem>
         <ListItem>When someone in a room has unlocked a pack, everyone in that room can play it while they're there. We may change how this sharing works.</ListItem>
@@ -386,6 +447,22 @@ const Terms: React.FC = () => {
             Intel. We may change how much Intel games and daily streaks give, which items it unlocks and what they cost;
             we may correct a balance that's wrong or was earned by cheating. An item you've already unlocked with Intel
             stays yours like the other items you've earned.
+          </ListItem>
+        )}
+        {/* LIVE.intercepts: Intercepts (the server's "crates"), earned only, odds shown (see legalRelease). */}
+        {LIVE.intercepts && (
+          <ListItem>
+            Intercepts are sealed rewards you earn only by playing: for wins at Play Online tables, for your daily play
+            and streaks, at Game Night and as other rewards the app shows. Each one opens into one random item. You can't
+            buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and
+            a membership doesn't give you more of them. Before you open one, the app shows the chance of each tier and
+            rarity, the items each can give and any guarantee. We set those odds for each series of items before it
+            starts and change them only between series, after telling you in the app. An item you already have turns
+            into Intel instead, at the amount the app shows. A Unique is a copy of an item with a colour and a number
+            that no other copy of it has. Like every virtual item, Intercepts and what's in them have no cash value and
+            can't be sold, traded or moved to another account, unopened or opened. We may take back Intercepts or items
+            that were given by mistake or earned by cheating; an item you've opened otherwise stays yours like the other
+            items you've earned.
           </ListItem>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}
@@ -401,9 +478,10 @@ const Terms: React.FC = () => {
           <ListItem>
             Celebrations are avatar items: short animations that everyone at the table sees at a game's big moments, such
             as a spy guessing the secret or being caught. Ink Burst and Ink Check are free; Paper Storm and Case Closed
-            are earned by playing (the app shows how); Gold Storm comes with Lifetime; Searchlight, Most Wanted, The End,
-            Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board are sold one by
-            one. Players who earned Cuffed before it went on sale keep it.
+            are earned by playing (the app shows how); Gold Storm comes with Lifetime;
+            {LIVE.membershipsOnly
+              ? ` the others, such as Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board, aren't sold: they come ${LIVE.intercepts ? 'from Intercepts or as other rewards' : 'as rewards'}, and the app shows how to get each one. Players who earned Cuffed earlier keep it.`
+              : ' Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board are sold one by one. Players who earned Cuffed before it went on sale keep it.'}
           </ListItem>
         )}
         <ListItem>
@@ -414,14 +492,27 @@ const Terms: React.FC = () => {
       </Bullets>
       {LIVE.purchases && (
         <>
-        <H3>Buying packs, items and membership</H3>
+        <H3>{LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'}</H3>
         <Bullets>
-          <ListItem>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
+          {LIVE.membershipsOnly ? (
+            <ListItem>The only things you can buy in SpySocial are memberships: the Pack Pass (monthly or yearly) and Lifetime. {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
+          ) : (
+            <ListItem>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
+          )}
           <ListItem>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</ListItem>
           <ListItem>Lifetime means for as long as we offer SpySocial, not for your lifetime.</ListItem>
+          {LIVE.membershipsOnly && (
+            <ListItem>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those.</ListItem>
+          )}
           <ListItem>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</ListItem>
-          <ListItem>A pack you buy stays yours for as long as we offer SpySocial. We may update its words and locations, and if we ever have to withdraw a pack you bought, we'll give you a comparable one where we reasonably can.</ListItem>
-          <ListItem>An avatar item you buy only changes how your agent looks{avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. It stays yours for as long as we offer SpySocial; if we ever have to withdraw one, we'll give you a comparable one where we reasonably can. Lifetime includes only the items the app says it includes.</ListItem>
+          {LIVE.membershipsOnly ? (
+            <ListItem>The items a membership includes only change how your agent looks{avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. We may update the words and locations in a pack; if we ever have to withdraw a pack or an item a membership includes, we'll give you a comparable one where we reasonably can.</ListItem>
+          ) : (
+            <>
+              <ListItem>A pack you buy stays yours for as long as we offer SpySocial. We may update its words and locations, and if we ever have to withdraw a pack you bought, we'll give you a comparable one where we reasonably can.</ListItem>
+              <ListItem>An avatar item you buy only changes how your agent looks{avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. It stays yours for as long as we offer SpySocial; if we ever have to withdraw one, we'll give you a comparable one where we reasonably can. Lifetime includes only the items the app says it includes.</ListItem>
+            </>
+          )}
           <ListItem>Refunds are handled by Apple or Google under their policies. If a purchase is refunded, we remove what it unlocked.</ListItem>
           <ListItem>To get your purchases back on another device, or after losing or deleting an account, use Restore Purchases in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring moves your purchases to the SpySocial account you're using, away from any other account they were on.</ListItem>
           <ListItem>Nothing in these Terms takes away rights you have under consumer law, for example if something you bought doesn't work as described.</ListItem>

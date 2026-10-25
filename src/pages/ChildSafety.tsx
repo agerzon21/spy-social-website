@@ -48,7 +48,8 @@ const ChildSafety: React.FC = () => {
         sexual abuse and exploitation (CSAE): what we prohibit, how to report it, what we do about it, and how to reach
         us. They're part of our <PageLink to="/terms">Terms of Service</PageLink> and{' '}
         <PageLink to="/rules">Community Rules</PageLink>, and they apply everywhere in SpySocial: names,
-        {photos ? ' profile photos,' : ''} chat, typed questions and answers, and Spy Sketch drawings, in public and
+        {photos ? ' profile photos,' : ''} chat, typed questions and answers
+        {LIVE.customPacks ? ', Spy Sketch drawings and custom packs' : ', and Spy Sketch drawings'}, in public and
         private rooms. Jump to:{' '}
         <ChakraLink href="#standards">what we prohibit</ChakraLink>,{' '}
         <ChakraLink href="#protections">how SpySocial protects children</ChakraLink>,{' '}
@@ -122,6 +123,14 @@ const ChildSafety: React.FC = () => {
           and game nights they're always blocked. Sharing real names, addresses, phone numbers or social media handles
           is against our Community Rules.
         </ListItem>
+        {/* LIVE.communityPacks: shared packs are reviewed before anyone else sees them (legalRelease). */}
+        {LIVE.communityPacks && (
+          <ListItem>
+            <B>Community Packs:</B> a person on our team reads every pack a member shares before anyone else can see it,
+            names and entries go through our word filter, any player can report a Community Pack, and a pack made by a
+            player under 18 shows no creator name.
+          </ListItem>
+        )}
         <ListItem>
           <B>Evidence:</B> chat is kept on our servers for a while (about 24 hours in a private room, 14 days in a
           public room), so a report comes with the words actually sent.

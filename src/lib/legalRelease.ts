@@ -615,6 +615,111 @@ export const LIVE = {
    */
   tournaments: false,
   /**
+   * Money buys only memberships (owner 2026-10-25, top priority for 2.2): the Pack Pass (monthly, the AGENT badge;
+   * yearly, ELITE) and Lifetime (SPYMASTER) are the only products for sale. The other 19 (the six packs
+   * spysocial.pack.*, spysocial.all_packs, the bundles Grand Tour and Night In, the Masquerade Mask and the nine
+   * celebrations spysocial.cosmetic.*) are off sale: never live in store_products, removed from sale in App Store
+   * Connect and deactivated on Google Play (app repo .claude/handoff/scratchpad/store-pack/review-v8.md). The free packs
+   * stay free; every other pack comes with any membership. Nothing was ever bought (store_purchases had 0 rows on
+   * 2026-10-25), so nobody loses anything. Turns on: the Terms' buying section as "Buying a membership" (only
+   * memberships are sold, what one unlocks; no "a pack you buy" or "an avatar item you buy"), section 3's guest line and
+   * section 9's celebrations bullet (no "sold one by one"); Privacy's Purchases item and deletedSummary (memberships
+   * only); the Safety page's parents line; the Game Night rules' no-purchase line; the Roadmap's Shop card and the home
+   * page's closing line. The Terms' and the Safety page's text sits inside LIVE.purchases (and the celebrations bullet
+   * inside avatarsLive), so before the launch only Privacy, the Game Night rules and the Roadmap show it. Flip when
+   * store_products sells only the three memberships on the live server (the v8 Nov 2 switches: those three live, the
+   * other 19 draft, the mask included), whatever app a player has, and set PRIVACY_LAST_UPDATED, the Game Night rules'
+   * UPDATED and (once LIVE.purchases is on) LEGAL_LAST_UPDATED to that day. Not ahead-safe (it says we sell less): a
+   * server fact for every app version at once, set in LIVE, never in PRIVACY_AHEAD.
+   */
+  membershipsOnly: false,
+  /**
+   * Intercepts (app repo feat/crates-server, server file 20261127000000_crates.sql, "crates" in code; app
+   * feat/intercepts-client; owner 2026-10-25): sealed containers earned only by playing, each opening into one random
+   * item (an avatar item, celebrations among them, or a title). Earned: 3 for every 10 counted wins at Play Online
+   * tables (Game Night tables count; never a private room, never a game that pays no Intel: farm, idle, alt-farm, left
+   * or removed, no result), plus the daily and streak Intercepts, Game Night rewards and our own rewards (a featured
+   * Community Pack's creator: featuredPacks). Five tiers (Restricted, Confidential, Secret, Top Secret and a fifth whose
+   * name is still open), each rolled when the Intercept is earned and capping the best rarity inside; seven rarities
+   * (Common, Uncommon, Rare, Epic, Mythic, Legendary, Unique: a Unique is a one-of-one copy of a Legendary item, with a
+   * colour that never repeats for that item and a serial number). Opening rolls a rarity from the tier's published
+   * odds, then an item; a guarantee may decide it; a duplicate becomes Intel at a fixed amount per rarity. Never sold:
+   * no store product, no Intel price, no keys, re-rolls or speed-ups, an unopened one never moves to another account,
+   * and a membership gives none extra. The odds are the server's own tables, the ones the roll uses (get_crate_odds,
+   * readable without an account), shown in the app before opening. Stored per account: each Intercept (tier, when, how,
+   * the game that completed its set of wins), each opening (rarity, item, duplicate and its Intel, a Unique's serial and
+   * colour, the guarantee that decided it, when), the Uniques held, progress toward the next set and the guarantee
+   * counters; every row cascades with the profile; shown only to the player (get_my_crates), totals to the owner. No
+   * provider. Turns on: Privacy's Intercepts item (after Intel), How We Use, the contract basis, Data Retention and
+   * deletedSummary; the Terms' section 9 (Intercepts by name: earned only, never bought with money or Intel, no cash
+   * value, no trading or transfer, odds shown before opening and changed only between series after notice in the app,
+   * duplicates to Intel, Uniques, corrections) and its celebrations bullet (from Intercepts); the Safety page's parents
+   * line; the Game Night rules' Intercepts paragraph. Like LIVE.intel, the Terms text names Intercepts under section
+   * 9's existing rules for virtual items and adds a promise (odds change only between series), no duty or penalty, so
+   * it isn't a material change by itself; the 2.2 launch's re-publication carries it anyway if it's on by then. Check
+   * every line against the server file that ships (the sources, the guarantee, the duplicate rule, what other players
+   * see of a Unique) and the app's own word for Intercepts in each language. POLICY FIRST: deploy the site with it on
+   * before 20261127000000 is applied live, and set the intercepts dates (PRIVACY_LAST_UPDATED, LEGAL_LAST_UPDATED, the
+   * Game Night rules' UPDATED) to the deploy day. A server switch for every app version at once: set in LIVE, never in
+   * PRIVACY_AHEAD.
+   */
+  intercepts: false,
+  /**
+   * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Pack
+   * Pass or Lifetime) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
+   * least 30 entries) and plays it in their private rooms, where the room's players see its name and what the game deals
+   * and shows from it (the location or word, the spy's list, the hints). Names and entries go through the word filter
+   * when saved. Kept with the account (cascade) until the creator deletes the pack; a pack stays on the account if the
+   * membership ends. Turns on: Privacy's Custom Packs item, How We Use, the contract basis, Data Retention and
+   * deletedSummary; the Terms' section 6 (custom packs in "your content", the Custom packs paragraph), section 7 (the
+   * rules cover packs) and section 8 (the word filter covers packs; removing a pack, stopping someone from making or
+   * sharing packs); the Community Rules' "5. Custom packs" section; the Safety page's parents line; the Child Safety
+   * Standards' scope line. The Terms lines
+   * extend the content licence and the rules to a new, optional member feature: the app's pack editor should link the
+   * Terms where a pack is saved or shared, so they bind whoever uses it. Check against the files that ship: the entry
+   * minimum, what's stored, the filter on entries, what a room's players see, what happens to packs when a membership
+   * ends. POLICY FIRST: deploy before the custom packs server file is applied live, and set the custom packs dates to
+   * the deploy day. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  customPacks: false,
+  /**
+   * Community Packs (the same branches; needs customPacks): a member submits a custom pack, and a person on our team
+   * reviews it before anyone else can see it (approved, sent back for changes or declined, with a reason; who reviewed
+   * it and when are recorded). An approved pack is shown to every player: its name, description, game, language and
+   * entries, its creator's username (no name for a creator under 18 or without a birth year), when it was added, the
+   * average and number of its 1 to 5 star ratings, and how many players added it. Players search the packs (never by
+   * creator: the Safety page says there's no player search), browse our collections, add a pack to their own packs and
+   * rate it (one rating per account and pack, kept with the account; other players and the creator see only totals).
+   * A Community Pack can be reported: the report keeps the pack as it was, the reason and the reporter's text, and a
+   * person reads it within 24 hours like any report; a removed pack's copy stays in the moderation log as long as
+   * reports are kept. The creator can take a pack out of Community Packs or delete it; deleting the account removes the
+   * creator's packs from Community Packs and deletes the account's ratings and added packs. Turns on: Privacy's
+   * Community Packs paragraph (in Custom Packs), Data Sharing's sentence, Data Retention, the legitimate-interests line
+   * (the review) and deletedSummary; the Terms' Community Packs sentences (the licence to show, list and translate an
+   * approved pack and let players add, rate and play it; review, removal with a reason, appeal) and section 8's "report
+   * a Community Pack"; the Community Rules' Community Packs line; the Safety page's parents line; the Child Safety
+   * Standards' Community Packs line. Check against the
+   * files that ship: the creator name shown (and for players under 18), what can be searched, ratings and counts, what a
+   * deletion removes (from other players' packs too). POLICY FIRST: deploy before the server file is applied; set the
+   * community packs dates to the deploy day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  communityPacks: false,
+  /**
+   * Featured Community Packs (owner 2026-10-25; needs communityPacks): we may feature an approved Community Pack. It then
+   * plays at Play Online tables and events (where players see its name and creator as Community Packs shows them), and
+   * its name, description and entries are translated into the app's ten languages by our translation service (only the
+   * pack's text and the languages go to OpenAI or Microsoft Translator, never the creator's account, name or age; the
+   * translations are kept with the pack). We may edit a featured pack (spelling, an entry that doesn't fit). Its creator
+   * gets a reward we choose, such as a Unique item or Intercepts (kept like other gifts). Turns on: Privacy's featured
+   * sentences (Community Packs) and the OpenAI and Microsoft provider lines; the Terms' Play Online line (featured packs
+   * at tables), the licence's featuring clause (edit, translate, play online) and the rewards sentence (our choice,
+   * virtual items, never money). Before flipping, check which translator the pack translation uses and whether a pack by
+   * a player under 16 goes to OpenAI (chat sends only 16+ authors' lines there), and that the app's Submit step names
+   * the translator (Apple 5.1.2(i)). POLICY FIRST: deploy before the first pack is featured; set the featured dates to
+   * that day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  featuredPacks: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -658,7 +763,9 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
  * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag,
  * groomingScope, developerWatch, gameNightPrizes, intel, ranked and tournaments (server switches for every app version at
- * once: set in LIVE), gameNightRules (the Game Night rules page and the Terms' pointer to it, no Privacy text),
+ * once: set in LIVE), membershipsOnly (says we sell less; a server fact, set in LIVE), intercepts, customPacks,
+ * communityPacks and featuredPacks (server switches for every app version at once, which the Terms read too: set in
+ * LIVE), gameNightRules (the Game Night rules page and the Terms' pointer to it, no Privacy text),
  * scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
@@ -757,7 +864,17 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
-    : 'October 24, 2026' // QA 110: Intel's section 9 line and the Game Night rules pointer
+    : LIVE.featuredPacks
+      ? 'November 2, 2026' // featured Community Packs (Terms 5, 6): set to the day the site goes up with it on
+      : LIVE.communityPacks
+        ? 'November 2, 2026' // Community Packs (Terms 6, 8; Rules 5; Safety): set to the day the site goes up with it on
+        : LIVE.customPacks
+          ? 'November 2, 2026' // Custom Packs (Terms 6, 7, 8; Rules 5; Safety): set to the day the site goes up with it on
+          : LIVE.intercepts
+            ? 'November 2, 2026' // Intercepts (Terms 9; Safety): set to the day the site goes up with it on
+            : LIVE.membershipsOnly && LIVE.purchases
+              ? 'November 2, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
+              : 'October 24, 2026' // QA 110: Intel's section 9 line and the Game Night rules pointer
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -769,7 +886,17 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // the Ranked item: set to the day the site goes up with it on
-    : 'October 25, 2026' // the developer's watch may end a game or mute, remove or ban a player (owner live moderation); before it, October 24 (QA 110: Intel and Daily Streak, Game Night v2, the developer's watch; crashReportLocation off and groomingScope folded in)
+    : LIVE.featuredPacks
+      ? 'November 2, 2026' // featured Community Packs (translation, rewards): set to the day the site goes up with it on
+      : LIVE.communityPacks
+        ? 'November 2, 2026' // Community Packs (what's public, ratings, reports): set to the day the site goes up with it on
+        : LIVE.customPacks
+          ? 'November 2, 2026' // the Custom Packs item: set to the day the site goes up with it on
+          : LIVE.intercepts
+            ? 'November 2, 2026' // the Intercepts item: set to the day the site goes up with it on
+            : LIVE.membershipsOnly
+              ? 'November 2, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
+              : 'October 25, 2026' // the developer's watch may end a game or mute, remove or ban a player (owner live moderation); before it, October 24 (QA 110: Intel and Daily Streak, Game Night v2, the developer's watch; crashReportLocation off and groomingScope folded in)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

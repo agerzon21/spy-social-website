@@ -23,9 +23,19 @@ export const deletedSummary = (): string =>
     'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
     'your game-night history and rewards',
     PRIVACY.intel ? 'your Intel, its history and your daily streak' : null,
+    PRIVACY.intercepts ? 'your Intercepts and the items they gave you' : null,
+    PRIVACY.customPacks
+      ? PRIVACY.communityPacks
+        ? 'your custom packs (and so your Community Packs), your ratings and the Community Packs you added'
+        : 'your custom packs'
+      : null,
     PRIVACY.ranked ? 'your Ranked ratings, game records, breaks and rewards' : null,
     PRIVACY.tournaments ? 'your tournament entries and Tournament Tokens' : null,
-    PRIVACY.purchases ? 'the purchases linked to your account (such as packs, avatar items and memberships)' : null,
+    PRIVACY.purchases
+      ? PRIVACY.membershipsOnly
+        ? 'the purchases linked to your account (your memberships)'
+        : 'the purchases linked to your account (such as packs, avatar items and memberships)'
+      : null,
     PRIVACY.creatorCodes ? 'the link between your account and the creator code and reward codes you entered' : null,
     'the players you blocked, and the warnings, mutes and bans on your account',
     'your settings and the answers you gave the app (such as your birth year)',
