@@ -874,7 +874,7 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
             ? 'November 2, 2026' // Intercepts (Terms 9; Safety): set to the day the site goes up with it on
             : LIVE.membershipsOnly && LIVE.purchases
               ? 'November 2, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
-              : 'October 24, 2026' // QA 110: Intel's section 9 line and the Game Night rules pointer
+              : 'October 25, 2026' // section 5: no votes at Play Online tables (Game Night's included); before it, October 24 (QA 110: Intel's section 9 line and the Game Night rules pointer)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the

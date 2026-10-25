@@ -12,12 +12,14 @@ import { LIVE } from '../lib/legalRelease'
 /**
  * The day this page's text was last changed: set it to the day the switch goes on, if later. LIVE.intercepts adds the
  * Intercepts paragraph and LIVE.membershipsOnly changes the no-purchase line: set their dates to the deploy day.
+ * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
+ * developer's actions).
  */
 const UPDATED = LIVE.intercepts
   ? 'November 2, 2026' // the Intercepts paragraph: set to the day the site goes up with it on
   : LIVE.membershipsOnly
     ? 'November 2, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
-    : 'October 24, 2026'
+    : 'October 25, 2026'
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -35,7 +37,9 @@ const GameNightRules: React.FC = () => (
       Anyone who can play Play Online can take part: a SpySocial account with a confirmed email address or Apple or
       Google sign-in, aged 13 or older, who has accepted our <PageLink to="/terms">Terms of Service</PageLink>. Game
       Night tables are Play Online tables: the <PageLink to="/rules">Community Rules</PageLink> and every safety tool
-      apply as at any other table (Report, Block, the vote to remove a player, the chat filters).
+      apply as at any other Play Online table (Report, Block, Leave and the chat filters). Like every Play Online table,
+      they have no votes to remove a player or to end a game; a person reads every report, and SpySocial's developer,
+      when he watches a table, can mute, remove or ban a player, or end the game, for safety or a broken rule.
     </P>
 
     <H2>No purchase necessary</H2>
