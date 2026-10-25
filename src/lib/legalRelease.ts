@@ -646,8 +646,10 @@ export const LIVE = {
    * (creators.gives_intercept false for a code tied to a purchase; reward codes never); the owner's gifts (a tier or
    * Secret or better, with a reason; never a pool item directly). Never a featured pack's creator (that's the bound
    * Featured Creator title and border). Spare copies are kept and can be shredded for Intel (never a Unique);
-   * requisitions: Intel buys a chosen Common-Epic item not owned, once per item; Intel the owner adds is locked
-   * (spendable, never tradable). At the 2.2 release (20261127190000_crates_reset) every pool item given out before is
+   * trade-ups (owner, later Oct 25): 5 spare copies of one rarity -> 1 random item of the next rarity, 5 Legendary
+   * spares -> 1 Unique, odds shown, earned copies only (NOT in feat/crates-server f9138fa8 yet: check the file that
+   * ships). REQUISITIONS REMOVED for 2.2 (owner, later Oct 25): Intel is earn-only (games, daily / streak, shredding)
+   * with nothing to spend it on until trading; Intel the owner adds is locked (never tradable). At the 2.2 release (20261127190000_crates_reset) every pool item given out before is
    * taken back from every account except the Beta Pin, with a crate_revocations record (cascades). Five tiers
    * (Restricted, Confidential, Secret, Top Secret, Enigma), each rolled when the Intercept is earned and capping the
    * best rarity inside; seven rarities
@@ -665,8 +667,9 @@ export const LIVE = {
    * deletedSummary; the Terms' section 9 (Intercepts by name: earned only, never bought with money or Intel, no cash
    * value, no trading or transfer, odds shown before opening and changed only between series after notice in the app,
    * the sources and their numbers, creator codes, gifts, spare copies shredded for Intel, Uniques, the 2.2 reset,
-   * corrections), the Intel bullet's requisitions and locked Intel, and its celebrations bullet (only from Intercepts);
-   * Privacy's Intel item (shred, requisition, locked); the Safety page's parents line; the Game Night rules' Intercepts
+   * trade-ups, corrections), the Intel bullet as an earned currency with nothing to spend it on yet (locked Intel),
+   * and its celebrations bullet (only from Intercepts); Privacy's Intel item (shredding, locked, no spending), How We
+   * Use and the contract basis without "items you unlock with Intel"; the Safety page's parents line; the Game Night rules' Intercepts
    * paragraph (a winner's Enigma Intercept). Like LIVE.intel, the Terms text names Intercepts under section
    * 9's existing rules for virtual items and adds a promise (odds change only between series), no duty or penalty;
    * but its reset sentence takes back items players hold (section 9 already lets us "retire an item"), so carry it in

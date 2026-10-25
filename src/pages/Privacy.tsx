@@ -153,20 +153,24 @@ const Privacy: React.FC = () => {
         {/* LIVE.intel: Intel (the server's "coins") and the daily streak (legalRelease). */}
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
-            Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought. When a game you
+            Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
+            {PRIVACY.intercepts ? ' You also get it by shredding spare copies of items. For now there\'s nothing to spend it on.' : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
             also keep your balance, how much Intel you've earned and spent in all, and your daily streak: how many days
             in a row you've played a game that counts, your best streak, the last day you did, and any streak freeze
-            you hold. When you unlock an item with Intel, we record which item, its price and when, and add the item
-            to your account. All of this is worked out from the games you play (games that give no experience points,
-            for example a game you left or one our fair-play checks flag, give no Intel). We use it to give you Intel,
-            your streak and the items you choose, to show them to you in the app, and to check that Intel is earned
+            you hold.
+            {PRIVACY.intercepts
+              ? ''
+              : ' When you unlock an item with Intel, we record which item, its price and when, and add the item to your account.'}{' '}
+            All of this is worked out from the games you play (games that give no experience points,
+            for example a game you left or one our fair-play checks flag, give no Intel). We use it to give you Intel
+            {PRIVACY.intercepts ? ' and your streak' : ', your streak and the items you choose'}, to show them to you in the app, and to check that Intel is earned
             fairly.
             {PRIVACY.intercepts &&
-              ' The history also records the Intel you get by shredding a spare copy of an item and the Intel you spend on a requisition (an item you choose), and which part of your balance is locked (Intel we added ourselves, which can only be spent).'}{' '}
+              ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).'}{' '}
             Other players never see your Intel or your streak, and we look at Intel only as totals across all
-            players (for example to set prices). It's kept with your account and deleted with it, and it doesn't leave
+            players{PRIVACY.intercepts ? '' : ' (for example to set prices)'}. It's kept with your account and deleted with it, and it doesn't leave
             our servers.
           </Item>
         )}
@@ -179,7 +183,8 @@ const Privacy: React.FC = () => {
             set of 10 wins, your first Play Online game of the day or a streak milestone, a Game Night win, a creator
             code you entered, or a gift from us, with its reason) and its tier; and, once you open it, when, the item and
             its rarity, whether you already had that item, and for a Unique, its number and colour. We keep every copy
-            you get, and the Intel you get when you shred a spare one. They also keep your progress toward your next
+            you get, the Intel you get when you shred a spare one, and each trade-up (the spare copies it used, the odds
+            it used and the item it gave). They also keep your progress toward your next
             Intercepts and the counts behind any guarantee the app shows. All of this comes from the games you play and
             the codes you enter: private-room games, and games that give no Intel (for example a game you left or one
             our fair-play checks flag), don't count. When Intercepts start, the items that from then on come only from
@@ -535,7 +540,11 @@ const Privacy: React.FC = () => {
         {PRIVACY.creatorCodes && (
           <ListItem>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</ListItem>
         )}
-        {PRIVACY.intel && <ListItem>Give you Intel, your daily streak and the items you unlock with Intel</ListItem>}
+        {PRIVACY.intel && (
+          <ListItem>
+            {PRIVACY.intercepts ? 'Give you Intel and your daily streak' : 'Give you Intel, your daily streak and the items you unlock with Intel'}
+          </ListItem>
+        )}
         {PRIVACY.intercepts && <ListItem>Give you Intercepts and the items in them</ListItem>}
         {PRIVACY.customPacks && (
           <ListItem>
@@ -571,7 +580,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.autoTranslation ? 'translate messages for you' : 'translate what you ask us to translate'}
           {PRIVACY.purchases ? ', provide what you buy' : ''}
           {PRIVACY.creatorCodes ? ", give you a code's reward" : ''}
-          {PRIVACY.intel ? ', give you Intel and what you unlock with it' : ''}
+          {PRIVACY.intel ? (PRIVACY.intercepts ? ', give you Intel' : ', give you Intel and what you unlock with it') : ''}
           {PRIVACY.intercepts ? ', give you Intercepts and their items' : ''}
           {PRIVACY.customPacks ? ', keep your custom packs' : ''}
           {PRIVACY.communityPacks ? ', show Community Packs and their ratings' : ''}

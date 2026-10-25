@@ -453,13 +453,24 @@ const Terms: React.FC = () => {
         {/* LIVE.intel: Intel (the server's "coins"), earned only. */}
         {LIVE.intel && (
           <ListItem>
-            Intel is earned only by playing: it can't be bought, and like every virtual item it has no cash value and
-            can't be sold, traded or moved to another account. You can spend it only on the items the app offers for
-            Intel. We may change how much Intel games and daily streaks give, which items it unlocks and what they cost;
-            we may correct a balance that's wrong or was earned by cheating. An item you've already unlocked with Intel
-            stays yours like the other items you've earned.
-            {LIVE.intercepts &&
-              " With Intel you can also requisition one item you don't have yet, of Common to Epic rarity, from the ones the app lists for Intercepts, at the price the app shows (once per item). Intel we add to your account ourselves is locked: you can spend it, but it can never be traded or moved."}
+            {LIVE.intercepts ? (
+              <>
+                Intel is an earned currency: you get it only from playing (your games, your first game of the day and
+                your daily streak) and from shredding spare copies of items. It can't be bought, and like every virtual
+                item it has no cash value and can't be sold, traded or moved to another account. For now there's
+                nothing to spend it on; we may add uses for it later, and the app will say what they are. Intel we add to
+                your account ourselves is locked and will never be tradable. We may change how much Intel games, streaks
+                and shredding give, and we may correct a balance that's wrong or was earned by cheating.
+              </>
+            ) : (
+              <>
+                Intel is earned only by playing: it can't be bought, and like every virtual item it has no cash value and
+                can't be sold, traded or moved to another account. You can spend it only on the items the app offers for
+                Intel. We may change how much Intel games and daily streaks give, which items it unlocks and what they cost;
+                we may correct a balance that's wrong or was earned by cheating. An item you've already unlocked with Intel
+                stays yours like the other items you've earned.
+              </>
+            )}
           </ListItem>
         )}
         {/* LIVE.intercepts: Intercepts (the server's "crates"), earned only, odds shown (see legalRelease). */}
@@ -478,7 +489,9 @@ const Terms: React.FC = () => {
             chance of each tier and rarity, the items each can give and any guarantee. We set those odds for each
             series of items before it starts and change them only between series, after telling you in the app. If you
             get an item you already have, you keep the extra copy and can shred it for Intel, at the amount the app
-            shows. A Unique is a copy of an item with a colour and a number that no other copy of it has (it can't be
+            shows, or trade up: 5 spare copies of one rarity give you 1 random item of the next rarity, and 5 spare
+            Legendary copies give you 1 Unique, with the odds shown in the app before you trade. Only spare copies you
+            earned count, and the copies you trade up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it can't be
             shredded). Like every virtual item, Intercepts and what's in them have no cash value and can't be sold,
             traded or moved to another account, unopened or opened. When Intercepts start (with SpySocial 2.2), every
             item that from then on comes only from Intercepts is taken back from the accounts that had it, except the
@@ -502,7 +515,7 @@ const Terms: React.FC = () => {
             as a spy guessing the secret or being caught. Ink Burst and Ink Check are free; Paper Storm and Case Closed
             are earned by playing (the app shows how); Gold Storm comes with Lifetime;
             {LIVE.membershipsOnly
-              ? ` the others, such as Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board, aren't sold: they come ${LIVE.intercepts ? 'only from Intercepts (some also by requisition with Intel)' : 'as rewards'}, and the app shows how to get each one.${LIVE.intercepts ? '' : ' Players who earned Cuffed earlier keep it.'}`
+              ? ` the others, such as Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board, aren't sold: they come ${LIVE.intercepts ? 'only from Intercepts (or a trade-up of spare copies)' : 'as rewards'}, and the app shows how to get each one.${LIVE.intercepts ? '' : ' Players who earned Cuffed earlier keep it.'}`
               : ' Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board are sold one by one. Players who earned Cuffed before it went on sale keep it.'}
           </ListItem>
         )}
