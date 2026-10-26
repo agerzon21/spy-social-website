@@ -17,7 +17,7 @@ const namesAndPicture = (): string => {
 /** What a deletion removes, as one sentence. */
 export const deletedSummary = (): string =>
   [
-    'your email address and password',
+    PRIVACY.passwordless ? 'your email address' : 'your email address and password',
     PRIVACY.socialSignIn ? 'the Apple or Google sign-in linked to your account' : null,
     namesAndPicture(),
     'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
@@ -37,7 +37,9 @@ export const deletedSummary = (): string =>
         : 'the purchases linked to your account (such as packs, avatar items and memberships)'
       : null,
     PRIVACY.creatorCodes ? 'the link between your account and the creator code and reward codes you entered' : null,
-    'the players you blocked, and the warnings, mutes and bans on your account',
+    PRIVACY.banTombstone
+      ? 'the players you blocked, and the warnings, mutes and bans on your account (apart from the short record below)'
+      : 'the players you blocked, and the warnings, mutes and bans on your account',
     'your settings and the answers you gave the app (such as your birth year)',
     PRIVACY.notifications ? "your devices' push addresses" : null,
   ]

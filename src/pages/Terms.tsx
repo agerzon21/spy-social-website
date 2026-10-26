@@ -110,7 +110,8 @@ const Terms: React.FC = () => {
         {LIVE.browserLegal ? ' (in the browser version, in that browser)' : ''}: signing out of it deletes it for
         good, and you may lose it if you delete the app{LIVE.browserLegal ? ", clear your browser's data" : ''} or
         lose your device. To keep your
-        name, progress and packs on any device, save your account with an email address and a password
+        name, progress and packs on any device, save your account with an email address
+        {LIVE.passwordless ? ' (we email you a one-time code each time you sign in)' : ' and a password'}
         {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Public rooms and events need a saved
         account with a confirmed email address{LIVE.socialSignIn ? ', or one that signs in with Apple or Google' : ''}.
         {LIVE.purchases &&
@@ -120,9 +121,9 @@ const Terms: React.FC = () => {
       </P>
       <H3>Keeping your account safe</H3>
       <P>
-        Keep your password{LIVE.socialSignIn ? ' (and your Apple or Google account)' : ''} to yourself. You're
-        responsible for what happens on your account. If you think someone else has used it, change your password and
-        tell us.
+        {LIVE.passwordless
+          ? `Keep your email account${LIVE.socialSignIn ? ' (and your Apple or Google account)' : ''} to yourself: anyone who can read your email can sign in with the codes we send there. Never share a sign-in code; we never ask you for one. You're responsible for what happens on your account. If you think someone else has used it, secure your email account and tell us.`
+          : `Keep your password${LIVE.socialSignIn ? ' (and your Apple or Google account)' : ''} to yourself. You're responsible for what happens on your account. If you think someone else has used it, change your password and tell us.`}
       </P>
       <H3>Rules for accounts</H3>
       <Bullets>

@@ -746,6 +746,33 @@ export const LIVE = {
    */
   featuredPacks: false,
   /**
+   * Sanctions survive account deletion (app repo fix/ban-tombstone, server file 20261130100000_ban_tombstone; owner
+   * 2026-10-26: mode reapply, 12 months (36 for child safety), no Gmail folding). When an account is deleted with a
+   * ban, pause or mute still running, or a strike from the last 90 days, the server keeps one tombstone per sanction:
+   * its type, reason key, appeal right, ladder level, child-safety flag and dates, plus keyed one-way digests
+   * (HMAC-SHA256, the key in Vault) of the confirmed email and each Apple / Google subject id (and the email the
+   * provider gave); no email, name, username, provider id, note or chat in clear. A new account (or a newly connected
+   * sign-in) that matches gets what is still running re-applied until the same end, and a "Returning sanctioned
+   * player" case opens for the owner. Kept 12 months after the sanction's end or its 90-day window; a permanent ban 12
+   * months after the deletion (36 for child safety), extended by each matching attempt; purged daily. Turns on one
+   * sentence in Privacy's Safety Information, the deletedSummary clause, a bullet in AfterDeletionList (Privacy and
+   * /delete-account), a Data Retention sentence and the Legitimate Interests clause. POLICY FIRST: flip it, deploy the
+   * site, then apply the file (Nov 2, Window W); set PRIVACY_LAST_UPDATED's date for it to the deploy day. A server
+   * switch: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
+   */
+  banTombstone: false,
+  /**
+   * Passwordless sign-in (app repo feat/email-code-signin): passwords go away; a saved account with an email signs in
+   * with a one-time code we email (Apple / Google sign-in unchanged). Turns the password lines into code lines:
+   * deletedSummary's first item, Privacy's Rate Limits, Data Retention's and AfterDeletionList's security-log
+   * examples, the Resend item, and the Terms' "save your account" and "Keeping your account safe" text. DRAFT: check
+   * every line against the shipped flow (how long a code lasts, how many tries, whether an old password still works
+   * during a transition, what happens to /reset-password) before flipping. POLICY FIRST: flip and deploy before the
+   * app or server drops passwords; set PRIVACY_LAST_UPDATED's (and LEGAL_LAST_UPDATED's) date to that day. A server /
+   * app switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  passwordless: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -890,6 +917,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
+    : LIVE.passwordless
+    ? 'November 2, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.featuredPacks
       ? 'November 2, 2026' // featured Community Packs (Terms 5, 6): set to the day the site goes up with it on
       : LIVE.communityPacks
@@ -912,6 +941,10 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // the Ranked item: set to the day the site goes up with it on
+    : LIVE.passwordless
+    ? 'November 2, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
+    : LIVE.banTombstone
+    ? 'November 2, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
     : LIVE.featuredPacks
       ? 'November 2, 2026' // featured Community Packs (translation, rewards): set to the day the site goes up with it on
       : LIVE.communityPacks

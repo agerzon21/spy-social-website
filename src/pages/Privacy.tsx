@@ -306,8 +306,9 @@ const Privacy: React.FC = () => {
           To stop floods, guessing at room codes and other abuse, our servers note when an account does certain things
           (such as sending a message, joining or trying to join a room, poking a player, or saving its avatar or title),
           without what was said. Notes about joining rooms are deleted after 24 hours and the others after 2 days, even if
-          the account is deleted first. To limit account emails, when you sign up, save a guest account, ask for a new
-          confirmation link, reset your password or change your email address, our servers keep a record of each email
+          the account is deleted first. To limit account emails, when you sign up, save a guest account,
+          {PRIVACY.passwordless ? ' ask for a sign-in code' : ' ask for a new confirmation link, reset your password'} or
+          change your email address, our servers keep a record of each email
           they send: a coded form of the email address and of your network (your IP address, or for IPv6 its first
           half), made with a secret key, the kind of email and when, never the address or the IP address itself. Under
           the same code, they also count how many of these requests come from each network in an hour. These records
@@ -318,6 +319,9 @@ const Privacy: React.FC = () => {
           mutes or bans on your account
           {PRIVACY.drawingCheck
             ? ', including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave'
+            : ''}
+          {PRIVACY.banTombstone
+            ? '. If an account is deleted while one of these is still running, or within 90 days of a warning, we keep a short record of it after the deletion (see Data Retention)'
             : ''}
           .
           {PRIVACY.drawingCheck &&
@@ -592,7 +596,8 @@ const Privacy: React.FC = () => {
           To keep players safe (reports, the word filter{PRIVACY.groomingFlag ? ', flags of possible grooming' : ''}
           {PRIVACY.drawingCheck ? ', drawing checks' : ''}
           {PRIVACY.customPacks ? ', the automated check of custom packs' : ''}
-          {PRIVACY.communityPacks ? ', the review of Community Packs' : ''}, moderation, age
+          {PRIVACY.communityPacks ? ', the review of Community Packs' : ''}, moderation
+          {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
           events){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
@@ -624,7 +629,7 @@ const Privacy: React.FC = () => {
         Usage events are kept
         for 180 days
         {PRIVACY.scheduledRetention
-          ? ', and security logs (such as sign-ups, sign-ins, password resets and email changes, which can include your email address and IP address) for 180 days.'
+          ? `, and security logs (such as sign-ups, sign-ins, ${PRIVACY.passwordless ? 'sign-in codes sent' : 'password resets'} and email changes, which can include your email address and IP address) for 180 days.`
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests after a day.
@@ -637,6 +642,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.tournaments ? ' Your tournament entries, results and Tournament Tokens are kept for as long as you have an account.' : ''}
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
+          : ''}
+        {PRIVACY.banTombstone
+          ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
           : ''}
       </P>
       <P>
@@ -726,8 +734,8 @@ const Privacy: React.FC = () => {
         </Item>
         {PRIVACY.resendAccountEmail && (
           <Item label="Resend">
-            (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as sign-up confirmations and
-            password resets, and the emails for agreements signed on our website (the signed agreement and its audit
+            (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
+            {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
             trail), so it receives the email addresses and the emails it delivers.
           </Item>
         )}
