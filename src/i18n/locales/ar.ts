@@ -121,6 +121,14 @@ const ar: Strings = {
       browser: 'اللعب في المتصفح',
       joinCode: 'الانضمام برمز الغرفة',
     },
+    creatorShort: {
+      eyebrow: 'صانع محتوى مميز',
+      title: (creator: string) => `شاهد ${creator} يلعب Spy Sketch`,
+      credit: (creator: string) => `فيديو من <link>${creator}</link>`,
+      cta: 'العب مجانًا في المتصفح',
+      play: (creator: string) => `تشغيل فيديو ${creator}`,
+      consent: 'عند الضغط على تشغيل، يُحمَّل الفيديو من YouTube، الذي قد يستخدم ملفات تعريف الارتباط. <link>سياسة الخصوصية</link>',
+    },
     lineup: {
       group: 'صف من خمسة عملاء. يكفي لمس أحدهم لاتهامه.',
       accuse: (n: number) => `اتهام المشتبه به رقم ${n}`,

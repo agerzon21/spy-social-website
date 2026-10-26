@@ -107,6 +107,31 @@
   user-select: all;
 }
 
+/* ---- creator short: the poster stands in for YouTube's player until the visitor presses play ---- */
+.short { padding-top: 40px; border-top: var(--ss-hairline) solid var(--ss-line); }
+.shortGrid { display: grid; gap: 28px; grid-template-columns: minmax(0, 1fr); align-items: center; }
+.shortCredit { margin: 0 0 22px; font-size: 17px; line-height: 1.55; color: var(--ss-muted); }
+.shortCredit a { font-weight: 700; color: var(--ss-text); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.shortCredit a:hover { color: var(--ss-highlight); }
+.shortPlayer { width: min(100%, 340px); justify-self: center; }
+.shortPlayer iframe, .shortPoster {
+  display: block; width: 100%; aspect-ratio: 9 / 16; border: 0; border-radius: var(--ss-radius-card);
+  background: var(--ss-surface); box-shadow: 0 0 0 var(--ss-hairline) var(--ss-line-strong), var(--ss-shadow-card);
+}
+.shortPoster { position: relative; padding: 0; overflow: hidden; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.shortPoster img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: var(--ss-art-dim); transition: filter 0.35s; }
+.shortPoster:hover img, .shortPoster:focus-visible img { filter: none; }
+.shortPoster::after { content: ''; position: absolute; inset: 0; background: radial-gradient(closest-side, transparent 40%, color-mix(in srgb, var(--ss-page) 55%, transparent)); }
+.shortPlay {
+  position: absolute; top: 50%; left: 50%; z-index: 1; display: grid; place-items: center; width: 76px; height: 76px;
+  border-radius: 50%; background: var(--ss-accent); color: var(--ss-on-accent); box-shadow: var(--ss-shadow-button);
+  transform: translate(-50%, -50%); transition: transform 0.15s;
+}
+.shortPlay svg { width: 34px; height: 34px; margin-inline-start: 4px; }
+.shortPoster:hover .shortPlay { transform: translate(-50%, -50%) scale(1.06); }
+.shortNote { margin: 10px 0 0; font-size: 13px; line-height: 1.45; text-align: center; color: var(--ss-muted); }
+.shortNote a { color: var(--ss-text); text-decoration: underline; text-underline-offset: 2px; }
+
 /* ---- how it plays ---- */
 .modes { display: grid; gap: 44px; grid-template-columns: minmax(0, 1fr); }
 .mode { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr); gap: 18px; align-items: end; }
@@ -190,12 +215,13 @@
   .waysSingle .howJoin { margin-bottom: 0; }
   .langs { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; }
   .shopGrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .shortGrid { grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; }
   .agents { grid-template-columns: repeat(8, minmax(0, 1fr)); }
 }
 /* Tablets: the two-column cards and the languages' title share the width, so their poster lines come down a size. */
 @media (min-width: 760px) and (max-width: 999px) {
   .modes .mode div h3 { font-size: clamp(28px, 4.6vw, 44px); }
-  .langs h2, .shopGrid h2 { font-size: 8.8vw; }
+  .langs h2, .shopGrid h2, .shortGrid h2 { font-size: 8.8vw; }
 }
 @media (min-width: 1000px) {
   .hero { padding-top: 20px; }
@@ -220,5 +246,5 @@
 
 @media (prefers-reduced-motion: reduce) {
   .spot, .pool { animation: none; }
-  .suspect img, .verdict { transition: none; }
+  .suspect img, .verdict, .shortPoster img, .shortPlay { transition: none; }
 }

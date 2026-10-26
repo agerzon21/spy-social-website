@@ -451,6 +451,16 @@ export const LIVE = {
    */
   launchGameNights: false,
   /**
+   * A creator's YouTube Short on the home page, just below the hero (components/home/CreatorShort; first Levvis's
+   * sponsored Short, live around November 20, 2026): a heading naming the creator, the Short in YouTube's
+   * privacy-enhanced player (youtube-nocookie.com, 9:16) behind a click-to-load poster, so nothing loads from YouTube
+   * until the visitor presses play, the credit linking to the creator's channel, and a button to the browser version.
+   * Shown only while enabled with an 11-character youtubeId and an https channelUrl (creatorShortLive). Turns on the
+   * Privacy text: YouTube in Third-Party Service Providers; set PRIVACY_LAST_UPDATED's creatorShort date to the
+   * deploy day when flipping. No Terms text reads it. A website fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  creatorShort: { enabled: false, youtubeId: '', creator: 'Levvis', channelUrl: '' },
+  /**
    * The grooming flag (app repo feat/child-safety-flag, migration 20261105200000_grooming_flag; owner-approved plan item
    * 10, 2026-10-22): every minute, the server's scan (pg_cron grooming-flags) reads the chat lines just written, and in a
    * room or game with anyone under 18 or without a birth year (members, seats, running watchers: the contact block's
@@ -653,7 +663,7 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * (says other players no longer see things; a server switch, set in LIVE), browserLegal (changes the Terms too; set
  * in LIVE), browserLinks (the site's links to the browser version, no legal text), roadmap (the roadmap page's link,
  * indexing and sitemap entry, no legal text), launchGameNights (the game nights' days on the Roadmap and What's New, no
- * legal text), merchShop (the shop links and
+ * legal text), creatorShort (the home page's YouTube Short; not a boolean, set in LIVE), merchShop (the shop links and
  * the shop's text, which the Terms read too; set in LIVE), fairPlaySignals and playerStats (server switches),
  * crashReportLocation (a Sentry-side fact, set in LIVE to what Sentry stores), photosPrivate and drawingCheckTesters
  * (server switches for every app version at once, which the Terms and Rules read too: set in LIVE), groomingFlag,
@@ -736,6 +746,10 @@ export const avatarsLive = (s: Switches): boolean => s.avatarCreator || s.photos
  */
 export const usesMlKit = (s: Switches): boolean => s.onDeviceTranslation || s.qrScanner
 
+/** Whether the home page shows the creator's Short: switched on, with a YouTube video id and the channel's https link. */
+export const creatorShortLive = ({ creatorShort: c }: Switches): boolean =>
+  c.enabled && /^[\w-]{11}$/.test(c.youtubeId) && /^https:\/\/\S+$/.test(c.channelUrl)
+
 /**
  * Who runs SpySocial: the legal name and a postal address, shown on the
  * Privacy Policy (the data controller) and the Terms (the contracting party,
@@ -769,7 +783,9 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // the Ranked item: set to the day the site goes up with it on
-    : 'October 25, 2026' // the developer's watch may end a game or mute, remove or ban a player (owner live moderation); before it, October 24 (QA 110: Intel and Daily Streak, Game Night v2, the developer's watch; crashReportLocation off and groomingScope folded in)
+    : creatorShortLive(LIVE)
+      ? 'November 20, 2026' // the YouTube item (the home page's creator Short): set to the day the site goes up with it on
+      : 'October 25, 2026' // the developer's watch may end a game or mute, remove or ban a player (owner live moderation); before it, October 24 (QA 110: Intel and Daily Streak, Game Night v2, the developer's watch; crashReportLocation off and groomingScope folded in)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

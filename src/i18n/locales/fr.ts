@@ -121,6 +121,14 @@ const fr: Strings = {
       browser: 'Jouer dans le navigateur',
       joinCode: 'Entrer avec un code de salon',
     },
+    creatorShort: {
+      eyebrow: 'Créateur à l’affiche',
+      title: (creator: string) => `Regardez ${creator} jouer à Spy Sketch`,
+      credit: (creator: string) => `Vidéo de <link>${creator}</link>`,
+      cta: 'Jouer gratuitement dans le navigateur',
+      play: (creator: string) => `Lire la vidéo de ${creator}`,
+      consent: 'La lecture charge la vidéo depuis YouTube, qui peut déposer des cookies. <link>Politique de confidentialité</link>',
+    },
     lineup: {
       group: 'Une rangée de cinq agents. Appuie sur l\'un d\'eux pour l\'accuser.',
       accuse: (n: number) => `Accuser le suspect ${n}`,

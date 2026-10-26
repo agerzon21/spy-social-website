@@ -122,6 +122,14 @@ const ptBR: Strings = {
       browser: 'Jogue no navegador',
       joinCode: 'Entre com um código da sala',
     },
+    creatorShort: {
+      eyebrow: 'Criador em destaque',
+      title: (creator: string) => `Veja ${creator} jogar Spy Sketch`,
+      credit: (creator: string) => `Vídeo de <link>${creator}</link>`,
+      cta: 'Jogue grátis no navegador',
+      play: (creator: string) => `Assistir ao vídeo de ${creator}`,
+      consent: 'Ao dar play, o vídeo é carregado do YouTube, que pode usar cookies. <link>Política de Privacidade</link>',
+    },
     lineup: {
       group: 'Uma fila de cinco agentes. Toque em um para acusar.',
       accuse: (n: number) => `Acusar o suspeito ${n}`,

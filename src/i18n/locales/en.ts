@@ -156,6 +156,15 @@ const en = {
       browser: 'Play in your browser',
       joinCode: 'Join with a room code',
     },
+    /** A creator's YouTube Short under the hero (LIVE.creatorShort). The page fills in the creator's name. */
+    creatorShort: {
+      eyebrow: 'Creator spotlight',
+      title: (creator: string) => `Watch ${creator} play Spy Sketch`,
+      credit: (creator: string) => `Video by <link>${creator}</link>`,
+      cta: 'Play free in your browser',
+      play: (creator: string) => `Play ${creator}'s video`,
+      consent: 'Pressing play loads the video from YouTube, which may set cookies. <link>Privacy Policy</link>',
+    },
     lineup: {
       group: 'A line-up of five agents. Tap one to accuse them.',
       accuse: (n: number) => `Accuse suspect ${n}`,

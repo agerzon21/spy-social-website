@@ -4,7 +4,16 @@ import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
 import { ShopLink } from '../components/legal/ShopLink'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
-import { OPERATOR, PRIVACY, PRIVACY_LAST_UPDATED, avatarsLive, photosInUse, photosShown, usesMlKit } from '../lib/legalRelease'
+import {
+  OPERATOR,
+  PRIVACY,
+  PRIVACY_LAST_UPDATED,
+  avatarsLive,
+  creatorShortLive,
+  photosInUse,
+  photosShown,
+  usesMlKit,
+} from '../lib/legalRelease'
 import { LegalPage } from '../components/legal/LegalPage'
 import { Bullets, H2, P } from '../components/legal/LegalText'
 
@@ -662,6 +671,15 @@ const Privacy: React.FC = () => {
           <Item label="Fourthwall">
             (Fourthwall, Inc., https://fourthwall.com) Runs our merch shop, shop.spysocial.app, and sells and ships its
             orders (see Merch Shop below).
+          </Item>
+        )}
+        {creatorShortLive(PRIVACY) && (
+          <Item label="YouTube">
+            (Google, https://www.youtube.com) Our home page can show a creator's video in YouTube's privacy-enhanced
+            player (youtube-nocookie.com). Nothing loads from YouTube until you press play on the video. When you do,
+            YouTube receives your IP address and information about your browser and device, and may store cookies or
+            similar data in your browser, under Google's privacy policy. We don't receive anything from YouTube about
+            you.
           </Item>
         )}
         <Item label="ImprovMX and Google">
