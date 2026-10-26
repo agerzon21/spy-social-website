@@ -313,6 +313,9 @@ const Privacy: React.FC = () => {
           half), made with a secret key, the kind of email and when, never the address or the IP address itself. Under
           the same code, they also count how many of these requests come from each network in an hour. These records
           are deleted after a day.
+          {PRIVACY.passwordless
+            ? ' For each sign-in code we email, they keep a coded form of the code (never the code itself) with the coded email address, the account it was sent for when you are signed in, how many wrong tries it has had (it stops working after 5) and when it expires (10 minutes). It is deleted as soon as it is used, and an expired one within a day.'
+            : ''}
         </Item>
         <Item label="Safety Information">
           Reports you make or that are made about you, players you block, removals from rooms, and any warnings,

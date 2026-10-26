@@ -765,9 +765,12 @@ export const LIVE = {
    * Passwordless sign-in (app repo feat/email-code-signin): passwords go away; a saved account with an email signs in
    * with a one-time code we email (Apple / Google sign-in unchanged). Turns the password lines into code lines:
    * deletedSummary's first item, Privacy's Rate Limits, Data Retention's and AfterDeletionList's security-log
-   * examples, the Resend item, and the Terms' "save your account" and "Keeping your account safe" text. DRAFT: check
-   * every line against the shipped flow (how long a code lasts, how many tries, whether an old password still works
-   * during a transition) before flipping. It also turns /reset-password into a short "Passwords are gone: sign in with a
+   * examples, the Resend item, the Rate Limits sentence about sign-in codes, and the Terms' "save your account" and
+   * "Keeping your account safe" text. Checked against the app branch (2026-10-26): the codes come from the
+   * email-code Edge Function and go out through Resend; a code lasts 10 minutes and stops after 5 wrong tries; the
+   * function keeps only HMACs of the code and the address (table email_codes), deleted on use, expired ones within a
+   * day. Old passwords keep working for 2.1.1 until the passwords_off migration (Phase B); flip this before the app
+   * update with the code screens ships. It also turns /reset-password into a short "Passwords are gone: sign in with a
    * one-time code in the app" page with Open SpySocial and the store badges (pages/ResetPassword.tsx; ?preview=gone
    * shows it now; strings resetPassword.gone* in all ten languages). POLICY FIRST: flip and deploy before the
    * app or server drops passwords; set PRIVACY_LAST_UPDATED's (and LEGAL_LAST_UPDATED's) date to that day. A server /
