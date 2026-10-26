@@ -23,6 +23,8 @@ const id: Strings = {
       join: 'Gabung ke permainan',
       joinEvent: 'Event publik',
       resetPassword: 'Atur ulang kata sandi',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "Masuk dengan kode",
       confirmSuccess: 'Email dikonfirmasi',
       notFound: 'Halaman tidak ditemukan',
     },

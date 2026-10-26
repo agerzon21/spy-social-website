@@ -23,6 +23,8 @@ const fr: Strings = {
       join: 'Rejoindre une partie',
       joinEvent: 'Événement public',
       resetPassword: 'Réinitialiser ton mot de passe',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "Connexion avec un code",
       confirmSuccess: 'E-mail confirmé',
       notFound: 'Page introuvable',
     },

@@ -23,6 +23,8 @@ const hi: Strings = {
       join: 'गेम से जुड़ें',
       joinEvent: 'पब्लिक इवेंट',
       resetPassword: 'पासवर्ड रीसेट करें',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "कोड से साइन इन करें",
       confirmSuccess: 'ईमेल की पुष्टि हो गई',
       notFound: 'पेज नहीं मिला',
     },

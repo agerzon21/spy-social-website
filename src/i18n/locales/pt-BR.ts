@@ -23,6 +23,8 @@ const ptBR: Strings = {
       join: 'Entrar numa partida',
       joinEvent: 'Evento público',
       resetPassword: 'Redefinir sua senha',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "Entre com um código",
       confirmSuccess: 'E-mail confirmado',
       notFound: 'Página não encontrada',
     },

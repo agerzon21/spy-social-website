@@ -23,6 +23,8 @@ const ru: Strings = {
       join: 'Войти в игру',
       joinEvent: 'Открытое событие',
       resetPassword: 'Сброс пароля',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "Вход по коду",
       confirmSuccess: 'Почта подтверждена',
       notFound: 'Страница не найдена',
     },

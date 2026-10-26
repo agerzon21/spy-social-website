@@ -23,6 +23,8 @@ const bn: Strings = {
       join: 'খেলায় যোগ দিন',
       joinEvent: 'পাবলিক ইভেন্ট',
       resetPassword: 'পাসওয়ার্ড রিসেট',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "কোড দিয়ে সাইন ইন করুন",
       confirmSuccess: 'ইমেইল নিশ্চিত হয়েছে',
       notFound: 'পেজ পাওয়া যায়নি',
     },

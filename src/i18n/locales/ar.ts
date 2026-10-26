@@ -23,6 +23,8 @@ const ar: Strings = {
       join: 'الانضمام إلى لعبة',
       joinEvent: 'فعالية عامة',
       resetPassword: 'إعادة تعيين كلمة المرور',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "تسجيل الدخول برمز",
       confirmSuccess: 'تم تأكيد البريد',
       notFound: 'الصفحة غير موجودة',
     },

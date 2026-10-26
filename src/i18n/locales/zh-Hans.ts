@@ -23,6 +23,8 @@ const zhHans: Strings = {
       join: '加入游戏',
       joinEvent: '公开活动',
       resetPassword: '重置密码',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "使用验证码登录",
       confirmSuccess: '邮箱已确认',
       notFound: '页面不存在',
     },

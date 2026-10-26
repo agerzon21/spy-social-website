@@ -9,6 +9,7 @@ import { LIVE } from '../lib/legalRelease'
 import { openAppHref } from '../lib/appLink'
 import { currentPlatform } from '../lib/platform'
 import StoreBadges from '../components/ui/StoreBadges'
+import { Helmet } from 'react-helmet-async'
 
 type PreviewMode = 'form' | 'error' | 'success' | null
 
@@ -18,10 +19,14 @@ type PreviewMode = 'form' | 'error' | 'success' | null
  * without it). ?preview=gone shows it before the switch flips.
  */
 const PasswordsGone = () => {
-  const t = useT().resetPassword
+  const strings = useT()
+  const t = strings.resetPassword
   const platform = currentPlatform()
   return (
     <Box flex="1" display="flex" alignItems="center" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
+      <Helmet>
+        <title>{`${strings.meta.titles.resetPasswordCode} · ${strings.meta.siteName}`}</title>
+      </Helmet>
       <Container maxW="400px">
         <VStack spacing={5} align="stretch" textAlign="center">
           <Heading as="h1" size="md">{t.goneTitle}</Heading>

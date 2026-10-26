@@ -40,6 +40,8 @@ const en = {
       join: 'Join a game',
       joinEvent: 'Public event',
       resetPassword: 'Reset your password',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "Sign in with a code",
       confirmSuccess: 'Email confirmed',
       notFound: 'Page not found',
     },
