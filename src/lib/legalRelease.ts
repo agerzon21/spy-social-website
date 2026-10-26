@@ -639,7 +639,8 @@ export const LIVE = {
    * feat/intercepts-client; owner 2026-10-25): sealed containers earned only by playing, each opening into one random
    * item (an avatar item, celebrations among them, or a title). Final rules (owner 2026-10-25): every 10 counted wins
    * at Play Online tables give 5 (4 of a random tier + 1 Secret or better; Game Night tables count; never a private
-   * room, never a game that pays no Intel: farm, idle, alt-farm, left or removed, no result; cap 20 wins a day); a
+   * room, never a game that pays no Intel: farm, idle, alt-farm, left or removed, no result; no daily cap since owner
+   * 2026-10-25, app 20261129000000_crates_no_daily_cap: was 20 wins a day); a
    * daily Intercept for the stats day's first counted Play Online game, on top of daily Intel (its tier rolled from
    * the tier odds; every 7th day played: Secret or better; streak milestones: day 14 Top Secret, then days 30, 60, 90
    * and every 30 days after Enigma, once each per account; rules v2, live 2026-10-25 18:16 EDT,
