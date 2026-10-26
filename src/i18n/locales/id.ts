@@ -122,6 +122,14 @@ const id: Strings = {
       browser: 'Main di browser',
       joinCode: 'Gabung dengan kode room',
     },
+    creatorShort: {
+      eyebrow: 'Sorotan kreator',
+      title: (creator: string) => `Tonton ${creator} main Spy Sketch`,
+      credit: (creator: string) => `Video oleh <link>${creator}</link>`,
+      cta: 'Main gratis di browser',
+      play: (creator: string) => `Putar video ${creator}`,
+      consent: 'Saat diputar, video dimuat dari YouTube, yang mungkin menyimpan cookie. <link>Kebijakan Privasi</link>',
+    },
     lineup: {
       group: 'Barisan lima agen. Ketuk satu untuk menuduhnya.',
       accuse: (n: number) => `Tuduh tersangka ${n}`,

@@ -122,6 +122,14 @@ const ru: Strings = {
       browser: 'Играть в браузере',
       joinCode: 'Войти по коду комнаты',
     },
+    creatorShort: {
+      eyebrow: 'Автор в центре внимания',
+      title: (creator: string) => `${creator} играет в Spy Sketch`,
+      credit: (creator: string) => `Видео: <link>${creator}</link>`,
+      cta: 'Играть бесплатно в браузере',
+      play: (creator: string) => `Смотреть видео ${creator}`,
+      consent: 'Видео загрузится с YouTube только после нажатия, и YouTube может сохранить файлы cookie. <link>Политика конфиденциальности</link>',
+    },
     lineup: {
       group: 'Пятеро агентов в ряд. Нажмите на любого, чтобы обвинить.',
       accuse: (n: number) => `Обвинить подозреваемого ${n}`,

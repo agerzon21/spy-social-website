@@ -121,6 +121,14 @@ const bn: Strings = {
       browser: 'ব্রাউজারে খেলুন',
       joinCode: 'রুম কোড দিয়ে যোগ দিন',
     },
+    creatorShort: {
+      eyebrow: 'ক্রিয়েটর স্পটলাইট',
+      title: (creator: string) => `দেখুন ${creator} কীভাবে Spy Sketch খেলে`,
+      credit: (creator: string) => `ভিডিও: <link>${creator}</link>`,
+      cta: 'ব্রাউজারে ফ্রি খেলুন',
+      play: (creator: string) => `${creator}-এর ভিডিও চালান`,
+      consent: 'চালালে ভিডিওটি YouTube থেকে লোড হয়, আর YouTube কুকি রাখতে পারে। <link>গোপনীয়তা নীতি</link>',
+    },
     lineup: {
       group: 'পাঁচজন এজেন্টের সারি। অভিযুক্ত করতে একজনে ট্যাপ করুন।',
       accuse: (n: number) => `সন্দেহভাজন ${n}-কে অভিযুক্ত করুন`,

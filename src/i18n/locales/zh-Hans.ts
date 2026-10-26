@@ -120,6 +120,14 @@ const zhHans: Strings = {
       browser: '在浏览器中玩',
       joinCode: '用房间码加入',
     },
+    creatorShort: {
+      eyebrow: '创作者推荐',
+      title: (creator: string) => `看 ${creator} 玩 Spy Sketch`,
+      credit: (creator: string) => `视频作者：<link>${creator}</link>`,
+      cta: '在浏览器中免费玩',
+      play: (creator: string) => `播放 ${creator} 的视频`,
+      consent: '点击播放后才会从 YouTube 加载视频，YouTube 可能会设置 Cookie。<link>隐私政策</link>',
+    },
     lineup: {
       group: '五名特工排成一排。点击其中一人来指认。',
       accuse: (n: number) => `指认嫌疑人 ${n}`,
