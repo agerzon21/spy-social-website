@@ -923,6 +923,11 @@ const ptBR: Strings = {
     confirmPlaceholder: 'Confirme a senha',
     submit: 'Redefinir senha',
     cancel: 'Cancelar',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Não há mais senhas",
+    goneBody: "Entre com um código de uso único no app.",
+    goneOpen: "Abrir o SpySocial",
+    goneNoApp: "Não tem o app?",
     preview: (mode: string) => `Modo de prévia: <b>${mode}</b>. Enviar não chega ao Supabase.`,
   },
 

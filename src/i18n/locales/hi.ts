@@ -925,6 +925,11 @@ const hi: Strings = {
     confirmPlaceholder: 'पासवर्ड दोबारा डालें',
     submit: 'पासवर्ड रीसेट करें',
     cancel: 'रद्द करें',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "अब पासवर्ड नहीं हैं",
+    goneBody: "ऐप में एक बार इस्तेमाल होने वाले कोड से साइन इन करें।",
+    goneOpen: "SpySocial खोलें",
+    goneNoApp: "ऐप नहीं है?",
     preview: (mode: string) => `प्रीव्यू मोड: <b>${mode}</b>। सबमिट करने पर Supabase तक कुछ नहीं जाएगा।`,
   },
 

@@ -920,6 +920,11 @@ const es: Strings = {
     confirmPlaceholder: 'Confirma la contraseña',
     submit: 'Restablecer contraseña',
     cancel: 'Cancelar',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Ya no hay contraseñas",
+    goneBody: "Inicia sesión con un código de un solo uso en la app.",
+    goneOpen: "Abrir SpySocial",
+    goneNoApp: "¿No tienes la app?",
     preview: (mode: string) => `Modo de vista previa: <b>${mode}</b>. Enviar no llega a Supabase.`,
   },
 

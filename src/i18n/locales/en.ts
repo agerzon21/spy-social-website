@@ -980,6 +980,11 @@ const en = {
     confirmPlaceholder: 'Confirm password',
     submit: 'Reset Password',
     cancel: 'Cancel',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Passwords are gone",
+    goneBody: "Sign in with a one-time code in the app.",
+    goneOpen: "Open SpySocial",
+    goneNoApp: "Don't have the app?",
     preview: (mode: string) => `Preview mode: <b>${mode}</b>. Submitting won't hit Supabase.`,
   },
 

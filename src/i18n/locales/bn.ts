@@ -925,6 +925,11 @@ const bn: Strings = {
     confirmPlaceholder: 'পাসওয়ার্ড আবার লিখুন',
     submit: 'পাসওয়ার্ড রিসেট করুন',
     cancel: 'বাতিল',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "পাসওয়ার্ড আর নেই",
+    goneBody: "অ্যাপে এককালীন কোড দিয়ে সাইন ইন করুন।",
+    goneOpen: "SpySocial খুলুন",
+    goneNoApp: "অ্যাপ নেই?",
     preview: (mode: string) => `প্রিভিউ মোড: <b>${mode}</b>। জমা দিলে Supabase-এ কিছু যাবে না।`,
   },
 

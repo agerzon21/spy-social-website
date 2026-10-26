@@ -900,6 +900,11 @@ const zhHans: Strings = {
     confirmPlaceholder: '再次输入密码',
     submit: '重置密码',
     cancel: '取消',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "密码已取消",
+    goneBody: "请在应用中使用一次性验证码登录。",
+    goneOpen: "打开 SpySocial",
+    goneNoApp: "还没有应用？",
     preview: (mode: string) => `预览模式：<b>${mode}</b>。提交不会发送到 Supabase。`,
   },
 

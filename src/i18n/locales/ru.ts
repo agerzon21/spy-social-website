@@ -923,6 +923,11 @@ const ru: Strings = {
     confirmPlaceholder: 'Повторите пароль',
     submit: 'Сбросить пароль',
     cancel: 'Отмена',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Паролей больше нет",
+    goneBody: "Входите с одноразовым кодом в приложении.",
+    goneOpen: "Открыть SpySocial",
+    goneNoApp: "Нет приложения?",
     preview: (mode: string) => `Режим предпросмотра: <b>${mode}</b>. Отправка не затронет Supabase.`,
   },
 

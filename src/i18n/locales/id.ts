@@ -923,6 +923,11 @@ const id: Strings = {
     confirmPlaceholder: 'Ulangi kata sandi',
     submit: 'Atur ulang kata sandi',
     cancel: 'Batal',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Tidak ada kata sandi lagi",
+    goneBody: "Masuk dengan kode sekali pakai di aplikasi.",
+    goneOpen: "Buka SpySocial",
+    goneNoApp: "Belum punya aplikasinya?",
     preview: (mode: string) => `Mode pratinjau: <b>${mode}</b>. Mengirim tidak akan menyentuh Supabase.`,
   },
 

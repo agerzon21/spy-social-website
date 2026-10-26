@@ -928,6 +928,11 @@ const fr: Strings = {
     confirmPlaceholder: 'Confirme le mot de passe',
     submit: 'Réinitialiser le mot de passe',
     cancel: 'Annuler',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Fini les mots de passe",
+    goneBody: "Connectez-vous avec un code à usage unique dans l'app.",
+    goneOpen: "Ouvrir SpySocial",
+    goneNoApp: "Vous n'avez pas l'app ?",
     preview: (mode: string) => `Mode aperçu\u00A0: <b>${mode}</b>. L'envoi ne contacte pas Supabase.`,
   },
 

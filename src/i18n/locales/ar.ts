@@ -925,6 +925,11 @@ const ar: Strings = {
     confirmPlaceholder: 'تأكيد كلمة المرور',
     submit: 'إعادة تعيين كلمة المرور',
     cancel: 'إلغاء',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "لم تعد هناك كلمات مرور",
+    goneBody: "سجّل الدخول برمز يُستخدم مرة واحدة في التطبيق.",
+    goneOpen: "افتح SpySocial",
+    goneNoApp: "ليس لديك التطبيق؟",
     preview: (mode: string) => `وضع المعاينة: <b>${mode}</b>. الإرسال لن يصل إلى Supabase.`,
   },
 
