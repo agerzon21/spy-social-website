@@ -69,6 +69,22 @@ const Rules: React.FC = () => {
       </Heading>
       <Text textStyle="body">{t.reports.text(tools)}</Text>
 
+      {/* LIVE.customPacks: the rules for the packs members make; LIVE.communityPacks adds Community Packs. */}
+      {LIVE.customPacks && (
+        <>
+          <Heading as="h2" size="sm" variant="section">
+            {t.packs.title}
+          </Heading>
+          <Text textStyle="body">{t.packs.intro}</Text>
+          <UnorderedList textStyle="body" spacing={1}>
+            {t.packs.rules.map((rule) => (
+              <ListItem key={rule}>{rule}</ListItem>
+            ))}
+          </UnorderedList>
+          {LIVE.communityPacks && <Text textStyle="body">{t.packs.community}</Text>}
+        </>
+      )}
+
       <Heading as="h2" size="sm" variant="section">
         {t.child.title}
       </Heading>

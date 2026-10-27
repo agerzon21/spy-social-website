@@ -14,7 +14,7 @@ const FinalCall = () => {
         <DisplayHeading id="final-title">{t.title}</DisplayHeading>
         <p className={s.finalText}>
           {t.text}
-          {LIVE.purchases ? ` ${t.purchases}` : ''}
+          {LIVE.purchases ? ` ${LIVE.membershipsOnly ? t.purchasesMembers : t.purchases}` : ''}
         </p>
         <StoreBadges center />
       </div>

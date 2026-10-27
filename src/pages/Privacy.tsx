@@ -71,8 +71,8 @@ const Privacy: React.FC = () => {
   const serverTranslator = PRIVACY.openAiTranslation
     ? 'Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service uses,'
     : 'Microsoft Translator (Azure AI Translator)'
-  // OpenAI is a provider for drawing checks, translation or both.
-  const usesOpenAi = PRIVACY.drawingCheck || PRIVACY.openAiTranslation
+  // OpenAI is a provider for drawing checks, translation, the custom packs' text check (LIVE.customPacks) or all three.
+  const usesOpenAi = PRIVACY.drawingCheck || PRIVACY.openAiTranslation || PRIVACY.customPacks
   // Each author's own yes (server 20261031100000): OpenAI gets a player's messages only after they chose Translate in
   // the app's note naming OpenAI, and not while they've since chosen Not Now there or turned automatic translation off.
   const openAiAgreed = PRIVACY.autoTranslation
@@ -162,18 +162,69 @@ const Privacy: React.FC = () => {
         {/* LIVE.intel: Intel (the server's "coins") and the daily streak (legalRelease). */}
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
-            Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought. When a game you
+            Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
+            {PRIVACY.intercepts ? ' You also get it by shredding spare copies of items. For now there\'s nothing to spend it on.' : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
             also keep your balance, how much Intel you've earned and spent in all, and your daily streak: how many days
             in a row you've played a game that counts, your best streak, the last day you did, and any streak freeze
-            you hold. When you unlock an item with Intel, we record which item, its price and when, and add the item
-            to your account. All of this is worked out from the games you play (games that give no experience points,
-            for example a game you left or one our fair-play checks flag, give no Intel). We use it to give you Intel,
-            your streak and the items you choose, to show them to you in the app, and to check that Intel is earned
-            fairly. Other players never see your Intel or your streak, and we look at Intel only as totals across all
-            players (for example to set prices). It's kept with your account and deleted with it, and it doesn't leave
+            you hold.
+            {PRIVACY.intercepts
+              ? ''
+              : ' When you unlock an item with Intel, we record which item, its price and when, and add the item to your account.'}{' '}
+            All of this is worked out from the games you play (games that give no experience points,
+            for example a game you left or one our fair-play checks flag, give no Intel). We use it to give you Intel
+            {PRIVACY.intercepts ? ' and your streak' : ', your streak and the items you choose'}, to show them to you in the app, and to check that Intel is earned
+            fairly.
+            {PRIVACY.intercepts &&
+              ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).'}{' '}
+            Other players never see your Intel or your streak, and we look at Intel only as totals across all
+            players{PRIVACY.intercepts ? '' : ' (for example to set prices)'}. It's kept with your account and deleted with it, and it doesn't leave
             our servers.
+          </Item>
+        )}
+        {/* LIVE.intercepts: Intercepts (the server's "crates"), earned only (legalRelease). */}
+        {PRIVACY.intercepts && (
+          <Item label="Intercepts">
+            Intercepts are sealed rewards that each open into one random item (such as a look for your agent, a
+            celebration or a title). They're earned only by playing, or given by us, never bought, with money or with
+            Intel. Our servers keep each Intercept you get: when, how you got it (the Play Online game that completed a
+            set of 10 wins, your first Play Online game of the day or a streak milestone, a Game Night win, a creator
+            code you entered, or a gift from us, with its reason) and its tier; and, once you open it, when, the item and
+            its rarity, whether you already had that item, and for a Unique, its number and colour. We keep every copy
+            you get, the Intel you get when you shred a spare one, and each trade-up (the spare copies it used, the odds
+            it used and the item it gave). They also keep your progress toward your next
+            Intercepts and the counts behind any guarantee the app shows. All of this comes from the games you play and
+            the codes you enter: private-room games, and games that give no Intel (for example a game you left or one
+            our fair-play checks flag), don't count. When Intercepts start, the items that from then on come only from
+            Intercepts are taken back from every account (the Beta Pin excepted), and we keep a record of what was taken
+            back from yours, and of the look or title it replaced, so that we can put it back if we have to. We use all
+            this to give you your Intercepts and their items, to show them to you in the app, and to check that
+            Intercepts are earned fairly and that the odds work as the app shows them. Other players never see your
+            Intercepts; they see an item from one only when you wear it, like any other look. We look at Intercepts only
+            as totals across all players (and at a player's own Intercepts only to answer a question or check a
+            problem). It's kept with your account and deleted with it, and it doesn't leave our servers.
+          </Item>
+        )}
+        {/* LIVE.customPacks (members' own packs), with communityPacks and featuredPacks (legalRelease). */}
+        {PRIVACY.customPacks && (
+          <Item label={PRIVACY.communityPacks ? 'Custom Packs and Community Packs' : 'Custom Packs'}>
+            If you're a member, you can make your own packs. We keep each pack you make with your account: its name, its
+            game (Spy Talk or Spy Sketch), its language, its description if you add one, its entries (the locations or
+            words) and when you made and last changed it. Names and entries go through our word filter when you save
+            them. Before anyone else can play or see a pack, its name, description and entries are also sent to
+            OpenAI's moderation model for an automated check (only the pack's text, never your account, name or age),
+            and we keep the result and anything it flagged with the pack; a pack it flags waits until a person on our
+            team looks at it, and a pack it flags for child sexual content is logged with a copy for our child-safety
+            review. Any change to the text is checked again. When you play one of your packs in a private room, the players there see its name and, as with any
+            pack, what the game deals and shows from it (such as the location or word, and the spy's list). You can
+            change or delete your packs at any time.
+            {PRIVACY.communityPacks &&
+              ` If you submit a pack to Community Packs, a person on our team reviews it before anyone else can see it (we aim to within 72 hours), and we keep a record of the review (who reviewed it, when, what we decided and why, with a copy of the pack as it was). We may approve it, send it back, turn it down, hold it (for example after reports) or take it out. Once we approve it, every SpySocial player, players under 18 included, can see it: its name, description, game, language and entries, your username as its creator (never your display name), when it was added, its average rating and number of ratings, and how many players have added it (its downloads). Players can search Community Packs (by a pack's name, description or its creator's username), browse our collections, add a pack to their collection and rate it from 1 to 5 stars. When you add or rate a pack, we keep which pack, your rating and when, with your account; other players and the pack's creator see only the totals, never who added or rated it. You can report a Community Pack: the report keeps a snapshot of the pack as it was, your reason and anything you write, and we handle it like any other report (see Safety Information). If you take your pack out of Community Packs or delete it, it disappears from search and collections. Creators get the Pack Maker title, which counts their approved packs and shows like any title.`}
+            {PRIVACY.featuredPacks &&
+              ` We may feature a Community Pack: then it's also played at Play Online tables and events, where the players see its name and creator as Community Packs shows them, and our translation service translates its name, description and entries into the languages the app offers. For that, it sends only the pack's text and the languages to ${PRIVACY.openAiTranslation ? 'OpenAI (only when you told us you\'re 16 or older and agreed to translation by OpenAI in the app) or else Microsoft Translator' : 'Microsoft Translator'}, never your account, name or age, and we keep the translations with the pack. If we feature your pack, you get the Featured Creator title and border, which count your featured packs and show like any title and border.`}{' '}
+            Your packs{PRIVACY.communityPacks ? ', ratings and the packs you added' : ''} are kept with your account and
+            deleted with it.
           </Item>
         )}
         {/* LIVE.ranked: Ranked's rating, ranks, seasons and leaderboards (legalRelease). */}
@@ -264,18 +315,25 @@ const Privacy: React.FC = () => {
           To stop floods, guessing at room codes and other abuse, our servers note when an account does certain things
           (such as sending a message, joining or trying to join a room, poking a player, or saving its avatar or title),
           without what was said. Notes about joining rooms are deleted after 24 hours and the others after 2 days, even if
-          the account is deleted first. To limit account emails, when you sign up, save a guest account, ask for a new
-          confirmation link, reset your password or change your email address, our servers keep a record of each email
+          the account is deleted first. To limit account emails, when you sign up, save a guest account,
+          {PRIVACY.passwordless ? ' ask for a sign-in code' : ' ask for a new confirmation link, reset your password'} or
+          change your email address, our servers keep a record of each email
           they send: a coded form of the email address and of your network (your IP address, or for IPv6 its first
           half), made with a secret key, the kind of email and when, never the address or the IP address itself. Under
           the same code, they also count how many of these requests come from each network in an hour. These records
           are deleted after a day.
+          {PRIVACY.passwordless
+            ? ' For each sign-in code we email, they keep a coded form of the code (never the code itself) with the coded email address, the account it was sent for when you are signed in, how many wrong tries it has had (it stops working after 5) and when it expires (10 minutes). It is deleted as soon as it is used, and an expired one within a day.'
+            : ''}
         </Item>
         <Item label="Safety Information">
           Reports you make or that are made about you, players you block, removals from rooms, and any warnings,
           mutes or bans on your account
           {PRIVACY.drawingCheck
             ? ', including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave'
+            : ''}
+          {PRIVACY.banTombstone
+            ? '. If an account is deleted while one of these is still running, or within 90 days of a warning, we keep a short record of it after the deletion (see Data Retention)'
             : ''}
           .
           {PRIVACY.drawingCheck &&
@@ -286,7 +344,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.drawingCheck ? ', and a report about a drawing includes the drawing' : ''}. Only messages we still
           keep are attached (see Chat Messages above). A report is marked urgent and read first when the person
           reporting, the player reported or anyone in that room or game is under 18 or hasn't told us their age; the
-          report notes only a yes or no for this, never anyone's age. When we remove a message or a drawing, or replace a name that
+          report notes only a yes or no for this, never anyone's age. When we remove a message
+          {PRIVACY.customPacks ? ', a drawing or a custom pack' : ' or a drawing'}, or replace a name that
           breaks the rules, our moderation log keeps a copy of what we removed and the old name, for as long as we
           keep reports. For each player who reports, our moderators can see how many of their reports led to action
           and how many were dismissed. We work this out from the reports we already keep, use it only to review
@@ -351,9 +410,9 @@ const Privacy: React.FC = () => {
         )}
         {PRIVACY.purchases && (
           <Item label="Purchases">
-            When you buy something in the app, such as a pack, an avatar item or a membership (guests can buy too),
-            Apple or Google handles the payment; we never
-            see your payment details. To check and restore purchases, the app and our servers use RevenueCat, which
+            {PRIVACY.membershipsOnly
+              ? 'When you buy a membership in the app (Agent, the monthly Pack Pass; Elite, the yearly one; or Spymaster, Lifetime: the only things SpySocial sells; guests can buy too), Apple or Google handles the payment; we never see your payment details.'
+              : 'When you buy something in the app, such as a pack, an avatar item or a membership (guests can buy too), Apple or Google handles the payment; we never see your payment details.'} To check and restore purchases, the app and our servers use RevenueCat, which
             receives an ID linked to your SpySocial account, what you bought, the store's transaction IDs, prices and
             dates, your device's IP address, platform, model, language settings and store country, and on iPhones the
             identifier iOS gives our apps on your device. The app first connects to RevenueCat when you open a screen
@@ -497,7 +556,18 @@ const Privacy: React.FC = () => {
         {PRIVACY.creatorCodes && (
           <ListItem>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</ListItem>
         )}
-        {PRIVACY.intel && <ListItem>Give you Intel, your daily streak and the items you unlock with Intel</ListItem>}
+        {PRIVACY.intel && (
+          <ListItem>
+            {PRIVACY.intercepts ? 'Give you Intel and your daily streak' : 'Give you Intel, your daily streak and the items you unlock with Intel'}
+          </ListItem>
+        )}
+        {PRIVACY.intercepts && <ListItem>Give you Intercepts and the items in them</ListItem>}
+        {PRIVACY.customPacks && (
+          <ListItem>
+            Keep your custom packs and check their text{PRIVACY.communityPacks ? ', review and show Community Packs, count their ratings and adds, and give creators their titles' : ''}
+            {PRIVACY.featuredPacks ? ', and translate and play the packs we feature' : ''}
+          </ListItem>
+        )}
         {(PRIVACY.ranked || PRIVACY.tournaments) && (
           <ListItem>
             Run {PRIVACY.ranked ? 'Ranked and its leaderboards' : ''}
@@ -526,14 +596,20 @@ const Privacy: React.FC = () => {
           {PRIVACY.autoTranslation ? 'translate messages for you' : 'translate what you ask us to translate'}
           {PRIVACY.purchases ? ', provide what you buy' : ''}
           {PRIVACY.creatorCodes ? ", give you a code's reward" : ''}
-          {PRIVACY.intel ? ', give you Intel and what you unlock with it' : ''}
+          {PRIVACY.intel ? (PRIVACY.intercepts ? ', give you Intel' : ', give you Intel and what you unlock with it') : ''}
+          {PRIVACY.intercepts ? ', give you Intercepts and their items' : ''}
+          {PRIVACY.customPacks ? ', keep your custom packs' : ''}
+          {PRIVACY.communityPacks ? ', show Community Packs and their ratings' : ''}
           {PRIVACY.ranked ? ', run Ranked and its leaderboards' : ''}
           {PRIVACY.tournaments ? ', run tournaments' : ''}
           {PRIVACY.notifications ? ', remind you of the game nights you asked about and tell you when a match is found' : ''}.
         </Item>
         <Item label="Legitimate Interests">
           To keep players safe (reports, the word filter{PRIVACY.groomingFlag ? ', flags of possible grooming' : ''}
-          {PRIVACY.drawingCheck ? ', drawing checks' : ''}, moderation, age
+          {PRIVACY.drawingCheck ? ', drawing checks' : ''}
+          {PRIVACY.customPacks ? ', the automated check of custom packs' : ''}
+          {PRIVACY.communityPacks ? ', the review of Community Packs' : ''}, moderation
+          {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
           events){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
@@ -565,15 +641,22 @@ const Privacy: React.FC = () => {
         Usage events are kept
         for 180 days
         {PRIVACY.scheduledRetention
-          ? ', and security logs (such as sign-ups, sign-ins, password resets and email changes, which can include your email address and IP address) for 180 days.'
+          ? `, and security logs (such as sign-ups, sign-ins, ${PRIVACY.passwordless ? 'sign-in codes sent' : 'password resets'} and email changes, which can include your email address and IP address) for 180 days.`
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests after a day.
         {PRIVACY.intel ? ' Your Intel, its history and your daily streak are kept for as long as you have an account.' : ''}
+        {PRIVACY.intercepts ? ' Your Intercepts and what they gave you are kept for as long as you have an account.' : ''}
+        {PRIVACY.customPacks
+          ? ` Your custom packs${PRIVACY.communityPacks ? ', your ratings and the Community Packs you added' : ''} are kept until you delete them or your account.${PRIVACY.communityPacks ? ' The record of a pack\'s review, and reports about a pack (with the pack as it was), are kept as long as we keep reports.' : ''}`
+          : ''}
         {PRIVACY.ranked ? ' Your Ranked ratings, game records, breaks and rewards are kept for as long as you have an account.' : ''}
         {PRIVACY.tournaments ? ' Your tournament entries, results and Tournament Tokens are kept for as long as you have an account.' : ''}
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
+          : ''}
+        {PRIVACY.banTombstone
+          ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
           : ''}
       </P>
       <P>
@@ -617,6 +700,8 @@ const Privacy: React.FC = () => {
             ? ", if our translation service uses Microsoft rather than OpenAI, and always for messages from players under 16, from players who haven't told us their age, and from players who haven't agreed in the app to translation by OpenAI"
             : ''}
           .
+          {PRIVACY.featuredPacks &&
+            ` It may also translate the Community Packs we feature${PRIVACY.openAiTranslation ? ', when our service uses it for them' : ''} (only their text, see Custom Packs and Community Packs above).`}
         </Item>
         {usesOpenAi && (
           <Item label="OpenAI">
@@ -625,6 +710,11 @@ const Privacy: React.FC = () => {
               'Checks drawings for content that breaks our Community Rules: every drawing turn in public rooms gets an automated check, some also get a second, more detailed check, and so do drawings players report. '}
             {PRIVACY.openAiTranslation &&
               `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages when our translation service uses it (see Translations above), only messages written by players who told us they're 16 or older and agreed to it in the app, and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat by such players (without who said them), a list of names to leave as they are (agent names and, in private rooms, the display names of such players) and the two languages, never your account or anyone's age. Our service asks OpenAI not to store these requests or its answers. `}
+            {PRIVACY.customPacks &&
+              `${PRIVACY.drawingCheck || PRIVACY.openAiTranslation ? 'It also checks' : 'Checks'} the text of every custom pack (its name, description and entries) with its moderation model before anyone else can play or see it (see Custom Packs above); it receives only that text, never who made the pack. `}
+            {PRIVACY.featuredPacks &&
+              PRIVACY.openAiTranslation &&
+              'When our translation service uses it for the Community Packs we feature, it receives only the pack\'s name, description and entries and the languages, never who made the pack. '}
             Under OpenAI's API terms and its Data Processing Addendum, it{' '}
             {PRIVACY.openAiTranslation
               ? "doesn't use what it receives to train its models, and keeps it for up to 30 days to monitor abuse, unless the law requires it to keep it longer or keeping it is reasonably necessary to protect its services or anyone else from harm."
@@ -656,8 +746,8 @@ const Privacy: React.FC = () => {
         </Item>
         {PRIVACY.resendAccountEmail && (
           <Item label="Resend">
-            (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as sign-up confirmations and
-            password resets, and the emails for agreements signed on our website (the signed agreement and its audit
+            (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
+            {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
             trail), so it receives the email addresses and the emails it delivers.
           </Item>
         )}
@@ -796,7 +886,10 @@ const Privacy: React.FC = () => {
           ' Ranked leaderboards show the top 100 players of each Ranked game in a season, with their rank and rating, to every player who opens them: by agent name (for example, "Agent Blue"), or by username if the player chose that in the app. Players under 18, and players who haven\'t told us their age, are never shown on a leaderboard.'}
         {/* LIVE.tournaments: get_tournament (standings between stages, the winners). */}
         {PRIVACY.tournaments &&
-          " A tournament's standings (after each stage, never during one) and its winners are shown, with their points and places, to every player who opens that tournament in the app: by username, or by agent name for players under 18 and players who haven't told us their age."}{' '}
+          " A tournament's standings (after each stage, never during one) and its winners are shown, with their points and places, to every player who opens that tournament in the app: by username, or by agent name for players under 18 and players who haven't told us their age."}
+        {/* LIVE.communityPacks: an approved pack is public (legalRelease). */}
+        {PRIVACY.communityPacks &&
+          " A custom pack you submit to Community Packs is shown to every player once we approve it, with your username as its creator, its ratings and how many players added it (see Custom Packs and Community Packs above); never who rated or added it."}{' '}
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
       </P>

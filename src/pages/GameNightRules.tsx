@@ -1,6 +1,7 @@
 import { ListItem } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/LegalText'
+import { LIVE } from '../lib/legalRelease'
 
 // The Game Night rules (www.spysocial.app/game-night-rules): the weekly Game Night's official rules, in English
 // like the other legal pages. The route, the footer's link and the sitemap entry exist only while
@@ -9,10 +10,16 @@ import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/L
 // the Spy winner's, the developer's bonus), each once per account per night. Change it first if any of that changes.
 
 /**
- * The day this page's text was last changed: set it to the day the switch goes on, if later. October 25, 2026: the
- * tables' safety tools corrected (Play Online tables have no vote to remove a player; the developer's actions).
+ * The day this page's text was last changed: set it to the day the switch goes on, if later. LIVE.intercepts adds the
+ * Intercepts paragraph and LIVE.membershipsOnly changes the no-purchase line: set their dates to the deploy day.
+ * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
+ * developer's actions).
  */
-const UPDATED = 'October 25, 2026'
+const UPDATED = LIVE.intercepts
+  ? 'November 2, 2026' // the Intercepts paragraph: set to the day the site goes up with it on
+  : LIVE.membershipsOnly
+    ? 'November 2, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
+    : 'October 25, 2026'
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -37,8 +44,10 @@ const GameNightRules: React.FC = () => (
 
     <H2>No purchase necessary</H2>
     <P>
-      Taking part is free. Nothing you buy in SpySocial (a pack, a Pack Pass, a membership) gives you a better
-      chance of getting a title, and you never need to buy anything to take part or to get one.
+      Taking part is free. Nothing you buy in SpySocial
+      {LIVE.membershipsOnly ? ' (a membership: Agent, Elite or Spymaster)' : ' (a pack, a Pack Pass, a membership)'} gives
+      you a better chance of getting a title{LIVE.intercepts ? ' or an Intercept' : ''}, and you never need to buy
+      anything to take part or to get one.
     </P>
 
     <H2>The night's titles</H2>
@@ -86,6 +95,21 @@ const GameNightRules: React.FC = () => (
       table's chat says who got it. It doesn't depend on winning the game, and it's never a payment or a reward for
       buying anything.
     </P>
+
+    {/* LIVE.intercepts: Game Night wins count toward Intercepts; the night's winners get an Enigma Intercept (crates seed, earn.game_night). */}
+    {LIVE.intercepts && (
+      <>
+        <H2>Intercepts</H2>
+        <P>
+          Game Night tables are Play Online tables, so a win there counts toward your Intercepts like any Play Online
+          win, and your first game of the day there gives your daily Intercept. Every player who gets the Local winner's
+          or the Spy winner's title also gets one Enigma Intercept, the highest tier (one a night, even with both
+          titles). Intercepts
+          work as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe: earned only, never sold,
+          with the odds shown in the app before you open one.
+        </P>
+      </>
+    )}
 
     <H2>About the titles</H2>
     <P>

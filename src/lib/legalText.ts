@@ -17,17 +17,29 @@ const namesAndPicture = (): string => {
 /** What a deletion removes, as one sentence. */
 export const deletedSummary = (): string =>
   [
-    'your email address and password',
+    PRIVACY.passwordless ? 'your email address' : 'your email address and password',
     PRIVACY.socialSignIn ? 'the Apple or Google sign-in linked to your account' : null,
     namesAndPicture(),
     'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
     'your game-night history and rewards',
     PRIVACY.intel ? 'your Intel, its history and your daily streak' : null,
+    PRIVACY.intercepts ? 'your Intercepts and the items they gave you' : null,
+    PRIVACY.customPacks
+      ? PRIVACY.communityPacks
+        ? 'your custom packs (and so your Community Packs), your ratings and the Community Packs you added'
+        : 'your custom packs'
+      : null,
     PRIVACY.ranked ? 'your Ranked ratings, game records, breaks and rewards' : null,
     PRIVACY.tournaments ? 'your tournament entries and Tournament Tokens' : null,
-    PRIVACY.purchases ? 'the purchases linked to your account (such as packs, avatar items and memberships)' : null,
+    PRIVACY.purchases
+      ? PRIVACY.membershipsOnly
+        ? 'the purchases linked to your account (your memberships)'
+        : 'the purchases linked to your account (such as packs, avatar items and memberships)'
+      : null,
     PRIVACY.creatorCodes ? 'the link between your account and the creator code and reward codes you entered' : null,
-    'the players you blocked, and the warnings, mutes and bans on your account',
+    PRIVACY.banTombstone
+      ? 'the players you blocked, and the warnings, mutes and bans on your account (apart from the short record below)'
+      : 'the players you blocked, and the warnings, mutes and bans on your account',
     'your settings and the answers you gave the app (such as your birth year)',
     PRIVACY.notifications ? "your devices' push addresses" : null,
   ]

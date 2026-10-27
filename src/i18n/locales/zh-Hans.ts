@@ -23,6 +23,8 @@ const zhHans: Strings = {
       join: '加入游戏',
       joinEvent: '公开活动',
       resetPassword: '重置密码',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "使用验证码登录",
       confirmSuccess: '邮箱已确认',
       notFound: '页面不存在',
     },
@@ -251,6 +253,8 @@ const zhHans: Strings = {
       title: '就等你入座',
       text: '免费畅玩，没有广告。',
       purchases: '想要更多地点和词语，可以选购主题包。',
+      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
+      purchasesMembers: '想要更多地点和词语，可以选购会员。',
     },
   },
 
@@ -428,6 +432,18 @@ const zhHans: Strings = {
           o.messages ? '长按一条消息、问题或回答即可举报：举报会附上该内容及其前后的聊天记录。' : ''
         }${o.drawings ? '你也可以举报画作。' : ''}每一条举报都会在 24 小时内由真人查看。公开聊天会保留 14 天，以便核查举报；被举报的玩家不会知道是谁举报的。`,
     },
+    /** Section 5, once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+    packs: {
+      title: '5. 自定义主题包',
+      intro: '会员自己制作的主题包同样要遵守这些规则：名称、描述和每一个词条都是如此。',
+      rules: [
+        '这些规则在别处禁止的，这里同样禁止：不能有仇恨、色情内容或威胁，也不能有任何不适合 13 岁及以上玩家的内容。',
+        '不能有个人信息，也不能有你认识的真实人物：不能写同学、老师或邻居，也不能写地址、电话号码、学校或社交账号。',
+        '不能有广告、链接或垃圾信息，而且必须是你自己的作品。',
+      ],
+      community:
+        '社区主题包：在其他人能看到之前，我们团队会有专人阅读每一个主题包。如果主题包违反这些规则，我们可以拒绝它、将它从社区主题包中移除，或禁止该账号分享主题包。任何玩家都可以举报社区主题包，每一条举报都会在 24 小时内由真人查看。',
+    },
     child: {
       title: '儿童安全',
       text: '我们绝不允许任何涉及未满 18 岁者的色情内容，也绝不允许任何人试图诱骗、性化或剥削儿童。我们会删除此类内容，封禁相关账号，并依法向美国国家失踪与受剥削儿童中心（NCMEC）报告。如果你看到此类内容，请发邮件至 <email/>，主题写“Child safety”（儿童安全）；如果你和对方在同一个房间里待过，也请在应用内举报该玩家。你也可以直接向 NCMEC 的 <link>CyberTipline</link>（1-800-843-5678）报告。如果有儿童正处于紧急危险中，请先拨打当地的紧急电话。详情请见我们的<link2>儿童安全标准</link2>。',
@@ -517,6 +533,17 @@ const zhHans: Strings = {
       public: (playOnline: boolean) =>
         `<b>公开房间和活动</b>，里面有你孩子不认识的玩家${playOnline ? '，包括会自动为玩家安排游戏桌的在线游戏' : ''}。`,
       buy: '<b>可购买的内容：</b>主题包和会员，通过 App Store 或 Google Play 购买。',
+      /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
+      buyMembers:
+        '<b>可购买的内容：</b>只有会员（主题包通行证，按月或按年，以及终身通行证），通过 App Store 或 Google Play 购买。会员可解锁所有非免费主题包，除此之外不出售任何东西。',
+      /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
+      intercepts:
+        '<b>截获（Intercepts）：</b>通过游戏赢得的奖励，每个都装着一件随机物品，比如特工的新造型。它们不能购买，无论是用钱还是用游戏里赚到的货币；打开之前，应用会显示概率。',
+      /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+      customPacks: (community: boolean) =>
+        `<b>自定义主题包：</b>会员可以为自己的私密房间制作地点或词语主题包。${
+          community ? '分享到社区主题包的每一个主题包，在其他人能看到之前都会由我们的团队阅读，任何玩家都可以举报。' : ''
+        }`,
       hasNotTitle: 'SpySocial 没有什么',
       noDms:
         '没有私信：玩家只能在房间内和房间里的玩家聊天。卧底聊天只持续一局，和其他聊天一样经过过滤、会被保存，也可以被举报。',
@@ -822,6 +849,9 @@ const zhHans: Strings = {
       ],
       more: '另外还有玩家数据、可解锁的称号和边框、最高 100 级的等级与威望、短局也能拿经验值、手机休眠后顺畅回到游戏、一点就灵的邀请链接，以及全新的界面设计。',
       launchWeek: '上线周：11 月 10 日（周二）Spy Talk、11 月 13 日（周五）Spy Sketch、11 月 14 日（周六）黑手党模式，均为美国东部时间晚上 8 点至 10 点。',
+      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
+      shopMembers: (customPacks: boolean) =>
+        `打造你自己的卧底头像，并通过游戏赢得新造型。商店只出售会员，会员可解锁所有主题包${customPacks ? '，还能制作你自己的主题包' : ''}：全部可选，也都不会改变游戏玩法。`,
     },
     next: {
       status: '计划中',
@@ -880,6 +910,11 @@ const zhHans: Strings = {
     confirmPlaceholder: '再次输入密码',
     submit: '重置密码',
     cancel: '取消',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "密码已取消",
+    goneBody: "请在应用中使用一次性验证码登录。",
+    goneOpen: "打开 SpySocial",
+    goneNoApp: "还没有应用？",
     preview: (mode: string) => `预览模式：<b>${mode}</b>。提交不会发送到 Supabase。`,
   },
 

@@ -5,10 +5,50 @@ import { supabase } from '../lib/supabase'
 import { useThemedToast } from '../lib/useThemedToast'
 import { useT } from '../i18n'
 import { rich } from '../i18n/rich'
+import { LIVE } from '../lib/legalRelease'
+import { openAppHref } from '../lib/appLink'
+import { currentPlatform } from '../lib/platform'
+import StoreBadges from '../components/ui/StoreBadges'
+import { Helmet } from 'react-helmet-async'
 
 type PreviewMode = 'form' | 'error' | 'success' | null
 
+/**
+ * Passwordless sign-in (LIVE.passwordless, app repo feat/email-code-signin): no password to reset. Old reset emails
+ * still land here, so the page says so and points to the app (Open SpySocial on a phone, the store badges for anyone
+ * without it). ?preview=gone shows it before the switch flips.
+ */
+const PasswordsGone = () => {
+  const strings = useT()
+  const t = strings.resetPassword
+  const platform = currentPlatform()
+  return (
+    <Box flex="1" display="flex" alignItems="center" pt={{ base: 10, md: 16 }} pb={{ base: 10, md: 16 }}>
+      <Helmet>
+        <title>{`${strings.meta.titles.resetPasswordCode} · ${strings.meta.siteName}`}</title>
+      </Helmet>
+      <Container maxW="400px">
+        <VStack spacing={5} align="stretch" textAlign="center">
+          <Heading as="h1" size="md">{t.goneTitle}</Heading>
+          <Text fontSize="sm" color="ss.muted">{t.goneBody}</Text>
+          {platform !== 'desktop' && (
+            <Button as="a" href={openAppHref('', platform)} variant="primary" size="md" width="100%">{t.goneOpen}</Button>
+          )}
+          <Text fontSize="xs" color="ss.muted">{t.goneNoApp}</Text>
+          <StoreBadges center />
+        </VStack>
+      </Container>
+    </Box>
+  )
+}
+
 const ResetPassword = () => {
+  const [searchParams] = useSearchParams()
+  if (LIVE.passwordless || searchParams.get('preview') === 'gone') return <PasswordsGone />
+  return <ResetPasswordForm />
+}
+
+const ResetPasswordForm = () => {
   const [searchParams] = useSearchParams()
   const previewMode = (searchParams.get('preview') as PreviewMode) ?? null
   const isPreview = previewMode !== null

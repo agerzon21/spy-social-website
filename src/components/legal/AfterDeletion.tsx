@@ -37,6 +37,17 @@ export const AfterDeletionList = () => (
       Reports, including the names and chat lines attached to them, are kept for as long as we need them to keep players
       safe, handle appeals and meet legal obligations. They're no longer linked to your account.
     </ListItem>
+    {PRIVACY.banTombstone && (
+      <ListItem>
+        If your account had a ban, pause or mute that was still running, or a warning or other sanction from the last 90
+        days, we keep a short record of each: what it was, the rule it was for (as a category, not our notes), when it
+        started and ends, and a coded fingerprint of each way you signed in (your email address once confirmed, and your
+        Apple or Google account ID). The fingerprint is made with a secret key that only our server holds: it can't be
+        turned back into your email address or ID, and it only tells us that a new sign-in is one of the old ones. If you
+        sign up again or connect one of them, the ban, pause or mute applies to the new account until it would have
+        ended, and we review it. We don't keep your name, username, messages or anything else for this.
+      </ListItem>
+    )}
     <ListItem>
       Records of games you played (such as moves, votes and results) stay with those games. They identify players only
       by a random ID, which no longer leads to your account. Usage events, which use the same ID, are deleted after 180
@@ -49,7 +60,7 @@ export const AfterDeletionList = () => (
       </ListItem>
     )}
     <ListItem>
-      Security logs of account activity (such as sign-ups, sign-ins, password resets and email changes), which can include
+      Security logs of account activity (such as sign-ups, sign-ins, {PRIVACY.passwordless ? 'sign-in codes sent' : 'password resets'} and email changes), which can include
       your email address and IP address, are kept{PRIVACY.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
       prevent abuse.
     </ListItem>

@@ -23,6 +23,8 @@ const es: Strings = {
       join: 'Unirse a una partida',
       joinEvent: 'Evento público',
       resetPassword: 'Restablecer contraseña',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "Inicia sesión con un código",
       confirmSuccess: 'Correo confirmado',
       notFound: 'Página no encontrada',
     },
@@ -253,6 +255,8 @@ const es: Strings = {
       title: 'Tu mesa te espera',
       text: 'Gratis y sin anuncios.',
       purchases: 'Paquetes opcionales si quieres más lugares y palabras.',
+      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
+      purchasesMembers: 'Membresías opcionales si quieres más lugares y palabras.',
     },
   },
 
@@ -430,6 +434,18 @@ const es: Strings = {
           o.messages ? ' Mantén pulsado un mensaje, una pregunta o una respuesta para reportarlo: el reporte lo incluye junto con el chat de alrededor.' : ''
         }${o.drawings ? ' También puedes reportar un dibujo.' : ''} Una persona lee cada reporte en menos de 24 horas. El chat público se guarda 14 días para poder revisar los reportes; el jugador que reportas no sabe quién lo envió.`,
     },
+    /** Section 5, once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+    packs: {
+      title: '5. Paquetes personalizados',
+      intro: 'Los paquetes que crean los miembros también siguen estas normas: el nombre, la descripción y cada entrada.',
+      rules: [
+        'Nada de lo que estas normas prohíben en otros lugares: nada de odio, contenido sexual ni amenazas, y nada que no sea apropiado para jugadores de 13 años en adelante.',
+        'Nada de información personal ni de personas reales que conozcas: ni compañeros de clase, ni profesores, ni vecinos, ni direcciones, números de teléfono, escuelas o usuarios de redes sociales.',
+        'Nada de anuncios, enlaces ni spam, y solo trabajo propio.',
+      ],
+      community:
+        'Paquetes de la comunidad: una persona de nuestro equipo lee cada paquete antes de que nadie más pueda verlo. Si un paquete rompe estas normas, podemos rechazarlo, retirarlo de Paquetes de la comunidad o impedir que esa cuenta comparta paquetes. Cualquier jugador puede reportar un paquete de la comunidad, y una persona lee cada reporte en menos de 24 horas.',
+    },
     child: {
       title: 'Seguridad infantil',
       text: 'Nunca permitimos contenido sexual que involucre a menores de 18 años, ni que alguien intente manipular, sexualizar o explotar a un niño. Lo eliminamos, bloqueamos las cuentas involucradas y lo reportamos al National Center for Missing & Exploited Children (NCMEC), como exige la ley. Si ves algo así, escribe a <email/> con «Child safety» en el asunto, y reporta al jugador en la app si compartiste sala con esa persona. También puedes reportarlo directamente a la <link>CyberTipline</link> del NCMEC (1-800-843-5678). Si un niño está en peligro inmediato, llama primero al número de emergencias local. Nuestros <link2>Estándares de seguridad infantil</link2> dan más detalles.',
@@ -519,6 +535,17 @@ const es: Strings = {
       public: (playOnline: boolean) =>
         `<b>Salas públicas y eventos</b> con jugadores que tu hijo o hija no conoce${playOnline ? ', incluido «Jugar en línea», que sienta a los jugadores en una mesa automáticamente' : ''}.`,
       buy: '<b>Cosas para comprar:</b> paquetes y membresías, a través del App Store o Google Play.',
+      /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
+      buyMembers:
+        '<b>Cosas para comprar:</b> solo membresías (el Pase de paquetes, mensual o anual, y la Membresía de por vida), a través del App Store o Google Play. Una membresía desbloquea los paquetes que no son gratis; no se vende nada más.',
+      /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
+      intercepts:
+        '<b>Intercepciones:</b> recompensas que se ganan jugando, y cada una trae un objeto al azar, como un estilo nuevo para el agente. No se pueden comprar, ni con dinero ni con la moneda que se gana en el juego, y la app muestra las probabilidades antes de abrir una.',
+      /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+      customPacks: (community: boolean) =>
+        `<b>Paquetes personalizados:</b> los miembros pueden crear sus propios paquetes de lugares o palabras para sus salas privadas.${
+          community ? ' Nuestro equipo lee cada paquete compartido en Paquetes de la comunidad antes de que nadie más pueda verlo, y cualquier jugador puede reportarlo.' : ''
+        }`,
       hasNotTitle: 'Lo que SpySocial no tiene',
       noDms:
         'No hay mensajes directos: los jugadores solo pueden chatear dentro de una sala, con los jugadores que están en ella. El chat de los espías dura una partida y se filtra, se guarda y se puede reportar como el resto.',
@@ -833,6 +860,9 @@ const es: Strings = {
       ],
       more: 'Y además: estadísticas, títulos y marcos para desbloquear, niveles hasta el 100 con prestigio, XP también en las partidas cortas, volver a la partida sin tropiezos aunque el teléfono entre en reposo, enlaces de invitación que simplemente funcionan y un nuevo aspecto en cada pantalla.',
       launchWeek: 'Semana de lanzamiento: Spy Talk el martes 10 de noviembre, Spy Sketch el viernes 13 de noviembre y Espía Mafia el sábado 14 de noviembre, siempre de 8 a 10 p. m., hora del Este de EE. UU. (ET).',
+      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
+      shopMembers: (customPacks: boolean) =>
+        `Crea tu propio avatar de espía y gana estilos nuevos jugando. La Tienda solo vende membresías, que desbloquean todos los paquetes${customPacks ? ' y te permiten crear los tuyos' : ''}: todo es opcional y nada cambia cómo se juega.`,
     },
     next: {
       status: 'Planeado',
@@ -900,6 +930,11 @@ const es: Strings = {
     confirmPlaceholder: 'Confirma la contraseña',
     submit: 'Restablecer contraseña',
     cancel: 'Cancelar',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Ya no hay contraseñas",
+    goneBody: "Inicia sesión con un código de un solo uso en la app.",
+    goneOpen: "Abrir SpySocial",
+    goneNoApp: "¿No tienes la app?",
     preview: (mode: string) => `Modo de vista previa: <b>${mode}</b>. Enviar no llega a Supabase.`,
   },
 

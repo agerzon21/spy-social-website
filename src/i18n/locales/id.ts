@@ -23,6 +23,8 @@ const id: Strings = {
       join: 'Gabung ke permainan',
       joinEvent: 'Event publik',
       resetPassword: 'Atur ulang kata sandi',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "Masuk dengan kode",
       confirmSuccess: 'Email dikonfirmasi',
       notFound: 'Halaman tidak ditemukan',
     },
@@ -253,6 +255,8 @@ const id: Strings = {
       title: 'Mejamu menanti',
       text: 'Gratis dimainkan, tanpa iklan.',
       purchases: 'Paket opsional kalau kamu mau lebih banyak lokasi dan kata.',
+      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
+      purchasesMembers: 'Keanggotaan opsional kalau kamu mau lebih banyak lokasi dan kata.',
     },
   },
 
@@ -430,6 +434,18 @@ const id: Strings = {
           o.messages ? ' Tekan lama pesan, pertanyaan, atau jawaban untuk melaporkannya: laporan menyertakan pesan itu beserta chat di sekitarnya.' : ''
         }${o.drawings ? ' Kamu juga bisa melaporkan gambar.' : ''} Setiap laporan dibaca oleh manusia dalam 24 jam. Chat publik disimpan selama 14 hari supaya laporan bisa diperiksa; pemain yang kamu laporkan tidak diberi tahu siapa pelapornya.`,
     },
+    /** Section 5, once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+    packs: {
+      title: '5. Paket buatan sendiri',
+      intro: 'Paket yang dibuat anggota juga mengikuti aturan ini: nama, deskripsi, dan setiap isinya.',
+      rules: [
+        'Tidak ada yang dilarang aturan ini di tempat lain: tanpa kebencian, konten seksual, atau ancaman, dan tanpa apa pun yang tidak pantas untuk pemain 13 tahun ke atas.',
+        'Tanpa info pribadi dan tanpa orang sungguhan yang kamu kenal: tanpa teman sekelas, guru, atau tetangga, dan tanpa alamat, nomor telepon, sekolah, atau akun media sosial.',
+        'Tanpa iklan, link, atau spam, dan hanya karyamu sendiri.',
+      ],
+      community:
+        'Paket Komunitas: seseorang dari tim kami membaca setiap paket sebelum orang lain bisa melihatnya. Jika sebuah paket melanggar aturan ini, kami bisa menolaknya, mengeluarkannya dari Paket Komunitas, atau melarang akun itu membagikan paket. Pemain mana pun bisa melaporkan Paket Komunitas, dan manusia membaca setiap laporan dalam 24 jam.',
+    },
     child: {
       title: 'Keselamatan anak',
       text: 'Kami tidak pernah mengizinkan konten seksual yang melibatkan siapa pun di bawah 18 tahun, atau siapa pun yang mencoba melakukan grooming, menyeksualisasi, atau mengeksploitasi anak. Kami menghapusnya, memblokir akun yang terlibat, dan melaporkannya ke National Center for Missing & Exploited Children (NCMEC) sesuai ketentuan hukum. Kalau kamu melihat hal seperti ini, kirim email ke <email/> dengan subjek “Child safety” (keselamatan anak), dan laporkan pemainnya di aplikasi kalau kamu pernah satu room dengannya. Kamu juga bisa melaporkannya langsung ke <link>CyberTipline</link> milik NCMEC (1-800-843-5678). Kalau ada anak dalam bahaya saat ini juga, hubungi dulu nomor darurat setempat. <link2>Standar Keselamatan Anak</link2> kami menjelaskan lebih lanjut.',
@@ -519,6 +535,17 @@ const id: Strings = {
       public: (playOnline: boolean) =>
         `<b>Room publik dan event</b> dengan pemain yang tidak dikenal anak Anda${playOnline ? ', termasuk “Main online”, yang mendudukkan pemain di meja secara otomatis' : ''}.`,
       buy: '<b>Barang yang bisa dibeli:</b> paket dan keanggotaan, lewat App Store atau Google Play.',
+      /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
+      buyMembers:
+        '<b>Barang yang bisa dibeli:</b> hanya keanggotaan (Langganan paket, bulanan atau tahunan, dan Akses seumur hidup), lewat App Store atau Google Play. Keanggotaan membuka paket yang tidak gratis; selain itu tidak ada yang dijual.',
+      /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
+      intercepts:
+        '<b>Intercepts:</b> hadiah yang didapat dengan bermain, masing-masing berisi satu item acak, seperti tampilan baru untuk agen. Hadiah ini tidak bisa dibeli, baik dengan uang maupun dengan mata uang yang didapat dari bermain, dan aplikasi menunjukkan peluangnya sebelum dibuka.',
+      /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+      customPacks: (community: boolean) =>
+        `<b>Paket buatan sendiri:</b> anggota bisa membuat paket lokasi atau kata sendiri untuk room privat mereka.${
+          community ? ' Tim kami membaca setiap paket yang dibagikan ke Paket Komunitas sebelum orang lain bisa melihatnya, dan pemain mana pun bisa melaporkannya.' : ''
+        }`,
       hasNotTitle: 'Apa yang tidak ada di SpySocial',
       noDms:
         'Tidak ada pesan langsung: pemain hanya bisa chat di dalam room, dengan pemain yang ada di room itu. Chat para mata-mata hanya berlaku selama satu permainan dan difilter, disimpan, serta bisa dilaporkan seperti chat lainnya.',
@@ -836,6 +863,9 @@ const id: Strings = {
       ],
       more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, tautan undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
       launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 10 November, Spy Sketch hari Jumat, 13 November, dan Mafia hari Sabtu, 14 November, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
+      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
+      shopMembers: (customPacks: boolean) =>
+        `Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Toko hanya menjual keanggotaan, yang membuka semua paket${customPacks ? ' dan memungkinkanmu membuat paket sendiri' : ''}: semuanya opsional, dan tidak ada yang mengubah cara bermain.`,
     },
     next: {
       status: 'Direncanakan',
@@ -903,6 +933,11 @@ const id: Strings = {
     confirmPlaceholder: 'Ulangi kata sandi',
     submit: 'Atur ulang kata sandi',
     cancel: 'Batal',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Tidak ada kata sandi lagi",
+    goneBody: "Masuk dengan kode sekali pakai di aplikasi.",
+    goneOpen: "Buka SpySocial",
+    goneNoApp: "Belum punya aplikasinya?",
     preview: (mode: string) => `Mode pratinjau: <b>${mode}</b>. Mengirim tidak akan menyentuh Supabase.`,
   },
 

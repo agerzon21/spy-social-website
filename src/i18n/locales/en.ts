@@ -40,6 +40,8 @@ const en = {
       join: 'Join a game',
       joinEvent: 'Public event',
       resetPassword: 'Reset your password',
+      /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
+      resetPasswordCode: "Sign in with a code",
       confirmSuccess: 'Email confirmed',
       notFound: 'Page not found',
     },
@@ -292,6 +294,8 @@ const en = {
       title: 'Your table is waiting',
       text: 'Free to play, no ads.',
       purchases: 'Optional packs if you want more places and words.',
+      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
+      purchasesMembers: 'Optional memberships if you want more places and words.',
     },
   },
 
@@ -470,6 +474,18 @@ const en = {
           o.messages ? ' Long-press a message, question or answer to report it: the report includes it and the chat around it.' : ''
         }${o.drawings ? ' You can also report a drawing.' : ''} A person reads every report within 24 hours. Public chat is kept for 14 days so reports can be checked; the player you report isn't told who sent it.`,
     },
+    /** Section 5, once members can make packs (LIVE.customPacks); `community` shows once Community Packs are live (LIVE.communityPacks). */
+    packs: {
+      title: '5. Custom packs',
+      intro: 'The packs members make follow these rules too: the name, the description and every entry.',
+      rules: [
+        'Nothing these rules ban anywhere else: no hate, sexual content or threats, and nothing unsuitable for players 13 and older.',
+        'No personal information and no real people you know: no classmates, teachers or neighbors, and no addresses, phone numbers, schools or social handles.',
+        'No ads, links or spam, and only your own work.',
+      ],
+      community:
+        'Community Packs: a person on our team reads every pack before anyone else can see it. We can turn a pack down, take it out of Community Packs, or stop an account from sharing packs if it breaks these rules. Any player can report a Community Pack, and a person reads every report within 24 hours.',
+    },
     child: {
       title: 'Child safety',
       text: 'We never allow sexual content involving anyone under 18, or anyone trying to groom, sexualize or exploit a child. We remove it, ban the accounts involved, and report it to the National Center for Missing & Exploited Children (NCMEC) as the law requires. If you see anything like this, email <email/> with "Child safety" in the subject, and report the player in the app if you shared a room with them. You can also report it directly to NCMEC\'s <link>CyberTipline</link> (1-800-843-5678). If a child is in immediate danger, call your local emergency number first. Our <link2>Child Safety Standards</link2> say more.',
@@ -561,6 +577,17 @@ const en = {
       public: (playOnline: boolean) =>
         `<b>Public rooms and events</b> with players your child doesn't know${playOnline ? ', including Play Online, which seats players at a table automatically' : ''}.`,
       buy: '<b>Things to buy:</b> packs and memberships, through the App Store or Google Play.',
+      /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
+      buyMembers:
+        "<b>Things to buy:</b> only memberships (the Pack Pass, monthly or yearly, and Lifetime), through the App Store or Google Play. A membership unlocks the packs that aren't free; nothing else is sold.",
+      /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
+      intercepts:
+        "<b>Intercepts:</b> rewards earned by playing, each holding one random item, such as a new look for the player's agent. They can't be bought, with money or with the currency players earn in the game, and the app shows the odds before one is opened.",
+      /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
+      customPacks: (community: boolean) =>
+        `<b>Custom packs:</b> members can make their own packs of locations or words for their private rooms.${
+          community ? ' Every pack shared to Community Packs is read by our team before anyone else can see it, and any player can report one.' : ''
+        }`,
       hasNotTitle: "What SpySocial doesn't have",
       noDms:
         "No direct messages: players can only chat inside a room, with the players in it. The spies' chat lasts one game and is filtered, stored and reportable like the rest.",
@@ -890,6 +917,9 @@ const en = {
       /** Added to the Game nights card once LIVE.launchGameNights is on (owner to OK the days first). If a day or
        * hour changes, change it in all 10 languages. */
       launchWeek: 'Launch week: Spy Talk on Tuesday, November 10, Spy Sketch on Friday, November 13, and Spy Mafia on Saturday, November 14, each from 8 to 10 PM ET.',
+      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
+      shopMembers: (customPacks: boolean) =>
+        `Build your own spy avatar, and earn new looks by playing. The Shop sells only memberships, which unlock every pack${customPacks ? ' and let you make your own' : ''}: all optional, and none of it changes how the game plays.`,
     },
     next: {
       /** A stamp: these are plans. */
@@ -961,6 +991,11 @@ const en = {
     confirmPlaceholder: 'Confirm password',
     submit: 'Reset Password',
     cancel: 'Cancel',
+    // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
+    goneTitle: "Passwords are gone",
+    goneBody: "Sign in with a one-time code in the app.",
+    goneOpen: "Open SpySocial",
+    goneNoApp: "Don't have the app?",
     preview: (mode: string) => `Preview mode: <b>${mode}</b>. Submitting won't hit Supabase.`,
   },
 
