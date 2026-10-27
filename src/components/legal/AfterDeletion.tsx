@@ -45,7 +45,9 @@ export const AfterDeletionList = () => (
         Apple or Google account ID). The fingerprint is made with a secret key that only our server holds: it can't be
         turned back into your email address or ID, and it only tells us that a new sign-in is one of the old ones. If you
         sign up again or connect one of them, the ban, pause or mute applies to the new account until it would have
-        ended, and we review it. We don't keep your name, username, messages or anything else for this.
+        ended, and we review it. Each record also keeps its reference number, whether it can be appealed, how many
+        warnings came before it and whether it was a child-safety case; none of these identify you. We don't keep your
+        name, username, messages or anything else for this.
       </ListItem>
     )}
     <ListItem>
