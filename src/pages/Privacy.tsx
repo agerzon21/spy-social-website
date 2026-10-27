@@ -210,20 +210,23 @@ const Privacy: React.FC = () => {
         {PRIVACY.customPacks && (
           <Item label={PRIVACY.communityPacks ? 'Custom Packs and Community Packs' : 'Custom Packs'}>
             If you're a member, you can make your own packs. We keep each draft and each pack you make with your
-            account: its name, its game (Spy Talk or Spy Sketch), its language, its description if you add one, its
+            account: its name, its game (Spy Talk or Spy Sketch), its language{PRIVACY.packAutoTranslate ? ' (which we detect from its text)' : ''}, its description if you add one, its
             entries (the locations or words), when you made and last changed it, and which draft a pack was created
             from. A draft is private to you and is never played. Names and entries go through our word filter when you
             save them. When you create a pack from a draft, its name, description and entries are also sent to OpenAI's
             moderation model for an automated check (only the pack's text, never your account, name or age), and we keep
             the result and anything it flagged with the pack; if the check finds something that breaks our Terms, the
             pack isn't created, and a pack it flags for child sexual content is logged with a copy for our child-safety
-            review. When you play one of your packs in a private room, the players there see its name and, as with any
+            review.
+            {PRIVACY.packAutoTranslate &&
+              ` When you create a pack, our translation service also detects the language it's written in and translates its name, description and entries into the other languages the app offers, so every player sees it in their own language. For that, it sends only the pack's text and the languages to ${PRIVACY.openAiTranslation ? 'OpenAI (only when you told us you\'re 16 or older and agreed to translation by OpenAI in the app) or else Microsoft Translator' : 'Microsoft Translator'}, never your account, name or age. Each translation also goes through OpenAI's moderation model and our word filter, and we keep the translations with the pack. When you change a pack, only the text you changed is translated again.`}{' '}
+            When you play one of your packs in a private room, the players there see its name and, as with any
             pack, what the game deals and shows from it (such as the location or word, and the spy's list). You can
             change or delete your drafts, and the packs you haven't published, at any time.
             {PRIVACY.communityPacks &&
               ` If you publish a pack to Community Packs, you agree to our Terms and Community Rules again, and a person on our team reviews it before anyone else can see it (we aim to within 72 hours). We keep a record of the review (who reviewed it, when, what we decided and why, with a copy of the pack as it was). We may approve it, turn it down, hold it (for example after reports) or take it out. While it's still in review, you can withdraw it, and it goes back to being one of your private packs; it's published only once we approve it and it's live in Community Packs. Once we approve it, every SpySocial player, players under 18 included, can see it: its name, description, game, language and entries, your username as its creator (never your display name), when it was added, its average rating and number of ratings, how many players have added it (its downloads) and how many games it was played in. Players can search Community Packs (by a pack's name, description or its creator's username), browse our collections, add a pack to their packs, rate it from 1 to 5 stars and copy it into a draft of their own to make their own version. When you add or rate a pack, we keep which pack, your rating and when, with your account; other players and the pack's creator see only the totals, never who added or rated it. You can report a Community Pack: the report keeps a snapshot of the pack as it was, your reason and anything you write, and we handle it like any other report (see Safety Information). A published pack can't be changed or deleted by its creator, because it's shared under the license in our Terms (section 6); a new version is a separate pack. You can remove your name from a published pack: it then shows Anonymous as its creator, drops off your profile and titles, and your username is no longer linked to it anywhere public. We log every name removal and every undo (which pack, which account, when and by whom), and you can undo a removal within 7 days, or ask us to; after 7 days it's final. Creators get the Pack Maker title, which counts their approved packs and shows like any title.`}
             {PRIVACY.featuredPacks &&
-              ` We may feature a Community Pack: then it's also played at Play Online tables and events, where the players see its name and creator as Community Packs shows them, and our translation service translates its name, description and entries into the languages the app offers. For that, it sends only the pack's text and the languages to ${PRIVACY.openAiTranslation ? 'OpenAI (only when you told us you\'re 16 or older and agreed to translation by OpenAI in the app) or else Microsoft Translator' : 'Microsoft Translator'}, never your account, name or age, and we keep the translations with the pack. If we feature your pack, you get the Featured Creator title and border, which count your featured packs and show like any title and border.`}{' '}
+              ` We may feature a Community Pack: then it's also played at Play Online tables and events, where the players see its name and creator as Community Packs shows them${PRIVACY.packAutoTranslate ? ', each in their own language.' : `, and our translation service translates its name, description and entries into the languages the app offers. For that, it sends only the pack's text and the languages to ${PRIVACY.openAiTranslation ? 'OpenAI (only when you told us you\'re 16 or older and agreed to translation by OpenAI in the app) or else Microsoft Translator' : 'Microsoft Translator'}, never your account, name or age, and we keep the translations with the pack.`} If we feature your pack, you get the Featured Creator title and border, which count your featured packs and show like any title and border.`}{' '}
             Your drafts and packs{PRIVACY.communityPacks ? ', ratings and the packs you added' : ''} are kept with your
             account and deleted with it
             {PRIVACY.communityPacks
@@ -568,8 +571,8 @@ const Privacy: React.FC = () => {
         {PRIVACY.intercepts && <ListItem>Give you Intercepts and the items in them</ListItem>}
         {PRIVACY.customPacks && (
           <ListItem>
-            Keep your custom packs and check their text{PRIVACY.communityPacks ? ', review and show Community Packs, count their ratings and adds, and give creators their titles' : ''}
-            {PRIVACY.featuredPacks ? ', and translate and play the packs we feature' : ''}
+            Keep your custom packs and check their text{PRIVACY.packAutoTranslate ? ', translate them into the languages the app offers' : ''}{PRIVACY.communityPacks ? ', review and show Community Packs, count their ratings and adds, and give creators their titles' : ''}
+            {PRIVACY.featuredPacks ? (PRIVACY.packAutoTranslate ? ', and play the packs we feature' : ', and translate and play the packs we feature') : ''}
           </ListItem>
         )}
         {(PRIVACY.ranked || PRIVACY.tournaments) && (
@@ -704,8 +707,10 @@ const Privacy: React.FC = () => {
             ? ", if our translation service uses Microsoft rather than OpenAI, and always for messages from players under 16, from players who haven't told us their age, and from players who haven't agreed in the app to translation by OpenAI"
             : ''}
           .
-          {PRIVACY.featuredPacks &&
-            ` It may also translate the Community Packs we feature${PRIVACY.openAiTranslation ? ', when our service uses it for them' : ''} (only their text, see Custom Packs and Community Packs above).`}
+          {PRIVACY.packAutoTranslate
+            ? ` It also translates custom packs${PRIVACY.openAiTranslation ? ' when our service uses it for them' : ''} (only their text and the languages, see Custom Packs above).`
+            : PRIVACY.featuredPacks &&
+              ` It may also translate the Community Packs we feature${PRIVACY.openAiTranslation ? ', when our service uses it for them' : ''} (only their text, see Custom Packs and Community Packs above).`}
         </Item>
         {usesOpenAi && (
           <Item label="OpenAI">
@@ -716,9 +721,11 @@ const Privacy: React.FC = () => {
               `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages when our translation service uses it (see Translations above), only messages written by players who told us they're 16 or older and agreed to it in the app, and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat by such players (without who said them), a list of names to leave as they are (agent names and, in private rooms, the display names of such players) and the two languages, never your account or anyone's age. Our service asks OpenAI not to store these requests or its answers. `}
             {PRIVACY.customPacks &&
               `${PRIVACY.drawingCheck || PRIVACY.openAiTranslation ? 'It also checks' : 'Checks'} the text of every custom pack (its name, description and entries) with its moderation model before anyone else can play or see it (see Custom Packs above); it receives only that text, never who made the pack. `}
-            {PRIVACY.featuredPacks &&
-              PRIVACY.openAiTranslation &&
-              'When our translation service uses it for the Community Packs we feature, it receives only the pack\'s name, description and entries and the languages, never who made the pack. '}
+            {PRIVACY.packAutoTranslate
+              ? `${PRIVACY.openAiTranslation ? 'When our translation service uses it for custom packs, it detects a pack\'s language and translates it, receiving only the pack\'s name, description and entries and the languages, never who made the pack. ' : ''}Its moderation model also checks each pack translation before it is kept. `
+              : PRIVACY.featuredPacks &&
+                PRIVACY.openAiTranslation &&
+                'When our translation service uses it for the Community Packs we feature, it receives only the pack\'s name, description and entries and the languages, never who made the pack. '}
             Under OpenAI's API terms and its Data Processing Addendum, it{' '}
             {PRIVACY.openAiTranslation
               ? "doesn't use what it receives to train its models, and keeps it for up to 30 days to monitor abuse, unless the law requires it to keep it longer or keeping it is reasonably necessary to protect its services or anyone else from harm."

@@ -767,6 +767,22 @@ export const LIVE = {
    */
   featuredPacks: true,
   /**
+   * Every custom pack translated automatically (owner 2026-10-27; app repo fix/pack-auto-translate, server file
+   * 20261201470000_pack_auto_translate; needs customPacks): no language to pick. When a member creates a pack (and its
+   * automated check passes), our translation service detects the pack's language from its text and translates its
+   * name, description and entries into the app's other nine languages, so every player sees it in their own language
+   * (private rooms included, not only featured packs). Only the pack's text and the languages go to OpenAI (only for a
+   * creator 16+ who agreed to translation by OpenAI in the app: chat's author rule; the language detection too) or else
+   * Microsoft Translator, never the creator's account, name or age; store false; each translation goes through OpenAI's
+   * moderation model and the word filter before it is stored; the translations are kept with the pack and deleted with
+   * it; an edit translates only the changed text again. Turns on: Privacy's Custom Packs sentences (detected language,
+   * the translation), How We Use, the Microsoft and OpenAI provider lines (custom packs, not only featured ones). The
+   * Terms need nothing: section 6's content licence already covers translating a player's content to run the app.
+   * POLICY FIRST: deploy the site with it on BEFORE the server file is applied live, and set its PRIVACY_LAST_UPDATED
+   * date (below) to the deploy day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  packAutoTranslate: false,
+  /**
    * Sanctions survive account deletion (app repo fix/ban-tombstone, server file 20261130100000_ban_tombstone; owner
    * 2026-10-26: mode reapply, 12 months (36 for child safety), no Gmail folding). When an account is deleted with a
    * ban, pause or mute still running, or a strike from the last 90 days, the server keeps one tombstone per sanction:
@@ -977,6 +993,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'November 2, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'November 2, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.packAutoTranslate
+    ? 'October 28, 2026' // every custom pack translated automatically: set to the day the site goes up with it on
     : LIVE.featuredPacks
       ? 'October 27, 2026' // featured Community Packs (translation, rewards): set to the day the site goes up with it on
       : LIVE.communityPacks
