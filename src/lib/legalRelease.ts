@@ -718,7 +718,7 @@ export const LIVE = {
    * fine in private) -> Ready packs play in the creator's private rooms. The Terms' Custom packs paragraph and section 8's
    * automated-tools line, Privacy's Custom Packs item and deletedSummary say so. Check against the lifecycle server file.
    */
-  customPacks: false,
+  customPacks: true,
   /**
    * Community Packs (the same branches; needs customPacks): a member submits a custom pack, and a person on our team
    * reviews it before anyone else can see it (72-hour target, review_hours; approved, sent back for changes, rejected,
@@ -749,7 +749,7 @@ export const LIVE = {
    * and deletes drafts and unpublished packs. Players can copy a Community Pack into a draft of their own. This replaces
    * the earlier "take it out or delete it at any time" and "deleting the account removes the creator's packs" above.
    */
-  communityPacks: false,
+  communityPacks: true,
   /**
    * Featured Community Packs (owner 2026-10-25; needs communityPacks): we may feature an approved Community Pack. It then
    * plays at Play Online tables and events (where players see its name and creator as Community Packs shows them), and
@@ -765,7 +765,7 @@ export const LIVE = {
    * the translator (Apple 5.1.2(i)). POLICY FIRST: deploy before the first pack is featured; set the featured dates to
    * that day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
-  featuredPacks: false,
+  featuredPacks: true,
   /**
    * Sanctions survive account deletion (app repo fix/ban-tombstone, server file 20261130100000_ban_tombstone; owner
    * 2026-10-26: mode reapply, 12 months (36 for child safety), no Gmail folding). When an account is deleted with a
@@ -950,11 +950,11 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     : LIVE.passwordless
     ? 'November 2, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.featuredPacks
-      ? 'November 2, 2026' // featured Community Packs (Terms 5, 6): set to the day the site goes up with it on
+      ? 'October 27, 2026' // featured Community Packs (Terms 5, 6): set to the day the site goes up with it on
       : LIVE.communityPacks
-        ? 'November 2, 2026' // Community Packs (Terms 6, 8; Rules 5; Safety): set to the day the site goes up with it on
+        ? 'October 27, 2026' // Community Packs (Terms 6, 8; Rules 5; Safety): set to the day the site goes up with it on
         : LIVE.customPacks
-          ? 'November 2, 2026' // Custom Packs (Terms 6, 7, 8; Rules 5; Safety): set to the day the site goes up with it on
+          ? 'October 27, 2026' // Custom Packs (Terms 6, 7, 8; Rules 5; Safety): set to the day the site goes up with it on
           : LIVE.intercepts
             ? 'November 2, 2026' // Intercepts (Terms 9; Safety): set to the day the site goes up with it on
             : LIVE.membershipsOnly && LIVE.purchases
@@ -978,11 +978,11 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     : LIVE.banTombstone
     ? 'November 2, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
     : LIVE.featuredPacks
-      ? 'November 2, 2026' // featured Community Packs (translation, rewards): set to the day the site goes up with it on
+      ? 'October 27, 2026' // featured Community Packs (translation, rewards): set to the day the site goes up with it on
       : LIVE.communityPacks
-        ? 'November 2, 2026' // Community Packs (what's public, ratings, reports): set to the day the site goes up with it on
+        ? 'October 27, 2026' // Community Packs (what's public, ratings, reports): set to the day the site goes up with it on
         : LIVE.customPacks
-          ? 'November 2, 2026' // the Custom Packs item: set to the day the site goes up with it on
+          ? 'October 27, 2026' // the Custom Packs item: set to the day the site goes up with it on
           : LIVE.intercepts
             ? 'November 2, 2026' // the Intercepts item: set to the day the site goes up with it on
             : LIVE.membershipsOnly
