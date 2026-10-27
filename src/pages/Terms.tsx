@@ -267,7 +267,7 @@ const Terms: React.FC = () => {
         Content from other players belongs to them. We don't check everything before it appears and we're not
         responsible for it, but we act on what's reported to us.
         {LIVE.communityPacks &&
-          ' We do read every pack published to Community Packs before other players can see it, but it still belongs to the player who made it.'}
+          ' We do read every pack sent to Community Packs before other players can see it, but it still belongs to the player who made it.'}
       </P>
       {/* LIVE.customPacks: Custom Packs, with Community Packs (communityPacks) and featuring (featuredPacks). */}
       {LIVE.customPacks && (
@@ -288,20 +288,23 @@ const Terms: React.FC = () => {
               <>
                 {' '}You can also publish a pack you created to Community Packs, where every player can find it, with
                 your username as its creator. Before it's sent, the app asks you to agree to these Terms and the
-                Community Rules again. A person on our team reviews every published pack before anyone else can see it
+                Community Rules again. A person on our team reviews every pack sent to Community Packs before anyone else can see it
                 (we aim to do it within 72 hours) and holds it to a stricter standard, because Community Packs are for
                 every player aged 13 and older: for example, no swearing. We may approve it or turn it down, and we may
                 later hold a Community Pack while we look at it (for example after reports) or take it out if it breaks
                 these Terms or the Community Rules, or if we decide not to keep it. When we turn down or take out your
                 pack, the app tells you why, and you can fix it and publish it again, or appeal (see section 8).
                 Publishing a pack with content that isn't allowed can lead to a suspension or a ban (see section 8).
+                {' '}A pack is published once we approve it and it's live in Community Packs. While it's still in review,
+                you can withdraw it, and it goes back to being one of your private packs.
                 {' '}A published pack is frozen: you can't change it or delete it, and players who added it keep it as
                 it was. To change it, you create a new version from your draft and publish that; it becomes a separate
                 pack, and we may link the older one to it. You can remove your name from a published pack instead: it
                 then shows Anonymous as its creator and no longer counts on your profile or titles. You can undo that
                 within 7 days (we can also undo it for you in that time, for example if someone else used your
                 account); after 7 days it's final. When you delete your account, your published packs stay in
-                Community Packs with your name removed at once, and your drafts and unpublished packs are deleted. We
+                Community Packs with your name removed at once, and your drafts and unpublished packs (a pack still in review
+                included) are deleted. We
                 may remove any pack at any time. Creators get the Pack Maker title, which counts their approved packs.
               </>
             )}
