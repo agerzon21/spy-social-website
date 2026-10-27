@@ -236,7 +236,7 @@ const Terms: React.FC = () => {
         "Your content" means everything you add to SpySocial: your display name, username
         {photos ? ', profile photo' : ''} and any room code you choose; your chat messages, including in the spy
         chat and the chat for players who are out; the questions and answers you type; your Spy Sketch drawings;
-        {LIVE.customPacks ? ' the custom packs you make (their names, descriptions and entries);' : ''}
+        {LIVE.customPacks ? ' the custom packs you make, and their drafts (their names, descriptions and entries);' : ''}
         {LIVE.communityPacks ? ' the ratings you give Community Packs;' : ''} and the reports you send.
       </P>
       <H3>You own it, and you let us use it</H3>
@@ -247,11 +247,12 @@ const Terms: React.FC = () => {
         players see it. This includes showing it to the players in your room, in room lists and game results, and
         to the people who review reports.
         {LIVE.communityPacks &&
-          ' For a custom pack you submit to Community Packs, it also lets us review it and, once we approve it, show it to every player with your username as its creator, list it in search and in collections, show its ratings and how many players added it, and let any player add it to their packs, rate it and play it.'}
+          ' When you publish a custom pack to Community Packs, you also give us a non-exclusive, worldwide, perpetual, royalty-free license to host, show, translate and use that pack in SpySocial: to review it and, once we approve it, show it to every player with your username as its creator (or as Anonymous, if you remove your name), list it in search and in collections, show its ratings and how many players added it, let any player add it to their packs, rate it, play it and copy it into a draft of their own to make their own version, and keep it in Community Packs after you remove your name from it or delete your account. You still own the pack.'}
         {LIVE.featuredPacks &&
           ' If we feature your pack, it also lets us edit it (for example to fix spelling or take out an entry that doesn\'t fit), translate it into the languages the app offers, and play it at Play Online tables and events.'}{' '}
-        The license ends when your content is deleted from SpySocial, except for
-        copies we keep as our Privacy Policy describes (for example, content attached to a report). We won't use
+        The license ends when your content is deleted from SpySocial, except for{' '}
+        {LIVE.communityPacks ? 'the packs you published to Community Packs (above) and ' : ''}copies we keep as our
+        Privacy Policy describes (for example, content attached to a report). We won't use
         your {photos ? 'photo or your messages' : 'messages'} in our advertising without asking you first.
       </P>
       <H3>Your responsibility</H3>
@@ -266,29 +267,42 @@ const Terms: React.FC = () => {
         Content from other players belongs to them. We don't check everything before it appears and we're not
         responsible for it, but we act on what's reported to us.
         {LIVE.communityPacks &&
-          ' We do read every pack submitted to Community Packs before other players can see it, but it still belongs to the player who made it.'}
+          ' We do read every pack published to Community Packs before other players can see it, but it still belongs to the player who made it.'}
       </P>
       {/* LIVE.customPacks: Custom Packs, with Community Packs (communityPacks) and featuring (featuredPacks). */}
       {LIVE.customPacks && (
         <>
           <H3>Custom packs{LIVE.communityPacks ? ' and Community Packs' : ''}</H3>
           <P>
-            With a membership, you can make your own packs of locations or words (at least 30 entries each) and play
-            them in your private rooms, where everyone in the room plays them with you. Making and playing custom packs
-            is a membership benefit; a pack you made stays on your account if your membership ends, until you delete it
-            or your account is deleted. Only make packs that are your own work and that follow the Community Rules: no
-            personal information, no real people you know, and no ads or links. An automated check reads every pack's
-            text before anyone else plays it or sees it (see section 8), and checks it again whenever you change it.
+            With a membership, you can make your own packs of locations or words and play them in your private rooms,
+            where everyone in the room plays them with you. You write a pack as a draft: a draft can hold any number
+            of entries, stays private to you and is never played in a game. When it's ready (5 to 200 entries), you
+            create a pack from it. An automated check reads the pack's text first (see section 8): if it finds
+            something that breaks these Terms or the Community Rules, such as slurs, hate or extremist content, the
+            pack isn't created and your draft stays as it was. Ordinary swear words are fine in a pack you only play in
+            your own private rooms. Making and playing custom packs is a membership benefit; your drafts and packs stay
+            on your account if your membership ends, until you delete them or your account is deleted. Only make packs
+            that are your own work and that follow the Community Rules: no personal information, no real people you
+            know, and no ads or links.
             {LIVE.communityPacks && (
               <>
-                {' '}You can also submit a pack to Community Packs, where every player can find it, with your display
-                name as its creator. A person on our team reviews every submitted pack before anyone else can see it
-                (we aim to do it within 72 hours): we may approve it, send it back for changes or turn it down, and we
-                may later hold a Community Pack while we look at it (for example after reports) or take it out if it
-                breaks these Terms or the Community Rules, or if we decide not to keep it. When we turn down or take out
-                your pack, the app tells you why, and you can appeal (see section 8). You can take your pack out of
-                Community Packs, or delete it, at any time. Creators get the Pack Maker title, which counts their
-                approved packs.
+                {' '}You can also publish a pack you created to Community Packs, where every player can find it, with
+                your username as its creator. Before it's sent, the app asks you to agree to these Terms and the
+                Community Rules again. A person on our team reviews every published pack before anyone else can see it
+                (we aim to do it within 72 hours) and holds it to a stricter standard, because Community Packs are for
+                every player aged 13 and older: for example, no swearing. We may approve it or turn it down, and we may
+                later hold a Community Pack while we look at it (for example after reports) or take it out if it breaks
+                these Terms or the Community Rules, or if we decide not to keep it. When we turn down or take out your
+                pack, the app tells you why, and you can fix it and publish it again, or appeal (see section 8).
+                Publishing a pack with content that isn't allowed can lead to a suspension or a ban (see section 8).
+                {' '}A published pack is frozen: you can't change it or delete it, and players who added it keep it as
+                it was. To change it, you create a new version from your draft and publish that; it becomes a separate
+                pack, and we may link the older one to it. You can remove your name from a published pack instead: it
+                then shows Anonymous as its creator and no longer counts on your profile or titles. You can undo that
+                within 7 days (we can also undo it for you in that time, for example if someone else used your
+                account); after 7 days it's final. When you delete your account, your published packs stay in
+                Community Packs with your name removed at once, and your drafts and unpublished packs are deleted. We
+                may remove any pack at any time. Creators get the Pack Maker title, which counts their approved packs.
               </>
             )}
             {LIVE.featuredPacks && (
@@ -360,7 +374,7 @@ const Terms: React.FC = () => {
         {photosSeen &&
           ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
         {LIVE.customPacks &&
-          ` Another automated check reads the name, description and entries of every custom pack before anyone but you and our team can play or see it; until it passes, or a person on our team clears it, the pack can't be played${LIVE.communityPacks ? ' or shared' : ''}.`}
+          ` Another automated check reads the name, description and entries of every custom pack before it's created from your draft; a pack it finds breaks these Terms or the Community Rules isn't created, so it can't be played${LIVE.communityPacks ? ' or published' : ''}.`}
         {drawings ? (
           <>
             {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms (
@@ -396,8 +410,8 @@ const Terms: React.FC = () => {
         <ListItem>remove you from a room or end a game</ListItem>
         {LIVE.customPacks && (
           <ListItem>
-            remove or change a custom pack{LIVE.communityPacks ? ', hold it or take it out of Community Packs,' : ''} or stop you
-            from making{LIVE.communityPacks ? ' or sharing' : ''} packs
+            remove or change a custom pack at any time{LIVE.communityPacks ? ', hold it or take it out of Community Packs,' : ''} or stop you
+            from making{LIVE.communityPacks ? ' or publishing' : ''} packs
           </ListItem>
         )}
       </Bullets>

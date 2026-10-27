@@ -26,7 +26,7 @@ export const deletedSummary = (): string =>
     PRIVACY.intercepts ? 'your Intercepts and the items they gave you' : null,
     PRIVACY.customPacks
       ? PRIVACY.communityPacks
-        ? 'your custom packs (and so your Community Packs), your ratings and the Community Packs you added'
+        ? 'your drafts and the custom packs you haven\'t published, your ratings and the Community Packs you added'
         : 'your custom packs'
       : null,
     PRIVACY.ranked ? 'your Ranked ratings, game records, breaks and rewards' : null,

@@ -105,6 +105,12 @@ export const AfterDeletionList = () => (
         account any more.
       </ListItem>
     )}
+    {PRIVACY.communityPacks && (
+      <ListItem>
+        The packs you published to Community Packs stay there for other players, with your username removed at once:
+        they show Anonymous as their creator, and players who added them keep them.
+      </ListItem>
+    )}
     <ListItem>Copies in our database backups are deleted as those backups expire, within 30 days.</ListItem>
   </UnorderedList>
 )

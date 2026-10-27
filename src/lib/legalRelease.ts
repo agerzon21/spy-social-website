@@ -713,6 +713,10 @@ export const LIVE = {
    * minimum, what's stored, the filter on entries, what a room's players see, what happens to packs when a membership
    * ends. POLICY FIRST: deploy before the custom packs server file is applied live, and set the custom packs dates to
    * the deploy day. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * [Oct 27, the owner's pack lifecycle; policy/packs-lifecycle] Drafts (any size, private, never played) -> Create a pack
+   * (5 to 200 entries; the automated check runs then: a pack that breaks the Terms isn't created; ordinary swearing is
+   * fine in private) -> Ready packs play in the creator's private rooms. The Terms' Custom packs paragraph and section 8's
+   * automated-tools line, Privacy's Custom Packs item and deletedSummary say so. Check against the lifecycle server file.
    */
   customPacks: false,
   /**
@@ -737,6 +741,13 @@ export const LIVE = {
    * files that ship: the creator name shown (and for players under 18), what can be searched, ratings and counts, what a
    * deletion removes (from other players' packs too). POLICY FIRST: deploy before the server file is applied; set the
    * community packs dates to the deploy day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   * [Oct 27, the owner's pack lifecycle; policy/packs-lifecycle] Publish (from a created pack only; the app asks the
+   * player to agree to the Terms and Community Rules again) -> a person's stricter 13+ review -> approved or turned down
+   * with a reason. A published pack is frozen (no edit, no delete by the creator; a new version is a separate pack);
+   * the licence for published packs is perpetual; the creator can remove their name (Anonymous; undo by them or the owner
+   * within 7 days, then final; every removal and undo logged); deleting the account anonymises published packs at once
+   * and deletes drafts and unpublished packs. Players can copy a Community Pack into a draft of their own. This replaces
+   * the earlier "take it out or delete it at any time" and "deleting the account removes the creator's packs" above.
    */
   communityPacks: false,
   /**

@@ -209,22 +209,26 @@ const Privacy: React.FC = () => {
         {/* LIVE.customPacks (members' own packs), with communityPacks and featuredPacks (legalRelease). */}
         {PRIVACY.customPacks && (
           <Item label={PRIVACY.communityPacks ? 'Custom Packs and Community Packs' : 'Custom Packs'}>
-            If you're a member, you can make your own packs. We keep each pack you make with your account: its name, its
-            game (Spy Talk or Spy Sketch), its language, its description if you add one, its entries (the locations or
-            words) and when you made and last changed it. Names and entries go through our word filter when you save
-            them. Before anyone else can play or see a pack, its name, description and entries are also sent to
-            OpenAI's moderation model for an automated check (only the pack's text, never your account, name or age),
-            and we keep the result and anything it flagged with the pack; a pack it flags waits until a person on our
-            team looks at it, and a pack it flags for child sexual content is logged with a copy for our child-safety
-            review. Any change to the text is checked again. When you play one of your packs in a private room, the players there see its name and, as with any
+            If you're a member, you can make your own packs. We keep each draft and each pack you make with your
+            account: its name, its game (Spy Talk or Spy Sketch), its language, its description if you add one, its
+            entries (the locations or words), when you made and last changed it, and which draft a pack was created
+            from. A draft is private to you and is never played. Names and entries go through our word filter when you
+            save them. When you create a pack from a draft, its name, description and entries are also sent to OpenAI's
+            moderation model for an automated check (only the pack's text, never your account, name or age), and we keep
+            the result and anything it flagged with the pack; if the check finds something that breaks our Terms, the
+            pack isn't created, and a pack it flags for child sexual content is logged with a copy for our child-safety
+            review. When you play one of your packs in a private room, the players there see its name and, as with any
             pack, what the game deals and shows from it (such as the location or word, and the spy's list). You can
-            change or delete your packs at any time.
+            change or delete your drafts, and the packs you haven't published, at any time.
             {PRIVACY.communityPacks &&
-              ` If you submit a pack to Community Packs, a person on our team reviews it before anyone else can see it (we aim to within 72 hours), and we keep a record of the review (who reviewed it, when, what we decided and why, with a copy of the pack as it was). We may approve it, send it back, turn it down, hold it (for example after reports) or take it out. Once we approve it, every SpySocial player, players under 18 included, can see it: its name, description, game, language and entries, your username as its creator (never your display name), when it was added, its average rating and number of ratings, and how many players have added it (its downloads). Players can search Community Packs (by a pack's name, description or its creator's username), browse our collections, add a pack to their collection and rate it from 1 to 5 stars. When you add or rate a pack, we keep which pack, your rating and when, with your account; other players and the pack's creator see only the totals, never who added or rated it. You can report a Community Pack: the report keeps a snapshot of the pack as it was, your reason and anything you write, and we handle it like any other report (see Safety Information). If you take your pack out of Community Packs or delete it, it disappears from search and collections. Creators get the Pack Maker title, which counts their approved packs and shows like any title.`}
+              ` If you publish a pack to Community Packs, you agree to our Terms and Community Rules again, and a person on our team reviews it before anyone else can see it (we aim to within 72 hours). We keep a record of the review (who reviewed it, when, what we decided and why, with a copy of the pack as it was). We may approve it, turn it down, hold it (for example after reports) or take it out. Once we approve it, every SpySocial player, players under 18 included, can see it: its name, description, game, language and entries, your username as its creator (never your display name), when it was added, its average rating and number of ratings, how many players have added it (its downloads) and how many games it was played in. Players can search Community Packs (by a pack's name, description or its creator's username), browse our collections, add a pack to their packs, rate it from 1 to 5 stars and copy it into a draft of their own to make their own version. When you add or rate a pack, we keep which pack, your rating and when, with your account; other players and the pack's creator see only the totals, never who added or rated it. You can report a Community Pack: the report keeps a snapshot of the pack as it was, your reason and anything you write, and we handle it like any other report (see Safety Information). A published pack can't be changed or deleted by its creator, because it's shared under the license in our Terms (section 6); a new version is a separate pack. You can remove your name from a published pack: it then shows Anonymous as its creator, drops off your profile and titles, and your username is no longer linked to it anywhere public. We log every name removal and every undo (which pack, which account, when and by whom), and you can undo a removal within 7 days, or ask us to; after 7 days it's final. Creators get the Pack Maker title, which counts their approved packs and shows like any title.`}
             {PRIVACY.featuredPacks &&
               ` We may feature a Community Pack: then it's also played at Play Online tables and events, where the players see its name and creator as Community Packs shows them, and our translation service translates its name, description and entries into the languages the app offers. For that, it sends only the pack's text and the languages to ${PRIVACY.openAiTranslation ? 'OpenAI (only when you told us you\'re 16 or older and agreed to translation by OpenAI in the app) or else Microsoft Translator' : 'Microsoft Translator'}, never your account, name or age, and we keep the translations with the pack. If we feature your pack, you get the Featured Creator title and border, which count your featured packs and show like any title and border.`}{' '}
-            Your packs{PRIVACY.communityPacks ? ', ratings and the packs you added' : ''} are kept with your account and
-            deleted with it.
+            Your drafts and packs{PRIVACY.communityPacks ? ', ratings and the packs you added' : ''} are kept with your
+            account and deleted with it
+            {PRIVACY.communityPacks
+              ? ', except the packs you published to Community Packs: when you delete your account, they stay there for other players, but we remove your username from them at once, so they show Anonymous as their creator and nothing public links them to you.'
+              : '.'}
           </Item>
         )}
         {/* LIVE.ranked: Ranked's rating, ranks, seasons and leaderboards (legalRelease). */}
