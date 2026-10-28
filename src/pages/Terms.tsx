@@ -501,9 +501,9 @@ const Terms: React.FC = () => {
             Online tables (Game Night's included; never in a private room, or for a game that gives no Intel): every 10
             wins that count give you 5 Intercepts, 4 of a random tier and 1 of the Secret tier or better. Your first
             Play Online game of each day earns you a daily Intercept of a random tier (on top of that day's Intel),
-            which you claim in the app; rewards you haven't claimed don't expire. Every 7th day you play, it's Secret or
-            better, and your streak's milestones give higher tiers (Top Secret on day 14, and Enigma on day 30 and every
-            30 days after). Game Night's winners get an Enigma Intercept. A code from a content creator or from us can
+            which you claim in the app; rewards you haven't claimed don't expire. On every 7th day in a row of your
+            streak you also get an extra Intercept of the Secret tier or better, and on every 30th day in a row an extra
+            Enigma Intercept, both on top of that day's Intercept. Game Night's winners get an Enigma Intercept. A code from a content creator or from us can
             also give Intercepts, once per account: each code gives what we set for it, and the app tells you what you
             got. Intercepts from a code unlock after your first Play Online game that counts. Codes tied to a purchase
             (such as merch codes) never give Intercepts. We may also give Intercepts, and memberships, as gifts, but

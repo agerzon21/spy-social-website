@@ -652,7 +652,7 @@ export const LIVE = {
    * room, never a game that pays no Intel: farm, idle, alt-farm, left or removed, no result; no daily cap since owner
    * 2026-10-25, app 20261129000000_crates_no_daily_cap: was 20 wins a day); a
    * daily Intercept for the stats day's first counted Play Online game, on top of daily Intel (its tier rolled from
-   * the tier odds; every 7th day played: Secret or better; streak milestones: day 14 Top Secret, then days 30, 60, 90
+   * the tier odds; every 7th day of a streak: +1 Secret or better on top; every 30th day of a streak: +1 Enigma on top (20261201690000; was days-played weekly + day 14 Top Secret, then days 30, 60, 90
    * and every 30 days after Enigma, once each per account; rules v2, live 2026-10-25 18:16 EDT,
    * 20261127700000_crates_rules_v2); a Game Night winner (Local or Spy) 1 Enigma, once a night; a free creator code
    * the fan title + 5 Intercepts, one of each tier (Restricted to Enigma), once per account (rules v2; was 1 Secret
