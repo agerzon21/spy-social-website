@@ -15,10 +15,10 @@ import { LIVE } from '../lib/legalRelease'
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
-const UPDATED = LIVE.intercepts
-  ? 'November 2, 2026' // the Intercepts paragraph: set to the day the site goes up with it on
-  : LIVE.membershipsOnly
-    ? 'November 2, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
+const UPDATED = LIVE.membershipsOnly
+  ? 'November 2, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
+  : LIVE.intercepts
+    ? 'October 28, 2026' // the Intercepts paragraph (on since October 28, 2026)
     : 'October 25, 2026'
 
 const GameNightRules: React.FC = () => (

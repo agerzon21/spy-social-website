@@ -247,7 +247,7 @@ const Terms: React.FC = () => {
         players see it. This includes showing it to the players in your room, in room lists and game results, and
         to the people who review reports.
         {LIVE.communityPacks &&
-          ' When you publish a custom pack to Community Packs, you also give us a non-exclusive, worldwide, perpetual, royalty-free license to host, show, translate and use that pack in SpySocial: to review it and, once we approve it, show it to every player with your username as its creator (or as Anonymous, if you remove your name), list it in search and in collections, show its ratings and how many players added it, let any player add it to their packs, rate it, play it and copy it into a draft of their own to make their own version, and keep it in Community Packs after you remove your name from it or delete your account. You still own the pack.'}
+          ' When you send a custom pack to Community Packs, you also give us a non-exclusive, worldwide, perpetual, royalty-free license to host, show, translate and use that pack in SpySocial: to review it and, once we approve it, show it to every player with your username as its creator (or as Anonymous, while you\'ve chosen that), list it in search and in collections, show its ratings and how many players added it, let any player add it to their packs, rate it, play it and copy it into a draft of their own to make their own version, and keep it in Community Packs while it\'s anonymous and after you delete your account. You still own the pack.'}
         {LIVE.featuredPacks &&
           ' If we feature your pack, it also lets us edit it (for example to fix spelling or take out an entry that doesn\'t fit), translate it into the languages the app offers, and play it at Play Online tables and events.'}{' '}
         The license ends when your content is deleted from SpySocial, except for{' '}
@@ -275,20 +275,21 @@ const Terms: React.FC = () => {
           <H3>Custom packs{LIVE.communityPacks ? ' and Community Packs' : ''}</H3>
           <P>
             With a membership, you can make your own packs of locations or words and play them in your private rooms,
-            where everyone in the room plays them with you. You write a pack as a draft: a draft can hold any number
-            of entries, stays private to you and is never played in a game. When it's ready (5 to 200 entries), you
-            create a pack from it. An automated check reads the pack's text first (see section 8): if it finds
+            where everyone in the room plays them with you. You write a pack as a draft: a draft can hold up to 200
+            entries, stays private to you and is never played in a game. When it's ready (5 to 200 entries), you
+            create a pack from it; after you change the draft, you can update that pack from it. An automated check
+            reads the pack's text first, and again at each update (see section 8): if it finds
             something that breaks these Terms or the Community Rules, such as slurs, hate or extremist content, the
-            pack isn't created and your draft stays as it was. Ordinary swear words are fine in a pack you only play in
+            pack isn't created (an updated pack is paused instead) and your draft stays as it was. Ordinary swear words are fine in a pack you only play in
             your own private rooms. Making and playing custom packs is a membership benefit; your drafts and packs stay
             on your account if your membership ends, until you delete them or your account is deleted. Only make packs
             that are your own work and that follow the Community Rules: no personal information, no real people you
             know, and no ads or links.
             {LIVE.communityPacks && (
               <>
-                {' '}You can also publish a pack you created to Community Packs, where every player can find it, with
-                your username as its creator. Before it's sent, the app asks you to agree to these Terms and the
-                Community Rules again. A person on our team reviews every pack sent to Community Packs before anyone else can see it
+                {' '}You can also send a copy of your draft to Community Packs (Submit to Community), where every player
+                can find it once we approve it, with your username as its creator unless you choose to post it
+                anonymously. Before it's sent, the app asks you to agree to these Terms and the Community Rules again. A person on our team reviews every pack sent to Community Packs before anyone else can see it
                 (we aim to do it within 72 hours) and holds it to a stricter standard, because Community Packs are for
                 every player aged 13 and older: for example, no swearing. We may approve it or turn it down, and we may
                 later hold a Community Pack while we look at it (for example after reports) or take it out if it breaks
@@ -296,16 +297,18 @@ const Terms: React.FC = () => {
                 pack, the app tells you why, and you can fix it and publish it again, or appeal (see section 8).
                 Publishing a pack with content that isn't allowed can lead to a suspension or a ban (see section 8).
                 {' '}A pack is published once we approve it and it's live in Community Packs. While it's still in review,
-                you can withdraw it, and it goes back to being one of your private packs.
+                you can cancel it; your draft and your own packs stay as they are.
                 {' '}A published pack is frozen: you can't change it or delete it, and players who added it keep it as
-                it was. To change it, you create a new version from your draft and publish that; it becomes a separate
-                pack, and we may link the older one to it. You can remove your name from a published pack instead: it
-                then shows Anonymous as its creator and no longer counts on your profile or titles. You can undo that
-                within 7 days (we can also undo it for you in that time, for example if someone else used your
-                account); after 7 days it's final. When you delete your account, your published packs stay in
-                Community Packs with your name removed at once, and your drafts and unpublished packs (a pack still in review
-                included) are deleted. We
-                may remove any pack at any time. Creators get the Pack Maker title, which counts their approved packs.
+                it was. To change it, you send your changed draft again: the new version becomes a separate pack, and we
+                may link the older one to it. You can choose Post Anonymously when you send a pack, and later switch a
+                pack that's in review or published between Anonymous and Show My Name as often as you like, but after
+                each switch you have to wait 24 hours before the next one. While a pack is anonymous, it shows Anonymous
+                as its creator, can't be found by your username and doesn't count on your profile or titles. We may also
+                put your name back on a pack, for example if someone else used your account to take it off. When you
+                delete your account, your published packs stay in Community Packs and become anonymous at once, for
+                good, and your drafts and unpublished packs (a pack still in review included) are deleted. We may
+                remove any pack at any time. Creators get the Pack Maker title, which counts their approved packs that
+                show their name.
               </>
             )}
             {LIVE.featuredPacks && (
@@ -377,7 +380,7 @@ const Terms: React.FC = () => {
         {photosSeen &&
           ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
         {LIVE.customPacks &&
-          ` Another automated check reads the name, description and entries of every custom pack before it's created from your draft; a pack it finds breaks these Terms or the Community Rules isn't created, so it can't be played${LIVE.communityPacks ? ' or published' : ''}.`}
+          ` Another automated check reads the name, description and entries of every custom pack before it's created from your draft (and again when it's updated${LIVE.communityPacks ? ' or sent to Community Packs' : ''}); a pack it finds breaks these Terms or the Community Rules isn't created (or, after an update, is paused), so it can't be played${LIVE.communityPacks ? ' or published' : ''}.`}
         {drawings ? (
           <>
             {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms (
@@ -473,8 +476,8 @@ const Terms: React.FC = () => {
           <ListItem>
             {LIVE.intercepts ? (
               <>
-                Intel is an earned currency: you get it only from playing (your games, your first game of the day and
-                your daily streak) and from shredding spare copies of items. It can't be bought, and like every virtual
+                Intel is an earned currency: you get it only from playing (your games, and your first game of the day
+                and your daily streak, which you claim in the app) and from shredding spare copies of items. It can't be bought, and like every virtual
                 item it has no cash value and can't be sold, traded or moved to another account. For now there's
                 nothing to spend it on; we may add uses for it later, and the app will say what they are. Intel we add to
                 your account ourselves is locked and will never be tradable. We may change how much Intel games, streaks
@@ -497,25 +500,32 @@ const Terms: React.FC = () => {
             Intercepts are sealed rewards you earn only by playing, or that we give you. You get them for wins at Play
             Online tables (Game Night's included; never in a private room, or for a game that gives no Intel): every 10
             wins that count give you 5 Intercepts, 4 of a random tier and 1 of the Secret tier or better. Your first
-            Play Online game of each day gives you a daily Intercept of a random tier (on top of that day's Intel):
-            every 7th day you play, it's Secret or better, and your streak's milestones give higher tiers. Game Night's winners get an
-            Enigma Intercept. A free creator code gives its creator's fan title and 5 Intercepts, one of each tier,
-            once per account; codes tied to a purchase (such as merch codes) give the title only, never Intercepts. We may also give Intercepts, and
-            memberships, as gifts, but never the items that come from Intercepts. Each Intercept opens into one random
-            item. You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in
-            any other way, and a membership doesn't give you more of them. Before you open one, the app shows the
-            chance of each tier and rarity, the items each can give and any guarantee. We set those odds for each
-            series of items before it starts and change them only between series, after telling you in the app. If you
-            get an item you already have, you keep the extra copy and can shred it for Intel, at the amount the app
-            shows, or trade up: 5 spare copies of one rarity give you 1 random item of the next rarity, and 5 spare
-            Legendary copies give you 1 Unique, with the odds shown in the app before you trade. Only spare copies you
-            earned count, and the copies you trade up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it can't be
-            shredded). Like every virtual item, Intercepts and what's in them have no cash value and can't be sold,
-            traded or moved to another account, unopened or opened. When Intercepts start (with SpySocial 2.2), every
-            item that from then on comes only from Intercepts is taken back from the accounts that had it, except the
-            Beta Pin, so that everyone gets these items the same way; the items a membership includes stay. We may take
-            back Intercepts or items that were given by mistake or earned by cheating; an item you've opened otherwise
-            stays yours like the other items you've earned.
+            Play Online game of each day earns you a daily Intercept of a random tier (on top of that day's Intel),
+            which you claim in the app; rewards you haven't claimed don't expire. Every 7th day you play, it's Secret or
+            better, and your streak's milestones give higher tiers (Top Secret on day 14, and Enigma on day 30 and every
+            30 days after). Game Night's winners get an Enigma Intercept. A code from a content creator or from us can
+            also give Intercepts, once per account: each code gives what we set for it, and the app tells you what you
+            got. Intercepts from a code unlock after your first Play Online game that counts. Codes tied to a purchase
+            (such as merch codes) never give Intercepts. We may also give Intercepts, and memberships, as gifts, but
+            never the items that come from Intercepts. Each Intercept opens into one random item. You can't buy an
+            Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a
+            membership doesn't give you more of them or better odds. Before you open one, the app shows (under Odds)
+            the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
+            app always shows the ones in use, with the date they last changed. If you get an item you already have, you
+            keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
+            one rarity give you 1 random item of the next rarity (one you don't have yet, while there is one), and 5
+            spare Legendary copies give you a Unique of one of those five items, with the odds shown in the app before
+            you trade. Only spare copies count (never your first copy of an item, or a Unique), and the copies you trade
+            up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it
+            can't be shredded or traded up). Like every virtual item, Intercepts and what's in them have no cash value
+            and can't be sold, traded or moved to another account, unopened or opened. Before SpySocial 2.2 opens to
+            everyone, Intercepts start fresh: every Intercept earned before then (for example while trying a test
+            version of the app), with the copies, Uniques and trade-ups that came from them, is wiped, and every item
+            that from then on comes only from Intercepts is taken back from the accounts that had it, except the Beta
+            Pin and anything bought in a store, so that everyone gets these items the same way. The items a membership
+            includes, and the Intel you already got, stay. We may take back Intercepts or items that were given by
+            mistake or earned by cheating; an item you've opened otherwise stays yours like the other items you've
+            earned.
           </ListItem>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}

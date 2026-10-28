@@ -693,8 +693,39 @@ export const LIVE = {
    * before 20261127000000 is applied live, and set the intercepts dates (PRIVACY_LAST_UPDATED, LEGAL_LAST_UPDATED, the
    * Game Night rules' UPDATED) to the deploy day. A server switch for every app version at once: set in LIVE, never in
    * PRIVACY_AHEAD.
+   * ON 2026-10-28 (owner's standing OK of 2026-10-28 for Terms / Privacy changes; F2 / F21: before the Oct 29 beta's
+   * outside testers), with the text re-checked against integrate/2.2 2ef01a2e and the live files: codes give what each
+   * code is set to (crate_rewards / creators.intercept_tiers: a free creator code 5 by default, one of each tier;
+   * LEVVIS is set to Enigmas; the SPOTTED reward code 1 Restricted; the review code 5), held until the first counted
+   * Play Online game (20261129600000_code_intercept_hold); purchase-linked codes none; the daily is claimed in the app
+   * and never expires (20261201080000_daily_claim); milestones 14 -> Top Secret, every 30 -> Enigma; the odds sheet
+   * (OddsSheet, get_crate_odds) lists tier and rarity odds, any guarantee, the shred values and "Odds updated <date>",
+   * but NO item list (owner 2026-10-27), so the Terms no longer say "the items each can give"; the drafted promise
+   * "odds change only between series" (never an owner decision) is replaced by "the app always shows the odds every
+   * opening uses, with the date they last changed"; trade-ups as 20261128800000 ships them (5 spares of one rarity,
+   * the next rarity, unowned first; 5 Legendary -> a Unique of one of the five); the reset (pending
+   * 20261127190000_crates_reset, Window W) wipes every pre-release Intercept, copy and trade-up, testers' included,
+   * and takes back every pool item except the Beta Pin and anything bought; Intel stays.
    */
-  intercepts: false,
+  intercepts: true,
+  /**
+   * The AI players ("spybots", the owner's own tool: .claude/handoff/scratchpad/tools/spybots, a Node program on the
+   * developer's Mac that signs in as bot accounts and plays through the normal app server). Owner rule (launch-rule.mjs):
+   * a bot plays only at a table where the owner is seated (his private rooms, and Play Online tables he sits at);
+   * before PRELAUNCH_UNTIL (Nov 10, 2026, 10:00 ET) any Play Online player at his table may stay with them (Play
+   * Online is testers-only until then); from then on, at Play Online, anyone but the owner and the adults on
+   * friends.json makes the bots leave. For a bot's move the program sends OpenAI's Responses API (store: false, no
+   * safety_identifier; gpt-5.5 / gpt-5.4-mini / gpt-5.4-nano) the table's transcript as the bot's seat sees it: names as
+   * the table shows them (display names in private rooms, agent names at Play Online), the questions, answers and
+   * chat (the spies' chat for a spy bot), game events, Spy Sketch drawings as pictures, and the bot's own secret; no
+   * user id, username, email, age or IP address. Bots show like any other seat (no label). The program keeps its own
+   * logs of every game (run/spybots-*.log, run/games.jsonl: the table's lines) on the developer's computer, with no
+   * deletion schedule. Turns on Privacy's "AI Players" item and the OpenAI provider line (usesOpenAi). On since
+   * 2026-10-28 (the tool has played at tables with real people since Oct 21). Off only once the bots stop playing at
+   * tables with anyone but our own test accounts. An owner-side fact for every app version at once: set in LIVE, never
+   * in PRIVACY_AHEAD. No Terms text reads it.
+   */
+  spybots: true,
   /**
    * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Pack
    * Pass or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
@@ -748,6 +779,15 @@ export const LIVE = {
    * within 7 days, then final; every removal and undo logged); deleting the account anonymises published packs at once
    * and deletes drafts and unpublished packs. Players can copy a Community Pack into a draft of their own. This replaces
    * the earlier "take it out or delete it at any time" and "deleting the account removes the creator's packs" above.
+   * [Oct 28, Packs Studio 20261201530000 + Post Anonymously / Show My Name 20261201680000, both live] Submit to Community
+   * sends a frozen copy of the draft as a new listing (the draft stays editable; again later = "<title> v2", linked);
+   * Cancel Submission deletes the copy in review. Drafts hold up to 200 entries (at most 50 drafts). The 7-day undo is
+   * gone: Post Anonymously can be chosen at Submit, and the creator can switch between Anonymous and Show My Name on a
+   * listing in review or live as often as they like, each switch locking the next for 24 hours; each switch is logged
+   * (custom_pack_reviews: pack, account, when); the owner can put a name back any time; only account deletion is for
+   * good. An anonymous pack is off the Pack Maker / Featured Creator counts and out of username search. Approve/reject
+   * tells the creator in the app (custom_pack_notices) and by push. A refused Create keeps a snapshot in the log
+   * (create_refused). Players of a pack's recent games can open it with its entries (_readable_pack_ids).
    */
   communityPacks: true,
   /**
@@ -812,6 +852,11 @@ export const LIVE = {
    * shows it now; strings resetPassword.gone* in all ten languages). POLICY FIRST: flip and deploy before the
    * app or server drops passwords; set PRIVACY_LAST_UPDATED's (and LEGAL_LAST_UPDATED's) date to that day. A server /
    * app switch: set in LIVE, never in PRIVACY_AHEAD.
+   * [Oct 28 audit] What SHIPPED in integrate/2.2 (cloud/email-code-signin, d9764beb) is NOT the email-code Edge Function
+   * described above: lib/emailCode.ts uses Supabase Auth's own email OTP (signInWithOtp / verifyOtp; 6 digits, 3600 s,
+   * a 60 s resend cooldown; the 5-wrong-tries limit is the app's), and there is no email_codes table. The Rate Limits
+   * sentence is rewritten to that; before flipping, also check whether our own account-email records
+   * (auth_attempts) see code requests at all, and every other line here, against the passwords-off dashboard step.
    */
   passwordless: false,
   /**
@@ -860,7 +905,8 @@ type BooleanSwitch = { [K in keyof Switches]: Switches[K] extends boolean ? K : 
  * groomingScope, developerWatch, gameNightPrizes, intel, ranked and tournaments (server switches for every app version at
  * once: set in LIVE), membershipsOnly (says we sell less; a server fact, set in LIVE), intercepts, customPacks,
  * communityPacks and featuredPacks (server switches for every app version at once, which the Terms read too: set in
- * LIVE), gameNightRules (the Game Night rules page and the Terms' pointer to it, no Privacy text),
+ * LIVE), spybots (the developer's AI players, an owner-side fact: set in LIVE), gameNightRules (the Game Night rules
+ * page and the Terms' pointer to it, no Privacy text),
  * scheduledRetention,
  * photoCleanup and resendAccountEmail (already on). PRIVACY_AHEAD's type takes only these keys and only true, so anything else fails tsc
  * (npm run build); PRIVACY below also ignores anything else.
@@ -965,17 +1011,9 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
     : LIVE.passwordless
     ? 'November 2, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
-    : LIVE.featuredPacks
-      ? 'October 27, 2026' // featured Community Packs (Terms 5, 6): set to the day the site goes up with it on
-      : LIVE.communityPacks
-        ? 'October 27, 2026' // Community Packs (Terms 6, 8; Rules 5; Safety): set to the day the site goes up with it on
-        : LIVE.customPacks
-          ? 'October 27, 2026' // Custom Packs (Terms 6, 7, 8; Rules 5; Safety): set to the day the site goes up with it on
-          : LIVE.intercepts
-            ? 'November 2, 2026' // Intercepts (Terms 9; Safety): set to the day the site goes up with it on
-            : LIVE.membershipsOnly && LIVE.purchases
-              ? 'November 2, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
-              : 'October 25, 2026' // section 5: no votes at Play Online tables (Game Night's included); before it, October 24 (QA 110: Intel's section 9 line and the Game Night rules pointer)
+    : LIVE.membershipsOnly && LIVE.purchases
+      ? 'November 2, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
+      : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -993,19 +1031,9 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'November 2, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'November 2, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
-    : LIVE.packAutoTranslate
-    ? 'October 27, 2026' // every custom pack translated automatically: set to the day the site goes up with it on
-    : LIVE.featuredPacks
-      ? 'October 27, 2026' // featured Community Packs (translation, rewards): set to the day the site goes up with it on
-      : LIVE.communityPacks
-        ? 'October 27, 2026' // Community Packs (what's public, ratings, reports): set to the day the site goes up with it on
-        : LIVE.customPacks
-          ? 'October 27, 2026' // the Custom Packs item: set to the day the site goes up with it on
-          : LIVE.intercepts
-            ? 'November 2, 2026' // the Intercepts item: set to the day the site goes up with it on
-            : LIVE.membershipsOnly
-              ? 'November 2, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
-              : 'October 25, 2026' // the developer's watch may end a game or mute, remove or ban a player (owner live moderation); before it, October 24 (QA 110: Intel and Daily Streak, Game Night v2, the developer's watch; crashReportLocation off and groomingScope folded in)
+    : LIVE.membershipsOnly
+      ? 'November 2, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
+      : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation; before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

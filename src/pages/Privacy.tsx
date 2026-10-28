@@ -72,7 +72,7 @@ const Privacy: React.FC = () => {
     ? 'Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service uses,'
     : 'Microsoft Translator (Azure AI Translator)'
   // OpenAI is a provider for drawing checks, translation, the custom packs' text check (LIVE.customPacks) or all three.
-  const usesOpenAi = PRIVACY.drawingCheck || PRIVACY.openAiTranslation || PRIVACY.customPacks
+  const usesOpenAi = PRIVACY.drawingCheck || PRIVACY.openAiTranslation || PRIVACY.customPacks || PRIVACY.spybots
   // Each author's own yes (server 20261031100000): OpenAI gets a player's messages only after they chose Translate in
   // the app's note naming OpenAI, and not while they've since chosen Not Now there or turned automatic translation off.
   const openAiAgreed = PRIVACY.autoTranslation
@@ -163,7 +163,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
             Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
-            {PRIVACY.intercepts ? ' You also get it by shredding spare copies of items. For now there\'s nothing to spend it on.' : ''} When a game you
+            {PRIVACY.intercepts ? ' You also get it by shredding spare copies of items. For now there\'s nothing to spend it on. The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day\'s reward, and when you claimed it, with your account.' : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
             also keep your balance, how much Intel you've earned and spent in all, and your daily streak: how many days
@@ -189,16 +189,20 @@ const Privacy: React.FC = () => {
             Intercepts are sealed rewards that each open into one random item (such as a look for your agent, a
             celebration or a title). They're earned only by playing, or given by us, never bought, with money or with
             Intel. Our servers keep each Intercept you get: when, how you got it (the Play Online game that completed a
-            set of 10 wins, your first Play Online game of the day or a streak milestone, a Game Night win, a creator
-            code you entered, or a gift from us, with its reason) and its tier; and, once you open it, when, the item and
+            set of 10 wins, your first Play Online game of the day or a streak milestone, a Game Night win, a code you
+            entered, or a gift from us, with its reason) and its tier; whether you've claimed it yet (a daily one) or
+            it's waiting for your first Play Online game that counts (one from a code); when you've seen the app's
+            notices about your Intercepts (such as Welcome Back); and, once you open it, when, the item and
             its rarity, whether you already had that item, and for a Unique, its number and colour. We keep every copy
             you get, the Intel you get when you shred a spare one, and each trade-up (the spare copies it used, the odds
             it used and the item it gave). They also keep your progress toward your next
             Intercepts and the counts behind any guarantee the app shows. All of this comes from the games you play and
             the codes you enter: private-room games, and games that give no Intel (for example a game you left or one
-            our fair-play checks flag), don't count. When Intercepts start, the items that from then on come only from
-            Intercepts are taken back from every account (the Beta Pin excepted), and we keep a record of what was taken
-            back from yours, and of the look or title it replaced, so that we can put it back if we have to. We use all
+            our fair-play checks flag), don't count. Before version 2.2 opens to everyone, Intercepts start fresh: the
+            Intercepts, copies and trade-ups from before then (for example from testing) are wiped, and the items that
+            from then on come only from Intercepts are taken back from every account (the Beta Pin and anything bought
+            in a store excepted). We keep a record of what was wiped and taken back from yours, and of the look or title
+            it replaced, so that we can put it back if we have to. We use all
             this to give you your Intercepts and their items, to show them to you in the app, and to check that
             Intercepts are earned fairly and that the odds work as the app shows them. Other players never see your
             Intercepts; they see an item from one only when you wear it, like any other look. We look at Intercepts only
@@ -211,20 +215,24 @@ const Privacy: React.FC = () => {
           <Item label={PRIVACY.communityPacks ? 'Custom Packs and Community Packs' : 'Custom Packs'}>
             If you're a member, you can make your own packs. We keep each draft and each pack you make with your
             account: its name, its game (Spy Talk or Spy Sketch), its language{PRIVACY.packAutoTranslate ? ' (which we detect from its text)' : ''}, its description if you add one, its
-            entries (the locations or words), when you made and last changed it, and which draft a pack was created
-            from. A draft is private to you and is never played. Names and entries go through our word filter when you
-            save them. When you create a pack from a draft, its name, description and entries are also sent to OpenAI's
-            moderation model for an automated check (only the pack's text, never your account, name or age), and we keep
-            the result and anything it flagged with the pack; if the check finds something that breaks our Terms, the
-            pack isn't created, and a pack it flags for child sexual content is logged with a copy for our child-safety
-            review.
+            entries (the locations or words), its cover (the emoji, color and pattern you pick from the app's), when you
+            made and last changed it, and which draft a pack was created from. A draft is private to you and is never
+            played. Names and entries go through our word filter when you save them. When you create a pack from a
+            draft (and again when you update it{PRIVACY.communityPacks ? ' or send it to Community Packs' : ''}), its
+            name, description and entries are also sent to OpenAI's moderation model for an automated check (only the
+            pack's text, never your account, name or age), and we keep the result and anything it flagged with the
+            pack; if the check finds something that breaks our Terms, the pack isn't created (our moderation log keeps
+            a copy of it, as it does for any pack we remove), and a pack it flags for child sexual content is also
+            logged for our child-safety review.
             {PRIVACY.packAutoTranslate &&
               ` When you create a pack, our translation service also detects the language it's written in and translates its name, description and entries into the other languages the app offers, so every player sees it in their own language. For that, it sends only the pack's text and the languages to ${PRIVACY.openAiTranslation ? 'OpenAI (only when you told us you\'re 16 or older and agreed to translation by OpenAI in the app) or else Microsoft Translator' : 'Microsoft Translator'}, never your account, name or age. Each translation also goes through OpenAI's moderation model and our word filter, and we keep the translations with the pack. When you change a pack, only the text you changed is translated again.`}{' '}
             When you play one of your packs in a private room, the players there see its name and, as with any
-            pack, what the game deals and shows from it (such as the location or word, and the spy's list). You can
-            change or delete your drafts, and the packs you haven't published, at any time.
+            pack, what the game deals and shows from it (such as the location or word, and the spy's list), and for a
+            while after a game with it, they can open the pack and see all its entries. Records of games already played
+            with a pack keep its name and the entries they dealt. You can change or delete your drafts, and the packs
+            you haven't published, at any time.
             {PRIVACY.communityPacks &&
-              ` If you publish a pack to Community Packs, you agree to our Terms and Community Rules again, and a person on our team reviews it before anyone else can see it (we aim to within 72 hours). We keep a record of the review (who reviewed it, when, what we decided and why, with a copy of the pack as it was). We may approve it, turn it down, hold it (for example after reports) or take it out. While it's still in review, you can withdraw it, and it goes back to being one of your private packs; it's published only once we approve it and it's live in Community Packs. Once we approve it, every SpySocial player, players under 18 included, can see it: its name, description, game, language and entries, your username as its creator (never your display name), when it was added, its average rating and number of ratings, how many players have added it (its downloads) and how many games it was played in. Players can search Community Packs (by a pack's name, description or its creator's username), browse our collections, add a pack to their packs, rate it from 1 to 5 stars and copy it into a draft of their own to make their own version. When you add or rate a pack, we keep which pack, your rating and when, with your account; other players and the pack's creator see only the totals, never who added or rated it. You can report a Community Pack: the report keeps a snapshot of the pack as it was, your reason and anything you write, and we handle it like any other report (see Safety Information). A published pack can't be changed or deleted by its creator, because it's shared under the license in our Terms (section 6); a new version is a separate pack. You can remove your name from a published pack: it then shows Anonymous as its creator, drops off your profile and titles, and your username is no longer linked to it anywhere public. We log every name removal and every undo (which pack, which account, when and by whom), and you can undo a removal within 7 days, or ask us to; after 7 days it's final. Creators get the Pack Maker title, which counts their approved packs and shows like any title.`}
+              ` If you send a pack to Community Packs (a copy of your draft), you agree to our Terms and Community Rules again, and a person on our team reviews it before anyone else can see it (we aim to within 72 hours). We keep a record of the review (who reviewed it, when, what we decided and why, with a copy of the pack as it was). We may approve it, turn it down, hold it (for example after reports) or take it out. When we approve or turn down a pack you sent, the app tells you (with our reason, if we turned it down), and if you allow notifications we also send you a push notification; we keep these notices with your account. While it's still in review, you can cancel it (the copy you sent is deleted, and our moderation log keeps a copy of it); it's published only once we approve it and it's live in Community Packs. Once we approve it, every SpySocial player, players under 18 included, can see it: its name, description, cover, game, language and entries, your username as its creator (never your display name; Anonymous instead, if you chose that), when it was added, its average rating and number of ratings, how many players have added it (its downloads) and how many games it was played in. Players can search Community Packs (by a pack's name, description or its creator's username), browse our collections, add a pack to their packs, rate it from 1 to 5 stars and copy it into a draft of their own to make their own version. When you add or rate a pack, we keep which pack, your rating and when, with your account; other players and the pack's creator see only the totals, never who added or rated it. You can report a Community Pack: the report keeps a snapshot of the pack as it was, your reason and anything you write, and we handle it like any other report (see Safety Information). A published pack can't be changed or deleted by its creator, because it's shared under the license in our Terms (section 6); a new version is a separate pack. You can choose Post Anonymously when you send a pack, and switch a pack that's in review or published between Anonymous and Show My Name, once every 24 hours: while it's anonymous, it shows Anonymous as its creator, drops off your profile and titles, and your username isn't linked to it anywhere public (our team can still see who made it). We log every switch (which pack, which account and when), and every time our team puts a name back. Creators get the Pack Maker title, which counts their approved packs that show their name and shows like any title.`}
             {PRIVACY.featuredPacks &&
               ` We may feature a Community Pack: then it's also played at Play Online tables and events, where the players see its name and creator as Community Packs shows them${PRIVACY.packAutoTranslate ? ', each in their own language.' : `, and our translation service translates its name, description and entries into the languages the app offers. For that, it sends only the pack's text and the languages to ${PRIVACY.openAiTranslation ? 'OpenAI (only when you told us you\'re 16 or older and agreed to translation by OpenAI in the app) or else Microsoft Translator' : 'Microsoft Translator'}, never your account, name or age, and we keep the translations with the pack.`} If we feature your pack, you get the Featured Creator title and border, which count your featured packs and show like any title and border.`}{' '}
             Your drafts and packs{PRIVACY.communityPacks ? ', ratings and the packs you added' : ''} are kept with your
@@ -301,6 +309,25 @@ const Privacy: React.FC = () => {
           translation requests they made, the messages and characters sent to be translated, and an estimate of
           what translating them cost; these counts are deleted after 14 days.
         </Item>
+        {/* LIVE.spybots: the developer's AI players (legalRelease). */}
+        {PRIVACY.spybots && (
+          <Item label="AI Players">
+            SpySocial's developer sometimes plays with computer-controlled players (bots) that he runs himself, mostly
+            to test the game. They play only at a table where he is playing too: in his private rooms, with the players
+            he invites, and at Play Online tables he sits at. Until version 2.2's launch on November 10, 2026, while Play
+            Online is open only to testers, any player seated at his Play Online table may play with them; after that,
+            the bots leave a Play Online table as soon as anyone other than him and adults he knows sits down there. A
+            bot shows like any other player at the table (for example, as an agent name at Play Online). To decide what
+            a bot says, asks, answers, draws and votes, our bot program sends OpenAI what that bot's seat can see in the
+            game: the questions, answers and chat at the table (and, for a bot that is a spy, the spies' chat) with the
+            names the table shows (display names in private rooms, agent names in public play), what happens in the
+            game, the drawings in a Spy Sketch game, and the bot's own role and secret. It never sends anyone's account
+            or user ID, username, email address, age or IP address. The program asks OpenAI not to store these requests
+            or its answers, and OpenAI doesn't use them to train its models (see OpenAI below). The program also keeps
+            logs of the games the bots play, with what was said and done at the table, on the developer's computer, and
+            uses them only to check and improve the bots, for as long as they're needed for that.
+          </Item>
+        )}
         <Item label="Presence">
           While you're in a game, the app tells our servers every few seconds that it's still open, so other players
           can see if you've stepped away and the game can skip a player who isn't there.
@@ -318,6 +345,15 @@ const Privacy: React.FC = () => {
           accounts that recently used a test version on a phone try features that aren't open to everyone yet, such as
           Play Online.
         </Item>
+        <Item label="Test Versions">
+          If you test a version of the app before it's released, through Apple's TestFlight, Google Play's testing or a
+          testing service such as BetaTesting, Apple, Google or that service handle your sign-up and anything you send
+          through them, under their own terms and privacy policies. We receive what you choose to share with us there
+          (such as your answers to a test's survey) and, to let you install an Android test version, the email address
+          of your Google account, which we add to the app's list of testers in Google Play and remove once the test is
+          over. We use these only to run the test and improve the app. Otherwise, a test version is the same app, and
+          this policy applies to it.
+        </Item>
         <Item label="Rate Limits">
           To stop floods, guessing at room codes and other abuse, our servers note when an account does certain things
           (such as sending a message, joining or trying to join a room, poking a player, or saving its avatar or title),
@@ -330,7 +366,7 @@ const Privacy: React.FC = () => {
           the same code, they also count how many of these requests come from each network in an hour. These records
           are deleted after a day.
           {PRIVACY.passwordless
-            ? ' For each sign-in code we email, they keep a coded form of the code (never the code itself) with the coded email address, the account it was sent for when you are signed in, how many wrong tries it has had (it stops working after 5) and when it expires (10 minutes). It is deleted as soon as it is used, and an expired one within a day.'
+            ? ' Sign-in codes are made and checked by our sign-in service (Supabase Auth): a code has 6 digits, works only once and for 1 hour, and a new one can be asked for after a minute; the service keeps only a coded form of the code, never the code itself.'
             : ''}
         </Item>
         <Item label="Safety Information">
@@ -465,7 +501,10 @@ const Privacy: React.FC = () => {
             for which game and how many players, never who is in it. The app refreshes the token at most once a day,
             and the token is deleted when you sign out in the app, turn off notifications for SpySocial (the next time
             the app opens) or delete your account. A match notification waiting to be sent is kept for one day. Guests
-            don't send a push token. Apart from that, the only other push notifications we send go to our moderators'
+            don't send a push token.
+            {PRIVACY.communityPacks &&
+              " If you send a pack to Community Packs, we also use that push address to tell you when we approve or turn it down (with the pack's name and our reason)."}{' '}
+            Apart from that, the only other push notifications we send go to our moderators'
             phones when a new report comes in. They pass through Expo's push service and Apple's or Google's, and say
             only what kind of report it is and its case number, never a player's name or what was said.
             {PRIVACY.fcmAutoInit
@@ -586,6 +625,7 @@ const Privacy: React.FC = () => {
           <ListItem>Remind you of the game nights you asked about, and tell you when a Play Online match is found</ListItem>
         )}
         <ListItem>Improve and optimize the app experience</ListItem>
+        {PRIVACY.spybots && <ListItem>Test the game with the AI players our developer plays with, and improve them</ListItem>}
         <ListItem>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
         <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
         <ListItem>Protect against fraudulent or unauthorized activity</ListItem>
@@ -619,7 +659,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
-          events){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
+          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
           You can object to this processing at any time by emailing <SupportEmail />.
         </Item>
         <Item label="Consent">
@@ -645,6 +685,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.drawingCheck
           ? ' The results of drawing checks are kept for 90 days. A drawing taken off or reported is kept as evidence for 90 days, or longer while its report is still open. A drawing we must report as child sexual exploitation is kept for 1 year after we report it to NCMEC, as US law requires, in restricted storage, and shared with no one except the authorities.'
           : ''}{' '}
+        When we report child sexual exploitation to NCMEC, we keep what we reported (such as the messages, drawings or
+        packs involved and the account details in the report) for at least 1 year after the report, as US law requires,
+        in restricted storage, shared with no one except the authorities, even if the account is deleted.{' '}
         Usage events are kept
         for 180 days
         {PRIVACY.scheduledRetention
@@ -726,6 +769,8 @@ const Privacy: React.FC = () => {
               : PRIVACY.featuredPacks &&
                 PRIVACY.openAiTranslation &&
                 'When our translation service uses it for the Community Packs we feature, it receives only the pack\'s name, description and entries and the languages, never who made the pack. '}
+            {PRIVACY.spybots &&
+              'It also decides the moves of the AI players our developer plays with, receiving what a bot\'s seat can see at the table, as AI Players above describes, with a request not to store it. '}
             Under OpenAI's API terms and its Data Processing Addendum, it{' '}
             {PRIVACY.openAiTranslation
               ? "doesn't use what it receives to train its models, and keeps it for up to 30 days to monitor abuse, unless the law requires it to keep it longer or keeping it is reasonably necessary to protect its services or anyone else from harm."
@@ -796,8 +841,8 @@ const Privacy: React.FC = () => {
         {PRIVACY.purchases ? ', RevenueCat' : ''}
         {PRIVACY.crashReports ? ', Sentry' : ''}
         {PRIVACY.resendAccountEmail ? ', Resend' : ''} and Vercel process it for us under contracts that bind them to protect it
-        at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''} and ImprovMX
-        handle what they receive under their own terms and privacy policies.
+        at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''}, ImprovMX and
+        testing services such as BetaTesting handle what they receive under their own terms and privacy policies.
       </P>
 
       {PRIVACY.merchShop && (
@@ -900,7 +945,7 @@ const Privacy: React.FC = () => {
           " A tournament's standings (after each stage, never during one) and its winners are shown, with their points and places, to every player who opens that tournament in the app: by username, or by agent name for players under 18 and players who haven't told us their age."}
         {/* LIVE.communityPacks: an approved pack is public (legalRelease). */}
         {PRIVACY.communityPacks &&
-          " A custom pack you submit to Community Packs is shown to every player once we approve it, with your username as its creator, its ratings and how many players added it (see Custom Packs and Community Packs above); never who rated or added it."}{' '}
+          " A custom pack you submit to Community Packs is shown to every player once we approve it, with your username as its creator (or Anonymous, if you chose that), its ratings and how many players added it (see Custom Packs and Community Packs above); never who rated or added it."}{' '}
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
       </P>
