@@ -313,11 +313,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.spybots && (
           <Item label="AI Players">
             SpySocial's developer sometimes plays with computer-controlled players (bots) that he runs himself, mostly
-            to test the game. They play only at a table where he is playing too: in his private rooms, with the players
-            he invites, and at Play Online tables he sits at. Until version 2.2's launch on November 10, 2026, while Play
-            Online is open only to testers, any player seated at his Play Online table may play with them; after that,
-            the bots leave a Play Online table as soon as anyone other than him and adults he knows sits down there. A
-            bot shows like any other player at the table (for example, as an agent name at Play Online). To decide what
+            to test the game. They play only at a table where he is playing too, and only when everyone else at that
+            table is an adult he knows or one of our test accounts; if anyone else sits down, the bots leave, in private
+            rooms and at Play Online alike. A bot always shows an "AI" tag next to its name. To decide what
             a bot says, asks, answers, draws and votes, our bot program sends OpenAI what that bot's seat can see in the
             game: the questions, answers and chat at the table (and, for a bot that is a spy, the spies' chat) with the
             names the table shows (display names in private rooms, agent names in public play), what happens in the
@@ -325,7 +323,7 @@ const Privacy: React.FC = () => {
             or user ID, username, email address, age or IP address. The program asks OpenAI not to store these requests
             or its answers, and OpenAI doesn't use them to train its models (see OpenAI below). The program also keeps
             logs of the games the bots play, with what was said and done at the table, on the developer's computer, and
-            uses them only to check and improve the bots, for as long as they're needed for that.
+            uses them only to check and improve the bots; they're deleted automatically after 30 days.
           </Item>
         )}
         <Item label="Presence">
