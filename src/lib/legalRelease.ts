@@ -206,7 +206,7 @@ export const LIVE = {
    * Check the Drawing Checks text (Privacy) and the automated-tools text (Terms section 8, Rules) against the
    * wiring that shipped before flipping.
    */
-  drawingCheck: false,
+  drawingCheck: true,
   /**
    * The drawing check runs for the testers only: app_config drawing_check.enabled is "testers" on the live server
    * (since 2026-10-05, 20261006300100_drawing_check_testers; public_every_turn true). A room is checked only when
@@ -224,7 +224,7 @@ export const LIVE = {
    * drawingCheck on and this off. Off also if the switch goes back to false. A server switch: set in LIVE, never in
    * PRIVACY_AHEAD.
    */
-  drawingCheckTesters: true,
+  drawingCheckTesters: false,
   /** The phone translates by itself when our service can't (feature/on-device-translation). */
   onDeviceTranslation: false,
   /**
@@ -305,7 +305,7 @@ export const LIVE = {
    * as public rooms (_public_gate).
    * Flip before app_config.play_online goes 'on' for everyone (runbook 3.8c), in website update 1.
    */
-  playOnline: false,
+  playOnline: true,
   /**
    * One pool (owner decision 2026-10-05; app feat/one-pool, migrations 20261006340000_one_pool_private_rooms and
    * 20261006340100_one_pool_languages): players make private rooms only (create_room and set_room_visibility refuse
