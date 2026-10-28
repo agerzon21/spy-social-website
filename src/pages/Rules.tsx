@@ -82,6 +82,8 @@ const Rules: React.FC = () => {
             ))}
           </UnorderedList>
           {LIVE.communityPacks && <Text textStyle="body">{t.packs.community}</Text>}
+          {/* Swearing (owner 2026-10-28): fine in private packs; Community shows a title's swear censored (app server 20261201790000). */}
+          {LIVE.communityPacks && <Text textStyle="body">{t.packs.swearing}</Text>}
         </>
       )}
 

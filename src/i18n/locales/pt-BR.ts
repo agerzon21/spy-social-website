@@ -445,6 +445,8 @@ const ptBR: Strings = {
       ],
       community:
         'Pacotes da comunidade: uma pessoa da nossa equipe lê cada pacote antes que qualquer outra pessoa possa vê-lo. Se um pacote violar estas regras, podemos recusá-lo, tirá-lo dos Pacotes da comunidade ou impedir que essa conta compartilhe pacotes. Qualquer jogador pode denunciar um pacote da comunidade, e uma pessoa lê cada denúncia em até 24 horas.',
+      swearing:
+        'Palavrões: permitidos nos pacotes que você joga nas suas próprias salas privadas, nunca nos Pacotes da comunidade, porque jogadores com menos de 18 anos os usam. Se um título tiver um (o de um filme, por exemplo), os Pacotes da comunidade o mostram censurado: a primeira letra e depois asteriscos (S***). Palavrões pesados não são permitidos lá de jeito nenhum.',
     },
     child: {
       title: 'Segurança infantil',

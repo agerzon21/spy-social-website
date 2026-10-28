@@ -485,6 +485,9 @@ const en = {
       ],
       community:
         'Community Packs: a person on our team reads every pack before anyone else can see it. We can turn a pack down, take it out of Community Packs, or stop an account from sharing packs if it breaks these rules. Any player can report a Community Pack, and a person reads every report within 24 hours.',
+      /** Swearing (owner 2026-10-28; app server 20261201790000_pack_swear_mask), shown with `community`. */
+      swearing:
+        "Swearing: fine in the packs you play in your own private rooms, never in Community Packs, because players under 18 use them. If a title has a swear in it (a movie's, say), Community Packs show it censored: its first letter, then asterisks (S***). Strong swear words aren't allowed there at all.",
     },
     child: {
       title: 'Child safety',

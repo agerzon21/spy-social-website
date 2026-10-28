@@ -445,6 +445,8 @@ const es: Strings = {
       ],
       community:
         'Paquetes de la comunidad: una persona de nuestro equipo lee cada paquete antes de que nadie más pueda verlo. Si un paquete rompe estas normas, podemos rechazarlo, retirarlo de Paquetes de la comunidad o impedir que esa cuenta comparta paquetes. Cualquier jugador puede reportar un paquete de la comunidad, y una persona lee cada reporte en menos de 24 horas.',
+      swearing:
+        'Palabrotas: se permiten en los paquetes que juegas en tus propias salas privadas, nunca en los Paquetes de la comunidad, porque los usan jugadores menores de 18 años. Si un título lleva una (el de una película, por ejemplo), los Paquetes de la comunidad la muestran censurada: su primera letra y luego asteriscos (S***). Las palabrotas fuertes no se permiten allí en absoluto.',
     },
     child: {
       title: 'Seguridad infantil',

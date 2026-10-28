@@ -445,6 +445,8 @@ const id: Strings = {
       ],
       community:
         'Paket Komunitas: seseorang dari tim kami membaca setiap paket sebelum orang lain bisa melihatnya. Jika sebuah paket melanggar aturan ini, kami bisa menolaknya, mengeluarkannya dari Paket Komunitas, atau melarang akun itu membagikan paket. Pemain mana pun bisa melaporkan Paket Komunitas, dan manusia membaca setiap laporan dalam 24 jam.',
+      swearing:
+        'Kata kasar: boleh di paket yang kamu mainkan di room privatmu sendiri, tidak pernah di Paket Komunitas, karena pemain di bawah 18 tahun memakainya. Kalau sebuah judul mengandung kata kasar (judul film, misalnya), Paket Komunitas menampilkannya tersensor: huruf pertamanya, lalu tanda bintang (S***). Kata kasar yang berat sama sekali tidak diizinkan di sana.',
     },
     child: {
       title: 'Keselamatan anak',
