@@ -109,8 +109,9 @@ const Transparency: React.FC = () => (
     </P>
     {LIVE.intelCorrections && (
       <P>
-        Every day, a fingerprint of the day's Intel lines is sealed into our collectibles ledger's daily checkpoint, so a
-        line changed later would no longer match a record that's already been published.
+        From the day SpySocial 2.2 opens to everyone, a fingerprint of each day's Intel lines is sealed into our
+        collectibles ledger's daily checkpoint, so a line changed later would no longer match a record that's already
+        been published.
       </P>
     )}
 
