@@ -362,9 +362,9 @@ const Privacy: React.FC = () => {
         <Item label="Usage Data">
           Simple events about how the app is used (for example which screens are opened and which features are used),
           recorded by our own servers and kept for 180 days. They contain no message text. We don't use third-party
-          analytics or advertising trackers. Until version 2.2's launch on November 10, 2026, we also use these events
+          analytics or advertising trackers. Until version 2.2's launch on December 8, 2026, we also use these events
           and your device's platform to recognize saved accounts that used a test version of the app (on iPhone, Android
-          or the web) and were created before November 3, 2026, and give them a Beta Pin for their avatar as a thank-you;
+          or the web) and were created before December 7, 2026, and give them a Beta Pin for their avatar as a thank-you;
           we keep only that the account has it. Until the launch, we also use them, with the app's version, to let saved
           accounts that recently used a test version on a phone try features that aren't open to everyone yet, such as
           Play Online.

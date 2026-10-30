@@ -399,7 +399,7 @@ export const LIVE = {
    * no header) and the footer (every page), both to shop.spysocial.app in the same tab, and turns on the legal text:
    * Privacy (the shop named in the introduction, the Merch Shop section, Fourthwall in the providers list) and the
    * Terms (section 10's Merch line). Off, the site renders exactly as before this switch existed.
-   * Flip when the owner says "open the shop" (planned for the 2.2 launch, Tuesday November 10, 2026), and only once the
+   * Flip when the owner says "open the shop" (planned for the 2.2 launch, Tuesday December 8, 2026), and only once the
    * shop is connected and approved: Fourthwall's custom domain serves shop.spysocial.app over HTTPS, the owner has
    * approved the sample, and the shop's password page is off. Check the Merch Shop text against the live shop then:
    * what it collects and who gets it (Fourthwall's privacy policy, https://fourthwall.com/privacy-policy, last read
@@ -443,9 +443,9 @@ export const LIVE = {
   roadmap: true,
   /**
    * The launch-week game nights' days and hours (owner Console Events > Launch Week Game Nights, app
-   * feat/launch-console): Spy Talk on Tuesday, November 10, Spy Sketch on Friday, November 13 and Spy Mafia on
-   * Saturday, November 14, 2026, each 8 to 10 PM ET. On, the Roadmap's Game nights card and What's New's 2.2 Game
-   * nights line name them (src/i18n: roadmap.now.launchWeek, whatsNew.v22's launchWeek). Off until the owner OKs the
+   * feat/launch-console): Spy Talk on Tuesday, December 8, Spy Sketch on Friday, December 11 and Spy Mafia on
+   * Saturday, December 12, 2026, each 8 to 10 PM ET. On, the Roadmap's Game nights card and What's New's 2.2 Game
+   * nights line name them (src/i18n: roadmap.now.launchWeek; What's New has no launchWeek line yet). Off until the owner OKs the
    * schedule and the nights are published (app_config.events_enabled on); if a day or hour changes, change those
    * lines in all 10 languages first. No legal text reads it. A website fact: set in LIVE, never in PRIVACY_AHEAD.
    */
@@ -525,7 +525,7 @@ export const LIVE = {
    * Turns on Privacy's Game Night item (after Play Online). The developer's watch at these tables is developerWatch's
    * text (20261106130000): flip both in the same deploy. POLICY FIRST: deploy the site with it on before the server
    * files are applied (QA 110 step 3), even though app_config gamenight.enabled stays false until the owner turns the
-   * first night on (Fri Nov 13, 2026, 7:55 PM ET); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
+   * launch-week nights on (from Tue Dec 8, 2026, 7:55 PM ET); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
    * that date to the deploy day. Off only if the Game Night v2 files are rolled back. A server switch for every app
    * version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
@@ -638,7 +638,7 @@ export const LIVE = {
    * only); the Safety page's parents line; the Game Night rules' no-purchase line; the Roadmap's Shop card and the home
    * page's closing line. The Terms' and the Safety page's text sits inside LIVE.purchases (and the celebrations bullet
    * inside avatarsLive), so before the launch only Privacy, the Game Night rules and the Roadmap show it. Flip when
-   * store_products sells only the three memberships on the live server (the v8 Nov 2 switches: those three live, the
+   * store_products sells only the three memberships on the live server (the v8 Window W switches, Mon Dec 7: those three live, the
    * other 19 draft, the mask included), whatever app a player has, and set PRIVACY_LAST_UPDATED, the Game Night rules'
    * UPDATED and (once LIVE.purchases is on) LEGAL_LAST_UPDATED to that day. Not ahead-safe (it says we sell less): a
    * server fact for every app version at once, set in LIVE, never in PRIVACY_AHEAD.
@@ -753,9 +753,8 @@ export const LIVE = {
    * The AI players ("spybots", the owner's own tool: .claude/handoff/scratchpad/tools/spybots, a Node program on the
    * developer's Mac that signs in as bot accounts and plays through the normal app server). Owner rule (launch-rule.mjs):
    * a bot plays only at a table where the owner is seated (his private rooms, and Play Online tables he sits at);
-   * before PRELAUNCH_UNTIL (Nov 10, 2026, 10:00 ET) any Play Online player at his table may stay with them (Play
-   * Online is testers-only until then); from then on, at Play Online, anyone but the owner and the adults on
-   * friends.json makes the bots leave. For a bot's move the program sends OpenAI's Responses API (store: false, no
+   * at Play Online, anyone but the owner and the adults on friends.json makes the bots leave (the pre-launch
+   * exception, PRELAUNCH_UNTIL, was removed on 2026-10-28). For a bot's move the program sends OpenAI's Responses API (store: false, no
    * safety_identifier; gpt-5.5 / gpt-5.4-mini / gpt-5.4-nano) the table's transcript as the bot's seat sees it: names as
    * the table shows them (display names in private rooms, agent names at Play Online), the questions, answers and
    * chat (the spies' chat for a spy bot), game events, Spy Sketch drawings as pictures, and the bot's own secret; no
@@ -875,7 +874,7 @@ export const LIVE = {
    * months after the deletion (36 for child safety), extended by each matching attempt; purged daily. Turns on one
    * sentence in Privacy's Safety Information, the deletedSummary clause, a bullet in AfterDeletionList (Privacy and
    * /delete-account), a Data Retention sentence and the Legitimate Interests clause. POLICY FIRST: flip it, deploy the
-   * site, then apply the file (Nov 2, Window W); set PRIVACY_LAST_UPDATED's date for it to the deploy day. A server
+   * site, then apply the file (Window W, Mon Dec 7, 2026); set PRIVACY_LAST_UPDATED's date for it to the deploy day. A server
    * switch: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
    */
   banTombstone: false,
@@ -1051,9 +1050,9 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   : LIVE.ranked
     ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
     : LIVE.passwordless
-    ? 'November 2, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
+    ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
-      ? 'November 2, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
+      ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
       : LIVE.intelCorrections
       ? 'October 30, 2026' // Terms 9's Intel corrections and the Intercepts take-back line (E1), and Terms 9's no-Intel-by-hand line and the reset's Intel (E0, WI): the site went up with both on
       : LIVE.intelLedger
@@ -1073,13 +1072,13 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     : creatorShortLive(LIVE)
       ? 'November 20, 2026' // the YouTube item (the home page's creator Short): set to the day the site goes up with it on
     : LIVE.passwordless
-    ? 'November 2, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
+    ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
-    ? 'November 2, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
     : LIVE.membershipsOnly
-      ? 'November 2, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
+      ? 'December 7, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
       : LIVE.intelCorrections
-      ? 'October 30, 2026' // Intel Corrections, Resend's copies to support@, the public digest (E1), and the Intel ledger kept for good without the account (E0): the site went up with both on
+      ? 'October 30, 2026' // Intel Corrections, Resend's copies to support@, the public digest (E1), and the Intel ledger kept for good without the account (E0): the site went up with both on; the same day, Usage Data's Beta Pin dates moved with the launch (December 8, 2026; accounts created before December 7, 2026)
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)

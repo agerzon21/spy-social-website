@@ -18,7 +18,7 @@ import { LIVE } from '../lib/legalRelease'
  * developer's actions).
  */
 const UPDATED = LIVE.membershipsOnly
-  ? 'November 2, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
+  ? 'December 7, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
   : 'October 30, 2026' // joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
 
 const GameNightRules: React.FC = () => (

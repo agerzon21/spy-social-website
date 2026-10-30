@@ -872,7 +872,7 @@ const en = {
     eyebrow: 'Roadmap',
     /** The poster line, set huge, before the home hero's full stop (home.hero.titleMark). Short: it must fit a 320 px phone. */
     title: "What's coming",
-    /** Under it until 2.2 is out. `day` is the launch day in the page's language, without the year ("November 10", "10 ноября"). */
+    /** Under it until 2.2 is out. `day` is the launch day in the page's language, without the year ("December 8", "8 декабря"). */
     lede: (day: string) => `SpySocial\u00A02.2 lands on ${day}. See what's in it, and what we're building next.`,
     /** The same once 2.2 is out. */
     ledeOut: "SpySocial\u00A02.2 is out now. See what's in it, and what we're building next.",
@@ -924,7 +924,7 @@ const en = {
       more: 'Plus Player Stats, titles and borders to unlock, levels up to 100 with prestige, XP for quick games too, smooth rejoining after your phone sleeps, invite links that just work, and a new look on every screen.',
       /** Added to the Game nights card once LIVE.launchGameNights is on (owner to OK the days first). If a day or
        * hour changes, change it in all 10 languages. */
-      launchWeek: 'Launch week: Spy Talk on Tuesday, November 10, Spy Sketch on Friday, November 13, and Spy Mafia on Saturday, November 14, each from 8 to 10 PM ET.',
+      launchWeek: 'Launch week: Spy Talk on Tuesday, December 8, Spy Sketch on Friday, December 11, and Spy Mafia on Saturday, December 12, each from 8 to 10 PM ET.',
       /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
       shopMembers: (customPacks: boolean) =>
         `Build your own spy avatar, and earn new looks by playing. The Shop sells only memberships, which unlock every pack${customPacks ? ' and let you make your own' : ''}: all optional, and none of it changes how the game plays.`,

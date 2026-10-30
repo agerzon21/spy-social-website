@@ -866,7 +866,7 @@ const es: Strings = {
         },
       ],
       more: 'Y además: estadísticas, títulos y marcos para desbloquear, niveles hasta el 100 con prestigio, XP también en las partidas cortas, volver a la partida sin tropiezos aunque el teléfono entre en reposo, enlaces de invitación que simplemente funcionan y un nuevo aspecto en cada pantalla.',
-      launchWeek: 'Semana de lanzamiento: Spy Talk el martes 10 de noviembre, Spy Sketch el viernes 13 de noviembre y Espía Mafia el sábado 14 de noviembre, siempre de 8 a 10 p. m., hora del Este de EE. UU. (ET).',
+      launchWeek: 'Semana de lanzamiento: Spy Talk el martes 8 de diciembre, Spy Sketch el viernes 11 de diciembre y Espía Mafia el sábado 12 de diciembre, siempre de 8 a 10 p. m., hora del Este de EE. UU. (ET).',
       /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
       shopMembers: (customPacks: boolean) =>
         `Crea tu propio avatar de espía y gana estilos nuevos jugando. La Tienda solo vende membresías, que desbloquean todos los paquetes${customPacks ? ' y te permiten crear los tuyos' : ''}: todo es opcional y nada cambia cómo se juega.`,

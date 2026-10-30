@@ -869,7 +869,7 @@ const id: Strings = {
         },
       ],
       more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, tautan undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
-      launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 10 November, Spy Sketch hari Jumat, 13 November, dan Mafia hari Sabtu, 14 November, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
+      launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 8 Desember, Spy Sketch hari Jumat, 11 Desember, dan Mafia hari Sabtu, 12 Desember, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
       /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
       shopMembers: (customPacks: boolean) =>
         `Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Toko hanya menjual keanggotaan, yang membuka semua paket${customPacks ? ' dan memungkinkanmu membuat paket sendiri' : ''}: semuanya opsional, dan tidak ada yang mengubah cara bermain.`,

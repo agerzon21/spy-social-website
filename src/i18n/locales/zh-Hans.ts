@@ -855,7 +855,7 @@ const zhHans: Strings = {
         },
       ],
       more: '另外还有玩家数据、可解锁的称号和边框、最高 100 级的等级与威望、短局也能拿经验值、手机休眠后顺畅回到游戏、一点就灵的邀请链接，以及全新的界面设计。',
-      launchWeek: '上线周：11 月 10 日（周二）Spy Talk、11 月 13 日（周五）Spy Sketch、11 月 14 日（周六）黑手党模式，均为美国东部时间晚上 8 点至 10 点。',
+      launchWeek: '上线周：12 月 8 日（周二）Spy Talk、12 月 11 日（周五）Spy Sketch、12 月 12 日（周六）黑手党模式，均为美国东部时间晚上 8 点至 10 点。',
       /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
       shopMembers: (customPacks: boolean) =>
         `打造你自己的卧底头像，并通过游戏赢得新造型。商店只出售会员，会员可解锁所有主题包${customPacks ? '，还能制作你自己的主题包' : ''}：全部可选，也都不会改变游戏玩法。`,

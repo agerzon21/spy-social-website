@@ -871,7 +871,7 @@ const fr: Strings = {
         },
       ],
       more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, de l'XP même pour les parties courtes, un retour en partie sans accroc quand ton téléphone se met en veille, des liens d'invitation qui marchent tout simplement, et un nouveau look sur chaque écran.",
-      launchWeek: "Semaine de lancement : Spy Talk le mardi 10 novembre, Spy Sketch le vendredi 13 novembre et Mafia le samedi 14 novembre, chaque fois de 20 h à 22 h, heure de l'Est américain (ET).",
+      launchWeek: "Semaine de lancement : Spy Talk le mardi 8 décembre, Spy Sketch le vendredi 11 décembre et Mafia le samedi 12 décembre, chaque fois de 20 h à 22 h, heure de l'Est américain (ET).",
       /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
       shopMembers: (customPacks: boolean) =>
         `Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. La boutique ne vend que des abonnements, qui débloquent tous les packs${customPacks ? ' et te permettent de créer les tiens' : ''}\u00A0: tout est facultatif, et rien ne change la façon de jouer.`,
