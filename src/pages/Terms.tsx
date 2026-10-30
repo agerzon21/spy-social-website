@@ -558,7 +558,7 @@ const Terms: React.FC = () => {
             that from then on comes only from Intercepts is taken back from the accounts that had it, except the Beta
             Pin and anything bought in a store, so that everyone gets these items the same way.
             {LIVE.intelLedger
-              ? " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the Intel you spent on items that are taken back is refunded; we publish this as incident I-1 on our transparency page."
+              ? " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded; we publish this as incident I-1 on our transparency page."
               : ' The items a membership includes, and the Intel you already got, stay.'}
             {LIVE.intelCorrections
               ? " We may take back unopened Intercepts given by mistake. We take back an item you've opened only when an incident we've published shows it was given in error, or a closed fair-play case shows it came from cheating; for a Unique this waits 24 hours, its number stays used and is never given to anyone else, and you can appeal within 30 days (an upheld appeal gives you back the same Unique). While a fair-play case is open, we may freeze a copy: it stays yours but can't be shredded or traded up. We never take an item from you to give it to someone else. Otherwise an item you've opened stays yours like the other items you've earned."
