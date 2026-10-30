@@ -3,7 +3,7 @@ import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { LIVE } from '../lib/legalRelease'
 
-// The Game Night rules (www.spysocial.app/game-night-rules): the weekly Game Night's official rules, in English
+// The Game Night rules (www.spysocial.app/game-night-rules): the Game Night's official rules, in English
 // like the other legal pages. The route, the footer's link and the sitemap entry exist only while
 // LIVE.gameNightRules is on (src/lib/legalRelease.ts). It says only what the server does (app repo
 // feat/gamenight-v2, server files 20261106100000-150000): up to four titles a night (the night's, the Local winner's,
@@ -12,24 +12,24 @@ import { LIVE } from '../lib/legalRelease'
 /**
  * The day this page's text was last changed: set it to the day the switch goes on, if later. LIVE.intercepts adds the
  * Intercepts paragraph and LIVE.membershipsOnly changes the no-purchase line: set their dates to the deploy day.
+ * October 30, 2026: joining is PLAY NOW on Home's Game Night card (titles under its trophy button); nights are the ones
+ * we announce, usually 8-10 PM ET, not every Friday.
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
 const UPDATED = LIVE.membershipsOnly
   ? 'November 2, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
-  : LIVE.intercepts
-    ? 'October 28, 2026' // the Intercepts paragraph (on since October 28, 2026)
-    : 'October 25, 2026'
+  : 'October 30, 2026' // joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
     <H2>What Game Night is</H2>
     <P>
-      Game Night is SpySocial's weekly online event: every Friday from 8 to 10 PM Eastern Time (unless we announce a
-      different day or time in the app). While it runs, the Home screen shows a Game Night banner. Tap it to be
+      Game Night is SpySocial's online event, held on the nights we announce in the app (usually from 8 to 10 PM
+      Eastern Time). While it runs, the Home screen shows a Game Night card. Press <B>PLAY NOW</B> on the card to be
       seated with other Game Night players. Tables start by themselves as players arrive: bigger tables first, and
-      smaller ones if not enough players are waiting. Each night has its own game and its own titles, shown on the
-      banner; a themed night (a holiday night, for example) may have themed titles.
+      smaller ones if not enough players are waiting. Each night has its own game and its own titles, shown under
+      the trophy button on the card; a themed night (a holiday night, for example) may have themed titles.
     </P>
 
     <H2>Who can take part</H2>
