@@ -113,6 +113,13 @@ export const AfterDeletionList = () => (
         they show Anonymous as their creator, and players who added them keep them.
       </ListItem>
     )}
+    {PRIVACY.intel && PRIVACY.intelLedger && (
+      <ListItem>
+        The lines of your Intel ledger{PRIVACY.intelCorrections ? ', and the records of any correction to it,' : ''} stay
+        for good with no link to you (we remove who they belonged to), so that totals and our published reports stay
+        right; the app version and platform in a line are dropped once it's 2 years old.
+      </ListItem>
+    )}
     <ListItem>Copies in our database backups are deleted as those backups expire, within 30 days.</ListItem>
   </UnorderedList>
 )

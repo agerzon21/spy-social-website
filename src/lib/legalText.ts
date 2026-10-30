@@ -22,7 +22,11 @@ export const deletedSummary = (): string =>
     namesAndPicture(),
     'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
     'your game-night history and rewards',
-    PRIVACY.intel ? 'your Intel, its history and your daily streak' : null,
+    PRIVACY.intel
+      ? PRIVACY.intelLedger
+        ? 'your Intel balance and daily streak, and the link between you and the lines of your Intel ledger'
+        : 'your Intel, its history and your daily streak'
+      : null,
     PRIVACY.intercepts ? 'your Intercepts and the items they gave you' : null,
     PRIVACY.customPacks
       ? PRIVACY.communityPacks

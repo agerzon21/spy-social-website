@@ -8,6 +8,8 @@ const ru: Strings = {
     description:
       'Соберите друзей и найдите шпиона — или обманите всех. Бесплатная мультиплеерная игра в реальном времени для 3–21 игрока. В App Store и Google Play.',
     titles: {
+      /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      transparency: "Отчёт о прозрачности",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Правила игрового вечера",
       faq: 'Поддержка и вопросы',
@@ -29,6 +31,7 @@ const ru: Strings = {
       notFound: 'Страница не найдена',
     },
     descriptions: {
+      transparency: "Каждый месяц: сколько разведданных в SpySocial выдано, потрачено и исправлено, все инциденты и все изменения правил. Без имён игроков.",
       gameNightRules: "Правила еженедельного игрового вечера SpySocial: когда он проходит, кто может участвовать, как получить титулы вечера и бонусный титул от разработчика.",
       faq: 'Ответы на частые вопросы о SpySocial: с чего начать, режимы игры, приглашения и вход в комнаты, языки, управление для хоста, аккаунт и решение проблем.',
       contact: 'Свяжитесь с командой SpySocial: напишите на support@spysocial.app, если нужна помощь с приложением, аккаунтом или чем-то ещё.',
@@ -60,6 +63,8 @@ const ru: Strings = {
   },
 
   footer: {
+    /** The link to the transparency page (LIVE.transparencyPage). */
+    transparency: "Прозрачность",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Правила вечера",
     tagline: 'Компанейская игра в обман и дедукцию.',

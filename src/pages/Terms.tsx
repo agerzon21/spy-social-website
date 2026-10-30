@@ -479,9 +479,23 @@ const Terms: React.FC = () => {
                 Intel is an earned currency: you get it only from playing (your games, and your first game of the day
                 and your daily streak, which you claim in the app) and from shredding spare copies of items. It can't be bought, and like every virtual
                 item it has no cash value and can't be sold, traded or moved to another account. For now there's
-                nothing to spend it on; we may add uses for it later, and the app will say what they are. Intel we add to
-                your account ourselves is locked and will never be tradable. We may change how much Intel games, streaks
-                and shredding give, and we may correct a balance that's wrong or was earned by cheating.
+                nothing to spend it on; we may add uses for it later, and the app will say what they are.
+                {LIVE.intelLedger ? (
+                  <>
+                    {' '}We may change how much Intel games, streaks and shredding give; a change counts from then on,
+                    never for Intel you already got. Every change to your Intel is a line in your Intel ledger with its
+                    reason: we never add or take Intel by hand, and we never change or delete a line.
+                    {LIVE.intelCorrections
+                      ? ' We correct Intel only in the ways described below.'
+                      : " If a balance is wrong or was earned by cheating, we correct it with a new line that says why."}
+                  </>
+                ) : (
+                  <>
+                    {' '}Intel we add to your account ourselves is locked and will never be tradable. We may change how
+                    much Intel games, streaks and shredding give, and we may correct a balance that's wrong or was earned
+                    by cheating.
+                  </>
+                )}
               </>
             ) : (
               <>
@@ -492,6 +506,26 @@ const Terms: React.FC = () => {
                 stays yours like the other items you've earned.
               </>
             )}
+          </ListItem>
+        )}
+        {/* LIVE.intelCorrections: Economy Integrity E1, the three corrections (see legalRelease). */}
+        {LIVE.intel && LIVE.intelCorrections && (
+          <ListItem>
+            We correct Intel in only three ways, each a new line in your Intel ledger with its reason. We reverse one
+            line, by exactly its amount: for example Intel paid twice for one game, a game we void, or a wrong price (if
+            you bought an item by mistake, the item goes back with the Intel). We refund a bug: we first publish what
+            happened, and the rule that works out each player's amount, as an incident on our{' '}
+            <PageLink to="/transparency">transparency page</PageLink>, then pay what the rule works out for you. Or we
+            take back the Intel that a closed fair-play case shows was earned by breaking our rules (for example farmed
+            games), and only the lines the case covers. When an outage we've announced affects players, we may also give
+            everyone it lists the same amount of Intel, which is locked and will never be tradable. A correction of more
+            than 500 Intel, or one that affects more than 5 players, waits 24 hours before it takes effect (a bug refund
+            or an outage's Intel doesn't wait: the published incident is the notice). If you've already spent Intel we
+            take back, your balance can go below 0: the Intel you earn next pays it back, and you can't spend Intel
+            until it's above 0 again. You can appeal a reversal or a fair-play take-back within 30 days by writing to{' '}
+            <SupportEmail />; if we uphold your appeal, we give back what it took. You can ask us there for the record of
+            any correction to your account. Each month we publish how much Intel was made, spent and corrected, counting
+            every correction without naming anyone.
           </ListItem>
         )}
         {/* LIVE.intercepts: Intercepts (the server's "crates"), earned only, odds shown (see legalRelease). */}
@@ -522,10 +556,13 @@ const Terms: React.FC = () => {
             everyone, Intercepts start fresh: every Intercept earned before then (for example while trying a test
             version of the app), with the copies, Uniques and trade-ups that came from them, is wiped, and every item
             that from then on comes only from Intercepts is taken back from the accounts that had it, except the Beta
-            Pin and anything bought in a store, so that everyone gets these items the same way. The items a membership
-            includes, and the Intel you already got, stay. We may take back Intercepts or items that were given by
-            mistake or earned by cheating; an item you've opened otherwise stays yours like the other items you've
-            earned.
+            Pin and anything bought in a store, so that everyone gets these items the same way.
+            {LIVE.intelLedger
+              ? " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the Intel you spent on items that are taken back is refunded; we publish this as incident I-1 on our transparency page."
+              : ' The items a membership includes, and the Intel you already got, stay.'}
+            {LIVE.intelCorrections
+              ? " We may take back unopened Intercepts given by mistake. We take back an item you've opened only when an incident we've published shows it was given in error, or a closed fair-play case shows it came from cheating; for a Unique this waits 24 hours, its number stays used and is never given to anyone else, and you can appeal within 30 days (an upheld appeal gives you back the same Unique). While a fair-play case is open, we may freeze a copy: it stays yours but can't be shredded or traded up. We never take an item from you to give it to someone else. Otherwise an item you've opened stays yours like the other items you've earned."
+              : " We may take back Intercepts or items that were given by mistake or earned by cheating; an item you've opened otherwise stays yours like the other items you've earned."}
           </ListItem>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}

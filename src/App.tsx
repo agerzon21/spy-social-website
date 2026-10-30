@@ -49,6 +49,7 @@ const Agree = page(() => import('./pages/Agree'))
 const Roadmap = page(() => import('./pages/Roadmap'))
 // The Game Night rules: the route exists only while LIVE.gameNightRules is on (off: the 404 page).
 const GameNightRules = page(() => import('./pages/GameNightRules'))
+const Transparency = page(() => import('./pages/Transparency'))
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
@@ -81,6 +82,7 @@ function App() {
               <Route path="/rules" element={<Layout><Rules /></Layout>} />
               {ONLINE_SAFETY_TEXT && <Route path="/safety" element={<Layout><Safety /></Layout>} />}
               {LIVE.gameNightRules && <Route path="/game-night-rules" element={<Layout><GameNightRules /></Layout>} />}
+              {LIVE.transparencyPage && <Route path="/transparency" element={<Layout><Transparency /></Layout>} />}
               <Route path="/child-safety" element={<Layout><ChildSafety /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />

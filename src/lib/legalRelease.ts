@@ -709,6 +709,45 @@ export const LIVE = {
    */
   intercepts: true,
   /**
+   * Economy Integrity E0 (app repo feat/economy-integrity, server file 20261202020000_intel_ledger_lock, applied live by
+   * the owner): no free-form Adjust Intel (owner_coins_adjust answers retired); the Intel ledger is append-only (no line
+   * edited or deleted, not even by us; the wallet is the ledger's sum); every line names its cause; an erased account's
+   * lines stay with no account (the profiles FK is ON DELETE SET NULL) and each line's client part (app api, build,
+   * platform) is dropped after 2 years; test Intel (test_grant) goes only to our own test accounts, locked. Turns on:
+   * Terms 9's Intel line (no Intel by hand, the ledger kept whole) and the Intercepts line's launch-reset sentence
+   * (shredding Intel from before the reset taken back, Intel spent on taken-back items refunded: WI, incident I-1;
+   * owner 2026-10-28), Privacy's Intel item (the ledger's client part and actor, kept for good without the account,
+   * the locked part), Data Retention, the deletion summary and After Deletion. POLICY FIRST: on the day E0 is applied;
+   * set its dates below to that day. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  intelLedger: false,
+  /**
+   * Economy Integrity E1 (server file 20261202030000_intel_corrections + Edge Function economy-mail): Intel is
+   * corrected only by reversing one ledger line, refunding a published bug incident, or a clawback a closed fair-play
+   * case covers (plus a make-good, the same locked amount to everyone an announced outage lists); over 500 Intel or 5
+   * players a correction waits 24 h; a clawback may leave a debt (below 0, paid back by what is earned next, nothing
+   * spent meanwhile); 30 days to appeal a reversal or a clawback; Uniques burned only for a published incident or a
+   * closed fair-play case (24 h wait, the number stays used, restored on an upheld appeal within 30 days), frozen during
+   * a case; every correction e-mailed to support@ through Resend (the account's username in it); a daily digest with
+   * each correction's blinded reference (HMAC of the line under the account's secret) and the monthly report on
+   * /transparency. Turns on: Terms 9's Intel corrections line and the Intercepts line's take-back sentence, Privacy's
+   * Intel Corrections item, the Resend item, Data Retention and After Deletion. POLICY FIRST: the day E1 is applied;
+   * set its dates below. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  intelCorrections: false,
+  /**
+   * The launch reset's Intel (WI, 20261201950000, Window W) ran: incident I-1 "Pre-launch Intercept Intel" is published
+   * (its summary is the database's economy_incidents row I-1, copied in src/lib/transparency.ts). Turns on I-1 in the
+   * transparency page's incidents. Set the day WI runs.
+   */
+  launchResetIncident: false,
+  /**
+   * The transparency page (/transparency): what the monthly report covers and when the first one comes, the incidents
+   * published so far, the rule changes. A skeleton until the first report (owner 2026-10-30: the first one on the 1st
+   * of the month after launch). Its route, footer link and sitemap entry exist only while this is on.
+   */
+  transparencyPage: true,
+  /**
    * The AI players ("spybots", the owner's own tool: .claude/handoff/scratchpad/tools/spybots, a Node program on the
    * developer's Mac that signs in as bot accounts and plays through the normal app server). Owner rule (launch-rule.mjs):
    * a bot plays only at a table where the owner is seated (his private rooms, and Play Online tables he sits at);
@@ -1013,6 +1052,10 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'November 2, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'November 2, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
+      : LIVE.intelCorrections
+      ? 'November 8, 2026' // Terms 9's Intel corrections and the Intercepts take-back line (E1): set to the day the site goes up with it on
+      : LIVE.intelLedger
+      ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
 
 /**
@@ -1033,6 +1076,10 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'November 2, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
     : LIVE.membershipsOnly
       ? 'November 2, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
+      : LIVE.intelCorrections
+      ? 'November 8, 2026' // Intel Corrections, Resend's copies to support@, the public digest (E1): set to the day the site goes up with it on
+      : LIVE.intelLedger
+      ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
 
 /**

@@ -37,6 +37,8 @@ function pageOf(path: string): PageKey | null {
     ...(ONLINE_SAFETY_TEXT ? { '/safety': 'safety' as const } : {}),
     // The Game Night rules' route exists only with LIVE.gameNightRules (App.tsx); without it, the 404 page.
     ...(LIVE.gameNightRules ? { '/game-night-rules': 'gameNightRules' as const } : {}),
+    // The transparency page's route exists only with LIVE.transparencyPage (App.tsx); without it, the 404 page.
+    ...(LIVE.transparencyPage ? { '/transparency': 'transparency' as const } : {}),
     '/privacy': 'privacy',
     '/terms': 'terms',
     '/child-safety': 'childSafety',

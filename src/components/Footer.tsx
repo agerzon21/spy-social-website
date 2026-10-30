@@ -66,6 +66,8 @@ const Footer = () => {
     { label: f.childSafety, to: '/child-safety' },
     ...(ONLINE_SAFETY_TEXT ? [{ label: f.safety, to: '/safety' }] : []),
     { label: f.deleteAccount, to: '/delete-account' },
+    // The transparency report (LIVE.transparencyPage).
+    ...(LIVE.transparencyPage ? [{ label: f.transparency, to: '/transparency' }] : []),
   ]
 
   return (

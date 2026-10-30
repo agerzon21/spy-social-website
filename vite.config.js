@@ -6,12 +6,13 @@ import react from '@vitejs/plugin-react';
 const ORIGIN = 'https://www.spysocial.app';
 /**
  * Pages that join sitemap.xml only while their switch in src/lib/legalRelease.ts's LIVE is on (their routes work
- * either way): the roadmap with LIVE.roadmap; the Game Night rules with LIVE.gameNightRules (that route exists only
- * while it's on). public/sitemap.xml lists every other page.
+ * either way): the roadmap with LIVE.roadmap; the Game Night rules with LIVE.gameNightRules and the transparency page
+ * with LIVE.transparencyPage (those routes exist only while they're on). public/sitemap.xml lists every other page.
  */
 const SWITCHED_PAGES = [
     { path: '/roadmap', live: 'roadmap' },
     { path: '/game-night-rules', live: 'gameNightRules' },
+    { path: '/transparency', live: 'transparencyPage' },
 ];
 /**
  * One of the site's own modules as the source has it now (a .ts file with no imports: legalRelease.ts,

@@ -8,6 +8,8 @@ const ar: Strings = {
     description:
       'اجمعوا أصدقاءكم واكشفوا الجاسوس، أو اخدعوا الجميع. لعبة سهرات مجانية متعددة اللاعبين في الوقت الفعلي لـ 3–21 لاعبًا. متوفرة على iOS وGoogle Play.',
     titles: {
+      /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      transparency: "تقرير الشفافية",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "قواعد ليلة اللعب",
       faq: 'الدعم والأسئلة الشائعة',
@@ -29,6 +31,7 @@ const ar: Strings = {
       notFound: 'الصفحة غير موجودة',
     },
     descriptions: {
+      transparency: "كل شهر: كم من Intel كُسب وأُنفق وصُحّح في SpySocial، وكل حادثة وكل تغيير في القواعد، دون ذكر اسم أي لاعب.",
       gameNightRules: "قواعد ليلة اللعب الأسبوعية في SpySocial: موعدها، ومن يمكنه المشاركة، وكيف تحصل على ألقاب الليلة، واللقب الإضافي من المطوّر.",
       faq: 'إجابات عن الأسئلة الشائعة حول SpySocial: البدء، وأنماط اللعب، ومشاركة الغرف والانضمام إليها، واللغات، وأدوات المضيف، وحسابك، وحل المشكلات.',
       contact: 'التواصل مع فريق SpySocial: يمكنك مراسلتنا على support@spysocial.app للحصول على المساعدة في التطبيق أو حسابك أو أي أمر آخر.',
@@ -60,6 +63,8 @@ const ar: Strings = {
   },
 
   footer: {
+    /** The link to the transparency page (LIVE.transparencyPage). */
+    transparency: "الشفافية",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "قواعد ليلة اللعب",
     tagline: 'لعبة الخداع الاجتماعي للسهرات.',

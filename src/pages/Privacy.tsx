@@ -177,10 +177,36 @@ const Privacy: React.FC = () => {
             {PRIVACY.intercepts ? ' and your streak' : ', your streak and the items you choose'}, to show them to you in the app, and to check that Intel is earned
             fairly.
             {PRIVACY.intercepts &&
-              ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).'}{' '}
+              (PRIVACY.intelLedger
+                ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel that will never be tradable: Intel we give everyone an announced outage affected, or test Intel on our own test accounts).'
+                : ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).')}
+            {PRIVACY.intelLedger &&
+              " Each line of your Intel history (your Intel ledger) also records who caused it (a game, you, or us), when, and the app version and platform it came from, so that we can find everyone a bug affected. Lines are only ever added: we never change or delete one."}{' '}
             Other players never see your Intel or your streak, and we look at Intel only as totals across all
-            players{PRIVACY.intercepts ? '' : ' (for example to set prices)'}. It's kept with your account and deleted with it, and it doesn't leave
-            our servers.
+            players{PRIVACY.intercepts ? '' : ' (for example to set prices)'}.
+            {PRIVACY.intelLedger
+              ? " Your balance and streak are deleted with your account. The lines of your Intel ledger are kept for good, so that the totals stay right and can be checked: when you delete your account, we remove who they belonged to, and we drop the app version and platform from lines more than 2 years old. None of it leaves our servers."
+              : " It's kept with your account and deleted with it, and it doesn't leave our servers."}
+          </Item>
+        )}
+        {/* LIVE.intelCorrections: Economy Integrity E1, Intel corrections (legalRelease). */}
+        {PRIVACY.intel && PRIVACY.intelCorrections && (
+          <Item label="Intel Corrections">
+            We correct Intel only by reversing one line of a player's Intel ledger, refunding a bug we've published as an
+            incident, taking back what a closed fair-play case covers, or giving everyone an announced outage affected the
+            same Intel (see our <ChakraLink as={Link} to="/terms">Terms</ChakraLink>, section 9), and we take back a Unique only
+            for a published incident or a closed fair-play case. For each correction we keep: its kind, the amount, the
+            accounts and ledger lines it covers, its reason, its evidence (the line it reverses, the incident, or the
+            fair-play case), our moderator's private note, who proposed and approved it and when, whether it waited 24
+            hours or was cancelled, any appeal, and a fingerprint (a SHA-256 hash) of the record. A copy of each correction,
+            with that fingerprint and the username of the account it affects, is e-mailed to our own support inbox through
+            Resend, so a record can be checked against a copy we can't change later. A fair-play case we open for a
+            correction is kept like any other report. We publish, every day and in our monthly transparency report, each
+            correction's kind, amount, reason and day, its incident or the category of its case, and a code made from the
+            ledger line and a secret only your account holds: your app can show that a line is yours, but nobody else
+            can link it to you, your username or your other items. We never publish who was corrected, a balance or a
+            history, or what a case found; any number covering fewer than 5 players shows as "fewer than 5". Correction
+            records are kept for good; when an account is deleted, we remove who they belonged to.
           </Item>
         )}
         {/* LIVE.intercepts: Intercepts (the server's "crates"), earned only (legalRelease). */}
@@ -693,7 +719,11 @@ const Privacy: React.FC = () => {
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests after a day.
-        {PRIVACY.intel ? ' Your Intel, its history and your daily streak are kept for as long as you have an account.' : ''}
+        {PRIVACY.intel
+          ? PRIVACY.intelLedger
+            ? ` Your Intel balance and daily streak are kept for as long as you have an account, and the lines of your Intel ledger${PRIVACY.intelCorrections ? ' and the records of corrections' : ''} for good (with no link to you once you delete your account; the app version and platform in a line for 2 years).`
+            : ' Your Intel, its history and your daily streak are kept for as long as you have an account.'
+          : ''}
         {PRIVACY.intercepts ? ' Your Intercepts and what they gave you are kept for as long as you have an account.' : ''}
         {PRIVACY.customPacks
           ? ` Your custom packs${PRIVACY.communityPacks ? ', your ratings and the Community Packs you added' : ''} are kept until you delete them or your account.${PRIVACY.communityPacks ? ' The record of a pack\'s review, and reports about a pack (with the pack as it was), are kept as long as we keep reports.' : ''}`
@@ -804,7 +834,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail), so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">

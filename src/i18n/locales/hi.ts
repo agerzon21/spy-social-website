@@ -8,6 +8,8 @@ const hi: Strings = {
     description:
       'दोस्तों को जुटाएँ और जासूस को ढूँढें, या सबको झाँसा दें। 3–21 खिलाड़ियों का मुफ़्त रियल-टाइम मल्टीप्लेयर पार्टी गेम। iOS और Google Play पर उपलब्ध।',
     titles: {
+      /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      transparency: "पारदर्शिता रिपोर्ट",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "गेम नाइट के नियम",
       faq: 'सहायता और सवाल-जवाब',
@@ -29,6 +31,7 @@ const hi: Strings = {
       notFound: 'पेज नहीं मिला',
     },
     descriptions: {
+      transparency: "हर महीने: SpySocial में कितना Intel मिला, खर्च हुआ और ठीक किया गया, हर घटना और नियमों का हर बदलाव, किसी खिलाड़ी का नाम लिए बिना।",
       gameNightRules: "SpySocial की साप्ताहिक गेम नाइट के नियम: यह कब होती है, कौन हिस्सा ले सकता है, रात के टाइटल कैसे मिलते हैं और डेवलपर का बोनस टाइटल।",
       faq: 'SpySocial के आम सवालों के जवाब: शुरुआत कैसे करें, गेम मोड, रूम शेयर करना और उससे जुड़ना, भाषाएँ, होस्ट के कंट्रोल, आपका अकाउंट और समस्याओं का हल।',
       contact: 'SpySocial टीम से संपर्क करें: ऐप, अपने अकाउंट या किसी और चीज़ में मदद के लिए support@spysocial.app पर ईमेल करें।',
@@ -60,6 +63,8 @@ const hi: Strings = {
   },
 
   footer: {
+    /** The link to the transparency page (LIVE.transparencyPage). */
+    transparency: "पारदर्शिता",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "गेम नाइट के नियम",
     tagline: 'झाँसे और शक का पार्टी गेम।',
