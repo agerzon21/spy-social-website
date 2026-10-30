@@ -12,14 +12,12 @@ import { LIVE } from '../lib/legalRelease'
 /**
  * The day this page's text was last changed: set it to the day the switch goes on, if later. LIVE.intercepts adds the
  * Intercepts paragraph and LIVE.membershipsOnly changes the no-purchase line: set their dates to the deploy day.
- * October 30, 2026: joining is PLAY NOW on Home's Game Night card (titles under its trophy button); nights are the ones
+ * October 30, 2026: the no-purchase line names memberships only (LIVE.membershipsOnly on); joining is PLAY NOW on Home's Game Night card (titles under its trophy button); nights are the ones
  * we announce, usually 8-10 PM ET, not every Friday.
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
-const UPDATED = LIVE.membershipsOnly
-  ? 'December 7, 2026' // the no-purchase line names memberships only: set to the day the site goes up with it on
-  : 'October 30, 2026' // joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
+const UPDATED = 'October 30, 2026' // the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>

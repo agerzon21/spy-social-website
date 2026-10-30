@@ -637,13 +637,15 @@ export const LIVE = {
    * section 9's celebrations bullet (no "sold one by one"); Privacy's Purchases item and deletedSummary (memberships
    * only); the Safety page's parents line; the Game Night rules' no-purchase line. (The Roadmap's Shop card and the home
    * page's closing line, no legal text, say memberships only already: fix/membership-only, 2026-10-30.) The Terms' and the Safety page's text sits inside LIVE.purchases (and the celebrations bullet
-   * inside avatarsLive), so before the launch only Privacy, the Game Night rules and the Roadmap show it. Flip when
-   * store_products sells only the three memberships on the live server (the v8 Window W switches, Mon Dec 7: those three live, the
-   * other 19 draft, the mask included), whatever app a player has, and set PRIVACY_LAST_UPDATED, the Game Night rules'
-   * UPDATED and (once LIVE.purchases is on) LEGAL_LAST_UPDATED to that day. Not ahead-safe (it says we sell less): a
-   * server fact for every app version at once, set in LIVE, never in PRIVACY_AHEAD.
+   * inside avatarsLive), so before the launch only Privacy, the Game Night rules and the Roadmap show it. On since
+   * 2026-10-30 (fix/membership-only; owner's standing OK for policy updates, coordinator's decision): no item is sold
+   * for money today (the released app has no buying, LIVE.purchases is off) and from the launch only the three
+   * memberships are, so "only memberships are sold" is true now; it no longer waits for the v8 Window W switches (Mon
+   * Dec 7). PRIVACY_LAST_UPDATED and the Game Night rules' UPDATED moved to October 30, 2026; LEGAL_LAST_UPDATED moves
+   * only when LIVE.purchases goes on (the Terms' and the Safety page's memberships text is inside it). Not ahead-safe
+   * (it says we sell less): a server fact for every app version at once, set in LIVE, never in PRIVACY_AHEAD.
    */
-  membershipsOnly: false,
+  membershipsOnly: true,
   /**
    * Intercepts (app repo feat/crates-server, server file 20261127000000_crates.sql, "crates" in code; app
    * feat/intercepts-client; owner 2026-10-25): sealed containers earned only by playing, each opening into one random
@@ -1052,7 +1054,7 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     : LIVE.passwordless
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
-      ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
+      ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
       : LIVE.intelCorrections
       ? 'October 30, 2026' // Terms 9's Intel corrections and the Intercepts take-back line (E1), and Terms 9's no-Intel-by-hand line and the reset's Intel (E0, WI): the site went up with both on
       : LIVE.intelLedger
@@ -1076,7 +1078,7 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
     : LIVE.membershipsOnly
-      ? 'December 7, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
+      ? 'October 30, 2026' // Purchases and the deletion summary: memberships only (Privacy shows purchases ahead): the site went up with it on
       : LIVE.intelCorrections
       ? 'October 30, 2026' // Intel Corrections, Resend's copies to support@, the public digest (E1), and the Intel ledger kept for good without the account (E0): the site went up with both on; the same day, Usage Data's Beta Pin dates moved with the launch (December 8, 2026; accounts created before December 7, 2026)
       : LIVE.intelLedger
