@@ -31,8 +31,6 @@ const LAUNCH_DAY = 'December 8, 2026'
 const FEATURE_ICONS: IconType[] = [FaGlobe, FaPencil, FaLanguage, FaUserSecret, FaMoon, FaPalette, FaTicket, FaMusic, FaStopwatch, FaShieldHalved]
 /** The Game nights card's position: it names the launch-week nights once LIVE.launchGameNights is on (roadmap.now.launchWeek). */
 const GAME_NIGHTS_CARD = 4
-/** The Shop card's position: its text says only memberships are sold once LIVE.membershipsOnly is on (roadmap.now.shopMembers). */
-const SHOP_CARD = 3
 const PLAN_ICONS: IconType[] = [FaRankingStar, FaMedal, FaTrophy]
 
 /**
@@ -79,11 +77,7 @@ const Roadmap = () => {
                 {r.now.features.map((feature, i) => {
                   const Icon = FEATURE_ICONS[i] ?? FaGlobe
                   const text =
-                    i === GAME_NIGHTS_CARD && LIVE.launchGameNights
-                      ? `${feature.text} ${r.now.launchWeek}`
-                      : i === SHOP_CARD && LIVE.membershipsOnly
-                        ? r.now.shopMembers(LIVE.customPacks)
-                        : feature.text
+                    i === GAME_NIGHTS_CARD && LIVE.launchGameNights ? `${feature.text} ${r.now.launchWeek}` : feature.text
                   return (
                     <li key={feature.title} className={s.feature}>
                       <DisplayHeading as="h3" size={4} className={s.featureTitle}>

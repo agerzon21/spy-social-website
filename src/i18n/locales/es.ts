@@ -259,9 +259,8 @@ const es: Strings = {
     final: {
       title: 'Tu mesa te espera',
       text: 'Gratis y sin anuncios.',
-      purchases: 'Paquetes opcionales si quieres más lugares y palabras.',
-      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
-      purchasesMembers: 'Membresías opcionales si quieres más lugares y palabras.',
+      /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
+      purchases: 'Membresías opcionales si quieres más lugares y palabras.',
     },
   },
 
@@ -841,7 +840,7 @@ const es: Strings = {
         },
         {
           title: 'Tu agente y la Tienda',
-          text: 'Crea tu propio avatar de espía. En la Tienda hay paquetes, membresías, artículos de avatar y celebraciones: todo es opcional y nada cambia cómo se juega.',
+          text: "Crea tu propio avatar de espía y gana estilos nuevos jugando. La Tienda solo vende membresías, que desbloquean todos los paquetes y te permiten crear los tuyos: todo es opcional y nada cambia cómo se juega.",
         },
         { title: 'Noches de juegos', text: 'Partidas en línea programadas. Toca «Recordarme» y te avisaremos antes de que empiecen.' },
         {
@@ -867,9 +866,6 @@ const es: Strings = {
       ],
       more: 'Y además: estadísticas, títulos y marcos para desbloquear, niveles hasta el 100 con prestigio, XP también en las partidas cortas, volver a la partida sin tropiezos aunque el teléfono entre en reposo, enlaces de invitación que simplemente funcionan y un nuevo aspecto en cada pantalla.',
       launchWeek: 'Semana de lanzamiento: Spy Talk el martes 8 de diciembre, Spy Sketch el viernes 11 de diciembre y Espía Mafia el sábado 12 de diciembre, siempre de 8 a 10 p. m., hora del Este de EE. UU. (ET).',
-      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
-      shopMembers: (customPacks: boolean) =>
-        `Crea tu propio avatar de espía y gana estilos nuevos jugando. La Tienda solo vende membresías, que desbloquean todos los paquetes${customPacks ? ' y te permiten crear los tuyos' : ''}: todo es opcional y nada cambia cómo se juega.`,
     },
     next: {
       status: 'Planeado',

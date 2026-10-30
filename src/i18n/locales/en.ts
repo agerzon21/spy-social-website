@@ -298,9 +298,8 @@ const en = {
     final: {
       title: 'Your table is waiting',
       text: 'Free to play, no ads.',
-      purchases: 'Optional packs if you want more places and words.',
-      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
-      purchasesMembers: 'Optional memberships if you want more places and words.',
+      /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
+      purchases: 'Optional memberships if you want more places and words.',
     },
   },
 
@@ -896,7 +895,7 @@ const en = {
         },
         {
           title: 'Your agent and the Shop',
-          text: 'Build your own spy avatar. The Shop has packs, memberships, avatar items and celebrations: all optional, and none of it changes how the game plays.',
+          text: "Build your own spy avatar, and earn new looks by playing. The Shop sells only memberships, which unlock every pack and let you make your own: all optional, and none of it changes how the game plays.",
         },
         { title: 'Game nights', text: "Scheduled online games. Tap Remind Me and we'll remind you before they start." },
         {
@@ -925,9 +924,6 @@ const en = {
       /** Added to the Game nights card once LIVE.launchGameNights is on (owner to OK the days first). If a day or
        * hour changes, change it in all 10 languages. */
       launchWeek: 'Launch week: Spy Talk on Tuesday, December 8, Spy Sketch on Friday, December 11, and Spy Mafia on Saturday, December 12, each from 8 to 10 PM ET.',
-      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
-      shopMembers: (customPacks: boolean) =>
-        `Build your own spy avatar, and earn new looks by playing. The Shop sells only memberships, which unlock every pack${customPacks ? ' and let you make your own' : ''}: all optional, and none of it changes how the game plays.`,
     },
     next: {
       /** A stamp: these are plans. */

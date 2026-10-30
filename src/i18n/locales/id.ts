@@ -259,9 +259,8 @@ const id: Strings = {
     final: {
       title: 'Mejamu menanti',
       text: 'Gratis dimainkan, tanpa iklan.',
-      purchases: 'Paket opsional kalau kamu mau lebih banyak lokasi dan kata.',
-      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
-      purchasesMembers: 'Keanggotaan opsional kalau kamu mau lebih banyak lokasi dan kata.',
+      /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
+      purchases: 'Keanggotaan opsional kalau kamu mau lebih banyak lokasi dan kata.',
     },
   },
 
@@ -844,7 +843,7 @@ const id: Strings = {
         },
         {
           title: 'Agenmu dan Toko',
-          text: 'Buat avatar mata-matamu sendiri. Di Toko ada paket, keanggotaan, item avatar, dan selebrasi: semuanya opsional, dan tidak ada yang mengubah cara bermain.',
+          text: "Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Toko hanya menjual keanggotaan, yang membuka semua paket dan memungkinkanmu membuat paket sendiri: semuanya opsional, dan tidak ada yang mengubah cara bermain.",
         },
         { title: 'Event', text: 'Permainan online terjadwal. Ketuk “Ingatkan aku” dan kami akan mengingatkanmu sebelum dimulai.' },
         {
@@ -870,9 +869,6 @@ const id: Strings = {
       ],
       more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, tautan undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
       launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 8 Desember, Spy Sketch hari Jumat, 11 Desember, dan Mafia hari Sabtu, 12 Desember, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
-      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
-      shopMembers: (customPacks: boolean) =>
-        `Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Toko hanya menjual keanggotaan, yang membuka semua paket${customPacks ? ' dan memungkinkanmu membuat paket sendiri' : ''}: semuanya opsional, dan tidak ada yang mengubah cara bermain.`,
     },
     next: {
       status: 'Direncanakan',

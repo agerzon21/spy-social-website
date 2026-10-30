@@ -257,9 +257,8 @@ const zhHans: Strings = {
     final: {
       title: '就等你入座',
       text: '免费畅玩，没有广告。',
-      purchases: '想要更多地点和词语，可以选购主题包。',
-      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
-      purchasesMembers: '想要更多地点和词语，可以选购会员。',
+      /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
+      purchases: '想要更多地点和词语，可以选购会员。',
     },
   },
 
@@ -833,7 +832,7 @@ const zhHans: Strings = {
         { title: '自动翻译', text: '在大厅和游戏中聊天，支持 10 种语言：其他语言的消息一到，就会翻译成你的语言。Spy Talk 的回答会连同问题一起翻译，意思不走样。' },
         {
           title: '你的特工和商店',
-          text: '打造你自己的卧底头像。商店里有主题包、会员、头像物品和庆祝动画：全部可选，也都不会改变游戏玩法。',
+          text: "打造你自己的卧底头像，并通过游戏赢得新造型。商店只出售会员，会员可解锁所有主题包，还能制作你自己的主题包：全部可选，也都不会改变游戏玩法。",
         },
         { title: '活动', text: '定时举办的在线游戏。点击“提醒我”，开始前我们会提醒你。' },
         {
@@ -856,9 +855,6 @@ const zhHans: Strings = {
       ],
       more: '另外还有玩家数据、可解锁的称号和边框、最高 100 级的等级与威望、短局也能拿经验值、手机休眠后顺畅回到游戏、一点就灵的邀请链接，以及全新的界面设计。',
       launchWeek: '上线周：12 月 8 日（周二）Spy Talk、12 月 11 日（周五）Spy Sketch、12 月 12 日（周六）黑手党模式，均为美国东部时间晚上 8 点至 10 点。',
-      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
-      shopMembers: (customPacks: boolean) =>
-        `打造你自己的卧底头像，并通过游戏赢得新造型。商店只出售会员，会员可解锁所有主题包${customPacks ? '，还能制作你自己的主题包' : ''}：全部可选，也都不会改变游戏玩法。`,
     },
     next: {
       status: '计划中',

@@ -258,9 +258,8 @@ const fr: Strings = {
     final: {
       title: "Ta table t'attend",
       text: 'Gratuit, sans pub.',
-      purchases: "Des packs en option si tu veux plus de lieux et de mots.",
-      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
-      purchasesMembers: 'Des abonnements en option si tu veux plus de lieux et de mots.',
+      /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
+      purchases: 'Des abonnements en option si tu veux plus de lieux et de mots.',
     },
   },
 
@@ -843,7 +842,7 @@ const fr: Strings = {
         },
         {
           title: 'Ton agent et la boutique',
-          text: "Crée ton propre avatar d'espion. La boutique propose des packs, des abonnements, des objets d'avatar et des célébrations : tout est facultatif, et rien ne change la façon de jouer.",
+          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. La boutique ne vend que des abonnements, qui débloquent tous les packs et te permettent de créer les tiens\u00A0: tout est facultatif, et rien ne change la façon de jouer.",
         },
         {
           title: 'Soirées jeux',
@@ -872,9 +871,6 @@ const fr: Strings = {
       ],
       more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, de l'XP même pour les parties courtes, un retour en partie sans accroc quand ton téléphone se met en veille, des liens d'invitation qui marchent tout simplement, et un nouveau look sur chaque écran.",
       launchWeek: "Semaine de lancement : Spy Talk le mardi 8 décembre, Spy Sketch le vendredi 11 décembre et Mafia le samedi 12 décembre, chaque fois de 20 h à 22 h, heure de l'Est américain (ET).",
-      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
-      shopMembers: (customPacks: boolean) =>
-        `Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. La boutique ne vend que des abonnements, qui débloquent tous les packs${customPacks ? ' et te permettent de créer les tiens' : ''}\u00A0: tout est facultatif, et rien ne change la façon de jouer.`,
     },
     next: {
       status: 'Prévu',

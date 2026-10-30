@@ -635,8 +635,8 @@ export const LIVE = {
    * 2026-10-25), so nobody loses anything. Turns on: the Terms' buying section as "Buying a membership" (only
    * memberships are sold, what one unlocks; no "a pack you buy" or "an avatar item you buy"), section 3's guest line and
    * section 9's celebrations bullet (no "sold one by one"); Privacy's Purchases item and deletedSummary (memberships
-   * only); the Safety page's parents line; the Game Night rules' no-purchase line; the Roadmap's Shop card and the home
-   * page's closing line. The Terms' and the Safety page's text sits inside LIVE.purchases (and the celebrations bullet
+   * only); the Safety page's parents line; the Game Night rules' no-purchase line. (The Roadmap's Shop card and the home
+   * page's closing line, no legal text, say memberships only already: fix/membership-only, 2026-10-30.) The Terms' and the Safety page's text sits inside LIVE.purchases (and the celebrations bullet
    * inside avatarsLive), so before the launch only Privacy, the Game Night rules and the Roadmap show it. Flip when
    * store_products sells only the three memberships on the live server (the v8 Window W switches, Mon Dec 7: those three live, the
    * other 19 draft, the mask included), whatever app a player has, and set PRIVACY_LAST_UPDATED, the Game Night rules'
