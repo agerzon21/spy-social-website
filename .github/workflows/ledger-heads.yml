@@ -1,0 +1,43 @@
+# The minted-collectibles ledger's daily witness: commits each day's head (the app's 00:00 UTC checkpoint) to
+# public/ledger/heads.csv in this public repository, and the rules' SQL of each new fingerprint next to it. Git's
+# history is the timestamp; the push deploys the site (spysocial.app/ledger reads the file). No secret is needed: the
+# ledger is public. Before the ledger exists the run does nothing.
+name: ledger-heads
+
+on:
+  schedule:
+    - cron: '20 0 * * *'   # 00:20 UTC: after the 00:00 checkpoint and the 00:15 Wayback save
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ledger-heads
+  cancel-in-progress: false
+
+jobs:
+  witness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Read the ledger's day heads
+        env:
+          LEDGER_URL: ${{ vars.LEDGER_URL || 'https://ajobkfasquywiawjfdxg.supabase.co/functions/v1/ledger' }}
+        run: node scripts/ledger-heads.mjs
+      - name: Commit any new head
+        run: |
+          if git diff --quiet -- public/ledger && [ -z "$(git ls-files --others --exclude-standard public/ledger)" ]; then
+            echo "nothing new"; exit 0
+          fi
+          git config user.name "spysocial-ledger"
+          git config user.email "ledger@users.noreply.github.com"
+          git add public/ledger
+          git commit -m "Ledger head $(tail -1 public/ledger/heads.csv | cut -d, -f1): $(tail -1 public/ledger/heads.csv | cut -d, -f2,3)"
+          git push origin HEAD:main

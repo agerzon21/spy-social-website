@@ -709,6 +709,25 @@ export const LIVE = {
    */
   intercepts: true,
   /**
+   * Minted collectibles and the public ledger (app repo feat/minting: 20261202200000_mint_ledger, genesis
+   * 20261202300000 at the launch hour; owner 2026-10-29 / 30). Every Game Night title, the Beta Pin, Field Tester and
+   * every Intercept item is minted: a copy with its own number (every copy, commons too), the rule it was earned under
+   * and its evidence (the night and game, the tester list, the Intercept or trade-up); the database refuses a copy
+   * outside its window or without its evidence, whoever asks, and a closed collectible never mints again. Every mint,
+   * burn (shred, trade-up, a correction for cheating or an error, a revoke) and retirement (account deleted) is a row
+   * of a hash chain; the 00:00 UTC checkpoint's hash (supply + the rules' fingerprint) is the day's head, committed to
+   * this repository (public/ledger/heads.csv, by .github/workflows/ledger-heads.yml) and saved to the Wayback Machine;
+   * spysocial.app/ledger shows the supply and recomputes the chain. Holders are per-copy tags (HMAC of the copy id
+   * under a random secret per account, deleted with it): never an account id or a name. Stored per copy (with the
+   * account, private): the account, the tag, the age band when held (under 18 / adult / unknown, from the declared birth
+   * year), earned and minted times, the evidence ids (game, night, Intercept, trade-up, the tester list's reasons),
+   * burns with their reason and evidence; the ledger rows are kept for good (a deleted account's tags then point at
+   * nobody). No new provider: GitHub and the Internet Archive get only the day's head hash (no personal data). Turns
+   * on: the /ledger route; the Terms' section 9 collectibles bullet; Privacy's Collectibles item and its retention
+   * line. Not ahead-safe (a server fact from genesis): set in LIVE at the launch hour, with both dates moved (below).
+   */
+  mintedCollectibles: false,
+  /**
    * The AI players ("spybots", the owner's own tool: .claude/handoff/scratchpad/tools/spybots, a Node program on the
    * developer's Mac that signs in as bot accounts and plays through the normal app server). Owner rule (launch-rule.mjs):
    * a bot plays only at a table where the owner is seated (his private rooms, and Play Online tables he sits at);
@@ -1007,6 +1026,8 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  */
 export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.mintedCollectibles
+    ? 'November 10, 2026' // minted collectibles (Terms 9): set to the launch day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
     : LIVE.passwordless
@@ -1023,6 +1044,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
  */
 export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.mintedCollectibles
+    ? 'November 10, 2026' // the Collectibles item: set to the launch day the site goes up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // the Ranked item: set to the day the site goes up with it on
     : creatorShortLive(LIVE)

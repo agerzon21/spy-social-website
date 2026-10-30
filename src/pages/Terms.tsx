@@ -528,6 +528,23 @@ const Terms: React.FC = () => {
             earned.
           </ListItem>
         )}
+        {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
+        {LIVE.mintedCollectibles && (
+          <ListItem>
+            Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept are
+            minted collectibles. Each copy has its own number and a record of how it was earned (for example the
+            Game Night and the game, or the Intercept or trade-up it came from), and a copy can be made only by its
+            stated rule, inside its window. Once a collectible's window closes, no more copies of it are ever made,
+            by anyone, us included. Every copy, and what happens to it later (a shred, a trade-up, a correction), is
+            written to a public ledger at <PageLink to="/ledger">spysocial.app/ledger</PageLink>, which shows each
+            holder only as a code that is different on every copy, never by name. Each day's fingerprint of the
+            ledger is published where we can't change it (a public GitHub repository and the Internet Archive), so
+            anyone can check that no copy was added, changed or removed afterwards. Like every virtual item,
+            collectibles have no cash value. We take back a copy only if it was earned by cheating, issued by
+            mistake, or taken back as a moderation action; the ledger then shows that it was taken back and why
+            (never who held it), and if we restore it after an appeal it comes back with the same number.
+          </ListItem>
+        )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}
         {LIVE.tournaments && (
           <ListItem>

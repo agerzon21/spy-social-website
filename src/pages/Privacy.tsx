@@ -210,6 +210,22 @@ const Privacy: React.FC = () => {
             problem). It's kept with your account and deleted with it, and it doesn't leave our servers.
           </Item>
         )}
+        {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
+        {PRIVACY.mintedCollectibles && (
+          <Item label="Collectibles and the public ledger">
+            Game Night titles, the Beta Pin, the Field Tester title and every item from an Intercept are minted: each
+            copy has its own number. For each copy you get, our servers keep your account, the copy's holder code,
+            when it was earned and when it was minted, how it was earned (the Game Night and game, the Intercept or
+            trade-up, or the beta tester list and why you're on it), whether it was shredded, traded up or taken back
+            and why, and whether you were under 18, an adult or of unknown age when you got it (from the birth year
+            you gave us). We use this to give you your collectibles, to show how each was earned, to check that they
+            are earned fairly, and to keep the public ledger. The public ledger (spysocial.app/ledger) lists every
+            copy and what happened to it, but never your account, username or name: each copy's holder appears only
+            as a code made from that copy and a secret kept for your account, so two of your copies never share a
+            code and nobody else can link them to you or to each other. Each day only a fingerprint of the ledger is
+            sent to GitHub and the Internet Archive, with no personal data in it.
+          </Item>
+        )}
         {/* LIVE.customPacks (members' own packs), with communityPacks and featuredPacks (legalRelease). */}
         {PRIVACY.customPacks && (
           <Item label={PRIVACY.communityPacks ? 'Custom Packs and Community Packs' : 'Custom Packs'}>
@@ -695,6 +711,9 @@ const Privacy: React.FC = () => {
         account emails and sign-up requests after a day.
         {PRIVACY.intel ? ' Your Intel, its history and your daily streak are kept for as long as you have an account.' : ''}
         {PRIVACY.intercepts ? ' Your Intercepts and what they gave you are kept for as long as you have an account.' : ''}
+        {PRIVACY.mintedCollectibles
+          ? ' The public ledger\'s entries are kept for good, so that it can always be checked; when you delete your account we delete its secret and remove your account from your copies\' records, so the holder codes on them no longer point at anyone.'
+          : ''}
         {PRIVACY.customPacks
           ? ` Your custom packs${PRIVACY.communityPacks ? ', your ratings and the Community Packs you added' : ''} are kept until you delete them or your account.${PRIVACY.communityPacks ? ' The record of a pack\'s review, and reports about a pack (with the pack as it was), are kept as long as we keep reports.' : ''}`
           : ''}
