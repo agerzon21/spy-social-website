@@ -289,6 +289,26 @@ export const LIVE = {
    * server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD (see AHEAD_SAFE).
    */
   openAiTranslation: true,
+  /**
+   * Translation v3 (app feat/translate-v3, server 20261201999000_translate_send_time, owner 2026-10-30): a chat,
+   * lobby or Q&A line is translated by OpenAI when it is SENT (app_config translation_send {"enabled": true}: the
+   * database asks the new translate-send function for the app languages of the line's other readers who agreed to
+   * OpenAI's note), not only when a reader's app asks; the same text, context lines, names and languages, the same
+   * age (16+) and own-yes rule per line, the same 24-hour cache. And Microsoft is OFF for messages
+   * (app_config translation_secrets_engine "none", the default): a line OpenAI may not take (an author under 16, with
+   * no declared age, or who didn't agree; an app that never named OpenAI; OpenAI's own limits) is sent to no
+   * translation service and is translated only on the readers' phones (lib/phoneBackup; on-device Apple / ML Kit).
+   * Packs keep translate-pack's own rule (OpenAI, Microsoft only as its fallback) until that changes.
+   * On, it turns on: Privacy's Translations (send time; "never sent to OpenAI or any other translation service"
+   * instead of "go to Microsoft Translator"; OpenAI the only server translator of messages), the Microsoft provider
+   * item without messages, the OpenAI item's "as soon as they're sent", and the Age item's wording. Flip in the same
+   * change as translation_send goes on live (or as soon after as the site can go up), and set the PRIVACY_LAST_UPDATED
+   * entry below to that day. OFF again if translation_secrets_engine goes back to "microsoft" for messages (the old
+   * text is then the true one) or send time is turned off for good. The Terms (section 10: "Microsoft Translator or
+   * OpenAI ... or translated on your device") stay true either way. A server switch for every app version at once:
+   * set in LIVE, never in PRIVACY_AHEAD.
+   */
+  translateSendTime: false,
   /** Typed interrogation questions and answers go through the server and are stored like chat (M7 send_interrogation_line). */
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
@@ -1078,6 +1098,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'November 2, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
     : LIVE.membershipsOnly
       ? 'November 2, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
+      : LIVE.translateSendTime
+      ? 'October 31, 2026' // Translation v3: messages translated by OpenAI when sent, Microsoft off for messages (under-16 and not-agreed lines only on the readers' devices): set to the day the site goes up with it on
       : LIVE.intelCorrections
       ? 'October 30, 2026' // Intel Corrections, Resend's copies to support@, the public digest (E1), and the Intel ledger kept for good without the account (E0): the site went up with both on
       : LIVE.intelLedger

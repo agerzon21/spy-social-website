@@ -68,9 +68,13 @@ const Privacy: React.FC = () => {
     .filter(Boolean)
     .join(' and ')
   // Who translates on our servers: Microsoft, or OpenAI when app_config.translation_engine is 'openai'.
-  const serverTranslator = PRIVACY.openAiTranslation
-    ? 'Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service uses,'
-    : 'Microsoft Translator (Azure AI Translator)'
+  // Translation v3 (legalRelease translateSendTime): OpenAI only for messages, at send time; Microsoft off for them.
+  const sendTime = PRIVACY.openAiTranslation && PRIVACY.translateSendTime
+  const serverTranslator = sendTime
+    ? 'OpenAI'
+    : PRIVACY.openAiTranslation
+      ? 'Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service uses,'
+      : 'Microsoft Translator (Azure AI Translator)'
   // OpenAI is a provider for drawing checks, translation, the custom packs' text check (LIVE.customPacks) or all three.
   const usesOpenAi = PRIVACY.drawingCheck || PRIVACY.openAiTranslation || PRIVACY.customPacks || PRIVACY.spybots
   // Each author's own yes (server 20261031100000): OpenAI gets a player's messages only after they chose Translate in
@@ -322,12 +326,16 @@ const Privacy: React.FC = () => {
           {PRIVACY.autoTranslation ? 'To translate a message' : 'When you tap Translate on a message'}, the app asks
           our translation service, which sends the text to {serverTranslator} and keeps the translation for 24 hours,
           so other players reading the same message get it without sending it again.{backupTranslation}
+          {sendTime &&
+            " So that a translation is ready when other players see a message, our service usually translates it as soon as it's sent, before anyone asks: into the app languages of the other players in that chat who agreed to translation by OpenAI (see below), under the same rules, and with nothing sent that it wouldn't send when they ask."}
           {PRIVACY.onDeviceTranslation &&
-            (PRIVACY.autoTranslation
+            (sendTime && PRIVACY.autoTranslation
+              ? " Your device also translates messages in other languages itself, with Apple's or Google's on-device translation, and shows its own translation only when our service has none for a message (for example a message our service may not send to OpenAI, see below, or when our service can't be reached); the text then doesn't leave your device. Your device may first download that language's translation files from Apple or Google. On Android, the app can download them ahead of time in a room's lobby when players at your table use other languages (on Wi-Fi, or on mobile data only if you agree); during a game, only when you tap Download for that language."
+              : PRIVACY.autoTranslation
               ? " Your device may also translate a message itself with Apple's or Google's on-device translation instead of asking our service (for example when our service can't translate it); the text then doesn't leave your device. Your device may first download that language's translation files from Apple or Google. On Android, the app can download them ahead of time in a room's lobby when players at your table use other languages (on Wi-Fi, or on mobile data only if you agree); during a game, only when you tap Download for that language."
               : " When our service can't translate a message, your device may translate it itself with Apple's or Google's on-device translation; the text then doesn't leave your device. The first time, your device may download that language's translation files from Apple or Google.")}{' '}
           {PRIVACY.openAiTranslation
-            ? `When our service uses OpenAI, it sends OpenAI only messages written by players who told us they're 16 or older (from the birth year the app asks for) and who ${openAiAgreed}; other messages, including those from players who haven't told us their age or haven't agreed, go to Microsoft Translator. We keep your answer to that note (which version of the note you answered, and when) so that it applies on every device you use, until you answer it again or your account is deleted. Microsoft receives only the message text and the two languages, never your name or account. OpenAI receives the text of the messages being translated and the two languages. So that a translation fits the conversation, it also receives up to three other recent messages from the same chat by players 16 or older who agreed, normally the ones said just before (their text only, not who said them), and a list of names to leave as they are: the game's agent names (such as "Agent Blue") and, in a private room, the display names of the players there who are 16 or older and agreed (or the username of a player who has none). It never receives anyone's age. We send these messages to OpenAI only to translate them. For translation, our service never sends OpenAI your account or a code made from it, your email address, your device's IP address or details, the game's secret word or location, or anyone's role. OpenAI doesn't use them to train its models: it doesn't train on what is sent to its API unless the sender opts in, and we haven't. Our service also asks OpenAI not to store these requests or its answers, so they aren't kept as saved responses. Like everything sent to its API, they go into OpenAI's abuse-monitoring logs, which it keeps for up to 30 days, unless the law requires it to keep them longer or keeping them is reasonably necessary to protect its services or anyone else from harm. OpenAI may also keep an encrypted cache made from a request on its servers for up to 24 hours, so that similar requests run faster.`
+            ? `${sendTime ? 'Our service' : 'When our service uses OpenAI, it'} sends OpenAI only messages written by players who told us they're 16 or older (from the birth year the app asks for) and who ${openAiAgreed}; other messages, including those from players ${sendTime ? "under 16, from players who haven't told us their age and from players who haven't agreed, are never sent to OpenAI or to any other translation service: they're translated only on the devices of the players reading them (or not at all)" : "who haven't told us their age or haven't agreed, go to Microsoft Translator"}. We keep your answer to that note (which version of the note you answered, and when) so that it applies on every device you use, until you answer it again or your account is deleted.${sendTime ? '' : ' Microsoft receives only the message text and the two languages, never your name or account.'} OpenAI receives the text of the messages being translated and the two languages. So that a translation fits the conversation, it also receives up to three other recent messages from the same chat by players 16 or older who agreed, normally the ones said just before (their text only, not who said them), and a list of names to leave as they are: the game's agent names (such as "Agent Blue") and, in a private room, the display names of the players there who are 16 or older and agreed (or the username of a player who has none). It never receives anyone's age. We send these messages to OpenAI only to translate them. For translation, our service never sends OpenAI your account or a code made from it, your email address, your device's IP address or details, the game's secret word or location, or anyone's role. OpenAI doesn't use them to train its models: it doesn't train on what is sent to its API unless the sender opts in, and we haven't. Our service also asks OpenAI not to store these requests or its answers, so they aren't kept as saved responses. Like everything sent to its API, they go into OpenAI's abuse-monitoring logs, which it keeps for up to 30 days, unless the law requires it to keep them longer or keeping them is reasonably necessary to protect its services or anyone else from harm. OpenAI may also keep an encrypted cache made from a request on its servers for up to 24 hours, so that similar requests run faster.`
             : 'Only the message text and the two languages are sent, never your name or account.'}
           {usesMyMemory &&
             " MyMemory's terms say it may keep the text it receives and use it to improve its services."}{' '}
@@ -456,7 +464,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.storeAgeSignals &&
             `${from22 ? ' From version 2.2, on' : ' On'} some phones, Apple or Google also tell the app an age range for your account (Apple's Declared Age Range, Google Play's Age Signals); the app uses it on your device.`}{' '}
           We use your age only to apply age limits
-          {PRIVACY.openAiTranslation ? ', to choose which service translates your messages (see Translations)' : ''} and
+          {PRIVACY.openAiTranslation ? (sendTime ? ', to decide whether your messages may be sent to OpenAI to be translated (see Translations)' : ', to choose which service translates your messages (see Translations)') : ''} and
           to protect players under 18.
           In any room or game where anyone, watchers included, is under 18 or hasn't told us their age, its chats and
           typed questions and answers block links, email addresses, websites, phone numbers and social media accounts
@@ -769,7 +777,12 @@ const Privacy: React.FC = () => {
           creates for that installation, which isn't linked to your account.
         </Item>
         <Item label="Microsoft">
-          (Azure AI Translator, https://azure.microsoft.com/products/ai-services/ai-translator) Translates the text of a
+          (Azure AI Translator, https://azure.microsoft.com/products/ai-services/ai-translator){' '}
+          {sendTime && PRIVACY.packAutoTranslate ? (
+            "Translates custom packs, only when OpenAI can't translate one at that moment (only their text and the languages, see Custom Packs above). It doesn't translate chat messages, questions or answers."
+          ) : (
+          <>
+          Translates the text of a
           message{' '}
           {PRIVACY.autoTranslation
             ? 'when the app translates it for you (automatically, or when you tap Translate)'
@@ -782,6 +795,8 @@ const Privacy: React.FC = () => {
             ? ` It also translates custom packs${PRIVACY.openAiTranslation ? ', only when OpenAI can\'t translate one at that moment' : ''} (only their text and the languages, see Custom Packs above).`
             : PRIVACY.featuredPacks &&
               ` It may also translate the Community Packs we feature${PRIVACY.openAiTranslation ? ', when our service uses it for them' : ''} (only their text, see Custom Packs and Community Packs above).`}
+          </>
+          )}
         </Item>
         {usesOpenAi && (
           <Item label="OpenAI">
@@ -789,7 +804,7 @@ const Privacy: React.FC = () => {
             {PRIVACY.drawingCheck &&
               'Checks drawings for content that breaks our Community Rules: every drawing turn in public rooms gets an automated check, some also get a second, more detailed check, and so do drawings players report. '}
             {PRIVACY.openAiTranslation &&
-              `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages when our translation service uses it (see Translations above), only messages written by players who told us they're 16 or older and agreed to it in the app, and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat by such players (without who said them), a list of names to leave as they are (agent names and, in private rooms, the display names of such players) and the two languages, never your account or anyone's age. Our service asks OpenAI not to store these requests or its answers. `}
+              `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages ${sendTime ? 'for our translation service, usually as soon as they\'re sent' : 'when our translation service uses it'} (see Translations above), only messages written by players who told us they're 16 or older and agreed to it in the app, and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat by such players (without who said them), a list of names to leave as they are (agent names and, in private rooms, the display names of such players) and the two languages, never your account or anyone's age. Our service asks OpenAI not to store these requests or its answers. `}
             {PRIVACY.customPacks &&
               `${PRIVACY.drawingCheck || PRIVACY.openAiTranslation ? 'It also checks' : 'Checks'} the text of every custom pack (its name, description and entries) with its moderation model before anyone else can play or see it (see Custom Packs above); it receives only that text, never who made the pack. `}
             {PRIVACY.communityPacks &&
