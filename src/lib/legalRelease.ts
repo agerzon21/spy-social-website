@@ -719,8 +719,9 @@ export const LIVE = {
    * owner 2026-10-28), Privacy's Intel item (the ledger's client part and actor, kept for good without the account,
    * the locked part), Data Retention, the deletion summary and After Deletion. POLICY FIRST: on the day E0 is applied;
    * set its dates below to that day. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * On 2026-10-30: E0 live since ~02:45 ET (intel_ledger_lock_20261202020000).
    */
-  intelLedger: false,
+  intelLedger: true,
   /**
    * Economy Integrity E1 (server file 20261202030000_intel_corrections + Edge Function economy-mail): Intel is
    * corrected only by reversing one ledger line, refunding a published bug incident, or a clawback a closed fair-play
@@ -733,8 +734,9 @@ export const LIVE = {
    * /transparency. Turns on: Terms 9's Intel corrections line and the Intercepts line's take-back sentence, Privacy's
    * Intel Corrections item, the Resend item, Data Retention and After Deletion. POLICY FIRST: the day E1 is applied;
    * set its dates below. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   * On 2026-10-30: E1 live since ~03:40 ET (intel_corrections_20261202030000) and economy-mail deployed.
    */
-  intelCorrections: false,
+  intelCorrections: true,
   /**
    * The launch reset's Intel (WI, 20261201950000, Window W) ran: incident I-1 "Pre-launch Intercept Intel" is published
    * (its summary is the database's economy_incidents row I-1, copied in src/lib/transparency.ts). Turns on I-1 in the
@@ -1053,7 +1055,7 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'November 2, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
       : LIVE.intelCorrections
-      ? 'November 8, 2026' // Terms 9's Intel corrections and the Intercepts take-back line (E1): set to the day the site goes up with it on
+      ? 'October 30, 2026' // Terms 9's Intel corrections and the Intercepts take-back line (E1), and Terms 9's no-Intel-by-hand line and the reset's Intel (E0, WI): the site went up with both on
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
@@ -1077,7 +1079,7 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     : LIVE.membershipsOnly
       ? 'November 2, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
       : LIVE.intelCorrections
-      ? 'November 8, 2026' // Intel Corrections, Resend's copies to support@, the public digest (E1): set to the day the site goes up with it on
+      ? 'October 30, 2026' // Intel Corrections, Resend's copies to support@, the public digest (E1), and the Intel ledger kept for good without the account (E0): the site went up with both on
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
