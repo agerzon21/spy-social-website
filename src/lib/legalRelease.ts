@@ -322,10 +322,11 @@ export const LIVE = {
    * translates nothing at all, chat or packs. A pack OpenAI can't translate at that moment waits for its next try and
    * plays in its own language meanwhile. On (only together with messagesOnDeviceOnly: Privacy reads both), it removes
    * the Microsoft provider item, Custom Packs' "or, only when OpenAI can't translate it at that moment, Microsoft
-   * Translator" (both sentences) and "Microsoft" in the contracts sentence. Flip with messagesOnDeviceOnly on the drop
-   * day, and set PRIVACY_LAST_UPDATED's entry to that day. OFF again (with messagesOnDeviceOnly) whenever
-   * translation_secrets_engine goes back to "microsoft". Terms section 10 still names Microsoft Translator as one of
-   * the ways a message may be translated (a possibility, not a promise): unchanged here. A server switch: set in LIVE,
+   * Translator" (both sentences) and "Microsoft" in the contracts sentence; and in the Terms (section 10,
+   * Translations) "sent to Microsoft Translator or OpenAI" becomes "sent to OpenAI" (fewer recipients, not a material
+   * change: LEGAL_LAST_UPDATED moves, no new TERMS_PUBLISHED or terms_version). Flip with messagesOnDeviceOnly on the
+   * drop day, and set PRIVACY_LAST_UPDATED's and LEGAL_LAST_UPDATED's entries to that day. OFF again (with
+   * messagesOnDeviceOnly) whenever translation_secrets_engine goes back to "microsoft". A server switch: set in LIVE,
    * never in PRIVACY_AHEAD.
    */
   microsoftOff: false,
@@ -1095,6 +1096,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.messagesOnDeviceOnly && LIVE.microsoftOff
+      ? 'November 1, 2026' // Terms 10: translation v3's bridge drop, messages sent to OpenAI only (Microsoft translates nothing): set to the day the site goes up with it on
       : LIVE.intelCorrections
       ? 'October 30, 2026' // Terms 9's Intel corrections and the Intercepts take-back line (E1), and Terms 9's no-Intel-by-hand line and the reset's Intel (E0, WI): the site went up with both on
       : LIVE.intelLedger

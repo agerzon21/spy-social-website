@@ -626,13 +626,21 @@ const Terms: React.FC = () => {
         {LIVE.autoTranslation
           ? "When the app translates a message for you (when you tap Translate, or by itself when the message is in a language other than your app's, unless you turn that off in Settings)"
           : 'When you tap Translate'}
-        , the message's text is sent to Microsoft Translator{LIVE.openAiTranslation ? ' or OpenAI' : ''}
-        {LIVE.myMemory !== 'off' ? ", or to MyMemory if that doesn't answer" : ''}
-        {LIVE.onDeviceTranslation
-          ? LIVE.autoTranslation
-            ? ', or translated on your device'
-            : ", or translated on your device when our service can't"
-          : ''}
+        {/* Translation v3's bridge drop (legalRelease microsoftOff with messagesOnDeviceOnly): Microsoft translates
+            nothing; what OpenAI may not take is translated only on the readers' devices (the app's phone backup). */}
+        {LIVE.openAiTranslation && LIVE.messagesOnDeviceOnly && LIVE.microsoftOff ? (
+          ", the message's text is sent to OpenAI, or translated on your device"
+        ) : (
+          <>
+            , the message's text is sent to Microsoft Translator{LIVE.openAiTranslation ? ' or OpenAI' : ''}
+            {LIVE.myMemory !== 'off' ? ", or to MyMemory if that doesn't answer" : ''}
+            {LIVE.onDeviceTranslation
+              ? LIVE.autoTranslation
+                ? ', or translated on your device'
+                : ", or translated on your device when our service can't"
+              : ''}
+          </>
+        )}
         , and you get a machine translation.{' '}
         {LIVE.autoTranslation
           ? 'Your messages are translated for other players the same way.'
