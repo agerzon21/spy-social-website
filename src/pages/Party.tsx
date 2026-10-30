@@ -118,7 +118,7 @@ const Party = () => {
 
         <h2 className={s.label}>Thank you</h2>
         <p className={s.pin}>
-          <b>Thanks for helping us test!</b> We hope you enjoyed it. SpySocial launches on November 10. If you liked it, tell
+          <b>Thanks for helping us test!</b> We hope you enjoyed it. SpySocial launches on December 8. If you liked it, tell
           your friends: it would mean a lot to us.
         </p>
         <p className={s.note}>
