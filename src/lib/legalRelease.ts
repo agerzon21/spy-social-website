@@ -316,6 +316,19 @@ export const LIVE = {
    * PRIVACY_AHEAD.
    */
   messagesOnDeviceOnly: false,
+  /**
+   * Translation v3 + AI spend guards, the bridge drop (app server ship/translate-v3: translate-pack v10, which uses
+   * Microsoft only while app_config translation_secrets_engine says "microsoft"; the drop sets it to "none"): Microsoft
+   * translates nothing at all, chat or packs. A pack OpenAI can't translate at that moment waits for its next try and
+   * plays in its own language meanwhile. On (only together with messagesOnDeviceOnly: Privacy reads both), it removes
+   * the Microsoft provider item, Custom Packs' "or, only when OpenAI can't translate it at that moment, Microsoft
+   * Translator" (both sentences) and "Microsoft" in the contracts sentence. Flip with messagesOnDeviceOnly on the drop
+   * day, and set PRIVACY_LAST_UPDATED's entry to that day. OFF again (with messagesOnDeviceOnly) whenever
+   * translation_secrets_engine goes back to "microsoft". Terms section 10 still names Microsoft Translator as one of
+   * the ways a message may be translated (a possibility, not a promise): unchanged here. A server switch: set in LIVE,
+   * never in PRIVACY_AHEAD.
+   */
+  microsoftOff: false,
   /** Typed interrogation questions and answers go through the server and are stored like chat (M7 send_interrogation_line). */
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
@@ -1104,6 +1117,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.messagesOnDeviceOnly && LIVE.microsoftOff
+    ? 'November 1, 2026' // Translation v3's bridge drop: Microsoft translates nothing (its provider item and the packs' fallback gone): set to the day the site goes up with it on
     : LIVE.messagesOnDeviceOnly
     ? 'October 31, 2026' // Translation v3: Microsoft off for messages (under-16, undeclared and not-agreed lines only on the readers' devices): set to the day the site goes up with it on
     : LIVE.translateSendTime
