@@ -478,7 +478,7 @@ const Terms: React.FC = () => {
         )}
         {LIVE.rmtGambling && <ListItem>No gambling: you may not use SpySocial items or Intel to gamble, on SpySocial or anywhere else.</ListItem>}
         <ListItem>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</ListItem>
-        <ListItem>When someone in a room has unlocked a pack, everyone in that room can play it while they're there. We may change how this sharing works.</ListItem>
+        <ListItem>In a private room, the host's packs decide: everyone there can play the packs the host has unlocked (another player's membership or packs don't add any). At Play Online tables and game nights, when someone at the table has unlocked a pack, everyone there can play it while they're there. We may change how this sharing works.</ListItem>
         {/* LIVE.intel: Intel (the server's "coins"), earned only. */}
         {LIVE.intel && (
           <ListItem>

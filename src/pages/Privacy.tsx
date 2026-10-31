@@ -403,7 +403,7 @@ const Privacy: React.FC = () => {
             : ''}
         </Item>
         <Item label="Safety Information">
-          Reports you make or that are made about you, players you block, removals from rooms, and any warnings,
+          Reports you make or that are made about you, players you block (and, for 24 hours, when you unblock someone, so a player can't be blocked and unblocked over and over), removals from rooms, and any warnings,
           mutes or bans on your account
           {PRIVACY.drawingCheck
             ? ', including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave'
