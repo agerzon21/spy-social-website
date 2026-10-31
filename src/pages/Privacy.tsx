@@ -631,9 +631,11 @@ const Privacy: React.FC = () => {
           ) : null}
           {PRIVACY.integritySignupNetwork ? (
             <>
-              {' '}When an account is created we keep a one-way, salted code of the network it came from for 30
-              days, to spot batches of fake accounts. If a network is used to abuse SpySocial we may stop
-              new accounts from it for 30 days; existing accounts are not affected.
+              {' '}When an account is created, and when the app connects, we keep a one-way, salted code of the
+              network it came from (never the address itself): 30 days for sign-ups, and next to the encrypted
+              address above for app sessions, to spot batches of fake accounts. If a network is used to abuse
+              SpySocial we may stop new accounts from it for 30 days, and pause rewards on a new account whose
+              first session comes from it until we have checked it; existing accounts are not affected.
             </>
           ) : null}
         </Item>
