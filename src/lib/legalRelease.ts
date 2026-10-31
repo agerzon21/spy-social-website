@@ -736,6 +736,16 @@ export const LIVE = {
    */
   rmtGambling: true,
   /**
+   * Membership codes (app repo feat/membership-codes, server file 20261203440000_membership_codes, owner 2026-10-31:
+   * codes that give a month, a year or Lifetime, for giveaways, creators and apologies; granted as the owner's gifts
+   * already are). Terms 3's gift line names codes and says how a gifted month or year counts (it adds to the time held,
+   * never renews; after Lifetime a code adds no time); Privacy's Creator and Reward Codes item names membership among a
+   * code's rewards. Not a material change (gifts were already in the Terms): LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED
+   * move (below), no TERMS_PUBLISHED or terms_version. Deploy the site with it on in the update that ships the app's
+   * Membership field (update 12); off only if the server file is rolled back.
+   */
+  membershipCodes: true,
+  /**
    * Economy Integrity E0 (app repo feat/economy-integrity, server file 20261202020000_intel_ledger_lock, applied live by
    * the owner): no free-form Adjust Intel (owner_coins_adjust answers retired); the Intel ledger is append-only (no line
    * edited or deleted, not even by us; the wallet is the ledger's sum); every line names its cause; an erased account's
@@ -1080,6 +1090,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.membershipCodes
+      ? 'October 31, 2026' // Terms 3: memberships given with a code (20261203440000): set to the day the site goes up with it on
       : LIVE.rmtGambling
       ? 'October 31, 2026' // Terms 9: no real-money trading, no gambling: set to the day the site goes up with it on
       : LIVE.uniquesRarer
@@ -1106,6 +1118,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.membershipCodes
+    ? 'October 31, 2026' // Creator and Reward Codes: membership among a code's rewards (20261203440000): set to the day the site goes up with it on
     : LIVE.playtestPayPal
     ? 'October 31, 2026' // Test Versions: the paid playtest's sign-up form and its PayPal email (deleted once paid): the site went up with it on
     : LIVE.membershipsOnly
