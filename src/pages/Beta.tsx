@@ -2,7 +2,7 @@
  * The optional Europe session (Sat Nov 21, 7-8 PM CET), which runs only if enough people in Europe sign up. The
  * owner decides: true shows it on the page, false hides every mention of it. Nothing else changes.
  */
-const EUROPE_SESSION = true
+const EUROPE_SESSION = false
 
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
