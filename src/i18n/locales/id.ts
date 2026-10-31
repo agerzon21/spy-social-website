@@ -981,10 +981,11 @@ const id: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Playtest live',
     title: 'Main duluan',
-    lede: '<b>Lima kartu hadiah $50</b> untuk laporan bug atau ide paling berguna dari playtest grup live selama 1 jam untuk SpySocial ini, game pesta deduksi sosial yang gratis. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+    lede: '<b>$10 lewat PayPal</b> untuk setiap pemain terkonfirmasi yang main penuh 1 jam di playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Game, XP, dan item dari tes ini direset saat peluncuran.',
-    facts: ['1 jam, live', 'Khusus 18+', 'Sekitar 24 pemain', 'iPhone atau Android'],
+    headsUp: '<b>Perhatian:</b> SpySocial di App Store dan Google Play adalah versi lama. Beta ini build baru yang sangat berbeda; kamu menginstalnya dari link yang kami kirim lewat email.',
+    facts: ['1 jam, live', 'Khusus 18+', '24 kursi', 'iPhone atau Android'],
     when: {
       label: 'Kapan',
       et: (time: string) => `${time} waktu Timur AS (ET)`,
@@ -1010,7 +1011,7 @@ const id: Strings = {
     who: {
       eyebrow: 'Untuk siapa',
       title: 'Siapa yang kami cari',
-      adults: '<b>Khusus dewasa 18+.</b> Sekitar 24 pemain sekaligus.',
+      adults: '<b>Khusus dewasa 18+.</b> 24 kursi.',
       phones: '<b>iPhone (TestFlight) atau ponsel Android (pengujian Google Play).</b> Ponsel Android sangat kami harapkan:',
       androidLabel: 'Ponsel Android yang paling kami cari',
       fans: '<b>Penggemar game deduksi sosial:</b> Among Us, Spyfall, Werewolf/Mafia, Blood on the Clocktower, Codenames. Pemula juga boleh ikut.',
@@ -1029,8 +1030,9 @@ const id: Strings = {
       eyebrow: 'Yang kamu dapat',
       title: 'Hadiah beta yang tetap jadi milikmu setelah peluncuran',
       items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
-      prizeTitle: '5 kartu hadiah $50',
-      prize: 'Lima laporan bug atau ide paling berguna masing-masing mendapat kartu hadiah $50, dipilih oleh developer dalam waktu seminggu.',
+      prizeTitle: '$10 lewat PayPal + satu bonus $50',
+      prize: '$10 lewat PayPal untuk setiap pemain terkonfirmasi yang main penuh satu jam dan mengirim survei 5 menit, dikirim dalam 7 hari setelah sesi. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna, dipilih oleh developer dalam waktu seminggu.',
+      seats: (day: string) => `24 kursi. Hanya pemain yang kami konfirmasi lewat email (paling lambat ${day}) yang dibayar; yang lain masuk daftar tunggu untuk tes berikutnya.`,
     },
     friends: {
       eyebrow: 'Teman',
@@ -1047,7 +1049,7 @@ const id: Strings = {
       android: 'Android: formulir meminta email Google yang dipakai di Play Store-mu, karena Google mewajibkannya untuk build uji. Email itu dihapus setelah sesi.',
       iphone: 'iPhone: kamu memasang SpySocial lewat TestFlight, dari link di email.',
     },
-    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus setelah Beta 2.',
+    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus setelah Beta 2. Email PayPal-mu dihapus setelah pembayaran.',
   },
 
   notFound: {

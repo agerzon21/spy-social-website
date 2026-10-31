@@ -375,8 +375,17 @@ const Privacy: React.FC = () => {
           through them, under their own terms and privacy policies. We receive what you choose to share with us there
           (such as your answers to a test's survey) and, to let you install an Android test version, the email address
           of your Google account, which we add to the app's list of testers in Google Play and remove once the test is
-          over. We use these only to run the test and improve the app. Otherwise, a test version is the same app, and
-          this policy applies to it.
+          over. We use these only to run the test and improve the app.
+          {PRIVACY.playtestPayPal && (
+            <>
+              {' '}
+              If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form,
+              including, if you are paid for playing, the email address of your PayPal account. We use that address only
+              to send your payment through PayPal, which handles it under its own terms and privacy policy, and we delete
+              it once you're paid; the rest of your sign-up is deleted after the test.
+            </>
+          )}{' '}
+          Otherwise, a test version is the same app, and this policy applies to it.
         </Item>
         <Item label="Rate Limits">
           To stop floods, guessing at room codes and other abuse, our servers note when an account does certain things
@@ -872,7 +881,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.crashReports ? ', Sentry' : ''}
         {PRIVACY.resendAccountEmail ? ', Resend' : ''} and Vercel process it for us under contracts that bind them to protect it
         at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''}, ImprovMX and
-        testing services such as BetaTesting handle what they receive under their own terms and privacy policies.
+        testing services such as BetaTesting{PRIVACY.playtestPayPal ? ', and PayPal (for playtest payments),' : ''} handle what they receive under their own terms and privacy policies.
       </P>
 
       {PRIVACY.merchShop && (

@@ -981,10 +981,11 @@ const ptBR: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Teste ao vivo',
     title: 'Jogue primeiro',
-    lede: '<b>Cinco vales-presente de US$\u00a050</b> para os relatos de bugs ou ideias mais úteis deste teste de jogo em grupo, ao vivo e de 1 hora, do SpySocial, o jogo grátis de dedução social para festas. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta, dois títulos, 10 interceptações de cada nível e 1 mês de assinatura.',
+    lede: '<b>US$\u00a010 pelo PayPal</b> para cada jogador confirmado que jogar a hora inteira deste teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta, dois títulos, 10 interceptações de cada nível e 1 mês de assinatura.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Partidas, XP e itens do teste são zerados no lançamento.',
-    facts: ['1 hora, ao vivo', 'Só maiores de 18', 'Cerca de 24 jogadores', 'iPhone ou Android'],
+    headsUp: '<b>Atenção:</b> o SpySocial da App Store e do Google Play é uma versão antiga. A beta é uma versão nova e bem diferente; você instala pelo link que mandamos por e-mail.',
+    facts: ['1 hora, ao vivo', 'Só maiores de 18', '24 vagas', 'iPhone ou Android'],
     when: {
       label: 'Quando',
       et: (time: string) => `${time}, horário do Leste dos EUA (ET)`,
@@ -1010,7 +1011,7 @@ const ptBR: Strings = {
     who: {
       eyebrow: 'Para quem',
       title: 'Quem procuramos',
-      adults: '<b>Só adultos, maiores de 18.</b> Cerca de 24 jogadores ao mesmo tempo.',
+      adults: '<b>Só adultos, maiores de 18.</b> 24 vagas.',
       phones: '<b>Um iPhone (TestFlight) ou um celular Android (teste do Google Play).</b> Celulares Android são especialmente bem-vindos:',
       androidLabel: 'Celulares Android que mais queremos testar',
       fans: '<b>Fãs de dedução social:</b> Among Us, Spyfall, Lobisomem/Máfia, Blood on the Clocktower, Codenames. Iniciantes também são bem-vindos.',
@@ -1029,8 +1030,9 @@ const ptBR: Strings = {
       eyebrow: 'O que você ganha',
       title: 'Recompensas beta que ficam com você depois do lançamento',
       items: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Testador de Campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> de assinatura'],
-      prizeTitle: '5 vales-presente de US$\u00a050',
-      prize: 'Os cinco relatos de bugs ou ideias mais úteis ganham, cada um, um vale-presente de US$ 50. O desenvolvedor escolhe em até uma semana.',
+      prizeTitle: 'US$\u00a010 pelo PayPal + um bônus de US$\u00a050',
+      prize: 'US$ 10 pelo PayPal para cada jogador confirmado que jogar a hora inteira e enviar a pesquisa de 5 minutos, enviados em até 7 dias após a sessão. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil, escolhido pelo desenvolvedor em até uma semana.',
+      seats: (day: string) => `24 vagas. Só recebem os jogadores que confirmarmos por e-mail (até ${day}); os demais entram na lista de espera do próximo teste.`,
     },
     friends: {
       eyebrow: 'Amigos',
@@ -1047,7 +1049,7 @@ const ptBR: Strings = {
       android: 'Android: o formulário pede o e-mail do Google da sua Play Store, porque o Google exige isso para versões de teste. Ele é apagado depois da sessão.',
       iphone: 'iPhone: você instala o SpySocial pelo TestFlight, com o link do e-mail.',
     },
-    fine: 'Versão de pré-lançamento. Não compartilhe nomes nem o chat de outros jogadores. Seus dados de inscrição são apagados depois da Beta 2.',
+    fine: 'Versão de pré-lançamento. Não compartilhe nomes nem o chat de outros jogadores. Seus dados de inscrição são apagados depois da Beta 2. Seu e-mail do PayPal é apagado assim que você receber.',
   },
 
   notFound: {

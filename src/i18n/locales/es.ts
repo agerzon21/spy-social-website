@@ -978,10 +978,11 @@ const es: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Prueba en vivo',
     title: 'Juega primero',
-    lede: '<b>Cinco tarjetas regalo de 50\u00a0USD</b> para los reportes de errores o ideas más útiles de esta prueba de juego en grupo, en vivo y de 1 hora, de SpySocial, el juego gratis de deducción social para fiestas. Además, recompensas beta que te quedas después del lanzamiento: el Pin beta, dos títulos, 10 intercepciones de cada nivel y 1 mes de membresía.',
+    lede: '<b>10\u00a0USD por PayPal</b> para cada jugador confirmado que juegue la hora completa de esta prueba de juego en grupo y en vivo de SpySocial, el juego gratis de deducción social para fiestas, y envíe la encuesta de 5 minutos, más un bono de 50\u00a0USD para el reporte de error o la idea más útil. Además, recompensas beta que te quedas después del lanzamiento: el Pin beta, dos títulos, 10 intercepciones de cada nivel y 1 mes de membresía.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Las partidas, la XP y los objetos de la prueba se reinician en el lanzamiento.',
-    facts: ['1 hora, en vivo', 'Solo mayores de 18', 'Unos 24 jugadores', 'iPhone o Android'],
+    headsUp: '<b>Ojo:</b> el SpySocial de la App Store y Google Play es una versión antigua. La beta es una versión nueva y muy distinta; la instalas desde el enlace que te enviamos por correo.',
+    facts: ['1 hora, en vivo', 'Solo mayores de 18', '24 lugares', 'iPhone o Android'],
     when: {
       label: 'Cuándo',
       et: (time: string) => `${time}, hora del Este (EE.\u00a0UU.)`,
@@ -1007,7 +1008,7 @@ const es: Strings = {
     who: {
       eyebrow: 'Para quién',
       title: 'A quién buscamos',
-      adults: '<b>Solo adultos (18+).</b> Unos 24 jugadores a la vez.',
+      adults: '<b>Solo adultos (18+).</b> 24 lugares.',
       phones: '<b>Un iPhone (TestFlight) o un teléfono Android (pruebas de Google Play).</b> Los Android son especialmente bienvenidos:',
       androidLabel: 'Teléfonos Android que buscamos especialmente',
       fans: '<b>Fans de la deducción social:</b> Among Us, Spyfall, Hombres Lobo/Mafia, Blood on the Clocktower, Codenames. Si eres principiante, también eres bienvenido.',
@@ -1026,8 +1027,9 @@ const es: Strings = {
       eyebrow: 'Qué recibes',
       title: 'Recompensas beta que te quedas tras el lanzamiento',
       items: ['El <b>Pin beta</b>', 'Los títulos <b>Tester beta</b> y <b>Tester de Campo</b>', '<b>10 intercepciones</b> de cada nivel', '<b>1 mes</b> de membresía'],
-      prizeTitle: '5 tarjetas regalo de 50\u00a0USD',
-      prize: 'Los cinco reportes de errores o ideas más útiles reciben cada uno una tarjeta regalo de 50 USD. El desarrollador los elige en el plazo de una semana.',
+      prizeTitle: '10\u00a0USD por PayPal + un bono de 50\u00a0USD',
+      prize: '10 USD por PayPal para cada jugador confirmado que juegue la hora completa y envíe la encuesta de 5 minutos, enviados en los 7 días siguientes a la sesión. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil, elegido por el desarrollador en el plazo de una semana.',
+      seats: (day: string) => `24 lugares. Solo se paga a los jugadores que confirmemos por correo (a más tardar el ${day}); los demás pasan a la lista de espera de la próxima prueba.`,
     },
     friends: {
       eyebrow: 'Amigos',
@@ -1044,7 +1046,7 @@ const es: Strings = {
       android: 'Android: el formulario te pide el correo de Google de tu Play Store, porque Google lo exige para las versiones de prueba. Se borra después de la sesión.',
       iphone: 'iPhone: instalas SpySocial con TestFlight, desde el enlace del correo.',
     },
-    fine: 'Versión previa al lanzamiento. No compartas los nombres ni el chat de otros jugadores. Tus datos de inscripción se borran después de la Beta 2.',
+    fine: 'Versión previa al lanzamiento. No compartas los nombres ni el chat de otros jugadores. Tus datos de inscripción se borran después de la Beta 2. Tu correo de PayPal se borra en cuanto te paguemos.',
   },
 
   notFound: {

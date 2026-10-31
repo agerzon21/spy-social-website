@@ -159,6 +159,17 @@
   color: var(--ss-text);
 }
 
+.headsUp {
+  margin: 14px 0 0 !important;
+  max-width: 34em;
+  padding: 10px 14px;
+  border-inline-start: 3px solid var(--ss-highlight);
+  background: var(--ss-surface);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ss-body);
+}
+.headsUp b { color: var(--ss-text); }
 .reset { margin: 12px 0 0 !important; font-size: 14px; line-height: 1.45; color: var(--ss-muted); }
 .rewards { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr); }
 .rewards li {

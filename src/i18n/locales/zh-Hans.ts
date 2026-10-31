@@ -958,10 +958,11 @@ const zhHans: Strings = {
   beta: {
     eyebrow: '第 2 轮内测 · 线上试玩',
     title: '抢先玩',
-    lede: '<b>五张 50 美元礼品卡</b>将送给这场 1 小时线上集体试玩中最有价值的问题反馈或建议，试玩的是免费的社交推理派对游戏 SpySocial。另外还有上线后依然归你的内测奖励：内测徽章、两个称号、每个等级各 10 封密函和 1 个月会员。',
+    lede: '每位确认参加、玩满这场 1 小时线上集体试玩并提交 5 分钟问卷的玩家，都可通过 PayPal 获得 <b>10 美元</b>；最有价值的一份问题反馈或建议还可再获得 50 美元奖励。试玩的是免费的社交推理派对游戏 SpySocial。 另外还有上线后依然归你的内测奖励：内测徽章、两个称号、每个等级各 10 封密函和 1 个月会员。',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: '试玩中的对局、经验值和获得的道具会在上线时重置。',
-    facts: ['1 小时，实时进行', '仅限 18 岁以上', '约 24 名玩家', 'iPhone 或 Android'],
+    headsUp: '<b>请注意：</b>App Store 和 Google Play 上的 SpySocial 是旧版本。内测版是全新的、差别很大的版本，需通过我们邮件中的链接安装。',
+    facts: ['1 小时，实时进行', '仅限 18 岁以上', '24 个名额', 'iPhone 或 Android'],
     when: {
       label: '时间',
       et: (time: string) => `美东时间（ET）${time}`,
@@ -987,7 +988,7 @@ const zhHans: Strings = {
     who: {
       eyebrow: '适合谁',
       title: '我们在找这样的你',
-      adults: '<b>仅限 18 岁以上成年人。</b>约 24 名玩家同时参与。',
+      adults: '<b>仅限 18 岁以上成年人。</b>共 24 个名额。',
       phones: '<b>iPhone（TestFlight）或 Android 手机（Google Play 测试）。</b>特别欢迎 Android 手机：',
       androidLabel: '我们特别想测试的 Android 手机',
       fans: '<b>社交推理游戏爱好者：</b>Among Us、Spyfall、狼人杀/杀人游戏、Blood on the Clocktower、Codenames。新手同样欢迎。',
@@ -1006,8 +1007,9 @@ const zhHans: Strings = {
       eyebrow: '你能得到',
       title: '上线后依然归你所有的内测奖励',
       items: ['<b>内测徽章</b>', '<b>“内测玩家”</b>和<b>“外勤测试员”</b>称号', '每个等级各 <b>10 封密函</b>', '<b>1 个月</b>会员'],
-      prizeTitle: '5 张 50 美元礼品卡',
-      prize: '最有价值的五份问题反馈或建议，每份可获得一张 50 美元礼品卡，由开发者在一周内选出。',
+      prizeTitle: 'PayPal 10 美元 + 一份 50 美元奖励',
+      prize: '每位确认参加、玩满整整一小时并提交 5 分钟问卷的玩家，可在试玩后 7 天内通过 PayPal 收到 10 美元。另有一份 50 美元奖励（礼品卡），送给最有价值的一份问题反馈或建议，由开发者在一周内选出。',
+      seats: (day: string) => `共 24 个名额。只有我们通过邮件确认（${day}前）的玩家才能获得报酬；其他人将进入下一次测试的候补名单。`,
     },
     friends: {
       eyebrow: '朋友',
@@ -1024,7 +1026,7 @@ const zhHans: Strings = {
       android: 'Android：表单会询问你 Play 商店使用的 Google 邮箱，因为 Google 要求测试版必须提供。测试结束后即删除。',
       iphone: 'iPhone：通过邮件中的链接，用 TestFlight 安装 SpySocial。',
     },
-    fine: '预发布版本。请勿分享其他玩家的名字或聊天内容。你的报名信息将在第 2 轮内测结束后删除。',
+    fine: '预发布版本。请勿分享其他玩家的名字或聊天内容。你的报名信息将在第 2 轮内测结束后删除。你的 PayPal 邮箱会在付款后删除。',
   },
 
   notFound: {

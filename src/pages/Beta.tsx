@@ -178,6 +178,7 @@ const Beta = () => {
           </DisplayHeading>
           <p className={s.lede}>{rich(b.lede, { b: bold })}</p>
           <p className={s.reset}>{b.reset}</p>
+          <p className={s.headsUp}>{rich(b.headsUp, { b: bold })}</p>
           <ul className={s.facts}>
             {b.facts.map((fact) => (
               <li key={fact}>{fact}</li>
@@ -324,6 +325,7 @@ const Beta = () => {
             <div>
               <p className={s.prizeTitle}>{b.get.prizeTitle}</p>
               <p className={s.prizeText}>{b.get.prize}</p>
+              <p className={s.prizeText}>{b.get.seats(confirmDay)}</p>
             </div>
           </div>
         </Section>

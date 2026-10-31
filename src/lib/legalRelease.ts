@@ -57,6 +57,12 @@
 
 export const LIVE = {
   /**
+   * Beta 2's paid playtest (owner 2026-10-31): the /beta sign-up form asks for a PayPal email to send the $10, and
+   * Privacy's Test Versions item says so (used only for that payment, deleted once paid). The site went up with it on
+   * October 31, 2026.
+   */
+  playtestPayPal: true,
+  /**
    * fix/account-photo-cleanup's housekeeping migration (20261004132500) applied: chat, translations,
    * usage events and security logs are deleted on a clock, not only when traffic happens to prune.
    */
@@ -1090,6 +1096,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.playtestPayPal
+    ? 'October 31, 2026' // Test Versions: the paid playtest's sign-up form and its PayPal email (deleted once paid): the site went up with it on
     : LIVE.membershipsOnly
       ? 'October 30, 2026' // Purchases and the deletion summary: memberships only (Privacy shows purchases ahead): the site went up with it on
       : LIVE.intelCorrections
