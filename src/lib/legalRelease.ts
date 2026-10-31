@@ -728,6 +728,14 @@ export const LIVE = {
    */
   uniquesRarer: true,
   /**
+   * No real-money trading and no gambling (owner's standing OK; trading spec section 12, published ahead of trading on
+   * Oct 31, 2026): Terms 9 gains two lines. Selling items or Intel for money was already refused by section 9 ("You can't
+   * sell or trade them ... or exchange them for money"); these name accounts, other sites and gambling, and what we may do.
+   * Not a material change (it restates a ban already in force): LEGAL_LAST_UPDATED moves (below), no TERMS_PUBLISHED or
+   * terms_version. A website fact: set in LIVE, never in PRIVACY_AHEAD. The rest of trading's Terms waits for its switch-on.
+   */
+  rmtGambling: true,
+  /**
    * Economy Integrity E0 (app repo feat/economy-integrity, server file 20261202020000_intel_ledger_lock, applied live by
    * the owner): no free-form Adjust Intel (owner_coins_adjust answers retired); the Intel ledger is append-only (no line
    * edited or deleted, not even by us; the wallet is the ledger's sum); every line names its cause; an erased account's
@@ -1072,6 +1080,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.rmtGambling
+      ? 'October 31, 2026' // Terms 9: no real-money trading, no gambling: set to the day the site goes up with it on
       : LIVE.uniquesRarer
       ? 'October 31, 2026' // Terms 9: 10 spare Legendaries for a Unique (app server 20261202450000_unique_rarity): set to the day the site goes up with it on
       : LIVE.intelCorrections

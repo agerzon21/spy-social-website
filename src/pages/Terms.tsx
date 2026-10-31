@@ -469,6 +469,14 @@ const Terms: React.FC = () => {
           {LIVE.purchases &&
             ` The one exception is Restore Purchases, which moves what you bought to the SpySocial account you're using (see ${LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'} below).`}
         </ListItem>
+        {/* LIVE.rmtGambling: no real-money trading, no gambling (Oct 31, 2026). */}
+        {LIVE.rmtGambling && (
+          <ListItem>
+            No real-money trading: you may not buy, sell or offer Intel, items or accounts for real money or anything outside
+            SpySocial, or use other sites to do so. We may remove what was traded this way and suspend every account involved.
+          </ListItem>
+        )}
+        {LIVE.rmtGambling && <ListItem>No gambling: you may not use SpySocial items or Intel to gamble, on SpySocial or anywhere else.</ListItem>}
         <ListItem>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</ListItem>
         <ListItem>When someone in a room has unlocked a pack, everyone in that room can play it while they're there. We may change how this sharing works.</ListItem>
         {/* LIVE.intel: Intel (the server's "coins"), earned only. */}
