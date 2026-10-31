@@ -69,6 +69,8 @@ const zhHans: Strings = {
     transparency: "透明度",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "游戏之夜规则",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "第 2 轮内测",
     tagline: '社交推理派对游戏。',
     play: '开玩',
     legal: '法律与安全',
@@ -956,7 +958,9 @@ const zhHans: Strings = {
   beta: {
     eyebrow: '第 2 轮内测 · 线上试玩',
     title: '抢先玩',
-    lede: '<b>SpySocial 的 1 小时线上集体试玩</b>，免费的社交推理派对游戏。上线前抢先玩，告诉我们哪里让你困惑，奖励永久归你。',
+    lede: '<b>五张 50 美元礼品卡</b>将送给这场 1 小时线上集体试玩中最有价值的问题反馈或建议，试玩的是免费的社交推理派对游戏 SpySocial。另外还有上线后依然归你的内测奖励：内测徽章、两个称号、每个等级各 10 封密函和 1 个月会员。',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: '试玩中的对局、经验值和获得的道具会在上线时重置。',
     facts: ['1 小时，实时进行', '仅限 18 岁以上', '约 24 名玩家', 'iPhone 或 Android'],
     when: {
       label: '时间',
@@ -1000,8 +1004,7 @@ const zhHans: Strings = {
     },
     get: {
       eyebrow: '你能得到',
-      title: '感谢奖励',
-      keep: '上线后依然归你所有：',
+      title: '上线后依然归你所有的内测奖励',
       items: ['<b>内测徽章</b>', '<b>“内测玩家”</b>和<b>“外勤测试员”</b>称号', '每个等级各 <b>10 封密函</b>', '<b>1 个月</b>会员'],
       prizeTitle: '5 张 50 美元礼品卡',
       prize: '最有价值的五份问题反馈或建议，每份可获得一张 50 美元礼品卡，由开发者在一周内选出。',

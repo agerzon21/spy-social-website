@@ -92,6 +92,8 @@ const en = {
     transparency: "Transparency",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Game Night Rules",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "Beta 2 playtest",
     tagline: 'The party game of social deception.',
     play: 'Play',
     legal: 'Legal & Safety',
@@ -1044,7 +1046,9 @@ const en = {
     eyebrow: 'Beta 2 · Live playtest',
     /** The poster line, set huge: it must fit a 320 px phone. The full stop after it is home.hero.titleMark. */
     title: 'Play it first',
-    lede: '<b>A live 1-hour group playtest of SpySocial</b>, the free social deduction party game. Play it before launch, tell us what trips you up, and keep the rewards.',
+    lede: '<b>Five $50 gift cards</b> go to the most useful bug reports or ideas from this live 1-hour group playtest of SpySocial, the free social deduction party game. Plus beta rewards you keep after launch: the Beta Pin, two titles, 10 Intercepts of each tier and a month of membership.',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: 'Games, XP and items from the test reset at launch.',
     /** Short facts under the lede. */
     facts: ['1 hour, live', 'Adults 18+', 'About 24 players', 'iPhone or Android'],
     when: {
@@ -1100,8 +1104,7 @@ const en = {
     },
     get: {
       eyebrow: 'What you get',
-      title: 'Thank-you rewards',
-      keep: 'Yours to keep after launch:',
+      title: 'Beta rewards you keep after launch',
       /** The app's own names for the pin, the titles and the Intercepts. */
       items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> and <b>Field Tester</b> titles', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
       prizeTitle: '5 × $50 gift cards',

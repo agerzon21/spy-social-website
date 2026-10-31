@@ -70,6 +70,8 @@ const fr: Strings = {
     transparency: "Transparence",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Règles de la soirée jeux",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "Test bêta\u00a02",
     tagline: "Le jeu d'ambiance de bluff et de déduction.",
     play: 'Jouer',
     legal: 'Mentions légales et sécurité',
@@ -984,7 +986,9 @@ const fr: Strings = {
   beta: {
     eyebrow: 'Bêta\u00a02 · Test en direct',
     title: 'Joue en premier',
-    lede: '<b>Un test de jeu collectif en direct, d’une heure, de SpySocial</b>, le jeu gratuit de déduction sociale pour soirées. Joue avant la sortie, dis-nous ce qui te bloque et garde les récompenses.',
+    lede: '<b>Cinq cartes cadeaux de 50\u00a0$</b> pour les rapports de bug ou idées les plus utiles de ce test de jeu collectif en direct d’une heure de SpySocial, le jeu gratuit de déduction sociale pour soirées. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta, deux titres, 10\u00a0interceptions de chaque niveau et 1\u00a0mois d’abonnement.',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: 'Les parties, l’XP et les objets du test sont remis à zéro à la sortie.',
     facts: ['1\u00a0heure, en direct', '18\u00a0ans et plus', 'Environ 24\u00a0joueurs', 'iPhone ou Android'],
     when: {
       label: 'Quand',
@@ -1028,8 +1032,7 @@ const fr: Strings = {
     },
     get: {
       eyebrow: 'Ce que tu reçois',
-      title: 'Tes récompenses',
-      keep: 'À garder après la sortie\u00a0:',
+      title: 'Récompenses bêta à garder après la sortie',
       items: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Bêta-testeur\u00a0»</b> et <b>«\u00a0Testeur de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
       prizeTitle: '5 cartes cadeaux de 50\u00a0$',
       prize: 'Les cinq rapports de bug ou idées les plus utiles reçoivent chacun une carte cadeau de 50\u00a0$. Le développeur les choisit sous une semaine.',

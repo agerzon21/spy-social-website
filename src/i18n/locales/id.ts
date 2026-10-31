@@ -70,6 +70,8 @@ const id: Strings = {
     transparency: "Transparansi",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Aturan Malam Permainan",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "Playtest Beta 2",
     tagline: 'Game pesta tipu-tipuan sosial.',
     play: 'Main',
     legal: 'Hukum & keamanan',
@@ -979,7 +981,9 @@ const id: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Playtest live',
     title: 'Main duluan',
-    lede: '<b>Playtest grup live selama 1 jam untuk SpySocial</b>, game pesta deduksi sosial yang gratis. Mainkan sebelum peluncuran, ceritakan apa yang membingungkan, dan simpan hadiahnya.',
+    lede: '<b>Lima kartu hadiah $50</b> untuk laporan bug atau ide paling berguna dari playtest grup live selama 1 jam untuk SpySocial ini, game pesta deduksi sosial yang gratis. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: 'Game, XP, dan item dari tes ini direset saat peluncuran.',
     facts: ['1 jam, live', 'Khusus 18+', 'Sekitar 24 pemain', 'iPhone atau Android'],
     when: {
       label: 'Kapan',
@@ -1023,8 +1027,7 @@ const id: Strings = {
     },
     get: {
       eyebrow: 'Yang kamu dapat',
-      title: 'Hadiah terima kasih',
-      keep: 'Tetap milikmu setelah peluncuran:',
+      title: 'Hadiah beta yang tetap jadi milikmu setelah peluncuran',
       items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
       prizeTitle: '5 kartu hadiah $50',
       prize: 'Lima laporan bug atau ide paling berguna masing-masing mendapat kartu hadiah $50, dipilih oleh developer dalam waktu seminggu.',

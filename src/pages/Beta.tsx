@@ -4,7 +4,7 @@
  */
 const EUROPE_SESSION = true
 
-import { useEffect, useState, type ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import {
   FaAndroid,
@@ -26,13 +26,14 @@ import Eyebrow from '../components/ui/Eyebrow'
 import ui from '../components/ui/ui.module.css'
 import { LANGUAGES, useLang, useT } from '../i18n'
 import { bold, rich } from '../i18n/rich'
+import { useClosed } from '../lib/betaSignup'
 import s from './Beta.module.css'
 
 /**
  * /beta: the Beta 2 playtester page (linked from the Reddit bio, Reddit and Discord posts). Phone first: the poster,
  * the session's time (Eastern, Pacific, UTC and the visitor's own, worked out in the browser), the sign-up, then what
  * the test is, who it's for, what we ask, what testers get and how to join. Every time is one instant below, written
- * in the page's language by Intl. At CLOSES_AT the page turns itself to "Sign-ups are closed" (a date check in the
+ * in the page's language by Intl. At CLOSES_AT (lib/betaSignup.ts) the page turns itself to "Sign-ups are closed" (a date check in the
  * browser, no redeploy). Indexed: SiteHead lists it, the sitemap carries it (vite.config.ts) and the build writes a
  * /beta/index.html with its own link preview (vite.config.ts, betaPreview).
  */
@@ -51,7 +52,6 @@ const EU_START = new Date('2026-11-21T18:00:00Z')
 const EU_END = new Date('2026-11-21T19:00:00Z')
 /** Sign-ups close Sunday, November 15, 11:59 PM Eastern: the page shows "closed" from the end of that minute. */
 const CLOSE_SHOWN = new Date('2026-11-16T04:59:00Z')
-const CLOSES_AT = new Date('2026-11-16T05:00:00Z')
 /** The confirmation emails go out by Monday, November 16 (also the day the Europe session is confirmed). */
 const CONFIRM_BY = new Date('2026-11-16T17:00:00Z')
 
@@ -80,20 +80,6 @@ const nb = (text: string, rtl = false) => {
 const HM: Intl.DateTimeFormatOptions = { hour: 'numeric', minute: '2-digit' }
 const DAY: Intl.DateTimeFormatOptions = { weekday: 'long', month: 'long', day: 'numeric' }
 const SHORT_DAY: Intl.DateTimeFormatOptions = { weekday: 'short', month: 'short', day: 'numeric' }
-
-/** Whether sign-ups have closed, turning over by itself if the page is open at the moment they close. */
-function useClosed(): boolean {
-  const [closed, setClosed] = useState(() => Date.now() >= CLOSES_AT.getTime())
-  useEffect(() => {
-    if (closed) return
-    const wait = CLOSES_AT.getTime() - Date.now()
-    // setTimeout can't wait longer than ~24.8 days; a page open that long checks again when it's reloaded.
-    if (wait > 2_000_000_000) return
-    const id = window.setTimeout(() => setClosed(true), Math.max(0, wait))
-    return () => window.clearTimeout(id)
-  }, [closed])
-  return closed
-}
 
 /** The visitor's own time zone, or none if the browser won't say. */
 function visitorZone(): string | undefined {
@@ -191,6 +177,7 @@ const Beta = () => {
             <span className={s.mark}>{t.home.hero.titleMark}</span>
           </DisplayHeading>
           <p className={s.lede}>{rich(b.lede, { b: bold })}</p>
+          <p className={s.reset}>{b.reset}</p>
           <ul className={s.facts}>
             {b.facts.map((fact) => (
               <li key={fact}>{fact}</li>
@@ -324,7 +311,6 @@ const Beta = () => {
 
         {/* ---- what testers get ---- */}
         <Section id="beta-get" area={s.areaGet} eyebrow={b.get.eyebrow} title={b.get.title}>
-          <p className={s.keep}>{b.get.keep}</p>
           <ul className={s.rewards}>
             {b.get.items.map((item) => (
               <li key={item}>
@@ -332,6 +318,7 @@ const Beta = () => {
               </li>
             ))}
           </ul>
+          <p className={s.reset}>{b.reset}</p>
           <div className={s.prize}>
             <FaGift className={s.prizeIcon} aria-hidden focusable={false} />
             <div>

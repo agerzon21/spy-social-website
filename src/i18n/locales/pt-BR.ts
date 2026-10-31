@@ -70,6 +70,8 @@ const ptBR: Strings = {
     transparency: "Transparência",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Regras da Noite de Jogo",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "Teste Beta 2",
     tagline: 'O jogo de festa da dedução social.',
     play: 'Jogar',
     legal: 'Legal e segurança',
@@ -979,7 +981,9 @@ const ptBR: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Teste ao vivo',
     title: 'Jogue primeiro',
-    lede: '<b>Um teste de jogo em grupo, ao vivo e de 1 hora, do SpySocial</b>, o jogo grátis de dedução social para festas. Jogue antes do lançamento, conte o que confunde você e fique com as recompensas.',
+    lede: '<b>Cinco vales-presente de US$\u00a050</b> para os relatos de bugs ou ideias mais úteis deste teste de jogo em grupo, ao vivo e de 1 hora, do SpySocial, o jogo grátis de dedução social para festas. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta, dois títulos, 10 interceptações de cada nível e 1 mês de assinatura.',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: 'Partidas, XP e itens do teste são zerados no lançamento.',
     facts: ['1 hora, ao vivo', 'Só maiores de 18', 'Cerca de 24 jogadores', 'iPhone ou Android'],
     when: {
       label: 'Quando',
@@ -1023,8 +1027,7 @@ const ptBR: Strings = {
     },
     get: {
       eyebrow: 'O que você ganha',
-      title: 'Recompensas',
-      keep: 'Ficam com você depois do lançamento:',
+      title: 'Recompensas beta que ficam com você depois do lançamento',
       items: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Testador de Campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> de assinatura'],
       prizeTitle: '5 vales-presente de US$\u00a050',
       prize: 'Os cinco relatos de bugs ou ideias mais úteis ganham, cada um, um vale-presente de US$ 50. O desenvolvedor escolhe em até uma semana.',

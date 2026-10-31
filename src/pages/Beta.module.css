@@ -159,7 +159,7 @@
   color: var(--ss-text);
 }
 
-.keep { margin-bottom: 12px !important; font-size: 16px; font-weight: 600; color: var(--ss-text); }
+.reset { margin: 12px 0 0 !important; font-size: 14px; line-height: 1.45; color: var(--ss-muted); }
 .rewards { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr); }
 .rewards li {
   display: flex;

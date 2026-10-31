@@ -70,6 +70,8 @@ const es: Strings = {
     transparency: "Transparencia",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Reglas de la Noche de Juego",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "Prueba Beta 2",
     tagline: 'El juego de fiesta del engaño social.',
     play: 'Jugar',
     legal: 'Legal y seguridad',
@@ -976,7 +978,9 @@ const es: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Prueba en vivo',
     title: 'Juega primero',
-    lede: '<b>Una prueba de juego en grupo, en vivo y de 1 hora, de SpySocial</b>, el juego gratis de deducción social para fiestas. Juégalo antes del lanzamiento, cuéntanos qué te confunde y quédate con las recompensas.',
+    lede: '<b>Cinco tarjetas regalo de 50\u00a0USD</b> para los reportes de errores o ideas más útiles de esta prueba de juego en grupo, en vivo y de 1 hora, de SpySocial, el juego gratis de deducción social para fiestas. Además, recompensas beta que te quedas después del lanzamiento: el Pin beta, dos títulos, 10 intercepciones de cada nivel y 1 mes de membresía.',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: 'Las partidas, la XP y los objetos de la prueba se reinician en el lanzamiento.',
     facts: ['1 hora, en vivo', 'Solo mayores de 18', 'Unos 24 jugadores', 'iPhone o Android'],
     when: {
       label: 'Cuándo',
@@ -1020,8 +1024,7 @@ const es: Strings = {
     },
     get: {
       eyebrow: 'Qué recibes',
-      title: 'Recompensas',
-      keep: 'Te las quedas después del lanzamiento:',
+      title: 'Recompensas beta que te quedas tras el lanzamiento',
       items: ['El <b>Pin beta</b>', 'Los títulos <b>Tester beta</b> y <b>Tester de Campo</b>', '<b>10 intercepciones</b> de cada nivel', '<b>1 mes</b> de membresía'],
       prizeTitle: '5 tarjetas regalo de 50\u00a0USD',
       prize: 'Los cinco reportes de errores o ideas más útiles reciben cada uno una tarjeta regalo de 50 USD. El desarrollador los elige en el plazo de una semana.',
