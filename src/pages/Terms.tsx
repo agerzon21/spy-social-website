@@ -154,7 +154,46 @@ const Terms: React.FC = () => {
         isn't: don't reveal the secret word or location, don't team up with other players outside the game, don't
         play in one game with more than one account, and don't set up games just to collect XP or rewards. We may
         remove XP, levels, achievements or rewards that were earned by cheating.
+        {LIVE.socialFeatures &&
+          " Playing in a party doesn't change these rules: telling anyone at your table your role, the location or the word outside the game is cheating. We may pause a party, ban a player from parties, and take back anything won in those games."}
       </P>
+      {/* LIVE.socialFeatures: Social Phase 1 for everyone (legalRelease). */}
+      {LIVE.socialFeatures && (
+        <>
+          <H3>Friends, follows and parties</H3>
+          <Bullets>
+            <ListItem>
+              Friends are two-way: both of you agree. You can add a friend in person with your Friend Code, from a
+              private game you just played together, and, between adults who allow it, from a public table or by
+              username. Some of these ways depend on age, and players under 18 have more private settings, as our
+              Privacy Policy explains. You can remove or block a friend at any time; they aren't told.
+            </ListItem>
+            <ListItem>
+              Adults can have a public profile that other players can open and follow. You can make yours private at
+              any time in Privacy &amp; Friends. Players under 18 have no public profile and can't be followed.
+            </ListItem>
+            <ListItem>
+              A party is a leader and up to 3 of the leader's friends who play together. The leader needs a
+              membership. A party plays together at Play Online tables and game nights, where it takes at most half
+              of a table and is marked for everyone there, and can start a private room together. A private room plays
+              the host's packs, as it always does. A members-only search needs every member of the party to be a
+              member.
+            </ListItem>
+            <ListItem>
+              Party chat follows the same rules as all chat in SpySocial (see section 7), and you can report any
+              message in it.
+            </ListItem>
+            <ListItem>
+              Invites, requests and notifications have limits, and we may change the limits on friends, follows and
+              parties, or pause any of these features.
+            </ListItem>
+            <ListItem>
+              On iPhone, friends, follows and parties aren't available to players under 18 until a version of the app
+              that asks a parent's consent through Apple is out.
+            </ListItem>
+          </Bullets>
+        </>
+      )}
 
       <H2>5. Public Rooms and Events</H2>
       <P>
@@ -367,7 +406,8 @@ const Terms: React.FC = () => {
         You can report or block a player from their name in the app
         {LIVE.messageReports ? ', report a message, question or answer by long-pressing it' : ''}
         {drawings ? (LIVE.communityPacks ? ', report a drawing' : ', and report a drawing') : ''}
-        {LIVE.communityPacks ? ', and report a Community Pack from its page' : ''}.
+        {LIVE.communityPacks ? ', and report a Community Pack from its page' : ''}
+        {LIVE.socialFeatures ? '. You can also report a friend request, a profile, an invite or a whole party (Report Party covers every member of it)' : ''}.
         A person reads every report, and our Community Rules say how soon. The player you report isn't told who
         reported them. To check a report, we look at what's attached to it and at the records we keep, as our
         Privacy Policy describes.

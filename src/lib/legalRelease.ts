@@ -963,6 +963,28 @@ export const LIVE = {
    */
   passwordless: false,
   /**
+   * Social Phase 1 for everyone (app repo feat/social-switchon; server social files live Oct 31, 2026 for testers:
+   * social graph 20261031024235, presence / invites / profile 024240, report contexts 024242, followers list 024244,
+   * party 024246, Social Watch 033922, social push 053549, Following feed 055059, Report Party 062014, iOS minors' hold
+   * 065014, Social Watch push 090125). Friends (two-way; paths by age band: Friend Code in person for everyone, a private
+   * game in the last 24 h except adult with 13-15, a public table and @username adults with adults only), follows and
+   * public profiles (adults only, with a showcase; the one-time "your profile is public" notice), the Following feed,
+   * online status for friends, room and party invites, Ask to Join, parties (the leader a member; a private room plays
+   * the host's packs; members-only matchmaking needs every member to be a member), party chat (the room chat's filters,
+   * kept 30 days), social push notices (a switch each, the sender's display name, none 10 PM-7 AM for under-18s, deleted
+   * after 7 days), Social Watch and Party Watch, Report Party, and the iOS minors' hold (social off for under-18s on the
+   * iPhone app until the in-app parental consent build). Turns on: Privacy's Friends, Follows and Profiles, Party and
+   * Party Chat and Social Notifications items, Presence, Safety Information, How We Use, Legitimate Interests, Data
+   * Retention, Data Sharing, Children's Privacy and the deletion summary; the Terms' section 4 "Friends, follows and
+   * parties", fair play in parties and section 8's Report Party. Trading is NOT in this switch (Phase 2). PUBLISH WITH
+   * THE SWITCH-ON (spy-social .claude/handoff/scratchpad/oct31/SOCIAL-SWITCH-ON.md step 2.5): flip it the same hour
+   * app_config.social goes 'on', and set its two dates (LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED) to that day. A server
+   * switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD. BEFORE FLIPPING, check: the social log
+   * (social_events) has its 1-year purge live (Data Retention says 1 year; on Oct 31 nothing deleted it), and
+   * app_config.social.ios_minor_hold is still true (the iOS sentence says so).
+   */
+  socialFeatures: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1116,6 +1138,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.socialFeatures
+      ? 'November 17, 2026' // Terms 4's Friends, follows and parties, fair play in parties, section 8's Report Party: set to the switch-on day
       : LIVE.membershipCodes
       ? 'October 31, 2026' // Terms 3: memberships given with a code (20261203440000): set to the day the site goes up with it on
       : LIVE.rmtGambling
@@ -1144,6 +1168,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.socialFeatures
+    ? 'November 17, 2026' // friends, follows, profiles, party and party chat, social notifications, Social Watch: set to the switch-on day
     : LIVE.integritySignupNetwork
     ? 'October 31, 2026' // the sign-up network code and network blocks (Integrity): set to the day the site goes up with it on
     : LIVE.ipVault
