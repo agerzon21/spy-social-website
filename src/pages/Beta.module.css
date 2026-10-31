@@ -1,0 +1,251 @@
+/*
+ * /beta (Beta.tsx), direction B, Film Noir: a spotlight over the poster title, the session on a ticket (the one
+ * orange thing to tap), then the details down one column. Phone first; on a computer the ticket stands beside the
+ * title and the sections sit in two columns. Colours, faces and rules come from the skin (--ss-*, src/theme), so
+ * the light theme follows; every side is a logical one, so Arabic mirrors.
+ */
+
+.page {
+  flex: 1;
+  padding-bottom: 64px;
+  background: radial-gradient(90% 460px at 50% 0, var(--ss-glow), transparent 70%);
+}
+
+/* ---- the poster ---- */
+.hero { display: grid; gap: 28px; padding-top: 36px; }
+.heroCopy { min-width: 0; }
+.title { margin: 0; }
+.mark { color: var(--ss-accent-text); }
+.lede { margin: 18px 0 0; max-width: 32em; font-size: clamp(17px, 4.6vw, 20px); line-height: 1.5; color: var(--ss-muted); }
+.lede b { color: var(--ss-text); font-weight: 700; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; padding: 0; list-style: none; font-size: 15px; font-weight: 600; color: var(--ss-text); }
+.facts li { display: flex; align-items: center; gap: 8px; }
+.facts li::before { content: ''; flex: none; width: 5px; height: 5px; background: var(--ss-accent-text); transform: rotate(45deg); }
+
+/* ---- the ticket: when, and the way in ---- */
+.ticket {
+  position: relative;
+  min-width: 0;
+  padding: 22px 20px 22px;
+  border: var(--ss-card-border) solid var(--ss-line-strong);
+  border-top: 4px solid var(--ss-accent);
+  border-radius: var(--ss-radius-card);
+  background: var(--ss-band);
+}
+.ticket p { margin: 0; }
+.ticketLabel {
+  font: 700 12px/1.2 var(--ss-font-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}
+.day {
+  margin-top: 10px !important;
+  font: 900 clamp(30px, 8.6vw, 40px)/0.95 var(--ss-font-display);
+  text-transform: var(--ss-display-transform);
+  letter-spacing: 0.01em;
+  color: var(--ss-text);
+  text-wrap: balance;
+}
+.time {
+  margin-top: 6px !important;
+  font: 800 clamp(24px, 6.6vw, 30px)/1.1 var(--ss-font-display);
+  letter-spacing: 0.02em;
+  color: var(--ss-accent-text);
+}
+.zones { margin-top: 6px !important; font-size: 15px; line-height: 1.45; color: var(--ss-muted); }
+.yours {
+  margin-top: 10px !important;
+  padding-inline-start: 10px;
+  border-inline-start: 2px solid var(--ss-highlight);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ss-text);
+}
+.checkIn { display: flex; align-items: flex-start; gap: 10px; margin-top: 14px !important; font-size: 15px; line-height: 1.45; color: var(--ss-body); }
+.checkIcon { flex: none; width: 16px; height: 16px; margin-top: 3px; color: var(--ss-highlight); }
+
+.europe { margin-top: 18px; padding-top: 16px; border-top: var(--ss-hairline) dashed var(--ss-line-strong); }
+.euDay {
+  margin-top: 8px !important;
+  font: 800 clamp(22px, 6vw, 26px)/1 var(--ss-font-display);
+  text-transform: var(--ss-display-transform);
+  letter-spacing: 0.02em;
+  color: var(--ss-text);
+}
+.euTime { margin-top: 4px !important; font-size: 16px; font-weight: 700; color: var(--ss-text); }
+.euNote { margin-top: 8px !important; font-size: 14px; line-height: 1.45; color: var(--ss-muted); }
+
+.cta { display: grid; gap: 10px; margin-top: 22px; }
+.go { width: 100%; min-height: 58px; padding: 10px 18px; font-size: 22px; line-height: 1.05; text-align: center; }
+.go svg { flex: none; width: 20px; height: 20px; }
+.goIcon { width: 15px !important; height: 15px !important; }
+:global([dir='rtl']) .goIcon { transform: scaleX(-1); }
+.ctaNote { margin: 0 0 6px !important; font-size: 14px; line-height: 1.45; text-align: center; color: var(--ss-muted); }
+.closed {
+  margin: 0;
+  font: 800 clamp(22px, 6vw, 28px)/1.1 var(--ss-font-display);
+  text-transform: var(--ss-display-transform);
+  letter-spacing: 0.02em;
+  color: var(--ss-text);
+}
+
+/* ---- the details ---- */
+.body { display: grid; gap: 0; margin-top: 12px; }
+.section { min-width: 0; padding-top: 44px; }
+.sectionTitle { margin-bottom: 18px; }
+/* Room over a title's accents (Russian Й, Ё). */
+.sectionEyebrow { margin-bottom: 20px; }
+.body p { margin: 0; }
+
+.games { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.game {
+  padding: 18px 18px 20px;
+  border: var(--ss-card-border) solid var(--ss-line);
+  border-radius: var(--ss-radius-card);
+  background: var(--ss-surface);
+}
+.game p { font-size: 16px; line-height: 1.55; color: var(--ss-body); }
+.gameIcon { display: block; width: 26px; height: 26px; margin-bottom: 12px; color: var(--ss-accent-text); }
+
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.iconItem { display: flex; align-items: flex-start; gap: 14px; }
+.itemIcon { flex: none; width: 20px; height: 20px; margin-top: 2px; color: var(--ss-accent-text); }
+.itemBody { min-width: 0; display: grid; gap: 10px; font-size: 16px; line-height: 1.55; color: var(--ss-body); }
+.itemBody b { color: var(--ss-text); }
+
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li {
+  padding: 4px 9px;
+  border: var(--ss-hairline) solid var(--ss-line-strong);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ss-text);
+}
+
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 12px; }
+.steps li, .joinSteps li {
+  counter-increment: step;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--ss-body);
+}
+.steps li b { color: var(--ss-text); }
+.steps li::before, .joinSteps li::before {
+  content: counter(step);
+  flex: none;
+  min-width: 26px;
+  font: 900 30px/0.9 var(--ss-font-display);
+  color: var(--ss-accent-text);
+}
+.subhead {
+  margin: 26px 0 10px !important;
+  font: 700 13px/1.2 var(--ss-font-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}
+.questions { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.questions li {
+  padding: 12px 14px;
+  border-inline-start: 3px solid var(--ss-highlight);
+  background: var(--ss-surface);
+  font: italic 500 17px/1.4 var(--ss-font-body);
+  color: var(--ss-text);
+}
+
+.keep { margin-bottom: 12px !important; font-size: 16px; font-weight: 600; color: var(--ss-text); }
+.rewards { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; grid-template-columns: minmax(0, 1fr); }
+.rewards li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: var(--ss-card-border) solid var(--ss-line);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--ss-body);
+}
+.rewards li::before { content: ''; flex: none; width: 7px; height: 7px; background: var(--ss-highlight); transform: rotate(45deg); }
+.rewards b { color: var(--ss-text); }
+.prize {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 16px 16px 18px;
+  border: var(--ss-card-border) solid var(--ss-accent);
+  background: color-mix(in srgb, var(--ss-accent) 9%, transparent);
+}
+.prizeIcon { flex: none; width: 26px; height: 26px; margin-top: 2px; color: var(--ss-accent-text); }
+.prizeTitle {
+  font: 900 clamp(26px, 7vw, 32px)/1 var(--ss-font-display);
+  text-transform: var(--ss-display-transform);
+  letter-spacing: 0.02em;
+  color: var(--ss-text);
+}
+.prizeText { margin-top: 8px !important; font-size: 16px; line-height: 1.5; color: var(--ss-body); }
+
+.joinSteps { list-style: none; margin: 0; padding: 0; counter-reset: step; display: grid; gap: 14px; }
+.devices { display: grid; gap: 10px; margin-top: 20px; padding: 14px 16px; background: var(--ss-surface); border: var(--ss-card-border) solid var(--ss-line); }
+.devices p { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.5; color: var(--ss-body); }
+.deviceIcon { flex: none; width: 18px; height: 18px; margin-top: 2px; color: var(--ss-highlight); }
+
+.inline {
+  color: var(--ss-link);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+.inline:hover { color: var(--ss-link-hover); }
+
+.fine {
+  display: grid;
+  gap: 8px;
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: var(--ss-hairline) solid var(--ss-line);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ss-muted);
+}
+.fineLinks { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; }
+.fineLinks .inline { display: inline-flex; align-items: center; min-height: 44px; }
+/* The address is text to copy, not a link: one tap selects all of it. */
+.email { font-weight: 700; color: var(--ss-text); user-select: all; -webkit-user-select: all; }
+
+/* The display-face lines aren't running text: no hyphenation (src/index.css turns it on for Russian paragraphs). */
+.page :is(.day, .time, .euDay, .closed, .prizeTitle) { hyphens: manual; }
+
+@media (min-width: 640px) {
+  .games { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rewards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* A computer: the ticket beside the poster, the sections in two columns. */
+@media (min-width: 1000px) {
+  .page { padding-bottom: 96px; }
+  .hero { grid-template-columns: minmax(0, 1fr) 420px; gap: 48px; align-items: start; padding-top: 72px; }
+  .ticket { padding: 26px 26px 26px; }
+  /* The rewards stand beside the friends and the steps (each column about as long as the other). */
+  .body {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas: 'games games' 'who ask' 'get friends' 'get join' 'fine fine';
+    align-items: start;
+    column-gap: 56px;
+    margin-top: 24px;
+  }
+  .areaGames { grid-area: games; }
+  .areaWho { grid-area: who; }
+  .areaAsk { grid-area: ask; }
+  .areaGet { grid-area: get; }
+  .areaFriends { grid-area: friends; }
+  .areaJoin { grid-area: join; }
+  .fine { grid-area: fine; }
+}

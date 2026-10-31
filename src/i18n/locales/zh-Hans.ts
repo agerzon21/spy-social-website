@@ -8,6 +8,8 @@ const zhHans: Strings = {
     description:
       '叫上朋友，找出卧底，或者骗过所有人。免费实时多人派对游戏，支持 3–21 名玩家。iOS 和 Google Play 均可下载。',
     titles: {
+      /** The Beta 2 playtester page (/beta). */
+      beta: '第 2 轮内测：上线前抢先玩 SpySocial',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       transparency: "透明度报告",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
@@ -31,6 +33,7 @@ const zhHans: Strings = {
       notFound: '页面不存在',
     },
     descriptions: {
+      beta: '加入 SpySocial 的 1 小时线上集体试玩。SpySocial 是一款免费的社交推理派对游戏。时间：2026 年 11 月 19 日（星期四）美东时间晚上 7–8 点。仅限 18 岁以上成年人，iPhone 或 Android 均可。测试玩家可获得内测徽章等奖励。',
       transparency: "每月公布 SpySocial 中情报的获得、花费和更正数量，以及每一起事件和每一次规则变更，不点名任何玩家。",
       gameNightRules: "SpySocial 每周游戏之夜的规则：举办时间、参与资格、如何获得当晚的称号，以及开发者的额外称号。",
       faq: 'SpySocial 常见问题解答：如何开始、游戏模式、分享和加入房间、语言、房主控制、你的账号以及故障排除。',
@@ -948,6 +951,77 @@ const zhHans: Strings = {
     deletedTitle: '哪些内容会被删除',
     staysTitle: '哪些内容会保留，保留多久',
     details: '详情请见我们的<link>隐私政策</link>。',
+  },
+
+  beta: {
+    eyebrow: '第 2 轮内测 · 线上试玩',
+    title: '抢先玩',
+    lede: '<b>SpySocial 的 1 小时线上集体试玩</b>，免费的社交推理派对游戏。上线前抢先玩，告诉我们哪里让你困惑，奖励永久归你。',
+    facts: ['1 小时，实时进行', '仅限 18 岁以上', '约 24 名玩家', 'iPhone 或 Android'],
+    when: {
+      label: '时间',
+      et: (time: string) => `美东时间（ET）${time}`,
+      others: (pacific: string, utc: string) => `美西时间 ${pacific} · UTC\u00a0${utc}`,
+      yours: (time: string) => `你的当地时间：${time}`,
+      checkIn: (time: string) => `美东时间 ${time} 起在 Discord 语音频道签到。`,
+    },
+    europe: {
+      label: '欧洲 · 可选的第二场',
+      time: (cet: string, uk: string) => `欧洲中部时间 ${cet} · 英国时间 ${uk}`,
+      note: (date: string) => `仅在欧洲报名人数足够时举行，我们会在 ${date}前确认。`,
+    },
+    signUp: '立即报名',
+    signUpNote: (day: string, time: string) => `约需 2 分钟。报名截止：美东时间 ${day} ${time}。`,
+    discord: '加入我们的 Discord',
+    closed: '报名已截止。关注我们的 Discord，参加下一次测试。',
+    games: {
+      eyebrow: '玩什么',
+      title: '两种玩法',
+      talk: '问答对话。一到两名玩家不知道秘密地点，要想办法混在人群中。',
+      sketch: '所有人在同一幅画上添笔。卧底只能假装知道。',
+    },
+    who: {
+      eyebrow: '适合谁',
+      title: '我们在找这样的你',
+      adults: '<b>仅限 18 岁以上成年人。</b>约 24 名玩家同时参与。',
+      phones: '<b>iPhone（TestFlight）或 Android 手机（Google Play 测试）。</b>特别欢迎 Android 手机：',
+      androidLabel: '我们特别想测试的 Android 手机',
+      fans: '<b>社交推理游戏爱好者：</b>Among Us、Spyfall、狼人杀/杀人游戏、Blood on the Clocktower、Codenames。新手同样欢迎。',
+      mic: '<b>有麦克风更好。</b>只听不说也可以。',
+      langs: '<b>游戏支持 10 种语言：</b>',
+      langsLabel: '游戏语言',
+    },
+    ask: {
+      eyebrow: '我们的请求',
+      title: '玩。说。告诉我们。',
+      steps: ['<b>玩满</b>这一小时。', '有任何困惑都<b>说出来</b>。', '结束后<b>填写 5 分钟的问卷</b>。'],
+      wantTitle: '我们想了解',
+      want: ['能清楚看出轮到谁了吗？', '投票容易理解吗？', '在你的手机上画画顺畅吗？'],
+    },
+    get: {
+      eyebrow: '你能得到',
+      title: '感谢奖励',
+      keep: '上线后依然归你所有：',
+      items: ['<b>内测徽章</b>', '<b>“内测玩家”</b>和<b>“外勤测试员”</b>称号', '每个等级各 <b>10 封密函</b>', '<b>1 个月</b>会员'],
+      prizeTitle: '5 张 50 美元礼品卡',
+      prize: '最有价值的五份问题反馈或建议，每份可获得一张 50 美元礼品卡，由开发者在一周内选出。',
+    },
+    friends: {
+      eyebrow: '朋友',
+      title: '带上朋友',
+      text: '<b>在表单里填上朋友的名字</b>，就能坐到同一桌。第 1 轮内测的玩家优先。',
+    },
+    join: {
+      eyebrow: '如何参加',
+      title: '四个步骤',
+      form: '<link>填写报名表</link>（约 2 分钟）。',
+      closes: (day: string, time: string) => `报名截止：美东时间 ${day} ${time}。`,
+      email: (day: string) => `我们会在 ${day}前发邮件给你，确认你的名额并发送安装链接。`,
+      discord: '<link>加入我们的 Discord</link>：签到在语音频道进行。',
+      android: 'Android：表单会询问你 Play 商店使用的 Google 邮箱，因为 Google 要求测试版必须提供。测试结束后即删除。',
+      iphone: 'iPhone：通过邮件中的链接，用 TestFlight 安装 SpySocial。',
+    },
+    fine: '预发布版本。请勿分享其他玩家的名字或聊天内容。你的报名信息将在第 2 轮内测结束后删除。',
   },
 
   notFound: {

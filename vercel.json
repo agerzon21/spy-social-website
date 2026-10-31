@@ -101,6 +101,10 @@
   ],
   "rewrites": [
     {
+      "source": "/beta",
+      "destination": "/beta/index.html"
+    },
+    {
       "source": "/((?!\\.well-known/|static/|assets/).*)",
       "destination": "/index.html"
     }

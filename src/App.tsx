@@ -50,6 +50,8 @@ const Roadmap = page(() => import('./pages/Roadmap'))
 // The Game Night rules: the route exists only while LIVE.gameNightRules is on (off: the 404 page).
 const GameNightRules = page(() => import('./pages/GameNightRules'))
 const Transparency = page(() => import('./pages/Transparency'))
+// The Beta 2 playtester page (linked from Reddit and Discord), its own chunk.
+const Beta = page(() => import('./pages/Beta'))
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
@@ -88,6 +90,7 @@ function App() {
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
+              <Route path="/beta" element={<Layout><Beta /></Layout>} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
               <Route path="/join/e/:id" element={<Layout><JoinEvent /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />

@@ -8,6 +8,8 @@ const id: Strings = {
     description:
       'Kumpulkan temanmu dan temukan mata-matanya, atau kelabui semua orang. Game pesta multipemain real-time gratis untuk 3–21 pemain. Di iOS dan Google Play.',
     titles: {
+      /** The Beta 2 playtester page (/beta). */
+      beta: 'Beta 2: main SpySocial sebelum peluncuran',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       transparency: "Laporan transparansi",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
@@ -31,6 +33,7 @@ const id: Strings = {
       notFound: 'Halaman tidak ditemukan',
     },
     descriptions: {
+      beta: 'Ikut playtest grup live selama 1 jam untuk SpySocial, game pesta deduksi sosial gratis, pada Kamis, 19 November 2026, pukul 19.00–20.00 waktu Timur AS. Khusus 18+, di iPhone atau Android. Penguji mendapat Pin Beta dan lainnya.',
       transparency: "Setiap bulan: berapa Intel yang didapat, dibelanjakan, dan dikoreksi di SpySocial, setiap insiden, dan setiap perubahan aturan, tanpa menyebut nama pemain.",
       gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara mendapatkan gelar malam itu, dan gelar bonus dari pengembang.",
       faq: 'Jawaban atas pertanyaan umum tentang SpySocial: cara mulai, mode permainan, berbagi dan gabung ke room, bahasa, kontrol host, akunmu, dan cara mengatasi masalah.',
@@ -971,6 +974,77 @@ const id: Strings = {
     deletedTitle: 'Apa yang dihapus',
     staysTitle: 'Apa yang tetap disimpan, dan berapa lama',
     details: '<link>Kebijakan Privasi</link> kami menjelaskan detailnya.',
+  },
+
+  beta: {
+    eyebrow: 'Beta 2 · Playtest live',
+    title: 'Main duluan',
+    lede: '<b>Playtest grup live selama 1 jam untuk SpySocial</b>, game pesta deduksi sosial yang gratis. Mainkan sebelum peluncuran, ceritakan apa yang membingungkan, dan simpan hadiahnya.',
+    facts: ['1 jam, live', 'Khusus 18+', 'Sekitar 24 pemain', 'iPhone atau Android'],
+    when: {
+      label: 'Kapan',
+      et: (time: string) => `${time} waktu Timur AS (ET)`,
+      others: (pacific: string, utc: string) => `${pacific} waktu Pasifik · ${utc}\u00a0UTC`,
+      yours: (time: string) => `Waktumu: ${time}`,
+      checkIn: (time: string) => `Check-in dibuka pukul ${time} waktu Timur AS di saluran suara Discord.`,
+    },
+    europe: {
+      label: 'Eropa · Sesi kedua opsional',
+      time: (cet: string, uk: string) => `${cet}\u00a0CET · ${uk} waktu Inggris`,
+      note: (date: string) => `Hanya berjalan kalau cukup banyak orang di Eropa yang mendaftar. Kami konfirmasi paling lambat ${date}.`,
+    },
+    signUp: 'Daftar',
+    signUpNote: (day: string, time: string) => `Sekitar 2 menit. Pendaftaran ditutup ${day}, pukul ${time} waktu Timur AS.`,
+    discord: 'Gabung Discord kami',
+    closed: 'Pendaftaran sudah ditutup. Ikuti kami di Discord untuk tes berikutnya.',
+    games: {
+      eyebrow: 'Yang kamu mainkan',
+      title: 'Dua game',
+      talk: 'Tanya jawab. Satu atau dua pemain tidak tahu tempat rahasianya dan berusaha berbaur.',
+      sketch: 'Semua orang menambah coretan di gambar yang sama. Mata-mata pura-pura tahu.',
+    },
+    who: {
+      eyebrow: 'Untuk siapa',
+      title: 'Siapa yang kami cari',
+      adults: '<b>Khusus dewasa 18+.</b> Sekitar 24 pemain sekaligus.',
+      phones: '<b>iPhone (TestFlight) atau ponsel Android (pengujian Google Play).</b> Ponsel Android sangat kami harapkan:',
+      androidLabel: 'Ponsel Android yang paling kami cari',
+      fans: '<b>Penggemar game deduksi sosial:</b> Among Us, Spyfall, Werewolf/Mafia, Blood on the Clocktower, Codenames. Pemula juga boleh ikut.',
+      mic: '<b>Mikrofon membantu.</b> Cuma mendengarkan juga boleh.',
+      langs: '<b>Game ini tersedia dalam 10 bahasa:</b>',
+      langsLabel: 'Bahasa dalam game',
+    },
+    ask: {
+      eyebrow: 'Yang kami minta',
+      title: 'Main. Bicara. Ceritakan.',
+      steps: ['<b>Main</b> selama satu jam.', '<b>Ucapkan dengan suara keras</b> apa pun yang membingungkan.', '<b>Isi survei 5 menit</b> sesudahnya.'],
+      wantTitle: 'Yang ingin kami ketahui',
+      want: ['Jelaskah giliran siapa sekarang?', 'Mudahkah memahami voting?', 'Apakah menggambar lancar di ponselmu?'],
+    },
+    get: {
+      eyebrow: 'Yang kamu dapat',
+      title: 'Hadiah terima kasih',
+      keep: 'Tetap milikmu setelah peluncuran:',
+      items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
+      prizeTitle: '5 kartu hadiah $50',
+      prize: 'Lima laporan bug atau ide paling berguna masing-masing mendapat kartu hadiah $50, dipilih oleh developer dalam waktu seminggu.',
+    },
+    friends: {
+      eyebrow: 'Teman',
+      title: 'Ajak teman',
+      text: '<b>Tulis nama temanmu di formulir</b> supaya duduk di meja yang sama. Penguji Beta 1 dapat prioritas.',
+    },
+    join: {
+      eyebrow: 'Cara ikut',
+      title: 'Empat langkah',
+      form: '<link>Isi formulir pendaftaran</link> (sekitar 2 menit).',
+      closes: (day: string, time: string) => `Pendaftaran ditutup ${day}, pukul ${time} waktu Timur AS.`,
+      email: (day: string) => `Kami kirim email paling lambat ${day} untuk mengonfirmasi tempatmu dan mengirim link instalasi.`,
+      discord: '<link>Gabung Discord kami</link>: check-in di saluran suaranya.',
+      android: 'Android: formulir meminta email Google yang dipakai di Play Store-mu, karena Google mewajibkannya untuk build uji. Email itu dihapus setelah sesi.',
+      iphone: 'iPhone: kamu memasang SpySocial lewat TestFlight, dari link di email.',
+    },
+    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus setelah Beta 2.',
   },
 
   notFound: {

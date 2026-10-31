@@ -8,6 +8,8 @@ const fr: Strings = {
     description:
       "Réunis tes amis et démasque l'espion, ou bluffe tout le monde. Jeu d'ambiance gratuit en temps réel pour 3 à 21 joueurs, sur iOS et Google Play.",
     titles: {
+      /** The Beta 2 playtester page (/beta). */
+      beta: 'Bêta\u00a02\u00a0: joue à SpySocial avant sa sortie',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       transparency: "Rapport de transparence",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
@@ -31,6 +33,7 @@ const fr: Strings = {
       notFound: 'Page introuvable',
     },
     descriptions: {
+      beta: 'Rejoins un test de jeu collectif en direct d’une heure de SpySocial, un jeu gratuit de déduction sociale pour soirées, le jeudi 19\u00a0novembre 2026, de 19\u00a0h à 20\u00a0h, heure de l’Est des États-Unis. Réservé aux 18\u00a0ans et plus, sur iPhone ou Android. Les testeurs gardent le Pin bêta et plus encore.',
       transparency: "Chaque mois : combien d’Intel a été gagné, dépensé et corrigé dans SpySocial, chaque incident et chaque changement de règle, sans nommer aucun joueur.",
       gameNightRules: "Les règles de la soirée jeux hebdomadaire de SpySocial : quand elle a lieu, qui peut participer, comment obtenir les titres de la soirée et le titre bonus du développeur.",
       faq: "Réponses aux questions fréquentes sur SpySocial\u00A0: débuter, modes de jeu, partager un salon et le rejoindre, langues, options de l'hôte, ton compte et dépannage.",
@@ -976,6 +979,77 @@ const fr: Strings = {
     deletedTitle: 'Ce qui est supprimé',
     staysTitle: 'Ce qui est conservé, et combien de temps',
     details: 'Notre <link>politique de confidentialité</link> donne tous les détails.',
+  },
+
+  beta: {
+    eyebrow: 'Bêta\u00a02 · Test en direct',
+    title: 'Joue en premier',
+    lede: '<b>Un test de jeu collectif en direct, d’une heure, de SpySocial</b>, le jeu gratuit de déduction sociale pour soirées. Joue avant la sortie, dis-nous ce qui te bloque et garde les récompenses.',
+    facts: ['1\u00a0heure, en direct', '18\u00a0ans et plus', 'Environ 24\u00a0joueurs', 'iPhone ou Android'],
+    when: {
+      label: 'Quand',
+      et: (time: string) => `${time}, heure de l’Est (ET)`,
+      others: (pacific: string, utc: string) => `${pacific}, heure du Pacifique · ${utc}\u00a0UTC`,
+      yours: (time: string) => `Chez toi\u00a0: ${time}`,
+      checkIn: (time: string) => `L’accueil ouvre à ${time} (heure de l’Est) sur le salon vocal Discord.`,
+    },
+    europe: {
+      label: 'Europe · Seconde session facultative',
+      time: (cet: string, uk: string) => `${cet}\u00a0CET · ${uk} au Royaume-Uni`,
+      note: (date: string) => `Elle n’a lieu que si assez de personnes en Europe s’inscrivent. Confirmation au plus tard le ${date}.`,
+    },
+    signUp: 'Je m’inscris',
+    signUpNote: (day: string, time: string) => `Environ 2\u00a0minutes. Inscriptions jusqu’au ${day}, ${time} (heure de l’Est).`,
+    discord: 'Rejoindre notre Discord',
+    closed: 'Les inscriptions sont closes. Suis-nous sur Discord pour le prochain test.',
+    games: {
+      eyebrow: 'À quoi tu joues',
+      title: 'Deux jeux',
+      talk: 'Questions et réponses. Un ou deux joueurs ne connaissent pas le lieu secret et tentent de passer inaperçus.',
+      sketch: 'Tout le monde complète le même dessin. Les espions font semblant.',
+    },
+    who: {
+      eyebrow: 'Pour qui',
+      title: 'Qui nous cherchons',
+      adults: '<b>Adultes uniquement (18\u00a0ans et plus).</b> Environ 24\u00a0joueurs en même temps.',
+      phones: '<b>Un iPhone (TestFlight) ou un téléphone Android (tests Google Play).</b> Les Android sont particulièrement bienvenus\u00a0:',
+      androidLabel: 'Téléphones Android particulièrement recherchés',
+      fans: '<b>Fans de déduction sociale\u00a0:</b> Among Us, Spyfall, Loup-Garou/Mafia, Blood on the Clocktower, Codenames. Débutants bienvenus aussi.',
+      mic: '<b>Un micro aide.</b> Écouter seulement, ça marche aussi.',
+      langs: '<b>Le jeu existe en 10\u00a0langues\u00a0:</b>',
+      langsLabel: 'Les langues du jeu',
+    },
+    ask: {
+      eyebrow: 'Ce qu’on te demande',
+      title: 'Joue. Parle. Raconte.',
+      steps: ['<b>Joue</b> pendant l’heure.', '<b>Dis à voix haute</b> tout ce qui te paraît confus.', '<b>Réponds à un sondage de 5\u00a0minutes</b> après.'],
+      wantTitle: 'Ce qu’on veut savoir',
+      want: ['Voit-on clairement à qui c’est le tour\u00a0?', 'Le vote est-il facile à comprendre\u00a0?', 'Le dessin marche-t-il bien sur ton téléphone\u00a0?'],
+    },
+    get: {
+      eyebrow: 'Ce que tu reçois',
+      title: 'Tes récompenses',
+      keep: 'À garder après la sortie\u00a0:',
+      items: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Bêta-testeur\u00a0»</b> et <b>«\u00a0Testeur de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
+      prizeTitle: '5 cartes cadeaux de 50\u00a0$',
+      prize: 'Les cinq rapports de bug ou idées les plus utiles reçoivent chacun une carte cadeau de 50\u00a0$. Le développeur les choisit sous une semaine.',
+    },
+    friends: {
+      eyebrow: 'Amis',
+      title: 'Viens avec un ami',
+      text: '<b>Indique le nom d’un ami dans le formulaire</b> pour être à la même table. Les testeurs de la Bêta\u00a01 passent en premier.',
+    },
+    join: {
+      eyebrow: 'Comment participer',
+      title: 'Quatre étapes',
+      form: '<link>Remplis le formulaire d’inscription</link> (environ 2\u00a0minutes).',
+      closes: (day: string, time: string) => `Inscriptions jusqu’au ${day}, ${time} (heure de l’Est).`,
+      email: (day: string) => `On t’écrit au plus tard le ${day} pour confirmer ta place et t’envoyer le lien d’installation.`,
+      discord: '<link>Rejoins notre Discord</link>\u00a0: l’accueil se fait sur son salon vocal.',
+      android: 'Android\u00a0: le formulaire demande l’adresse Google de ton Play Store, car Google l’exige pour les versions de test. Elle est supprimée après la session.',
+      iphone: 'iPhone\u00a0: tu installes SpySocial avec TestFlight, via le lien de l’e-mail.',
+    },
+    fine: 'Version de pré-lancement. Ne partage pas les noms ni le chat des autres joueurs. Tes données d’inscription sont supprimées après la Bêta\u00a02.',
   },
 
   notFound: {
