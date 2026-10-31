@@ -16,7 +16,7 @@ const REPO_HEADS = 'https://github.com/agerzon21/spy-social-website/commits/main
 const PAGE = 2000
 
 type DayHead = { day: string; seq: number; hash: string; rules_fp: string; witnessed?: { wayback?: { url?: string } } }
-type HeadAnswer = { tip: { seq: number; hash: string; at: string } | null; heads: DayHead[] }
+type HeadAnswer = { tip: { seq: number; hash: string; at: string } | null; heads: DayHead[]; chain?: string; notice?: string }
 type Supply = {
   code: string; set: string; season: string; track: string; set_names: Record<string, string>; item_kind: string; item_code: string
   variant: string; how: Record<string, string>; opens_at: string; closes_at: string; minted: number; burned: number; held: number
@@ -73,7 +73,8 @@ const Ledger: React.FC = () => {
       // The heads published where we can't change them (this site's repository), then the ledger's own list.
       let published: Head[] = []
       try {
-        const csv = await fetch('/ledger/heads.csv', { cache: 'no-store' })
+        // (the beta test chain's heads are kept apart: public/ledger/beta/heads.csv)
+        const csv = await fetch(head?.chain === 'beta' ? '/ledger/beta/heads.csv' : '/ledger/heads.csv', { cache: 'no-store' })
         if (csv.ok) published = parseHeadsCsv(await csv.text())
       } catch { /* no published heads yet */ }
       const own: Head[] = (head?.heads ?? []).map((h) => ({ day: h.day, seq: h.seq, hash: h.hash }))
@@ -94,8 +95,18 @@ const Ledger: React.FC = () => {
   })), [supply])
 
   const latest = head?.heads[0]
+  const beta = head?.chain === 'beta'
   return (
     <LegalPage english title="Collectibles Ledger" updated={<>Public record of every minted collectible</>}>
+      {beta && (
+        <Box borderWidth="2px" borderColor="orange.400" borderRadius="md" p={4} mb={4}>
+          <P>
+            <B>This is the beta test chain.</B> Everything below (every copy, number, trade and day head) is for testing
+            only and is wiped before launch. The real ledger starts at launch with its own first entry, and its numbers
+            start at #1. Test heads are kept apart from the real ones.
+          </P>
+        </Box>
+      )}
       <P>
         Game Night titles, the Beta Pin, Field Tester and every item from an Intercept are <B>minted</B>: each copy
         has its own number and a record of how it was earned, and it can be made only by its rule, inside its window.

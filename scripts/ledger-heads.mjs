@@ -4,12 +4,15 @@
 // rules' SQL of every new fingerprint as public/ledger/rules/<fp>.sql, so a head's rules can be read next to it. Git's
 // history is the timestamp. Never rewrites a row: a head that disagrees with one already committed fails the run.
 // No secret: the ledger is public. Before the ledger exists (the function not deployed, or no head yet) it does nothing.
+// The BETA TEST CHAIN (app 20261202295000, Oct 31 until Window W): its answers say "chain": "beta". Its heads go to
+// public/ledger/beta/heads.csv (rules under public/ledger/beta/rules), never into the real chain's heads.csv; the
+// real chain starts with its own genesis at launch.
 // Usage: LEDGER_URL=<.../functions/v1/ledger> node scripts/ledger-heads.mjs
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 
 const URL_BASE = process.env.LEDGER_URL || 'https://ajobkfasquywiawjfdxg.supabase.co/functions/v1/ledger'
-const CSV = 'public/ledger/heads.csv'
-const RULES = 'public/ledger/rules'
+let CSV = 'public/ledger/heads.csv'
+let RULES = 'public/ledger/rules'
 
 async function get(query) {
   const r = await fetch(`${URL_BASE}?${query}`, { headers: { accept: 'application/json' } })
@@ -21,6 +24,12 @@ const head = await get('op=head')
 if (!head.body || head.body.ok !== true) {
   console.log(`ledger not readable (${head.status}): nothing to witness yet`)
   process.exit(0)
+}
+if (head.body.chain === 'beta') {
+  CSV = 'public/ledger/beta/heads.csv'
+  RULES = 'public/ledger/beta/rules'
+  mkdirSync('public/ledger/beta', { recursive: true })
+  console.log('the beta test chain: its heads go to public/ledger/beta/')
 }
 const text = existsSync(CSV) ? readFileSync(CSV, 'utf8') : 'day,seq,hash,fetched_at\n'
 const have = new Map()
