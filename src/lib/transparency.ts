@@ -32,5 +32,19 @@ const I1: PublishedIncident = {
 
 export const PUBLISHED_INCIDENTS: PublishedIncident[] = [...(LIVE.launchResetIncident ? [I1] : [])]
 
-/** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. None published yet. */
-export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = []
+/**
+ * Uniques rarer (owner 2026-10-30; app server 20261202450000_unique_rarity): shown once LIVE.uniquesRarer is on (set
+ * `day` to the day the server file is applied). Before launch: no Unique made under the old odds survives the reset.
+ */
+const UNIQUES_RARER: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'October 31, 2026', what: "a Top Secret Intercept's chance of a Unique", from: '0.1%', to: 'none' },
+  { day: 'October 31, 2026', what: "a Top Secret Intercept's chance of a Legendary", from: '4%', to: '3%' },
+  { day: 'October 31, 2026', what: "a Top Secret Intercept's chance of a Mythic", from: '16.9%', to: '18%' },
+  { day: 'October 31, 2026', what: "an Enigma Intercept's chance of a Unique", from: '1%', to: '0.5%' },
+  { day: 'October 31, 2026', what: "an Enigma Intercept's chance of a Legendary", from: '15.5%', to: '10%' },
+  { day: 'October 31, 2026', what: "an Enigma Intercept's chance of a Mythic", from: '18.5%', to: '24.5%' },
+  { day: 'October 31, 2026', what: 'the spare Legendaries a trade-up into a Unique takes', from: '5', to: '10' },
+]
+
+/** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
+export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [...(LIVE.uniquesRarer ? UNIQUES_RARER : [])]

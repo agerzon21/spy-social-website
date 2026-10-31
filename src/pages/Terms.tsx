@@ -547,9 +547,9 @@ const Terms: React.FC = () => {
             the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed. If you get an item you already have, you
             keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
-            one rarity give you 1 random item of the next rarity (one you don't have yet, while there is one), and 5
-            spare Legendary copies give you a Unique of one of those five items, with the odds shown in the app before
-            you trade. Only spare copies count (never your first copy of an item, or a Unique), and the copies you trade
+            one rarity give you 1 random item of the next rarity (one you don't have yet, while there is one), and{' '}
+            {LIVE.uniquesRarer ? '10' : '5'} spare Legendary copies give you a Unique of one of those{' '}
+            {LIVE.uniquesRarer ? 'ten' : 'five'} items, with the odds shown in the app before you trade. Only spare copies count (never your first copy of an item, or a Unique), and the copies you trade
             up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it
             can't be shredded or traded up). Like every virtual item, Intercepts and what's in them have no cash value
             and can't be sold, traded or moved to another account, unopened or opened. Before SpySocial 2.2 opens to

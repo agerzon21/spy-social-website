@@ -10,8 +10,8 @@ import { PUBLISHED_INCIDENTS, RULE_CHANGES } from '../lib/transparency'
 // until the first report; the numbers come from the app server's ledgers (Intel's coin_ledger and its daily digest,
 // the collectibles ledger), never typed in by hand.
 
-/** The day this page's text last changed. */
-const UPDATED = 'October 30, 2026'
+/** The day this page's text last changed (LIVE.uniquesRarer: its rule changes, the day the server file is applied). */
+const UPDATED = LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
 
 const KIND: Record<string, string> = { reset: 'Reset', bug: 'Bug', outage: 'Outage' }
 

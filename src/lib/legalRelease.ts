@@ -705,11 +705,22 @@ export const LIVE = {
    * but NO item list (owner 2026-10-27), so the Terms no longer say "the items each can give"; the drafted promise
    * "odds change only between series" (never an owner decision) is replaced by "the app always shows the odds every
    * opening uses, with the date they last changed"; trade-ups as 20261128800000 ships them (5 spares of one rarity,
-   * the next rarity, unowned first; 5 Legendary -> a Unique of one of the five); the reset (pending
+   * the next rarity, unowned first; 5 Legendary -> a Unique of one of the five; 10 since LIVE.uniquesRarer); the reset (pending
    * 20261127190000_crates_reset, Window W) wipes every pre-release Intercept, copy and trade-up, testers' included,
    * and takes back every pool item except the Beta Pin and anything bought; Intel stays.
    */
   intercepts: true,
+  /**
+   * Uniques rarer (owner 2026-10-30; app server 20261202450000_unique_rarity, app branch fix/unique-rarity, pending):
+   * no Unique from Top Secret (Legendary 3%, Mythic 18%), Enigma's Unique 0.5% (Legendary 10%, Mythic 24.5%), and the
+   * Legendary -> Unique trade-up takes 10 spare Legendaries (was 5; every other rarity 5). Turns on: Terms 9's
+   * trade-up sentence ("10 spare Legendary copies ... one of those ten items") and the transparency page's rule
+   * changes (src/lib/transparency.ts). Not a material change (section 9's existing rules: the app shows the odds in
+   * use and the day they changed): LEGAL_LAST_UPDATED moves (below), no TERMS_PUBLISHED or terms_version. Deploy the
+   * site with it on the same hour the server file is applied (the app shows the new odds from the server at once);
+   * off only if the file is rolled back (the old text: 5 Legendaries).
+   */
+  uniquesRarer: true,
   /**
    * Economy Integrity E0 (app repo feat/economy-integrity, server file 20261202020000_intel_ledger_lock, applied live by
    * the owner): no free-form Adjust Intel (owner_coins_adjust answers retired); the Intel ledger is append-only (no line
@@ -1055,6 +1066,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.uniquesRarer
+      ? 'October 31, 2026' // Terms 9: 10 spare Legendaries for a Unique (app server 20261202450000_unique_rarity): set to the day the site goes up with it on
       : LIVE.intelCorrections
       ? 'October 30, 2026' // Terms 9's Intel corrections and the Intercepts take-back line (E1), and Terms 9's no-Intel-by-hand line and the reset's Intel (E0, WI): the site went up with both on
       : LIVE.intelLedger
