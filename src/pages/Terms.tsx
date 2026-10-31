@@ -428,6 +428,20 @@ const Terms: React.FC = () => {
         limited, why, and until when, with a reference such as {'S\u2011207'}. Don't create a new account to get around a
         penalty; we may ban that account too.
       </P>
+      {LIVE.volunteerModerators && (
+        <>
+          <H3>Community moderators</H3>
+          <P>
+            Some of these decisions may be made by community moderators: trusted adult players who volunteer to help
+            us, have agreed in writing to keep what they see confidential, and act under our supervision. A community
+            moderator may act on reports and on what they see in Play Online rooms: warn a player, mute their chat,
+            pause them from public rooms and events for up to 7 days, or remove them from a Play Online table. They can
+            propose a ban, but only SpySocial can ban an account, permanently or otherwise. We record every action a
+            moderator takes and why, we can undo any of them, and you can appeal them like any other decision (see
+            Appeals below). Anything involving a child's safety, self-harm or threats is handled by SpySocial only.
+          </P>
+        </>
+      )}
       <H3>Appeals</H3>
       <P>
         If you think we got it wrong, email <SupportEmail /> and quote the reference from your notice. A person

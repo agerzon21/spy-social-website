@@ -772,6 +772,17 @@ export const LIVE = {
    */
   membershipCodes: true,
   /**
+   * Volunteer community moderators (app repo feat/moderator, server 20261202460000_moderator_role: moderators, scopes,
+   * moderator_agreements, mod_actions; owner 2026-10-30/31; first test moderator granted on live 2026-10-31). Terms 8
+   * says trusted volunteers may act on reports (warn, mute, pause up to 7 days, remove from a Play Online table) and
+   * that bans are confirmed by SpySocial; Privacy's Data Sharing says what they see (the report, the chat and account
+   * details a case needs), that they sign a confidentiality agreement, that child safety goes to the developer only,
+   * and that every action is logged. Not a material change (moderation was already in the Terms): LEGAL_LAST_UPDATED
+   * and PRIVACY_LAST_UPDATED move (below), no TERMS_PUBLISHED or terms_version. A website fact: set in LIVE, never in
+   * PRIVACY_AHEAD. Off only if the moderator role is removed.
+   */
+  volunteerModerators: true,
+  /**
    * Economy Integrity E0 (app repo feat/economy-integrity, server file 20261202020000_intel_ledger_lock, applied live by
    * the owner): no free-form Adjust Intel (owner_coins_adjust answers retired); the Intel ledger is append-only (no line
    * edited or deleted, not even by us; the wallet is the ledger's sum); every line names its cause; an erased account's
@@ -1116,6 +1127,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.volunteerModerators
+      ? 'October 31, 2026' // Terms 8: volunteer community moderators (20261202460000): the site went up with it on
       : LIVE.membershipCodes
       ? 'October 31, 2026' // Terms 3: memberships given with a code (20261203440000): set to the day the site goes up with it on
       : LIVE.rmtGambling
@@ -1144,6 +1157,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.volunteerModerators
+    ? 'October 31, 2026' // Data Sharing: volunteer moderators, what they see, their confidentiality agreement (20261202460000): the site went up with it on
     : LIVE.integritySignupNetwork
     ? 'October 31, 2026' // the sign-up network code and network blocks (Integrity): set to the day the site goes up with it on
     : LIVE.ipVault
