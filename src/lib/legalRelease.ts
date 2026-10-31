@@ -87,7 +87,7 @@ export const LIVE = {
    * the Supabase dashboard (until then nothing is recorded), and set its PRIVACY_LAST_UPDATED date (below) to that day.
    * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
    */
-  integritySignupNetwork: false,
+  integritySignupNetwork: true,
   /**
    * fix/account-photo-cleanup's housekeeping migration (20261004132500) applied: chat, translations,
    * usage events and security logs are deleted on a clock, not only when traffic happens to prune.
