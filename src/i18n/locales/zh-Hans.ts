@@ -33,7 +33,7 @@ const zhHans: Strings = {
       notFound: '页面不存在',
     },
     descriptions: {
-      beta: '加入 SpySocial 的 1 小时线上集体试玩。SpySocial 是一款免费的社交推理派对游戏。时间：2026 年 11 月 19 日（星期四）美东时间晚上 7–8 点。仅限 18 岁以上成年人，iPhone 或 Android 均可。测试玩家可获得内测徽章等奖励。',
+      beta: '加入 SpySocial 的 1 小时线上集体试玩。SpySocial 是一款免费的社交推理派对游戏。时间：2026 年 11 月 12 日（星期四）美东时间晚上 7–8 点。仅限 18 岁以上成年人，iPhone 或 Android 均可。测试玩家可获得内测徽章等奖励。',
       transparency: "每月公布 SpySocial 中情报的获得、花费和更正数量，以及每一起事件和每一次规则变更，不点名任何玩家。",
       gameNightRules: "SpySocial 每周游戏之夜的规则：举办时间、参与资格、如何获得当晚的称号，以及开发者的额外称号。",
       faq: 'SpySocial 常见问题解答：如何开始、游戏模式、分享和加入房间、语言、房主控制、你的账号以及故障排除。',

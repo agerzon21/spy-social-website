@@ -1078,6 +1078,25 @@ const Privacy: React.FC = () => {
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
       </P>
+      {PRIVACY.volunteerModerators && (
+        <P>
+          Some of our moderators are community moderators: trusted adult players who volunteer to help us review
+          reports. Before they start, each one signs a moderator agreement in which they promise to keep everything
+          they see confidential, not to copy, screenshot or share it, not to contact players outside SpySocial about a
+          case, and to step aside from cases involving people they know; that promise continues after they stop
+          moderating. A community moderator sees only what a case they're handling needs: the report and what's
+          attached to it (for example, the messages, questions, answers or drawings reported, and the chat of the game
+          it came from), the usernames and public names of the players involved, how long their accounts have existed,
+          the player's earlier warnings and penalties, how many of the reporter's reports led to action, whether a
+          player under 18 is involved and, for fair-play cases, the game patterns behind the case. They never see your
+          email address, sign-in details, IP address, payment details or your age. Cases involving a child's safety, self-harm
+          or threats go to SpySocial's developer only, never to community moderators. We keep a record of every case a
+          community moderator opens and every action they take (what they did, to whom, when and why), for as long as
+          we keep reports, and we can see and undo each one. We also keep, for each community moderator, that they are
+          one, what they may do, when they accepted the agreement and which version, and when their role started and
+          ended.
+        </P>
+      )}
       <P>
         We may also share information when the law requires it (for example, to report child sexual exploitation to
         the National Center for Missing & Exploited Children), or when we believe in good faith that it's needed to
