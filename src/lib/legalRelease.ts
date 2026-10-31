@@ -57,6 +57,19 @@
 
 export const LIVE = {
   /**
+   * IP vault (owner 2026-10-31; app repo feat/ipvault, server file 20261203750000_ipvault, live 20261031070824): the
+   * real IP address of each sign-up (the Auth hook's payload) and of each sign-in / app start (note_device, Cloudflare's
+   * address; at most one row per account and network every 6 hours), with the time and the account, SEALED on write
+   * with an OpenPGP public key (pgcrypto); the private key is only on the owner's Mac, so the database can't open
+   * them. Opened offline only (tools/ipvault/decrypt) for an NCMEC report, serious rule breaking, market manipulation
+   * or a law-enforcement request; every export audited (who, why, case, time). Next to each, the integrity system's
+   * keyed network code (/24, /48). Deleted after 90 days; kept up to 1 year for an NCMEC report, an open case, a
+   * child-safety case or an owner hold (law enforcement). Turns on: the IP Address item's sentences, a Data Retention
+   * sentence, the Legitimate Interests clause and an AfterDeletionList bullet. POLICY WITH CAPTURE: the site went up
+   * with it on the day the key was set (capture starts then). A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  ipVault: true,
+  /**
    * Beta 2's paid playtest (owner 2026-10-31): the /beta sign-up form asks for a PayPal email to send the $10, and
    * Privacy's Test Versions item says so (used only for that payment, deleted once paid). The site went up with it on
    * October 31, 2026.
@@ -1106,6 +1119,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.ipVault
+    ? 'October 31, 2026' // IP Address: sign-up and sign-in IP addresses kept encrypted (IP vault): the site went up with it on
     : LIVE.playtestPayPal
     ? 'October 31, 2026' // Test Versions: the paid playtest's sign-up form and its PayPal email (deleted once paid): the site went up with it on
     : LIVE.membershipsOnly

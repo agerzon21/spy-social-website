@@ -615,6 +615,20 @@ const Privacy: React.FC = () => {
               game shared a network, 30 days.
             </>
           ) : null}
+          {PRIVACY.ipVault ? (
+            <>
+              {' '}To keep players safe and to answer legal requests, we also keep the IP address of each new account and
+              of each sign-in and app start (at most one record per network every 6 hours), with the time and the
+              account. Each address is encrypted as soon as it reaches our servers, and the key that opens it isn't
+              kept on our servers, so it can't be read from our database. Only SpySocial's developer can open these
+              records, offline, and only for a report of child sexual exploitation to NCMEC, a serious breach of our
+              Terms or Community Rules, cheating or manipulation of the in-game economy, or a lawful request from law
+              enforcement; each time, we record who opened them, why and when. Next to each one we keep a coded form of
+              its network (made with a secret key), which lets us notice several accounts from one network without
+              opening them. They're deleted after 90 days, or kept for up to 1 year when they're part of a report to
+              NCMEC, an open case or a law-enforcement request.
+            </>
+          ) : null}
         </Item>
         <Item label="Signed Agreements">
           If you sign an agreement with SpySocial on our website (for example a creator or partner agreement), we
@@ -691,7 +705,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.communityPacks ? ', the review of Community Packs' : ''}, moderation
           {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
-          (security logs), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
+          (security logs{PRIVACY.ipVault ? ', and the encrypted IP addresses of new accounts and sign-ins, for safety, fraud and legal requests' : ''}), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
           events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
           You can object to this processing at any time by emailing <SupportEmail />.
         </Item>
@@ -741,6 +755,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.tournaments ? ' Your tournament entries, results and Tournament Tokens are kept for as long as you have an account.' : ''}
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
+          : ''}
+        {PRIVACY.ipVault
+          ? ' The encrypted IP addresses of new accounts and sign-ins are kept for 90 days, or up to 1 year when they\'re part of a report to NCMEC, an open case or a law-enforcement request.'
           : ''}
         {PRIVACY.banTombstone
           ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'

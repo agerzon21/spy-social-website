@@ -66,6 +66,12 @@ export const AfterDeletionList = () => (
       your email address and IP address, are kept{PRIVACY.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
       prevent abuse.
     </ListItem>
+    {PRIVACY.ipVault && (
+      <ListItem>
+        The encrypted IP addresses of your account's sign-up and sign-ins stay until their 90 days end, or up to 1 year
+        when they're part of a report to NCMEC, an open case or a law-enforcement request.
+      </ListItem>
+    )}
     {/* photosPrivate: a photo's public link no longer opens at all (the bucket is private), so no cached copy either. */}
     {photosInUse(PRIVACY) &&
       (PRIVACY.photoCleanup ? (
