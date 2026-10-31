@@ -508,7 +508,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.creatorCodes && (
           <Item label="Creator and Reward Codes">
             If you enter a code in the app (Settings, then Enter a Code; you need a saved account, not a guest one), we
-            record which code you entered and when, and give you its reward (such as a title or an avatar item). A
+            record which code you entered and when, and give you its reward (such as {PRIVACY.membershipCodes ? 'a title, an avatar item or a membership for a month, a year or Lifetime' : 'a title or an avatar item'}). A
             reward code works once per account. A creator code comes from a content creator in our creator program:
             you can enter one creator code, once, and it stays with your account. From then on, so that we can pay the
             creator a share of what we earn from players who entered their code, we credit to that creator each
