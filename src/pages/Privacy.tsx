@@ -629,6 +629,13 @@ const Privacy: React.FC = () => {
               NCMEC, an open case or a law-enforcement request.
             </>
           ) : null}
+          {PRIVACY.integritySignupNetwork ? (
+            <>
+              {' '}When an account is created we keep a one-way, salted code of the network it came from for 30
+              days, to spot batches of fake accounts. If a network is used to abuse SpySocial we may stop
+              new accounts from it for 30 days; existing accounts are not affected.
+            </>
+          ) : null}
         </Item>
         <Item label="Signed Agreements">
           If you sign an agreement with SpySocial on our website (for example a creator or partner agreement), we

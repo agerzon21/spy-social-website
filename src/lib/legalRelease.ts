@@ -76,6 +76,19 @@ export const LIVE = {
    */
   playtestPayPal: true,
   /**
+   * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
+   * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
+   * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)
+   * keeps, for each new account (email, Apple / Google or guest), an HMAC-SHA256 of its network (the /24 of an IPv4
+   * address, the /48 of an IPv6 one) under a secret salt that never leaves the database (table
+   * integrity_signup_networks), never the address; deleted after 30 days. The owner can block a network that is used
+   * for abuse (with a case): new accounts and guests from it are refused for 30 days (renewable); existing accounts are
+   * never affected. Turns on one passage in Privacy's IP Address item. Flip it the same hour the hook is switched on in
+   * the Supabase dashboard (until then nothing is recorded), and set its PRIVACY_LAST_UPDATED date (below) to that day.
+   * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
+   */
+  integritySignupNetwork: false,
+  /**
    * fix/account-photo-cleanup's housekeeping migration (20261004132500) applied: chat, translations,
    * usage events and security logs are deleted on a clock, not only when traffic happens to prune.
    */
@@ -1131,6 +1144,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.integritySignupNetwork
+    ? 'October 31, 2026' // the sign-up network code and network blocks (Integrity): set to the day the site goes up with it on
     : LIVE.ipVault
     ? 'October 31, 2026' // IP Address: sign-up and sign-in IP addresses kept encrypted (IP vault): the site went up with it on
     : LIVE.membershipCodes
