@@ -1,5 +1,5 @@
 /**
- * The optional Europe session (Sat Nov 21, 7-8 PM CET), which runs only if enough people in Europe sign up. The
+ * The optional Europe session (Sat Nov 14, 7-8 PM CET), which runs only if enough people in Europe sign up. The
  * owner decides: true shows it on the page, false hides every mention of it. Nothing else changes.
  */
 const EUROPE_SESSION = false
@@ -42,18 +42,18 @@ const FORM_URL = 'https://forms.gle/RtRy2bQRp2ktwJsw6'
 const DISCORD_URL = 'https://discord.gg/B8MG3xrV6f'
 const SUPPORT_EMAIL = 'support@spysocial.app'
 
-/** Thursday, November 19, 2026, 7:00-8:00 PM Eastern (EST, UTC-5). */
-const START = new Date('2026-11-20T00:00:00Z')
-const END = new Date('2026-11-20T01:00:00Z')
+/** Thursday, November 12, 2026, 7:00-8:00 PM Eastern (EST, UTC-5). Moved from Nov 19 by the owner on Oct 31. */
+const START = new Date('2026-11-13T00:00:00Z')
+const END = new Date('2026-11-13T01:00:00Z')
 /** Check-in on Discord voice: 6:30 PM Eastern. */
-const CHECK_IN = new Date('2026-11-19T23:30:00Z')
-/** Saturday, November 21, 7:00-8:00 PM CET (6:00-7:00 PM in the UK). */
-const EU_START = new Date('2026-11-21T18:00:00Z')
-const EU_END = new Date('2026-11-21T19:00:00Z')
-/** Sign-ups close Sunday, November 15, 11:59 PM Eastern: the page shows "closed" from the end of that minute. */
-const CLOSE_SHOWN = new Date('2026-11-16T04:59:00Z')
-/** The confirmation emails go out by Monday, November 16 (also the day the Europe session is confirmed). */
-const CONFIRM_BY = new Date('2026-11-16T17:00:00Z')
+const CHECK_IN = new Date('2026-11-12T23:30:00Z')
+/** Saturday, November 14, 7:00-8:00 PM CET (6:00-7:00 PM in the UK). */
+const EU_START = new Date('2026-11-14T18:00:00Z')
+const EU_END = new Date('2026-11-14T19:00:00Z')
+/** Sign-ups close Sunday, November 8, 11:59 PM Eastern: the page shows "closed" from the end of that minute. */
+const CLOSE_SHOWN = new Date('2026-11-09T04:59:00Z')
+/** The confirmation emails go out on Monday, November 9 (also the day the Europe session is confirmed). */
+const CONFIRM_BY = new Date('2026-11-09T17:00:00Z')
 
 const ET = 'America/New_York'
 const PT = 'America/Los_Angeles'

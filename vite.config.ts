@@ -93,7 +93,7 @@ function betaPreview(): Plugin {
       const title = attr(`${en.meta.titles.beta} · ${en.meta.siteName}`)
       const description = attr(en.meta.descriptions.beta)
       const url = `${ORIGIN}/beta`
-      const image = `${ORIGIN}/images/og-beta.jpg`
+      const image = `${ORIGIN}/images/og-beta.jpg?v=nov12`
       let html = await readFile(resolve(outDir, 'index.html'), 'utf8')
       const swaps: [RegExp, string][] = [
         [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
@@ -104,7 +104,7 @@ function betaPreview(): Plugin {
         [/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`],
         [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'],
         [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'],
-        [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial Beta 2 playtest: Thursday, November 19, 7-8 PM Eastern')}"`],
+        [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial Beta 2 playtest: Thursday, November 12, 7-8 PM Eastern')}"`],
         [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'],
         [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
         [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],

@@ -51,7 +51,7 @@ const en = {
     },
     /** Each page's own description for search results; the home page and the unlisted pages use `description`. */
     descriptions: {
-      beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 19, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
+      beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 12, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
       gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
       faq: 'Answers to common SpySocial questions: getting started, game modes, sharing and joining rooms, languages, host controls, your account and troubleshooting.',
@@ -1039,7 +1039,7 @@ const en = {
 
   /**
    * /beta: the Beta 2 playtester page. The page fills in every date and time, already written in your language's
-   * own format ("Thursday, November 19", "7:00 – 8:00 PM"): write the sentence round them. Eastern and Pacific are
+   * own format ("Thursday, November 12", "7:00 – 8:00 PM"): write the sentence round them. Eastern and Pacific are
    * US time zones (ET, PT); CET is Central European Time; UK is the time in the United Kingdom.
    */
   beta: {
@@ -1057,9 +1057,9 @@ const en = {
       label: 'When',
       /** The session's hours in Eastern time ("7:00 – 8:00 PM"). */
       et: (time: string) => `${time} Eastern`,
-      /** Its start in Pacific time ("4:00 PM"), then its hours in UTC with the date ("Fri, Nov 20, 00:00 – 01:00"). */
+      /** Its start in Pacific time ("4:00 PM"), then its hours in UTC with the date ("Fri, Nov 13, 00:00 – 01:00"). */
       others: (pacific: string, utc: string) => `${pacific} Pacific · ${utc}\u00a0UTC`,
-      /** The same hour in the visitor's own time zone, with the zone's name ("Thu, Nov 19, 6:00 – 7:00 PM CST"). */
+      /** The same hour in the visitor's own time zone, with the zone's name ("Thu, Nov 12, 6:00 – 7:00 PM CST"). */
       yours: (time: string) => `Your time: ${time}`,
       checkIn: (time: string) => `Check-in opens at ${time} Eastern on Discord voice.`,
     },
@@ -1068,11 +1068,11 @@ const en = {
       label: 'Europe · Optional second session',
       /** The hours in Central European Time, then in the UK. */
       time: (cet: string, uk: string) => `${cet}\u00a0CET · ${uk}\u00a0UK`,
-      /** `date`: the day we confirm it ("November 16"). */
+      /** `date`: the day we confirm it ("November 9"). */
       note: (date: string) => `Runs only if enough people in Europe sign up. We confirm it by ${date}.`,
     },
     signUp: 'Sign up',
-    /** Under the button: how long the form takes and when sign-ups close ("Sunday, November 15", "11:59 PM"). */
+    /** Under the button: how long the form takes and when sign-ups close ("Sunday, November 8", "11:59 PM"). */
     signUpNote: (day: string, time: string) => `About 2 minutes. Sign-ups close ${day}, ${time} Eastern.`,
     discord: 'Join our Discord',
     /** Shown instead of the sign-up once sign-ups have closed. */
@@ -1111,7 +1111,7 @@ const en = {
       items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> and <b>Field Tester</b> titles', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
       prizeTitle: '$10 by PayPal + one $50 bonus',
       prize: '$10 by PayPal to every confirmed player who plays the full hour and sends the 5-minute survey, sent within 7 days of the session. Plus one $50 bonus (a gift card) for the single most useful bug report or idea, chosen by the developer within a week.',
-      /** `day`: the day we confirm seats by email ("Monday, November 16"). */
+      /** `day`: the day we confirm seats by email ("Monday, November 9"). */
       seats: (day: string) => `24 seats. Only players we confirm by email (by ${day}) are paid; everyone else goes on the waitlist for the next test.`,
     },
     friends: {

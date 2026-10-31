@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-/** Beta 2 sign-ups close Sunday, November 15, 11:59 PM Eastern (Nov 16, 05:00 UTC). The /beta page and the footer link both read this. */
-export const CLOSES_AT = new Date('2026-11-16T05:00:00Z')
+/** Beta 2 sign-ups close Sunday, November 8, 11:59 PM Eastern (Nov 9, 05:00 UTC). The /beta page and the footer link both read this. */
+export const CLOSES_AT = new Date('2026-11-09T05:00:00Z')
 
 /** Whether sign-ups have closed, turning over by itself if the page is open at the moment they close. */
 export function useClosed(): boolean {
