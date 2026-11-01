@@ -783,6 +783,15 @@ export const LIVE = {
    */
   volunteerModerators: true,
   /**
+   * The username's 30 days (app repo feat/username-limit, server 20261204120000_username_limit, live 2026-11-01 03:21
+   * UTC as 20261101032151; owner 2026-10-31): one username change every 30 days, a name you stop using reserved for 14
+   * days (Terms' Rules for accounts), and the past usernames kept with when they changed, deleted with the account
+   * (Privacy's Account Information). Not a material change: LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED move (below),
+   * no TERMS_PUBLISHED or terms_version. A server fact for every app version at once: set in LIVE, never in
+   * PRIVACY_AHEAD. Off only if the server file is rolled back.
+   */
+  usernameLimit: true,
+  /**
    * Economy Integrity E0 (app repo feat/economy-integrity, server file 20261202020000_intel_ledger_lock, applied live by
    * the owner): no free-form Adjust Intel (owner_coins_adjust answers retired); the Intel ledger is append-only (no line
    * edited or deleted, not even by us; the wallet is the ledger's sum); every line names its cause; an erased account's
@@ -1149,6 +1158,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.usernameLimit
+      ? 'October 31, 2026' // Terms' Rules for accounts: one username change every 30 days, an old name reserved 14 days (20261204120000): the site went up with it on
       : LIVE.socialFeatures
       ? 'October 31, 2026' // Terms 4's Friends, follows and parties, fair play in parties, section 8's Report Party: the site went up with it on (social switch-on day)
       : LIVE.volunteerModerators
@@ -1181,6 +1192,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.usernameLimit
+    ? 'October 31, 2026' // Account Information: past usernames and when they changed, for the 30-day limit (20261204120000): the site went up with it on
     : LIVE.socialFeatures
     ? 'October 31, 2026' // friends, follows, profiles, party and party chat, social notifications, Social Watch: the site went up with it on (social switch-on day)
     : LIVE.volunteerModerators

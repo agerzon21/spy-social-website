@@ -110,6 +110,8 @@ const Privacy: React.FC = () => {
                 ? ' Avatars are new in version 2.2; versions before 2.2 let you add a profile photo instead.'
                 : ' Versions of the app before 2.2 also let you add a profile photo.')}
           {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
+          {PRIVACY.usernameLimit &&
+            " When you change your username, we keep a record of your past usernames and when you changed them, so we can apply the limit of one change every 30 days; it's deleted with your account."}
           {PRIVACY.socialSignIn &&
             ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, and collect a device identifier and usage information for Google\'s own analytics, under Google\'s privacy policy.'}
         </Item>

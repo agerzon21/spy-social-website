@@ -129,7 +129,7 @@ const Terms: React.FC = () => {
       <Bullets>
         <ListItem>Your account is for you alone. Don't share, sell or give it to anyone, and don't use someone else's.</ListItem>
         <ListItem>Give true information, including your birth year.</ListItem>
-        <ListItem>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.</ListItem>
+        <ListItem>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? " You can change your username once every 30 days; a username you stop using stays reserved for 14 days." : ''}</ListItem>
         <ListItem>Don't create another account to get around a limit, a penalty or someone's block.</ListItem>
       </Bullets>
 
