@@ -408,7 +408,7 @@ const Privacy: React.FC = () => {
             (the item, the quantity, your price, the copies or Intel it holds, and when you placed, changed, stopped or
             collected it), each offer you make or get on a listing, each sale and fill (who bought and sold which copies,
             at what price and fee, and when), the protection and any reversal of a Rare Finds sale, and the matching
-            lines in your Intel ledger. For a big action we email you a code; we keep only a coded (hashed) copy of it.
+            lines in your Intel ledger. The Black Market emails no codes.
             Other players see the market without names: an item's prices and quantities on offer, the prices and times
             of past sales, and, for a Unique listed on Rare Finds, its number, its colour and its price, never who is
             buying or selling. Sales are kept for good, like the Intel ledger, with no link to you once you delete your
@@ -846,7 +846,7 @@ const Privacy: React.FC = () => {
           <ListItem>Run friends, follows, profiles, parties and party chat, and send the social notifications you allow</ListItem>
         )}
         {PRIVACY.trading && <ListItem>Run trades between friends: their limits, protection and reversals, and the codes we email for big trades</ListItem>}
-        {PRIVACY.blackMarket && <ListItem>Run the Black Market: offers, listings, sales, their fees and protection, and the codes we email for big actions</ListItem>}
+        {PRIVACY.blackMarket && <ListItem>Run the Black Market: offers, listings, sales, their fees and protection</ListItem>}
         <ListItem>Improve and optimize the app experience</ListItem>
         {PRIVACY.practiceAi && <ListItem>Rate the lines you type in practice games (with OpenAI, if you agree)</ListItem>}
         {PRIVACY.spybots && <ListItem>Test the game with the AI players our developer plays with, and improve them</ListItem>}
@@ -1067,7 +1067,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades${PRIVACY.blackMarket ? ' and big Black Market actions' : ''}` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">

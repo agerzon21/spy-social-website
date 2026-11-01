@@ -739,7 +739,8 @@ const Terms: React.FC = () => {
             <ListItem>
               The same rules as Trades decide who can use it (an adult, level 20, an account at least 14 days old, a
               confirmed email, no trading pause), and Intel moves on it only once SpySocial 2.2 opens to everyone.
-              Players under 18 can look but can't buy, sell or make offers. Big actions ask for a code we email you.
+              Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
+              instead no offer can be priced below an item's minimum price, what one copy of it shreds for.
             </ListItem>
             <ListItem>
               While an offer or listing is open, what it offers is held for it: the Intel of a buy offer, or the items of
