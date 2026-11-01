@@ -46,5 +46,17 @@ const UNIQUES_RARER: { day: string; what: string; from: string; to: string }[] =
   { day: 'October 31, 2026', what: 'the spare Legendaries a trade-up into a Unique takes', from: '5', to: '10' },
 ]
 
+/**
+ * Gifted copies tradable at once (owner 2026-11-01; app server 20261101213455_market_rules_1101, switch
+ * app_config.economy.gift_copies_tradable): shown while LIVE.giftsTradable is on. When the switch goes off, add the
+ * reverse change with its own day instead of removing this one.
+ */
+const GIFTS_TRADABLE: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'November 1, 2026', what: 'when items we give as gifts, items from a code and the Beta set can be traded', from: 'after 3 real games (gifts: never)', to: 'at once' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
-export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [...(LIVE.uniquesRarer ? UNIQUES_RARER : [])]
+export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.giftsTradable ? GIFTS_TRADABLE : []),
+  ...(LIVE.uniquesRarer ? UNIQUES_RARER : []),
+]
