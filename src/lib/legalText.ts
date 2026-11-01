@@ -22,7 +22,11 @@ export const deletedSummary = (): string =>
     namesAndPicture(),
     'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
     'your game-night history and rewards',
-    PRIVACY.intel ? 'your Intel, its history and your daily streak' : null,
+    PRIVACY.intel
+      ? PRIVACY.intelLedger
+        ? 'your Intel balance and daily streak, and the link between you and the lines of your Intel ledger'
+        : 'your Intel, its history and your daily streak'
+      : null,
     PRIVACY.intercepts ? 'your Intercepts and the items they gave you' : null,
     PRIVACY.customPacks
       ? PRIVACY.communityPacks
@@ -35,6 +39,9 @@ export const deletedSummary = (): string =>
       ? PRIVACY.membershipsOnly
         ? 'the purchases linked to your account (your memberships)'
         : 'the purchases linked to your account (such as packs, avatar items and memberships)'
+      : null,
+    PRIVACY.socialFeatures
+      ? 'your friends, friend requests, invites, follows (yours and your followers), profile, showcase and Privacy & Friends choices'
       : null,
     PRIVACY.creatorCodes ? 'the link between your account and the creator code and reward codes you entered' : null,
     PRIVACY.banTombstone

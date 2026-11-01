@@ -8,6 +8,10 @@ const id: Strings = {
     description:
       'Kumpulkan temanmu dan temukan mata-matanya, atau kelabui semua orang. Game pesta multipemain real-time gratis untuk 3–21 pemain. Di iOS dan Google Play.',
     titles: {
+      /** The Beta 2 playtester page (/beta). */
+      beta: 'Beta 2: main SpySocial sebelum peluncuran',
+      /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      transparency: "Laporan transparansi",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Aturan Malam Permainan",
       faq: 'Bantuan & FAQ',
@@ -29,6 +33,8 @@ const id: Strings = {
       notFound: 'Halaman tidak ditemukan',
     },
     descriptions: {
+      beta: 'Ikut playtest grup live selama 1 jam untuk SpySocial, game pesta deduksi sosial gratis, pada Kamis, 12 November 2026, pukul 19.00–20.00 waktu Timur AS. Khusus 18+, di iPhone atau Android. Penguji mendapat Pin Beta dan lainnya.',
+      transparency: "Setiap bulan: berapa Intel yang didapat, dibelanjakan, dan dikoreksi di SpySocial, setiap insiden, dan setiap perubahan aturan, tanpa menyebut nama pemain.",
       gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara mendapatkan gelar malam itu, dan gelar bonus dari pengembang.",
       faq: 'Jawaban atas pertanyaan umum tentang SpySocial: cara mulai, mode permainan, berbagi dan gabung ke room, bahasa, kontrol host, akunmu, dan cara mengatasi masalah.',
       contact: 'Hubungi tim SpySocial: kirim email ke support@spysocial.app kalau kamu butuh bantuan soal aplikasi, akunmu, atau hal lainnya.',
@@ -60,8 +66,12 @@ const id: Strings = {
   },
 
   footer: {
+    /** The link to the transparency page (LIVE.transparencyPage). */
+    transparency: "Transparansi",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Aturan Malam Permainan",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "Playtest Beta 2",
     tagline: 'Game pesta tipu-tipuan sosial.',
     play: 'Main',
     legal: 'Hukum & keamanan',
@@ -254,9 +264,8 @@ const id: Strings = {
     final: {
       title: 'Mejamu menanti',
       text: 'Gratis dimainkan, tanpa iklan.',
-      purchases: 'Paket opsional kalau kamu mau lebih banyak lokasi dan kata.',
-      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
-      purchasesMembers: 'Keanggotaan opsional kalau kamu mau lebih banyak lokasi dan kata.',
+      /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
+      purchases: 'Keanggotaan opsional kalau kamu mau lebih banyak lokasi dan kata.',
     },
   },
 
@@ -839,7 +848,7 @@ const id: Strings = {
         },
         {
           title: 'Agenmu dan Toko',
-          text: 'Buat avatar mata-matamu sendiri. Di Toko ada paket, keanggotaan, item avatar, dan selebrasi: semuanya opsional, dan tidak ada yang mengubah cara bermain.',
+          text: "Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Toko hanya menjual keanggotaan, yang membuka semua paket dan memungkinkanmu membuat paket sendiri: semuanya opsional, dan tidak ada yang mengubah cara bermain.",
         },
         { title: 'Event', text: 'Permainan online terjadwal. Ketuk “Ingatkan aku” dan kami akan mengingatkanmu sebelum dimulai.' },
         {
@@ -864,10 +873,7 @@ const id: Strings = {
         },
       ],
       more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, tautan undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
-      launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 10 November, Spy Sketch hari Jumat, 13 November, dan Mafia hari Sabtu, 14 November, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
-      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
-      shopMembers: (customPacks: boolean) =>
-        `Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Toko hanya menjual keanggotaan, yang membuka semua paket${customPacks ? ' dan memungkinkanmu membuat paket sendiri' : ''}: semuanya opsional, dan tidak ada yang mengubah cara bermain.`,
+      launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 8 Desember, Spy Sketch hari Jumat, 11 Desember, dan Mafia hari Sabtu, 12 Desember, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
     },
     next: {
       status: 'Direncanakan',
@@ -970,6 +976,80 @@ const id: Strings = {
     deletedTitle: 'Apa yang dihapus',
     staysTitle: 'Apa yang tetap disimpan, dan berapa lama',
     details: '<link>Kebijakan Privasi</link> kami menjelaskan detailnya.',
+  },
+
+  beta: {
+    eyebrow: 'Beta 2 · Playtest live',
+    title: 'Main duluan',
+    lede: '<b>$10 lewat PayPal</b> untuk setiap pemain terkonfirmasi yang main penuh 1 jam di playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: 'Game, XP, dan item dari tes ini direset saat peluncuran.',
+    headsUp: '<b>Perhatian:</b> SpySocial di App Store dan Google Play adalah versi lama. Beta ini build baru yang sangat berbeda; kamu menginstalnya dari link yang kami kirim lewat email.',
+    facts: ['1 jam, live', 'Khusus 18+', '24 kursi', 'iPhone atau Android'],
+    when: {
+      label: 'Kapan',
+      et: (time: string) => `${time} waktu Timur AS (ET)`,
+      others: (pacific: string, utc: string) => `${pacific} waktu Pasifik · ${utc}\u00a0UTC`,
+      yours: (time: string) => `Waktumu: ${time}`,
+      checkIn: (time: string) => `Check-in dibuka pukul ${time} waktu Timur AS di saluran suara Discord.`,
+    },
+    europe: {
+      label: 'Eropa · Sesi kedua opsional',
+      time: (cet: string, uk: string) => `${cet}\u00a0CET · ${uk} waktu Inggris`,
+      note: (date: string) => `Hanya berjalan kalau cukup banyak orang di Eropa yang mendaftar. Kami konfirmasi paling lambat ${date}.`,
+    },
+    signUp: 'Daftar',
+    signUpNote: (day: string, time: string) => `Sekitar 2 menit. Pendaftaran ditutup ${day}, pukul ${time} waktu Timur AS.`,
+    discord: 'Gabung Discord kami',
+    closed: 'Pendaftaran sudah ditutup. Ikuti kami di Discord untuk tes berikutnya.',
+    games: {
+      eyebrow: 'Yang kamu mainkan',
+      title: 'Dua game',
+      talk: 'Tanya jawab. Satu atau dua pemain tidak tahu tempat rahasianya dan berusaha berbaur.',
+      sketch: 'Semua orang menambah coretan di gambar yang sama. Mata-mata pura-pura tahu.',
+    },
+    who: {
+      eyebrow: 'Untuk siapa',
+      title: 'Siapa yang kami cari',
+      adults: '<b>Khusus dewasa 18+.</b> 24 kursi.',
+      phones: '<b>iPhone (TestFlight) atau ponsel Android (pengujian Google Play).</b> Ponsel Android sangat kami harapkan:',
+      androidLabel: 'Ponsel Android yang paling kami cari',
+      fans: '<b>Penggemar game deduksi sosial:</b> Among Us, Spyfall, Werewolf/Mafia, Blood on the Clocktower, Codenames. Pemula juga boleh ikut.',
+      mic: '<b>Mikrofon membantu.</b> Cuma mendengarkan juga boleh.',
+      langs: '<b>Game ini tersedia dalam 10 bahasa:</b>',
+      langsLabel: 'Bahasa dalam game',
+    },
+    ask: {
+      eyebrow: 'Yang kami minta',
+      title: 'Main. Bicara. Ceritakan.',
+      steps: ['<b>Main</b> selama satu jam.', '<b>Ucapkan dengan suara keras</b> apa pun yang membingungkan.', '<b>Isi survei 5 menit</b> sesudahnya.'],
+      wantTitle: 'Yang ingin kami ketahui',
+      want: ['Jelaskah giliran siapa sekarang?', 'Mudahkah memahami voting?', 'Apakah menggambar lancar di ponselmu?'],
+    },
+    get: {
+      eyebrow: 'Yang kamu dapat',
+      title: 'Hadiah beta yang tetap jadi milikmu setelah peluncuran',
+      items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
+      prizeTitle: '$10 lewat PayPal + satu bonus $50',
+      prize: '$10 lewat PayPal untuk setiap pemain terkonfirmasi yang main penuh satu jam dan mengirim survei 5 menit, dikirim dalam 7 hari setelah sesi. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna, dipilih oleh developer dalam waktu seminggu.',
+      seats: (day: string) => `24 kursi. Hanya pemain yang kami konfirmasi lewat email (paling lambat ${day}) yang dibayar; yang lain masuk daftar tunggu untuk tes berikutnya.`,
+    },
+    friends: {
+      eyebrow: 'Teman',
+      title: 'Ajak teman',
+      text: '<b>Tulis nama temanmu di formulir</b> supaya duduk di meja yang sama. Penguji Beta 1 dapat prioritas.',
+    },
+    join: {
+      eyebrow: 'Cara ikut',
+      title: 'Empat langkah',
+      form: '<link>Isi formulir pendaftaran</link> (sekitar 2 menit).',
+      closes: (day: string, time: string) => `Pendaftaran ditutup ${day}, pukul ${time} waktu Timur AS.`,
+      email: (day: string) => `Kami kirim email paling lambat ${day} untuk mengonfirmasi tempatmu dan mengirim link instalasi.`,
+      discord: '<link>Gabung Discord kami</link>: check-in di saluran suaranya.',
+      android: 'Android: formulir meminta email Google yang dipakai di Play Store-mu, karena Google mewajibkannya untuk build uji. Email itu dihapus setelah sesi.',
+      iphone: 'iPhone: kamu memasang SpySocial lewat TestFlight, dari link di email.',
+    },
+    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus setelah Beta 2. Email PayPal-mu dihapus setelah pembayaran.',
   },
 
   notFound: {

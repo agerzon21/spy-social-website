@@ -78,6 +78,17 @@
       "permanent": false
     },
     {
+      "source": "/((?!\\.well-known/).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "archive.spysocial.app"
+        }
+      ],
+      "destination": "https://www.spysocial.app/transparency",
+      "permanent": false
+    },
+    {
       "source": "/megans-party",
       "destination": "/",
       "permanent": false
@@ -89,6 +100,10 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/beta",
+      "destination": "/beta/index.html"
+    },
     {
       "source": "/((?!\\.well-known/|static/|assets/).*)",
       "destination": "/index.html"

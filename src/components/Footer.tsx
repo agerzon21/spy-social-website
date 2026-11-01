@@ -1,6 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom'
 import { useMemo } from 'react'
 import { useT } from '../i18n'
+import { useClosed } from '../lib/betaSignup'
 import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
 import { PLAY_URL } from '../lib/playUrl'
@@ -46,11 +47,15 @@ const Footer = () => {
   // The browser version, on a computer once it's live (LIVE.browserLinks); phones keep the app.
   const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
 
+  // The Beta 2 playtest link shows only while sign-ups are open.
+  const betaClosed = useClosed()
+
   const t = useT()
   const f = t.footer
   const play: FooterLinkItem[] = [
     ...(showBrowser ? [{ label: f.browser, href: PLAY_URL }] : []),
     { label: f.whatsNew, to: '/whats-new' },
+    ...(betaClosed ? [] : [{ label: f.beta, to: '/beta' }]),
     // The roadmap, once the owner has approved it (LIVE.roadmap).
     ...(LIVE.roadmap ? [{ label: f.roadmap, to: '/roadmap' }] : []),
     { label: f.rules, to: '/rules' },
@@ -66,6 +71,8 @@ const Footer = () => {
     { label: f.childSafety, to: '/child-safety' },
     ...(ONLINE_SAFETY_TEXT ? [{ label: f.safety, to: '/safety' }] : []),
     { label: f.deleteAccount, to: '/delete-account' },
+    // The transparency report (LIVE.transparencyPage).
+    ...(LIVE.transparencyPage ? [{ label: f.transparency, to: '/transparency' }] : []),
   ]
 
   return (

@@ -129,7 +129,7 @@ const Terms: React.FC = () => {
       <Bullets>
         <ListItem>Your account is for you alone. Don't share, sell or give it to anyone, and don't use someone else's.</ListItem>
         <ListItem>Give true information, including your birth year.</ListItem>
-        <ListItem>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.</ListItem>
+        <ListItem>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? " You can change your username once every 30 days; a username you stop using stays reserved for 14 days." : ''}</ListItem>
         <ListItem>Don't create another account to get around a limit, a penalty or someone's block.</ListItem>
       </Bullets>
 
@@ -154,7 +154,46 @@ const Terms: React.FC = () => {
         isn't: don't reveal the secret word or location, don't team up with other players outside the game, don't
         play in one game with more than one account, and don't set up games just to collect XP or rewards. We may
         remove XP, levels, achievements or rewards that were earned by cheating.
+        {LIVE.socialFeatures &&
+          " Playing in a party doesn't change these rules: telling anyone at your table your role, the location or the word outside the game is cheating. We may pause a party, ban a player from parties, and take back anything won in those games."}
       </P>
+      {/* LIVE.socialFeatures: Social Phase 1 for everyone (legalRelease). */}
+      {LIVE.socialFeatures && (
+        <>
+          <H3>Friends, follows and parties</H3>
+          <Bullets>
+            <ListItem>
+              Friends are two-way: both of you agree. You can add a friend in person with your Friend Code, from a
+              private game you just played together, and, between adults who allow it, from a public table or by
+              username. Some of these ways depend on age, and players under 18 have more private settings, as our
+              Privacy Policy explains. You can remove or block a friend at any time; they aren't told.
+            </ListItem>
+            <ListItem>
+              Adults can have a public profile that other players can open and follow. You can make yours private at
+              any time in Privacy &amp; Friends. Players under 18 have no public profile and can't be followed.
+            </ListItem>
+            <ListItem>
+              A party is a leader and up to 3 of the leader's friends who play together. The leader needs a
+              membership. A party plays together at Play Online tables and game nights, where it takes at most half
+              of a table and is marked for everyone there, and can start a private room together. A private room plays
+              the host's packs, as it always does. A members-only search needs every member of the party to be a
+              member.
+            </ListItem>
+            <ListItem>
+              Party chat follows the same rules as all chat in SpySocial (see section 7), and you can report any
+              message in it.
+            </ListItem>
+            <ListItem>
+              Invites, requests and notifications have limits, and we may change the limits on friends, follows and
+              parties, or pause any of these features.
+            </ListItem>
+            <ListItem>
+              On iPhone, friends, follows and parties aren't available to players under 18 until a version of the app
+              that asks a parent's consent through Apple is out.
+            </ListItem>
+          </Bullets>
+        </>
+      )}
 
       <H2>5. Public Rooms and Events</H2>
       <P>
@@ -367,7 +406,8 @@ const Terms: React.FC = () => {
         You can report or block a player from their name in the app
         {LIVE.messageReports ? ', report a message, question or answer by long-pressing it' : ''}
         {drawings ? (LIVE.communityPacks ? ', report a drawing' : ', and report a drawing') : ''}
-        {LIVE.communityPacks ? ', and report a Community Pack from its page' : ''}.
+        {LIVE.communityPacks ? ', and report a Community Pack from its page' : ''}
+        {LIVE.socialFeatures ? '. You can also report a friend request, a profile, an invite or a whole party (Report Party covers every member of it)' : ''}.
         A person reads every report, and our Community Rules say how soon. The player you report isn't told who
         reported them. To check a report, we look at what's attached to it and at the records we keep, as our
         Privacy Policy describes.
@@ -428,6 +468,20 @@ const Terms: React.FC = () => {
         limited, why, and until when, with a reference such as {'S\u2011207'}. Don't create a new account to get around a
         penalty; we may ban that account too.
       </P>
+      {LIVE.volunteerModerators && (
+        <>
+          <H3>Community moderators</H3>
+          <P>
+            Some of these decisions may be made by community moderators: trusted adult players who volunteer to help
+            us, have agreed in writing to keep what they see confidential, and act under our supervision. A community
+            moderator may act on reports and on what they see in Play Online rooms: warn a player, mute their chat,
+            pause them from public rooms and events for up to 7 days, or remove them from a Play Online table. They can
+            propose a ban, but only SpySocial can ban an account, permanently or otherwise. We record every action a
+            moderator takes and why, we can undo any of them, and you can appeal them like any other decision (see
+            Appeals below). Anything involving a child's safety, self-harm or threats is handled by SpySocial only.
+          </P>
+        </>
+      )}
       <H3>Appeals</H3>
       <P>
         If you think we got it wrong, email <SupportEmail /> and quote the reference from your notice. A person
@@ -464,13 +518,25 @@ const Terms: React.FC = () => {
       </P>
       <Bullets>
         <ListItem>
-          Virtual items have no value in real money. You can't sell or trade them, move them to another account, or
-          exchange them for money.
+          {/* LIVE.trading: trading between friends (Nov 1, 2026). */}
+          {LIVE.trading && LIVE.blackMarket
+            ? "Virtual items and Intel have no value in real money. You can trade some items with your friends inside SpySocial, and Intel between adults, as Trades below describes, and adults can buy and sell tradable items for Intel on the Black Market, as Black Market below describes. You can't sell or buy them for money, move them to another account in any other way, or exchange them for money."
+            : LIVE.trading
+            ? "Virtual items and Intel have no value in real money. You can trade some items with your friends inside SpySocial, and Intel between adults, as Trades below describes. You can't sell or buy them, move them to another account in any other way, or exchange them for money."
+            : "Virtual items have no value in real money. You can't sell or trade them, move them to another account, or exchange them for money."}
           {LIVE.purchases &&
             ` The one exception is Restore Purchases, which moves what you bought to the SpySocial account you're using (see ${LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'} below).`}
         </ListItem>
+        {/* LIVE.rmtGambling: no real-money trading, no gambling (Oct 31, 2026). */}
+        {LIVE.rmtGambling && (
+          <ListItem>
+            No real-money trading: you may not buy, sell or offer Intel, items or accounts for real money or anything outside
+            SpySocial, or use other sites to do so. We may remove what was traded this way and suspend every account involved.
+          </ListItem>
+        )}
+        {LIVE.rmtGambling && <ListItem>No gambling: you may not use SpySocial items or Intel to gamble, on SpySocial or anywhere else.</ListItem>}
         <ListItem>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</ListItem>
-        <ListItem>When someone in a room has unlocked a pack, everyone in that room can play it while they're there. We may change how this sharing works.</ListItem>
+        <ListItem>In a private room, the host's packs decide: everyone there can play the packs the host has unlocked (another player's membership or packs don't add any). At Play Online tables and game nights, when someone at the table has unlocked a pack, everyone there can play it while they're there. We may change how this sharing works.</ListItem>
         {/* LIVE.intel: Intel (the server's "coins"), earned only. */}
         {LIVE.intel && (
           <ListItem>
@@ -478,10 +544,26 @@ const Terms: React.FC = () => {
               <>
                 Intel is an earned currency: you get it only from playing (your games, and your first game of the day
                 and your daily streak, which you claim in the app) and from shredding spare copies of items. It can't be bought, and like every virtual
-                item it has no cash value and can't be sold, traded or moved to another account. For now there's
-                nothing to spend it on; we may add uses for it later, and the app will say what they are. Intel we add to
-                your account ourselves is locked and will never be tradable. We may change how much Intel games, streaks
-                and shredding give, and we may correct a balance that's wrong or was earned by cheating.
+                item it has no cash value and can't be sold for money{LIVE.trading ? ` or moved to another account except in a trade between adults (see Trades below)${LIVE.blackMarket ? ' or on the Black Market' : ''}` : ', traded or moved to another account'}.{' '}
+                {LIVE.blackMarket
+                  ? 'Adults can spend it on the Black Market (see below); we may add other uses for it later, and the app will say what they are.'
+                  : "For now there's nothing to spend it on; we may add uses for it later, and the app will say what they are."}
+                {LIVE.intelLedger ? (
+                  <>
+                    {' '}We may change how much Intel games, streaks and shredding give; a change counts from then on,
+                    never for Intel you already got. Every change to your Intel is a line in your Intel ledger with its
+                    reason: we never add or take Intel by hand, and we never change or delete a line.
+                    {LIVE.intelCorrections
+                      ? ' We correct Intel only in the ways described below.'
+                      : " If a balance is wrong or was earned by cheating, we correct it with a new line that says why."}
+                  </>
+                ) : (
+                  <>
+                    {' '}Intel we add to your account ourselves is locked and will never be tradable. We may change how
+                    much Intel games, streaks and shredding give, and we may correct a balance that's wrong or was earned
+                    by cheating.
+                  </>
+                )}
               </>
             ) : (
               <>
@@ -492,6 +574,26 @@ const Terms: React.FC = () => {
                 stays yours like the other items you've earned.
               </>
             )}
+          </ListItem>
+        )}
+        {/* LIVE.intelCorrections: Economy Integrity E1, the three corrections (see legalRelease). */}
+        {LIVE.intel && LIVE.intelCorrections && (
+          <ListItem>
+            We correct Intel in only three ways, each a new line in your Intel ledger with its reason. We reverse one
+            line, by exactly its amount: for example Intel paid twice for one game, a game we void, or a wrong price (if
+            you bought an item by mistake, the item goes back with the Intel). We refund a bug: we first publish what
+            happened, and the rule that works out each player's amount, as an incident on our{' '}
+            <PageLink to="/transparency">transparency page</PageLink>, then pay what the rule works out for you. Or we
+            take back the Intel that a closed fair-play case shows was earned by breaking our rules (for example farmed
+            games), and only the lines the case covers. When an outage we've announced affects players, we may also give
+            everyone it lists the same amount of Intel, which is locked and will never be tradable. A correction of more
+            than 500 Intel, or one that affects more than 5 players, waits 24 hours before it takes effect (a bug refund
+            or an outage's Intel doesn't wait: the published incident is the notice). If you've already spent Intel we
+            take back, your balance can go below 0: the Intel you earn next pays it back, and you can't spend Intel
+            until it's above 0 again. You can appeal a reversal or a fair-play take-back within 30 days by writing to{' '}
+            <SupportEmail />; if we uphold your appeal, we give back what it took. You can ask us there for the record of
+            any correction to your account. Each month we publish how much Intel was made, spent and corrected, counting
+            every correction without naming anyone.
           </ListItem>
         )}
         {/* LIVE.intercepts: Intercepts (the server's "crates"), earned only, odds shown (see legalRelease). */}
@@ -513,19 +615,22 @@ const Terms: React.FC = () => {
             the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed. If you get an item you already have, you
             keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
-            one rarity give you 1 random item of the next rarity (one you don't have yet, while there is one), and 5
-            spare Legendary copies give you a Unique of one of those five items, with the odds shown in the app before
-            you trade. Only spare copies count (never your first copy of an item, or a Unique), and the copies you trade
+            one rarity give you 1 random item of the next rarity (one you don't have yet, while there is one), and{' '}
+            {LIVE.uniquesRarer ? '10' : '5'} spare Legendary copies give you a Unique of one of those{' '}
+            {LIVE.uniquesRarer ? 'ten' : 'five'} items, with the odds shown in the app before you trade. Only spare copies count (never your first copy of an item, or a Unique), and the copies you trade
             up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it
             can't be shredded or traded up). Like every virtual item, Intercepts and what's in them have no cash value
-            and can't be sold, traded or moved to another account, unopened or opened. Before SpySocial 2.2 opens to
+            and can't be sold{LIVE.trading ? ', or traded or moved to another account unopened; an item from an opened Intercept can be traded only as Trades below describes' : ', traded or moved to another account, unopened or opened'}. Before SpySocial 2.2 opens to
             everyone, Intercepts start fresh: every Intercept earned before then (for example while trying a test
-            version of the app), with the copies, Uniques and trade-ups that came from them, is wiped, and every item
+            version of the app), with the copies, Uniques and trade-ups that came from them{LIVE.trading ? ' (copies you got in a trade included)' : ''}, is wiped, and every item
             that from then on comes only from Intercepts is taken back from the accounts that had it, except the Beta
-            Pin and anything bought in a store, so that everyone gets these items the same way. The items a membership
-            includes, and the Intel you already got, stay. We may take back Intercepts or items that were given by
-            mistake or earned by cheating; an item you've opened otherwise stays yours like the other items you've
-            earned.
+            Pin and anything bought in a store, so that everyone gets these items the same way.
+            {LIVE.intelLedger
+              ? " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded; we publish this as incident I-1 on our transparency page."
+              : ' The items a membership includes, and the Intel you already got, stay.'}
+            {LIVE.intelCorrections
+              ? " We may take back unopened Intercepts given by mistake. We take back an item you've opened only when an incident we've published shows it was given in error, or a closed fair-play case shows it came from cheating; for a Unique this waits 24 hours, its number stays used and is never given to anyone else, and you can appeal within 30 days (an upheld appeal gives you back the same Unique). While a fair-play case is open, we may freeze a copy: it stays yours but can't be shredded or traded up. We never take an item from you to give it to someone else. Otherwise an item you've opened stays yours like the other items you've earned."
+              : " We may take back Intercepts or items that were given by mistake or earned by cheating; an item you've opened otherwise stays yours like the other items you've earned."}
           </ListItem>
         )}
         {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
@@ -543,6 +648,9 @@ const Terms: React.FC = () => {
             collectibles have no cash value. We take back a copy only if it was earned by cheating, issued by
             mistake, or taken back as a moderation action; the ledger then shows that it was taken back and why
             (never who held it), and if we restore it after an appeal it comes back with the same number.
+            A trade or a Black Market sale shows on the ledger only as the copy moving from one holder code to
+            another. Until the launch the ledger is a beta test chain: its copies, numbers, trades and fingerprints
+            are for testing and are wiped before the launch, when the real ledger starts again from its first entry.
           </ListItem>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}
@@ -570,6 +678,86 @@ const Terms: React.FC = () => {
             ' After a deletion, though, what you bought through the App Store or Google Play can come back on another SpySocial account with Restore Purchases.'}
         </ListItem>
       </Bullets>
+      {/* LIVE.trading: trading between friends (Nov 1, 2026; app_config.trading 'on'). */}
+      {LIVE.trading && (
+        <>
+          <H3>Trades</H3>
+          <Bullets>
+            <ListItem>
+              Trades are between friends, inside the app, and carry no message. You can trade once you and your friend
+              have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've
+              reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the
+              trade happens.
+            </ListItem>
+            <ListItem>
+              Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
+              Friend Code, and at most 3 trades a day (adults, 5). Intel can be traded only between two adults, and
+              only once SpySocial 2.2 opens to everyone. On iPhone, players under 18 can't trade until a version of the
+              app that asks a parent's consent through Apple is out.
+            </ListItem>
+            <ListItem>
+              Not every item can be traded; the app marks the ones that can. Memberships, what a membership includes,
+              level rewards, items from the arcade games and Intel we add ourselves are never tradable. Items from a
+              code, and the Beta set, become tradable only once your account has played 3 real games (finished games
+              with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official
+              Beta session.
+            </ListItem>
+            <ListItem>
+              What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,
+              shred it or trade it up until then, and Intel you get can't be used until then. In that time you can
+              reverse your trades (once every 90 days): this reverses all of your protected trades and pauses your
+              trading for 30 days. We can also reverse a trade for account theft or fraud. After 7 days a trade is
+              final, except for items removed for cheating. If you delete your account within those 7 days, what you
+              got goes back to the player who gave it.
+            </ListItem>
+            <ListItem>
+              Big trades ask for a code we email you. Trading pauses for a while after your email or sign-in method
+              changes, after a sign-in on a new device, or when you lock it yourself (for up to a year). There are
+              also weekly limits on the items and Intel you can receive, which the app shows.
+            </ListItem>
+            <ListItem>
+              We check trades for signs of real-money trading, account theft and unfair trades with players under 18;
+              a person reviews what the checks flag. We may change trade limits (how many trades, how much Intel,
+              which items) with notice in the app, and pause trading. Trades that break these Terms (for example
+              real-money trades) may be reversed, and the accounts involved suspended.
+            </ListItem>
+          </Bullets>
+        </>
+      )}
+      {/* LIVE.blackMarket: the Black Market, Intel only (Nov 1, 2026; app_config.market 'on'). */}
+      {LIVE.trading && LIVE.blackMarket && (
+        <>
+          <H3>Black Market</H3>
+          <Bullets>
+            <ListItem>
+              The Black Market, in the app's Vault, is where adults buy and sell tradable items for Intel, never for
+              money. On Items you place offers to buy or sell an item at a price you choose; an offer matches the best
+              price on the other side, and the price of the offer that was waiting is the price paid. On Rare Finds you
+              list a Unique at a price, and can let other players make lower offers. Other players never see who is
+              buying or selling.
+            </ListItem>
+            <ListItem>
+              The same rules as Trades decide who can use it (an adult, level 20, an account at least 14 days old, a
+              confirmed email, no trading pause), and Intel moves on it only once SpySocial 2.2 opens to everyone.
+              Players under 18 can look but can't buy, sell or make offers. Big actions ask for a code we email you.
+            </ListItem>
+            <ListItem>
+              While an offer or listing is open, what it offers is held for it: the Intel of a buy offer, or the items of
+              a sell offer (you can still wear them). Each item sold costs a fee of 2% of its price (at most 5,000
+              Intel), which is removed from the game. Members can have 8 offers open at once, others 4. You can stop an
+              offer or listing at any time and collect what's left.
+            </ListItem>
+            <ListItem>
+              A sale on Items is final at once. A Unique bought on Rare Finds is protected for 3 days: it can't be traded,
+              listed, shredded or traded up, and the seller's Intel waits until then; in that time the sale can be
+              reversed as Trades above describes, or by us for account theft or fraud. We check the market for
+              manipulation (for example sales between your own accounts or prices set to move Intel between players), may
+              pause it, and may reverse sales and suspend the accounts involved when they break these Terms. We may change
+              the fee, the limits and which items can be listed, with notice in the app.
+            </ListItem>
+          </Bullets>
+        </>
+      )}
       {LIVE.purchases && (
         <>
         <H3>{LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'}</H3>
@@ -582,7 +770,7 @@ const Terms: React.FC = () => {
           <ListItem>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</ListItem>
           <ListItem>Lifetime means for as long as we offer SpySocial, not for your lifetime.</ListItem>
           {LIVE.membershipsOnly && (
-            <ListItem>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift; it works like a bought one for as long as we give it, and nothing is charged for it.</ListItem>
+            <ListItem>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for as long as we give it, and nothing is charged for it.{LIVE.membershipCodes ? " A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time." : ''}</ListItem>
           )}
           <ListItem>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</ListItem>
           {LIVE.membershipsOnly ? (
@@ -606,13 +794,21 @@ const Terms: React.FC = () => {
         {LIVE.autoTranslation
           ? "When the app translates a message for you (when you tap Translate, or by itself when the message is in a language other than your app's, unless you turn that off in Settings)"
           : 'When you tap Translate'}
-        , the message's text is sent to Microsoft Translator{LIVE.openAiTranslation ? ' or OpenAI' : ''}
-        {LIVE.myMemory !== 'off' ? ", or to MyMemory if that doesn't answer" : ''}
-        {LIVE.onDeviceTranslation
-          ? LIVE.autoTranslation
-            ? ', or translated on your device'
-            : ", or translated on your device when our service can't"
-          : ''}
+        {/* Translation v3's bridge drop (legalRelease microsoftOff with messagesOnDeviceOnly): Microsoft translates
+            nothing; what OpenAI may not take is translated only on the readers' devices (the app's phone backup). */}
+        {LIVE.openAiTranslation && LIVE.messagesOnDeviceOnly && LIVE.microsoftOff ? (
+          ", the message's text is sent to OpenAI, or translated on your device"
+        ) : (
+          <>
+            , the message's text is sent to Microsoft Translator{LIVE.openAiTranslation ? ' or OpenAI' : ''}
+            {LIVE.myMemory !== 'off' ? ", or to MyMemory if that doesn't answer" : ''}
+            {LIVE.onDeviceTranslation
+              ? LIVE.autoTranslation
+                ? ', or translated on your device'
+                : ", or translated on your device when our service can't"
+              : ''}
+          </>
+        )}
         , and you get a machine translation.{' '}
         {LIVE.autoTranslation
           ? 'Your messages are translated for other players the same way.'

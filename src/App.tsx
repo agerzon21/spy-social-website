@@ -51,6 +51,9 @@ const Roadmap = page(() => import('./pages/Roadmap'))
 const GameNightRules = page(() => import('./pages/GameNightRules'))
 // The minted-collectibles ledger: the route exists only while LIVE.mintedCollectibles is on (from genesis).
 const Ledger = page(() => import('./pages/Ledger'))
+const Transparency = page(() => import('./pages/Transparency'))
+// The Beta 2 playtester page (linked from Reddit and Discord), its own chunk.
+const Beta = page(() => import('./pages/Beta'))
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
@@ -84,11 +87,13 @@ function App() {
               {ONLINE_SAFETY_TEXT && <Route path="/safety" element={<Layout><Safety /></Layout>} />}
               {LIVE.gameNightRules && <Route path="/game-night-rules" element={<Layout><GameNightRules /></Layout>} />}
               {LIVE.mintedCollectibles && <Route path="/ledger" element={<Layout><Ledger /></Layout>} />}
+              {LIVE.transparencyPage && <Route path="/transparency" element={<Layout><Transparency /></Layout>} />}
               <Route path="/child-safety" element={<Layout><ChildSafety /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
+              <Route path="/beta" element={<Layout><Beta /></Layout>} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
               <Route path="/join/e/:id" element={<Layout><JoinEvent /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />

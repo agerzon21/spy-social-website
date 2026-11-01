@@ -8,6 +8,10 @@ const es: Strings = {
     description:
       'Encuentra al espía o engaña a todos. Juego de fiesta multijugador gratis y en tiempo real para 3–21 jugadores. Disponible en iOS y Google Play.',
     titles: {
+      /** The Beta 2 playtester page (/beta). */
+      beta: 'Beta 2: juega SpySocial antes del lanzamiento',
+      /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      transparency: "Informe de transparencia",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Reglas de la Noche de Juego",
       faq: 'Ayuda y preguntas frecuentes',
@@ -29,6 +33,8 @@ const es: Strings = {
       notFound: 'Página no encontrada',
     },
     descriptions: {
+      beta: 'Únete a una prueba de juego en grupo, en vivo y de 1 hora, de SpySocial, un juego gratis de deducción social para fiestas: jueves 12 de noviembre de 2026, de 7 a 8 p. m., hora del Este de EE. UU. Solo mayores de 18, en iPhone o Android. Los testers se quedan con el Pin beta y más.',
+      transparency: "Cada mes, cuánta Intel se ganó, gastó y corrigió en SpySocial, cada incidente y cada cambio de reglas, sin nombrar a ningún jugador.",
       gameNightRules: "Las reglas de la Noche de Juego semanal de SpySocial: cuándo es, quién puede participar, cómo conseguir los títulos de la noche y el título extra del desarrollador.",
       faq: 'Respuestas a las preguntas frecuentes sobre SpySocial: cómo empezar, modos de juego, compartir salas y unirse a ellas, idiomas, controles del anfitrión, tu cuenta y solución de problemas.',
       contact: 'Contacta al equipo de SpySocial: escríbenos a support@spysocial.app para pedir ayuda con la app, tu cuenta o cualquier otra cosa.',
@@ -60,8 +66,12 @@ const es: Strings = {
   },
 
   footer: {
+    /** The link to the transparency page (LIVE.transparencyPage). */
+    transparency: "Transparencia",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Reglas de la Noche de Juego",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "Prueba Beta 2",
     tagline: 'El juego de fiesta del engaño social.',
     play: 'Jugar',
     legal: 'Legal y seguridad',
@@ -254,9 +264,8 @@ const es: Strings = {
     final: {
       title: 'Tu mesa te espera',
       text: 'Gratis y sin anuncios.',
-      purchases: 'Paquetes opcionales si quieres más lugares y palabras.',
-      /** `purchases` once only memberships are sold (LIVE.membershipsOnly). */
-      purchasesMembers: 'Membresías opcionales si quieres más lugares y palabras.',
+      /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
+      purchases: 'Membresías opcionales si quieres más lugares y palabras.',
     },
   },
 
@@ -836,7 +845,7 @@ const es: Strings = {
         },
         {
           title: 'Tu agente y la Tienda',
-          text: 'Crea tu propio avatar de espía. En la Tienda hay paquetes, membresías, artículos de avatar y celebraciones: todo es opcional y nada cambia cómo se juega.',
+          text: "Crea tu propio avatar de espía y gana estilos nuevos jugando. La Tienda solo vende membresías, que desbloquean todos los paquetes y te permiten crear los tuyos: todo es opcional y nada cambia cómo se juega.",
         },
         { title: 'Noches de juegos', text: 'Partidas en línea programadas. Toca «Recordarme» y te avisaremos antes de que empiecen.' },
         {
@@ -861,10 +870,7 @@ const es: Strings = {
         },
       ],
       more: 'Y además: estadísticas, títulos y marcos para desbloquear, niveles hasta el 100 con prestigio, XP también en las partidas cortas, volver a la partida sin tropiezos aunque el teléfono entre en reposo, enlaces de invitación que simplemente funcionan y un nuevo aspecto en cada pantalla.',
-      launchWeek: 'Semana de lanzamiento: Spy Talk el martes 10 de noviembre, Spy Sketch el viernes 13 de noviembre y Espía Mafia el sábado 14 de noviembre, siempre de 8 a 10 p. m., hora del Este de EE. UU. (ET).',
-      /** The Shop card's text (the 4th card) once only memberships are sold (LIVE.membershipsOnly); `customPacks`: LIVE.customPacks. */
-      shopMembers: (customPacks: boolean) =>
-        `Crea tu propio avatar de espía y gana estilos nuevos jugando. La Tienda solo vende membresías, que desbloquean todos los paquetes${customPacks ? ' y te permiten crear los tuyos' : ''}: todo es opcional y nada cambia cómo se juega.`,
+      launchWeek: 'Semana de lanzamiento: Spy Talk el martes 8 de diciembre, Spy Sketch el viernes 11 de diciembre y Espía Mafia el sábado 12 de diciembre, siempre de 8 a 10 p. m., hora del Este de EE. UU. (ET).',
     },
     next: {
       status: 'Planeado',
@@ -967,6 +973,80 @@ const es: Strings = {
     deletedTitle: 'Qué se elimina',
     staysTitle: 'Qué se conserva y por cuánto tiempo',
     details: 'Nuestra <link>Política de privacidad</link> tiene los detalles.',
+  },
+
+  beta: {
+    eyebrow: 'Beta 2 · Prueba en vivo',
+    title: 'Juega primero',
+    lede: '<b>10\u00a0USD por PayPal</b> para cada jugador confirmado que juegue la hora completa de esta prueba de juego en grupo y en vivo de SpySocial, el juego gratis de deducción social para fiestas, y envíe la encuesta de 5 minutos, más un bono de 50\u00a0USD para el reporte de error o la idea más útil. Además, recompensas beta que te quedas después del lanzamiento: el Pin beta, dos títulos, 10 intercepciones de cada nivel y 1 mes de membresía.',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: 'Las partidas, la XP y los objetos de la prueba se reinician en el lanzamiento.',
+    headsUp: '<b>Ojo:</b> el SpySocial de la App Store y Google Play es una versión antigua. La beta es una versión nueva y muy distinta; la instalas desde el enlace que te enviamos por correo.',
+    facts: ['1 hora, en vivo', 'Solo mayores de 18', '24 lugares', 'iPhone o Android'],
+    when: {
+      label: 'Cuándo',
+      et: (time: string) => `${time}, hora del Este (EE.\u00a0UU.)`,
+      others: (pacific: string, utc: string) => `${pacific}, hora del Pacífico · ${utc}\u00a0UTC`,
+      yours: (time: string) => `Tu hora: ${time}`,
+      checkIn: (time: string) => `La entrada abre a las ${time} (hora del Este) en el canal de voz de Discord.`,
+    },
+    europe: {
+      label: 'Europa · Segunda sesión opcional',
+      time: (cet: string, uk: string) => `${cet}\u00a0CET · ${uk} en el Reino Unido`,
+      note: (date: string) => `Solo se hace si se apuntan suficientes personas en Europa. Lo confirmamos a más tardar el ${date}.`,
+    },
+    signUp: 'Apúntate',
+    signUpNote: (day: string, time: string) => `Unos 2 minutos. Las inscripciones cierran el ${day}, a las ${time} (hora del Este).`,
+    discord: 'Únete a nuestro Discord',
+    closed: 'Las inscripciones están cerradas. Síguenos en Discord para la próxima prueba.',
+    games: {
+      eyebrow: 'A qué juegas',
+      title: 'Dos juegos',
+      talk: 'Preguntas y respuestas. Uno o dos jugadores no conocen el lugar secreto e intentan pasar desapercibidos.',
+      sketch: 'Todos aportan trazos al mismo dibujo. Los espías disimulan.',
+    },
+    who: {
+      eyebrow: 'Para quién',
+      title: 'A quién buscamos',
+      adults: '<b>Solo adultos (18+).</b> 24 lugares.',
+      phones: '<b>Un iPhone (TestFlight) o un teléfono Android (pruebas de Google Play).</b> Los Android son especialmente bienvenidos:',
+      androidLabel: 'Teléfonos Android que buscamos especialmente',
+      fans: '<b>Fans de la deducción social:</b> Among Us, Spyfall, Hombres Lobo/Mafia, Blood on the Clocktower, Codenames. Si eres principiante, también eres bienvenido.',
+      mic: '<b>Un micrófono ayuda.</b> Solo escuchar también vale.',
+      langs: '<b>El juego está en 10 idiomas:</b>',
+      langsLabel: 'Los idiomas del juego',
+    },
+    ask: {
+      eyebrow: 'Qué te pedimos',
+      title: 'Juega. Habla. Cuéntanos.',
+      steps: ['<b>Juega</b> durante la hora.', '<b>Di en voz alta</b> todo lo que te confunda.', '<b>Responde una encuesta de 5 minutos</b> al terminar.'],
+      wantTitle: 'Lo que queremos averiguar',
+      want: ['¿Queda claro de quién es el turno?', '¿Se entiende bien la votación?', '¿Funciona el dibujo en tu teléfono?'],
+    },
+    get: {
+      eyebrow: 'Qué recibes',
+      title: 'Recompensas beta que te quedas tras el lanzamiento',
+      items: ['El <b>Pin beta</b>', 'Los títulos <b>Tester beta</b> y <b>Tester de Campo</b>', '<b>10 intercepciones</b> de cada nivel', '<b>1 mes</b> de membresía'],
+      prizeTitle: '10\u00a0USD por PayPal + un bono de 50\u00a0USD',
+      prize: '10 USD por PayPal para cada jugador confirmado que juegue la hora completa y envíe la encuesta de 5 minutos, enviados en los 7 días siguientes a la sesión. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil, elegido por el desarrollador en el plazo de una semana.',
+      seats: (day: string) => `24 lugares. Solo se paga a los jugadores que confirmemos por correo (a más tardar el ${day}); los demás pasan a la lista de espera de la próxima prueba.`,
+    },
+    friends: {
+      eyebrow: 'Amigos',
+      title: 'Trae a tus amigos',
+      text: '<b>Escribe el nombre de tu amigo en el formulario</b> para sentarte en la misma mesa. Los testers de la Beta 1 tienen prioridad.',
+    },
+    join: {
+      eyebrow: 'Cómo unirte',
+      title: 'Cuatro pasos',
+      form: '<link>Rellena el formulario de inscripción</link> (unos 2 minutos).',
+      closes: (day: string, time: string) => `Las inscripciones cierran el ${day}, a las ${time} (hora del Este).`,
+      email: (day: string) => `Te escribimos a más tardar el ${day} para confirmar tu lugar y enviarte el enlace de instalación.`,
+      discord: '<link>Únete a nuestro Discord</link>: la entrada se hace en su canal de voz.',
+      android: 'Android: el formulario te pide el correo de Google de tu Play Store, porque Google lo exige para las versiones de prueba. Se borra después de la sesión.',
+      iphone: 'iPhone: instalas SpySocial con TestFlight, desde el enlace del correo.',
+    },
+    fine: 'Versión previa al lanzamiento. No compartas los nombres ni el chat de otros jugadores. Tus datos de inscripción se borran después de la Beta 2. Tu correo de PayPal se borra en cuanto te paguemos.',
   },
 
   notFound: {

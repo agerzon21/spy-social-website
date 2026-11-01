@@ -93,7 +93,9 @@ const UkOnlineSafety = () => {
       label: 'Fraud, scams and other money crimes, drugs, weapons, human trafficking, unlawful immigration and sexual exploitation of adults',
       cells: [
         <>
-          Nothing of value can move between players: there's no trading, gifting, tipping, listings or ads
+          {LIVE.trading
+            ? "Players can trade earned items with friends inside the app, with no messages in a trade and no real-money trading allowed. Players 13–17 trade items for items only, with friends added in person, and never Intel. What a player gets is protected for 7 days and can be reversed, and our checks flag trades that look like real-money trading, account theft or an unfair trade with a minor for a person to review. There's no gifting from minors, tipping, listings or ads"
+            : "Nothing of value can move between players: there's no trading, gifting, tipping, listings or ads"}
           {LIVE.purchases ? ', and purchases are made only through the App Store or Google Play' : ''}. Links are refused
           in public rooms, and spam, ads and scams aren't allowed anywhere.
         </>,

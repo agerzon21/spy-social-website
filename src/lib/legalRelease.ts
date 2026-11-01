@@ -57,6 +57,38 @@
 
 export const LIVE = {
   /**
+   * IP vault (owner 2026-10-31; app repo feat/ipvault, server file 20261203750000_ipvault, live 20261031070824): the
+   * real IP address of each sign-up (the Auth hook's payload) and of each sign-in / app start (note_device, Cloudflare's
+   * address; at most one row per account and network every 6 hours), with the time and the account, SEALED on write
+   * with an OpenPGP public key (pgcrypto); the private key is only on the owner's Mac, so the database can't open
+   * them. Opened offline only (tools/ipvault/decrypt) for an NCMEC report, serious rule breaking, market manipulation
+   * or a law-enforcement request; every export audited (who, why, case, time). Next to each, the integrity system's
+   * keyed network code (/24, /48). Deleted after 90 days; kept up to 1 year for an NCMEC report, an open case, a
+   * child-safety case or an owner hold (law enforcement). Turns on: the IP Address item's sentences, a Data Retention
+   * sentence, the Legitimate Interests clause and an AfterDeletionList bullet. POLICY WITH CAPTURE: the site went up
+   * with it on the day the key was set (capture starts then). A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  ipVault: true,
+  /**
+   * Beta 2's paid playtest (owner 2026-10-31): the /beta sign-up form asks for a PayPal email to send the $10, and
+   * Privacy's Test Versions item says so (used only for that payment, deleted once paid). The site went up with it on
+   * October 31, 2026.
+   */
+  playtestPayPal: true,
+  /**
+   * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
+   * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
+   * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)
+   * keeps, for each new account (email, Apple / Google or guest), an HMAC-SHA256 of its network (the /24 of an IPv4
+   * address, the /48 of an IPv6 one) under a secret salt that never leaves the database (table
+   * integrity_signup_networks), never the address; deleted after 30 days. The owner can block a network that is used
+   * for abuse (with a case): new accounts and guests from it are refused for 30 days (renewable); existing accounts are
+   * never affected. Turns on one passage in Privacy's IP Address item. Flip it the same hour the hook is switched on in
+   * the Supabase dashboard (until then nothing is recorded), and set its PRIVACY_LAST_UPDATED date (below) to that day.
+   * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
+   */
+  integritySignupNetwork: true,
+  /**
    * fix/account-photo-cleanup's housekeeping migration (20261004132500) applied: chat, translations,
    * usage events and security logs are deleted on a clock, not only when traffic happens to prune.
    */
@@ -289,6 +321,57 @@ export const LIVE = {
    * server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD (see AHEAD_SAFE).
    */
   openAiTranslation: true,
+  /**
+   * Translation v3, send time (server 20261201999000_translate_send_time + the translate-send function, owner
+   * 2026-10-30): a chat, lobby or Q&A line is translated by OpenAI when it is SENT (app_config translation_send
+   * {"enabled": true}: the database asks translate-send for the app languages of the line's other readers who agreed
+   * to OpenAI's note), before any reader's app asks; the same text, context lines, names, languages, age (16+) and
+   * own-yes rule per line, the same 24-hour cache, nothing sent that a reader's request wouldn't send. On, it turns on
+   * Privacy's Translations sentence on send time and the OpenAI item's "usually as soon as they're sent". Flip when
+   * translation_send goes {"enabled": true} live (not for a rooms-only test), and set PRIVACY_LAST_UPDATED's entry to
+   * that day. Off again if send time goes off for good. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  translateSendTime: true,
+  /**
+   * Money talk in chat, the middle path (app server 20261204160000_money_chat_middle + 20261204161000_money_offer_tuning,
+   * live 2026-11-01): a chat line that offers to trade items, Intel or accounts for real money is refused, and each such
+   * refusal (and, with a minor there, a refusal of payment words) is an Integrity signal F3 on the sender's account:
+   * when, which kind of words (a payment app, "real money" or a price; a sell word or an account, item or Intel word),
+   * the surface, room and game, whether a minor was there; never the message. Kept with the other Integrity evidence
+   * (pruned after 400 days). Turns on one sentence in Privacy's Chat Messages item. A server fact for every app version
+   * at once: set in LIVE, never in PRIVACY_AHEAD. The Terms' rule (rmtGambling) is already live.
+   */
+  moneyChatSignals: true,
+  /**
+   * Translation v3, Microsoft off for messages (app_config translation_secrets_engine "none" or no row, with the
+   * translate function of feat/translate-v3 deployed; owner 2026-10-30, option (a)): a message OpenAI may not take
+   * (an author under 16, with no declared age, or who didn't agree; an app that never named OpenAI; OpenAI's limits)
+   * is sent to no translation service and is translated only on the readers' devices (the app's phone backup in every
+   * room, lib/phoneBackup, on-device Apple / ML Kit), or not at all. Packs keep translate-pack's own rule (OpenAI,
+   * Microsoft only as its fallback) until that changes. On, it turns on: Privacy's Translations ("never sent to OpenAI
+   * or to any other translation service" instead of "go to Microsoft Translator"; OpenAI the only server translator
+   * of messages; the device's own translation shown when our service has none), the Microsoft provider item without
+   * messages, and the Age item's wording. Flip when the ship's bridge rows (translation_secrets_engine "microsoft",
+   * translation_openai_age_rule "table") are deleted live, and set PRIVACY_LAST_UPDATED's entry to that day. OFF
+   * again whenever translation_secrets_engine goes back to "microsoft". The Terms (section 10: "Microsoft Translator
+   * or OpenAI ... or translated on your device") stay true either way. A server switch: set in LIVE, never in
+   * PRIVACY_AHEAD.
+   */
+  messagesOnDeviceOnly: true,
+  /**
+   * Translation v3 + AI spend guards, the bridge drop (app server ship/translate-v3: translate-pack v10, which uses
+   * Microsoft only while app_config translation_secrets_engine says "microsoft"; the drop sets it to "none"): Microsoft
+   * translates nothing at all, chat or packs. A pack OpenAI can't translate at that moment waits for its next try and
+   * plays in its own language meanwhile. On (only together with messagesOnDeviceOnly: Privacy reads both), it removes
+   * the Microsoft provider item, Custom Packs' "or, only when OpenAI can't translate it at that moment, Microsoft
+   * Translator" (both sentences) and "Microsoft" in the contracts sentence; and in the Terms (section 10,
+   * Translations) "sent to Microsoft Translator or OpenAI" becomes "sent to OpenAI" (fewer recipients, not a material
+   * change: LEGAL_LAST_UPDATED moves, no new TERMS_PUBLISHED or terms_version). Flip with messagesOnDeviceOnly on the
+   * drop day, and set PRIVACY_LAST_UPDATED's and LEGAL_LAST_UPDATED's entries to that day. OFF again (with
+   * messagesOnDeviceOnly) whenever translation_secrets_engine goes back to "microsoft". A server switch: set in LIVE,
+   * never in PRIVACY_AHEAD.
+   */
+  microsoftOff: true,
   /** Typed interrogation questions and answers go through the server and are stored like chat (M7 send_interrogation_line). */
   storedQuestions: false,
   /** The in-app QR scanner (camera). */
@@ -399,7 +482,7 @@ export const LIVE = {
    * no header) and the footer (every page), both to shop.spysocial.app in the same tab, and turns on the legal text:
    * Privacy (the shop named in the introduction, the Merch Shop section, Fourthwall in the providers list) and the
    * Terms (section 10's Merch line). Off, the site renders exactly as before this switch existed.
-   * Flip when the owner says "open the shop" (planned for the 2.2 launch, Tuesday November 10, 2026), and only once the
+   * Flip when the owner says "open the shop" (planned for the 2.2 launch, Tuesday December 8, 2026), and only once the
    * shop is connected and approved: Fourthwall's custom domain serves shop.spysocial.app over HTTPS, the owner has
    * approved the sample, and the shop's password page is off. Check the Merch Shop text against the live shop then:
    * what it collects and who gets it (Fourthwall's privacy policy, https://fourthwall.com/privacy-policy, last read
@@ -443,9 +526,9 @@ export const LIVE = {
   roadmap: true,
   /**
    * The launch-week game nights' days and hours (owner Console Events > Launch Week Game Nights, app
-   * feat/launch-console): Spy Talk on Tuesday, November 10, Spy Sketch on Friday, November 13 and Spy Mafia on
-   * Saturday, November 14, 2026, each 8 to 10 PM ET. On, the Roadmap's Game nights card and What's New's 2.2 Game
-   * nights line name them (src/i18n: roadmap.now.launchWeek, whatsNew.v22's launchWeek). Off until the owner OKs the
+   * feat/launch-console): Spy Talk on Tuesday, December 8, Spy Sketch on Friday, December 11 and Spy Mafia on
+   * Saturday, December 12, 2026, each 8 to 10 PM ET. On, the Roadmap's Game nights card and What's New's 2.2 Game
+   * nights line name them (src/i18n: roadmap.now.launchWeek; What's New has no launchWeek line yet). Off until the owner OKs the
    * schedule and the nights are published (app_config.events_enabled on); if a day or hour changes, change those
    * lines in all 10 languages first. No legal text reads it. A website fact: set in LIVE, never in PRIVACY_AHEAD.
    */
@@ -525,7 +608,7 @@ export const LIVE = {
    * Turns on Privacy's Game Night item (after Play Online). The developer's watch at these tables is developerWatch's
    * text (20261106130000): flip both in the same deploy. POLICY FIRST: deploy the site with it on before the server
    * files are applied (QA 110 step 3), even though app_config gamenight.enabled stays false until the owner turns the
-   * first night on (Fri Nov 13, 2026, 7:55 PM ET); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
+   * launch-week nights on (from Tue Dec 8, 2026, 7:55 PM ET); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
    * that date to the deploy day. Off only if the Game Night v2 files are rolled back. A server switch for every app
    * version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
@@ -635,15 +718,17 @@ export const LIVE = {
    * 2026-10-25), so nobody loses anything. Turns on: the Terms' buying section as "Buying a membership" (only
    * memberships are sold, what one unlocks; no "a pack you buy" or "an avatar item you buy"), section 3's guest line and
    * section 9's celebrations bullet (no "sold one by one"); Privacy's Purchases item and deletedSummary (memberships
-   * only); the Safety page's parents line; the Game Night rules' no-purchase line; the Roadmap's Shop card and the home
-   * page's closing line. The Terms' and the Safety page's text sits inside LIVE.purchases (and the celebrations bullet
-   * inside avatarsLive), so before the launch only Privacy, the Game Night rules and the Roadmap show it. Flip when
-   * store_products sells only the three memberships on the live server (the v8 Nov 2 switches: those three live, the
-   * other 19 draft, the mask included), whatever app a player has, and set PRIVACY_LAST_UPDATED, the Game Night rules'
-   * UPDATED and (once LIVE.purchases is on) LEGAL_LAST_UPDATED to that day. Not ahead-safe (it says we sell less): a
-   * server fact for every app version at once, set in LIVE, never in PRIVACY_AHEAD.
+   * only); the Safety page's parents line; the Game Night rules' no-purchase line. (The Roadmap's Shop card and the home
+   * page's closing line, no legal text, say memberships only already: fix/membership-only, 2026-10-30.) The Terms' and the Safety page's text sits inside LIVE.purchases (and the celebrations bullet
+   * inside avatarsLive), so before the launch only Privacy, the Game Night rules and the Roadmap show it. On since
+   * 2026-10-30 (fix/membership-only; owner's standing OK for policy updates, coordinator's decision): no item is sold
+   * for money today (the released app has no buying, LIVE.purchases is off) and from the launch only the three
+   * memberships are, so "only memberships are sold" is true now; it no longer waits for the v8 Window W switches (Mon
+   * Dec 7). PRIVACY_LAST_UPDATED and the Game Night rules' UPDATED moved to October 30, 2026; LEGAL_LAST_UPDATED moves
+   * only when LIVE.purchases goes on (the Terms' and the Safety page's memberships text is inside it). Not ahead-safe
+   * (it says we sell less): a server fact for every app version at once, set in LIVE, never in PRIVACY_AHEAD.
    */
-  membershipsOnly: false,
+  membershipsOnly: true,
   /**
    * Intercepts (app repo feat/crates-server, server file 20261127000000_crates.sql, "crates" in code; app
    * feat/intercepts-client; owner 2026-10-25): sealed containers earned only by playing, each opening into one random
@@ -703,7 +788,7 @@ export const LIVE = {
    * but NO item list (owner 2026-10-27), so the Terms no longer say "the items each can give"; the drafted promise
    * "odds change only between series" (never an owner decision) is replaced by "the app always shows the odds every
    * opening uses, with the date they last changed"; trade-ups as 20261128800000 ships them (5 spares of one rarity,
-   * the next rarity, unowned first; 5 Legendary -> a Unique of one of the five); the reset (pending
+   * the next rarity, unowned first; 5 Legendary -> a Unique of one of the five; 10 since LIVE.uniquesRarer); the reset (pending
    * 20261127190000_crates_reset, Window W) wipes every pre-release Intercept, copy and trade-up, testers' included,
    * and takes back every pool item except the Beta Pin and anything bought; Intel stays.
    */
@@ -725,15 +810,109 @@ export const LIVE = {
    * nobody). No new provider: GitHub and the Internet Archive get only the day's head hash (no personal data). Turns
    * on: the /ledger route; the Terms' section 9 collectibles bullet; Privacy's Collectibles item and its retention
    * line. Not ahead-safe (a server fact from genesis): set in LIVE at the launch hour, with both dates moved (below).
+   * ON since November 1, 2026: the BETA TEST CHAIN (app 20261202295000) has been live since Oct 31 21:17 UTC (minting,
+   * the public ledger function, transfers for trades and Black Market sales), so the text says so: Privacy's
+   * Collectibles item, the Game Night and Intercepts items' ledger clause, the Trades item's ledger clause, Terms 9's
+   * bullet, all naming the beta chain and its wipe before launch. At the launch (the real genesis) drop the beta-chain
+   * sentences and set both dates.
    */
-  mintedCollectibles: false,
+  mintedCollectibles: true,
+  /**
+   * Uniques rarer (owner 2026-10-30; app server 20261202450000_unique_rarity, app branch fix/unique-rarity, pending):
+   * no Unique from Top Secret (Legendary 3%, Mythic 18%), Enigma's Unique 0.5% (Legendary 10%, Mythic 24.5%), and the
+   * Legendary -> Unique trade-up takes 10 spare Legendaries (was 5; every other rarity 5). Turns on: Terms 9's
+   * trade-up sentence ("10 spare Legendary copies ... one of those ten items") and the transparency page's rule
+   * changes (src/lib/transparency.ts). Not a material change (section 9's existing rules: the app shows the odds in
+   * use and the day they changed): LEGAL_LAST_UPDATED moves (below), no TERMS_PUBLISHED or terms_version. Deploy the
+   * site with it on the same hour the server file is applied (the app shows the new odds from the server at once);
+   * off only if the file is rolled back (the old text: 5 Legendaries).
+   */
+  uniquesRarer: true,
+  /**
+   * No real-money trading and no gambling (owner's standing OK; trading spec section 12, published ahead of trading on
+   * Oct 31, 2026): Terms 9 gains two lines. Selling items or Intel for money was already refused by section 9 ("You can't
+   * sell or trade them ... or exchange them for money"); these name accounts, other sites and gambling, and what we may do.
+   * Not a material change (it restates a ban already in force): LEGAL_LAST_UPDATED moves (below), no TERMS_PUBLISHED or
+   * terms_version. A website fact: set in LIVE, never in PRIVACY_AHEAD. The rest of trading's Terms waits for its switch-on.
+   */
+  rmtGambling: true,
+  /**
+   * Membership codes (app repo feat/membership-codes, server file 20261203440000_membership_codes, owner 2026-10-31:
+   * codes that give a month, a year or Lifetime, for giveaways, creators and apologies; granted as the owner's gifts
+   * already are). Terms 3's gift line names codes and says how a gifted month or year counts (it adds to the time held,
+   * never renews; after Lifetime a code adds no time); Privacy's Creator and Reward Codes item names membership among a
+   * code's rewards. Not a material change (gifts were already in the Terms): LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED
+   * move (below), no TERMS_PUBLISHED or terms_version. Deploy the site with it on in the update that ships the app's
+   * Membership field (update 12); off only if the server file is rolled back.
+   */
+  membershipCodes: true,
+  /**
+   * Volunteer community moderators (app repo feat/moderator, server 20261202460000_moderator_role: moderators, scopes,
+   * moderator_agreements, mod_actions; owner 2026-10-30/31; first test moderator granted on live 2026-10-31). Terms 8
+   * says trusted volunteers may act on reports (warn, mute, pause up to 7 days, remove from a Play Online table) and
+   * that bans are confirmed by SpySocial; Privacy's Data Sharing says what they see (the report, the chat and account
+   * details a case needs), that they sign a confidentiality agreement, that child safety goes to the developer only,
+   * and that every action is logged. Not a material change (moderation was already in the Terms): LEGAL_LAST_UPDATED
+   * and PRIVACY_LAST_UPDATED move (below), no TERMS_PUBLISHED or terms_version. A website fact: set in LIVE, never in
+   * PRIVACY_AHEAD. Off only if the moderator role is removed.
+   */
+  volunteerModerators: true,
+  /**
+   * The username's 30 days (app repo feat/username-limit, server 20261204120000_username_limit, live 2026-11-01 03:21
+   * UTC as 20261101032151; owner 2026-10-31): one username change every 30 days, a name you stop using reserved for 14
+   * days (Terms' Rules for accounts), and the past usernames kept with when they changed, deleted with the account
+   * (Privacy's Account Information). Not a material change: LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED move (below),
+   * no TERMS_PUBLISHED or terms_version. A server fact for every app version at once: set in LIVE, never in
+   * PRIVACY_AHEAD. Off only if the server file is rolled back.
+   */
+  usernameLimit: true,
+  /**
+   * Economy Integrity E0 (app repo feat/economy-integrity, server file 20261202020000_intel_ledger_lock, applied live by
+   * the owner): no free-form Adjust Intel (owner_coins_adjust answers retired); the Intel ledger is append-only (no line
+   * edited or deleted, not even by us; the wallet is the ledger's sum); every line names its cause; an erased account's
+   * lines stay with no account (the profiles FK is ON DELETE SET NULL) and each line's client part (app api, build,
+   * platform) is dropped after 2 years; test Intel (test_grant) goes only to our own test accounts, locked. Turns on:
+   * Terms 9's Intel line (no Intel by hand, the ledger kept whole) and the Intercepts line's launch-reset sentence
+   * (shredding Intel from before the reset taken back, Intel spent on taken-back items refunded: WI, incident I-1;
+   * owner 2026-10-28), Privacy's Intel item (the ledger's client part and actor, kept for good without the account,
+   * the locked part), Data Retention, the deletion summary and After Deletion. POLICY FIRST: on the day E0 is applied;
+   * set its dates below to that day. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * On 2026-10-30: E0 live since ~02:45 ET (intel_ledger_lock_20261202020000).
+   */
+  intelLedger: true,
+  /**
+   * Economy Integrity E1 (server file 20261202030000_intel_corrections + Edge Function economy-mail): Intel is
+   * corrected only by reversing one ledger line, refunding a published bug incident, or a clawback a closed fair-play
+   * case covers (plus a make-good, the same locked amount to everyone an announced outage lists); over 500 Intel or 5
+   * players a correction waits 24 h; a clawback may leave a debt (below 0, paid back by what is earned next, nothing
+   * spent meanwhile); 30 days to appeal a reversal or a clawback; Uniques burned only for a published incident or a
+   * closed fair-play case (24 h wait, the number stays used, restored on an upheld appeal within 30 days), frozen during
+   * a case; every correction e-mailed to support@ through Resend (the account's username in it); a daily digest with
+   * each correction's blinded reference (HMAC of the line under the account's secret) and the monthly report on
+   * /transparency. Turns on: Terms 9's Intel corrections line and the Intercepts line's take-back sentence, Privacy's
+   * Intel Corrections item, the Resend item, Data Retention and After Deletion. POLICY FIRST: the day E1 is applied;
+   * set its dates below. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   * On 2026-10-30: E1 live since ~03:40 ET (intel_corrections_20261202030000) and economy-mail deployed.
+   */
+  intelCorrections: true,
+  /**
+   * The launch reset's Intel (WI, 20261201950000, Window W) ran: incident I-1 "Pre-launch Intercept Intel" is published
+   * (its summary is the database's economy_incidents row I-1, copied in src/lib/transparency.ts). Turns on I-1 in the
+   * transparency page's incidents. Set the day WI runs.
+   */
+  launchResetIncident: false,
+  /**
+   * The transparency page (/transparency): what the monthly report covers and when the first one comes, the incidents
+   * published so far, the rule changes. A skeleton until the first report (owner 2026-10-30: the first one on the 1st
+   * of the month after launch). Its route, footer link and sitemap entry exist only while this is on.
+   */
+  transparencyPage: true,
   /**
    * The AI players ("spybots", the owner's own tool: .claude/handoff/scratchpad/tools/spybots, a Node program on the
    * developer's Mac that signs in as bot accounts and plays through the normal app server). Owner rule (launch-rule.mjs):
    * a bot plays only at a table where the owner is seated (his private rooms, and Play Online tables he sits at);
-   * before PRELAUNCH_UNTIL (Nov 10, 2026, 10:00 ET) any Play Online player at his table may stay with them (Play
-   * Online is testers-only until then); from then on, at Play Online, anyone but the owner and the adults on
-   * friends.json makes the bots leave. For a bot's move the program sends OpenAI's Responses API (store: false, no
+   * at Play Online, anyone but the owner and the adults on friends.json makes the bots leave (the pre-launch
+   * exception, PRELAUNCH_UNTIL, was removed on 2026-10-28). For a bot's move the program sends OpenAI's Responses API (store: false, no
    * safety_identifier; gpt-5.5 / gpt-5.4-mini / gpt-5.4-nano) the table's transcript as the bot's seat sees it: names as
    * the table shows them (display names in private rooms, agent names at Play Online), the questions, answers and
    * chat (the spies' chat for a spy bot), game events, Spy Sketch drawings as pictures, and the bot's own secret; no
@@ -745,6 +924,25 @@ export const LIVE = {
    * in PRIVACY_AHEAD. No Terms text reads it.
    */
   spybots: true,
+  /**
+   * The Practice Game's AI rating (app repo feat/practice-rate-live; server 20261202022000_practice_rate +
+   * 20261202022100_practice_rate_spend_watch, live 2026-11-01; the practice-rate edge function; owner 2026-10-30: "the
+   * phone rates everyone; OpenAI re-rates for 16+ players who agree"). The phone rates every practice line; for a saved
+   * account (never a guest) that declared 16 or older (app_config.practice_openai_min_age, counted the careful way) and
+   * chose Try It on the one-time "Rate with AI?" note naming OpenAI (practice_rate_consents: the note's version and
+   * when, until answered again or the account is deleted; Not Now keeps the phone's rating), our server also sends
+   * OpenAI's Responses API (store: false, no safety_identifier, a fixed prompt_cache_key) the line (at most 160
+   * characters), what it is (answer, question, follow-up), the practice role (Local or spy), the game's secret location
+   * and the pack's location names, the app's own question or answer it replies to, and its language; never a name,
+   * account, user id, age or IP address. A line our public chat filter refuses is never sent. Kept on our side: counts
+   * only (rated lines per account per UTC day, deleted after 14 days; the app's daily totals with no user). On, it
+   * turns on Privacy's "Practice Games" item, the OpenAI provider line, the Age item's use and How We Use's line. POLICY
+   * FIRST: flip it and deploy the site the same day as app_config.practice_rate_enabled goes true, before that UPDATE,
+   * and set its PRIVACY_LAST_UPDATED date (below) to that day. A server switch for every app version at once: set in
+   * LIVE, never in PRIVACY_AHEAD. No Terms text reads it. If the owner changes practice_openai_min_age, change "16" in
+   * the Practice Games item.
+   */
+  practiceAi: false,
   /**
    * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Pack
    * Pass or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
@@ -853,7 +1051,7 @@ export const LIVE = {
    * months after the deletion (36 for child safety), extended by each matching attempt; purged daily. Turns on one
    * sentence in Privacy's Safety Information, the deletedSummary clause, a bullet in AfterDeletionList (Privacy and
    * /delete-account), a Data Retention sentence and the Legitimate Interests clause. POLICY FIRST: flip it, deploy the
-   * site, then apply the file (Nov 2, Window W); set PRIVACY_LAST_UPDATED's date for it to the deploy day. A server
+   * site, then apply the file (Window W, Mon Dec 7, 2026); set PRIVACY_LAST_UPDATED's date for it to the deploy day. A server
    * switch: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
    */
   banTombstone: false,
@@ -878,6 +1076,71 @@ export const LIVE = {
    * (auth_attempts) see code requests at all, and every other line here, against the passwords-off dashboard step.
    */
   passwordless: false,
+  /**
+   * Social Phase 1 for everyone (app repo feat/social-switchon; server social files live Oct 31, 2026 for testers:
+   * social graph 20261031024235, presence / invites / profile 024240, report contexts 024242, followers list 024244,
+   * party 024246, Social Watch 033922, social push 053549, Following feed 055059, Report Party 062014, iOS minors' hold
+   * 065014, Social Watch push 090125). Friends (two-way; paths by age band: Friend Code in person for everyone, a private
+   * game in the last 24 h except adult with 13-15, a public table and @username adults with adults only), follows and
+   * public profiles (adults only, with a showcase; the one-time "your profile is public" notice), the Following feed,
+   * online status for friends, room and party invites, Ask to Join, parties (the leader a member; a private room plays
+   * the host's packs; members-only matchmaking needs every member to be a member), party chat (the room chat's filters,
+   * kept 30 days), social push notices (a switch each, the sender's display name, none 10 PM-7 AM for under-18s, deleted
+   * after 7 days), Social Watch and Party Watch, Report Party, and the iOS minors' hold (social off for under-18s on the
+   * iPhone app until the in-app parental consent build). Turns on: Privacy's Friends, Follows and Profiles, Party and
+   * Party Chat and Social Notifications items, Presence, Safety Information, How We Use, Legitimate Interests, Data
+   * Retention, Data Sharing, Children's Privacy and the deletion summary; the Terms' section 4 "Friends, follows and
+   * parties", fair play in parties and section 8's Report Party. Trading is NOT in this switch (Phase 2). PUBLISH WITH
+   * THE SWITCH-ON (spy-social .claude/handoff/scratchpad/oct31/SOCIAL-SWITCH-ON.md step 2.5): flip it the same hour
+   * app_config.social goes 'on', and set its two dates (LEGAL_LAST_UPDATED, PRIVACY_LAST_UPDATED) to that day. A server
+   * switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD. BEFORE FLIPPING, check: the social log
+   * (social_events) has its 1-year purge live (Data Retention says 1 year; on Oct 31 nothing deleted it), and
+   * app_config.social.ios_minor_hold is still true (the iOS sentence says so).
+   */
+  socialFeatures: true,
+  /**
+   * Trading for everyone (owner 2026-11-01: app_config.trading enabled 'testers' -> 'on', so players try it before the
+   * launch and store reviewers see it; server trading files live since Oct 31, 2026, with gifted items tradable after 3
+   * real games, 20261204140000). Trades between friends of 3+ days (both accounts 14+ days old, email confirmed, level
+   * 20); 13-17s items for items only, with Friend Code friends, 3 trades a day; Intel only adult with adult (and on the
+   * beta chain only the test fleet, so for players from the 2.2 release); 7-day protection and one self-reversal per 90
+   * days (all protected trades back, trading paused 30 days); an emailed code for big trades; locks after an email /
+   * sign-in change, a new device, or a self-lock; Trade Watch (shadow, flags for a person). Turns on: Terms 9's
+   * virtual-items line, the Intel and Intercepts lines' trading words and the "Trades" H3; Privacy's Trades item, Safety
+   * Information's Trade Watch sentence, How We Use, Data Retention, Resend's trade codes and the deletion summary; the
+   * UK online-safety row on fraud. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * Off only if app_config.trading goes back to 'testers' (the old text: nothing can be traded).
+   */
+  trading: true,
+  /**
+   * The Black Market (app repo feat/black-market-server, server file 20261205100000_black_market, live as
+   * 20261101121549; app_config.market 'on' Nov 1, 2026; the Vault's fourth tab). Two markets, Intel only (earned, never
+   * money): Items, an order book for tradable plain collectibles (buy and sell offers, price-time matching, partial
+   * fills, a 2% fee burned, max 5,000 a copy), and Rare Finds, each Unique copy listed on its own (price, optional
+   * offers, 3-day protection with reversal). Adults only, the trading gates (level 20, email confirmed, account 14 days
+   * old, no trade lock), an emailed code for big actions; on the beta chain only the test fleet and admins move Intel,
+   * so players can look until the 2.2 release. Other players see only anonymous prices, quantities, times and a Unique's
+   * number and colour, never who. Kept: offers, listings, offers on listings, fills and sales, escrow lines on the Intel
+   * ledger, market events; on deletion the account is taken out (ON DELETE SET NULL), codes deleted. Market Watch
+   * (Integrity family E, shadow): linked-account fills (same phone or sign-up network), round trips, far-from-guide
+   * prices, spoofing, concentration. Turns on: Privacy's Black Market item, the Intel item's spending line, the
+   * Intercepts item's "who sees" line, Safety Information's Market Watch sentence, How We Use, Data Retention, Resend's
+   * market codes, Data Sharing's market line, the deletion list; Terms 9's virtual-items line and Intel line and the
+   * "Black Market" H3. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD. Not a
+   * material change (an opt-in feature under the existing virtual-items, trading and fair-play rules; no terms_version).
+   */
+  blackMarket: true,
+  /**
+   * Social spam limits (app repo fix/friends-owner-1101, server file 20261204150000_social_follow_fixes, STAGED, not
+   * applied yet; owner 2026-11-01: generous limits, stop only rapid-fire spam): a slow-down after 10 follows, unfollows
+   * or friend requests in 10 seconds or 4 follow changes toward one player in a minute (read from the social safety
+   * log's times, nothing new kept), and a shadow count of daily-limit hits (follows 200 a day, friend requests 200 a
+   * day): the account, which limit, the UTC day and how many times, for the team to spot spam, deleted after 90 days
+   * (daily pg_cron) and with the account. Turns on: Privacy's Rate Limits sentence and Data Retention's line. Flip to
+   * true when the server file is applied live (and set PRIVACY_LAST_UPDATED's date for it to that day). A server
+   * fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD. Not a material change.
+   */
+  socialLimits: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -1027,13 +1290,35 @@ export const OPERATOR: { name: string | null; address: string | null } = {
 export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.mintedCollectibles
-    ? 'November 10, 2026' // minted collectibles (Terms 9): set to the launch day the site goes up with it on
+    ? 'November 1, 2026' // minted collectibles (Terms 9), the beta test chain live since Oct 31: the site went up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // ranked's Terms paragraph: set to the day the site goes up with it on
     : LIVE.passwordless
-    ? 'November 2, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
+    ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
-      ? 'November 2, 2026' // memberships only (Terms 3, 9; Safety), visible once purchases is on: that day
+      ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.blackMarket
+      ? 'November 1, 2026' // Terms 9: the Black Market H3, the virtual-items and Intel lines (20261205100000): the site went up with it on
+      : LIVE.messagesOnDeviceOnly && LIVE.microsoftOff
+      ? 'November 1, 2026' // Terms 10: translation v3's bridge drop, messages sent to OpenAI only (Microsoft translates nothing): set to the day the site goes up with it on
+      : LIVE.trading
+      ? 'November 1, 2026' // Terms 9: trading between friends (Trades H3, the virtual-items line): the site went up with it on (trading switch-on day)
+      : LIVE.usernameLimit
+      ? 'October 31, 2026' // Terms' Rules for accounts: one username change every 30 days, an old name reserved 14 days (20261204120000): the site went up with it on
+      : LIVE.socialFeatures
+      ? 'October 31, 2026' // Terms 4's Friends, follows and parties, fair play in parties, section 8's Report Party: the site went up with it on (social switch-on day)
+      : LIVE.volunteerModerators
+      ? 'October 31, 2026' // Terms 8: volunteer community moderators (20261202460000): the site went up with it on
+      : LIVE.membershipCodes
+      ? 'October 31, 2026' // Terms 3: memberships given with a code (20261203440000): set to the day the site goes up with it on
+      : LIVE.rmtGambling
+      ? 'October 31, 2026' // Terms 9: no real-money trading, no gambling: set to the day the site goes up with it on
+      : LIVE.uniquesRarer
+      ? 'October 31, 2026' // Terms 9: 10 spare Legendaries for a Unique (app server 20261202450000_unique_rarity): set to the day the site goes up with it on
+      : LIVE.intelCorrections
+      ? 'October 30, 2026' // Terms 9's Intel corrections and the Intercepts take-back line (E1), and Terms 9's no-Intel-by-hand line and the reset's Intel (E0, WI): the site went up with both on
+      : LIVE.intelLedger
+      ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
 
 /**
@@ -1045,17 +1330,51 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
 export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.mintedCollectibles
-    ? 'November 10, 2026' // the Collectibles item: set to the launch day the site goes up with it on
+    ? 'November 1, 2026' // the Collectibles item (beta test chain live since Oct 31): the site went up with it on
   : LIVE.ranked
     ? 'December 4, 2026' // the Ranked item: set to the day the site goes up with it on
     : creatorShortLive(LIVE)
       ? 'November 20, 2026' // the YouTube item (the home page's creator Short): set to the day the site goes up with it on
     : LIVE.passwordless
-    ? 'November 2, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
+    ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
-    ? 'November 2, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.blackMarket
+    ? 'November 1, 2026' // the Black Market item, Market Watch, market codes by Resend, the Intel and Intercepts lines (20261205100000): the site went up with it on
+    : LIVE.practiceAi
+    ? 'November 1, 2026' // the Practice Games item (OpenAI rates practice lines for 16+ who agreed): set to the day the site goes up with it on
+    : LIVE.moneyChatSignals
+    ? 'November 1, 2026' // Chat Messages: the record of a refused real-money offer (Integrity F3, 20261204160000): set to the day the site goes up with it on
+    : LIVE.messagesOnDeviceOnly && LIVE.microsoftOff
+    ? 'November 1, 2026' // Translation v3's bridge drop: Microsoft translates nothing (its provider item and the packs' fallback gone): set to the day the site goes up with it on
+    : LIVE.messagesOnDeviceOnly
+    ? 'November 1, 2026' // Translation v3: Microsoft off for messages (under-16, undeclared and not-agreed lines only on the readers' devices): set to the day the site goes up with it on
+    : LIVE.translateSendTime
+    ? 'November 1, 2026' // Translation v3: messages translated by OpenAI when they're sent: set to the day the site goes up with it on
+    : LIVE.socialLimits
+    ? 'November 1, 2026' // social spam limits' count of daily-limit hits (20261204150000): set to the day the site goes up with it on
+    : LIVE.trading
+    ? 'November 1, 2026' // the Trades item, Trade Watch, device codes, trade codes by Resend: the site went up with it on (trading switch-on day)
+    : LIVE.usernameLimit
+    ? 'October 31, 2026' // Account Information: past usernames and when they changed, for the 30-day limit (20261204120000): the site went up with it on
+    : LIVE.socialFeatures
+    ? 'October 31, 2026' // friends, follows, profiles, party and party chat, social notifications, Social Watch: the site went up with it on (social switch-on day)
+    : LIVE.volunteerModerators
+    ? 'October 31, 2026' // Data Sharing: volunteer moderators, what they see, their confidentiality agreement (20261202460000): the site went up with it on
+    : LIVE.integritySignupNetwork
+    ? 'October 31, 2026' // the sign-up network code and network blocks (Integrity): set to the day the site goes up with it on
+    : LIVE.ipVault
+    ? 'October 31, 2026' // IP Address: sign-up and sign-in IP addresses kept encrypted (IP vault): the site went up with it on
+    : LIVE.membershipCodes
+    ? 'October 31, 2026' // Creator and Reward Codes: membership among a code's rewards (20261203440000): set to the day the site goes up with it on
+    : LIVE.playtestPayPal
+    ? 'October 31, 2026' // Test Versions: the paid playtest's sign-up form and its PayPal email (deleted once paid): the site went up with it on
     : LIVE.membershipsOnly
-      ? 'November 2, 2026' // Purchases: memberships only (Privacy shows purchases ahead): set to that day
+      ? 'October 30, 2026' // Purchases and the deletion summary: memberships only (Privacy shows purchases ahead): the site went up with it on
+      : LIVE.intelCorrections
+      ? 'October 30, 2026' // Intel Corrections, Resend's copies to support@, the public digest (E1), and the Intel ledger kept for good without the account (E0): the site went up with both on; the same day, Usage Data's Beta Pin dates moved with the launch (December 8, 2026; accounts created before December 7, 2026)
+      : LIVE.intelLedger
+      ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
 
 /**
