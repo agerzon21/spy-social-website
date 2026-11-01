@@ -901,6 +901,25 @@ export const LIVE = {
    */
   spybots: true,
   /**
+   * The Practice Game's AI rating (app repo feat/practice-rate-live; server 20261202022000_practice_rate +
+   * 20261202022100_practice_rate_spend_watch, live 2026-11-01; the practice-rate edge function; owner 2026-10-30: "the
+   * phone rates everyone; OpenAI re-rates for 16+ players who agree"). The phone rates every practice line; for a saved
+   * account (never a guest) that declared 16 or older (app_config.practice_openai_min_age, counted the careful way) and
+   * chose Try It on the one-time "Rate with AI?" note naming OpenAI (practice_rate_consents: the note's version and
+   * when, until answered again or the account is deleted; Not Now keeps the phone's rating), our server also sends
+   * OpenAI's Responses API (store: false, no safety_identifier, a fixed prompt_cache_key) the line (at most 160
+   * characters), what it is (answer, question, follow-up), the practice role (Local or spy), the game's secret location
+   * and the pack's location names, the app's own question or answer it replies to, and its language; never a name,
+   * account, user id, age or IP address. A line our public chat filter refuses is never sent. Kept on our side: counts
+   * only (rated lines per account per UTC day, deleted after 14 days; the app's daily totals with no user). On, it
+   * turns on Privacy's "Practice Games" item, the OpenAI provider line, the Age item's use and How We Use's line. POLICY
+   * FIRST: flip it and deploy the site the same day as app_config.practice_rate_enabled goes true, before that UPDATE,
+   * and set its PRIVACY_LAST_UPDATED date (below) to that day. A server switch for every app version at once: set in
+   * LIVE, never in PRIVACY_AHEAD. No Terms text reads it. If the owner changes practice_openai_min_age, change "16" in
+   * the Practice Games item.
+   */
+  practiceAi: false,
+  /**
    * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Pack
    * Pass or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
    * least 30 entries) and plays it in their private rooms, where the room's players see its name and what the game deals
@@ -1272,6 +1291,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.practiceAi
+    ? 'November 1, 2026' // the Practice Games item (OpenAI rates practice lines for 16+ who agreed): set to the day the site goes up with it on
     : LIVE.moneyChatSignals
     ? 'November 1, 2026' // Chat Messages: the record of a refused real-money offer (Integrity F3, 20261204160000): set to the day the site goes up with it on
     : LIVE.messagesOnDeviceOnly && LIVE.microsoftOff

@@ -86,7 +86,7 @@ const Privacy: React.FC = () => {
       ? 'Microsoft Translator (Azure AI Translator) or OpenAI, depending on which our service uses,'
       : 'Microsoft Translator (Azure AI Translator)'
   // OpenAI is a provider for drawing checks, translation, the custom packs' text check (LIVE.customPacks) or all three.
-  const usesOpenAi = PRIVACY.drawingCheck || PRIVACY.openAiTranslation || PRIVACY.customPacks || PRIVACY.spybots
+  const usesOpenAi = PRIVACY.drawingCheck || PRIVACY.openAiTranslation || PRIVACY.customPacks || PRIVACY.spybots || PRIVACY.practiceAi
   // Each author's own yes (server 20261031100000): OpenAI gets a player's messages only after they chose Translate in
   // the app's note naming OpenAI, and not while they've since chosen Not Now there or turned automatic translation off.
   const openAiAgreed = PRIVACY.autoTranslation
@@ -416,6 +416,28 @@ const Privacy: React.FC = () => {
           translation requests they made, the messages and characters sent to be translated, and an estimate of
           what translating them cost; these counts are deleted after 14 days.
         </Item>
+        {/* LIVE.practiceAi: OpenAI rates practice lines for 16+ players who agreed (legalRelease). */}
+        {PRIVACY.practiceAi && (
+          <Item label="Practice Games">
+            In a practice game, your device rates every move you make. If you told us you're 16 or older (from the
+            birth year the app asks for), are signed in to an account (not playing as a guest) and chose Try It in the
+            app's one-time "Rate with AI?" note that names OpenAI, our servers also ask OpenAI to rate each line you
+            type, for a sharper score. For that, our servers send OpenAI only the line you typed (up to 160 characters),
+            whether it's an answer, a question or a follow-up, your role in the practice game (Local or spy), the game's
+            secret location and the other locations in its pack, the question or answer from the practice game your
+            line replies to, and the language it's probably in. They never send your name, username, account or a code
+            made from it, email address, age or your device's IP address. A line our chat filter would block is never
+            sent. We send these lines to OpenAI only to rate them. Our servers ask OpenAI not to store these requests or
+            its answers, and OpenAI doesn't use them to train its models; like everything sent to its API, they go into
+            OpenAI's abuse-monitoring logs for up to 30 days, and OpenAI may keep an encrypted cache made from a request
+            for up to 24 hours (see OpenAI below). If you choose Not Now, or you're
+            under 16 or playing as a guest, your practice lines are rated only on your device. We keep your answer to
+            that note (which version of the note you answered, and when) until you answer it again or your account is
+            deleted. To keep this within its limits, we count how many lines each account had rated each day (deleted
+            after 14 days) and keep daily totals for the whole app that don't identify anyone; we don't keep the lines
+            themselves.
+          </Item>
+        )}
         {/* LIVE.spybots: the developer's AI players (legalRelease). */}
         {PRIVACY.spybots && (
           <Item label="AI Players">
@@ -554,7 +576,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.storeAgeSignals &&
             `${from22 ? ' From version 2.2, on' : ' On'} some phones, Apple or Google also tell the app an age range for your account (Apple's Declared Age Range, Google Play's Age Signals); the app uses it on your device.`}{' '}
           We use your age only to apply age limits
-          {PRIVACY.openAiTranslation ? (msOff ? ', to decide whether your messages may be sent to OpenAI to be translated (see Translations)' : ', to choose which service translates your messages (see Translations)') : ''} and
+          {PRIVACY.openAiTranslation ? (msOff ? ', to decide whether your messages may be sent to OpenAI to be translated (see Translations)' : ', to choose which service translates your messages (see Translations)') : ''}
+          {PRIVACY.practiceAi ? ', to decide whether OpenAI may rate your practice lines (see Practice Games)' : ''} and
           to protect players under 18.
           In any room or game where anyone, watchers included, is under 18 or hasn't told us their age, its chats and
           typed questions and answers block links, email addresses, websites, phone numbers and social media accounts
@@ -777,6 +800,7 @@ const Privacy: React.FC = () => {
         )}
         {PRIVACY.trading && <ListItem>Run trades between friends: their limits, protection and reversals, and the codes we email for big trades</ListItem>}
         <ListItem>Improve and optimize the app experience</ListItem>
+        {PRIVACY.practiceAi && <ListItem>Rate the lines you type in practice games (with OpenAI, if you agree)</ListItem>}
         {PRIVACY.spybots && <ListItem>Test the game with the AI players our developer plays with, and improve them</ListItem>}
         <ListItem>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
         <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
@@ -950,6 +974,8 @@ const Privacy: React.FC = () => {
               : PRIVACY.featuredPacks &&
                 PRIVACY.openAiTranslation &&
                 'When our translation service uses it for the Community Packs we feature, it receives only the pack\'s name, description and entries and the languages, never who made the pack. '}
+            {PRIVACY.practiceAi &&
+              'It also rates the lines players type in practice games, only for players who told us they\'re 16 or older and agreed to it in the app (see Practice Games above): it receives the line, what kind of line it is, the practice role, the game\'s location and the pack\'s other locations, the practice game\'s line it replies to and the language, never your account, name or age, with a request not to store it. '}
             {PRIVACY.spybots &&
               'It also decides the moves of the AI players our developer plays with, receiving what a bot\'s seat can see at the table, as AI Players above describes, with a request not to store it. '}
             Under OpenAI's API terms and its Data Processing Addendum, it{' '}
