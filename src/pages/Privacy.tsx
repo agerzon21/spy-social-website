@@ -316,6 +316,8 @@ const Privacy: React.FC = () => {
           who are out, and the game's chat on Game Over, which stays open to the players of that game for a few
           minutes after it ends) are stored on our servers so the other players in the room can read them.{' '}
           {chatRetention('Messages')} Copies made to deliver messages live are deleted within 4 days.
+          {PRIVACY.moneyChatSignals &&
+            ' Buying or selling items, Intel or accounts for real money is against our Terms: when our filter stops a message that offers it (or, in a room with a player under 18, a message about payment apps or real money), we keep a note on your account that it happened, when and where, and what kind of words it caught, never the message itself. We keep these notes with our fair-play records for up to 400 days, and repeated ones may lead us to review the account.'}
         </Item>
         {/* LIVE.socialFeatures: Social Phase 1 for everyone (legalRelease). */}
         {PRIVACY.socialFeatures && (

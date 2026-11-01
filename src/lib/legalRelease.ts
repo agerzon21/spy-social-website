@@ -333,6 +333,16 @@ export const LIVE = {
    */
   translateSendTime: true,
   /**
+   * Money talk in chat, the middle path (app server 20261204160000_money_chat_middle + 20261204161000_money_offer_tuning,
+   * live 2026-11-01): a chat line that offers to trade items, Intel or accounts for real money is refused, and each such
+   * refusal (and, with a minor there, a refusal of payment words) is an Integrity signal F3 on the sender's account:
+   * when, which kind of words (a payment app, "real money" or a price; a sell word or an account, item or Intel word),
+   * the surface, room and game, whether a minor was there; never the message. Kept with the other Integrity evidence
+   * (pruned after 400 days). Turns on one sentence in Privacy's Chat Messages item. A server fact for every app version
+   * at once: set in LIVE, never in PRIVACY_AHEAD. The Terms' rule (rmtGambling) is already live.
+   */
+  moneyChatSignals: true,
+  /**
    * Translation v3, Microsoft off for messages (app_config translation_secrets_engine "none" or no row, with the
    * translate function of feat/translate-v3 deployed; owner 2026-10-30, option (a)): a message OpenAI may not take
    * (an author under 16, with no declared age, or who didn't agree; an app that never named OpenAI; OpenAI's limits)
@@ -1262,6 +1272,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.moneyChatSignals
+    ? 'November 1, 2026' // Chat Messages: the record of a refused real-money offer (Integrity F3, 20261204160000): set to the day the site goes up with it on
     : LIVE.messagesOnDeviceOnly && LIVE.microsoftOff
     ? 'November 1, 2026' // Translation v3's bridge drop: Microsoft translates nothing (its provider item and the packs' fallback gone): set to the day the site goes up with it on
     : LIVE.messagesOnDeviceOnly
