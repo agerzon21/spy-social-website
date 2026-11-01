@@ -1142,6 +1142,45 @@ export const LIVE = {
    */
   socialLimits: true,
   /**
+   * Gifted copies tradable now (owner 2026-11-01; app server 20261101213455_market_rules_1101 + 1101b, live; switch
+   * app_config.economy.gift_copies_tradable true): copies we give (owner gifts) and the code / Beta copies that were
+   * waiting for 3 real games are tradable at once, each flip written to the public ledger with its evidence; while
+   * the switch is on, new ones mint tradable. Switching it off binds FUTURE copies only (a flipped or traded copy is
+   * never bound again). Turns on: Terms 9 Trades' tradable-items line. Off again (the old 3-real-games line) when the
+   * owner turns economy.gift_copies_tradable off before the launch (planned, with a gift icon in the app); set
+   * LEGAL_LAST_UPDATED's entry to that day. A server switch for every app version at once: set in LIVE.
+   */
+  giftsTradable: true,
+  /**
+   * Volunteer moderators' room and pack actions (live functions mod_watch_table, mod_table_help, mod_end_game,
+   * mod_end_night, mod_remove_message, mod_review_pack; each behind the moderator's own permission and the owner's
+   * moderator_settings): a moderator with the permission may watch a Game Night table, help at it, end a Game Night
+   * game or the night (with a written note), remove a reported message, and approve or reject Community Packs in the
+   * review queue. Turns on: Terms 8's Community moderators paragraph and Privacy's community-moderator sentence. A
+   * server fact: set in LIVE.
+   */
+  moderatorRoomActions: true,
+  /**
+   * Public live stats (app repo feat/public-stats, 20261101124400_public_stats + Edge Function public-stats v1, live
+   * Nov 1, 2026): aggregate counts only (online now, games in progress by mode, games ended today / this week, saved
+   * accounts rounded down to 10; any count under 5 reads "<5"), for the website and the Discord stats channels.
+   * Turns on: Privacy's Information Sharing line on published totals. A server fact: set in LIVE.
+   */
+  publicStats: true,
+  /**
+   * Unopened Intercepts tradable and listable (app repo feat/intercepts-market, IN PROGRESS, no server file yet).
+   * When it ships: adults (the trading gates) can trade an unopened Intercept with a friend and buy or sell one on the
+   * Black Market for Intel; players 13-17 never (items for items only, and no Black Market). It changes Terms 9's
+   * "You can't buy an Intercept ... with Intel" and "can't be ... traded ... unopened" lines, Privacy's Intercepts
+   * item and the parents' Safety line, and the store listing must keep "never sold for money". BEFORE FLIPPING,
+   * check against the shipped server: an Intercept received in a trade or a market sale can't be opened while
+   * protected (or a reversal takes the opened copies back); gifted and code Intercepts keep the gift switch's and the
+   * 3-games rule's status; no Intercept given with a purchase is ever tradable (Terms: purchase-linked codes give
+   * none). Set LEGAL_LAST_UPDATED's and PRIVACY_LAST_UPDATED's entries to the day. Records v2.2 G35 (re-read fraud and
+   * gambling first). A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  interceptsMarket: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1289,6 +1328,8 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  */
 export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.interceptsMarket
+    ? 'November 2, 2026' // Terms 9: unopened Intercepts tradable and on the Black Market (feat/intercepts-market): set to the day the site goes up with it on
   : LIVE.mintedCollectibles
     ? 'November 1, 2026' // minted collectibles (Terms 9), the beta test chain live since Oct 31: the site went up with it on
   : LIVE.ranked
@@ -1329,6 +1370,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
  */
 export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.interceptsMarket
+    ? 'November 2, 2026' // the Intercepts item: unopened Intercepts traded and sold for Intel (feat/intercepts-market): set to the day the site goes up with it on
   : LIVE.mintedCollectibles
     ? 'November 1, 2026' // the Collectibles item (beta test chain live since Oct 31): the site went up with it on
   : LIVE.ranked

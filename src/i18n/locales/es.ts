@@ -562,6 +562,14 @@ const es: Strings = {
         'No hay mensajes directos: los jugadores solo pueden chatear dentro de una sala, con los jugadores que están en ella. El chat de los espías dura una partida y se filtra, se guarda y se puede reportar como el resto.',
       noFriends:
         'No hay listas de amigos ni de seguidores, ni búsqueda de jugadores, ni perfiles para explorar, ni biografías, así que nadie puede buscar a tu hijo o hija ni contactarlo fuera de una sala.',
+      noDmsSocial:
+        "No hay mensajes directos: los jugadores solo chatean dentro de una sala, con los jugadores que están en ella, o en el chat de un grupo, con los amigos que lo forman. Todos los chats se filtran, se guardan un tiempo y se pueden reportar.",
+      noSearch:
+        "No hay búsqueda de jugadores ni sugerencias de amigos, así que un desconocido no puede buscar a tu hijo o hija. Los menores de 18 no tienen perfil público y nadie puede seguirlos.",
+      social:
+        "<b>Amigos y grupos:</b> los jugadores pueden agregar amigos y jugar juntos en grupo, con un chat de grupo filtrado. Un adulto solo puede agregar a un menor de 16 en persona, escaneando el código de amigo en el teléfono del menor. Los menores de 18 no tienen perfil público, nadie puede seguirlos y no reciben notificaciones sociales de noche. En iPhone, por ahora, esto sigue desactivado para los menores de 18.",
+      trading:
+        "<b>Intercambios:</b> los jugadores de 13 a 17 años solo pueden intercambiar objetos del juego por otros objetos, con amigos que agregaron en persona, hasta 3 veces al día, sin regalos ni mensajes. Los adultos también pueden comprar y vender objetos en el Mercado Negro con la moneda que se gana en el juego; los menores de 18 solo pueden mirar. Nada se puede comprar ni vender con dinero real.",
       noVoice: (photos: boolean) =>
         `No hay chat de voz ni de video: el botón del micrófono solo convierte la voz en texto, y los demás jugadores nunca oyen la voz de nadie.${photos ? '' : ' Tampoco se pueden subir fotos ni videos.'}`,
       noLocation: 'No se comparte la ubicación y no hay anuncios.',

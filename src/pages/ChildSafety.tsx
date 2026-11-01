@@ -97,11 +97,34 @@ const ChildSafety: React.FC = () => {
             " If Apple or Google tells the app that its user is under 13, the app doesn't let them play."}{' '}
           If you find that a child under 13 has an account, email us and we'll delete it.
         </ListItem>
-        <ListItem>
-          <B>No way to reach a player outside a room:</B> players meet only inside a game room and chat only with the
-          players in it. There are no direct messages, no friend or follower lists, no player search and no profiles
-          to browse, so nobody can look a player up or contact them afterwards.
-        </ListItem>
+        {/* LIVE.socialFeatures: friends, follows, parties (Oct 31, 2026); LIVE.trading, LIVE.blackMarket (Nov 1). */}
+        {LIVE.socialFeatures ? (
+          <ListItem>
+            <B>No stranger can find or message a child:</B> there are no direct messages and no player search, and we
+            never suggest friends. An adult can add a player under 16 as a friend only in person, by scanning the Friend
+            Code on their phone (players 16 and 17 also from a private game they just played together); adding from a
+            public table or by username is only between adults. Players under 18 have no public profile, can't be
+            followed and get no social notifications at night. Friends can invite each other to games and play as a
+            party with a party chat, which goes through the same filters as game chat (the stricter ones when anyone
+            in the party is under 18) and can be reported. On iPhone, friends and parties stay off for players under
+            18 for now.
+          </ListItem>
+        ) : (
+          <ListItem>
+            <B>No way to reach a player outside a room:</B> players meet only inside a game room and chat only with the
+            players in it. There are no direct messages, no friend or follower lists, no player search and no profiles
+            to browse, so nobody can look a player up or contact them afterwards.
+          </ListItem>
+        )}
+        {LIVE.trading && (
+          <ListItem>
+            <B>Trading:</B> players 13–17 can trade game items only for other items, only with friends they added in
+            person, at most 3 trades a day, with no gifts, no messages and no Intel. Trades with a player under 18 are
+            checked for signs of grooming or unfair trades, and a person reviews what the checks flag.
+            {LIVE.blackMarket ? ' Players under 18 can look at the Black Market but can\'t buy or sell there.' : ''}{' '}
+            Nothing in SpySocial can be bought or sold for real money between players.
+          </ListItem>
+        )}
         <ListItem>
           <B>No voice, video or photo sharing:</B> there's no voice or video chat, and no way to send photos or
           videos.

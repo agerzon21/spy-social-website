@@ -250,7 +250,7 @@ const Privacy: React.FC = () => {
             it replaced, so that we can put it back if we have to. We use all
             this to give you your Intercepts and their items, to show them to you in the app, and to check that
             Intercepts are earned fairly and that the odds work as the app shows them. Other players never see your
-            Intercepts;{' '}
+            Intercepts{PRIVACY.interceptsMarket ? ' unless you offer an unopened one in a trade or list it on the Black Market (where your name isn\'t shown); we keep each Intercept\'s trades and sales like those of any item (see Trades and Black Market)' : ''};{' '}
             {PRIVACY.blackMarket
               ? "they see an item from one only when you wear it, show it on your profile, offer it in a trade, or list it on the Black Market (where your name isn't shown)."
               : 'they see an item from one only when you wear it, like any other look.'}{' '}
@@ -351,7 +351,7 @@ const Privacy: React.FC = () => {
         {/* LIVE.socialFeatures: Social Phase 1 for everyone (legalRelease). */}
         {PRIVACY.socialFeatures && (
           <Item label="Friends">
-            Your friends list (up to 200 friends, each friendship confirmed by both players), the friend requests you
+            Your friends list ({PRIVACY.socialLimits ? '' : 'up to 200 friends, '}each friendship confirmed by both players), the friend requests you
             send and receive (with how they were made: your Friend Code, a private game you played together, a public
             table or an exact username), the room and party invites and Ask to Join requests between you and your
             friends, and your choices in Privacy &amp; Friends. Your Friend Code is a QR code that changes every 5
@@ -747,7 +747,7 @@ const Privacy: React.FC = () => {
           the version of the app, which the app sends with its requests so our servers can work with every version of
           the app. To keep accounts safe{PRIVACY.trading ? ' (for example, to pause trading after a sign-in on a new device)' : ''}, we also keep, for each app install you
           sign in on, a coded (hashed) install code that isn't your device's own ID, with its platform, app version and
-          when it was first and last used; it's deleted with your account.
+          when it was first and last used{PRIVACY.trading ? ", and which of your sign-in sessions registered an install (a session that never did can't trade)" : ''}; it's deleted with your account.
         </Item>
         {PRIVACY.browserLegal && (
           <Item label="Your Browser">
@@ -1217,6 +1217,9 @@ const Privacy: React.FC = () => {
           " A custom pack you submit to Community Packs is shown to every player once we approve it, with your username as its creator (or Anonymous, if you chose that), its ratings and how many players added it (see Custom Packs and Community Packs above); never who rated or added it."}{' '}
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
+        {/* LIVE.publicStats: get_public_stats / the public-stats function (legalRelease). */}
+        {PRIVACY.publicStats &&
+          ' We also publish live totals, on our website and on our Discord server: how many players are online, how many games are being played in each mode, how many games were played today and this week, and how many accounts there are (rounded down to a multiple of 10). Any number under 5 shows as "<5", and these totals never say who.'}
       </P>
       {PRIVACY.volunteerModerators && (
         <P>
@@ -1228,7 +1231,7 @@ const Privacy: React.FC = () => {
           attached to it (for example, the messages, questions, answers or drawings reported, and the chat of the game
           it came from), the usernames and public names of the players involved, how long their accounts have existed,
           the player's earlier warnings and penalties, how many of the reporter's reports led to action, whether a
-          player under 18 is involved and, for fair-play cases, the game patterns behind the case. They never see your
+          player under 18 is involved and, for fair-play cases, the game patterns behind the case.{PRIVACY.moderatorRoomActions ? ' With our permission, a community moderator may also watch a Game Night table while it plays (seeing what a watcher sees: the agents, chat and drawings at that table), and read the Community Packs waiting for review with their creator\'s username.' : ''} They never see your
           email address, sign-in details, IP address, payment details or your age. Cases involving a child's safety, self-harm
           or threats go to SpySocial's developer only, never to community moderators. We keep a record of every case a
           community moderator opens and every action they take (what they did, to whom, when and why), for as long as

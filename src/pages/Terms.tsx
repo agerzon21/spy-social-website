@@ -475,7 +475,10 @@ const Terms: React.FC = () => {
             Some of these decisions may be made by community moderators: trusted adult players who volunteer to help
             us, have agreed in writing to keep what they see confidential, and act under our supervision. A community
             moderator may act on reports and on what they see in Play Online rooms: warn a player, mute their chat,
-            pause them from public rooms and events for up to 7 days, or remove them from a Play Online table. They can
+            pause them from public rooms and events for up to 7 days, or remove them from a Play Online table.
+            {LIVE.moderatorRoomActions
+              ? ' With our permission, a moderator may also remove a reported message, watch a Game Night table and help at it, end a Game Night game or the night itself (each with a written reason), and approve or reject Community Packs waiting for review.'
+              : ''}{' '}They can
             propose a ban, but only SpySocial can ban an account, permanently or otherwise. We record every action a
             moderator takes and why, we can undo any of them, and you can appeal them like any other decision (see
             Appeals below). Anything involving a child's safety, self-harm or threats is handled by SpySocial only.
@@ -609,9 +612,10 @@ const Terms: React.FC = () => {
             also give Intercepts, once per account: each code gives what we set for it, and the app tells you what you
             got. Intercepts from a code unlock after your first Play Online game that counts. Codes tied to a purchase
             (such as merch codes) never give Intercepts. We may also give Intercepts, and memberships, as gifts, but
-            never the items that come from Intercepts. Each Intercept opens into one random item. You can't buy an
-            Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a
-            membership doesn't give you more of them or better odds. Before you open one, the app shows (under Odds)
+            never the items that come from Intercepts. Each Intercept opens into one random item.{' '}
+            {LIVE.interceptsMarket
+              ? "You can't buy an Intercept with money, and nobody, us included, sells Intercepts. Adults can trade an unopened Intercept they earned with a friend, or buy one from another adult or sell one for Intel on the Black Market (see Trades and Black Market below); players under 18 can't. Intel can't be bought, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds."
+              : "You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a membership doesn't give you more of them or better odds."} Before you open one, the app shows (under Odds)
             the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed. If you get an item you already have, you
             keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
@@ -620,7 +624,7 @@ const Terms: React.FC = () => {
             {LIVE.uniquesRarer ? 'ten' : 'five'} items, with the odds shown in the app before you trade. Only spare copies count (never your first copy of an item, or a Unique), and the copies you trade
             up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it
             can't be shredded or traded up). Like every virtual item, Intercepts and what's in them have no cash value
-            and can't be sold{LIVE.trading ? ', or traded or moved to another account unopened; an item from an opened Intercept can be traded only as Trades below describes' : ', traded or moved to another account, unopened or opened'}. Before SpySocial 2.2 opens to
+            and can't be sold for money{LIVE.trading ? (LIVE.interceptsMarket ? '; an Intercept, unopened, and an item from an opened one can be traded or sold for Intel only as Trades and Black Market below describe' : `, or traded or moved to another account unopened; an item from an opened Intercept can be traded only as Trades below describes${LIVE.blackMarket ? ', and sold for Intel only on the Black Market' : ''}`) : ', traded or moved to another account, unopened or opened'}. Before SpySocial 2.2 opens to
             everyone, Intercepts start fresh: every Intercept earned before then (for example while trying a test
             version of the app), with the copies, Uniques and trade-ups that came from them{LIVE.trading ? ' (copies you got in a trade included)' : ''}, is wiped, and every item
             that from then on comes only from Intercepts is taken back from the accounts that had it, except the Beta
@@ -691,16 +695,17 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>
               Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
-              Friend Code, and at most 3 trades a day (adults, 5). Intel can be traded only between two adults, and
+              Friend Code, and at most 3 trades a day (adults, 5){LIVE.interceptsMarket ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults, and
               only once SpySocial 2.2 opens to everyone. On iPhone, players under 18 can't trade until a version of the
               app that asks a parent's consent through Apple is out.
             </ListItem>
             <ListItem>
               Not every item can be traded; the app marks the ones that can. Memberships, what a membership includes,
-              level rewards, items from the arcade games and Intel we add ourselves are never tradable. Items from a
-              code, and the Beta set, become tradable only once your account has played 3 real games (finished games
-              with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official
-              Beta session.
+              level rewards, items from the arcade games and Intel we add ourselves are never tradable.{' '}
+              {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). */}
+              {LIVE.giftsTradable
+                ? "For now, items we give you as a gift, items from a code and the Beta set can be traded at once. We may change this for items given from then on (for example, so that they become tradable only once your account has played 3 real games); an item that has already become tradable stays tradable, and the app marks which items can be traded."
+                : "Items from a code, and the Beta set, become tradable only once your account has played 3 real games (finished games with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official Beta session."}
             </ListItem>
             <ListItem>
               What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,
@@ -735,6 +740,8 @@ const Terms: React.FC = () => {
               price on the other side, and the price of the offer that was waiting is the price paid. On Rare Finds you
               list a Unique at a price, and can let other players make lower offers. Other players never see who is
               buying or selling.
+              {LIVE.interceptsMarket &&
+                " Unopened Intercepts can be bought and sold there too, by tier, for Intel only. What's inside one is random and is decided only when it's opened, by the odds the app shows for its tier."}
             </ListItem>
             <ListItem>
               The same rules as Trades decide who can use it (an adult, level 20, an account at least 14 days old, a

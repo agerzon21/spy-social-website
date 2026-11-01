@@ -605,6 +605,16 @@ const en = {
         "No direct messages: players can only chat inside a room, with the players in it. The spies' chat lasts one game and is filtered, stored and reportable like the rest.",
       noFriends:
         'No friend or follower lists, no player search, no profiles to browse and no bios, so nobody can look your child up or contact them outside a room.',
+      /** Once friends, follows and parties are live (LIVE.socialFeatures): in place of noDms and noFriends. */
+      noDmsSocial:
+        "No direct messages: players chat only inside a room, with the players in it, or in a party's chat, with the friends in that party. Every chat is filtered, kept for a while and can be reported.",
+      noSearch:
+        "No player search and no friend suggestions, so a stranger can't look your child up. Players under 18 have no public profile and can't be followed.",
+      /** What SpySocial has, once live: social (LIVE.socialFeatures), trading (LIVE.trading with LIVE.blackMarket). */
+      social:
+        "<b>Friends and parties:</b> players can add friends and play together as a party, with a filtered party chat. An adult can add a player under 16 only in person, by scanning the Friend Code on the child's phone. Players under 18 have no public profile, can't be followed and get no social notifications at night. On iPhone, this stays off for players under 18 for now.",
+      trading:
+        "<b>Trading:</b> players 13–17 can trade game items only for other items, with friends they added in person, at most 3 times a day, with no gifts and no messages. Adults can also buy and sell items for the currency earned in the game on the Black Market; players under 18 can only look. Nothing can be bought or sold for real money.",
       noVoice: (photos: boolean) =>
         `No voice or video chat: the microphone button only turns speech into text, and other players never hear anyone's voice.${photos ? '' : ' No photo or video uploads either.'}`,
       noLocation: 'No location sharing and no ads.',

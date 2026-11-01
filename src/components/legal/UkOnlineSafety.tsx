@@ -20,7 +20,7 @@ const UkOnlineSafety = () => {
   const dc = LIVE.drawingCheck
   const without = [
     'direct messages',
-    'friend or follower lists',
+    ...(LIVE.socialFeatures ? [] : ['friend or follower lists']),
     'player search',
     'feeds, posts or comments',
     'reposting',
@@ -51,8 +51,11 @@ const UkOnlineSafety = () => {
       note: 'Grooming, sexual content involving anyone under 18 (drawings included), and links to it.',
       cells: [
         <>
-          Never allowed (see Child safety in section 7). There are no direct messages, friend lists or player search, so
-          nobody can contact a player outside a shared room. Sharing contact details or social media handles is against
+          Never allowed (see Child safety in section 7).{' '}
+          {LIVE.socialFeatures
+            ? "There are no direct messages or player search, and we never suggest friends. An adult can add a player under 16 only in person, with the Friend Code on the child's phone (16 and 17 also from a private game they just played together); players under 18 have no public profile, can't be followed and get no social notifications at night, and our checks look at friend requests, invites and trades with players under 18 for signs of grooming, for a person to review. Party chat goes through the same filters as game chat."
+            : 'There are no direct messages, friend lists or player search, so nobody can contact a player outside a shared room.'}{' '}
+          Sharing contact details or social media handles is against
           the rules. In any room with a player under 18, chat refuses links, email addresses, phone numbers and social
           accounts for everyone, and Play Online tables and game nights always refuse them. Every chat message is kept on
           our servers for the times above, so a report comes with the words actually sent. Child Safety is an urgent
@@ -68,8 +71,11 @@ const UkOnlineSafety = () => {
       cells: [
         <>
           In public rooms the word filter blocks slurs and the worst insults; in private rooms it blocks the most serious
-          of them. Block hides a player's chat and keeps you out of each other's rooms, and with no direct messages, search
-          or follows, nobody can reach you outside a room or find you again after it. Penalties go from a warning to a
+          of them. Block hides a player's chat and keeps you out of each other's rooms
+          {LIVE.socialFeatures
+            ? ". There are no direct messages or player search; only friends can invite you, a follow is only of an adult's public profile, and you choose in Privacy & Friends who can add you."
+            : ', and with no direct messages, search or follows, nobody can reach you outside a room or find you again after it.'}{' '}
+          Penalties go from a warning to a
           ban (section 8).
         </>,
       ],
@@ -94,8 +100,14 @@ const UkOnlineSafety = () => {
       cells: [
         <>
           {LIVE.trading
-            ? "Players can trade earned items with friends inside the app, with no messages in a trade and no real-money trading allowed. Players 13–17 trade items for items only, with friends added in person, and never Intel. What a player gets is protected for 7 days and can be reversed, and our checks flag trades that look like real-money trading, account theft or an unfair trade with a minor for a person to review. There's no gifting from minors, tipping, listings or ads"
+            ? `Players can trade earned items with friends inside the app, with no messages in a trade and no real-money trading allowed. Players 13–17 trade items for items only, with friends added in person, and never Intel. What a player gets is protected for 7 days and can be reversed, and our checks flag trades that look like real-money trading, account theft or an unfair trade with a minor for a person to review. There's no gifting from minors, tipping${LIVE.blackMarket ? ' or ads' : ', listings or ads'}`
             : "Nothing of value can move between players: there's no trading, gifting, tipping, listings or ads"}
+          {LIVE.trading && LIVE.blackMarket
+            ? ". Adults can also buy and sell tradable items for Intel, never for money, on the Black Market, which shows no names and carries no messages; its own checks look for sales between linked accounts and prices set to move Intel between players. Intel and items can't be bought or cashed out"
+            : ''}
+          {LIVE.moneyChatSignals
+            ? ". Chat refuses messages that offer items, Intel or accounts for real money, and Real-Money Trading is a report reason"
+            : ''}
           {LIVE.purchases ? ', and purchases are made only through the App Store or Google Play' : ''}. Links are refused
           in public rooms, and spam, ads and scams aren't allowed anywhere.
         </>,
@@ -204,7 +216,9 @@ const UkOnlineSafety = () => {
       cells: [
         <>
           Not allowed when it encourages anyone to hurt themselves, and selling or supplying drugs is illegal (section 7).
-          There are no listings or payments between players, and links are refused in public rooms.
+          {LIVE.blackMarket
+            ? "There are no payments between players (the Black Market trades game items for Intel only and carries no messages), and links are refused in public rooms."
+            : 'There are no listings or payments between players, and links are refused in public rooms.'}
         </>,
       ],
     },
@@ -296,8 +310,10 @@ const UkOnlineSafety = () => {
       <H3>How SpySocial is built</H3>
       <P>
         Much of the protection comes from what SpySocial doesn't have: there are no {without.slice(0, -1).join(', ')}, or{' '}
-        {without[without.length - 1]}. Players meet only inside a game room, chat only with the players in that room, and
-        can't look each other up afterwards.
+        {without[without.length - 1]}.{' '}
+        {LIVE.socialFeatures
+          ? "Players meet inside a game room and chat only with the players in that room or, in a party, with the friends in it. Nobody can search for a player; friends are added in person with a Friend Code, from a game played together or, between adults only, by exact username."
+          : "Players meet only inside a game room, chat only with the players in that room, and can't look each other up afterwards."}
         {LIVE.onePool &&
           " Players can't create public rooms, and no player hosts one: the public rooms are Play Online's tables, where the app seats players automatically under the same standard rules, and game nights we host."}{' '}
         Chat messages{LIVE.storedQuestions ? ' and typed questions and answers' : ''}{' '}

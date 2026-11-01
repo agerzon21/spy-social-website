@@ -561,6 +561,14 @@ const fr: Strings = {
         "Pas de messages privés\u00A0: les joueurs ne peuvent discuter que dans un salon, avec les joueurs qui s'y trouvent. Le chat des espions dure une partie et il est filtré, conservé et signalable comme le reste.",
       noFriends:
         "Pas de listes d'amis ni d'abonnés, pas de recherche de joueurs, pas de profils à parcourir ni de bios\u00A0: personne ne peut chercher ton enfant ni le contacter en dehors d'un salon.",
+      noDmsSocial:
+        "Pas de messages privés : les joueurs ne discutent que dans un salon, avec les joueurs qui s'y trouvent, ou dans le chat d'un groupe, avec les amis qui en font partie. Tous les chats sont filtrés, conservés un temps et signalables.",
+      noSearch:
+        "Pas de recherche de joueurs ni de suggestions d'amis : un inconnu ne peut pas chercher ton enfant. Les moins de 18 ans n'ont pas de profil public et personne ne peut les suivre.",
+      social:
+        "<b>Amis et groupes :</b> les joueurs peuvent ajouter des amis et jouer ensemble en groupe, avec un chat de groupe filtré. Un adulte ne peut ajouter un joueur de moins de 16 ans qu'en personne, en scannant le code ami sur le téléphone de l'enfant. Les moins de 18 ans n'ont pas de profil public, ne peuvent pas être suivis et ne reçoivent pas de notifications sociales la nuit. Sur iPhone, tout cela reste désactivé pour les moins de 18 ans pour l'instant.",
+      trading:
+        "<b>Échanges :</b> les joueurs de 13 à 17 ans ne peuvent échanger des objets du jeu que contre d'autres objets, avec des amis ajoutés en personne, 3 fois par jour au plus, sans cadeaux ni messages. Les adultes peuvent aussi acheter et vendre des objets sur le Marché noir contre la monnaie gagnée dans le jeu ; les moins de 18 ans peuvent seulement regarder. Rien ne peut être acheté ni vendu contre de l'argent réel.",
       noVoice: (photos: boolean) =>
         `Pas de chat vocal ni vidéo\u00A0: le bouton du micro ne fait que transformer la parole en texte, et les autres joueurs n'entendent jamais la voix de personne.${photos ? '' : ' Pas d\'envoi de photos ni de vidéos non plus.'}`,
       noLocation: 'Pas de partage de localisation et pas de pub.',

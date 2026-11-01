@@ -132,14 +132,16 @@ const Safety: React.FC = () => {
         <ListItem>{r(p.private)}</ListItem>
         <ListItem>{LIVE.onePool ? r(p.publicOnePool) : r(p.public(LIVE.playOnline))}</ListItem>
         {LIVE.customPacks && <ListItem>{r(p.customPacks(LIVE.communityPacks))}</ListItem>}
+        {LIVE.socialFeatures && <ListItem>{r(p.social)}</ListItem>}
+        {LIVE.trading && LIVE.blackMarket && <ListItem>{r(p.trading)}</ListItem>}
         {LIVE.intercepts && <ListItem>{r(p.intercepts)}</ListItem>}
         {LIVE.purchases && <ListItem>{r(LIVE.membershipsOnly ? p.buyMembers : p.buy)}</ListItem>}
       </Bullets>
 
       <H3>{p.hasNotTitle}</H3>
       <Bullets>
-        <ListItem>{p.noDms}</ListItem>
-        <ListItem>{p.noFriends}</ListItem>
+        <ListItem>{LIVE.socialFeatures ? p.noDmsSocial : p.noDms}</ListItem>
+        <ListItem>{LIVE.socialFeatures ? p.noSearch : p.noFriends}</ListItem>
         <ListItem>{p.noVoice(photos)}</ListItem>
         <ListItem>{p.noLocation}</ListItem>
       </Bullets>
