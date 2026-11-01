@@ -1019,6 +1019,17 @@ export const LIVE = {
    */
   trading: true,
   /**
+   * Social spam limits (app repo fix/friends-owner-1101, server file 20261204150000_social_follow_fixes, STAGED, not
+   * applied yet; owner 2026-11-01: generous limits, stop only rapid-fire spam): a slow-down after 10 follows, unfollows
+   * or friend requests in 10 seconds or 4 follow changes toward one player in a minute (read from the social safety
+   * log's times, nothing new kept), and a shadow count of daily-limit hits (follows 200 a day, friend requests 200 a
+   * day): the account, which limit, the UTC day and how many times, for the team to spot spam, deleted after 90 days
+   * (daily pg_cron) and with the account. Turns on: Privacy's Rate Limits sentence and Data Retention's line. Flip to
+   * true when the server file is applied live (and set PRIVACY_LAST_UPDATED's date for it to that day). A server
+   * fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD. Not a material change.
+   */
+  socialLimits: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1208,6 +1219,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.socialLimits
+    ? 'November 1, 2026' // social spam limits' count of daily-limit hits (20261204150000): set to the day the site goes up with it on
     : LIVE.trading
     ? 'November 1, 2026' // the Trades item, Trade Watch, device codes, trade codes by Resend: the site went up with it on (trading switch-on day)
     : LIVE.usernameLimit

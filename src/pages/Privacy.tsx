@@ -461,6 +461,8 @@ const Privacy: React.FC = () => {
           half), made with a secret key, the kind of email and when, never the address or the IP address itself. Under
           the same code, they also count how many of these requests come from each network in an hour. These records
           are deleted after a day.
+          {PRIVACY.socialLimits &&
+            ' To stop rapid-fire follows and friend requests, our servers also use the times in the social safety log (see Safety Information) to slow an account down for a few seconds, and when an account reaches the daily limit for follows or for friend requests, they count how many times that day it was turned away (the account, which limit, the day and the count), for our team to spot spam. These counts aren\'t shown to any player, don\'t change anything on their own, and are deleted after 90 days.'}
           {PRIVACY.passwordless
             ? ' Sign-in codes are made and checked by our sign-in service (Supabase Auth): a code has 6 digits, works only once and for 1 hour, and a new one can be asked for after a minute; the service keeps only a coded form of the code, never the code itself.'
             : ''}
@@ -829,6 +831,7 @@ const Privacy: React.FC = () => {
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests after a day.
+        {PRIVACY.socialLimits ? ' Counts of daily limits reached for follows and friend requests are deleted after 90 days.' : ''}
         {PRIVACY.intel
           ? PRIVACY.intelLedger
             ? ` Your Intel balance and daily streak are kept for as long as you have an account, and the lines of your Intel ledger${PRIVACY.intelCorrections ? ' and the records of corrections' : ''} for good (with no link to you once you delete your account; the app version and platform in a line for 2 years).`
