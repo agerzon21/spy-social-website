@@ -1079,7 +1079,7 @@ export const LIVE = {
    * true when the server file is applied live (and set PRIVACY_LAST_UPDATED's date for it to that day). A server
    * fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD. Not a material change.
    */
-  socialLimits: false,
+  socialLimits: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
