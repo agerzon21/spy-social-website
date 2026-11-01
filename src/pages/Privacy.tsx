@@ -342,6 +342,17 @@ const Privacy: React.FC = () => {
             can be reported, and are deleted 30 days after they're sent.
           </Item>
         )}
+        {/* LIVE.trading: trading between friends (legalRelease). */}
+        {PRIVACY.trading && (
+          <Item label="Trades">
+            When you trade, we keep each trade and its steps (who offered and confirmed what, and when), the items and
+            Intel that moved, any reversal and its reason, the 7-day protection of what each side got, and any trading
+            pause on your account (after a reversal, a change to your email or sign-in method, a sign-in on a new
+            device, or a lock you set). For a big trade we email you a code; we keep only a coded (hashed) copy of it,
+            and the email is deleted from our mail queue once it's sent. Trades carry no message. Only you and the
+            other player see a trade. Trades are kept with your Intel and item history.
+          </Item>
+        )}
         {PRIVACY.socialFeatures && (
           <Item label="Social Notifications">
             If you allow notifications, we send a push for a friend request, an accepted request, a room or party
@@ -482,6 +493,8 @@ const Privacy: React.FC = () => {
             ` We automatically flag possible grooming language in rooms with minors for human review: ${PRIVACY.groomingScope ? "in any room or game where anyone else, watchers included, is under 18 or hasn't told us their age, our servers check the messages written there by adults and by players who haven't told us their age (such as guests)" : "in any room or game where anyone, watchers included, is under 18 or hasn't told us their age, our servers check the messages adults write there"} for phrases that can be part of grooming (for example asking a younger player's age or school, asking them to keep secrets, to talk somewhere else, to meet up or to send photos, or offering gifts), and a message that has one is flagged for one of our team to review.${PRIVACY.groomingScope ? " So that this still works after a younger player leaves, our servers also note which messages were sent while someone else there was under 18 or hadn't told us their age: only the message's ID, kept on our servers and never shown to any player, for as long as we keep the message itself." : ''} A flag doesn't block, hide or change the message, isn't shown to any player and isn't a report to anyone; we decide what to do, as with a report. A flag keeps only which message it was and what kind of phrase it had, with the player's report case, for as long as we keep reports. The message itself is still deleted on the chat schedule (see Chat Messages above).`}
           {PRIVACY.socialFeatures &&
             " For friends and parties, our servers keep a social safety log (who sent or accepted a friend request and how it was made, follows, blocks, invites and changes to your Privacy & Friends choices) and check it for patterns that can be part of grooming: an adult adding several players under 16 with Friend Codes, an adult whose private games keep producing new friendships with players under 18, or many invites from an adult to players under 18. A match is flagged for one of our team to review, as with a report; it isn't shown to any player and doesn't change anything on its own. To keep public tables fair, we also look at the games parties play (when games end, when spies guess, and reports of teaming up) for signs of cheating together, and keep what we find with the case. A report about a friend, a request, a profile, an invite or a party includes our servers' own record of it (for a party, every member and the games it played)."}
+          {PRIVACY.trading &&
+            " We also check trades for signs of real-money trading, account theft and grooming (for example a lopsided trade between an adult and a player under 18, or many gifts to one account). A flagged trade is reviewed by one of our team; the flag isn't shown to any player and doesn't change anything on its own."}
         </Item>
         {PRIVACY.drawingCheck && (
           <Item label="Drawing Checks">
@@ -640,7 +653,9 @@ const Privacy: React.FC = () => {
         <Item label="Device Information">
           Your device's platform (iOS or Android{PRIVACY.browserLegal ? ', or web for the browser version' : ''}) and
           the version of the app, which the app sends with its requests so our servers can work with every version of
-          the app.
+          the app. To keep accounts safe{PRIVACY.trading ? ' (for example, to pause trading after a sign-in on a new device)' : ''}, we also keep, for each app install you
+          sign in on, a coded (hashed) install code that isn't your device's own ID, with its platform, app version and
+          when it was first and last used; it's deleted with your account.
         </Item>
         {PRIVACY.browserLegal && (
           <Item label="Your Browser">
@@ -738,6 +753,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.socialFeatures && (
           <ListItem>Run friends, follows, profiles, parties and party chat, and send the social notifications you allow</ListItem>
         )}
+        {PRIVACY.trading && <ListItem>Run trades between friends: their limits, protection and reversals, and the codes we email for big trades</ListItem>}
         <ListItem>Improve and optimize the app experience</ListItem>
         {PRIVACY.spybots && <ListItem>Test the game with the AI players our developer plays with, and improve them</ListItem>}
         <ListItem>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
@@ -759,6 +775,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.creatorCodes ? ", give you a code's reward" : ''}
           {PRIVACY.intel ? (PRIVACY.intercepts ? ', give you Intel' : ', give you Intel and what you unlock with it') : ''}
           {PRIVACY.intercepts ? ', give you Intercepts and their items' : ''}
+          {PRIVACY.trading ? ', run your trades' : ''}
           {PRIVACY.customPacks ? ', keep your custom packs' : ''}
           {PRIVACY.communityPacks ? ', show Community Packs and their ratings' : ''}
           {PRIVACY.ranked ? ', run Ranked and its leaderboards' : ''}
@@ -771,7 +788,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.drawingCheck ? ', drawing checks' : ''}
           {PRIVACY.customPacks ? ', the automated check of custom packs' : ''}
           {PRIVACY.communityPacks ? ', the review of Community Packs' : ''}
-          {PRIVACY.socialFeatures ? ', the checks of the social safety log and of the games parties play' : ''}, moderation
+          {PRIVACY.socialFeatures ? ', the checks of the social safety log and of the games parties play' : ''}
+          {PRIVACY.trading ? ', the checks of trades' : ''}, moderation
           {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs{PRIVACY.ipVault ? ', and the encrypted IP addresses of new accounts and sign-ins, for safety, fraud and legal requests' : ''}), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
@@ -824,6 +842,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.tournaments ? ' Your tournament entries, results and Tournament Tokens are kept for as long as you have an account.' : ''}
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
+          : ''}
+        {PRIVACY.trading
+          ? " Trades and their steps are kept for good, like the Intel ledger, with no link to you once you delete your account; a code we email for a big trade stops working after 30 minutes."
           : ''}
         {PRIVACY.socialFeatures
           ? " Your friends, follows, profile and Privacy & Friends choices are kept for as long as you have an account. Friend requests are deleted 30 days after they're answered or expire, room invites 24 hours after they're answered, party invites after a day, party chat 30 days after it's sent, and sent social notifications after 7 days. The social safety log is kept for 1 year, and what our safety checks flag for as long as we keep reports."
@@ -932,7 +953,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? ', the codes we email you for big trades' : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">

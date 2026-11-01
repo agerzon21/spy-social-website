@@ -518,8 +518,10 @@ const Terms: React.FC = () => {
       </P>
       <Bullets>
         <ListItem>
-          Virtual items have no value in real money. You can't sell or trade them, move them to another account, or
-          exchange them for money.
+          {/* LIVE.trading: trading between friends (Nov 1, 2026). */}
+          {LIVE.trading
+            ? "Virtual items and Intel have no value in real money. You can trade some items with your friends inside SpySocial, and Intel between adults, as Trades below describes. You can't sell or buy them, move them to another account in any other way, or exchange them for money."
+            : "Virtual items have no value in real money. You can't sell or trade them, move them to another account, or exchange them for money."}
           {LIVE.purchases &&
             ` The one exception is Restore Purchases, which moves what you bought to the SpySocial account you're using (see ${LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'} below).`}
         </ListItem>
@@ -540,7 +542,7 @@ const Terms: React.FC = () => {
               <>
                 Intel is an earned currency: you get it only from playing (your games, and your first game of the day
                 and your daily streak, which you claim in the app) and from shredding spare copies of items. It can't be bought, and like every virtual
-                item it has no cash value and can't be sold, traded or moved to another account. For now there's
+                item it has no cash value and can't be sold{LIVE.trading ? ' or moved to another account except in a trade between adults (see Trades below)' : ', traded or moved to another account'}. For now there's
                 nothing to spend it on; we may add uses for it later, and the app will say what they are.
                 {LIVE.intelLedger ? (
                   <>
@@ -614,9 +616,9 @@ const Terms: React.FC = () => {
             {LIVE.uniquesRarer ? 'ten' : 'five'} items, with the odds shown in the app before you trade. Only spare copies count (never your first copy of an item, or a Unique), and the copies you trade
             up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it
             can't be shredded or traded up). Like every virtual item, Intercepts and what's in them have no cash value
-            and can't be sold, traded or moved to another account, unopened or opened. Before SpySocial 2.2 opens to
+            and can't be sold{LIVE.trading ? ', or traded or moved to another account unopened; an item from an opened Intercept can be traded only as Trades below describes' : ', traded or moved to another account, unopened or opened'}. Before SpySocial 2.2 opens to
             everyone, Intercepts start fresh: every Intercept earned before then (for example while trying a test
-            version of the app), with the copies, Uniques and trade-ups that came from them, is wiped, and every item
+            version of the app), with the copies, Uniques and trade-ups that came from them{LIVE.trading ? ' (copies you got in a trade included)' : ''}, is wiped, and every item
             that from then on comes only from Intercepts is taken back from the accounts that had it, except the Beta
             Pin and anything bought in a store, so that everyone gets these items the same way.
             {LIVE.intelLedger
@@ -652,6 +654,52 @@ const Terms: React.FC = () => {
             ' After a deletion, though, what you bought through the App Store or Google Play can come back on another SpySocial account with Restore Purchases.'}
         </ListItem>
       </Bullets>
+      {/* LIVE.trading: trading between friends (Nov 1, 2026; app_config.trading 'on'). */}
+      {LIVE.trading && (
+        <>
+          <H3>Trades</H3>
+          <Bullets>
+            <ListItem>
+              Trades are between friends, inside the app, and carry no message. You can trade once you and your friend
+              have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've
+              reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the
+              trade happens.
+            </ListItem>
+            <ListItem>
+              Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
+              Friend Code, and at most 3 trades a day (adults, 5). Intel can be traded only between two adults, and
+              only once SpySocial 2.2 opens to everyone. On iPhone, players under 18 can't trade until a version of the
+              app that asks a parent's consent through Apple is out.
+            </ListItem>
+            <ListItem>
+              Not every item can be traded; the app marks the ones that can. Memberships, what a membership includes,
+              level rewards, items from the arcade games and Intel we add ourselves are never tradable. Items from a
+              code, and the Beta set, become tradable only once your account has played 3 real games (finished games
+              with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official
+              Beta session.
+            </ListItem>
+            <ListItem>
+              What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,
+              shred it or trade it up until then, and Intel you get can't be used until then. In that time you can
+              reverse your trades (once every 90 days): this reverses all of your protected trades and pauses your
+              trading for 30 days. We can also reverse a trade for account theft or fraud. After 7 days a trade is
+              final, except for items removed for cheating. If you delete your account within those 7 days, what you
+              got goes back to the player who gave it.
+            </ListItem>
+            <ListItem>
+              Big trades ask for a code we email you. Trading pauses for a while after your email or sign-in method
+              changes, after a sign-in on a new device, or when you lock it yourself (for up to a year). There are
+              also weekly limits on the items and Intel you can receive, which the app shows.
+            </ListItem>
+            <ListItem>
+              We check trades for signs of real-money trading, account theft and unfair trades with players under 18;
+              a person reviews what the checks flag. We may change trade limits (how many trades, how much Intel,
+              which items) with notice in the app, and pause trading. Trades that break these Terms (for example
+              real-money trades) may be reversed, and the accounts involved suspended.
+            </ListItem>
+          </Bullets>
+        </>
+      )}
       {LIVE.purchases && (
         <>
         <H3>{LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'}</H3>

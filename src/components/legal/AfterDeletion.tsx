@@ -125,6 +125,13 @@ export const AfterDeletionList = () => (
         they show Anonymous as their creator, and players who added them keep them.
       </ListItem>
     )}
+    {PRIVACY.trading && (
+      <ListItem>
+        Trades you made stay, with your account taken out of them, because the other player's items and Intel came from
+        them. Items and Intel you got in a trade that's still protected (in its first 7 days) go back to the player who
+        gave them.
+      </ListItem>
+    )}
     {PRIVACY.intel && PRIVACY.intelLedger && (
       <ListItem>
         The lines of your Intel ledger{PRIVACY.intelCorrections ? ', and the records of any correction to it,' : ''} stay

@@ -1005,6 +1005,20 @@ export const LIVE = {
    */
   socialFeatures: true,
   /**
+   * Trading for everyone (owner 2026-11-01: app_config.trading enabled 'testers' -> 'on', so players try it before the
+   * launch and store reviewers see it; server trading files live since Oct 31, 2026, with gifted items tradable after 3
+   * real games, 20261204140000). Trades between friends of 3+ days (both accounts 14+ days old, email confirmed, level
+   * 20); 13-17s items for items only, with Friend Code friends, 3 trades a day; Intel only adult with adult (and on the
+   * beta chain only the test fleet, so for players from the 2.2 release); 7-day protection and one self-reversal per 90
+   * days (all protected trades back, trading paused 30 days); an emailed code for big trades; locks after an email /
+   * sign-in change, a new device, or a self-lock; Trade Watch (shadow, flags for a person). Turns on: Terms 9's
+   * virtual-items line, the Intel and Intercepts lines' trading words and the "Trades" H3; Privacy's Trades item, Safety
+   * Information's Trade Watch sentence, How We Use, Data Retention, Resend's trade codes and the deletion summary; the
+   * UK online-safety row on fraud. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * Off only if app_config.trading goes back to 'testers' (the old text: nothing can be traded).
+   */
+  trading: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1158,6 +1172,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.trading
+      ? 'November 1, 2026' // Terms 9: trading between friends (Trades H3, the virtual-items line): the site went up with it on (trading switch-on day)
       : LIVE.usernameLimit
       ? 'October 31, 2026' // Terms' Rules for accounts: one username change every 30 days, an old name reserved 14 days (20261204120000): the site went up with it on
       : LIVE.socialFeatures
@@ -1192,6 +1208,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.trading
+    ? 'November 1, 2026' // the Trades item, Trade Watch, device codes, trade codes by Resend: the site went up with it on (trading switch-on day)
     : LIVE.usernameLimit
     ? 'October 31, 2026' // Account Information: past usernames and when they changed, for the 30-day limit (20261204120000): the site went up with it on
     : LIVE.socialFeatures
