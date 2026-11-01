@@ -132,6 +132,12 @@ export const AfterDeletionList = () => (
         gave them.
       </ListItem>
     )}
+    {PRIVACY.blackMarket && (
+      <ListItem>
+        Your Black Market offers, listings and sales stay in the market's records, with your account taken out of them,
+        because the other players' items and Intel came from them.
+      </ListItem>
+    )}
     {PRIVACY.intel && PRIVACY.intelLedger && (
       <ListItem>
         The lines of your Intel ledger{PRIVACY.intelCorrections ? ', and the records of any correction to it,' : ''} stay

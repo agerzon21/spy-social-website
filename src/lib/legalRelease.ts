@@ -1089,6 +1089,24 @@ export const LIVE = {
    */
   trading: true,
   /**
+   * The Black Market (app repo feat/black-market-server, server file 20261205100000_black_market, live as
+   * 20261101121549; app_config.market 'on' Nov 1, 2026; the Vault's fourth tab). Two markets, Intel only (earned, never
+   * money): Items, an order book for tradable plain collectibles (buy and sell offers, price-time matching, partial
+   * fills, a 2% fee burned, max 5,000 a copy), and Rare Finds, each Unique copy listed on its own (price, optional
+   * offers, 3-day protection with reversal). Adults only, the trading gates (level 20, email confirmed, account 14 days
+   * old, no trade lock), an emailed code for big actions; on the beta chain only the test fleet and admins move Intel,
+   * so players can look until the 2.2 release. Other players see only anonymous prices, quantities, times and a Unique's
+   * number and colour, never who. Kept: offers, listings, offers on listings, fills and sales, escrow lines on the Intel
+   * ledger, market events; on deletion the account is taken out (ON DELETE SET NULL), codes deleted. Market Watch
+   * (Integrity family E, shadow): linked-account fills (same phone or sign-up network), round trips, far-from-guide
+   * prices, spoofing, concentration. Turns on: Privacy's Black Market item, the Intel item's spending line, the
+   * Intercepts item's "who sees" line, Safety Information's Market Watch sentence, How We Use, Data Retention, Resend's
+   * market codes, Data Sharing's market line, the deletion list; Terms 9's virtual-items line and Intel line and the
+   * "Black Market" H3. A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD. Not a
+   * material change (an opt-in feature under the existing virtual-items, trading and fair-play rules; no terms_version).
+   */
+  blackMarket: true,
+  /**
    * Social spam limits (app repo fix/friends-owner-1101, server file 20261204150000_social_follow_fixes, STAGED, not
    * applied yet; owner 2026-11-01: generous limits, stop only rapid-fire spam): a slow-down after 10 follows, unfollows
    * or friend requests in 10 seconds or 4 follow changes toward one player in a minute (read from the social safety
@@ -1253,6 +1271,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords (Terms 2): set to the day the site goes up with it on
     : LIVE.membershipsOnly && LIVE.purchases
       ? 'December 7, 2026' // memberships only (Terms 3, 9; Safety; membershipsOnly on since October 30, 2026), visible once LIVE.purchases is on: set to the day purchases goes on
+      : LIVE.blackMarket
+      ? 'November 1, 2026' // Terms 9: the Black Market H3, the virtual-items and Intel lines (20261205100000): the site went up with it on
       : LIVE.messagesOnDeviceOnly && LIVE.microsoftOff
       ? 'November 1, 2026' // Terms 10: translation v3's bridge drop, messages sent to OpenAI only (Microsoft translates nothing): set to the day the site goes up with it on
       : LIVE.trading
@@ -1291,6 +1311,8 @@ export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
     ? 'December 7, 2026' // sign-in codes instead of passwords: set to the day the site goes up with it on
     : LIVE.banTombstone
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
+    : LIVE.blackMarket
+    ? 'November 1, 2026' // the Black Market item, Market Watch, market codes by Resend, the Intel and Intercepts lines (20261205100000): the site went up with it on
     : LIVE.practiceAi
     ? 'November 1, 2026' // the Practice Games item (OpenAI rates practice lines for 16+ who agreed): set to the day the site goes up with it on
     : LIVE.moneyChatSignals

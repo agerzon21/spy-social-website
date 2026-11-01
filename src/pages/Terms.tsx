@@ -519,7 +519,9 @@ const Terms: React.FC = () => {
       <Bullets>
         <ListItem>
           {/* LIVE.trading: trading between friends (Nov 1, 2026). */}
-          {LIVE.trading
+          {LIVE.trading && LIVE.blackMarket
+            ? "Virtual items and Intel have no value in real money. You can trade some items with your friends inside SpySocial, and Intel between adults, as Trades below describes, and adults can buy and sell tradable items for Intel on the Black Market, as Black Market below describes. You can't sell or buy them for money, move them to another account in any other way, or exchange them for money."
+            : LIVE.trading
             ? "Virtual items and Intel have no value in real money. You can trade some items with your friends inside SpySocial, and Intel between adults, as Trades below describes. You can't sell or buy them, move them to another account in any other way, or exchange them for money."
             : "Virtual items have no value in real money. You can't sell or trade them, move them to another account, or exchange them for money."}
           {LIVE.purchases &&
@@ -542,8 +544,10 @@ const Terms: React.FC = () => {
               <>
                 Intel is an earned currency: you get it only from playing (your games, and your first game of the day
                 and your daily streak, which you claim in the app) and from shredding spare copies of items. It can't be bought, and like every virtual
-                item it has no cash value and can't be sold{LIVE.trading ? ' or moved to another account except in a trade between adults (see Trades below)' : ', traded or moved to another account'}. For now there's
-                nothing to spend it on; we may add uses for it later, and the app will say what they are.
+                item it has no cash value and can't be sold for money{LIVE.trading ? ` or moved to another account except in a trade between adults (see Trades below)${LIVE.blackMarket ? ' or on the Black Market' : ''}` : ', traded or moved to another account'}.{' '}
+                {LIVE.blackMarket
+                  ? 'Adults can spend it on the Black Market (see below); we may add other uses for it later, and the app will say what they are.'
+                  : "For now there's nothing to spend it on; we may add uses for it later, and the app will say what they are."}
                 {LIVE.intelLedger ? (
                   <>
                     {' '}We may change how much Intel games, streaks and shredding give; a change counts from then on,
@@ -696,6 +700,40 @@ const Terms: React.FC = () => {
               a person reviews what the checks flag. We may change trade limits (how many trades, how much Intel,
               which items) with notice in the app, and pause trading. Trades that break these Terms (for example
               real-money trades) may be reversed, and the accounts involved suspended.
+            </ListItem>
+          </Bullets>
+        </>
+      )}
+      {/* LIVE.blackMarket: the Black Market, Intel only (Nov 1, 2026; app_config.market 'on'). */}
+      {LIVE.trading && LIVE.blackMarket && (
+        <>
+          <H3>Black Market</H3>
+          <Bullets>
+            <ListItem>
+              The Black Market, in the app's Vault, is where adults buy and sell tradable items for Intel, never for
+              money. On Items you place offers to buy or sell an item at a price you choose; an offer matches the best
+              price on the other side, and the price of the offer that was waiting is the price paid. On Rare Finds you
+              list a Unique at a price, and can let other players make lower offers. Other players never see who is
+              buying or selling.
+            </ListItem>
+            <ListItem>
+              The same rules as Trades decide who can use it (an adult, level 20, an account at least 14 days old, a
+              confirmed email, no trading pause), and Intel moves on it only once SpySocial 2.2 opens to everyone.
+              Players under 18 can look but can't buy, sell or make offers. Big actions ask for a code we email you.
+            </ListItem>
+            <ListItem>
+              While an offer or listing is open, what it offers is held for it: the Intel of a buy offer, or the items of
+              a sell offer (you can still wear them). Each item sold costs a fee of 2% of its price (at most 5,000
+              Intel), which is removed from the game. Members can have 8 offers open at once, others 4. You can stop an
+              offer or listing at any time and collect what's left.
+            </ListItem>
+            <ListItem>
+              A sale on Items is final at once. A Unique bought on Rare Finds is protected for 3 days: it can't be traded,
+              listed, shredded or traded up, and the seller's Intel waits until then; in that time the sale can be
+              reversed as Trades above describes, or by us for account theft or fraud. We check the market for
+              manipulation (for example sales between your own accounts or prices set to move Intel between players), may
+              pause it, and may reverse sales and suspend the accounts involved when they break these Terms. We may change
+              the fee, the limits and which items can be listed, with notice in the app.
             </ListItem>
           </Bullets>
         </>

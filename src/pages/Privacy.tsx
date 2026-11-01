@@ -179,7 +179,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
             Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
-            {PRIVACY.intercepts ? ' You also get it by shredding spare copies of items. For now there\'s nothing to spend it on. The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day\'s reward, and when you claimed it, with your account.' : ''} When a game you
+            {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? 'Adults can spend it on the Black Market (see below), and trade it with other adults (see Trades).' : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
             also keep your balance, how much Intel you've earned and spent in all, and your daily streak: how many days
@@ -247,7 +247,11 @@ const Privacy: React.FC = () => {
             it replaced, so that we can put it back if we have to. We use all
             this to give you your Intercepts and their items, to show them to you in the app, and to check that
             Intercepts are earned fairly and that the odds work as the app shows them. Other players never see your
-            Intercepts; they see an item from one only when you wear it, like any other look. We look at Intercepts only
+            Intercepts;{' '}
+            {PRIVACY.blackMarket
+              ? "they see an item from one only when you wear it, show it on your profile, offer it in a trade, or list it on the Black Market (where your name isn't shown)."
+              : 'they see an item from one only when you wear it, like any other look.'}{' '}
+            We look at Intercepts only
             as totals across all players (and at a player's own Intercepts only to answer a question or check a
             problem). It's kept with your account and deleted with it, and it doesn't leave our servers.
           </Item>
@@ -369,6 +373,22 @@ const Privacy: React.FC = () => {
             other player see a trade. Trades are kept with your Intel and item history.
           </Item>
         )}
+        {/* LIVE.blackMarket: the Black Market, Intel only (legalRelease). */}
+        {PRIVACY.blackMarket && (
+          <Item label="Black Market">
+            The Black Market, in the app's Vault, lets adults buy and sell tradable items for Intel (never for money):
+            on Items, by placing offers to buy or sell at a price, and on Rare Finds, by listing a Unique at a price or
+            making an offer on one. Players under 18 can look but can't use it. We keep each offer and listing you make
+            (the item, the quantity, your price, the copies or Intel it holds, and when you placed, changed, stopped or
+            collected it), each offer you make or get on a listing, each sale and fill (who bought and sold which copies,
+            at what price and fee, and when), the protection and any reversal of a Rare Finds sale, and the matching
+            lines in your Intel ledger. For a big action we email you a code; we keep only a coded (hashed) copy of it.
+            Other players see the market without names: an item's prices and quantities on offer, the prices and times
+            of past sales, and, for a Unique listed on Rare Finds, its number, its colour and its price, never who is
+            buying or selling. Sales are kept for good, like the Intel ledger, with no link to you once you delete your
+            account.
+          </Item>
+        )}
         {PRIVACY.socialFeatures && (
           <Item label="Social Notifications">
             If you allow notifications, we send a push for a friend request, an accepted request, a room or party
@@ -471,8 +491,7 @@ const Privacy: React.FC = () => {
           and your device's platform to recognize saved accounts that used a test version of the app (on iPhone, Android
           or the web) and were created before December 7, 2026, and give them a Beta Pin for their avatar as a thank-you;
           we keep only that the account has it. Until the launch, we also use them, with the app's version, to let saved
-          accounts that recently used a test version on a phone try features that aren't open to everyone yet, such as
-          Play Online.
+          accounts that recently used a test version on a phone try features that aren't open to everyone yet.
         </Item>
         <Item label="Test Versions">
           If you test a version of the app before it's released, through Apple's TestFlight, Google Play's testing or a
@@ -539,6 +558,8 @@ const Privacy: React.FC = () => {
             " For friends and parties, our servers keep a social safety log (who sent or accepted a friend request and how it was made, follows, blocks, invites and changes to your Privacy & Friends choices) and check it for patterns that can be part of grooming: an adult adding several players under 16 with Friend Codes, an adult whose private games keep producing new friendships with players under 18, or many invites from an adult to players under 18. A match is flagged for one of our team to review, as with a report; it isn't shown to any player and doesn't change anything on its own. To keep public tables fair, we also look at the games parties play (when games end, when spies guess, and reports of teaming up) for signs of cheating together, and keep what we find with the case. A report about a friend, a request, a profile, an invite or a party includes our servers' own record of it (for a party, every member and the games it played)."}
           {PRIVACY.trading &&
             " We also check trades for signs of real-money trading, account theft and grooming (for example a lopsided trade between an adult and a player under 18, or many gifts to one account). A flagged trade is reviewed by one of our team; the flag isn't shown to any player and doesn't change anything on its own."}
+          {PRIVACY.blackMarket &&
+            " We check the Black Market in the same way, for example for sales between accounts that use the same phone or network, items sold back to their seller, prices far from an item's usual price, and offers placed and stopped over and over; what the checks flag is reviewed by one of our team, isn't shown to any player and doesn't change anything on its own. If the market's own records don't add up, it pauses by itself until we've checked them."}
         </Item>
         {PRIVACY.drawingCheck && (
           <Item label="Drawing Checks">
@@ -799,6 +820,7 @@ const Privacy: React.FC = () => {
           <ListItem>Run friends, follows, profiles, parties and party chat, and send the social notifications you allow</ListItem>
         )}
         {PRIVACY.trading && <ListItem>Run trades between friends: their limits, protection and reversals, and the codes we email for big trades</ListItem>}
+        {PRIVACY.blackMarket && <ListItem>Run the Black Market: offers, listings, sales, their fees and protection, and the codes we email for big actions</ListItem>}
         <ListItem>Improve and optimize the app experience</ListItem>
         {PRIVACY.practiceAi && <ListItem>Rate the lines you type in practice games (with OpenAI, if you agree)</ListItem>}
         {PRIVACY.spybots && <ListItem>Test the game with the AI players our developer plays with, and improve them</ListItem>}
@@ -822,6 +844,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.intel ? (PRIVACY.intercepts ? ', give you Intel' : ', give you Intel and what you unlock with it') : ''}
           {PRIVACY.intercepts ? ', give you Intercepts and their items' : ''}
           {PRIVACY.trading ? ', run your trades' : ''}
+          {PRIVACY.blackMarket ? ', run your Black Market offers and sales' : ''}
           {PRIVACY.customPacks ? ', keep your custom packs' : ''}
           {PRIVACY.communityPacks ? ', show Community Packs and their ratings' : ''}
           {PRIVACY.ranked ? ', run Ranked and its leaderboards' : ''}
@@ -835,7 +858,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.customPacks ? ', the automated check of custom packs' : ''}
           {PRIVACY.communityPacks ? ', the review of Community Packs' : ''}
           {PRIVACY.socialFeatures ? ', the checks of the social safety log and of the games parties play' : ''}
-          {PRIVACY.trading ? ', the checks of trades' : ''}, moderation
+          {PRIVACY.trading ? ', the checks of trades' : ''}
+          {PRIVACY.blackMarket ? ', the checks of the Black Market' : ''}, moderation
           {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs{PRIVACY.ipVault ? ', and the encrypted IP addresses of new accounts and sign-ins, for safety, fraud and legal requests' : ''}), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
@@ -892,6 +916,9 @@ const Privacy: React.FC = () => {
           : ''}
         {PRIVACY.trading
           ? " Trades and their steps are kept for good, like the Intel ledger, with no link to you once you delete your account; a code we email for a big trade stops working after 30 minutes."
+          : ''}
+        {PRIVACY.blackMarket
+          ? ' Black Market offers, listings and sales are kept for good in the same way, with no link to you once you delete your account; the coded copies of the codes we email you are deleted with your account.'
           : ''}
         {PRIVACY.socialFeatures
           ? " Your friends, follows, profile and Privacy & Friends choices are kept for as long as you have an account. Friend requests are deleted 30 days after they're answered or expire, room invites 24 hours after they're answered, party invites after a day, party chat 30 days after it's sent, and sent social notifications after 7 days. The social safety log is kept for 1 year, and what our safety checks flag for as long as we keep reports."
@@ -1011,7 +1038,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? ', the codes we email you for big trades' : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades${PRIVACY.blackMarket ? ' and big Black Market actions' : ''}` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">
@@ -1145,6 +1172,8 @@ const Privacy: React.FC = () => {
         {PRIVACY.agentColoursPhase2 &&
           ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosShown(PRIVACY) ? ', with no profile photo' : ''}.`}
         {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}
+        {PRIVACY.blackMarket &&
+          " The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling."}
         {/* LIVE.socialFeatures (legalRelease). */}
         {PRIVACY.socialFeatures &&
           " Your friends see your display name, your agent and, if you allow it, whether you're online now. An adult's public profile (see Follows and Profiles above) can be opened by any player; a private profile, and the profile of any player under 18, can't be opened by other players. A party is marked at the table for everyone there, and its members see each other by display name."}
