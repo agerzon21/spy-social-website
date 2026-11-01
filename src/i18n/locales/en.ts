@@ -25,6 +25,8 @@ const en = {
     description:
       'Gather your friends and find the spy — or fool everyone trying. Free real-time multiplayer party game for 3–21 players. Available on iOS and Google Play.',
     titles: {
+      /** The Beta 2 playtester page (/beta). */
+      beta: 'Beta 2 playtest: play SpySocial before launch',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       transparency: "Transparency report",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
@@ -49,6 +51,7 @@ const en = {
     },
     /** Each page's own description for search results; the home page and the unlisted pages use `description`. */
     descriptions: {
+      beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 12, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
       gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
       faq: 'Answers to common SpySocial questions: getting started, game modes, sharing and joining rooms, languages, host controls, your account and troubleshooting.',
@@ -89,6 +92,8 @@ const en = {
     transparency: "Transparency",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
     gameNightRules: "Game Night Rules",
+    /** The link to the /beta playtest page, shown only until sign-ups close. */
+    beta: "Beta 2 playtest",
     tagline: 'The party game of social deception.',
     play: 'Play',
     legal: 'Legal & Safety',
@@ -1030,6 +1035,101 @@ const en = {
     deletedTitle: 'What is deleted',
     staysTitle: 'What stays, and for how long',
     details: 'Our <link>Privacy Policy</link> has the details.',
+  },
+
+  /**
+   * /beta: the Beta 2 playtester page. The page fills in every date and time, already written in your language's
+   * own format ("Thursday, November 12", "7:00 – 8:00 PM"): write the sentence round them. Eastern and Pacific are
+   * US time zones (ET, PT); CET is Central European Time; UK is the time in the United Kingdom.
+   */
+  beta: {
+    eyebrow: 'Beta 2 · Live playtest',
+    /** The poster line, set huge: it must fit a 320 px phone. The full stop after it is home.hero.titleMark. */
+    title: 'Play it first',
+    lede: '<b>$10 by PayPal</b> for every confirmed player who plays the full hour of this live group playtest of SpySocial, the free social deduction party game, and sends the 5-minute survey, plus one $50 bonus for the single most useful bug report or idea. Plus beta rewards you keep after launch: the Beta Pin, two titles, 10 Intercepts of each tier and a month of membership.',
+    /** Short note under the lede and in the rewards: the test's progress does not carry over. */
+    reset: 'Games, XP and items from the test reset at launch.',
+    /** Under the lede: the store app is the old version; the beta comes from the emailed link. */
+    headsUp: '<b>Heads up:</b> the SpySocial on the App Store and Google Play is an old version. The beta is a new, very different build; you install it from the link we email you.',
+    /** Short facts under the lede. */
+    facts: ['1 hour, live', 'Adults 18+', '24 seats', 'iPhone or Android'],
+    when: {
+      label: 'When',
+      /** The session's hours in Eastern time ("7:00 – 8:00 PM"). */
+      et: (time: string) => `${time} Eastern`,
+      /** Its start in Pacific time ("4:00 PM"), then its hours in UTC with the date ("Fri, Nov 13, 00:00 – 01:00"). */
+      others: (pacific: string, utc: string) => `${pacific} Pacific · ${utc}\u00a0UTC`,
+      /** The same hour in the visitor's own time zone, with the zone's name ("Thu, Nov 12, 6:00 – 7:00 PM CST"). */
+      yours: (time: string) => `Your time: ${time}`,
+      checkIn: (time: string) => `Check-in opens at ${time} Eastern on Discord voice.`,
+    },
+    /** The optional second session for Europe (the owner turns it on or off). */
+    europe: {
+      label: 'Europe · Optional second session',
+      /** The hours in Central European Time, then in the UK. */
+      time: (cet: string, uk: string) => `${cet}\u00a0CET · ${uk}\u00a0UK`,
+      /** `date`: the day we confirm it ("November 9"). */
+      note: (date: string) => `Runs only if enough people in Europe sign up. We confirm it by ${date}.`,
+    },
+    signUp: 'Sign up',
+    /** Under the button: how long the form takes and when sign-ups close ("Sunday, November 8", "11:59 PM"). */
+    signUpNote: (day: string, time: string) => `About 2 minutes. Sign-ups close ${day}, ${time} Eastern.`,
+    discord: 'Join our Discord',
+    /** Shown instead of the sign-up once sign-ups have closed. */
+    closed: 'Sign-ups are closed. Follow us on Discord for the next test.',
+    games: {
+      eyebrow: 'What you play',
+      title: 'Two games',
+      talk: "Questions and answers. One or two players don't know the secret place and try to blend in.",
+      sketch: 'Everyone adds to the same drawing. The spies fake it.',
+    },
+    who: {
+      eyebrow: "Who it's for",
+      title: "Who we're looking for",
+      adults: '<b>Adults 18+ only.</b> 24 seats.',
+      /** A list of Android phone brands follows it. */
+      phones: '<b>An iPhone (TestFlight) or an Android phone (Google Play testing).</b> Android phones are especially welcome:',
+      androidLabel: 'Android phones we especially want',
+      /** Werewolf/Mafia: the party game's name as players know it in your language. The others are brand names. */
+      fans: '<b>Social deduction fans:</b> Among Us, Spyfall, Werewolf/Mafia, Blood on the Clocktower, Codenames. Beginners welcome too.',
+      mic: '<b>A mic helps.</b> Listening only is OK.',
+      /** The ten languages follow it, each in its own script. */
+      langs: '<b>The game is in 10 languages:</b>',
+      langsLabel: "The game's languages",
+    },
+    ask: {
+      eyebrow: 'What we ask',
+      title: 'Play. Talk. Tell us.',
+      steps: ['<b>Play</b> for the hour.', '<b>Talk out loud</b> about anything that confuses you.', '<b>Fill in a 5-minute survey</b> afterwards.'],
+      wantTitle: 'What we want to find out',
+      want: ['Is it clear whose turn it is?', 'Is voting easy to understand?', 'Does drawing work on your phone?'],
+    },
+    get: {
+      eyebrow: 'What you get',
+      title: 'Beta rewards you keep after launch',
+      /** The app's own names for the pin, the titles and the Intercepts. */
+      items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> and <b>Field Tester</b> titles', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
+      prizeTitle: '$10 by PayPal + one $50 bonus',
+      prize: '$10 by PayPal to every confirmed player who plays the full hour and sends the 5-minute survey, sent within 7 days of the session. Plus one $50 bonus (a gift card) for the single most useful bug report or idea, chosen by the developer within a week.',
+      /** `day`: the day we confirm seats by email ("Monday, November 9"). */
+      seats: (day: string) => `24 seats. Only players we confirm by email (by ${day}) are paid; everyone else goes on the waitlist for the next test.`,
+    },
+    friends: {
+      eyebrow: 'Friends',
+      title: 'Bring a friend',
+      text: "<b>Put a friend's name on the form</b> to sit at the same table. Beta 1 testers are first in line.",
+    },
+    join: {
+      eyebrow: 'How to join',
+      title: 'Four steps',
+      form: '<link>Fill in the sign-up form</link> (about 2 minutes).',
+      closes: (day: string, time: string) => `Sign-ups close ${day}, ${time} Eastern.`,
+      email: (day: string) => `We email you by ${day} to confirm your seat and send the install link.`,
+      discord: '<link>Join our Discord</link>: check-in happens on its voice channel.',
+      android: "Android: the form asks for your Play Store's Google email, because Google requires it for test builds. It's deleted after the session.",
+      iphone: 'iPhone: you install SpySocial with TestFlight, from the link in your email.',
+    },
+    fine: 'Pre-release build. Don\'t share other players\' names or chat. Your sign-up data is deleted after Beta 2. Your PayPal email is deleted once you are paid.',
   },
 
   notFound: {

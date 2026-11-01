@@ -44,6 +44,7 @@ function pageOf(path: string): PageKey | null {
     '/child-safety': 'childSafety',
     '/whats-new': 'whatsNew',
     '/roadmap': 'roadmap',
+    '/beta': 'beta',
     '/delete-account': 'deleteAccount',
     '/reset-password': 'resetPassword',
     '/confirm-success': 'confirmSuccess',

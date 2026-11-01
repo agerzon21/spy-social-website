@@ -66,6 +66,18 @@ export const AfterDeletionList = () => (
       your email address and IP address, are kept{PRIVACY.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
       prevent abuse.
     </ListItem>
+    {PRIVACY.socialFeatures && (
+      <ListItem>
+        The social safety log (see Safety Information) keeps its entries for 1 year with your account taken out of them,
+        and party chat lines you wrote stay with the party, with your account taken out of them, until they're deleted 30 days after they were sent.
+      </ListItem>
+    )}
+    {PRIVACY.ipVault && (
+      <ListItem>
+        The encrypted IP addresses of your account's sign-up and sign-ins stay until their 90 days end, or up to 1 year
+        when they're part of a report to NCMEC, an open case or a law-enforcement request.
+      </ListItem>
+    )}
     {/* photosPrivate: a photo's public link no longer opens at all (the bucket is private), so no cached copy either. */}
     {photosInUse(PRIVACY) &&
       (PRIVACY.photoCleanup ? (
@@ -111,6 +123,13 @@ export const AfterDeletionList = () => (
       <ListItem>
         The packs you published to Community Packs stay there for other players, with your username removed at once:
         they show Anonymous as their creator, and players who added them keep them.
+      </ListItem>
+    )}
+    {PRIVACY.trading && (
+      <ListItem>
+        Trades you made stay, with your account taken out of them, because the other player's items and Intel came from
+        them. Items and Intel you got in a trade that's still protected (in its first 7 days) go back to the player who
+        gave them.
       </ListItem>
     )}
     {PRIVACY.intel && PRIVACY.intelLedger && (

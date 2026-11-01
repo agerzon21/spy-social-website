@@ -40,6 +40,9 @@ export const deletedSummary = (): string =>
         ? 'the purchases linked to your account (your memberships)'
         : 'the purchases linked to your account (such as packs, avatar items and memberships)'
       : null,
+    PRIVACY.socialFeatures
+      ? 'your friends, friend requests, invites, follows (yours and your followers), profile, showcase and Privacy & Friends choices'
+      : null,
     PRIVACY.creatorCodes ? 'the link between your account and the creator code and reward codes you entered' : null,
     PRIVACY.banTombstone
       ? 'the players you blocked, and the warnings, mutes and bans on your account (apart from the short record below)'
