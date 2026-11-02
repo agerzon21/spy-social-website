@@ -549,10 +549,10 @@ const zhHans: Strings = {
         '<b>可购买的内容：</b>只有会员（主题包通行证，按月或按年，以及终身通行证），通过 App Store 或 Google Play 购买。会员可解锁所有非免费主题包，除此之外不出售任何东西。',
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
-        '<b>截获（Intercepts）：</b>通过游戏赢得的奖励，每个都装着一件随机物品，比如特工的新造型。它们不能购买，无论是用钱还是用游戏里赚到的货币；打开之前，应用会显示概率。',
+        '<b>密函（Intercepts）：</b>通过游戏赢得的奖励，每封都装着一件随机物品，比如特工的新造型。它们不能购买，无论是用钱还是用游戏里赚到的货币；打开之前，应用会显示概率。',
       /** `intercepts` once unopened Intercepts trade on the Black Market (LIVE.interceptsMarket). */
       interceptsMarket:
-        "<b>截获（Intercepts）：</b>通过游戏赢得的奖励，每个都装着一件随机物品，比如特工的新造型。没有人用钱出售它们，我们不卖，其他玩家也不能卖。成年人还可以在黑市上用游戏里赚到的货币（这种货币无法购买）彼此买卖未打开的截获；未满 18 岁的玩家不能这样做。打开之前，应用会显示概率。",
+        "<b>密函（Intercepts）：</b>通过游戏赢得的奖励，每封都装着一件随机物品，比如特工的新造型。没有人用钱出售它们，我们不卖，其他玩家也不能卖。成年人还可以在黑市上用游戏里赚到的货币（这种货币无法购买）彼此买卖未打开的密函；未满 18 岁的玩家不能这样做。打开之前，应用会显示概率。",
       /** Home's Discord pill (LIVE.homeDiscord; under 16 never, 16-17 a safety note first). */
       discord:
         "<b>我们 Discord 的链接：</b>首页可能会显示 SpySocial 官方 Discord 服务器的链接，玩家可以在那里找人一起玩。Discord 是一个独立的应用，有自己的规则和最低年龄。未满 16 岁的玩家永远看不到这个链接，16 和 17 岁的玩家会先看到一条安全提示。我们的版主会照看这个服务器，但 SpySocial 的任何人都看不到 Discord 上的私信。",
@@ -1075,7 +1075,7 @@ const zhHans: Strings = {
       { title: "Spy Sketch", text: "在一块共享白板上画出秘密词语，识破假装知道的卧底。" },
       { title: "在线游戏", text: "点击“开始匹配”，随时加入 4 人或 8 人游戏桌。陌生人只能看到你的特工颜色，看不到你的名字。" },
       { title: "游戏之夜", text: "定时举办的在线之夜，有仅限当晚才能获得的称号。开始前我们会提醒你。" },
-      { title: "黑市", text: "与好友和其他特工交易物品，或用玩游戏赚到的 Intel 买卖物品。" },
+      { title: "黑市", text: "与好友和其他特工交易物品，或用玩游戏赚到的情报买卖物品。" },
       { title: "会员", text: "可选：Pack Pass（按月或按年）或 Lifetime 可解锁所有地点和词语包，还能自己制作。除此之外不卖任何东西。" },
     ],
     allNotes: "2.2 的全部新内容",
