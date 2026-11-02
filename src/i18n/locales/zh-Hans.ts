@@ -606,8 +606,6 @@ const zhHans: Strings = {
       deleteEmail:
         '也可以用账号绑定的邮箱发邮件至 <email/>，主题写“Delete my SpySocial account”（删除我的 SpySocial 账号）。如果你无法用那个邮箱发信，也请照样发邮件给我们并附上用户名，我们会帮你处理。我们的<link>删除账号</link>页面说明了哪些内容会被删除、哪些会被保留。',
       deleteSubject: 'Delete my SpySocial account',
-      dataRequests:
-        '<b>孩子的数据：</b>作为家长或监护人，你可以请我们提供孩子账号数据的副本、更正其出生年份，或删除该账号。我们的<link>隐私政策</link>（儿童隐私部分）说明了我们如何确认请求以及请求涵盖的内容。',
       contactTitle: '联系我们',
       contact: (section: number) =>
         `关于本页面的任何内容，请发邮件至 <email/>。凡是涉及儿童安全的事，请在主题中写“Child safety”，我们会优先处理。如需对决定提出申诉或进行投诉，包括关于我们如何遵守英国《网络安全法》（Online Safety Act）的投诉，请见我们<link>服务条款</link>的第 ${section} 节。`,

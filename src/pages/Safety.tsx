@@ -172,7 +172,6 @@ const Safety: React.FC = () => {
         ))}
       </OrderedList>
       <P>{r(p.deleteEmail, { email: () => <SupportEmail subject={p.deleteSubject} />, link: page('/delete-account') })}</P>
-      <P>{r(p.dataRequests, { link: page('/privacy') })}</P>
 
       <H3>{p.contactTitle}</H3>
       <P>{r(p.contact(UK_SECTION_NUMBER), { email: () => <SupportEmail />, link: page('/terms') })}</P>

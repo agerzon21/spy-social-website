@@ -37,6 +37,11 @@ const SupportEmail = () => (
   </ChakraLink>
 )
 
+// The data-rights server file (app repo feat/data-rights-1102, 20261207881000_data_rights: the request log kept 24
+// months, the JSON export, the birth-year correction, the fair-play score deleted with the account). Flip to true the
+// day it is applied live (and move it into legalRelease LIVE with a PRIVACY_LAST_UPDATED entry when that file is free).
+const DATA_RIGHTS_SERVER = false
+
 /** How long chat lines stay, for the Chat Messages item and Data Retention. */
 const chatRetention = (what: string) =>
   PRIVACY.scheduledRetention
@@ -984,9 +989,9 @@ const Privacy: React.FC = () => {
           ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
           : ''}
         {PRIVACY.intercepts
-          ? ` The signs our fair-play checks find are kept for up to 400 days, or longer while they're part of an open case; reward holds and the reviews players ask for stay with their case for as long as we keep reports.${PRIVACY.dataRights ? " The account's fair-play score is kept while you have an account and deleted with it." : ''}`
+          ? ` The signs our fair-play checks find are kept for up to 400 days, or longer while they're part of an open case; reward holds and the reviews players ask for stay with their case for as long as we keep reports.${DATA_RIGHTS_SERVER ? " The account's fair-play score is kept while you have an account and deleted with it." : ''}`
           : ''}
-        {PRIVACY.dataRights
+        {DATA_RIGHTS_SERVER
           ? ' Our record of a privacy request (see Your Rights) is kept for 24 months after we answer it.'
           : ''}
       </P>
@@ -1319,7 +1324,7 @@ const Privacy: React.FC = () => {
       </P>
       <Bullets>
         <Item label="A copy of your data">
-          {PRIVACY.dataRights
+          {DATA_RIGHTS_SERVER
             ? 'We email a copy of the personal data linked to your account, in a machine-readable file (JSON), to the email address on your account: your account and sign-in details, profile, settings and the answers you gave the app, your games, stats and rewards, the chat messages we still keep, purchases, trades, friends, follows and the other records we keep about your account. Other players appear in it only as "another player". '
             : 'We send a copy of the personal data linked to your account, in a machine-readable file, to the email address on your account. Other players appear in it only as "another player". '}
           To protect other people and keep SpySocial safe, it doesn't include reports others made about you or who made
@@ -1355,7 +1360,7 @@ const Privacy: React.FC = () => {
           confirm, and we may ask for more if we still can't be sure. Someone acting for you (for example an authorized
           agent under California law) needs your signed permission, and we'll still confirm with you.
         </Item>
-        {PRIVACY.dataRights && (
+        {DATA_RIGHTS_SERVER && (
           <Item label="Our record of your request">
             We keep a record of each request (what was asked, when, how we confirmed it was you, and when and how we
             answered) for 24 months after we answer it, even if the account has been deleted, to show that we answered

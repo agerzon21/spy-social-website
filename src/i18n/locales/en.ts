@@ -654,9 +654,6 @@ const en = {
         'Or email <email/> from the address on the account, with the subject "Delete my SpySocial account". If you can\'t write from that address, email us anyway with the username and we\'ll help. Our <link>Delete Account</link> page says what\'s deleted and what we keep.',
       /** The email's subject line (English, so our inbox sorts it). */
       deleteSubject: 'Delete my SpySocial account',
-      /** For parents: their child's data rights (copy, birth-year correction, deletion), pointing to Privacy's Children's Privacy. */
-      dataRequests:
-        "<b>Your child's data:</b> as a parent or guardian, you can ask us for a copy of your child's account data, to correct its birth year, or to delete the account. Our <link>Privacy Policy</link> (Children's Privacy) explains how we confirm a request and what it covers.",
       contactTitle: 'Contact us',
       contact: (section: number) =>
         `Email <email/> about anything on this page. For anything about a child's safety, put "Child safety" in the subject and we'll deal with it first. To appeal a decision or make a complaint, including about how we meet the UK's Online Safety Act, see section ${section} of our <link>Terms of Service</link>.`,

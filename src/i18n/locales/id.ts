@@ -608,8 +608,6 @@ const id: Strings = {
       deleteEmail:
         'Atau kirim email ke <email/> dari alamat yang terdaftar di akun, dengan subjek “Delete my SpySocial account”. Kalau Anda tidak bisa mengirim dari alamat itu, tetap kirimkan email kepada kami dengan menyebutkan nama penggunanya dan kami akan membantu. Halaman <link>Hapus akun</link> kami menjelaskan apa yang dihapus dan apa yang kami simpan.',
       deleteSubject: 'Delete my SpySocial account',
-      dataRequests:
-        '<b>Data anak Anda:</b> sebagai orang tua atau wali, Anda dapat meminta salinan data akun anak Anda, perbaikan tahun lahirnya, atau penghapusan akunnya. <link>Kebijakan Privasi</link> kami (bagian Privasi Anak) menjelaskan cara kami memastikan permintaan itu dan apa saja yang dicakupnya.',
       contactTitle: 'Hubungi kami',
       contact: (section: number) =>
         `Kirim email ke <email/> tentang apa pun di halaman ini. Untuk apa pun yang menyangkut keselamatan anak, tulis “Child safety” di subjek dan kami akan menanganinya lebih dulu. Untuk mengajukan banding atas keputusan atau menyampaikan keluhan, termasuk tentang cara kami memenuhi Online Safety Act Inggris, lihat bagian ${section} dari <link>Ketentuan Layanan</link> kami.`,
