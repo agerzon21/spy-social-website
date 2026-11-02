@@ -608,6 +608,8 @@ const ptBR: Strings = {
       deleteEmail:
         'Ou escreva para <email/> do endereço da conta, com o assunto “Delete my SpySocial account” (excluir minha conta do SpySocial). Se não puder escrever desse endereço, escreva mesmo assim informando o nome de usuário, e vamos ajudar. Nossa página <link>Excluir conta</link> explica o que é excluído e o que guardamos.',
       deleteSubject: 'Delete my SpySocial account',
+      dataRequests:
+        '<b>Os dados do seu filho ou filha:</b> como pai, mãe ou responsável, você pode nos pedir uma cópia dos dados da conta, a correção do ano de nascimento ou a exclusão da conta. Nossa <link>Política de Privacidade</link> (Privacidade das crianças) explica como confirmamos o pedido e o que ele inclui.',
       contactTitle: 'Fale conosco',
       contact: (section: number) =>
         `Escreva para <email/> sobre qualquer assunto desta página. Para qualquer coisa sobre a segurança de uma criança, coloque “Child safety” (segurança infantil) no assunto, e vamos tratar disso primeiro. Para recorrer de uma decisão ou fazer uma reclamação, inclusive sobre como cumprimos a Online Safety Act do Reino Unido, veja a seção ${section} dos nossos <link>Termos de uso</link>.`,
