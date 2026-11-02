@@ -4,6 +4,7 @@ import type { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
 import { useLang, useT, type Strings } from '../i18n'
 import { formatDate } from '../i18n/rich'
+import { LIVE } from '../lib/legalRelease'
 
 const MotionBox = motion(Box)
 
@@ -49,6 +50,35 @@ function releasesIn(words: Strings['whatsNew']['releases'], locale: string): Rel
       items: section.items.map((item) => ({ title: item.title || undefined, text: item.text })),
     })),
   }))
+}
+
+/**
+ * 2.2.0, the launch release (shown while LIVE.launchSite is on): the home page's five New in 2.2 cards, then the
+ * Roadmap's other 2.2 features (not Play Online, Spy Sketch or Game nights, which the cards cover) and its "Plus…"
+ * line. Its words come from src/i18n: launch.notes, launch.cards, roadmap.now.
+ */
+const LAUNCH_DATE = 'December 8, 2026'
+const ROADMAP_IN_CARDS = new Set([0, 1, 4])
+
+function launchRelease(strings: Strings, locale: string): Release {
+  const n = strings.launch.notes
+  return {
+    version: '2.2.0',
+    date: formatDate(LAUNCH_DATE, locale),
+    tag: n.tag,
+    summary: n.summary,
+    sections: [
+      {
+        label: n.newLabel,
+        icon: FaRocket,
+        items: [
+          ...strings.launch.cards,
+          ...strings.roadmap.now.features.filter((_, i) => !ROADMAP_IN_CARDS.has(i)),
+        ].map((item) => ({ title: item.title, text: item.text })),
+      },
+      { label: n.moreLabel, icon: FaWandSparkles, items: [{ text: strings.roadmap.now.more }] },
+    ],
+  }
 }
 
 const SectionBlock = ({ section }: { section: Section }) => (
@@ -147,9 +177,13 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
 )
 
 const WhatsNew = () => {
-  const t = useT().whatsNew
+  const strings = useT()
+  const t = strings.whatsNew
   const { language } = useLang()
-  const releases = releasesIn(t.releases, language.locale)
+  const releases = [
+    ...(LIVE.launchSite ? [launchRelease(strings, language.locale)] : []),
+    ...releasesIn(t.releases, language.locale),
+  ]
   return (
     <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="linear-gradient(180deg, var(--ss-band) 0, var(--ss-page) 360px)">
       <Container maxW="760px" px={{ base: 4, md: 6 }}>

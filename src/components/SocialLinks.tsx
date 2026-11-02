@@ -1,6 +1,7 @@
 import type { IconType } from 'react-icons'
 import { FaDiscord, FaInstagram, FaThreads, FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6'
 import { useT } from '../i18n'
+import { DISCORD_URL } from '../lib/social'
 import { LinkRow, LinkRows } from './ui/LinkRow'
 import s from './SocialLinks.module.css'
 
@@ -19,7 +20,7 @@ const SOCIAL_ACCOUNTS: SocialAccount[] = [
   { name: 'YouTube', handle: '@SpySocialGame', url: 'https://www.youtube.com/@SpySocialGame', icon: FaYoutube },
   { name: 'X', handle: '@spysocialgame', url: 'https://x.com/spysocialgame', icon: FaXTwitter },
   { name: 'Threads', handle: '@spysocial.game', url: 'https://www.threads.com/@spysocial.game', icon: FaThreads },
-  { name: 'Discord', handle: 'SpySocial server', url: 'https://discord.gg/B8MG3xrV6f', icon: FaDiscord },
+  { name: 'Discord', handle: 'SpySocial server', url: DISCORD_URL, icon: FaDiscord },
 ]
 
 interface SocialLinksProps {

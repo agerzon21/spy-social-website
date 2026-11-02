@@ -1252,6 +1252,26 @@ export const LIVE = {
    */
   homeDiscord: true,
   /**
+   * Data rights on the server (app server 20261102112834_data_rights_20261207881000, live 2026-11-02 11:28 UTC): the
+   * privacy-request log kept 24 months after each answer (data_rights_requests, cron data-rights-prune), the JSON copy
+   * of an account's data (_data_export), the birth-year correction (_correct_birth_year) and the fair-play score
+   * deleted with the account (zz_profiles_integrity_gone). Turns on Privacy's Your Rights detail and record line and
+   * the Data Retention lines. A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  dataRights: true,
+  /**
+   * The launch version of the public site (2.2 out on both stores; flip Tuesday, December 8, 2026, 10 AM ET; steps in
+   * the app repo's .claude/handoff/scratchpad/nov02/website-launch.md). On: the hero says 2.2 is out, the home page's
+   * New in 2.2 section (the store screenshots in the page's language, Spy Sketch, Play Online, Game Night, the Black
+   * Market and membership) and its Discord + press/creator strip, What's New's 2.2.0 entry, the Roadmap's 2.2 stage
+   * reads "Out now", the Contact page's press line, /beta goes to the home page (and leaves the sitemap and search),
+   * and the build gives every page the launch link-preview card (public/images/og-launch.jpg, large) and the app's
+   * structured data (vite.config.ts reads this switch). The browser link stays on LIVE.browserLinks (play.spysocial.app
+   * is invite-only while the server's web_beta gate is on). No legal text reads it, so it changes no Last Updated date.
+   * A website fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  launchSite: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1469,6 +1489,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.dataRights
+    ? 'November 2, 2026' // Your Rights (how each right is met, the request record), California (no selling or sharing), Children's Privacy (parents' requests), fair-play retention: the site went up with it on
   : LIVE.gameDeviceChecks
     ? 'November 2, 2026' // the Trades item and Device Information: the device each game is played from, 90 days: the site went up with it on
   : LIVE.tradeGatesNov2

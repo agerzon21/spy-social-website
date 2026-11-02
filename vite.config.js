@@ -10,8 +10,8 @@ const ORIGIN = 'https://www.spysocial.app';
  * with LIVE.transparencyPage (those routes exist only while they're on). public/sitemap.xml lists every other page.
  */
 const SWITCHED_PAGES = [
-    // The Beta 2 playtester page: listed always (no switch).
-    { path: '/beta', live: null },
+    // The Beta 2 playtester page: listed until the launch version (LIVE.launchSite sends /beta home); '!' means off.
+    { path: '/beta', live: '!launchSite' },
     { path: '/roadmap', live: 'roadmap' },
     { path: '/game-night-rules', live: 'gameNightRules' },
     { path: '/transparency', live: 'transparencyPage' },
@@ -50,7 +50,7 @@ function switchedSitemap() {
         },
         async writeBundle() {
             const { LIVE } = (await siteModule(root, 'src/lib/legalRelease.ts'));
-            const on = SWITCHED_PAGES.filter((page) => page.live === null || LIVE[page.live] === true);
+            const on = SWITCHED_PAGES.filter((page) => page.live === null ? true : page.live.startsWith('!') ? LIVE[page.live.slice(1)] !== true : LIVE[page.live] === true);
             if (!on.length)
                 return;
             const { LANGUAGES } = (await siteModule(root, 'src/i18n/languages.ts'));
@@ -65,57 +65,171 @@ function switchedSitemap() {
 }
 /** HTML-escapes a value for an attribute or the title. */
 const attr = (text) => text.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+/** The site's pages that get their own link preview (title, description, address, card) in the built HTML. */
+const PREVIEW_PAGES = [
+    { path: '/support', key: 'faq' },
+    { path: '/contact-us', key: 'contact' },
+    { path: '/rules', key: 'rules' },
+    { path: '/safety', key: 'safety' },
+    { path: '/privacy', key: 'privacy' },
+    { path: '/terms', key: 'terms' },
+    { path: '/child-safety', key: 'childSafety' },
+    { path: '/whats-new', key: 'whatsNew' },
+    { path: '/roadmap', key: 'roadmap' },
+    { path: '/delete-account', key: 'deleteAccount' },
+    { path: '/transparency', key: 'transparency' },
+    { path: '/game-night-rules', key: 'gameNightRules' },
+    { path: '/beta', key: 'beta' },
+];
+/** The store listings (src/lib/stores.ts) and the social accounts (components/SocialLinks), for the structured data. */
+const APP_STORE_URL = 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.gerz.spysocial';
+const SAME_AS = [
+    'https://www.instagram.com/spysocial.game',
+    'https://www.tiktok.com/@spysocial.game',
+    'https://www.youtube.com/@SpySocialGame',
+    'https://x.com/spysocialgame',
+    'https://www.threads.com/@spysocial.game',
+    'https://discord.gg/B8MG3xrV6f',
+];
+async function loadSite(root) {
+    const legal = (await siteModule(root, 'src/lib/legalRelease.ts'));
+    const { default: en } = (await siteModule(root, 'src/i18n/locales/en.ts'));
+    const { LANGUAGES } = (await siteModule(root, 'src/i18n/languages.ts'));
+    return { LIVE: legal.LIVE, ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT, en, langs: LANGUAGES.map((l) => l.code) };
+}
+/** The app's structured data (schema.org): the publisher, the site and the app on both stores, free. Launch version only. */
+function structuredData(site) {
+    const data = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'Organization',
+                '@id': `${ORIGIN}/#org`,
+                name: 'SpySocial',
+                url: `${ORIGIN}/`,
+                logo: `${ORIGIN}/images/logo.png`,
+                email: 'support@spysocial.app',
+                sameAs: SAME_AS,
+            },
+            { '@type': 'WebSite', '@id': `${ORIGIN}/#site`, name: 'SpySocial', url: `${ORIGIN}/`, inLanguage: site.langs, publisher: { '@id': `${ORIGIN}/#org` } },
+            {
+                '@type': 'MobileApplication',
+                '@id': `${ORIGIN}/#app`,
+                name: 'SpySocial',
+                description: site.en.meta.description,
+                url: `${ORIGIN}/`,
+                image: `${ORIGIN}/images/og-launch.jpg`,
+                operatingSystem: 'iOS, Android',
+                applicationCategory: 'GameApplication',
+                applicationSubCategory: 'Party game',
+                genre: 'Social deduction',
+                softwareVersion: '2.2',
+                inLanguage: site.langs,
+                installUrl: [APP_STORE_URL, PLAY_STORE_URL],
+                sameAs: [APP_STORE_URL, PLAY_STORE_URL],
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                publisher: { '@id': `${ORIGIN}/#org` },
+            },
+        ],
+    };
+    // Inside <script>: no "</" can close it early.
+    return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
+}
 /**
- * /beta's link preview. Reddit, Discord and the other link previewers don't run the page's script, so they'd see the
- * home page's title and card; the build writes dist/beta/index.html, the same page with /beta's title, description
- * (src/i18n/locales/en.ts: meta.titles.beta, meta.descriptions.beta) and its own large card (public/images/og-beta.jpg).
- * vercel.json serves it at /beta.
+ * The launch version's <head> (LIVE.launchSite): the large link-preview card (public/images/og-launch.jpg, made from
+ * Google Play's feature graphic by scripts/store-shots.mjs) on X / Twitter and everywhere else, and the structured data.
  */
-function betaPreview() {
+function launchHead() {
+    let root = process.cwd();
+    return {
+        name: 'spysocial-launch-head',
+        configResolved(config) {
+            root = config.root;
+        },
+        async transformIndexHtml(html) {
+            const site = await loadSite(root);
+            if (site.LIVE.launchSite !== true)
+                return html;
+            const image = `${ORIGIN}/images/og-launch.jpg`;
+            const swaps = [
+                [/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`],
+                [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'],
+                [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'],
+                [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial: Spy Talk and Spy Sketch, five agents in a police line-up')}"`],
+                [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'],
+                [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`],
+            ];
+            for (const [re, to] of swaps) {
+                if (!re.test(html))
+                    throw new Error(`launchHead: index.html has no match for ${re}`);
+                html = html.replace(re, to);
+            }
+            return html.replace('</head>', `    ${structuredData(site)}\n  </head>`);
+        },
+    };
+}
+/**
+ * Each page's link preview. Reddit, Discord, iMessage and the other link previewers don't run the page's script, so
+ * they'd see the home page's title and card everywhere; the build writes dist/<page>/index.html for each page in
+ * PREVIEW_PAGES, the same page with its English title and description (src/i18n/locales/en.ts: meta.titles,
+ * meta.descriptions) and its own address. vercel.json serves each at its path. /beta keeps its own large card
+ * (public/images/og-beta.jpg) until the launch version, which sends /beta home (its file is the home page's then);
+ * a page whose route is off (its switch) gets the home page's file too.
+ */
+function pagePreviews() {
     let root = process.cwd();
     let outDir = resolve(root, 'dist');
     return {
-        name: 'spysocial-beta-preview',
+        name: 'spysocial-page-previews',
         apply: 'build',
         configResolved(config) {
             root = config.root;
             outDir = resolve(config.root, config.build.outDir);
         },
         async writeBundle() {
-            const { default: en } = (await siteModule(root, 'src/i18n/locales/en.ts'));
-            const title = attr(`${en.meta.titles.beta} · ${en.meta.siteName}`);
-            const description = attr(en.meta.descriptions.beta);
-            const url = `${ORIGIN}/beta`;
-            const image = `${ORIGIN}/images/og-beta.jpg?v=nov12`;
-            let html = await readFile(resolve(outDir, 'index.html'), 'utf8');
-            const swaps = [
-                [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
-                [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
-                [/(<meta property="og:url" content=")[^"]*"/, `$1${url}"`],
-                [/(<meta property="og:title" content=")[^"]*"/, `$1${title}"`],
-                [/(<meta property="og:description" content=")[^"]*"/, `$1${description}"`],
-                [/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`],
-                [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'],
-                [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'],
-                [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial Beta 2 playtest: Thursday, November 12, 7-8 PM Eastern')}"`],
-                [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'],
-                [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
-                [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
-                [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`],
-            ];
-            for (const [re, to] of swaps) {
-                if (!re.test(html))
-                    throw new Error(`betaPreview: index.html has no match for ${re}`);
-                html = html.replace(re, to);
+            const site = await loadSite(root);
+            const { LIVE, en } = site;
+            const home = await readFile(resolve(outDir, 'index.html'), 'utf8');
+            const routeOn = {
+                '/safety': site.ONLINE_SAFETY_TEXT,
+                '/transparency': LIVE.transparencyPage === true,
+                '/game-night-rules': LIVE.gameNightRules === true,
+                '/beta': LIVE.launchSite !== true,
+            };
+            for (const page of PREVIEW_PAGES) {
+                let html = home;
+                if (routeOn[page.path] !== false) {
+                    const title = attr(`${en.meta.titles[page.key]} · ${en.meta.siteName}`);
+                    const description = attr(en.meta.descriptions[page.key] ?? en.meta.description);
+                    const swaps = [
+                        [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
+                        [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
+                        [/(<meta property="og:url" content=")[^"]*"/, `$1${ORIGIN}${page.path}"`],
+                        [/(<meta property="og:title" content=")[^"]*"/, `$1${title}"`],
+                        [/(<meta property="og:description" content=")[^"]*"/, `$1${description}"`],
+                        [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
+                        [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
+                    ];
+                    if (page.path === '/beta') {
+                        const image = `${ORIGIN}/images/og-beta.jpg?v=nov12`;
+                        swaps.push([/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`], [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'], [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'], [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial Beta 2 playtest: Thursday, November 12, 7-8 PM Eastern')}"`], [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'], [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`]);
+                    }
+                    for (const [re, to] of swaps) {
+                        if (!re.test(html))
+                            throw new Error(`pagePreviews: index.html has no match for ${re}`);
+                        html = html.replace(re, to);
+                    }
+                }
+                await mkdir(resolve(outDir, page.path.slice(1)), { recursive: true });
+                await writeFile(resolve(outDir, page.path.slice(1), 'index.html'), html);
             }
-            await mkdir(resolve(outDir, 'beta'), { recursive: true });
-            await writeFile(resolve(outDir, 'beta', 'index.html'), html);
         },
     };
 }
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [react(), switchedSitemap(), betaPreview()],
+    plugins: [react(), launchHead(), switchedSitemap(), pagePreviews()],
     // Built files live in /static/ (renamed from /assets/ on 2026-10-17, so no browser keeps a stale copy from before)
     build: { assetsDir: 'static' },
 });

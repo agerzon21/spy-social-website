@@ -22,6 +22,8 @@ const UNLISTED = new Set<PageKey>([
   'confirmSuccess',
   'notFound',
   ...(LIVE.roadmap ? [] : (['roadmap'] as const)),
+  // The Beta 2 page is over at the launch (LIVE.launchSite sends /beta home).
+  ...(LIVE.launchSite ? (['beta'] as const) : []),
 ])
 
 /** Which page a path is, for its title. The home page takes the site's own title, anything unknown notFound's. */

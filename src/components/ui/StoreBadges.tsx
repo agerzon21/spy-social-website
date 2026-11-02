@@ -17,12 +17,14 @@ const PlayMark = () => (
  * The two store badges; they open the stores in a new tab. The small lines are each store's own badge wording in the
  * page's language (over the name, or under it where the store's badge has it there; Apple has no Arabic, Hindi or
  * Bengali badge, so those keep its English one); the badges stay left to right (icon, then words) in Arabic too, as the stores draw them.
+ * Their accessible name is the words they show (no aria-label: a label that differs from the visible words fails
+ * Lighthouse's label-in-name check and voice control).
  */
 const StoreBadges = ({ center = false }: { center?: boolean }) => {
   const t = useT().badges
   return (
     <div className={center ? `${s.row} ${s.center}` : s.row}>
-      <a className={s.badge} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label={t.appStoreLabel} dir="ltr">
+      <a className={s.badge} href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" dir="ltr">
         <FaApple className={s.icon} aria-hidden focusable={false} />
         <span className={s.text}>
           {t.appStoreSmall && <span className={s.small} dir="auto">{t.appStoreSmall}</span>}
@@ -30,7 +32,7 @@ const StoreBadges = ({ center = false }: { center?: boolean }) => {
           {t.appStoreAfter && <span className={s.small} dir="auto">{t.appStoreAfter}</span>}
         </span>
       </a>
-      <a className={s.badge} href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" aria-label={t.playLabel} dir="ltr">
+      <a className={s.badge} href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" dir="ltr">
         <PlayMark />
         <span className={s.text}>
           {t.playSmall && <span className={`${s.small} ${s.caps}`} dir="auto">{t.playSmall}</span>}

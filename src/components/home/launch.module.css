@@ -1,0 +1,58 @@
+/*
+ * The launch version's New in 2.2 section and community strip (components/home/NewIn22, LIVE.launchSite), in the
+ * home page's Film Noir look: a band like One round's, the store screenshots in a rail that runs off the edge on a
+ * phone, numbered cards and the poster face for titles. Colours come from the skin (--ss-*).
+ */
+
+.section { padding-block: 72px 64px; background: var(--ss-band); border-block: var(--ss-hairline) solid var(--ss-line); }
+.sub { margin: 0 0 30px; max-width: 34em; font-size: 18px; line-height: 1.55; color: var(--ss-muted); }
+
+/* The rail: full width, the first shot lined up with the text, the rest scrolling sideways (snap, no bar on phones). */
+.rail {
+  list-style: none; margin: 0 0 40px; padding: 4px max(16px, env(safe-area-inset-left, 0px)) 12px;
+  display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 16px;
+  overscroll-behavior-x: contain; scrollbar-width: thin;
+}
+.rail li { flex: 0 0 auto; width: 200px; scroll-snap-align: start; }
+.rail img {
+  display: block; width: 100%; height: auto; aspect-ratio: 300 / 652; border-radius: 14px;
+  background: var(--ss-surface); box-shadow: 0 0 0 var(--ss-hairline) var(--ss-line-strong), var(--ss-shadow-card);
+}
+
+.cards { list-style: none; margin: 0 0 28px; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); }
+.card {
+  display: grid; grid-template-columns: 52px minmax(0, 1fr); column-gap: 14px; align-items: baseline;
+  padding: 18px 0; border-top: var(--ss-hairline) solid var(--ss-line);
+}
+.card:last-child { border-bottom: var(--ss-hairline) solid var(--ss-line); }
+.card h3 { margin: 0 0 6px; }
+.card .text { grid-column: 2; }
+.n { grid-row: span 2; font: 900 40px/1 var(--ss-font-display); color: var(--ss-accent-text); }
+.text { margin: 0; font-size: 16px; line-height: 1.55; color: var(--ss-muted); }
+.more { margin-top: 4px; }
+
+/* ---- community: Discord and the press / creator contact ---- */
+.community { padding-block: 56px; }
+.communityGrid { display: grid; gap: 34px; grid-template-columns: minmax(0, 1fr); }
+.communityGrid .text { margin-bottom: 20px; max-width: 32em; }
+.icon { width: 20px; height: 20px; margin-inline-end: 10px; flex: none; }
+.press { padding-top: 26px; border-top: var(--ss-hairline) solid var(--ss-line); }
+.press a { font-weight: 700; color: var(--ss-text); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.press a:hover { color: var(--ss-highlight); }
+
+@media (min-width: 760px) {
+  .rail li { width: 220px; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; }
+  .card:nth-last-child(2):nth-child(odd) { border-bottom: var(--ss-hairline) solid var(--ss-line); }
+  .communityGrid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+  .press { padding-top: 0; padding-inline-start: 32px; border-top: 0; border-inline-start: var(--ss-hairline) solid var(--ss-line); }
+}
+@media (min-width: 1000px) {
+  .section { padding-block: 100px 88px; }
+  /* Wide screens: the rail sits inside the page width and all six shots fit without scrolling. */
+  .rail { max-width: 1200px; margin-inline: auto; justify-content: space-between; overflow-x: visible; }
+  .rail li { width: calc((100% - 5 * 14px) / 6); }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .card:nth-last-child(2):nth-child(odd) { border-bottom: 0; }
+  .card:nth-last-child(-n + 3) { border-bottom: var(--ss-hairline) solid var(--ss-line); }
+}

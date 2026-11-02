@@ -608,6 +608,8 @@ const ptBR: Strings = {
       deleteEmail:
         'Ou escreva para <email/> do endereço da conta, com o assunto “Delete my SpySocial account” (excluir minha conta do SpySocial). Se não puder escrever desse endereço, escreva mesmo assim informando o nome de usuário, e vamos ajudar. Nossa página <link>Excluir conta</link> explica o que é excluído e o que guardamos.',
       deleteSubject: 'Delete my SpySocial account',
+      dataRequests:
+        '<b>Os dados do seu filho ou filha:</b> como pai, mãe ou responsável, você pode nos pedir uma cópia dos dados da conta, a correção do ano de nascimento ou a exclusão da conta. Nossa <link>Política de Privacidade</link> (Privacidade das crianças) explica como confirmamos o pedido e o que ele inclui.',
       contactTitle: 'Fale conosco',
       contact: (section: number) =>
         `Escreva para <email/> sobre qualquer assunto desta página. Para qualquer coisa sobre a segurança de uma criança, coloque “Child safety” (segurança infantil) no assunto, e vamos tratar disso primeiro. Para recorrer de uma decisão ou fazer uma reclamação, inclusive sobre como cumprimos a Online Safety Act do Reino Unido, veja a seção ${section} dos nossos <link>Termos de uso</link>.`,
@@ -1080,6 +1082,39 @@ const ptBR: Strings = {
     browserText: 'Seu e-mail foi verificado com sucesso. Volte ao SpySocial no navegador e entre.',
     browserPhoneText: 'Seu e-mail foi verificado com sucesso. Volte ao SpySocial no computador em que você se cadastrou e entre.',
     browserButton: 'Voltar ao SpySocial',
+  },
+
+  launch: {
+    railLabel: "Telas do SpySocial 2.2",
+    shots: {
+      talk: "Spy Talk: Pergunte com astúcia. Ache o espião.",
+      sketch: "Spy Sketch: Desenhe o segredo. Pegue o impostor.",
+      online: "Jogar online: Mesas de 4 ou 8, a qualquer hora",
+      gamenight: "Noite de Jogos: Títulos que só saem naquela noite",
+      market: "Mercado Negro: Troque itens com outros agentes",
+      friends: "Amigos: Adicione amigos. Joguem juntos.",
+    },
+    cards: [
+      { title: "Spy Sketch", text: "Desenhe a palavra secreta num quadro compartilhado e pegue o espião que está fingindo." },
+      { title: "Jogar online", text: "Toque em Buscar partida para uma mesa de 4 ou 8, a qualquer hora. Estranhos veem sua cor de agente, nunca seu nome." },
+      { title: "Noite de Jogos", text: "Noites online com hora marcada e títulos que só saem naquela noite. A gente avisa antes de começar." },
+      { title: "Mercado Negro", text: "Troque itens com amigos e outros agentes, ou compre e venda por Intel, que você ganha jogando." },
+      { title: "Assinaturas", text: "Opcional: o Pack Pass (mensal ou anual) ou o Lifetime libera todos os pacotes de lugares e palavras e deixa você criar os seus. Nada mais é vendido." },
+    ],
+    allNotes: "Tudo o que há de novo na 2.2",
+    community: {
+      title: "Ache sua mesa",
+      text: "Noites de jogos, novidades e jogadores procurando partida: entre no Discord do SpySocial.",
+      discord: "Entrar no Discord",
+      pressTitle: "Imprensa e criadores",
+      press: "Vai escrever sobre o SpySocial ou quer jogar no seu canal? Mande um e-mail para <email/> com “Imprensa” no assunto.",
+    },
+    notes: {
+      tag: "Lançamento",
+      summary: "Nossa maior atualização: Spy Sketch, Jogar online, Noite de Jogos, trocas no Mercado Negro e assinaturas.",
+      newLabel: "Novidades da 2.2",
+      moreLabel: "E mais",
+    },
   },
 }
 

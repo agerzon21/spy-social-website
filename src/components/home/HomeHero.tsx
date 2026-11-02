@@ -27,13 +27,16 @@ const ArrowIcon = () => (
 const HomeHero = () => {
   // The browser version, on a computer once it's live (LIVE.browserLinks); phones get the stores.
   const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
-  const t = useT().home.hero
+  const strings = useT()
+  const t = strings.home.hero
+  // The launch version says 2.2 is out ("SpySocial 2.2 · Out now", the Roadmap's words) and links to New in 2.2.
+  const launch = LIVE.launchSite ? `${strings.roadmap.now.title} · ${strings.roadmap.now.out}` : null
 
   return (
     <section className={s.hero} aria-labelledby="hero-title">
       <div className={`${ui.wrap} ${s.heroGrid}`}>
         <div className={s.heroCopy}>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
+          <Eyebrow>{launch ?? t.eyebrow}</Eyebrow>
           <DisplayHeading as="h1" size={1} id="hero-title">
             {t.title}
             <span className={s.accent}>{t.titleMark}</span>

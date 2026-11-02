@@ -654,6 +654,9 @@ const en = {
         'Or email <email/> from the address on the account, with the subject "Delete my SpySocial account". If you can\'t write from that address, email us anyway with the username and we\'ll help. Our <link>Delete Account</link> page says what\'s deleted and what we keep.',
       /** The email's subject line (English, so our inbox sorts it). */
       deleteSubject: 'Delete my SpySocial account',
+      /** For parents: their child's data rights (copy, birth-year correction, deletion), pointing to Privacy's Children's Privacy. */
+      dataRequests:
+        "<b>Your child's data:</b> as a parent or guardian, you can ask us for a copy of your child's account data, to correct its birth year, or to delete the account. Our <link>Privacy Policy</link> (Children's Privacy) explains how we confirm a request and what it covers.",
       contactTitle: 'Contact us',
       contact: (section: number) =>
         `Email <email/> about anything on this page. For anything about a child's safety, put "Child safety" in the subject and we'll deal with it first. To appeal a decision or make a complaint, including about how we meet the UK's Online Safety Act, see section ${section} of our <link>Terms of Service</link>.`,
@@ -1164,6 +1167,50 @@ const en = {
     /** The same e-mail opened on a phone: back to the computer the sign-up was made on. */
     browserPhoneText: 'Your email has been verified. Go back to SpySocial on the computer where you signed up, and log in.',
     browserButton: 'Back to SpySocial',
+  },
+
+  /**
+   * The launch version of the site (LIVE.launchSite): the home page's New in 2.2 section and its community strip, the
+   * Contact page's press line and What's New's 2.2.0 entry. The cards' names are the app's own; the screenshots'
+   * descriptions repeat the words printed on each store screenshot in this language (the store listing's captions).
+   */
+  launch: {
+    /** The screenshot rail's name for screen readers. */
+    railLabel: "Screens from SpySocial 2.2",
+    /** Each store screenshot's description: the caption printed on it (Feature: line). */
+    shots: {
+      talk: "Spy Talk: Ask sharp questions. Find the spy.",
+      sketch: "Spy Sketch: Draw the secret word. Catch the faker.",
+      online: "Play Online: A table of 4 or 8, any time",
+      gamenight: "Game Night: Titles you can only earn that night",
+      market: "Black Market: Trade items with other agents",
+      friends: "Friends: Add friends. Play together.",
+    },
+    /** In this order: Spy Sketch, Play Online, Game Night, Black Market, memberships (the page gives the icons by position). */
+    cards: [
+      { title: "Spy Sketch", text: "Draw the secret word on one shared whiteboard, and catch the spy faking it." },
+      { title: "Play Online", text: "Tap Find a Game for a table of 4 or 8, any time. Strangers see your Agent Color, never your name." },
+      { title: "Game Night", text: "Scheduled nights online, with titles you can only earn that night. We'll remind you before they start." },
+      { title: "Black Market", text: "Trade items with friends and other agents, or buy and sell them for Intel, which you earn by playing." },
+      { title: "Memberships", text: "Optional: the Pack Pass (monthly or yearly) or Lifetime unlocks every pack of places and words, and lets you make your own. Nothing else is sold." },
+    ],
+    /** The link to What's New under the cards. */
+    allNotes: "Everything new in 2.2",
+    /** The strip under New in 2.2: the Discord invite, and the press and creator contact (<email/> is the address). */
+    community: {
+      title: "Find your table",
+      text: "Game nights, news and players looking for a game: join the SpySocial Discord.",
+      discord: "Join the Discord",
+      pressTitle: "Press and creators",
+      press: "Writing about SpySocial, or want to play it on your channel? Email <email/> with “Press” in the subject.",
+    },
+    /** What's New's 2.2.0 entry: its tag, summary and the two section labels (the items are the cards above and the Roadmap's 2.2 features). */
+    notes: {
+      tag: "Launch",
+      summary: "Our biggest update yet: Spy Sketch, Play Online, Game Night, trading on the Black Market, and memberships.",
+      newLabel: "New in 2.2",
+      moreLabel: "And more",
+    },
   },
 }
 

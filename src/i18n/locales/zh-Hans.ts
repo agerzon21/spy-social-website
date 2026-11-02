@@ -606,6 +606,8 @@ const zhHans: Strings = {
       deleteEmail:
         '也可以用账号绑定的邮箱发邮件至 <email/>，主题写“Delete my SpySocial account”（删除我的 SpySocial 账号）。如果你无法用那个邮箱发信，也请照样发邮件给我们并附上用户名，我们会帮你处理。我们的<link>删除账号</link>页面说明了哪些内容会被删除、哪些会被保留。',
       deleteSubject: 'Delete my SpySocial account',
+      dataRequests:
+        '<b>孩子的数据：</b>作为家长或监护人，你可以请我们提供孩子账号数据的副本、更正其出生年份，或删除该账号。我们的<link>隐私政策</link>（儿童隐私部分）说明了我们如何确认请求以及请求涵盖的内容。',
       contactTitle: '联系我们',
       contact: (section: number) =>
         `关于本页面的任何内容，请发邮件至 <email/>。凡是涉及儿童安全的事，请在主题中写“Child safety”，我们会优先处理。如需对决定提出申诉或进行投诉，包括关于我们如何遵守英国《网络安全法》（Online Safety Act）的投诉，请见我们<link>服务条款</link>的第 ${section} 节。`,
@@ -1057,6 +1059,39 @@ const zhHans: Strings = {
     browserText: '你的邮箱已成功验证。请回到浏览器里的 SpySocial 并登录。',
     browserPhoneText: '你的邮箱已成功验证。请回到注册时用的电脑上的 SpySocial 并登录。',
     browserButton: '返回 SpySocial',
+  },
+
+  launch: {
+    railLabel: "SpySocial 2.2 截图",
+    shots: {
+      talk: "Spy Talk：犀利提问，揪出卧底。",
+      sketch: "Spy Sketch：画出秘密词语，识破冒牌货。",
+      online: "在线游戏：4 人或 8 人桌，随时开局",
+      gamenight: "游戏之夜：仅限当晚才能获得的称号",
+      market: "黑市：与其他特工交易物品",
+      friends: "好友：添加好友，一起开玩",
+    },
+    cards: [
+      { title: "Spy Sketch", text: "在一块共享白板上画出秘密词语，识破假装知道的卧底。" },
+      { title: "在线游戏", text: "点击“开始匹配”，随时加入 4 人或 8 人游戏桌。陌生人只能看到你的特工颜色，看不到你的名字。" },
+      { title: "游戏之夜", text: "定时举办的在线之夜，有仅限当晚才能获得的称号。开始前我们会提醒你。" },
+      { title: "黑市", text: "与好友和其他特工交易物品，或用玩游戏赚到的 Intel 买卖物品。" },
+      { title: "会员", text: "可选：Pack Pass（按月或按年）或 Lifetime 可解锁所有地点和词语包，还能自己制作。除此之外不卖任何东西。" },
+    ],
+    allNotes: "2.2 的全部新内容",
+    community: {
+      title: "找到你的游戏桌",
+      text: "游戏之夜、最新消息，还有正在找局的玩家：快加入 SpySocial 的 Discord。",
+      discord: "加入 Discord",
+      pressTitle: "媒体与创作者",
+      press: "想报道 SpySocial，或在你的频道里玩？请发邮件至 <email/>，主题注明“媒体”。",
+    },
+    notes: {
+      tag: "正式上线",
+      summary: "迄今最大的更新：Spy Sketch、在线游戏、游戏之夜、黑市交易和会员。",
+      newLabel: "2.2 新内容",
+      moreLabel: "更多",
+    },
   },
 }
 

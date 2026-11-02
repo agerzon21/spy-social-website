@@ -43,7 +43,8 @@ const Roadmap = () => {
   const t = useT()
   const r = t.roadmap
   const { language } = useLang()
-  const out = avatarsLive(LIVE)
+  // Out from the launch: the avatar creator's switch, or the site's launch version (LIVE.launchSite), whichever is first.
+  const out = avatarsLive(LIVE) || LIVE.launchSite
   // "December 8" stays on one line.
   const day = formatDate(LAUNCH_DAY, language.locale, { year: false }).replace(/ /g, ' ')
 

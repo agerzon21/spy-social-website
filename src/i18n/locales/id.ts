@@ -608,6 +608,8 @@ const id: Strings = {
       deleteEmail:
         'Atau kirim email ke <email/> dari alamat yang terdaftar di akun, dengan subjek “Delete my SpySocial account”. Kalau Anda tidak bisa mengirim dari alamat itu, tetap kirimkan email kepada kami dengan menyebutkan nama penggunanya dan kami akan membantu. Halaman <link>Hapus akun</link> kami menjelaskan apa yang dihapus dan apa yang kami simpan.',
       deleteSubject: 'Delete my SpySocial account',
+      dataRequests:
+        '<b>Data anak Anda:</b> sebagai orang tua atau wali, Anda dapat meminta salinan data akun anak Anda, perbaikan tahun lahirnya, atau penghapusan akunnya. <link>Kebijakan Privasi</link> kami (bagian Privasi Anak) menjelaskan cara kami memastikan permintaan itu dan apa saja yang dicakupnya.',
       contactTitle: 'Hubungi kami',
       contact: (section: number) =>
         `Kirim email ke <email/> tentang apa pun di halaman ini. Untuk apa pun yang menyangkut keselamatan anak, tulis “Child safety” di subjek dan kami akan menanganinya lebih dulu. Untuk mengajukan banding atas keputusan atau menyampaikan keluhan, termasuk tentang cara kami memenuhi Online Safety Act Inggris, lihat bagian ${section} dari <link>Ketentuan Layanan</link> kami.`,
@@ -1080,6 +1082,39 @@ const id: Strings = {
     browserText: 'Emailmu berhasil diverifikasi. Kembali ke SpySocial di browser-mu, lalu masuk.',
     browserPhoneText: 'Emailmu berhasil diverifikasi. Kembali ke SpySocial di komputer tempat kamu mendaftar, lalu masuk.',
     browserButton: 'Kembali ke SpySocial',
+  },
+
+  launch: {
+    railLabel: "Layar SpySocial 2.2",
+    shots: {
+      talk: "Spy Talk: Tanya dengan cerdik. Temukan mata-matanya.",
+      sketch: "Spy Sketch: Gambar kata rahasia. Tangkap si peniru.",
+      online: "Main Online: Meja 4 atau 8 orang, kapan saja",
+      gamenight: "Malam Permainan: Gelar yang hanya didapat malam itu",
+      market: "Pasar Gelap: Tukar item dengan agen lain",
+      friends: "Teman: Tambah teman. Main bareng.",
+    },
+    cards: [
+      { title: "Spy Sketch", text: "Gambar kata rahasia di satu papan tulis bersama, lalu tangkap mata-mata yang pura-pura tahu." },
+      { title: "Main online", text: "Ketuk “Cari permainan” untuk meja 4 atau 8 orang, kapan saja. Orang asing hanya melihat warna Agen-mu, tidak pernah namamu." },
+      { title: "Malam Permainan", text: "Malam online terjadwal, dengan gelar yang hanya didapat malam itu. Kami akan mengingatkanmu sebelum dimulai." },
+      { title: "Pasar Gelap", text: "Tukar item dengan teman dan agen lain, atau beli dan jual dengan Intel yang kamu dapat dari bermain." },
+      { title: "Keanggotaan", text: "Opsional: Pack Pass (bulanan atau tahunan) atau Lifetime membuka semua paket tempat dan kata, dan kamu bisa membuat paket sendiri. Tidak ada lagi yang dijual." },
+    ],
+    allNotes: "Semua yang baru di 2.2",
+    community: {
+      title: "Temukan mejamu",
+      text: "Malam permainan, kabar terbaru, dan pemain yang sedang cari teman main: gabung ke Discord SpySocial.",
+      discord: "Gabung ke Discord",
+      pressTitle: "Pers dan kreator",
+      press: "Mau menulis tentang SpySocial, atau memainkannya di kanalmu? Kirim email ke <email/> dengan “Press” di subjek.",
+    },
+    notes: {
+      tag: "Peluncuran",
+      summary: "Pembaruan terbesar kami: Spy Sketch, Main online, Malam Permainan, tukar-menukar di Pasar Gelap, dan keanggotaan.",
+      newLabel: "Baru di 2.2",
+      moreLabel: "Dan lainnya",
+    },
   },
 }
 

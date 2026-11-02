@@ -8,11 +8,16 @@ import SocialLinks from '../components/SocialLinks'
 import { LinkRow, LinkRows } from '../components/ui/LinkRow'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 import { useT } from '../i18n'
+import { rich } from '../i18n/rich'
+import { LIVE } from '../lib/legalRelease'
+import { PRESS_EMAIL } from '../lib/social'
 
 const Support = () => {
   const [copied, setCopied] = useState(false)
   const toast = useThemedToast()
-  const t = useT().support
+  const strings = useT()
+  const t = strings.support
+  const press = strings.launch.community
   const email = 'support@spysocial.app'
 
   const handleCopy = async () => {
@@ -94,6 +99,24 @@ const Support = () => {
               </Box>
             </VStack>
           </Box>
+
+          {/* Press and creators (the launch version, LIVE.launchSite) */}
+          {LIVE.launchSite && (
+            <Box>
+              <Text fontSize="17px" fontWeight="700" color="ss.text" mb={1}>
+                {press.pressTitle}
+              </Text>
+              <Text fontSize="16px" color="ss.muted" lineHeight="1.55">
+                {rich(press.press, {
+                  email: () => (
+                    <Text as="a" href={`mailto:${PRESS_EMAIL}?subject=Press`} dir="ltr" color="ss.link" fontWeight="600" textDecoration="underline">
+                      {PRESS_EMAIL}
+                    </Text>
+                  ),
+                })}
+              </Text>
+            </Box>
+          )}
 
           {/* Quick links */}
           <VStack spacing={3} align="stretch">

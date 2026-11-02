@@ -109,6 +109,54 @@
   ],
   "rewrites": [
     {
+      "source": "/support",
+      "destination": "/support/index.html"
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/contact-us/index.html"
+    },
+    {
+      "source": "/rules",
+      "destination": "/rules/index.html"
+    },
+    {
+      "source": "/safety",
+      "destination": "/safety/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy/index.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms/index.html"
+    },
+    {
+      "source": "/child-safety",
+      "destination": "/child-safety/index.html"
+    },
+    {
+      "source": "/whats-new",
+      "destination": "/whats-new/index.html"
+    },
+    {
+      "source": "/roadmap",
+      "destination": "/roadmap/index.html"
+    },
+    {
+      "source": "/delete-account",
+      "destination": "/delete-account/index.html"
+    },
+    {
+      "source": "/transparency",
+      "destination": "/transparency/index.html"
+    },
+    {
+      "source": "/game-night-rules",
+      "destination": "/game-night-rules/index.html"
+    },
+    {
       "source": "/beta",
       "destination": "/beta/index.html"
     },

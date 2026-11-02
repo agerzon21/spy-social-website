@@ -2,24 +2,11 @@ import { ChakraProvider, Box, extendTheme } from '@chakra-ui/react'
 import { HelmetProvider } from 'react-helmet-async'
 import { MotionConfig } from 'framer-motion'
 import { Global } from '@emotion/react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { Layout } from './components'
 import ScrollManager from './components/ScrollManager'
 import Home from './pages/Home'
-import ResetPassword from './pages/ResetPassword'
 import { lazy, Suspense, useMemo } from 'react'
-import NotFound from './pages/NotFound'
-import Privacy from './pages/Privacy'
-import Terms from './pages/Terms'
-import Rules from './pages/Rules'
-import Safety from './pages/Safety'
-import ChildSafety from './pages/ChildSafety'
-import Support from './pages/Support'
-import FAQ from './pages/FAQ'
-import Join from './pages/Join'
-import JoinEvent from './pages/JoinEvent'
-import WhatsNew from './pages/WhatsNew'
-import DeleteAccount from './pages/DeleteAccount'
 import { LIVE, ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 import { SKIN_CSS, theme } from './theme'
 import { colorModeManager } from './theme/mode'
@@ -43,6 +30,21 @@ const page = <T,>(load: () => Promise<T>) =>
       }) as Promise<{ default: React.ComponentType<object> }>
   )
 
+// Every page but Home in its own chunk (Lighthouse 2026-11-02: the legal pages' text was most of the first load's
+// unused JavaScript). The first visit to one of them loads its chunk; `page` handles a chunk lost to a new deploy.
+const ResetPassword = page(() => import('./pages/ResetPassword'))
+const NotFound = page(() => import('./pages/NotFound'))
+const Privacy = page(() => import('./pages/Privacy'))
+const Terms = page(() => import('./pages/Terms'))
+const Rules = page(() => import('./pages/Rules'))
+const Safety = page(() => import('./pages/Safety'))
+const ChildSafety = page(() => import('./pages/ChildSafety'))
+const Support = page(() => import('./pages/Support'))
+const FAQ = page(() => import('./pages/FAQ'))
+const Join = page(() => import('./pages/Join'))
+const JoinEvent = page(() => import('./pages/JoinEvent'))
+const WhatsNew = page(() => import('./pages/WhatsNew'))
+const DeleteAccount = page(() => import('./pages/DeleteAccount'))
 const ConfirmSuccess = page(() => import('./pages/ConfirmSuccess'))
 const Agree = page(() => import('./pages/Agree'))
 // Its own chunk: nothing links to it until LIVE.roadmap is on (the route works either way).
@@ -93,7 +95,8 @@ function App() {
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
-              <Route path="/beta" element={<Layout><Beta /></Layout>} />
+              {/* After Beta 2, the launch version sends the old playtest link home (LIVE.launchSite). */}
+              <Route path="/beta" element={LIVE.launchSite ? <Navigate to="/" replace /> : <Layout><Beta /></Layout>} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
               <Route path="/join/e/:id" element={<Layout><JoinEvent /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
