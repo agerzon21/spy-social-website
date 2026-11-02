@@ -37,6 +37,11 @@ const SupportEmail = () => (
   </ChakraLink>
 )
 
+// The data-rights server file (app repo feat/data-rights-1102, 20261207881000_data_rights: the request log kept 24
+// months, the JSON export, the birth-year correction, the fair-play score deleted with the account). Flip to true the
+// day it is applied live (and move it into legalRelease LIVE with a PRIVACY_LAST_UPDATED entry when that file is free).
+const DATA_RIGHTS_SERVER = false
+
 /** How long chat lines stay, for the Chat Messages item and Data Retention. */
 const chatRetention = (what: string) =>
   PRIVACY.scheduledRetention
@@ -983,6 +988,12 @@ const Privacy: React.FC = () => {
         {PRIVACY.banTombstone
           ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
           : ''}
+        {PRIVACY.intercepts
+          ? ` The signs our fair-play checks find are kept for up to 400 days, or longer while they're part of an open case; reward holds and the reviews players ask for stay with their case for as long as we keep reports.${DATA_RIGHTS_SERVER ? " The account's fair-play score is kept while you have an account and deleted with it." : ''}`
+          : ''}
+        {DATA_RIGHTS_SERVER
+          ? ' Our record of a privacy request (see Your Rights) is kept for 24 months after we answer it.'
+          : ''}
       </P>
       <P>
         We may remove accounts that haven't been used for 12 months, after telling you in the app or by email where
@@ -1307,14 +1318,73 @@ const Privacy: React.FC = () => {
       </Bullets>
       <P>
         To exercise these rights, please contact us at <SupportEmail />. So we know a request is really yours, please
-        write from the email address on your account. We reply within one month.
+        write from the email address on your account. We reply within one month, free of charge. If a request is
+        complex, or you send us several, we may take up to two more months, and we'll tell you why within the first
+        month.
       </P>
+      <Bullets>
+        <Item label="A copy of your data">
+          {DATA_RIGHTS_SERVER
+            ? 'We email a copy of the personal data linked to your account, in a machine-readable file (JSON), to the email address on your account: your account and sign-in details, profile, settings and the answers you gave the app, your games, stats and rewards, the chat messages we still keep, purchases, trades, friends, follows and the other records we keep about your account. Other players appear in it only as "another player". '
+            : 'We send a copy of the personal data linked to your account, in a machine-readable file, to the email address on your account. Other players appear in it only as "another player". '}
+          To protect other people and keep SpySocial safe, it doesn't include reports others made about you or who made
+          them, who blocked you, the records and score of our fair-play and safety checks, the encrypted IP addresses
+          described above, or one-time codes; the copy lists what it leaves out and why.
+        </Item>
+        <Item label="Correcting your data">
+          You can change your display name in the app at any time
+          {PRIVACY.usernameLimit ? ', and your username once every 30 days' : ', and your username'}. Your email address
+          and birth year can't be changed in the app: email us. We change a birth year to a later one (a younger age) when
+          you, or your parent or guardian, ask; to an earlier one (an older age) only when we can confirm it, for example
+          from proof of age, because age limits keep younger players safe. If the corrected age is under 13, we delete
+          the account (see Children's Privacy). A correction that makes you under 18 also gives your account the
+          Privacy &amp; Friends choices of a player under 18.
+        </Item>
+        <Item label="Deleting your data">
+          In the app at any time, or by asking us (see When you delete your account, above).
+        </Item>
+        <Item label="Objecting or restricting">
+          Tell us which use you object to. We stop it unless we have compelling legitimate grounds that override your
+          interests, such as keeping players safe and preventing fraud and cheating, or we need it to establish,
+          exercise or defend legal claims. You can withdraw consent at any time: for your device's permissions in your
+          device's settings, and for translation by OpenAI with the app's own choices.
+        </Item>
+        <Item label="Guest accounts">
+          A guest account has no email address, so we can't confirm by email that a request is yours. A guest can
+          delete their account at any time by signing out; to get a copy or a correction, first save the account with
+          an email address in the app.
+        </Item>
+        <Item label="Checking that it's you">
+          We answer only to the email address on the account (if you signed in with Apple and hid your email, that's
+          Apple's private relay address). If you write from another address, we write to the account's address to
+          confirm, and we may ask for more if we still can't be sure. Someone acting for you (for example an authorized
+          agent under California law) needs your signed permission, and we'll still confirm with you.
+        </Item>
+        {DATA_RIGHTS_SERVER && (
+          <Item label="Our record of your request">
+            We keep a record of each request (what was asked, when, how we confirmed it was you, and when and how we
+            answered) for 24 months after we answer it, even if the account has been deleted, to show that we answered
+            it.
+          </Item>
+        )}
+      </Bullets>
 
       <H2>California Privacy Rights</H2>
       <P>
-        If you are a California resident, you have specific rights regarding your personal information under the
-        California Consumer Privacy Act (CCPA). You have the right to request information about how we collect, use,
-        and disclose your personal information, and to request access to and deletion of your personal information.
+        If you are a California resident, the California Consumer Privacy Act (CCPA), as amended by the California
+        Privacy Rights Act, gives you the right to know what personal information we collect, use and disclose (this
+        policy lists it: account, profile and sign-in details, what you do and send in the game, device and network
+        information, purchases, and what our fair-play and safety checks find), to get a copy of it, to have it
+        corrected or deleted, and not to be treated differently for using these rights. You use them as described in
+        Your Rights, above; we reply within one month (the CCPA allows 45 days).
+      </P>
+      <P>
+        We don't sell your personal information, and we don't share it for cross-context behavioral advertising
+        (targeted ads); we never have. SpySocial shows no ads: the app has no advertising or ad-tracking services and
+        doesn't use your device's advertising identifier, and our website has no ad or tracking pixels. So there is
+        nothing to opt out of, and we don't sell or share the personal information of anyone, including players under
+        16. We use sensitive personal information (such as the details you sign in with) only to provide SpySocial and
+        keep it secure, never to infer anything about you.
       </P>
 
       <H2>European Economic Area (EEA) and UK Users</H2>
@@ -1340,6 +1410,15 @@ const Privacy: React.FC = () => {
         {PRIVACY.under13Deletion ? ' in any other way' : ''} that an account belongs to a child under 13
         {PRIVACY.under13Deletion ? ', we delete it in the same way.' : ', including from the birth year entered in the app, we delete the account and its information.'}{' '}
         If you believe a child under 13 is using SpySocial, email <SupportEmail /> and we'll delete their account.
+      </P>
+      <P>
+        If you're the parent or guardian of a player under 18, you can ask us to delete your child's account, to
+        correct its birth year, or for a copy of its data (see Your Rights). Email <SupportEmail /> with your child's
+        username. So that we never act on a stranger's request, we confirm it with the email address on the account
+        (or, for a guest account, which has none, we explain how to delete it in the app by signing out), and for a
+        copy of the data we may also ask you to show that you're the child's parent or guardian. We reply within one
+        month. A request to delete the account of a child under 13 is always granted. A copy never includes other
+        players' data.
       </P>
       {PRIVACY.socialFeatures && (
         <P>

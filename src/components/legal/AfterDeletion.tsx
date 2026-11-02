@@ -72,6 +72,12 @@ export const AfterDeletionList = () => (
         and party chat lines you wrote stay with the party, with your account taken out of them, until they're deleted 30 days after they were sent.
       </ListItem>
     )}
+    {PRIVACY.intercepts && (
+      <ListItem>
+        The signs our fair-play checks found on your account stay until their 400 days end, or longer while they're
+        part of an open case, identified only by a random ID that no longer leads to your account.
+      </ListItem>
+    )}
     {PRIVACY.ipVault && (
       <ListItem>
         The encrypted IP addresses of your account's sign-up and sign-ins stay until their 90 days end, or up to 1 year
