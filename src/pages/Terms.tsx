@@ -688,10 +688,9 @@ const Terms: React.FC = () => {
           <H3>Trades</H3>
           <Bullets>
             <ListItem>
-              Trades are between friends, inside the app, and carry no message. You can trade once you and your friend
-              have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've
-              reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the
-              trade happens.
+              {LIVE.tradeGatesNov2
+                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats and that our fair-play checks don't flag). Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."
+                : "Trades are between friends, inside the app, and carry no message. You can trade once you and your friend have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."}
             </ListItem>
             <ListItem>
               Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
@@ -744,7 +743,8 @@ const Terms: React.FC = () => {
                 " Unopened Intercepts can be bought and sold there too, by tier, for Intel only. What's inside one is random and is decided only when it's opened, by the odds the app shows for its tier."}
             </ListItem>
             <ListItem>
-              The same rules as Trades decide who can use it (an adult, level 20, an account at least 14 days old, a
+              The same rules as Trades decide who can use it (an adult,{' '}
+              {LIVE.tradeGatesNov2 ? 'an account at least 7 days old that has played 3 counted games' : 'level 20, an account at least 14 days old'}, a
               confirmed email, no trading pause), and Intel moves on it only once SpySocial 2.2 opens to everyone.
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
               instead no offer can be priced below an item's minimum price, what one copy of it shreds for.

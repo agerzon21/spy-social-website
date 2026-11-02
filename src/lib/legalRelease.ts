@@ -1152,6 +1152,17 @@ export const LIVE = {
    */
   giftsTradable: true,
   /**
+   * Trading's gates (owner 2026-11-02, live on the app server: app_config.trading.min_friend_days 0 and
+   * 20261102002603_trade_games_not_level): friends can trade right away (no 3 days as friends; the 7-day protection and
+   * reversal stay; under-18s still only with Friend Code friends), an account 7 days old (was 14), 3 counted games
+   * (player_stats.games_eligible: finished games that count toward stats and that the fair-play checks don't flag) in
+   * place of level 20; email confirmed, trade locks and the new-device wait unchanged. Turns on: Terms 9 Trades' who-
+   * can-trade line and the Black Market's, Privacy's Trades item (counted games and account age decide), and the
+   * Transparency Report's November 2 rule changes; LEGAL_LAST_UPDATED / PRIVACY_LAST_UPDATED November 2, 2026. A
+   * server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD. Off only if those values go back.
+   */
+  tradeGatesNov2: true,
+  /**
    * Volunteer moderators' room and pack actions (live functions mod_watch_table, mod_table_help, mod_end_game,
    * mod_end_night, mod_remove_message, mod_review_pack; each behind the moderator's own permission and the owner's
    * moderator_settings): a moderator with the permission may watch a Game Night table, help at it, end a Game Night
@@ -1328,6 +1339,8 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  */
 export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.tradeGatesNov2
+    ? 'November 2, 2026' // Terms 9: friends trade right away, a 7-day-old account and 3 counted games (no level): the site went up with it on
   : LIVE.interceptsMarket
     ? 'November 2, 2026' // Terms 9: unopened Intercepts tradable and on the Black Market (feat/intercepts-market): set to the day the site goes up with it on
   : LIVE.mintedCollectibles
@@ -1370,6 +1383,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
  */
 export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.tradeGatesNov2
+    ? 'November 2, 2026' // the Trades item: counted games and the account's age decide who can trade: the site went up with it on
   : LIVE.interceptsMarket
     ? 'November 2, 2026' // the Intercepts item: unopened Intercepts traded and sold for Intel (feat/intercepts-market): set to the day the site goes up with it on
   : LIVE.mintedCollectibles

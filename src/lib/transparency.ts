@@ -55,8 +55,20 @@ const GIFTS_TRADABLE: { day: string; what: string; from: string; to: string }[] 
   { day: 'November 1, 2026', what: 'when items we give as gifts, items from a code and the Beta set can be traded', from: 'after 3 real games (gifts: never)', to: 'at once' },
 ]
 
+/**
+ * Trading's gates (owner 2026-11-02; app server app_config.trading.min_friend_days 0 and 20261102002603
+ * trade_games_not_level): shown while LIVE.tradeGatesNov2 is on. When a gate changes again, add the change with its
+ * own day instead of removing these.
+ */
+const TRADE_GATES_NOV2: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'November 2, 2026', what: 'how long two players must be friends before they can trade (friends can trade right away; under-18s still only with friends added in person by Friend Code)', from: '3 days', to: 'right away' },
+  { day: 'November 2, 2026', what: 'how old an account must be to trade or use the Black Market', from: '14 days', to: '7 days' },
+  { day: 'November 2, 2026', what: 'the play needed to trade or use the Black Market', from: 'level 20', to: '3 counted games' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.tradeGatesNov2 ? TRADE_GATES_NOV2 : []),
   ...(LIVE.giftsTradable ? GIFTS_TRADABLE : []),
   ...(LIVE.uniquesRarer ? UNIQUES_RARER : []),
 ]

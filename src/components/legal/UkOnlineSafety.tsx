@@ -100,7 +100,7 @@ const UkOnlineSafety = () => {
       cells: [
         <>
           {LIVE.trading
-            ? `Players can trade earned items with friends inside the app, with no messages in a trade and no real-money trading allowed. Players 13–17 trade items for items only, with friends added in person, and never Intel. What a player gets is protected for 7 days and can be reversed, and our checks flag trades that look like real-money trading, account theft or an unfair trade with a minor for a person to review. There's no gifting from minors, tipping${LIVE.blackMarket ? ' or ads' : ', listings or ads'}`
+            ? `Players can trade earned items with friends inside the app, with no messages in a trade and no real-money trading allowed. Players 13–17 trade items for items only, with friends added in person, and never Intel.${LIVE.tradeGatesNov2 ? ' Trading needs an account at least 7 days old that has played 3 counted games and has a confirmed email; friends can trade as soon as they are friends.' : ''} What a player gets is protected for 7 days and can be reversed, and our checks flag trades that look like real-money trading, account theft or an unfair trade with a minor for a person to review. There's no gifting from minors, tipping${LIVE.blackMarket ? ' or ads' : ', listings or ads'}`
             : "Nothing of value can move between players: there's no trading, gifting, tipping, listings or ads"}
           {LIVE.trading && LIVE.blackMarket
             ? ". Adults can also buy and sell tradable items for Intel, never for money, on the Black Market, which shows no names and carries no messages; its own checks look for sales between linked accounts and prices set to move Intel between players. Intel and items can't be bought or cashed out"

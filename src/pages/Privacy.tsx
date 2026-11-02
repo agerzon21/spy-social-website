@@ -397,6 +397,9 @@ const Privacy: React.FC = () => {
             and the email is deleted from our mail queue once it's sent. Trades carry no message. Only you and the
             other player see a trade{PRIVACY.mintedCollectibles ? ' (the public ledger shows only that a traded collectible moved from one holder code to another, never who traded it; see Collectibles and the public ledger)' : ''}.
             Trades are kept with your Intel and item history.
+            {PRIVACY.tradeGatesNov2
+              ? " Whether you can trade is decided from your account's age, whether its email is confirmed and how many counted games you've played (finished games that count toward your stats and that our fair-play checks don't flag); we use the game records we already keep for this, and nothing new is collected."
+              : ''}
           </Item>
         )}
         {/* LIVE.blackMarket: the Black Market, Intel only (legalRelease). */}
