@@ -397,9 +397,11 @@ const Privacy: React.FC = () => {
             and the email is deleted from our mail queue once it's sent. Trades carry no message. Only you and the
             other player see a trade{PRIVACY.mintedCollectibles ? ' (the public ledger shows only that a traded collectible moved from one holder code to another, never who traded it; see Collectibles and the public ledger)' : ''}.
             Trades are kept with your Intel and item history.
-            {PRIVACY.tradeGatesNov2
-              ? " Whether you can trade is decided from your account's age, whether its email is confirmed and how many counted games you've played (finished games that count toward your stats and that our fair-play checks don't flag); we use the game records we already keep for this, and nothing new is collected."
-              : ''}
+            {PRIVACY.tradeGatesNov2 && PRIVACY.gameDeviceChecks
+              ? " Whether you can trade is decided from your account's age, whether its email is confirmed and how many counted games you've played (finished games with at least 2 other real players that count toward your stats and that our fair-play checks don't flag). To check that the players in a counted game are different people, we keep, for each game you play, the coded install code of the device you played it from (see Device Information), and compare the networks accounts signed up from. The device notes are kept for 90 days and deleted with your account."
+              : PRIVACY.tradeGatesNov2
+                ? " Whether you can trade is decided from your account's age, whether its email is confirmed and how many counted games you've played (finished games that count toward your stats and that our fair-play checks don't flag); we use the game records we already keep for this, and nothing new is collected."
+                : ''}
           </Item>
         )}
         {/* LIVE.blackMarket: the Black Market, Intel only (legalRelease). */}
@@ -751,6 +753,9 @@ const Privacy: React.FC = () => {
           the app. To keep accounts safe{PRIVACY.trading ? ' (for example, to pause trading after a sign-in on a new device)' : ''}, we also keep, for each app install you
           sign in on, a coded (hashed) install code that isn't your device's own ID, with its platform, app version and
           when it was first and last used{PRIVACY.trading ? ", and which of your sign-in sessions registered an install (a session that never did can't trade)" : ''}; it's deleted with your account.
+          {PRIVACY.gameDeviceChecks
+            ? " We also note which install each of your sign-in sessions is on, which install each Play Online search was made from and which install you played each game from. We use these notes only so that two accounts on one device at the same moment aren't seated at the same Play Online table or put in the same party, and so that counted games for trading are played by different people (people who share a home or Wi-Fi aren't affected). These notes are kept for 90 days and deleted with your account."
+            : ''}
         </Item>
         {PRIVACY.browserLegal && (
           <Item label="Your Browser">
@@ -948,6 +953,9 @@ const Privacy: React.FC = () => {
           : ''}
         {PRIVACY.trading
           ? " Trades and their steps are kept for good, like the Intel ledger, with no link to you once you delete your account; a code we email for a big trade stops working after 30 minutes."
+          : ''}
+        {PRIVACY.gameDeviceChecks
+          ? ' The device notes for sign-in sessions, Play Online searches and games (see Device Information) are kept for 90 days, then deleted.'
           : ''}
         {PRIVACY.blackMarket
           ? ' Black Market offers, listings and sales are kept for good in the same way, with no link to you once you delete your account; the coded copies of the codes we email you are deleted with your account.'

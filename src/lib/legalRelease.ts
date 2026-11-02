@@ -1174,6 +1174,16 @@ export const LIVE = {
    */
   tradeNoLimits: true,
   /**
+   * Same-device checks on the app server (owner 2026-11-02; 20261207670000 same_device_now, 20261207690000
+   * counted_games_device, 20261207695000 device_records_prune): the coded install code of the device each sign-in
+   * session is on, each Play Online search was made from and each game was played from, so two accounts on one device
+   * at the same moment aren't seated at one Play Online table or put in one party, and counted games for trading are
+   * played by different people. Kept 90 days (daily cleanup), deleted with the account. Turns on: Privacy's Trades item
+   * and Device Information, and the retention line; PRIVACY_LAST_UPDATED stays November 2, 2026. A server switch: set
+   * in LIVE, never in PRIVACY_AHEAD.
+   */
+  gameDeviceChecks: true,
+  /**
    * Volunteer moderators' room and pack actions (live functions mod_watch_table, mod_table_help, mod_end_game,
    * mod_end_night, mod_remove_message, mod_review_pack; each behind the moderator's own permission and the owner's
    * moderator_settings): a moderator with the permission may watch a Game Night table, help at it, end a Game Night
@@ -1396,6 +1406,8 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
  */
 export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.gameDeviceChecks
+    ? 'November 2, 2026' // the Trades item and Device Information: the device each game is played from, 90 days: the site went up with it on
   : LIVE.tradeGatesNov2
     ? 'November 2, 2026' // the Trades item: counted games and the account's age decide who can trade: the site went up with it on; also If SpySocial Changes Hands (business transfers), added November 2, 2026
   : LIVE.interceptsMarket
