@@ -732,7 +732,8 @@ const Terms: React.FC = () => {
               reverse your trades (once every 90 days): this reverses all of your protected trades and pauses your
               trading for 30 days. We can also reverse a trade for account theft or fraud. After 7 days a trade is
               final, except for items removed for cheating. If you delete your account within those 7 days, what you
-              got goes back to the player who gave it.
+              got goes back to the player who gave it. If the other player deletes their account within those 7 days,
+              the trade is undone: you get back what you gave, and what you received from them is removed.
             </ListItem>
             <ListItem>
               Big trades ask for a code we email you. Trading pauses for a while after your email or sign-in method
@@ -780,7 +781,9 @@ const Terms: React.FC = () => {
             <ListItem>
               A sale on Items is final at once. A Unique bought on Rare Finds is protected for 3 days: it can't be traded,
               listed, shredded or traded up, and the seller's Intel waits until then; in that time the sale can be
-              reversed as Trades above describes, or by us for account theft or fraud. We check the market for
+              reversed as Trades above describes, or by us for account theft or fraud. If the buyer or the seller
+              deletes their account in those 3 days, the sale is undone for the other one: a buyer gets back the Intel
+              paid and the Unique is removed; a seller gets the Unique back instead of its price. We check the market for
               manipulation (for example sales between your own accounts or prices set to move Intel between players), may
               pause it, and may reverse sales and suspend the accounts involved when they break these Terms. We may change
               the fee, the limits and which items can be listed, with notice in the app.
