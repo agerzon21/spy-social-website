@@ -1249,6 +1249,15 @@ const Privacy: React.FC = () => {
         protect someone's life or safety.
       </P>
 
+      <H2>If SpySocial Changes Hands</H2>
+      <P>
+        SpySocial may move to a company that its owner controls (for example, SpySocial LLC, which is being set up),
+        or to someone else who takes over SpySocial, such as a buyer. If that happens, your information moves with it,
+        and the new owner must keep using it under this privacy policy. Before anything changes in how your
+        information is used, we'll tell you in the app and on this website. You can delete your account at any time,
+        before or after a change.
+      </P>
+
       <H2>Your Rights</H2>
       <P>Depending on your location, you may have the right to:</P>
       <Bullets>

@@ -1384,7 +1384,7 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
 export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.tradeGatesNov2
-    ? 'November 2, 2026' // the Trades item: counted games and the account's age decide who can trade: the site went up with it on
+    ? 'November 2, 2026' // the Trades item: counted games and the account's age decide who can trade: the site went up with it on; also If SpySocial Changes Hands (business transfers), added November 2, 2026
   : LIVE.interceptsMarket
     ? 'November 2, 2026' // the Intercepts item: unopened Intercepts traded and sold for Intel (feat/intercepts-market): set to the day the site goes up with it on
   : LIVE.mintedCollectibles
