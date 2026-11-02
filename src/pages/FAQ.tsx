@@ -1,184 +1,242 @@
-import { Box, Container, Heading, Text, VStack, Link as ChakraLink, Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, UnorderedList, ListItem } from '@chakra-ui/react'
-import type { ReactNode } from 'react'
+import { Heading } from '@chakra-ui/react'
+import { Fragment, useEffect, useMemo, useState, type ReactNode } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { useT, type Strings } from '../i18n'
-import { rich } from '../i18n/rich'
-import { LIVE } from '../lib/legalRelease'
+import { useLang, type LangCode } from '../i18n'
+import { rich, type Parts } from '../i18n/rich'
+import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
+import { DISCORD_URL } from '../lib/social'
 import SocialLinks from '../components/SocialLinks'
+import en from '../help/locales/en'
+import type { HelpItem, HelpOpts, HelpSection, HelpText } from '../help/types'
+import s from './FAQ.module.css'
 
-interface FAQSection {
-  title: string
-  items: { question: string; answer: ReactNode }[]
+/**
+ * Help & FAQ (/support): every question in its topic, a search over them all, an #anchor per topic and question
+ * (open on arrival), and the same questions as schema.org FAQPage data for search engines. The words are
+ * src/help/locales (one chunk per language, loaded here only); lines true only from a release follow LIVE.
+ */
+
+const EMAIL = 'support@spysocial.app'
+
+const OPTS: HelpOpts = {
+  launch: LIVE.launchSite,
+  purchases: LIVE.purchases,
+  passwordless: LIVE.passwordless,
+  onePool: LIVE.onePool,
+  autoTranslation: LIVE.autoTranslation,
 }
 
-const Strong = ({ children }: { children: ReactNode }) => (
-  <Text as="span" fontWeight="700" color="ss.text">{children}</Text>
+// Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).
+const loaders = import.meta.glob<{ default: HelpText }>(['../help/locales/*.ts', '!../help/locales/en.ts'])
+const cache = new Map<LangCode, HelpText>([['en', en]])
+
+function useHelp(lang: LangCode): HelpText | null {
+  const [, setTick] = useState(0)
+  const ready = cache.get(lang) ?? null
+  useEffect(() => {
+    if (cache.has(lang)) return
+    const load = loaders[`../help/locales/${lang}.ts`]
+    let live = true
+    ;(load ? load().then((m) => m.default) : Promise.resolve(en))
+      .catch(() => en)
+      .then((text) => {
+        cache.set(lang, text)
+        if (live) setTick((n) => n + 1)
+      })
+    return () => {
+      live = false
+    }
+  }, [lang])
+  return ready
+}
+
+/** Drops a line that links to a page this build doesn't have (the Safety page before its text is published). */
+const keep = (line: string) => ONLINE_SAFETY_TEXT || !line.includes('<safety>')
+
+const PARTS: Parts = {
+  b: (c) => <b>{c}</b>,
+  terms: (c) => <Link to="/terms">{c}</Link>,
+  privacy: (c) => <Link to="/privacy">{c}</Link>,
+  rules: (c) => <Link to="/rules">{c}</Link>,
+  gnr: (c) => (LIVE.gameNightRules ? <Link to="/game-night-rules">{c}</Link> : c),
+  delete: (c) => <Link to="/delete-account">{c}</Link>,
+  safety: (c) => <Link to="/safety">{c}</Link>,
+  discord: (c) => (
+    <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer">
+      {c}
+    </a>
+  ),
+  email: () => <a href={`mailto:${EMAIL}`}>{EMAIL}</a>,
+}
+
+/** A line as plain text: for the search and the structured data. */
+const plain = (line: string) =>
+  line
+    .replace(/<email\s*\/>/g, EMAIL)
+    .replace(/<\/?[a-z]+>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+
+/** Lower case, Latin accents off, so "resume" finds "résumé" and "ПЕРЕХВАТ" finds "перехват". */
+const fold = (text: string) => text.toLocaleLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ё/g, 'е')
+
+const lines = (item: HelpItem) => item.a.filter(keep)
+
+function matches(item: HelpItem, section: HelpSection, words: string[]): boolean {
+  const hay = fold([item.q, section.title, ...lines(item)].map(plain).join(' '))
+  return words.every((w) => hay.includes(w))
+}
+
+const Chevron = () => (
+  <svg className={s.chev} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <path d="m6 9 6 6 6-6" />
+  </svg>
 )
 
-/** A translated line with its <b> parts in bold. */
-const r = (text: string) => rich(text, { b: (c) => <Strong>{c}</Strong> })
-
-const Bullets = ({ lines }: { lines: string[] }) => (
-  <UnorderedList spacing={1.5}>
-    {lines.map((line) => (
-      <ListItem key={line}>{r(line)}</ListItem>
-    ))}
-  </UnorderedList>
-)
-
-/** The questions in their sections; what the app doesn't do yet stays off with its LIVE switch. */
-function faqSections(f: Strings['faq']): FAQSection[] {
-  return [
-    {
-      title: f.sections.start,
-      items: [
-        { question: f.startGame.q, answer: <Bullets lines={f.startGame.a} /> },
-        { question: f.firstTime.q, answer: <Bullets lines={f.firstTime.a} /> },
-        {
-          question: f.howMany.q,
-          answer: (
-            <Box>
-              <Text mb={2}>{f.howMany.intro}</Text>
-              <Bullets lines={f.howMany.a} />
-            </Box>
-          ),
-        },
-      ],
-    },
-    {
-      title: f.sections.modes,
-      items: [{ question: f.gameModes.q, answer: <Bullets lines={f.gameModes.a} /> }],
-    },
-    {
-      title: f.sections.features,
-      items: [
-        { question: f.notebook.q, answer: <Bullets lines={f.notebook.a} /> },
-        {
-          question: f.hints.q,
-          answer: <Bullets lines={[...(LIVE.onePool ? [f.hints.onePool] : f.hints.gameLanguage), f.hints.reload]} />,
-        },
-        { question: f.poke.q, answer: <Text>{f.poke.a}</Text> },
-        { question: f.leave.q, answer: <Text>{f.leave.a}</Text> },
-      ],
-    },
-    {
-      title: f.sections.sharing,
-      items: [
-        { question: f.share.q, answer: <Bullets lines={f.share.a} /> },
-        { question: f.link.q, answer: <Bullets lines={f.link.a} /> },
-      ],
-    },
-    {
-      title: f.sections.languages,
-      items: [
-        {
-          question: f.languages.q,
-          answer: (
-            <Bullets
-              lines={[
-                f.languages.setLanguage,
-                ...(LIVE.onePool
-                  ? [...f.languages.onePool, LIVE.autoTranslation ? f.languages.chatAuto : f.languages.chatTap]
-                  : [f.languages.hostPicks]),
-                f.languages.parity,
-                ...(LIVE.onePool ? [] : [f.languages.differs]),
-              ]}
-            />
-          ),
-        },
-      ],
-    },
-    {
-      title: f.sections.host,
-      items: [
-        {
-          question: f.customize.q,
-          answer: (
-            <Bullets
-              lines={[
-                f.customize.a[0],
-                LIVE.onePool ? f.customize.turnOnly : f.customize.languageAndTurn,
-                ...f.customize.a.slice(1),
-              ]}
-            />
-          ),
-        },
-        { question: f.endEarly.q, answer: <Text>{r(f.endEarly.a)}</Text> },
-      ],
-    },
-    {
-      title: f.sections.account,
-      items: [
-        { question: f.needAccount.q, answer: <Bullets lines={f.needAccount.a} /> },
-        { question: f.forgot.q, answer: <Bullets lines={f.forgot.a} /> },
-      ],
-    },
-    {
-      title: f.sections.trouble,
-      items: [
-        { question: f.code.q, answer: <Bullets lines={f.code.a} /> },
-        { question: f.connection.q, answer: <Bullets lines={f.connection.a} /> },
-        { question: f.offline.q, answer: <Text>{f.offline.a}</Text> },
-      ],
-    },
-  ]
+const Answer = ({ item }: { item: HelpItem }): ReactNode => {
+  const a = lines(item)
+  if (a.length === 1) return <p>{rich(a[0], PARTS)}</p>
+  return (
+    <ul>
+      {a.map((line, i) => (
+        <li key={i}>{rich(line, PARTS)}</li>
+      ))}
+    </ul>
+  )
 }
 
 const FAQ = () => {
-  const f = useT().faq
+  const { lang } = useLang()
+  const help = useHelp(lang)
+  const sections = useMemo(() => (help ? help.sections(OPTS) : []), [help])
+  // /support?q=refund opens the page on that search (a link support can send).
+  const [query, setQuery] = useState(() => new URLSearchParams(window.location.search).get('q')?.slice(0, 80) ?? '')
+
+  const words = useMemo(() => fold(query).split(/\s+/).filter(Boolean), [query])
+  const shown = useMemo(
+    () =>
+      words.length
+        ? sections.map((sec) => ({ ...sec, items: sec.items.filter((it) => matches(it, sec, words)) })).filter((sec) => sec.items.length)
+        : sections,
+    [sections, words],
+  )
+  const count = shown.reduce((n, sec) => n + sec.items.length, 0)
+
+  // Arriving at /support#question opens that question and scrolls to it (and #topic scrolls to the topic).
+  useEffect(() => {
+    if (!sections.length || !window.location.hash) return
+    const el = document.getElementById(decodeURIComponent(window.location.hash.slice(1)))
+    if (!el) return
+    if (el instanceof HTMLDetailsElement) el.open = true
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    el.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' })
+  }, [sections])
+
+  const structured = useMemo(
+    () =>
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        inLanguage: lang,
+        mainEntity: sections.flatMap((sec) =>
+          sec.items.map((it) => ({
+            '@type': 'Question',
+            name: it.q,
+            acceptedAnswer: { '@type': 'Answer', text: lines(it).map(plain).join(' ') },
+          })),
+        ),
+      }),
+    [sections, lang],
+  )
+
+  const t = help ?? en
   return (
-    <Box
-      flex="1"
-      color="ss.body"
-      pt={{ base: 10, md: 16 }}
-      pb={{ base: 16, md: 24 }}
-      bgImage="linear-gradient(180deg, var(--ss-band) 0, var(--ss-page) 360px)"
-    >
-      <Container maxW="760px" px={{ base: 4, md: 6 }}>
-        <VStack spacing={10} align="stretch" sx={{ '& li::marker': { color: 'var(--ss-accent-text)' } }}>
-          <Heading as="h1" size="lg">{f.title}</Heading>
+    <div className={s.page}>
+      {help && (
+        <Helmet>
+          <script type="application/ld+json">{structured}</script>
+        </Helmet>
+      )}
+      <div className={s.wrap}>
+        <Heading as="h1" size="lg" className={s.title}>
+          {t.title}
+        </Heading>
+        <p className={s.lede}>{t.lede}</p>
 
-          {faqSections(f).map((section, idx) => (
-            <Box key={idx}>
-              <Text textStyle="label" mb={3}>
-                {section.title}
-              </Text>
-              <Accordion allowMultiple borderTop="var(--ss-hairline) solid" borderColor="ss.line">
-                {section.items.map((item, itemIdx) => (
-                  <AccordionItem key={itemIdx} borderTop="none" borderBottom="var(--ss-hairline) solid" borderColor="ss.line">
-                    <AccordionButton
-                      minH="56px"
-                      px={1}
-                      py={3}
-                      gap={3}
-                      transition="background-color 0.15s"
-                      _hover={{ bg: 'ss.surface' }}
-                      _expanded={{ color: 'ss.highlight' }}
-                      _focusVisible={{ boxShadow: 'none', outline: '3px solid var(--ss-focus)', outlineOffset: '-3px' }}
-                    >
-                      <Box flex="1" textAlign="start" fontWeight="600" fontSize={{ base: '17px', md: '18px' }} lineHeight="1.35" color="inherit">
-                        {item.question}
-                      </Box>
-                      <AccordionIcon color="ss.highlight" boxSize={6} />
-                    </AccordionButton>
-                    <AccordionPanel pb={5} pt={1} px={1} textStyle="body" color="ss.body">
-                      {item.answer}
-                    </AccordionPanel>
-                  </AccordionItem>
+        <form className={s.search} role="search" onSubmit={(e) => e.preventDefault()}>
+          <svg className={s.searchIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-3.5-3.5" />
+          </svg>
+          <input
+            className={query ? `${s.input} ${s.withClear}` : s.input}
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t.searchHint}
+            aria-label={t.search}
+            enterKeyHint="search"
+            autoComplete="off"
+            spellCheck={false}
+          />
+          {query && (
+            <button type="button" className={s.clear} onClick={() => setQuery('')}>
+              {t.clear}
+            </button>
+          )}
+        </form>
+        <p className={s.status} role="status" aria-live="polite">
+          {help && words.length ? (count ? t.results(count) : t.noResults(query.trim())) : ''}
+        </p>
+
+        {help && !words.length && (
+          <nav aria-labelledby="help-topics">
+            <h2 id="help-topics" className={s.topicsLabel}>
+              {t.topics}
+            </h2>
+            <ul className={s.topics}>
+              {sections.map((sec) => (
+                <li key={sec.id}>
+                  <a href={`#${sec.id}`}>{sec.title}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
+
+        {/* A search remounts the lists so every match opens; clearing it closes them again. */}
+        <Fragment key={words.length ? 'search' : 'all'}>
+          {shown.map((sec) => (
+            <section key={sec.id} id={words.length ? undefined : sec.id} className={s.section} aria-labelledby={`h-${sec.id}`}>
+              <h2 id={`h-${sec.id}`} className={s.sectionTitle}>
+                {sec.title}
+              </h2>
+              <div className={s.list}>
+                {sec.items.map((it) => (
+                  <details key={it.id} id={words.length ? undefined : it.id} className={s.item} open={words.length ? true : undefined}>
+                    <summary className={s.q}>
+                      <span className={s.qText}>{it.q}</span>
+                      <Chevron />
+                    </summary>
+                    <div className={s.a}>
+                      <Answer item={it} />
+                    </div>
+                  </details>
                 ))}
-              </Accordion>
-            </Box>
+              </div>
+            </section>
           ))}
+        </Fragment>
 
-          <Text textStyle="body" color="ss.muted">
-            {f.needMore}{' '}
-            <ChakraLink as={Link} to="/contact-us">support@spysocial.app</ChakraLink>
-          </Text>
-
+        <p className={s.footer}>
+          {t.stillStuck} <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        </p>
+        <div className={s.social}>
           <SocialLinks variant="list" />
-        </VStack>
-      </Container>
-    </Box>
+        </div>
+      </div>
+    </div>
   )
 }
 

@@ -14,7 +14,7 @@ const ptBR: Strings = {
       transparency: "Relatório de transparência",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Regras da Noite de Jogo",
-      faq: 'Suporte e perguntas',
+      faq: "Ajuda e perguntas frequentes",
       contact: 'Fale conosco',
       rules: 'Regras da comunidade',
       safety: 'Segurança',
@@ -36,7 +36,7 @@ const ptBR: Strings = {
       beta: 'Participe de um teste de jogo em grupo, ao vivo e de 1 hora, do SpySocial, um jogo grátis de dedução social para festas: quinta-feira, 12 de novembro de 2026, das 19h às 20h no horário do Leste dos EUA. Só maiores de 18, no iPhone ou Android. Os testadores ficam com o Pin beta e mais.',
       transparency: "Todo mês: quanta Intel foi ganha, gasta e corrigida no SpySocial, cada incidente e cada mudança de regra, sem citar nenhum jogador.",
       gameNightRules: "As regras da Noite de Jogo semanal do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
-      faq: 'Respostas para as dúvidas mais comuns sobre o SpySocial: como começar, modos de jogo, compartilhar e entrar em salas, idiomas, controles do anfitrião, sua conta e solução de problemas.',
+      faq: "Ajuda do SpySocial: como jogar Spy Talk e Spy Sketch, Jogar online, salas privadas e Noite de Jogos, amigos, trocas, o Mercado Negro, interceptações, Intel, assinatura, sua conta, segurança e solução de problemas.",
       contact: 'Fale com a equipe do SpySocial: escreva para support@spysocial.app se precisar de ajuda com o app, sua conta ou qualquer outra coisa.',
       rules: 'As regras da comunidade do SpySocial: seja gentil, blefe sem trapacear, mantenha a privacidade e o que acontece quando alguém quebra as regras.',
       safety: 'Segurança no SpySocial para jogadores de 13 a 17 anos e para pais e responsáveis: como sair, bloquear e denunciar, e onde buscar ajuda.',
@@ -266,146 +266,6 @@ const ptBR: Strings = {
       text: 'Grátis para jogar, sem anúncios.',
       /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
       purchases: 'Assinaturas opcionais se você quiser mais lugares e palavras.',
-    },
-  },
-
-  faq: {
-    title: 'Suporte e perguntas',
-    needMore: 'Precisa de mais ajuda?',
-    sections: {
-      start: 'Primeiros passos',
-      modes: 'Modos de jogo',
-      features: 'Recursos na partida',
-      sharing: 'Compartilhar e entrar em salas',
-      languages: 'Idiomas',
-      host: 'Controles do anfitrião',
-      account: 'Conta e acesso',
-      trouble: 'Solução de problemas',
-    },
-    startGame: {
-      q: 'Como começo uma partida?',
-      a: [
-        'Toque em <b>Criar sala</b> para ser o anfitrião, ou entre com um código da sala de 4 a 8 letras e números',
-        'São necessários pelo menos 3 jogadores para começar uma rodada',
-        'Compartilhe a sala com os amigos pelo menu de compartilhamento, pelo QR ou por link',
-      ],
-    },
-    firstTime: {
-      q: 'Primeira vez jogando?',
-      a: [
-        'Na primeira vez que você abre o app, um tutorial rápido mostra como jogar',
-        'Depois, o app pede que você crie um perfil (nome de exibição e avatar opcional)',
-        'Aí você cai na tela inicial, pronto para criar uma sala ou entrar numa',
-      ],
-    },
-    howMany: {
-      q: 'Quantas pessoas podem jogar?',
-      intro: 'De 3 a 21 jogadores. Espiões recomendados:',
-      a: ['3–5 jogadores: 1 espião', '6–8 jogadores: 2 espiões', '9+ jogadores: 3 espiões'],
-    },
-    gameModes: {
-      q: 'Quais modos de jogo existem?',
-      a: ['Dois jogos: <b>Spy Talk</b>, em que o segredo é um lugar e todos se revezam fazendo e respondendo perguntas, e <b>Spy Sketch</b>, em que o segredo é uma palavra e todos se revezam para desenhá-la', '<b>Clássico:</b> os espiões não se conhecem', '<b>Máfia dos espiões:</b> os espiões sabem quem são os outros espiões'],
-    },
-    notebook: {
-      q: 'O que são as Notas?',
-      a: [
-        'Toque no ícone de notas durante a rodada para anotar quem disse o quê',
-        'Os jogadores aparecem numa ordem inteligente: primeiro os ativos com notas, depois os outros ativos e, por último, os eliminados',
-        'As notas são privadas — só você as vê',
-      ],
-    },
-    hints: {
-      q: 'Como as dicas funcionam entre idiomas?',
-      onePool: 'As dicas aparecem <b>no idioma do seu app</b>, como o resto do jogo',
-      gameLanguage: [
-        'As dicas sempre aparecem no <b>idioma da partida</b>, para que todos na mesa leiam a mesma sugestão',
-        'Se o idioma da sua interface for outro, toque na dica para ver a tradução',
-      ],
-      reload: 'Use o ícone próprio de recarregar para trocar a dica — tocar na frase não troca a dica sem querer',
-    },
-    poke: {
-      q: 'O que é cutucar?',
-      a: 'Toque na carta de um colega no lobby para dar uma cutucada rápida — útil para chamar a atenção antes de a rodada começar.',
-    },
-    leave: {
-      q: 'Posso sair no meio da partida?',
-      a: 'Sim — toda tela da partida tem um botão Sair, para você sair sem precisar voltar tela por tela.',
-    },
-    share: {
-      q: 'Como compartilho uma sala com os amigos?',
-      a: [
-        '<b>Menu de compartilhamento:</b> use o menu do próprio celular para mandar o link para onde quiser',
-        '<b>QR:</b> amigos por perto escaneiam e entram na hora',
-        '<b>Em voz alta:</b> é só ler o código da sala',
-      ],
-    },
-    link: {
-      q: 'Dá para entrar por um link?',
-      a: [
-        'Sim — links como <b>spysocial.app/join/<código></b> abrem o app direto na sala',
-        'Se a pessoa não tiver o app, o link leva para a App Store ou o Google Play',
-      ],
-    },
-    languages: {
-      q: 'Como funcionam os idiomas?',
-      setLanguage: 'Escolha o idioma da interface no seu perfil',
-      onePool: [
-        'As salas não têm idioma: cada jogador vê o jogo no próprio idioma, inclusive o lugar ou a palavra secreta, a descrição, a lista do espião e as dicas',
-        'Assim, amigos que falam idiomas diferentes podem jogar na mesma sala, ou na mesma mesa do Jogar online',
-      ],
-      chatAuto:
-        'As mensagens do chat ficam como foram escritas, e uma mensagem em outro idioma é traduzida para o seu automaticamente (para tocar em <b>Traduzir</b> em vez disso, desative <b>Traduzir mensagens automaticamente</b> nos Ajustes)',
-      chatTap: 'As mensagens do chat ficam como foram escritas: toque em <b>Traduzir</b> para ler uma no seu idioma',
-      hostPicks: 'O anfitrião escolhe o idioma da partida para os lugares e as dicas',
-      parity: 'O SpySocial está em <b>10 idiomas</b>: inglês, espanhol, russo, chinês simplificado, hindi, árabe, francês, bengali, português do Brasil e indonésio',
-      differs: 'Se o seu idioma for diferente do idioma do anfitrião, você vê traduções onde elas importam',
-    },
-    customize: {
-      q: 'O que o anfitrião pode personalizar?',
-      a: ['Número de espiões e modo de jogo', 'Regras de votação e se quem pediu a votação aparece', 'Pacotes de lugares a usar'],
-      turnOnly: 'Duração da vez',
-      languageAndTurn: 'Idioma da partida e duração da vez',
-    },
-    endEarly: {
-      q: 'O anfitrião pode encerrar a partida antes?',
-      a: 'Sim — o anfitrião tem o controle <b>Encerrar partida</b> para terminar a qualquer momento do jogo.',
-    },
-    needAccount: {
-      q: 'Preciso de uma conta?',
-      a: [
-        'Você pode jogar como visitante sem se cadastrar',
-        'Com uma conta, você mantém seu perfil e seu progresso em qualquer aparelho',
-        'Você pode transformar um perfil de visitante numa conta completa quando quiser, sem perder nada',
-      ],
-    },
-    forgot: {
-      q: 'Esqueci minha senha',
-      a: [
-        'Toque em “Esqueci a senha” na tela de login e digite seu e-mail',
-        'Você recebe um link de redefinição — ele abre uma página segura para trocar a senha',
-        'Se o link expirou, é só pedir um novo',
-      ],
-    },
-    code: {
-      q: 'O código da sala não funciona?',
-      a: [
-        'Os códigos de sala têm <b>de 4 a 8 letras e números</b>: digite o código exatamente como aparece na tela do anfitrião',
-        'Confira se o anfitrião não fechou a sala nem começou a partida',
-        'Verifique sua conexão com a internet',
-      ],
-    },
-    connection: {
-      q: 'Perdeu a conexão?',
-      a: [
-        'O app se reconecta sozinho — não precisa recarregar',
-        'Seu papel e seu progresso ficam guardados enquanto você está fora',
-        'Se você ficar preso numa tela de “reconectando” por mais de alguns segundos, talvez sua rede tenha caído — ative e desative o modo avião ou troque entre Wi-Fi e dados móveis',
-      ],
-    },
-    offline: {
-      q: 'O app diz que estou sem conexão, mas não estou?',
-      a: 'Isso era uma falha do iOS em versões antigas; a v2.0.0 confirma sua conexão com um teste real de rede antes de mostrar que você está sem conexão. Se ainda acontecer, force o fechamento do app e abra de novo.',
     },
   },
 

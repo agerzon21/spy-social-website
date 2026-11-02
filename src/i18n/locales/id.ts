@@ -14,7 +14,7 @@ const id: Strings = {
       transparency: "Laporan transparansi",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Aturan Malam Permainan",
-      faq: 'Bantuan & FAQ',
+      faq: "Bantuan & FAQ",
       contact: 'Hubungi kami',
       rules: 'Aturan komunitas',
       safety: 'Keamanan',
@@ -36,7 +36,7 @@ const id: Strings = {
       beta: 'Ikut playtest grup live selama 1 jam untuk SpySocial, game pesta deduksi sosial gratis, pada Kamis, 12 November 2026, pukul 19.00–20.00 waktu Timur AS. Khusus 18+, di iPhone atau Android. Penguji mendapat Pin Beta dan lainnya.',
       transparency: "Setiap bulan: berapa Intel yang didapat, dibelanjakan, dan dikoreksi di SpySocial, setiap insiden, dan setiap perubahan aturan, tanpa menyebut nama pemain.",
       gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara mendapatkan gelar malam itu, dan gelar bonus dari pengembang.",
-      faq: 'Jawaban atas pertanyaan umum tentang SpySocial: cara mulai, mode permainan, berbagi dan gabung ke room, bahasa, kontrol host, akunmu, dan cara mengatasi masalah.',
+      faq: "Bantuan SpySocial: cara main Spy Talk dan Spy Sketch, Main online, room privat dan Malam Permainan, teman, tukar item, Pasar Gelap, sadapan, Intel, keanggotaan, akunmu, keamanan, dan cara mengatasi masalah.",
       contact: 'Hubungi tim SpySocial: kirim email ke support@spysocial.app kalau kamu butuh bantuan soal aplikasi, akunmu, atau hal lainnya.',
       rules: 'Aturan komunitas SpySocial: bersikap baik, menggertak boleh tapi curang jangan, jaga privasi, dan apa yang terjadi kalau ada yang melanggar aturan.',
       safety: 'Keamanan di SpySocial untuk pemain usia 13 sampai 17 tahun dan untuk orang tua serta wali: cara keluar, memblokir, dan melapor, serta tempat mencari bantuan.',
@@ -266,146 +266,6 @@ const id: Strings = {
       text: 'Gratis dimainkan, tanpa iklan.',
       /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
       purchases: 'Keanggotaan opsional kalau kamu mau lebih banyak lokasi dan kata.',
-    },
-  },
-
-  faq: {
-    title: 'Bantuan & FAQ',
-    needMore: 'Butuh bantuan lain?',
-    sections: {
-      start: 'Memulai',
-      modes: 'Mode permainan',
-      features: 'Fitur dalam permainan',
-      sharing: 'Berbagi & gabung ke room',
-      languages: 'Dukungan bahasa',
-      host: 'Kontrol host',
-      account: 'Akun & masuk',
-      trouble: 'Mengatasi masalah',
-    },
-    startGame: {
-      q: 'Bagaimana cara memulai permainan?',
-      a: [
-        'Ketuk <b>Buat room</b> untuk jadi host, atau gabung dengan kode room berisi 4 sampai 8 huruf dan angka',
-        'Kamu butuh minimal 3 pemain untuk memulai ronde',
-        'Bagikan room ke teman lewat menu berbagi, kode QR, atau link',
-      ],
-    },
-    firstTime: {
-      q: 'Baru pertama kali main?',
-      a: [
-        'Saat pertama dibuka, aplikasi memandumu lewat tutorial singkat',
-        'Kamu akan diminta menyiapkan profil (nama tampilan dan avatar opsional)',
-        'Setelah itu kamu masuk ke layar beranda, siap jadi host atau gabung',
-      ],
-    },
-    howMany: {
-      q: 'Berapa banyak pemain yang bisa ikut?',
-      intro: '3 sampai 21 pemain. Jumlah mata-mata yang disarankan:',
-      a: ['3–5 pemain: 1 mata-mata', '6–8 pemain: 2 mata-mata', '9+ pemain: 3 mata-mata'],
-    },
-    gameModes: {
-      q: 'Ada mode permainan apa saja?',
-      a: ['Dua permainan: <b>Spy Talk</b>, rahasianya sebuah lokasi dan semua bergiliran bertanya dan menjawab, dan <b>Spy Sketch</b>, rahasianya sebuah kata dan semua bergiliran menggambarnya', '<b>Klasik:</b> para mata-mata tidak saling kenal', '<b>Mafia:</b> para mata-mata bisa melihat siapa saja mata-mata lainnya'],
-    },
-    notebook: {
-      q: 'Apa itu Catatan?',
-      a: [
-        'Ketuk ikon catatan selama ronde untuk mencatat siapa bilang apa',
-        'Pemain diurutkan otomatis: pemain aktif yang punya catatan lebih dulu, lalu pemain aktif lainnya, lalu pemain yang gugur paling akhir',
-        'Catatan bersifat pribadi — hanya kamu yang bisa melihatnya',
-      ],
-    },
-    hints: {
-      q: 'Bagaimana petunjuk bekerja di berbagai bahasa?',
-      onePool: 'Petunjuk tampil dalam <b>bahasa aplikasimu sendiri</b>, seperti bagian game lainnya',
-      gameLanguage: [
-        'Petunjuk selalu tampil dalam <b>bahasa permainan</b> supaya semua orang di meja membaca pertanyaan yang sama',
-        'Kalau bahasa tampilanmu berbeda, ketuk petunjuknya untuk melihat terjemahannya',
-      ],
-      reload: 'Pakai ikon muat ulang khusus untuk mengganti petunjuk — mengetuk kalimatnya tidak akan mengacaknya ulang tanpa sengaja',
-    },
-    poke: {
-      q: 'Apa itu colek?',
-      a: 'Ketuk kartu teman di lobi untuk mencoleknya sebentar — berguna untuk menarik perhatian sebelum ronde dimulai.',
-    },
-    leave: {
-      q: 'Bisakah aku keluar di tengah permainan?',
-      a: 'Bisa — setiap layar dalam permainan punya tombol Keluar, jadi kamu bisa keluar tanpa harus mundur satu per satu.',
-    },
-    share: {
-      q: 'Bagaimana cara membagikan room ke teman?',
-      a: [
-        '<b>Menu berbagi:</b> pakai menu berbagi bawaan HP-mu untuk mengirim link ke mana saja',
-        '<b>Kode QR:</b> teman di dekatmu bisa memindainya untuk langsung gabung',
-        '<b>Lisan:</b> cukup bacakan kode room-nya',
-      ],
-    },
-    link: {
-      q: 'Bisakah orang gabung lewat link?',
-      a: [
-        'Bisa — link seperti <b>spysocial.app/join/<kode></b> langsung membuka aplikasi ke dalam room',
-        'Kalau mereka belum punya aplikasinya, link akan membawa mereka ke App Store atau Google Play',
-      ],
-    },
-    languages: {
-      q: 'Bagaimana bahasa bekerja?',
-      setLanguage: 'Atur bahasa tampilanmu di profil',
-      onePool: [
-        'Room tidak punya bahasa: setiap pemain melihat game dalam bahasanya sendiri, termasuk lokasi atau kata rahasia, deskripsinya, daftar milik mata-mata, dan petunjuknya',
-        'Jadi teman yang berbeda bahasa bisa main di room yang sama, atau di meja “Main online” yang sama',
-      ],
-      chatAuto:
-        'Pesan chat tetap seperti yang ditulis, dan pesan dalam bahasa lain otomatis diterjemahkan ke bahasamu (kalau mau mengetuk <b>Terjemahkan</b> sendiri, matikan <b>Terjemahkan pesan otomatis</b> di Pengaturan)',
-      chatTap: 'Pesan chat tetap seperti yang ditulis: ketuk <b>Terjemahkan</b> untuk membacanya dalam bahasamu',
-      hostPicks: 'Host memilih bahasa permainan untuk lokasi dan petunjuk',
-      parity: 'SpySocial tersedia dalam <b>10 bahasa</b>: Inggris, Spanyol, Rusia, Mandarin Sederhana, Hindi, Arab, Prancis, Bengali, Portugis Brasil, dan Indonesia',
-      differs: 'Kalau bahasamu berbeda dari bahasa host, kamu akan melihat terjemahan di bagian yang penting',
-    },
-    customize: {
-      q: 'Apa saja yang bisa diatur host?',
-      a: ['Jumlah mata-mata dan mode permainan', 'Aturan voting dan apakah pemanggil voting ditampilkan', 'Paket lokasi yang dipakai'],
-      turnOnly: 'Durasi giliran',
-      languageAndTurn: 'Bahasa permainan dan durasi giliran',
-    },
-    endEarly: {
-      q: 'Bisakah host mengakhiri permainan lebih awal?',
-      a: 'Bisa — host punya kontrol <b>Akhiri permainan</b> untuk menyudahi permainan kapan saja.',
-    },
-    needAccount: {
-      q: 'Apakah aku butuh akun?',
-      a: [
-        'Kamu bisa main sebagai tamu tanpa mendaftar',
-        'Dengan membuat akun, profil dan progresmu tersimpan di semua perangkat',
-        'Kamu bisa meningkatkan profil tamu jadi akun lengkap kapan saja tanpa kehilangan apa pun',
-      ],
-    },
-    forgot: {
-      q: 'Aku lupa kata sandi',
-      a: [
-        'Ketuk “Lupa kata sandi” di layar masuk lalu masukkan emailmu',
-        'Kamu akan menerima link atur ulang — membukanya akan membawamu ke halaman atur ulang yang aman',
-        'Kalau link-nya kedaluwarsa, minta saja yang baru',
-      ],
-    },
-    code: {
-      q: 'Kode room tidak berfungsi?',
-      a: [
-        'Kode room terdiri dari <b>4 sampai 8 huruf dan angka</b>: ketik persis seperti yang tampil di layar host',
-        'Pastikan host belum menutup room atau memulai permainan',
-        'Periksa koneksi internetmu',
-      ],
-    },
-    connection: {
-      q: 'Koneksi terputus?',
-      a: [
-        'Aplikasi tersambung kembali secara otomatis — tidak perlu memuat ulang',
-        'Peran dan progresmu tetap tersimpan selama kamu pergi',
-        'Kalau kamu tertahan di layar “menyambungkan ulang” lebih dari beberapa detik, mungkin jaringanmu bermasalah — nyalakan lalu matikan mode pesawat atau ganti Wi-Fi/data seluler',
-      ],
-    },
-    offline: {
-      q: 'Aplikasi bilang aku offline padahal tidak?',
-      a: 'Ini masalah iOS di versi lama; v2.0.0 memeriksa koneksimu dengan uji jaringan sungguhan sebelum menampilkan status offline. Kalau masih terjadi, tutup paksa lalu buka lagi aplikasinya.',
     },
   },
 

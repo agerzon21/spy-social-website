@@ -31,7 +31,7 @@ const en = {
       transparency: "Transparency report",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Game Night rules",
-      faq: 'Support & FAQ',
+      faq: "Help & FAQ",
       contact: 'Contact us',
       rules: 'Community rules',
       safety: 'Safety',
@@ -54,7 +54,7 @@ const en = {
       beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 12, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
       gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
-      faq: 'Answers to common SpySocial questions: getting started, game modes, sharing and joining rooms, languages, host controls, your account and troubleshooting.',
+      faq: "SpySocial help: how to play Spy Talk and Spy Sketch, Play Online, private rooms and Game Night, friends, trading, the Black Market, Intercepts, Intel, membership, your account, safety and troubleshooting.",
       contact: 'Contact the SpySocial team: email support@spysocial.app for help with the app, your account or anything else.',
       rules: "SpySocial's community rules: be kind, bluff but don't cheat, keep personal information private, and what happens when someone breaks the rules.",
       safety: 'Safety at SpySocial for players 13 to 17 and for parents and carers: how to leave, block and report, and where to get help.',
@@ -305,146 +305,6 @@ const en = {
       text: 'Free to play, no ads.',
       /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
       purchases: 'Optional memberships if you want more places and words.',
-    },
-  },
-
-  faq: {
-    title: 'Support & FAQ',
-    needMore: 'Need more help?',
-    sections: {
-      start: 'Getting Started',
-      modes: 'Game Modes',
-      features: 'In-Game Features',
-      sharing: 'Sharing & Joining Rooms',
-      languages: 'Language Support',
-      host: 'Host Controls',
-      account: 'Account & Sign-in',
-      trouble: 'Troubleshooting',
-    },
-    startGame: {
-      q: 'How do I start a game?',
-      a: [
-        'Tap <b>Create Room</b> to host, or join with a room code of 4 to 8 letters and numbers',
-        'You need at least 3 players to start a round',
-        'Share the room with friends via the share sheet, QR code, or link',
-      ],
-    },
-    firstTime: {
-      q: 'First time playing?',
-      a: [
-        'The app walks you through a quick tutorial on first launch',
-        "You'll be prompted to set up a profile (display name and optional avatar)",
-        "Then you're dropped onto the home screen, ready to host or join",
-      ],
-    },
-    howMany: {
-      q: 'How many players can play?',
-      intro: '3 to 21 players. Recommended spies:',
-      a: ['3–5 players: 1 spy', '6–8 players: 2 spies', '9+ players: 3 spies'],
-    },
-    gameModes: {
-      q: 'What game modes are available?',
-      a: ['Two games: <b>Spy Talk</b>, where the secret is a location and everyone asks and answers questions, and <b>Spy Sketch</b>, where the secret is a word and everyone takes turns drawing it', "<b>Classic:</b> Spies don't know each other", '<b>Spy Mafia:</b> Spies can see who the other spies are'],
-    },
-    notebook: {
-      q: 'What is the Notebook?',
-      a: [
-        'Tap the notebook icon during a round to jot down notes about who said what',
-        'Players are smart-sorted: active players with notes first, then other active players, then eliminated players last',
-        'Notes are private — only you can see them',
-      ],
-    },
-    hints: {
-      q: 'How do hints work across languages?',
-      onePool: 'Hints are shown in <b>your own app language</b>, like the rest of the game',
-      gameLanguage: [
-        'Hints are always shown in the <b>game language</b> so everyone at the table reads the same prompt',
-        'If your interface language is different, tap the hint to see it translated for you',
-      ],
-      reload: "Use the dedicated reload icon to refresh a hint — tapping the sentence won't accidentally re-roll it",
-    },
-    poke: {
-      q: "What's a poke?",
-      a: "Tap a teammate's card in the lobby to send them a quick poke — handy for getting attention before the round starts.",
-    },
-    leave: {
-      q: 'Can I leave mid-game?',
-      a: 'Yes — every in-game screen has a Leave button so you can exit without backing all the way out.',
-    },
-    share: {
-      q: 'How do I share a room with friends?',
-      a: [
-        "<b>Share sheet:</b> Use your phone's native share sheet to send the link anywhere",
-        '<b>QR code:</b> Friends nearby can scan to join instantly',
-        '<b>Verbal:</b> Just read out the room code',
-      ],
-    },
-    link: {
-      q: 'Can someone join from a link?',
-      a: [
-        'Yes — links like <b>spysocial.app/join/<code></b> open the app directly into the room',
-        "If they don't have the app, the link takes them to the App Store or Google Play",
-      ],
-    },
-    languages: {
-      q: 'How do languages work?',
-      setLanguage: 'Set your interface language in your profile',
-      onePool: [
-        "Rooms don't have a language: every player sees the game in their own, including the secret location or word, its description, the spy's list and the hints",
-        'So friends who speak different languages can play in the same room, or at the same Play Online table',
-      ],
-      chatAuto:
-        'Chat messages stay as they were written, and one in another language is translated into yours automatically (to tap <b>Translate</b> instead, turn off <b>Translate messages automatically</b> in Settings)',
-      chatTap: 'Chat messages stay as they were written: tap <b>Translate</b> to read one in your language',
-      hostPicks: 'The host picks the game language for locations and hints',
-      parity: 'SpySocial is in <b>10 languages</b>: English, Spanish, Russian, Simplified Chinese, Hindi, Arabic, French, Bengali, Brazilian Portuguese and Indonesian',
-      differs: "If your language differs from the host's, you'll see translations where it matters",
-    },
-    customize: {
-      q: 'What can the host customize?',
-      a: ['Number of spies and game mode', 'Voting rules and whether the vote-caller is revealed', 'Location packs to draw from'],
-      turnOnly: 'Turn duration',
-      languageAndTurn: 'Game language and turn duration',
-    },
-    endEarly: {
-      q: 'Can the host end a game early?',
-      a: 'Yes — hosts have an <b>End Game</b> control to wrap things up at any point during play.',
-    },
-    needAccount: {
-      q: 'Do I need an account?',
-      a: [
-        'You can play as a guest without signing up',
-        'Creating an account lets you keep your profile and progress across devices',
-        'You can upgrade a guest profile to a full account at any time without losing anything',
-      ],
-    },
-    forgot: {
-      q: 'I forgot my password',
-      a: [
-        'Tap "Forgot password" on the login screen and enter your email',
-        "You'll get a reset link — opening it brings you to a secure reset page",
-        'If the link expired, just request a new one',
-      ],
-    },
-    code: {
-      q: "Room code isn't working?",
-      a: [
-        'Room codes are <b>4 to 8 letters and numbers</b>: type the code exactly as the host\'s screen shows it',
-        "Make sure the host hasn't closed the room or started the game",
-        'Check your internet connection',
-      ],
-    },
-    connection: {
-      q: 'Lost connection?',
-      a: [
-        "The app reconnects automatically — there's no need to reload",
-        "Your role and progress are preserved while you're away",
-        'If you\'re stuck on a "reconnecting" screen for more than a few seconds, your network may be off — toggle airplane mode or switch Wi-Fi/cellular',
-      ],
-    },
-    offline: {
-      q: "App says I'm offline but I'm not?",
-      a: 'This was an iOS quirk in older versions; v2.0.0 verifies your connection with a real network probe before showing the offline state. If it still happens, force-close and reopen the app.',
     },
   },
 

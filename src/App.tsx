@@ -93,6 +93,8 @@ function App() {
               <Route path="/child-safety" element={<Layout><ChildSafety /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
               <Route path="/support" element={<Layout><FAQ /></Layout>} />
+              {/* Help & FAQ is /support (the footer's link, the app's); /help is the address people guess. */}
+              <Route path="/help" element={<Navigate to="/support" replace />} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
               {/* After Beta 2, the launch version sends the old playtest link home (LIVE.launchSite). */}

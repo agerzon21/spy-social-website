@@ -14,7 +14,7 @@ const fr: Strings = {
       transparency: "Rapport de transparence",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Règles de la soirée jeux",
-      faq: 'Aide et FAQ',
+      faq: "Aide et FAQ",
       contact: 'Nous contacter',
       rules: 'Règles de la communauté',
       safety: 'Sécurité',
@@ -36,7 +36,7 @@ const fr: Strings = {
       beta: 'Rejoins un test de jeu collectif en direct d’une heure de SpySocial, un jeu gratuit de déduction sociale pour soirées, le jeudi 12\u00a0novembre 2026, de 19\u00a0h à 20\u00a0h, heure de l’Est des États-Unis. Réservé aux 18\u00a0ans et plus, sur iPhone ou Android. Les testeurs gardent le Pin bêta et plus encore.',
       transparency: "Chaque mois : combien d’Intel a été gagné, dépensé et corrigé dans SpySocial, chaque incident et chaque changement de règle, sans nommer aucun joueur.",
       gameNightRules: "Les règles de la soirée jeux hebdomadaire de SpySocial : quand elle a lieu, qui peut participer, comment obtenir les titres de la soirée et le titre bonus du développeur.",
-      faq: "Réponses aux questions fréquentes sur SpySocial\u00A0: débuter, modes de jeu, partager un salon et le rejoindre, langues, options de l'hôte, ton compte et dépannage.",
+      faq: "Aide SpySocial : comment jouer à Spy Talk et Spy Sketch, Jouer en ligne, salons privés et Soirée jeux, amis, échanges, Marché noir, interceptions, Intel, abonnement, ton compte, sécurité et dépannage.",
       contact: "Contacte l'équipe SpySocial\u00A0: écris à support@spysocial.app pour de l'aide avec l'appli, ton compte ou autre chose.",
       rules: "Les règles de la communauté SpySocial\u00A0: sois sympa, bluffe sans tricher, garde ta vie privée, et ce qui arrive quand quelqu'un enfreint les règles.",
       safety: "La sécurité sur SpySocial pour les joueurs de 13 à 17\u00A0ans et pour les parents\u00A0: comment quitter, bloquer et signaler, et où trouver de l'aide.",
@@ -265,146 +265,6 @@ const fr: Strings = {
       text: 'Gratuit, sans pub.',
       /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
       purchases: 'Des abonnements en option si tu veux plus de lieux et de mots.',
-    },
-  },
-
-  faq: {
-    title: 'Aide et FAQ',
-    needMore: "Besoin d'aide\u00A0?",
-    sections: {
-      start: 'Bien démarrer',
-      modes: 'Modes de jeu',
-      features: 'Fonctions en partie',
-      sharing: 'Partager et rejoindre un salon',
-      languages: 'Langues',
-      host: "Options de l'hôte",
-      account: 'Compte et connexion',
-      trouble: 'Dépannage',
-    },
-    startGame: {
-      q: 'Comment lancer une partie\u00A0?',
-      a: [
-        'Appuie sur <b>Créer un salon</b> pour être l\'hôte, ou rejoins un salon avec un code de 4 à 8 lettres et chiffres',
-        'Il faut au moins 3 joueurs pour lancer une manche',
-        'Partage le salon avec tes amis par le menu de partage, un QR code ou un lien',
-      ],
-    },
-    firstTime: {
-      q: 'Première partie\u00A0?',
-      a: [
-        "Au premier lancement, l'appli te guide dans un court tutoriel",
-        'Elle te propose ensuite de créer ton profil (pseudo et avatar facultatif)',
-        "Puis tu arrives sur l'écran d'accueil, prêt à créer un salon ou à en rejoindre un",
-      ],
-    },
-    howMany: {
-      q: 'Combien de joueurs peuvent jouer\u00A0?',
-      intro: 'De 3 à 21 joueurs. Nombre d\'espions conseillé\u00A0:',
-      a: ['3–5 joueurs\u00A0: 1 espion', '6–8 joueurs\u00A0: 2 espions', '9 joueurs ou plus\u00A0: 3 espions'],
-    },
-    gameModes: {
-      q: 'Quels sont les modes de jeu\u00A0?',
-      a: ['Deux jeux\u00A0: <b>Spy Talk</b>, où le secret est un lieu et où chacun pose des questions et y répond à tour de rôle, et <b>Spy Sketch</b>, où le secret est un mot que chacun dessine à tour de rôle', '<b>Classique\u00A0:</b> les espions ne se connaissent pas', '<b>Mafia\u00A0:</b> les espions savent qui sont les autres espions'],
-    },
-    notebook: {
-      q: "C'est quoi, les notes\u00A0?",
-      a: [
-        "Pendant une manche, appuie sur l'icône des notes pour noter qui a dit quoi",
-        "Les joueurs sont triés intelligemment\u00A0: d'abord les joueurs actifs avec des notes, puis les autres joueurs actifs, et les joueurs éliminés en dernier",
-        'Tes notes sont privées\u00A0: toi seul peux les voir',
-      ],
-    },
-    hints: {
-      q: 'Comment marchent les indices selon les langues\u00A0?',
-      onePool: "Les indices s'affichent dans <b>la langue de ton appli</b>, comme le reste du jeu",
-      gameLanguage: [
-        "Les indices s'affichent toujours dans <b>la langue de la partie</b>, pour que tout le monde à la table lise la même suggestion",
-        "Si ton appli est dans une autre langue, appuie sur l'indice pour le voir traduit",
-      ],
-      reload: "Utilise l'icône dédiée pour changer d'indice\u00A0: appuyer sur la phrase ne le remplace pas par erreur",
-    },
-    poke: {
-      q: "C'est quoi, taquiner\u00A0?",
-      a: "Dans le salon, appuie sur la carte d'un joueur pour le taquiner\u00A0: pratique pour attirer son attention avant le début de la manche.",
-    },
-    leave: {
-      q: 'Je peux partir en pleine partie\u00A0?',
-      a: "Oui\u00A0: chaque écran de jeu a un bouton Quitter, pour sortir sans revenir en arrière écran par écran.",
-    },
-    share: {
-      q: 'Comment partager un salon avec mes amis\u00A0?',
-      a: [
-        '<b>Menu de partage\u00A0:</b> utilise le menu de partage de ton téléphone pour envoyer le lien où tu veux',
-        '<b>QR code\u00A0:</b> tes amis à côté de toi le scannent et entrent tout de suite',
-        '<b>À voix haute\u00A0:</b> lis simplement le code du salon',
-      ],
-    },
-    link: {
-      q: 'On peut rejoindre avec un lien\u00A0?',
-      a: [
-        "Oui\u00A0: les liens comme <b>spysocial.app/join/<code></b> ouvrent l'appli directement dans le salon",
-        "Sans l'appli, le lien mène à l'App Store ou à Google Play",
-      ],
-    },
-    languages: {
-      q: 'Comment marchent les langues\u00A0?',
-      setLanguage: "Choisis la langue de l'appli dans ton profil",
-      onePool: [
-        "Les salons n'ont pas de langue\u00A0: chaque joueur voit le jeu dans la sienne, y compris le lieu ou le mot secret, sa description, la liste de l'espion et les indices",
-        'Des amis qui parlent des langues différentes peuvent donc jouer dans le même salon, ou à la même table de «\u00A0Jouer en ligne\u00A0»',
-      ],
-      chatAuto:
-        "Les messages du chat restent tels qu'ils ont été écrits, et un message dans une autre langue est traduit automatiquement dans la tienne (pour appuyer plutôt sur <b>Traduire</b>, désactive <b>Traduire les messages automatiquement</b> dans les Réglages)",
-      chatTap: "Les messages du chat restent tels qu'ils ont été écrits\u00A0: appuie sur <b>Traduire</b> pour en lire un dans ta langue",
-      hostPicks: "L'hôte choisit la langue de la partie pour les lieux et les indices",
-      parity: 'SpySocial est disponible en <b>10 langues</b>\u00A0: anglais, espagnol, russe, chinois simplifié, hindi, arabe, français, bengali, portugais du Brésil et indonésien',
-      differs: "Si ta langue n'est pas celle de l'hôte, tu verras des traductions là où ça compte",
-    },
-    customize: {
-      q: "Qu'est-ce que l'hôte peut régler\u00A0?",
-      a: ["Le nombre d'espions et le mode de jeu", 'Les règles de vote, et si on montre qui lance le vote', 'Les packs de lieux utilisés'],
-      turnOnly: 'La durée des tours',
-      languageAndTurn: 'La langue de la partie et la durée des tours',
-    },
-    endEarly: {
-      q: "L'hôte peut-il arrêter une partie avant la fin\u00A0?",
-      a: "Oui\u00A0: l'hôte a un bouton <b>Terminer la partie</b> pour y mettre fin à tout moment.",
-    },
-    needAccount: {
-      q: 'Faut-il un compte\u00A0?',
-      a: [
-        "Tu peux jouer en invité sans t'inscrire",
-        'Un compte garde ton profil et ta progression sur tous tes appareils',
-        'Tu peux transformer un profil invité en compte complet à tout moment, sans rien perdre',
-      ],
-    },
-    forgot: {
-      q: "J'ai oublié mon mot de passe",
-      a: [
-        "Appuie sur «\u00A0Mot de passe oublié\u00A0» sur l'écran de connexion et saisis ton e-mail",
-        'Tu recevras un lien de réinitialisation qui ouvre une page sécurisée',
-        'Si le lien a expiré, demandes-en simplement un nouveau',
-      ],
-    },
-    code: {
-      q: 'Le code du salon ne marche pas\u00A0?',
-      a: [
-        'Les codes de salon font <b>4 à 8 lettres et chiffres</b>\u00A0: tape-le exactement comme il s\'affiche sur l\'écran de l\'hôte',
-        "Vérifie que l'hôte n'a pas fermé le salon ni lancé la partie",
-        'Vérifie ta connexion internet',
-      ],
-    },
-    connection: {
-      q: 'Connexion perdue\u00A0?',
-      a: [
-        "L'appli se reconnecte toute seule\u00A0: inutile de recharger",
-        'Ton rôle et ta progression sont conservés pendant ton absence',
-        "Si tu restes bloqué plus de quelques secondes sur un écran «\u00A0Reconnexion\u00A0», ton réseau est peut-être coupé\u00A0: active puis désactive le mode avion, ou passe du Wi-Fi aux données mobiles",
-      ],
-    },
-    offline: {
-      q: "L'appli dit que je suis hors ligne alors que non\u00A0?",
-      a: "C'était une bizarrerie d'iOS dans les anciennes versions\u00A0; la v2.0.0 vérifie ta connexion par un vrai test réseau avant d'afficher l'état hors ligne. Si ça arrive encore, force la fermeture de l'appli et rouvre-la.",
     },
   },
 

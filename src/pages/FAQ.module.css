@@ -1,0 +1,153 @@
+/*
+ * Help & FAQ (/support): a search box over the topics, then each topic's questions as <details> (find-in-page opens
+ * them, and the answers are in the page for search engines). Colours and faces from the skin (--ss-*); logical sides,
+ * so Arabic mirrors.
+ */
+
+.page {
+  flex: 1;
+  padding-block: 40px 72px;
+  background: linear-gradient(180deg, var(--ss-band) 0, var(--ss-page) 360px);
+  color: var(--ss-body);
+}
+.wrap { max-width: 760px; margin: 0 auto; padding-inline: 16px; }
+@media (min-width: 768px) {
+  .page { padding-block: 64px 96px; }
+  .wrap { padding-inline: 24px; }
+}
+
+.title { margin: 0; }
+.lede { margin: 12px 0 0; font-size: 18px; line-height: 1.5; color: var(--ss-muted); max-width: 34em; }
+
+/* ---- search ---- */
+.search { position: relative; margin-top: 28px; }
+.searchIcon {
+  position: absolute;
+  inset-inline-start: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--ss-muted);
+  pointer-events: none;
+}
+.input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 52px;
+  padding-block: 12px;
+  padding-inline: 44px 14px;
+  font: 500 17px/1.3 var(--ss-font-body);
+  color: var(--ss-text);
+  background: var(--ss-surface);
+  border: var(--ss-card-border) solid var(--ss-line-strong);
+  border-radius: var(--ss-radius-control);
+  appearance: none;
+}
+.withClear { padding-inline-end: 84px; }
+.input::placeholder { color: var(--ss-muted); opacity: 1; }
+.input:focus-visible { outline: 3px solid var(--ss-focus); outline-offset: 1px; }
+.input::-webkit-search-cancel-button { display: none; }
+.clear {
+  position: absolute;
+  inset-inline-end: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  min-height: 40px;
+  padding: 0 12px;
+  font: 600 15px/1 var(--ss-font-body);
+  color: var(--ss-link);
+  background: none;
+  border: 0;
+  border-radius: var(--ss-radius-control);
+  cursor: pointer;
+}
+.clear:focus-visible { outline: 3px solid var(--ss-focus); }
+.status { margin: 12px 0 0; min-height: 1.4em; font-size: 15px; color: var(--ss-muted); }
+
+/* ---- topics ---- */
+.topicsLabel {
+  margin: 32px 0 10px;
+  font: 700 13px/1.3 var(--ss-font-body);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}
+.topics {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 20px;
+}
+@media (min-width: 640px) {
+  .topics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+.topics a {
+  display: block;
+  padding-block: 7px;
+  font-size: 16px;
+  line-height: 1.35;
+  color: var(--ss-link);
+  text-decoration: none;
+}
+.topics a:hover { color: var(--ss-link-hover); text-decoration: underline; }
+.topics a:focus-visible { outline: 3px solid var(--ss-focus); outline-offset: 2px; }
+
+/* ---- sections and questions ---- */
+.section { margin-top: 44px; scroll-margin-top: 88px; }
+.sectionTitle {
+  margin: 0 0 10px;
+  font: 700 13px/1.3 var(--ss-font-body);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}
+.list { border-top: var(--ss-hairline) solid var(--ss-line); }
+.item { border-bottom: var(--ss-hairline) solid var(--ss-line); scroll-margin-top: 88px; }
+.q {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 12px 4px;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.35;
+  color: var(--ss-text);
+  cursor: pointer;
+  list-style: none;
+  transition: background-color 0.15s;
+}
+.q::-webkit-details-marker { display: none; }
+.q:hover { background: var(--ss-surface); }
+.q:focus-visible { outline: 3px solid var(--ss-focus); outline-offset: -3px; }
+.qText { flex: 1; min-width: 0; }
+.chev {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  color: var(--ss-highlight);
+  transition: transform 0.2s;
+}
+.item[open] > .q { color: var(--ss-highlight); }
+.item[open] > .q .chev { transform: rotate(180deg); }
+@media (min-width: 768px) {
+  .q { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .q, .chev { transition: none; }
+}
+
+.a { padding: 2px 4px 20px; font-size: 16px; line-height: 1.6; }
+.a p { margin: 0; }
+.a ul { margin: 0; padding-inline-start: 20px; display: grid; gap: 6px; }
+.a li::marker { color: var(--ss-accent-text); }
+.a b { font-weight: 700; color: var(--ss-text); }
+.a a { color: var(--ss-link); text-decoration: underline; text-underline-offset: 2px; }
+.a a:hover { color: var(--ss-link-hover); }
+
+.footer { margin-top: 48px; font-size: 16px; color: var(--ss-muted); }
+.footer a { color: var(--ss-link); }
+.social { margin-top: 28px; }
