@@ -550,6 +550,12 @@ const zhHans: Strings = {
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>截获（Intercepts）：</b>通过游戏赢得的奖励，每个都装着一件随机物品，比如特工的新造型。它们不能购买，无论是用钱还是用游戏里赚到的货币；打开之前，应用会显示概率。',
+      /** `intercepts` once unopened Intercepts trade on the Black Market (LIVE.interceptsMarket). */
+      interceptsMarket:
+        "<b>截获（Intercepts）：</b>通过游戏赢得的奖励，每个都装着一件随机物品，比如特工的新造型。没有人用钱出售它们，我们不卖，其他玩家也不能卖。成年人还可以在黑市上用游戏里赚到的货币（这种货币无法购买）彼此买卖未打开的截获；未满 18 岁的玩家不能这样做。打开之前，应用会显示概率。",
+      /** Home's Discord pill (LIVE.homeDiscord; under 16 never, 16-17 a safety note first). */
+      discord:
+        "<b>我们 Discord 的链接：</b>首页可能会显示 SpySocial 官方 Discord 服务器的链接，玩家可以在那里找人一起玩。Discord 是一个独立的应用，有自己的规则和最低年龄。未满 16 岁的玩家永远看不到这个链接，16 和 17 岁的玩家会先看到一条安全提示。我们的版主会照看这个服务器，但 SpySocial 的任何人都看不到 Discord 上的私信。",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
         `<b>自定义主题包：</b>会员可以为自己的私密房间制作地点或词语主题包。${

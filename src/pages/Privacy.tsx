@@ -241,10 +241,11 @@ const Privacy: React.FC = () => {
         {PRIVACY.intercepts && (
           <Item label="Intercepts">
             Intercepts are sealed rewards that each open into one random item (such as a look for your agent, a
-            celebration or a title). They're earned only by playing, or given by us, never bought, with money or with
-            Intel. Our servers keep each Intercept you get: when, how you got it (the Play Online game that completed a
+            celebration or a title). {PRIVACY.interceptsMarket
+              ? "They're earned by playing, or given by us, and never bought with money; an adult can also buy an unopened one from another adult with Intel on the Black Market."
+              : "They're earned only by playing, or given by us, never bought, with money or with Intel."} Our servers keep each Intercept you get: when, how you got it (the Play Online game that completed a
             set of 10 wins, your first Play Online game of the day or a streak milestone, a Game Night win, a code you
-            entered, or a gift from us, with its reason) and its tier; whether you've claimed it yet (a daily one) or
+            entered, or a gift from us, with its reason{PRIVACY.interceptsMarket ? ', or the Black Market sale it came from' : ''}) and its tier; whether you've claimed it yet (a daily one) or
             it's waiting for your first Play Online game that counts (one from a code); when you've seen the app's
             notices about your Intercepts (such as Welcome Back); and, once you open it, when, the item and
             its rarity, whether you already had that item, and for a Unique, its number and colour. We keep every copy
@@ -522,7 +523,9 @@ const Privacy: React.FC = () => {
             " While the app is open, it also tells our servers every minute or so that you're active, for the online status your friends can see (see Friends above)."}
         </Item>
         <Item label="In-Game Notes">
-          Notes you write in the in-game Notebook are private to you and are not shared with other players.
+          Notes you make in a game (your board's marks, the order you put players in and the short clue and suspicion
+          tags you type) are kept only on your phone: they're never sent to us or shown to other players, and they're
+          cleared a while after the game ends.
         </Item>
         <Item label="Usage Data">
           Simple events about how the app is used (for example which screens are opened and which features are used),
@@ -600,6 +603,8 @@ const Privacy: React.FC = () => {
             " We also check trades for signs of real-money trading, account theft and grooming (for example a lopsided trade between an adult and a player under 18, or many gifts to one account). A flagged trade is reviewed by one of our team; the flag isn't shown to any player and doesn't change anything on its own."}
           {PRIVACY.blackMarket &&
             " We check the Black Market in the same way, for example for sales between accounts that use the same phone or network, items sold back to their seller, prices far from an item's usual price, and offers placed and stopped over and over; what the checks flag is reviewed by one of our team, isn't shown to any player and doesn't change anything on its own. If the market's own records don't add up, it pauses by itself until we've checked them."}
+          {PRIVACY.intercepts &&
+            " To keep rewards fair, our servers also look for signs of farming, bots and scripted play, games thrown on purpose and several accounts run by one person, using records we already keep (games and their results, rewards, trades and sales, reports, and the coded device and network notes described under Device Information and IP Address). Each sign adds to a score for the account that only our team sees. From December 8, 2026, while one of our team checks a strong sign, the app may hold an account's new rewards for up to 72 hours (an Intercept shows \"Verifying\" and stays sealed), and longer only while a case about it is open; you can ask for a review there. A hold never becomes a penalty by itself: a person decides. If a reward's odds or an item's count ever look broken, that reward pauses for everyone until we've checked it."}
         </Item>
         {PRIVACY.drawingCheck && (
           <Item label="Drawing Checks">
@@ -1266,6 +1271,19 @@ const Privacy: React.FC = () => {
         protect someone's life or safety.
       </P>
 
+      {PRIVACY.homeDiscord && (
+        <>
+          <H2>Links to Other Services</H2>
+          <P>
+            The app and this website link to services we don't run, such as SpySocial's official Discord server (the app
+            can show a link to it on Home, but never to players under 16) and our social media pages. Opening a link
+            takes you to that service, which handles what you do and share there under its own terms and privacy
+            policy. We don't send it anything about you when you open the link. Our team and volunteer moderators look
+            after our Discord server, but we can't see private messages on Discord.
+          </P>
+        </>
+      )}
+
       <H2>If SpySocial Changes Hands</H2>
       <P>
         {LLC_SINCE
@@ -1334,6 +1352,12 @@ const Privacy: React.FC = () => {
           that asks a parent's consent through Apple is out.
         </P>
       )}
+      <P>
+        In the app's list of rooms, players under 16 (and players who haven't told us their age) see no private room
+        but their own, and a private room hosted by a player under 18 is listed to no one but its host; joining a
+        private room still needs its code, link or QR code, or an invite. Some of the game's suggested questions are never used in
+        a game with a player under 18.{PRIVACY.homeDiscord ? " Players under 16 never see the app's link to our Discord server, and players 16 and 17 see a note on staying safe before it opens." : ''}
+      </P>
 
       <H2>Do Not Track Signals</H2>
       <P>

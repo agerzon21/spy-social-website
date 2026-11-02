@@ -17,7 +17,7 @@ import { LIVE } from '../lib/legalRelease'
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
-const UPDATED = 'October 30, 2026' // the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
+const UPDATED = 'November 2, 2026' // the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -38,6 +38,17 @@ const GameNightRules: React.FC = () => (
       apply as at any other Play Online table (Report, Block, Leave and the chat filters). Like every Play Online table,
       they have no votes to remove a player or to end a game; a person reads every report, and SpySocial's developer,
       when he watches a table, can mute, remove or ban a player, or end the game, for safety or a broken rule.
+      {LIVE.moderatorRoomActions &&
+        ' With our permission, a volunteer moderator may also watch a Game Night table and help at it, and end a game or the night itself, each with a written reason.'}
+    </P>
+
+    <H2>The night's packs and settings</H2>
+    <P>
+      We choose each Game Night's packs, from our own packs and from Community Packs our team has already reviewed
+      and approved, and the settings its tables play with, which can differ from a standard Play Online table (for
+      example how voting works). The (i) next to the night on Home and on its card shows the packs and every setting
+      that differs. Everyone at a Game Night table plays the night's packs, whatever packs they have unlocked, and the
+      night's settings are the same for every table of the same size.
     </P>
 
     <H2>No purchase necessary</H2>

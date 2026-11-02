@@ -125,6 +125,17 @@ const ChildSafety: React.FC = () => {
             Nothing in SpySocial can be bought or sold for real money between players.
           </ListItem>
         )}
+        {/* LIVE.homeDiscord: Home's Discord pill (server get_home_discord: under 16 never, 16-17 a safety note first). */}
+        {LIVE.homeDiscord && (
+          <ListItem>
+            <B>Our Discord server:</B> the app can show a link to SpySocial's official Discord server, a separate app
+            with its own rules and minimum age. Players under 16 (and players who haven't told us their age) never see
+            the link; players 16 and 17 first see a note on staying safe there (Discord has private messages we can't
+            see; keep your real name, school and address to yourself; tell a parent or guardian). Our team and
+            volunteer moderators look after the server, and links to other apps stay blocked in any room with a player
+            under 18.
+          </ListItem>
+        )}
         <ListItem>
           <B>No voice, video or photo sharing:</B> there's no voice or video chat, and no way to send photos or
           videos.
@@ -136,7 +147,10 @@ const ChildSafety: React.FC = () => {
         </ListItem>
         <ListItem>
           <B>Rooms:</B> only people with a private room's code, link or QR code can join it, and the host can remove a
-          player. Public rooms are only for saved accounts of players 13 or older who have agreed to our Community
+          player. Players under 16 (and players who haven't told us their age) see no other player's private rooms in
+          the app's room list, and a private room hosted by a player under 18 is listed to no one but its host. Some of
+          the game's suggested questions are never used in a game with a player under 18. Public rooms are only for
+          saved accounts of players 13 or older who have agreed to our Community
           Rules; guests can play only in private rooms, and a player with a pause or a ban can't join public rooms.
         </ListItem>
         <ListItem>

@@ -552,6 +552,12 @@ const es: Strings = {
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>Intercepciones:</b> recompensas que se ganan jugando, y cada una trae un objeto al azar, como un estilo nuevo para el agente. No se pueden comprar, ni con dinero ni con la moneda que se gana en el juego, y la app muestra las probabilidades antes de abrir una.',
+      /** `intercepts` once unopened Intercepts trade on the Black Market (LIVE.interceptsMarket). */
+      interceptsMarket:
+        "<b>Intercepciones:</b> recompensas que se ganan jugando, y cada una trae un objeto al azar, como un estilo nuevo para el agente. Nadie las vende por dinero, ni nosotros ni otros jugadores. Los adultos también pueden comprarlas y venderlas sin abrir entre ellos en el Mercado Negro con la moneda que se gana en el juego, que no se puede comprar; los menores de 18 no pueden. La app muestra las probabilidades antes de abrir una.",
+      /** Home's Discord pill (LIVE.homeDiscord; under 16 never, 16-17 a safety note first). */
+      discord:
+        "<b>Un enlace a nuestro Discord:</b> el inicio puede mostrar un enlace al servidor oficial de SpySocial en Discord, donde los jugadores encuentran con quién jugar. Discord es una app aparte, con sus propias reglas y edad mínima. Los menores de 16 nunca ven el enlace, y los jugadores de 16 y 17 ven primero un aviso para estar seguros allí. Nuestros moderadores cuidan el servidor, pero nadie en SpySocial puede ver los mensajes privados de Discord.",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
         `<b>Paquetes personalizados:</b> los miembros pueden crear sus propios paquetes de lugares o palabras para sus salas privadas.${

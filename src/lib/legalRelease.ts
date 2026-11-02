@@ -1221,8 +1221,22 @@ export const LIVE = {
    * 3-games rule's status; no Intercept given with a purchase is ever tradable (Terms: purchase-linked codes give
    * none). Set LEGAL_LAST_UPDATED's and PRIVACY_LAST_UPDATED's entries to the day. Records v2.2 G35 (re-read fraud and
    * gambling first). A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * ON November 2, 2026 (legal audit 1102): the server went live 2026-11-01 23:33 UTC (20261101233357_intercepts_market,
+   * app_config.economy.intercepts_tradable unset = on; the update-22 app lists unopened Intercepts on the Black Market;
+   * no app offers them in a friend trade yet). Checked: open_crate refuses in_market / in_trade / protected; a traded
+   * one is sealed for the protection; deletion returns protected ones (20261102011736); bound (gift/code) ones never
+   * move. Known server gap (reported, not in the text): trade_set_intercepts doesn't refuse a trade with a minor,
+   * so the "never unopened Intercepts" rule for 13-17 is held by the app only until the server fix.
    */
-  interceptsMarket: false,
+  interceptsMarket: true,
+  /**
+   * Home's Discord pill (app repo feat/home-discord, update 23+, server 20261207900000_home_discord, applied after the
+   * OTA): a link out to the official Discord invite; get_home_discord answers per caller: under 16 or no birth year,
+   * never; 16-17 a one-time safety note first (none on iOS while social.ios_minor_hold); adults. The text says "can
+   * show", so it is true before the server file is applied. Turns on: the parents' Safety line, Child Safety's line,
+   * Privacy's Links to Other Services and the Terms' Other services example. Off only if the pill is dropped.
+   */
+  homeDiscord: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)

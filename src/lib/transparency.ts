@@ -75,10 +75,19 @@ const TRADE_NO_LIMITS: { day: string; what: string; from: string; to: string }[]
   { day: 'November 2, 2026', what: 'how many items and how much Intel a player can receive by trade in a week', from: 'a weekly limit', to: 'no limit' },
 ]
 
+/**
+ * Unopened Intercepts on the Black Market (owner 2026-11-01; app server 20261101233357_intercepts_market, live
+ * 23:33 UTC, i.e. November 1 in New York): shown while LIVE.interceptsMarket is on.
+ */
+const INTERCEPTS_MARKET: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'November 1, 2026', what: 'whether adults can buy and sell unopened Intercepts on the Black Market, for Intel only (players under 18: never; minimum prices from the lowest tier to the highest: 8, 15, 50, 113 and 168 Intel)', from: 'no', to: 'yes' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
   ...(LIVE.tradeNoLimits ? TRADE_NO_LIMITS : []),
   ...(LIVE.tradeGatesNov2 ? TRADE_GATES_NOV2 : []),
+  ...(LIVE.interceptsMarket ? INTERCEPTS_MARKET : []),
   ...(LIVE.giftsTradable ? GIFTS_TRADABLE : []),
   ...(LIVE.uniquesRarer ? UNIQUES_RARER : []),
 ]

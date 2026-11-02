@@ -588,6 +588,17 @@ const Terms: React.FC = () => {
             )}
           </ListItem>
         )}
+        {/* Integrity (live 2026-10-31, 20261031060528): quiet holds act from Dec 8, 2026 (shadow until then). */}
+        {LIVE.intel && LIVE.intercepts && (
+          <ListItem>
+            To keep rewards fair, our checks look for farming, bots and scripted play, games thrown on purpose and
+            several accounts run by one person. From December 8, 2026, while one of our team checks a strong sign of
+            this, we may hold an account's new rewards for up to 72 hours (an Intercept being held shows "Verifying" and
+            can't be opened yet), and longer only while a case about it is open; you can ask for a review in the app.
+            If a reward's odds or an item's count ever look broken, we may pause that reward for everyone until we've
+            checked it.
+          </ListItem>
+        )}
         {/* LIVE.intelCorrections: Economy Integrity E1, the three corrections (see legalRelease). */}
         {LIVE.intel && LIVE.intelCorrections && (
           <ListItem>
@@ -623,7 +634,7 @@ const Terms: React.FC = () => {
             (such as merch codes) never give Intercepts. We may also give Intercepts, and memberships, as gifts, but
             never the items that come from Intercepts. Each Intercept opens into one random item.{' '}
             {LIVE.interceptsMarket
-              ? "You can't buy an Intercept with money, and nobody, us included, sells Intercepts. Adults can trade an unopened Intercept they earned with a friend, or buy one from another adult or sell one for Intel on the Black Market (see Trades and Black Market below); players under 18 can't. Intel can't be bought, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds."
+              ? "You can't buy an Intercept with money, and we never sell Intercepts. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below); players under 18 can't. Intel can't be bought, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds."
               : "You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a membership doesn't give you more of them or better odds."} Before you open one, the app shows (under Odds)
             the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed. If you get an item you already have, you
@@ -758,7 +769,7 @@ const Terms: React.FC = () => {
               {LIVE.tradeGatesNov2 ? 'an account at least 7 days old that has played 3 counted games' : 'level 20, an account at least 14 days old'}, a
               confirmed email, no trading pause), and Intel moves on it only once SpySocial 2.2 opens to everyone.
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
-              instead no offer can be priced below an item's minimum price, what one copy of it shreds for.
+              instead no offer can be priced below an item's minimum price, what one copy of it shreds for{LIVE.interceptsMarket ? " (for an unopened Intercept, what the items its tier gives shred for on average, by its odds)" : ''}.
             </ListItem>
             <ListItem>
               While an offer or listing is open, what it offers is held for it: the Intel of a buy offer, or the items of
@@ -856,7 +867,8 @@ const Terms: React.FC = () => {
       <H3>Other services</H3>
       <P>
         SpySocial relies on other companies' services to run; our Privacy Policy lists them. We're not responsible
-        for services or websites we don't run, including ones linked from SpySocial.
+        for services or websites we don't run, including ones linked from SpySocial
+        {LIVE.homeDiscord ? " (such as our Discord server, which runs under Discord's own terms and minimum age)" : ''}.
       </P>
 
       <H2>11. Apple App Store and Google Play</H2>
