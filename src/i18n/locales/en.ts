@@ -614,7 +614,7 @@ const en = {
       social:
         "<b>Friends and parties:</b> players can add friends and play together as a party, with a filtered party chat. An adult can add a player under 16 only in person, by scanning the Friend Code on the child's phone. Players under 18 have no public profile, can't be followed and get no social notifications at night. On iPhone, this stays off for players under 18 for now.",
       trading:
-        "<b>Trading:</b> players 13–17 can trade game items only for other items, with friends they added in person, at most 3 times a day, with no gifts and no messages. Adults can also buy and sell items for the currency earned in the game on the Black Market; players under 18 can only look. Nothing can be bought or sold for real money.",
+        "<b>Trading:</b> players 13–17 can trade game items only for other items, with friends they added in person, with no gifts and no messages. Adults can also buy and sell items for the currency earned in the game on the Black Market; players under 18 can only look. Nothing can be bought or sold for real money.",
       noVoice: (photos: boolean) =>
         `No voice or video chat: the microphone button only turns speech into text, and other players never hear anyone's voice.${photos ? '' : ' No photo or video uploads either.'}`,
       noLocation: 'No location sharing and no ads.',

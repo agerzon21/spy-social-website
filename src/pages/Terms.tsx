@@ -694,7 +694,7 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>
               Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
-              Friend Code, and at most 3 trades a day (adults, 5){LIVE.interceptsMarket ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults, and
+              Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults, and
               only once SpySocial 2.2 opens to everyone. On iPhone, players under 18 can't trade until a version of the
               app that asks a parent's consent through Apple is out.
             </ListItem>
@@ -716,8 +716,10 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>
               Big trades ask for a code we email you. Trading pauses for a while after your email or sign-in method
-              changes, after a sign-in on a new device, or when you lock it yourself (for up to a year). There are
-              also weekly limits on the items and Intel you can receive, which the app shows.
+              changes, after a sign-in on a new device, or when you lock it yourself (for up to a year).
+              {LIVE.tradeNoLimits
+                ? " There's no daily or weekly limit on how many trades anyone makes or on the items and Intel they receive."
+                : ' There are also weekly limits on the items and Intel you can receive, which the app shows.'}
             </ListItem>
             <ListItem>
               We check trades for signs of real-money trading, account theft and unfair trades with players under 18;

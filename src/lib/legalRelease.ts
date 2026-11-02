@@ -1163,6 +1163,17 @@ export const LIVE = {
    */
   tradeGatesNov2: true,
   /**
+   * No trade volume limits (owner 2026-11-02 ~04:30 UTC: "we target bots and cheaters, never make the game worse for
+   * real players"; live on the app server: app_config.trading daily_trades, daily_trades_minor, weekly_copies_in and
+   * intel_weekly_in effectively unlimited, and 0 means no limit from 20261207640000): nobody, adult or under 18, has a
+   * daily or weekly limit on trades or on the items and Intel they receive. Under-18s keep their rules that aren't
+   * volume limits: items for items only, only with friends added in person by Friend Code, no gifts, no Intel, never
+   * unopened Intercepts. Per-trade size (10 items a side) and the emailed code for big trades stay. Turns on: Terms 9
+   * Trades (the 3-a-day line and the weekly-limits line go), Child Safety's and the parents' page trading line, the
+   * Transparency Report's November 2 rule changes. A server switch for every app version at once: set in LIVE.
+   */
+  tradeNoLimits: true,
+  /**
    * Volunteer moderators' room and pack actions (live functions mod_watch_table, mod_table_help, mod_end_game,
    * mod_end_night, mod_remove_message, mod_review_pack; each behind the moderator's own permission and the owner's
    * moderator_settings): a moderator with the permission may watch a Game Night table, help at it, end a Game Night
@@ -1339,6 +1350,8 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  */
 export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.tradeNoLimits
+    ? 'November 2, 2026' // Terms 9: no daily or weekly trade limits for anyone (owner 2026-11-02): the site went up with it on
   : LIVE.tradeGatesNov2
     ? 'November 2, 2026' // Terms 9: friends trade right away, a 7-day-old account and 3 counted games (no level): the site went up with it on
   : LIVE.interceptsMarket

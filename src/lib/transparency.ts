@@ -66,8 +66,18 @@ const TRADE_GATES_NOV2: { day: string; what: string; from: string; to: string }[
   { day: 'November 2, 2026', what: 'the play needed to trade or use the Black Market', from: 'level 20', to: '3 counted games' },
 ]
 
+/**
+ * No trade volume limits (owner 2026-11-02; app server app_config.trading, 20261207640000): shown while
+ * LIVE.tradeNoLimits is on.
+ */
+const TRADE_NO_LIMITS: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'November 2, 2026', what: 'how many trades a player can make in a day (players under 18 still trade only with friends added in person by Friend Code)', from: '5 (players under 18: 3)', to: 'no limit' },
+  { day: 'November 2, 2026', what: 'how many items and how much Intel a player can receive by trade in a week', from: 'a weekly limit', to: 'no limit' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.tradeNoLimits ? TRADE_NO_LIMITS : []),
   ...(LIVE.tradeGatesNov2 ? TRADE_GATES_NOV2 : []),
   ...(LIVE.giftsTradable ? GIFTS_TRADABLE : []),
   ...(LIVE.uniquesRarer ? UNIQUES_RARER : []),

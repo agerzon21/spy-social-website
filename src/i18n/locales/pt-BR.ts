@@ -569,7 +569,7 @@ const ptBR: Strings = {
       social:
         "<b>Amigos e grupos:</b> os jogadores podem adicionar amigos e jogar juntos em grupo, com um chat de grupo filtrado. Um adulto só pode adicionar um jogador com menos de 16 anos pessoalmente, escaneando o código de amigo no celular do jogador. Menores de 18 anos não têm perfil público, ninguém pode segui-los e eles não recebem notificações sociais à noite. No iPhone, por enquanto, isso fica desligado para menores de 18 anos.",
       trading:
-        "<b>Trocas:</b> jogadores de 13 a 17 anos só podem trocar itens do jogo por outros itens, com amigos que adicionaram pessoalmente, no máximo 3 vezes por dia, sem presentes nem mensagens. Adultos também podem comprar e vender itens no Mercado Negro pela moeda ganha no jogo; menores de 18 anos só podem olhar. Nada pode ser comprado ou vendido por dinheiro real.",
+        "<b>Trocas:</b> jogadores de 13 a 17 anos só podem trocar itens do jogo por outros itens, com amigos que adicionaram pessoalmente, sem presentes nem mensagens. Adultos também podem comprar e vender itens no Mercado Negro pela moeda ganha no jogo; menores de 18 anos só podem olhar. Nada pode ser comprado ou vendido por dinheiro real.",
       noVoice: (photos: boolean) =>
         `Nada de chat de voz ou vídeo: o botão do microfone só transforma a fala em texto, e os outros jogadores nunca ouvem a voz de ninguém.${photos ? '' : ' Também não dá para enviar fotos ou vídeos.'}`,
       noLocation: 'Nada de compartilhamento de localização e nada de anúncios.',

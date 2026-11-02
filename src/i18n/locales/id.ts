@@ -569,7 +569,7 @@ const id: Strings = {
       social:
         "<b>Teman dan grup:</b> pemain bisa menambahkan teman dan bermain bersama sebagai grup, dengan chat grup yang difilter. Orang dewasa hanya bisa menambahkan pemain di bawah 16 tahun secara langsung, dengan memindai Kode Teman di ponsel anak itu. Pemain di bawah 18 tahun tidak punya profil publik, tidak bisa diikuti, dan tidak menerima notifikasi sosial pada malam hari. Di iPhone, fitur ini untuk sementara tetap mati bagi pemain di bawah 18 tahun.",
       trading:
-        "<b>Tukar:</b> pemain berusia 13–17 tahun hanya bisa menukar item game dengan item lain, dengan teman yang mereka tambahkan secara langsung, paling banyak 3 kali sehari, tanpa hadiah dan tanpa pesan. Orang dewasa juga bisa membeli dan menjual item di Pasar Gelap dengan mata uang yang didapat dari bermain; pemain di bawah 18 tahun hanya bisa melihat. Tidak ada yang bisa dibeli atau dijual dengan uang sungguhan.",
+        "<b>Tukar:</b> pemain berusia 13–17 tahun hanya bisa menukar item game dengan item lain, dengan teman yang mereka tambahkan secara langsung, tanpa hadiah dan tanpa pesan. Orang dewasa juga bisa membeli dan menjual item di Pasar Gelap dengan mata uang yang didapat dari bermain; pemain di bawah 18 tahun hanya bisa melihat. Tidak ada yang bisa dibeli atau dijual dengan uang sungguhan.",
       noVoice: (photos: boolean) =>
         `Tidak ada chat suara atau video: tombol mikrofon hanya mengubah ucapan menjadi teks, dan pemain lain tidak pernah mendengar suara siapa pun.${photos ? '' : ' Tidak ada unggahan foto atau video juga.'}`,
       noLocation: 'Tidak ada berbagi lokasi dan tidak ada iklan.',
