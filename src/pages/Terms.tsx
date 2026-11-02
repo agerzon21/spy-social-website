@@ -788,9 +788,108 @@ const Terms: React.FC = () => {
           </Bullets>
         </>
       )}
-      {LIVE.purchases && (
+      {/* LIVE.membershipTerms: the memberships section before LIVE.purchases (PRESUBMIT-AUDIT B4, 2026-11-02), so App
+          Review's "Terms of Use" link shows the subscription terms. */}
+      {(LIVE.purchases || (LIVE.membershipTerms && LIVE.membershipsOnly)) && (
         <>
         <H3>{LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'}</H3>
+        {LIVE.membershipsOnly ? (
+        <Bullets>
+          {!LIVE.purchases && (
+            <ListItem>
+              Memberships go on sale with version 2.2 of the app; until then, nothing in SpySocial can be bought. Before
+              2.2 is released, Apple's and Google's app reviewers and our testers may take a membership with a test
+              purchase, which charges no money. We take test memberships back once the review or test is over.
+            </ListItem>
+          )}
+          <ListItem>
+            The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the
+            yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple
+            App Store or Google Play and follow their terms. They handle payment: the price, and how long the membership
+            lasts, are shown in the app and on the store's payment sheet before you buy, including any tax where it
+            applies, and the payment is charged to your Apple Account or Google Play account when you confirm.
+          </ListItem>
+          <ListItem>
+            Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts
+            {LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for
+            everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a
+            membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for
+            as long as we give it, and nothing is charged for it.
+            {LIVE.membershipCodes
+              ? ' A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time.'
+              : ''}
+          </ListItem>
+          <ListItem>
+            <B>Automatic renewal.</B> The monthly and yearly Pack Pass are subscriptions that renew automatically. At
+            the end of each month or year, the store charges your account the price for the next period (within the 24
+            hours before the current period ends) unless you cancel first: on the App Store, at least 24 hours before
+            the current period ends; on Google Play, before the renewal date. When you cancel, the pass doesn't renew,
+            and you keep its benefits until the end of the period you've already paid for.
+          </ListItem>
+          <ListItem>
+            <B>How to cancel.</B> On an iPhone or iPad: open Settings, tap your name, then Subscriptions, and choose
+            SpySocial. On Android: open the Google Play Store app, tap your profile picture, then Payments &amp;
+            subscriptions, then Subscriptions, and choose SpySocial. Manage Subscription in the app opens the same page.
+            You can switch between the monthly and yearly pass there too. Deleting the app, or your SpySocial account,
+            doesn't cancel a subscription, and neither does buying Lifetime: cancel the pass in the store so it isn't
+            charged again.
+          </ListItem>
+          <ListItem>
+            <B>Free trials.</B> We don't offer free trials or introductory prices today. If we ever do, the app and the
+            store will show before you buy how long the offer lasts and what you'll pay after it; the subscription then
+            renews at the full price when the offer ends unless you cancel (on the App Store, at least 24 hours before it
+            ends).
+          </ListItem>
+          <ListItem>
+            <B>Lifetime</B> is a one-time purchase: you pay once and it never renews. It lasts for as long as we offer
+            SpySocial, not for your lifetime.
+          </ListItem>
+          <ListItem>
+            <B>Price changes.</B> We may change membership prices. A new price applies to a pass only from a renewal
+            after Apple or Google has told you about it, with the notice they require, and where the store or the law
+            needs your agreement to a higher price, the pass doesn't renew at it without your agreement. You can cancel
+            before a new price applies. A price change never affects a Lifetime you've already bought.
+          </ListItem>
+          <ListItem>
+            A membership's benefits are described in the app when you buy it. We may change them; if a change takes away
+            something important, we'll tell you in advance so you can cancel before your next renewal.
+          </ListItem>
+          <ListItem>
+            The items a membership includes only change how your agent looks
+            {avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. We
+            may update the words and locations in a pack; if we ever have to withdraw a pack or an item a membership
+            includes, we'll give you a comparable one where we reasonably can.
+          </ListItem>
+          <ListItem>
+            <B>Family Sharing.</B> Memberships aren't shared through Apple's Family Sharing or Google Play's family
+            library. A membership belongs to the SpySocial account it's on.
+          </ListItem>
+          <ListItem>
+            <B>No cash value.</B> A membership has no value in real money. You can't sell, trade or give it to someone
+            else, move it to another account (except with Restore Purchases, below), or exchange it for money.
+          </ListItem>
+          <ListItem>
+            <B>Refunds</B> are handled by Apple or Google under their policies, not by us: ask Apple at{' '}
+            <OutLink href="https://reportaproblem.apple.com">reportaproblem.apple.com</OutLink>, or Google through your
+            Google Play order history. If a purchase is refunded, we remove what it unlocked.
+          </ListItem>
+          <ListItem>
+            <B>If you delete your account</B>, the membership on it stops with the account, but a pass keeps renewing
+            (and being charged) until you cancel it in the store. What you bought can come back on another SpySocial
+            account with Restore Purchases. If we ban an account for breaking these Terms, its membership stops working
+            in SpySocial; refunds are still up to Apple or Google.
+          </ListItem>
+          <ListItem>
+            To get your membership back on another device, or after losing or deleting an account, use Restore Purchases
+            in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring
+            moves your membership to the SpySocial account you're using, away from any other account it was on.
+          </ListItem>
+          <ListItem>
+            Nothing in these Terms takes away rights you have under consumer law, for example if something you bought
+            doesn't work as described.
+          </ListItem>
+        </Bullets>
+        ) : (
         <Bullets>
           {LIVE.membershipsOnly ? (
             <ListItem>The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
@@ -815,6 +914,7 @@ const Terms: React.FC = () => {
           <ListItem>To get your purchases back on another device, or after losing or deleting an account, use Restore Purchases in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring moves your purchases to the SpySocial account you're using, away from any other account they were on.</ListItem>
           <ListItem>Nothing in these Terms takes away rights you have under consumer law, for example if something you bought doesn't work as described.</ListItem>
         </Bullets>
+        )}
         </>
       )}
 

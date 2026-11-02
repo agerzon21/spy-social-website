@@ -741,6 +741,20 @@ export const LIVE = {
    */
   membershipsOnly: true,
   /**
+   * The Terms' membership section ("Buying a membership", section 9) shown before LIVE.purchases (PRESUBMIT-AUDIT B4,
+   * 2026-11-02; owner's standing OK for policy updates): the 2.2 paywall links Terms of Use here and App Review opens it
+   * from Nov 10 (memberships go to review with the build), weeks before the launch hour. With LIVE.purchases off it adds
+   * a first bullet: memberships go on sale with version 2.2, nothing is sold before, and review / tester test
+   * purchases are taken back. Everything else in the section (auto-renewal, cancelling on each store, no free trial
+   * today, Lifetime, price changes, Family Sharing off for all three products, no cash value, refunds, deletion,
+   * Restore) describes how the 2.2 memberships work and stays true while nothing is sold. The other purchase lines
+   * (section 3's guests, section 9's Restore exception and after-deletion line) still wait for LIVE.purchases.
+   * Facts checked 2026-11-02: three products only (spysocial.pass.monthly / spysocial.pass.yearly /
+   * spysocial.lifetime), Family Sharing off (apple-forms), no intro offer or trial (lib/purchases.ts has no offer
+   * handling, none configured). Server-independent: set in LIVE.
+   */
+  membershipTerms: true,
+  /**
    * Intercepts (app repo feat/crates-server, server file 20261127000000_crates.sql, "crates" in code; app
    * feat/intercepts-client; owner 2026-10-25): sealed containers earned only by playing, each opening into one random
    * item (an avatar item, celebrations among them, or a title). Final rules (owner 2026-10-25): every 10 counted wins
@@ -1405,6 +1419,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.membershipTerms
+    ? 'November 2, 2026' // Terms 9: Buying a membership shown before the launch (B4): the site went up with it on
   : LIVE.tradeNoLimits
     ? 'November 2, 2026' // Terms 9: no daily or weekly trade limits for anyone (owner 2026-11-02): the site went up with it on
   : LIVE.tradeGatesNov2
