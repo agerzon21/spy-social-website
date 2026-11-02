@@ -87,7 +87,7 @@ const id: Strings = {
     childSafety: 'Keselamatan anak',
     safety: 'Keamanan',
     deleteAccount: 'Hapus akun',
-    rights: (year: number) => `© ${year} SpySocial. Hak cipta dilindungi`,
+    rights: (year: number, holder = 'SpySocial') => `© ${year} ${holder}. Hak cipta dilindungi`,
     follow: 'Ikuti SpySocial',
     on: (network: string) => `SpySocial di ${network}`,
     discordHandle: 'Server SpySocial',

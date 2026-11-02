@@ -87,7 +87,7 @@ const hi: Strings = {
     childSafety: 'बच्चों की सुरक्षा',
     safety: 'सुरक्षा',
     deleteAccount: 'अकाउंट डिलीट करें',
-    rights: (year: number) => `© ${year} SpySocial। सर्वाधिकार सुरक्षित`,
+    rights: (year: number, holder = 'SpySocial') => `© ${year} ${holder}। सर्वाधिकार सुरक्षित`,
     follow: 'SpySocial को फ़ॉलो करें',
     on: (network: string) => `${network} पर SpySocial`,
     discordHandle: 'SpySocial सर्वर',

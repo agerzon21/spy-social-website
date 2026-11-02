@@ -38,7 +38,7 @@ const ChildSafety: React.FC = () => {
   const photos = photosShown(LIVE)
   const photosKept = photosInUse(LIVE) && LIVE.photosPrivate
   const drawings = drawingCheckLive(LIVE)
-  const developer = OPERATOR.name ? `, made by ${OPERATOR.name}` : ''
+  const developer = OPERATOR.legalName ? `, made by ${OPERATOR.legalName}` : ''
 
   return (
     <LegalPage english title="Child Safety Standards" updated={<>Last updated: {later(PUBLISHED, LEGAL_LAST_UPDATED)}</>}>
@@ -245,7 +245,7 @@ const ChildSafety: React.FC = () => {
       <H2 id="contact">6. Our child safety contact</H2>
       <P>
         {OPERATOR.name
-          ? `SpySocial's child safety point of contact is ${OPERATOR.name}, who runs SpySocial and handles child safety reports. `
+          ? `SpySocial's child safety point of contact is ${OPERATOR.person}, who ${OPERATOR.isCompany ? `owns and runs ${OPERATOR.name}, the company that runs SpySocial,` : 'runs SpySocial'} and handles child safety reports. `
           : ''}
         Email <SupportEmail subject="Child safety" /> with "Child safety" in the subject, and we'll deal with it first.
         Law enforcement and other organizations can reach us at the same address.

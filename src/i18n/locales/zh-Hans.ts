@@ -86,7 +86,7 @@ const zhHans: Strings = {
     childSafety: '儿童安全',
     safety: '安全',
     deleteAccount: '删除账号',
-    rights: (year: number) => `© ${year} SpySocial。保留所有权利`,
+    rights: (year: number, holder = 'SpySocial') => `© ${year} ${holder}。保留所有权利`,
     follow: '关注 SpySocial',
     on: (network: string) => `SpySocial 的 ${network}`,
     discordHandle: 'SpySocial 服务器',

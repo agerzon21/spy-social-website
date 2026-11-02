@@ -87,7 +87,7 @@ const bn: Strings = {
     childSafety: 'শিশু সুরক্ষা',
     safety: 'নিরাপত্তা',
     deleteAccount: 'অ্যাকাউন্ট মুছুন',
-    rights: (year: number) => `© ${year} SpySocial। সর্বস্বত্ব সংরক্ষিত`,
+    rights: (year: number, holder = 'SpySocial') => `© ${year} ${holder}। সর্বস্বত্ব সংরক্ষিত`,
     follow: 'SpySocial-কে ফলো করুন',
     on: (network: string) => `${network}-এ SpySocial`,
     discordHandle: 'SpySocial সার্ভার',

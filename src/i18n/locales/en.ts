@@ -110,7 +110,7 @@ const en = {
     childSafety: 'Child Safety',
     safety: 'Safety',
     deleteAccount: 'Delete Account',
-    rights: (year: number) => `© ${year} SpySocial. All rights reserved`,
+    rights: (year: number, holder = 'SpySocial') => `© ${year} ${holder}. All rights reserved`,
     follow: 'Follow SpySocial',
     /** A social account's link, for screen readers: "SpySocial on Instagram". */
     on: (network: string) => `SpySocial on ${network}`,

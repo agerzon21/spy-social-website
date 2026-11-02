@@ -397,7 +397,9 @@ const UkOnlineSafety = () => {
       <H3>Who is responsible</H3>
       <P>
         {OPERATOR.name ?? 'The operator of SpySocial'}{OPERATOR.name ? ', the operator of SpySocial,' : ''} is responsible
-        for these protections and for handling complaints. Section 21 has our contact details.
+        for these protections and for handling complaints.
+        {OPERATOR.isCompany ? ` ${OPERATOR.person}, who owns and runs ${OPERATOR.name}, is the person accountable for them.` : ''}{' '}
+        Section 21 has our contact details.
       </P>
     </>
   )

@@ -2,7 +2,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { useMemo } from 'react'
 import { useT } from '../i18n'
 import { useClosed } from '../lib/betaSignup'
-import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
+import { LIVE, LLC_SINCE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
 import { PLAY_URL } from '../lib/playUrl'
 import { SHOP_URL } from '../lib/shop'
@@ -91,7 +91,7 @@ const Footer = () => {
           </div>
         </div>
         <div className={s.bottom}>
-          <p className={s.copy}>{f.rights(new Date().getFullYear())}</p>
+          <p className={s.copy}>{f.rights(new Date().getFullYear(), LLC_SINCE ? 'SpySocial LLC' : undefined)}</p>
           <SocialLinks />
         </div>
       </div>

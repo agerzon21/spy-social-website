@@ -57,6 +57,17 @@
 
 export const LIVE = {
   /**
+   * SpySocial LLC runs SpySocial (owner 2026-11-02; plan .claude/handoff/scratchpad/llc/FLIP-DAY.md in the app repo).
+   * OFF (false): the pages name Aleksandr Gerzon as the operator. ON: set it to the day Pennsylvania approves the
+   * LLC and the assignment of SpySocial to it is signed, as a "Month D, YYYY" string (e.g. 'November 9, 2026'),
+   * which is the whole flip: Terms' "we" and Apple and contact lines, Privacy's controller and contact, the
+   * DMCA notice line (the agent stays Aleksandr Gerzon, named for SpySocial LLC), Child Safety's maker and contact
+   * (the person stays the point of contact), the UK online safety "who is responsible" (the LLC, with the person
+   * accountable), the footer's copyright in 10 languages, a dated change line on the Terms and the Privacy Policy,
+   * Privacy's "If SpySocial Changes Hands", and both Last Updated dates (to this day). Same address, phone and email.
+   */
+  llcOperator: false as false | string,
+  /**
    * IP vault (owner 2026-10-31; app repo feat/ipvault, server file 20261203750000_ipvault, live 20261031070824): the
    * real IP address of each sign-up (the Auth hook's payload) and of each sign-in / app start (note_device, Cloudflare's
    * address; at most one row per account and network every 6 hours), with the time and the account, SEALED on write
@@ -1341,14 +1352,32 @@ export const usesMlKit = (s: Switches): boolean => s.onDeviceTranslation || s.qr
 export const creatorShortLive = ({ creatorShort: c }: Switches): boolean =>
   c.enabled && /^[\w-]{11}$/.test(c.youtubeId) && /^https:\/\/\S+$/.test(c.channelUrl)
 
+/** The day SpySocial LLC took over SpySocial (LIVE.llcOperator), or null while Aleksandr Gerzon runs it himself. */
+export const LLC_SINCE: string | null = typeof LIVE.llcOperator === 'string' ? LIVE.llcOperator : null
+
 /**
  * Who runs SpySocial: the legal name and a postal address, shown on the
  * Privacy Policy (the data controller) and the Terms (the contracting party,
- * Apple's minimum end-user terms). Owner to fill in.
+ * Apple's minimum end-user terms). `name` is the short form used in sentences,
+ * `legalName` the first mention ("SpySocial LLC, a Pennsylvania limited
+ * liability company"), `person` the individual the law or a store wants named
+ * (the DMCA designated agent, the child safety point of contact, the UK online
+ * safety accountable person), `isCompany` picks "which" over "who".
  */
-export const OPERATOR: { name: string | null; address: string | null } = {
-  name: 'Aleksandr Gerzon',
+export const OPERATOR: {
+  name: string | null
+  legalName: string | null
+  address: string | null
+  phone: string
+  person: string
+  isCompany: boolean
+} = {
+  name: LLC_SINCE ? 'SpySocial LLC' : 'Aleksandr Gerzon',
+  legalName: LLC_SINCE ? 'SpySocial LLC, a Pennsylvania limited liability company' : 'Aleksandr Gerzon',
   address: '55 Ash Gap Road, Clifton Township, PA 18424-7702, United States',
+  phone: '(570) 445-3516',
+  person: 'Aleksandr Gerzon',
+  isCompany: LLC_SINCE !== null,
 }
 
 /**
@@ -1358,7 +1387,9 @@ export const OPERATOR: { name: string | null; address: string | null } = {
  * set each date to its deploy day when flipping. The first switch that's on wins, so a later change that isn't one of
  * these switches (the 2.2 launch's, for one) must fold the chain back to a plain string first, then set it.
  */
-export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
+export const LEGAL_LAST_UPDATED: string = LLC_SINCE
+  ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
+  : LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.tradeNoLimits
     ? 'November 2, 2026' // Terms 9: no daily or weekly trade limits for anyone (owner 2026-11-02): the site went up with it on
@@ -1404,7 +1435,9 @@ export const LEGAL_LAST_UPDATED: string = LIVE.tournaments
  * goes live can carry its date here (LIVE.<switch> ? its day : the current date), so the one-line flip in LIVE moves
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
-export const PRIVACY_LAST_UPDATED: string = LIVE.tournaments
+export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
+  ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
+  : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.gameDeviceChecks
     ? 'November 2, 2026' // the Trades item and Device Information: the device each game is played from, 90 days: the site went up with it on

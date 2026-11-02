@@ -87,7 +87,7 @@ const ptBR: Strings = {
     childSafety: 'Segurança infantil',
     safety: 'Segurança',
     deleteAccount: 'Excluir conta',
-    rights: (year: number) => `© ${year} SpySocial. Todos os direitos reservados`,
+    rights: (year: number, holder = 'SpySocial') => `© ${year} ${holder}. Todos os direitos reservados`,
     follow: 'Siga o SpySocial',
     on: (network: string) => `SpySocial no ${network}`,
     discordHandle: 'Servidor do SpySocial',

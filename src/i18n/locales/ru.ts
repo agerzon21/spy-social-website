@@ -87,7 +87,7 @@ const ru: Strings = {
     childSafety: 'Защита детей',
     safety: 'Безопасность',
     deleteAccount: 'Удалить аккаунт',
-    rights: (year: number) => `© ${year} SpySocial. Все права защищены`,
+    rights: (year: number, holder = 'SpySocial') => `© ${year} ${holder}. Все права защищены`,
     follow: 'SpySocial в соцсетях',
     on: (network: string) => `SpySocial в ${network}`,
     discordHandle: 'Сервер SpySocial',

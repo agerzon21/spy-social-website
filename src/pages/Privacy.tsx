@@ -5,6 +5,7 @@ import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDe
 import { ShopLink } from '../components/legal/ShopLink'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
 import {
+  LLC_SINCE,
   OPERATOR,
   PRIVACY,
   PRIVACY_LAST_UPDATED,
@@ -15,7 +16,7 @@ import {
   usesMlKit,
 } from '../lib/legalRelease'
 import { LegalPage } from '../components/legal/LegalPage'
-import { Bullets, H2, P } from '../components/legal/LegalText'
+import { B, Bullets, H2, P } from '../components/legal/LegalText'
 
 // What each passage says depends on what has shipped: see src/lib/legalRelease.ts.
 // This page reads PRIVACY, which can run ahead of the Terms (PRIVACY_AHEAD there).
@@ -103,9 +104,17 @@ const Privacy: React.FC = () => {
         {PRIVACY.browserLegal ? ' (on your phone, or in a browser at play.spysocial.app, the browser version)' : ''} and
         our website, spysocial.app,{PRIVACY.merchShop ? ' or buy from our merch shop, shop.spysocial.app,' : ''} and tells you about your privacy rights.
         {OPERATOR.name
-          ? ` SpySocial is run by ${OPERATOR.name}${OPERATOR.address ? `, ${OPERATOR.address}` : ''}, who is responsible for your personal data (the "controller").`
+          ? ` SpySocial is run by ${OPERATOR.legalName}${OPERATOR.address ? `, ${OPERATOR.address}` : ''}, ${OPERATOR.isCompany ? 'which' : 'who'} is responsible for your personal data (the "controller").`
           : ''}
       </P>
+      {LLC_SINCE && (
+        <P>
+          <B>Change on {LLC_SINCE}:</B> {OPERATOR.legalName} owned by {OPERATOR.person}, now runs SpySocial and is the
+          controller of your personal data, in place of {OPERATOR.person} himself. Your information moved to it under
+          this privacy policy (see If SpySocial Changes Hands). Nothing changed in what we collect, how we use it or who
+          we share it with, and you don't need to do anything.
+        </P>
+      )}
 
       <H2>Information We Collect</H2>
       <P>When you use SpySocial, we collect the following information:</P>
@@ -1259,8 +1268,10 @@ const Privacy: React.FC = () => {
 
       <H2>If SpySocial Changes Hands</H2>
       <P>
-        SpySocial may move to a company that its owner controls (for example, SpySocial LLC, which is being set up),
-        or to someone else who takes over SpySocial, such as a buyer. If that happens, your information moves with it,
+        {LLC_SINCE
+          ? `On ${LLC_SINCE}, SpySocial moved to ${OPERATOR.name}, a company its owner controls, and your information moved with it under this privacy policy. SpySocial may move again to someone else who takes over SpySocial, such as a buyer.`
+          : 'SpySocial may move to a company that its owner controls (for example, SpySocial LLC, which is being set up), or to someone else who takes over SpySocial, such as a buyer.'}{' '}
+        If that happens, your information moves with it,
         and the new owner must keep using it under this privacy policy. Before anything changes in how your
         information is used, we'll tell you in the app and on this website. You can delete your account at any time,
         before or after a change.
@@ -1341,7 +1352,8 @@ const Privacy: React.FC = () => {
       <H2>Contact Us</H2>
       <P>
         If you have any questions about this privacy policy or our data practices, please contact us at <SupportEmail />
-        {OPERATOR.name && OPERATOR.address ? `, or write to ${OPERATOR.name}, ${OPERATOR.address}` : ''}.
+        {OPERATOR.name && OPERATOR.address ? `, or write to ${OPERATOR.name}, ${OPERATOR.address}` : ''}
+        {LLC_SINCE ? ` (phone ${OPERATOR.phone})` : ''}.
       </P>
     </LegalPage>
   )

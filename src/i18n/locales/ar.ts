@@ -87,7 +87,7 @@ const ar: Strings = {
     childSafety: 'سلامة الأطفال',
     safety: 'السلامة',
     deleteAccount: 'حذف الحساب',
-    rights: (year: number) => `© ${year} SpySocial. جميع الحقوق محفوظة`,
+    rights: (year: number, holder = 'SpySocial') => `© ${year} ${holder}. جميع الحقوق محفوظة`,
     follow: 'تابعوا SpySocial',
     on: (network: string) => `SpySocial على ${network}`,
     discordHandle: 'خادم SpySocial',

@@ -1,12 +1,13 @@
 import { ListItem, OrderedList, Text } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { CalloutBox } from '../components/legal/Callout'
-import { Bullets, H2, H3, OutLink, P, PageLink } from '../components/legal/LegalText'
+import { B, Bullets, H2, H3, OutLink, P, PageLink } from '../components/legal/LegalText'
 import { ShopLink } from '../components/legal/ShopLink'
 import UkOnlineSafety, { UK_SECTION_NUMBER } from '../components/legal/UkOnlineSafety'
 import {
   LEGAL_LAST_UPDATED,
   LIVE,
+  LLC_SINCE,
   ONLINE_SAFETY_TEXT,
   OPERATOR,
   TERMS_EFFECTIVE_FOR_EXISTING,
@@ -30,7 +31,7 @@ const SupportEmail = () => <PageLink to="/contact-us">support@spysocial.app</Pag
 
 const Terms: React.FC = () => {
   const state = GOVERNING_STATE
-  const we = OPERATOR.name ? `${OPERATOR.name}, the operator of SpySocial` : 'SpySocial'
+  const we = OPERATOR.legalName ? `${OPERATOR.legalName}, the operator of SpySocial` : 'SpySocial'
   // Profile photos we still hold (photosInUse) and ones other players can still see or players can add (photosShown).
   const photos = photosInUse(LIVE)
   const photosSeen = photosShown(LIVE)
@@ -53,6 +54,14 @@ const Terms: React.FC = () => {
         spysocial.app, and everything we offer through them. "We", "us" and "our" mean {we}. "You" means you, the
         player. Please read them: they include limits on what we're responsible for.
       </P>
+
+      {LLC_SINCE && (
+        <P>
+          <B>Change on {LLC_SINCE}:</B> SpySocial is now run by {OPERATOR.legalName} owned by {OPERATOR.person}, who
+          ran it himself until then. He transferred SpySocial and these Terms to it (section 20 allows this). Nothing
+          else in these Terms changed, and you don't need to do anything.
+        </P>
+      )}
 
       <P>
         These Terms were published on {TERMS_PUBLISHED} and replace the Terms of{' '}
@@ -946,8 +955,9 @@ const Terms: React.FC = () => {
       <H2>18. Copyright Complaints</H2>
       <P>
         If you believe something in SpySocial infringes your copyright, send a notice to our designated copyright
-        agent, Aleksandr Gerzon, by email to <SupportEmail />, or by mail to 55 Ash Gap Road, Clifton Township, PA
-        18424-7702, United States (phone (570) 445-3516; U.S. Copyright Office registration DMCA-1082037). The
+        agent{LLC_SINCE ? ` for ${OPERATOR.name}` : ''}, {OPERATOR.person}, by email to <SupportEmail />, or by mail to{' '}
+        {LLC_SINCE ? `${OPERATOR.name}, ` : ''}{OPERATOR.address} (phone {OPERATOR.phone}; U.S. Copyright Office
+        registration DMCA-1082037). The
         notice must include:
       </P>
       <OrderedList spacing={2} pl={4} textStyle="body">
@@ -982,7 +992,8 @@ const Terms: React.FC = () => {
       <H2>21. Contact Us</H2>
       <P>
         For questions, complaints or legal notices about SpySocial, email <SupportEmail />
-        {OPERATOR.name && OPERATOR.address ? `, or write to ${OPERATOR.name}, ${OPERATOR.address}` : ''}. You can
+        {OPERATOR.name && OPERATOR.address ? `, or write to ${OPERATOR.name}, ${OPERATOR.address}` : ''}
+        {LLC_SINCE ? ` (phone ${OPERATOR.phone})` : ''}. You can
         write to us in English or in any language the app offers. support@spysocial.app is also our point of contact
         for players and authorities under the EU Digital Services Act.
       </P>
