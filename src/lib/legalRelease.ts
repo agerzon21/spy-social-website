@@ -1260,6 +1260,14 @@ export const LIVE = {
    */
   dataRights: true,
   /**
+   * Fair-play notes of requests the app never makes (app server 20261102132446_integrity_rings_probes_20261207910000,
+   * live 2026-11-02 13:24 UTC): which account, what kind of request, the UTC day and how many, kept 90 days and deleted
+   * with the account (integrity_probe_hits). Turns on one sentence in Privacy's Safety Information (fair play) and one
+   * in Data Retention. Never name the requests anywhere public. A server fact for every app version at once: set in
+   * LIVE, never in PRIVACY_AHEAD.
+   */
+  integrityProbes: true,
+  /**
    * The launch version of the public site (2.2 out on both stores; flip Tuesday, December 8, 2026, 10 AM ET; steps in
    * the app repo's .claude/handoff/scratchpad/nov02/website-launch.md). On: the hero says 2.2 is out, the home page's
    * New in 2.2 section (the store screenshots in the page's language, Spy Sketch, Play Online, Game Night, the Black
@@ -1489,6 +1497,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.integrityProbes
+    ? 'November 2, 2026' // fair play: notes of requests the app never makes (90 days): the site went up with it on
   : LIVE.dataRights
     ? 'November 2, 2026' // Your Rights (how each right is met, the request record), California (no selling or sharing), Children's Privacy (parents' requests), fair-play retention: the site went up with it on
   : LIVE.gameDeviceChecks
