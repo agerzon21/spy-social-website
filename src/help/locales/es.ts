@@ -382,6 +382,7 @@ const es: HelpText = {
             '<b>Tritura</b> una copia repetida para obtener Intel, por la cantidad que muestra la app.',
             '<b>Canje:</b> 5 copias repetidas de una rareza te dan 1 objeto al azar de la rareza siguiente, y 10 copias Legendarias repetidas te dan un Único.',
             'Solo cuentan los repetidos, nunca tu primera copia ni un Único.',
+            'Una copia que compraste o recibiste en un intercambio cuenta como repetida si tienes otra copia de ese objeto. Tu única copia siempre se queda.',
           ],
         },
         {

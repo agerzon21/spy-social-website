@@ -382,6 +382,7 @@ const ptBR: HelpText = {
             '<b>Triture</b> uma cópia repetida por Intel, no valor que o app mostra.',
             '<b>Troca:</b> 5 cópias repetidas de uma raridade dão 1 item aleatório da raridade seguinte, e 10 cópias Lendárias repetidas dão um Único.',
             'Só contam os repetidos, nunca sua primeira cópia nem um Único.',
+            'Uma cópia que você comprou ou recebeu numa troca conta como repetida se você tem outra cópia desse item. Sua única cópia sempre fica.',
           ],
         },
         {

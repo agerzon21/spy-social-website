@@ -378,6 +378,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "<b>Déchiquette</b> un doublon contre de l'Intel, au montant affiché par l'appli.",
           "<b>Échange :</b> 5 doublons d'une rareté te donnent 1 objet au hasard de la rareté suivante, et 10 doublons Légendaires te donnent un Unique.",
           'Seuls les doublons comptent, jamais ton premier exemplaire ni un Unique.',
+          'Un exemplaire acheté ou reçu dans un échange compte comme doublon si tu as un autre exemplaire de cet objet. Ton seul exemplaire reste toujours.',
         ],
       },
       {

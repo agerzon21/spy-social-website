@@ -386,6 +386,7 @@ const en: HelpText = {
             '<b>Shred</b> a spare copy for Intel, at the amount the app shows.',
             '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.',
             'Only spares count, never your first copy or a Unique.',
+            'A copy you bought or got in a trade counts as a spare when you hold another copy of that item. Your only copy always stays.',
           ],
         },
         {
