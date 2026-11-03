@@ -909,7 +909,8 @@ const Terms: React.FC = () => {
             <B>If you delete your account</B>, the membership on it stops with the account, but a pass keeps renewing
             (and being charged) until you cancel it in the store. What you bought can come back on another SpySocial
             account with Restore Purchases. If we ban an account for breaking these Terms, its membership stops working
-            in SpySocial; refunds are still up to Apple or Google.
+            in SpySocial, but a pass keeps renewing (and being charged) until you cancel it in the store; refunds are
+            still up to Apple or Google.
           </ListItem>
           <ListItem>
             To get your membership back on another device, or after losing or deleting an account, use Restore Purchases
