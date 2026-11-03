@@ -221,7 +221,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.intel && PRIVACY.intelCorrections && (
           <Item label="Intel Corrections">
             We correct Intel only by reversing one line of a player's Intel ledger, refunding a bug we've published as an
-            incident, taking back what a closed fair-play case covers, or giving everyone an announced outage affected the
+            incident,{PRIVACY.accountNotices ? " refunding one player for a bug that cost only them Intel," : ''} taking back what a closed fair-play case covers, or giving everyone an announced outage affected the
             same Intel (see our <ChakraLink as={Link} to="/terms">Terms</ChakraLink>, section 9), and we take back a Unique only
             for a published incident or a closed fair-play case. For each correction we keep: its kind, the amount, the
             accounts and ledger lines it covers, its reason, its evidence (the line it reverses, the incident, or the
@@ -1100,7 +1100,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and how to appeal) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">

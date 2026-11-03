@@ -921,6 +921,14 @@ export const LIVE = {
    */
   intelCorrections: true,
   /**
+   * The owner's support tools (app server 20261208350000_owner_support_tools): a ban's notice is emailed to the account's
+   * address (reference, reason, how to appeal, Terms 8; Privacy's Resend item), a banned account can read it in the app with a
+   * code sent there, the owner can change an account's email and tell the old address, and the fourth Intel correction:
+   * one player's bug refund with no public incident (Terms 9, Privacy's Intel Corrections). The Terms' "three ways" is false
+   * from the day that tool is used on a real player, so this goes up with the server. A server switch: set in LIVE.
+   */
+  accountNotices: true,
+  /**
    * The launch reset's Intel (WI, 20261201950000, Window W) ran: incident I-1 "Pre-launch Intercept Intel" is published
    * (its summary is the database's economy_incidents row I-1, copied in src/lib/transparency.ts). Turns on I-1 in the
    * transparency page's incidents. Set the day WI runs.
@@ -1466,6 +1474,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.accountNotices
+    ? 'November 3, 2026' // the owner's support tools (20261208350000): set to the day the site goes up with it on
   : LIVE.partySizeCorrected
     ? 'November 3, 2026' // Terms 4: a party's size corrected to the live rule (up to 21 people, half a table, bigger parties in a private room): the site went up with it on
   : LIVE.membershipTerms
@@ -1518,6 +1528,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.accountNotices
+    ? 'November 3, 2026' // the owner's support tools (20261208350000): set to the day the site goes up with it on
   : LIVE.partySizeCorrected
     ? 'November 3, 2026' // the Party and Party Chat item: a party's size corrected to the live rule (up to 21 people): the site went up with it on
   : LIVE.childSafetyHolds

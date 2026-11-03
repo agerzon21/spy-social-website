@@ -474,7 +474,11 @@ const Terms: React.FC = () => {
         Usually you'll get a warning first, but serious cases, such as threats, sharing someone's personal
         information or anything involving the sexual exploitation of children, can lead straight to a ban. The
         Community Rules say how long penalties usually last. When we limit your account, the app tells you what's
-        limited, why, and until when, with a reference such as {'S\u2011207'}. Don't create a new account to get around a
+        limited, why, and until when, with a reference such as {'S\u2011207'}.
+        {LIVE.accountNotices
+          ? " If we ban an account that has an email address, we also send all of that, and how to appeal, to that address; a banned account can't sign in, so the app can show the notice after you enter a code we send there."
+          : ''}{' '}
+        Don't create a new account to get around a
         penalty; we may ban that account too.
       </P>
       {LIVE.volunteerModerators && (
@@ -602,15 +606,19 @@ const Terms: React.FC = () => {
         {/* LIVE.intelCorrections: Economy Integrity E1, the three corrections (see legalRelease). */}
         {LIVE.intel && LIVE.intelCorrections && (
           <ListItem>
-            We correct Intel in only three ways, each a new line in your Intel ledger with its reason. We reverse one
+            We correct Intel in only {LIVE.accountNotices ? 'four' : 'three'} ways, each a new line in your Intel ledger with its reason. We reverse one
             line, by exactly its amount: for example Intel paid twice for one game, a game we void, or a wrong price (if
             you bought an item by mistake, the item goes back with the Intel). We refund a bug: we first publish what
             happened, and the rule that works out each player's amount, as an incident on our{' '}
-            <PageLink to="/transparency">transparency page</PageLink>, then pay what the rule works out for you. Or we
+            <PageLink to="/transparency">transparency page</PageLink>, then pay what the rule works out for you.
+            {LIVE.accountNotices
+              ? " If a bug cost only you Intel and there's no line to reverse, we may give it back to you alone, with one line that says it was a bug refund and no public incident; that Intel is locked and will never be tradable."
+              : ''}{' '}
+            Or we
             take back the Intel that a closed fair-play case shows was earned by breaking our rules (for example farmed
             games), and only the lines the case covers. When an outage we've announced affects players, we may also give
             everyone it lists the same amount of Intel, which is locked and will never be tradable. A correction of more
-            than 500 Intel, or one that affects more than 5 players, waits 24 hours before it takes effect (a bug refund
+            than 500 Intel, or one that affects more than 5 players, waits 24 hours before it takes effect ({LIVE.accountNotices ? 'a bug refund under a published incident' : 'a bug refund'}
             or an outage's Intel doesn't wait: the published incident is the notice). If you've already spent Intel we
             take back, your balance can go below 0: the Intel you earn next pays it back, and you can't spend Intel
             until it's above 0 again. You can appeal a reversal or a fair-play take-back within 30 days by writing to{' '}
