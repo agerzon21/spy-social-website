@@ -186,11 +186,11 @@ const es: Strings = {
         { title: 'La votación', text: 'Pide una votación contra quien suene raro.', alt: 'Votación: todos votan por el jugador que creen que es el espía' },
         {
           title: 'La apuesta',
-          text: 'El espía puede adivinar el secreto cuando quiera. Si acierta, gana; si falla, queda fuera.',
+          text: 'El espía puede arriesgarse a adivinar el secreto. Si acierta, gana; si falla, queda fuera.',
           alt: 'El espía elige la ubicación de la lista para ganar la ronda',
         },
       ],
-      win: 'Los Locales ganan si expulsan a todos los espías. Los espías ganan si adivinan el secreto o si siguen ocultos hasta que se acabe el tiempo.',
+      win: 'Los Locales ganan si expulsan a todos los espías. Los espías ganan si adivinan el secreto o si siguen ocultos hasta el final.',
     },
     who: {
       eyebrow: 'Con quién juegas',
@@ -958,7 +958,7 @@ const es: Strings = {
       { title: "Spy Sketch", text: "Dibuja la palabra secreta en una pizarra compartida y atrapa al espía que finge saberla." },
       { title: "Jugar en línea", text: "Toca «Buscar partida» para una mesa de 4 u 8, cuando quieras. Los extraños ven tu color de agente, nunca tu nombre." },
       { title: "Noche de Juegos", text: "Noches programadas en línea, con títulos que solo se ganan esa noche. Te avisamos antes de que empiecen." },
-      { title: "Mercado Negro", text: "Intercambia objetos con amigos y otros agentes, o cómpralos y véndelos por Intel, que ganas jugando." },
+      { title: "Mercado Negro", text: "Intercambia objetos con amigos. Los adultos también pueden intercambiar con otros agentes, y comprar y vender por Intel, que se gana jugando." },
       { title: "Membresías", text: "Opcional: el Pack Pass (mensual o anual) o Lifetime desbloquea todos los paquetes de lugares y palabras y te deja crear los tuyos. No se vende nada más." },
     ],
     allNotes: "Todo lo nuevo de la 2.2",

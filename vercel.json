@@ -37,6 +37,15 @@
       ]
     },
     {
+      "source": "/static/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/(join|reset-password|confirm-success)(.*)",
       "headers": [
         {
@@ -94,6 +103,31 @@
         }
       ],
       "destination": "https://www.spysocial.app/transparency",
+      "permanent": false
+    },
+    {
+      "source": "/shop",
+      "destination": "https://shop.spysocial.app/",
+      "permanent": false
+    },
+    {
+      "source": "/merch",
+      "destination": "https://shop.spysocial.app/",
+      "permanent": false
+    },
+    {
+      "source": "/download",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/app",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/get",
+      "destination": "/",
       "permanent": false
     },
     {

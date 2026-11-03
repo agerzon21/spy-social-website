@@ -186,11 +186,11 @@ const id: Strings = {
         { title: 'Voting', text: 'Mulai voting untuk siapa pun yang terdengar janggal.', alt: 'Voting: semua orang memilih pemain yang mereka curigai sebagai mata-mata' },
         {
           title: 'Taruhan',
-          text: 'Mata-mata bisa menebak rahasianya kapan saja. Benar, menang. Salah, gugur.',
+          text: 'Mata-mata bisa mencoba menebak rahasianya. Benar, menang. Salah, gugur.',
           alt: 'Si mata-mata memilih lokasi dari daftar untuk memenangkan ronde',
         },
       ],
-      win: 'Warga menang dengan menyingkirkan semua mata-mata lewat voting. Mata-mata menang dengan menebak rahasianya, atau tetap tersembunyi sampai waktu habis.',
+      win: 'Warga menang dengan menyingkirkan semua mata-mata lewat voting. Mata-mata menang dengan menebak rahasianya, atau tetap tersembunyi sampai akhir.',
     },
     who: {
       eyebrow: 'Main bareng siapa',
@@ -961,7 +961,7 @@ const id: Strings = {
       { title: "Spy Sketch", text: "Gambar kata rahasia di satu papan tulis bersama, lalu tangkap mata-mata yang pura-pura tahu." },
       { title: "Main online", text: "Ketuk “Cari permainan” untuk meja 4 atau 8 orang, kapan saja. Orang asing hanya melihat warna Agen-mu, tidak pernah namamu." },
       { title: "Malam Permainan", text: "Malam online terjadwal, dengan gelar yang hanya didapat malam itu. Kami akan mengingatkanmu sebelum dimulai." },
-      { title: "Pasar Gelap", text: "Tukar item dengan teman dan agen lain, atau beli dan jual dengan Intel yang kamu dapat dari bermain." },
+      { title: "Pasar Gelap", text: "Tukar item dengan teman. Orang dewasa juga bisa bertukar dengan agen lain, serta membeli dan menjual dengan Intel yang didapat dari bermain." },
       { title: "Keanggotaan", text: "Opsional: Pack Pass (bulanan atau tahunan) atau Lifetime membuka semua paket tempat dan kata, dan kamu bisa membuat paket sendiri. Tidak ada lagi yang dijual." },
     ],
     allNotes: "Semua yang baru di 2.2",

@@ -223,11 +223,11 @@ const en = {
         { title: 'The vote', text: 'Call a vote on whoever sounds off.', alt: 'Voting: everyone votes for the player they suspect is the spy' },
         {
           title: 'The gamble',
-          text: 'The spy can guess the secret any time. Right wins, wrong is out.',
+          text: 'The spy can risk a guess at the secret. Right wins, wrong is out.',
           alt: 'The spy picks the location from the list to win the round',
         },
       ],
-      win: 'Locals win by voting out every spy. Spies win by guessing the secret, or by staying hidden until time runs out.',
+      win: 'Locals win by voting out every spy. Spies win by guessing the secret, or by staying hidden to the end.',
     },
     who: {
       eyebrow: 'Who you play with',
@@ -1054,7 +1054,7 @@ const en = {
       { title: "Spy Sketch", text: "Draw the secret word on one shared whiteboard, and catch the spy faking it." },
       { title: "Play Online", text: "Tap Find a Game for a table of 4 or 8, any time. Strangers see your Agent Color, never your name." },
       { title: "Game Night", text: "Scheduled nights online, with titles you can only earn that night. We'll remind you before they start." },
-      { title: "Black Market", text: "Trade items with friends and other agents, or buy and sell them for Intel, which you earn by playing." },
+      { title: "Black Market", text: "Trade items with friends. Adults can also trade with other agents, and buy and sell for Intel, which you earn by playing." },
       { title: "Memberships", text: "Optional: the Pack Pass (monthly or yearly) or Lifetime unlocks every pack of places and words, and lets you make your own. Nothing else is sold." },
     ],
     /** The link to What's New under the cards. */

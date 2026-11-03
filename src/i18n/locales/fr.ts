@@ -185,11 +185,11 @@ const fr: Strings = {
         { title: 'Le vote', text: 'Lance un vote contre celui qui sonne faux.', alt: "Le vote\u00A0: chacun vote pour le joueur qu'il soupçonne d'être l'espion" },
         {
           title: 'Le pari',
-          text: "L'espion peut deviner le secret à tout moment. Juste, il gagne. Faux, il est éliminé.",
+          text: "L'espion peut tenter de deviner le secret. Juste, il gagne. Faux, il est éliminé.",
           alt: "L'espion choisit le lieu dans la liste pour gagner la manche",
         },
       ],
-      win: "Les locaux gagnent en éliminant tous les espions. Les espions gagnent en devinant le secret, ou en restant cachés jusqu'à la fin du temps.",
+      win: "Les locaux gagnent en éliminant tous les espions. Les espions gagnent en devinant le secret, ou en restant cachés jusqu'à la fin.",
     },
     who: {
       eyebrow: 'Avec qui tu joues',
@@ -966,7 +966,7 @@ const fr: Strings = {
       { title: "Spy Sketch", text: "Dessine le mot secret sur un tableau partagé et démasque l'espion qui fait semblant." },
       { title: "Jouer en ligne", text: "Touche « Trouver une partie » pour une table de 4 ou 8, à tout moment. Les inconnus voient ta couleur d'agent, jamais ton nom." },
       { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des titres à gagner ce soir-là seulement. On te prévient avant le début." },
-      { title: "Marché noir", text: "Échange des objets avec tes amis et d'autres agents, ou achète-les et vends-les contre de l'Intel, gagné en jouant." },
+      { title: "Marché noir", text: "Échange des objets avec tes amis. Les adultes peuvent aussi échanger avec d'autres agents, et acheter et vendre contre de l'Intel, gagné en jouant." },
       { title: "Abonnements", text: "En option : le Pack Pass (mensuel ou annuel) ou Lifetime débloque tous les packs de lieux et de mots, et te permet de créer les tiens. Rien d'autre n'est vendu." },
     ],
     allNotes: "Toutes les nouveautés de la 2.2",
