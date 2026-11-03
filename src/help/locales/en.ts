@@ -1,7 +1,7 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). Facts checked on 2026-11-02 against the Terms (sections 4, 5, 8, 9), the Privacy
+ * English: the source (../types.ts). Facts checked on 2026-11-03 (nov03/legal-audit-1103b.md) against the Terms (sections 4, 5, 8, 9), the Privacy
  * Policy's Your Rights, the Game Night rules and the app (integrate/2.2: the How to Play glossary, the Members page,
  * trading, the Black Market and Intercepts strings). When a rule changes there, change it here in all ten languages.
  */
@@ -227,7 +227,7 @@ const en: HelpText = {
           id: 'parties',
           q: 'What is a party?',
           a: [
-            'A leader and friends who play together, up to 21 people in all. The leader needs a membership.',
+            'A leader and friends who play together, up to 21 people in all. It takes a membership to start one. If the leader leaves, the lead goes to someone with a membership first.',
             'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',
             'Any party can start a private room together, and a party too big for a table plays there.',
             'Party chat follows the same rules as all chat. To report a message, press and hold it.',
@@ -252,7 +252,7 @@ const en: HelpText = {
           id: 'who-can-trade',
           q: 'Who can trade, and what?',
           a: [
-            'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats).',
+            'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones).',
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
             'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.',
             `Intel can be traded only between adults${o.launch ? '' : ', from the 2.2 launch on December 8'}.`,
@@ -438,7 +438,7 @@ const en: HelpText = {
           q: 'What does a membership include?',
           a: [
             ...(o.purchases ? [] : ['Memberships go on sale with version 2.2.']),
-            'Every premium pack, new ones included. Everyone in a room with you plays them too.',
+            'Every premium pack, new ones included. Everyone plays them in rooms you host and at your Play Online table.',
             'Make your own packs in Pack Creator and share them in Community.',
             '+50% XP on every game, and members-only lobbies in Play Online.',
             'Your rank’s border, tag and title. You can lead a party, and have 8 open Black Market offers instead of 4.',
@@ -678,7 +678,7 @@ const en: HelpText = {
             'These don’t count: a game the host ended, a cancelled deal, an abandoned game, being removed from the room, a seat you never came to, or watching. A game with no winner is neither a win nor a loss.',
             'Your stats show Play Online and private rooms apart, so check the switch at the top.',
             'Private rooms never give Intel or Intercepts, and Play Online games give them only if they earned XP.',
-            'For trading, you need 3 finished games that count and that our fair-play checks didn’t flag.',
+            'For trading, you need 3 finished games that count and that our fair-play checks didn’t flag, each with at least 2 other saved accounts on other phones. Two phones on one Wi-Fi are fine; another account on your own phone isn’t one of the 2.',
             'If it should have counted, email <email/> with your username, the room code (if you have it) and when you played.',
           ],
         },

@@ -223,7 +223,7 @@ const es: HelpText = {
           id: 'parties',
           q: '¿Qué es un grupo?',
           a: [
-            'Un líder y sus amigos que juegan juntos, hasta 21 personas en total. El líder necesita una membresía.',
+            'Un líder y sus amigos que juegan juntos, hasta 21 personas en total. Para empezar hace falta una membresía. Si el líder se va, el puesto pasa primero a alguien con membresía.',
             'En las mesas de Jugar en línea y en la Noche de Juegos, un grupo ocupa como mucho media mesa, y todos lo ven: hasta 2 en una mesa de 4, hasta 4 en una mesa de 8.',
             'Cualquier grupo puede abrir una sala privada, y un grupo demasiado grande para una mesa juega ahí.',
             'El chat del grupo sigue las mismas reglas que todo el chat. Para reportar un mensaje, mantenlo pulsado.',
@@ -248,7 +248,7 @@ const es: HelpText = {
           id: 'who-can-trade',
           q: '¿Quién puede intercambiar, y qué?',
           a: [
-            'Intercambias con amigos, dentro de la app. Necesitas una cuenta de al menos 7 días, el correo confirmado y 3 partidas que cuenten (partidas terminadas que suman a tus estadísticas).',
+            'Intercambias con amigos, dentro de la app. Necesitas una cuenta de al menos 7 días, el correo confirmado y 3 partidas que cuenten (partidas terminadas que suman a tus estadísticas, con al menos otras 2 cuentas guardadas en otros teléfonos).',
             'Cada lado ofrece hasta 10 objetos, y los dos confirman antes de que se haga. Los intercambios grandes piden un código que te enviamos por correo.',
             'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.',
             `El Intel solo se puede intercambiar entre adultos${o.launch ? '' : ', desde el lanzamiento de la 2.2 el 8 de diciembre'}.`,
@@ -434,7 +434,7 @@ const es: HelpText = {
           q: '¿Qué incluye la membresía?',
           a: [
             ...(o.purchases ? [] : ['La membresía sale a la venta con la versión 2.2.']),
-            'Todos los paquetes premium, incluidos los nuevos. Todos los que están en una sala contigo también los juegan.',
+            'Todos los paquetes premium, incluidos los nuevos. Todos los juegan en las salas donde eres anfitrión y en tu mesa de Jugar en línea.',
             'Crea tus propios paquetes con el creador y compártelos en la comunidad.',
             '+50 % de XP en cada partida y salas solo para miembros en Jugar en línea.',
             'El marco, la etiqueta y el título de tu rango. Puedes liderar un grupo y tener 8 ofertas abiertas en el Mercado Negro en vez de 4.',
@@ -674,7 +674,7 @@ const es: HelpText = {
             'No cuentan: una partida que terminó el anfitrión, un reparto cancelado, una partida abandonada, que te saquen de la sala, un lugar al que nunca llegaste, ni mirar. Una partida sin ganador no es victoria ni derrota.',
             'Tus estadísticas muestran Jugar en línea y las salas privadas por separado, así que mira el selector de arriba.',
             'Las salas privadas nunca dan Intel ni intercepciones, y las partidas de Jugar en línea solo los dan si ganaron XP.',
-            'Para intercambiar necesitas 3 partidas terminadas que cuenten y que nuestras comprobaciones de juego limpio no hayan marcado.',
+            'Para intercambiar necesitas 3 partidas terminadas que cuenten y que nuestras comprobaciones de juego limpio no hayan marcado, cada una con al menos otras 2 cuentas guardadas en otros teléfonos. Dos teléfonos en el mismo Wi-Fi sí valen; otra cuenta en tu propio teléfono no es una de esas 2.',
             'Si debería haber contado, escribe a <email/> con tu nombre de usuario, el código de la sala (si lo tienes) y cuándo jugaste.',
           ],
         },

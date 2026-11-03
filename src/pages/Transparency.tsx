@@ -41,7 +41,7 @@ const Transparency: React.FC = () => (
         or the category of its case. Never who was corrected.
       </ListItem>
       <ListItem>
-        <B>Collectibles:</B> copies minted, copies taken back and why (in error, or for cheating), copies given back
+        <B>Collectibles:</B> copies minted, copies taken back and why (in error, for cheating, or as a moderation action), copies given back
         after an appeal, sets that closed, and Intercepts given, by how they were earned (our own gifts included).
       </ListItem>
       <ListItem>

@@ -83,8 +83,17 @@ const INTERCEPTS_MARKET: { day: string; what: string; from: string; to: string }
   { day: 'November 1, 2026', what: 'whether adults can buy and sell unopened Intercepts on the Black Market, for Intel only (players under 18: never; minimum prices from the lowest tier to the highest: 8, 15, 50, 113 and 168 Intel)', from: 'no', to: 'yes' },
 ]
 
+/**
+ * What keeps a game from counting toward trading's 3 counted games (decided Nov 3, To-Do code T7, vetoable; app server
+ * decided_t7_1103, live 20261103175037): shown while LIVE.audit1103b is on. If he reverses it, add the reverse change with its own day.
+ */
+const COUNTED_GAMES_NOV3: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'November 3, 2026', what: 'which other players keep a game from counting toward the 3 counted games needed to trade or use the Black Market', from: 'another account on the same phone or the same sign-up network', to: 'another account on the same phone only' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.audit1103b ? COUNTED_GAMES_NOV3 : []),
   ...(LIVE.tradeNoLimits ? TRADE_NO_LIMITS : []),
   ...(LIVE.tradeGatesNov2 ? TRADE_GATES_NOV2 : []),
   ...(LIVE.interceptsMarket ? INTERCEPTS_MARKET : []),

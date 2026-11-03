@@ -159,11 +159,11 @@ const ChildSafety: React.FC = () => {
           <B>Chat filter:</B> names and chat are checked before anyone else sees them. In public rooms, explicit sexual
           words are blocked; in private rooms, the most serious words are blocked. In any room with a player under 18,
           links, email addresses, phone numbers and social accounts are blocked for everyone
-          {LIVE.childSafetyHolds ? ', and so is sexual talk' : ''}. At Play Online tables
-          and game nights they're always blocked{LIVE.childSafetyHolds ? ', and so is sexual talk' : ''}. Sharing real names, addresses, phone numbers or social media handles
+          {LIVE.childSafetyHolds ? ', and so is sexual talk, along with lines that could be sexual' : ''}. At Play Online tables
+          and game nights they're always blocked{LIVE.childSafetyHolds ? ', and so is explicit sexual talk' : ''}. Sharing real names, addresses, phone numbers or social media handles
           is against our Community Rules.
           {LIVE.childSafetyHolds &&
-            " Messages that can be part of grooming, in rooms and party chats with a player under 18, are flagged automatically for a person to read."}
+            " Messages that can be part of grooming, and explicit sexual talk even when it was refused, in rooms and party chats with a player under 18, are flagged automatically for a person to read."}
         </ListItem>
         {/* LIVE.communityPacks: shared packs are reviewed before anyone else sees them (legalRelease). */}
         {LIVE.communityPacks && (

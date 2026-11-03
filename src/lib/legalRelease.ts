@@ -940,6 +940,13 @@ export const LIVE = {
    */
   audit1103: true,
   /**
+   * Second legal audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/legal-audit-1103b.md): the day's server changes against the
+   * pages. Text already true of live was edited in place; this switch only shows the Transparency rule change for counted games
+   * (decided_t7_1103, live). A server fact: set in LIVE, never in PRIVACY_AHEAD. Describes what's in force and adds no duty, so no
+   * TERMS_PUBLISHED or terms_version raise. Dates stay November 3 through accountNotices.
+   */
+  audit1103b: true,
+  /**
    * Retention audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/retention-1103.md). Off: the pages say what happens today: room exits, unblocks, the
    * coded email and sign-up records, push receipts and sent notices are cleared by a later action, not on a clock, and the note that a trade or market code
    * was sent stays with the account. On: flip the day the owner says yes and supabase/migrations_pending/20261209970000_retention_sweep_1103.sql is live (an

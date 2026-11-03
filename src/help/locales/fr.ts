@@ -219,7 +219,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'parties',
         q: "C'est quoi, un groupe ?",
         a: [
-          "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Le chef doit avoir un abonnement.",
+          "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut un abonnement pour en créer un. Si le chef part, la main passe d'abord à quelqu'un qui a un abonnement.",
           "Aux tables de Jouer en ligne et aux Soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
           'Tout groupe peut ouvrir un salon privé ensemble, et un groupe trop grand pour une table y joue.',
           'Le chat du groupe suit les mêmes règles que tout le chat. Pour signaler un message, appuie longuement dessus.',
@@ -244,7 +244,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'who-can-trade',
         q: 'Qui peut échanger, et quoi ?',
         a: [
-          "Tu échanges avec tes amis, dans l'appli. Il te faut un compte d'au moins 7 jours, un e-mail confirmé et 3 parties comptées (des parties terminées qui comptent dans tes stats).",
+          "Tu échanges avec tes amis, dans l'appli. Il te faut un compte d'au moins 7 jours, un e-mail confirmé et 3 parties comptées (des parties terminées qui comptent dans tes stats, avec au moins 2 autres comptes sauvegardés sur d'autres téléphones).",
           "Chaque côté propose jusqu'à 10 objets, et les deux confirment avant l'échange. Les gros échanges demandent un code envoyé par e-mail.",
           "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais.",
           `L'Intel ne s'échange qu'entre adultes${o.launch ? '' : ', à partir du lancement de la 2.2 le 8 décembre'}.`,
@@ -430,7 +430,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Que comprend l'abonnement ?",
         a: [
           ...(o.purchases ? [] : ["L'abonnement sera en vente avec la version 2.2."]),
-          'Tous les packs premium, nouveaux compris. Tous ceux qui sont dans un salon avec toi en profitent aussi.',
+          'Tous les packs premium, nouveaux compris. Tout le monde y joue dans les salons dont tu es l’hôte et à ta table de Jouer en ligne.',
           'Crée tes propres packs avec le créateur et partage-les dans la communauté.',
           '+50 % d\'XP à chaque partie, et des salons réservés aux membres à Jouer en ligne.',
           "Le cadre, l'étiquette et le titre de ton rang. Tu peux mener un groupe et avoir 8 offres ouvertes au Marché noir au lieu de 4.",
@@ -670,7 +670,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Ne comptent pas : une partie arrêtée par l'hôte, une distribution annulée, une partie abandonnée, être retiré du salon, une place où tu n'es jamais venu, ou regarder. Une partie sans gagnant n'est ni une victoire ni une défaite.",
           'Tes stats séparent Jouer en ligne et les salons privés : regarde le sélecteur en haut.',
           "Les salons privés ne donnent jamais d'Intel ni d'interceptions, et les parties de Jouer en ligne n'en donnent que si elles ont rapporté de l'XP.",
-          "Pour échanger, il te faut 3 parties terminées qui comptent et que nos vérifications de fair-play n'ont pas signalées.",
+          "Pour échanger, il te faut 3 parties terminées qui comptent et que nos vérifications de fair-play n'ont pas signalées, chacune avec au moins 2 autres comptes sauvegardés sur d'autres téléphones. Deux téléphones sur le même Wi-Fi, ça passe ; un autre compte sur ton propre téléphone ne fait pas partie de ces 2.",
           "Si elle aurait dû compter, écris à <email/> avec ton nom d'utilisateur, le code du salon (si tu l'as) et quand tu as joué.",
         ],
       },

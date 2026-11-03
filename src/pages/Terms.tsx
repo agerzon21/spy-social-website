@@ -138,7 +138,7 @@ const Terms: React.FC = () => {
         <P>
           If your account was taken, or you've lost its email address, write to support@spysocial.app. Once we're
           satisfied the account is yours, we can change its email address (we tell the old address, and we sign the
-          account out everywhere), sign it out on every device, and pause its trading for up to 30 days. We can't do
+          account out everywhere), sign it out on every device (a sign-in from before that can keep working for up to 15 minutes, but can't trade or use the Black Market), and pause its trading for up to 30 days. We can't do
           this for a guest account, which has no email address and can't sign back in.
         </P>
       )}
@@ -190,8 +190,9 @@ const Terms: React.FC = () => {
               any time in Privacy &amp; Friends. Players under 18 have no public profile and can't be followed.
             </ListItem>
             <ListItem>
-              A party is a leader and friends who play together, up to 21 people in all. The leader needs a
-              membership. A party plays together at Play Online tables and game nights, where it takes at most half
+              A party is a leader and friends who play together, up to 21 people in all. It takes a membership to start a
+              party; if the leader leaves, the lead goes to someone in it with a membership first, or else to whoever has been in
+              it longest. A player who is banned or paused from public rooms leaves the party. A party plays together at Play Online tables and game nights, where it takes at most half
               of a table (2 at a table of 4, 4 at a table of 8) and is marked for everyone there. Any party can start
               a private room together, and a party too big for a table plays there. A private room plays the host's
               packs, as it always does. A members-only search needs every member of the party to be a member.
@@ -432,8 +433,9 @@ const Terms: React.FC = () => {
       <H3>Automated tools</H3>
       <P>
         We also use automated tools to keep SpySocial safe: a word filter that can block certain words in names,
-        usernames, room codes{LIVE.customPacks ? ', chat messages and custom packs' : ' and chat messages'}, and limits
-        on how often some actions can be repeated.
+        usernames, room codes{LIVE.customPacks ? ', chat messages, typed questions and answers, and custom packs' : ', chat messages and typed questions and answers'}, and limits
+        on how often some actions can be repeated. Names and usernames are also refused if they're blank or unreadable, hold a
+        link or a phone number, or look like our staff or an Agent colour.
         {photosSeen &&
           ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
         {LIVE.customPacks &&
@@ -725,7 +727,7 @@ const Terms: React.FC = () => {
           <Bullets>
             <ListItem>
               {LIVE.tradeGatesNov2
-                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 10,000 Intel, and both sides confirm what they'll get before the trade happens."
+                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones, and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 10,000 Intel, and both sides confirm what they'll get before the trade happens."
                 : "Trades are between friends, inside the app, and carry no message. You can trade once you and your friend have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."}
             </ListItem>
             <ListItem>
@@ -754,7 +756,7 @@ const Terms: React.FC = () => {
             <ListItem>
               Big trades ask for a code we email you. Trading pauses for a while after your email or sign-in method
               changes, after a sign-in on a new device, or when you lock it yourself (for up to a year).
-              {LIVE.audit1103 ? ' We can also pause it, for up to 30 days, on an account that may have been taken.' : ''}
+              {LIVE.audit1103 ? ' We can also pause it, for up to 30 days, on an account that may have been taken, or on an account, alone or in a group, that we\'re looking into for fraud or farming.' : ''}
               {LIVE.tradeNoLimits
                 ? " There's no daily or weekly limit on how many trades anyone makes or on the items and Intel they receive."
                 : ' There are also weekly limits on the items and Intel you can receive, which the app shows.'}
@@ -797,7 +799,8 @@ const Terms: React.FC = () => {
             </ListItem>
             {LIVE.audit1103 && (
               <ListItem>
-                If we pause your trading because your account may have been taken, or change your email address at your
+                If we pause your trading ourselves (because your account may have been taken, or while we look into fraud or
+                farming), or change your email address at your
                 request, your open offers and listings, and your offers on Rare Finds, close at once, as if you'd stopped
                 them: what they hold comes back to you (Intel from a buy offer waits for you to collect it), and other
                 players' offers on your listing go back to them. Nothing reopens when the pause ends; you place them again.

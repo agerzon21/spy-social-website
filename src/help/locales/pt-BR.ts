@@ -223,7 +223,7 @@ const ptBR: HelpText = {
           id: 'parties',
           q: 'O que é um grupo?',
           a: [
-            'Um líder e amigos que jogam juntos, até 21 pessoas no total. O líder precisa de uma assinatura.',
+            'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso uma assinatura para começar. Se o líder sair, a liderança passa primeiro para alguém com assinatura.',
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
             'Qualquer grupo pode abrir uma sala privada junto, e um grupo grande demais para uma mesa joga lá.',
             'O chat do grupo segue as mesmas regras de todo o chat. Para denunciar uma mensagem, toque e segure nela.',
@@ -248,7 +248,7 @@ const ptBR: HelpText = {
           id: 'who-can-trade',
           q: 'Quem pode trocar, e o quê?',
           a: [
-            'Você troca com amigos, dentro do app. Precisa de uma conta com pelo menos 7 dias, e-mail confirmado e 3 partidas contadas (partidas terminadas que entram nas suas estatísticas).',
+            'Você troca com amigos, dentro do app. Precisa de uma conta com pelo menos 7 dias, e-mail confirmado e 3 partidas contadas (partidas terminadas que entram nas suas estatísticas, com pelo menos outras 2 contas salvas em outros celulares).',
             'Cada lado oferece até 10 itens, e os dois confirmam antes da troca. Trocas grandes pedem um código que mandamos por e-mail.',
             'O app marca quais itens dá para trocar. A assinatura e o que ela inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.',
             `Intel só pode ser trocada entre adultos${o.launch ? '' : ', a partir do lançamento da 2.2 em 8 de dezembro'}.`,
@@ -434,7 +434,7 @@ const ptBR: HelpText = {
           q: 'O que a assinatura inclui?',
           a: [
             ...(o.purchases ? [] : ['A assinatura começa a ser vendida com a versão 2.2.']),
-            'Todos os pacotes premium, inclusive os novos. Todo mundo numa sala com você joga com eles também.',
+            'Todos os pacotes premium, inclusive os novos. Todo mundo joga com eles nas salas em que você é o anfitrião e na sua mesa de Jogar online.',
             'Crie seus próprios pacotes com o criador e compartilhe na comunidade.',
             '+50% de XP em toda partida e salas só para membros no Jogar online.',
             'A moldura, a etiqueta e o título do seu nível. Você pode liderar um grupo e ter 8 ofertas abertas no Mercado Negro em vez de 4.',
@@ -674,7 +674,7 @@ const ptBR: HelpText = {
             'Não contam: partida encerrada pelo anfitrião, distribuição cancelada, partida abandonada, ser removido da sala, um lugar a que você nunca chegou, ou assistir. Partida sem vencedor não é vitória nem derrota.',
             'Suas estatísticas mostram o Jogar online e as salas privadas separados, então veja o seletor no topo.',
             'Salas privadas nunca dão Intel nem interceptações, e partidas do Jogar online só dão se renderam XP.',
-            'Para trocar, você precisa de 3 partidas terminadas que contem e que nossas verificações de jogo limpo não tenham marcado.',
+            'Para trocar, você precisa de 3 partidas terminadas que contem e que nossas verificações de jogo limpo não tenham marcado, cada uma com pelo menos outras 2 contas salvas em outros celulares. Dois celulares no mesmo Wi-Fi podem; outra conta no seu próprio celular não é uma dessas 2.',
             'Se devia ter contado, escreva para <email/> com seu nome de usuário, o código da sala (se tiver) e quando você jogou.',
           ],
         },

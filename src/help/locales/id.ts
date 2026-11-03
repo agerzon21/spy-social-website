@@ -223,7 +223,7 @@ const id: HelpText = {
           id: 'parties',
           q: 'Apa itu grup?',
           a: [
-            'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Ketua butuh keanggotaan.',
+            'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Perlu keanggotaan untuk memulainya. Jika ketua pergi, peran ketua lebih dulu pindah ke orang yang punya keanggotaan.',
             'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
             'Grup mana pun bisa membuka room privat bersama, dan grup yang terlalu besar untuk satu meja main di sana.',
             'Chat grup mengikuti aturan yang sama dengan semua chat. Untuk melaporkan pesan, tekan lama pesan itu.',
@@ -248,7 +248,7 @@ const id: HelpText = {
           id: 'who-can-trade',
           q: 'Siapa yang bisa tukar, dan apa saja?',
           a: [
-            'Kamu bertukar dengan teman, di dalam aplikasi. Kamu butuh akun berusia minimal 7 hari, email terkonfirmasi, dan 3 permainan yang dihitung (permainan selesai yang masuk ke statistikmu).',
+            'Kamu bertukar dengan teman, di dalam aplikasi. Kamu butuh akun berusia minimal 7 hari, email terkonfirmasi, dan 3 permainan yang dihitung (permainan selesai yang masuk ke statistikmu, dengan minimal 2 akun tersimpan lain di ponsel lain).',
             'Tiap pihak menawarkan sampai 10 item, dan keduanya mengonfirmasi sebelum pertukaran terjadi. Pertukaran besar meminta kode yang kami kirim lewat email.',
             'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.',
             `Intel hanya bisa ditukar antar orang dewasa${o.launch ? '' : ', mulai peluncuran 2.2 tanggal 8 Desember'}.`,
@@ -434,7 +434,7 @@ const id: HelpText = {
           q: 'Apa saja isi keanggotaan?',
           a: [
             ...(o.purchases ? [] : ['Keanggotaan mulai dijual dengan versi 2.2.']),
-            'Semua paket premium, termasuk yang baru. Semua orang di room bersamamu juga ikut memainkannya.',
+            'Semua paket premium, termasuk yang baru. Semua orang memainkannya di room yang kamu host dan di mejamu di Main online.',
             'Buat paket sendiri di pembuat paket dan bagikan ke komunitas.',
             '+50% XP di setiap permainan, dan ruangan khusus member di Main online.',
             'Bingkai, label, dan gelar pangkatmu. Kamu bisa memimpin grup dan punya 8 penawaran terbuka di Pasar Gelap, bukan 4.',
@@ -674,7 +674,7 @@ const id: HelpText = {
             'Yang tidak dihitung: permainan yang diakhiri host, pembagian yang dibatalkan, permainan yang ditinggalkan, dikeluarkan dari room, kursi yang tidak pernah kamu datangi, atau menonton. Permainan tanpa pemenang bukan menang dan bukan kalah.',
             'Statistikmu memisahkan Main online dan room privat, jadi cek pengalih di bagian atas.',
             'Room privat tidak pernah memberi Intel atau sadapan, dan permainan Main online hanya memberinya kalau menghasilkan XP.',
-            'Untuk bertukar, kamu butuh 3 permainan selesai yang dihitung dan tidak ditandai oleh pemeriksaan permainan adil kami.',
+            'Untuk bertukar, kamu butuh 3 permainan selesai yang dihitung dan tidak ditandai oleh pemeriksaan permainan adil kami, masing-masing dengan minimal 2 akun tersimpan lain di ponsel lain. Dua ponsel di satu Wi-Fi tidak masalah; akun lain di ponselmu sendiri tidak termasuk 2 akun itu.',
             'Kalau seharusnya dihitung, email ke <email/> dengan nama penggunamu, kode room (kalau ada), dan kapan kamu bermain.',
           ],
         },
