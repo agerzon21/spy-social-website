@@ -17,6 +17,8 @@ const SWITCHED_PAGES: { path: string; live: string | null }[] = [
   { path: '/roadmap', live: 'roadmap' },
   { path: '/game-night-rules', live: 'gameNightRules' },
   { path: '/transparency', live: 'transparencyPage' },
+  // The Safety page joins with the launch text (a switch of its own, beside LIVE).
+  { path: '/safety', live: 'ONLINE_SAFETY_TEXT' },
 ]
 
 /**
@@ -54,7 +56,8 @@ function switchedSitemap(): Plugin {
       outDir = resolve(config.root, config.build.outDir)
     },
     async writeBundle() {
-      const { LIVE } = (await siteModule(root, 'src/lib/legalRelease.ts')) as { LIVE: Record<string, unknown> }
+      const legal = (await siteModule(root, 'src/lib/legalRelease.ts')) as { LIVE: Record<string, unknown>; ONLINE_SAFETY_TEXT: boolean }
+      const LIVE = { ...legal.LIVE, ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT }
       const on = SWITCHED_PAGES.filter((page) =>
         page.live === null ? true : page.live.startsWith('!') ? LIVE[page.live.slice(1)] !== true : LIVE[page.live] === true,
       )
@@ -86,6 +89,7 @@ const PREVIEW_PAGES: { path: string; key: string }[] = [
   { path: '/delete-account', key: 'deleteAccount' },
   { path: '/transparency', key: 'transparency' },
   { path: '/game-night-rules', key: 'gameNightRules' },
+  { path: '/ledger', key: 'ledger' },
   { path: '/beta', key: 'beta' },
 ]
 
@@ -211,6 +215,7 @@ function pagePreviews(): Plugin {
         '/safety': site.ONLINE_SAFETY_TEXT,
         '/transparency': LIVE.transparencyPage === true,
         '/game-night-rules': LIVE.gameNightRules === true,
+        '/ledger': LIVE.mintedCollectibles === true,
         '/beta': LIVE.launchSite !== true,
       }
       for (const page of PREVIEW_PAGES) {

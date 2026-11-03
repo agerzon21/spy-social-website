@@ -21,6 +21,8 @@ const UNLISTED = new Set<PageKey>([
   'resetPassword',
   'confirmSuccess',
   'notFound',
+  // The collectibles ledger is a public record to check, not a page to find in search.
+  'ledger',
   ...(LIVE.roadmap ? [] : (['roadmap'] as const)),
   // The Beta 2 page is over at the launch (LIVE.launchSite sends /beta home).
   ...(LIVE.launchSite ? (['beta'] as const) : []),
@@ -46,6 +48,8 @@ function pageOf(path: string): PageKey | null {
     '/child-safety': 'childSafety',
     '/whats-new': 'whatsNew',
     '/roadmap': 'roadmap',
+    // The ledger's route exists only with LIVE.mintedCollectibles (App.tsx); without it, the 404 page.
+    ...(LIVE.mintedCollectibles ? { '/ledger': 'ledger' as const } : {}),
     '/beta': 'beta',
     '/delete-account': 'deleteAccount',
     '/reset-password': 'resetPassword',

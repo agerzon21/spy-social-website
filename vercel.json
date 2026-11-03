@@ -157,6 +157,10 @@
       "destination": "/game-night-rules/index.html"
     },
     {
+      "source": "/ledger",
+      "destination": "/ledger/index.html"
+    },
+    {
       "source": "/beta",
       "destination": "/beta/index.html"
     },

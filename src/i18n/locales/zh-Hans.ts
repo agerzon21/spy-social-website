@@ -11,6 +11,8 @@ const zhHans: Strings = {
       /** The Beta 2 playtester page (/beta). */
       beta: '第 2 轮内测：上线前抢先玩 SpySocial',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
+      ledger: "收藏品账本",
       transparency: "透明度报告",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "游戏之夜规则",
@@ -34,6 +36,7 @@ const zhHans: Strings = {
     },
     descriptions: {
       beta: '加入 SpySocial 的 1 小时线上集体试玩。SpySocial 是一款免费的社交推理派对游戏。时间：2026 年 11 月 12 日（星期四）美东时间晚上 7–8 点。仅限 18 岁以上成年人，iPhone 或 Android 均可。测试玩家可获得内测徽章等奖励。',
+      ledger: "SpySocial 每件收藏品的公开记录：每一份副本及其编号，人人都可核验。",
       transparency: "每月公布 SpySocial 中情报的获得、花费和更正数量，以及每一起事件和每一次规则变更，不点名任何玩家。",
       gameNightRules: "SpySocial 每周游戏之夜的规则：举办时间、参与资格、如何获得当晚的称号，以及开发者的额外称号。",
       faq: "SpySocial 帮助：如何玩 Spy Talk 和 Spy Sketch、在线游戏、私密房间和游戏之夜、好友、交易、黑市、密函、情报、会员、你的账号、安全和故障排除。",
@@ -531,7 +534,7 @@ const zhHans: Strings = {
       {
         tag: 'Android 上线',
         summary:
-          'SpySocial 正式登陆 Google Play Store：这是 Android 上首个公开正式版，同时带来在真实 Android 设备上封闭测试 QA 后的上线前打磨。',
+          'SpySocial 正式登陆 Google Play Store：这是 Android 上首个公开正式版，同时带来在真实 Android 设备上封闭测试 QA 后的最后打磨。',
         sections: [
           {
             label: '现已推出',
@@ -541,7 +544,7 @@ const zhHans: Strings = {
             ],
           },
           {
-            label: '上线前打磨',
+            label: '最后打磨',
             items: [
               { title: '“删除账号”按钮不再被截断', text: '“账号”界面的内容现在会遵循设备底部的安全区域边距，并为“未保存的更改”提示条预留空间。Google Play 要求应用内的账号删除入口必须可以触及。' },
               { title: '房间的“离开房间”/“开始游戏”按钮', text: '现在通过动态安全区域边距，位于 Android 手势导航栏上方。' },

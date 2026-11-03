@@ -11,6 +11,8 @@ const ar: Strings = {
       /** The Beta 2 playtester page (/beta). */
       beta: 'بيتا 2: تجربة SpySocial قبل الإطلاق',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
+      ledger: "سجل المقتنيات",
       transparency: "تقرير الشفافية",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "قواعد ليلة اللعب",
@@ -34,6 +36,7 @@ const ar: Strings = {
     },
     descriptions: {
       beta: 'اختبار لعب جماعي مباشر لمدة ساعة واحدة للعبة SpySocial، لعبة الاستنتاج الاجتماعي المجانية للحفلات: الخميس 12 نوفمبر 2026، من 7 إلى 8 مساءً بتوقيت شرق الولايات المتحدة. للبالغين 18+ فقط، على iPhone أو Android. يحتفظ المختبِرون بدبوس بيتا وغيره.',
+      ledger: "السجل العام لكل مقتنى في SpySocial: كل نسخة ورقمها. ويمكن لأي شخص التحقق منه.",
       transparency: "كل شهر: كم من الإنتل كُسب وأُنفق وصُحّح في SpySocial، وكل حادثة وكل تغيير في القواعد، دون ذكر اسم أي لاعب.",
       gameNightRules: "قواعد ليلة اللعب الأسبوعية في SpySocial: موعدها، ومن يمكنه المشاركة، وكيف تحصل على ألقاب الليلة، واللقب الإضافي من المطوّر.",
       faq: "مساعدة SpySocial: طريقة لعب Spy Talk وSpy Sketch، واللعب عبر الإنترنت والغرف الخاصة وليلة الألعاب، والأصدقاء والمبادلات والسوق السوداء والملفات المُعترَضة والإنتل والعضوية وحسابك والأمان وحل المشكلات.",
@@ -532,7 +535,7 @@ const ar: Strings = {
       {
         tag: 'الإطلاق على Android',
         summary:
-          'SpySocial متوفر رسميًا الآن على Google Play Store: أول إصدار إنتاجي عام على Android، مع لمسات أخيرة قبل الإطلاق من اختبارات الجودة المغلقة على أجهزة Android حقيقية.',
+          'SpySocial متوفر رسميًا الآن على Google Play Store: أول إصدار إنتاجي عام على Android، مع لمسات أخيرة من اختبارات الجودة المغلقة على أجهزة Android حقيقية.',
         sections: [
           {
             label: 'متوفر الآن',
@@ -542,7 +545,7 @@ const ar: Strings = {
             ],
           },
           {
-            label: 'لمسات ما قبل الإطلاق',
+            label: 'اللمسات الأخيرة',
             items: [
               { title: 'زر «حذف الحساب» لم يعد مقصوصًا', text: 'يحترم محتوى شاشة الحساب الآن الهامش السفلي الآمن للجهاز، ويحجز مساحة لشريط التنبيه الخاص بالتغييرات غير المحفوظة؛ إذ يشترط Google Play أن يكون حذف الحساب من داخل التطبيق في المتناول.' },
               { title: 'زرّا «مغادرة الغرفة» و«بدء اللعبة» في الردهة', text: 'أصبحا فوق شريط التنقل بالإيماءات في Android بفضل هوامش آمنة ديناميكية.' },

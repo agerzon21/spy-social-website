@@ -11,6 +11,8 @@ const es: Strings = {
       /** The Beta 2 playtester page (/beta). */
       beta: 'Beta 2: juega SpySocial antes del lanzamiento',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
+      ledger: "Registro de coleccionables",
       transparency: "Informe de transparencia",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Reglas de la Noche de Juego",
@@ -34,6 +36,7 @@ const es: Strings = {
     },
     descriptions: {
       beta: 'Únete a una prueba de juego en grupo, en vivo y de 1 hora, de SpySocial, un juego gratis de deducción social para fiestas: jueves 12 de noviembre de 2026, de 7 a 8 p. m., hora del Este de EE. UU. Solo mayores de 18, en iPhone o Android. Los testers se quedan con el Pin beta y más.',
+      ledger: "El registro público de cada coleccionable de SpySocial: cada copia y su número. Cualquiera puede comprobarlo.",
       transparency: "Cada mes, cuánta Intel se ganó, gastó y corrigió en SpySocial, cada incidente y cada cambio de reglas, sin nombrar a ningún jugador.",
       gameNightRules: "Las reglas de la Noche de Juego semanal de SpySocial: cuándo es, quién puede participar, cómo conseguir los títulos de la noche y el título extra del desarrollador.",
       faq: "Ayuda de SpySocial: cómo jugar Spy Talk y Spy Sketch, Jugar en línea, salas privadas y Noche de Juegos, amigos, intercambios, el Mercado Negro, intercepciones, Intel, membresía, tu cuenta, seguridad y solución de problemas.",
@@ -543,7 +546,7 @@ const es: Strings = {
             ],
           },
           {
-            label: 'Retoques previos al lanzamiento',
+            label: 'Últimos retoques',
             items: [
               { title: 'El botón Eliminar cuenta ya no queda cortado', text: 'El contenido de la pantalla Cuenta ahora respeta el margen inferior del área segura del dispositivo y deja espacio para la barra de cambios sin guardar: Google Play exige que la eliminación de la cuenta dentro de la app sea accesible.' },
               { title: 'Botones Salir de la sala / Iniciar partida en la sala', text: 'Ahora quedan por encima de la barra de navegación por gestos de Android gracias a márgenes de área segura dinámicos.' },

@@ -292,7 +292,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
     title: 'Marché noir et Trouvailles rares',
     items: [
       {
-        id: 'black-market',
+        id: 'what-is-black-market',
         q: "C'est quoi, le Marché noir et les Trouvailles rares ?",
         a: [
           "Le Marché noir, dans le <b>Coffre</b>, est l'endroit où les adultes achètent et vendent des objets échangeables contre de l'Intel, jamais contre de l'argent.",

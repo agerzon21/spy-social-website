@@ -296,7 +296,7 @@ const ptBR: HelpText = {
       title: 'Mercado Negro e Achados raros',
       items: [
         {
-          id: 'black-market',
+          id: 'what-is-black-market',
           q: 'O que são o Mercado Negro e os Achados raros?',
           a: [
             'O Mercado Negro, no <b>Cofre</b>, é onde adultos compram e vendem itens trocáveis por Intel, nunca por dinheiro.',

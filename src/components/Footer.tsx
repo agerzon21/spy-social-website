@@ -47,7 +47,7 @@ const Footer = () => {
   // The browser version, on a computer once it's live (LIVE.browserLinks); phones keep the app.
   const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
 
-  // The Beta 2 playtest link shows only while sign-ups are open.
+  // The Beta 2 playtest link shows only while sign-ups are open, and never in the launch version (/beta goes home).
   const betaClosed = useClosed()
 
   const t = useT()
@@ -55,7 +55,7 @@ const Footer = () => {
   const play: FooterLinkItem[] = [
     ...(showBrowser ? [{ label: f.browser, href: PLAY_URL }] : []),
     { label: f.whatsNew, to: '/whats-new' },
-    ...(betaClosed ? [] : [{ label: f.beta, to: '/beta' }]),
+    ...(betaClosed || LIVE.launchSite ? [] : [{ label: f.beta, to: '/beta' }]),
     // The roadmap, once the owner has approved it (LIVE.roadmap).
     ...(LIVE.roadmap ? [{ label: f.roadmap, to: '/roadmap' }] : []),
     { label: f.rules, to: '/rules' },

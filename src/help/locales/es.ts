@@ -296,7 +296,7 @@ const es: HelpText = {
       title: 'Mercado Negro y Rarezas',
       items: [
         {
-          id: 'black-market',
+          id: 'what-is-black-market',
           q: '¿Qué son el Mercado Negro y las Rarezas?',
           a: [
             'El Mercado Negro, en la <b>Bóveda</b>, es donde los adultos compran y venden objetos intercambiables por Intel, nunca por dinero.',

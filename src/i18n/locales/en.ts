@@ -28,6 +28,8 @@ const en = {
       /** The Beta 2 playtester page (/beta). */
       beta: 'Beta 2 playtest: play SpySocial before launch',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
+      ledger: "Collectibles ledger",
       transparency: "Transparency report",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Game Night rules",
@@ -52,6 +54,7 @@ const en = {
     /** Each page's own description for search results; the home page and the unlisted pages use `description`. */
     descriptions: {
       beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 12, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
+      ledger: "The public record of every minted SpySocial collectible: each copy and its number. Anyone can check it.",
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
       gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
       faq: "SpySocial help: how to play Spy Talk and Spy Sketch, Play Online, private rooms and Game Night, friends, trading, the Black Market, Intercepts, Intel, membership, your account, safety and troubleshooting.",
@@ -581,7 +584,7 @@ const en = {
       {
         tag: 'Android Launch',
         summary:
-          'SpySocial is officially live on the Google Play Store — the first public production release on Android, paired with pre-launch polish from closed-test QA on real Android devices.',
+          'SpySocial is officially live on the Google Play Store — the first public production release on Android, paired with final polish from closed-test QA on real Android devices.',
         sections: [
           {
             label: 'Now Available',
@@ -591,7 +594,7 @@ const en = {
             ],
           },
           {
-            label: 'Pre-launch Polish',
+            label: 'Final Polish',
             items: [
               { title: 'Delete Account button no longer clipped', text: 'The Account screen content now respects the device safe-area bottom inset and reserves room for the unsaved-changes snackbar — Google Play requires in-app account deletion to be reachable.' },
               { title: 'Lobby Leave Room / Start Game buttons', text: 'Now sit above the Android gesture-nav bar via dynamic safe-area insets.' },

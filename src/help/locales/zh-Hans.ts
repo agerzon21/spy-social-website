@@ -296,7 +296,7 @@ const zh: HelpText = {
       title: '黑市和稀有珍品',
       items: [
         {
-          id: 'black-market',
+          id: 'what-is-black-market',
           q: '黑市和稀有珍品是什么？',
           a: [
             '黑市位于<b>宝库</b>中，成年人在这里用情报买卖可交易的物品，绝不用钱。',

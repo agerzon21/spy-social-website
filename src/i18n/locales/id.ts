@@ -11,6 +11,8 @@ const id: Strings = {
       /** The Beta 2 playtester page (/beta). */
       beta: 'Beta 2: main SpySocial sebelum peluncuran',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
+      ledger: "Buku besar koleksi",
       transparency: "Laporan transparansi",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Aturan Malam Permainan",
@@ -34,6 +36,7 @@ const id: Strings = {
     },
     descriptions: {
       beta: 'Ikut playtest grup live selama 1 jam untuk SpySocial, game pesta deduksi sosial gratis, pada Kamis, 12 November 2026, pukul 19.00–20.00 waktu Timur AS. Khusus 18+, di iPhone atau Android. Penguji mendapat Pin Beta dan lainnya.',
+      ledger: "Catatan publik setiap item koleksi SpySocial: setiap salinan dan nomornya. Siapa saja bisa memeriksanya.",
       transparency: "Setiap bulan: berapa Intel yang didapat, dibelanjakan, dan dikoreksi di SpySocial, setiap insiden, dan setiap perubahan aturan, tanpa menyebut nama pemain.",
       gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara mendapatkan gelar malam itu, dan gelar bonus dari pengembang.",
       faq: "Bantuan SpySocial: cara main Spy Talk dan Spy Sketch, Main online, room privat dan Malam Permainan, teman, tukar item, Pasar Gelap, sadapan, Intel, keanggotaan, akunmu, keamanan, dan cara mengatasi masalah.",
@@ -533,7 +536,7 @@ const id: Strings = {
       {
         tag: 'Rilis Android',
         summary:
-          'SpySocial resmi hadir di Google Play Store — rilis produksi publik pertama di Android, dilengkapi poles pra-rilis dari QA uji tertutup di perangkat Android sungguhan.',
+          'SpySocial resmi hadir di Google Play Store — rilis produksi publik pertama di Android, dilengkapi poles akhir dari QA uji tertutup di perangkat Android sungguhan.',
         sections: [
           {
             label: 'Sudah tersedia',
@@ -543,7 +546,7 @@ const id: Strings = {
             ],
           },
           {
-            label: 'Poles pra-rilis',
+            label: 'Poles akhir',
             items: [
               { title: 'Tombol Hapus akun tidak lagi terpotong', text: 'Isi layar Akun sekarang mengikuti inset bawah safe area perangkat dan menyisakan ruang untuk snackbar perubahan yang belum disimpan — Google Play mewajibkan penghapusan akun di dalam aplikasi bisa dijangkau.' },
               { title: 'Tombol Keluar dari room / Mulai permainan di lobi', text: 'Sekarang berada di atas bilah navigasi gestur Android lewat inset safe area dinamis.' },

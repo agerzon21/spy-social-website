@@ -300,7 +300,7 @@ const en: HelpText = {
       title: 'Black Market & Rare Finds',
       items: [
         {
-          id: 'black-market',
+          id: 'what-is-black-market',
           q: 'What are the Black Market and Rare Finds?',
           a: [
             'The Black Market, in the <b>Vault</b>, is where adults buy and sell tradable items for Intel, never for money.',

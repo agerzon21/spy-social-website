@@ -296,7 +296,7 @@ const id: HelpText = {
       title: 'Pasar Gelap & Temuan Langka',
       items: [
         {
-          id: 'black-market',
+          id: 'what-is-black-market',
           q: 'Apa itu Pasar Gelap dan Temuan Langka?',
           a: [
             'Pasar Gelap, di <b>Brankas</b>, adalah tempat orang dewasa membeli dan menjual item yang bisa ditukar dengan Intel, tidak pernah dengan uang.',

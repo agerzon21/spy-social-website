@@ -11,6 +11,8 @@ const hi: Strings = {
       /** The Beta 2 playtester page (/beta). */
       beta: 'बीटा 2: लॉन्च से पहले SpySocial खेलें',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
+      /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
+      ledger: "कलेक्टिबल्स लेजर",
       transparency: "पारदर्शिता रिपोर्ट",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "गेम नाइट के नियम",
@@ -34,6 +36,7 @@ const hi: Strings = {
     },
     descriptions: {
       beta: 'SpySocial के 1 घंटे के लाइव ग्रुप प्लेटेस्ट में शामिल हों। यह एक मुफ़्त सोशल डिडक्शन पार्टी गेम है। गुरुवार, 12 नवंबर 2026, शाम 7–8 बजे (अमेरिकी ईस्टर्न टाइम)। सिर्फ़ 18+ के लिए, iPhone या Android पर। टेस्टर्स को बीटा पिन और भी बहुत कुछ मिलता है।',
+      ledger: "SpySocial के हर कलेक्टिबल का सार्वजनिक रिकॉर्ड: हर कॉपी और उसका नंबर। इसे कोई भी जाँच सकता है।",
       transparency: "हर महीने: SpySocial में कितना इंटेल मिला, खर्च हुआ और ठीक किया गया, हर घटना और नियमों का हर बदलाव, किसी खिलाड़ी का नाम लिए बिना।",
       gameNightRules: "SpySocial की साप्ताहिक गेम नाइट के नियम: यह कब होती है, कौन हिस्सा ले सकता है, रात के टाइटल कैसे मिलते हैं और डेवलपर का बोनस टाइटल।",
       faq: "SpySocial सहायता: Spy Talk और Spy Sketch कैसे खेलें, ऑनलाइन खेलें, प्राइवेट रूम और गेम नाइट, दोस्त, लेन-देन, काला बाज़ार, इंटरसेप्ट, इंटेल, मेंबरशिप, आपका अकाउंट, सुरक्षा और समस्याओं का हल।",
@@ -532,7 +535,7 @@ const hi: Strings = {
       {
         tag: 'Android लॉन्च',
         summary:
-          'SpySocial अब आधिकारिक तौर पर Google Play Store पर लाइव है — Android पर पहली पब्लिक प्रोडक्शन रिलीज़, साथ में असली Android डिवाइस पर क्लोज़्ड-टेस्ट QA से निकले लॉन्च से पहले के सुधार।',
+          'SpySocial अब आधिकारिक तौर पर Google Play Store पर लाइव है — Android पर पहली पब्लिक प्रोडक्शन रिलीज़, साथ में असली Android डिवाइस पर क्लोज़्ड-टेस्ट QA से निकले आख़िरी सुधार।',
         sections: [
           {
             label: 'अब उपलब्ध',
@@ -542,7 +545,7 @@ const hi: Strings = {
             ],
           },
           {
-            label: 'लॉन्च से पहले के सुधार',
+            label: 'आख़िरी सुधार',
             items: [
               { title: '“अकाउंट डिलीट करें” बटन अब कटता नहीं', text: 'अकाउंट स्क्रीन का कंटेंट अब डिवाइस के नीचे के safe-area inset का ध्यान रखता है और बिना सेव हुए बदलावों वाले snackbar के लिए जगह छोड़ता है — Google Play के लिए ज़रूरी है कि ऐप के अंदर अकाउंट डिलीट करने का विकल्प पहुँच में हो।' },
               { title: 'लॉबी के “रूम छोड़ें” / “गेम शुरू करें” बटन', text: 'अब dynamic safe-area insets के ज़रिए Android के gesture-nav बार के ऊपर रहते हैं।' },
