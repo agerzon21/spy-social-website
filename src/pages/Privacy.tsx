@@ -134,7 +134,7 @@ const Privacy: React.FC = () => {
                 : ' Versions of the app before 2.2 also let you add a profile photo.')}
           {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
           {PRIVACY.usernameLimit &&
-            " When you change your username, we keep a record of your past usernames and when you changed them, so we can apply the limit of one change every 30 days; it's deleted with your account."}
+            " When you change your username, we keep a record of your past usernames and when you changed them, so we can apply the limit of one change every 30 days (a new account's first changes don't count); it's deleted with your account."}
           {PRIVACY.socialSignIn &&
             ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, and collect a device identifier and usage information for Google\'s own analytics, under Google\'s privacy policy.'}
         </Item>
@@ -143,7 +143,7 @@ const Privacy: React.FC = () => {
           looks and reads the way you chose. Our servers also use your language to show you the game (the secret
           word or location, its description and the spy's list) in it, and to count the different languages at a
           table for an achievement. The app can also tell the players in a room which app languages are used at their
-          table, never whose.
+          table, never whose.{PRIVACY.audit1103 ? ' Our sign-in service keeps your language with your account too, and the emails we send you use it.' : ''}
         </Item>
         <Item label="Game Data">
           Information related to games you've played: your role, the actions you take in a game (such as when you ask
@@ -191,7 +191,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
             Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
-            {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? 'Adults can spend it on the Black Market (see below), and trade it with other adults (see Trades).' : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
+            {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? 'Adults can spend it on the Black Market (see below), and, once version 2.2 opens to everyone, trade it with other adults (see Trades).' : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
             also keep your balance, how much Intel you've earned and spent in all, and your daily streak: how many days
@@ -206,7 +206,7 @@ const Privacy: React.FC = () => {
             fairly.
             {PRIVACY.intercepts &&
               (PRIVACY.intelLedger
-                ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel that will never be tradable: Intel we give everyone an announced outage affected, or test Intel on our own test accounts).'
+                ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel that will never be tradable: Intel we give everyone an announced outage affected, a bug refund we give one player, or test Intel on our own test accounts).'
                 : ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).')}
             {PRIVACY.intelLedger &&
               " Each line of your Intel history (your Intel ledger) also records who caused it (a game, you, or us), when, and the app version and platform it came from, so that we can find everyone a bug affected. Lines are only ever added: we never change or delete one."}{' '}
@@ -229,10 +229,10 @@ const Privacy: React.FC = () => {
             hours or was cancelled, any appeal, and a fingerprint (a SHA-256 hash) of the record. A copy of each correction,
             with that fingerprint and the username of the account it affects, is e-mailed to our own support inbox through
             Resend, so a record can be checked against a copy we can't change later. A fair-play case we open for a
-            correction is kept like any other report. We publish, every day and in our monthly transparency report, each
-            correction's kind, amount, reason and day, its incident or the category of its case, and a code made from the
-            ledger line and a secret only your account holds: your app can show that a line is yours, but nobody else
-            can link it to you, your username or your other items. We never publish who was corrected, a balance or a
+            correction is kept like any other report. Each day we record, and from the launch we publish in our monthly
+            transparency report, each correction's kind, amount, reason and day, and its incident or the category of its
+            case. The record carries a code made from the ledger line and a secret kept for your account, so nothing
+            published links it to you, your username or your other items. We never publish who was corrected, a balance or a
             history, or what a case found; any number covering fewer than 5 players shows as "fewer than 5". Correction
             records are kept for good; when an account is deleted, we remove who they belonged to.
           </Item>
@@ -260,7 +260,7 @@ const Privacy: React.FC = () => {
             it replaced, so that we can put it back if we have to. We use all
             this to give you your Intercepts and their items, to show them to you in the app, and to check that
             Intercepts are earned fairly and that the odds work as the app shows them. Other players never see your
-            Intercepts{PRIVACY.interceptsMarket ? ' unless you offer an unopened one in a trade or list it on the Black Market (where your name isn\'t shown); we keep each Intercept\'s trades and sales like those of any item (see Trades and Black Market)' : ''};{' '}
+            Intercepts{PRIVACY.interceptsMarket ? (PRIVACY.interceptsInTrades ? ' unless you offer an unopened one in a trade or list it on the Black Market (where your name isn\'t shown); we keep each Intercept\'s trades and sales like those of any item (see Trades and Black Market)' : ' unless you list an unopened one on the Black Market (where your name isn\'t shown); we keep each Intercept\'s sales like those of any item (see Black Market)') : ''};{' '}
             {PRIVACY.blackMarket
               ? "they see an item from one only when you wear it, show it on your profile, offer it in a trade, or list it on the Black Market (where your name isn't shown)."
               : 'they see an item from one only when you wear it, like any other look.'}{' '}
@@ -382,7 +382,7 @@ const Privacy: React.FC = () => {
             follower count (no bio, status or location). Other players can follow an adult whose profile is public and
             who allows follows; the people you follow, and the new packs and showcase changes of the people you follow,
             make up your Following feed. On your followers list you see by name only the followers whose own profiles
-            are public; the rest are a number. Adults are told once, the first time their profile is public, and can
+            are public; the rest are a number{PRIVACY.audit1103 ? ', and you can search those names' : ''}. Adults are told once, the first time their profile is public, and can
             make it private at any time in Privacy &amp; Friends. Players under 18 have no public profile, can't be
             followed and aren't named on anyone's followers list, and a private profile, or any player under 18, makes
             their Community Packs anonymous.
@@ -403,7 +403,7 @@ const Privacy: React.FC = () => {
             When you trade, we keep each trade and its steps (who offered and confirmed what, and when), the items and
             Intel that moved, any reversal and its reason, the 7-day protection of what each side got, and any trading
             pause on your account (after a reversal, a change to your email or sign-in method, a sign-in on a new
-            device, or a lock you set). For a big trade we email you a code; we keep only a coded (hashed) copy of it,
+            device, a lock you set{PRIVACY.audit1103 ? ", or a pause we set on an account that may have been taken" : ''}). For a big trade we email you a code; we keep only a coded (hashed) copy of it,
             and the email is deleted from our mail queue once it's sent. Trades carry no message. Only you and the
             other player see a trade{PRIVACY.mintedCollectibles ? ' (the public ledger shows only that a traded collectible moved from one holder code to another, never who traded it; see Collectibles and the public ledger)' : ''}.
             Trades are kept with your Intel and item history.
@@ -424,6 +424,7 @@ const Privacy: React.FC = () => {
             collected it), each offer you make or get on a listing, each sale and fill (who bought and sold which copies,
             at what price and fee, and when), the protection and any reversal of a Rare Finds sale, and the matching
             lines in your Intel ledger. The Black Market emails no codes.
+            {PRIVACY.audit1103 ? " When we pause an account's trading because it may have been taken, change its email address, or correct its birth year to under 18, its open offers and listings close, and we keep that as we keep a stopped offer." : ''}{' '}
             Other players see the market without names: an item's prices and quantities on offer, the prices and times
             of past sales, and, for a Unique listed on Rare Finds, its number, its colour and its price, never who is
             buying or selling. Sales are kept for good, like the Intel ledger, with no link to you once you delete your
@@ -434,8 +435,8 @@ const Privacy: React.FC = () => {
           <Item label="Social Notifications">
             If you allow notifications, we send a push for a friend request, an accepted request, a room or party
             invite, an Ask to Join and a new pack from a creator you follow (at most one a day for each creator), each
-            with its own switch in Privacy &amp; Friends. The push shows the sender's display name. We keep your
-            device's time zone so that a player under 18 gets none between 10 PM and 7 AM local time. A notice waiting
+            with its own switch in Privacy &amp; Friends.{PRIVACY.audit1103 ? " We also send a push when a friend offers, changes or completes a trade or it's your turn in one, when your Black Market offer fills, your Rare Finds item sells or gets an offer, or your offer on one is accepted, and when a trade or sale of yours is undone; Trades and Black Market each have their own switch there. These never show an item, a price or an Intel amount, and the market's never name the other player." : ''} The push shows the sender's display name. We keep your
+            device's time zone so that a player under 18 gets none between 10 PM and 7 AM local time{PRIVACY.audit1103 ? ', and none at all while we don\'t know it; on iPhone, players under 18 get none of these for now' : ''}. A notice waiting
             to be sent is kept for a day, and a sent one for 7 days.
           </Item>
         )}
@@ -622,7 +623,7 @@ const Privacy: React.FC = () => {
             old it is, whether it's saved, and any strikes or upheld reports). We don't use this for anything else or
             show it to other players. If the second check can't give an answer, the first check's answer is used. Our
             servers never send your name, username, email address, chat or your
-            device's IP address. According to OpenAI, it doesn't use what it receives to train
+            device's IP address.{PRIVACY.audit1103 ? " These checks run the same way at every age, players under 16 included (unlike translation, see Translations): they're how we keep drawings safe, and OpenAI never receives your age." : ''} According to OpenAI, it doesn't use what it receives to train
             its models, and keeps it for up to 30 days to watch for misuse, unless the law requires it to keep it
             longer. The check acts by itself: it can take a turn off the drawing for everyone in the game, give a
             strike (which can lead to a pause or a ban from public rooms and events), or remove a player from the game
@@ -711,12 +712,12 @@ const Privacy: React.FC = () => {
             send to it only while that sign-in lasts. The "Match found!" notification says only that a match was found,
             for which game and how many players, never who is in it. The app refreshes the token at most once a day,
             and the token is deleted when you sign out in the app, turn off notifications for SpySocial (the next time
-            the app opens) or delete your account. A match notification waiting to be sent is kept for one day. Guests
+            the app opens) or delete your account{PRIVACY.audit1103 ? ', or once no device has refreshed it for 120 days. To stop sending to a phone that can no longer get notifications, we keep the receipt number Expo gives each push with its token for about 2 days' : ''}. A match notification waiting to be sent is kept for one day. Guests
             don't send a push token.
             {PRIVACY.communityPacks &&
               " If you send a pack to Community Packs, we also use that push address to tell you when we approve or turn it down (with the pack's name and our reason)."}{' '}
             {PRIVACY.socialFeatures
-              ? "Apart from that and social notifications (see Social Notifications above), the only other push notifications we send go to our moderators' phones when a new report comes in or our safety checks flag something."
+              ? "Apart from that and the notifications in Social Notifications above, the only other push notifications we send go to our moderators' phones when a new report comes in or our safety checks flag something."
               : "Apart from that, the only other push notifications we send go to our moderators' phones when a new report comes in."} They pass through Expo's push service and Apple's or Google's, and say
             only what kind of report it is and its case number, never a player's name or what was said.
             {PRIVACY.fcmAutoInit
@@ -759,6 +760,16 @@ const Privacy: React.FC = () => {
             version, a random ID for the app's installation that isn't linked to your account,
             {PRIVACY.onDeviceTranslation ? ' the two languages of each translation,' : ''} and performance figures,
             such as how long each task took. Google uses this to measure, fix and improve ML Kit and to detect misuse.
+          </Item>
+        )}
+        {PRIVACY.audit1103 && (
+          <Item label="Account Support">
+            When you write to us about your account, we use what's described here to help. If it may have been taken, or
+            you've lost its email address, we may change the address, sign the account out on every device, pause its
+            trading (up to 30 days), and open a case about it so that we can reverse a protected trade or sale. To answer
+            a question about a purchase, we may look up your purchases. Each of these is done by SpySocial's developer,
+            never a community moderator, and we record what was done, when and why (for an email change, how we checked
+            the account is yours and only the two addresses' domains), as we keep moderation records.
           </Item>
         )}
         <Item label="Device Information">
@@ -810,7 +821,7 @@ const Privacy: React.FC = () => {
               enforcement; each time, we record who opened them, why and when. Next to each one we keep a coded form of
               its network (made with a secret key), which lets us notice several accounts from one network without
               opening them. They're deleted after 90 days, or kept for up to 1 year when they're part of a report to
-              NCMEC, an open case or a law-enforcement request.
+              NCMEC, an open case{PRIVACY.childSafetyHolds ? ', a child-safety case' : ''} or a law-enforcement request.
             </>
           ) : null}
           {PRIVACY.integritySignupNetwork ? (
@@ -875,6 +886,7 @@ const Privacy: React.FC = () => {
         <ListItem>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
         <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
         <ListItem>Protect against fraudulent or unauthorized activity</ListItem>
+        {PRIVACY.audit1103 && <ListItem>Help you when you write to us about your account, for example a lost email address or a stolen account</ListItem>}
         <ListItem>
           Keep players safe: review reports{PRIVACY.drawingCheck ? ', check drawings' : ''}, apply age limits, protect
           players under 18, and enforce our Terms of Service and Community Rules
@@ -919,6 +931,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.notifications ? ', notifications' : ''}
           {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings
           {PRIVACY.browserLegal ? " (in the browser version, in your browser's settings for the site)" : ''}.
+          {PRIVACY.audit1103 ? " Also for sending your messages to OpenAI to be translated, which you can change with the app's own choices." : ''}
         </Item>
         <Item label="Legal Obligations">
           To comply with the law, for example to answer lawful requests and to report child sexual exploitation.
@@ -980,7 +993,10 @@ const Privacy: React.FC = () => {
           ? " Your friends, follows, profile and Privacy & Friends choices are kept for as long as you have an account. Friend requests are deleted 30 days after they're answered or expire, room invites 24 hours after they're answered, party invites after a day, party chat 30 days after it's sent, and sent social notifications after 7 days. The social safety log is kept for 1 year, and what our safety checks flag for as long as we keep reports."
           : ''}
         {PRIVACY.ipVault
-          ? ' The encrypted IP addresses of new accounts and sign-ins are kept for 90 days, or up to 1 year when they\'re part of a report to NCMEC, an open case or a law-enforcement request.'
+          ? ' The encrypted IP addresses of new accounts and sign-ins are kept for 90 days, or up to 1 year when they\'re part of a report to NCMEC, an open case, a child-safety case or a law-enforcement request.'
+          : ''}
+        {PRIVACY.audit1103
+          ? ' Emails waiting in our account mail queue are kept for 30 days (the address and any code are removed once sent), coded copies of ban-notice codes stop working after 30 minutes and are deleted 2 days later, and push receipt numbers are deleted after about 2 days. The record of what we did for you in Account Support is kept as long as we keep reports.'
           : ''}
         {PRIVACY.banTombstone
           ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
@@ -1100,7 +1116,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and how to appeal) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">
@@ -1253,6 +1269,7 @@ const Privacy: React.FC = () => {
         {/* LIVE.publicStats: get_public_stats / the public-stats function (legalRelease). */}
         {PRIVACY.publicStats &&
           ' We also publish live totals, on our website and on our Discord server: how many players are online, how many games are being played in each mode, how many games were played today and this week, and how many accounts there are (rounded down to a multiple of 10). Any number under 5 shows as "<5", and these totals never say who.'}
+        {PRIVACY.audit1103 && ' On Discord we also post recent public games (the game, table size, which side won, how and about when, never who played), the game nights we schedule, and the Community Packs added most.'}
       </P>
       {PRIVACY.volunteerModerators && (
         <P>
@@ -1331,11 +1348,11 @@ const Privacy: React.FC = () => {
         <Item label="Correcting your data">
           You can change your display name in the app at any time
           {PRIVACY.usernameLimit ? ', and your username once every 30 days' : ', and your username'}. Your email address
-          and birth year can't be changed in the app: email us. We change a birth year to a later one (a younger age) when
+          and birth year can't be changed in the app: email us.{PRIVACY.audit1103 ? " To change an email address we first check that the account is yours, from both addresses when you still have the old one. We then tell the old address, sign the account out everywhere and close its open Black Market offers and listings, and its trading pauses for 3 days." : ''} We change a birth year to a later one (a younger age) when
           you, or your parent or guardian, ask; to an earlier one (an older age) only when we can confirm it, for example
           from proof of age, because age limits keep younger players safe. If the corrected age is under 13, we delete
           the account (see Children's Privacy). A correction that makes you under 18 also gives your account the
-          Privacy &amp; Friends choices of a player under 18.
+          Privacy &amp; Friends choices of a player under 18{PRIVACY.audit1103 ? ' and closes its Black Market offers and listings, with what they hold or earned coming back to it' : ''}.
         </Item>
         <Item label="Deleting your data">
           In the app at any time, or by asking us (see When you delete your account, above).
@@ -1431,8 +1448,8 @@ const Privacy: React.FC = () => {
       <P>
         In the app's list of rooms, players under 16 (and players who haven't told us their age) see no private room
         but their own, and a private room hosted by a player under 18 is listed to no one but its host; joining a
-        private room still needs its code, link or QR code, or an invite. Some of the game's suggested questions are never used in
-        a game with a player under 18.{PRIVACY.homeDiscord ? " Players under 16 never see the app's link to our Discord server, and players 16 and 17 see a note on staying safe before it opens." : ''}
+        private room still needs its code, link or QR code, or an invite. Some of the game's suggested questions are never offered to a player under 18,
+        and the game never picks one by itself while a player under 18 is in the room or game.{PRIVACY.homeDiscord ? " Players under 16 never see the app's link to our Discord server, and players 16 and 17 see a note on staying safe before it opens (on iPhone, no player under 18 sees it for now)." : ''}
       </P>
 
       <H2>Do Not Track Signals</H2>

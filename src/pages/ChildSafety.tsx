@@ -104,7 +104,7 @@ const ChildSafety: React.FC = () => {
             never suggest friends. An adult can add a player under 16 as a friend only in person, by scanning the Friend
             Code on their phone (players 16 and 17 also from a private game they just played together); adding from a
             public table or by username is only between adults. Players under 18 have no public profile, can't be
-            followed and get no social notifications at night. Friends can invite each other to games and play as a
+            followed and get no social or trade notifications at night. Friends can invite each other to games and play as a
             party with a party chat, which goes through the same filters as game chat (the stricter ones when anyone
             in the party is under 18) and can be reported. On iPhone, friends and parties stay off for players under
             18 for now.
@@ -131,7 +131,8 @@ const ChildSafety: React.FC = () => {
             <B>Our Discord server:</B> the app can show a link to SpySocial's official Discord server, a separate app
             with its own rules and minimum age. Players under 16 (and players who haven't told us their age) never see
             the link; players 16 and 17 first see a note on staying safe there (Discord has private messages we can't
-            see; keep your real name, school and address to yourself; tell a parent or guardian). Our team and
+            see; keep your real name, school and address to yourself; tell a parent or guardian), and on iPhone, no
+            player under 18 sees it for now. Our team and
             volunteer moderators look after the server, and links to other apps stay blocked in any room with a player
             under 18.
           </ListItem>
@@ -175,7 +176,7 @@ const ChildSafety: React.FC = () => {
         )}
         <ListItem>
           <B>Evidence:</B> chat is kept on our servers for a while (about 24 hours in a private room, 14 days in a
-          public room), so a report comes with the words actually sent.
+          public room, 30 days in a party), so a report comes with the words actually sent.
         </ListItem>
         {drawings ? (
           <ListItem>

@@ -134,11 +134,19 @@ const Terms: React.FC = () => {
           ? `Keep your email account${LIVE.socialSignIn ? ' (and your Apple or Google account)' : ''} to yourself: anyone who can read your email can sign in with the codes we send there. Never share a sign-in code; we never ask you for one. You're responsible for what happens on your account. If you think someone else has used it, secure your email account and tell us.`
           : `Keep your password${LIVE.socialSignIn ? ' (and your Apple or Google account)' : ''} to yourself. You're responsible for what happens on your account. If you think someone else has used it, change your password and tell us.`}
       </P>
+      {LIVE.audit1103 && (
+        <P>
+          If your account was taken, or you've lost its email address, write to support@spysocial.app. Once we're
+          satisfied the account is yours, we can change its email address (we tell the old address, and we sign the
+          account out everywhere), sign it out on every device, and pause its trading for up to 30 days. We can't do
+          this for a guest account, which has no email address and can't sign back in.
+        </P>
+      )}
       <H3>Rules for accounts</H3>
       <Bullets>
         <ListItem>Your account is for you alone. Don't share, sell or give it to anyone, and don't use someone else's.</ListItem>
         <ListItem>Give true information, including your birth year.</ListItem>
-        <ListItem>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? " You can change your username once every 30 days; a username you stop using stays reserved for 14 days." : ''}</ListItem>
+        <ListItem>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? ` You can change your username once every 30 days${LIVE.audit1103 ? " (a new account's first changes don't count)" : ''}; a username you stop using stays reserved for 14 days.` : ''}</ListItem>
         <ListItem>Don't create another account to get around a limit, a penalty or someone's block.</ListItem>
       </Bullets>
 
@@ -476,7 +484,7 @@ const Terms: React.FC = () => {
         Community Rules say how long penalties usually last. When we limit your account, the app tells you what's
         limited, why, and until when, with a reference such as {'S\u2011207'}.
         {LIVE.accountNotices
-          ? " If we ban an account that has an email address, we also send all of that, and how to appeal, to that address; a banned account can't sign in, so the app can show the notice after you enter a code we send there."
+          ? " If we ban an account that has an email address, we also send all of that to that address, with how to appeal unless the decision is final; a banned account can't sign in, so the app can show the notice after you enter a code we send there."
           : ''}{' '}
         Don't create a new account to get around a
         penalty; we may ban that account too.
@@ -618,7 +626,7 @@ const Terms: React.FC = () => {
             take back the Intel that a closed fair-play case shows was earned by breaking our rules (for example farmed
             games), and only the lines the case covers. When an outage we've announced affects players, we may also give
             everyone it lists the same amount of Intel, which is locked and will never be tradable. A correction of more
-            than 500 Intel, or one that affects more than 5 players, waits 24 hours before it takes effect ({LIVE.accountNotices ? 'a bug refund under a published incident' : 'a bug refund'}
+            than 500 Intel, or one that affects more than 5 players, waits 24 hours before it takes effect ({LIVE.accountNotices ? 'a bug refund under a published incident' : 'a bug refund'}{' '}
             or an outage's Intel doesn't wait: the published incident is the notice). If you've already spent Intel we
             take back, your balance can go below 0: the Intel you earn next pays it back, and you can't spend Intel
             until it's above 0 again. You can appeal a reversal or a fair-play take-back within 30 days by writing to{' '}
@@ -652,7 +660,7 @@ const Terms: React.FC = () => {
             {LIVE.uniquesRarer ? 'ten' : 'five'} items, with the odds shown in the app before you trade. Only spare copies count (never your first copy of an item, or a Unique), and the copies you trade
             up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it
             can't be shredded or traded up). Like every virtual item, Intercepts and what's in them have no cash value
-            and can't be sold for money{LIVE.trading ? (LIVE.interceptsMarket ? '; an Intercept, unopened, and an item from an opened one can be traded or sold for Intel only as Trades and Black Market below describe' : `, or traded or moved to another account unopened; an item from an opened Intercept can be traded only as Trades below describes${LIVE.blackMarket ? ', and sold for Intel only on the Black Market' : ''}`) : ', traded or moved to another account, unopened or opened'}. Before SpySocial 2.2 opens to
+            and can't be sold for money{LIVE.trading ? (LIVE.interceptsMarket ? (LIVE.interceptsInTrades ? '; an Intercept, unopened, and an item from an opened one can be traded or sold for Intel only as Trades and Black Market below describe' : '; an unopened Intercept can be sold for Intel only on the Black Market, and an item from an opened one can be traded or sold only as Trades and Black Market below describe') : `, or traded or moved to another account unopened; an item from an opened Intercept can be traded only as Trades below describes${LIVE.blackMarket ? ', and sold for Intel only on the Black Market' : ''}`) : ', traded or moved to another account, unopened or opened'}. Before SpySocial 2.2 opens to
             everyone, Intercepts start fresh: every Intercept earned before then (for example while trying a test
             version of the app), with the copies, Uniques and trade-ups that came from them{LIVE.trading ? ' (copies you got in a trade included)' : ''}, is wiped, and every item
             that from then on comes only from Intercepts is taken back from the accounts that had it, except the Beta
@@ -717,12 +725,12 @@ const Terms: React.FC = () => {
           <Bullets>
             <ListItem>
               {LIVE.tradeGatesNov2
-                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats and that our fair-play checks don't flag). Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."
+                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 10,000 Intel, and both sides confirm what they'll get before the trade happens."
                 : "Trades are between friends, inside the app, and carry no message. You can trade once you and your friend have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."}
             </ListItem>
             <ListItem>
               Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
-              Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults, and
+              Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket && LIVE.interceptsInTrades ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults, and
               only once SpySocial 2.2 opens to everyone. On iPhone, players under 18 can't trade until a version of the
               app that asks a parent's consent through Apple is out.
             </ListItem>
@@ -736,9 +744,9 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>
               What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,
-              shred it or trade it up until then, and Intel you get can't be used until then. In that time you can
+              {LIVE.audit1103 ? ' sell it on the Black Market,' : ''} shred it or trade it up until then, and Intel you get can't be used until then. In that time you can
               reverse your trades (once every 90 days): this reverses all of your protected trades and pauses your
-              trading for 30 days. We can also reverse a trade for account theft or fraud. After 7 days a trade is
+              trading for 30 days. We can also reverse a protected trade for account theft or fraud{LIVE.audit1103 ? ', under a case we open about it' : ''}. After 7 days a trade is
               final, except for items removed for cheating. If you delete your account within those 7 days, what you
               got goes back to the player who gave it. If the other player deletes their account within those 7 days,
               the trade is undone: you get back what you gave, and what you received from them is removed.
@@ -746,6 +754,7 @@ const Terms: React.FC = () => {
             <ListItem>
               Big trades ask for a code we email you. Trading pauses for a while after your email or sign-in method
               changes, after a sign-in on a new device, or when you lock it yourself (for up to a year).
+              {LIVE.audit1103 ? ' We can also pause it, for up to 30 days, on an account that may have been taken.' : ''}
               {LIVE.tradeNoLimits
                 ? " There's no daily or weekly limit on how many trades anyone makes or on the items and Intel they receive."
                 : ' There are also weekly limits on the items and Intel you can receive, which the app shows.'}
@@ -786,6 +795,18 @@ const Terms: React.FC = () => {
               Intel), which is removed from the game. Members can have 8 offers open at once, others 4. You can stop an
               offer or listing at any time and collect what's left.
             </ListItem>
+            {LIVE.audit1103 && (
+              <ListItem>
+                If we pause your trading because your account may have been taken, or change your email address at your
+                request, your open offers and listings, and your offers on Rare Finds, close at once, as if you'd stopped
+                them: what they hold comes back to you (Intel from a buy offer waits for you to collect it), and other
+                players' offers on your listing go back to them. Nothing reopens when the pause ends; you place them again.
+                Sales already made stay as they are. Other trading pauses (your own lock, or one after a reversal, a new
+                device or a change of sign-in) stop you placing new offers, but what's already open can still sell. If we
+                correct your birth year and you're under 18, your offers and listings close, and what they hold or earned
+                comes back to you at once.
+              </ListItem>
+            )}
             <ListItem>
               A sale on Items is final at once. A Unique bought on Rare Finds is protected for 3 days: it can't be traded,
               listed, shredded or traded up, and the seller's Intel waits until then; in that time the sale can be

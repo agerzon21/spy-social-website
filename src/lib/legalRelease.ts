@@ -929,6 +929,23 @@ export const LIVE = {
    */
   accountNotices: true,
   /**
+   * Legal audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/legal-audit-1103.md): the text for things already live
+   * on the server that the pages missed or had wrong. A trading pause by us or our email change closes the account's open
+   * Black Market offers and listings (owner_support_2, 20261208640000; a correction to under 18: market_minor_close,
+   * 20261208610000); sign-out, theft cases and the support record (owner_support_tools, 20261208350000); trade and market
+   * pushes, push receipts and the 120-day token prune (push_audit_1102, 20261207430000); the account mail queue's 30 days;
+   * Discord's extra posts (discord_wire). A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * Describes what's in force and adds no duty for players, so no TERMS_PUBLISHED or terms_version raise. Dates: Nov 3 by
+   * accountNotices in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED.
+   */
+  audit1103: true,
+  /**
+   * Unopened Intercepts inside a friend trade. The server takes them (trade_set_intercepts), but no app version offers it
+   * (store compliance 2026-11-03: never called on any branch), so the pages say they move only on the Black Market. Flip
+   * on the day an app that offers it is out; Terms 9 and Privacy's Intercepts item then say trades too.
+   */
+  interceptsInTrades: false,
+  /**
    * The launch reset's Intel (WI, 20261201950000, Window W) ran: incident I-1 "Pre-launch Intercept Intel" is published
    * (its summary is the database's economy_incidents row I-1, copied in src/lib/transparency.ts). Turns on I-1 in the
    * transparency page's incidents. Set the day WI runs.

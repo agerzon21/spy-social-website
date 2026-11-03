@@ -11,7 +11,7 @@ import { PUBLISHED_INCIDENTS, RULE_CHANGES } from '../lib/transparency'
 // the collectibles ledger), never typed in by hand.
 
 /** The day this page's text last changed (LIVE.uniquesRarer: its rule changes, the day the server file is applied). */
-const UPDATED = LIVE.tradeNoLimits || LIVE.tradeGatesNov2 ? 'November 2, 2026' : LIVE.giftsTradable ? 'November 1, 2026' : LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
+const UPDATED = LIVE.accountNotices ? 'November 3, 2026' : LIVE.tradeNoLimits || LIVE.tradeGatesNov2 ? 'November 2, 2026' : LIVE.giftsTradable ? 'November 1, 2026' : LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
 
 const KIND: Record<string, string> = { reset: 'Reset', bug: 'Bug', outage: 'Outage' }
 
@@ -35,7 +35,7 @@ const Transparency: React.FC = () => (
         it was spent on, and how much all players hold at the end of the month.
       </ListItem>
       <ListItem>
-        <B>Corrections:</B> for each kind (a reversed line, a bug refund, a fair-play take-back, an outage's Intel), how
+        <B>Corrections:</B> for each kind (a reversed line, a bug refund, {LIVE.accountNotices ? "one player's bug refund, " : ''}a fair-play take-back, an outage's Intel), how
         many there were, how many players they affected and the total, with each correction's reason and its incident
         or the category of its case. Never who was corrected.
       </ListItem>
@@ -59,7 +59,8 @@ const Transparency: React.FC = () => (
     <H2>Incidents</H2>
     <P>
       When something goes wrong with Intel or items (a bug, an outage, or the reset before launch), we publish what
-      happened and the rule that works out each player's amount here first, and only then put it right. A published
+      happened and the rule that works out each player's amount here first, and only then put it right.
+      {LIVE.accountNotices ? " The one exception is a bug that cost a single player Intel with no line to reverse: we refund that player with no incident here, and it's counted under Corrections." : ''} A published
       incident is never changed.
     </P>
     {PUBLISHED_INCIDENTS.length === 0 ? (
@@ -94,8 +95,8 @@ const Transparency: React.FC = () => (
     <P>
       {LIVE.intelCorrections ? (
         <>
-          We never add or take Intel by hand. We correct it in only three ways, each a new line in the player's Intel
-          ledger with its reason: reversing one line by exactly its amount, refunding a bug we've published here, or
+          We never add or take Intel by hand. We correct it in only {LIVE.accountNotices ? 'four' : 'three'} ways, each a new line in the player's Intel
+          ledger with its reason: reversing one line by exactly its amount, refunding a bug we've published here,{LIVE.accountNotices ? " refunding one player for a bug that cost only them Intel," : ''} or
           taking back what a closed fair-play case covers. Bigger corrections wait 24 hours first, and a player can
           appeal within 30 days. Section 9 of our <PageLink to="/terms">Terms</PageLink> has the details.
         </>
