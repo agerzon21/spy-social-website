@@ -733,9 +733,9 @@ const Privacy: React.FC = () => {
             {from22 ? 'From version 2.2, if' : 'If'} the app crashes or hits an error, it sends a report to Sentry, our
             crash-reporting service: what went wrong and where in the app, a short trail of what the app did just
             before (such as the screens it opened, with room codes removed), your device's model, operating system version and similar technical details
-            (such as free memory, screen size and language), the app's version, and an ID for the app's installation
-            that isn't linked to your account (on Android, a random ID the crash reporter creates; on iPhones, a code
-            made from the identifier iOS gives our apps on your device). Reports don't include your name, email
+            (such as free memory, screen size and language), the app's version, and a random ID the app makes only for crash reports,
+            which isn't linked to your account or to the install code described under Device Information, and which we
+            use to count how many installations a problem reached. Reports don't include your name, email
             address, account or messages. A report is also sent when the app freezes (stops responding for a few
             seconds), with the same details; the app sends nothing to Sentry while everything works. Sentry
             receives your device's IP address when a report arrives but is set not to store it
