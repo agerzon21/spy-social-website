@@ -1177,6 +1177,15 @@ export const LIVE = {
    */
   giftsTradable: true,
   /**
+   * The party's size in the Terms and the Privacy Policy, corrected (November 3, 2026): they said a leader and up to 3
+   * friends; the app server's rule is up to 21 people in all (live app_config.party.max_size 21, checked that day), the
+   * leader a member, at most half a table at Play Online and Game Night (2 at 4, 4 at 8; party_search), bigger parties
+   * in a private room, as the help center's #parties says. Not a material change (it describes a limit already in force
+   * and adds no duty or penalty): LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED move (below), no TERMS_PUBLISHED or
+   * terms_version. Only those dates read it; the corrected text is unconditional.
+   */
+  partySizeCorrected: true,
+  /**
    * Trading's gates (owner 2026-11-02, live on the app server: app_config.trading.min_friend_days 0 and
    * 20261102002603_trade_games_not_level): friends can trade right away (no 3 days as friends; the 7-day protection and
    * reversal stay; under-18s still only with Friend Code friends), an account 7 days old (was 14), 3 counted games
@@ -1447,6 +1456,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.partySizeCorrected
+    ? 'November 3, 2026' // Terms 4: a party's size corrected to the live rule (up to 21 people, half a table, bigger parties in a private room): the site went up with it on
   : LIVE.membershipTerms
     ? 'November 2, 2026' // Terms 9: Buying a membership shown before the launch (B4): the site went up with it on
   : LIVE.tradeNoLimits
@@ -1497,6 +1508,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.partySizeCorrected
+    ? 'November 3, 2026' // the Party and Party Chat item: a party's size corrected to the live rule (up to 21 people): the site went up with it on
   : LIVE.integrityProbes
     ? 'November 2, 2026' // fair play: notes of requests the app never makes (90 days): the site went up with it on
   : LIVE.dataRights

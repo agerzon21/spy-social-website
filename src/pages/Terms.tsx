@@ -182,11 +182,11 @@ const Terms: React.FC = () => {
               any time in Privacy &amp; Friends. Players under 18 have no public profile and can't be followed.
             </ListItem>
             <ListItem>
-              A party is a leader and up to 3 of the leader's friends who play together. The leader needs a
+              A party is a leader and friends who play together, up to 21 people in all. The leader needs a
               membership. A party plays together at Play Online tables and game nights, where it takes at most half
-              of a table and is marked for everyone there, and can start a private room together. A private room plays
-              the host's packs, as it always does. A members-only search needs every member of the party to be a
-              member.
+              of a table (2 at a table of 4, 4 at a table of 8) and is marked for everyone there. Any party can start
+              a private room together, and a party too big for a table plays there. A private room plays the host's
+              packs, as it always does. A members-only search needs every member of the party to be a member.
             </ListItem>
             <ListItem>
               Party chat follows the same rules as all chat in SpySocial (see section 7), and you can report any

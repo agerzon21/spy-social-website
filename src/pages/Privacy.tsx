@@ -390,9 +390,9 @@ const Privacy: React.FC = () => {
         )}
         {PRIVACY.socialFeatures && (
           <Item label="Party and Party Chat">
-            When you join a party (a member and up to 3 of their friends who play together), we keep who is in it, who
-            led it, the invites, and the games it played, so that the party is seated together and marked at the table
-            for everyone. Messages in a party's chat are stored on our servers so the party can read them, go through
+            When you join a party (a member and friends who play together, up to 21 people in all), we keep who is in
+            it, who led it, the invites, and the games it played, so that the party is seated together and marked at
+            the table for everyone. Messages in a party's chat are stored on our servers so the party can read them, go through
             the same filters as room chat (with the stricter public-room rules when anyone in the party is under 18),
             can be reported, and are deleted 30 days after they're sent.
           </Item>
