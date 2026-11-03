@@ -223,8 +223,9 @@ const id: HelpText = {
           id: 'parties',
           q: 'Apa itu grup?',
           a: [
-            'Seorang ketua dan sampai 3 teman yang main bersama. Ketua butuh keanggotaan.',
-            'Grup main bersama di meja Main online dan Malam Permainan (paling banyak setengah meja, ditandai untuk semua), atau membuka room privat.',
+            'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Ketua butuh keanggotaan.',
+            'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
+            'Grup mana pun bisa membuka room privat bersama, dan grup yang terlalu besar untuk satu meja main di sana.',
             'Chat grup mengikuti aturan yang sama dengan semua chat, dan kamu bisa melaporkan pesan apa pun.',
           ],
         },
@@ -396,6 +397,31 @@ const id: HelpText = {
             'Kamu bisa meminta peninjauan di aplikasi.',
           ],
         },
+        {
+          id: 'missing-item',
+          q: 'Item atau sadapanku hilang',
+          a: [
+            'Mungkin ditahan oleh penawaran terbuka di Pasar Gelap. Kamu bisa menghentikan penawaran kapan saja.',
+            'Mungkin sudah kamu hancurkan atau pakai untuk Tukar Tambah.',
+            'Pertukaran yang dibatalkan mengembalikannya ke pemain yang memberikannya.',
+            'Saat keanggotaan berakhir atau dananya dikembalikan, yang datang bersamanya tidak lagi tersedia.',
+            ...(o.launch ? [] : ['Sadapan dari versi uji dan item-itemnya dihapus sebelum 2.2 dibuka untuk semua.']),
+            'Bukan semua itu? Email ke <email/> dengan nama penggunamu, nama itemnya, dan kapan terakhir kamu melihatnya.',
+          ],
+        },
+        {
+          id: 'tester-rewards',
+          q: 'Di mana hadiah penguji betaku?',
+          a: [
+            o.launch
+              ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
+              : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+            ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
+            'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
+            'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',
+            ...(o.launch ? [] : ['Beta 2: $10 dikirim lewat PayPal ke setiap pemain terkonfirmasi yang bermain satu jam penuh dan mengirim survei, dalam 7 hari setelah sesi.']),
+          ],
+        },
       ],
     },
     {
@@ -462,6 +488,57 @@ const id: HelpText = {
             '<b>Tamu</b> bisa langsung main di room privat. Akun tamu hanya ada di satu ponsel, dan keluar dari akun menghapusnya selamanya.',
             `Akun <b>tersimpan</b> (Apple, Google, atau emailmu${o.passwordless ? ', dengan kode yang kami kirim lewat email, tanpa kata sandi' : ''}) menyimpan nama, progres, dan keanggotaanmu di ponsel mana pun, dan membuka Main online, Malam Permainan, dan fitur teman.`,
             'Kamu bisa menyimpan akun tamu kapan saja dari halaman Akun, tanpa kehilangan apa pun.',
+          ],
+        },
+        {
+          id: 'lost-account',
+          q: 'Akunku hilang. Bisa kembali?',
+          a: [
+            '<b>Akun tersimpan</b> kembali di ponsel mana pun: buka SpySocial dan masuk dengan cara yang sama seperti dulu (Apple, Google, atau email yang sama). Email lain, atau Sembunyikan Email Saya dari Apple, membuka akun baru yang kosong, dan sering kali itu sebabnya progres seperti hilang.',
+            '<b>Akun tamu</b> hanya ada di satu ponsel. Kalau aplikasinya dihapus, ponselnya hilang, atau kamu keluar dari akun, akun itu hilang selamanya dan kami tidak bisa mengembalikannya.',
+            'Keanggotaan tidak hilang: <b>Pulihkan pembelian</b> mengembalikannya. Kami tidak bisa menggabungkan akun atau memindahkan item antar-akun.',
+            'Kalau dulu akunmu tersimpan, email ke <email/> dengan nama penggunamu dan cara kamu masuk, dan kami akan memeriksanya.',
+          ],
+        },
+        {
+          id: 'cant-sign-in',
+          q: 'Aku tidak bisa masuk',
+          a: [
+            ...(o.passwordless ? ['Kamu bisa masuk dengan Apple, Google, atau kode 6 digit yang kami kirim lewat email. Sekarang tidak ada kata sandi lagi: kalau aplikasi masih memintanya, perbarui di App Store atau Google Play.'] : []),
+            'Masuklah dengan cara yang sama seperti dulu. Email lain, atau Sembunyikan Email Saya dari Apple, membuka akun baru yang kosong, bukan akunmu.',
+            'Kalau aplikasi menulis “Akun ini tidak bisa masuk”, email ke <email/> dari alamat akun itu dan kami akan memeriksanya.',
+          ],
+        },
+        {
+          id: 'code-not-arriving',
+          q: 'Kode atau email masukku tidak sampai',
+          a: [
+            'Pengirimnya noreply@mail.spysocial.app. Cek folder spam, dan cek huruf demi huruf alamat yang kamu ketik.',
+            o.passwordless
+              ? 'Kamu bisa minta kode baru setelah 60 detik dengan <b>Kirim Ulang Kode</b>. Kode berlaku 1 jam: pakai yang ada di email terbaru. Kalau aplikasi bilang terlalu banyak email, tunggu beberapa menit lalu coba sekali.'
+              : 'Kamu bisa minta email lain setelah 60 detik. Pakai yang terbaru.',
+            'Kalau akunmu memakai Apple atau Google, kamu bisa masuk dengan itu.',
+            'Masih belum ada? Email ke <email/> dengan alamat persisnya dan kira-kira kapan kamu mencoba, dan kami akan mengeceknya di sisi kami.',
+          ],
+        },
+        {
+          id: 'lost-email',
+          q: 'Emailku hilang, atau aku ingin menggantinya',
+          a: [
+            'Aplikasi tidak bisa mengganti email akun tersimpan, jadi tulis ke <email/>.',
+            'Kalau alamat lama masih bisa kamu baca, kirim dari alamat itu dan sebutkan alamat barunya. Kami juga akan mengirim email ke alamat baru, dan kamu membalasnya.',
+            'Kalau alamat lama sudah tidak ada, coba dulu pulihkan lewat penyedia emailmu. Kalau akunmu juga punya masuk lewat Apple atau Google, kamu tetap bisa masuk dengan itu. Kami tidak bisa menjanjikan penggantian tanpa alamat lama, karena dari situlah kami tahu akun itu milikmu.',
+            'Setelah email diganti, pertukaranmu dijeda 3 hari.',
+          ],
+        },
+        {
+          id: 'stolen-account',
+          q: 'Ada orang yang masuk ke akunku. Apa yang harus kulakukan?',
+          a: [
+            'Pertama, amankan email akun SpySocial-mu, dan akun Apple atau Google kalau kamu masuk dengan itu. Siapa pun yang bisa membaca email itu bisa masuk ke akunmu.',
+            'Dalam 7 hari sejak pertukaran yang tidak kamu lakukan, ketuk <b>Batalkan Pertukaranku</b> di halaman pertukaranmu. Semua pertukaranmu yang masih dilindungi dibatalkan, dan pertukaranmu dijeda 30 hari. Ini bisa dilakukan sekali tiap 90 hari.',
+            'Lalu tulis ke <email/> dengan nama penggunamu, kira-kira kapan kejadiannya, dan apa yang hilang. Beri tahu kami juga kalau menurutmu masih ada orang yang masuk ke akunmu.',
+            'Setelah 7 hari, pertukaran bersifat final, dan penjualan Item di Pasar Gelap langsung final. Kami tidak akan pernah meminta kode masukmu.',
           ],
         },
         {
@@ -533,6 +610,17 @@ const id: HelpText = {
             'Orang tua dan wali: lihat <safety>halaman Keamanan</safety> kami.',
           ],
         },
+        {
+          id: 'under-13',
+          q: 'Aplikasi menulis “SpySocial khusus pemain berusia 13 tahun ke atas”',
+          a: [
+            o.storeAgeSignals
+              ? 'SpySocial khusus pemain berusia 13 tahun ke atas. Kami tidak memverifikasi atau memperkirakan usia: aplikasi mengandalkan tahun lahir yang kamu berikan dan rentang usia yang dibagikan Apple atau Google.'
+              : 'SpySocial khusus pemain berusia 13 tahun ke atas. Kami tidak memverifikasi atau memperkirakan usia: aplikasi mengandalkan tahun lahir yang kamu berikan.',
+            'Tahun lahir di bawah 13 tahun langsung menghapus akun, dan akun itu tidak bisa dipulihkan.',
+            ...(o.storeAgeSignals ? ['Kalau akun Apple atau Google-mu menunjukkan usia yang salah, perbaiki di sana dan aplikasi akan mengizinkanmu bermain. Kalau orang tua atau wali menolak SpySocial lewat toko aplikasi, hanya mereka yang bisa mengubahnya.'] : []),
+          ],
+        },
       ],
     },
     {
@@ -563,6 +651,29 @@ const id: HelpText = {
           a: [
             'Aplikasi tersambung lagi sendiri saat koneksimu kembali.',
             'Kalau kamu sampai di Beranda, ketuk <b>Kembali</b> di kartu room-mu. Kursimu tetap disimpan.',
+          ],
+        },
+        {
+          id: 'app-crashes',
+          q: 'Aplikasinya terus crash',
+          a: [
+            'Perbarui SpySocial di App Store atau Google Play kalau ada pembaruan.',
+            'Tutup sepenuhnya (geser keluar), buka, lalu tutup dan buka sekali lagi.',
+            'Mulai ulang ponselmu dan cek masih ada ruang kosong: pembaruan bisa gagal di ponsel yang penuh.',
+            'Masih crash? Pakai <b>Akun</b>, <b>Pengaturan</b>, <b>Laporkan masalah</b> kalau bisa dibuka, atau email ke <email/> dengan model ponsel, versi sistem, apa yang sedang kamu lakukan, dan waktunya beserta zona waktumu.',
+            'Kalau kamu sedang bermain, aplikasi menyambungkanmu lagi, atau ketuk <b>Kembali</b> di kartu room-mu di Beranda. Kursimu tetap disimpan.',
+          ],
+        },
+        {
+          id: 'game-not-counted',
+          q: 'Permainanku tidak dihitung',
+          a: [
+            'Permainan masuk rekam jejakmu kalau sudah berakhir dan kamu punya kursi, baik kamu main sampai selesai, keluar lebih awal (kalah), atau sedang pergi.',
+            'Yang tidak dihitung: permainan yang diakhiri host, pembagian yang dibatalkan, permainan yang ditinggalkan, dikeluarkan dari room, kursi yang tidak pernah kamu datangi, atau menonton. Permainan tanpa pemenang bukan menang dan bukan kalah.',
+            'Statistikmu memisahkan Main online dan room privat, jadi cek pengalih di bagian atas.',
+            'Room privat tidak pernah memberi Intel atau sadapan, dan permainan Main online hanya memberinya kalau menghasilkan XP.',
+            'Untuk bertukar, kamu butuh 3 permainan selesai yang dihitung dan tidak ditandai oleh pemeriksaan permainan adil kami.',
+            'Kalau seharusnya dihitung, email ke <email/> dengan nama penggunamu, kode room (kalau ada), dan kapan kamu bermain.',
           ],
         },
         {

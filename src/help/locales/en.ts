@@ -227,8 +227,9 @@ const en: HelpText = {
           id: 'parties',
           q: 'What is a party?',
           a: [
-            'A leader and up to 3 friends who play together. The leader needs a membership.',
-            'A party plays together at Play Online tables and Game Nights (at most half a table, marked for everyone), or starts a private room.',
+            'A leader and friends who play together, up to 21 people in all. The leader needs a membership.',
+            'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',
+            'Any party can start a private room together, and a party too big for a table plays there.',
             'Party chat follows the same rules as all chat, and you can report any message in it.',
           ],
         },
@@ -400,6 +401,31 @@ const en: HelpText = {
             'You can ask for a review in the app.',
           ],
         },
+        {
+          id: 'missing-item',
+          q: 'An item or Intercept is missing',
+          a: [
+            'It may be held by an open Black Market offer. You can stop the offer any time.',
+            'You may have shredded it or used it in a Trade Up.',
+            'A reversed trade sends it back to the player who gave it.',
+            'When a membership ends or is refunded, what came with it isn’t available.',
+            ...(o.launch ? [] : ['Intercepts earned in test versions, and their items, are wiped before 2.2 opens to everyone.']),
+            'None of these? Email <email/> with your username, the item’s name and when you last saw it.',
+          ],
+        },
+        {
+          id: 'tester-rewards',
+          q: 'Where are my beta tester rewards?',
+          a: [
+            o.launch
+              ? 'They were added at the 2.2 launch and are yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership. A thank-you card shows when you first open the app after launch.'
+              : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership.',
+            ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
+            'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
+            'Something missing? Email <email/> with your username and the email you signed in with during the test. A guest account isn’t on the list, so a different account is the usual reason.',
+            ...(o.launch ? [] : ['Beta 2: the $10 goes by PayPal to every confirmed player who plays the full hour and sends the survey, within 7 days of the session.']),
+          ],
+        },
       ],
     },
     {
@@ -466,6 +492,57 @@ const en: HelpText = {
             'A <b>guest</b> plays private rooms right away. A guest account lives on one phone, and signing out deletes it for good.',
             `A <b>saved</b> account (Apple, Google or your email${o.passwordless ? ', with a code we email you, no password' : ''}) keeps your name, progress and membership on any phone, and lets you play online, join Game Night and add friends.`,
             'You can save a guest account at any time from your Account page, without losing anything.',
+          ],
+        },
+        {
+          id: 'lost-account',
+          q: 'I lost my account. Can I get it back?',
+          a: [
+            '<b>A saved account</b> comes back on any phone: open SpySocial and sign in the same way as before (Apple, Google or the same email). A different email, or Apple’s Hide My Email, opens a new, empty account, which is often why progress seems gone.',
+            '<b>A guest account</b> lives on one phone. If the app was deleted, the phone was lost or you signed out, it’s gone for good and we can’t bring it back.',
+            'A membership isn’t lost: <b>Restore Purchases</b> brings it back. We can’t merge accounts or move items between them.',
+            'If you had a saved account, email <email/> with your username and how you signed in, and we’ll look.',
+          ],
+        },
+        {
+          id: 'cant-sign-in',
+          q: 'I can’t sign in',
+          a: [
+            ...(o.passwordless ? ['You can sign in with Apple, Google or a 6-digit code we email you. There are no passwords any more: if the app still asks for one, update it in the App Store or Google Play.'] : []),
+            'Use the same way in as before. A different email, or Apple’s Hide My Email, opens a new, empty account instead of yours.',
+            'If the app says “This account can’t sign in”, email <email/> from the account’s address and we’ll look.',
+          ],
+        },
+        {
+          id: 'code-not-arriving',
+          q: 'My sign-in code or email isn’t arriving',
+          a: [
+            'It comes from noreply@mail.spysocial.app. Check spam or junk, and check the address you typed letter by letter.',
+            o.passwordless
+              ? 'You can ask for a new code after 60 seconds with <b>Resend Code</b>. A code works for 1 hour: use the one in the newest email. If the app says there are too many emails, wait a few minutes and try once.'
+              : 'You can ask for another email after 60 seconds. Use the newest one.',
+            'If your account uses Apple or Google, you can sign in with those instead.',
+            'Still nothing? Email <email/> with the exact address and roughly when you tried, and we’ll check on our side.',
+          ],
+        },
+        {
+          id: 'lost-email',
+          q: 'I lost my email address, or want to change it',
+          a: [
+            'The app can’t change the email on a saved account, so write to <email/>.',
+            'If you can still read the old address, write from it and tell us the new one. We’ll also email the new address, and you reply to that.',
+            'If the old address is gone, try to get it back through your email provider first. If your account has Apple or Google sign-in too, you can still sign in that way. We can’t promise a change without the old address, because that’s how we know the account is yours.',
+            'After an email change, trading pauses for 3 days.',
+          ],
+        },
+        {
+          id: 'stolen-account',
+          q: 'Someone got into my account. What do I do?',
+          a: [
+            'First secure the email on your SpySocial account, and your Apple or Google account if you sign in with those. Anyone who can read that email can get into your account.',
+            'Within 7 days of a trade you didn’t make, tap <b>Reverse My Trades</b> on your Trades page. It reverses all your protected trades and pauses your trading for 30 days. You can do it once every 90 days.',
+            'Then write to <email/> with your username, roughly when it happened and what’s missing. Tell us too if you think someone is still signed in.',
+            'After 7 days a trade is final, and a Black Market sale on Items is final at once. We’ll never ask for your sign-in code.',
           ],
         },
         {
@@ -537,6 +614,17 @@ const en: HelpText = {
             'Parents and carers: see our <safety>Safety page</safety>.',
           ],
         },
+        {
+          id: 'under-13',
+          q: 'The app says “SpySocial is for players 13 and older”',
+          a: [
+            o.storeAgeSignals
+              ? 'SpySocial is for players 13 and older. We don’t verify or estimate ages: the app relies on the birth year you give and the age range Apple or Google shares.'
+              : 'SpySocial is for players 13 and older. We don’t verify or estimate ages: the app relies on the birth year you give.',
+            'A birth year under 13 deletes the account straight away, and it can’t be restored.',
+            ...(o.storeAgeSignals ? ['If your Apple or Google account shows the wrong age, correct it there and the app will let you play. If a parent or guardian declined SpySocial through the store, only they can change that.'] : []),
+          ],
+        },
       ],
     },
     {
@@ -567,6 +655,29 @@ const en: HelpText = {
           a: [
             'The app reconnects by itself when your connection comes back.',
             'If you end up on Home, tap <b>Rejoin</b> on your room’s card. Your seat is kept.',
+          ],
+        },
+        {
+          id: 'app-crashes',
+          q: 'The app keeps crashing',
+          a: [
+            'Update SpySocial in the App Store or Google Play if there’s an update.',
+            'Close it completely (swipe it away), open it, then close and open it once more.',
+            'Restart your phone, and check it has some free storage: an update can fail on a full phone.',
+            'Still crashing? Use <b>Account</b>, <b>Settings</b>, <b>Report a Problem</b> if you can reach it, or email <email/> with your phone model, system version, what you were doing, and the time with your time zone.',
+            'If you were in a game, the app reconnects you, or tap <b>Rejoin</b> on your room’s card on Home. Your seat is kept.',
+          ],
+        },
+        {
+          id: 'game-not-counted',
+          q: 'My game didn’t count',
+          a: [
+            'A game counts on your record when it ended and you had a seat, whether you played to the end, left early (a loss) or were away.',
+            'These don’t count: a game the host ended, a cancelled deal, an abandoned game, being removed from the room, a seat you never came to, or watching. A game with no winner is neither a win nor a loss.',
+            'Your stats show Play Online and private rooms apart, so check the switch at the top.',
+            'Private rooms never give Intel or Intercepts, and Play Online games give them only if they earned XP.',
+            'For trading, you need 3 finished games that count and that our fair-play checks didn’t flag.',
+            'If it should have counted, email <email/> with your username, the room code (if you have it) and when you played.',
           ],
         },
         {

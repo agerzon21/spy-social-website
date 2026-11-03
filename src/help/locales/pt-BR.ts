@@ -223,8 +223,9 @@ const ptBR: HelpText = {
           id: 'parties',
           q: 'O que é um grupo?',
           a: [
-            'Um líder e até 3 amigos que jogam juntos. O líder precisa de uma assinatura.',
-            'O grupo joga junto nas mesas do Jogar online e nas Noites de Jogos (no máximo meia mesa, marcado para todos), ou abre uma sala privada.',
+            'Um líder e amigos que jogam juntos, até 21 pessoas no total. O líder precisa de uma assinatura.',
+            'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
+            'Qualquer grupo pode abrir uma sala privada junto, e um grupo grande demais para uma mesa joga lá.',
             'O chat do grupo segue as mesmas regras de todo o chat, e você pode denunciar qualquer mensagem.',
           ],
         },
@@ -396,6 +397,31 @@ const ptBR: HelpText = {
             'Você pode pedir uma revisão no app.',
           ],
         },
+        {
+          id: 'missing-item',
+          q: 'Sumiu um item ou uma interceptação',
+          a: [
+            'Ele pode estar reservado por uma oferta aberta no Mercado Negro. Dá para cancelar a oferta quando quiser.',
+            'Talvez você o tenha triturado ou usado numa Troca.',
+            'Uma troca revertida o devolve ao jogador que o deu.',
+            'Quando uma assinatura termina ou é reembolsada, o que vinha com ela deixa de estar disponível.',
+            ...(o.launch ? [] : ['As interceptações de versões de teste e seus itens são apagados antes de a 2.2 abrir para todos.']),
+            'Nada disso? Escreva para <email/> com seu nome de usuário, o nome do item e quando você o viu pela última vez.',
+          ],
+        },
+        {
+          id: 'tester-rewards',
+          q: 'Onde estão minhas recompensas do beta?',
+          a: [
+            o.launch
+              ? 'Elas foram adicionadas no lançamento da 2.2 e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
+              : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
+            ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
+            'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
+            'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de convidado não está na lista, então o mais comum é ser outra conta.',
+            ...(o.launch ? [] : ['Beta 2: os US$ 10 vão por PayPal para cada jogador confirmado que joga a hora inteira e envia a pesquisa, em até 7 dias após a sessão.']),
+          ],
+        },
       ],
     },
     {
@@ -462,6 +488,57 @@ const ptBR: HelpText = {
             'Um <b>convidado</b> joga em salas privadas na hora. Uma conta de convidado fica num celular só, e sair dela apaga a conta para sempre.',
             `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e sua assinatura em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
             'Você pode salvar uma conta de convidado quando quiser na página da sua conta, sem perder nada.',
+          ],
+        },
+        {
+          id: 'lost-account',
+          q: 'Perdi minha conta. Dá para recuperar?',
+          a: [
+            'Uma <b>conta salva</b> volta em qualquer celular: abra o SpySocial e entre do mesmo jeito de antes (Apple, Google ou o mesmo e-mail). Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia, e muitas vezes é por isso que o progresso parece ter sumido.',
+            'Uma <b>conta de convidado</b> fica num celular só. Se o app foi apagado, o celular foi perdido ou você saiu da conta, ela se foi para sempre e não conseguimos trazê-la de volta.',
+            'A assinatura não se perde: <b>Restaurar compras</b> traz de volta. Não conseguimos juntar contas nem mover itens entre elas.',
+            'Se você tinha uma conta salva, escreva para <email/> com seu nome de usuário e como entrava, e nós verificamos.',
+          ],
+        },
+        {
+          id: 'cant-sign-in',
+          q: 'Não consigo entrar',
+          a: [
+            ...(o.passwordless ? ['Você pode entrar com Apple, com Google ou com um código de 6 dígitos que mandamos por e-mail. Não há mais senhas: se o app ainda pedir uma, atualize-o na App Store ou no Google Play.'] : []),
+            'Entre do mesmo jeito de antes. Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia no lugar da sua.',
+            'Se o app disser “Esta conta não pode entrar”, escreva para <email/> pelo e-mail da conta, e nós verificamos.',
+          ],
+        },
+        {
+          id: 'code-not-arriving',
+          q: 'Meu código ou e-mail de entrada não chega',
+          a: [
+            'Ele vem de noreply@mail.spysocial.app. Veja o spam ou lixo eletrônico, e confira letra por letra o endereço que você digitou.',
+            o.passwordless
+              ? 'Você pode pedir um código novo depois de 60 segundos com <b>Reenviar código</b>. Cada código vale 1 hora: use o do e-mail mais recente. Se o app disser que há e-mails demais, espere alguns minutos e tente uma vez.'
+              : 'Você pode pedir outro e-mail depois de 60 segundos. Use o mais recente.',
+            'Se sua conta usa Apple ou Google, você pode entrar com eles.',
+            'Ainda nada? Escreva para <email/> com o endereço exato e mais ou menos quando você tentou, e verificamos do nosso lado.',
+          ],
+        },
+        {
+          id: 'lost-email',
+          q: 'Perdi meu e-mail ou quero trocá-lo',
+          a: [
+            'O app não consegue trocar o e-mail de uma conta salva, então escreva para <email/>.',
+            'Se você ainda consegue ler o endereço antigo, escreva por ele e informe o novo. Também vamos escrever para o endereço novo, e você responde.',
+            'Se o endereço antigo não existe mais, tente primeiro recuperá-lo com seu provedor de e-mail. Se sua conta também tem entrada por Apple ou Google, você ainda pode entrar assim. Não podemos prometer a troca sem o endereço antigo, porque é assim que sabemos que a conta é sua.',
+            'Depois de uma troca de e-mail, suas trocas ficam pausadas por 3 dias.',
+          ],
+        },
+        {
+          id: 'stolen-account',
+          q: 'Alguém entrou na minha conta. O que eu faço?',
+          a: [
+            'Primeiro proteja o e-mail da sua conta SpySocial, e sua conta Apple ou Google se você entra com elas. Quem consegue ler esse e-mail consegue entrar na sua conta.',
+            'Em até 7 dias de uma troca que você não fez, toque em <b>Desfazer minhas trocas</b> na sua página de trocas. Isso reverte todas as suas trocas protegidas e pausa suas trocas por 30 dias. Dá para fazer uma vez a cada 90 dias.',
+            'Depois escreva para <email/> com seu nome de usuário, mais ou menos quando aconteceu e o que está faltando. Avise também se achar que alguém ainda está conectado.',
+            'Depois de 7 dias, a troca é definitiva, e uma venda de Itens no Mercado Negro é definitiva na hora. Nunca vamos pedir seu código de entrada.',
           ],
         },
         {
@@ -533,6 +610,17 @@ const ptBR: HelpText = {
             'Pais e responsáveis: vejam nossa <safety>página de segurança</safety>.',
           ],
         },
+        {
+          id: 'under-13',
+          q: 'O app diz “O SpySocial é para jogadores a partir de 13 anos”',
+          a: [
+            o.storeAgeSignals
+              ? 'O SpySocial é para jogadores a partir de 13 anos. Não verificamos nem estimamos idades: o app se baseia no ano de nascimento que você informa e na faixa etária que a Apple ou o Google compartilha.'
+              : 'O SpySocial é para jogadores a partir de 13 anos. Não verificamos nem estimamos idades: o app se baseia no ano de nascimento que você informa.',
+            'Um ano de nascimento de menos de 13 anos apaga a conta na hora, e ela não pode ser restaurada.',
+            ...(o.storeAgeSignals ? ['Se sua conta Apple ou Google mostra a idade errada, corrija lá e o app vai deixar você jogar. Se um responsável recusou o SpySocial pela loja, só ele pode mudar isso.'] : []),
+          ],
+        },
       ],
     },
     {
@@ -563,6 +651,29 @@ const ptBR: HelpText = {
           a: [
             'O app reconecta sozinho quando sua conexão volta.',
             'Se você for parar no início, toque em <b>Voltar</b> no cartão da sua sala. Seu lugar fica guardado.',
+          ],
+        },
+        {
+          id: 'app-crashes',
+          q: 'O app fica travando e fechando',
+          a: [
+            'Atualize o SpySocial na App Store ou no Google Play, se houver atualização.',
+            'Feche o app por completo (deslize para fora), abra, depois feche e abra mais uma vez.',
+            'Reinicie o celular e veja se há espaço livre: uma atualização pode falhar com o celular cheio.',
+            'Continua? Use <b>Conta</b>, <b>Ajustes</b>, <b>Relatar um problema</b> se conseguir chegar lá, ou escreva para <email/> com o modelo do celular, a versão do sistema, o que você estava fazendo e o horário com seu fuso.',
+            'Se você estava numa partida, o app reconecta, ou toque em <b>Voltar</b> no cartão da sua sala, na tela inicial. Seu lugar fica guardado.',
+          ],
+        },
+        {
+          id: 'game-not-counted',
+          q: 'Minha partida não contou',
+          a: [
+            'Uma partida conta no seu histórico quando terminou e você tinha um lugar, seja jogando até o fim, saindo antes (uma derrota) ou estando ausente.',
+            'Não contam: partida encerrada pelo anfitrião, distribuição cancelada, partida abandonada, ser removido da sala, um lugar a que você nunca chegou, ou assistir. Partida sem vencedor não é vitória nem derrota.',
+            'Suas estatísticas mostram o Jogar online e as salas privadas separados, então veja o seletor no topo.',
+            'Salas privadas nunca dão Intel nem interceptações, e partidas do Jogar online só dão se renderam XP.',
+            'Para trocar, você precisa de 3 partidas terminadas que contem e que nossas verificações de jogo limpo não tenham marcado.',
+            'Se devia ter contado, escreva para <email/> com seu nome de usuário, o código da sala (se tiver) e quando você jogou.',
           ],
         },
         {

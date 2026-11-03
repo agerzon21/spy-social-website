@@ -25,6 +25,8 @@ export interface HelpOpts {
   onePool: boolean
   /** Chat messages are translated automatically (LIVE.autoTranslation). */
   autoTranslation: boolean
+  /** The app reads Apple's and Google's age range (LIVE.storeAgeSignals). */
+  storeAgeSignals: boolean
 }
 
 export interface HelpItem {

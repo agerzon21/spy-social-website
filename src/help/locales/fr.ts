@@ -219,8 +219,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'parties',
         q: "C'est quoi, un groupe ?",
         a: [
-          "Un chef et jusqu'à 3 amis qui jouent ensemble. Le chef doit avoir un abonnement.",
-          'Le groupe joue ensemble aux tables de Jouer en ligne et aux Soirées jeux (au plus la moitié d\'une table, signalé à tous), ou ouvre un salon privé.',
+          "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Le chef doit avoir un abonnement.",
+          "Aux tables de Jouer en ligne et aux Soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
+          'Tout groupe peut ouvrir un salon privé ensemble, et un groupe trop grand pour une table y joue.',
           'Le chat du groupe suit les mêmes règles que tout le chat, et tu peux signaler n\'importe quel message.',
         ],
       },
@@ -392,6 +393,31 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Tu peux demander un réexamen dans l'appli.",
         ],
       },
+      {
+        id: 'missing-item',
+        q: 'Il me manque un objet ou une interception',
+        a: [
+          "Il est peut-être réservé par une offre ouverte au Marché noir. Tu peux arrêter l'offre à tout moment.",
+          "Tu l'as peut-être déchiqueté ou utilisé dans un Échange.",
+          "Un échange annulé le renvoie au joueur qui l'a donné.",
+          "Quand un abonnement se termine ou est remboursé, ce qui allait avec n'est plus disponible.",
+          ...(o.launch ? [] : ['Les interceptions des versions de test et leurs objets sont effacés avant que la 2.2 ouvre à tout le monde.']),
+          "Rien de tout ça ? Écris à <email/> avec ton nom d'utilisateur, le nom de l'objet et quand tu l'as vu pour la dernière fois.",
+        ],
+      },
+      {
+        id: 'tester-rewards',
+        q: 'Où sont mes récompenses de la bêta ?',
+        a: [
+          o.launch
+            ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi : le <b>Pin bêta</b>, les titres <b>« Bêta-testeur »</b> et <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
+            : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi : le <b>Pin bêta</b>, les titres <b>« Bêta-testeur »</b> et <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement.",
+          ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
+          "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
+          "Il manque quelque chose ? Écris à <email/> avec ton nom d'utilisateur et l'e-mail utilisé pendant le test. Un compte invité n'est pas sur la liste : c'est souvent une question de compte différent.",
+          ...(o.launch ? [] : ["Bêta 2 : les 10 $ sont envoyés par PayPal à chaque joueur confirmé qui joue l'heure complète et envoie le questionnaire, dans les 7 jours après la session."]),
+        ],
+      },
     ],
   },
   {
@@ -458,6 +484,57 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Un <b>invité</b> joue tout de suite dans les salons privés. Un compte invité vit sur un seul téléphone, et se déconnecter le supprime pour de bon.",
           `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton abonnement sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la Soirée jeux et d'ajouter des amis.`,
           'Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre.',
+        ],
+      },
+      {
+        id: 'lost-account',
+        q: "J'ai perdu mon compte. Puis-je le récupérer ?",
+        a: [
+          "Un <b>compte sauvegardé</b> revient sur n'importe quel téléphone : ouvre SpySocial et connecte-toi comme avant (Apple, Google ou le même e-mail). Un autre e-mail, ou Masquer mon adresse e-mail d'Apple, ouvre un nouveau compte vide : c'est souvent pour ça que la progression semble disparue.",
+          "Un <b>compte invité</b> vit sur un seul téléphone. Si l'appli a été supprimée, si le téléphone est perdu ou si tu t'es déconnecté, il est perdu pour de bon et nous ne pouvons pas le récupérer.",
+          'Un abonnement ne se perd pas : <b>Restaurer les achats</b> le ramène. Nous ne pouvons pas fusionner des comptes ni déplacer des objets entre eux.',
+          "Si tu avais un compte sauvegardé, écris à <email/> avec ton nom d'utilisateur et ta façon de te connecter, et nous regarderons.",
+        ],
+      },
+      {
+        id: 'cant-sign-in',
+        q: "Je n'arrive pas à me connecter",
+        a: [
+          ...(o.passwordless ? ["Tu peux te connecter avec Apple, Google ou un code à 6 chiffres envoyé par e-mail. Il n'y a plus de mot de passe : si l'appli en demande encore un, mets-la à jour dans l'App Store ou Google Play."] : []),
+          "Connecte-toi de la même façon qu'avant. Un autre e-mail, ou Masquer mon adresse e-mail d'Apple, ouvre un nouveau compte vide à la place du tien.",
+          "Si l'appli affiche « Ce compte ne peut pas se connecter », écris à <email/> depuis l'adresse du compte et nous regarderons.",
+        ],
+      },
+      {
+        id: 'code-not-arriving',
+        q: "Mon code ou mon e-mail de connexion n'arrive pas",
+        a: [
+          "Il vient de noreply@mail.spysocial.app. Regarde dans les spams ou le courrier indésirable, et vérifie lettre par lettre l'adresse que tu as saisie.",
+          o.passwordless
+            ? "Tu peux demander un nouveau code après 60 secondes avec <b>Renvoyer le code</b>. Un code marche 1 heure : utilise celui du dernier e-mail. Si l'appli dit qu'il y a trop d'e-mails, attends quelques minutes et réessaie une fois."
+            : 'Tu peux demander un autre e-mail après 60 secondes. Utilise le plus récent.',
+          'Si ton compte utilise Apple ou Google, tu peux te connecter avec eux.',
+          "Toujours rien ? Écris à <email/> avec l'adresse exacte et à peu près quand tu as essayé, et nous vérifierons de notre côté.",
+        ],
+      },
+      {
+        id: 'lost-email',
+        q: "J'ai perdu mon adresse e-mail, ou je veux la changer",
+        a: [
+          "L'appli ne peut pas changer l'e-mail d'un compte sauvegardé : écris à <email/>.",
+          "Si tu peux encore lire l'ancienne adresse, écris depuis celle-ci et donne-nous la nouvelle. Nous écrirons aussi à la nouvelle adresse, et tu répondras à ce message.",
+          "Si l'ancienne adresse n'existe plus, essaie d'abord de la récupérer auprès de ton fournisseur de messagerie. Si ton compte a aussi la connexion Apple ou Google, tu peux toujours te connecter ainsi. Nous ne pouvons pas promettre un changement sans l'ancienne adresse, car c'est ainsi que nous savons que le compte est à toi.",
+          "Après un changement d'e-mail, tes échanges sont en pause pendant 3 jours.",
+        ],
+      },
+      {
+        id: 'stolen-account',
+        q: "Quelqu'un est entré dans mon compte. Que faire ?",
+        a: [
+          "Protège d'abord l'e-mail de ton compte SpySocial, et ton compte Apple ou Google si tu te connectes avec. Toute personne qui peut lire cet e-mail peut entrer dans ton compte.",
+          "Dans les 7 jours suivant un échange que tu n'as pas fait, touche <b>Annuler mes échanges</b> sur ta page d'échanges. Ça annule tous tes échanges protégés et met tes échanges en pause pendant 30 jours. C'est possible une fois tous les 90 jours.",
+          "Écris ensuite à <email/> avec ton nom d'utilisateur, à peu près quand c'est arrivé et ce qui manque. Dis-nous aussi si tu penses que quelqu'un est encore connecté.",
+          "Après 7 jours, un échange est définitif, et une vente d'objets au Marché noir l'est tout de suite. Nous ne te demanderons jamais ton code de connexion.",
         ],
       },
       {
@@ -529,6 +606,17 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Parents et proches : consultez notre <safety>page Sécurité</safety>.',
         ],
       },
+      {
+        id: 'under-13',
+        q: "L'appli affiche « SpySocial est réservé aux joueurs de 13 ans et plus »",
+        a: [
+          o.storeAgeSignals
+            ? "SpySocial est réservé aux joueurs de 13 ans et plus. Nous ne vérifions ni n'estimons les âges : l'appli se fie à l'année de naissance que tu donnes et à la tranche d'âge partagée par Apple ou Google."
+            : "SpySocial est réservé aux joueurs de 13 ans et plus. Nous ne vérifions ni n'estimons les âges : l'appli se fie à l'année de naissance que tu donnes.",
+          'Une année de naissance de moins de 13 ans supprime le compte aussitôt, et il ne peut pas être restauré.',
+          ...(o.storeAgeSignals ? ["Si ton compte Apple ou Google indique un âge erroné, corrige-le là-bas et l'appli te laissera jouer. Si un parent ou un tuteur a refusé SpySocial dans le store, lui seul peut changer ça."] : []),
+        ],
+      },
     ],
   },
   {
@@ -559,6 +647,29 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "L'appli se reconnecte toute seule quand ta connexion revient.",
           "Si tu te retrouves sur l'accueil, touche <b>Revenir</b> sur la carte de ton salon. Ta place est gardée.",
+        ],
+      },
+      {
+        id: 'app-crashes',
+        q: "L'appli plante sans arrêt",
+        a: [
+          "Mets à jour SpySocial dans l'App Store ou Google Play s'il y a une mise à jour.",
+          'Ferme-la complètement (balaie-la), ouvre-la, puis ferme-la et rouvre-la une fois de plus.',
+          "Redémarre ton téléphone et vérifie qu'il reste de la place : une mise à jour peut échouer sur un téléphone plein.",
+          "Ça plante encore ? Va dans <b>Compte</b>, <b>Réglages</b>, <b>Signaler un problème</b> si tu y arrives, ou écris à <email/> avec le modèle de ton téléphone, la version du système, ce que tu faisais, et l'heure avec ton fuseau horaire.",
+          "Si tu étais en partie, l'appli te reconnecte, ou touche <b>Revenir</b> sur la carte de ton salon, sur l'accueil. Ta place est gardée.",
+        ],
+      },
+      {
+        id: 'game-not-counted',
+        q: "Ma partie n'a pas compté",
+        a: [
+          "Une partie compte dans ton palmarès quand elle s'est terminée et que tu avais une place, que tu aies joué jusqu'au bout, quitté avant la fin (une défaite) ou été absent.",
+          "Ne comptent pas : une partie arrêtée par l'hôte, une distribution annulée, une partie abandonnée, être retiré du salon, une place où tu n'es jamais venu, ou regarder. Une partie sans gagnant n'est ni une victoire ni une défaite.",
+          'Tes stats séparent Jouer en ligne et les salons privés : regarde le sélecteur en haut.',
+          "Les salons privés ne donnent jamais d'Intel ni d'interceptions, et les parties de Jouer en ligne n'en donnent que si elles ont rapporté de l'XP.",
+          "Pour échanger, il te faut 3 parties terminées qui comptent et que nos vérifications de fair-play n'ont pas signalées.",
+          "Si elle aurait dû compter, écris à <email/> avec ton nom d'utilisateur, le code du salon (si tu l'as) et quand tu as joué.",
         ],
       },
       {
