@@ -222,7 +222,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Le chef doit avoir un abonnement.",
           "Aux tables de Jouer en ligne et aux Soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
           'Tout groupe peut ouvrir un salon privé ensemble, et un groupe trop grand pour une table y joue.',
-          'Le chat du groupe suit les mêmes règles que tout le chat, et tu peux signaler n\'importe quel message.',
+          'Le chat du groupe suit les mêmes règles que tout le chat. Pour signaler quelqu\'un, appuie longuement sur sa carte à une table.',
         ],
       },
       {
@@ -283,6 +283,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Les échanges se mettent en pause un moment après un changement d'e-mail ou de mode de connexion, après une connexion sur un nouvel appareil, après l'annulation de tes échanges (30 jours), ou quand tu les verrouilles toi-même.",
           "Ça protège tes objets si quelqu'un d'autre accède à ton compte.",
+          "Nous pouvons aussi mettre nous-mêmes en pause les échanges d'un compte, pour le protéger ou le temps de vérifier une fraude. Cela ferme ses offres et annonces ouvertes sur le Marché noir, et ce qu'elles réservaient revient au compte. Rien ne rouvre à la fin de la pause : il faut republier.",
         ],
       },
     ],
@@ -503,6 +504,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.passwordless ? ["Tu peux te connecter avec Apple, Google ou un code à 6 chiffres envoyé par e-mail. Il n'y a plus de mot de passe : si l'appli en demande encore un, mets-la à jour dans l'App Store ou Google Play."] : []),
           "Connecte-toi de la même façon qu'avant. Un autre e-mail, ou Masquer mon adresse e-mail d'Apple, ouvre un nouveau compte vide à la place du tien.",
           "Si l'appli affiche « Ce compte ne peut pas se connecter », écris à <email/> depuis l'adresse du compte et nous regarderons.",
+          'Si le compte a été banni, notre e-mail à cette adresse donne la référence, la raison et la façon de faire appel.',
         ],
       },
       {
@@ -524,7 +526,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "L'appli ne peut pas changer l'e-mail d'un compte sauvegardé : écris à <email/>.",
           "Si tu peux encore lire l'ancienne adresse, écris depuis celle-ci et donne-nous la nouvelle. Nous écrirons aussi à la nouvelle adresse, et tu répondras à ce message.",
           "Si l'ancienne adresse n'existe plus, essaie d'abord de la récupérer auprès de ton fournisseur de messagerie. Si ton compte a aussi la connexion Apple ou Google, tu peux toujours te connecter ainsi. Nous ne pouvons pas promettre un changement sans l'ancienne adresse, car c'est ainsi que nous savons que le compte est à toi.",
-          "Après un changement d'e-mail, tes échanges sont en pause pendant 3 jours.",
+          "Après un changement d'e-mail, tes échanges sont en pause pendant 3 jours et tes offres et annonces ouvertes sur le Marché noir sont fermées.",
         ],
       },
       {

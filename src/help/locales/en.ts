@@ -230,7 +230,7 @@ const en: HelpText = {
             'A leader and friends who play together, up to 21 people in all. The leader needs a membership.',
             'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',
             'Any party can start a private room together, and a party too big for a table plays there.',
-            'Party chat follows the same rules as all chat, and you can report any message in it.',
+            'Party chat follows the same rules as all chat. To report someone in it, press and hold their card at a table.',
           ],
         },
         {
@@ -291,6 +291,7 @@ const en: HelpText = {
           a: [
             'Trading pauses for a while after your email or sign-in method changes, after a sign-in on a new device, after you reverse your trades (30 days), or when you lock it yourself.',
             'It’s there to protect your items if someone else gets into your account.',
+            'We can also pause an account’s trading ourselves, to protect it or while we look into fraud. That closes its open Black Market offers and listings, and what they held goes back to the account. Nothing reopens when the pause ends: you list again.',
           ],
         },
       ],
@@ -511,6 +512,7 @@ const en: HelpText = {
             ...(o.passwordless ? ['You can sign in with Apple, Google or a 6-digit code we email you. There are no passwords any more: if the app still asks for one, update it in the App Store or Google Play.'] : []),
             'Use the same way in as before. A different email, or Apple’s Hide My Email, opens a new, empty account instead of yours.',
             'If the app says “This account can’t sign in”, email <email/> from the account’s address and we’ll look.',
+            'If the account was banned, our email to that address gives the reference, the reason and how to appeal.',
           ],
         },
         {
@@ -532,7 +534,7 @@ const en: HelpText = {
             'The app can’t change the email on a saved account, so write to <email/>.',
             'If you can still read the old address, write from it and tell us the new one. We’ll also email the new address, and you reply to that.',
             'If the old address is gone, try to get it back through your email provider first. If your account has Apple or Google sign-in too, you can still sign in that way. We can’t promise a change without the old address, because that’s how we know the account is yours.',
-            'After an email change, trading pauses for 3 days.',
+            'After an email change, trading pauses for 3 days and your open Black Market offers and listings close.',
           ],
         },
         {

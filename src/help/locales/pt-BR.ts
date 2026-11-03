@@ -226,7 +226,7 @@ const ptBR: HelpText = {
             'Um líder e amigos que jogam juntos, até 21 pessoas no total. O líder precisa de uma assinatura.',
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
             'Qualquer grupo pode abrir uma sala privada junto, e um grupo grande demais para uma mesa joga lá.',
-            'O chat do grupo segue as mesmas regras de todo o chat, e você pode denunciar qualquer mensagem.',
+            'O chat do grupo segue as mesmas regras de todo o chat. Para denunciar alguém, toque e segure o card da pessoa numa mesa.',
           ],
         },
         {
@@ -287,6 +287,7 @@ const ptBR: HelpText = {
           a: [
             'As trocas pausam por um tempo depois de mudar o e-mail ou a forma de login, depois de entrar num aparelho novo, depois de reverter suas trocas (30 dias) ou quando você mesmo as tranca.',
             'Isso protege seus itens se outra pessoa entrar na sua conta.',
+            'Também podemos pausar nós mesmos as trocas de uma conta, para protegê-la ou enquanto verificamos uma fraude. Isso fecha as ofertas e os anúncios abertos dela no Mercado Negro, e o que estava reservado volta para a conta. Nada reabre quando a pausa termina: é preciso anunciar de novo.',
           ],
         },
       ],
@@ -507,6 +508,7 @@ const ptBR: HelpText = {
             ...(o.passwordless ? ['Você pode entrar com Apple, com Google ou com um código de 6 dígitos que mandamos por e-mail. Não há mais senhas: se o app ainda pedir uma, atualize-o na App Store ou no Google Play.'] : []),
             'Entre do mesmo jeito de antes. Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia no lugar da sua.',
             'Se o app disser “Esta conta não pode entrar”, escreva para <email/> pelo e-mail da conta, e nós verificamos.',
+            'Se a conta foi banida, nosso e-mail para esse endereço informa a referência, o motivo e como recorrer.',
           ],
         },
         {
@@ -528,7 +530,7 @@ const ptBR: HelpText = {
             'O app não consegue trocar o e-mail de uma conta salva, então escreva para <email/>.',
             'Se você ainda consegue ler o endereço antigo, escreva por ele e informe o novo. Também vamos escrever para o endereço novo, e você responde.',
             'Se o endereço antigo não existe mais, tente primeiro recuperá-lo com seu provedor de e-mail. Se sua conta também tem entrada por Apple ou Google, você ainda pode entrar assim. Não podemos prometer a troca sem o endereço antigo, porque é assim que sabemos que a conta é sua.',
-            'Depois de uma troca de e-mail, suas trocas ficam pausadas por 3 dias.',
+            'Depois de uma troca de e-mail, suas trocas ficam pausadas por 3 dias e suas ofertas e anúncios abertos no Mercado Negro são fechados.',
           ],
         },
         {

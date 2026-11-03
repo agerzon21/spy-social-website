@@ -226,7 +226,7 @@ const id: HelpText = {
             'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Ketua butuh keanggotaan.',
             'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
             'Grup mana pun bisa membuka room privat bersama, dan grup yang terlalu besar untuk satu meja main di sana.',
-            'Chat grup mengikuti aturan yang sama dengan semua chat, dan kamu bisa melaporkan pesan apa pun.',
+            'Chat grup mengikuti aturan yang sama dengan semua chat. Untuk melaporkan seseorang, tekan lama kartunya di meja.',
           ],
         },
         {
@@ -287,6 +287,7 @@ const id: HelpText = {
           a: [
             'Pertukaran dijeda sebentar setelah email atau cara masuk berubah, setelah masuk dari perangkat baru, setelah kamu membatalkan pertukaranmu (30 hari), atau saat kamu menguncinya sendiri.',
             'Ini melindungi itemmu kalau ada orang lain yang masuk ke akunmu.',
+            'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan. Itu menutup penawaran dan item yang dipasang di Pasar Gelap, dan yang ditahan kembali ke akun. Tidak ada yang dibuka lagi saat jeda berakhir: kamu perlu memasangnya lagi.',
           ],
         },
       ],
@@ -507,6 +508,7 @@ const id: HelpText = {
             ...(o.passwordless ? ['Kamu bisa masuk dengan Apple, Google, atau kode 6 digit yang kami kirim lewat email. Sekarang tidak ada kata sandi lagi: kalau aplikasi masih memintanya, perbarui di App Store atau Google Play.'] : []),
             'Masuklah dengan cara yang sama seperti dulu. Email lain, atau Sembunyikan Email Saya dari Apple, membuka akun baru yang kosong, bukan akunmu.',
             'Kalau aplikasi menulis “Akun ini tidak bisa masuk”, email ke <email/> dari alamat akun itu dan kami akan memeriksanya.',
+            'Kalau akun itu diblokir, email kami ke alamat tersebut berisi nomor referensi, alasannya, dan cara mengajukan banding.',
           ],
         },
         {
@@ -528,7 +530,7 @@ const id: HelpText = {
             'Aplikasi tidak bisa mengganti email akun tersimpan, jadi tulis ke <email/>.',
             'Kalau alamat lama masih bisa kamu baca, kirim dari alamat itu dan sebutkan alamat barunya. Kami juga akan mengirim email ke alamat baru, dan kamu membalasnya.',
             'Kalau alamat lama sudah tidak ada, coba dulu pulihkan lewat penyedia emailmu. Kalau akunmu juga punya masuk lewat Apple atau Google, kamu tetap bisa masuk dengan itu. Kami tidak bisa menjanjikan penggantian tanpa alamat lama, karena dari situlah kami tahu akun itu milikmu.',
-            'Setelah email diganti, pertukaranmu dijeda 3 hari.',
+            'Setelah email diganti, pertukaranmu dijeda 3 hari, dan penawaran serta item yang kamu pasang di Pasar Gelap ditutup.',
           ],
         },
         {

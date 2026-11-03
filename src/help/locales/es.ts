@@ -226,7 +226,7 @@ const es: HelpText = {
             'Un líder y sus amigos que juegan juntos, hasta 21 personas en total. El líder necesita una membresía.',
             'En las mesas de Jugar en línea y en la Noche de Juegos, un grupo ocupa como mucho media mesa, y todos lo ven: hasta 2 en una mesa de 4, hasta 4 en una mesa de 8.',
             'Cualquier grupo puede abrir una sala privada, y un grupo demasiado grande para una mesa juega ahí.',
-            'El chat del grupo sigue las mismas reglas que todo el chat, y puedes reportar cualquier mensaje.',
+            'El chat del grupo sigue las mismas reglas que todo el chat. Para reportar a alguien, mantén pulsada su tarjeta en una mesa.',
           ],
         },
         {
@@ -287,6 +287,7 @@ const es: HelpText = {
           a: [
             'Los intercambios se pausan un tiempo tras un cambio de correo o de forma de inicio de sesión, tras iniciar sesión en un dispositivo nuevo, tras revertir tus intercambios (30 días) o cuando los bloqueas tú.',
             'Así se protegen tus objetos si alguien más entra en tu cuenta.',
+            'También podemos pausar nosotros los intercambios de una cuenta, para protegerla o mientras revisamos un posible fraude. Eso cierra sus ofertas y anuncios abiertos en el Mercado Negro, y lo que tenían reservado vuelve a la cuenta. Nada se reabre cuando termina la pausa: tienes que volver a publicar.',
           ],
         },
       ],
@@ -507,6 +508,7 @@ const es: HelpText = {
             ...(o.passwordless ? ['Puedes iniciar sesión con Apple, con Google o con un código de 6 dígitos que te enviamos por correo. Ya no hay contraseñas: si la app aún te pide una, actualízala en el App Store o Google Play.'] : []),
             'Entra de la misma forma que antes. Otro correo, o Ocultar mi correo de Apple, abre una cuenta nueva y vacía en lugar de la tuya.',
             'Si la app dice «Esta cuenta no puede iniciar sesión», escribe a <email/> desde el correo de la cuenta y lo miramos.',
+            'Si la cuenta fue bloqueada, nuestro correo a esa dirección indica la referencia, el motivo y cómo apelar.',
           ],
         },
         {
@@ -528,7 +530,7 @@ const es: HelpText = {
             'La app no puede cambiar el correo de una cuenta guardada, así que escribe a <email/>.',
             'Si aún puedes leer el correo anterior, escribe desde él y dinos el nuevo. También escribiremos al correo nuevo, y tendrás que responder.',
             'Si ya no tienes el correo anterior, primero intenta recuperarlo con tu proveedor de correo. Si tu cuenta también tiene inicio de sesión con Apple o Google, puedes seguir entrando así. No podemos prometer el cambio sin el correo anterior, porque así sabemos que la cuenta es tuya.',
-            'Después de cambiar el correo, tus intercambios se pausan 3 días.',
+            'Después de cambiar el correo, tus intercambios se pausan 3 días y tus ofertas y anuncios abiertos en el Mercado Negro se cierran.',
           ],
         },
         {
