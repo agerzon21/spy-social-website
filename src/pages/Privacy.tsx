@@ -143,7 +143,7 @@ const Privacy: React.FC = () => {
           looks and reads the way you chose. Our servers also use your language to show you the game (the secret
           word or location, its description and the spy's list) in it, and to count the different languages at a
           table for an achievement. The app can also tell the players in a room which app languages are used at their
-          table, never whose.{PRIVACY.audit1103 ? ' Our sign-in service keeps your language with your account too, and the emails we send you use it.' : ''}
+          table, never whose.{PRIVACY.audit1103 ? ' Our sign-in service keeps your language with your account too, and some of the emails we send you use it.' : ''}
         </Item>
         <Item label="Game Data">
           Information related to games you've played: your role, the actions you take in a game (such as when you ask
