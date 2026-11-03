@@ -8,6 +8,7 @@ import {
   LEGAL_LAST_UPDATED,
   LIVE,
   LLC_SINCE,
+  LLC_STORE_NOTE,
   ONLINE_SAFETY_TEXT,
   OPERATOR,
   TERMS_EFFECTIVE_FOR_EXISTING,
@@ -59,7 +60,7 @@ const Terms: React.FC = () => {
         <P>
           <B>Change on {LLC_SINCE}:</B> SpySocial is now run by {OPERATOR.legalName} owned by {OPERATOR.person}, who
           ran it himself until then. He transferred SpySocial and these Terms to it (section 20 allows this). Nothing
-          else in these Terms changed, and you don't need to do anything.
+          else in these Terms changed, and you don't need to do anything.{LLC_STORE_NOTE ? ` ${LLC_STORE_NOTE}` : ''}
         </P>
       )}
 

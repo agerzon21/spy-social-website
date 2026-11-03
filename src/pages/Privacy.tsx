@@ -8,6 +8,7 @@ import { useLang } from '../i18n'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
 import {
   LLC_SINCE,
+  LLC_STORE_NOTE,
   OPERATOR,
   PRIVACY,
   PRIVACY_LAST_UPDATED,
@@ -146,7 +147,7 @@ const Privacy: React.FC = () => {
           <B>Change on {LLC_SINCE}:</B> {OPERATOR.legalName} owned by {OPERATOR.person}, now runs SpySocial and is the
           controller of your personal data, in place of {OPERATOR.person} himself. Your information moved to it under
           this privacy policy (see If SpySocial Changes Hands). Nothing changed in what we collect, how we use it or who
-          we share it with, and you don't need to do anything.
+          we share it with, and you don't need to do anything.{LLC_STORE_NOTE ? ` ${LLC_STORE_NOTE}` : ''}
         </P>
       )}
 

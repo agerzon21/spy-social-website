@@ -68,6 +68,13 @@ export const LIVE = {
    */
   llcOperator: false as false | string,
   /**
+   * Both store accounts show SpySocial LLC (FLIP-DAY.md, gate G6). While false and llcOperator is on, the Terms' and the
+   * Privacy Policy's change lines also say the stores may still show Aleksandr Gerzon (LLC_STORE_NOTE). That keeps the
+   * person a store shows and the company the policies name tied together during review (Google Play's User Data policy:
+   * the entity in the listing appears in the privacy policy). Set true only when BOTH stores show the LLC.
+   */
+  llcStoresMoved: false,
+  /**
    * IP vault (owner 2026-10-31; app repo feat/ipvault, server file 20261203750000_ipvault, live 20261031070824): the
    * real IP address of each sign-up (the Auth hook's payload) and of each sign-in / app start (note_device, Cloudflare's
    * address; at most one row per account and network every 6 hours), with the time and the account, SEALED on write
@@ -1593,6 +1600,16 @@ export const creatorShortLive = ({ creatorShort: c }: Switches): boolean =>
 /** The day SpySocial LLC took over SpySocial (LIVE.llcOperator), or null while Aleksandr Gerzon runs it himself. */
 export const LLC_SINCE: string | null = typeof LIVE.llcOperator === 'string' ? LIVE.llcOperator : null
 
+/** Said on the Terms and the Privacy Policy between the flip and the day both store accounts show the LLC. */
+export const LLC_STORE_NOTE: string | null =
+  LLC_SINCE && !LIVE.llcStoresMoved
+    ? "Until Apple and Google finish moving our store accounts to the company, the App Store and Google Play may still show Aleksandr Gerzon as the seller or developer. It's the same SpySocial, and purchases and refunds work as before."
+    : null
+
+/** The later of the flip day and a page's own date, so a legal change after the flip still moves "Last Updated". */
+const sinceLlc = (day: string): string =>
+  LLC_SINCE && Date.parse(LLC_SINCE) > Date.parse(day) ? LLC_SINCE : day
+
 /**
  * Who runs SpySocial: the legal name and a postal address, shown on the
  * Privacy Policy (the data controller) and the Terms (the contracting party,
@@ -1634,9 +1651,8 @@ export const INTERCEPTS_IN_TRADES_DAY = 'November 7, 2026'
 /** LIVE.sketchConsentRecord's day in PRIVACY_LAST_UPDATED: the day the site went up with it on (server 20261109065729 = Nov 9 01:57 ET). */
 export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
-export const LEGAL_LAST_UPDATED: string = LLC_SINCE
-  ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
-  : LIVE.tournaments
+export const LEGAL_LAST_UPDATED: string = sinceLlc(
+  LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.testerMarket
     ? 'November 12, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the site goes up with it on Nov 12
@@ -1695,6 +1711,7 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
+)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -1702,9 +1719,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
  * goes live can carry its date here (LIVE.<switch> ? its day : the current date), so the one-line flip in LIVE moves
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
-export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
-  ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
-  : LIVE.tournaments
+export const PRIVACY_LAST_UPDATED: string = sinceLlc(
+  LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.uniqueArchive
     ? 'November 10, 2026' // the Archive: each Unique's sales and prices on its own page (rarefinds-page-1110). The site went up with it on Nov 9, 2026 (srv-apply-1110a: server 20261109195256, ledger v5), but the page already said November 10 (practiceReportLog, eadaffb) and Last Updated never moves back, so it stays November 10
@@ -1795,6 +1811,7 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
+)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
