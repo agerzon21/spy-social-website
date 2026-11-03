@@ -246,6 +246,8 @@ export const LIVE = {
    *     any room; a sexualized child's drawing comes off in any room and a person takes it from there; in a
    *     private room a strike does nothing by itself;
    *   - store each check's result and the strokes it took off, with a retention the Privacy text then states.
+   * Nov 3, 2026: no page says "every" turn. Each public turn is queued, but one goes unchecked if the checks can't run
+   * (an outage, or past the day's caps). Name no cap on a page.
    * Check the Drawing Checks text (Privacy) and the automated-tools text (Terms section 8, Rules) against the
    * wiring that shipped before flipping.
    */

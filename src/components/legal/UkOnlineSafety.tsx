@@ -353,8 +353,9 @@ const UkOnlineSafety = () => {
         </ListItem>
         {dc ? (
           <ListItem>
-            <B>Drawing check.</B> It looks at every Spy Sketch drawing turn in public rooms, and at a drawing reported in
-            a private room, and acts as section 8 describes.
+            <B>Drawing check.</B> It looks at Spy Sketch drawing turns in public rooms, and at a drawing reported in
+            a private room, and acts as section 8 describes. A turn can go unchecked if the check can't run at that
+            moment; a report of it still goes to a person.
           </ListItem>
         ) : (
           <ListItem>

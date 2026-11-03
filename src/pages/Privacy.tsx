@@ -609,11 +609,13 @@ const Privacy: React.FC = () => {
         </Item>
         {PRIVACY.drawingCheck && (
           <Item label="Drawing Checks">
-            In public rooms (Play Online tables and events), every drawing turn in a Spy Sketch game goes through an
+            In public rooms (Play Online tables and events), drawing turns in a Spy Sketch game go through an
             automated check by OpenAI for content that breaks our Community Rules, and some are also checked by a
-            second, more detailed OpenAI model. In any room, a drawing is checked by both when someone reports it. The
+            second, more detailed OpenAI model. In any room, a drawing is checked by both when someone reports it. If
+            the checks can't run at that moment and still can't after a few more tries, that turn goes unchecked; a
+            report of it still goes to a person, as every report does. The
             app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
-            every turn is checked you draw only after you agree. For the first check, our servers send OpenAI's
+            turns are checked you draw only after you agree. For the first check, our servers send OpenAI's
             moderation service a picture of the turn's own lines (and any lines the player drew and then undid), with
             nothing else. The second check gets a picture of the turn (the earlier drawing in light grey) with the
             round's secret word (which helps tell an innocent drawing from an offensive one) and a code made from your
@@ -1068,7 +1070,7 @@ const Privacy: React.FC = () => {
           <Item label="OpenAI">
             (https://openai.com){' '}
             {PRIVACY.drawingCheck &&
-              'Checks drawings for content that breaks our Community Rules: every drawing turn in public rooms gets an automated check, some also get a second, more detailed check, and so do drawings players report. '}
+              'Checks drawings for content that breaks our Community Rules: drawing turns in public rooms get an automated check, some also get a second, more detailed check, and so do drawings players report. '}
             {PRIVACY.openAiTranslation &&
               `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages ${sendTime ? 'for our translation service, usually as soon as they\'re sent' : 'when our translation service uses it'} (see Translations above), only messages written by players who told us they're 16 or older and agreed to it in the app, and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat by such players (without who said them), a list of names to leave as they are (agent names and, in private rooms, the display names of such players) and the two languages, never your account or anyone's age. Our service asks OpenAI not to store these requests or its answers. `}
             {PRIVACY.customPacks &&

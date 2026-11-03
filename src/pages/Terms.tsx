@@ -442,9 +442,10 @@ const Terms: React.FC = () => {
           ` Another automated check reads the name, description and entries of every custom pack before it's created from your draft (and again when it's updated${LIVE.communityPacks ? ' or sent to Community Packs' : ''}); a pack it finds breaks these Terms or the Community Rules isn't created (or, after an update, is paused), so it can't be played${LIVE.communityPacks ? ' or published' : ''}.`}
         {drawings ? (
           <>
-            {' '}An automated check also looks at every Spy Sketch drawing turn in public rooms (
+            {' '}An automated check also looks at Spy Sketch drawing turns in public rooms (
             {LIVE.onePool ? 'Play Online tables and events' : 'including Play Online tables and events'}), and at
-            any drawing someone reports.
+            drawings people report. A turn can go unchecked if the check can't run at that moment, and the check can
+            miss things, so reports still matter: a person reads every report.
             {drawingCheckTestersOnly(LIVE) &&
               ' For now, while we test it, it does this only in games where every player is one of our testers (players trying a test version of the app).'}{' '}
             In a public room, when it finds that a turn

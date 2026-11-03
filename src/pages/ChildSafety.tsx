@@ -180,9 +180,10 @@ const ChildSafety: React.FC = () => {
         </ListItem>
         {drawings ? (
           <ListItem>
-            <B>Drawing check:</B> every Spy Sketch drawing turn in a public room is checked automatically, and so is a
-            drawing reported in a private room. A drawing that sexualizes a child is taken off the board in any room,
-            the account is banned with no appeal, and the drawing is reported to NCMEC.
+            <B>Drawing check:</B> Spy Sketch drawing turns in a public room are checked automatically as they're
+            played, and so is a drawing reported in a private room. A drawing that sexualizes a child is taken off the
+            board in any room, the account is banned with no appeal, and the drawing is reported to NCMEC. A turn can
+            go unchecked if the check can't run at that moment; a report of it still goes to a person.
             {drawingCheckTestersOnly(LIVE) &&
               ' For now, while we test it, the check runs only in games where every player is one of our testers (players trying a test version of the app); in other games, a person reviews the drawings players report.'}
           </ListItem>
