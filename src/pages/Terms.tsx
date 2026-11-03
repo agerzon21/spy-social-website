@@ -669,7 +669,7 @@ const Terms: React.FC = () => {
             holder only as a code that is different on every copy, never by name. Each day's fingerprint of the
             ledger is published where we can't change it (a public GitHub repository and the Internet Archive), so
             anyone can check that no copy was added, changed or removed afterwards. Like every virtual item,
-            collectibles have no cash value. We take back a copy only if it was earned by cheating, issued by
+            collectibles have no cash value, and they aren't NFTs, tokens or cryptocurrency. We take back a copy only if it was earned by cheating, issued by
             mistake, or taken back as a moderation action; the ledger then shows that it was taken back and why
             (never who held it), and if we restore it after an appeal it comes back with the same number.
             A trade or a Black Market sale shows on the ledger only as the copy moving from one holder code to
