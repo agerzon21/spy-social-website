@@ -784,6 +784,7 @@ const id: Strings = {
     openToJoin: 'Buka SpySocial untuk gabung ke room',
     onPhone: 'Buka link ini di HP-mu untuk gabung ke room',
     roomCode: 'Kode room',
+    afterInstall: "Setelah instal, ketuk link undangannya lagi.",
   },
 
   joinEvent: {

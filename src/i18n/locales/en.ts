@@ -845,6 +845,8 @@ const en = {
     openToJoin: 'Open SpySocial to join the room',
     onPhone: 'Open this link on your phone to join the room',
     roomCode: 'Room Code',
+    /** Under the store button on a phone: there is no deferred link, so the invite has to be tapped again. */
+    afterInstall: "After installing, tap the invite link again.",
   },
 
   joinEvent: {

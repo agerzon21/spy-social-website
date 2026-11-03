@@ -786,6 +786,7 @@ const bn: Strings = {
     openToJoin: 'রুমে যোগ দিতে SpySocial খুলুন',
     onPhone: 'রুমে যোগ দিতে লিংকটি আপনার ফোনে খুলুন',
     roomCode: 'রুম কোড',
+    afterInstall: "ইনস্টল করার পর আমন্ত্রণ লিংকে আবার ট্যাপ করুন।",
   },
 
   joinEvent: {

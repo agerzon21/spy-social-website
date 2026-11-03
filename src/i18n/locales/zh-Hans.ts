@@ -761,6 +761,7 @@ const zhHans: Strings = {
     openToJoin: '打开 SpySocial 加入房间',
     onPhone: '在手机上打开此链接即可加入房间',
     roomCode: '房间码',
+    afterInstall: "安装后，请再次点击邀请链接。",
   },
 
   joinEvent: {

@@ -786,6 +786,7 @@ const ar: Strings = {
     openToJoin: 'فتح SpySocial للانضمام إلى الغرفة',
     onPhone: 'فتح هذا الرابط على هاتفك للانضمام إلى الغرفة',
     roomCode: 'رمز الغرفة',
+    afterInstall: "بعد التثبيت، المس رابط الدعوة مرة أخرى.",
   },
 
   joinEvent: {

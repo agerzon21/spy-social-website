@@ -786,6 +786,7 @@ const hi: Strings = {
     openToJoin: 'रूम से जुड़ने के लिए SpySocial खोलें',
     onPhone: 'रूम से जुड़ने के लिए यह लिंक अपने फ़ोन पर खोलें',
     roomCode: 'रूम कोड',
+    afterInstall: "इंस्टॉल करने के बाद इनवाइट लिंक फिर से टैप करें।",
   },
 
   joinEvent: {

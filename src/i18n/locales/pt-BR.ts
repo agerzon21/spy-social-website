@@ -784,6 +784,7 @@ const ptBR: Strings = {
     openToJoin: 'Abra o SpySocial para entrar na sala',
     onPhone: 'Abra este link no celular para entrar na sala',
     roomCode: 'Código da sala',
+    afterInstall: "Depois de instalar, toque no link de convite de novo.",
   },
 
   joinEvent: {

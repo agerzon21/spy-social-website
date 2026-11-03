@@ -105,6 +105,12 @@ const Join = () => {
               </Button>
             )}
           </VStack>
+
+          {isMobile && code && (
+            <Text color="ss.muted" fontSize="15px" lineHeight="1.45" textAlign="center" mt={-4}>
+              {t.afterInstall}
+            </Text>
+          )}
         </VStack>
       </Container>
     </Box>

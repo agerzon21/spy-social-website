@@ -786,6 +786,7 @@ const fr: Strings = {
     openToJoin: 'Ouvre SpySocial pour rejoindre le salon',
     onPhone: 'Ouvre ce lien sur ton téléphone pour rejoindre le salon',
     roomCode: 'Code du salon',
+    afterInstall: "Après l'installation, appuie à nouveau sur le lien d'invitation.",
   },
 
   joinEvent: {

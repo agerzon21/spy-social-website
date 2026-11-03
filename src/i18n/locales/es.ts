@@ -781,6 +781,7 @@ const es: Strings = {
     openToJoin: 'Abre SpySocial para unirte a la sala',
     onPhone: 'Abre este enlace en tu teléfono para unirte a la sala',
     roomCode: 'Código de sala',
+    afterInstall: "Después de instalarla, vuelve a tocar el enlace de invitación.",
   },
 
   joinEvent: {
