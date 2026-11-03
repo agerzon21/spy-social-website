@@ -225,6 +225,7 @@ const ptBR: HelpText = {
           a: [
             'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso uma assinatura para começar. Se o líder sair, a liderança passa primeiro para alguém com assinatura.',
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
+            'Numa mesa de 12 lugares da Noite de Jogos, até 6. Membros do grupo que procuram partida sozinhos também contam: juntos, nunca mais que meia mesa.',
             'Qualquer grupo pode abrir uma sala privada junto, e um grupo grande demais para uma mesa joga lá.',
             'O chat do grupo segue as mesmas regras de todo o chat. Para denunciar uma mensagem, toque e segure nela.',
           ],
@@ -286,8 +287,10 @@ const ptBR: HelpText = {
           q: 'Por que minhas trocas estão pausadas?',
           a: [
             'As trocas pausam por um tempo depois de mudar o e-mail ou a forma de login, depois de entrar num aparelho novo, depois de reverter suas trocas (30 dias) ou quando você mesmo as tranca.',
+            'A pausa por aparelho novo dura 24 horas; a por mudança de e-mail ou de login, 3 dias.',
             'Isso protege seus itens se outra pessoa entrar na sua conta.',
             'Também podemos pausar nós mesmos as trocas de uma conta, para protegê-la ou enquanto verificamos uma fraude. Isso fecha as ofertas e os anúncios abertos dela no Mercado Negro, e o que estava reservado volta para a conta. Nada reabre quando a pausa termina: é preciso anunciar de novo.',
+            'Se desconectarmos sua conta em todos os aparelhos sem pausar as trocas, suas ofertas e anúncios do Mercado Negro feitos antes disso ficam esperando e não são executados. Entre de novo para cancelá-los ou mudar o preço de um anúncio.',
           ],
         },
       ],
@@ -386,6 +389,7 @@ const ptBR: HelpText = {
           q: 'O que é a Intel?',
           a: [
             'A moeda que você ganha jogando: com suas partidas, sua primeira partida do dia e sua sequência diária, e triturando cópias repetidas.',
+            'Sua sequência: uma partida de Jogar online por dia a mantém. Uma partida que você começa antes do novo dia também a mantém, mesmo se terminar depois.',
             'A Intel nunca é vendida e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-la com outros adultos.',
             'Cada mudança na sua Intel é uma linha no seu registro de Intel, com o motivo.',
           ],

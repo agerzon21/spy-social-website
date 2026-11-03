@@ -138,7 +138,7 @@ const Terms: React.FC = () => {
         <P>
           If your account was taken, or you've lost its email address, write to support@spysocial.app. Once we're
           satisfied the account is yours, we can change its email address (we tell the old address, and we sign the
-          account out everywhere), sign it out on every device (a sign-in from before that can keep working for up to 15 minutes, but can't trade or use the Black Market), and pause its trading for up to 30 days. We can't do
+          account out everywhere), sign it out on every device (a sign-in from before that can keep working for up to 15 minutes, but can't trade or use the Black Market; Black Market offers and listings placed before that wait and don't fill until they're cancelled, or a listing's price is changed, from a new sign-in), and pause its trading for up to 30 days. A pause closes them instead. We can't do
           this for a guest account, which has no email address and can't sign back in.
         </P>
       )}
@@ -193,7 +193,7 @@ const Terms: React.FC = () => {
               A party is a leader and friends who play together, up to 21 people in all. It takes a membership to start a
               party; if the leader leaves, the lead goes to someone in it with a membership first, or else to whoever has been in
               it longest. A player who is banned or paused from public rooms leaves the party. A party plays together at Play Online tables and game nights, where it takes at most half
-              of a table (2 at a table of 4, 4 at a table of 8) and is marked for everyone there. Any party can start
+              of a table (2 at a table of 4, 4 at a table of 8, 6 at a Game Night table of 12) and is marked for everyone there. Party mates searching on their own count too: never more than half a table between them. Any party can start
               a private room together, and a party too big for a table plays there. A private room plays the host's
               packs, as it always does. A members-only search needs every member of the party to be a member.
             </ListItem>
@@ -234,11 +234,11 @@ const Terms: React.FC = () => {
             ? ` and the free packs, plus the members' packs when a member sits at the table${LIVE.featuredPacks ? ', and the Community Packs we feature' : ''}. Nobody hosts a table, and the same requirements apply`
             : ', under the same requirements'}
           . If you don't tap Ready in time, leave a table that is starting, don't open your role card in time, are
-          away when the game starts, or leave a game that has started, you get a short break from Play Online (Game
+          away when the game starts, or leave a game that has started, you may get a short break from Play Online (Game
           Night's tables included){LIVE.onePool ? '' : ' and from other public rooms'}, never from private rooms or the
-          events we host in a room of their own: 5 minutes, and for leaving started games again within 24 hours, 15 and
-          then 60 minutes. The first time in a day that you're away when a game starts, there's no
-          break.
+          events we host in a room of their own. For the first four, within any 24 hours: a warning with no break the
+          first time, then 5, 15 and 30 minutes. For leaving a game that has started, within any 24 hours: 5, 15 and
+          then 60 minutes.
         </P>
       )}
       <P>
@@ -728,7 +728,7 @@ const Terms: React.FC = () => {
           <Bullets>
             <ListItem>
               {LIVE.tradeGatesNov2
-                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones, and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 10,000 Intel, and both sides confirm what they'll get before the trade happens."
+                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones, and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 1,000,000 Intel, and both sides confirm what they'll get before the trade happens."
                 : "Trades are between friends, inside the app, and carry no message. You can trade once you and your friend have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."}
             </ListItem>
             <ListItem>

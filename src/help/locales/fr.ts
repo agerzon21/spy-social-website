@@ -221,6 +221,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut un abonnement pour en créer un. Si le chef part, la main passe d'abord à quelqu'un qui a un abonnement.",
           "Aux tables de Jouer en ligne et aux Soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
+          "À une table de 12 places d'une Soirée jeux, jusqu'à 6. Les membres du groupe qui cherchent seuls comptent aussi : ensemble, jamais plus de la moitié d'une table.",
           'Tout groupe peut ouvrir un salon privé ensemble, et un groupe trop grand pour une table y joue.',
           'Le chat du groupe suit les mêmes règles que tout le chat. Pour signaler un message, appuie longuement dessus.',
         ],
@@ -282,8 +283,10 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Pourquoi mes échanges sont-ils en pause ?',
         a: [
           "Les échanges se mettent en pause un moment après un changement d'e-mail ou de mode de connexion, après une connexion sur un nouvel appareil, après l'annulation de tes échanges (30 jours), ou quand tu les verrouilles toi-même.",
+          "La pause après un nouvel appareil dure 24 heures ; après un changement d'e-mail ou de connexion, 3 jours.",
           "Ça protège tes objets si quelqu'un d'autre accède à ton compte.",
           "Nous pouvons aussi mettre nous-mêmes en pause les échanges d'un compte, pour le protéger ou le temps de vérifier une fraude. Cela ferme ses offres et annonces ouvertes sur le Marché noir, et ce qu'elles réservaient revient au compte. Rien ne rouvre à la fin de la pause : il faut republier.",
+          "Si nous déconnectons ton compte sur tous les appareils sans mettre les échanges en pause, tes offres et annonces du Marché noir d'avant cela attendent et ne s'exécutent pas. Reconnecte-toi pour les annuler ou changer le prix d'une annonce.",
         ],
       },
     ],
@@ -382,6 +385,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "C'est quoi, l'Intel ?",
         a: [
           'La monnaie que tu gagnes en jouant : avec tes parties, ta première partie du jour et ta série quotidienne, et en déchiquetant des doublons.',
+          'Ta série : une partie de Jouer en ligne par jour la garde. Une partie lancée avant le nouveau jour la garde aussi, même si elle finit après.',
           "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes.",
           'Chaque changement de ton Intel est une ligne de ton registre Intel, avec son motif.',
         ],

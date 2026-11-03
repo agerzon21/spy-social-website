@@ -229,6 +229,7 @@ const en: HelpText = {
           a: [
             'A leader and friends who play together, up to 21 people in all. It takes a membership to start one. If the leader leaves, the lead goes to someone with a membership first.',
             'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',
+            'At a 12-seat Game Night table, up to 6. Party mates searching on their own count too: never more than half a table between them.',
             'Any party can start a private room together, and a party too big for a table plays there.',
             'Party chat follows the same rules as all chat. To report a message, press and hold it.',
           ],
@@ -290,8 +291,10 @@ const en: HelpText = {
           q: 'Why is my trading paused?',
           a: [
             'Trading pauses for a while after your email or sign-in method changes, after a sign-in on a new device, after you reverse your trades (30 days), or when you lock it yourself.',
+            'A new device’s pause lasts 24 hours; an email or sign-in change’s, 3 days.',
             'It’s there to protect your items if someone else gets into your account.',
             'We can also pause an account’s trading ourselves, to protect it or while we look into fraud. That closes its open Black Market offers and listings, and what they held goes back to the account. Nothing reopens when the pause ends: you list again.',
+            'If we sign your account out on every device without pausing trading, your Black Market offers and listings from before that wait and don’t fill. Sign in again to cancel them or change a listing’s price.',
           ],
         },
       ],
@@ -390,6 +393,7 @@ const en: HelpText = {
           q: 'What is Intel?',
           a: [
             'The currency you earn by playing: from your games, your first game of the day and your daily streak, and from shredding spare copies.',
+            'Your streak: one Play Online game a day keeps it. A game you start before the new day keeps it too, even if it ends after.',
             'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.',
             'Every change to your Intel is a line in your Intel ledger, with its reason.',
           ],

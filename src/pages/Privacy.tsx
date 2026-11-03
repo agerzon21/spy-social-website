@@ -768,7 +768,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.audit1103 && (
           <Item label="Account Support">
             When you write to us about your account, we use what's described here to help. If it may have been taken, or
-            you've lost its email address, we may change the address, sign the account out on every device (a sign-in from before that can keep working for up to 15 minutes, but can't trade or use the Black Market), pause its
+            you've lost its email address, we may change the address, sign the account out on every device (a sign-in from before that can keep working for up to 15 minutes, but can't trade or use the Black Market, and Black Market offers and listings placed before that wait and don't fill), pause its
             trading (up to 30 days), and open a case about it so that we can reverse a protected trade or sale. To answer
             a question about a purchase, we may look up your purchases. Each of these is done by SpySocial's developer,
             never a community moderator, and we record what was done, when and why (for an email change, how we checked

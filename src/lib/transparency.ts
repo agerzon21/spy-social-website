@@ -91,8 +91,19 @@ const COUNTED_GAMES_NOV3: { day: string; what: string; from: string; to: string 
   { day: 'November 3, 2026', what: 'which other players keep a game from counting toward the 3 counted games needed to trade or use the Black Market', from: 'another account on the same phone or the same sign-up network', to: 'another account on the same phone only' },
 ]
 
+/**
+ * Decided Nov 3, vetoable (To-Do codes T5 and T8; app server decided3_t5_1103, decided3_t8_1103, streak_began_1103): shown while LIVE.audit1103b is on.
+ * If one is reversed, add the reverse change with its own day.
+ */
+const ECONOMY_NOV3: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'November 3, 2026', what: 'how much Intel one trade between adults can carry', from: '10,000', to: '1,000,000' },
+  { day: 'November 3, 2026', what: 'whether a first copy someone bought or got in a trade can be shredded or traded up', from: 'never', to: 'yes, when the player holds another copy of that item' },
+  { day: 'November 3, 2026', what: 'which day counts for a streak when a game begins before the daily reset and ends after it', from: 'the day it ended', to: 'the day it began, when that keeps the streak going' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.audit1103b ? ECONOMY_NOV3 : []),
   ...(LIVE.audit1103b ? COUNTED_GAMES_NOV3 : []),
   ...(LIVE.tradeNoLimits ? TRADE_NO_LIMITS : []),
   ...(LIVE.tradeGatesNov2 ? TRADE_GATES_NOV2 : []),

@@ -225,6 +225,7 @@ const id: HelpText = {
           a: [
             'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Perlu keanggotaan untuk memulainya. Jika ketua pergi, peran ketua lebih dulu pindah ke orang yang punya keanggotaan.',
             'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
+            'Di meja 12 kursi Malam Permainan, sampai 6 orang. Anggota grup yang mencari sendiri juga dihitung: bersama-sama tak pernah lebih dari setengah meja.',
             'Grup mana pun bisa membuka room privat bersama, dan grup yang terlalu besar untuk satu meja main di sana.',
             'Chat grup mengikuti aturan yang sama dengan semua chat. Untuk melaporkan pesan, tekan lama pesan itu.',
           ],
@@ -286,8 +287,10 @@ const id: HelpText = {
           q: 'Kenapa pertukaranku dijeda?',
           a: [
             'Pertukaran dijeda sebentar setelah email atau cara masuk berubah, setelah masuk dari perangkat baru, setelah kamu membatalkan pertukaranmu (30 hari), atau saat kamu menguncinya sendiri.',
+            'Jeda karena perangkat baru berlangsung 24 jam; karena perubahan email atau cara masuk, 3 hari.',
             'Ini melindungi itemmu kalau ada orang lain yang masuk ke akunmu.',
             'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan. Itu menutup penawaran dan item yang dipasang di Pasar Gelap, dan yang ditahan kembali ke akun. Tidak ada yang dibuka lagi saat jeda berakhir: kamu perlu memasangnya lagi.',
+            'Jika kami mengeluarkan akunmu dari semua perangkat tanpa menjeda pertukaran, penawaran dan item yang kamu pasang di Pasar Gelap sebelum itu menunggu dan tidak terpenuhi. Masuk lagi untuk membatalkannya atau mengubah harga item.',
           ],
         },
       ],
@@ -386,6 +389,7 @@ const id: HelpText = {
           q: 'Apa itu Intel?',
           a: [
             'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan streak harian, serta dari menghancurkan duplikat.',
+            'Streak-mu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
             'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.',
             'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya.',
           ],

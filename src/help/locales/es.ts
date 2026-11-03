@@ -225,6 +225,7 @@ const es: HelpText = {
           a: [
             'Un líder y sus amigos que juegan juntos, hasta 21 personas en total. Para empezar hace falta una membresía. Si el líder se va, el puesto pasa primero a alguien con membresía.',
             'En las mesas de Jugar en línea y en la Noche de Juegos, un grupo ocupa como mucho media mesa, y todos lo ven: hasta 2 en una mesa de 4, hasta 4 en una mesa de 8.',
+            'En una mesa de 12 de la Noche de Juegos, hasta 6. Los miembros del grupo que buscan partida por su cuenta también cuentan: entre todos, nunca más de media mesa.',
             'Cualquier grupo puede abrir una sala privada, y un grupo demasiado grande para una mesa juega ahí.',
             'El chat del grupo sigue las mismas reglas que todo el chat. Para reportar un mensaje, mantenlo pulsado.',
           ],
@@ -286,8 +287,10 @@ const es: HelpText = {
           q: '¿Por qué están pausados mis intercambios?',
           a: [
             'Los intercambios se pausan un tiempo tras un cambio de correo o de forma de inicio de sesión, tras iniciar sesión en un dispositivo nuevo, tras revertir tus intercambios (30 días) o cuando los bloqueas tú.',
+            'La pausa por un dispositivo nuevo dura 24 horas; la de un cambio de correo o de inicio de sesión, 3 días.',
             'Así se protegen tus objetos si alguien más entra en tu cuenta.',
             'También podemos pausar nosotros los intercambios de una cuenta, para protegerla o mientras revisamos un posible fraude. Eso cierra sus ofertas y anuncios abiertos en el Mercado Negro, y lo que tenían reservado vuelve a la cuenta. Nada se reabre cuando termina la pausa: tienes que volver a publicar.',
+            'Si cerramos la sesión de tu cuenta en todos los dispositivos sin pausar los intercambios, tus ofertas y anuncios del Mercado Negro de antes de eso esperan y no se completan. Vuelve a iniciar sesión para cancelarlos o cambiar el precio de un anuncio.',
           ],
         },
       ],
@@ -386,6 +389,7 @@ const es: HelpText = {
           q: '¿Qué es el Intel?',
           a: [
             'La moneda que ganas jugando: con tus partidas, tu primera partida del día y tu racha diaria, y al triturar copias repetidas.',
+            'Tu racha: una partida de Jugar en línea al día la mantiene. Una partida que empiezas antes del nuevo día también la mantiene, aunque termine después.',
             'El Intel nunca se vende y no vale dinero. Los adultos lo gastan en el Mercado Negro y pueden intercambiarlo con otros adultos.',
             'Cada cambio en tu Intel es una línea en tu registro de Intel, con su motivo.',
           ],
