@@ -58,7 +58,7 @@ export const AfterDeletionList = () => (
     {PRIVACY.childSafetyHolds && (
       <ListItem>
         If your account is part of a child-safety case, we first keep a restricted copy of the case, your email address,
-        names and sign-in dates, your messages still on our servers and your encrypted IP addresses, for 1 year, or longer
+        names, sign-in dates and the IP addresses in our sign-in log, your messages still on our servers and your encrypted IP addresses, for 1 year, or longer
         if the authorities ask us to. Nobody but the person who handles child-safety cases and the authorities can see it.
       </ListItem>
     )}
@@ -82,13 +82,13 @@ export const AfterDeletionList = () => (
     {PRIVACY.intercepts && (
       <ListItem>
         The signs our fair-play checks found on your account stay until their 400 days end, or longer while they're
-        part of an open case, identified only by a random ID that no longer leads to your account.
+        part of an open case or an alert that's waiting for our review, identified only by a random ID that no longer leads to your account.
       </ListItem>
     )}
     {PRIVACY.ipVault && (
       <ListItem>
         The encrypted IP addresses of your account's sign-up and sign-ins stay until their 90 days end, or up to 1 year
-        when they're part of a report to NCMEC, an open case{PRIVACY.childSafetyHolds ? ', a child-safety case' : ''} or a law-enforcement request.
+        when they're part of a report to NCMEC{PRIVACY.childSafetyHolds ? ', a child-safety case' : ''} or a law-enforcement request.
       </ListItem>
     )}
     {/* photosPrivate: a photo's public link no longer opens at all (the bucket is private), so no cached copy either. */}
@@ -141,14 +141,14 @@ export const AfterDeletionList = () => (
     {PRIVACY.trading && (
       <ListItem>
         Trades you made stay, with your account taken out of them, because the other player's items and Intel came from
-        them. Items and Intel you got in a trade that's still protected (in its first 7 days) go back to the player who
+        them (who closed a trade can stay in its record as a random ID that no longer leads to your account). Items and Intel you got in a trade that's still protected (in its first 7 days) go back to the player who
         gave them.
       </ListItem>
     )}
     {PRIVACY.blackMarket && (
       <ListItem>
         Your Black Market offers, listings and sales stay in the market's records, with your account taken out of them,
-        because the other players' items and Intel came from them.
+        because the other players' items and Intel came from them (the market's event log can keep a random ID that no longer leads to your account).
       </ListItem>
     )}
     {PRIVACY.intel && PRIVACY.intelLedger && (

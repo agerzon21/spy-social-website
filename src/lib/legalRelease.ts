@@ -940,6 +940,13 @@ export const LIVE = {
    */
   audit1103: true,
   /**
+   * Retention audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/retention-1103.md). Off: the pages say what happens today: room exits, unblocks, the
+   * coded email and sign-up records, push receipts and sent notices are cleared by a later action, not on a clock, and the note that a trade or market code
+   * was sent stays with the account. On: flip the day the owner says yes and supabase/migrations_pending/20261209970000_retention_sweep_1103.sql is live (an
+   * hourly job): the pages then state the plain periods. A server switch: set in LIVE, never in PRIVACY_AHEAD. Set PRIVACY_LAST_UPDATED's date that day.
+   */
+  retentionSweep: false,
+  /**
    * Unopened Intercepts inside a friend trade. The server takes them (trade_set_intercepts), but no app version offers it
    * (store compliance 2026-11-03: never called on any branch), so the pages say they move only on the Black Market. Flip
    * on the day an app that offers it is out; Terms 9 and Privacy's Intercepts item then say trades too.

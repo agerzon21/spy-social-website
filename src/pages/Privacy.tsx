@@ -150,7 +150,7 @@ const Privacy: React.FC = () => {
           and answer, vote, guess, or leave), the drawings made in a Spy Sketch game, and the results. We use it to
           run the game, keep score, award experience points, levels and achievements, and check that games are played
           fairly. A game's drawing, including lines a player drew and then undid, is deleted 24 hours after the game
-          ends in a private room, or 14 days after in a public room; a record of which player drew each turn is kept for 90 days so reports can be checked. When you leave a room or are removed from one, we note for 24 hours how your place in it ended (you left, the host removed you, or the game did), so your other devices can tell you what happened.
+          ends in a private room, or 14 days after in a public room; a record of which player drew each turn is kept for 90 days so reports can be checked. When you leave a room or are removed from one, we note how your place in it ended (you left, the host removed you, or the game did), so your other devices can tell you what happened for the next 24 hours.{PRIVACY.retentionSweep ? ' The note is deleted after those 24 hours.' : ' The note is deleted the next time you leave a room, or with your account.'}
           {PRIVACY.playerStats &&
             " We also use your game records (each game's result, your role, your votes, vote calls, answers and guesses, how long you played, and the game's location or word) to show you your own stats in the app. If you're a member, you also see the locations and words that came up most in your games and a playstyle label worked out from your stats. Only you see your stats: we don't show them to other players or share them with anyone."}
         </Item>
@@ -404,7 +404,7 @@ const Privacy: React.FC = () => {
             Intel that moved, any reversal and its reason, the 7-day protection of what each side got, and any trading
             pause on your account (after a reversal, a change to your email or sign-in method, a sign-in on a new
             device, a lock you set{PRIVACY.audit1103 ? ", or a pause we set on an account that may have been taken" : ''}). For a big trade we email you a code; we keep only a coded (hashed) copy of it,
-            and the email is deleted from our mail queue once it's sent. Trades carry no message. Only you and the
+            and the code is removed from our mail queue once it's sent{PRIVACY.retentionSweep ? '; the note that we sent one (no address, no code) is deleted after 30 days' : '; the note that we sent one (no address, no code) stays until your account is deleted'}. Trades carry no message. Only you and the
             other player see a trade{PRIVACY.mintedCollectibles ? ' (the public ledger shows only that a traded collectible moved from one holder code to another, never who traded it; see Collectibles and the public ledger)' : ''}.
             Trades are kept with your Intel and item history.
             {PRIVACY.tradeGatesNov2 && PRIVACY.gameDeviceChecks
@@ -437,7 +437,7 @@ const Privacy: React.FC = () => {
             invite, an Ask to Join and a new pack from a creator you follow (at most one a day for each creator), each
             with its own switch in Privacy &amp; Friends.{PRIVACY.audit1103 ? " We also send a push when a friend offers, changes or completes a trade or it's your turn in one, when your Black Market offer fills, your Rare Finds item sells or gets an offer, or your offer on one is accepted, and when a trade or sale of yours is undone; Trades and Black Market each have their own switch there. These never show an item, a price or an Intel amount, and the market's never name the other player." : ''} The push shows the sender's display name. We keep your
             device's time zone so that a player under 18 gets none between 10 PM and 7 AM local time{PRIVACY.audit1103 ? ', and none at all while we don\'t know it; on iPhone, players under 18 get none of these for now' : ''}. A notice waiting
-            to be sent is kept for a day, and a sent one for 7 days.
+            to be sent is kept for about a day, and a sent one for about 7 days{PRIVACY.retentionSweep ? '' : ' (cleared the next time we send a notice)'}.
           </Item>
         )}
         <Item label="Questions and Answers">
@@ -514,7 +514,7 @@ const Privacy: React.FC = () => {
             or user ID, username, email address, age or IP address. The program asks OpenAI not to store these requests
             or its answers, and OpenAI doesn't use them to train its models (see OpenAI below). The program also keeps
             logs of the games the bots play, with what was said and done at the table, on the developer's computer, and
-            uses them only to check and improve the bots; they're deleted automatically after 30 days.
+            uses them only to check and improve the bots; they're deleted automatically once they're 30 days old, the next time the program starts.
           </Item>
         )}
         <Item label="Presence">
@@ -565,7 +565,7 @@ const Privacy: React.FC = () => {
           they send: a coded form of the email address and of your network (your IP address, or for IPv6 its first
           half), made with a secret key, the kind of email and when, never the address or the IP address itself. Under
           the same code, they also count how many of these requests come from each network in an hour. These records
-          are deleted after a day.
+          stop counting after a day{PRIVACY.retentionSweep ? ' and are deleted then' : ' and are deleted soon after, the next time a request clears them, which can take some days when few requests come in'}.
           {PRIVACY.socialLimits &&
             ' To stop rapid-fire follows and friend requests, our servers also use the times in the social safety log (see Safety Information) to slow an account down for a few seconds, and when an account reaches the daily limit for follows or for friend requests, they count how many times that day it was turned away (the account, which limit, the day and the count), for our team to spot spam. These counts aren\'t shown to any player, don\'t change anything on their own, and are deleted after 90 days.'}
           {PRIVACY.passwordless
@@ -573,7 +573,7 @@ const Privacy: React.FC = () => {
             : ''}
         </Item>
         <Item label="Safety Information">
-          Reports you make or that are made about you, players you block (and, for 24 hours, when you unblock someone, so a player can't be blocked and unblocked over and over), removals from rooms, and any warnings,
+          Reports you make or that are made about you, players you block (and when you unblock someone, which counts for 24 hours so a player can't be blocked and unblocked over and over{PRIVACY.retentionSweep ? ' and is then deleted' : ', and is deleted the next time you unblock someone or with your account'}), removals from rooms, and any warnings,
           mutes or bans on your account
           {PRIVACY.drawingCheck
             ? ', including the results of drawing checks, drawings taken off as evidence, removals from a game, and warnings, pauses and bans the drawing check gave'
@@ -712,7 +712,7 @@ const Privacy: React.FC = () => {
             send to it only while that sign-in lasts. The "Match found!" notification says only that a match was found,
             for which game and how many players, never who is in it. The app refreshes the token at most once a day,
             and the token is deleted when you sign out in the app, turn off notifications for SpySocial (the next time
-            the app opens) or delete your account{PRIVACY.audit1103 ? ', or once no device has refreshed it for 120 days. To stop sending to a phone that can no longer get notifications, we keep the receipt number Expo gives each push with its token for about 2 days' : ''}. A match notification waiting to be sent is kept for one day. Guests
+            the app opens) or delete your account{PRIVACY.audit1103 ? ', or once no device has refreshed it for 120 days. To stop sending to a phone that can no longer get notifications, we keep the receipt number Expo gives each push with its token for about 2 days' : ''}. A match notification waiting to be sent is kept for about a day. Guests
             don't send a push token.
             {PRIVACY.communityPacks &&
               " If you send a pack to Community Packs, we also use that push address to tell you when we approve or turn it down (with the pack's name and our reason)."}{' '}
@@ -818,7 +818,7 @@ const Privacy: React.FC = () => {
               kept on our servers, so it can't be read from our database. Only SpySocial's developer can open these
               records, offline, and only for a report of child sexual exploitation to NCMEC, a serious breach of our
               Terms or Community Rules, cheating or manipulation of the in-game economy, or a lawful request from law
-              enforcement; each time, we record who opened them, why and when. Next to each one we keep a coded form of
+              enforcement; each time, we record who opened them, why and when, and keep that record. Next to each one we keep a coded form of
               its network (made with a secret key), which lets us notice several accounts from one network without
               opening them. They're deleted after 90 days, or kept for up to 1 year when they're part of a report to
               NCMEC, an open case{PRIVACY.childSafetyHolds ? ', a child-safety case' : ''} or a law-enforcement request.
@@ -954,14 +954,14 @@ const Privacy: React.FC = () => {
         packs involved and the account details in the report) for at least 1 year after the report, as US law requires,
         in restricted storage, shared with no one except the authorities, even if the account is deleted.{' '}
         {PRIVACY.childSafetyHolds &&
-          "If an account that is part of a child-safety case is deleted before we've finished with the case, we first keep a restricted copy of the case, the account's email address, names and sign-in dates, its messages still on our servers and its encrypted IP addresses, for 1 year, or longer if the authorities ask us to. "}
+          "If an account that is part of a child-safety case is deleted before we've finished with the case, we first keep a restricted copy of the case, the account's email address, names, sign-in dates and the IP addresses in our sign-in log, its messages still on our servers and its encrypted IP addresses, for 1 year, or longer if the authorities ask us to. "}
         Usage events are kept
         for 180 days
         {PRIVACY.scheduledRetention
           ? `, and security logs (such as sign-ups, sign-ins, ${PRIVACY.passwordless ? 'sign-in codes sent' : 'password resets'} and email changes, which can include your email address and IP address) for 180 days.`
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
-        account emails and sign-up requests after a day.
+        account emails and sign-up requests {PRIVACY.retentionSweep ? 'after a day' : 'after a day of no use, the next time a request clears them'}.
         {PRIVACY.socialLimits ? ' Counts of daily limits reached for follows and friend requests are deleted after 90 days.' : ''}
         {PRIVACY.intel
           ? PRIVACY.intelLedger
@@ -990,19 +990,19 @@ const Privacy: React.FC = () => {
           ? ' Black Market offers, listings and sales are kept for good in the same way, with no link to you once you delete your account; the coded copies of the codes we email you are deleted with your account.'
           : ''}
         {PRIVACY.socialFeatures
-          ? " Your friends, follows, profile and Privacy & Friends choices are kept for as long as you have an account. Friend requests are deleted 30 days after they're answered or expire, room invites 24 hours after they're answered, party invites after a day, party chat 30 days after it's sent, and sent social notifications after 7 days. The social safety log is kept for 1 year, and what our safety checks flag for as long as we keep reports."
+          ? " Your friends, follows, profile and Privacy & Friends choices are kept for as long as you have an account. Friend requests are deleted 30 days after they're answered or expire, room invites 24 hours after they're answered, party invites after a day, party chat 30 days after it's sent, and sent social notifications after about 7 days. The social safety log is kept for 1 year, and what our safety checks flag for as long as we keep reports."
           : ''}
         {PRIVACY.ipVault
           ? ' The encrypted IP addresses of new accounts and sign-ins are kept for 90 days, or up to 1 year when they\'re part of a report to NCMEC, an open case, a child-safety case or a law-enforcement request.'
           : ''}
         {PRIVACY.audit1103
-          ? ' Emails waiting in our account mail queue are kept for 30 days (the address and any code are removed once sent), coded copies of ban-notice codes stop working after 30 minutes and are deleted 2 days later, and push receipt numbers are deleted after about 2 days. The record of what we did for you in Account Support is kept as long as we keep reports.'
+          ? ' Emails waiting in our account mail queue are kept for 30 days (the address and any code are removed once sent), coded copies of ban-notice codes stop working after 30 minutes and are deleted 2 days later, and push receipt numbers are deleted after about 2 days' + (PRIVACY.retentionSweep ? '' : ', the next time we send a push') + '. The record of what we did for you in Account Support is kept as long as we keep reports.'
           : ''}
         {PRIVACY.banTombstone
           ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
           : ''}
         {PRIVACY.intercepts
-          ? ` The signs our fair-play checks find are kept for up to 400 days, or longer while they're part of an open case; reward holds and the reviews players ask for stay with their case for as long as we keep reports.${PRIVACY.dataRights ? " The account's fair-play score is kept while you have an account and deleted with it." : ''}${PRIVACY.integrityProbes ? ' Notes of requests our app never makes are deleted after 90 days, or with the account if it goes first.' : ''}`
+          ? ` The signs our fair-play checks find are kept for up to 400 days, or longer while they're part of an open case or an alert that's waiting for our review; reward holds and the reviews players ask for stay with their case for as long as we keep reports.${PRIVACY.dataRights ? " The account's fair-play score is kept while you have an account and deleted with it." : ''}${PRIVACY.integrityProbes ? ' Notes of requests our app never makes are deleted after 90 days, or with the account if it goes first.' : ''}`
           : ''}
         {PRIVACY.dataRights
           ? ' Our record of a privacy request (see Your Rights) is kept for 24 months after we answer it.'
