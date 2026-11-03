@@ -230,7 +230,7 @@ const en: HelpText = {
             'A leader and friends who play together, up to 21 people in all. The leader needs a membership.',
             'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',
             'Any party can start a private room together, and a party too big for a table plays there.',
-            'Party chat follows the same rules as all chat. To report someone in it, press and hold their card at a table.',
+            'Party chat follows the same rules as all chat. To report a message, press and hold it.',
           ],
         },
         {

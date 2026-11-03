@@ -226,7 +226,7 @@ const id: HelpText = {
             'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Ketua butuh keanggotaan.',
             'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
             'Grup mana pun bisa membuka room privat bersama, dan grup yang terlalu besar untuk satu meja main di sana.',
-            'Chat grup mengikuti aturan yang sama dengan semua chat. Untuk melaporkan seseorang, tekan lama kartunya di meja.',
+            'Chat grup mengikuti aturan yang sama dengan semua chat. Untuk melaporkan pesan, tekan lama pesan itu.',
           ],
         },
         {

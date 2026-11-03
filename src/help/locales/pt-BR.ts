@@ -226,7 +226,7 @@ const ptBR: HelpText = {
             'Um líder e amigos que jogam juntos, até 21 pessoas no total. O líder precisa de uma assinatura.',
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
             'Qualquer grupo pode abrir uma sala privada junto, e um grupo grande demais para uma mesa joga lá.',
-            'O chat do grupo segue as mesmas regras de todo o chat. Para denunciar alguém, toque e segure o card da pessoa numa mesa.',
+            'O chat do grupo segue as mesmas regras de todo o chat. Para denunciar uma mensagem, toque e segure nela.',
           ],
         },
         {

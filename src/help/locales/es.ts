@@ -226,7 +226,7 @@ const es: HelpText = {
             'Un líder y sus amigos que juegan juntos, hasta 21 personas en total. El líder necesita una membresía.',
             'En las mesas de Jugar en línea y en la Noche de Juegos, un grupo ocupa como mucho media mesa, y todos lo ven: hasta 2 en una mesa de 4, hasta 4 en una mesa de 8.',
             'Cualquier grupo puede abrir una sala privada, y un grupo demasiado grande para una mesa juega ahí.',
-            'El chat del grupo sigue las mismas reglas que todo el chat. Para reportar a alguien, mantén pulsada su tarjeta en una mesa.',
+            'El chat del grupo sigue las mismas reglas que todo el chat. Para reportar un mensaje, mantenlo pulsado.',
           ],
         },
         {

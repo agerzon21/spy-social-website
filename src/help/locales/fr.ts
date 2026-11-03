@@ -222,7 +222,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Le chef doit avoir un abonnement.",
           "Aux tables de Jouer en ligne et aux Soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
           'Tout groupe peut ouvrir un salon privé ensemble, et un groupe trop grand pour une table y joue.',
-          'Le chat du groupe suit les mêmes règles que tout le chat. Pour signaler quelqu\'un, appuie longuement sur sa carte à une table.',
+          'Le chat du groupe suit les mêmes règles que tout le chat. Pour signaler un message, appuie longuement dessus.',
         ],
       },
       {
