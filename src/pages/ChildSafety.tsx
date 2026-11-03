@@ -24,8 +24,8 @@ import { LegalPage } from '../components/legal/LegalPage'
 // Terms (sections 7 and 8), the Community Rules, the Privacy Policy, the UK
 // online safety section and the Safety page; what depends on a release
 // follows src/lib/legalRelease.ts, like those pages. NCMEC registration as an
-// ESP is still pending, so the page says we report to NCMEC as the law
-// requires, never that we're registered with it.
+// ESP is done (October 16, 2026); the page says we report to NCMEC as the law
+// requires, which is all a reader needs.
 
 /** The day this page first went up. Set it to the day it's published. */
 const PUBLISHED = 'October 8, 2026'
@@ -146,19 +146,23 @@ const ChildSafety: React.FC = () => {
             " Until October 20, 2026, versions of the app before 2.2 let a player add a profile photo, which only showed next to their name; no one can add one now, and those photos aren't shown to anyone."}
         </ListItem>
         <ListItem>
-          <B>Rooms:</B> only people with a private room's code, link or QR code can join it, and the host can remove a
+          <B>Rooms:</B> only people with a private room's code, link or QR code{LIVE.socialFeatures ? ", or a friend's invite," : ''} can join it, and the host can remove a
           player. Players under 16 (and players who haven't told us their age) see no other player's private rooms in
           the app's room list, and a private room hosted by a player under 18 is listed to no one but its host. Some of
-          the game's suggested questions are never used in a game with a player under 18. Public rooms are only for
+          the game's suggested questions are never offered to a player under 18, and the game never picks one by itself
+          while a player under 18 is in the room or game. Public rooms are only for
           saved accounts of players 13 or older who have agreed to our Community
           Rules; guests can play only in private rooms, and a player with a pause or a ban can't join public rooms.
         </ListItem>
         <ListItem>
           <B>Chat filter:</B> names and chat are checked before anyone else sees them. In public rooms, explicit sexual
           words are blocked; in private rooms, the most serious words are blocked. In any room with a player under 18,
-          links, email addresses, phone numbers and social accounts are blocked for everyone. At Play Online tables
-          and game nights they're always blocked. Sharing real names, addresses, phone numbers or social media handles
+          links, email addresses, phone numbers and social accounts are blocked for everyone
+          {LIVE.childSafetyHolds ? ', and so is sexual talk' : ''}. At Play Online tables
+          and game nights they're always blocked{LIVE.childSafetyHolds ? ', and so is sexual talk' : ''}. Sharing real names, addresses, phone numbers or social media handles
           is against our Community Rules.
+          {LIVE.childSafetyHolds &&
+            " Messages that can be part of grooming, in rooms and party chats with a player under 18, are flagged automatically for a person to read."}
         </ListItem>
         {/* LIVE.communityPacks: shared packs are reviewed before anyone else sees them (legalRelease). */}
         {LIVE.communityPacks && (
@@ -231,7 +235,10 @@ const ChildSafety: React.FC = () => {
           We ban the accounts involved.
           {drawings ? ' A drawing that sexualizes a child ends the account, with no appeal.' : ''}
         </ListItem>
-        <ListItem>We keep the evidence the law requires us to keep.</ListItem>
+        <ListItem>
+          We keep the evidence the law requires us to keep
+          {LIVE.childSafetyHolds ? ', even if the account is deleted first' : ''}.
+        </ListItem>
         <ListItem>
           We report it to the National Center for Missing &amp; Exploited Children (NCMEC), as US law requires. NCMEC
           passes reports linked to the UK to the UK's National Crime Agency, so we never report the same case twice.

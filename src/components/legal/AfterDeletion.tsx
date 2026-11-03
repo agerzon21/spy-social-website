@@ -55,6 +55,13 @@ export const AfterDeletionList = () => (
       by a random ID, which no longer leads to your account. Usage events, which use the same ID, are deleted after 180
       days{PRIVACY.playOnline ? ", and Play Online's matchmaking log, which uses it too, after 90 days" : ''}.
     </ListItem>
+    {PRIVACY.childSafetyHolds && (
+      <ListItem>
+        If your account is part of a child-safety case, we first keep a restricted copy of the case, your email address,
+        names and sign-in dates, your messages still on our servers and your encrypted IP addresses, for 1 year, or longer
+        if the authorities ask us to. Nobody but the person who handles child-safety cases and the authorities can see it.
+      </ListItem>
+    )}
     {PRIVACY.drawingCheck && (
       <ListItem>
         A drawing kept as evidence (see Data Retention) stays until its period ends, even if the account that drew it is
@@ -81,7 +88,7 @@ export const AfterDeletionList = () => (
     {PRIVACY.ipVault && (
       <ListItem>
         The encrypted IP addresses of your account's sign-up and sign-ins stay until their 90 days end, or up to 1 year
-        when they're part of a report to NCMEC, an open case or a law-enforcement request.
+        when they're part of a report to NCMEC, an open case{PRIVACY.childSafetyHolds ? ', a child-safety case' : ''} or a law-enforcement request.
       </ListItem>
     )}
     {/* photosPrivate: a photo's public link no longer opens at all (the bucket is private), so no cached copy either. */}

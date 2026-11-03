@@ -1277,6 +1277,16 @@ export const LIVE = {
    */
   integrityProbes: true,
   /**
+   * Child-safety holds (child-safety audit 2026-11-03; app server 20261208340000_child_safety_holds): a flagged message and
+   * the chat before it are copied with the flag and kept with its case; party chat is flagged as room chat is; sexual
+   * talk is refused in a room or party with a player under 18 and at public tables, and an adult's refused line there is
+   * flagged with its words; deleting an account that is part of a child-safety case first keeps a restricted copy of its
+   * details and messages for 1 year, with its sealed IP addresses. Turns on Privacy's lines and a bullet in Child Safety's
+   * chat filter. POLICY WITH CAPTURE: the site goes up with it just before the server file is applied. A server fact for
+   * every app version at once: set in LIVE, never in PRIVACY_AHEAD. Never publish the phrases the check reads.
+   */
+  childSafetyHolds: true,
+  /**
    * The launch version of the public site (2.2 out on both stores; flip Tuesday, December 8, 2026, 10 AM ET; steps in
    * the app repo's .claude/handoff/scratchpad/nov02/website-launch.md). On: the hero says 2.2 is out, the home page's
    * New in 2.2 section (the store screenshots in the page's language, Spy Sketch, Play Online, Game Night, the Black
@@ -1510,6 +1520,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.partySizeCorrected
     ? 'November 3, 2026' // the Party and Party Chat item: a party's size corrected to the live rule (up to 21 people): the site went up with it on
+  : LIVE.childSafetyHolds
+    ? 'November 3, 2026' // child-safety holds: flagged lines kept with the case, party chat flagged, the hold on deletion
   : LIVE.integrityProbes
     ? 'November 2, 2026' // fair play: notes of requests the app never makes (90 days): the site went up with it on
   : LIVE.dataRights
