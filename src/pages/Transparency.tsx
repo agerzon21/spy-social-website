@@ -1,8 +1,9 @@
 import { ListItem } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
-import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/LegalText'
+import { B, Bullets, H2, H3, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { LIVE } from '../lib/legalRelease'
 import { PUBLISHED_INCIDENTS, RULE_CHANGES } from '../lib/transparency'
+import { dayInMonth, MONTHLY_REPORTS } from '../lib/transparencyReports'
 
 // The transparency page (www.spysocial.app/transparency): what the monthly report covers, the incidents published so
 // far and the rule changes (Economy Integrity design, owner-approved 2026-10-30, decision 10: monthly). In English like
@@ -55,6 +56,45 @@ const Transparency: React.FC = () => (
         test accounts are left out, and their total is stated.
       </ListItem>
     </Bullets>
+
+    {MONTHLY_REPORTS.map((r) => {
+      const changes = RULE_CHANGES.filter((c) => dayInMonth(c.day, r.month))
+      return (
+        <section key={r.month} id={`report-${r.month}`}>
+          <H2>{r.title}</H2>
+          <P>
+            Published {r.published}. {r.note}
+          </P>
+          {r.sections.map((s) => (
+            <div key={s.heading}>
+              <H3>{s.heading}</H3>
+              <Bullets>
+                {s.lines.map((line) => (
+                  <ListItem key={line}>{line}</ListItem>
+                ))}
+              </Bullets>
+            </div>
+          ))}
+          <H3>Rule changes</H3>
+          {changes.length === 0 ? (
+            <P>No rule changes this month.</P>
+          ) : (
+            <Bullets>
+              {changes.map((c) => (
+                <ListItem key={`${c.day}-${c.what}`}>
+                  {c.day}: {c.what}, from {c.from} to {c.to}.
+                </ListItem>
+              ))}
+            </Bullets>
+          )}
+          <P>
+            <a href={`data:text/csv;charset=utf-8,${encodeURIComponent(r.csv)}`} download={`spysocial-transparency-${r.month}.csv`}>
+              Download the totals (CSV)
+            </a>
+          </P>
+        </section>
+      )
+    })}
 
     <H2>Incidents</H2>
     <P>
