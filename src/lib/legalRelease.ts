@@ -50,10 +50,10 @@
 // 2.1.1 is still the store version, so what a 2.1.1 player would take for their
 // own app's behavior says "from version 2.2" while oldAppsInUse (Privacy.tsx).
 // Merging this branch into main before the launch would also publish the UK
-// online safety text in the Terms and the Rules, and the Safety page: set
-// ONLINE_SAFETY_TEXT (below LEGAL_LAST_UPDATED) false in that merge. At the
+// online safety text in the Terms and the Rules, and the Safety page:
+// ONLINE_SAFETY_TEXT (below LEGAL_LAST_UPDATED) holds it back until LIVE.launchSite. At the
 // launch, flip the same switches in LIVE, empty PRIVACY_AHEAD, set
-// PRIVACY_LAST_UPDATED back to LEGAL_LAST_UPDATED and ONLINE_SAFETY_TEXT to true.
+// PRIVACY_LAST_UPDATED back to LEGAL_LAST_UPDATED; ONLINE_SAFETY_TEXT follows LIVE.launchSite on its own.
 
 export const LIVE = {
   /**
@@ -957,6 +957,19 @@ export const LIVE = {
    */
   drawingWording1104: true,
   /**
+   * Beta 2's open Black Market for testers (owner `open`, Nov 3; app repo .claude/handoff/scratchpad/nov03/beta2-market-open.md
+   * and site-nov12-prep.md). false: before the switch file runs. 'open': from Thu Nov 12, 2026 (set it no earlier than
+   * 7 PM ET, and only once the market switch is applied on live): adult testers buy and sell for Intel for real, and every
+   * sale is undone by Nov 16 (WP). 'closed': from Mon Nov 16, once the undo file and WP have run (the market is look-only
+   * for testers again). Truthy turns on "except during testing" in the Terms' Black Market bullet (true from Nov 12 on for
+   * good: sales made in testing are undone, as the Collectibles bullet says); 'open' turns on the help center's line that
+   * testers trade there now, in place of "until then, you can look around" ('closed' brings that line back). Describes
+   * what's in force and adds no duty, so no TERMS_PUBLISHED or terms_version raise. Dates: November 12 by this switch in
+   * LEGAL_LAST_UPDATED (Terms, Rules, Safety); Privacy has no line about it, so PRIVACY_LAST_UPDATED doesn't move.
+   * A server fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  testerMarket: false as false | 'open' | 'closed',
+  /**
    * Retention audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/retention-1103.md). Off: the pages say what happens today: room exits, unblocks, the
    * coded email and sign-up records, push receipts and sent notices are cleared by a later action, not on a clock, and the note that a trade or market code
    * was sent stays with the account. On: flip the day the owner says yes and supabase/migrations_pending/20261209970000_retention_sweep_1103.sql is live (an
@@ -1343,7 +1356,10 @@ export const LIVE = {
    * reads "Out now", the Contact page's press line, /beta goes to the home page (and leaves the sitemap and search),
    * and the build gives every page the launch link-preview card (public/images/og-launch.jpg, large) and the app's
    * structured data (vite.config.ts reads this switch). The browser link stays on LIVE.browserLinks (play.spysocial.app
-   * is invite-only while the server's web_beta gate is on). No legal text reads it, so it changes no Last Updated date.
+   * is invite-only while the server's web_beta gate is on). It also turns on ONLINE_SAFETY_TEXT (below LEGAL_LAST_UPDATED:
+   * the Safety page, its links and the Terms' and Rules' UK online safety text), which the launch publishes with the Terms
+   * again (LEGAL_LAST_UPDATED and TERMS_PUBLISHED set to the launch day, top of this file). Help's odds line and the
+   * Terms' and Game Night rules' odds sentence say "open or buy" with it (the offer sheet's odds, Nov 10 store build).
    * A website fact: set in LIVE, never in PRIVACY_AHEAD.
    */
   launchSite: false,
@@ -1515,6 +1531,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.testerMarket
+    ? 'November 12, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the site goes up with it on Nov 12
   : LIVE.drawingWording1104
     ? 'November 4, 2026' // drawing-check wording (no page implies every drawing is caught): the site went up with it on
   : LIVE.accountNotices
@@ -1642,11 +1660,12 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
  * self-harm, eating disorders and dangerous challenges, section 8's pointer to section 22, section 22 itself
  * (components/legal/UkOnlineSafety), and the Community Rules' matching line) and the Safety page (/safety, its route
  * and its footer link; it points to section 22). false holds all of it back, so the Terms, the Rules and the site
- * render as on the website's main before this branch: set it false whenever this branch reaches main before the
- * launch (the 2.2 submission day, with PRIVACY_AHEAD), and true again at the launch, when the Terms are published
- * again. Its own text follows the feature switches in LIVE, like the rest of the Terms.
+ * render as on the website's main before this branch. It follows LIVE.launchSite (website-check-1103: on its own, a
+ * launch flip of launchSite left /safety a 404 while the app's Safety Tips link points there once safety_page_live is
+ * on), so the launch flip turns it on in the same change, when the Terms are published again. Its own text follows the
+ * feature switches in LIVE, like the rest of the Terms.
  */
-export const ONLINE_SAFETY_TEXT: boolean = false
+export const ONLINE_SAFETY_TEXT: boolean = LIVE.launchSite
 
 /**
  * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.

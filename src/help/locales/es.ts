@@ -321,7 +321,7 @@ const es: HelpText = {
             'Los adultos que pueden intercambiar: una cuenta de al menos 7 días, el correo confirmado, 3 partidas que cuenten y sin pausa de intercambios.',
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, aquí tampoco se aplican las reglas de antigüedad de la cuenta ni de partidas contadas.']),
             'Los menores de 18 pueden mirar, pero no comprar, vender ni hacer ofertas.',
-            ...(o.launch ? [] : ['El Intel empieza a moverse ahí con el lanzamiento de la 2.2, el 8 de diciembre. Hasta entonces, puedes mirar.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: del 12 al 16 de noviembre, los adultos que pueden intercambiar compran y venden aquí de verdad. Todas las ventas hechas durante la prueba se deshacen antes del lanzamiento: quien compró recupera el Intel que pagó y quien vendió devuelve lo que recibió.' : 'El Intel empieza a moverse ahí con el lanzamiento de la 2.2, el 8 de diciembre. Hasta entonces, puedes mirar.']),
           ],
         },
         {
@@ -355,7 +355,7 @@ const es: HelpText = {
           a: [
             'Recompensas selladas que ganas jugando. Cada una se abre y da un objeto cosmético al azar, como un estilo para tu agente o una celebración.',
             'Nunca se venden por dinero, y la membresía no te da más ni mejores probabilidades.',
-            'Antes de abrir una, la app muestra las probabilidades exactas en <b>Probabilidades</b>.',
+            o.launch ? 'Antes de abrir o comprar una, la app muestra las probabilidades exactas en <b>Probabilidades</b>.' : 'Antes de abrir una, la app muestra las probabilidades exactas en <b>Probabilidades</b>.',
           ],
         },
         {

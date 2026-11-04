@@ -325,7 +325,7 @@ const en: HelpText = {
             'Adults who can trade: an account at least 7 days old, a confirmed email, 3 counted games and no trading pause.',
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
-            ...(o.launch ? [] : ['Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 12 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone before the launch: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
           ],
         },
         {
@@ -359,7 +359,7 @@ const en: HelpText = {
           a: [
             'Sealed rewards you earn by playing. Each one opens into one random cosmetic item, like a look for your agent or a celebration.',
             'They’re never sold for money, and a membership doesn’t give you more of them or better odds.',
-            'Before you open one, the app shows the exact odds under <b>Odds</b>.',
+            o.launch ? 'Before you open or buy one, the app shows the exact odds under <b>Odds</b>.' : 'Before you open one, the app shows the exact odds under <b>Odds</b>.',
           ],
         },
         {

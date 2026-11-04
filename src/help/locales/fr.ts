@@ -317,7 +317,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les adultes qui peuvent échanger : un compte d'au moins 7 jours, un e-mail confirmé, 3 parties comptées et pas de pause des échanges.",
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte et de parties comptées sont levées ici aussi.']),
           "Les moins de 18 ans peuvent regarder, mais ni acheter, ni vendre, ni faire d'offres.",
-          ...(o.launch ? [] : ["L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
+          ...(o.launch ? [] : [o.testerMarket ? "Bêta 2 : du 12 au 16 novembre, les adultes qui peuvent échanger achètent et vendent ici pour de vrai. Toutes les ventes faites pendant le test sont annulées avant le lancement : l'acheteur récupère l'Intel payé et le vendeur rend ce qu'il a reçu." : "L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
         ],
       },
       {
@@ -351,7 +351,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Des récompenses scellées que tu gagnes en jouant. Chacune s'ouvre sur un objet cosmétique au hasard, comme un look pour ton agent ou une célébration.",
           "Elles ne sont jamais vendues contre de l'argent, et l'abonnement n'en donne ni plus ni de meilleures chances.",
-          "Avant d'en ouvrir une, l'appli affiche les probabilités exactes dans <b>Probabilités</b>.",
+          o.launch ? "Avant d'en ouvrir ou d'en acheter une, l'appli affiche les probabilités exactes dans <b>Probabilités</b>." : "Avant d'en ouvrir une, l'appli affiche les probabilités exactes dans <b>Probabilités</b>.",
         ],
       },
       {

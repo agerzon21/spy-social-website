@@ -321,7 +321,7 @@ const id: HelpText = {
             'Orang dewasa yang bisa bertukar: akun minimal 7 hari, email terkonfirmasi, 3 permainan yang dihitung, dan pertukaran tidak sedang dijeda.',
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun dan permainan yang dihitung juga tidak berlaku di sini.']),
             'Pemain di bawah 18 tahun bisa melihat, tapi tidak bisa membeli, menjual, atau menawar.',
-            ...(o.launch ? [] : ['Intel mulai berpindah di sana saat peluncuran 2.2, tanggal 8 Desember. Sampai saat itu, kamu bisa melihat-lihat.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: dari 12 sampai 16 November, orang dewasa yang bisa bertukar membeli dan menjual di sini sungguhan. Semua penjualan selama pengujian dibatalkan sebelum peluncuran: pembeli mendapatkan kembali Intel yang dibayarnya, dan penjual mengembalikan apa yang diterimanya.' : 'Intel mulai berpindah di sana saat peluncuran 2.2, tanggal 8 Desember. Sampai saat itu, kamu bisa melihat-lihat.']),
           ],
         },
         {
@@ -355,7 +355,7 @@ const id: HelpText = {
           a: [
             'Hadiah tersegel yang kamu dapat dengan bermain. Masing-masing berisi satu item kosmetik acak, seperti tampilan untuk agenmu atau perayaan.',
             'Sadapan tidak pernah dijual dengan uang, dan keanggotaan tidak memberi lebih banyak atau peluang lebih baik.',
-            'Sebelum kamu membukanya, aplikasi menampilkan peluang pastinya di <b>Peluang</b>.',
+            o.launch ? 'Sebelum kamu membuka atau membelinya, aplikasi menampilkan peluang pastinya di <b>Peluang</b>.' : 'Sebelum kamu membukanya, aplikasi menampilkan peluang pastinya di <b>Peluang</b>.',
           ],
         },
         {

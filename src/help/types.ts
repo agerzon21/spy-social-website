@@ -15,7 +15,7 @@
 
 /** What the page reads from src/lib/legalRelease.ts. */
 export interface HelpOpts {
-  /** The 2.2 launch has happened (LIVE.launchSite): Intel moves between players, gift Intercepts stay with you. */
+  /** The 2.2 launch has happened (LIVE.launchSite): Intel moves between players, gift Intercepts stay with you, odds before buying an Intercept. */
   launch: boolean
   /** Memberships are on sale in the released app (LIVE.purchases). */
   purchases: boolean
@@ -27,6 +27,8 @@ export interface HelpOpts {
   autoTranslation: boolean
   /** The app reads Apple's and Google's age range (LIVE.storeAgeSignals). */
   storeAgeSignals: boolean
+  /** Beta 2's Black Market is open to testers for real, Nov 12-16 (LIVE.testerMarket === 'open'). */
+  testerMarket: boolean
 }
 
 export interface HelpItem {

@@ -654,7 +654,9 @@ const Terms: React.FC = () => {
             never the items that come from Intercepts. Each Intercept opens into one random item.{' '}
             {LIVE.interceptsMarket
               ? "You can't buy an Intercept with money, and we never sell Intercepts. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below); players under 18 can't. Intel can't be bought, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds."
-              : "You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a membership doesn't give you more of them or better odds."} Before you open one, the app shows (under Odds)
+              : "You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a membership doesn't give you more of them or better odds."}{' '}
+            {/* The offer sheet's odds (Nov 10 store build, store-compliance-1103) are out by the launch: LIVE.launchSite. */}
+            {LIVE.launchSite && LIVE.interceptsMarket ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds)
             the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed. If you get an item you already have, you
             keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
@@ -791,7 +793,11 @@ const Terms: React.FC = () => {
             <ListItem>
               The same rules as Trades decide who can use it (an adult,{' '}
               {LIVE.tradeGatesNov2 ? 'an account at least 7 days old that has played 3 counted games' : 'level 20, an account at least 14 days old'}, a
-              confirmed email, no trading pause), and Intel moves on it only once SpySocial 2.2 opens to everyone.
+              confirmed email, no trading pause), and Intel moves on it only once SpySocial 2.2 opens to everyone
+              {/* LIVE.testerMarket: Beta 2's open market from Nov 12 (its sales undone before the launch, Collectibles bullet above). */}
+              {LIVE.testerMarket
+                ? ', except during testing (sales made while SpySocial is being tested are undone before the launch, as described above).'
+                : '.'}{' '}
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
               instead no offer can be priced below an item's minimum price, what one copy of it shreds for{LIVE.interceptsMarket ? " (for an unopened Intercept, what the items its tier gives shred for on average, by its odds)" : ''}.
             </ListItem>
