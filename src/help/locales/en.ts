@@ -257,6 +257,7 @@ const en: HelpText = {
           q: 'Who can trade, and what?',
           a: [
             'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones).',
+            ...(o.launch ? [] : ['During the beta test, until December 7, the account-age, counted-games and new-device rules are off: every tester can trade once their email is confirmed.']),
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
             'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.',
             `Intel can be traded only between adults${o.launch ? '' : ', from the 2.2 launch on December 8'}.`,
@@ -295,6 +296,7 @@ const en: HelpText = {
           a: [
             'Trading pauses for a while after your email or sign-in method changes, after a sign-in on a new device, after you reverse your trades (30 days), or when you lock it yourself.',
             'A new device’s pause lasts 24 hours; an email or sign-in change’s, 3 days.',
+            ...(o.launch ? [] : ['During the beta test, until December 7, a sign-in on a new device or an email or sign-in change doesn’t pause trading.']),
             'It’s there to protect your items if someone else gets into your account.',
             'We can also pause an account’s trading ourselves, to protect it or while we look into fraud. That closes its open Black Market offers and listings, and what they held goes back to the account. Nothing reopens when the pause ends: you list again.',
             'If we sign your account out on every device without pausing trading, your Black Market offers and listings from before that show <b>Waiting</b> and don’t fill. Once your new sign-in can trade, tap <b>Put Back</b> on each one that’s yours, or stop it.',
@@ -321,6 +323,7 @@ const en: HelpText = {
           q: 'Who can use the Black Market?',
           a: [
             'Adults who can trade: an account at least 7 days old, a confirmed email, 3 counted games and no trading pause.',
+            ...(o.launch ? [] : ['During the beta test, until December 7, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
             ...(o.launch ? [] : ['Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
           ],

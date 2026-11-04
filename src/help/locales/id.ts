@@ -253,6 +253,7 @@ const id: HelpText = {
           q: 'Siapa yang bisa tukar, dan apa saja?',
           a: [
             'Kamu bertukar dengan teman, di dalam aplikasi. Kamu butuh akun berusia minimal 7 hari, email terkonfirmasi, dan 3 permainan yang dihitung (permainan selesai yang masuk ke statistikmu, dengan minimal 2 akun tersimpan lain di ponsel lain).',
+            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun, permainan yang dihitung, dan perangkat baru tidak berlaku: setiap penguji bisa bertukar begitu email-nya dikonfirmasi.']),
             'Tiap pihak menawarkan sampai 10 item, dan keduanya mengonfirmasi sebelum pertukaran terjadi. Pertukaran besar meminta kode yang kami kirim lewat email.',
             'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.',
             `Intel hanya bisa ditukar antar orang dewasa${o.launch ? '' : ', mulai peluncuran 2.2 tanggal 8 Desember'}.`,
@@ -291,6 +292,7 @@ const id: HelpText = {
           a: [
             'Pertukaran dijeda sebentar setelah email atau cara masuk berubah, setelah masuk dari perangkat baru, setelah kamu membatalkan pertukaranmu (30 hari), atau saat kamu menguncinya sendiri.',
             'Jeda karena perangkat baru berlangsung 24 jam; karena perubahan email atau cara masuk, 3 hari.',
+            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, masuk di perangkat baru atau mengganti email atau cara masuk tidak menjeda pertukaran.']),
             'Ini melindungi itemmu kalau ada orang lain yang masuk ke akunmu.',
             'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan. Itu menutup penawaran dan item yang dipasang di Pasar Gelap, dan yang ditahan kembali ke akun. Tidak ada yang dibuka lagi saat jeda berakhir: kamu perlu memasangnya lagi.',
             'Jika kami mengeluarkan akunmu dari semua perangkat tanpa menjeda pertukaran, penawaran dan item yang kamu pasang di Pasar Gelap sebelum itu bertanda <b>Menunggu</b> dan tidak terpenuhi. Setelah login barumu bisa bertukar, ketuk <b>Kembalikan</b> pada tiap yang milikmu, atau hentikan.',
@@ -317,6 +319,7 @@ const id: HelpText = {
           q: 'Siapa yang bisa memakai Pasar Gelap?',
           a: [
             'Orang dewasa yang bisa bertukar: akun minimal 7 hari, email terkonfirmasi, 3 permainan yang dihitung, dan pertukaran tidak sedang dijeda.',
+            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun dan permainan yang dihitung juga tidak berlaku di sini.']),
             'Pemain di bawah 18 tahun bisa melihat, tapi tidak bisa membeli, menjual, atau menawar.',
             ...(o.launch ? [] : ['Intel mulai berpindah di sana saat peluncuran 2.2, tanggal 8 Desember. Sampai saat itu, kamu bisa melihat-lihat.']),
           ],

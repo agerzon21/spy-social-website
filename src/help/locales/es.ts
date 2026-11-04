@@ -253,6 +253,7 @@ const es: HelpText = {
           q: '¿Quién puede intercambiar, y qué?',
           a: [
             'Intercambias con amigos, dentro de la app. Necesitas una cuenta de al menos 7 días, el correo confirmado y 3 partidas que cuenten (partidas terminadas que suman a tus estadísticas, con al menos otras 2 cuentas guardadas en otros teléfonos).',
+            ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, no se aplican las reglas de antigüedad de la cuenta, partidas contadas ni dispositivo nuevo: cualquier tester puede intercambiar en cuanto confirme su correo.']),
             'Cada lado ofrece hasta 10 objetos, y los dos confirman antes de que se haga. Los intercambios grandes piden un código que te enviamos por correo.',
             'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.',
             `El Intel solo se puede intercambiar entre adultos${o.launch ? '' : ', desde el lanzamiento de la 2.2 el 8 de diciembre'}.`,
@@ -291,6 +292,7 @@ const es: HelpText = {
           a: [
             'Los intercambios se pausan un tiempo tras un cambio de correo o de forma de inicio de sesión, tras iniciar sesión en un dispositivo nuevo, tras revertir tus intercambios (30 días) o cuando los bloqueas tú.',
             'La pausa por un dispositivo nuevo dura 24 horas; la de un cambio de correo o de inicio de sesión, 3 días.',
+            ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, iniciar sesión en un dispositivo nuevo o cambiar el correo o el método de inicio de sesión no pausa los intercambios.']),
             'Así se protegen tus objetos si alguien más entra en tu cuenta.',
             'También podemos pausar nosotros los intercambios de una cuenta, para protegerla o mientras revisamos un posible fraude. Eso cierra sus ofertas y anuncios abiertos en el Mercado Negro, y lo que tenían reservado vuelve a la cuenta. Nada se reabre cuando termina la pausa: tienes que volver a publicar.',
             'Si cerramos la sesión de tu cuenta en todos los dispositivos sin pausar los intercambios, tus ofertas y anuncios del Mercado Negro de antes de eso muestran <b>En espera</b> y no se completan. Cuando tu nuevo inicio de sesión pueda intercambiar, toca <b>Volver a poner</b> en cada uno que sea tuyo, o detenlo.',
@@ -317,6 +319,7 @@ const es: HelpText = {
           q: '¿Quién puede usar el Mercado Negro?',
           a: [
             'Los adultos que pueden intercambiar: una cuenta de al menos 7 días, el correo confirmado, 3 partidas que cuenten y sin pausa de intercambios.',
+            ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, aquí tampoco se aplican las reglas de antigüedad de la cuenta ni de partidas contadas.']),
             'Los menores de 18 pueden mirar, pero no comprar, vender ni hacer ofertas.',
             ...(o.launch ? [] : ['El Intel empieza a moverse ahí con el lanzamiento de la 2.2, el 8 de diciembre. Hasta entonces, puedes mirar.']),
           ],

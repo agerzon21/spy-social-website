@@ -249,6 +249,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Qui peut échanger, et quoi ?',
         a: [
           "Tu échanges avec tes amis, dans l'appli. Il te faut un compte d'au moins 7 jours, un e-mail confirmé et 3 parties comptées (des parties terminées qui comptent dans tes stats, avec au moins 2 autres comptes sauvegardés sur d'autres téléphones).",
+            ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte, de parties comptées et de nouvel appareil sont levées : chaque testeur peut échanger dès que son e-mail est confirmé.']),
           "Chaque côté propose jusqu'à 10 objets, et les deux confirment avant l'échange. Les gros échanges demandent un code envoyé par e-mail.",
           "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais.",
           `L'Intel ne s'échange qu'entre adultes${o.launch ? '' : ', à partir du lancement de la 2.2 le 8 décembre'}.`,
@@ -287,6 +288,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Les échanges se mettent en pause un moment après un changement d'e-mail ou de mode de connexion, après une connexion sur un nouvel appareil, après l'annulation de tes échanges (30 jours), ou quand tu les verrouilles toi-même.",
           "La pause après un nouvel appareil dure 24 heures ; après un changement d'e-mail ou de connexion, 3 jours.",
+            ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, une connexion sur un nouvel appareil ou un changement d’e-mail ou de mode de connexion ne met pas les échanges en pause.']),
           "Ça protège tes objets si quelqu'un d'autre accède à ton compte.",
           "Nous pouvons aussi mettre nous-mêmes en pause les échanges d'un compte, pour le protéger ou le temps de vérifier une fraude. Cela ferme ses offres et annonces ouvertes sur le Marché noir, et ce qu'elles réservaient revient au compte. Rien ne rouvre à la fin de la pause : il faut republier.",
           "Si nous déconnectons ton compte sur tous les appareils sans mettre les échanges en pause, tes offres et annonces du Marché noir d'avant cela affichent <b>En attente</b> et ne s'exécutent pas. Quand ta nouvelle connexion peut échanger, touche <b>Remettre</b> sur chacune qui est à toi, ou arrête-la.",
@@ -313,6 +315,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Qui peut utiliser le Marché noir ?',
         a: [
           "Les adultes qui peuvent échanger : un compte d'au moins 7 jours, un e-mail confirmé, 3 parties comptées et pas de pause des échanges.",
+            ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte et de parties comptées sont levées ici aussi.']),
           "Les moins de 18 ans peuvent regarder, mais ni acheter, ni vendre, ni faire d'offres.",
           ...(o.launch ? [] : ["L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
         ],

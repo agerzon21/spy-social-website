@@ -253,6 +253,7 @@ const ptBR: HelpText = {
           q: 'Quem pode trocar, e o quê?',
           a: [
             'Você troca com amigos, dentro do app. Precisa de uma conta com pelo menos 7 dias, e-mail confirmado e 3 partidas contadas (partidas terminadas que entram nas suas estatísticas, com pelo menos outras 2 contas salvas em outros celulares).',
+            ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta, partidas contadas e novo aparelho estão desligadas: qualquer testador pode trocar assim que confirmar o e-mail.']),
             'Cada lado oferece até 10 itens, e os dois confirmam antes da troca. Trocas grandes pedem um código que mandamos por e-mail.',
             'O app marca quais itens dá para trocar. A assinatura e o que ela inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.',
             `Intel só pode ser trocada entre adultos${o.launch ? '' : ', a partir do lançamento da 2.2 em 8 de dezembro'}.`,
@@ -291,6 +292,7 @@ const ptBR: HelpText = {
           a: [
             'As trocas pausam por um tempo depois de mudar o e-mail ou a forma de login, depois de entrar num aparelho novo, depois de reverter suas trocas (30 dias) ou quando você mesmo as tranca.',
             'A pausa por aparelho novo dura 24 horas; a por mudança de e-mail ou de login, 3 dias.',
+            ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, entrar em um novo aparelho ou mudar o e-mail ou a forma de entrar não pausa as trocas.']),
             'Isso protege seus itens se outra pessoa entrar na sua conta.',
             'Também podemos pausar nós mesmos as trocas de uma conta, para protegê-la ou enquanto verificamos uma fraude. Isso fecha as ofertas e os anúncios abertos dela no Mercado Negro, e o que estava reservado volta para a conta. Nada reabre quando a pausa termina: é preciso anunciar de novo.',
             'Se desconectarmos sua conta em todos os aparelhos sem pausar as trocas, suas ofertas e anúncios do Mercado Negro feitos antes disso mostram <b>Em espera</b> e não são executados. Quando seu novo login puder trocar, toque em <b>Colocar de volta</b> em cada um que for seu, ou pare-o.',
@@ -317,6 +319,7 @@ const ptBR: HelpText = {
           q: 'Quem pode usar o Mercado Negro?',
           a: [
             'Adultos que podem trocar: conta com pelo menos 7 dias, e-mail confirmado, 3 partidas contadas e trocas sem pausa.',
+            ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta e de partidas contadas também estão desligadas aqui.']),
             'Menores de 18 podem olhar, mas não podem comprar, vender nem fazer ofertas.',
             ...(o.launch ? [] : ['A Intel começa a circular lá no lançamento da 2.2, em 8 de dezembro. Até lá, dá para dar uma olhada.']),
           ],
