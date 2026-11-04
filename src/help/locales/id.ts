@@ -425,7 +425,7 @@ const id: HelpText = {
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
             'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',
-            ...(o.launch ? [] : ['Beta 2: $10 dikirim lewat PayPal ke setiap pemain terkonfirmasi yang bermain satu jam penuh dan mengirim survei, dalam 7 hari setelah sesi.']),
+            ...(o.launch ? [] : ['Beta 2: ucapan terima kasih $10 dikirim lewat PayPal ke setiap pemain terkonfirmasi yang ikut sesi live satu jam penuh dan mengirim survei, dalam 7 hari setelah sesi, sama untuk iPhone dan Android.']),
           ],
         },
       ],

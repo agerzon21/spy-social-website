@@ -861,7 +861,7 @@ const id: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Playtest live',
     title: 'Main duluan',
-    lede: '<b>$10 lewat PayPal</b> untuk setiap pemain terkonfirmasi yang main penuh 1 jam di playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+    lede: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Game, XP, dan item dari tes ini direset saat peluncuran.',
     headsUp: '<b>Perhatian:</b> SpySocial di App Store dan Google Play adalah versi lama. Beta ini build baru yang sangat berbeda; kamu menginstalnya dari link yang kami kirim lewat email.',
@@ -910,9 +910,9 @@ const id: Strings = {
       eyebrow: 'Yang kamu dapat',
       title: 'Hadiah beta yang tetap jadi milikmu setelah peluncuran',
       items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
-      prizeTitle: '$10 lewat PayPal + satu bonus $50',
-      prize: '$10 lewat PayPal untuk setiap pemain terkonfirmasi yang main penuh satu jam dan mengirim survei 5 menit, dikirim dalam 7 hari setelah sesi. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna, dipilih oleh developer dalam waktu seminggu.',
-      seats: (day: string) => `24 kursi. Hanya pemain yang kami konfirmasi lewat email (paling lambat ${day}) yang dibayar; yang lain masuk daftar tunggu untuk tes berikutnya.`,
+      prizeTitle: 'Terima kasih $10 lewat PayPal + satu bonus $50',
+      prize: 'Ucapan terima kasih $10 lewat PayPal untuk waktumu di sesi live: setiap pemain terkonfirmasi yang ikut penuh satu jam dan mengirim survei 5 menit menerimanya dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Hanya memasang build uji tidak membuatmu mendapatkannya. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu.',
+      seats: (day: string) => `24 kursi. Ucapan terima kasih hanya untuk pemain yang kami konfirmasi lewat email (paling lambat ${day}) dan ikut sesi; yang lain masuk daftar tunggu untuk tes berikutnya.`,
     },
     friends: {
       eyebrow: 'Teman',
@@ -929,7 +929,7 @@ const id: Strings = {
       android: 'Android: formulir meminta email Google yang dipakai di Play Store-mu, karena Google mewajibkannya untuk build uji. Email itu dihapus setelah sesi.',
       iphone: 'iPhone: kamu memasang SpySocial lewat TestFlight, dari link di email.',
     },
-    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus setelah Beta 2. Email PayPal-mu dihapus setelah pembayaran.',
+    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus setelah Beta 2. Email PayPal-mu dihapus setelah ucapan terima kasihmu kami kirim.',
   },
 
   notFound: {

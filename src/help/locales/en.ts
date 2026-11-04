@@ -429,7 +429,7 @@ const en: HelpText = {
             ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
             'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
             'Something missing? Email <email/> with your username and the email you signed in with during the test. A guest account isn’t on the list, so a different account is the usual reason.',
-            ...(o.launch ? [] : ['Beta 2: the $10 goes by PayPal to every confirmed player who plays the full hour and sends the survey, within 7 days of the session.']),
+            ...(o.launch ? [] : ['Beta 2: the $10 thank-you goes by PayPal to every confirmed player who joins the full live hour and sends the survey, within 7 days of the session, the same on iPhone and Android.']),
           ],
         },
       ],

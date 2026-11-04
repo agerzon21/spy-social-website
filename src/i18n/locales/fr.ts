@@ -866,7 +866,7 @@ const fr: Strings = {
   beta: {
     eyebrow: 'Bêta\u00a02 · Test en direct',
     title: 'Joue en premier',
-    lede: '<b>10\u00a0$ par PayPal</b> pour chaque joueur confirmé qui joue toute l’heure de ce test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta, deux titres, 10\u00a0interceptions de chaque niveau et 1\u00a0mois d’abonnement.',
+    lede: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta, deux titres, 10\u00a0interceptions de chaque niveau et 1\u00a0mois d’abonnement.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Les parties, l’XP et les objets du test sont remis à zéro à la sortie.',
     headsUp: '<b>Attention\u00a0:</b> le SpySocial de l’App Store et de Google Play est une ancienne version. La bêta est une nouvelle version très différente\u00a0; tu l’installes depuis le lien qu’on t’envoie par e-mail.',
@@ -915,9 +915,9 @@ const fr: Strings = {
       eyebrow: 'Ce que tu reçois',
       title: 'Récompenses bêta à garder après la sortie',
       items: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Bêta-testeur\u00a0»</b> et <b>«\u00a0Testeur de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
-      prizeTitle: '10\u00a0$ par PayPal + un bonus de 50\u00a0$',
-      prize: '10\u00a0$ par PayPal pour chaque joueur confirmé qui joue toute l’heure et envoie le questionnaire de 5\u00a0minutes, versés dans les 7\u00a0jours après la session. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile, choisi par le développeur sous une semaine.',
-      seats: (day: string) => `24\u00a0places. Seuls les joueurs qu’on confirme par e-mail (au plus tard le ${day}) sont payés\u00a0; les autres passent sur la liste d’attente du prochain test.`,
+      prizeTitle: '10\u00a0$ de remerciement par PayPal + un bonus de 50\u00a0$',
+      prize: 'Un remerciement de 10\u00a0$ par PayPal pour ton temps pendant la session en direct\u00a0: chaque joueur confirmé qui participe à toute l’heure et envoie le questionnaire de 5\u00a0minutes le reçoit dans les 7\u00a0jours après la session, pareil sur iPhone et Android. Installer la version de test ne suffit pas à l’obtenir. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile de la session, choisi par le développeur sous une semaine.',
+      seats: (day: string) => `24\u00a0places. Le remerciement va seulement aux joueurs qu’on confirme par e-mail (au plus tard le ${day}) et qui participent à la session\u00a0; les autres passent sur la liste d’attente du prochain test.`,
     },
     friends: {
       eyebrow: 'Amis',
@@ -934,7 +934,7 @@ const fr: Strings = {
       android: 'Android\u00a0: le formulaire demande l’adresse Google de ton Play Store, car Google l’exige pour les versions de test. Elle est supprimée après la session.',
       iphone: 'iPhone\u00a0: tu installes SpySocial avec TestFlight, via le lien de l’e-mail.',
     },
-    fine: 'Version de pré-lancement. Ne partage pas les noms ni le chat des autres joueurs. Tes données d’inscription sont supprimées après la Bêta\u00a02. Ton adresse PayPal est supprimée une fois le paiement fait.',
+    fine: 'Version de pré-lancement. Ne partage pas les noms ni le chat des autres joueurs. Tes données d’inscription sont supprimées après la Bêta\u00a02. Ton adresse PayPal est supprimée une fois ton remerciement envoyé.',
   },
 
   notFound: {

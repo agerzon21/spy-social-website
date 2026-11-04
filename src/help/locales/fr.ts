@@ -421,7 +421,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
           "Il manque quelque chose ? Écris à <email/> avec ton nom d'utilisateur et l'e-mail utilisé pendant le test. Un compte invité n'est pas sur la liste : c'est souvent une question de compte différent.",
-          ...(o.launch ? [] : ["Bêta 2 : les 10 $ sont envoyés par PayPal à chaque joueur confirmé qui joue l'heure complète et envoie le questionnaire, dans les 7 jours après la session."]),
+          ...(o.launch ? [] : ["Bêta 2 : le remerciement de 10 $ est envoyé par PayPal à chaque joueur confirmé qui participe à toute l'heure en direct et envoie le questionnaire, dans les 7 jours après la session, pareil sur iPhone et Android."]),
         ],
       },
     ],

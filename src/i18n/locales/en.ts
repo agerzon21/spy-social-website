@@ -930,7 +930,7 @@ const en = {
     eyebrow: 'Beta 2 · Live playtest',
     /** The poster line, set huge: it must fit a 320 px phone. The full stop after it is home.hero.titleMark. */
     title: 'Play it first',
-    lede: '<b>$10 by PayPal</b> for every confirmed player who plays the full hour of this live group playtest of SpySocial, the free social deduction party game, and sends the 5-minute survey, plus one $50 bonus for the single most useful bug report or idea. Plus beta rewards you keep after launch: the Beta Pin, two titles, 10 Intercepts of each tier and a month of membership.',
+    lede: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin, two titles, 10 Intercepts of each tier and a month of membership.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Games, XP and items from the test reset at launch.',
     /** Under the lede: the store app is the old version; the beta comes from the emailed link. */
@@ -993,10 +993,10 @@ const en = {
       title: 'Beta rewards you keep after launch',
       /** The app's own names for the pin, the titles and the Intercepts. */
       items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> and <b>Field Tester</b> titles', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
-      prizeTitle: '$10 by PayPal + one $50 bonus',
-      prize: '$10 by PayPal to every confirmed player who plays the full hour and sends the 5-minute survey, sent within 7 days of the session. Plus one $50 bonus (a gift card) for the single most useful bug report or idea, chosen by the developer within a week.',
+      prizeTitle: '$10 PayPal thank-you + one $50 bonus',
+      prize: 'A $10 thank-you by PayPal for your time in the live session: every confirmed player who joins the full hour and sends the 5-minute survey gets it within 7 days of the session, the same on iPhone and Android. Installing the test build doesn\'t earn it on its own. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week.',
       /** `day`: the day we confirm seats by email ("Monday, November 9"). */
-      seats: (day: string) => `24 seats. Only players we confirm by email (by ${day}) are paid; everyone else goes on the waitlist for the next test.`,
+      seats: (day: string) => `24 seats. The thank-you goes only to players we confirm by email (by ${day}) who join the session; everyone else goes on the waitlist for the next test.`,
     },
     friends: {
       eyebrow: 'Friends',
@@ -1013,7 +1013,7 @@ const en = {
       android: "Android: the form asks for your Play Store's Google email, because Google requires it for test builds. It's deleted after the session.",
       iphone: 'iPhone: you install SpySocial with TestFlight, from the link in your email.',
     },
-    fine: 'Pre-release build. Don\'t share other players\' names or chat. Your sign-up data is deleted after Beta 2. Your PayPal email is deleted once you are paid.',
+    fine: 'Pre-release build. Don\'t share other players\' names or chat. Your sign-up data is deleted after Beta 2. Your PayPal email is deleted once we have sent your thank-you.',
   },
 
   notFound: {

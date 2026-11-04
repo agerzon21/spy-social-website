@@ -858,7 +858,7 @@ const es: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Prueba en vivo',
     title: 'Juega primero',
-    lede: '<b>10\u00a0USD por PayPal</b> para cada jugador confirmado que juegue la hora completa de esta prueba de juego en grupo y en vivo de SpySocial, el juego gratis de deducción social para fiestas, y envíe la encuesta de 5 minutos, más un bono de 50\u00a0USD para el reporte de error o la idea más útil. Además, recompensas beta que te quedas después del lanzamiento: el Pin beta, dos títulos, 10 intercepciones de cada nivel y 1 mes de membresía.',
+    lede: '<b>10\u00a0USD por PayPal como agradecimiento</b> para cada jugador confirmado que se una a la hora completa de esta sesión de prueba de juego en grupo y en vivo de SpySocial, el juego gratis de deducción social para fiestas, y envíe la encuesta de 5 minutos, igual en iPhone y Android, más un bono de 50\u00a0USD para el reporte de error o la idea más útil de la sesión. Además, recompensas beta que te quedas después del lanzamiento: el Pin beta, dos títulos, 10 intercepciones de cada nivel y 1 mes de membresía.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Las partidas, la XP y los objetos de la prueba se reinician en el lanzamiento.',
     headsUp: '<b>Ojo:</b> el SpySocial de la App Store y Google Play es una versión antigua. La beta es una versión nueva y muy distinta; la instalas desde el enlace que te enviamos por correo.',
@@ -907,9 +907,9 @@ const es: Strings = {
       eyebrow: 'Qué recibes',
       title: 'Recompensas beta que te quedas tras el lanzamiento',
       items: ['El <b>Pin beta</b>', 'Los títulos <b>Tester beta</b> y <b>Tester de Campo</b>', '<b>10 intercepciones</b> de cada nivel', '<b>1 mes</b> de membresía'],
-      prizeTitle: '10\u00a0USD por PayPal + un bono de 50\u00a0USD',
-      prize: '10 USD por PayPal para cada jugador confirmado que juegue la hora completa y envíe la encuesta de 5 minutos, enviados en los 7 días siguientes a la sesión. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil, elegido por el desarrollador en el plazo de una semana.',
-      seats: (day: string) => `24 lugares. Solo se paga a los jugadores que confirmemos por correo (a más tardar el ${day}); los demás pasan a la lista de espera de la próxima prueba.`,
+      prizeTitle: '10\u00a0USD de agradecimiento por PayPal + un bono de 50\u00a0USD',
+      prize: 'Un agradecimiento de 10 USD por PayPal por tu tiempo en la sesión en vivo: cada jugador confirmado que se una a la hora completa y envíe la encuesta de 5 minutos lo recibe en los 7 días siguientes a la sesión, igual en iPhone y Android. Instalar la versión de prueba no da derecho a él por sí solo. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil de la sesión, elegido por el desarrollador en el plazo de una semana.',
+      seats: (day: string) => `24 lugares. El agradecimiento es solo para los jugadores que confirmemos por correo (a más tardar el ${day}) y que se unan a la sesión; los demás pasan a la lista de espera de la próxima prueba.`,
     },
     friends: {
       eyebrow: 'Amigos',
@@ -926,7 +926,7 @@ const es: Strings = {
       android: 'Android: el formulario te pide el correo de Google de tu Play Store, porque Google lo exige para las versiones de prueba. Se borra después de la sesión.',
       iphone: 'iPhone: instalas SpySocial con TestFlight, desde el enlace del correo.',
     },
-    fine: 'Versión previa al lanzamiento. No compartas los nombres ni el chat de otros jugadores. Tus datos de inscripción se borran después de la Beta 2. Tu correo de PayPal se borra en cuanto te paguemos.',
+    fine: 'Versión previa al lanzamiento. No compartas los nombres ni el chat de otros jugadores. Tus datos de inscripción se borran después de la Beta 2. Tu correo de PayPal se borra en cuanto te enviemos el agradecimiento.',
   },
 
   notFound: {

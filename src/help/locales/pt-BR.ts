@@ -425,7 +425,7 @@ const ptBR: HelpText = {
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
             'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de convidado não está na lista, então o mais comum é ser outra conta.',
-            ...(o.launch ? [] : ['Beta 2: os US$ 10 vão por PayPal para cada jogador confirmado que joga a hora inteira e envia a pesquisa, em até 7 dias após a sessão.']),
+            ...(o.launch ? [] : ['Beta 2: o agradecimento de US$ 10 vai por PayPal para cada jogador confirmado que participa da hora inteira ao vivo e envia a pesquisa, em até 7 dias após a sessão, igual no iPhone e no Android.']),
           ],
         },
       ],
