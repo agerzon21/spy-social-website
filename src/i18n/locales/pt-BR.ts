@@ -454,7 +454,7 @@ const ptBR: Strings = {
       reports:
         '<b>Denúncias, bloqueios e punições:</b> uma pessoa lê cada denúncia em até 24 horas, e o jogador denunciado não fica sabendo quem fez a denúncia. Denúncias que envolvem um jogador menor de 18 anos são lidas primeiro. As punições vão de uma advertência a um bloqueio do chat, uma pausa nas salas públicas ou um banimento. Nossas <link>Regras da comunidade</link> listam o que não é permitido.',
       drawingCheck:
-        '<b>Verificação dos desenhos:</b> as vezes de desenhar numa sala pública são verificadas automaticamente, e uma vez que quebra as regras é removida do desenho.',
+        '<b>Verificação dos desenhos:</b> as vezes de desenhar numa sala pública são verificadas automaticamente, e a vez que quebrar as regras é removida do desenho.',
       buyTitle: 'Compras',
       buyText:
         'Adolescentes precisam da permissão dos pais ou do responsável legal para comprar qualquer coisa. As compras passam pela App Store ou pelo Google Play, então os controles parentais deles, como o Pedir Compra da Apple e as aprovações de compra do Google Family Link, funcionam normalmente. Um Pack Pass é renovado até ser cancelado nos ajustes da loja.',

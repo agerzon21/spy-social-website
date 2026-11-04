@@ -685,7 +685,7 @@ const ptBR: HelpText = {
             'Não contam: partida encerrada pelo anfitrião, distribuição cancelada, partida abandonada, ser removido da sala, um lugar a que você nunca chegou, ou assistir. Partida sem vencedor não é vitória nem derrota.',
             'Suas estatísticas mostram o Jogar online e as salas privadas separados, então veja o seletor no topo.',
             'Salas privadas nunca dão Intel nem interceptações, e partidas do Jogar online só dão se renderam XP.',
-            'Para trocar, você precisa de 3 partidas terminadas que contem e que nossas verificações de jogo limpo não tenham marcado, cada uma com pelo menos outras 2 contas salvas em outros celulares. Dois celulares no mesmo Wi-Fi podem; outra conta no seu próprio celular não é uma dessas 2.',
+            'Para trocar, você precisa de 3 partidas terminadas que contem e que nossas verificações de jogo limpo não tenham marcado, cada uma com pelo menos outras 2 contas salvas em outros celulares. Dois celulares no mesmo Wi-Fi valem; outra conta no seu próprio celular não é uma dessas 2.',
             'Se devia ter contado, escreva para <email/> com seu nome de usuário, o código da sala (se tiver) e quando você jogou.',
           ],
         },
