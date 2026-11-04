@@ -167,6 +167,7 @@ const ptBR: HelpText = {
                     : 'Toque em <b>Traduzir</b> numa mensagem para ler no seu idioma.',
                 ]
               : ['Numa sala privada, o anfitrião escolhe o idioma da partida para o segredo e as dicas.']),
+            ...(o.autoTranslation ? ['O Jogar online pode oferecer adicionar seu idioma ao tradutor do próprio telefone. É opcional, e mantém as linhas em inglês do chat traduzidas quando nosso tradutor está ocupado.'] : []),
           ],
         },
       ],
@@ -226,6 +227,8 @@ const ptBR: HelpText = {
             'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso uma assinatura para começar. Se o líder sair, a liderança passa primeiro para alguém com assinatura.',
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
             'Numa mesa de 12 lugares da Noite de Jogos, até 6. Membros do grupo que procuram partida sozinhos também contam: juntos, nunca mais que meia mesa.',
+            'Para sentar na mesma mesa, busquem pelo grupo: <b>Jogar online</b> sozinho é uma busca individual. Depois de uma partida do Jogar online, <b>Voltar ao seu grupo</b> leva você de volta a ele.',
+            'Sair de uma partida antes do fim dá a pausa de costume do Jogar online, e seu grupo não pode buscar mesa até ela acabar. Enquanto você tem lugar numa partida, continua no grupo mesmo se o telefone entrar em repouso.',
             'Qualquer grupo pode abrir uma sala privada junto, e um grupo grande demais para uma mesa joga lá.',
             'O chat do grupo segue as mesmas regras de todo o chat. Para denunciar uma mensagem, toque e segure nela.',
           ],
@@ -290,7 +293,7 @@ const ptBR: HelpText = {
             'A pausa por aparelho novo dura 24 horas; a por mudança de e-mail ou de login, 3 dias.',
             'Isso protege seus itens se outra pessoa entrar na sua conta.',
             'Também podemos pausar nós mesmos as trocas de uma conta, para protegê-la ou enquanto verificamos uma fraude. Isso fecha as ofertas e os anúncios abertos dela no Mercado Negro, e o que estava reservado volta para a conta. Nada reabre quando a pausa termina: é preciso anunciar de novo.',
-            'Se desconectarmos sua conta em todos os aparelhos sem pausar as trocas, suas ofertas e anúncios do Mercado Negro feitos antes disso ficam esperando e não são executados. Entre de novo para cancelá-los ou mudar o preço de um anúncio.',
+            'Se desconectarmos sua conta em todos os aparelhos sem pausar as trocas, suas ofertas e anúncios do Mercado Negro feitos antes disso mostram <b>Em espera</b> e não são executados. Quando seu novo login puder trocar, toque em <b>Colocar de volta</b> em cada um que for seu, ou pare-o.',
           ],
         },
       ],
@@ -393,6 +396,7 @@ const ptBR: HelpText = {
             'Sua sequência: uma partida de Jogar online por dia a mantém. Uma partida que você começa antes do novo dia também a mantém, mesmo se terminar depois.',
             'A Intel nunca é vendida e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-la com outros adultos.',
             'Cada mudança na sua Intel é uma linha no seu registro de Intel, com o motivo.',
+            'No <b>Cofre</b>, seu Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. Intel preso numa oferta aberta do Mercado Negro conta como gasto até voltar.',
           ],
         },
         {
@@ -596,6 +600,7 @@ const ptBR: HelpText = {
             'Uma pessoa lê cada denúncia, e o jogador não fica sabendo quem enviou.',
             'Bloquear mantém vocês separados: nenhum dos dois entra numa sala onde o outro está. Desbloqueie nos Ajustes, em <b>Jogadores bloqueados</b>.',
             'Mentir e blefar faz parte do jogo e não é motivo de denúncia.',
+            'Numa mesa com um grupo, escolha <b>Conluio</b> se achar que eles se ajudam fora do jogo. <b>Denunciar o grupo</b> cobre todos do grupo deles naquela mesa.',
           ],
         },
         {
@@ -658,6 +663,7 @@ const ptBR: HelpText = {
           a: [
             'O app reconecta sozinho quando sua conexão volta.',
             'Se você for parar no início, toque em <b>Voltar</b> no cartão da sua sala. Seu lugar fica guardado.',
+            'Se o app disser que não recebeu resposta depois de um voto, um palpite, uma compra, uma trituração ou uma troca, a ação pode ter acontecido mesmo assim. Confira e tente de novo se não: nada é pago nem trocado duas vezes.',
           ],
         },
         {

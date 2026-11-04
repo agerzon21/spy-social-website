@@ -167,6 +167,7 @@ const id: HelpText = {
                     : 'Ketuk <b>Terjemahkan</b> pada pesan untuk membacanya dalam bahasamu.',
                 ]
               : ['Di room privat, host memilih bahasa permainan untuk rahasia dan petunjuk.']),
+            ...(o.autoTranslation ? ['Main online bisa menawarkan untuk menambahkan bahasamu ke penerjemah bawaan ponsel. Ini opsional, dan membuat baris bahasa Inggris di chat tetap diterjemahkan saat penerjemah kami sibuk.'] : []),
           ],
         },
       ],
@@ -226,6 +227,8 @@ const id: HelpText = {
             'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Perlu keanggotaan untuk memulainya. Jika ketua pergi, peran ketua lebih dulu pindah ke orang yang punya keanggotaan.',
             'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
             'Di meja 12 kursi Malam Permainan, sampai 6 orang. Anggota grup yang mencari sendiri juga dihitung: bersama-sama tak pernah lebih dari setengah meja.',
+            'Agar duduk di satu meja, cari dari grup: <b>Main online</b> sendirian adalah pencarian sendiri. Setelah permainan Main online, <b>Kembali ke Grup</b> membawamu kembali ke grup.',
+            'Keluar dari permainan sebelum selesai memberimu jeda biasa dari Main online, dan grupmu tidak bisa mencari meja sampai jeda itu berakhir. Selama kamu masih punya kursi di permainan, kamu tetap di grup meski ponselmu tertidur.',
             'Grup mana pun bisa membuka room privat bersama, dan grup yang terlalu besar untuk satu meja main di sana.',
             'Chat grup mengikuti aturan yang sama dengan semua chat. Untuk melaporkan pesan, tekan lama pesan itu.',
           ],
@@ -290,7 +293,7 @@ const id: HelpText = {
             'Jeda karena perangkat baru berlangsung 24 jam; karena perubahan email atau cara masuk, 3 hari.',
             'Ini melindungi itemmu kalau ada orang lain yang masuk ke akunmu.',
             'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan. Itu menutup penawaran dan item yang dipasang di Pasar Gelap, dan yang ditahan kembali ke akun. Tidak ada yang dibuka lagi saat jeda berakhir: kamu perlu memasangnya lagi.',
-            'Jika kami mengeluarkan akunmu dari semua perangkat tanpa menjeda pertukaran, penawaran dan item yang kamu pasang di Pasar Gelap sebelum itu menunggu dan tidak terpenuhi. Masuk lagi untuk membatalkannya atau mengubah harga item.',
+            'Jika kami mengeluarkan akunmu dari semua perangkat tanpa menjeda pertukaran, penawaran dan item yang kamu pasang di Pasar Gelap sebelum itu bertanda <b>Menunggu</b> dan tidak terpenuhi. Setelah login barumu bisa bertukar, ketuk <b>Kembalikan</b> pada tiap yang milikmu, atau hentikan.',
           ],
         },
       ],
@@ -393,6 +396,7 @@ const id: HelpText = {
             'Streak-mu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
             'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.',
             'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya.',
+            'Di <b>Brankas</b>, Intel-mu punya ubin sendiri, tumpukan yang tumbuh sesuai jumlahnya. Ketuk untuk melihat yang didapat hari ini, didapat seluruhnya, dan dipakai seluruhnya. Intel yang tertahan di penawaran Pasar Gelap yang masih terbuka dihitung terpakai sampai kembali.',
           ],
         },
         {
@@ -596,6 +600,7 @@ const id: HelpText = {
             'Setiap laporan dibaca oleh manusia, dan pemain itu tidak tahu siapa yang melapor.',
             'Memblokir memisahkan kalian: tidak ada yang bisa masuk ke room tempat yang lain berada. Buka blokir di Pengaturan, di <b>Pemain diblokir</b>.',
             'Berbohong dan menggertak itu bagian dari permainan dan tidak bisa dilaporkan.',
+            'Di meja dengan grup, pilih <b>Main sekongkol</b> jika kamu kira mereka bekerja sama di luar permainan. <b>Laporkan Grup</b> mencakup semua anggota grup mereka di meja itu.',
           ],
         },
         {
@@ -658,6 +663,7 @@ const id: HelpText = {
           a: [
             'Aplikasi tersambung lagi sendiri saat koneksimu kembali.',
             'Kalau kamu sampai di Beranda, ketuk <b>Kembali</b> di kartu room-mu. Kursimu tetap disimpan.',
+            'Jika aplikasi bilang tidak mendapat jawaban setelah vote, tebakan, pembelian, penghancuran, atau pertukaran, mungkin itu tetap berhasil. Periksa dulu, lalu coba lagi jika belum: tidak ada yang dibayar atau ditukar dua kali.',
           ],
         },
         {

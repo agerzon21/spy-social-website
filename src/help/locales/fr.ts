@@ -163,6 +163,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
                   : 'Touche <b>Traduire</b> sur un message pour le lire dans ta langue.',
               ]
             : ["Dans un salon privé, l'hôte choisit la langue de la partie pour le secret et les indices."]),
+          ...(o.autoTranslation ? ["Jouer en ligne peut te proposer d'ajouter ta langue au traducteur de ton téléphone. C'est facultatif, et ça garde les lignes en anglais du chat traduites quand notre traducteur est occupé."] : []),
         ],
       },
     ],
@@ -222,6 +223,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut un abonnement pour en créer un. Si le chef part, la main passe d'abord à quelqu'un qui a un abonnement.",
           "Aux tables de Jouer en ligne et aux Soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
           "À une table de 12 places d'une Soirée jeux, jusqu'à 6. Les membres du groupe qui cherchent seuls comptent aussi : ensemble, jamais plus de la moitié d'une table.",
+          "Pour s'asseoir à la même table, cherchez depuis le groupe : <b>Jouer en ligne</b> tout seul, c'est une recherche en solo. Après une partie de Jouer en ligne, <b>Retour à ton groupe</b> t'y ramène.",
+          'Quitter une partie en cours te vaut la pause habituelle de Jouer en ligne, et ton groupe ne peut pas chercher de table avant la fin de celle-ci. Tant que tu as une place dans une partie, tu restes dans le groupe, même si ton téléphone se met en veille.',
           'Tout groupe peut ouvrir un salon privé ensemble, et un groupe trop grand pour une table y joue.',
           'Le chat du groupe suit les mêmes règles que tout le chat. Pour signaler un message, appuie longuement dessus.',
         ],
@@ -286,7 +289,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "La pause après un nouvel appareil dure 24 heures ; après un changement d'e-mail ou de connexion, 3 jours.",
           "Ça protège tes objets si quelqu'un d'autre accède à ton compte.",
           "Nous pouvons aussi mettre nous-mêmes en pause les échanges d'un compte, pour le protéger ou le temps de vérifier une fraude. Cela ferme ses offres et annonces ouvertes sur le Marché noir, et ce qu'elles réservaient revient au compte. Rien ne rouvre à la fin de la pause : il faut republier.",
-          "Si nous déconnectons ton compte sur tous les appareils sans mettre les échanges en pause, tes offres et annonces du Marché noir d'avant cela attendent et ne s'exécutent pas. Reconnecte-toi pour les annuler ou changer le prix d'une annonce.",
+          "Si nous déconnectons ton compte sur tous les appareils sans mettre les échanges en pause, tes offres et annonces du Marché noir d'avant cela affichent <b>En attente</b> et ne s'exécutent pas. Quand ta nouvelle connexion peut échanger, touche <b>Remettre</b> sur chacune qui est à toi, ou arrête-la.",
         ],
       },
     ],
@@ -389,6 +392,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Ta série : une partie de Jouer en ligne par jour la garde. Une partie lancée avant le nouveau jour la garde aussi, même si elle finit après.',
           "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes.",
           'Chaque changement de ton Intel est une ligne de ton registre Intel, avec son motif.',
+          "Dans le <b>Coffre</b>, ton Intel a sa propre tuile, une pile qui grandit avec le montant. Touche-la pour voir ce que tu as gagné aujourd'hui, gagné en tout et dépensé en tout. L'Intel bloqué dans une offre ouverte du Marché noir compte comme dépensé jusqu'à son retour.",
         ],
       },
       {
@@ -592,6 +596,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Une personne lit chaque signalement, et le joueur ne sait pas qui l'a envoyé.",
           "Bloquer vous sépare : aucun de vous ne peut rejoindre un salon où se trouve l'autre. Débloque dans les Réglages, sous <b>Joueurs bloqués</b>.",
           'Mentir et bluffer font partie du jeu et ne se signalent pas.',
+          "À une table avec un groupe, choisis <b>Entente</b> si tu penses qu'ils s'aident en dehors du jeu. <b>Signaler le groupe</b> couvre tous les membres de leur groupe à cette table.",
         ],
       },
       {
@@ -654,6 +659,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "L'appli se reconnecte toute seule quand ta connexion revient.",
           "Si tu te retrouves sur l'accueil, touche <b>Revenir</b> sur la carte de ton salon. Ta place est gardée.",
+          "Si l'appli dit qu'elle n'a pas eu de réponse après un vote, une proposition, un achat, un déchiquetage ou un échange, l'action est peut-être quand même passée. Vérifie, puis réessaie si ce n'est pas le cas : rien n'est payé ni échangé deux fois.",
         ],
       },
       {

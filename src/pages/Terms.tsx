@@ -138,7 +138,7 @@ const Terms: React.FC = () => {
         <P>
           If your account was taken, or you've lost its email address, write to support@spysocial.app. Once we're
           satisfied the account is yours, we can change its email address (we tell the old address, and we sign the
-          account out everywhere), sign it out on every device (a sign-in from before that can keep working for up to 15 minutes, but can't trade or use the Black Market; Black Market offers and listings placed before that wait and don't fill until they're cancelled, or a listing's price is changed, from a new sign-in), and pause its trading for up to 30 days. A pause closes them instead. We can't do
+          account out everywhere), sign it out on every device (a sign-in from before that can keep working for up to 15 minutes, but can't trade or use the Black Market; Black Market offers and listings placed before that wait and don't fill until, from a new sign-in, they're put back on the market or cancelled, or a listing's price is changed), and pause its trading for up to 30 days. A pause closes them instead. We can't do
           this for a guest account, which has no email address and can't sign back in.
         </P>
       )}

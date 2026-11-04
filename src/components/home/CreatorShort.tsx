@@ -41,7 +41,9 @@ const CreatorShort = () => {
               ),
             })}
           </p>
-          <ActionLink href={PLAY_URL}>{t.cta}</ActionLink>
+          {/* The browser version is invite-only until LIVE.browserLinks: before that, a viewer from the Short would land on
+              Browser Play Coming Soon, so the button waits with the site's other browser links. */}
+          {LIVE.browserLinks ? <ActionLink href={PLAY_URL}>{t.cta}</ActionLink> : null}
         </div>
         <div className={s.shortPlayer}>
           {playing ? (

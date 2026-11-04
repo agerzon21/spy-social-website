@@ -1,7 +1,7 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). Facts checked on 2026-11-03 (nov03/legal-audit-1103b.md) against the Terms (sections 4, 5, 8, 9), the Privacy
+ * English: the source (../types.ts). Facts checked on 2026-11-04 (help-truth-3: parties, Waiting and Put Back, the Intel tile, the translator offer, no-answer lines, Teaming) and 2026-11-03 (nov03/legal-audit-1103b.md) against the Terms (sections 4, 5, 8, 9), the Privacy
  * Policy's Your Rights, the Game Night rules and the app (integrate/2.2: the How to Play glossary, the Members page,
  * trading, the Black Market and Intercepts strings). When a rule changes there, change it here in all ten languages.
  */
@@ -171,6 +171,7 @@ const en: HelpText = {
                     : 'Tap <b>Translate</b> on a message to read it in your language.',
                 ]
               : ['In a private room, the host picks the game’s language for the secret and the hints.']),
+            ...(o.autoTranslation ? ['Play Online may offer to add your language to your phone’s own translator. It’s optional, and it keeps English chat lines translated when our translator is busy.'] : []),
           ],
         },
       ],
@@ -230,6 +231,8 @@ const en: HelpText = {
             'A leader and friends who play together, up to 21 people in all. It takes a membership to start one. If the leader leaves, the lead goes to someone with a membership first.',
             'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',
             'At a 12-seat Game Night table, up to 6. Party mates searching on their own count too: never more than half a table between them.',
+            'To sit at one table, search from the party: <b>Play Online</b> on your own is a solo search. After a Play Online game, <b>Back to Your Party</b> takes you back to it.',
+            'Leaving a game early gets you the usual break from Play Online, and your party can’t search for a table until it ends. While you’re seated in a game, you stay in the party even if your phone goes to sleep.',
             'Any party can start a private room together, and a party too big for a table plays there.',
             'Party chat follows the same rules as all chat. To report a message, press and hold it.',
           ],
@@ -294,7 +297,7 @@ const en: HelpText = {
             'A new device’s pause lasts 24 hours; an email or sign-in change’s, 3 days.',
             'It’s there to protect your items if someone else gets into your account.',
             'We can also pause an account’s trading ourselves, to protect it or while we look into fraud. That closes its open Black Market offers and listings, and what they held goes back to the account. Nothing reopens when the pause ends: you list again.',
-            'If we sign your account out on every device without pausing trading, your Black Market offers and listings from before that wait and don’t fill. Sign in again to cancel them or change a listing’s price.',
+            'If we sign your account out on every device without pausing trading, your Black Market offers and listings from before that show <b>Waiting</b> and don’t fill. Once your new sign-in can trade, tap <b>Put Back</b> on each one that’s yours, or stop it.',
           ],
         },
       ],
@@ -397,6 +400,7 @@ const en: HelpText = {
             'Your streak: one Play Online game a day keeps it. A game you start before the new day keeps it too, even if it ends after.',
             'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.',
             'Every change to your Intel is a line in your Intel ledger, with its reason.',
+            'In the <b>Vault</b>, your Intel has its own tile, a stack that grows with the amount. Tap it for what you earned today, earned in all and spent in all. Intel held in an open Black Market offer counts as spent until it comes back.',
           ],
         },
         {
@@ -600,6 +604,7 @@ const en: HelpText = {
             'A person reads every report, and the player isn’t told who sent it.',
             'Blocking keeps you apart: neither of you can join a room the other is in. Unblock in Settings, under <b>Blocked Players</b>.',
             'Lying and bluffing are part of the game and aren’t reportable.',
+            'At a table with a party, choose <b>Teaming</b> if you think they’re working together outside the game. <b>Report Party</b> covers everyone in their party at that table.',
           ],
         },
         {
@@ -662,6 +667,7 @@ const en: HelpText = {
           a: [
             'The app reconnects by itself when your connection comes back.',
             'If you end up on Home, tap <b>Rejoin</b> on your room’s card. Your seat is kept.',
+            'If the app says it didn’t hear back after a vote, a guess, a buy, a shred or a trade, it may still have gone through. Check, then try again if it didn’t: nothing is paid or traded twice.',
           ],
         },
         {
