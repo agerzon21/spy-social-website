@@ -694,6 +694,9 @@ const Terms: React.FC = () => {
             A trade or a Black Market sale shows on the ledger only as the copy moving from one holder code to
             another. Until the launch the ledger is a beta test chain: its copies, numbers, trades and fingerprints
             are for testing and are wiped before the launch, when the real ledger starts again from its first entry.
+            {/* Beta 2's open market (owner `open`, Nov 3; app repo nov03/beta2-market-open.md): Nov 3 through accountNotices. */}
+            {' '}Black Market sales made while SpySocial is being tested are undone before the launch: buyers get back
+            the Intel they paid, and sellers give back what they received.
           </ListItem>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}
