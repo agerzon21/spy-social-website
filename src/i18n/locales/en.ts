@@ -499,7 +499,7 @@ const en = {
       reports:
         "<b>Reports, blocks and penalties:</b> a person reads every report within 24 hours, and the reported player isn't told who sent it. Reports involving a player under 18 are read first. Penalties go from a warning to a chat mute, a pause from public rooms, or a ban. Our <link>Community Rules</link> list what isn't allowed.",
       drawingCheck:
-        '<b>Drawing check:</b> drawing turns in a public room are checked automatically, and a turn that breaks the rules is taken off the drawing.',
+        '<b>Drawing check:</b> drawing turns in a public room may be checked automatically, and a turn the check finds breaks the rules is taken off the drawing.',
       buyTitle: 'Buying',
       buyText:
         "Teens need a parent's or guardian's permission to buy anything. Purchases go through the App Store or Google Play, so their parental controls, such as Apple's Ask to Buy and purchase approvals in Google Family Link, work as usual. A Pack Pass renews until it's cancelled in the store's settings.",

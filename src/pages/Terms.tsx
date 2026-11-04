@@ -451,7 +451,7 @@ const Terms: React.FC = () => {
             In a public room, when it finds that a turn
             breaks the Community Rules, it takes that turn off the drawing and gives the player a strike: a warning
             first, then 3, 7 and 30 days without public rooms and events, and at the fifth strike within 90 days no
-            public rooms or events for good. In any room, a flagrant drawing (a hate symbol, including a swastika,
+            public rooms or events for good. In any room, a flagrant drawing it finds (a hate symbol, including a swastika,
             unless the round's word makes a religious meaning clear; a written slur; or written hate or harassment
             aimed at someone) gets the player removed from the game and banned from public rooms and events for good,
             once a second check agrees. If that removal decides the game, it ends with no winner and doesn't count. A

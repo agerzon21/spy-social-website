@@ -454,7 +454,7 @@ const id: Strings = {
       reports:
         '<b>Laporan, blokir, dan sanksi:</b> manusia membaca setiap laporan dalam 24 jam, dan pemain yang dilaporkan tidak diberi tahu siapa pelapornya. Laporan yang melibatkan pemain di bawah 18 tahun dibaca lebih dulu. Sanksinya mulai dari peringatan, chat dibisukan, jeda dari room publik, hingga pemblokiran akun. <link>Aturan Komunitas</link> kami mencantumkan apa saja yang tidak diperbolehkan.',
       drawingCheck:
-        '<b>Pemeriksaan gambar:</b> giliran menggambar di room publik diperiksa otomatis, dan giliran yang melanggar aturan dihapus dari gambar.',
+        '<b>Pemeriksaan gambar:</b> giliran menggambar di room publik bisa diperiksa otomatis, dan giliran yang menurut pemeriksaan melanggar aturan dihapus dari gambar.',
       buyTitle: 'Pembelian',
       buyText:
         'Remaja butuh izin orang tua atau wali untuk membeli apa pun. Pembelian dilakukan lewat App Store atau Google Play, jadi kontrol orang tua di sana, seperti Ask to Buy dari Apple dan persetujuan pembelian di Google Family Link, tetap berfungsi seperti biasa. Langganan paket diperpanjang otomatis sampai dibatalkan di pengaturan toko aplikasi.',

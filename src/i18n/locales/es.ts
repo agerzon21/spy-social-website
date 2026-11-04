@@ -454,7 +454,7 @@ const es: Strings = {
       reports:
         '<b>Reportes, bloqueos y sanciones:</b> una persona lee cada reporte en menos de 24 horas, y el jugador reportado no sabe quién lo envió. Los reportes que involucran a un jugador menor de 18 años se leen primero. Las sanciones van desde una advertencia hasta un silencio en el chat, una pausa de las salas públicas o un bloqueo de la cuenta. Nuestras <link>Normas de la comunidad</link> indican lo que no está permitido.',
       drawingCheck:
-        '<b>Revisión de dibujos:</b> los turnos de dibujo en una sala pública se revisan automáticamente, y un turno que rompe las normas se quita del dibujo.',
+        '<b>Revisión de dibujos:</b> los turnos de dibujo en una sala pública pueden revisarse automáticamente, y un turno que la revisión detecta que rompe las normas se quita del dibujo.',
       buyTitle: 'Compras',
       buyText:
         'Los adolescentes necesitan el permiso de su padre, madre o tutor para comprar cualquier cosa. Las compras se hacen a través del App Store o Google Play, así que sus controles parentales, como «Pedir la compra» de Apple y la aprobación de compras de Google Family Link, funcionan como siempre. Un Pase de paquetes se renueva hasta que se cancela en los ajustes de la tienda.',

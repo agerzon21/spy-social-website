@@ -949,6 +949,14 @@ export const LIVE = {
    */
   audit1103b: true,
   /**
+   * Drawing-check wording 2026-11-04 (app repo .claude/handoff/scratchpad/nov03/drawing-check-wording.md): no page implies
+   * every drawing is caught. Short notes say drawing turns "may be" checked; the check acts on what it finds; Privacy says a
+   * drawing the first check flags as sexual content involving a child gets no second check and goes to a person. Describes
+   * what's in force and adds no duty, so no TERMS_PUBLISHED or terms_version raise. Dates: November 4 by this switch in
+   * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED. Name no cap, rate or threshold on a page.
+   */
+  drawingWording1104: true,
+  /**
    * Retention audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/retention-1103.md). Off: the pages say what happens today: room exits, unblocks, the
    * coded email and sign-up records, push receipts and sent notices are cleared by a later action, not on a clock, and the note that a trade or market code
    * was sent stays with the account. On: flip the day the owner says yes and supabase/migrations_pending/20261209970000_retention_sweep_1103.sql is live (an
@@ -1507,6 +1515,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.drawingWording1104
+    ? 'November 4, 2026' // drawing-check wording (no page implies every drawing is caught): the site went up with it on
   : LIVE.accountNotices
     ? 'November 3, 2026' // the owner's support tools (20261208350000): set to the day the site goes up with it on
   : LIVE.partySizeCorrected
@@ -1561,6 +1571,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.drawingWording1104
+    ? 'November 4, 2026' // drawing-check wording (no page implies every drawing is caught): the site went up with it on
   : LIVE.accountNotices
     ? 'November 3, 2026' // the owner's support tools (20261208350000): set to the day the site goes up with it on
   : LIVE.partySizeCorrected

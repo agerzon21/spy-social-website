@@ -453,7 +453,7 @@ const fr: Strings = {
       reports:
         "<b>Signalements, blocages et sanctions\u00A0:</b> une personne lit chaque signalement sous 24 heures, et le joueur signalé ne sait pas qui l'a signalé. Les signalements qui concernent un joueur de moins de 18 ans sont lus en priorité. Les sanctions vont de l'avertissement au blocage du chat, à une suspension des salons publics ou au bannissement. Nos <link>règles de la communauté</link> listent ce qui est interdit.",
       drawingCheck:
-        '<b>Vérification des dessins\u00A0:</b> les tours de dessin dans un salon public sont vérifiés automatiquement, et un tour qui enfreint les règles est retiré du dessin.',
+        '<b>Vérification des dessins\u00A0:</b> les tours de dessin dans un salon public peuvent être vérifiés automatiquement, et un tour dont la vérification constate qu’il enfreint les règles est retiré du dessin.',
       buyTitle: 'Achats',
       buyText:
         "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Un abonnement aux packs se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",

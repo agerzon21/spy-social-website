@@ -620,8 +620,9 @@ const Privacy: React.FC = () => {
             nothing else. The second check gets a picture of the turn (the earlier drawing in light grey) with the
             round's secret word (which helps tell an innocent drawing from an offensive one) and a code made from your
             account ID that doesn't reveal who you are, which OpenAI uses to detect misuse of its service. Our servers
-            pick which drawings get the second check: every reported drawing, every drawing the first check flags, and a
-            share of the rest that depends on what we already keep about the account (how many games it has played, how
+            pick which drawings get the second check: every reported drawing, every drawing the first check flags
+            (except one it flags as sexual content involving a child: that drawing goes to no second check and goes
+            straight to a person), and a share of the rest that depends on what we already keep about the account (how many games it has played, how
             old it is, whether it's saved, and any strikes or upheld reports). We don't use this for anything else or
             show it to other players. If the second check can't give an answer, the first check's answer is used. Our
             servers never send your name, username, email address, chat or your

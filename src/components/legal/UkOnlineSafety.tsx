@@ -31,7 +31,7 @@ const UkOnlineSafety = () => {
     ? "There's no way to send photos or videos. Versions of the app before 2.2 let a player add a profile photo, which only shows next to their name; we may check photos automatically and remove ones that break the rules."
     : "There's no way to upload or send photos or videos: the only pictures are Spy Sketch drawings, drawn with a finger during a turn, and avatars built from the parts the app offers."
   const drawingCheck = dc
-    ? ' In public rooms, the drawing check takes a turn that breaks the rules off the drawing.'
+    ? ' In public rooms, drawing turns may be checked automatically, and a turn the check finds breaks the rules is taken off the drawing.'
     : ''
 
   const illegal: InfoRow[] = [
@@ -59,7 +59,7 @@ const UkOnlineSafety = () => {
           the rules. In any room with a player under 18, chat refuses links, email addresses, phone numbers and social
           accounts for everyone, and Play Online tables and game nights always refuse them. Every chat message is kept on
           our servers for the times above, so a report comes with the words actually sent. Child Safety is an urgent
-          report reason, and any report involving a player under 18 is urgent too.{dc ? ' The drawing check takes a drawing that sexualizes a child off the board in any room.' : ''} We remove the content, ban the accounts involved, keep the evidence the law requires,
+          report reason, and any report involving a player under 18 is urgent too.{dc ? ' When the drawing check finds a drawing that sexualizes a child, in any room, it takes it off the board.' : ''} We remove the content, ban the accounts involved, keep the evidence the law requires,
           and report it to the National Center for Missing &amp; Exploited Children (NCMEC), which passes reports linked
           to the UK to the UK's National Crime Agency.
         </>,
@@ -174,7 +174,7 @@ const UkOnlineSafety = () => {
       cells: [
         <>
           Not allowed (hate and harassment, section 7). The word filter blocks slurs.
-          {dc ? ' The drawing check removes a player who draws a hate symbol or a slur, in any room.' : ''} Hate or Harassment
+          {dc ? ' When the drawing check finds a hate symbol or a slur in a drawing, in any room, it can remove the player who drew it.' : ''} Hate or Harassment
           is a report reason, and Block keeps the player away.
         </>,
       ],
