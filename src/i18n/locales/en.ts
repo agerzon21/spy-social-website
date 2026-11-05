@@ -1050,7 +1050,7 @@ const en = {
       { title: "Spy Sketch", text: "Draw the secret word on one shared whiteboard, and catch the spy faking it." },
       { title: "Play Online", text: "Tap Find a Game for a table of 4 or 8, any time. Strangers see your Agent Color, never your name." },
       { title: "Game Night", text: "Scheduled nights online, with titles you can only earn that night. We'll remind you before they start." },
-      { title: "Black Market", text: "Trade items with friends. Adults can also trade with other agents, and buy and sell for Intel, which you earn by playing." },
+      { title: "Black Market", text: "Trade items with friends. Adults can also buy and sell items on the Black Market for Intel, which you earn by playing. Never for real money." },
       { title: "Memberships", text: "Optional: a Pack Pass (monthly or yearly), or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
     ],
     /** The link to What's New under the cards. */
@@ -1063,10 +1063,26 @@ const en = {
       pressTitle: "Press and creators",
       press: "Writing about SpySocial, or want to play it on your channel? Email <email/> with “Press” in the subject.",
     },
-    /** What's New's 2.2.0 entry: its tag, summary and the two section labels (the items are the cards above and the Roadmap's 2.2 features). */
+    /** What's New's 2.2.0 entry: its tag, summary, its own lines and the two section labels (the items are the cards above, these lines and some of the Roadmap's 2.2 features). */
     notes: {
       tag: "Launch",
-      summary: "Our biggest update yet: Spy Sketch, Play Online, Game Night, trading on the Black Market, and memberships.",
+      summary: "Our biggest update yet: Spy Sketch, Play Online, Game Night, the Practice Game, trading, the Black Market and memberships.",
+      /** The entry's own lines, in this order: Practice Game, My Clues, Private Room rules, Friends and parties, Intercepts,
+       * Intel and trading, Community packs, 10 languages, Notifications (pages/WhatsNew places them among the cards and
+       * the Roadmap's 2.2 features by position). Words true to 2.2 and to the store's What's New (whatsnew-22-1105). */
+      items: [
+        { title: "Practice Game", text: "Learn Spy Talk and Spy Sketch in a real game with AI agents, as a Local or as the Spy. We coach every move and grade your game from A to F." },
+        { title: "My Clues", text: "Spies note what they pick up on their Clues page, shortlist the possible places or words, and make their final guess from the shortlist." },
+        { title: "Private Room rules", text: "Optional rules, like the Informant: a Local who secretly knows a spy. How to Play > Features & Settings has a short playable demo of each." },
+        { title: "Friends and parties", text: "Add friends with your Friend Code or by username, follow players and look for a table together as a party. Starting a party is for members. On iPhone and iPad, friends, parties and trading are for players 18 and up." },
+        { title: "Intercepts", text: "Sealed files with a random item for your agent, earned by winning Play Online games, on your daily streak and at Game Night. Some items come as a Unique: one of one, with its own color and serial number. The odds show before you open or buy one. Never sold for money." },
+        { title: "Intel and trading", text: "Intel is the game's own money: earn it by playing and spend it in the Vault. It can't be bought and has no cash value. Trade items with friends once your account is 7 days old, your email is confirmed and you've played 3 games. Every trade is protected for 7 days." },
+        { title: "Community packs", text: "Browse packs made by players in Community. Members write their own in Pack Creator and share them." },
+        { title: "10 languages", text: "English, Spanish and Russian, plus French, Portuguese (Brazil), Chinese (Simplified), Hindi, Arabic, Bengali and Indonesian in beta. Everyone sees the game in their own language." },
+        { title: "Notifications", text: "For friends' invites and requests, trades, Black Market offers, and Game Nights you tapped Remind Me on." },
+      ],
+      /** The entry's And more line (the Roadmap keeps its own). */
+      more: "Plus Player Stats, levels up to 100 with prestige, achievements, titles, borders and celebrations, @mentions, Arcade mini-games, a faster mic, smooth rejoining after your phone sleeps, and a new look on every screen.",
       newLabel: "New in 2.2",
       moreLabel: "And more",
     },

@@ -54,15 +54,22 @@ function releasesIn(words: Strings['whatsNew']['releases'], locale: string): Rel
 }
 
 /**
- * 2.2.0, the launch release (shown while LIVE.launchSite is on): the home page's five New in 2.2 cards, then the
- * Roadmap's other 2.2 features (not Play Online, Spy Sketch or Game nights, which the cards cover) and its "Plus…"
- * line. Its words come from src/i18n: launch.notes, launch.cards, roadmap.now.
+ * 2.2.0, the launch release (shown while LIVE.launchSite is on): the home page's five New in 2.2 cards, the entry's own
+ * lines (launch.notes.items) and the Roadmap's 2.2 features that are still worded right for the launch, then the
+ * entry's own "And more" line. Its words come from src/i18n: launch.notes, launch.cards, roadmap.now. Kept true to what
+ * 2.2 ships and to the store's What's New (whatsnew-22-1105); the Roadmap's cards are live before the launch, so the
+ * entry adds to them instead of changing them.
  */
 const LAUNCH_DATE = 'December 8, 2026'
-const ROADMAP_IN_CARDS = new Set([0, 1, 4])
+/** roadmap.now.features by position: 2 Automatic translation, 3 Your agent and the Vault, 5 Agent Colors, 6 Creator
+ * codes, 7 Music and sounds, 8 Recommended game time, 9 Safety built in (0, 1, 4 are in the cards). */
+const R = { translation: 2, agent: 3, colors: 5, codes: 6, music: 7, time: 8, safety: 9 } as const
+/** launch.notes.items by position. */
+const N = { practice: 0, clues: 1, rules: 2, friends: 3, intercepts: 4, intel: 5, community: 6, languages: 7, alerts: 8 } as const
 
 function launchRelease(strings: Strings, locale: string): Release {
   const n = strings.launch.notes
+  const r = strings.roadmap.now.features
   return {
     version: '2.2.0',
     date: formatDate(LAUNCH_DATE, locale),
@@ -74,10 +81,25 @@ function launchRelease(strings: Strings, locale: string): Release {
         icon: FaRocket,
         items: [
           ...strings.launch.cards,
-          ...strings.roadmap.now.features.filter((_, i) => !ROADMAP_IN_CARDS.has(i)),
+          n.items[N.practice],
+          n.items[N.clues],
+          n.items[N.rules],
+          n.items[N.friends],
+          r[R.colors],
+          n.items[N.intercepts],
+          n.items[N.intel],
+          n.items[N.community],
+          r[R.agent],
+          n.items[N.languages],
+          r[R.translation],
+          n.items[N.alerts],
+          r[R.codes],
+          r[R.music],
+          r[R.time],
+          r[R.safety],
         ].map((item) => ({ title: item.title, text: item.text })),
       },
-      { label: n.moreLabel, icon: FaWandSparkles, items: [{ text: strings.roadmap.now.more }] },
+      { label: n.moreLabel, icon: FaWandSparkles, items: [{ text: n.more }] },
     ],
   }
 }
