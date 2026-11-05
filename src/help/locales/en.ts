@@ -148,7 +148,7 @@ const en: HelpText = {
           q: 'What is Game Night?',
           a: [
             'Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. Tap <b>PLAY NOW</b> on Home’s Game Night card.',
-            'Each night has its own packs, settings and titles. The (i) next to the night shows them.',
+            'Each night has its own packs, settings and titles. The (i) next to the night shows its packs and settings, and <b>PRIZES</b> on the card shows its titles.',
             'It’s free, and nothing you buy improves your chances. The full rules: <gnr>Game Night rules</gnr>.',
           ],
         },

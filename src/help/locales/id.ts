@@ -142,7 +142,7 @@ const id: HelpText = {
           q: 'Apa itu Malam Permainan?',
           a: [
             'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
-            'Setiap malam punya paket, pengaturan, dan gelarnya sendiri. Tombol (i) di samping malam itu menampilkannya.',
+            'Setiap malam punya paket, pengaturan, dan gelarnya sendiri. Tombol (i) di samping malam itu menampilkan paket dan pengaturannya, dan tombol <b>Hadiah</b> di kartunya menampilkan gelarnya.',
             'Gratis, dan tidak ada yang kamu beli yang memperbesar peluangmu. Aturan lengkapnya: <gnr>aturan Malam Permainan</gnr> (bahasa Inggris).',
           ],
         },

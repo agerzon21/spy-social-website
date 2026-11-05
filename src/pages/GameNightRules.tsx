@@ -17,7 +17,7 @@ import { LIVE } from '../lib/legalRelease'
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
-const UPDATED = 'November 5, 2026' // "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
+const UPDATED = 'November 5, 2026' // the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -26,8 +26,8 @@ const GameNightRules: React.FC = () => (
       Game Night is online play SpySocial hosts on the nights we announce in the app (usually from 8 to 10 PM
       Eastern Time). While it runs, the Home screen shows a Game Night card. Press <B>PLAY NOW</B> on the card to be
       seated with other Game Night players. Tables start by themselves as players arrive: bigger tables first, and
-      smaller ones if not enough players are waiting. Each night has its own game and its own titles, shown under
-      the trophy button on the card; a themed night (a holiday night, for example) may have themed titles.
+      smaller ones if not enough players are waiting. Each night has its own game and its own titles: <B>PRIZES</B> on
+      the card shows them. A themed night (a holiday night, for example) may have themed titles.
     </P>
 
     <H2>Who can take part</H2>

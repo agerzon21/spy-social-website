@@ -142,7 +142,7 @@ const es: HelpText = {
           q: '¿Qué es la Noche de Juegos?',
           a: [
             'Partidas en línea que organizamos, las noches que anunciamos en la app, normalmente de 8 a 10 PM, hora del Este de EE. UU. Toca <b>Jugar ya</b> en la tarjeta de la Noche de Juegos del inicio.',
-            'Cada noche tiene sus propios paquetes, ajustes y títulos. La (i) junto a la noche los muestra.',
+            'Cada noche tiene sus propios paquetes, ajustes y títulos. La (i) junto a la noche muestra sus paquetes y ajustes, y <b>Premios</b>, en la tarjeta, sus títulos.',
             'Es gratis, y nada de lo que compres mejora tus posibilidades. Las reglas completas: <gnr>reglas de la Noche de Juegos</gnr> (en inglés).',
           ],
         },
