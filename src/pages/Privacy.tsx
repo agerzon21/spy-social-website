@@ -780,8 +780,10 @@ const Privacy: React.FC = () => {
           Your device's platform (iOS or Android{PRIVACY.browserLegal ? ', or web for the browser version' : ''}) and
           the version of the app, which the app sends with its requests so our servers can work with every version of
           the app. To keep accounts safe{PRIVACY.trading ? ' (for example, to pause trading after a sign-in on a new device)' : ''}, we also keep, for each app install you
-          sign in on, a coded (hashed) install code that isn't your device's own ID, with its platform, app version and
-          when it was first and last used{PRIVACY.trading ? ", and which of your sign-in sessions registered an install (a session that never did can't trade)" : ''}; it's deleted with your account.
+          sign in on, a coded (hashed) install code that isn't your device's own ID, with its platform, app version, which
+          build of the app it runs (its build number and update channel, the app update it runs, and whether a newer
+          update is downloaded and waiting to start; this helps us check that fixes reach every phone) and when it was
+          first and last used{PRIVACY.trading ? ", and which of your sign-in sessions registered an install (a session that never did can't trade)" : ''}; it's deleted with your account.
           {PRIVACY.gameDeviceChecks
             ? " We also note which install each of your sign-in sessions is on, which install each Play Online search was made from and which install you played each game from. We use these notes only so that two accounts on one device at the same moment aren't seated at the same Play Online table or put in the same party, and so that counted games for trading are played by different people (people who share a home or Wi-Fi aren't affected). These notes are kept for 90 days and deleted with your account."
             : ''}
