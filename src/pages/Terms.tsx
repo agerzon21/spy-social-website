@@ -733,7 +733,10 @@ const Terms: React.FC = () => {
           <Bullets>
             <ListItem>
               {LIVE.tradeGatesNov2
-                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones, and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 1,000,000 Intel, and both sides confirm what they'll get before the trade happens."
+                ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones, and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 1,000,000 Intel, and both sides confirm what they'll get before the trade happens." +
+                  (LIVE.helpTruth1105
+                    ? " What you offer in an open trade is held for it: it can't go into another trade or onto the Black Market at the same time. If Intel you offered is spent before the trade happens, the trade can't go through until the amount is lowered, and nothing moves."
+                    : '')
                 : "Trades are between friends, inside the app, and carry no message. You can trade once you and your friend have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."}
             </ListItem>
             <ListItem>

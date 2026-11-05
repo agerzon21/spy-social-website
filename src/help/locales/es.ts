@@ -255,6 +255,7 @@ const es: HelpText = {
             'Intercambias con amigos, dentro de la app. Necesitas una cuenta de al menos 7 días, el correo confirmado y 3 partidas que cuenten (partidas terminadas que suman a tus estadísticas, con al menos otras 2 cuentas guardadas en otros teléfonos).',
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, no se aplican las reglas de antigüedad de la cuenta, partidas contadas ni dispositivo nuevo: cualquier tester puede intercambiar en cuanto confirme su correo.']),
             'Cada lado ofrece hasta 10 objetos, y los dos confirman antes de que se haga. Los intercambios grandes piden un código que te enviamos por correo.',
+            'Lo que pones en un intercambio abierto queda reservado para él: no puede ir a otro intercambio ni al Mercado Negro al mismo tiempo. Si el Intel de un intercambio se gasta antes de que se haga, aparece un aviso en ese lado y el intercambio no puede hacerse hasta que se baje la cantidad.',
             'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.',
             `El Intel solo se puede intercambiar entre adultos${o.launch ? '' : ', desde el lanzamiento de la 2.2 el 8 de diciembre'}.`,
             'Comprar o vender objetos, Intel o cuentas por dinero real va contra las reglas.',
@@ -500,7 +501,7 @@ const es: HelpText = {
           a: [
             'Un <b>invitado</b> juega en salas privadas al instante. Una cuenta de invitado vive en un solo teléfono, y cerrar sesión la borra para siempre.',
             `Una cuenta <b>guardada</b> (con Apple, Google o tu correo${o.passwordless ? ', con un código que te enviamos, sin contraseña' : ''}) conserva tu nombre, tu progreso y tu membresía en cualquier teléfono, y te deja jugar en línea, entrar a la Noche de Juegos y añadir amigos.`,
-            'Puedes guardar una cuenta de invitado cuando quieras desde la página de tu cuenta, sin perder nada.',
+            'Puedes guardar una cuenta de invitado cuando quieras desde la página de tu cuenta, sin perder nada. Amigos, Intercambios y el Mercado Negro le piden a un invitado que la guarde primero.',
           ],
         },
         {
@@ -509,6 +510,7 @@ const es: HelpText = {
           a: [
             'Una <b>cuenta guardada</b> vuelve en cualquier teléfono: abre SpySocial e inicia sesión igual que antes (Apple, Google o el mismo correo). Otro correo, o Ocultar mi correo de Apple, abre una cuenta nueva y vacía, y por eso muchas veces parece que el progreso desapareció.',
             'Una <b>cuenta de invitado</b> vive en un solo teléfono. Si se borró la app, se perdió el teléfono o cerraste sesión, se fue para siempre y no podemos recuperarla.',
+            'Si la app muestra <b>No se pudo abrir tu cuenta</b>, tu cuenta sigue guardada en el teléfono, pero no se pudo leer en ese momento. Toca <b>Reintentar</b>, o cierra la app y vuelve a abrirla.',
             'La membresía no se pierde: <b>Restaurar compras</b> la recupera. No podemos unir cuentas ni mover objetos entre ellas.',
             'Si tenías una cuenta guardada, escribe a <email/> con tu nombre de usuario y cómo iniciabas sesión, y lo miramos.',
           ],
@@ -519,6 +521,7 @@ const es: HelpText = {
           a: [
             ...(o.passwordless ? ['Puedes iniciar sesión con Apple, con Google o con un código de 6 dígitos que te enviamos por correo. Ya no hay contraseñas: si la app aún te pide una, actualízala en el App Store o Google Play.'] : []),
             'Entra de la misma forma que antes. Otro correo, o Ocultar mi correo de Apple, abre una cuenta nueva y vacía en lugar de la tuya.',
+            'Si la app se abre en la pantalla de inicio de sesión con <b>Se cerró tu sesión en este dispositivo</b>, cerramos tu sesión ahí desde nuestro lado, normalmente porque se cerró la sesión de la cuenta en todos los dispositivos. Vuelve a entrar de la misma forma: tu progreso está guardado. Una cuenta de invitado no puede volver a entrar.',
             'Si la app dice «Esta cuenta no puede iniciar sesión», escribe a <email/> desde el correo de la cuenta y lo miramos.',
             'Si la cuenta fue bloqueada, nuestro correo a esa dirección indica la referencia, el motivo y cómo apelar.',
           ],
@@ -560,6 +563,7 @@ const es: HelpText = {
           q: '¿Cómo cambio mi nombre?',
           a: [
             'Cambia tu nombre visible cuando quieras en la página de tu cuenta, y tu nombre de usuario una vez cada 30 días.',
+            'Una cuenta nueva empieza con un nombre visible al azar en el idioma de tu app.',
             'En las mesas de Jugar en línea, quienes no te conocen ven el color de tu agente. Los nombres siguen las <rules>normas de la comunidad</rules>.',
           ],
         },
@@ -657,6 +661,7 @@ const es: HelpText = {
             'Revisa el código: letras de la A a la Z y números del 2 al 9 (el 0 y el 1 se leen como O e I).',
             'No se puede entrar a una partida en curso: espera a que termine. La sala también puede estar llena o cerrada con llave.',
             'Si el anfitrión cambió el código, los enlaces y QR antiguos dejan de funcionar. Si el anfitrión te expulsó, no puedes volver a esa sala.',
+            'Una invitación a una sala que ya no existe dice <b>Esta invitación no funciona</b> o <b>Sala cerrada</b> enseguida, antes de pedirte el año de nacimiento.',
             'Jugar en línea y la Noche de Juegos necesitan una cuenta guardada.',
           ],
         },
@@ -665,6 +670,7 @@ const es: HelpText = {
           q: 'Perdí la conexión en una partida',
           a: [
             'La app se reconecta sola cuando vuelve tu conexión.',
+            'Un mensaje del chat que no salió muestra <b>No se envió</b>. Si tu conexión vuelve en menos de 2 minutos, se envía de nuevo solo; después, tócalo para enviarlo.',
             'Si terminas en el inicio, toca <b>Volver</b> en la tarjeta de tu sala. Tu lugar se guarda.',
             'Si la app dice que no recibió respuesta tras un voto, una adivinanza, una compra, una trituración o un intercambio, puede que se haya hecho igual. Compruébalo y vuelve a intentarlo si no: nada se paga ni se intercambia dos veces.',
           ],
@@ -697,9 +703,10 @@ const es: HelpText = {
           q: 'No me llegan las notificaciones',
           a: [
             'Permite las notificaciones de SpySocial en los ajustes de tu teléfono.',
-            'En la app, <b>Privacidad y amigos</b> tiene un interruptor para solicitudes de amistad, invitaciones y paquetes nuevos.',
+            'En la app, <b>Privacidad y amigos</b> tiene interruptores para solicitudes de amistad, invitaciones, paquetes nuevos, intercambios y el Mercado Negro.',
+            'En Android, las notificaciones de amigos, grupo, intercambios y el Mercado Negro comparten una categoría en los ajustes del teléfono, <b>Amigos, grupo e intercambios</b>: si la desactivas ahí, se detienen todas.',
             'Los avisos de partida llegan cuando buscas en Jugar en línea, y los recordatorios de la Noche de Juegos cuando tocas <b>Recordarme</b>. Los invitados no los reciben.',
-            'Los menores de 18 no reciben notificaciones sociales entre las 10 PM y las 7 AM.',
+            'Los menores de 18 no reciben notificaciones sociales, ni nuestra respuesta sobre un paquete que enviaron a Comunidad, entre las 10 PM y las 7 AM.',
           ],
         },
         {

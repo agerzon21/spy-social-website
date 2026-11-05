@@ -44,7 +44,7 @@ const en = {
       roadmap: 'Roadmap',
       deleteAccount: 'Delete your account',
       join: 'Join a game',
-      joinEvent: 'Public event',
+      joinEvent: 'Public Game Night',
       resetPassword: 'Reset your password',
       /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
       resetPasswordCode: "Sign in with a code",
@@ -369,9 +369,9 @@ const en = {
     },
     breaking: {
       title: 'What happens when someone breaks the rules',
-      text: "Usually a warning first. Repeated or serious problems lead to a chat mute (1 hour to 7 days), a pause from public rooms and events (1 to 30 days), or a ban. Sharing someone's personal information, or anything that sexualizes a child, can mean an immediate ban. Every notice in the app says what is limited, why, and until when, with an ID like S-207.",
+      text: "Usually a warning first. Repeated or serious problems lead to a chat mute (1 hour to 7 days), a pause from public rooms and Game Nights (1 to 30 days), or a ban. Sharing someone's personal information, or anything that sexualizes a child, can mean an immediate ban. Every notice in the app says what is limited, why, and until when, with an ID like S-207.",
       drawings:
-        "Drawings in public rooms and events may be checked automatically at any time, and reported drawings are checked too. If a drawing you made breaks these rules, your account can be paused or banned from public rooms and events, however long you've played. In a public room, a turn that breaks these rules is taken off the drawing and counts as a strike: a warning first, then 3, 7 and 30 days without public rooms and events, and at the fifth strike in 90 days, for good. In any room, a hate symbol (a swastika counts, unless the round's word makes a religious meaning clear), a written slur or hate aimed at someone removes the player from the game and from public rooms and events for good, and a drawing that sexualizes a child ends the account and is handled as Child safety says above. Gore and monsters are fine. In a private room, a reported drawing is acted on automatically only when it's that serious; anything else is up to the person who reads the report. To appeal, email us the code from your notice.",
+        "Drawings in public rooms and at Game Nights may be checked automatically at any time, and reported drawings are checked too. If a drawing you made breaks these rules, your account can be paused or banned from public rooms and Game Nights, however long you've played. In a public room, a turn that breaks these rules is taken off the drawing and counts as a strike: a warning first, then 3, 7 and 30 days without public rooms and Game Nights, and at the fifth strike in 90 days, for good. In any room, a hate symbol (a swastika counts, unless the round's word makes a religious meaning clear), a written slur or hate aimed at someone removes the player from the game and from public rooms and Game Nights for good, and a drawing that sexualizes a child ends the account and is handled as Child safety says above. Gore and monsters are fine. In a private room, a reported drawing is acted on automatically only when it's that serious; anything else is up to the person who reads the report. To appeal, email us the code from your notice.",
       drawingsTesters:
         'For now, while we test it, the automatic drawing check runs only in games where every player is one of our testers (players trying a test version of the app).',
     },
@@ -450,7 +450,7 @@ const en = {
       publicOnePool:
         "<b>Public rooms</b> with players your child doesn't know: Play Online's tables, where the app seats players automatically and everyone plays by the same standard rules, and game nights we host at a set time. Players can't create public rooms, and no player hosts one.",
       public: (playOnline: boolean) =>
-        `<b>Public rooms and events</b> with players your child doesn't know${playOnline ? ', including Play Online, which seats players at a table automatically' : ''}.`,
+        `<b>Public rooms and Game Nights</b> with players your child doesn't know${playOnline ? ', including Play Online, which seats players at a table automatically' : ''}.`,
       buy: '<b>Things to buy:</b> packs and memberships, through the App Store or Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
@@ -844,8 +844,8 @@ const en = {
   },
 
   joinEvent: {
-    label: 'Public event',
-    broken: "This event link doesn't work",
+    label: 'Public Game Night',
+    broken: "This Game Night link doesn't work",
     brokenHelp: 'Check it, or open SpySocial and browse rooms.',
     live: 'Live now',
     cancelled: 'Cancelled',

@@ -27,7 +27,7 @@ const ptBR: Strings = {
       roadmap: 'Roadmap',
       deleteAccount: 'Excluir sua conta',
       join: 'Entrar numa partida',
-      joinEvent: 'Evento público',
+      joinEvent: 'Noite de Jogos pública',
       resetPassword: 'Redefinir sua senha',
       /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
       resetPasswordCode: "Entre com um código",
@@ -327,9 +327,9 @@ const ptBR: Strings = {
     },
     breaking: {
       title: 'O que acontece quando alguém quebra as regras',
-      text: 'Normalmente, primeiro vem uma advertência. Problemas repetidos ou graves levam a um bloqueio do chat (de 1 hora a 7 dias), uma pausa nas salas públicas e nos eventos (de 1 a 30 dias) ou um banimento. Compartilhar dados pessoais de alguém, ou qualquer coisa que sexualize uma criança, pode levar a um banimento imediato. Cada aviso no app diz o que está limitado, por quê e até quando, com um ID como S-207.',
+      text: 'Normalmente, primeiro vem uma advertência. Problemas repetidos ou graves levam a um bloqueio do chat (de 1 hora a 7 dias), uma pausa nas salas públicas e nas Noites de Jogos (de 1 a 30 dias) ou um banimento. Compartilhar dados pessoais de alguém, ou qualquer coisa que sexualize uma criança, pode levar a um banimento imediato. Cada aviso no app diz o que está limitado, por quê e até quando, com um ID como S-207.',
       drawings:
-        'Os desenhos em salas públicas e eventos podem ser verificados automaticamente a qualquer momento, e os desenhos denunciados também são verificados. Se um desenho seu quebrar estas regras, sua conta pode ser pausada ou banida das salas públicas e dos eventos, não importa há quanto tempo você joga. Numa sala pública, uma vez de desenhar que quebra estas regras é removida do desenho e conta como uma infração: primeiro uma advertência, depois 3, 7 e 30 dias sem salas públicas e eventos e, na quinta infração em 90 dias, para sempre. Em qualquer sala, um símbolo de ódio (uma suástica conta, a menos que a palavra da rodada deixe claro um sentido religioso), uma ofensa discriminatória escrita ou ódio contra alguém tira o jogador da partida e das salas públicas e dos eventos para sempre, e um desenho que sexualiza uma criança encerra a conta e é tratado como diz a seção Segurança infantil acima. Sangue e monstros são permitidos. Numa sala privada, um desenho denunciado só gera uma ação automática quando é grave a esse ponto; o resto fica a critério da pessoa que lê a denúncia. Para recorrer, mande para nós por e-mail o código do seu aviso.',
+        'Os desenhos em salas públicas e Noites de Jogos podem ser verificados automaticamente a qualquer momento, e os desenhos denunciados também são verificados. Se um desenho seu quebrar estas regras, sua conta pode ser pausada ou banida das salas públicas e das Noites de Jogos, não importa há quanto tempo você joga. Numa sala pública, uma vez de desenhar que quebra estas regras é removida do desenho e conta como uma infração: primeiro uma advertência, depois 3, 7 e 30 dias sem salas públicas e Noites de Jogos e, na quinta infração em 90 dias, para sempre. Em qualquer sala, um símbolo de ódio (uma suástica conta, a menos que a palavra da rodada deixe claro um sentido religioso), uma ofensa discriminatória escrita ou ódio contra alguém tira o jogador da partida e das salas públicas e das Noites de Jogos para sempre, e um desenho que sexualiza uma criança encerra a conta e é tratado como diz a seção Segurança infantil acima. Sangue e monstros são permitidos. Numa sala privada, um desenho denunciado só gera uma ação automática quando é grave a esse ponto; o resto fica a critério da pessoa que lê a denúncia. Para recorrer, mande para nós por e-mail o código do seu aviso.',
       drawingsTesters:
         'Por ora, a verificação automática de desenhos está em teste e só funciona em partidas em que todos os jogadores são nossos testadores (quem usa uma versão de teste do app).',
     },
@@ -407,7 +407,7 @@ const ptBR: Strings = {
       publicOnePool:
         '<b>Salas públicas</b> com jogadores que seu filho ou sua filha não conhece: as mesas do Jogar online, onde o app distribui os jogadores automaticamente e todos jogam com as mesmas regras padrão, e as noites de jogos que organizamos com hora marcada. Os jogadores não podem criar salas públicas, e nenhum jogador é anfitrião de uma.',
       public: (playOnline: boolean) =>
-        `<b>Salas públicas e eventos</b> com jogadores que seu filho ou sua filha não conhece${playOnline ? ', inclusive o Jogar online, que coloca os jogadores numa mesa automaticamente' : ''}.`,
+        `<b>Salas públicas e Noites de Jogos</b> com jogadores que seu filho ou sua filha não conhece${playOnline ? ', inclusive o Jogar online, que coloca os jogadores numa mesa automaticamente' : ''}.`,
       buy: '<b>Itens para comprar:</b> pacotes e assinaturas, pela App Store ou pelo Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
@@ -778,12 +778,12 @@ const ptBR: Strings = {
   },
 
   joinEvent: {
-    label: 'Evento público',
-    broken: 'Este link de evento não funciona',
+    label: 'Noite de Jogos pública',
+    broken: 'Este link de Noite de Jogos não funciona',
     brokenHelp: 'Confira o link, ou abra o SpySocial e procure salas.',
     live: 'Ao vivo',
-    cancelled: 'Cancelado',
-    ended: 'Encerrado',
+    cancelled: 'Cancelada',
+    ended: 'Encerrada',
     upcoming: 'Em breve',
     full: 'Lotado agora',
     inRoom: (count: number, capacity: number) => `${count} / ${capacity} na sala`,

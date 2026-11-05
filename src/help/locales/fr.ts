@@ -251,6 +251,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Tu échanges avec tes amis, dans l'appli. Il te faut un compte d'au moins 7 jours, un e-mail confirmé et 3 parties comptées (des parties terminées qui comptent dans tes stats, avec au moins 2 autres comptes sauvegardés sur d'autres téléphones).",
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte, de parties comptées et de nouvel appareil sont levées : chaque testeur peut échanger dès que son e-mail est confirmé.']),
           "Chaque côté propose jusqu'à 10 objets, et les deux confirment avant l'échange. Les gros échanges demandent un code envoyé par e-mail.",
+          "Ce que tu mets dans un échange ouvert lui est réservé : ça ne peut pas aller dans un autre échange ou sur le Marché noir en même temps. Si l'Intel d'un échange est dépensé avant qu'il se fasse, un avertissement s'affiche de ce côté, et l'échange ne peut pas se faire tant que le montant n'est pas baissé.",
           "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais.",
           `L'Intel ne s'échange qu'entre adultes${o.launch ? '' : ', à partir du lancement de la 2.2 le 8 décembre'}.`,
           "Acheter ou vendre des objets, de l'Intel ou des comptes contre de l'argent réel est interdit.",
@@ -496,7 +497,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Un <b>invité</b> joue tout de suite dans les salons privés. Un compte invité vit sur un seul téléphone, et se déconnecter le supprime pour de bon.",
           `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton abonnement sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la Soirée jeux et d'ajouter des amis.`,
-          'Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre.',
+          "Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre. Amis, Échanges et le Marché noir demandent d'abord à un invité de le sauvegarder.",
         ],
       },
       {
@@ -505,6 +506,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Un <b>compte sauvegardé</b> revient sur n'importe quel téléphone : ouvre SpySocial et connecte-toi comme avant (Apple, Google ou le même e-mail). Un autre e-mail, ou Masquer mon adresse e-mail d'Apple, ouvre un nouveau compte vide : c'est souvent pour ça que la progression semble disparue.",
           "Un <b>compte invité</b> vit sur un seul téléphone. Si l'appli a été supprimée, si le téléphone est perdu ou si tu t'es déconnecté, il est perdu pour de bon et nous ne pouvons pas le récupérer.",
+          "Si l'appli affiche <b>Impossible d’ouvrir ton compte</b>, ton compte est toujours enregistré sur le téléphone, mais il n'a pas pu être lu à ce moment-là. Touche <b>Réessayer</b>, ou ferme l'appli et rouvre-la.",
           'Un abonnement ne se perd pas : <b>Restaurer les achats</b> le ramène. Nous ne pouvons pas fusionner des comptes ni déplacer des objets entre eux.',
           "Si tu avais un compte sauvegardé, écris à <email/> avec ton nom d'utilisateur et ta façon de te connecter, et nous regarderons.",
         ],
@@ -515,6 +517,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           ...(o.passwordless ? ["Tu peux te connecter avec Apple, Google ou un code à 6 chiffres envoyé par e-mail. Il n'y a plus de mot de passe : si l'appli en demande encore un, mets-la à jour dans l'App Store ou Google Play."] : []),
           "Connecte-toi de la même façon qu'avant. Un autre e-mail, ou Masquer mon adresse e-mail d'Apple, ouvre un nouveau compte vide à la place du tien.",
+          "Si l'appli s'ouvre sur l'écran de connexion avec <b>Session fermée sur cet appareil</b>, ta connexion y a été fermée de notre côté, en général parce que le compte a été déconnecté partout. Reconnecte-toi de la même façon : ta progression est sauvegardée. Un compte invité ne peut pas se reconnecter.",
           "Si l'appli affiche « Ce compte ne peut pas se connecter », écris à <email/> depuis l'adresse du compte et nous regarderons.",
           'Si le compte a été banni, notre e-mail à cette adresse donne la référence, la raison et la façon de faire appel.',
         ],
@@ -556,6 +559,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Comment changer mon nom ?',
         a: [
           "Change ton nom affiché quand tu veux sur la page de ton compte, et ton nom d'utilisateur une fois tous les 30 jours.",
+          "Un nouveau compte commence avec un nom d'affichage au hasard, dans la langue de ton appli.",
           "Aux tables de Jouer en ligne, les joueurs que tu ne connais pas voient ta couleur d'agent à la place. Les noms suivent les <rules>règles de la communauté</rules>.",
         ],
       },
@@ -653,6 +657,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Vérifie le code : lettres de A à Z et chiffres de 2 à 9 (0 et 1 se lisent O et I).',
           "Impossible de rejoindre une partie en cours : attends qu'elle finisse. Le salon peut aussi être plein ou verrouillé.",
           "Si l'hôte a changé le code, les anciens liens et QR codes ne marchent plus. Si l'hôte t'a exclu, tu ne peux pas revenir dans ce salon.",
+          "Une invitation vers un salon qui n'existe plus affiche tout de suite <b>Cette invitation ne fonctionne pas</b> ou <b>Salon fermé</b>, avant de te demander ton année de naissance.",
           'Jouer en ligne et la Soirée jeux demandent un compte sauvegardé.',
         ],
       },
@@ -661,6 +666,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "J'ai perdu la connexion pendant une partie",
         a: [
           "L'appli se reconnecte toute seule quand ta connexion revient.",
+          "Un message de chat qui n'est pas parti affiche <b>Non envoyé</b>. Si ta connexion revient dans les 2 minutes, il repart tout seul ; après, touche-le pour l'envoyer.",
           "Si tu te retrouves sur l'accueil, touche <b>Revenir</b> sur la carte de ton salon. Ta place est gardée.",
           "Si l'appli dit qu'elle n'a pas eu de réponse après un vote, une proposition, un achat, un déchiquetage ou un échange, l'action est peut-être quand même passée. Vérifie, puis réessaie si ce n'est pas le cas : rien n'est payé ni échangé deux fois.",
         ],
@@ -693,9 +699,10 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Je ne reçois pas les notifications',
         a: [
           'Autorise les notifications de SpySocial dans les réglages de ton téléphone.',
-          "Dans l'appli, <b>Confidentialité et amis</b> a un interrupteur pour les demandes d'ami, les invitations et les nouveaux packs.",
+          "Dans l'appli, <b>Confidentialité et amis</b> a des interrupteurs pour les demandes d'ami, les invitations, les nouveaux packs, les échanges et le Marché noir.",
+          "Sur Android, les notifications d'amis, de groupe, d'échanges et du Marché noir partagent une seule catégorie dans les réglages du téléphone, <b>Amis, groupe et échanges</b> : la désactiver là-bas les arrête toutes.",
           "Les notifications de partie arrivent quand tu cherches une partie à Jouer en ligne, et les rappels de Soirée jeux quand tu touches <b>Me le rappeler</b>. Les invités n'en reçoivent pas.",
-          "Les moins de 18 ans ne reçoivent pas de notifications sociales entre 22 h et 7 h.",
+          'Les moins de 18 ans ne reçoivent pas de notifications sociales, ni notre réponse sur un pack envoyé à Communauté, entre 22 h et 7 h.',
         ],
       },
       {

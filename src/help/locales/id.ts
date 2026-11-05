@@ -255,6 +255,7 @@ const id: HelpText = {
             'Kamu bertukar dengan teman, di dalam aplikasi. Kamu butuh akun berusia minimal 7 hari, email terkonfirmasi, dan 3 permainan yang dihitung (permainan selesai yang masuk ke statistikmu, dengan minimal 2 akun tersimpan lain di ponsel lain).',
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun, permainan yang dihitung, dan perangkat baru tidak berlaku: setiap penguji bisa bertukar begitu email-nya dikonfirmasi.']),
             'Tiap pihak menawarkan sampai 10 item, dan keduanya mengonfirmasi sebelum pertukaran terjadi. Pertukaran besar meminta kode yang kami kirim lewat email.',
+            'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
             'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.',
             `Intel hanya bisa ditukar antar orang dewasa${o.launch ? '' : ', mulai peluncuran 2.2 tanggal 8 Desember'}.`,
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
@@ -500,7 +501,7 @@ const id: HelpText = {
           a: [
             '<b>Tamu</b> bisa langsung main di room privat. Akun tamu hanya ada di satu ponsel, dan keluar dari akun menghapusnya selamanya.',
             `Akun <b>tersimpan</b> (Apple, Google, atau emailmu${o.passwordless ? ', dengan kode yang kami kirim lewat email, tanpa kata sandi' : ''}) menyimpan nama, progres, dan keanggotaanmu di ponsel mana pun, dan membuka Main online, Malam Permainan, dan fitur teman.`,
-            'Kamu bisa menyimpan akun tamu kapan saja dari halaman Akun, tanpa kehilangan apa pun.',
+            'Kamu bisa menyimpan akun tamu kapan saja dari halaman Akun, tanpa kehilangan apa pun. Teman, Pertukaran, dan Pasar Gelap meminta tamu menyimpan akunnya dulu.',
           ],
         },
         {
@@ -509,6 +510,7 @@ const id: HelpText = {
           a: [
             '<b>Akun tersimpan</b> kembali di ponsel mana pun: buka SpySocial dan masuk dengan cara yang sama seperti dulu (Apple, Google, atau email yang sama). Email lain, atau Sembunyikan Email Saya dari Apple, membuka akun baru yang kosong, dan sering kali itu sebabnya progres seperti hilang.',
             '<b>Akun tamu</b> hanya ada di satu ponsel. Kalau aplikasinya dihapus, ponselnya hilang, atau kamu keluar dari akun, akun itu hilang selamanya dan kami tidak bisa mengembalikannya.',
+            'Jika aplikasi menampilkan <b>Tidak bisa membuka akun kamu</b>, akunmu masih tersimpan di ponsel, hanya saja tidak bisa dibaca saat itu. Ketuk <b>Coba lagi</b>, atau tutup aplikasi lalu buka lagi.',
             'Keanggotaan tidak hilang: <b>Pulihkan pembelian</b> mengembalikannya. Kami tidak bisa menggabungkan akun atau memindahkan item antar-akun.',
             'Kalau dulu akunmu tersimpan, email ke <email/> dengan nama penggunamu dan cara kamu masuk, dan kami akan memeriksanya.',
           ],
@@ -519,6 +521,7 @@ const id: HelpText = {
           a: [
             ...(o.passwordless ? ['Kamu bisa masuk dengan Apple, Google, atau kode 6 digit yang kami kirim lewat email. Sekarang tidak ada kata sandi lagi: kalau aplikasi masih memintanya, perbarui di App Store atau Google Play.'] : []),
             'Masuklah dengan cara yang sama seperti dulu. Email lain, atau Sembunyikan Email Saya dari Apple, membuka akun baru yang kosong, bukan akunmu.',
+            'Jika aplikasi terbuka di layar Masuk dengan <b>Sesimu di Perangkat Ini Telah Berakhir</b>, sesimu di sana diakhiri dari pihak kami, biasanya karena akun itu dikeluarkan dari semua perangkat. Masuk lagi dengan cara yang sama: progresmu tersimpan. Akun tamu tidak bisa masuk lagi.',
             'Kalau aplikasi menulis “Akun ini tidak bisa masuk”, email ke <email/> dari alamat akun itu dan kami akan memeriksanya.',
             'Kalau akun itu diblokir, email kami ke alamat tersebut berisi nomor referensi, alasannya, dan cara mengajukan banding.',
           ],
@@ -560,6 +563,7 @@ const id: HelpText = {
           q: 'Bagaimana cara mengganti nama?',
           a: [
             'Ganti nama tampilanmu kapan saja di halaman Akun, dan username sekali tiap 30 hari.',
+            'Akun baru dimulai dengan nama tampilan acak dalam bahasa aplikasimu.',
             'Di meja Main online, pemain yang tidak kamu kenal melihat warna Agen-mu. Nama harus mengikuti <rules>aturan komunitas</rules>.',
           ],
         },
@@ -657,6 +661,7 @@ const id: HelpText = {
             'Periksa kodenya: huruf A sampai Z dan angka 2 sampai 9 (0 dan 1 dibaca O dan I).',
             'Permainan yang sedang berlangsung tidak bisa dimasuki: tunggu sampai selesai. Room-nya juga bisa penuh atau dikunci.',
             'Kalau host mengganti kode, link dan kode QR lama tidak berlaku lagi. Kalau host mengeluarkanmu, kamu tidak bisa kembali ke room itu.',
+            'Undangan ke room yang sudah tidak ada langsung menampilkan <b>Undangan ini tidak berlaku</b> atau <b>Room ditutup</b>, sebelum menanyakan tahun lahirmu.',
             'Main online dan Malam Permainan butuh akun tersimpan.',
           ],
         },
@@ -665,6 +670,7 @@ const id: HelpText = {
           q: 'Koneksiku putus saat bermain',
           a: [
             'Aplikasi tersambung lagi sendiri saat koneksimu kembali.',
+            'Pesan chat yang tidak terkirim menampilkan <b>Tidak terkirim</b>. Jika koneksimu kembali dalam 2 menit, pesan itu terkirim lagi sendiri; setelah itu, ketuk pesannya untuk mengirim.',
             'Kalau kamu sampai di Beranda, ketuk <b>Kembali</b> di kartu room-mu. Kursimu tetap disimpan.',
             'Jika aplikasi bilang tidak mendapat jawaban setelah vote, tebakan, pembelian, penghancuran, atau pertukaran, mungkin itu tetap berhasil. Periksa dulu, lalu coba lagi jika belum: tidak ada yang dibayar atau ditukar dua kali.',
           ],
@@ -697,9 +703,10 @@ const id: HelpText = {
           q: 'Aku tidak menerima notifikasi',
           a: [
             'Izinkan notifikasi untuk SpySocial di pengaturan ponselmu.',
-            'Di aplikasi, <b>Privasi & Teman</b> punya tombol untuk permintaan teman, undangan, dan paket baru.',
+            'Di aplikasi, <b>Privasi & Teman</b> punya tombol untuk permintaan teman, undangan, paket baru, pertukaran, dan Pasar Gelap.',
+            'Di Android, notifikasi teman, grup, pertukaran, dan Pasar Gelap ada dalam satu kategori di pengaturan ponsel, <b>Teman, Grup & Pertukaran</b>: mematikannya di sana menghentikan semuanya.',
             'Notifikasi permainan datang saat kamu mencari di Main online, dan pengingat Malam Permainan saat kamu mengetuk <b>Ingatkan aku</b>. Tamu tidak menerimanya.',
-            'Pemain di bawah 18 tahun tidak menerima notifikasi sosial antara pukul 22.00 dan 07.00.',
+            'Pemain di bawah 18 tahun tidak menerima notifikasi sosial, atau jawaban kami soal paket yang mereka kirim ke Komunitas, antara pukul 22.00 dan 07.00.',
           ],
         },
         {

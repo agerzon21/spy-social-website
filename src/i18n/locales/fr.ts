@@ -27,7 +27,7 @@ const fr: Strings = {
       roadmap: 'Feuille de route',
       deleteAccount: 'Supprimer ton compte',
       join: 'Rejoindre une partie',
-      joinEvent: 'Événement public',
+      joinEvent: 'Soirée jeux publique',
       resetPassword: 'Réinitialiser ton mot de passe',
       /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
       resetPasswordCode: "Connexion avec un code",
@@ -326,9 +326,9 @@ const fr: Strings = {
     },
     breaking: {
       title: "Ce qui se passe quand quelqu'un enfreint les règles",
-      text: "En général, d'abord un avertissement. Les problèmes répétés ou graves entraînent un blocage du chat (de 1 heure à 7 jours), une pause des salons publics et des événements (de 1 à 30 jours), ou un bannissement. Partager les informations personnelles de quelqu'un, ou quoi que ce soit qui sexualise un enfant, peut entraîner un bannissement immédiat. Chaque notification dans l'appli indique ce qui est limité, pourquoi et jusqu'à quand, avec un identifiant comme S-207.",
+      text: "En général, d'abord un avertissement. Les problèmes répétés ou graves entraînent un blocage du chat (de 1 heure à 7 jours), une pause des salons publics et des Soirées jeux (de 1 à 30 jours), ou un bannissement. Partager les informations personnelles de quelqu'un, ou quoi que ce soit qui sexualise un enfant, peut entraîner un bannissement immédiat. Chaque notification dans l'appli indique ce qui est limité, pourquoi et jusqu'à quand, avec un identifiant comme S-207.",
       drawings:
-        "Les dessins des salons publics et des événements peuvent être vérifiés automatiquement à tout moment, et les dessins signalés sont vérifiés aussi. Si un dessin que tu as fait enfreint ces règles, ton compte peut être suspendu ou banni des salons publics et des événements, quelle que soit ton ancienneté. Dans un salon public, un tour qui enfreint ces règles est retiré du dessin et compte comme une sanction\u00A0: d'abord un avertissement, puis 3, 7 et 30 jours sans salons publics ni événements, et à la cinquième sanction en 90 jours, pour de bon. Dans tous les salons, un symbole de haine (une croix gammée en est un, sauf si le mot de la manche lui donne clairement un sens religieux), une injure écrite ou un message de haine visant quelqu'un exclut le joueur de la partie, et des salons publics et des événements pour de bon, et un dessin qui sexualise un enfant entraîne la suppression du compte et est traité comme l'indique la section Protection des enfants ci-dessus. Le gore et les monstres sont autorisés. Dans un salon privé, un dessin signalé n'entraîne une mesure automatique que s'il est aussi grave\u00A0; pour tout le reste, c'est la personne qui lit le signalement qui décide. Pour faire appel, envoie-nous par e-mail le code de ta notification.",
+        "Les dessins des salons publics et des Soirées jeux peuvent être vérifiés automatiquement à tout moment, et les dessins signalés sont vérifiés aussi. Si un dessin que tu as fait enfreint ces règles, ton compte peut être suspendu ou banni des salons publics et des Soirées jeux, quelle que soit ton ancienneté. Dans un salon public, un tour qui enfreint ces règles est retiré du dessin et compte comme une sanction\u00A0: d'abord un avertissement, puis 3, 7 et 30 jours sans salons publics ni Soirées jeux, et à la cinquième sanction en 90 jours, pour de bon. Dans tous les salons, un symbole de haine (une croix gammée en est un, sauf si le mot de la manche lui donne clairement un sens religieux), une injure écrite ou un message de haine visant quelqu'un exclut le joueur de la partie, et des salons publics et des Soirées jeux pour de bon, et un dessin qui sexualise un enfant entraîne la suppression du compte et est traité comme l'indique la section Protection des enfants ci-dessus. Le gore et les monstres sont autorisés. Dans un salon privé, un dessin signalé n'entraîne une mesure automatique que s'il est aussi grave\u00A0; pour tout le reste, c'est la personne qui lit le signalement qui décide. Pour faire appel, envoie-nous par e-mail le code de ta notification.",
       drawingsTesters:
         "Pour l'instant, la vérification automatique des dessins est en test\u00A0: elle ne fonctionne que dans les parties où tous les joueurs sont nos testeurs (des joueurs qui essaient une version de test de l'appli).",
     },
@@ -406,7 +406,7 @@ const fr: Strings = {
       publicOnePool:
         "<b>Salons publics</b> avec des joueurs que ton enfant ne connaît pas\u00A0: les tables de «\u00A0Jouer en ligne\u00A0», où l'appli place les joueurs automatiquement et où tout le monde joue avec les mêmes règles standard, et les soirées jeux que nous organisons à heure fixe. Les joueurs ne peuvent pas créer de salons publics, et aucun joueur n'en est l'hôte.",
       public: (playOnline: boolean) =>
-        `<b>Salons publics et événements</b> avec des joueurs que ton enfant ne connaît pas${playOnline ? ', dont «\u00A0Jouer en ligne\u00A0», qui place automatiquement les joueurs à une table' : ''}.`,
+        `<b>Salons publics et Soirées jeux</b> avec des joueurs que ton enfant ne connaît pas${playOnline ? ', dont «\u00A0Jouer en ligne\u00A0», qui place automatiquement les joueurs à une table' : ''}.`,
       buy: "<b>Des achats\u00A0:</b> packs et abonnements, via l'App Store ou Google Play.",
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
@@ -780,12 +780,12 @@ const fr: Strings = {
   },
 
   joinEvent: {
-    label: 'Événement public',
-    broken: 'Ce lien d\'événement ne marche pas',
+    label: 'Soirée jeux publique',
+    broken: 'Ce lien de Soirée jeux ne fonctionne pas',
     brokenHelp: 'Vérifie-le, ou ouvre SpySocial et parcours les salons.',
     live: 'En direct',
-    cancelled: 'Annulé',
-    ended: 'Terminé',
+    cancelled: 'Annulée',
+    ended: 'Terminée',
     upcoming: 'À venir',
     full: 'Complet pour le moment',
     inRoom: (count: number, capacity: number) => `${count} / ${capacity} dans le salon`,

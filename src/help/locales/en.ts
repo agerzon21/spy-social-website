@@ -1,7 +1,9 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). Facts checked on 2026-11-04 (help-truth-3: parties, Waiting and Put Back, the Intel tile, the translator offer, no-answer lines, Teaming) and 2026-11-03 (nov03/legal-audit-1103b.md) against the Terms (sections 4, 5, 8, 9), the Privacy
+ * English: the source (../types.ts). Facts checked on 2026-11-05 (help-truth-4: guests asked to save for Friends, Trades and the Black Market; Couldn't Open
+ * Your Account; You Were Signed Out on This Device; a dead invite before the birth year; names in the app's language; chat resent after a drop;
+ * Android's Friends, Party & Trades category and the minors' night hold for pack answers; what's in an open trade is held), 2026-11-04 (help-truth-3: parties, Waiting and Put Back, the Intel tile, the translator offer, no-answer lines, Teaming) and 2026-11-03 (nov03/legal-audit-1103b.md) against the Terms (sections 4, 5, 8, 9), the Privacy
  * Policy's Your Rights, the Game Night rules and the app (integrate/2.2: the How to Play glossary, the Members page,
  * trading, the Black Market and Intercepts strings). When a rule changes there, change it here in all ten languages.
  */
@@ -259,6 +261,7 @@ const en: HelpText = {
             'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones).',
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age, counted-games and new-device rules are off: every tester can trade once their email is confirmed.']),
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
+            'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
             'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.',
             `Intel can be traded only between adults${o.launch ? '' : ', from the 2.2 launch on December 8'}.`,
             'Buying or selling items, Intel or accounts for real money is against the rules.',
@@ -504,7 +507,7 @@ const en: HelpText = {
           a: [
             'A <b>guest</b> plays private rooms right away. A guest account lives on one phone, and signing out deletes it for good.',
             `A <b>saved</b> account (Apple, Google or your email${o.passwordless ? ', with a code we email you, no password' : ''}) keeps your name, progress and membership on any phone, and lets you play online, join Game Night and add friends.`,
-            'You can save a guest account at any time from your Account page, without losing anything.',
+            'You can save a guest account at any time from your Account page, without losing anything. Friends, Trades and the Black Market ask a guest to save it first.',
           ],
         },
         {
@@ -513,6 +516,7 @@ const en: HelpText = {
           a: [
             '<b>A saved account</b> comes back on any phone: open SpySocial and sign in the same way as before (Apple, Google or the same email). A different email, or Apple’s Hide My Email, opens a new, empty account, which is often why progress seems gone.',
             '<b>A guest account</b> lives on one phone. If the app was deleted, the phone was lost or you signed out, it’s gone for good and we can’t bring it back.',
+            'If the app shows <b>Couldn’t Open Your Account</b>, your account is still saved on the phone but couldn’t be read just then. Tap <b>Try Again</b>, or close the app and open it again.',
             'A membership isn’t lost: <b>Restore Purchases</b> brings it back. We can’t merge accounts or move items between them.',
             'If you had a saved account, email <email/> with your username and how you signed in, and we’ll look.',
           ],
@@ -523,6 +527,7 @@ const en: HelpText = {
           a: [
             ...(o.passwordless ? ['You can sign in with Apple, Google or a 6-digit code we email you. There are no passwords any more: if the app still asks for one, update it in the App Store or Google Play.'] : []),
             'Use the same way in as before. A different email, or Apple’s Hide My Email, opens a new, empty account instead of yours.',
+            'If the app opens on Log In with <b>You Were Signed Out on This Device</b>, your sign-in there was ended on our side, usually because the account was signed out everywhere. Sign in again the same way: your progress is saved. A guest account can’t sign back in.',
             'If the app says “This account can’t sign in”, email <email/> from the account’s address and we’ll look.',
             'If the account was banned, our email to that address gives the reference, the reason and how to appeal.',
           ],
@@ -564,6 +569,7 @@ const en: HelpText = {
           q: 'How do I change my name?',
           a: [
             'Change your display name on your Account page any time, and your username once every 30 days.',
+            'A new account starts with a random display name in your app’s language.',
             'At Play Online tables, players you don’t know see your Agent colour instead. Names follow the <rules>community rules</rules>.',
           ],
         },
@@ -661,6 +667,7 @@ const en: HelpText = {
             'Check the code: letters A to Z and numbers 2 to 9 (0 and 1 read as O and I).',
             'A game in progress can’t be joined: wait for it to end. The room may also be full or locked.',
             'If the host changed the code, old links and QR codes stop working. If the host removed you, you can’t rejoin that room.',
+            'An invite to a room that’s gone says <b>This Invite Doesn’t Work</b> or <b>Room Closed</b> straight away, before it asks your birth year.',
             'Play Online and Game Night need a saved account.',
           ],
         },
@@ -669,6 +676,7 @@ const en: HelpText = {
           q: 'I lost my connection in a game',
           a: [
             'The app reconnects by itself when your connection comes back.',
+            'A chat message that didn’t go out shows <b>Not sent</b>. If your connection comes back within 2 minutes, it’s sent again by itself; after that, tap it to send it.',
             'If you end up on Home, tap <b>Rejoin</b> on your room’s card. Your seat is kept.',
             'If the app says it didn’t hear back after a vote, a guess, a buy, a shred or a trade, it may still have gone through. Check, then try again if it didn’t: nothing is paid or traded twice.',
           ],
@@ -701,9 +709,10 @@ const en: HelpText = {
           q: 'I’m not getting notifications',
           a: [
             'Allow notifications for SpySocial in your phone’s settings.',
-            'In the app, <b>Privacy & Friends</b> has a switch for friend requests, invites and new packs.',
+            'In the app, <b>Privacy & Friends</b> has switches for friend requests, invites, new packs, trades and the Black Market.',
+            'On Android, friend, party, trade and Black Market notifications share one category in the phone’s settings, <b>Friends, Party & Trades</b>: turning it off there stops all of them.',
             'Match notifications come when you search in Play Online, and Game Night reminders when you tap <b>Remind Me</b>. Guests don’t get them.',
-            'Players under 18 don’t get social notifications between 10 PM and 7 AM.',
+            'Players under 18 don’t get social notifications, or our answer about a pack they sent to Community, between 10 PM and 7 AM.',
           ],
         },
         {

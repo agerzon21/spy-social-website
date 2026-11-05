@@ -255,6 +255,7 @@ const ptBR: HelpText = {
             'Você troca com amigos, dentro do app. Precisa de uma conta com pelo menos 7 dias, e-mail confirmado e 3 partidas contadas (partidas terminadas que entram nas suas estatísticas, com pelo menos outras 2 contas salvas em outros celulares).',
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta, partidas contadas e novo aparelho estão desligadas: qualquer testador pode trocar assim que confirmar o e-mail.']),
             'Cada lado oferece até 10 itens, e os dois confirmam antes da troca. Trocas grandes pedem um código que mandamos por e-mail.',
+            'O que você coloca numa troca aberta fica reservado para ela: não pode ir para outra troca nem para o Mercado Negro ao mesmo tempo. Se a Intel de uma troca for gasta antes de a troca acontecer, aparece um aviso naquele lado, e a troca não pode acontecer até a quantia ser reduzida.',
             'O app marca quais itens dá para trocar. A assinatura e o que ela inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.',
             `Intel só pode ser trocada entre adultos${o.launch ? '' : ', a partir do lançamento da 2.2 em 8 de dezembro'}.`,
             'Comprar ou vender itens, Intel ou contas por dinheiro de verdade é contra as regras.',
@@ -500,7 +501,7 @@ const ptBR: HelpText = {
           a: [
             'Um <b>convidado</b> joga em salas privadas na hora. Uma conta de convidado fica num celular só, e sair dela apaga a conta para sempre.',
             `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e sua assinatura em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
-            'Você pode salvar uma conta de convidado quando quiser na página da sua conta, sem perder nada.',
+            'Você pode salvar uma conta de convidado quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o convidado salve a conta primeiro.',
           ],
         },
         {
@@ -509,6 +510,7 @@ const ptBR: HelpText = {
           a: [
             'Uma <b>conta salva</b> volta em qualquer celular: abra o SpySocial e entre do mesmo jeito de antes (Apple, Google ou o mesmo e-mail). Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia, e muitas vezes é por isso que o progresso parece ter sumido.',
             'Uma <b>conta de convidado</b> fica num celular só. Se o app foi apagado, o celular foi perdido ou você saiu da conta, ela se foi para sempre e não conseguimos trazê-la de volta.',
+            'Se o app mostrar <b>Não foi possível abrir sua conta</b>, sua conta continua salva no celular, só não deu para lê-la naquele momento. Toque em <b>Tentar de novo</b>, ou feche o app e abra de novo.',
             'A assinatura não se perde: <b>Restaurar compras</b> traz de volta. Não conseguimos juntar contas nem mover itens entre elas.',
             'Se você tinha uma conta salva, escreva para <email/> com seu nome de usuário e como entrava, e nós verificamos.',
           ],
@@ -519,6 +521,7 @@ const ptBR: HelpText = {
           a: [
             ...(o.passwordless ? ['Você pode entrar com Apple, com Google ou com um código de 6 dígitos que mandamos por e-mail. Não há mais senhas: se o app ainda pedir uma, atualize-o na App Store ou no Google Play.'] : []),
             'Entre do mesmo jeito de antes. Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia no lugar da sua.',
+            'Se o app abrir na tela de login com <b>Sua sessão neste dispositivo foi encerrada</b>, encerramos seu login ali do nosso lado, geralmente porque a conta foi desconectada de todos os aparelhos. Entre de novo do mesmo jeito: seu progresso está salvo. Uma conta de convidado não consegue entrar de novo.',
             'Se o app disser “Esta conta não pode entrar”, escreva para <email/> pelo e-mail da conta, e nós verificamos.',
             'Se a conta foi banida, nosso e-mail para esse endereço informa a referência, o motivo e como recorrer.',
           ],
@@ -560,6 +563,7 @@ const ptBR: HelpText = {
           q: 'Como mudo meu nome?',
           a: [
             'Mude seu nome de exibição quando quiser na página da sua conta, e seu nome de usuário uma vez a cada 30 dias.',
+            'Uma conta nova começa com um nome de exibição aleatório no idioma do seu app.',
             'Nas mesas do Jogar online, quem não conhece você vê sua cor de agente no lugar. Os nomes seguem as <rules>regras da comunidade</rules>.',
           ],
         },
@@ -657,6 +661,7 @@ const ptBR: HelpText = {
             'Confira o código: letras de A a Z e números de 2 a 9 (0 e 1 viram O e I).',
             'Não dá para entrar numa partida em andamento: espere acabar. A sala também pode estar cheia ou trancada.',
             'Se o anfitrião mudou o código, links e QR codes antigos param de funcionar. Se o anfitrião removeu você, não dá para voltar àquela sala.',
+            'Um convite para uma sala que não existe mais mostra na hora <b>Este convite não funciona</b> ou <b>Sala fechada</b>, antes de pedir seu ano de nascimento.',
             'O Jogar online e a Noite de Jogos precisam de uma conta salva.',
           ],
         },
@@ -665,6 +670,7 @@ const ptBR: HelpText = {
           q: 'Perdi a conexão numa partida',
           a: [
             'O app reconecta sozinho quando sua conexão volta.',
+            'Uma mensagem do chat que não saiu mostra <b>Não enviada</b>. Se sua conexão voltar em até 2 minutos, ela é enviada de novo sozinha; depois disso, toque nela para enviar.',
             'Se você for parar no início, toque em <b>Voltar</b> no cartão da sua sala. Seu lugar fica guardado.',
             'Se o app disser que não recebeu resposta depois de um voto, um palpite, uma compra, uma trituração ou uma troca, a ação pode ter acontecido mesmo assim. Confira e tente de novo se não: nada é pago nem trocado duas vezes.',
           ],
@@ -697,9 +703,10 @@ const ptBR: HelpText = {
           q: 'Não estou recebendo notificações',
           a: [
             'Permita as notificações do SpySocial nos ajustes do celular.',
-            'No app, <b>Privacidade e amigos</b> tem uma chave para pedidos de amizade, convites e pacotes novos.',
+            'No app, <b>Privacidade e amigos</b> tem chaves para pedidos de amizade, convites, pacotes novos, trocas e o Mercado Negro.',
+            'No Android, as notificações de amigos, grupo, trocas e Mercado Negro ficam numa só categoria nos ajustes do celular, <b>Amigos, grupo e trocas</b>: desligá-la ali desliga todas.',
             'Os avisos de partida chegam quando você busca no Jogar online, e os lembretes da Noite de Jogos quando você toca em <b>Me avise</b>. Convidados não recebem.',
-            'Menores de 18 não recebem notificações sociais entre 22h e 7h.',
+            'Menores de 18 não recebem notificações sociais, nem nossa resposta sobre um pacote que enviaram para a Comunidade, entre 22h e 7h.',
           ],
         },
         {

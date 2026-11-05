@@ -1,6 +1,6 @@
 import type { Strings } from './en'
 
-/** Indonesian (id): everyday "kamu" like the app, sentence case, app terms (mata-mata, warga, room, host, event, “Main online”). */
+/** Indonesian (id): everyday "kamu" like the app, sentence case, app terms (mata-mata, warga, room, host, Malam Permainan, “Main online”). */
 const id: Strings = {
   meta: {
     siteName: 'SpySocial',
@@ -27,7 +27,7 @@ const id: Strings = {
       roadmap: 'Roadmap',
       deleteAccount: 'Hapus akunmu',
       join: 'Gabung ke permainan',
-      joinEvent: 'Event publik',
+      joinEvent: 'Malam Permainan publik',
       resetPassword: 'Atur ulang kata sandi',
       /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
       resetPasswordCode: "Masuk dengan kode",
@@ -205,7 +205,7 @@ const id: Strings = {
         '<b>Ketik</b> kode room di sini atau di aplikasi',
       ],
       onlineTitle: 'Main online',
-      onlineText: '“Cari permainan” mendudukkanmu di meja berisi 4 atau 8 pemain. Orang asing tidak pernah melihat namamu, hanya warna Agen-mu. Ada event terjadwal juga.',
+      onlineText: '“Cari permainan” mendudukkanmu di meja berisi 4 atau 8 pemain. Orang asing tidak pernah melihat namamu, hanya warna Agen-mu. Ada Malam Permainan terjadwal juga.',
       agentsLabel: 'Warna Agen',
       agents: {
         Teal: 'Agen Toska',
@@ -275,7 +275,7 @@ const id: Strings = {
   rules: {
     title: 'Aturan komunitas',
     intro: (o: { onePool: boolean; photos: boolean }) =>
-      `Room publik${o.onePool ? ' (meja “Main online” dan event kami)' : ''} mempertemukanmu dengan orang yang tidak kamu kenal. Aturan ini menjaga permainan tetap seru untuk semua orang. Aturan ini berlaku untuk nama,${o.photos ? ' foto,' : ''} chat, gambar, dan caramu bermain, di room publik maupun privat, dan merupakan bagian dari <link>Ketentuan Layanan</link> kami.`,
+      `Room publik${o.onePool ? ' (meja “Main online” dan Malam Permainan kami)' : ''} mempertemukanmu dengan orang yang tidak kamu kenal. Aturan ini menjaga permainan tetap seru untuk semua orang. Aturan ini berlaku untuk nama,${o.photos ? ' foto,' : ''} chat, gambar, dan caramu bermain, di room publik maupun privat, dan merupakan bagian dari <link>Ketentuan Layanan</link> kami.`,
     kind: {
       title: '1. Bersikap baik',
       hate: 'Dilarang menyebar kebencian atau melecehkan: tidak boleh ada hinaan yang ditujukan ke pemain, cercaan bernada SARA, atau serangan terhadap identitas siapa pun.',
@@ -297,7 +297,7 @@ const id: Strings = {
       personal: 'Jangan bagikan nama asli, alamat, nomor telepon, atau akun media sosial, baik milikmu maupun milik orang lain.',
       spam: 'Dilarang iklan, spam, atau link di room publik.',
       minors:
-        'Di room mana pun yang ada pemain di bawah 18 tahun, link, alamat email, nomor telepon, dan akun media sosial diblokir untuk semua orang. Di meja “Main online” dan event, semuanya selalu diblokir.',
+        'Di room mana pun yang ada pemain di bawah 18 tahun, link, alamat email, nomor telepon, dan akun media sosial diblokir untuk semua orang. Di meja “Main online” dan Malam Permainan, semuanya selalu diblokir.',
     },
     reports: {
       title: '4. Laporan dibaca oleh manusia',
@@ -327,9 +327,9 @@ const id: Strings = {
     },
     breaking: {
       title: 'Kalau ada yang melanggar aturan',
-      text: 'Biasanya peringatan dulu. Masalah yang berulang atau serius bisa berujung pada chat dibisukan (1 jam sampai 7 hari), jeda dari room publik dan event (1 sampai 30 hari), atau pemblokiran akun. Membagikan informasi pribadi orang lain, atau apa pun yang menyeksualisasi anak, bisa langsung berujung pemblokiran akun. Setiap pemberitahuan di aplikasi menyebutkan apa yang dibatasi, alasannya, dan sampai kapan, dengan ID seperti S-207.',
+      text: 'Biasanya peringatan dulu. Masalah yang berulang atau serius bisa berujung pada chat dibisukan (1 jam sampai 7 hari), jeda dari room publik dan Malam Permainan (1 sampai 30 hari), atau pemblokiran akun. Membagikan informasi pribadi orang lain, atau apa pun yang menyeksualisasi anak, bisa langsung berujung pemblokiran akun. Setiap pemberitahuan di aplikasi menyebutkan apa yang dibatasi, alasannya, dan sampai kapan, dengan ID seperti S-207.',
       drawings:
-        'Gambar di room publik dan event bisa diperiksa otomatis kapan saja, dan gambar yang dilaporkan juga diperiksa. Kalau gambar buatanmu melanggar aturan ini, akunmu bisa dijeda atau diblokir dari room publik dan event, tak peduli sudah berapa lama kamu bermain. Di room publik, giliran yang melanggar aturan ini dihapus dari gambar dan dihitung sebagai pelanggaran: pertama peringatan, lalu 3, 7, dan 30 hari tanpa room publik dan event, dan pada pelanggaran kelima dalam 90 hari, untuk selamanya. Di room mana pun, simbol kebencian (termasuk swastika, kecuali kata di ronde itu jelas menunjukkan makna keagamaan), cercaan tertulis, atau kebencian yang ditujukan ke seseorang membuat pemainnya dikeluarkan dari permainan serta dari room publik dan event untuk selamanya, dan gambar yang menyeksualisasi anak mengakhiri akunnya dan ditangani seperti yang dijelaskan di bagian Keselamatan anak di atas. Darah dan monster boleh saja. Di room privat, gambar yang dilaporkan hanya ditindak otomatis kalau seserius itu; selebihnya diputuskan oleh orang yang membaca laporannya. Untuk mengajukan banding, kirimkan kode dari pemberitahuanmu ke email kami.',
+        'Gambar di room publik dan Malam Permainan bisa diperiksa otomatis kapan saja, dan gambar yang dilaporkan juga diperiksa. Kalau gambar buatanmu melanggar aturan ini, akunmu bisa dijeda atau diblokir dari room publik dan Malam Permainan, tak peduli sudah berapa lama kamu bermain. Di room publik, giliran yang melanggar aturan ini dihapus dari gambar dan dihitung sebagai pelanggaran: pertama peringatan, lalu 3, 7, dan 30 hari tanpa room publik dan Malam Permainan, dan pada pelanggaran kelima dalam 90 hari, untuk selamanya. Di room mana pun, simbol kebencian (termasuk swastika, kecuali kata di ronde itu jelas menunjukkan makna keagamaan), cercaan tertulis, atau kebencian yang ditujukan ke seseorang membuat pemainnya dikeluarkan dari permainan serta dari room publik dan Malam Permainan untuk selamanya, dan gambar yang menyeksualisasi anak mengakhiri akunnya dan ditangani seperti yang dijelaskan di bagian Keselamatan anak di atas. Darah dan monster boleh saja. Di room privat, gambar yang dilaporkan hanya ditindak otomatis kalau seserius itu; selebihnya diputuskan oleh orang yang membaca laporannya. Untuk mengajukan banding, kirimkan kode dari pemberitahuanmu ke email kami.',
       drawingsTesters:
         'Untuk sekarang, pemeriksaan gambar otomatis masih diuji dan hanya berjalan di permainan yang semua pemainnya adalah penguji kami (pemain yang mencoba versi uji aplikasi).',
     },
@@ -405,9 +405,9 @@ const id: Strings = {
         }`,
       private: '<b>Room privat:</b> hanya orang yang punya kode, link, atau kode QR room yang bisa gabung, dan host bisa mengeluarkan pemain.',
       publicOnePool:
-        '<b>Room publik</b> dengan pemain yang tidak dikenal anak Anda: meja “Main online”, tempat aplikasi mendudukkan pemain secara otomatis dan semua orang bermain dengan aturan standar yang sama, serta event yang kami selenggarakan pada waktu tertentu. Pemain tidak bisa membuat room publik, dan tidak ada pemain yang menjadi host-nya.',
+        '<b>Room publik</b> dengan pemain yang tidak dikenal anak Anda: meja “Main online”, tempat aplikasi mendudukkan pemain secara otomatis dan semua orang bermain dengan aturan standar yang sama, serta Malam Permainan yang kami selenggarakan pada waktu tertentu. Pemain tidak bisa membuat room publik, dan tidak ada pemain yang menjadi host-nya.',
       public: (playOnline: boolean) =>
-        `<b>Room publik dan event</b> dengan pemain yang tidak dikenal anak Anda${playOnline ? ', termasuk “Main online”, yang mendudukkan pemain di meja secara otomatis' : ''}.`,
+        `<b>Room publik dan Malam Permainan</b> dengan pemain yang tidak dikenal anak Anda${playOnline ? ', termasuk “Main online”, yang mendudukkan pemain di meja secara otomatis' : ''}.`,
       buy: '<b>Barang yang bisa dibeli:</b> paket dan keanggotaan, lewat App Store atau Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
@@ -450,7 +450,7 @@ const id: Strings = {
       publicRooms:
         '<b>Room publik</b> membutuhkan akun tersimpan dengan alamat email yang sudah dikonfirmasi, usia 13 tahun ke atas, dan persetujuan terhadap Aturan Komunitas kami. Tamu hanya bisa bermain di room privat, dan pemain yang sedang dijeda atau diblokir tidak bisa masuk ke room publik.',
       filter:
-        '<b>Filter chat:</b> nama dan chat diperiksa sebelum dilihat siapa pun. Di room publik, cercaan, kata-kata seksual yang vulgar, dan hinaan diblokir. Di room privat, kata-kata yang paling parah diblokir. Di room mana pun yang ada pemain di bawah 18 tahun, link, alamat email, nomor telepon, dan akun media sosial diblokir untuk semua orang. Di meja “Main online” dan event, semuanya selalu diblokir.',
+        '<b>Filter chat:</b> nama dan chat diperiksa sebelum dilihat siapa pun. Di room publik, cercaan, kata-kata seksual yang vulgar, dan hinaan diblokir. Di room privat, kata-kata yang paling parah diblokir. Di room mana pun yang ada pemain di bawah 18 tahun, link, alamat email, nomor telepon, dan akun media sosial diblokir untuk semua orang. Di meja “Main online” dan Malam Permainan, semuanya selalu diblokir.',
       reports:
         '<b>Laporan, blokir, dan sanksi:</b> manusia membaca setiap laporan dalam 24 jam, dan pemain yang dilaporkan tidak diberi tahu siapa pelapornya. Laporan yang melibatkan pemain di bawah 18 tahun dibaca lebih dulu. Sanksinya mulai dari peringatan, chat dibisukan, jeda dari room publik, hingga pemblokiran akun. <link>Aturan Komunitas</link> kami mencantumkan apa saja yang tidak diperbolehkan.',
       drawingCheck:
@@ -719,10 +719,10 @@ const id: Strings = {
           title: 'Agenmu dan Toko',
           text: "Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Toko hanya menjual keanggotaan, yang membuka semua paket dan memungkinkanmu membuat paket sendiri: semuanya opsional, dan tidak ada yang mengubah cara bermain.",
         },
-        { title: 'Event', text: 'Permainan online terjadwal. Ketuk “Ingatkan aku” dan kami akan mengingatkanmu sebelum dimulai.' },
+        { title: 'Malam Permainan', text: 'Permainan online terjadwal. Ketuk “Ingatkan aku” dan kami akan mengingatkanmu sebelum dimulai.' },
         {
           title: 'Warna Agen',
-          text: 'Di meja Main online dan di event, orang asing melihat warna Agen-mu, seperti Agen Toska, bukan namamu. Pilih tiga warna favoritmu.',
+          text: 'Di meja Main online dan di Malam Permainan, orang asing melihat warna Agen-mu, seperti Agen Toska, bukan namamu. Pilih tiga warna favoritmu.',
         },
         {
           title: 'Kode kreator',
@@ -778,8 +778,8 @@ const id: Strings = {
   },
 
   joinEvent: {
-    label: 'Event publik',
-    broken: 'Link event ini tidak berfungsi',
+    label: 'Malam Permainan publik',
+    broken: 'Link Malam Permainan ini tidak berlaku',
     brokenHelp: 'Periksa link-nya, atau buka SpySocial dan cari room.',
     live: 'Sedang berlangsung',
     cancelled: 'Dibatalkan',

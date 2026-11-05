@@ -27,7 +27,7 @@ const es: Strings = {
       roadmap: 'Hoja de ruta',
       deleteAccount: 'Eliminar tu cuenta',
       join: 'Unirse a una partida',
-      joinEvent: 'Evento público',
+      joinEvent: 'Noche de Juegos pública',
       resetPassword: 'Restablecer contraseña',
       /** /reset-password once passwords are gone (LIVE.passwordless; set by the page's own Helmet). */
       resetPasswordCode: "Inicia sesión con un código",
@@ -327,9 +327,9 @@ const es: Strings = {
     },
     breaking: {
       title: 'Qué pasa cuando alguien rompe las normas',
-      text: 'Normalmente, primero una advertencia. Los problemas repetidos o graves llevan a un silencio en el chat (de 1 hora a 7 días), una pausa de las salas públicas y los eventos (de 1 a 30 días) o un bloqueo de la cuenta. Compartir información personal de otra persona, o cualquier cosa que sexualice a un niño, puede significar un bloqueo inmediato. Cada aviso en la app dice qué está limitado, por qué y hasta cuándo, con un ID como S-207.',
+      text: 'Normalmente, primero una advertencia. Los problemas repetidos o graves llevan a un silencio en el chat (de 1 hora a 7 días), una pausa de las salas públicas y las Noches de Juegos (de 1 a 30 días) o un bloqueo de la cuenta. Compartir información personal de otra persona, o cualquier cosa que sexualice a un niño, puede significar un bloqueo inmediato. Cada aviso en la app dice qué está limitado, por qué y hasta cuándo, con un ID como S-207.',
       drawings:
-        'Los dibujos en salas públicas y eventos pueden revisarse automáticamente en cualquier momento, y los dibujos reportados también se revisan. Si un dibujo tuyo rompe estas normas, tu cuenta puede quedar pausada o bloqueada de las salas públicas y los eventos, sin importar cuánto tiempo lleves jugando. En una sala pública, un turno que rompe estas normas se quita del dibujo y cuenta como falta: primero una advertencia, luego 3, 7 y 30 días sin salas públicas ni eventos, y a la quinta falta en 90 días, para siempre. En cualquier sala, un símbolo de odio (una esvástica cuenta, salvo que la palabra de la ronda deje claro un significado religioso), un término ofensivo escrito o un mensaje de odio dirigido a alguien saca al jugador de la partida y de las salas públicas y los eventos para siempre, y un dibujo que sexualiza a un niño cierra la cuenta y se trata como se indica arriba en Seguridad infantil. La sangre y los monstruos están permitidos. En una sala privada, un dibujo reportado solo se sanciona automáticamente cuando es así de grave; todo lo demás lo decide la persona que lee el reporte. Para apelar, escríbenos con el código de tu aviso.',
+        'Los dibujos en salas públicas y Noches de Juegos pueden revisarse automáticamente en cualquier momento, y los dibujos reportados también se revisan. Si un dibujo tuyo rompe estas normas, tu cuenta puede quedar pausada o bloqueada de las salas públicas y las Noches de Juegos, sin importar cuánto tiempo lleves jugando. En una sala pública, un turno que rompe estas normas se quita del dibujo y cuenta como falta: primero una advertencia, luego 3, 7 y 30 días sin salas públicas ni Noches de Juegos, y a la quinta falta en 90 días, para siempre. En cualquier sala, un símbolo de odio (una esvástica cuenta, salvo que la palabra de la ronda deje claro un significado religioso), un término ofensivo escrito o un mensaje de odio dirigido a alguien saca al jugador de la partida y de las salas públicas y las Noches de Juegos para siempre, y un dibujo que sexualiza a un niño cierra la cuenta y se trata como se indica arriba en Seguridad infantil. La sangre y los monstruos están permitidos. En una sala privada, un dibujo reportado solo se sanciona automáticamente cuando es así de grave; todo lo demás lo decide la persona que lee el reporte. Para apelar, escríbenos con el código de tu aviso.',
       drawingsTesters:
         'Por ahora, mientras la probamos, la revisión automática de dibujos solo se aplica en partidas en las que todos los jugadores forman parte de nuestro grupo de pruebas (quienes usan una versión de prueba de la app).',
     },
@@ -407,7 +407,7 @@ const es: Strings = {
       publicOnePool:
         '<b>Salas públicas</b> con jugadores que tu hijo o hija no conoce: las mesas de «Jugar en línea», donde la app sienta a los jugadores automáticamente y todos juegan con las mismas reglas estándar, y las noches de juegos que organizamos a una hora fija. Los jugadores no pueden crear salas públicas, y ningún jugador es anfitrión de una.',
       public: (playOnline: boolean) =>
-        `<b>Salas públicas y eventos</b> con jugadores que tu hijo o hija no conoce${playOnline ? ', incluido «Jugar en línea», que sienta a los jugadores en una mesa automáticamente' : ''}.`,
+        `<b>Salas públicas y Noches de Juegos</b> con jugadores que tu hijo o hija no conoce${playOnline ? ', incluido «Jugar en línea», que sienta a los jugadores en una mesa automáticamente' : ''}.`,
       buy: '<b>Cosas para comprar:</b> paquetes y membresías, a través del App Store o Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
@@ -775,12 +775,12 @@ const es: Strings = {
   },
 
   joinEvent: {
-    label: 'Evento público',
-    broken: 'Este enlace de evento no funciona',
+    label: 'Noche de Juegos pública',
+    broken: 'Este enlace de Noche de Juegos no funciona',
     brokenHelp: 'Revísalo, o abre SpySocial y explora las salas.',
     live: 'En vivo',
-    cancelled: 'Cancelado',
-    ended: 'Terminado',
+    cancelled: 'Cancelada',
+    ended: 'Terminada',
     upcoming: 'Próximamente',
     full: 'Lleno ahora mismo',
     inRoom: (count: number, capacity: number) => `${count} / ${capacity} en la sala`,
