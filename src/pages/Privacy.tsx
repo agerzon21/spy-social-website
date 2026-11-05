@@ -609,7 +609,7 @@ const Privacy: React.FC = () => {
         </Item>
         {PRIVACY.drawingCheck && (
           <Item label="Drawing Checks">
-            In public rooms (Play Online tables and events), drawing turns in a Spy Sketch game go through an
+            In public rooms (Play Online tables and Game Nights), drawing turns in a Spy Sketch game go through an
             automated check by OpenAI for content that breaks our Community Rules, and some are also checked by a
             second, more detailed OpenAI model. In any room, a drawing is checked by both when someone reports it. If
             the checks can't run at that moment and still can't after a few more tries, that turn goes unchecked; a
@@ -629,8 +629,8 @@ const Privacy: React.FC = () => {
             device's IP address.{PRIVACY.audit1103 ? " These checks run the same way at every age, players under 16 included (unlike translation, see Translations): they're how we keep drawings safe, and OpenAI never receives your age." : ''} According to OpenAI, it doesn't use what it receives to train
             its models, and keeps it for up to 30 days to watch for misuse, unless the law requires it to keep it
             longer. The check acts by itself: it can take a turn off the drawing for everyone in the game, give a
-            strike (which can lead to a pause or a ban from public rooms and events), or remove a player from the game
-            and ban them from public rooms and events, as our Community Rules explain. A drawing that sexualizes a
+            strike (which can lead to a pause or a ban from public rooms and Game Nights), or remove a player from the game
+            and ban them from public rooms and Game Nights, as our Community Rules explain. A drawing that sexualizes a
             child is taken off, the account is banned from SpySocial, and the drawing is reported to the National
             Center for Missing & Exploited Children (NCMEC), as US law requires. A person reviews every permanent
             decision within 24 hours, and you can appeal by email with the code in the notice (except a decision about
