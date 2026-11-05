@@ -137,7 +137,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'game-night',
         q: "C'est quoi, la Soirée jeux ?",
         a: [
-          "Notre événement en ligne, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte Soirée jeux de l'accueil.",
+          "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte Soirée jeux de l'accueil.",
           'Chaque soirée a ses packs, ses réglages et ses titres. Le (i) à côté de la soirée les affiche.',
           "C'est gratuit, et rien de ce que tu achètes n'améliore tes chances. Le règlement complet : <gnr>règles de la Soirée jeux</gnr> (en anglais).",
         ],
