@@ -65,7 +65,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'spy-talk',
         q: 'Comment se joue Spy Talk ?',
         a: [
-          "D'abord l'interrogatoire : chacun son tour, chaque joueur pose une question au suivant et répond à une.",
+          "D'abord les questions : chacun son tour, chaque joueur pose une question au suivant et répond à une.",
           'Ensuite la discussion libre : discute, creuse les réponses bizarres et lance des votes.',
           "Pas d'idée ? La carte d'indices en bas de l'écran propose une question. Demander le nom du lieu ou sa première lettre, ce n'est pas du jeu.",
         ],

@@ -69,7 +69,7 @@ const id: HelpText = {
           id: 'spy-talk',
           q: 'Bagaimana Spy Talk dimainkan?',
           a: [
-            'Pertama, interogasi: bergiliran, setiap pemain mengajukan satu pertanyaan ke pemain berikutnya dan menjawab satu.',
+            'Pertama, pertanyaan: bergiliran, setiap pemain mengajukan satu pertanyaan ke pemain berikutnya dan menjawab satu.',
             'Lalu diskusi bebas: ngobrol, kejar jawaban yang aneh, dan mulai voting.',
             'Bingung mau tanya apa? Kartu petunjuk di bawah layar punya satu pertanyaan. Menanyakan nama lokasi atau huruf pertamanya itu curang.',
           ],

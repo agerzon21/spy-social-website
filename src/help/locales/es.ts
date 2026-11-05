@@ -69,7 +69,7 @@ const es: HelpText = {
           id: 'spy-talk',
           q: '¿Cómo funciona Spy Talk?',
           a: [
-            'Primero, el interrogatorio: por turnos, cada jugador le hace una pregunta al siguiente y responde una.',
+            'Primero, las preguntas: por turnos, cada jugador le hace una pregunta al siguiente y responde una.',
             'Después, la discusión libre: chatea, insiste en las respuestas raras y convoca votaciones.',
             '¿Sin ideas? La carta de pistas, abajo en la pantalla, tiene una pregunta. Preguntar el nombre del lugar o su primera letra no es juego limpio.',
           ],

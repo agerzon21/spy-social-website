@@ -73,7 +73,7 @@ const en: HelpText = {
           id: 'spy-talk',
           q: 'How does Spy Talk work?',
           a: [
-            'First the Interrogation: in turn, each player asks the next player one question and answers one.',
+            'First, Questions: in turn, each player asks the next player one question and answers one.',
             'Then free discussion: chat, follow up on odd answers and call votes.',
             'Stuck for a question? The hint card at the bottom of the screen has one. Asking for the location’s name or first letter isn’t fair play.',
           ],
