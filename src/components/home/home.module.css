@@ -162,8 +162,9 @@
 .howJoin li { padding: 10px 0; border-top: var(--ss-hairline) solid var(--ss-line); font-size: 16px; color: var(--ss-muted); }
 .howJoin li:last-child { border-bottom: var(--ss-hairline) solid var(--ss-line); }
 .howJoin b { color: var(--ss-text); font-weight: 700; }
+/* Four across at every width: eight across left a tablet's half-width card ~35 px a name (site-sweep-1104). */
 .agents { list-style: none; margin: 0 0 14px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 10px; }
-.agents li { display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; white-space: nowrap; font: 700 11.5px/1.15 var(--ss-font-body); color: var(--ss-muted); }
+.agents li { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; text-align: center; overflow-wrap: break-word; hyphens: auto; font: 700 11.5px/1.15 var(--ss-font-body); color: var(--ss-muted); }
 .agents img { width: 100%; height: auto; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 0 var(--ss-hairline) var(--ss-line-strong); }
 .note { margin: 0; font-size: 14px; color: var(--ss-muted); }
 
@@ -216,7 +217,6 @@
   .langs { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); align-items: center; }
   .shopGrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .shortGrid { grid-template-columns: minmax(0, 1fr) 340px; gap: 48px; }
-  .agents { grid-template-columns: repeat(8, minmax(0, 1fr)); }
 }
 /* Tablets: the two-column cards and the languages' title share the width, so their poster lines come down a size. */
 @media (min-width: 760px) and (max-width: 999px) {
@@ -234,7 +234,6 @@
   .mode { align-items: center; }
   .section { padding-block: 110px; }
   .flushTop { padding-top: 20px; }
-  .agents { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 /* The other scripts (see ui.module.css): the hero line on a desk. */
 @media (min-width: 1000px) {

@@ -71,7 +71,8 @@ const LanguageMenu = () => {
         aria-haspopup="menu"
         aria-expanded={open}
         aria-controls={open ? menuId : undefined}
-        aria-label={t.language.button(language.native)}
+        // Starts with the code the button shows (RU, AR…), so voice control's "click RU" finds it (label in name).
+        aria-label={`${language.short}. ${t.language.button(language.native)}`}
         onClick={() => setOpen((o) => !o)}
         onKeyDown={onButtonKey}
       >

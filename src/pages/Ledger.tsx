@@ -23,10 +23,37 @@ type Supply = {
   closed_at: string | null; close_seq: number | null; name: string | null
 }
 
+/** Thrown when the ledger can't be read; the page shows a plain line, never the status code. */
+class LedgerBusy extends Error {}
+
+const wait = (ms: number) => new Promise((done) => setTimeout(done, ms))
+
+/** One read of the ledger. A busy answer (429, 5xx) or a dropped connection is tried again up to twice, after the
+ *  Retry-After the ledger names (at most 8 s) or 1.5 s, then 3 s. */
 async function get<T>(query: string): Promise<T> {
-  const r = await fetch(`${LEDGER_URL}?${query}`)
-  if (!r.ok) throw new Error(`the ledger answered ${r.status}`)
-  return (await r.json()) as T
+  for (let attempt = 0; ; attempt++) {
+    let r: Response | null = null
+    try { r = await fetch(`${LEDGER_URL}?${query}`) } catch { r = null }
+    if (r?.ok) return (await r.json()) as T
+    const retry = !r || r.status === 429 || r.status >= 500
+    if (!retry || attempt >= 2) throw new LedgerBusy(r ? `ledger ${r.status}` : 'ledger unreachable')
+    const after = Number(r?.headers.get('retry-after'))
+    await wait(Number.isFinite(after) && after > 0 ? Math.min(after, 8) * 1000 : 1500 * (attempt + 1))
+  }
+}
+
+/** The ledger's item codes as words, when it sends no name: "frame_art_deco" is "Art Deco (frame)". */
+const KINDS: [string, string][] = [
+  ['facial_hair_color_', 'facial hair color'], ['hair_color_', 'hair color'], ['outfit_color_', 'outfit color'],
+  ['accessory_', 'accessory'], ['background_', 'background'], ['celebration_', 'celebration'], ['frame_', 'frame'],
+  ['glasses_', 'glasses'], ['hat_', 'hat'], ['outfit_', 'outfit'], ['local_', 'Local celebration'],
+]
+const words = (code: string) => code.split('_').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
+function itemName(c: { name: string | null; item_code: string; item_kind: string }): string {
+  if (c.name) return c.name
+  const kind = KINDS.find(([prefix]) => c.item_code.startsWith(prefix))
+  if (kind) return `${words(c.item_code.slice(kind[0].length))} (${kind[1]})`
+  return c.item_kind === 'title' ? `${words(c.item_code)} (title)` : words(c.item_code)
 }
 
 const short = (h: string) => `${h.slice(0, 12)}…`
@@ -37,21 +64,22 @@ type Check =
   | { state: 'running'; done: number }
   | { state: 'done'; rows: number; head: string; heads: { day: string; ok: boolean | null }[] }
   | { state: 'bad'; seq: number; reason: string }
-  | { state: 'error'; message: string }
+  | { state: 'error' }
 
 const Ledger: React.FC = () => {
   const [head, setHead] = useState<HeadAnswer | null>(null)
   const [supply, setSupply] = useState<Supply[] | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState(false)
+  const [attempt, setAttempt] = useState(0)
   const [check, setCheck] = useState<Check>({ state: 'idle' })
 
   useEffect(() => {
     let on = true
     Promise.all([get<HeadAnswer>('op=head'), get<{ collectibles: Supply[] }>('op=supply')])
       .then(([h, s]) => { if (on) { setHead(h); setSupply(s.collectibles) } })
-      .catch((e: unknown) => { if (on) setError(e instanceof Error ? e.message : String(e)) })
+      .catch(() => { if (on) setError(true) })
     return () => { on = false }
-  }, [])
+  }, [attempt])
 
   const verify = useCallback(async () => {
     setCheck({ state: 'running', done: 0 })
@@ -80,13 +108,13 @@ const Ledger: React.FC = () => {
       const own: Head[] = (head?.heads ?? []).map((h) => ({ day: h.day, seq: h.seq, hash: h.hash }))
       const byDay = new Map<string, Head>([...own, ...published].map((h) => [h.day, h]))
       setCheck({ state: 'done', rows: after, head: prev, heads: checkHeads([...byDay.values()], (s) => hashes.get(s)) })
-    } catch (e) {
-      setCheck({ state: 'error', message: e instanceof Error ? e.message : String(e) })
+    } catch {
+      setCheck({ state: 'error' })
     }
   }, [head])
 
   const rows: InfoRow[] = useMemo(() => (supply ?? []).map((c) => ({
-    label: `${c.name ?? c.item_code}${c.variant === 'unique' ? ' · Unique' : ''}`,
+    label: `${itemName(c)}${c.variant === 'unique' ? ' · Unique' : ''}`,
     note: `${c.set_names?.en ?? c.set} · ${c.how?.en ?? ''}`,
     cells: [
       `${c.minted} minted · ${c.burned} burned · ${c.held} held`,
@@ -124,7 +152,12 @@ const Ledger: React.FC = () => {
       </P>
 
       <H2>Today's head</H2>
-      {error && <P>The ledger can't be read right now ({error}). Try again in a minute.</P>}
+      {error && (
+        <>
+          <P>The ledger is busy right now, so this part couldn't load. Give it a minute, then try again.</P>
+          <Button size="sm" variant="outline" mb={4} onClick={() => { setError(false); setAttempt((n) => n + 1) }}>Try again</Button>
+        </>
+      )}
       {!error && !head && <P>Loading…</P>}
       {head && (
         <Bullets>
@@ -161,7 +194,7 @@ const Ledger: React.FC = () => {
         </Text>
       )}
       {check.state === 'bad' && <Text textStyle="body"><B>Entry {check.seq} doesn't check out</B> ({check.reason === 'hash' ? 'its fingerprint is not the fingerprint of its line' : check.reason === 'prev' ? 'it does not point at the entry before it' : 'an entry is missing before it'}). Please tell us at support@spysocial.app.</Text>}
-      {check.state === 'error' && <Text textStyle="body">The check stopped: {check.message}. Try again in a minute.</Text>}
+      {check.state === 'error' && <Text textStyle="body">The check stopped partway because the ledger is busy right now. Give it a minute, then check again.</Text>}
 
       <H2>Supply</H2>
       {supply && supply.length === 0 && <P>Nothing has been minted yet.</P>}
