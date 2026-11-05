@@ -1,5 +1,5 @@
 import { Box, Container, Heading, Text, VStack, HStack, Badge, Stack, Icon } from '@chakra-ui/react'
-import { FaWandSparkles, FaPalette, FaWrench, FaBug, FaGears, FaRocket, FaAndroid } from 'react-icons/fa6'
+import { FaWandSparkles, FaPalette, FaWrench, FaBug, FaRocket, FaAndroid } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
 import { useLang, useT, type Strings } from '../i18n'
@@ -29,12 +29,13 @@ interface Release {
 
 /**
  * The releases, newest first: the version, the day (written "June 13, 2026", shown in the page's language) and each
- * section's icon. Their words are the page's language's (src/i18n: whatsNew.releases, same order).
+ * section's icon. Their words are the page's language's (src/i18n: whatsNew.releases, same order), in players' words:
+ * what changed for a player, never a library, file or error name.
  */
 const RELEASES: { version: string; date: string; icons: IconType[] }[] = [
-  { version: '2.1.1', date: 'June 13, 2026', icons: [FaRocket, FaWrench, FaGears] },
-  { version: '2.1.0', date: 'May 15, 2026', icons: [FaWandSparkles, FaPalette, FaAndroid, FaWrench, FaGears] },
-  { version: '2.0.0', date: 'April 30, 2026', icons: [FaWandSparkles, FaPalette, FaWrench, FaBug, FaGears] },
+  { version: '2.1.1', date: 'June 13, 2026', icons: [FaRocket, FaWrench] },
+  { version: '2.1.0', date: 'May 15, 2026', icons: [FaWandSparkles, FaPalette, FaAndroid, FaWrench] },
+  { version: '2.0.0', date: 'April 30, 2026', icons: [FaWandSparkles, FaPalette, FaWrench, FaBug] },
   { version: '1.0.1', date: 'May 16, 2025', icons: [] },
 ]
 

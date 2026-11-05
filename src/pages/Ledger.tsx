@@ -1,8 +1,10 @@
-import { Box, Button, Code, ListItem, Text } from '@chakra-ui/react'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Box, Button, Code, Flex, ListItem, Select, Text } from '@chakra-ui/react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, OutLink, P, PageLink } from '../components/legal/LegalText'
 import { InfoTable, type InfoRow } from '../components/legal/InfoTable'
+import { SearchField } from '../components/SearchField'
+import { useLang, useT, type LangCode } from '../i18n'
 import { checkHeads, parseHeadsCsv, verifyRows, ZERO_HASH, type Head, type LedgerRow } from '../lib/ledgerVerify'
 
 // spysocial.app/ledger: the minted-collectibles ledger's supply per collectible and a verifier that recomputes the
@@ -42,22 +44,34 @@ async function get<T>(query: string): Promise<T> {
   }
 }
 
-/** The ledger's item codes as words, when it sends no name: "frame_art_deco" is "Art Deco (frame)". */
-const KINDS: [string, string][] = [
-  ['facial_hair_color_', 'facial hair color'], ['hair_color_', 'hair color'], ['outfit_color_', 'outfit color'],
-  ['accessory_', 'accessory'], ['background_', 'background'], ['celebration_', 'celebration'], ['frame_', 'frame'],
-  ['glasses_', 'glasses'], ['hat_', 'hat'], ['outfit_', 'outfit'], ['local_', 'Local celebration'],
-]
-const words = (code: string) => code.split('_').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
-function itemName(c: { name: string | null; item_code: string; item_kind: string }): string {
-  if (c.name) return c.name
-  const kind = KINDS.find(([prefix]) => c.item_code.startsWith(prefix))
-  if (kind) return `${words(c.item_code.slice(kind[0].length))} (${kind[1]})`
-  return c.item_kind === 'title' ? `${words(c.item_code)} (title)` : words(c.item_code)
+/**
+ * Item names in the reader's language, the app's own (public/ledger/names/<code>.json, exported from the app's
+ * localisation by scripts/ledger-names/run.sh: re-run it when an update adds Intercept items or titles). The ledger
+ * sends names only for what the app doesn't name (Game Night titles, code titles): "Beta Game Night: Master Spy".
+ */
+type Names = { unique: string; items: Record<string, [name: string, kind: string]> }
+
+const namesCache = new Map<string, Promise<Names | null>>()
+function loadNames(code: LangCode): Promise<Names | null> {
+  let p = namesCache.get(code)
+  if (!p) {
+    p = fetch(`/ledger/names/${code}.json`)
+      .then((r) => (r.ok ? (r.json() as Promise<Names>) : null))
+      .catch(() => null)
+    namesCache.set(code, p)
+  }
+  return p
 }
 
+/** An item the names file doesn't have yet (newer than the export): its code as words, "frame_art_deco" "Art Deco". */
+const KINDS = ['facial_hair_color_', 'hair_color_', 'outfit_color_', 'accessory_', 'background_', 'celebration_', 'frame_', 'glasses_', 'hat_', 'outfit_', 'local_']
+const words = (code: string) => code.split('_').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
+const guessName = (code: string) => words(code.slice(KINDS.find((k) => code.startsWith(k))?.length ?? 0))
+
 const short = (h: string) => `${h.slice(0, 12)}…`
-const day = (iso: string) => new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
+const day = (iso: string, locale = 'en-US') => new Date(iso).toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
+/** A date that never breaks across lines ("1 янв. 2100 г." kept whole in a narrow column). */
+const dayWhole = (iso: string, locale: string) => day(iso, locale).replace(/ /g, '\u00a0')
 
 type Check =
   | { state: 'idle' }
@@ -112,15 +126,6 @@ const Ledger: React.FC = () => {
       setCheck({ state: 'error' })
     }
   }, [head])
-
-  const rows: InfoRow[] = useMemo(() => (supply ?? []).map((c) => ({
-    label: `${itemName(c)}${c.variant === 'unique' ? ' · Unique' : ''}`,
-    note: `${c.set_names?.en ?? c.set} · ${c.how?.en ?? ''}`,
-    cells: [
-      `${c.minted} minted · ${c.burned} burned · ${c.held} held`,
-      c.closed_at ? (c.minted === 0 ? 'Never awarded' : `Closed ${day(c.closed_at)} (entry ${c.close_seq ?? '…'})`) : `Open until ${day(c.closes_at)}`,
-    ],
-  })), [supply])
 
   const latest = head?.heads[0]
   const beta = head?.chain === 'beta'
@@ -198,8 +203,124 @@ const Ledger: React.FC = () => {
 
       <H2>Supply</H2>
       {supply && supply.length === 0 && <P>Nothing has been minted yet.</P>}
-      {supply && supply.length > 0 && <InfoTable head={['Collectible', 'Supply', 'Status']} rows={rows} firstWidth="44%" />}
+      {supply && supply.length > 0 && <SupplyTable supply={supply} />}
     </LegalPage>
+  )
+}
+
+/** Rows per page of the Supply table (house rule: about 20). */
+const PER_PAGE = 20
+type SortKey = 'name' | 'minted' | 'held' | 'newest'
+
+/**
+ * The Supply table, in the reader's language (the rest of the page is English only): item names as the app says them,
+ * a search over names, kinds, sets and how each is earned, a sort, and 20 rows a page.
+ */
+const SupplyTable = ({ supply }: { supply: Supply[] }) => {
+  const t = useT().ledger
+  const { language } = useLang()
+  const { code, locale } = language
+  const [names, setNames] = useState<Names | null>(null)
+  const [query, setQuery] = useState('')
+  const [sort, setSort] = useState<SortKey>('newest')
+  const [page, setPage] = useState(0)
+  const top = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    let on = true
+    void Promise.all([loadNames(code), code === 'en' ? null : loadNames('en')]).then(([own, en]) => {
+      if (on) setNames(own ?? en)
+    })
+    return () => { on = false }
+  }, [code])
+
+  const all = useMemo(() => {
+    const num = (n: number) => n.toLocaleString(locale)
+    return supply.map((c) => {
+      const named = names?.items[`${c.item_kind === 'title' ? 'title' : 'avatar'}:${c.item_code}`]
+      const name = named?.[0] ?? c.name ?? guessName(c.item_code)
+      const unique = c.variant === 'unique' ? (names?.unique ?? 'Unique') : ''
+      const set = c.set_names?.[code] ?? c.set_names?.en ?? c.set
+      // How it's earned: the ledger says it in English and Russian; another language shows the English, kept apart.
+      const own = c.how?.[code]
+      const how = own ?? c.how?.en ?? ''
+      const kind = named?.[1] ?? ''
+      const row: InfoRow = {
+        label: <bdi>{unique ? `${name} · ${unique}` : name}</bdi>,
+        note: (
+          <>
+            {[kind, set].filter(Boolean).join(' · ')}
+            {how && <>{' · '}{own ? how : <bdi lang="en">{how}</bdi>}</>}
+          </>
+        ),
+        cells: [
+          <>
+            {t.supply(num(c.minted), num(c.burned), num(c.held)).map((line) => <Text key={line} as="span" display="block">{line}</Text>)}
+            <Text as="span" display="block" mt={1} color="ss.muted" fontSize={{ base: '14px', md: '15px' }}>
+              {c.closed_at
+                ? (c.minted === 0 ? t.neverAwarded : t.closed(dayWhole(c.closed_at, locale), c.close_seq === null ? '…' : num(c.close_seq)))
+                : t.openUntil(dayWhole(c.closes_at, locale))}
+            </Text>
+          </>,
+        ],
+      }
+      return { c, name, row, text: [name, unique, kind, set, how, c.item_code].join(' ').toLocaleLowerCase(locale) }
+    })
+  }, [supply, names, code, locale, t])
+
+  const shown = useMemo(() => {
+    const terms = query.trim().toLocaleLowerCase(locale).split(/\s+/).filter(Boolean)
+    const hits = terms.length ? all.filter((r) => terms.every((w) => r.text.includes(w))) : [...all]
+    const byName = (a: (typeof all)[number], b: (typeof all)[number]) => a.name.localeCompare(b.name, locale)
+    const order: Record<SortKey, (a: (typeof all)[number], b: (typeof all)[number]) => number> = {
+      name: byName,
+      minted: (a, b) => b.c.minted - a.c.minted || byName(a, b),
+      held: (a, b) => b.c.held - a.c.held || byName(a, b),
+      newest: (a, b) => b.c.opens_at.localeCompare(a.c.opens_at) || byName(a, b),
+    }
+    return hits.sort(order[sort])
+  }, [all, query, sort, locale])
+
+  const pages = Math.max(1, Math.ceil(shown.length / PER_PAGE))
+  const at = Math.min(page, pages - 1)
+  const rows = shown.slice(at * PER_PAGE, (at + 1) * PER_PAGE).map((r) => r.row)
+  const go = (p: number) => {
+    setPage(p)
+    top.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })
+  }
+  const num = (n: number) => n.toLocaleString(locale)
+
+  return (
+    <Box ref={top} lang={code} dir={language.rtl ? 'rtl' : 'ltr'} scrollMarginTop="96px">
+      <SearchField value={query} onChange={(q) => { setQuery(q); setPage(0) }} label={t.search} hint={t.searchHint} clear={t.clear} />
+      <Flex mt={3} mb={4} gap={3} align="center" justify="space-between" wrap="wrap">
+        <Flex as="label" align="center" gap={2} fontSize="15px" color="ss.muted">
+          {t.sort}
+          <Select
+            size="md"
+            w="auto"
+            value={sort}
+            onChange={(e) => { setSort(e.target.value as SortKey); setPage(0) }}
+            color="ss.text"
+            bg="ss.surface"
+            borderColor="ss.lineStrong"
+          >
+            {(Object.keys(t.sortBy) as SortKey[]).map((k) => <option key={k} value={k}>{t.sortBy[k]}</option>)}
+          </Select>
+        </Flex>
+        <Text fontSize="15px" color="ss.muted" role="status" aria-live="polite">
+          {shown.length === 0 ? t.noMatch(query.trim()) : t.count(num(at * PER_PAGE + 1), num(at * PER_PAGE + rows.length), num(shown.length))}
+        </Text>
+      </Flex>
+      {rows.length > 0 && <InfoTable head={t.head} rows={rows} firstWidth="52%" />}
+      {pages > 1 && (
+        <Flex as="nav" aria-label={t.pages} mt={4} gap={3} align="center" justify="space-between">
+          <Button variant="outline" size="md" minW="44px" isDisabled={at === 0} onClick={() => go(at - 1)}>{t.prev}</Button>
+          <Text fontSize="15px" color="ss.muted">{t.page(num(at + 1), num(pages))}</Text>
+          <Button variant="outline" size="md" minW="44px" isDisabled={at >= pages - 1} onClick={() => go(at + 1)}>{t.next}</Button>
+        </Flex>
+      )}
+    </Box>
   )
 }
 

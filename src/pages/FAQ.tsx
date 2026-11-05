@@ -7,6 +7,7 @@ import { rich, type Parts } from '../i18n/rich'
 import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { DISCORD_URL } from '../lib/social'
 import SocialLinks from '../components/SocialLinks'
+import { SearchField } from '../components/SearchField'
 import en from '../help/locales/en'
 import type { HelpItem, HelpOpts, HelpSection, HelpText } from '../help/types'
 import s from './FAQ.module.css'
@@ -166,28 +167,7 @@ const FAQ = () => {
         </Heading>
         <p className={s.lede}>{t.lede}</p>
 
-        <form className={s.search} role="search" onSubmit={(e) => e.preventDefault()}>
-          <svg className={s.searchIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3.5-3.5" />
-          </svg>
-          <input
-            className={query ? `${s.input} ${s.withClear}` : s.input}
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={t.searchHint}
-            aria-label={t.search}
-            enterKeyHint="search"
-            autoComplete="off"
-            spellCheck={false}
-          />
-          {query && (
-            <button type="button" className={s.clear} onClick={() => setQuery('')}>
-              {t.clear}
-            </button>
-          )}
-        </form>
+        <SearchField className={s.search} value={query} onChange={setQuery} label={t.search} hint={t.searchHint} clear={t.clear} />
         <p className={s.status} role="status" aria-live="polite">
           {help && words.length ? (count ? t.results(count) : t.noResults(query.trim())) : ''}
         </p>
