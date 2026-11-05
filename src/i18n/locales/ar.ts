@@ -535,7 +535,7 @@ const ar: Strings = {
     closed: (date, entry) => `أُغلق في ${date} (القيد ${entry})`,
     openUntil: (date) => `مفتوح حتى ${date}`,
     search: 'ابحث في المقتنيات',
-    searchHint: 'جرّب «الإطار» أو «لقب»',
+    searchHint: 'جرّب «الإطار» أو «القبعات»',
     clear: 'مسح',
     sort: 'الترتيب',
     sortBy: { newest: 'الأحدث أولًا', name: 'الاسم', minted: 'الأكثر سكًّا', held: 'الأكثر حيازة' },
