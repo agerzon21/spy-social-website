@@ -966,6 +966,14 @@ export const LIVE = {
    */
   helpTruth1105: true,
   /**
+   * Membership words, 2026-11-05 (app repo .claude/handoff/scratchpad/nov03/site-membership-1105.md, after store-text-1105):
+   * the hold on friends, follows, parties, trading and social pushes for players under 18 keys on platform 'ios', so it
+   * covers iPad too (_social_on, ios_minor_hold). Terms 4 and 9 and Privacy's Reminders and Notifications say "iPhone and
+   * iPad". Describes what's in force and adds no duty, so no TERMS_PUBLISHED or terms_version raise. Dates: November 5 by
+   * this switch in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED. A server fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  membershipWords1105: true,
+  /**
    * Beta 2's open Black Market for testers (owner `open`, Nov 3; app repo .claude/handoff/scratchpad/nov03/beta2-market-open.md
    * and site-nov12-prep.md). false: before the switch file runs. 'open': from Thu Nov 12, 2026 (set it no earlier than
    * 7 PM ET, and only once the market switch is applied on live): adult testers buy and sell for Intel for real, and every
@@ -1542,6 +1550,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.testerMarket
     ? 'November 12, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the site goes up with it on Nov 12
+  : LIVE.membershipWords1105
+    ? 'November 5, 2026' // membership words (Terms 4 and 9: the under-18 hold is on iPhone and iPad): the site went up with it on
   : LIVE.helpTruth1105
     ? 'November 5, 2026' // help truth 4 (Terms 9: what's in an open trade is held; Community Rules: Game Nights, not events): the site went up with it on
   : LIVE.drawingWording1104
@@ -1600,6 +1610,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.membershipWords1105
+    ? 'November 5, 2026' // membership words (Reminders and Notifications: the under-18 hold is on iPhone and iPad): the site went up with it on
   : LIVE.helpTruth1105
     ? 'November 5, 2026' // help truth 4 (a minor's Community pack answer waits for 7 AM; Spy Talk's Questions; Game Nights, not events): the site went up with it on
   : LIVE.drawingWording1104

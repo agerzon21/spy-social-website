@@ -280,7 +280,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Oui, avec des limites : uniquement objet contre objet, et seulement avec des amis ajoutés en personne avec un code ami.",
           "Pas de cadeaux, pas d'Intel, pas d'interceptions non ouvertes, et ni achat ni vente au Marché noir.",
-          "Sur iPhone, les moins de 18 ans ne peuvent pas échanger tant qu'une version de l'appli qui demande l'accord d'un parent via Apple n'est pas sortie.",
+          "Sur iPhone et iPad, les moins de 18 ans ne peuvent pas échanger tant qu'une version de l'appli qui demande l'accord d'un parent via Apple n'est pas sortie.",
         ],
       },
       {
@@ -621,7 +621,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Il faut avoir 13 ans ou plus pour jouer.',
           "Dans tout salon où se trouve un joueur de moins de 18 ans, les liens, e-mails, numéros de téléphone et comptes de réseaux sociaux sont bloqués pour tout le monde.",
           "Les moins de 18 ans n'ont pas de profil public ni d'abonnés, n'échangent qu'objet contre objet avec des amis ajoutés par code ami, et ne peuvent ni acheter ni vendre au Marché noir.",
-          "Sur iPhone, les amis, les groupes et les échanges attendent une version de l'appli qui demande l'accord d'un parent via Apple.",
+          "Sur iPhone et iPad, les amis, les groupes et les échanges attendent une version de l'appli qui demande l'accord d'un parent via Apple.",
           'Parents et proches : consultez notre <safety>page Sécurité</safety>.',
         ],
       },

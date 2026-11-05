@@ -206,7 +206,7 @@ const Terms: React.FC = () => {
               parties, or pause any of these features.
             </ListItem>
             <ListItem>
-              On iPhone, friends, follows and parties aren't available to players under 18 until a version of the app
+              On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, friends, follows and parties aren't available to players under 18 until a version of the app
               that asks a parent's consent through Apple is out.
             </ListItem>
           </Bullets>
@@ -742,7 +742,7 @@ const Terms: React.FC = () => {
             <ListItem>
               Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
               Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket && LIVE.interceptsInTrades ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults, and
-              only once SpySocial 2.2 opens to everyone. On iPhone, players under 18 can't trade until a version of the
+              only once SpySocial 2.2 opens to everyone. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, players under 18 can't trade until a version of the
               app that asks a parent's consent through Apple is out.
             </ListItem>
             <ListItem>

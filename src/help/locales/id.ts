@@ -284,7 +284,7 @@ const id: HelpText = {
           a: [
             'Bisa, dengan batasan: hanya item dengan item, dan hanya dengan teman yang ditambahkan langsung dengan Kode Teman.',
             'Tanpa hadiah, tanpa Intel, tanpa sadapan yang belum dibuka, dan tidak bisa membeli atau menjual di Pasar Gelap.',
-            'Di iPhone, pemain di bawah 18 tahun belum bisa bertukar sampai ada versi aplikasi yang meminta izin orang tua lewat Apple.',
+            'Di iPhone dan iPad, pemain di bawah 18 tahun belum bisa bertukar sampai ada versi aplikasi yang meminta izin orang tua lewat Apple.',
           ],
         },
         {
@@ -625,7 +625,7 @@ const id: HelpText = {
             'Kamu harus berusia minimal 13 tahun untuk bermain.',
             'Di room mana pun yang ada pemain di bawah 18 tahun, link, email, nomor telepon, dan akun media sosial diblokir untuk semua orang.',
             'Pemain di bawah 18 tahun tidak punya profil publik dan tidak bisa diikuti, hanya bertukar item dengan item bersama teman dari Kode Teman, dan tidak bisa membeli atau menjual di Pasar Gelap.',
-            'Di iPhone, teman, grup, dan tukar item menunggu versi aplikasi yang meminta izin orang tua lewat Apple.',
+            'Di iPhone dan iPad, teman, grup, dan tukar item menunggu versi aplikasi yang meminta izin orang tua lewat Apple.',
             'Orang tua dan wali: lihat <safety>halaman Keamanan</safety> kami.',
           ],
         },

@@ -290,7 +290,7 @@ const en: HelpText = {
           a: [
             'Yes, with limits: items for items only, and only with friends they added in person with a Friend Code.',
             'No gifts, no Intel, no unopened Intercepts, and no buying or selling on the Black Market.',
-            'On iPhone, players under 18 can’t trade until a version of the app that asks a parent’s consent through Apple is out.',
+            'On iPhone and iPad, players under 18 can’t trade until a version of the app that asks a parent’s consent through Apple is out.',
           ],
         },
         {
@@ -631,7 +631,7 @@ const en: HelpText = {
             'You must be 13 or older to play.',
             'In any room with a player under 18, links, emails, phone numbers and social handles are blocked for everyone.',
             'Players under 18 have no public profile and can’t be followed, trade only items for items with Friend Code friends, and can’t buy or sell on the Black Market.',
-            'On iPhone, friends, parties and trading wait for a version of the app that asks a parent’s consent through Apple.',
+            'On iPhone and iPad, friends, parties and trading wait for a version of the app that asks a parent’s consent through Apple.',
             'Parents and carers: see our <safety>Safety page</safety>.',
           ],
         },

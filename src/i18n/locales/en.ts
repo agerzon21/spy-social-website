@@ -466,7 +466,7 @@ const en = {
         "<b>A link to our Discord:</b> Home can show a link to SpySocial's official Discord server, where players find others to play with. Discord is a separate app with its own rules and minimum age. Players under 16 never see the link, and players 16 and 17 first see a note on staying safe there. Our moderators look after the server, but nobody at SpySocial can see private messages on Discord.",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
-        `<b>Custom packs:</b> members can make their own packs of locations or words for their private rooms.${
+        `<b>Pack Creator:</b> members can make their own packs of locations or words for their private rooms.${
           community ? ' Every pack shared to Community Packs is read by our team before anyone else can see it, and any player can report one.' : ''
         }`,
       hasNotTitle: "What SpySocial doesn't have",
@@ -481,7 +481,7 @@ const en = {
         "No player search and no friend suggestions, so a stranger can't look your child up. Players under 18 have no public profile and can't be followed.",
       /** What SpySocial has, once live: social (LIVE.socialFeatures), trading (LIVE.trading with LIVE.blackMarket). */
       social:
-        "<b>Friends and parties:</b> players can add friends and play together as a party, with a filtered party chat. An adult can add a player under 16 only in person, by scanning the Friend Code on the child's phone. Players under 18 have no public profile, can't be followed and get no social notifications at night. On iPhone, this stays off for players under 18 for now.",
+        "<b>Friends and parties:</b> players can add friends and play together as a party, with a filtered party chat. An adult can add a player under 16 only in person, by scanning the Friend Code on the child's phone. Players under 18 have no public profile, can't be followed and get no social notifications at night. On iPhone and iPad, this stays off for players under 18 for now.",
       trading:
         "<b>Trading:</b> players 13–17 can trade game items only for other items, with friends they added in person, with no gifts and no messages. Adults can also buy and sell items for the currency earned in the game on the Black Market; players under 18 can only look. Nothing can be bought or sold for real money.",
       noVoice: (photos: boolean) =>
@@ -775,8 +775,8 @@ const en = {
           text: 'Chat in the lobby and during the game, in any of 10 languages: messages in other languages translate into yours as they arrive. Spy Talk answers are translated together with their question, so they keep their meaning.',
         },
         {
-          title: 'Your agent and the Shop',
-          text: "Build your own spy avatar, and earn new looks by playing. The Shop sells only memberships, which unlock every pack and let you make your own: all optional, and none of it changes how the game plays.",
+          title: 'Your agent and the Vault',
+          text: "Build your own spy avatar, and earn new looks by playing. The Vault sells only memberships: every premium pack in rooms you host and at your Play Online table, Pack Creator, and leading a party. All optional, and none of it changes how the game plays.",
         },
         { title: 'Game nights', text: "Scheduled online games. Tap Remind Me and we'll remind you before they start." },
         {
@@ -1051,7 +1051,7 @@ const en = {
       { title: "Play Online", text: "Tap Find a Game for a table of 4 or 8, any time. Strangers see your Agent Color, never your name." },
       { title: "Game Night", text: "Scheduled nights online, with titles you can only earn that night. We'll remind you before they start." },
       { title: "Black Market", text: "Trade items with friends. Adults can also trade with other agents, and buy and sell for Intel, which you earn by playing." },
-      { title: "Memberships", text: "Optional: the Pack Pass (monthly or yearly) or Lifetime unlocks every pack of places and words, and lets you make your own. Nothing else is sold." },
+      { title: "Memberships", text: "Optional: a Pack Pass (monthly or yearly), or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
     ],
     /** The link to What's New under the cards. */
     allNotes: "Everything new in 2.2",

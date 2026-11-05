@@ -423,7 +423,7 @@ const id: Strings = {
         "<b>Tautan ke Discord kami:</b> beranda bisa menampilkan tautan ke server Discord resmi SpySocial, tempat pemain mencari teman bermain. Discord adalah aplikasi terpisah dengan aturan dan batas usianya sendiri. Pemain di bawah 16 tahun tidak pernah melihat tautan ini, dan pemain 16 dan 17 tahun lebih dulu melihat catatan agar tetap aman di sana. Moderator kami menjaga server itu, tetapi tidak ada seorang pun di SpySocial yang bisa melihat pesan pribadi di Discord.",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
-        `<b>Paket buatan sendiri:</b> anggota bisa membuat paket lokasi atau kata sendiri untuk room privat mereka.${
+        `<b>Pembuat paket:</b> anggota bisa membuat paket lokasi atau kata sendiri untuk room privat mereka.${
           community ? ' Tim kami membaca setiap paket yang dibagikan ke Paket Komunitas sebelum orang lain bisa melihatnya, dan pemain mana pun bisa melaporkannya.' : ''
         }`,
       hasNotTitle: 'Apa yang tidak ada di SpySocial',
@@ -436,7 +436,7 @@ const id: Strings = {
       noSearch:
         "Tidak ada pencarian pemain dan tidak ada saran teman, jadi orang asing tidak bisa mencari anak Anda. Pemain di bawah 18 tahun tidak punya profil publik dan tidak bisa diikuti.",
       social:
-        "<b>Teman dan grup:</b> pemain bisa menambahkan teman dan bermain bersama sebagai grup, dengan chat grup yang difilter. Orang dewasa hanya bisa menambahkan pemain di bawah 16 tahun secara langsung, dengan memindai Kode Teman di ponsel anak itu. Pemain di bawah 18 tahun tidak punya profil publik, tidak bisa diikuti, dan tidak menerima notifikasi sosial pada malam hari. Di iPhone, fitur ini untuk sementara tetap mati bagi pemain di bawah 18 tahun.",
+        "<b>Teman dan grup:</b> pemain bisa menambahkan teman dan bermain bersama sebagai grup, dengan chat grup yang difilter. Orang dewasa hanya bisa menambahkan pemain di bawah 16 tahun secara langsung, dengan memindai Kode Teman di ponsel anak itu. Pemain di bawah 18 tahun tidak punya profil publik, tidak bisa diikuti, dan tidak menerima notifikasi sosial pada malam hari. Di iPhone dan iPad, fitur ini untuk sementara tetap mati bagi pemain di bawah 18 tahun.",
       trading:
         "<b>Tukar:</b> pemain berusia 13–17 tahun hanya bisa menukar item game dengan item lain, dengan teman yang mereka tambahkan secara langsung, tanpa hadiah dan tanpa pesan. Orang dewasa juga bisa membeli dan menjual item di Pasar Gelap dengan mata uang yang didapat dari bermain; pemain di bawah 18 tahun hanya bisa melihat. Tidak ada yang bisa dibeli atau dijual dengan uang sungguhan.",
       noVoice: (photos: boolean) =>
@@ -716,8 +716,8 @@ const id: Strings = {
           text: 'Ngobrol di lobi dan selama permainan dalam 10 bahasa: pesan dalam bahasa lain langsung diterjemahkan ke bahasamu begitu masuk. Jawaban di Spy Talk diterjemahkan bersama pertanyaannya, jadi maknanya tetap terjaga.',
         },
         {
-          title: 'Agenmu dan Toko',
-          text: "Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Toko hanya menjual keanggotaan, yang membuka semua paket dan memungkinkanmu membuat paket sendiri: semuanya opsional, dan tidak ada yang mengubah cara bermain.",
+          title: 'Agenmu dan Brankas',
+          text: "Buat avatar mata-matamu sendiri dan dapatkan tampilan baru dengan bermain. Brankas hanya menjual keanggotaan: semua paket premium di room yang kamu host dan di mejamu di Main online, pembuat paket, dan memimpin grup. Semuanya opsional, dan tidak ada yang mengubah cara bermain.",
         },
         { title: 'Malam Permainan', text: 'Permainan online terjadwal. Ketuk “Ingatkan aku” dan kami akan mengingatkanmu sebelum dimulai.' },
         {
@@ -953,7 +953,7 @@ const id: Strings = {
       { title: "Main online", text: "Ketuk “Cari permainan” untuk meja 4 atau 8 orang, kapan saja. Orang asing hanya melihat warna Agen-mu, tidak pernah namamu." },
       { title: "Malam Permainan", text: "Malam online terjadwal, dengan gelar yang hanya didapat malam itu. Kami akan mengingatkanmu sebelum dimulai." },
       { title: "Pasar Gelap", text: "Tukar item dengan teman. Orang dewasa juga bisa bertukar dengan agen lain, serta membeli dan menjual dengan Intel yang didapat dari bermain." },
-      { title: "Keanggotaan", text: "Opsional: Pack Pass (bulanan atau tahunan) atau Lifetime membuka semua paket tempat dan kata, dan kamu bisa membuat paket sendiri. Tidak ada lagi yang dijual." },
+      { title: "Keanggotaan", text: "Opsional: Langganan paket (bulanan atau tahunan) atau Seumur hidup, sekali bayar dan tidak pernah diperpanjang. Semua paket premium di room yang kamu host dan di mejamu di Main online, plus pembuat paket. Tidak ada lagi yang dijual." },
     ],
     allNotes: "Semua yang baru di 2.2",
     community: {

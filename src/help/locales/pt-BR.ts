@@ -284,7 +284,7 @@ const ptBR: HelpText = {
           a: [
             'Sim, com limites: só item por item, e só com amigos adicionados pessoalmente com um código de amigo.',
             'Sem presentes, sem Intel, sem interceptações fechadas e sem comprar nem vender no Mercado Negro.',
-            'No iPhone, menores de 18 não podem trocar até sair uma versão do app que peça o consentimento de um responsável pela Apple.',
+            'No iPhone e no iPad, menores de 18 não podem trocar até sair uma versão do app que peça o consentimento de um responsável pela Apple.',
           ],
         },
         {
@@ -625,7 +625,7 @@ const ptBR: HelpText = {
             'É preciso ter 13 anos ou mais para jogar.',
             'Em qualquer sala com um jogador menor de 18, links, e-mails, telefones e perfis de redes sociais são bloqueados para todos.',
             'Menores de 18 não têm perfil público nem seguidores, só trocam item por item com amigos do código de amigo e não podem comprar nem vender no Mercado Negro.',
-            'No iPhone, amigos, grupos e trocas esperam uma versão do app que peça o consentimento de um responsável pela Apple.',
+            'No iPhone e no iPad, amigos, grupos e trocas esperam uma versão do app que peça o consentimento de um responsável pela Apple.',
             'Pais e responsáveis: vejam nossa <safety>página de segurança</safety>.',
           ],
         },

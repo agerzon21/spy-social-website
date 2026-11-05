@@ -422,7 +422,7 @@ const fr: Strings = {
         "<b>Un lien vers notre Discord :</b> l'accueil peut afficher un lien vers le serveur Discord officiel de SpySocial, où les joueurs trouvent avec qui jouer. Discord est une appli à part, avec ses propres règles et son âge minimum. Les moins de 16 ans ne voient jamais ce lien, et les joueurs de 16 et 17 ans voient d'abord un conseil pour y rester en sécurité. Nos modérateurs veillent sur le serveur, mais personne chez SpySocial ne peut voir les messages privés sur Discord.",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
-        `<b>Packs personnalisés\u00A0:</b> les membres peuvent créer leurs propres packs de lieux ou de mots pour leurs salons privés.${
+        `<b>Créateur de packs\u00A0:</b> les membres peuvent créer leurs propres packs de lieux ou de mots pour leurs salons privés.${
           community ? " Notre équipe lit chaque pack partagé dans les Packs de la communauté avant que quiconque puisse le voir, et tout joueur peut le signaler." : ''
         }`,
       hasNotTitle: "Ce que SpySocial ne propose pas",
@@ -435,7 +435,7 @@ const fr: Strings = {
       noSearch:
         "Pas de recherche de joueurs ni de suggestions d'amis : un inconnu ne peut pas chercher ton enfant. Les moins de 18 ans n'ont pas de profil public et personne ne peut les suivre.",
       social:
-        "<b>Amis et groupes :</b> les joueurs peuvent ajouter des amis et jouer ensemble en groupe, avec un chat de groupe filtré. Un adulte ne peut ajouter un joueur de moins de 16 ans qu'en personne, en scannant le code ami sur le téléphone de l'enfant. Les moins de 18 ans n'ont pas de profil public, ne peuvent pas être suivis et ne reçoivent pas de notifications sociales la nuit. Sur iPhone, tout cela reste désactivé pour les moins de 18 ans pour l'instant.",
+        "<b>Amis et groupes :</b> les joueurs peuvent ajouter des amis et jouer ensemble en groupe, avec un chat de groupe filtré. Un adulte ne peut ajouter un joueur de moins de 16 ans qu'en personne, en scannant le code ami sur le téléphone de l'enfant. Les moins de 18 ans n'ont pas de profil public, ne peuvent pas être suivis et ne reçoivent pas de notifications sociales la nuit. Sur iPhone et iPad, tout cela reste désactivé pour les moins de 18 ans pour l'instant.",
       trading:
         "<b>Échanges :</b> les joueurs de 13 à 17 ans ne peuvent échanger des objets du jeu que contre d'autres objets, avec des amis ajoutés en personne, sans cadeaux ni messages. Les adultes peuvent aussi acheter et vendre des objets sur le Marché noir contre la monnaie gagnée dans le jeu ; les moins de 18 ans peuvent seulement regarder. Rien ne peut être acheté ni vendu contre de l'argent réel.",
       noVoice: (photos: boolean) =>
@@ -715,8 +715,8 @@ const fr: Strings = {
           text: "Discute dans le salon et pendant la partie, dans l'une des 10 langues : les messages dans une autre langue sont traduits dans la tienne dès leur arrivée. Les réponses de Spy Talk sont traduites avec leur question, pour garder tout leur sens.",
         },
         {
-          title: 'Ton agent et la boutique',
-          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. La boutique ne vend que des abonnements, qui débloquent tous les packs et te permettent de créer les tiens\u00A0: tout est facultatif, et rien ne change la façon de jouer.",
+          title: 'Ton agent et le Coffre',
+          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. Le Coffre ne vend que des abonnements\u00A0: tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, le créateur de packs et mener un groupe. Tout est facultatif, et rien ne change la façon de jouer.",
         },
         {
           title: 'Soirées jeux',
@@ -958,7 +958,7 @@ const fr: Strings = {
       { title: "Jouer en ligne", text: "Touche « Trouver une partie » pour une table de 4 ou 8, à tout moment. Les inconnus voient ta couleur d'agent, jamais ton nom." },
       { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des titres à gagner ce soir-là seulement. On te prévient avant le début." },
       { title: "Marché noir", text: "Échange des objets avec tes amis. Les adultes peuvent aussi échanger avec d'autres agents, et acheter et vendre contre de l'Intel, gagné en jouant." },
-      { title: "Abonnements", text: "En option : le Pack Pass (mensuel ou annuel) ou Lifetime débloque tous les packs de lieux et de mots, et te permet de créer les tiens. Rien d'autre n'est vendu." },
+      { title: "Abonnements", text: "En option : l'Abonnement aux packs (mensuel ou annuel) ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
     ],
     allNotes: "Toutes les nouveautés de la 2.2",
     community: {

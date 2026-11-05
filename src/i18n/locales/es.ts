@@ -423,7 +423,7 @@ const es: Strings = {
         "<b>Un enlace a nuestro Discord:</b> el inicio puede mostrar un enlace al servidor oficial de SpySocial en Discord, donde los jugadores encuentran con quién jugar. Discord es una app aparte, con sus propias reglas y edad mínima. Los menores de 16 nunca ven el enlace, y los jugadores de 16 y 17 ven primero un aviso para estar seguros allí. Nuestros moderadores cuidan el servidor, pero nadie en SpySocial puede ver los mensajes privados de Discord.",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
-        `<b>Paquetes personalizados:</b> los miembros pueden crear sus propios paquetes de lugares o palabras para sus salas privadas.${
+        `<b>Creador de paquetes:</b> los miembros pueden crear sus propios paquetes de lugares o palabras para sus salas privadas.${
           community ? ' Nuestro equipo lee cada paquete compartido en Paquetes de la comunidad antes de que nadie más pueda verlo, y cualquier jugador puede reportarlo.' : ''
         }`,
       hasNotTitle: 'Lo que SpySocial no tiene',
@@ -436,7 +436,7 @@ const es: Strings = {
       noSearch:
         "No hay búsqueda de jugadores ni sugerencias de amigos, así que un desconocido no puede buscar a tu hijo o hija. Los menores de 18 no tienen perfil público y nadie puede seguirlos.",
       social:
-        "<b>Amigos y grupos:</b> los jugadores pueden agregar amigos y jugar juntos en grupo, con un chat de grupo filtrado. Un adulto solo puede agregar a un menor de 16 en persona, escaneando el código de amigo en el teléfono del menor. Los menores de 18 no tienen perfil público, nadie puede seguirlos y no reciben notificaciones sociales de noche. En iPhone, por ahora, esto sigue desactivado para los menores de 18.",
+        "<b>Amigos y grupos:</b> los jugadores pueden agregar amigos y jugar juntos en grupo, con un chat de grupo filtrado. Un adulto solo puede agregar a un menor de 16 en persona, escaneando el código de amigo en el teléfono del menor. Los menores de 18 no tienen perfil público, nadie puede seguirlos y no reciben notificaciones sociales de noche. En iPhone y iPad, por ahora, esto sigue desactivado para los menores de 18.",
       trading:
         "<b>Intercambios:</b> los jugadores de 13 a 17 años solo pueden intercambiar objetos del juego por otros objetos, con amigos que agregaron en persona, sin regalos ni mensajes. Los adultos también pueden comprar y vender objetos en el Mercado Negro con la moneda que se gana en el juego; los menores de 18 solo pueden mirar. Nada se puede comprar ni vender con dinero real.",
       noVoice: (photos: boolean) =>
@@ -713,8 +713,8 @@ const es: Strings = {
           text: 'Chatea en la sala y durante la partida en cualquiera de los 10 idiomas: los mensajes en otros idiomas se traducen al tuyo en cuanto llegan. Las respuestas de Spy Talk se traducen junto con su pregunta, así no pierden el sentido.',
         },
         {
-          title: 'Tu agente y la Tienda',
-          text: "Crea tu propio avatar de espía y gana estilos nuevos jugando. La Tienda solo vende membresías, que desbloquean todos los paquetes y te permiten crear los tuyos: todo es opcional y nada cambia cómo se juega.",
+          title: 'Tu agente y la Bóveda',
+          text: "Crea tu propio avatar de espía y gana estilos nuevos jugando. La Bóveda solo vende membresías: todos los paquetes premium en las salas que organizas y en tu mesa de Jugar en línea, el creador de paquetes y dirigir un grupo. Todo es opcional y nada cambia cómo se juega.",
         },
         { title: 'Noches de juegos', text: 'Partidas en línea programadas. Toca «Recordarme» y te avisaremos antes de que empiecen.' },
         {
@@ -950,7 +950,7 @@ const es: Strings = {
       { title: "Jugar en línea", text: "Toca «Buscar partida» para una mesa de 4 u 8, cuando quieras. Los extraños ven tu color de agente, nunca tu nombre." },
       { title: "Noche de Juegos", text: "Noches programadas en línea, con títulos que solo se ganan esa noche. Te avisamos antes de que empiecen." },
       { title: "Mercado Negro", text: "Intercambia objetos con amigos. Los adultos también pueden intercambiar con otros agentes, y comprar y vender por Intel, que se gana jugando." },
-      { title: "Membresías", text: "Opcional: el Pack Pass (mensual o anual) o Lifetime desbloquea todos los paquetes de lugares y palabras y te deja crear los tuyos. No se vende nada más." },
+      { title: "Membresías", text: "Opcional: el Pase de paquetes (mensual o anual) o la Membresía de por vida: pagas una vez y nunca se renueva. Todos los paquetes premium en las salas que organizas y en tu mesa de Jugar en línea, y el creador de paquetes. No se vende nada más." },
     ],
     allNotes: "Todo lo nuevo de la 2.2",
     community: {

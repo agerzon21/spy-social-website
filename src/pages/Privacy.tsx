@@ -436,7 +436,7 @@ const Privacy: React.FC = () => {
             If you allow notifications, we send a push for a friend request, an accepted request, a room or party
             invite, an Ask to Join and a new pack from a creator you follow (at most one a day for each creator), each
             with its own switch in Privacy &amp; Friends.{PRIVACY.audit1103 ? " We also send a push when a friend offers, changes or completes a trade or it's your turn in one, when your Black Market offer fills, your Rare Finds item sells or gets an offer, or your offer on one is accepted, and when a trade or sale of yours is undone; Trades and Black Market each have their own switch there. These never show an item, a price or an Intel amount, and the market's never name the other player." : ''} The push shows the sender's display name. We keep your
-            device's time zone so that a player under 18 gets none between 10 PM and 7 AM local time{PRIVACY.audit1103 ? ', and none at all while we don\'t know it; on iPhone, players under 18 get none of these for now' : ''}. A notice waiting
+            device's time zone so that a player under 18 gets none between 10 PM and 7 AM local time{PRIVACY.audit1103 ? `, and none at all while we don't know it; on iPhone${PRIVACY.membershipWords1105 ? ' and iPad' : ''}, players under 18 get none of these for now` : ''}. A notice waiting
             to be sent is kept for about a day, and a sent one for about 7 days{PRIVACY.retentionSweep ? '' : ' (cleared the next time we send a notice)'}.
           </Item>
         )}
@@ -1447,7 +1447,7 @@ const Privacy: React.FC = () => {
           can't turn the others on until they're 18. Players who haven't told us their age are treated as under 16.
           An adult can add a player under 16 only in person, with a Friend Code. Players under 18 get no social
           notifications between 10 PM and 7 AM, can't be found, suggested or followed, and their packs are
-          anonymous. On iPhone, friends, follows and parties stay off for players under 18 until a version of the app
+          anonymous. On iPhone{PRIVACY.membershipWords1105 ? ' and iPad' : ''}, friends, follows and parties stay off for players under 18 until a version of the app
           that asks a parent's consent through Apple is out.
         </P>
       )}
@@ -1455,7 +1455,7 @@ const Privacy: React.FC = () => {
         In the app's list of rooms, players under 16 (and players who haven't told us their age) see no private room
         but their own, and a private room hosted by a player under 18 is listed to no one but its host; joining a
         private room still needs its code, link or QR code, or an invite. Some of the game's suggested questions are never offered to a player under 18,
-        and the game never picks one by itself while a player under 18 is in the room or game.{PRIVACY.homeDiscord ? " Players under 16 never see the app's link to our Discord server, and players 16 and 17 see a note on staying safe before it opens (on iPhone, no player under 18 sees it for now)." : ''}
+        and the game never picks one by itself while a player under 18 is in the room or game.{PRIVACY.homeDiscord ? " Players under 16 never see the app's link to our Discord server, and players 16 and 17 see a note on staying safe before it opens (on iPhone" + (PRIVACY.membershipWords1105 ? ' and iPad' : '') + ", no player under 18 sees it for now)." : ''}
       </P>
 
       <H2>Do Not Track Signals</H2>

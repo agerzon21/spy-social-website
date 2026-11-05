@@ -284,7 +284,7 @@ const es: HelpText = {
           a: [
             'Sí, con límites: solo objetos por objetos, y solo con amigos que añadieron en persona con un código de amigo.',
             'Sin regalos, sin Intel, sin intercepciones sin abrir y sin comprar ni vender en el Mercado Negro.',
-            'En iPhone, los menores de 18 no pueden intercambiar hasta que salga una versión de la app que pida el consentimiento de un padre o madre a través de Apple.',
+            'En iPhone y iPad, los menores de 18 no pueden intercambiar hasta que salga una versión de la app que pida el consentimiento de un padre o madre a través de Apple.',
           ],
         },
         {
@@ -625,7 +625,7 @@ const es: HelpText = {
             'Hay que tener 13 años o más para jugar.',
             'En cualquier sala con un jugador menor de 18, los enlaces, correos, teléfonos y usuarios de redes sociales se bloquean para todos.',
             'Los menores de 18 no tienen perfil público ni pueden tener seguidores, solo intercambian objetos por objetos con amigos del código de amigo y no pueden comprar ni vender en el Mercado Negro.',
-            'En iPhone, los amigos, los grupos y los intercambios esperan a una versión de la app que pida el consentimiento de un padre o madre a través de Apple.',
+            'En iPhone y iPad, los amigos, los grupos y los intercambios esperan a una versión de la app que pida el consentimiento de un padre o madre a través de Apple.',
             'Padres, madres y tutores: consulten nuestra <safety>página de seguridad</safety>.',
           ],
         },
