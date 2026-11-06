@@ -3,7 +3,7 @@
 // database's row once it's published there, and never changes after (the database refuses to). Add a new one the day
 // it's published in the Owner Console.
 
-import { LIVE } from './legalRelease'
+import { INTERCEPTS_IN_TRADES_DAY, LIVE } from './legalRelease'
 
 export type PublishedIncident = {
   id: string
@@ -79,6 +79,14 @@ const TRADE_NO_LIMITS: { day: string; what: string; from: string; to: string }[]
  * Unopened Intercepts on the Black Market (owner 2026-11-01; app server 20261101233357_intercepts_market, live
  * 23:33 UTC, i.e. November 1 in New York): shown while LIVE.interceptsMarket is on.
  */
+/**
+ * Unopened Intercepts in friend trades (the app update that offers it; the server's trade_set_intercepts has been live since
+ * November 1, with no app calling it): shown while LIVE.interceptsInTrades is on.
+ */
+const INTERCEPTS_IN_TRADES: { day: string; what: string; from: string; to: string }[] = [
+  { day: INTERCEPTS_IN_TRADES_DAY, what: 'whether adults can trade unopened Intercepts with friends (players under 18: never; each counts as one item, and stays sealed through the 7-day protection)', from: 'no', to: 'yes' },
+]
+
 const INTERCEPTS_MARKET: { day: string; what: string; from: string; to: string }[] = [
   { day: 'November 1, 2026', what: 'whether adults can buy and sell unopened Intercepts on the Black Market, for Intel only (players under 18: never; minimum prices from the lowest tier to the highest: 8, 15, 50, 113 and 168 Intel)', from: 'no', to: 'yes' },
 ]
@@ -118,6 +126,7 @@ export const RULE_CHANGES: { day: string; what: string; from: string; to: string
   ...(LIVE.tradeNoLimits ? TRADE_NO_LIMITS : []),
   ...(LIVE.tradeGatesNov2 ? TRADE_GATES_NOV2 : []),
   ...(LIVE.interceptsMarket ? INTERCEPTS_MARKET : []),
+  ...(LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES : []),
   ...(LIVE.giftsTradable ? GIFTS_TRADABLE : []),
   ...(LIVE.uniquesRarer ? UNIQUES_RARER : []),
 ]

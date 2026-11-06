@@ -1,7 +1,7 @@
 import { ListItem } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, H3, P, PageLink, SupportEmail } from '../components/legal/LegalText'
-import { LIVE } from '../lib/legalRelease'
+import { INTERCEPTS_IN_TRADES_DAY, LIVE } from '../lib/legalRelease'
 import { PUBLISHED_INCIDENTS, RULE_CHANGES } from '../lib/transparency'
 import { dayInMonth, MONTHLY_REPORTS } from '../lib/transparencyReports'
 
@@ -16,6 +16,7 @@ const UPDATED = LIVE.launchSite
   ? 'December 8, 2026' // 2.2 is out: the monthly report's first date and the Intel fingerprint's start told in the past (site-launch-walk)
   : LIVE.launchResetIncident
   ? 'December 7, 2026' // incident I-1 and the Dec 7 gift-trading rule change (website update U0, the day WI runs)
+  : LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES_DAY /* unopened Intercepts in friend trades are in the list */
   : LIVE.accountNotices ? 'November 6, 2026' /* the Nov 6 test-phase Intel rule change is in the list (site-eye-1106) */ : LIVE.tradeNoLimits || LIVE.tradeGatesNov2 ? 'November 2, 2026' : LIVE.giftsTradable ? 'November 1, 2026' : LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
 
 const KIND: Record<string, string> = { reset: 'Reset', bug: 'Bug', outage: 'Outage' }

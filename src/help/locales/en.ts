@@ -264,6 +264,8 @@ const en: HelpText = {
             'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones).',
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age, counted-games and new-device rules are off: every tester can trade once their email is confirmed.']),
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
+            ...(o.interceptsInTrades ? ['Adults can also put unopened Intercepts in a trade: choose how many of each tier. Each one counts as one of the 10.'] : []),
+            ...(o.interceptsInTrades && !o.launch ? ['During the beta test, until December 7, every unopened Intercept can go in a trade, however you got it. Intercepts start fresh at launch anyway.'] : []),
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
             'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.',
             'Intel can be traded only between adults.',
@@ -276,6 +278,7 @@ const en: HelpText = {
           q: 'What is the 7-day protection? Can I undo a trade?',
           a: [
             'What you get in a trade is protected for 7 days. You can wear an item at once, but you can’t trade it, shred it or trade it up yet, and Intel you get can’t be spent yet.',
+            ...(o.interceptsInTrades ? ['An unopened Intercept you get stays sealed for those 7 days: you can’t open it, trade it or list it yet.'] : []),
             'In those 7 days you can reverse your trades, once every 90 days. It reverses all of your protected trades and pauses your trading for 30 days.',
             'After 7 days a trade is final. We can also reverse a trade for account theft or fraud.',
           ],

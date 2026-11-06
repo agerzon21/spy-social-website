@@ -655,7 +655,7 @@ const Terms: React.FC = () => {
             (such as merch codes) never give Intercepts. We may also give Intercepts, and memberships, as gifts, but
             never the items that come from Intercepts. Each Intercept opens into one random item.{' '}
             {LIVE.interceptsMarket
-              ? "You can't buy an Intercept with money, and we never sell Intercepts. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below); players under 18 can't. Intel can't be bought, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds."
+              ? `You can't buy an Intercept with money, and we never sell Intercepts. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below)${LIVE.interceptsInTrades ? ', and trade one with a friend (see Trades below)' : ''}; players under 18 can't. Intel can't be bought, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds.`
               : "You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a membership doesn't give you more of them or better odds."}{' '}
             {/* The offer sheet's odds (Nov 10 store build, store-compliance-1103) are out by the launch: LIVE.launchSite. */}
             {LIVE.launchSite && LIVE.interceptsMarket ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds)
@@ -767,6 +767,9 @@ const Terms: React.FC = () => {
                 ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones, and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 1,000,000 Intel, and both sides confirm what they'll get before the trade happens." +
                   (LIVE.helpTruth1105
                     ? " What you offer in an open trade is held for it: it can't go into another trade or onto the Black Market at the same time. If Intel you offered is spent before the trade happens, the trade can't go through until the amount is lowered, and nothing moves."
+                    : '') +
+                  (LIVE.interceptsInTrades
+                    ? " Adults can also offer unopened Intercepts, per tier, each counting as one item; one you receive stays sealed, and can't be traded or listed, until its protection ends."
                     : '')
                 : "Trades are between friends, inside the app, and carry no message. You can trade once you and your friend have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."}
             </ListItem>

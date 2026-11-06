@@ -258,6 +258,8 @@ const id: HelpText = {
             'Kamu bertukar dengan teman, di dalam aplikasi. Kamu butuh akun berusia minimal 7 hari, email terkonfirmasi, dan 3 permainan yang dihitung (permainan selesai yang masuk ke statistikmu, dengan minimal 2 akun tersimpan lain di ponsel lain).',
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun, permainan yang dihitung, dan perangkat baru tidak berlaku: setiap penguji bisa bertukar begitu email-nya dikonfirmasi.']),
             'Tiap pihak menawarkan sampai 10 item, dan keduanya mengonfirmasi sebelum pertukaran terjadi. Pertukaran besar meminta kode yang kami kirim lewat email.',
+            ...(o.interceptsInTrades ? ['Orang dewasa juga bisa memasukkan sadapan yang belum dibuka ke pertukaran: pilih berapa dari tiap tingkat. Masing-masing dihitung sebagai satu dari 10 item.'] : []),
+            ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai 7 Desember, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
             'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.',
             'Intel hanya bisa ditukar antar orang dewasa.',
@@ -270,6 +272,7 @@ const id: HelpText = {
           q: 'Apa itu perlindungan 7 hari? Bisakah membatalkan pertukaran?',
           a: [
             'Yang kamu dapat dari pertukaran dilindungi selama 7 hari. Item bisa langsung dipakai, tapi belum bisa ditukar, dihancurkan, atau dipakai untuk Tukar Tambah, dan Intel yang diterima belum bisa dipakai.',
+            ...(o.interceptsInTrades ? ['Sadapan belum dibuka yang kamu dapat tetap tersegel selama 7 hari itu: belum bisa dibuka, ditukar, atau dijual.'] : []),
             'Dalam 7 hari itu kamu bisa membatalkan pertukaranmu, sekali tiap 90 hari. Semua pertukaranmu yang masih dilindungi dibatalkan, dan pertukaranmu dijeda 30 hari.',
             'Setelah 7 hari, pertukaran bersifat final. Kami juga bisa membatalkan pertukaran karena pencurian akun atau penipuan.',
           ],

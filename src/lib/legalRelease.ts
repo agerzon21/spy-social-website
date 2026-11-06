@@ -997,7 +997,7 @@ export const LIVE = {
    * (store compliance 2026-11-03: never called on any branch), so the pages say they move only on the Black Market. Flip
    * on the day an app that offers it is out; Terms 9 and Privacy's Intercepts item then say trades too.
    */
-  interceptsInTrades: false,
+  interceptsInTrades: true,
   /**
    * The launch reset's Intel (WI, 20261201950000, Window W) ran: incident I-1 "Pre-launch Intercept Intel" is published
    * (its summary is the database's economy_incidents row I-1, copied in src/lib/transparency.ts). Turns on I-1 in the
@@ -1555,10 +1555,18 @@ export const OPERATOR: {
  * set each date to its deploy day when flipping. The first switch that's on wins, so a later change that isn't one of
  * these switches (the 2.2 launch's, for one) must fold the chain back to a plain string first, then set it.
  */
+/**
+ * The day unopened Intercepts in friend trades go up (LIVE.interceptsInTrades; app branch fix/intercept-trades-1106): Terms' and
+ * Privacy's Last Updated and Transparency's list. SET IT TO THE DAY THIS BRANCH IS PUSHED, the day the app update is out.
+ */
+export const INTERCEPTS_IN_TRADES_DAY = 'November 7, 2026'
+
 export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.interceptsInTrades
+    ? INTERCEPTS_IN_TRADES_DAY // Terms 9: adults trade unopened Intercepts with friends (the app update that offers it)
   : LIVE.testerMarket
     ? 'November 12, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the site goes up with it on Nov 12
   : LIVE.safetyAnswers1106
@@ -1623,6 +1631,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.interceptsInTrades
+    ? INTERCEPTS_IN_TRADES_DAY // the Intercepts item: an unopened one offered in a trade (the app update that offers it)
   : LIVE.safetyAnswers1106
     ? 'November 6, 2026' // the owner's child-safety answers: personal info refused with a minor, Chat Safety Checks, "never sent to OpenAI to be translated": the site went up with it on
   : LIVE.membershipWords1105

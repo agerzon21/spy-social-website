@@ -134,7 +134,7 @@ const Safety: React.FC = () => {
         {LIVE.customPacks && <ListItem>{r(p.customPacks(LIVE.communityPacks))}</ListItem>}
         {LIVE.socialFeatures && <ListItem>{r(p.social)}</ListItem>}
         {LIVE.trading && LIVE.blackMarket && <ListItem>{r(p.trading)}</ListItem>}
-        {LIVE.intercepts && <ListItem>{r(LIVE.interceptsMarket ? p.interceptsMarket : p.intercepts)}</ListItem>}
+        {LIVE.intercepts && <ListItem>{r(LIVE.interceptsMarket ? (LIVE.interceptsInTrades ? `${p.interceptsMarket} ${p.interceptsFriendTrades}` : p.interceptsMarket) : p.intercepts)}</ListItem>}
         {LIVE.homeDiscord && <ListItem>{r(p.discord)}</ListItem>}
         {LIVE.purchases && <ListItem>{r(LIVE.membershipsOnly ? p.buyMembers : p.buy)}</ListItem>}
       </Bullets>

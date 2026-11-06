@@ -258,6 +258,8 @@ const es: HelpText = {
             'Intercambias con amigos, dentro de la app. Necesitas una cuenta de al menos 7 días, el correo confirmado y 3 partidas que cuenten (partidas terminadas que suman a tus estadísticas, con al menos otras 2 cuentas guardadas en otros teléfonos).',
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, no se aplican las reglas de antigüedad de la cuenta, partidas contadas ni dispositivo nuevo: cualquier tester puede intercambiar en cuanto confirme su correo.']),
             'Cada lado ofrece hasta 10 objetos, y los dos confirman antes de que se haga. Los intercambios grandes piden un código que te enviamos por correo.',
+            ...(o.interceptsInTrades ? ['Los adultos también pueden poner Intercepciones sin abrir en un intercambio: eligen cuántas de cada nivel. Cada una cuenta como uno de los 10.'] : []),
+            ...(o.interceptsInTrades && !o.launch ? ['Durante la beta, hasta el 7 de diciembre, cualquier Intercepción sin abrir puede entrar en un intercambio, sea cual sea su origen. De todos modos, las Intercepciones empiezan de cero con el lanzamiento.'] : []),
             'Lo que pones en un intercambio abierto queda reservado para él: no puede ir a otro intercambio ni al Mercado Negro al mismo tiempo. Si el Intel de un intercambio se gasta antes de que se haga, aparece un aviso en ese lado y el intercambio no puede hacerse hasta que se baje la cantidad.',
             'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.',
             'El Intel solo se puede intercambiar entre adultos.',
@@ -270,6 +272,7 @@ const es: HelpText = {
           q: '¿Qué es la protección de 7 días? ¿Puedo deshacer un intercambio?',
           a: [
             'Lo que recibes en un intercambio queda protegido 7 días. Puedes usar un objeto enseguida, pero aún no puedes intercambiarlo, triturarlo ni canjearlo, y el Intel recibido aún no se puede gastar.',
+            ...(o.interceptsInTrades ? ['Una Intercepción sin abrir que recibes sigue sellada esos 7 días: aún no puedes abrirla, intercambiarla ni ponerla a la venta.'] : []),
             'En esos 7 días puedes revertir tus intercambios, una vez cada 90 días. Se revierten todos tus intercambios protegidos y tus intercambios se pausan 30 días.',
             'Pasados 7 días, el intercambio es definitivo. También podemos revertirlo por robo de cuenta o fraude.',
           ],

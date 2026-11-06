@@ -242,10 +242,10 @@ const Privacy: React.FC = () => {
           <Item label="Intercepts">
             Intercepts are sealed rewards that each open into one random item (such as a look for your agent, a
             celebration or a title). {PRIVACY.interceptsMarket
-              ? "They're earned by playing, or given by us, and never bought with money; an adult can also buy an unopened one from another adult with Intel on the Black Market."
+              ? `They're earned by playing, or given by us, and never bought with money; an adult can also buy an unopened one from another adult with Intel on the Black Market${PRIVACY.interceptsInTrades ? ', or get one in a trade with a friend' : ''}.`
               : "They're earned only by playing, or given by us, never bought, with money or with Intel."} Our servers keep each Intercept you get: when, how you got it (the Play Online game that completed a
             set of 10 wins, your first Play Online game of the day or a streak milestone, a Game Night win, a code you
-            entered, or a gift from us, with its reason{PRIVACY.interceptsMarket ? ', or the Black Market sale it came from' : ''}) and its tier; whether you've claimed it yet (a daily one) or
+            entered, or a gift from us, with its reason{PRIVACY.interceptsMarket ? `, or the Black Market sale${PRIVACY.interceptsInTrades ? ' or trade' : ''} it came from` : ''}) and its tier; whether you've claimed it yet (a daily one) or
             it's waiting for your first Play Online game that counts (one from a code); when you've seen the app's
             notices about your Intercepts (such as Welcome Back); and, once you open it, when, the item and
             its rarity, whether you already had that item, and for a Unique, its number and colour. We keep every copy

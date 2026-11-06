@@ -417,6 +417,9 @@ const hi: Strings = {
       /** `intercepts` once unopened Intercepts trade on the Black Market (LIVE.interceptsMarket). */
       interceptsMarket:
         "<b>इंटरसेप्ट (Intercepts):</b> खेलकर मिलने वाले इनाम, हर एक में एक रैंडम आइटम, जैसे एजेंट के लिए नया लुक। इन्हें पैसे के बदले कोई नहीं बेचता, न हम, न दूसरे खिलाड़ी। वयस्क काला बाज़ार में बिना खुले इंटरसेप्ट आपस में खेल में कमाई गई करेंसी से खरीद और बेच भी सकते हैं, और यह करेंसी खरीदी नहीं जा सकती; 18 साल से कम उम्र के खिलाड़ी ऐसा नहीं कर सकते। खोलने से पहले ऐप इनके चांस दिखाता है।",
+      /** A sentence after interceptsMarket once the app offers it (LIVE.interceptsInTrades). */
+      interceptsFriendTrades:
+        "वयस्क दोस्तों के साथ बिना खुले इंटरसेप्ट का ट्रेड भी कर सकते हैं।",
       /** Home's Discord pill (LIVE.homeDiscord; under 16 never, 16-17 a safety note first). */
       discord:
         "<b>हमारे Discord का लिंक:</b> होम पर SpySocial के आधिकारिक Discord सर्वर का लिंक दिख सकता है, जहाँ खिलाड़ी साथ खेलने के लिए दूसरों को ढूँढते हैं। Discord एक अलग ऐप है, जिसके अपने नियम और न्यूनतम उम्र हैं। 16 साल से कम उम्र के खिलाड़ियों को यह लिंक कभी नहीं दिखता, और 16 और 17 साल के खिलाड़ी पहले वहाँ सुरक्षित रहने के बारे में एक नोट देखते हैं। हमारे मॉडरेटर सर्वर की देखभाल करते हैं, लेकिन SpySocial में कोई भी Discord के निजी मैसेज नहीं देख सकता।",
