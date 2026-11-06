@@ -16,7 +16,7 @@ const UPDATED = LIVE.launchSite
   ? 'December 8, 2026' // 2.2 is out: the monthly report's first date and the Intel fingerprint's start told in the past (site-launch-walk)
   : LIVE.launchResetIncident
   ? 'December 7, 2026' // incident I-1 and the Dec 7 gift-trading rule change (website update U0, the day WI runs)
-  : LIVE.accountNotices ? 'November 3, 2026' : LIVE.tradeNoLimits || LIVE.tradeGatesNov2 ? 'November 2, 2026' : LIVE.giftsTradable ? 'November 1, 2026' : LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
+  : LIVE.accountNotices ? 'November 6, 2026' /* the Nov 6 test-phase Intel rule change is in the list (site-eye-1106) */ : LIVE.tradeNoLimits || LIVE.tradeGatesNov2 ? 'November 2, 2026' : LIVE.giftsTradable ? 'November 1, 2026' : LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
 
 const KIND: Record<string, string> = { reset: 'Reset', bug: 'Bug', outage: 'Outage' }
 
