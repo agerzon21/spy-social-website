@@ -157,13 +157,16 @@ const ChildSafety: React.FC = () => {
         </ListItem>
         <ListItem>
           <B>Chat filter:</B> names and chat are checked before anyone else sees them. In public rooms, explicit sexual
-          words are blocked; in private rooms, the most serious words are blocked. In any room with a player under 18,
+          words are blocked; in private rooms, the most serious words are blocked. In any room{LIVE.safetyAnswers1106 ? ' or party' : ''} with a player under 18,
           links, email addresses, phone numbers and social accounts are blocked for everyone
-          {LIVE.childSafetyHolds ? ', and so is sexual talk, along with lines that could be sexual' : ''}. At Play Online tables
-          and game nights they're always blocked{LIVE.childSafetyHolds ? ', and so is explicit sexual talk' : ''}. Sharing real names, addresses, phone numbers or social media handles
+          {LIVE.safetyAnswers1106 ? ", and so is other personal info (a home address, asking or saying where someone lives, a school or a real name): a player under 18 can't share it or be asked for it, and the app says \"Sorry, sharing personal info or links isn't allowed here.\"" : ''}
+          {LIVE.childSafetyHolds ? `${LIVE.safetyAnswers1106 ? ' Sexual talk is blocked there too' : ', and so is sexual talk'}, along with lines that could be sexual` : ''}{LIVE.safetyAnswers1106 && LIVE.childSafetyHolds ? '.' : ''}{LIVE.safetyAnswers1106 && LIVE.childSafetyHolds ? '' : '.'} At Play Online tables
+          and game nights {LIVE.safetyAnswers1106 ? 'links, contact details and personal info are' : "they're"} always blocked{LIVE.childSafetyHolds ? ', and so is explicit sexual talk' : ''}. Sharing real names, addresses, phone numbers or social media handles
           is against our Community Rules.
           {LIVE.childSafetyHolds &&
             " Messages that can be part of grooming, and explicit sexual talk even when it was refused, in rooms and party chats with a player under 18, are flagged automatically for a person to read."}
+          {LIVE.safetyAnswers1106 &&
+            " What adults write in rooms and party chats with a player who told us they're under 18 may also be read, after it's sent, by an automated check (OpenAI's models) that looks for sexual talk aimed at a younger player and flags it for a person to read. It never blocks or changes a message, and what players under 18 write is never sent to it."}
         </ListItem>
         {/* LIVE.communityPacks: shared packs are reviewed before anyone else sees them (legalRelease). */}
         {LIVE.communityPacks && (
@@ -231,6 +234,8 @@ const ChildSafety: React.FC = () => {
         <ListItem>
           A person reads every report within 24 hours. Reports about child safety, and reports involving a player
           under 18, are marked urgent and read first.
+          {LIVE.safetyAnswers1106 &&
+            " Reports about a child's safety, and reports of personal info shared by or with a player under 18, are read by SpySocial's developer only, never by volunteer moderators."}
         </ListItem>
         <ListItem>We take the content down: the message, the drawing or the name.</ListItem>
         <ListItem>

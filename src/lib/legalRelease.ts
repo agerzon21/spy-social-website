@@ -1366,6 +1366,18 @@ export const LIVE = {
    */
   childSafetyHolds: true,
   /**
+   * The owner's child-safety answers of 2026-11-06 (app repo nov03/safety-answers-1106; server 20261212150000_safety_answers_1106):
+   * personal info (a home address, where someone lives, their school, their real name) is refused like contact details, at
+   * public tables for everyone and in any room or party with a player under 18 or without a birth year; reports of a minor
+   * sharing personal info go to the developer only, never to community moderators; Translations' Not Now line says "never
+   * sent to OpenAI to be translated"; and the chat safety check (the minor reader, 20261211400000, built and OFF until the
+   * owner's OpenAI key): what adults write beside a player who said they're under 18 MAY be read after it's sent by OpenAI's
+   * models, and flagged for a person, never blocked (worded "may" so it is true while the reader is off and when it is on).
+   * POLICY FIRST: the site goes up with it just before the server file is applied. A server fact for every app version at
+   * once: set in LIVE, never in PRIVACY_AHEAD. Never publish the phrases the filter or the reader read.
+   */
+  safetyAnswers1106: true,
+  /**
    * The launch version of the public site (2.2 out on both stores; flip Tuesday, December 8, 2026, 10 AM ET; steps in
    * the app repo's .claude/handoff/scratchpad/nov02/website-launch.md). On: the hero says 2.2 is out, the home page's
    * New in 2.2 section (the store screenshots in the page's language, Spy Sketch, Play Online, Game Night, the Black
@@ -1550,6 +1562,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.testerMarket
     ? 'November 12, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the site goes up with it on Nov 12
+  : LIVE.safetyAnswers1106
+    ? 'November 6, 2026' // the owner's child-safety answers (Child Safety: personal info refused with a minor, the chat safety check): the site went up with it on
   : LIVE.membershipWords1105
     ? 'November 5, 2026' // membership words (Terms 4 and 9: the under-18 hold is on iPhone and iPad): the site went up with it on
   : LIVE.helpTruth1105
@@ -1610,6 +1624,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.safetyAnswers1106
+    ? 'November 6, 2026' // the owner's child-safety answers: personal info refused with a minor, Chat Safety Checks, "never sent to OpenAI to be translated": the site went up with it on
   : LIVE.membershipWords1105
     ? 'November 5, 2026' // membership words (Reminders and Notifications: the under-18 hold is on iPhone and iPad): the site went up with it on
   : LIVE.helpTruth1105
