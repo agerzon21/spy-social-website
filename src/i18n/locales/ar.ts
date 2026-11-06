@@ -772,6 +772,8 @@ const ar: Strings = {
   join: {
     title: 'الانضمام إلى لعبة',
     noCode: 'لم يُقدَّم رمز غرفة',
+    friendTitle: "إضافة صديق",
+    friendLink: "افتح SpySocial لإضافة صديقك. يعمل رمزه لبضع دقائق فقط.",
     browserOrPhone: 'اللعب في المتصفح، أو على هاتفك بالتطبيق',
     openToJoin: 'فتح SpySocial للانضمام إلى الغرفة',
     onPhone: 'فتح هذا الرابط على هاتفك للانضمام إلى الغرفة',

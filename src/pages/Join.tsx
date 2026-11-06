@@ -4,6 +4,7 @@ import { IoDesktopOutline, IoLogoGooglePlaystore } from 'react-icons/io5'
 import { useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useMemo } from 'react'
 import { openAppHref, tryAppOnLoad, tryAppOnce } from '../lib/appLink'
+import { keepCodeChars } from '../lib/roomCode'
 import { currentPlatform } from '../lib/platform'
 import { playJoinUrl } from '../lib/playUrl'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
@@ -12,7 +13,9 @@ import { useT } from '../i18n'
 
 
 const Join = () => {
-  const { code = '' } = useParams<{ code: string }>()
+  const { code: rawCode = '', token = '' } = useParams<{ code: string; token: string }>()
+  // A link typed in lowercase or with spaces, or with a code's look-alike letters: the code the app reads (lib/roomCode).
+  const code = keepCodeChars(rawCode)
   const [searchParams] = useSearchParams()
   const strings = useT()
   const t = strings.join
@@ -21,10 +24,11 @@ const Join = () => {
   // A private room whose host changed its code carries that code as ?p=.
   // Forward it to the app so the invite still joins in one tap, and show it
   // here because it's the code the player would type.
-  const passcode = (searchParams.get('p') ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 12)
-  const displayCode = passcode || code.toUpperCase()
+  const passcode = keepCodeChars(searchParams.get('p') ?? '')
+  const displayCode = passcode || code
   // The app's own path for this invite, ?p= included (lib/appLink makes it spysocial:// or Android's intent://).
-  const appPath = `join/${encodeURIComponent(code)}${passcode ? `?p=${encodeURIComponent(passcode)}` : ''}`
+  // A Friend Code's link (/join/f/<token>, shown as a QR in person): the same way in, no room to name.
+  const appPath = token ? `join/f/${encodeURIComponent(token)}` : `join/${encodeURIComponent(code)}${passcode ? `?p=${encodeURIComponent(passcode)}` : ''}`
   // A friend on a computer: the same room in the browser version (code and ?p=), once LIVE.browserLinks is on.
   const webLink = playJoinUrl(code, passcode)
 
@@ -40,8 +44,8 @@ const Join = () => {
   // and spysocial:// without the app is iOS Safari's "Cannot Open Page". Only an in-app browser on iOS (Instagram,
   // TikTok, Facebook), which never hands a link to the app, tries it once (lib/appLink).
   useEffect(() => {
-    if (code && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
-  }, [platform, code, appPath])
+    if ((code || token) && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
+  }, [platform, code, token, appPath])
 
   return (
     <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="radial-gradient(70% 320px at 50% 0, var(--ss-glow), transparent 70%)">
@@ -49,10 +53,12 @@ const Join = () => {
         <VStack spacing={8} align="stretch">
           <VStack spacing={4} textAlign="center">
             <Heading as="h1" size="xl">
-              {t.title}
+              {token ? t.friendTitle : t.title}
             </Heading>
             <Text color="ss.muted" fontSize={{ base: '18px', md: '20px' }} lineHeight="1.45">
-              {!code
+              {token
+                ? t.friendLink
+                : !code
                 ? t.noCode
                 : platform === 'desktop'
                   ? webLink
@@ -71,7 +77,7 @@ const Join = () => {
               </Button>
             )}
 
-            {isMobile && code && (
+            {isMobile && (code || token) && (
               <Button as="a" href={appLink} size="lg" variant="primary">
                 {c.openInApp}
               </Button>

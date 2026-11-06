@@ -772,6 +772,8 @@ const fr: Strings = {
   join: {
     title: 'Rejoindre la partie',
     noCode: 'Aucun code de salon fourni',
+    friendTitle: "Ajouter un ami",
+    friendLink: "Ouvre SpySocial pour ajouter ton ami. Son code ne marche que quelques minutes.",
     browserOrPhone: "Joue dans ton navigateur, ou sur ton téléphone avec l'appli",
     openToJoin: 'Ouvre SpySocial pour rejoindre le salon',
     onPhone: 'Ouvre ce lien sur ton téléphone pour rejoindre le salon',

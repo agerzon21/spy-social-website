@@ -770,6 +770,8 @@ const ptBR: Strings = {
   join: {
     title: 'Entrar na partida',
     noCode: 'Nenhum código da sala informado',
+    friendTitle: "Adicionar amigo",
+    friendLink: "Abra o SpySocial para adicionar seu amigo. O código só vale por alguns minutos.",
     browserOrPhone: 'Jogue no navegador, ou no celular com o app',
     openToJoin: 'Abra o SpySocial para entrar na sala',
     onPhone: 'Abra este link no celular para entrar na sala',

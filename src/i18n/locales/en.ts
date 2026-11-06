@@ -835,6 +835,8 @@ const en = {
   join: {
     title: 'Join Game',
     noCode: 'No room code provided',
+    friendTitle: "Add a Friend",
+    friendLink: "Open SpySocial to add your friend. Their code only works for a few minutes.",
     browserOrPhone: 'Play in your browser, or on your phone with the app',
     openToJoin: 'Open SpySocial to join the room',
     onPhone: 'Open this link on your phone to join the room',

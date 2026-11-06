@@ -44,8 +44,15 @@ export function looksLikeLink(input: string): boolean {
 export function joinPath(input: string): string | null {
   const raw = input.trim()
   if (looksLikeLink(raw)) {
-    const event = raw.match(/join\/e\/([0-9a-f-]{36})/i)
-    if (event) return `/join/e/${event[1].toLowerCase()}`
+    // A game night's link id is 6 characters (never the old 36-character id: such a link did nothing here).
+    const event = raw.match(/join\/e\/([^/?#\s]+)/i)
+    if (event) {
+      const id = keepCodeChars(decodeURIComponent(event[1]))
+      return id.length >= CODE_MIN ? `/join/e/${id}` : null
+    }
+    // A Friend Code's token is case-sensitive: kept as written (the app's lib/inviteLink).
+    const friend = raw.match(/join\/f\/([A-Za-z0-9_-]{24})(?![A-Za-z0-9_-])/)
+    if (friend) return `/join/f/${friend[1]}`
     const link = raw.match(/join\/([^/?#\s]+)/i)
     const code = link ? keepCodeChars(decodeURIComponent(link[1])) : ''
     if (code.length < CODE_MIN) return null

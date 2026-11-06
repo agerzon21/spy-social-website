@@ -101,6 +101,7 @@ function App() {
               <Route path="/beta" element={LIVE.launchSite ? <Navigate to="/" replace /> : <Layout><Beta /></Layout>} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
               <Route path="/join/e/:id" element={<Layout><JoinEvent /></Layout>} />
+              <Route path="/join/f/:token" element={<Layout><Join /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
               <Route path="/join" element={<Layout><Join /></Layout>} />
               <Route path="/agree/:token" element={<Layout><Agree /></Layout>} />

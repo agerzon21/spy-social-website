@@ -767,6 +767,8 @@ const es: Strings = {
   join: {
     title: 'Unirse a la partida',
     noCode: 'No se indicó un código de sala',
+    friendTitle: "Agregar a un amigo",
+    friendLink: "Abre SpySocial para agregar a tu amigo. Su código solo dura unos minutos.",
     browserOrPhone: 'Juega en tu navegador, o en tu teléfono con la app',
     openToJoin: 'Abre SpySocial para unirte a la sala',
     onPhone: 'Abre este enlace en tu teléfono para unirte a la sala',

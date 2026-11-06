@@ -747,6 +747,8 @@ const zhHans: Strings = {
   join: {
     title: '加入游戏',
     noCode: '没有提供房间码',
+    friendTitle: "添加好友",
+    friendLink: "打开 SpySocial 添加好友。好友码只在几分钟内有效。",
     browserOrPhone: '在浏览器中玩，或在手机上用应用玩',
     openToJoin: '打开 SpySocial 加入房间',
     onPhone: '在手机上打开此链接即可加入房间',

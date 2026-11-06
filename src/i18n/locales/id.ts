@@ -770,6 +770,8 @@ const id: Strings = {
   join: {
     title: 'Gabung ke permainan',
     noCode: 'Tidak ada kode room',
+    friendTitle: "Tambah Teman",
+    friendLink: "Buka SpySocial untuk menambahkan temanmu. Kodenya hanya berlaku beberapa menit.",
     browserOrPhone: 'Main di browser, atau di HP dengan aplikasinya',
     openToJoin: 'Buka SpySocial untuk gabung ke room',
     onPhone: 'Buka link ini di HP-mu untuk gabung ke room',

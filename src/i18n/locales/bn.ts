@@ -772,6 +772,8 @@ const bn: Strings = {
   join: {
     title: 'খেলায় যোগ দিন',
     noCode: 'কোনো রুম কোড দেওয়া হয়নি',
+    friendTitle: "বন্ধু যোগ করুন",
+    friendLink: "বন্ধুকে যোগ করতে SpySocial খুলুন। তাঁর কোড মাত্র কয়েক মিনিট কাজ করে।",
     browserOrPhone: 'ব্রাউজারে খেলুন, অথবা ফোনে অ্যাপ দিয়ে',
     openToJoin: 'রুমে যোগ দিতে SpySocial খুলুন',
     onPhone: 'রুমে যোগ দিতে লিংকটি আপনার ফোনে খুলুন',
