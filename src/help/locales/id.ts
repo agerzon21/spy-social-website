@@ -88,9 +88,10 @@ const id: HelpText = {
           a: [
             'Buka <b>Aksi</b> dan ketuk <b>Voting</b>. Semua memilih satu pemain atau <b>Tidak memilih</b>, lalu konfirmasi. Pilihan yang sudah dikonfirmasi tidak bisa diubah.',
             '<b>Mayoritas:</b> seorang pemain gugur hanya kalau dipilih lebih dari separuh pemain yang masih bermain.',
-            '<b>Suara terbanyak:</b> cukup dapat suara paling banyak, asalkan lebih banyak dari yang tidak memilih.',
+            '<b>Suara terbanyak:</b> cukup dapat suara paling banyak, asalkan lebih banyak dari yang tidak memilih dan yang tidak memberi suara.',
             'Seri di posisi pertama tidak menggugurkan siapa pun, dan selalu butuh minimal 2 suara.',
             'Di meja Main online, setiap pemain bisa memulai satu voting dan menyebut siapa yang dituduh. Kalau voting menangkap mata-mata, semua yang sudah memakai jatahnya mendapatkannya kembali.',
+            'Di meja 8 pemain, pemain dengan suara terbanyak gugur, sampai tersisa 4 pemain; lalu kembali ke suara mayoritas. Yang tidak memberi suara dihitung tidak memilih.',
           ],
         },
         {
@@ -100,7 +101,7 @@ const id: HelpText = {
             'Mata-mata membuka <b>Aksi</b> dan mengetuk <b>Tebak</b>, lalu punya 60 detik untuk memilih rahasianya dari daftar sekitar 30 pilihan.',
             'Tebakan benar membuat semua mata-mata menang. Tebakan salah, atau waktu habis, membuat mata-mata itu gugur. Kalau dia yang terakhir, warga menang.',
             'Semua orang melihat siapa yang menebak, jadi kamu ketahuan.',
-            'Kalau <b>Satu Kali Tebak</b> aktif (room privat), tim mata-mata hanya punya satu tebakan: salah sekali, seluruh tim kalah.',
+            'Kalau <b>Satu Kali Tebak</b> aktif (room privat dan Malam Permainan yang mengaktifkannya), tim mata-mata hanya punya satu tebakan: salah sekali, seluruh tim kalah.',
           ],
         },
         {
@@ -109,7 +110,9 @@ const id: HelpText = {
           a: [
             '<b>Warga</b> menang dengan menggugurkan semua mata-mata lewat voting, atau saat mata-mata terakhir salah menebak.',
             '<b>Mata-mata</b> menang dengan tebakan benar, saat waktu permainan habis, atau saat voting menyisakan mata-mata sebanyak warga.',
+            'Keluar dihitung seperti tersingkir lewat voting: jika mata-mata terakhir keluar, warga menang; jika terlalu banyak warga keluar, mata-mata menang. Jika itu terjadi sebelum pertanyaan selesai (di Spy Sketch, pada ronde pertama), permainan menampilkan “Tidak ada hasil” dan tidak dihitung.',
             '<b>Voting terakhir:</b> kalau waktu habis dan tersisa tepat satu mata-mata, semua memilih sekali lagi. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat.',
+            '<b>Informan</b> (room privat dan Malam Permainan yang mengaktifkannya): satu warga tahu satu mata-mata. Jika mata-mata tertangkap lewat voting atau tebakan salah, mereka punya 30 detik untuk menyebut warga itu dan mencuri kemenangan.',
           ],
         },
       ],
@@ -150,7 +153,7 @@ const id: HelpText = {
           id: 'practice-game',
           q: 'Apa itu permainan latihan?',
           a: [
-            'Permainan sekitar 5 menit melawan agen AI, dengan pelatih, di <b>Cara bermain</b>. Kamu mendapat nilai A sampai F, dan bisa melanjutkan dari tempat terakhir.',
+            'Permainan 5 sampai 9 menit melawan agen AI, dengan pelatih, di <b>Cara bermain</b>. Kamu mendapat nilai A sampai F, dan bisa melanjutkan dari tempat terakhir.',
             'Sebelum kamu main Spy Talk atau Spy Sketch online, aplikasi mungkin memintamu lulus latihan game itu dengan nilai C atau lebih. Malam Permainan tidak pernah memintanya.',
           ],
         },
@@ -192,15 +195,15 @@ const id: HelpText = {
             'Tekan lama foto pemain untuk membuka catatanmu tentang dia.',
             '<b>Papan</b> memilah pemain ke Curiga, Belum tahu, dan Percaya. Di Spy Talk, <b>Riwayat</b> menampilkan pertanyaan dan jawaban tiap pemain.',
             'Mata-mata punya papan temuan sendiri: <b>Temuanku</b>, dengan Mungkin, Ya, dan Bukan.',
-            'Catatanmu pribadi, tersimpan di ponselmu, dan terhapus saat permainan selesai.',
+            'Catatanmu pribadi, tersimpan di ponselmu, dan terhapus setelah layar akhir.',
           ],
         },
         {
           id: 'leave-rejoin',
           q: 'Bisakah keluar lalu kembali ke permainan?',
           a: [
-            'Kalau keluar, kamu ke Beranda, dan kartu room-mu punya tombol <b>Kembali</b>. Kursimu tetap disimpan selama kamu pergi.',
-            'Host bisa mengetuk <b>Akhiri permainan</b> untuk menghentikannya bagi semua orang. Tidak ada yang menang.',
+            'Tombol <b>Keluar</b> menawarkan <b>Pergi sebentar</b>, yang menjaga kursimu (kartu di Beranda punya tombol <b>Kembali</b>), atau <b>Keluar untuk seterusnya</b>: kamu tak bisa kembali ke permainan itu, dan jika permainan itu dihitung, itu kekalahan bagimu.',
+            'Host bisa mengetuk <b>Akhiri permainan untuk semua</b>. Tidak ada yang menang.',
             'Di meja Main online, keluar setelah peran dibagikan berarti jeda singkat dari Main online.',
           ],
         },
@@ -692,7 +695,7 @@ const id: HelpText = {
           q: 'Permainanku tidak dihitung',
           a: [
             'Permainan masuk rekam jejakmu kalau sudah berakhir dan kamu punya kursi, baik kamu main sampai selesai, keluar lebih awal (kalah), atau sedang pergi.',
-            'Yang tidak dihitung: permainan yang diakhiri host, pembagian yang dibatalkan, permainan yang ditinggalkan, dikeluarkan dari room, kursi yang tidak pernah kamu datangi, atau menonton. Permainan tanpa pemenang bukan menang dan bukan kalah.',
+            'Yang tidak dihitung: permainan yang diakhiri host, permainan yang terlalu singkat atau pemainnya terlalu sedikit, pembagian yang dibatalkan, permainan yang ditinggalkan, dikeluarkan dari room, kursi yang tidak pernah kamu datangi, atau menonton. Permainan tanpa pemenang bukan menang dan bukan kalah.',
             'Statistikmu memisahkan Main online dan room privat, jadi cek pengalih di bagian atas.',
             'Room privat tidak pernah memberi Intel atau sadapan, dan permainan Main online hanya memberinya kalau menghasilkan XP.',
             'Untuk bertukar, kamu butuh 3 permainan selesai yang dihitung dan tidak ditandai oleh pemeriksaan permainan adil kami, masing-masing dengan minimal 2 akun tersimpan lain di ponsel lain. Dua ponsel di satu Wi-Fi tidak masalah; akun lain di ponselmu sendiri tidak termasuk 2 akun itu.',

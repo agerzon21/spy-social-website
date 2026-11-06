@@ -88,9 +88,10 @@ const ptBR: HelpText = {
           a: [
             'Abra <b>Ações</b> e toque em <b>Votar</b>. Cada um escolhe um jogador ou <b>Abster-se</b> e confirma. Voto confirmado não muda.',
             '<b>Maioria:</b> alguém só é eliminado com votos de mais da metade dos jogadores que ainda estão no jogo.',
-            '<b>Mais votos:</b> ter mais votos que todo mundo basta, desde que superem as abstenções.',
+            '<b>Mais votos:</b> ter mais votos que todo mundo basta, desde que superem as abstenções e quem não votou.',
             'Empate no primeiro lugar não elimina ninguém, e sempre são precisos pelo menos 2 votos.',
             'Nas mesas do Jogar online, cada jogador pode pedir uma votação e diz quem acusa. Quando uma votação pega um espião, todos que usaram a sua a recebem de volta.',
+            'Nas mesas de 8 jogadores, sai quem receber mais votos, até restarem 4 jogadores; aí volta a maioria. Não votar conta como se abster.',
           ],
         },
         {
@@ -100,7 +101,7 @@ const ptBR: HelpText = {
             'Um espião abre <b>Ações</b> e toca em <b>Adivinhar</b>. Ele tem 60 segundos para escolher o segredo numa lista de uns 30.',
             'Acertou: todos os espiões ganham. Errou, ou o tempo acabou: esse espião sai. Se era o último, os locais ganham.',
             'Todo mundo vê quem está adivinhando, então isso entrega você.',
-            'Com <b>Um só palpite</b> ligado (salas privadas), a equipe espiã tem uma única chance: errou, a equipe toda perde.',
+            'Com <b>Um só palpite</b> ligado (salas privadas e Noites de Jogos que o ligam), a equipe espiã tem uma única chance: errou, a equipe toda perde.',
           ],
         },
         {
@@ -109,7 +110,9 @@ const ptBR: HelpText = {
           a: [
             'Os <b>locais</b> ganham eliminando todos os espiões, ou quando o último espião erra o palpite.',
             'Os <b>espiões</b> ganham acertando o palpite, quando o tempo da partida acaba, ou quando uma votação deixa tantos espiões quanto locais.',
+            'Sair conta como ser eliminado na votação: se o último espião sair, os locais vencem; se locais demais saírem, os espiões vencem. Se isso acontecer antes de as perguntas terminarem (no Spy Sketch, na primeira rodada), a partida mostra “Sem resultado” e não conta.',
             '<b>Votação final:</b> se o tempo acabar com exatamente um espião no jogo, todos votam mais uma vez. Peguem o espião e os locais ganham. Ela vale no Jogar online e é um ajuste nas salas privadas.',
+            '<b>Informante</b> (salas privadas e Noites de Jogos que o ligam): um local sabe quem é um espião. Se os espiões forem pegos por uma votação ou um palpite errado, têm 30 segundos para apontar esse local e roubar a vitória.',
           ],
         },
       ],
@@ -150,7 +153,7 @@ const ptBR: HelpText = {
           id: 'practice-game',
           q: 'O que é a partida de treino?',
           a: [
-            'Uma partida de uns 5 minutos contra agentes de IA, com um treinador, em <b>Como jogar</b>. Você ganha uma nota de A a F e pode continuar de onde parou.',
+            'Uma partida de 5 a 9 minutos contra agentes de IA, com um treinador, em <b>Como jogar</b>. Você ganha uma nota de A a F e pode continuar de onde parou.',
             'Antes de você jogar Spy Talk ou Spy Sketch online, o app pode pedir que passe no treino desse jogo com C ou melhor. A Noite de Jogos nunca pede.',
           ],
         },
@@ -192,15 +195,15 @@ const ptBR: HelpText = {
             'Toque e segure a foto de um jogador para abrir suas notas sobre ele.',
             'O <b>Quadro</b> separa os jogadores em Suspeito, Não sei e Confio. No Spy Talk, o <b>Histórico</b> mostra o que cada um perguntou e respondeu.',
             'Os espiões têm um quadro de pistas: <b>Minhas pistas</b>, com Talvez, É e Não é.',
-            'Suas notas são privadas, ficam no seu celular e são apagadas no fim da partida.',
+            'Suas notas são privadas, ficam no seu celular e são apagadas depois da tela de fim de jogo.',
           ],
         },
         {
           id: 'leave-rejoin',
           q: 'Posso sair de uma partida e voltar?',
           a: [
-            'Ao sair, você vai para o início, onde o cartão da sua sala tem <b>Voltar</b>. Seu lugar fica guardado enquanto você está fora.',
-            'O anfitrião pode tocar em <b>Encerrar partida</b> para parar para todos. Aí ninguém ganha.',
+            'O botão <b>Sair</b> oferece <b>Dar uma saída</b>, que guarda seu lugar (o cartão no início tem <b>Voltar</b>), ou <b>Sair de vez</b>: você não volta a essa partida e, se ela contar, é uma derrota para você.',
+            'O anfitrião pode tocar em <b>Encerrar a partida para todos</b>. Aí ninguém ganha.',
             'Nas mesas do Jogar online, sair depois da distribuição dá uma pausa curta no Jogar online.',
           ],
         },
@@ -692,7 +695,7 @@ const ptBR: HelpText = {
           q: 'Minha partida não contou',
           a: [
             'Uma partida conta no seu histórico quando terminou e você tinha um lugar, seja jogando até o fim, saindo antes (uma derrota) ou estando ausente.',
-            'Não contam: partida encerrada pelo anfitrião, distribuição cancelada, partida abandonada, ser removido da sala, um lugar a que você nunca chegou, ou assistir. Partida sem vencedor não é vitória nem derrota.',
+            'Não contam: partida encerrada pelo anfitrião, partida curta demais ou com poucos jogadores demais, distribuição cancelada, partida abandonada, ser removido da sala, um lugar a que você nunca chegou, ou assistir. Partida sem vencedor não é vitória nem derrota.',
             'Suas estatísticas mostram o Jogar online e as salas privadas separados, então veja o seletor no topo.',
             'Salas privadas nunca dão Intel nem interceptações, e partidas do Jogar online só dão se renderam XP.',
             'Para trocar, você precisa de 3 partidas terminadas que contem e que nossas verificações de jogo limpo não tenham marcado, cada uma com pelo menos outras 2 contas salvas em outros celulares. Dois celulares no mesmo Wi-Fi valem; outra conta no seu próprio celular não é uma dessas 2.',

@@ -84,9 +84,10 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           'Ouvre <b>Actions</b> et touche <b>Voter</b>. Chacun choisit un joueur ou <b>S\'abstenir</b>, puis valide. Un vote validé ne peut plus changer.',
           '<b>Majorité absolue :</b> un joueur n\'est éliminé qu\'avec les voix de plus de la moitié des joueurs encore en jeu.',
-          '<b>Majorité relative :</b> le plus de voix suffit, à condition de dépasser les abstentions.',
+          '<b>Majorité relative :</b> le plus de voix suffit, à condition de dépasser les abstentions et les non-votants.',
           "Une égalité en tête n'élimine personne, et il faut toujours au moins 2 voix.",
           "Aux tables de Jouer en ligne, chaque joueur peut lancer un vote et désigne qui il accuse. Quand un vote démasque un espion, tous ceux qui avaient utilisé le leur le récupèrent.",
+          "Aux tables de 8 joueurs, la personne qui a le plus de voix est éliminée, jusqu'à ce qu'il reste 4 joueurs ; ensuite, il faut la majorité absolue. Ne pas voter compte comme une abstention.",
         ],
       },
       {
@@ -96,7 +97,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Un espion ouvre <b>Actions</b> et touche <b>Deviner</b>. Il a 60 secondes pour choisir le secret dans une liste d\'une trentaine de réponses.',
           "Bonne réponse : tous les espions gagnent. Mauvaise réponse, ou temps écoulé : cet espion est éliminé. Si c'était le dernier, les locaux gagnent.",
           'Tout le monde voit qui devine : ça te trahit.',
-          "Avec <b>Une seule tentative</b> (salons privés), l'équipe des espions n'a qu'un essai : raté, et c'est toute l'équipe qui perd.",
+          "Avec <b>Une seule tentative</b> (salons privés et Soirées jeux qui l'activent), l'équipe des espions n'a qu'un essai : raté, et c'est toute l'équipe qui perd.",
         ],
       },
       {
@@ -105,7 +106,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Les <b>locaux</b> gagnent en éliminant tous les espions par vote, ou si le dernier espion se trompe.",
           "Les <b>espions</b> gagnent avec une bonne réponse, quand le chrono de la partie arrive à zéro, ou quand un vote laisse autant d'espions que de locaux.",
+          "Partir compte comme être éliminé par un vote : si le dernier espion part, les locaux gagnent ; si trop de locaux partent, les espions gagnent. Si cela arrive avant la fin des questions (dans Spy Sketch, au premier tour), la partie affiche « Pas de résultat » et ne compte pas.",
           "<b>Vote final :</b> si le temps est écoulé et qu'il reste exactement un espion, tout le monde vote une dernière fois. Démasquez-le et les locaux gagnent. Il est actif à Jouer en ligne et c'est un réglage dans les salons privés.",
+          "<b>Informateur</b> (salons privés et Soirées jeux qui l'activent) : un local connaît un espion. Si les espions sont pris par un vote ou une mauvaise réponse, ils ont 30 secondes pour nommer ce local et voler la victoire.",
         ],
       },
     ],
@@ -146,7 +149,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'practice-game',
         q: "C'est quoi, la partie d'entraînement ?",
         a: [
-          "Une partie d'environ 5 minutes contre des agents IA, avec un coach, dans <b>Comment jouer</b>. Tu reçois une note de A à F et tu peux reprendre là où tu t'es arrêté.",
+          "Une partie de 5 à 9 minutes contre des agents IA, avec un coach, dans <b>Comment jouer</b>. Tu reçois une note de A à F et tu peux reprendre là où tu t'es arrêté.",
           "Avant de jouer à Spy Talk ou Spy Sketch en ligne, l'appli peut te demander de réussir l'entraînement de ce jeu avec un C ou mieux. La Soirée jeux ne le demande jamais.",
         ],
       },
@@ -188,15 +191,15 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Appuie longuement sur la photo d'un joueur pour ouvrir tes notes sur lui.",
           "Le <b>Tableau</b> range les joueurs en Soupçon, Doute et Confiance. Dans Spy Talk, l'<b>Historique</b> montre ce que chacun a demandé et répondu.",
           'Les espions ont à la place un tableau de déductions : <b>Mes déductions</b>, avec Peut-être, Oui et Non.',
-          'Tes notes sont privées, restent sur ton téléphone et sont effacées à la fin de la partie.',
+          'Tes notes sont privées, restent sur ton téléphone et sont effacées après l\'écran de fin.',
         ],
       },
       {
         id: 'leave-rejoin',
         q: 'Puis-je quitter une partie et revenir ?',
         a: [
-          "En quittant, tu arrives sur l'accueil, où la carte de ton salon a <b>Revenir</b>. Ta place est gardée pendant ton absence.",
-          "L'hôte peut toucher <b>Terminer la partie</b> pour l'arrêter pour tout le monde. Personne ne gagne alors.",
+          "Le bouton <b>Quitter</b> propose <b>Faire une pause</b>, qui garde ta place (la carte de l'accueil a <b>Revenir</b>), ou <b>Partir pour de bon</b> : tu ne peux plus revenir dans cette partie et, si elle compte, c'est une défaite pour toi.",
+          "L'hôte peut toucher <b>Terminer la partie pour tous</b>. Personne ne gagne alors.",
           'Aux tables de Jouer en ligne, partir après la distribution entraîne une courte pause sur Jouer en ligne.',
         ],
       },
@@ -688,7 +691,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Ma partie n'a pas compté",
         a: [
           "Une partie compte dans ton palmarès quand elle s'est terminée et que tu avais une place, que tu aies joué jusqu'au bout, quitté avant la fin (une défaite) ou été absent.",
-          "Ne comptent pas : une partie arrêtée par l'hôte, une distribution annulée, une partie abandonnée, être retiré du salon, une place où tu n'es jamais venu, ou regarder. Une partie sans gagnant n'est ni une victoire ni une défaite.",
+          "Ne comptent pas : une partie arrêtée par l'hôte, une partie trop courte ou avec trop peu de joueurs, une distribution annulée, une partie abandonnée, être retiré du salon, une place où tu n'es jamais venu, ou regarder. Une partie sans gagnant n'est ni une victoire ni une défaite.",
           'Tes stats séparent Jouer en ligne et les salons privés : regarde le sélecteur en haut.',
           "Les salons privés ne donnent jamais d'Intel ni d'interceptions, et les parties de Jouer en ligne n'en donnent que si elles ont rapporté de l'XP.",
           "Pour échanger, il te faut 3 parties terminées qui comptent et que nos vérifications de fair-play n'ont pas signalées, chacune avec au moins 2 autres comptes sauvegardés sur d'autres téléphones. Deux téléphones sur le même Wi-Fi, ça passe ; un autre compte sur ton propre téléphone ne fait pas partie de ces 2.",

@@ -1,7 +1,7 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). Facts checked on 2026-11-05 (help-truth-4: guests asked to save for Friends, Trades and the Black Market; Couldn't Open
+ * English: the source (../types.ts). The game's rules (voting, winning, the spy's guess, leaving, a game that doesn't count) checked on 2026-11-06 (site-rules-1106) against the server and the game-logic audit. Facts checked on 2026-11-05 (help-truth-4: guests asked to save for Friends, Trades and the Black Market; Couldn't Open
  * Your Account; You Were Signed Out on This Device; a dead invite before the birth year; names in the app's language; chat resent after a drop;
  * Android's Friends, Party & Trades category and the minors' night hold for pack answers; what's in an open trade is held), 2026-11-04 (help-truth-3: parties, Waiting and Put Back, the Intel tile, the translator offer, no-answer lines, Teaming) and 2026-11-03 (nov03/legal-audit-1103b.md) against the Terms (sections 4, 5, 8, 9), the Privacy
  * Policy's Your Rights, the Game Night rules and the app (integrate/2.2: the How to Play glossary, the Members page,
@@ -94,9 +94,10 @@ const en: HelpText = {
           a: [
             'Open <b>Actions</b> and tap <b>Vote</b>. Everyone picks a player or <b>Abstain</b>, then confirms. A confirmed vote can’t be changed.',
             '<b>Majority:</b> a player is out only with votes from more than half of the players still in.',
-            '<b>Plurality:</b> the most votes is enough, as long as they outnumber the abstains.',
+            '<b>Plurality:</b> the most votes is enough, as long as they outnumber the abstains and the players who didn’t vote.',
             'A tie for first place puts nobody out, and it always takes at least 2 votes.',
             'At Play Online tables, each player has one vote call and names who they accuse. When a vote catches a spy, everyone who used theirs gets it back.',
+            'At 8-player tables the most votes puts a player out, until 4 players are left; then it’s a majority. Not voting counts as abstaining.',
           ],
         },
         {
@@ -106,7 +107,7 @@ const en: HelpText = {
             'A spy opens <b>Actions</b> and taps <b>Solve</b>, then has 60 seconds to pick the secret from a list of about 30.',
             'A right guess wins for every spy. A wrong guess, or running out of time, puts that spy out. If it was the last spy, the Locals win.',
             'Everyone sees who is guessing, so it gives you away.',
-            'With <b>One Shot</b> on (private rooms), the spy team has a single guess: a miss loses for the whole team.',
+            'With <b>One Shot</b> on (private rooms and Game Nights that turn it on), the spy team has a single guess: a miss loses for the whole team.',
           ],
         },
         {
@@ -115,7 +116,9 @@ const en: HelpText = {
           a: [
             '<b>Locals</b> win by voting out every spy, or when the last spy guesses wrong.',
             '<b>Spies</b> win with a right guess, when the game timer runs out, or when a vote leaves as many spies as Locals.',
+            'A leave counts like a vote-out: if the last spy leaves, the Locals win; if too many Locals leave, the Spies win. Before the questions end (in Spy Sketch, in the first round), that game shows No Result and doesn’t count.',
             '<b>Final vote:</b> if time runs out with exactly one spy left, everyone votes once more. Catch the spy and the Locals win. It’s on at Play Online tables and a setting in private rooms.',
+            '<b>Informant</b> (private rooms and Game Nights that turn it on): one Local knows one spy. If the spies are caught by a vote or a wrong guess, they get 30 seconds to name that Local and steal the win.',
           ],
         },
       ],
@@ -156,7 +159,7 @@ const en: HelpText = {
           id: 'practice-game',
           q: 'What is the Practice Game?',
           a: [
-            'A game of about 5 minutes against AI agents, with a coach, in <b>How to Play</b>. You get a grade from A to F, and you can pick up where you left off.',
+            'A game of 5 to 9 minutes against AI agents, with a coach, in <b>How to Play</b>. You get a grade from A to F, and you can pick up where you left off.',
             'Before you play Spy Talk or Spy Sketch online, the app may ask you to pass that game’s practice with a C or better. Game Night never asks.',
           ],
         },
@@ -198,15 +201,15 @@ const en: HelpText = {
             'Press and hold a player’s picture to open your notes on them.',
             'The <b>Board</b> sorts players into Suspect, Undecided and Trust. In Spy Talk, <b>History</b> shows what each player asked and answered.',
             'Spies get a clue board instead: <b>My Clues</b>, with Maybe, It is and It isn’t.',
-            'Your notes are private, stay on your phone and are cleared when the game ends.',
+            'Your notes are private, stay on your phone and are cleared after Game Over.',
           ],
         },
         {
           id: 'leave-rejoin',
           q: 'Can I leave or rejoin a game?',
           a: [
-            'Leaving takes you to Home, where your room’s card has <b>Rejoin</b>. Your seat is kept while you’re gone.',
-            'The host can tap <b>End Game</b> to stop it for everyone. Then nobody wins.',
+            'The Leave button offers <b>Step Away</b>, which keeps your seat (Home’s card has <b>Rejoin</b>), or <b>Leave for Good</b>: you can’t come back to that game, and if it counts, it’s a loss for you.',
+            'The host can tap <b>End Game for Everyone</b>. Then nobody wins.',
             'At Play Online tables, leaving after the deal means a short break from Play Online.',
           ],
         },
@@ -698,7 +701,7 @@ const en: HelpText = {
           q: 'My game didn’t count',
           a: [
             'A game counts on your record when it ended and you had a seat, whether you played to the end, left early (a loss) or were away.',
-            'These don’t count: a game the host ended, a cancelled deal, an abandoned game, being removed from the room, a seat you never came to, or watching. A game with no winner is neither a win nor a loss.',
+            'These don’t count: a game the host ended, a game that was too short or had too few players, a cancelled deal, an abandoned game, being removed from the room, a seat you never came to, or watching. A game with no winner is neither a win nor a loss.',
             'Your stats show Play Online and private rooms apart, so check the switch at the top.',
             'Private rooms never give Intel or Intercepts, and Play Online games give them only if they earned XP.',
             'For trading, you need 3 finished games that count and that our fair-play checks didn’t flag, each with at least 2 other saved accounts on other phones. Two phones on one Wi-Fi are fine; another account on your own phone isn’t one of the 2.',

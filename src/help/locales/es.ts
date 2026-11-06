@@ -88,9 +88,10 @@ const es: HelpText = {
           a: [
             'Abre <b>Acciones</b> y toca <b>Votar</b>. Cada uno elige a un jugador o <b>Abstener</b> y confirma. Un voto confirmado no se puede cambiar.',
             '<b>Mayoría:</b> alguien queda eliminado solo si vota en su contra más de la mitad de quienes siguen en juego.',
-            '<b>Pluralidad:</b> basta con tener más votos que nadie, siempre que superen a las abstenciones.',
+            '<b>Pluralidad:</b> basta con tener más votos que nadie, siempre que superen a las abstenciones y a quienes no votan.',
             'Un empate en el primer puesto no elimina a nadie, y siempre hacen falta al menos 2 votos.',
             'En las mesas de Jugar en línea, cada jugador puede convocar una votación y nombra a quien acusa. Cuando una votación atrapa a un espía, todos los que gastaron la suya la recuperan.',
+            'En las mesas de 8 jugadores, sale quien reciba más votos, hasta que queden 4 jugadores; entonces hace falta mayoría. No votar cuenta como abstenerse.',
           ],
         },
         {
@@ -100,7 +101,7 @@ const es: HelpText = {
             'Un espía abre <b>Acciones</b> y toca <b>Resolver</b>. Tiene 60 segundos para elegir el secreto de una lista de unos 30.',
             'Si acierta, ganan todos los espías. Si falla, o se le acaba el tiempo, ese espía queda fuera. Si era el último, ganan los locales.',
             'Todos ven quién está intentando adivinar, así que te delata.',
-            'Con <b>Un solo intento</b> activado (en salas privadas), el equipo espía tiene un único intento: si falla, pierde todo el equipo.',
+            'Con <b>Un solo intento</b> activado (en salas privadas y Noches de Juegos que lo activan), el equipo espía tiene un único intento: si falla, pierde todo el equipo.',
           ],
         },
         {
@@ -109,7 +110,9 @@ const es: HelpText = {
           a: [
             'Los <b>locales</b> ganan si eliminan a todos los espías, o si el último espía falla al adivinar.',
             'Los <b>espías</b> ganan si aciertan, si se acaba el tiempo de la partida o si tras una votación quedan tantos espías como locales.',
+            'Salir cuenta como ser eliminado por votación: si sale el último espía, ganan los locales; si salen demasiados locales, ganan los espías. Antes de que terminen las preguntas (en Spy Sketch, en la primera ronda), esa partida muestra «Sin resultado» y no cuenta.',
             '<b>Votación final:</b> si se acaba el tiempo y queda exactamente un espía, todos votan una vez más. Si atrapan al espía, ganan los locales. Está activa en Jugar en línea y es un ajuste en las salas privadas.',
+            '<b>Informante</b> (salas privadas y Noches de Juegos que lo activan): un local sabe quién es un espía. Si atrapan a los espías con una votación o un intento fallido, tienen 30 segundos para nombrar a ese local y robar la victoria.',
           ],
         },
       ],
@@ -150,7 +153,7 @@ const es: HelpText = {
           id: 'practice-game',
           q: '¿Qué es la partida de práctica?',
           a: [
-            'Una partida de unos 5 minutos contra agentes de IA, con un guía, en <b>Cómo jugar</b>. Recibes una nota de la A a la F y puedes seguir donde la dejaste.',
+            'Una partida de 5 a 9 minutos contra agentes de IA, con un guía, en <b>Cómo jugar</b>. Recibes una nota de la A a la F y puedes seguir donde la dejaste.',
             'Antes de jugar Spy Talk o Spy Sketch en línea, la app puede pedirte que apruebes la práctica de ese juego con una C o mejor. La Noche de Juegos nunca la pide.',
           ],
         },
@@ -192,15 +195,15 @@ const es: HelpText = {
             'Mantén pulsada la foto de un jugador para abrir tus notas sobre él.',
             'El <b>Tablero</b> ordena a los jugadores en Sospecho, No sé y Confío. En Spy Talk, <b>Historial</b> muestra lo que preguntó y respondió cada jugador.',
             'Los espías tienen un tablero de indicios: <b>Mis indicios</b>, con Quizá, Es y No es.',
-            'Tus notas son privadas, se quedan en tu teléfono y se borran al terminar la partida.',
+            'Tus notas son privadas, se quedan en tu teléfono y se borran después de la pantalla final.',
           ],
         },
         {
           id: 'leave-rejoin',
           q: '¿Puedo salir de una partida y volver?',
           a: [
-            'Al salir vas al inicio, donde la tarjeta de tu sala tiene <b>Volver</b>. Tu lugar se guarda mientras no estás.',
-            'El anfitrión puede tocar <b>Terminar partida</b> para pararla para todos. Entonces no gana nadie.',
+            'El botón <b>Salir</b> ofrece <b>Salir un momento</b>, que guarda tu lugar (la tarjeta del inicio tiene <b>Volver</b>), o <b>Salir definitivamente</b>: no puedes volver a esa partida y, si cuenta, es una derrota para ti.',
+            'El anfitrión puede tocar <b>Terminar la partida para todos</b>. Entonces no gana nadie.',
             'En las mesas de Jugar en línea, salir después del reparto significa una pausa breve en Jugar en línea.',
           ],
         },
@@ -692,7 +695,7 @@ const es: HelpText = {
           q: 'Mi partida no contó',
           a: [
             'Una partida cuenta en tu historial cuando terminó y tenías un lugar, tanto si jugaste hasta el final como si saliste antes (una derrota) o estabas ausente.',
-            'No cuentan: una partida que terminó el anfitrión, un reparto cancelado, una partida abandonada, que te saquen de la sala, un lugar al que nunca llegaste, ni mirar. Una partida sin ganador no es victoria ni derrota.',
+            'No cuentan: una partida que terminó el anfitrión, una partida demasiado corta o con muy pocos jugadores, un reparto cancelado, una partida abandonada, que te saquen de la sala, un lugar al que nunca llegaste, ni mirar. Una partida sin ganador no es victoria ni derrota.',
             'Tus estadísticas muestran Jugar en línea y las salas privadas por separado, así que mira el selector de arriba.',
             'Las salas privadas nunca dan Intel ni intercepciones, y las partidas de Jugar en línea solo los dan si ganaron XP.',
             'Para intercambiar necesitas 3 partidas terminadas que cuenten y que nuestras comprobaciones de juego limpio no hayan marcado, cada una con al menos otras 2 cuentas guardadas en otros teléfonos. Dos teléfonos en el mismo Wi-Fi sí valen; otra cuenta en tu propio teléfono no es una de esas 2.',
