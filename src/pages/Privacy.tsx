@@ -191,7 +191,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
             Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
-            {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? (PRIVACY.launchSite ? 'Adults can spend it on the Black Market (see below) and trade it with other adults (see Trades).' : 'Adults can spend it on the Black Market (see below), and, once version 2.2 opens to everyone, trade it with other adults (see Trades).') : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
+            {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? (PRIVACY.launchSite ? 'Adults can spend it on the Black Market (see below) and trade it with other adults (see Trades).' : 'Adults can trade it with other adults (see Trades), and spend it on the Black Market (see below) once version 2.2 opens to everyone, or before that in a test whose sales are undone.') : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
             also keep your balance, how much Intel you've earned and spent in all, and your daily streak: how many days
@@ -417,6 +417,10 @@ const Privacy: React.FC = () => {
               : PRIVACY.tradeGatesNov2
                 ? " Whether you can trade is decided from your account's age, whether its email is confirmed and how many counted games you've played (finished games that count toward your stats and that our fair-play checks don't flag); we use the game records we already keep for this, and nothing new is collected."
                 : ''}
+            {/* The test phase (app server trade_test_phase, trade_intel_test_phase): ends by itself on December 7, 2026. */}
+            {PRIVACY.launchSite
+              ? " While SpySocial was being tested, until December 7, 2026, the account-age, counted-games, new-device and sign-in-change rules were off, and adults could trade Intel. On that day every amount of Intel traded went back: we worked out each account's total from its trades, added the matching lines to its Intel ledger under a published incident, and kept each account's total with our records of the reset."
+              : " While SpySocial is being tested, until December 7, 2026, the account-age, counted-games, new-device and sign-in-change rules are off, and adults can trade Intel. On that day every amount of Intel traded goes back: we work out each account's total from its trades, add the matching lines to its Intel ledger under a published incident, and keep each account's total with our records of the reset."}
           </Item>
         )}
         {/* LIVE.blackMarket: the Black Market, Intel only (legalRelease). */}
@@ -430,6 +434,9 @@ const Privacy: React.FC = () => {
             at what price and fee, and when), the protection and any reversal of a Rare Finds sale, and the matching
             lines in your Intel ledger. The Black Market emails no codes.
             {PRIVACY.audit1103 ? " When we pause an account's trading ourselves (because it may have been taken, or while we look into fraud or farming), change its email address, or correct its birth year to under 18, its open offers and listings close, and we keep that as we keep a stopped offer." : ''}{' '}
+            {PRIVACY.launchSite
+              ? "Sales made while SpySocial was being tested were undone before the launch, with matching lines in the Intel ledger of everyone they touched, and we keep the record of each undo like the sale. "
+              : "Before version 2.2 opens to everyone, only test accounts use the market, except in Beta 2's test from November 12 to 16, 2026, when adults who can trade buy and sell for real. Those sales are undone on November 16, and any later test sales before the launch, with matching lines in the Intel ledger of everyone they touch, and we keep the record of each undo like the sale. "}
             Other players see the market without names: an item's prices and quantities on offer, the prices and times
             of past sales, and, for a Unique listed on Rare Finds, its number, its colour and its price, never who is
             buying or selling. Sales are kept for good, like the Intel ledger, with no link to you once you delete your
@@ -495,10 +502,11 @@ const Privacy: React.FC = () => {
             Safety Information. Messages written by players under 18, or by players who haven't told us their age, are
             never sent. OpenAI doesn't use them to train its models; its moderation model doesn't keep them, and the
             second model's requests go into OpenAI's abuse-monitoring logs for up to 30 days (we ask it not to store them
-            otherwise). This check runs whatever you chose in the app's translation note, because it's how we keep
-            younger players safe. We spend at most a fixed amount on it each month; when that runs out, the check stops
-            until the next month, and nothing else changes. Our servers keep only daily counts for it (how many
-            messages were checked and flagged, and what it cost), never the messages or who wrote them, for 90 days.
+            otherwise). While it's on, this check runs whatever you chose in the app's translation note, because it's how we
+            keep younger players safe. We spend at most a fixed amount on it each month; when that runs out, the check stops
+            until the next month, and nothing else changes. Apart from a flagged message, which is kept like any flag, our
+            servers keep only a list of message IDs waiting to be checked, for up to 15 minutes, and daily counts (how many
+            messages were checked and flagged, and what it cost, never the messages or who wrote them), for 90 days.
           </Item>
         )}
         {/* LIVE.practiceAi: OpenAI rates practice lines for 16+ players who agreed (legalRelease). */}
@@ -573,7 +581,10 @@ const Privacy: React.FC = () => {
               If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form,
               including, if you get the session thank-you, the email address of your PayPal account. We use that address only
               to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete
-              it once it's sent; the rest of your sign-up is deleted after the test.
+              it once it's sent. The form is a Google Form, which Google handles for us. To choose seats, we also use the email
+              address you sign up with to look up a SpySocial account that has it (its age, when it was made, whether you
+              tested before, and the app versions it used), and we email you about your seat through Resend. If your bug report
+              or idea wins the one bonus for the session (a gift card), we send it to your email address. The rest of your sign-up is deleted after the test.
             </>
           )}{' '}
           Otherwise, a test version is the same app, and this policy applies to it.
@@ -736,7 +747,9 @@ const Privacy: React.FC = () => {
             whether you allow notifications (unless you already answered). If you do, tapping Find a Game stores your
             device's push address with your account (a push token from Expo, which works through Apple's or Google's
             push service), with your device's platform, the app's version and the sign-in it was registered under; we
-            send to it only while that sign-in lasts. The "Match found!" notification says only that a match was found,
+            send to it only while that sign-in lasts. If you're on a saved account, the same address is stored when you allow notifications
+            from Remind Me, after you send or accept a friend request, from Privacy &amp; Friends or when you send a pack to
+            Community Packs, and it's used for every notification on this page that you allow. The "Match found!" notification says only that a match was found,
             for which game and how many players, never who is in it. The app refreshes the token at most once a day,
             and the token is deleted when you sign out in the app, turn off notifications for SpySocial (the next time
             the app opens) or delete your account{PRIVACY.audit1103 ? ', or once no device has refreshed it for 120 days. To stop sending to a phone that can no longer get notifications, we keep the receipt number Expo gives each push with its token for about 2 days' : ''}. A match notification waiting to be sent is kept for about a day. Guests
@@ -749,8 +762,8 @@ const Privacy: React.FC = () => {
             only what kind of report it is and its case number, never a player's name or what was said. The developer's own alerts say what kind
             of alert it is and its counts, and one about trades can name the account it's about.
             {PRIVACY.fcmAutoInit
-              ? `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. We receive that address only for match notifications, as described above.`
-              : " On Android, the push address comes from Google's Firebase Cloud Messaging (the service that delivers push notifications on Android), which the app contacts only to get one, for match notifications. Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device."}
+              ? `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. We receive that address only when you allow notifications, as described above.`
+              : " On Android, the push address comes from Google's Firebase Cloud Messaging (the service that delivers push notifications on Android), which the app contacts only to get one. Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device."}
           </Item>
         )}
         {PRIVACY.crashReports && (
@@ -903,7 +916,7 @@ const Privacy: React.FC = () => {
           </ListItem>
         )}
         {PRIVACY.notifications && (
-          <ListItem>Remind you of the game nights you asked about, and tell you when a Play Online match is found</ListItem>
+          <ListItem>Remind you of the game nights you asked about, tell you when a Play Online match is found, and send the other notifications you allow</ListItem>
         )}
         {PRIVACY.socialFeatures && (
           <ListItem>Run friends, follows, profiles, parties and party chat, and send the social notifications you allow</ListItem>
@@ -971,7 +984,9 @@ const Privacy: React.FC = () => {
 
       <H2>Data Retention</H2>
       <P>
-        We keep your account information and game data for as long as you have an account.{' '}
+        We keep your account information for as long as you have an account. Records of games (moves, votes, roles and
+        results) have no end date: we don't delete them on a schedule, and they stay after an account is deleted (see below).
+        A game's drawings and chat are the exception, on the schedules described here.{' '}
         {chatRetention(PRIVACY.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
         made to deliver them live are deleted within 4 days. Translations are kept for 24 hours, and daily translation
         counts for 14 days.
@@ -1012,7 +1027,7 @@ const Privacy: React.FC = () => {
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
           : ''}
         {PRIVACY.trading
-          ? " Trades and their steps are kept for good, like the Intel ledger, with no link to you once you delete your account; a code we email for a big trade stops working after 30 minutes."
+          ? " Trades and their steps are kept for good, like the Intel ledger, with no link to you once you delete your account; a code we email for a big trade stops working after 10 minutes."
           : ''}
         {PRIVACY.gameDeviceChecks
           ? ' The device notes for sign-in sessions, Play Online searches and games (see Device Information) are kept for 90 days, then deleted.'
@@ -1064,7 +1079,7 @@ const Privacy: React.FC = () => {
         <Item label="Expo">
           (https://expo.dev) Builds and delivers our app and its updates
           {PRIVACY.notifications
-            ? ', and delivers our push notifications (match notifications and the report alerts our moderators get)'
+            ? ', and delivers our push notifications (the ones you allow, and the alerts our moderators and developer get)'
             : ''}
           . When the app checks for an
           update, Expo receives your device's IP address and platform, the app's version, and a random ID the app
@@ -1149,7 +1164,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">
@@ -1382,8 +1397,12 @@ const Privacy: React.FC = () => {
           You can change your display name in the app at any time
           {PRIVACY.usernameLimit ? ', and your username once every 30 days' : ', and your username'}. Your email address
           and birth year can't be changed in the app: email us.{PRIVACY.audit1103 ? " To change an email address we first check that the account is yours, from both addresses when you still have the old one. We then tell the old address, sign the account out everywhere and close its open Black Market offers and listings, and its trading pauses for 3 days." : ''} We change a birth year to a later one (a younger age) when
-          you, or your parent or guardian, ask; to an earlier one (an older age) only when we can confirm it, for example
-          from proof of age, because age limits keep younger players safe. If the corrected age is under 13, we delete
+          you, or your parent or guardian, ask; to an earlier one (an older age) only with proof of age, because age limits
+          keep younger players safe. If you entered a year that made you 13 to 17 and you're an adult, email us and we'll ask
+          for the proof: only SpySocial's developer can make this change, it's never done by a community moderator, and
+          we use what you send only to check your age. We keep a short note of what we checked, with the old and new years, in
+          our record of your request and in our moderation records. There's no way back from an answer under 13, which
+          deleted the account. If the corrected age is under 13, we delete
           the account (see Children's Privacy). A correction that makes you under 18 also gives your account the
           Privacy &amp; Friends choices of a player under 18{PRIVACY.audit1103 ? ' and closes its Black Market offers and listings, with what they hold or earned coming back to it' : ''}.
         </Item>

@@ -145,7 +145,7 @@ const Terms: React.FC = () => {
       <H3>Rules for accounts</H3>
       <Bullets>
         <ListItem>Your account is for you alone. Don't share, sell or give it to anyone, and don't use someone else's.</ListItem>
-        <ListItem>Give true information, including your birth year.</ListItem>
+        <ListItem>Give true information, including your birth year. A birth year can't be changed in the app. If you entered one that made you under 18 and you're an adult, email us: we change it only with proof of age.</ListItem>
         <ListItem>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? ` You can change your username once every 30 days${LIVE.audit1103 ? " (a new account's first changes don't count)" : ''}; a username you stop using stays reserved for 14 days.` : ''}</ListItem>
         <ListItem>Don't create another account to get around a limit, a penalty or someone's block.</ListItem>
       </Bullets>
@@ -436,6 +436,8 @@ const Terms: React.FC = () => {
         usernames, room codes{LIVE.customPacks ? ', chat messages, typed questions and answers, and custom packs' : ', chat messages and typed questions and answers'}, and limits
         on how often some actions can be repeated. Names and usernames are also refused if they're blank or unreadable, hold a
         link or a phone number, or look like our staff or an Agent colour.
+        {LIVE.safetyAnswers1106 &&
+          " The filter also refuses links, contact details and other personal details (a home address, asking or saying where someone lives, a school or a real name) at Play Online tables and game nights, and in any room or party with a player under 18 or one who hasn't told us their age. Other automated checks can flag a message for a person to read, such as possible grooming language or sexual talk near a younger player, and these may include OpenAI's models reading what adults write beside a player under 18. A flag doesn't block or change a message, or penalize anyone by itself."}
         {photosSeen &&
           ' We may also use an automated service to check profile photos and remove ones that may break the rules.'}
         {LIVE.customPacks &&
@@ -505,7 +507,7 @@ const Terms: React.FC = () => {
               : ''}{' '}They can
             propose a ban, but only SpySocial can ban an account, permanently or otherwise. We record every action a
             moderator takes and why, we can undo any of them, and you can appeal them like any other decision (see
-            Appeals below). Anything involving a child's safety, self-harm or threats is handled by SpySocial only.
+            Appeals below). Anything involving a child's safety, self-harm or threats{LIVE.safetyAnswers1106 ? ', and any report of personal information shared by or with a player under 18,' : ''} is handled by SpySocial only.
           </P>
         </>
       )}
@@ -724,7 +726,7 @@ const Terms: React.FC = () => {
                 {' '}Until the launch the ledger is a beta test chain: its copies, numbers, trades and fingerprints
             are for testing and are wiped before the launch, when the real ledger starts again from its first entry.
             {/* Beta 2's open market (owner `open`, Nov 3; app repo nov03/beta2-market-open.md): Nov 3 through accountNotices. */}
-            {' '}Black Market sales made while SpySocial is being tested are undone before the launch: buyers get back
+            {' '}Black Market sales made while SpySocial is being tested are undone before the launch (Beta 2's on November 16, 2026): buyers get back
             the Intel they paid, and sellers give back what they received.
               </>
             )}
@@ -770,8 +772,14 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>
               Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
-              Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket && LIVE.interceptsInTrades ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults{LIVE.launchSite ? '' : ', and only once SpySocial 2.2 opens to everyone'}. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, players under 18 can't trade until a version of the
+              Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket && LIVE.interceptsInTrades ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, players under 18 can't trade until a version of the
               app that asks a parent's consent through Apple is out.
+            </ListItem>
+            {/* The test phase (app server trade_test_phase, trade_intel_test_phase, Window W's WT and WQ): ends by itself on December 7, 2026. */}
+            <ListItem>
+              {LIVE.launchSite
+                ? "While SpySocial was being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in were off for trades and the Black Market, and adults could trade Intel. On that day every amount of Intel traded went back: whoever gave it got it back, and everyone kept only the Intel they earned, never below 0. We published this as an incident on our transparency page."
+                : "While SpySocial is being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in are off for trades and the Black Market, and adults can trade Intel. A confirmed email, trading only with friends, the 7-day protection and every rule for players under 18 still apply. On December 7 every amount of Intel traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned, never below 0, even if it was already spent. We publish this as an incident on our transparency page."}
             </ListItem>
             <ListItem>
               Not every item can be traded; the app marks the ones that can. Memberships, what a membership includes,
@@ -828,9 +836,7 @@ const Terms: React.FC = () => {
               {/* LIVE.launchSite: Intel moves on it from the launch, so the condition goes (site-launch-walk). LIVE.testerMarket: Beta 2's open market from Nov 12 (its sales undone before the launch, Collectibles bullet above). */}
               {LIVE.launchSite
                 ? '.'
-                : LIVE.testerMarket
-                  ? ', and Intel moves on it only once SpySocial 2.2 opens to everyone, except during testing (sales made while SpySocial is being tested are undone before the launch, as described above).'
-                  : ', and Intel moves on it only once SpySocial 2.2 opens to everyone.'}{' '}
+                : ", and Intel moves on it only once SpySocial 2.2 opens to everyone, except in Beta 2's test from November 12 to 16, 2026 (its sales are undone on November 16, as described above)."}{' '}
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
               instead no offer can be priced below an item's minimum price, what one copy of it shreds for{LIVE.interceptsMarket ? " (for an unopened Intercept, what the items its tier gives shred for on average, by its odds)" : ''}.
             </ListItem>
@@ -902,7 +908,8 @@ const Terms: React.FC = () => {
             the end of each month or year, the store charges your account the price for the next period (within the 24
             hours before the current period ends) unless you cancel first: on the App Store, at least 24 hours before
             the current period ends; on Google Play, before the renewal date. When you cancel, the pass doesn't renew,
-            and you keep its benefits until the end of the period you've already paid for.
+            and you keep its benefits until the end of the period you've already paid for. If a renewal payment fails, your
+            membership keeps working during any grace period the store gives, then stops until the payment is fixed or the store ends the pass.
           </ListItem>
           <ListItem>
             <B>How to cancel.</B> On an iPhone or iPad: open Settings, tap your name, then Subscriptions, and choose

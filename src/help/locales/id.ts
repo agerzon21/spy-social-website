@@ -323,7 +323,7 @@ const id: HelpText = {
             'Orang dewasa yang bisa bertukar: akun minimal 7 hari, email terkonfirmasi, 3 permainan yang dihitung, dan pertukaran tidak sedang dijeda.',
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun dan permainan yang dihitung juga tidak berlaku di sini.']),
             'Pemain di bawah 18 tahun bisa melihat, tapi tidak bisa membeli, menjual, atau menawar.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: dari 12 sampai 16 November, orang dewasa yang bisa bertukar benar-benar membeli dan menjual di sini. Semua penjualan selama pengujian dibatalkan sebelum peluncuran: pembeli mendapatkan kembali Intel yang dibayarnya, dan penjual mengembalikan apa yang diterimanya.' : 'Intel mulai berpindah di sana saat peluncuran 2.2, tanggal 8 Desember. Sampai saat itu, kamu bisa melihat-lihat.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: dari 12 sampai 16 November, orang dewasa yang bisa bertukar benar-benar membeli dan menjual di sini. Semua penjualan selama pengujian dibatalkan pada 16 November: pembeli mendapatkan kembali Intel yang dibayarnya, dan penjual mengembalikan apa yang diterimanya.' : 'Intel mulai berpindah di sana saat peluncuran 2.2, tanggal 8 Desember. Sampai saat itu, kamu bisa melihat-lihat.']),
           ],
         },
         {
@@ -434,7 +434,7 @@ const id: HelpText = {
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
             'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',
-            ...(o.launch ? [] : ['Beta 2: ucapan terima kasih $10 dikirim lewat PayPal ke setiap pemain terkonfirmasi yang ikut sesi live satu jam penuh dan mengirim survei, dalam 7 hari setelah sesi, sama untuk iPhone dan Android.']),
+            ...(o.launch ? [] : ['Beta 2: ucapan terima kasih $10 dikirim lewat PayPal ke setiap pemain terkonfirmasi yang ikut sesi live satu jam penuh dan mengirim survei, dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu.']),
           ],
         },
       ],
@@ -624,7 +624,7 @@ const id: HelpText = {
           q: 'Apa aturan untuk pemain di bawah 18 tahun?',
           a: [
             'Kamu harus berusia minimal 13 tahun untuk bermain.',
-            'Di room mana pun yang ada pemain di bawah 18 tahun, link, email, nomor telepon, dan akun media sosial diblokir untuk semua orang.',
+            'Di room atau grup mana pun yang ada pemain di bawah 18 tahun atau pemain yang belum memberi tahu usianya, link, alamat email, nomor telepon, akun media sosial, dan info pribadi lain (alamat rumah, tempat tinggal seseorang, sekolah, nama asli) diblokir untuk semua orang.',
             'Pemain di bawah 18 tahun tidak punya profil publik dan tidak bisa diikuti, hanya bertukar item dengan item bersama teman dari Kode Teman, dan tidak bisa membeli atau menjual di Pasar Gelap.',
             'Di iPhone dan iPad, teman, grup, dan tukar item menunggu versi aplikasi yang meminta izin orang tua lewat Apple.',
             'Orang tua dan wali: lihat <safety>halaman Keamanan</safety> kami.',

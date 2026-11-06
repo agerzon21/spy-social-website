@@ -319,7 +319,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les adultes qui peuvent échanger : un compte d'au moins 7 jours, un e-mail confirmé, 3 parties comptées et pas de pause des échanges.",
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte et de parties comptées sont levées ici aussi.']),
           "Les moins de 18 ans peuvent regarder, mais ni acheter, ni vendre, ni faire d'offres.",
-          ...(o.launch ? [] : [o.testerMarket ? "Bêta 2 : du 12 au 16 novembre, les adultes qui peuvent échanger achètent et vendent ici pour de vrai. Toutes les ventes faites pendant le test sont annulées avant le lancement : l'acheteur récupère l'Intel payé et le vendeur rend ce qu'il a reçu." : "L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
+          ...(o.launch ? [] : [o.testerMarket ? "Bêta 2 : du 12 au 16 novembre, les adultes qui peuvent échanger achètent et vendent ici pour de vrai. Toutes les ventes faites pendant le test sont annulées le 16 novembre : l'acheteur récupère l'Intel payé et le vendeur rend ce qu'il a reçu." : "L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
         ],
       },
       {
@@ -430,7 +430,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
           "Il manque quelque chose ? Écris à <email/> avec ton nom d'utilisateur et l'e-mail utilisé pendant le test. Un compte invité n'est pas sur la liste : c'est souvent une question de compte différent.",
-          ...(o.launch ? [] : ["Bêta 2 : le remerciement de 10 $ est envoyé par PayPal à chaque joueur confirmé qui participe à toute l'heure en direct et envoie le questionnaire, dans les 7 jours après la session, pareil sur iPhone et Android."]),
+          ...(o.launch ? [] : ["Bêta 2 : le remerciement de 10 $ est envoyé par PayPal à chaque joueur confirmé qui participe à toute l'heure en direct et envoie le questionnaire, dans les 7 jours après la session, pareil sur iPhone et Android. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile de la session, choisi par le développeur sous une semaine."]),
         ],
       },
     ],
@@ -620,7 +620,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Quelles règles pour les moins de 18 ans ?',
         a: [
           'Il faut avoir 13 ans ou plus pour jouer.',
-          "Dans tout salon où se trouve un joueur de moins de 18 ans, les liens, e-mails, numéros de téléphone et comptes de réseaux sociaux sont bloqués pour tout le monde.",
+          "Dans tout salon ou groupe où se trouve un joueur de moins de 18 ans ou qui ne nous a pas donné son âge, les liens, adresses e-mail, numéros de téléphone, comptes de réseaux sociaux et autres informations personnelles (adresse du domicile, lieu de vie, école, vrai nom) sont bloqués pour tout le monde.",
           "Les moins de 18 ans n'ont pas de profil public ni d'abonnés, n'échangent qu'objet contre objet avec des amis ajoutés par code ami, et ne peuvent ni acheter ni vendre au Marché noir.",
           "Sur iPhone et iPad, les amis, les groupes et les échanges attendent une version de l'appli qui demande l'accord d'un parent via Apple.",
           'Parents et proches : consultez notre <safety>page Sécurité</safety>.',

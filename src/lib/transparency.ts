@@ -101,8 +101,18 @@ const ECONOMY_NOV3: { day: string; what: string; from: string; to: string }[] = 
   { day: 'November 3, 2026', what: 'which day counts for a streak when a game begins before the daily reset and ends after it', from: 'the day it ended', to: 'the day it began, when that keeps the streak going' },
 ]
 
+/**
+ * The test phase (owner Nov 4 and Nov 6; app server trade_test_phase, trade_intel_test_phase): until the December 7 reset.
+ * WT's incident gets its own entry the day it's published. When the phase ends, add the reverse changes with their day.
+ */
+const TEST_PHASE_NOV: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'November 6, 2026', what: 'whether adults can trade Intel while SpySocial is being tested (every amount traded goes back on December 7)', from: 'only from the launch', to: 'yes, until December 7' },
+  { day: 'November 4, 2026', what: "the account-age, counted-games, new-device and sign-in-change rules for trades and the Black Market while SpySocial is being tested", from: 'on', to: 'off, until December 7' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...TEST_PHASE_NOV,
   ...(LIVE.audit1103b ? ECONOMY_NOV3 : []),
   ...(LIVE.audit1103b ? COUNTED_GAMES_NOV3 : []),
   ...(LIVE.tradeNoLimits ? TRADE_NO_LIMITS : []),

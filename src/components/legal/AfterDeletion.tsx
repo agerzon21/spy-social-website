@@ -51,8 +51,8 @@ export const AfterDeletionList = () => (
       </ListItem>
     )}
     <ListItem>
-      Records of games you played (such as moves, votes and results) stay with those games. They identify players only
-      by a random ID, which no longer leads to your account. Usage events, which use the same ID, are deleted after 180
+      Records of games you played (such as moves, votes and results) stay with those games, with no end date. They identify players only
+      by a random ID, which no longer leads to your account. A room you still host with nobody to pass it to is deleted, with its games' records. Usage events, which use the same ID, are deleted after 180
       days{PRIVACY.playOnline ? ", and Play Online's matchmaking log, which uses it too, after 90 days" : ''}.
     </ListItem>
     {PRIVACY.childSafetyHolds && (

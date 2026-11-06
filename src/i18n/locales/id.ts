@@ -297,7 +297,7 @@ const id: Strings = {
       personal: 'Jangan bagikan nama asli, alamat, nomor telepon, atau akun media sosial, baik milikmu maupun milik orang lain.',
       spam: 'Dilarang iklan, spam, atau link di room publik.',
       minors:
-        'Di room mana pun yang ada pemain di bawah 18 tahun, link, alamat email, nomor telepon, dan akun media sosial diblokir untuk semua orang. Di meja “Main online” dan Malam Permainan, semuanya selalu diblokir.',
+        'Di room atau grup mana pun yang ada pemain di bawah 18 tahun atau pemain yang belum memberi tahu usianya, link, alamat email, nomor telepon, akun media sosial, dan info pribadi lain (alamat rumah, tempat tinggal seseorang, sekolah, nama asli) diblokir untuk semua orang. Di meja “Main online” dan Malam Permainan, semuanya selalu diblokir.',
     },
     reports: {
       title: '4. Laporan dibaca oleh manusia',
@@ -450,7 +450,7 @@ const id: Strings = {
       publicRooms:
         '<b>Room publik</b> membutuhkan akun tersimpan dengan alamat email yang sudah dikonfirmasi, usia 13 tahun ke atas, dan persetujuan terhadap Aturan Komunitas kami. Tamu hanya bisa bermain di room privat, dan pemain yang sedang dijeda atau diblokir tidak bisa masuk ke room publik.',
       filter:
-        '<b>Filter chat:</b> nama dan chat diperiksa sebelum dilihat siapa pun. Di room publik, cercaan, kata-kata seksual yang vulgar, dan hinaan diblokir. Di room privat, kata-kata yang paling parah diblokir. Di room mana pun yang ada pemain di bawah 18 tahun, link, alamat email, nomor telepon, dan akun media sosial diblokir untuk semua orang. Di meja “Main online” dan Malam Permainan, semuanya selalu diblokir.',
+        '<b>Filter chat:</b> nama dan chat diperiksa sebelum dilihat siapa pun. Di room publik, cercaan, kata-kata seksual yang vulgar, dan hinaan diblokir. Di room privat, kata-kata yang paling parah diblokir. Di room atau grup mana pun yang ada pemain di bawah 18 tahun atau pemain yang belum memberi tahu usianya, link, alamat email, nomor telepon, akun media sosial, dan info pribadi lain (alamat rumah, tempat tinggal seseorang, sekolah, nama asli) diblokir untuk semua orang. Di meja “Main online” dan Malam Permainan, semuanya selalu diblokir.',
       reports:
         '<b>Laporan, blokir, dan sanksi:</b> manusia membaca setiap laporan dalam 24 jam, dan pemain yang dilaporkan tidak diberi tahu siapa pelapornya. Laporan yang melibatkan pemain di bawah 18 tahun dibaca lebih dulu. Sanksinya mulai dari peringatan, chat dibisukan, jeda dari room publik, hingga pemblokiran akun. <link>Aturan Komunitas</link> kami mencantumkan apa saja yang tidak diperbolehkan.',
       drawingCheck:

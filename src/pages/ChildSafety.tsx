@@ -96,6 +96,8 @@ const ChildSafety: React.FC = () => {
           {LIVE.storeAgeSignals &&
             " If Apple or Google tells the app that its user is under 13, the app doesn't let them play."}{' '}
           If you find that a child under 13 has an account, email us and we'll delete it.
+          {LIVE.safetyAnswers1106 &&
+            " A birth year can't be changed in the app. Only SpySocial's developer can raise an age from under 18 to an adult's, by email and with proof of age; an answer under 13 has no way back."}
         </ListItem>
         {/* LIVE.socialFeatures: friends, follows, parties (Oct 31, 2026); LIVE.trading, LIVE.blackMarket (Nov 1). */}
         {LIVE.socialFeatures ? (
@@ -119,7 +121,7 @@ const ChildSafety: React.FC = () => {
         {LIVE.trading && (
           <ListItem>
             <B>Trading:</B> players 13–17 can trade game items only for other items, only with friends they added in
-            person{LIVE.tradeGatesNov2 ? ' with a Friend Code (friends can trade as soon as they\'re friends, so adding each other in person is what keeps strangers out; an account also has to be 7 days old and have played 3 counted games)' : ''}{LIVE.tradeNoLimits ? '' : ', at most 3 trades a day'}, with no gifts, no messages and no Intel. Trades with a player under 18 are
+            person{LIVE.tradeGatesNov2 ? ` with a Friend Code (friends can trade as soon as they're friends, so adding each other in person is what keeps strangers out; an account also has to be 7 days old and have played 3 counted games${LIVE.launchSite ? '' : ', though these two rules are off for everyone until December 7, 2026, while SpySocial is being tested'})` : ''}{LIVE.tradeNoLimits ? '' : ', at most 3 trades a day'}, with no gifts, no messages and no Intel. Trades with a player under 18 are
             checked for signs of grooming or unfair trades, and a person reviews what the checks flag.
             {LIVE.blackMarket ? ' Players under 18 can look at the Black Market but can\'t buy or sell there.' : ''}{' '}
             Nothing in SpySocial can be bought or sold for real money between players.
@@ -157,7 +159,7 @@ const ChildSafety: React.FC = () => {
         </ListItem>
         <ListItem>
           <B>Chat filter:</B> names and chat are checked before anyone else sees them. In public rooms, explicit sexual
-          words are blocked; in private rooms, the most serious words are blocked. In any room{LIVE.safetyAnswers1106 ? ' or party' : ''} with a player under 18,
+          words are blocked; in private rooms, the most serious words are blocked. In any room{LIVE.safetyAnswers1106 ? " or party with a player under 18 or one who hasn't told us their age, " : ' with a player under 18, '}
           links, email addresses, phone numbers and social accounts are blocked for everyone
           {LIVE.safetyAnswers1106 ? ", and so is other personal info (a home address, asking or saying where someone lives, a school or a real name): a player under 18 can't share it or be asked for it, and the app says \"Sorry, sharing personal info or links isn't allowed here.\"" : ''}
           {LIVE.childSafetyHolds ? `${LIVE.safetyAnswers1106 ? ' Sexual talk is blocked there too' : ', and so is sexual talk'}, along with lines that could be sexual` : ''}{LIVE.safetyAnswers1106 && LIVE.childSafetyHolds ? '.' : ''}{LIVE.safetyAnswers1106 && LIVE.childSafetyHolds ? '' : '.'} At Play Online tables
@@ -166,7 +168,7 @@ const ChildSafety: React.FC = () => {
           {LIVE.childSafetyHolds &&
             " Messages that can be part of grooming, and explicit sexual talk even when it was refused, in rooms and party chats with a player under 18, are flagged automatically for a person to read."}
           {LIVE.safetyAnswers1106 &&
-            " What adults write in rooms and party chats with a player who told us they're under 18 may also be read, after it's sent, by an automated check (OpenAI's models) that looks for sexual talk aimed at a younger player and flags it for a person to read. It never blocks or changes a message, and what players under 18 write is never sent to it."}
+            " What adults write in rooms and party chats with a player who told us they're under 18 may also be read, after it's sent, by an automated check (OpenAI's models) that looks for sexual talk aimed at a younger player and flags it for a person to read. It never blocks or changes a message, and what players under 18 or players who haven't told us their age write is never sent to it."}
         </ListItem>
         {/* LIVE.communityPacks: shared packs are reviewed before anyone else sees them (legalRelease). */}
         {LIVE.communityPacks && (

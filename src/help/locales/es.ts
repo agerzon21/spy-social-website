@@ -323,7 +323,7 @@ const es: HelpText = {
             'Los adultos que pueden intercambiar: una cuenta de al menos 7 días, el correo confirmado, 3 partidas que cuenten y sin pausa de intercambios.',
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, aquí tampoco se aplican las reglas de antigüedad de la cuenta ni de partidas contadas.']),
             'Los menores de 18 pueden mirar, pero no comprar, vender ni hacer ofertas.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: del 12 al 16 de noviembre, los adultos que pueden intercambiar compran y venden aquí de verdad. Todas las ventas hechas durante la prueba se deshacen antes del lanzamiento: quien compró recupera el Intel que pagó y quien vendió devuelve lo que recibió.' : 'El Intel empieza a moverse ahí con el lanzamiento de la 2.2, el 8 de diciembre. Hasta entonces, puedes mirar.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: del 12 al 16 de noviembre, los adultos que pueden intercambiar compran y venden aquí de verdad. Todas las ventas hechas durante la prueba se deshacen el 16 de noviembre: quien compró recupera el Intel que pagó y quien vendió devuelve lo que recibió.' : 'El Intel empieza a moverse ahí con el lanzamiento de la 2.2, el 8 de diciembre. Hasta entonces, puedes mirar.']),
           ],
         },
         {
@@ -434,7 +434,7 @@ const es: HelpText = {
             ...(o.launch ? [] : ['Lo que tienes ahora en una versión de prueba es para probar y se borra antes del lanzamiento. Tus recompensas no dependen de eso, siempre que sigas con la misma cuenta guardada.']),
             'Para ponerte el pin: <b>Cuenta</b>, <b>Editar agente</b>, <b>Accesorios</b>, <b>Pin beta</b>, <b>Guardar</b>.',
             '¿Falta algo? Escribe a <email/> con tu nombre de usuario y el correo con el que entraste durante la prueba. Una cuenta de invitado no está en la lista, así que lo habitual es que se trate de otra cuenta.',
-            ...(o.launch ? [] : ['Beta 2: el agradecimiento de 10 $ llega por PayPal a cada jugador confirmado que se une a la hora completa en vivo y envía la encuesta, dentro de los 7 días posteriores a la sesión, igual en iPhone y Android.']),
+            ...(o.launch ? [] : ['Beta 2: el agradecimiento de 10 $ llega por PayPal a cada jugador confirmado que se une a la hora completa en vivo y envía la encuesta, dentro de los 7 días posteriores a la sesión, igual en iPhone y Android. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil de la sesión, elegido por el desarrollador en el plazo de una semana.']),
           ],
         },
       ],
@@ -624,7 +624,7 @@ const es: HelpText = {
           q: '¿Qué reglas hay para menores de 18?',
           a: [
             'Hay que tener 13 años o más para jugar.',
-            'En cualquier sala con un jugador menor de 18, los enlaces, correos, teléfonos y usuarios de redes sociales se bloquean para todos.',
+            'En cualquier sala o grupo con un jugador menor de 18 años o que no nos haya dicho su edad se bloquean para todos los enlaces, los correos, los números de teléfono, las redes sociales y otros datos personales (una dirección, dónde vive alguien, un colegio, un nombre real).',
             'Los menores de 18 no tienen perfil público ni pueden tener seguidores, solo intercambian objetos por objetos con amigos del código de amigo y no pueden comprar ni vender en el Mercado Negro.',
             'En iPhone y iPad, los amigos, los grupos y los intercambios esperan a una versión de la app que pida el consentimiento de un padre o madre a través de Apple.',
             'Padres, madres y tutores: consulten nuestra <safety>página de seguridad</safety>.',

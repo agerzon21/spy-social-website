@@ -297,7 +297,7 @@ const es: Strings = {
       personal: 'No compartas nombres reales, direcciones, números de teléfono ni usuarios de redes sociales, ni tuyos ni de nadie.',
       spam: 'Nada de anuncios, spam ni enlaces en las salas públicas.',
       minors:
-        'En cualquier sala con un jugador menor de 18 años se bloquean para todos los enlaces, los correos, los números de teléfono y las redes sociales. En las mesas de «Jugar en línea» y en las noches de juegos siempre están bloqueados.',
+        'En cualquier sala o grupo con un jugador menor de 18 años o que no nos haya dicho su edad se bloquean para todos los enlaces, los correos, los números de teléfono, las redes sociales y otros datos personales (una dirección, dónde vive alguien, un colegio, un nombre real). En las mesas de «Jugar en línea» y en las noches de juegos siempre están bloqueados.',
     },
     reports: {
       title: '4. Una persona lee los reportes',
@@ -450,7 +450,7 @@ const es: Strings = {
       publicRooms:
         '<b>Las salas públicas</b> requieren una cuenta guardada con un correo confirmado, una edad de 13 años o más y la aceptación de nuestras Normas de la comunidad. Los invitados solo pueden jugar en salas privadas, y los jugadores con una pausa o un bloqueo no pueden entrar en salas públicas.',
       filter:
-        '<b>Filtro del chat:</b> los nombres y el chat se revisan antes de que nadie los vea. En las salas públicas se bloquean los términos ofensivos, las palabras sexuales explícitas y los insultos. En las salas privadas se bloquean las palabras más graves. En cualquier sala con un jugador menor de 18 años se bloquean para todos los enlaces, los correos, los números de teléfono y las redes sociales. En las mesas de «Jugar en línea» y en las noches de juegos siempre están bloqueados.',
+        '<b>Filtro del chat:</b> los nombres y el chat se revisan antes de que nadie los vea. En las salas públicas se bloquean los términos ofensivos, las palabras sexuales explícitas y los insultos. En las salas privadas se bloquean las palabras más graves. En cualquier sala o grupo con un jugador menor de 18 años o que no nos haya dicho su edad se bloquean para todos los enlaces, los correos, los números de teléfono, las redes sociales y otros datos personales (una dirección, dónde vive alguien, un colegio, un nombre real). En las mesas de «Jugar en línea» y en las noches de juegos siempre están bloqueados.',
       reports:
         '<b>Reportes, bloqueos y sanciones:</b> una persona lee cada reporte en menos de 24 horas, y el jugador reportado no sabe quién lo envió. Los reportes que involucran a un jugador menor de 18 años se leen primero. Las sanciones van desde una advertencia hasta un silencio en el chat, una pausa de las salas públicas o un bloqueo de la cuenta. Nuestras <link>Normas de la comunidad</link> indican lo que no está permitido.',
       drawingCheck:

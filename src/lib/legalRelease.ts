@@ -978,8 +978,7 @@ export const LIVE = {
    * and site-nov12-prep.md). false: before the switch file runs. 'open': from Thu Nov 12, 2026 (set it no earlier than
    * 7 PM ET, and only once the market switch is applied on live): adult testers buy and sell for Intel for real, and every
    * sale is undone by Nov 16 (WP). 'closed': from Mon Nov 16, once the undo file and WP have run (the market is look-only
-   * for testers again). Truthy turns on "except during testing" in the Terms' Black Market bullet (true from Nov 12 on for
-   * good: sales made in testing are undone, as the Collectibles bullet says); 'open' turns on the help center's line that
+   * for testers again). The Terms' Black Market bullet names Beta 2's dates at any setting (legal-1106); 'open' turns on the help center's line that
    * testers trade there now, in place of "until then, you can look around" ('closed' brings that line back). Describes
    * what's in force and adds no duty, so no TERMS_PUBLISHED or terms_version raise. Dates: November 12 by this switch in
    * LEGAL_LAST_UPDATED (Terms, Rules, Safety); Privacy has no line about it, so PRIVACY_LAST_UPDATED doesn't move.

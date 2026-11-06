@@ -56,8 +56,8 @@ const UkOnlineSafety = () => {
             ? "There are no direct messages or player search, and we never suggest friends. An adult can add a player under 16 only in person, with the Friend Code on the child's phone (16 and 17 also from a private game they just played together); players under 18 have no public profile, can't be followed and get no social notifications at night, and our checks look at friend requests, invites and trades with players under 18 for signs of grooming, for a person to review. Party chat goes through the same filters as game chat."
             : 'There are no direct messages, friend lists or player search, so nobody can contact a player outside a shared room.'}{' '}
           Sharing contact details or social media handles is against
-          the rules. In any room with a player under 18, chat refuses links, email addresses, phone numbers and social
-          accounts for everyone, and Play Online tables and game nights always refuse them. Every chat message is kept on
+          the rules. In any room or party with a player under 18 or one who hasn't told us their age, chat refuses links, email addresses, phone numbers,
+          social accounts and other personal details (a home address, where someone lives, a school, a real name) for everyone, and Play Online tables and game nights always refuse them. Every chat message is kept on
           our servers for the times above, so a report comes with the words actually sent. Child Safety is an urgent
           report reason, and any report involving a player under 18 is urgent too.{dc ? ' When the drawing check finds a drawing that sexualizes a child, in any room, it takes it off the board.' : ''} We remove the content, ban the accounts involved, keep the evidence the law requires,
           and report it to the National Center for Missing &amp; Exploited Children (NCMEC), which passes reports linked
@@ -347,8 +347,8 @@ const UkOnlineSafety = () => {
           messages{LIVE.storedQuestions ? ' and typed questions and answers' : ''} are checked before anyone else sees
           them: in public rooms for slurs, explicit sexual words, insults and other blocked words; in private rooms for the
           most serious words, such as slurs, sexual insults and telling someone to kill themselves. Links, email
-          addresses, phone numbers and social accounts are refused for everyone at Play Online tables and game nights,
-          and in any room with a player under 18 or one who hasn't told us their age. The filter works best in English, Spanish and Russian. It stops a
+          addresses, phone numbers, social accounts and other personal details (a home address, where someone lives, a school, a real name) are refused for everyone at Play Online tables and game nights,
+          and in any room or party with a player under 18 or one who hasn't told us their age. The filter works best in English, Spanish and Russian. It stops a
           message or a name from going out; it never penalizes anyone by itself.
         </ListItem>
         {dc ? (

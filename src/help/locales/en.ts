@@ -329,7 +329,7 @@ const en: HelpText = {
             'Adults who can trade: an account at least 7 days old, a confirmed email, 3 counted games and no trading pause.',
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 12 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone before the launch: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 12 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone on November 16: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
           ],
         },
         {
@@ -440,7 +440,7 @@ const en: HelpText = {
             ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
             'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
             'Something missing? Email <email/> with your username and the email you signed in with during the test. A guest account isn’t on the list, so a different account is the usual reason.',
-            ...(o.launch ? [] : ['Beta 2: the $10 thank-you goes by PayPal to every confirmed player who joins the full live hour and sends the survey, within 7 days of the session, the same on iPhone and Android.']),
+            ...(o.launch ? [] : ['Beta 2: the $10 thank-you goes by PayPal to every confirmed player who joins the full live hour and sends the survey, within 7 days of the session, the same on iPhone and Android. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week.']),
           ],
         },
       ],
@@ -630,7 +630,7 @@ const en: HelpText = {
           q: 'What are the rules for players under 18?',
           a: [
             'You must be 13 or older to play.',
-            'In any room with a player under 18, links, emails, phone numbers and social handles are blocked for everyone.',
+            'In any room or party with a player under 18 or one who hasn’t told us their age, links, email addresses, phone numbers, social accounts and other personal details (a home address, where someone lives, a school, a real name) are blocked for everyone.',
             'Players under 18 have no public profile and can’t be followed, trade only items for items with Friend Code friends, and can’t buy or sell on the Black Market.',
             'On iPhone and iPad, friends, parties and trading wait for a version of the app that asks a parent’s consent through Apple.',
             'Parents and carers: see our <safety>Safety page</safety>.',
