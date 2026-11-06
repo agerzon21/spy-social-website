@@ -486,6 +486,8 @@ const Privacy: React.FC = () => {
             : 'Only the message text and the two languages are sent, never your name or account.'}
           {usesMyMemory &&
             " MyMemory's terms say it may keep the text it receives and use it to improve its services."}{' '}
+          {PRIVACY.modTranslate1106 &&
+            "So that our moderators can read a report in any language without copying it into an outside tool, our Mod Console shows them a translation beside the original of what they may already read in that report. It uses the translation the game already made when there is one. Otherwise our service sends OpenAI the text alone, by the same rule as above (a message or a report's written note only if whoever wrote it told us they're 16 or older and agreed), never a name, an account or anything about the report; everything else is translated only on the moderator's own device, where the text stays, or not at all. The name and entries of a pack in review are translated for them the same way, from the text alone, whoever made it. These translations are kept for up to 30 days, only moderators who may read that report or pack see them, and they're never shown to other players. "}
           To keep translation within its limits and stop abuse, our servers count, for each player and day, the
           translation requests they made, the messages and characters sent to be translated, and an estimate of
           what translating them cost; these counts are deleted after 14 days.
@@ -961,6 +963,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.drawingCheck ? ', drawing checks' : ''}
           {PRIVACY.customPacks ? ', the automated check of custom packs' : ''}
           {PRIVACY.communityPacks ? ', the review of Community Packs' : ''}
+          {PRIVACY.modTranslate1106 ? ', translating reports and packs in review so that our moderators can read them' : ''}
           {PRIVACY.socialFeatures ? ', the checks of the social safety log and of the games parties play' : ''}
           {PRIVACY.trading ? ', the checks of trades' : ''}
           {PRIVACY.blackMarket ? ', the checks of the Black Market' : ''}, moderation
@@ -988,7 +991,7 @@ const Privacy: React.FC = () => {
         results) have no end date: we don't delete them on a schedule, and they stay after an account is deleted (see below).
         A game's drawings and chat are the exception, on the schedules described here.{' '}
         {chatRetention(PRIVACY.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
-        made to deliver them live are deleted within 4 days. Translations are kept for 24 hours, and daily translation
+        made to deliver them live are deleted within 4 days. Translations are kept for 24 hours{PRIVACY.modTranslate1106 ? ' (those made for our moderators, for up to 30 days)' : ''}, and daily translation
         counts for 14 days.
         {PRIVACY.playOnline
           ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
@@ -1116,6 +1119,8 @@ const Privacy: React.FC = () => {
               'Checks drawings for content that breaks our Community Rules: drawing turns in public rooms get an automated check, some also get a second, more detailed check, and so do drawings players report. '}
             {PRIVACY.openAiTranslation &&
               `${PRIVACY.drawingCheck ? 'It also translates' : 'Translates'} messages ${sendTime ? 'for our translation service, usually as soon as they\'re sent' : 'when our translation service uses it'} (see Translations above), only messages written by players who told us they're 16 or older and agreed to it in the app, and we send them to it only for that: it receives the text of the messages being translated, up to three other recent messages from the same chat by such players (without who said them), a list of names to leave as they are (agent names and, in private rooms, the display names of such players) and the two languages, never your account or anyone's age. Our service asks OpenAI not to store these requests or its answers. `}
+            {PRIVACY.modTranslate1106 &&
+              "It also translates, for our moderators, messages and report notes under the same rule, and the text of a pack in review (see Translations and Custom Packs above); for that it receives only the text and the languages, never who wrote it. "}
             {PRIVACY.customPacks &&
               `${PRIVACY.drawingCheck || PRIVACY.openAiTranslation ? 'It also checks' : 'Checks'} the text of every custom pack (its name, description and entries) with its moderation model before anyone else can play or see it (see Custom Packs above); it receives only that text, never who made the pack. `}
             {PRIVACY.communityPacks &&

@@ -1377,6 +1377,14 @@ export const LIVE = {
    */
   safetyAnswers1106: true,
   /**
+   * mod-translate-1106: the Mod Console translates what a moderator may already read of a report or a pack in review, beside
+   * the original: the game's translation when there is one; otherwise OpenAI under chat's rule (16+ and the author's own
+   * yes), a pack's text as Custom Packs already says; everything else only on the moderator's own device, or not at all.
+   * Kept for 30 days (app server 20261216100000, pg_cron mod-translate-prune), never shown to a player.
+   * POLICY FIRST: the site goes up with it before the server file. A server fact for every app version: set in LIVE.
+   */
+  modTranslate1106: true,
+  /**
    * The launch version of the public site (2.2 out on both stores; flip Tuesday, December 8, 2026, 10 AM ET; steps in
    * the app repo's .claude/handoff/scratchpad/nov02/website-launch.md). On: the hero says 2.2 is out, the home page's
    * New in 2.2 section (the store screenshots in the page's language, Spy Sketch, Play Online, Game Night, the Black
