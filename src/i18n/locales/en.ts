@@ -902,8 +902,8 @@ const en = {
     ],
     atOnce: 'Your account is deleted at once.',
     guestTitle: 'Guest accounts',
-    guest: (purchases: boolean) =>
-      `A guest account is deleted the moment you tap <b>Sign Out</b> (in Settings, under Account & Sign-In; in versions before 2.2, in Account under Account & Security) and confirm. A guest can't sign back in, so there is no recovery.${
+    guest: (purchases: boolean, oldApps: boolean) =>
+      `A guest account is deleted the moment you tap <b>Sign Out</b> (in Settings, under Account & Sign-In${oldApps ? '; in versions before 2.2, in Account under Account & Security' : ''}) and confirm. A guest can't sign back in, so there is no recovery.${
         purchases
           ? ' Purchases are the exception, as for any deleted account: anything you bought as a guest comes back with Restore Purchases, on the App Store or Google Play account you paid with.'
           : ''

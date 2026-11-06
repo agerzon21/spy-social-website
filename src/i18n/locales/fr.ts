@@ -840,8 +840,8 @@ const fr: Strings = {
     ],
     atOnce: 'Ton compte est supprimé immédiatement.',
     guestTitle: 'Comptes invités',
-    guest: (purchases: boolean) =>
-      `Un compte invité est supprimé dès que tu appuies sur <b>Se déconnecter</b> (dans les Réglages, sous Compte et connexion\u00A0; dans les versions antérieures à 2.2, dans Compte, sous Compte et sécurité) et que tu confirmes. Un invité ne peut pas se reconnecter, il n'y a donc aucune récupération possible.${
+    guest: (purchases: boolean, oldApps: boolean) =>
+      `Un compte invité est supprimé dès que tu appuies sur <b>Se déconnecter</b> (dans les Réglages, sous Compte et connexion${oldApps ? '\u00A0; dans les versions antérieures à 2.2, dans Compte, sous Compte et sécurité' : ''}) et que tu confirmes. Un invité ne peut pas se reconnecter, il n'y a donc aucune récupération possible.${
         purchases
           ? " Les achats font exception, comme pour tout compte supprimé\u00A0: ce que tu as acheté en tant qu'invité revient avec Restaurer les achats, sur le compte App Store ou Google Play avec lequel tu as payé."
           : ''

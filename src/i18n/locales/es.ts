@@ -832,8 +832,8 @@ const es: Strings = {
     ],
     atOnce: 'Tu cuenta se elimina de inmediato.',
     guestTitle: 'Cuentas de invitado',
-    guest: (purchases: boolean) =>
-      `Una cuenta de invitado se elimina en cuanto tocas <b>Cerrar sesión</b> (en Ajustes, en Cuenta e inicio de sesión; en las versiones anteriores a la 2.2, en Cuenta, en Cuenta y seguridad) y confirmas. Un invitado no puede volver a iniciar sesión, así que no hay forma de recuperarla.${
+    guest: (purchases: boolean, oldApps: boolean) =>
+      `Una cuenta de invitado se elimina en cuanto tocas <b>Cerrar sesión</b> (en Ajustes, en Cuenta e inicio de sesión${oldApps ? '; en las versiones anteriores a la 2.2, en Cuenta, en Cuenta y seguridad' : ''}) y confirmas. Un invitado no puede volver a iniciar sesión, así que no hay forma de recuperarla.${
         purchases
           ? ' Las compras son la excepción, como en cualquier cuenta eliminada: lo que compraste como invitado vuelve con Restaurar compras, en la cuenta del App Store o de Google Play con la que pagaste.'
           : ''

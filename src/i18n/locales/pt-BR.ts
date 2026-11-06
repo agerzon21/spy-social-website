@@ -835,8 +835,8 @@ const ptBR: Strings = {
     ],
     atOnce: 'Sua conta é excluída na hora.',
     guestTitle: 'Contas de visitante',
-    guest: (purchases: boolean) =>
-      `Uma conta de visitante é excluída no momento em que você toca em <b>Sair</b> (em Ajustes, em Conta e acesso; em versões anteriores à 2.2, em Conta, na seção Conta e segurança) e confirma. Um visitante não pode entrar de novo, então não há como recuperar a conta.${
+    guest: (purchases: boolean, oldApps: boolean) =>
+      `Uma conta de visitante é excluída no momento em que você toca em <b>Sair</b> (em Ajustes, em Conta e acesso${oldApps ? '; em versões anteriores à 2.2, em Conta, na seção Conta e segurança' : ''}) e confirma. Um visitante não pode entrar de novo, então não há como recuperar a conta.${
         purchases
           ? ' As compras são a exceção, como em qualquer conta excluída: o que você comprou como visitante volta com Restaurar compras, na conta da App Store ou do Google Play com que você pagou.'
           : ''

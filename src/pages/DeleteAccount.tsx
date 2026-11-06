@@ -43,7 +43,7 @@ const DeleteAccount: React.FC = () => {
       <Text textStyle="body">{t.atOnce}</Text>
 
       <Heading as="h2" size="sm" variant="section">{t.guestTitle}</Heading>
-      <Text textStyle="body">{rich(t.guest(PRIVACY.purchases), parts)}</Text>
+      <Text textStyle="body">{rich(t.guest(PRIVACY.purchases, PRIVACY.oldAppsInUse), parts)}</Text>
 
       <Heading as="h2" size="sm" variant="section">{t.noAppTitle}</Heading>
       <Text textStyle="body">{rich(t.noApp, parts)}</Text>

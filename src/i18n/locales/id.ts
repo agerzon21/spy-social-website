@@ -835,8 +835,8 @@ const id: Strings = {
     ],
     atOnce: 'Akunmu langsung dihapus.',
     guestTitle: 'Akun tamu',
-    guest: (purchases: boolean) =>
-      `Akun tamu dihapus begitu kamu mengetuk <b>Keluar</b> (di Pengaturan, bagian Akun & masuk; di versi sebelum 2.2, di Akun bagian Akun dan keamanan) lalu mengonfirmasi. Tamu tidak bisa masuk lagi, jadi akunnya tidak bisa dipulihkan.${
+    guest: (purchases: boolean, oldApps: boolean) =>
+      `Akun tamu dihapus begitu kamu mengetuk <b>Keluar</b> (di Pengaturan, bagian Akun & masuk${oldApps ? '; di versi sebelum 2.2, di Akun bagian Akun dan keamanan' : ''}) lalu mengonfirmasi. Tamu tidak bisa masuk lagi, jadi akunnya tidak bisa dipulihkan.${
         purchases
           ? ' Pembelian adalah pengecualian, seperti untuk akun apa pun yang dihapus: apa pun yang kamu beli sebagai tamu akan kembali lewat Pulihkan pembelian, di akun App Store atau Google Play yang kamu pakai untuk membayar.'
           : ''
