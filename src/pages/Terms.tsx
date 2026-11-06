@@ -665,13 +665,29 @@ const Terms: React.FC = () => {
             {LIVE.uniquesRarer ? 'ten' : 'five'} items, with the odds shown in the app before you trade. Only spare copies count (never your first copy of an item, your only copy of it, or a Unique; a copy you bought or got in a trade is a spare when you hold another copy of that item), and the copies you trade
             up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it
             can't be shredded or traded up). Like every virtual item, Intercepts and what's in them have no cash value
-            and can't be sold for money{LIVE.trading ? (LIVE.interceptsMarket ? (LIVE.interceptsInTrades ? '; an Intercept, unopened, and an item from an opened one can be traded or sold for Intel only as Trades and Black Market below describe' : '; an unopened Intercept can be sold for Intel only on the Black Market, and an item from an opened one can be traded or sold only as Trades and Black Market below describe') : `, or traded or moved to another account unopened; an item from an opened Intercept can be traded only as Trades below describes${LIVE.blackMarket ? ', and sold for Intel only on the Black Market' : ''}`) : ', traded or moved to another account, unopened or opened'}. Before SpySocial 2.2 opens to
+            and can't be sold for money{LIVE.trading ? (LIVE.interceptsMarket ? (LIVE.interceptsInTrades ? '; an Intercept, unopened, and an item from an opened one can be traded or sold for Intel only as Trades and Black Market below describe' : '; an unopened Intercept can be sold for Intel only on the Black Market, and an item from an opened one can be traded or sold only as Trades and Black Market below describe') : `, or traded or moved to another account unopened; an item from an opened Intercept can be traded only as Trades below describes${LIVE.blackMarket ? ', and sold for Intel only on the Black Market' : ''}`) : ', traded or moved to another account, unopened or opened'}.
+            {/* LIVE.launchSite: 2.2 is out, so the reset before it is told in the past (site-launch-walk). */}
+            {LIVE.launchSite ? (
+              <>
+                {' '}Before SpySocial 2.2 opened to everyone, Intercepts started fresh: every Intercept earned before then
+                (for example while trying a test version of the app), with the copies, Uniques and trade-ups that came from
+                them{LIVE.trading ? ' (including copies received in trades)' : ''}, was wiped, and every item that from then on
+                comes only from Intercepts was taken back from the accounts that had it, except the Beta Pin and anything
+                bought in a store, so that everyone gets these items the same way.
+              </>
+            ) : (
+              <>
+                {' '}Before SpySocial 2.2 opens to
             everyone, Intercepts start fresh: every Intercept earned before then (for example while trying a test
             version of the app), with the copies, Uniques and trade-ups that came from them{LIVE.trading ? ' (copies you got in a trade included)' : ''}, is wiped, and every item
             that from then on comes only from Intercepts is taken back from the accounts that had it, except the Beta
             Pin and anything bought in a store, so that everyone gets these items the same way.
+              </>
+            )}
             {LIVE.intelLedger
-              ? " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded; we publish this as incident I-1 on our transparency page."
+              ? LIVE.launchSite
+                ? " The items a membership includes stayed, and so did the Intel players got from games, daily claims and streaks. The Intel got by shredding copies from before then was taken back (never below 0), and the items bought with Intel before then were taken back, with the Intel spent on them refunded; we published this as incident I-1 on our transparency page."
+                : " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded; we publish this as incident I-1 on our transparency page."
               : ' The items a membership includes, and the Intel you already got, stay.'}
             {LIVE.intelCorrections
               ? " We may take back unopened Intercepts given by mistake. We take back an item you've opened only when an incident we've published shows it was given in error, or a closed fair-play case shows it came from cheating; for a Unique this waits 24 hours, its number stays used and is never given to anyone else, and you can appeal within 30 days (an upheld appeal gives you back the same Unique). While a fair-play case is open, we may freeze a copy: it stays yours but can't be shredded or traded up. We never take an item from you to give it to someone else. Otherwise an item you've opened stays yours like the other items you've earned."
@@ -694,11 +710,24 @@ const Terms: React.FC = () => {
             mistake, or taken back as a moderation action; the ledger then shows that it was taken back and why
             (never who held it), and if we restore it after an appeal it comes back with the same number.
             A trade or a Black Market sale shows on the ledger only as the copy moving from one holder code to
-            another. Until the launch the ledger is a beta test chain: its copies, numbers, trades and fingerprints
+            another.
+            {/* LIVE.launchSite: the beta test chain and Beta 2's market undo are over (site-launch-walk). */}
+            {LIVE.launchSite ? (
+              <>
+                {' '}Before the launch the ledger was a beta test chain: its copies, numbers, trades and fingerprints were
+                for testing and were wiped, and the real ledger started again from its first entry. Black Market sales
+                made while SpySocial was being tested were undone before the launch: buyers got back the Intel they paid,
+                and sellers gave back what they received.
+              </>
+            ) : (
+              <>
+                {' '}Until the launch the ledger is a beta test chain: its copies, numbers, trades and fingerprints
             are for testing and are wiped before the launch, when the real ledger starts again from its first entry.
             {/* Beta 2's open market (owner `open`, Nov 3; app repo nov03/beta2-market-open.md): Nov 3 through accountNotices. */}
             {' '}Black Market sales made while SpySocial is being tested are undone before the launch: buyers get back
             the Intel they paid, and sellers give back what they received.
+              </>
+            )}
           </ListItem>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}
@@ -741,8 +770,7 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>
               Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
-              Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket && LIVE.interceptsInTrades ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults, and
-              only once SpySocial 2.2 opens to everyone. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, players under 18 can't trade until a version of the
+              Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket && LIVE.interceptsInTrades ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults{LIVE.launchSite ? '' : ', and only once SpySocial 2.2 opens to everyone'}. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, players under 18 can't trade until a version of the
               app that asks a parent's consent through Apple is out.
             </ListItem>
             <ListItem>
@@ -796,11 +824,13 @@ const Terms: React.FC = () => {
             <ListItem>
               The same rules as Trades decide who can use it (an adult,{' '}
               {LIVE.tradeGatesNov2 ? 'an account at least 7 days old that has played 3 counted games' : 'level 20, an account at least 14 days old'}, a
-              confirmed email, no trading pause), and Intel moves on it only once SpySocial 2.2 opens to everyone
-              {/* LIVE.testerMarket: Beta 2's open market from Nov 12 (its sales undone before the launch, Collectibles bullet above). */}
-              {LIVE.testerMarket
-                ? ', except during testing (sales made while SpySocial is being tested are undone before the launch, as described above).'
-                : '.'}{' '}
+              confirmed email, no trading pause)
+              {/* LIVE.launchSite: Intel moves on it from the launch, so the condition goes (site-launch-walk). LIVE.testerMarket: Beta 2's open market from Nov 12 (its sales undone before the launch, Collectibles bullet above). */}
+              {LIVE.launchSite
+                ? '.'
+                : LIVE.testerMarket
+                  ? ', and Intel moves on it only once SpySocial 2.2 opens to everyone, except during testing (sales made while SpySocial is being tested are undone before the launch, as described above).'
+                  : ', and Intel moves on it only once SpySocial 2.2 opens to everyone.'}{' '}
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
               instead no offer can be priced below an item's minimum price, what one copy of it shreds for{LIVE.interceptsMarket ? " (for an unopened Intercept, what the items its tier gives shred for on average, by its odds)" : ''}.
             </ListItem>

@@ -12,7 +12,11 @@ import { dayInMonth, MONTHLY_REPORTS } from '../lib/transparencyReports'
 // the collectibles ledger), never typed in by hand.
 
 /** The day this page's text last changed (LIVE.uniquesRarer: its rule changes, the day the server file is applied). */
-const UPDATED = LIVE.accountNotices ? 'November 3, 2026' : LIVE.tradeNoLimits || LIVE.tradeGatesNov2 ? 'November 2, 2026' : LIVE.giftsTradable ? 'November 1, 2026' : LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
+const UPDATED = LIVE.launchSite
+  ? 'December 8, 2026' // 2.2 is out: the monthly report's first date and the Intel fingerprint's start told in the past (site-launch-walk)
+  : LIVE.launchResetIncident
+  ? 'December 7, 2026' // incident I-1 and the Dec 7 gift-trading rule change (website update U0, the day WI runs)
+  : LIVE.accountNotices ? 'November 3, 2026' : LIVE.tradeNoLimits || LIVE.tradeGatesNov2 ? 'November 2, 2026' : LIVE.giftsTradable ? 'November 1, 2026' : LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
 
 const KIND: Record<string, string> = { reset: 'Reset', bug: 'Bug', outage: 'Outage' }
 
@@ -27,7 +31,7 @@ const Transparency: React.FC = () => (
 
     <H2>The monthly report</H2>
     <P>
-      The first report comes on the 1st of the month after SpySocial 2.2 opens to everyone, and covers the month before.
+      The first report comes on the 1st of the month after SpySocial 2.2 {LIVE.launchSite ? 'opened' : 'opens'} to everyone, and covers the month before.
       Each report has:
     </P>
     <Bullets>
@@ -150,7 +154,7 @@ const Transparency: React.FC = () => (
     </P>
     {LIVE.intelCorrections && (
       <P>
-        From the day SpySocial 2.2 opens to everyone, a fingerprint of each day's Intel lines is sealed into our
+        From the day SpySocial 2.2 {LIVE.launchSite ? 'opened' : 'opens'} to everyone, a fingerprint of each day's Intel lines is sealed into our
         collectibles ledger's daily checkpoint, so a line changed later would no longer match a record that's already
         been published.
       </P>

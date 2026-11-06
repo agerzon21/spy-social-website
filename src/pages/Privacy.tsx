@@ -191,7 +191,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
             Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
-            {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? 'Adults can spend it on the Black Market (see below), and, once version 2.2 opens to everyone, trade it with other adults (see Trades).' : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
+            {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? (PRIVACY.launchSite ? 'Adults can spend it on the Black Market (see below) and trade it with other adults (see Trades).' : 'Adults can spend it on the Black Market (see below), and, once version 2.2 opens to everyone, trade it with other adults (see Trades).') : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
             also keep your balance, how much Intel you've earned and spent in all, and your daily streak: how many days
@@ -253,10 +253,12 @@ const Privacy: React.FC = () => {
             it used and the item it gave). They also keep your progress toward your next
             Intercepts and the counts behind any guarantee the app shows. All of this comes from the games you play and
             the codes you enter: private-room games, and games that give no Intel (for example a game you left or one
-            our fair-play checks flag), don't count. Before version 2.2 opens to everyone, Intercepts start fresh: the
-            Intercepts, copies and trade-ups from before then (for example from testing) are wiped, and the items that
-            from then on come only from Intercepts are taken back from every account (the Beta Pin and anything bought
-            in a store excepted). We keep a record of what was wiped and taken back from yours, and of the look or title
+            our fair-play checks flag), don't count.{' '}
+            {/* LIVE.launchSite: 2.2 is out, so the reset before it is told in the past (site-launch-walk). */}
+            {PRIVACY.launchSite
+              ? 'Before version 2.2 opened to everyone, Intercepts started fresh: the Intercepts, copies and trade-ups from before then (for example from testing) were wiped, and the items that from then on come only from Intercepts were taken back from every account (the Beta Pin and anything bought in a store excepted).'
+              : 'Before version 2.2 opens to everyone, Intercepts start fresh: the Intercepts, copies and trade-ups from before then (for example from testing) are wiped, and the items that from then on come only from Intercepts are taken back from every account (the Beta Pin and anything bought in a store excepted).'}{' '}
+            We keep a record of what was wiped and taken back from yours, and of the look or title
             it replaced, so that we can put it back if we have to. We use all
             this to give you your Intercepts and their items, to show them to you in the app, and to check that
             Intercepts are earned fairly and that the odds work as the app shows them. Other players never see your
@@ -287,8 +289,11 @@ const Privacy: React.FC = () => {
             code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger
             shows only that it moved from one holder code to another, never who traded or sold it, or the price. Each
             day only a fingerprint of the ledger is sent to GitHub and the Internet Archive, with no personal data in
-            it. Until the launch, the ledger is a beta test chain: every copy, number, trade and day's fingerprint on
-            it is for testing and is wiped before the launch, when the real ledger starts again from its first entry.
+            it.{' '}
+            {/* LIVE.launchSite: the beta test chain is over (site-launch-walk). */}
+            {PRIVACY.launchSite
+              ? "Before the launch, the ledger was a beta test chain: every copy, number, trade and day's fingerprint on it was for testing and was wiped, and the real ledger started again from its first entry."
+              : "Until the launch, the ledger is a beta test chain: every copy, number, trade and day's fingerprint on it is for testing and is wiped before the launch, when the real ledger starts again from its first entry."}
           </Item>
         )}
         {/* LIVE.customPacks (members' own packs), with communityPacks and featuredPacks (legalRelease). */}
@@ -531,11 +536,11 @@ const Privacy: React.FC = () => {
         <Item label="Usage Data">
           Simple events about how the app is used (for example which screens are opened and which features are used),
           recorded by our own servers and kept for 180 days. They contain no message text. We don't use third-party
-          analytics or advertising trackers. Until version 2.2's launch on December 8, 2026, we also use these events
-          and your device's platform to recognize saved accounts that used a test version of the app (on iPhone, Android
-          or the web) and were created before December 7, 2026, and give them a Beta Pin for their avatar as a thank-you;
-          we keep only that the account has it. Until the launch, we also use them, with the app's version, to let saved
-          accounts that recently used a test version on a phone try features that aren't open to everyone yet.
+          analytics or advertising trackers.{' '}
+          {/* LIVE.launchSite: the Beta Pin's window and the testers' early features ended at the launch (site-launch-walk). */}
+          {PRIVACY.launchSite
+            ? "Until version 2.2's launch on December 8, 2026, we also used these events and your device's platform to recognize saved accounts that used a test version of the app (on iPhone, Android or the web) and were created before December 7, 2026, and gave them a Beta Pin for their avatar as a thank-you; we keep only that the account has it. Until the launch, we also used them, with the app's version, to let saved accounts that recently used a test version on a phone try features that weren't open to everyone yet."
+            : "Until version 2.2's launch on December 8, 2026, we also use these events and your device's platform to recognize saved accounts that used a test version of the app (on iPhone, Android or the web) and were created before December 7, 2026, and give them a Beta Pin for their avatar as a thank-you; we keep only that the account has it. Until the launch, we also use them, with the app's version, to let saved accounts that recently used a test version on a phone try features that aren't open to everyone yet."}
         </Item>
         <Item label="Test Versions">
           If you test a version of the app before it's released, through Apple's TestFlight, Google Play's testing or a
