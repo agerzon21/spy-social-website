@@ -548,9 +548,9 @@ const Privacy: React.FC = () => {
             <>
               {' '}
               If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form,
-              including, if you are paid for playing, the email address of your PayPal account. We use that address only
-              to send your payment through PayPal, which handles it under its own terms and privacy policy, and we delete
-              it once you're paid; the rest of your sign-up is deleted after the test.
+              including, if you get the session thank-you, the email address of your PayPal account. We use that address only
+              to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete
+              it once it's sent; the rest of your sign-up is deleted after the test.
             </>
           )}{' '}
           Otherwise, a test version is the same app, and this policy applies to it.
