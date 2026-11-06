@@ -255,7 +255,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte, de parties comptées et de nouvel appareil sont levées : chaque testeur peut échanger dès que son e-mail est confirmé.']),
           "Chaque côté propose jusqu'à 10 objets, et les deux confirment avant l'échange. Les gros échanges demandent un code envoyé par e-mail.",
           "Ce que tu mets dans un échange ouvert lui est réservé : ça ne peut pas aller dans un autre échange ou sur le Marché noir en même temps. Si l'Intel d'un échange est dépensé avant qu'il se fasse, un avertissement s'affiche de ce côté, et l'échange ne peut pas se faire tant que le montant n'est pas baissé.",
-          "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais.",
+          "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? " Ni ce qui vient d'un code ou d'un cadeau : ça reste sur ton compte." : ''),
           "L'Intel ne s'échange qu'entre adultes.",
           ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel. Le 7 décembre, toute l’Intel échangée est rendue : celui qui l’a donnée la récupère, et chacun ne garde que l’Intel qu’il a gagnée.']),
           "Acheter ou vendre des objets, de l'Intel ou des comptes contre de l'argent réel est interdit.",
@@ -375,7 +375,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           '<b>Victoires :</b> toutes les 10 victoires à Jouer en ligne, tu reçois 5 interceptions, dont une de niveau Secret ou mieux.',
           "<b>Chaque jour :</b> ta première partie du jour à Jouer en ligne t'en donne une, et les longues séries en ajoutent (tous les 30 jours d'affilée, une Enigma).",
           '<b>Soirée jeux :</b> les gagnants de la soirée reçoivent une Enigma.',
-          `<b>Codes et cadeaux :</b> un code d'un créateur ou de nous marche une fois par compte, et ses interceptions se débloquent après ta première partie comptée à Jouer en ligne. Nous en offrons aussi.${o.launch ? " Les interceptions d'un code ou d'un cadeau sont pour toi seul : elles ne s'échangent ni ne se vendent." : ''}`,
+          `<b>Codes et cadeaux :</b> un code d'un créateur ou de nous marche une fois par compte, et ses interceptions se débloquent après ta première partie comptée à Jouer en ligne. Nous en offrons aussi.${o.launch ? " Les interceptions d'un code ou d'un cadeau, ce qu'elles contiennent et ce que tu en tires par Échange sont pour toi seul : ils ne s'échangent, ne se vendent et ne s'offrent pas, quel que soit ton nombre de parties. Tu peux toujours les ouvrir, porter ce qui en sort, les utiliser dans un Échange et déchiqueter les doublons." : ''}`,
           'Les salons privés ne donnent pas d\'interceptions.',
           ...(o.launch
             ? []
@@ -387,7 +387,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Que faire des doublons ?',
         a: [
           "<b>Déchiquette</b> un doublon contre de l'Intel, au montant affiché par l'appli.",
-          "<b>Échange :</b> 5 doublons d'une rareté te donnent 1 objet au hasard de la rareté suivante, et 10 doublons Légendaires te donnent un Unique.",
+          "<b>Échange :</b> 5 doublons d'une rareté te donnent 1 objet au hasard de la rareté suivante, et 10 doublons Légendaires te donnent un Unique." + (o.launch ? " S'il y a un cadeau parmi eux, ce que tu obtiens est pour toi seul aussi." : ''),
           'Seuls les doublons comptent, jamais ton premier exemplaire ni un Unique.',
           'Un exemplaire acheté ou reçu dans un échange compte comme doublon si tu as un autre exemplaire de cet objet. Ton seul exemplaire reste toujours.',
         ],

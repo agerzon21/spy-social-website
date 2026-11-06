@@ -265,7 +265,7 @@ const en: HelpText = {
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age, counted-games and new-device rules are off: every tester can trade once their email is confirmed.']),
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
-            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.',
+            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? " Neither can anything from a code or a gift: it stays with your account." : ''),
             'Intel can be traded only between adults.',
             ...(o.launch ? [] : ['During the beta test, until December 7, adult testers trade Intel too. On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned.']),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
@@ -385,7 +385,7 @@ const en: HelpText = {
             '<b>Wins:</b> every 10 Play Online wins give you 5 Intercepts, one of them Secret or better.',
             '<b>Daily:</b> your first Play Online game of the day gives you one, and long streaks add more (every 30th day in a row, an Enigma).',
             '<b>Game Night:</b> the night’s winners get an Enigma.',
-            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? ' Intercepts from a code or a gift are just for you: they can’t be traded or sold.' : ''}`,
+            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares." : ''}`,
             'Private rooms don’t give Intercepts.',
             ...(o.launch
               ? []
@@ -397,7 +397,7 @@ const en: HelpText = {
           q: 'What can I do with duplicates?',
           a: [
             '<b>Shred</b> a spare copy for Intel, at the amount the app shows.',
-            '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.',
+            '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.' + (o.launch ? " With a gift among them, what you get is just for you too." : ''),
             'Only spares count, never your first copy or a Unique.',
             'A copy you bought or got in a trade counts as a spare when you hold another copy of that item. Your only copy always stays.',
           ],
