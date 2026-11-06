@@ -404,7 +404,7 @@ const es: HelpText = {
             'La moneda que ganas jugando: con tus partidas, tu primera partida del día y tu racha diaria, y al triturar copias repetidas.',
             'Tu racha: una partida de Jugar en línea al día la mantiene. Una partida que empiezas antes del nuevo día también la mantiene, aunque termine después.',
             'El Intel nunca se vende y no vale dinero. Los adultos lo gastan en el Mercado Negro y pueden intercambiarlo con otros adultos.',
-            'Cada cambio en tu Intel es una línea en tu registro de Intel, con su motivo.',
+            'Cada cambio en tu Intel es una línea en tu registro de Intel, con su motivo. Consulta el tuyo en <b>Historial de Intel</b>, dentro de «Cómo funciona Intel», en la actualización más reciente de la app.',
             'En la <b>Bóveda</b>, tu Intel tiene su propia ficha, una pila que crece con la cantidad. Tócala para ver lo ganado hoy, lo ganado en total y lo gastado en total. El Intel retenido en una oferta abierta del Mercado Negro cuenta como gastado hasta que vuelve.',
           ],
         },

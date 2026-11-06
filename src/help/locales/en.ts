@@ -410,7 +410,7 @@ const en: HelpText = {
             'The currency you earn by playing: from your games, your first game of the day and your daily streak, and from shredding spare copies.',
             'Your streak: one Play Online game a day keeps it. A game you start before the new day keeps it too, even if it ends after.',
             'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.',
-            'Every change to your Intel is a line in your Intel ledger, with its reason.',
+            'Every change to your Intel is a line in your Intel ledger, with its reason. Read yours under <b>Intel History</b> in How Intel Works, on the app’s newest update.',
             'In the <b>Vault</b>, your Intel has its own tile, a stack that grows with the amount. Tap it for what you earned today, earned in all and spent in all. Intel held in an open Black Market offer counts as spent until it comes back.',
           ],
         },
