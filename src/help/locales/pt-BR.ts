@@ -299,7 +299,8 @@ const ptBR: HelpText = {
             'A pausa por aparelho novo dura 24 horas; a por mudança de e-mail ou de login, 3 dias.',
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, entrar em um novo aparelho ou mudar o e-mail ou a forma de entrar não pausa as trocas.']),
             'Isso protege seus itens se outra pessoa entrar na sua conta.',
-            'Também podemos pausar nós mesmos as trocas de uma conta, para protegê-la ou enquanto verificamos uma fraude. Isso fecha as ofertas e os anúncios abertos dela no Mercado Negro, e o que estava reservado volta para a conta. Nada reabre quando a pausa termina: é preciso anunciar de novo.',
+            'Também podemos pausar nós mesmos as trocas de uma conta, para protegê-la ou enquanto verificamos uma fraude.',
+            'Qualquer uma dessas pausas, inclusive o seu próprio bloqueio, fecha na hora suas ofertas e anúncios abertos no Mercado Negro. O mesmo acontece com um banimento, uma suspensão ou uma verificação de jogo limpo. Os itens voltam para você, a Intel de uma oferta de compra espera você coletar, e as ofertas de outros jogadores nos seus anúncios voltam para eles. Nada reabre quando termina: é preciso anunciar de novo.',
             'Se desconectarmos sua conta em todos os aparelhos sem pausar as trocas, suas ofertas e anúncios do Mercado Negro feitos antes disso mostram <b>Em espera</b> e não são executados. Quando seu novo login puder trocar, toque em <b>Colocar de volta</b> em cada um que for seu, ou pare-o.',
           ],
         },
@@ -333,7 +334,7 @@ const ptBR: HelpText = {
           id: 'black-market-fees',
           q: 'Quais são as taxas, os limites e o preço mínimo?',
           a: [
-            'Cada item vendido paga uma taxa de 2% (no máximo 5.000 de Intel), que sai do jogo.',
+            'Cada item vendido paga uma taxa de 2% (no mínimo 1 e no máximo 5.000 de Intel), que sai do jogo.',
             'Nenhuma oferta pode ficar abaixo do preço mínimo de um item: o que uma cópia rende ao ser triturada. Para uma interceptação fechada, é a média do seu nível.',
             'Membros podem ter 8 ofertas abertas ao mesmo tempo; os outros, 4. Enquanto uma oferta está aberta, a Intel ou os itens dela ficam reservados (você ainda pode usar os itens).',
             'Dá para cancelar uma oferta quando quiser e pegar o que sobrou.',

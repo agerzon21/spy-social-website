@@ -842,20 +842,21 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>
               While an offer or listing is open, what it offers is held for it: the Intel of a buy offer, or the items of
-              a sell offer (you can still wear them). Each item sold costs a fee of 2% of its price (at most 5,000
+              a sell offer (you can still wear them). Each item sold costs a fee of 2% of its price (at least 1 Intel, at most 5,000
               Intel), which is removed from the game. Members can have 8 offers open at once, others 4. You can stop an
               offer or listing at any time and collect what's left.
             </ListItem>
             {LIVE.audit1103 && (
               <ListItem>
-                If we pause your trading ourselves (because your account may have been taken, or while we look into fraud or
-                farming), or change your email address at your
-                request, your open offers and listings, and your offers on Rare Finds, close at once, as if you'd stopped
-                them: what they hold comes back to you (Intel from a buy offer waits for you to collect it), and other
-                players' offers on your listing go back to them. Nothing reopens when the pause ends; you place them again.
-                Sales already made stay as they are. Other trading pauses (your own lock, or one after a reversal, a new
-                device or a change of sign-in) stop you placing new offers, but what's already open can still sell. If we
-                correct your birth year and you're under 18, your offers and listings close, and what they hold or earned
+                If your account is locked, whatever the reason, your open offers and listings, and your offers on Rare Finds,
+                close at once, as if you'd stopped them: a trading pause we set (because your account may have been taken, or
+                while we look into fraud or farming), your own lock, the pause after a reversal, a new device or a change of
+                sign-in, a ban, a suspension, or a fair-play hold. So does a change of your email address that we make at your
+                request. What they hold comes back to you (Intel from a buy offer waits for you to collect it, and you can
+                collect it while locked), and other players' offers on your listing go back to them. Nothing reopens when the
+                lock ends; you place them again. Sales already made stay as they are.
+                {LIVE.launchSite ? '' : " While SpySocial is being tested, a new device or a change of sign-in doesn't pause trading, so neither closes anything until December 7, 2026."}{' '}
+                If we correct your birth year and you're under 18, your offers and listings close, and what they hold or earned
                 comes back to you at once.
               </ListItem>
             )}

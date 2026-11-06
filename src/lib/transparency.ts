@@ -110,8 +110,15 @@ const TEST_PHASE_NOV: { day: string; what: string; from: string; to: string }[] 
   { day: 'November 4, 2026', what: "the account-age, counted-games, new-device and sign-in-change rules for trades and the Black Market while SpySocial is being tested", from: 'on', to: 'off, until December 7' },
 ]
 
+/** The owner's economy calls of Nov 6 (app server market_own_lock, market_min_fee). */
+const MARKET_NOV6: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'November 6, 2026', what: 'the fee on a Black Market sale under 50 Intel', from: 'none', to: '1 Intel' },
+  { day: 'November 6, 2026', what: 'what closes open Black Market offers and listings', from: 'a trading pause we set, or a change of email we make', to: 'also your own lock, the pause after a reversal, a new device or a change of sign-in, a ban, a suspension and a fair-play hold' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...MARKET_NOV6,
   ...TEST_PHASE_NOV,
   ...(LIVE.audit1103b ? ECONOMY_NOV3 : []),
   ...(LIVE.audit1103b ? COUNTED_GAMES_NOV3 : []),

@@ -299,7 +299,8 @@ const id: HelpText = {
             'Jeda karena perangkat baru berlangsung 24 jam; karena perubahan email atau cara masuk, 3 hari.',
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, masuk di perangkat baru atau mengganti email atau cara masuk tidak menjeda pertukaran.']),
             'Ini melindungi itemmu kalau ada orang lain yang masuk ke akunmu.',
-            'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan. Itu menutup penawaran dan item yang dipasang di Pasar Gelap, dan yang ditahan kembali ke akun. Tidak ada yang dibuka lagi saat jeda berakhir: kamu perlu memasangnya lagi.',
+            'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan.',
+            'Jeda apa pun ini, termasuk kuncianmu sendiri, langsung menutup penawaran dan item yang kamu pasang di Pasar Gelap. Begitu juga blokir, penangguhan, atau pemeriksaan permainan adil. Item kembali kepadamu, Intel dari penawaran beli menunggu untuk kamu ambil, dan penawaran pemain lain pada itemmu kembali kepada mereka. Tidak ada yang dibuka lagi saat berakhir: kamu perlu memasangnya lagi.',
             'Jika kami mengeluarkan akunmu dari semua perangkat tanpa menjeda pertukaran, penawaran dan item yang kamu pasang di Pasar Gelap sebelum itu bertanda <b>Menunggu</b> dan tidak terpenuhi. Setelah login barumu bisa bertukar, ketuk <b>Kembalikan</b> pada tiap yang milikmu, atau hentikan.',
           ],
         },
@@ -333,7 +334,7 @@ const id: HelpText = {
           id: 'black-market-fees',
           q: 'Berapa biaya, batas, dan harga minimumnya?',
           a: [
-            'Setiap item yang terjual kena biaya 2% (paling banyak 5.000 Intel), yang dihapus dari permainan.',
+            'Setiap item yang terjual kena biaya 2% (paling sedikit 1 Intel, paling banyak 5.000 Intel), yang dihapus dari permainan.',
             'Tidak ada tawaran yang boleh di bawah harga minimum item: nilai hancur satu salinannya. Untuk sadapan yang belum dibuka, itu rata-rata tingkatnya.',
             'Anggota bisa punya 8 penawaran terbuka sekaligus, yang lain 4. Selama penawaran terbuka, Intel atau itemnya ditahan (item tetap bisa dipakai).',
             'Kamu bisa menghentikan penawaran kapan saja dan mengambil sisanya.',

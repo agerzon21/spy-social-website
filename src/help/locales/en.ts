@@ -305,7 +305,8 @@ const en: HelpText = {
             'A new device’s pause lasts 24 hours; an email or sign-in change’s, 3 days.',
             ...(o.launch ? [] : ['During the beta test, until December 7, a sign-in on a new device or an email or sign-in change doesn’t pause trading.']),
             'It’s there to protect your items if someone else gets into your account.',
-            'We can also pause an account’s trading ourselves, to protect it or while we look into fraud. That closes its open Black Market offers and listings, and what they held goes back to the account. Nothing reopens when the pause ends: you list again.',
+            'We can also pause an account’s trading ourselves, to protect it or while we look into fraud.',
+            'Any of these pauses, your own lock included, closes your open Black Market offers and listings at once. A ban, a suspension or a fair-play hold does too. Items come back to you, Intel from a buy offer waits for you to collect, and other players’ offers on your listings go back to them. Nothing reopens when it ends: you list again.',
             'If we sign your account out on every device without pausing trading, your Black Market offers and listings from before that show <b>Waiting</b> and don’t fill. Once your new sign-in can trade, tap <b>Put Back</b> on each one that’s yours, or stop it.',
           ],
         },
@@ -339,7 +340,7 @@ const en: HelpText = {
           id: 'black-market-fees',
           q: 'What are the fees, limits and minimum price?',
           a: [
-            'Each item sold costs a 2% fee (at most 5,000 Intel), which is removed from the game.',
+            'Each item sold costs a 2% fee (at least 1 Intel, at most 5,000 Intel), which is removed from the game.',
             'No offer can go below an item’s minimum price: what one copy shreds for. For an unopened Intercept, it’s the average its tier shreds for.',
             'Members can have 8 offers open at once, others 4. While an offer is open, its Intel or items are held for it (you can still wear the items).',
             'You can stop an offer any time and collect what’s left.',

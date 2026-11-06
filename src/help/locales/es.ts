@@ -299,7 +299,8 @@ const es: HelpText = {
             'La pausa por un dispositivo nuevo dura 24 horas; la de un cambio de correo o de inicio de sesión, 3 días.',
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, iniciar sesión en un dispositivo nuevo o cambiar el correo o el método de inicio de sesión no pausa los intercambios.']),
             'Así se protegen tus objetos si alguien más entra en tu cuenta.',
-            'También podemos pausar nosotros los intercambios de una cuenta, para protegerla o mientras revisamos un posible fraude. Eso cierra sus ofertas y anuncios abiertos en el Mercado Negro, y lo que tenían reservado vuelve a la cuenta. Nada se reabre cuando termina la pausa: tienes que volver a publicar.',
+            'También podemos pausar nosotros los intercambios de una cuenta, para protegerla o mientras revisamos un posible fraude.',
+            'Cualquiera de estas pausas, también tu propio bloqueo, cierra al instante tus ofertas y anuncios abiertos en el Mercado Negro. Lo mismo hacen un baneo, una suspensión o una revisión de juego limpio. Los objetos vuelven a ti, el Intel de una oferta de compra espera a que lo recojas y las ofertas de otros jugadores en tus anuncios vuelven a ellos. Nada se reabre cuando termina: tienes que volver a publicar.',
             'Si cerramos la sesión de tu cuenta en todos los dispositivos sin pausar los intercambios, tus ofertas y anuncios del Mercado Negro de antes de eso muestran <b>En espera</b> y no se completan. Cuando tu nuevo inicio de sesión pueda intercambiar, toca <b>Volver a poner</b> en cada uno que sea tuyo, o detenlo.',
           ],
         },
@@ -333,7 +334,7 @@ const es: HelpText = {
           id: 'black-market-fees',
           q: '¿Qué comisiones, límites y precio mínimo hay?',
           a: [
-            'Cada objeto vendido paga una comisión del 2 % (como mucho 5000 Intel), que sale del juego.',
+            'Cada objeto vendido paga una comisión del 2 % (como mínimo 1 Intel y como mucho 5000), que sale del juego.',
             'Ninguna oferta puede bajar del precio mínimo de un objeto: lo que da al triturar una copia. Para una intercepción sin abrir, es lo que da de media su nivel.',
             'Los miembros pueden tener 8 ofertas abiertas a la vez; los demás, 4. Mientras una oferta está abierta, su Intel o sus objetos quedan reservados (puedes seguir usando los objetos).',
             'Puedes retirar una oferta cuando quieras y recoger lo que quede.',
