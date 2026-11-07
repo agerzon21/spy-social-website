@@ -404,7 +404,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'La monnaie que tu gagnes en jouant : avec tes parties, ta première partie du jour et ta série quotidienne, et en déchiquetant des doublons.',
           'Ta série : une partie de Jouer en ligne par jour la garde. Une partie lancée avant le nouveau jour la garde aussi, même si elle finit après.',
           o.launch ? "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes." : 'L’Intel n’est jamais vendu et n’a aucune valeur en argent. Les adultes peuvent l’échanger avec d’autres adultes, et le dépenser au Marché noir à partir du lancement de la 2.2, le 8 décembre, ou pendant un test dont les ventes sont annulées.',
-          "Chaque changement de ton Intel est une ligne de ton registre Intel, avec son motif.",
+          "Chaque changement de ton Intel est une ligne de ton registre Intel, avec son motif. Consulte le tien dans <b>Historique d'Intel</b>, depuis « Comment fonctionne l'Intel », sur la dernière mise à jour de l'appli.",
           "Dans le <b>Coffre</b>, ton Intel a sa propre tuile, une pile qui grandit avec le montant. Touche-la pour voir ce que tu as gagné aujourd'hui, gagné en tout et dépensé en tout. L'Intel bloqué dans une offre ouverte du Marché noir compte comme dépensé jusqu'à son retour.",
         ],
       },

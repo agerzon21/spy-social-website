@@ -408,7 +408,7 @@ const ptBR: HelpText = {
             'A moeda que você ganha jogando: com suas partidas, sua primeira partida do dia e sua sequência diária, e triturando cópias repetidas.',
             'Sua sequência: uma partida de Jogar online por dia a mantém. Uma partida que você começa antes do novo dia também a mantém, mesmo se terminar depois.',
             o.launch ? 'A Intel nunca é vendida e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-la com outros adultos.' : 'A Intel nunca é vendida e não vale dinheiro. Adultos podem trocá-la com outros adultos e gastá-la no Mercado Negro a partir do lançamento da 2.2, em 8 de dezembro, ou em um teste cujas vendas são desfeitas.',
-            'Cada mudança na sua Intel é uma linha no seu registro de Intel, com o motivo.',
+            'Cada mudança na sua Intel é uma linha no seu registro de Intel, com o motivo. Veja o seu em <b>Histórico de Intel</b>, em «Como o Intel funciona», na atualização mais recente do app.',
             'No <b>Cofre</b>, seu Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. Intel preso numa oferta aberta do Mercado Negro conta como gasto até voltar.',
           ],
         },
