@@ -1399,6 +1399,11 @@ export const LIVE = {
    * A website fact: set in LIVE, never in PRIVACY_AHEAD.
    */
   launchSite: false,
+  /**
+   * The launch reminder form on /hello (RPC launch_reminder_signup, owner Nov 7): Privacy's Launch Reminder section, Resend's item, a Data
+   * Retention sentence and Consent. Stays on until the launch email is sent and the addresses are deleted; then off with its own Last Updated.
+   */
+  launchReminder: true,
   /** site-full-1106: Terms 9 and help say the Dec 7 rule for what comes from a code or a gift, Privacy's market lines follow Nov 6's locks: Last Updated November 7. Text already in force or dated; no TERMS_PUBLISHED or terms_version raise (the launch republishes). */
   siteFull1107: true,
   /**
@@ -1635,6 +1640,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.launchReminder
+    ? 'November 7, 2026' // Launch Reminder, the form on /hello: set to the day the site goes up with it on
   : LIVE.siteFull1107
     ? 'November 7, 2026' // site-full-1106: the site went up with it on
   : LIVE.safetyAnswers1106

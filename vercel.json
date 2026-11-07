@@ -64,6 +64,15 @@
       ]
     },
     {
+      "source": "/hello(/?)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
       "source": "/.well-known/apple-app-site-association",
       "headers": [
         {
@@ -83,6 +92,17 @@
     }
   ],
   "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "spysocial.app"
+        }
+      ],
+      "destination": "https://www.spysocial.app/hello",
+      "permanent": false
+    },
     {
       "source": "/((?!\\.well-known/).*)",
       "has": [
@@ -197,6 +217,10 @@
     {
       "source": "/beta",
       "destination": "/beta/index.html"
+    },
+    {
+      "source": "/hello(/?)",
+      "destination": "/hello/index.html"
     },
     {
       "source": "/((?!\\.well-known/|static/|assets/).*)",

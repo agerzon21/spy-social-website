@@ -3,6 +3,8 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
 import { ShopLink } from '../components/legal/ShopLink'
+import { HELLO_STRINGS } from '../hello/strings'
+import { useLang } from '../i18n'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
 import {
   LLC_SINCE,
@@ -42,6 +44,34 @@ const chatRetention = (what: string) =>
   PRIVACY.scheduledRetention
     ? `${what} in private rooms are deleted about 24 hours after they're sent; in public rooms they're kept for 14 days so that reports can be reviewed, and then deleted.`
     : `${what} in private rooms can be read for 24 hours, and in public rooms for 14 days so that reports can be reviewed; after that nobody can read them, and our servers delete them.`
+
+
+/** The launch reminder (LIVE.launchReminder): the binding English, and above it the same words in the visitor's language. */
+const LaunchReminderSection = () => {
+  const { lang, language } = useLang()
+  return (
+    <>
+      <H2 id="launch-reminder">Launch Reminder</H2>
+      {lang !== 'en' && (
+        <P>
+          <span lang={lang} dir={language.rtl ? 'rtl' : 'ltr'} style={{ display: 'block', hyphens: 'manual', WebkitHyphens: 'manual' }}>
+            {HELLO_STRINGS[lang].privacyText}
+          </span>
+        </P>
+      )}
+      <P>
+        <span style={{ hyphens: 'manual', WebkitHyphens: 'manual' }}>
+        {HELLO_STRINGS.en.privacyText} Backup copies expire within 30 more days. Supabase stores them for us and Resend
+        sends the email, which has its own line to remove you. Before sending, we check that the address's domain can
+        receive mail (a DNS lookup). We don't keep your IP address with the reminder; our host's own request logs see IP
+        addresses, as the IP Address item says. Asking for a reminder doesn't create a SpySocial account, and the
+        reminder isn't linked to one even if you have one, so Delete Account and the data export don't reach it: write
+        to support and we remove that address. We don't use it for anything else or share it for marketing.
+        </span>
+      </P>
+    </>
+  )
+}
 
 const Privacy: React.FC = () => {
   const backupTranslation =
@@ -889,10 +919,14 @@ const Privacy: React.FC = () => {
         </Item>
       </Bullets>
 
+      {/* LIVE.launchReminder: the reminder form on /hello (src/hello/strings.ts has this text in each language). */}
+      {PRIVACY.launchReminder && <LaunchReminderSection />}
+
       <H2>How We Use Your Information</H2>
       <P>We use your information to:</P>
       <Bullets>
         <ListItem>Create and manage your account</ListItem>
+        {PRIVACY.launchReminder && <ListItem>Send the one launch email you asked for</ListItem>}
         <ListItem>Enable multiplayer game functionality, chat and translation</ListItem>
         {PRIVACY.purchases && <ListItem>Provide and restore what you buy</ListItem>}
         {PRIVACY.creatorCodes && (
@@ -974,6 +1008,7 @@ const Privacy: React.FC = () => {
           You can object to this processing at any time by emailing <SupportEmail />.
         </Item>
         <Item label="Consent">
+          {PRIVACY.launchReminder ? 'Asking for a launch reminder on our website. ' : ''}
           For your device's permissions (the microphone and speech recognition
           {PRIVACY.notifications ? ', notifications' : ''}
           {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings
@@ -990,6 +1025,7 @@ const Privacy: React.FC = () => {
         We keep your account information for as long as you have an account. Records of games (moves, votes, roles and
         results) have no end date: we don't delete them on a schedule, and they stay after an account is deleted (see below).
         A game's drawings and chat are the exception, on the schedules described here.{' '}
+        {PRIVACY.launchReminder ? 'The launch reminder list is deleted once the launch email has gone out, at the latest 30 days after the launch. ' : ''}
         {chatRetention(PRIVACY.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
         made to deliver them live are deleted within 4 days. Translations are kept for 24 hours{PRIVACY.modTranslate1106 ? ' (those made for our moderators, for up to 30 days)' : ''}, and daily translation
         counts for 14 days.
@@ -1169,7 +1205,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">

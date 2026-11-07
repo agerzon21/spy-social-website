@@ -1,4 +1,4 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { defineConfig, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -232,9 +232,158 @@ function pagePreviews() {
         },
     };
 }
+/** A `const NAME = new Date('...')` in one of the site's sources: the page below reads the same instant the site does. */
+async function sourceDate(root, file, name) {
+    const found = new RegExp(`\\b${name}\\s*=\\s*(?:new Date\\()?'([^']+)'`).exec(await readFile(resolve(root, file), 'utf8'));
+    const date = found ? new Date(found[1]) : null;
+    if (!date || Number.isNaN(date.getTime()))
+        throw new Error(`helloPage: no date ${name} in ${file}`);
+    return date;
+}
+/**
+ * /hello, the page the merch QR opens: src/hello/page.ts, written to dist/hello/index.html at build time from the
+ * site's own words, colours, faces and dates, with no JavaScript bundle (it's for a weak signal). It adds this one
+ * file: the rest of the build stays as it was. public/hello/hello.js is its small script.
+ */
+function helloPage() {
+    let root = process.cwd();
+    let outDir = resolve(root, 'dist');
+    let env = {};
+    return {
+        name: 'spysocial-hello-page',
+        apply: 'build',
+        configResolved(config) {
+            root = config.root;
+            outDir = resolve(config.root, config.build.outDir);
+            env = config.env;
+        },
+        async writeBundle() {
+            const site = await loadSite(root);
+            const { LANGUAGES } = (await siteModule(root, 'src/i18n/languages.ts'));
+            const { HELLO_STRINGS } = (await siteModule(root, 'src/hello/strings.ts'));
+            const { helloHtml } = (await siteModule(root, 'src/hello/page.ts'));
+            const { DISCORD_URL } = (await siteModule(root, 'src/lib/social.ts'));
+            const { noir } = (await siteModule(root, 'src/theme/skins/noir.ts'));
+            const { daylight } = (await siteModule(root, 'src/theme/skins/daylight.ts'));
+            const launch = await sourceDate(root, 'src/pages/Roadmap.tsx', 'LAUNCH_DAY');
+            const closes = await sourceDate(root, 'src/lib/betaSignup.ts', 'CLOSES_AT');
+            const start = await sourceDate(root, 'src/pages/Beta.tsx', 'START');
+            const closeShown = await sourceDate(root, 'src/pages/Beta.tsx', 'CLOSE_SHOWN');
+            const ET = 'America/New_York';
+            const DAY = { weekday: 'long', month: 'long', day: 'numeric', timeZone: ET };
+            const DATE = { month: 'long', day: 'numeric', timeZone: ET };
+            const languages = await Promise.all(LANGUAGES.map(async ({ code, native, rtl, locale }) => {
+                // A language's table is English where it leaves something out, as on the rest of the site (src/i18n).
+                const own = code === 'en' ? {} : (await siteModule(root, `src/i18n/locales/${code}.ts`)).default;
+                const t = deepOver(site.en, own);
+                const pitch = /<b>(.*?)<\/b>/.exec(t.home.hero.lede)?.[1];
+                if (!pitch)
+                    throw new Error(`helloPage: no bold line in ${code}'s home.hero.lede`);
+                const words = HELLO_STRINGS[code];
+                if (!words)
+                    throw new Error(`helloPage: no words for ${code} in src/hello/strings.ts`);
+                const day = new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }).format(launch);
+                const when = new Intl.DateTimeFormat(locale, DATE).format(start);
+                // The date stays on one line (8\u00a0ноября), wherever the sentence wraps.
+                const closeDay = new Intl.DateTimeFormat(locale, DAY).format(closeShown).replace(/(\d) (?=\S)|(\S) (?=\d)/g, '$1$2\u00a0');
+                const closeTime = new Intl.DateTimeFormat(locale, { hour: 'numeric', minute: '2-digit', timeZone: ET }).format(closeShown).replace(/ /g, ' ');
+                return {
+                    code,
+                    native,
+                    rtl,
+                    title: t.home.hero.title,
+                    mark: t.home.hero.titleMark,
+                    eyebrow: t.home.hero.eyebrow,
+                    pitch,
+                    day,
+                    words,
+                    remindButton: words.remind.button(day.replace(/ /g, '\u00a0')),
+                    doneDetail: words.remind.doneDetail(day),
+                    discord: t.beta.discord,
+                    betaEyebrow: t.beta.eyebrow,
+                    // The day, then "Adults 18+" and "24 seats" (/beta's own facts, in the order 1 hour, adults, seats, phones).
+                    betaFacts: [when, t.beta.facts[1], t.beta.facts[2]],
+                    betaCloses: t.beta.join.closes(closeDay, closeTime),
+                    betaSignUp: t.beta.signUp,
+                    age: t.home.safety.title,
+                    languageLabel: t.language.menu,
+                };
+            }));
+            const files = await readdir(resolve(outDir, 'static'));
+            const asset = (pattern) => {
+                const name = files.find((file) => pattern.test(file));
+                if (!name)
+                    throw new Error(`helloPage: no ${pattern} in the build's static files`);
+                return `/static/${name}`;
+            };
+            const vars = (skin) => {
+                const c = skin.colors;
+                const a = skin.art;
+                return Object.entries({
+                    page: c.page,
+                    field: c.surfaceStrong,
+                    danger: c.danger,
+                    'warn-surface': c.warnSurface,
+                    text: c.text,
+                    body: c.body,
+                    line: c.lineStrong,
+                    control: c.control,
+                    accent: c.accent,
+                    'on-accent': c.onAccent,
+                    'accent-text': c.accentText,
+                    highlight: c.highlight,
+                    focus: c.focus,
+                    'hero-sky': a.heroSky,
+                    'wall-line': a.wallLine,
+                    pool: a.pool,
+                })
+                    .map(([k, v]) => `--${k}:${v};`)
+                    .join('');
+            };
+            // As src/lib/supabase.ts has them. A deploy without them must fail here, or the form could never send.
+            const supabaseUrl = env.VITE_SUPABASE_URL ?? '';
+            const anonKey = env.VITE_SUPABASE_ANON_KEY ?? '';
+            if (process.env.VERCEL && !(supabaseUrl && anonKey))
+                throw new Error('helloPage: VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY is missing');
+            const html = helloHtml({
+                languages,
+                darkVars: vars(noir),
+                lightVars: vars(daylight),
+                fontDisplay: noir.fonts.display,
+                fontBody: noir.fonts.body,
+                fonts: {
+                    display: asset(/^big-shoulders-display-latin-(?!ext-)[\w-]+\.woff2$/),
+                    displayCyrillic: asset(/^oswald-cyrillic-[\w-]+\.woff2$/),
+                    body: asset(/^barlow-600-latin-(?!ext-)[\w-]+\.woff2$/),
+                },
+                discordUrl: DISCORD_URL,
+                rpcUrl: supabaseUrl ? `${supabaseUrl.replace(/\/+$/, '')}/rest/v1/rpc/launch_reminder_signup` : '',
+                anonKey,
+                // The launch version sends /beta home, so the block goes with it whatever the date.
+                closesAt: site.LIVE.launchSite === true ? null : closes.toISOString(),
+                metaTitle: 'SpySocial: the new version launches December 8',
+                metaDescription: 'SpySocial is the party game of social deception. The new version launches December 8. The version in the stores today is the old one, so wait for this one.',
+                origin: ORIGIN,
+            });
+            await mkdir(resolve(outDir, 'hello'), { recursive: true });
+            await writeFile(resolve(outDir, 'hello', 'index.html'), html);
+        },
+    };
+}
+/** src/i18n's `over`: a translation over English, English wherever it leaves something out. */
+function deepOver(base, top) {
+    if (typeof base === 'object' && base !== null && !Array.isArray(base)) {
+        if (typeof top !== 'object' || top === null || Array.isArray(top))
+            return base;
+        return Object.fromEntries(Object.entries(base).map(([k, v]) => [k, deepOver(v, top[k])]));
+    }
+    if (Array.isArray(base))
+        return Array.isArray(top) ? top : base;
+    return typeof top === typeof base ? top : base;
+}
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [react(), launchHead(), switchedSitemap(), pagePreviews()],
+    plugins: [react(), launchHead(), switchedSitemap(), pagePreviews(), helloPage()],
     // Built files live in /static/ (renamed from /assets/ on 2026-10-17, so no browser keeps a stale copy from before)
     build: { assetsDir: 'static' },
 });
