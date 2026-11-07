@@ -86,6 +86,7 @@ const en: HelpText = {
           a: [
             'Players take turns drawing on one shared whiteboard. Locals hint at the word without drawing it outright. Spies add something vague that could fit.',
             'Once everyone has had a turn, votes and the spy’s guess open. Rounds go on until the game ends.',
+            'Spy Sketch’s drawings aren’t described aloud, so a screen reader (VoiceOver, TalkBack) can’t follow the drawing itself.',
           ],
         },
         {
@@ -267,7 +268,7 @@ const en: HelpText = {
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
             'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.',
             'Intel can be traded only between adults.',
-            ...(o.launch ? [] : ['During the beta test, until December 7, adult testers trade Intel too. On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned.']),
+            ...(o.launch ? [] : ['During the beta test, until December 7, adult testers trade Intel too. On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned.', 'From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them.']),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
           ],
         },
@@ -409,7 +410,7 @@ const en: HelpText = {
           a: [
             'The currency you earn by playing: from your games, your first game of the day and your daily streak, and from shredding spare copies.',
             'Your streak: one Play Online game a day keeps it. A game you start before the new day keeps it too, even if it ends after.',
-            'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.',
+            o.launch ? 'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.' : 'Intel is never sold and has no cash value. Adults can trade it with other adults, and spend it on the Black Market from the 2.2 launch on December 8, or in a test whose sales are undone.',
             'Every change to your Intel is a line in your Intel ledger, with its reason.',
             'In the <b>Vault</b>, your Intel has its own tile, a stack that grows with the amount. Tap it for what you earned today, earned in all and spent in all. Intel held in an open Black Market offer counts as spent until it comes back.',
           ],

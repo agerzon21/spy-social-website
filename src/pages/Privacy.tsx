@@ -173,7 +173,7 @@ const Privacy: React.FC = () => {
         {/* LIVE.gameNightPrizes: each Game Night's titles and the developer's bonus title (legalRelease). */}
         {PRIVACY.gameNightPrizes && (
           <Item label="Game Night">
-            When you play in our weekly Game Night, our servers keep which week you played, whether each game you
+            When you play in our Game Night, our servers keep which week you played, whether each game you
             played there counted toward the night's titles, and, when you get titles (the night's titles, or a bonus
             title the developer gives at a table he visits), which titles, the game they came from (if any) and when.
             We use this to give each account each title once, to show you a notice in the app, and to check that
@@ -433,7 +433,7 @@ const Privacy: React.FC = () => {
             collected it), each offer you make or get on a listing, each sale and fill (who bought and sold which copies,
             at what price and fee, and when), the protection and any reversal of a Rare Finds sale, and the matching
             lines in your Intel ledger. The Black Market emails no codes.
-            {PRIVACY.audit1103 ? " When we pause an account's trading ourselves (because it may have been taken, or while we look into fraud or farming), change its email address, or correct its birth year to under 18, its open offers and listings close, and we keep that as we keep a stopped offer." : ''}{' '}
+            {PRIVACY.audit1103 ? " When a lock lands on an account, whatever the reason (a pause we set because it may have been taken or while we look into fraud or farming, your own lock, the pause after a reversal, a ban, a suspension, a fair-play hold, and from December 7, 2026 a new device or a change of sign-in), or when we change its email address or correct its birth year to under 18, its open offers and listings close, and we keep that as we keep a stopped offer." : ''}{' '}
             {PRIVACY.launchSite
               ? "Sales made while SpySocial was being tested were undone before the launch, with matching lines in the Intel ledger of everyone they touched, and we keep the record of each undo like the sale. "
               : "Before version 2.2 opens to everyone, only test accounts use the market, except in Beta 2's test from November 12 to 16, 2026, when adults who can trade buy and sell for real. Those sales are undone on November 16, and any later test sales before the launch, with matching lines in the Intel ledger of everyone they touch, and we keep the record of each undo like the sale. "}

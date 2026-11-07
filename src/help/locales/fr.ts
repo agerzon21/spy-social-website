@@ -76,6 +76,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Les joueurs dessinent à tour de rôle sur un tableau blanc commun. Les locaux suggèrent le mot sans le dessiner franchement. Les espions ajoutent quelque chose de vague qui pourrait coller.",
           "Une fois que chacun a joué son tour, les votes et la tentative de l'espion s'ouvrent. Les manches continuent jusqu'à la fin de la partie.",
+            'Les dessins de Spy Sketch ne sont pas décrits à voix haute : un lecteur d’écran (VoiceOver, TalkBack) ne peut donc pas suivre le dessin.',
         ],
       },
       {
@@ -257,7 +258,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Ce que tu mets dans un échange ouvert lui est réservé : ça ne peut pas aller dans un autre échange ou sur le Marché noir en même temps. Si l'Intel d'un échange est dépensé avant qu'il se fasse, un avertissement s'affiche de ce côté, et l'échange ne peut pas se faire tant que le montant n'est pas baissé.",
           "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais.",
           "L'Intel ne s'échange qu'entre adultes.",
-          ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel. Le 7 décembre, toute l’Intel échangée est rendue : celui qui l’a donnée la récupère, et chacun ne garde que l’Intel qu’il a gagnée.']),
+          ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel. Le 7 décembre, toute l’Intel échangée est rendue : celui qui l’a donnée la récupère, et chacun ne garde que l’Intel qu’il a gagnée.', 'À partir du 7 décembre, les interceptions reçues par un code ou un cadeau, ce qu’elles contiennent et ce que tu obtiens avec elles par Échange restent sur ton compte : tu peux t’en servir, mais pas les échanger ni les vendre.']),
           "Acheter ou vendre des objets, de l'Intel ou des comptes contre de l'argent réel est interdit.",
         ],
       },
@@ -399,7 +400,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           'La monnaie que tu gagnes en jouant : avec tes parties, ta première partie du jour et ta série quotidienne, et en déchiquetant des doublons.',
           'Ta série : une partie de Jouer en ligne par jour la garde. Une partie lancée avant le nouveau jour la garde aussi, même si elle finit après.',
-          "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes.",
+          o.launch ? "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes." : 'L’Intel n’est jamais vendu et n’a aucune valeur en argent. Les adultes peuvent l’échanger avec d’autres adultes, et le dépenser au Marché noir à partir du lancement de la 2.2, le 8 décembre, ou pendant un test dont les ventes sont annulées.',
           "Chaque changement de ton Intel est une ligne de ton registre Intel, avec son motif.",
           "Dans le <b>Coffre</b>, ton Intel a sa propre tuile, une pile qui grandit avec le montant. Touche-la pour voir ce que tu as gagné aujourd'hui, gagné en tout et dépensé en tout. L'Intel bloqué dans une offre ouverte du Marché noir compte comme dépensé jusqu'à son retour.",
         ],

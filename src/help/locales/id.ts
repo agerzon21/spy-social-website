@@ -80,6 +80,7 @@ const id: HelpText = {
           a: [
             'Pemain bergiliran menggambar di satu papan tulis bersama. Warga memberi petunjuk tanpa menggambar katanya terang-terangan. Mata-mata menambahkan sesuatu yang samar yang bisa cocok.',
             'Setelah semua dapat giliran, voting dan tebakan mata-mata terbuka. Ronde berlanjut sampai permainan selesai.',
+            'Gambar di Spy Sketch tidak dibacakan, jadi pembaca layar (VoiceOver, TalkBack) tidak bisa mengikuti gambarnya.',
           ],
         },
         {
@@ -261,7 +262,7 @@ const id: HelpText = {
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
             'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.',
             'Intel hanya bisa ditukar antar orang dewasa.',
-            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel. Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri.']),
+            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel. Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri.', 'Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual.']),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
           ],
         },
@@ -403,7 +404,7 @@ const id: HelpText = {
           a: [
             'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan streak harian, serta dari menghancurkan duplikat.',
             'Streak-mu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
-            'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.',
+            o.launch ? 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.' : 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa bisa menukarnya dengan orang dewasa lain, dan memakainya di Pasar Gelap mulai peluncuran 2.2 tanggal 8 Desember, atau dalam uji yang penjualannya dibatalkan.',
             'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya.',
             'Di <b>Brankas</b>, Intel-mu punya ubin sendiri, tumpukan yang tumbuh sesuai jumlahnya. Ketuk untuk melihat yang didapat hari ini, didapat seluruhnya, dan dipakai seluruhnya. Intel yang tertahan di penawaran Pasar Gelap yang masih terbuka dihitung terpakai sampai kembali.',
           ],

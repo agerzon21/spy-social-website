@@ -80,6 +80,7 @@ const es: HelpText = {
           a: [
             'Los jugadores dibujan por turnos en una pizarra compartida. Los locales insinúan la palabra sin dibujarla del todo. Los espías añaden algo vago que pueda encajar.',
             'Cuando todos han tenido su turno, se abren las votaciones y el intento del espía. Las rondas siguen hasta que termina la partida.',
+            'Los dibujos de Spy Sketch no se describen en voz alta, así que un lector de pantalla (VoiceOver, TalkBack) no puede seguir el dibujo.',
           ],
         },
         {
@@ -261,7 +262,7 @@ const es: HelpText = {
             'Lo que pones en un intercambio abierto queda reservado para él: no puede ir a otro intercambio ni al Mercado Negro al mismo tiempo. Si el Intel de un intercambio se gasta antes de que se haga, aparece un aviso en ese lado y el intercambio no puede hacerse hasta que se baje la cantidad.',
             'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.',
             'El Intel solo se puede intercambiar entre adultos.',
-            ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, los testers adultos también intercambian Intel. El 7 de diciembre se devuelve todo el Intel intercambiado: quien lo dio lo recupera y cada uno se queda solo con el Intel que ganó.']),
+            ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, los testers adultos también intercambian Intel. El 7 de diciembre se devuelve todo el Intel intercambiado: quien lo dio lo recupera y cada uno se queda solo con el Intel que ganó.', 'Desde el 7 de diciembre, las intercepciones de un código o un regalo, lo que salga de ellas y lo que consigas con ellas en un Canje se quedan en tu cuenta: puedes usarlas, pero no intercambiarlas ni venderlas.']),
             'Comprar o vender objetos, Intel o cuentas por dinero real va contra las reglas.',
           ],
         },
@@ -403,7 +404,7 @@ const es: HelpText = {
           a: [
             'La moneda que ganas jugando: con tus partidas, tu primera partida del día y tu racha diaria, y al triturar copias repetidas.',
             'Tu racha: una partida de Jugar en línea al día la mantiene. Una partida que empiezas antes del nuevo día también la mantiene, aunque termine después.',
-            'El Intel nunca se vende y no vale dinero. Los adultos lo gastan en el Mercado Negro y pueden intercambiarlo con otros adultos.',
+            o.launch ? 'El Intel nunca se vende y no vale dinero. Los adultos lo gastan en el Mercado Negro y pueden intercambiarlo con otros adultos.' : 'El Intel nunca se vende y no vale dinero. Los adultos pueden intercambiarlo con otros adultos y gastarlo en el Mercado Negro desde el lanzamiento de la 2.2, el 8 de diciembre, o en una prueba cuyas ventas se deshacen.',
             'Cada cambio en tu Intel es una línea en tu registro de Intel, con su motivo.',
             'En la <b>Bóveda</b>, tu Intel tiene su propia ficha, una pila que crece con la cantidad. Tócala para ver lo ganado hoy, lo ganado en total y lo gastado en total. El Intel retenido en una oferta abierta del Mercado Negro cuenta como gastado hasta que vuelve.',
           ],

@@ -1399,6 +1399,8 @@ export const LIVE = {
    * A website fact: set in LIVE, never in PRIVACY_AHEAD.
    */
   launchSite: false,
+  /** site-full-1106: Terms 9 and help say the Dec 7 rule for what comes from a code or a gift, Privacy's market lines follow Nov 6's locks: Last Updated November 7. Text already in force or dated; no TERMS_PUBLISHED or terms_version raise (the launch republishes). */
+  siteFull1107: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -1569,6 +1571,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.testerMarket
     ? 'November 12, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the site goes up with it on Nov 12
+  : LIVE.siteFull1107
+    ? 'November 7, 2026' // site-full-1106: the site went up with it on
   : LIVE.safetyAnswers1106
     ? 'November 6, 2026' // the owner's child-safety answers (Child Safety: personal info refused with a minor, the chat safety check): the site went up with it on
   : LIVE.membershipWords1105
@@ -1631,6 +1635,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.siteFull1107
+    ? 'November 7, 2026' // site-full-1106: the site went up with it on
   : LIVE.safetyAnswers1106
     ? 'November 6, 2026' // the owner's child-safety answers: personal info refused with a minor, Chat Safety Checks, "never sent to OpenAI to be translated": the site went up with it on
   : LIVE.membershipWords1105

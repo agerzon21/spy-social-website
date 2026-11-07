@@ -247,7 +247,7 @@ const Terms: React.FC = () => {
         {/* LIVE.gameNightRules: the rules page says it's part of these Terms. */}
         {LIVE.gameNightRules && (
           <>
-            {' '}Game Night, our weekly event, is played at Play Online tables; its titles and how to get them are set
+            {' '}Game Night, which we host on the nights we announce in the app, is played at Play Online tables; its titles and how to get them are set
             out in the <PageLink to="/game-night-rules">Game Night Rules</PageLink>, which are part of these Terms.
           </>
         )}
@@ -786,7 +786,7 @@ const Terms: React.FC = () => {
               level rewards, items from the arcade games and Intel we add ourselves are never tradable.{' '}
               {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). */}
               {LIVE.giftsTradable
-                ? "For now, items we give you as a gift, items from a code and the Beta set can be traded at once. We may change this for items given from then on (for example, so that they become tradable only once your account has played 3 real games); an item that has already become tradable stays tradable, and the app marks which items can be traded."
+                ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
                 : "Items from a code, and the Beta set, become tradable only once your account has played 3 real games (finished games with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official Beta session."}
             </ListItem>
             <ListItem>
