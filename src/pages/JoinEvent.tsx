@@ -3,7 +3,9 @@ import { FaApple } from 'react-icons/fa'
 import { IoLogoGooglePlaystore } from 'react-icons/io5'
 import { useParams } from 'react-router-dom'
 import { useEffect, useMemo, useState } from 'react'
-import { LIVE } from '../lib/legalRelease'
+import { LIVE, STORES_OPEN } from '../lib/legalRelease'
+import { REMINDER_PAGE } from '../lib/launchDay'
+import { LaunchLine } from '../components/ui/LaunchReminder'
 import { supabase } from '../lib/supabase'
 import { openAppHref, tryAppOnLoad, tryAppOnce } from '../lib/appLink'
 import { currentPlatform } from '../lib/platform'
@@ -54,7 +56,7 @@ const JoinEvent = () => {
   const platform = useMemo(currentPlatform, [])
   const isMobile = platform !== 'desktop'
   // spysocial:// on iPhone and iPad, intent:// (with the Play listing as its fallback) on Android: lib/appLink.
-  const appLink = openAppHref(appPath, platform)
+  const appLink = STORES_OPEN ? openAppHref(appPath, platform) : openAppHref(appPath, platform, `${window.location.origin}${REMINDER_PAGE}`)
 
   useEffect(() => {
     let cancelled = false
@@ -171,7 +173,8 @@ const JoinEvent = () => {
                 {c.openInApp}
               </Button>
             ) : null}
-            {(platform === 'ios' || platform === 'desktop') && (
+            {!STORES_OPEN && <LaunchLine />}
+            {STORES_OPEN && (platform === 'ios' || platform === 'desktop') && (
               <Button
                 as="a"
                 href={APP_STORE_URL}
@@ -184,7 +187,7 @@ const JoinEvent = () => {
                 {platform === 'ios' ? c.noAppIos : c.appStore}
               </Button>
             )}
-            {(platform === 'android' || platform === 'desktop') && (
+            {STORES_OPEN && (platform === 'android' || platform === 'desktop') && (
               <Button
                 as="a"
                 href={PLAY_STORE_URL}

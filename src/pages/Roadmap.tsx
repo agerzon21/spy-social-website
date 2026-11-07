@@ -21,11 +21,9 @@ import Eyebrow from '../components/ui/Eyebrow'
 import ui from '../components/ui/ui.module.css'
 import { useLang, useT } from '../i18n'
 import { formatDate } from '../i18n/rich'
+import { LAUNCH_DAY } from '../lib/launchDay'
 import { LIVE, avatarsLive } from '../lib/legalRelease'
 import s from './Roadmap.module.css'
-
-/** The 2.2 launch day, written as the release notes write dates; if the launch moves, change it here. */
-const LAUNCH_DAY = 'December 8, 2026'
 
 /** The icons of the 2.2 cards and of the plans, by position (src/i18n: roadmap.now.features, roadmap.next.plans). */
 const FEATURE_ICONS: IconType[] = [FaGlobe, FaPencil, FaLanguage, FaUserSecret, FaMoon, FaPalette, FaTicket, FaMusic, FaStopwatch, FaShieldHalved]

@@ -1729,6 +1729,13 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
 export const ONLINE_SAFETY_TEXT: boolean = LIVE.launchSite
 
 /**
+ * Whether the site sends people to the stores (owner Nov 7). Until the launch the stores hold the old 2.1.1, so the home page,
+ * /join, /join/e, the password page and Contact show the launch date and the reminder instead (components/ui/LaunchReminder).
+ * It follows LIVE.launchSite: the launch flip brings every store button and line back, with nothing else to change.
+ */
+export const STORES_OPEN: boolean = LIVE.launchSite
+
+/**
  * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.
  * People who used SpySocial before these Terms were published are bound by them from TERMS_EFFECTIVE_FOR_EXISTING,
  * or earlier if they accept them in the app; everyone else from their first use or acceptance. Whenever the Terms

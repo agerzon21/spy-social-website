@@ -111,11 +111,20 @@ type Site = {
   en: { meta: { siteName: string; defaultTitle: string; description: string; titles: Record<string, string>; descriptions: Record<string, string> } }
   langs: string[]
 }
+/** index.html's and en.ts's description, without the stores: what src/components/SiteHead.tsx says in English. */
+function prelaunch(text: string): string {
+  const stores = ' Available on iOS and Google Play.'
+  if (!text.includes(stores)) throw new Error('prelaunch: the description no longer names the stores as this expects')
+  return text.split(stores).join(' The new SpySocial launches December 8.')
+}
+
 async function loadSite(root: string): Promise<Site> {
   const legal = (await siteModule(root, 'src/lib/legalRelease.ts')) as { LIVE: Record<string, unknown>; ONLINE_SAFETY_TEXT: boolean }
   const { default: en } = (await siteModule(root, 'src/i18n/locales/en.ts')) as { default: Site['en'] }
   const { LANGUAGES } = (await siteModule(root, 'src/i18n/languages.ts')) as { LANGUAGES: { code: string }[] }
-  return { LIVE: legal.LIVE, ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT, en, langs: LANGUAGES.map((l) => l.code) }
+  // Until the launch the description doesn't name the stores (STORES_OPEN, src/lib/legalRelease.ts).
+  const words = legal.LIVE.launchSite === true ? en : { ...en, meta: { ...en.meta, description: prelaunch(en.meta.description) } }
+  return { LIVE: legal.LIVE, ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT, en: words, langs: LANGUAGES.map((l) => l.code) }
 }
 
 /** The app's structured data (schema.org): the publisher, the site and the app on both stores, free. Launch version only. */
@@ -170,7 +179,7 @@ function launchHead(): Plugin {
     },
     async transformIndexHtml(html) {
       const site = await loadSite(root)
-      if (site.LIVE.launchSite !== true) return html
+      if (site.LIVE.launchSite !== true) return prelaunch(html)
       const image = `${ORIGIN}/images/og-launch.jpg`
       const swaps: [RegExp, string][] = [
         [/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`],
@@ -293,6 +302,12 @@ function helloPage(): Plugin {
         language: { menu: string }
       }
       const site = await loadSite(root)
+      // From the launch flip /hello is the app's own file, whose route goes home: nobody is told to wait for what's out.
+      if (site.LIVE.launchSite === true) {
+        await mkdir(resolve(outDir, 'hello'), { recursive: true })
+        await writeFile(resolve(outDir, 'hello', 'index.html'), await readFile(resolve(outDir, 'index.html'), 'utf8'))
+        return
+      }
       const { LANGUAGES } = (await siteModule(root, 'src/i18n/languages.ts')) as { LANGUAGES: { code: string; native: string; rtl: boolean; locale: string }[] }
       const { HELLO_STRINGS } = (await siteModule(root, 'src/hello/strings.ts')) as { HELLO_STRINGS: Record<string, unknown> }
       const { helloHtml } = (await siteModule(root, 'src/hello/page.ts')) as { helloHtml: (input: unknown) => string }
@@ -300,7 +315,7 @@ function helloPage(): Plugin {
       const { noir } = (await siteModule(root, 'src/theme/skins/noir.ts')) as { noir: Skinish }
       const { daylight } = (await siteModule(root, 'src/theme/skins/daylight.ts')) as { daylight: Skinish }
 
-      const launch = await sourceDate(root, 'src/pages/Roadmap.tsx', 'LAUNCH_DAY')
+      const launch = await sourceDate(root, 'src/lib/launchDay.ts', 'LAUNCH_DAY')
       const closes = await sourceDate(root, 'src/lib/betaSignup.ts', 'CLOSES_AT')
       const start = await sourceDate(root, 'src/pages/Beta.tsx', 'START')
       const closeShown = await sourceDate(root, 'src/pages/Beta.tsx', 'CLOSE_SHOWN')
@@ -394,8 +409,7 @@ function helloPage(): Plugin {
         discordUrl: DISCORD_URL,
         rpcUrl: supabaseUrl ? `${supabaseUrl.replace(/\/+$/, '')}/rest/v1/rpc/launch_reminder_signup` : '',
         anonKey,
-        // The launch version sends /beta home, so the block goes with it whatever the date.
-        closesAt: site.LIVE.launchSite === true ? null : closes.toISOString(),
+        closesAt: closes.toISOString(),
         metaTitle: 'SpySocial: the new version launches December 8',
         metaDescription: 'SpySocial is the party game of social deception. The new version launches December 8. The version in the stores today is the old one, so wait for this one.',
         origin: ORIGIN,

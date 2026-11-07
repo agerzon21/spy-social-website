@@ -1,11 +1,12 @@
 import { useT } from '../../i18n'
-import { LIVE } from '../../lib/legalRelease'
+import { LIVE, STORES_OPEN } from '../../lib/legalRelease'
 import DisplayHeading from '../ui/DisplayHeading'
+import { LaunchReminder } from '../ui/LaunchReminder'
 import StoreBadges from '../ui/StoreBadges'
 import ui from '../ui/ui.module.css'
 import s from './home.module.css'
 
-/** The last word: the stores again. */
+/** The last word: the stores again, or until the launch the reminder. */
 const FinalCall = () => {
   const t = useT().home.final
   return (
@@ -16,7 +17,7 @@ const FinalCall = () => {
           {t.text}
           {LIVE.purchases ? ` ${t.purchases}` : ''}
         </p>
-        <StoreBadges center />
+        {STORES_OPEN ? <StoreBadges center /> : <LaunchReminder center />}
       </div>
     </section>
   )

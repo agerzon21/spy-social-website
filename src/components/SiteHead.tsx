@@ -1,7 +1,9 @@
 import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import { LANGUAGES, matchLang, useLang, useT, type Strings } from '../i18n'
-import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
+import { HELLO_STRINGS } from '../hello/strings'
+import { launchDayText } from '../lib/launchDay'
+import { LIVE, ONLINE_SAFETY_TEXT, STORES_OPEN } from '../lib/legalRelease'
 
 /** The address search engines know the site by: the bare spysocial.app redirects here (vercel.json). */
 const ORIGIN = 'https://www.spysocial.app'
@@ -73,7 +75,12 @@ const SiteHead = () => {
   const path = pathname.replace(/\/+$/, '') || '/'
   const page = pageOf(path)
   const title = page ? `${t.meta.titles[page]} · ${t.meta.siteName}` : t.meta.defaultTitle
-  const description = page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : t.meta.description
+  const words = HELLO_STRINGS[lang]
+  // Until the launch the site's own description doesn't name the stores: it says when the new version comes.
+  const general = STORES_OPEN
+    ? t.meta.description
+    : `${t.meta.description.replace(words.storeTail, '')} ${words.launchLine(launchDayText(language.locale))}`
+  const description = page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
   const indexed = !(page && UNLISTED.has(page))
   const here = `${ORIGIN}${path}`
   const asked = matchLang(new URLSearchParams(search).get('lang'))

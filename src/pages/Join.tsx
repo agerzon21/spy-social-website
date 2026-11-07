@@ -7,7 +7,10 @@ import { openAppHref, tryAppOnLoad, tryAppOnce } from '../lib/appLink'
 import { keepCodeChars } from '../lib/roomCode'
 import { currentPlatform } from '../lib/platform'
 import { playJoinUrl } from '../lib/playUrl'
+import { STORES_OPEN } from '../lib/legalRelease'
+import { REMINDER_PAGE } from '../lib/launchDay'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
+import { LaunchLine } from '../components/ui/LaunchReminder'
 import { RoomCodePlate } from '../components/ui/RoomCodePlate'
 import { useT } from '../i18n'
 
@@ -36,9 +39,12 @@ const Join = () => {
   const platform = useMemo(currentPlatform, [])
 
   const isMobile = platform === 'ios' || platform === 'android'
-  const appLink = openAppHref(appPath, platform)
+  // Until the launch the stores hold the old 2.1.1. A room code keeps its way there, as the second choice with plain words: a
+  // friend on 2.1.1 can only be joined from 2.1.1. A Friend Code (2.2 only) or no code has no use for it: the reminder instead.
+  const storesHere = STORES_OPEN || (!!code && !token)
+  const appLink = storesHere ? openAppHref(appPath, platform) : openAppHref(appPath, platform, `${window.location.origin}${REMINDER_PAGE}`)
   // The store buttons step back (outlined) when something above them is the main way in.
-  const storesSecondary = isMobile || (platform === 'desktop' && !!webLink)
+  const storesSecondary = !STORES_OPEN || isMobile || (platform === 'desktop' && !!webLink)
 
   // Nothing opens by itself in Safari or Chrome: an installed app already took the link (Universal Links, App Links),
   // and spysocial:// without the app is iOS Safari's "Cannot Open Page". Only an in-app browser on iOS (Instagram,
@@ -83,7 +89,7 @@ const Join = () => {
               </Button>
             )}
 
-            {(platform === 'ios' || platform === 'desktop') && (
+            {storesHere && (platform === 'ios' || platform === 'desktop') && (
               <Button
                 as="a"
                 href={APP_STORE_URL}
@@ -97,7 +103,7 @@ const Join = () => {
               </Button>
             )}
 
-            {(platform === 'android' || platform === 'desktop') && (
+            {storesHere && (platform === 'android' || platform === 'desktop') && (
               <Button
                 as="a"
                 href={PLAY_STORE_URL}
@@ -112,7 +118,9 @@ const Join = () => {
             )}
           </VStack>
 
-          {isMobile && code && (
+          {!STORES_OPEN && <LaunchLine note={storesHere} />}
+
+          {isMobile && code && (STORES_OPEN || storesHere) && (
             <Text color="ss.muted" fontSize="15px" lineHeight="1.45" textAlign="center" mt={-4}>
               {t.afterInstall}
             </Text>

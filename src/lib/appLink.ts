@@ -32,11 +32,11 @@ export function isInAppBrowser(ua: string): boolean {
 
 /**
  * The Open in SpySocial address for an app path ("join/ABCDE?p=XYZ", "join/e/AB12CD"): spysocial://<path>, or on
- * Android intent://<path>#Intent;scheme=spysocial;package=...;S.browser_fallback_url=<the Play listing>;end.
+ * Android intent://<path>#Intent;scheme=spysocial;package=...;S.browser_fallback_url=<the Play listing, or `fallback`>;end.
  */
-export function openAppHref(path: string, platform: Platform): string {
+export function openAppHref(path: string, platform: Platform, fallback: string = PLAY_STORE_URL): string {
   if (platform === 'android') {
-    return `intent://${path}#Intent;scheme=${SCHEME};package=${ANDROID_PACKAGE};S.browser_fallback_url=${encodeURIComponent(PLAY_STORE_URL)};end`
+    return `intent://${path}#Intent;scheme=${SCHEME};package=${ANDROID_PACKAGE};S.browser_fallback_url=${encodeURIComponent(fallback)};end`
   }
   return `${SCHEME}://${path}`
 }

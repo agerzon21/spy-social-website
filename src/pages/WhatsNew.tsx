@@ -4,7 +4,8 @@ import type { IconType } from 'react-icons'
 import { motion } from 'framer-motion'
 import { useLang, useT, type Strings } from '../i18n'
 import { formatDate } from '../i18n/rich'
-import { LIVE } from '../lib/legalRelease'
+import { LIVE, STORES_OPEN } from '../lib/legalRelease'
+import { LaunchLine } from '../components/ui/LaunchReminder'
 
 const MotionBox = motion(Box)
 
@@ -218,6 +219,7 @@ const WhatsNew = () => {
             <Text fontSize={{ base: '17px', md: '18px' }} color="ss.muted" maxW="500px">
               {t.sub}
             </Text>
+            {!STORES_OPEN && <LaunchLine />}
           </VStack>
 
           <VStack spacing={6} align="stretch">

@@ -1,0 +1,79 @@
+/* The launch reminder, until the launch: the same parts as the plain /hello page (src/hello/page.ts), from the skin's variables. */
+
+.remind { width: 100%; max-width: 460px; }
+.center { margin-inline: auto; text-align: center; }
+
+.form { display: flex; flex-direction: column; gap: 8px; margin: 0; }
+.email {
+  display: block;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 14px;
+  border: var(--ss-hairline) solid var(--ss-control);
+  border-radius: 0;
+  background: var(--ss-surface-strong);
+  color: var(--ss-text);
+  font: 600 17px/1.2 var(--ss-font-body);
+  text-align: start;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.email::placeholder { color: var(--ss-body); opacity: 1; }
+.email:focus { outline: 2px solid var(--ss-focus); outline-offset: 1px; }
+.age {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  margin: -4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--ss-text);
+  cursor: pointer;
+}
+.center .age { justify-content: center; }
+.age input { flex: none; width: 24px; height: 24px; margin: 0; accent-color: var(--ss-accent); }
+.trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.message {
+  margin: 0;
+  padding: 8px 10px;
+  border-inline-start: 3px solid var(--ss-danger);
+  background: var(--ss-warn-surface);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ss-text);
+  text-align: start;
+}
+.send { width: 100%; padding-inline: 12px; font-size: clamp(19px, 6vw, 24px); }
+.send:disabled { opacity: 0.72; }
+.note { margin: 8px 0 0; font-size: 13px; line-height: 1.35; color: var(--ss-body); }
+.noteLink { padding: 12px 6px; margin: -12px -6px; color: var(--ss-body); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+
+.done { padding: 14px 12px; border: var(--ss-hairline) solid var(--ss-accent); outline: none; }
+.doneTitle { margin: 0; font: 800 30px/1.05 var(--ss-font-display); letter-spacing: 0.03em; text-transform: uppercase; color: var(--ss-accent-text); }
+.doneDetail { margin: 4px 0 0; font-size: 16px; font-weight: 600; line-height: 1.3; color: var(--ss-text); }
+
+.when { margin: 0 0 16px; }
+.before { margin: 0; font-size: clamp(18px, 5vw, 22px); font-weight: 600; line-height: 1.2; color: var(--ss-text); }
+.day {
+  margin: 0;
+  font: 900 clamp(62px, 18vw, 92px)/0.98 var(--ss-font-display);
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--ss-accent-text);
+  white-space: nowrap;
+}
+.stores { margin: 8px 0 0; max-width: 30em; font-size: clamp(15px, 4.4vw, 18px); font-weight: 600; line-height: 1.32; color: var(--ss-body); }
+.stores b { font-weight: 600; color: var(--ss-text); white-space: nowrap; }
+:global(html:is([lang='es'], [lang='pt-BR'])) .day { font-size: clamp(46px, 13vw, 66px); }
+:global(html[lang='fr']) .day { font-size: clamp(56px, 16.5vw, 84px); }
+:global(html:is([lang='ar'], [lang='hi'], [lang='bn'], [lang='zh-Hans'])) .day { font-size: clamp(50px, 14vw, 76px); line-height: 1.25; }
+
+.discord { width: 100%; max-width: 460px; min-height: 48px; margin-top: 12px; font-size: 20px; }
+.discord svg { flex: none; width: 26px; height: 24px; }
+
+.line { margin: 0; font-size: 15px; font-weight: 500; line-height: 1.45; color: var(--ss-muted); text-align: center; }
+.lineNote { display: block; margin-bottom: 8px; }
+.lineLink { font-weight: 700; color: var(--ss-link); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }

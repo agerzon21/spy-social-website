@@ -6,6 +6,7 @@ import { IoLogoGooglePlaystore } from 'react-icons/io5'
 import { useThemedToast } from '../lib/useThemedToast'
 import SocialLinks from '../components/SocialLinks'
 import { LinkRow, LinkRows } from '../components/ui/LinkRow'
+import { STORES_OPEN } from '../lib/legalRelease'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 import { useT } from '../i18n'
 import { rich } from '../i18n/rich'
@@ -125,8 +126,9 @@ const Support = () => {
             </Text>
             <LinkRows>
               <LinkRow to="/support" label={t.faqLink} />
-              <LinkRow href={APP_STORE_URL} newTab icon={<FaApple />} label={t.rate} />
-              <LinkRow href={PLAY_STORE_URL} newTab icon={<IoLogoGooglePlaystore />} label={t.ratePlay} />
+              {/* Until the launch the listings are the old version's. */}
+              {STORES_OPEN && <LinkRow href={APP_STORE_URL} newTab icon={<FaApple />} label={t.rate} />}
+              {STORES_OPEN && <LinkRow href={PLAY_STORE_URL} newTab icon={<IoLogoGooglePlaystore />} label={t.ratePlay} />}
             </LinkRows>
           </VStack>
 

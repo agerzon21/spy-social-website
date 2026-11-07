@@ -1,12 +1,13 @@
 import { useMemo } from 'react'
 import { useT } from '../../i18n'
 import { rich } from '../../i18n/rich'
-import { LIVE } from '../../lib/legalRelease'
+import { LIVE, STORES_OPEN } from '../../lib/legalRelease'
 import { currentPlatform } from '../../lib/platform'
 import { PLAY_URL } from '../../lib/playUrl'
 import DisplayHeading from '../ui/DisplayHeading'
 import Eyebrow from '../ui/Eyebrow'
 import IconLink from '../ui/IconLink'
+import { DiscordLink, LaunchDate, LaunchReminder } from '../ui/LaunchReminder'
 import StoreBadges from '../ui/StoreBadges'
 import ui from '../ui/ui.module.css'
 import LineUp from './LineUp'
@@ -41,8 +42,18 @@ const HomeHero = () => {
             {t.title}
             <span className={s.accent}>{t.titleMark}</span>
           </DisplayHeading>
-          <p className={s.heroLede}>{rich(t.lede, { b: (c) => <strong>{c}</strong> })}</p>
-          <StoreBadges />
+          {/* Until the launch its bold line alone, so the date and the reminder are on a phone's first screen; How It Plays is just below. */}
+          <p className={s.heroLede}>{rich(STORES_OPEN ? t.lede : (/<b>.*?<\/b>/.exec(t.lede)?.[0] ?? t.lede), { b: (c) => <strong>{c}</strong> })}</p>
+          {/* Until the launch the stores hold the old version: the date and the reminder stand here instead. */}
+          {STORES_OPEN ? (
+            <StoreBadges />
+          ) : (
+            <>
+              <LaunchDate />
+              <LaunchReminder />
+              <DiscordLink />
+            </>
+          )}
           <ul className={s.facts}>
             {t.facts.map((fact) => (
               <li key={fact}>{fact}</li>

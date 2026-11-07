@@ -99,6 +99,8 @@ function App() {
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
               {/* After Beta 2, the launch version sends the old playtest link home (LIVE.launchSite). */}
               <Route path="/beta" element={LIVE.launchSite ? <Navigate to="/" replace /> : <Layout><Beta /></Layout>} />
+              {/* The plain reminder page answers /hello until the launch; from the launch flip its file is this app's, which goes home. */}
+              <Route path="/hello" element={<Navigate to="/" replace />} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
               <Route path="/join/e/:id" element={<Layout><JoinEvent /></Layout>} />
               <Route path="/join/f/:token" element={<Layout><Join /></Layout>} />

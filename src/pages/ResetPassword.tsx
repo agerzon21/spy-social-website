@@ -5,7 +5,9 @@ import { supabase } from '../lib/supabase'
 import { useThemedToast } from '../lib/useThemedToast'
 import { useT } from '../i18n'
 import { rich } from '../i18n/rich'
-import { LIVE } from '../lib/legalRelease'
+import { LIVE, STORES_OPEN } from '../lib/legalRelease'
+import { LaunchLine } from '../components/ui/LaunchReminder'
+import { REMINDER_PAGE } from '../lib/launchDay'
 import { openAppHref } from '../lib/appLink'
 import { currentPlatform } from '../lib/platform'
 import StoreBadges from '../components/ui/StoreBadges'
@@ -32,10 +34,16 @@ const PasswordsGone = () => {
           <Heading as="h1" size="md">{t.goneTitle}</Heading>
           <Text fontSize="sm" color="ss.muted">{t.goneBody}</Text>
           {platform !== 'desktop' && (
-            <Button as="a" href={openAppHref('', platform)} variant="primary" size="md" width="100%">{t.goneOpen}</Button>
+            <Button as="a" href={STORES_OPEN ? openAppHref('', platform) : openAppHref('', platform, `${window.location.origin}${REMINDER_PAGE}`)} variant="primary" size="md" width="100%">{t.goneOpen}</Button>
           )}
-          <Text fontSize="xs" color="ss.muted">{t.goneNoApp}</Text>
-          <StoreBadges center />
+          {STORES_OPEN ? (
+            <>
+              <Text fontSize="xs" color="ss.muted">{t.goneNoApp}</Text>
+              <StoreBadges center />
+            </>
+          ) : (
+            <LaunchLine />
+          )}
         </VStack>
       </Container>
     </Box>
