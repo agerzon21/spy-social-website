@@ -73,7 +73,9 @@ function css(input: HelloInput): string {
     face('Oswald', '500 700', fonts.displayCyrillic, 'U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116'),
     face('Big Shoulders Display', '100 900', fonts.display, latin),
     face('Barlow', '600', fonts.body, latin),
-    `:root{${input.darkVars}--font-display:${input.fontDisplay};--font-body:${input.fontBody};color-scheme:dark}`,
+    // Until the poster face arrives on a weak signal: the phone's own sans, a size down, so the huge lines keep to the page's width.
+    `@font-face{font-family:'Poster Fallback';src:local('Roboto Condensed'),local('Arial Narrow'),local('Roboto'),local('Helvetica Neue'),local('Arial');size-adjust:86%;unicode-range:${latin}}`,
+    `:root{${input.darkVars}--font-display:${input.fontDisplay.replace(/,\s*Oswald,/, ", Oswald, 'Poster Fallback',")};--font-body:${input.fontBody};color-scheme:dark}`,
     `:root[data-theme="light"]{${input.lightVars}color-scheme:light}`,
     STYLES,
     // Each language's <main> shows under its own <html lang>; lang.js set that before the first paint.
@@ -92,7 +94,7 @@ body::before{content:'';position:absolute;inset:0;pointer-events:none;background
   radial-gradient(90% 280px at 50% 130px,var(--pool),transparent 70%),
   radial-gradient(130% 440px at 50% -60px,var(--hero-sky),transparent 70%);
   -webkit-mask-image:linear-gradient(180deg,#000 120px,transparent 340px);mask-image:linear-gradient(180deg,#000 120px,transparent 340px)}
-main{display:none;position:relative;flex-direction:column;align-items:center;min-height:100vh;min-height:100svh;width:100%;max-width:480px;margin-inline:auto;
+main{display:none;position:relative;overflow-x:clip;flex-direction:column;align-items:center;min-height:100vh;min-height:100svh;width:100%;max-width:480px;margin-inline:auto;
   padding:max(clamp(10px,2.4vh,30px),env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left));text-align:center}
 .head{flex:none;margin-top:auto;display:block;width:var(--head);height:calc(var(--head)*1.027);margin-bottom:calc(var(--head)*-.1);position:relative}
 h1{position:relative;margin:0;font-family:var(--font-display);font-weight:900;text-transform:uppercase;line-height:.84;letter-spacing:.005em;
