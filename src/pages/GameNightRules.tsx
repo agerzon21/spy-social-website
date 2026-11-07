@@ -17,7 +17,7 @@ import { LIVE } from '../lib/legalRelease'
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
-const UPDATED = 'November 5, 2026' // the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
+const UPDATED = 'November 7, 2026' // titles trade and sell as Terms 9 says, Intercepts earned or given (site-full-1106); before it, November 5, 2026: the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -114,7 +114,7 @@ const GameNightRules: React.FC = () => (
           win, and your first game of the day there gives your daily Intercept. Every player who gets the Local winner's
           or the Spy winner's title also gets one Enigma Intercept, the highest tier (one a night, even with both
           titles). Intercepts
-          work as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe: earned only, never sold,
+          work as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe: earned or given by us, never sold for money,
           with the odds shown in the app before you open one.
         </P>
       </>
@@ -122,8 +122,9 @@ const GameNightRules: React.FC = () => (
 
     <H2>About the titles</H2>
     <P>
-      Game Night titles are cosmetic and added to your account. They have <B>no cash value</B>, can't be exchanged
-      for money or anything else, and can't be transferred to another account or sold. If a title is given by
+      Game Night titles are cosmetic and added to your account. They have <B>no cash value</B> and can't be exchanged
+      for money. They can move to another account only in a trade with a friend or a sale for Intel on the Black Market, as
+      our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe. If a title is given by
       mistake or won against these rules, we may take it back. You'll find your titles in the Locker.
     </P>
 
