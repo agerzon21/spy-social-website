@@ -22,7 +22,7 @@ export const InfoTable = ({
 }: {
   head: string[]
   rows: InfoRow[]
-  firstWidth?: string
+  firstWidth?: string | { base: string; md: string }
 }) => (
   <Box w="100%" overflowX="auto" border="var(--ss-card-border) solid" borderColor="ss.lineStrong" borderRadius="var(--ss-radius-card)" boxShadow="var(--ss-shadow-card)">
     {/* Long names in the narrow first column break at a hyphen, not mid-word. */}

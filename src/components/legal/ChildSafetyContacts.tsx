@@ -58,7 +58,7 @@ const rows: InfoRow[] = [
  */
 export const ChildSafetyContacts = ({ localized = false }: { localized?: boolean }) => {
   const t = useT().safety
-  if (!localized) return <InfoTable head={['Who', 'How']} rows={rows} firstWidth="30%" />
+  if (!localized) return <InfoTable head={['Who', 'How']} rows={rows} firstWidth={{ base: '40%', md: '30%' }} />
   const c = t.contacts
   const out = (href: string) => (words: React.ReactNode) => <OutLink href={href}>{words}</OutLink>
   const parts = { b: (words: React.ReactNode) => <B>{words}</B>, email: () => <SupportEmail subject="Child safety" /> }
@@ -68,5 +68,5 @@ export const ChildSafetyContacts = ({ localized = false }: { localized?: boolean
     { label: 'CEOP', note: c.ceop.note, cells: [rich(c.ceop.text, { ...parts, link: out('https://www.ceop.police.uk/Safety-Centre/') })] },
     { label: 'SpySocial', cells: [rich(c.spysocial.text, parts)] },
   ]
-  return <InfoTable head={[t.tableWho, t.tableHow]} rows={translated} firstWidth="30%" />
+  return <InfoTable head={[t.tableWho, t.tableHow]} rows={translated} firstWidth={{ base: '40%', md: '30%' }} />
 }

@@ -183,7 +183,7 @@ const Safety: React.FC = () => {
 
       <H2 id="help">{t.helpTitle}</H2>
       <P>{t.helpIntro}</P>
-      <InfoTable head={[t.tableWho, t.tableHow]} rows={helplines} firstWidth="30%" />
+      <InfoTable head={[t.tableWho, t.tableHow]} rows={helplines} firstWidth={{ base: '40%', md: '30%' }} />
 
       <P>{r(t.seeAlso, { link: page('/rules'), link2: page('/terms'), link3: page('/privacy') })}</P>
     </LegalPage>
