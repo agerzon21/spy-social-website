@@ -418,6 +418,9 @@ const id: Strings = {
       /** `intercepts` once unopened Intercepts trade on the Black Market (LIVE.interceptsMarket). */
       interceptsMarket:
         "<b>Sadapan (Intercepts):</b> hadiah yang didapat dengan bermain, masing-masing berisi satu item acak, seperti tampilan baru untuk agen. Tidak ada yang menjualnya demi uang, baik kami maupun pemain lain. Orang dewasa juga bisa saling membeli dan menjual sadapan yang belum dibuka di Pasar Gelap dengan mata uang yang didapat dari bermain, yang tidak bisa dibeli; pemain di bawah 18 tahun tidak bisa. Aplikasi menunjukkan peluangnya sebelum dibuka.",
+      /** A sentence after interceptsMarket once the app offers it (LIVE.interceptsInTrades). */
+      interceptsFriendTrades:
+        "Orang dewasa juga bisa menukar sadapan yang belum dibuka dengan teman.",
       /** Home's Discord pill (LIVE.homeDiscord; under 16 never, 16-17 a safety note first). */
       discord:
         "<b>Tautan ke Discord kami:</b> beranda bisa menampilkan tautan ke server Discord resmi SpySocial, tempat pemain mencari teman bermain. Discord adalah aplikasi terpisah dengan aturan dan batas usianya sendiri. Pemain di bawah 16 tahun tidak pernah melihat tautan ini, dan pemain 16 dan 17 tahun lebih dulu melihat catatan agar tetap aman di sana. Moderator kami menjaga server itu, tetapi tidak ada seorang pun di SpySocial yang bisa melihat pesan pribadi di Discord.",

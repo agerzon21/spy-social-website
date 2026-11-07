@@ -417,6 +417,9 @@ const fr: Strings = {
       /** `intercepts` once unopened Intercepts trade on the Black Market (LIVE.interceptsMarket). */
       interceptsMarket:
         "<b>Interceptions :</b> des récompenses gagnées en jouant, chacune avec un objet au hasard, comme un nouveau look pour l'agent. Personne ne les vend contre de l'argent, ni nous ni les autres joueurs. Les adultes peuvent aussi en acheter et en vendre entre eux, non ouvertes, sur le Marché noir contre la monnaie gagnée dans le jeu, qui ne s'achète pas ; les moins de 18 ans ne le peuvent pas. L'appli affiche les chances avant qu'on en ouvre une.",
+      /** A sentence after interceptsMarket once the app offers it (LIVE.interceptsInTrades). */
+      interceptsFriendTrades:
+        "Les adultes peuvent aussi les échanger, non ouvertes, avec leurs amis.",
       /** Home's Discord pill (LIVE.homeDiscord; under 16 never, 16-17 a safety note first). */
       discord:
         "<b>Un lien vers notre Discord :</b> l'accueil peut afficher un lien vers le serveur Discord officiel de SpySocial, où les joueurs trouvent avec qui jouer. Discord est une appli à part, avec ses propres règles et son âge minimum. Les moins de 16 ans ne voient jamais ce lien, et les joueurs de 16 et 17 ans voient d'abord un conseil pour y rester en sécurité. Nos modérateurs veillent sur le serveur, mais personne chez SpySocial ne peut voir les messages privés sur Discord.",
