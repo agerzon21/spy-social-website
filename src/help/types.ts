@@ -27,7 +27,11 @@ export interface HelpOpts {
   autoTranslation: boolean
   /** The app reads Apple's and Google's age range (LIVE.storeAgeSignals). */
   storeAgeSignals: boolean
-  /** Adults trade unopened Intercepts with friends (LIVE.interceptsInTrades: the app update that offers it). */
+  /**
+   * Adults trade unopened Intercepts with friends (LIVE.interceptsInTrades: on since update 48, November 7, 2026).
+   * TRANSLATIONS UNREVIEWED: these help lines, Safety's interceptsFriendTrades and the Intel History line, in every
+   * language but English, are agents' (intercept-trades-1106, econ-calls-1106), not read by a native speaker.
+   */
   interceptsInTrades: boolean
   /** Beta 2's Black Market is open to testers for real, Nov 12-16 (LIVE.testerMarket === 'open'). */
   testerMarket: boolean
