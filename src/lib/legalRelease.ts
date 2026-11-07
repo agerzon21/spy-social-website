@@ -993,9 +993,8 @@ export const LIVE = {
    */
   retentionSweep: false,
   /**
-   * Unopened Intercepts inside a friend trade. The server takes them (trade_set_intercepts), but no app version offers it
-   * (store compliance 2026-11-03: never called on any branch), so the pages say they move only on the Black Market. Flip
-   * on the day an app that offers it is out; Terms 9 and Privacy's Intercepts item then say trades too.
+   * Unopened Intercepts inside a friend trade. The server takes them (trade_set_intercepts), and the app offers it since
+   * update 48 (November 7, 2026); Terms 9, Privacy's Intercepts item, Transparency, help and Safety say so.
    */
   interceptsInTrades: true,
   /**

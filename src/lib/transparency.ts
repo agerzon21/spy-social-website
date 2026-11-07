@@ -126,6 +126,7 @@ const MARKET_NOV6: { day: string; what: string; from: string; to: string }[] = [
 
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES : []),
   ...MARKET_NOV6,
   ...TEST_PHASE_NOV,
   ...(LIVE.audit1103b ? ECONOMY_NOV3 : []),
@@ -133,7 +134,6 @@ export const RULE_CHANGES: { day: string; what: string; from: string; to: string
   ...(LIVE.tradeNoLimits ? TRADE_NO_LIMITS : []),
   ...(LIVE.tradeGatesNov2 ? TRADE_GATES_NOV2 : []),
   ...(LIVE.interceptsMarket ? INTERCEPTS_MARKET : []),
-  ...(LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES : []),
   ...(LIVE.giftsTradable ? GIFTS_TRADABLE : []),
   ...(LIVE.uniquesRarer ? UNIQUES_RARER : []),
 ]
