@@ -1431,7 +1431,7 @@ export const LIVE = {
   /**
    * policy-1108: the drawing check's AGREE kept on the server (app server 20261219200000_sketch_consent, table
    * drawing_check_consents: account, the note's version, when; deleted with the account; NOT NOW writes nothing), sent by
-   * the app (fix/sketch-consent-app-1108) for the signed-in account and for any account that later signs in on that phone;
+   * the app (fix/sketch-consent-app-1108, own-tap in u53) only for the account that tapped AGREE (coordinator 2026-11-08);
    * the matchers can seat only agreed players at public Spy Sketch tables (app_config.sketch_consent_required), and a party's
    * leader is told which member hasn't agreed. Turns on a passage in Privacy's Drawing Checks item and a Data Retention
    * sentence. POLICY FIRST: flip it, and set SKETCH_CONSENT_RECORD_DAY (below) to the deploy day, when the server file is

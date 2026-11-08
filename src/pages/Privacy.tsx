@@ -689,7 +689,7 @@ const Privacy: React.FC = () => {
             app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
             turns are checked you draw only after you agree.
             {PRIVACY.sketchConsentRecord &&
-              " When you agree, the app also tells our servers, and we keep with your account that it agreed, to which version of the note and when, so that your answer counts on every device you use. On a device where someone has already agreed, the app tells our servers the same for any other account that signs in on it. Not Now isn't recorded. Our servers can use this record to seat only players who have agreed at public Spy Sketch tables (Play Online and Game Nights, alone or in a party); when they do, and someone in a party hasn't agreed yet, the app tells the party's leader which member it is."}{' '}
+              " When you agree, the app also tells our servers, and we keep with your account that it agreed, to which version of the note and when, so that your answer counts on every device you use. It counts only for the account that agreed, never for another account signed in on the same device. Not Now isn't recorded. Our servers can use this record to seat only players who have agreed at public Spy Sketch tables (Play Online and Game Nights, alone or in a party); when they do, and someone in a party hasn't agreed yet, the app tells the party's leader which member it is."}{' '}
             For the first check, our servers send OpenAI's
             moderation service a picture of the turn's own lines (and any lines the player drew and then undid), with
             nothing else. The second check gets a picture of the turn (the earlier drawing in light grey) with the
