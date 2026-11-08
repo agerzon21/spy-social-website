@@ -1429,6 +1429,17 @@ export const LIVE = {
    */
   reminderNetworkCap1108: true,
   /**
+   * policy-1108: the drawing check's AGREE kept on the server (app server 20261219200000_sketch_consent, table
+   * drawing_check_consents: account, the note's version, when; deleted with the account; NOT NOW writes nothing), sent by
+   * the app (fix/sketch-consent-app-1108) for the signed-in account and for any account that later signs in on that phone;
+   * the matchers can seat only agreed players at public Spy Sketch tables (app_config.sketch_consent_required), and a party's
+   * leader is told which member hasn't agreed. Turns on a passage in Privacy's Drawing Checks item and a Data Retention
+   * sentence. POLICY FIRST: flip it, and set SKETCH_CONSENT_RECORD_DAY (below) to the deploy day, when the server file is
+   * applied live (before any app can write a row). A server fact for every app version at once: set in LIVE, never in
+   * PRIVACY_AHEAD. Name no rate limit on a page.
+   */
+  sketchConsentRecord: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1598,6 +1609,9 @@ export const OPERATOR: {
  */
 export const INTERCEPTS_IN_TRADES_DAY = 'November 7, 2026'
 
+/** LIVE.sketchConsentRecord's day in PRIVACY_LAST_UPDATED: planned; set to the day the site goes up with it on. */
+export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
+
 export const LEGAL_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC runs SpySocial (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
@@ -1670,6 +1684,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.sketchConsentRecord
+    ? SKETCH_CONSENT_RECORD_DAY // Drawing Checks: the AGREE kept with the account (policy-1108): the day the site goes up with it on
   : LIVE.reminderNetworkCap1108
     ? 'November 8, 2026' // the reminder form's per-network count (srv-security-1108): the site went up with it on (server 20261109023637 = Nov 8 21:36 ET)
   : LIVE.storePrivacy1108

@@ -687,7 +687,10 @@ const Privacy: React.FC = () => {
             the checks can't run at that moment and still can't after a few more tries, that turn goes unchecked; a
             report of it still goes to a person, as every report does. The
             app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
-            turns are checked you draw only after you agree. For the first check, our servers send OpenAI's
+            turns are checked you draw only after you agree.
+            {PRIVACY.sketchConsentRecord &&
+              " When you agree, the app also tells our servers, and we keep with your account that it agreed, to which version of the note and when, so that your answer counts on every device you use. On a device where someone has already agreed, the app tells our servers the same for any other account that signs in on it. Not Now isn't recorded. Our servers can use this record to seat only players who have agreed at public Spy Sketch tables (Play Online and Game Nights, alone or in a party); when they do, and someone in a party hasn't agreed yet, the app tells the party's leader which member it is."}{' '}
+            For the first check, our servers send OpenAI's
             moderation service a picture of the turn's own lines (and any lines the player drew and then undid), with
             nothing else. The second check gets a picture of the turn (the earlier drawing in light grey) with the
             round's secret word (which helps tell an innocent drawing from an offensive one) and a code made from your
@@ -1044,6 +1047,9 @@ const Privacy: React.FC = () => {
           : ''}
         {PRIVACY.drawingCheck
           ? ' The results of drawing checks are kept for 90 days. A drawing taken off or reported is kept as evidence for 90 days, or longer while its report is still open. A drawing we must report as child sexual exploitation is kept for 1 year after we report it to NCMEC, as US law requires, in restricted storage, and shared with no one except the authorities.'
+          : ''}
+        {PRIVACY.drawingCheck && PRIVACY.sketchConsentRecord
+          ? " The record that an account agreed to the drawing check's note is kept until the account is deleted."
           : ''}{' '}
         When we report child sexual exploitation to NCMEC, we keep what we reported (such as the messages, drawings or
         packs involved and the account details in the report) for at least 1 year after the report, as US law requires,
