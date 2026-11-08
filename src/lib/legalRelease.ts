@@ -1408,6 +1408,18 @@ export const LIVE = {
   /** delete-account-1108 (account-flows-1108): /delete-account's steps as the app does them (Send Code, then the 6-digit code; a guest's row is Delete Account, Sign Out in earlier versions) and "within one month" as Privacy says. That page's Last Updated (PRIVACY_LAST_UPDATED) November 8; no Privacy text changed. */
   deleteSteps1108: true,
   /**
+   * store-privacy-1108 (app repo nov03/store-privacy-1108.md), two facts already live, read from the code:
+   *   - dictation: in every game composer (chat, Questions, the out players' chat) the app asks the phone's speech
+   *     recognizer to listen for the players' names at the table and the agent colors (lib/dictationHints.ts
+   *     dictationPhrases via components/game/useSpeechToText.ts recognizerOptions: contextualStrings on iOS,
+   *     EXTRA_BIASING_STRINGS on Android 13+; live since 2026-10-17/26), so Apple or Google can receive those names
+   *     with the recording. The old text said iPhone only, questions and answers only;
+   *   - the IP Address item now says our host's request logs keep IP addresses for a short time (Supabase, our plan's
+   *     log retention, at most 7 days), which the Launch Reminder paragraph already points to.
+   * Privacy's Last Updated November 8, 2026. Not a material change.
+   */
+  storePrivacy1108: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1649,6 +1661,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.storePrivacy1108
+    ? 'November 8, 2026' // store-privacy-1108: dictation's listen-for words, the host's request logs (IP Address): the site went up with it on
   : LIVE.deleteSteps1108
     ? 'November 8, 2026' // Delete Account's steps and "within one month" (delete-account-1108): the site went up with it on
   : LIVE.interceptsInTrades

@@ -491,7 +491,9 @@ const Privacy: React.FC = () => {
           When you use the microphone to say a chat message, a question or an answer, Apple's or Google's speech
           recognition on your device turns what you say into text, and may send the recording to Apple or Google to
           do this, under their privacy policies.
-          {`${from22 ? ' From version 2.2, on' : ' On'} iPhone and iPad, when you say a question or an answer, the app also gives Apple's speech recognition the names of the players in your game (as the game shows them), to help it recognize them.`}
+          {PRIVACY.storePrivacy1108
+            ? `${from22 ? ' From version 2.2, on' : ' On'} iPhone and iPad, and on Android 13 and later, when you say a chat message, a question or an answer in a game, the app also gives Apple's or Google's speech recognition the names of the players in your game (as the game shows them) and the names of the agent colors, to help it recognize them.`
+            : `${from22 ? ' From version 2.2, on' : ' On'} iPhone and iPad, when you say a question or an answer, the app also gives Apple's speech recognition the names of the players in your game (as the game shows them), to help it recognize them.`}
           {PRIVACY.browserLegal
             ? " When you play in the browser version, your browser's own speech recognition does this instead, where the browser has it, and the browser's maker (for example Google in Chrome, Microsoft in Edge, Apple in Safari) may receive the recording, under its privacy policy."
             : ''}{' '}
@@ -871,7 +873,11 @@ const Privacy: React.FC = () => {
         )}
         <Item label="IP Address">
           Our servers and service providers see your device's IP address whenever the app connects to them, as any
-          internet service does. Our sign-in service keeps the IP address and user agent (a short description of the
+          internet service does.
+          {PRIVACY.storePrivacy1108
+            ? ' Supabase, which hosts our servers, keeps a log of the requests the app makes, with their IP addresses, for up to 7 days, to keep the service running and secure.'
+            : ''}{' '}
+          Our sign-in service keeps the IP address and user agent (a short description of the
           app and device making the request) of each signed-in session, to protect your account, until the session
           ends when you sign out or delete your account. To check that it's online, the app contacts our servers now and then; on iPhones it also contacts
           Google (clients3.google.com), which receives your device's IP address and nothing else about you.
@@ -1192,7 +1198,8 @@ const Privacy: React.FC = () => {
           <Item label="Sentry">(Functional Software, Inc., https://sentry.io) Receives crash and error reports.</Item>
         )}
         <Item label="Apple and Google">
-          Speech recognition when you use the microphone (they may receive the recording)
+          Speech recognition when you use the microphone (they may receive the recording
+          {PRIVACY.storePrivacy1108 ? ' and the names the app asks them to listen for, as Voice Input above says' : ''})
           {PRIVACY.socialSignIn ? ', Sign in with Apple and Google' : ''}
           {PRIVACY.purchases ? ', payments for purchases' : ''}
           {PRIVACY.onDeviceTranslation ? ', on-device translation files' : ''}
