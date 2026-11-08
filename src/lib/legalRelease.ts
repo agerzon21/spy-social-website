@@ -1405,6 +1405,8 @@ export const LIVE = {
   launchReminder: true,
   /** site-full-1106: Terms 9 and help say the Dec 7 rule for what comes from a code or a gift, Privacy's market lines follow Nov 6's locks: Last Updated November 7. Text already in force or dated; no TERMS_PUBLISHED or terms_version raise (the launch republishes). */
   siteFull1107: true,
+  /** delete-account-1108 (account-flows-1108): /delete-account's steps as the app does them (Send Code, then the 6-digit code; a guest's row is Delete Account, Sign Out in earlier versions) and "within one month" as Privacy says. That page's Last Updated (PRIVACY_LAST_UPDATED) November 8; no Privacy text changed. */
+  deleteSteps1108: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -1647,6 +1649,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.deleteSteps1108
+    ? 'November 8, 2026' // Delete Account's steps and "within one month" (delete-account-1108): the site went up with it on
   : LIVE.interceptsInTrades
     ? INTERCEPTS_IN_TRADES_DAY // the Intercepts item: an unopened one offered in a trade (the app update that offers it)
   : LIVE.launchReminder

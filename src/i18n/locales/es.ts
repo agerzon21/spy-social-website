@@ -831,20 +831,21 @@ const es: Strings = {
         o.oldApps ? ' (En las versiones anteriores a la 2.2, Cuenta es el icono de abajo a la derecha de la pantalla de inicio.)' : ''
       }`,
       'Toca <b>Ajustes</b> arriba a la derecha.',
-      `En <b>Cuenta e inicio de sesión</b>, toca <b>Eliminar cuenta</b> (la última fila, en rojo) y confirma.${
+      `En <b>Cuenta e inicio de sesión</b>, toca <b>Eliminar cuenta</b> (la última fila, en rojo) y luego <b>Enviar código</b>.${
         o.oldApps ? ' (En las versiones anteriores a la 2.2, Eliminar cuenta está en la Zona de peligro, al final de Cuenta.)' : ''
       }`,
+      'Escribe el código de 6 dígitos que te enviamos por correo. Tu cuenta se elimina en cuanto lo introduces.',
     ],
     atOnce: 'Tu cuenta se elimina de inmediato.',
     guestTitle: 'Cuentas de invitado',
     guest: (purchases: boolean, oldApps: boolean) =>
-      `Una cuenta de invitado se elimina en cuanto tocas <b>Cerrar sesión</b> (en Ajustes, en Cuenta e inicio de sesión${oldApps ? '; en las versiones anteriores a la 2.2, en Cuenta, en Cuenta y seguridad' : ''}) y confirmas. Un invitado no puede volver a iniciar sesión, así que no hay forma de recuperarla.${
+      `Una cuenta de invitado se elimina en cuanto tocas <b>Eliminar cuenta</b> (en Ajustes, en Cuenta e inicio de sesión; en versiones anteriores, esta fila se llama <b>Cerrar sesión</b>${oldApps ? '; en las versiones anteriores a la 2.2, en Cuenta, en Cuenta y seguridad' : ''}) y confirmas. Un invitado no puede volver a iniciar sesión, así que no hay forma de recuperarla.${
         purchases
           ? ' Las compras son la excepción, como en cualquier cuenta eliminada: lo que compraste como invitado vuelve con Restaurar compras, en la cuenta del App Store o de Google Play con la que pagaste.'
           : ''
       }`,
     noAppTitle: '¿Ya no tienes la app instalada?',
-    noApp: 'Escribe a <email/> desde el correo vinculado a tu cuenta con el asunto «Delete my SpySocial account». Las solicitudes se procesan en un plazo de 30 días.',
+    noApp: 'Escribe a <email/> desde el correo vinculado a tu cuenta con el asunto «Delete my SpySocial account». Las solicitudes se procesan en un plazo de un mes.',
     deletedTitle: 'Qué se elimina',
     staysTitle: 'Qué se conserva y por cuánto tiempo',
     details: 'Nuestra <link>Política de privacidad</link> tiene los detalles.',

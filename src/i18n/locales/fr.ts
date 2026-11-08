@@ -839,20 +839,21 @@ const fr: Strings = {
         o.oldApps ? " (Dans les versions antérieures à 2.2, Compte est l'icône en bas à droite de l'écran d'accueil.)" : ''
       }`,
       'Appuie sur <b>Réglages</b> en haut à droite.',
-      `Sous <b>Compte et connexion</b>, appuie sur <b>Supprimer le compte</b> (la dernière ligne, en rouge) et confirme.${
+      `Sous <b>Compte et connexion</b>, appuie sur <b>Supprimer le compte</b> (la dernière ligne, en rouge), puis sur <b>Envoyer le code</b>.${
         o.oldApps ? ' (Dans les versions antérieures à 2.2, Supprimer le compte se trouve dans la Zone dangereuse, en bas de Compte.)' : ''
       }`,
+      "Saisis le code à 6 chiffres que nous t'envoyons par e-mail. Ton compte est supprimé dès que le code est saisi.",
     ],
     atOnce: 'Ton compte est supprimé immédiatement.',
     guestTitle: 'Comptes invités',
     guest: (purchases: boolean, oldApps: boolean) =>
-      `Un compte invité est supprimé dès que tu appuies sur <b>Se déconnecter</b> (dans les Réglages, sous Compte et connexion${oldApps ? '\u00A0; dans les versions antérieures à 2.2, dans Compte, sous Compte et sécurité' : ''}) et que tu confirmes. Un invité ne peut pas se reconnecter, il n'y a donc aucune récupération possible.${
+      `Un compte invité est supprimé dès que tu appuies sur <b>Supprimer le compte</b> (dans les Réglages, sous Compte et connexion\u00A0; dans les versions précédentes, cette ligne s'appelle <b>Se déconnecter</b>${oldApps ? '\u00A0; dans les versions antérieures à 2.2, dans Compte, sous Compte et sécurité' : ''}) et que tu confirmes. Un invité ne peut pas se reconnecter, il n'y a donc aucune récupération possible.${
         purchases
           ? " Les achats font exception, comme pour tout compte supprimé\u00A0: ce que tu as acheté en tant qu'invité revient avec Restaurer les achats, sur le compte App Store ou Google Play avec lequel tu as payé."
           : ''
       }`,
     noAppTitle: "Tu n'as plus l'appli\u00A0?",
-    noApp: "Écris à <email/> depuis l'adresse liée à ton compte, avec l'objet «\u00A0Delete my SpySocial account\u00A0». Les demandes sont traitées sous 30 jours.",
+    noApp: "Écris à <email/> depuis l'adresse liée à ton compte, avec l'objet «\u00A0Delete my SpySocial account\u00A0». Les demandes sont traitées sous un mois.",
     deletedTitle: 'Ce qui est supprimé',
     staysTitle: 'Ce qui est conservé, et combien de temps',
     details: 'Notre <link>politique de confidentialité</link> donne tous les détails.',

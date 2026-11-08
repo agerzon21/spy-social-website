@@ -834,20 +834,21 @@ const ptBR: Strings = {
         o.oldApps ? ' (Em versões anteriores à 2.2, Conta é o ícone no canto inferior direito da tela inicial.)' : ''
       }`,
       'Toque em <b>Ajustes</b> no canto superior direito.',
-      `Em <b>Conta e acesso</b>, toque em <b>Excluir conta</b> (a última linha, em vermelho) e confirme.${
+      `Em <b>Conta e acesso</b>, toque em <b>Excluir conta</b> (a última linha, em vermelho) e depois em <b>Enviar código</b>.${
         o.oldApps ? ' (Em versões anteriores à 2.2, Excluir conta fica na Zona de perigo, no fim de Conta.)' : ''
       }`,
+      'Digite o código de 6 dígitos que enviamos por e-mail. Sua conta é excluída assim que o código é digitado.',
     ],
     atOnce: 'Sua conta é excluída na hora.',
     guestTitle: 'Contas de visitante',
     guest: (purchases: boolean, oldApps: boolean) =>
-      `Uma conta de visitante é excluída no momento em que você toca em <b>Sair</b> (em Ajustes, em Conta e acesso${oldApps ? '; em versões anteriores à 2.2, em Conta, na seção Conta e segurança' : ''}) e confirma. Um visitante não pode entrar de novo, então não há como recuperar a conta.${
+      `Uma conta de visitante é excluída no momento em que você toca em <b>Excluir conta</b> (em Ajustes, em Conta e acesso; em versões anteriores, essa linha se chama <b>Sair</b>${oldApps ? '; em versões anteriores à 2.2, em Conta, na seção Conta e segurança' : ''}) e confirma. Um visitante não pode entrar de novo, então não há como recuperar a conta.${
         purchases
           ? ' As compras são a exceção, como em qualquer conta excluída: o que você comprou como visitante volta com Restaurar compras, na conta da App Store ou do Google Play com que você pagou.'
           : ''
       }`,
     noAppTitle: 'Não tem mais o app instalado?',
-    noApp: 'Escreva para <email/> do endereço ligado à sua conta, com o assunto “Delete my SpySocial account” (excluir minha conta do SpySocial). Os pedidos são processados em até 30 dias.',
+    noApp: 'Escreva para <email/> do endereço ligado à sua conta, com o assunto “Delete my SpySocial account” (excluir minha conta do SpySocial). Os pedidos são processados em até um mês.',
     deletedTitle: 'O que é excluído',
     staysTitle: 'O que fica, e por quanto tempo',
     details: 'Nossa <link>Política de privacidade</link> tem os detalhes.',

@@ -901,20 +901,21 @@ const en = {
         o.oldApps ? ' (In versions before 2.2, Account is the icon at the bottom right of the home screen.)' : ''
       }`,
       'Tap <b>Settings</b> at the top right.',
-      `Under <b>Account & Sign-In</b>, tap <b>Delete Account</b> (the last row, in red) and confirm.${
+      `Under <b>Account & Sign-In</b>, tap <b>Delete Account</b> (the last row, in red), then <b>Send Code</b>.${
         o.oldApps ? ' (In versions before 2.2, Delete Account is in the Danger Zone at the bottom of Account.)' : ''
       }`,
+      'Enter the 6-digit code we email you. Your account is deleted as soon as the code is entered.',
     ],
     atOnce: 'Your account is deleted at once.',
     guestTitle: 'Guest accounts',
     guest: (purchases: boolean, oldApps: boolean) =>
-      `A guest account is deleted the moment you tap <b>Sign Out</b> (in Settings, under Account & Sign-In${oldApps ? '; in versions before 2.2, in Account under Account & Security' : ''}) and confirm. A guest can't sign back in, so there is no recovery.${
+      `A guest account is deleted the moment you tap <b>Delete Account</b> (in Settings, under Account & Sign-In; in earlier versions this row is called <b>Sign Out</b>${oldApps ? '; in versions before 2.2, in Account under Account & Security' : ''}) and confirm. A guest can't sign back in, so there is no recovery.${
         purchases
           ? ' Purchases are the exception, as for any deleted account: anything you bought as a guest comes back with Restore Purchases, on the App Store or Google Play account you paid with.'
           : ''
       }`,
     noAppTitle: "Don't have the app installed anymore?",
-    noApp: 'Email <email/> from the address tied to your account with the subject "Delete my SpySocial account". Requests are processed within 30 days.',
+    noApp: 'Email <email/> from the address tied to your account with the subject "Delete my SpySocial account". Requests are processed within one month.',
     deletedTitle: 'What is deleted',
     staysTitle: 'What stays, and for how long',
     details: 'Our <link>Privacy Policy</link> has the details.',

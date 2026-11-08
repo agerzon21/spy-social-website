@@ -834,20 +834,21 @@ const id: Strings = {
         o.oldApps ? ' (Di versi sebelum 2.2, Akun adalah ikon di kanan bawah layar beranda.)' : ''
       }`,
       'Ketuk <b>Pengaturan</b> di kanan atas.',
-      `Di bagian <b>Akun & masuk</b>, ketuk <b>Hapus akun</b> (baris terakhir, berwarna merah) lalu konfirmasi.${
+      `Di bagian <b>Akun & masuk</b>, ketuk <b>Hapus akun</b> (baris terakhir, berwarna merah), lalu <b>Kirim Kode</b>.${
         o.oldApps ? ' (Di versi sebelum 2.2, Hapus akun ada di Zona bahaya di bagian bawah Akun.)' : ''
       }`,
+      'Masukkan kode 6 digit yang kami kirim lewat email. Akunmu dihapus begitu kodenya dimasukkan.',
     ],
     atOnce: 'Akunmu langsung dihapus.',
     guestTitle: 'Akun tamu',
     guest: (purchases: boolean, oldApps: boolean) =>
-      `Akun tamu dihapus begitu kamu mengetuk <b>Keluar</b> (di Pengaturan, bagian Akun & masuk${oldApps ? '; di versi sebelum 2.2, di Akun bagian Akun dan keamanan' : ''}) lalu mengonfirmasi. Tamu tidak bisa masuk lagi, jadi akunnya tidak bisa dipulihkan.${
+      `Akun tamu dihapus begitu kamu mengetuk <b>Hapus akun</b> (di Pengaturan, bagian Akun & masuk; di versi sebelumnya, baris ini bernama <b>Keluar</b>${oldApps ? '; di versi sebelum 2.2, di Akun bagian Akun dan keamanan' : ''}) lalu mengonfirmasi. Tamu tidak bisa masuk lagi, jadi akunnya tidak bisa dipulihkan.${
         purchases
           ? ' Pembelian adalah pengecualian, seperti untuk akun apa pun yang dihapus: apa pun yang kamu beli sebagai tamu akan kembali lewat Pulihkan pembelian, di akun App Store atau Google Play yang kamu pakai untuk membayar.'
           : ''
       }`,
     noAppTitle: 'Aplikasinya sudah tidak terpasang?',
-    noApp: 'Kirim email ke <email/> dari alamat yang terhubung dengan akunmu, dengan subjek “Delete my SpySocial account”. Permintaan diproses dalam 30 hari.',
+    noApp: 'Kirim email ke <email/> dari alamat yang terhubung dengan akunmu, dengan subjek “Delete my SpySocial account”. Permintaan diproses dalam satu bulan.',
     deletedTitle: 'Apa yang dihapus',
     staysTitle: 'Apa yang tetap disimpan, dan berapa lama',
     details: '<link>Kebijakan Privasi</link> kami menjelaskan detailnya.',
