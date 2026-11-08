@@ -1420,6 +1420,16 @@ export const LIVE = {
    */
   storePrivacy1108: true,
   /**
+   * The launch email to the 2.2 testers (app repo nov03/launch-comms: testers.sql + send_launch.py, "M1"; store-privacy-1108):
+   * on launch day, one email through Resend to the account email of each saved account on beta_testers_2_2, adults only by
+   * birth year, none under a running ban, saying 2.2 is out and what the account got for testing; "Reply stop and we won't send
+   * you news like this again" (stop.txt, honoured within 10 business days). Turns on: a Test Versions sentence, a How We Use
+   * line, Legitimate Interests and Resend's item. NOT LIVE: flip it (and set PRIVACY_LAST_UPDATED's entry to that day) when the
+   * site goes up just before the send, never after. The store forms declare the matching purpose (Apple: Email Address,
+   * Developer's Advertising or Marketing; Google: Email address, Developer communications). A website fact: set in LIVE.
+   */
+  launchTesterMail: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1659,6 +1669,8 @@ export const LEGAL_LAST_UPDATED: string = LLC_SINCE
  */
 export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
+  : LIVE.launchTesterMail
+  ? 'December 8, 2026' // the launch email to the 2.2 testers (store-privacy-1108): set to the day the site goes up with it on, before the send
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.storePrivacy1108
