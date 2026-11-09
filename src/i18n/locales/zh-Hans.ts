@@ -13,6 +13,8 @@ const zhHans: Strings = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "收藏品账本",
+      /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      archive: "档案馆",
       transparency: "透明度报告",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "游戏之夜规则",
@@ -37,6 +39,7 @@ const zhHans: Strings = {
     descriptions: {
       beta: '加入 SpySocial 的 1 小时线上集体试玩。SpySocial 是一款免费的社交推理派对游戏。时间：2026 年 11 月 12 日（星期四）美东时间晚上 7–8 点。仅限 18 岁以上成年人，iPhone 或 Android 均可。测试玩家可获得内测徽章等奖励。',
       ledger: "SpySocial 每件收藏品的公开记录：每一份副本及其编号，人人都可核验。",
+      archive: "SpySocial 每件唯一物品的公开记录：图片、编号、属性、铸造方式和每笔交易，不显示任何玩家。",
       transparency: "每月公布 SpySocial 中情报的获得、花费和更正数量，以及每一起事件和每一次规则变更，不点名任何玩家。",
       gameNightRules: "SpySocial 每周游戏之夜的规则：举办时间、参与资格、如何获得当晚的称号，以及开发者的额外称号。",
       faq: "SpySocial 帮助：如何玩 Spy Talk 和 Spy Sketch、在线游戏、私密房间和游戏之夜、好友、交易、黑市、密函、情报、会员、你的账号、安全和故障排除。",

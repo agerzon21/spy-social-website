@@ -54,6 +54,10 @@ const GameNightRules = page(() => import('./pages/GameNightRules'))
 // The minted-collectibles ledger: the route exists only while LIVE.mintedCollectibles is on (from genesis).
 const Ledger = page(() => import('./pages/Ledger'))
 const Transparency = page(() => import('./pages/Transparency'))
+// The Archive (rarefinds-page-1110): every Unique, its own page per copy; with the ledger (LIVE.mintedCollectibles).
+const ArchiveHome = page(() => import('./pages/archive/ArchiveHome'))
+const ArchiveBrowse = page(() => import('./pages/archive/ArchiveBrowse'))
+const ArchiveItem = page(() => import('./pages/archive/ArchiveItem'))
 // The Beta 2 playtester page (linked from Reddit and Discord), its own chunk.
 const Beta = page(() => import('./pages/Beta'))
 
@@ -89,6 +93,9 @@ function App() {
               {ONLINE_SAFETY_TEXT && <Route path="/safety" element={<Layout><Safety /></Layout>} />}
               {LIVE.gameNightRules && <Route path="/game-night-rules" element={<Layout><GameNightRules /></Layout>} />}
               {LIVE.mintedCollectibles && <Route path="/ledger" element={<Layout><Ledger /></Layout>} />}
+              {LIVE.mintedCollectibles && LIVE.uniqueArchive && <Route path="/archive" element={<Layout><ArchiveHome /></Layout>} />}
+              {LIVE.mintedCollectibles && LIVE.uniqueArchive && <Route path="/archive/uniques" element={<Layout><ArchiveBrowse /></Layout>} />}
+              {LIVE.mintedCollectibles && LIVE.uniqueArchive && <Route path="/archive/u/:item/:serial" element={<Layout><ArchiveItem /></Layout>} />}
               {LIVE.transparencyPage && <Route path="/transparency" element={<Layout><Transparency /></Layout>} />}
               <Route path="/child-safety" element={<Layout><ChildSafety /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />

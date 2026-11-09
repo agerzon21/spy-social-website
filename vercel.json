@@ -115,6 +115,28 @@
       "permanent": false
     },
     {
+      "source": "/u/:item/:serial",
+      "has": [
+        {
+          "type": "host",
+          "value": "archive.spysocial.app"
+        }
+      ],
+      "destination": "https://www.spysocial.app/archive/u/:item/:serial",
+      "permanent": false
+    },
+    {
+      "source": "/u",
+      "has": [
+        {
+          "type": "host",
+          "value": "archive.spysocial.app"
+        }
+      ],
+      "destination": "https://www.spysocial.app/archive/uniques",
+      "permanent": false
+    },
+    {
       "source": "/((?!\\.well-known/).*)",
       "has": [
         {
@@ -122,7 +144,7 @@
           "value": "archive.spysocial.app"
         }
       ],
-      "destination": "https://www.spysocial.app/transparency",
+      "destination": "https://www.spysocial.app/archive",
       "permanent": false
     },
     {

@@ -1453,6 +1453,15 @@ export const LIVE = {
    */
   practiceReportLog: true,
   /**
+   * rarefinds-page-1110 (app repo nov03/rarefinds-page-1110.md; server file 20261225300000_mint_unique_public and the
+   * ledger function's ops uniques / unique): the Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>; the
+   * app's "View in the Archive" and archive.spysocial.app land there). Turns on its routes (with mintedCollectibles)
+   * and a passage in Privacy's "Collectibles and the public ledger": each Unique's page shows its Black Market sales'
+   * dates and prices in Intel, its holders only as numbers. Push the site with it on only after the server file is
+   * applied and the ledger function redeployed, and set its PRIVACY_LAST_UPDATED day (below) to that day.
+   */
+  uniqueArchive: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1697,6 +1706,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.uniqueArchive
+    ? 'November 10, 2026' // the Archive: each Unique's sales and prices on its own page (rarefinds-page-1110): the day the site goes up with it on
   : LIVE.practiceReportLog
     ? 'November 10, 2026' // Practice Games: the last practice game sent with Report a Problem when left ticked (privacy-reports-1109)
   : LIVE.sketchConsentRecord

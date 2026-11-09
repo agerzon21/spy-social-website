@@ -35,6 +35,8 @@ function pageOf(path: string): PageKey | null {
   if (path === '/') return null
   if (path.startsWith('/join/e/')) return 'joinEvent'
   if (path === '/join' || path.startsWith('/join/')) return 'join'
+  // The Archive: its home, every Unique, and each Unique's own page (its own title comes from the page's Helmet).
+  if (LIVE.mintedCollectibles && LIVE.uniqueArchive && (path === '/archive' || path === '/archive/uniques' || path.startsWith('/archive/u/'))) return 'archive'
   const pages: Record<string, PageKey> = {
     '/support': 'faq',
     '/contact-us': 'contact',
