@@ -66,7 +66,7 @@ export const LIVE = {
    * accountable), the footer's copyright in 10 languages, a dated change line on the Terms and the Privacy Policy,
    * Privacy's "If SpySocial Changes Hands", and both Last Updated dates (to this day). Same address, phone and email.
    */
-  llcOperator: false as false | string,
+  llcOperator: 'November 9, 2026' as false | string,
   /**
    * Both store accounts show SpySocial LLC (FLIP-DAY.md, gate G6). While false and llcOperator is on, the Terms' and the
    * Privacy Policy's change lines also say the stores may still show Aleksandr Gerzon (LLC_STORE_NOTE). That keeps the
