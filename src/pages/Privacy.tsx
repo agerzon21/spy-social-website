@@ -571,7 +571,7 @@ const Privacy: React.FC = () => {
             themselves.
             </>}
             {PRIVACY.practiceReportLog &&
-              `${PRIVACY.practiceAi ? ' ' : ''}Your device keeps a transcript of your last three practice games (every line, the ones you typed and the agents' lines, with your grades and the tips shown). It leaves your device only if you use Report a Problem and leave "Include my last Practice game" ticked (for players who told us they're under 18, the box starts unticked): then, as the email opens, that one game's transcript is sent to our servers with your account, the app's version, your phone's model and the app's language, and kept for 90 days (or until your account is deleted) to find and fix the problem. If our servers can't take it, the transcript is put in the email instead, and goes only if you send it.`}
+              `${PRIVACY.practiceAi ? ' ' : ''}Your device keeps a transcript of your last three practice games (every line, the ones you typed and the agents' lines, with your grades and the tips shown). It leaves your device only if you use Report a Problem and leave "Include my last Practice game" ticked (the box starts unticked for players who told us they're under 18, or haven't told us their age): then, as the email opens, that one game's transcript is sent to our servers with your account, the app's version, your phone's model and the app's language, and kept for 90 days (or until your account is deleted) to find and fix the problem. If our servers can't take it, the transcript is put in the email instead, and goes only if you send it.`}
           </Item>
         )}
         {/* LIVE.spybots: the developer's AI players (legalRelease). */}

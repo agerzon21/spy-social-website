@@ -1446,7 +1446,7 @@ export const LIVE = {
    * privacy-reports-1109 (app repo nov03/practice-log-1109.md, update 57; server file 20261224610000_problem_reports):
    * the device keeps the last three practice games; Report a Problem sends the last one to our servers (table
    * problem_reports: account, transcript, version/phone/language line; deleted after 90 days and with the account) only
-   * when the player leaves "Include my last Practice game" ticked (unticked by default for under-18s). Turns on a passage
+   * when the player leaves "Include my last Practice game" ticked (unticked by default for under-18s and unknown ages). Turns on a passage
    * in Privacy's Practice Games item (shown even while practiceAi is off), the ImprovMX and Google exception, a Data
    * Retention sentence and a deletedSummary line. POLICY FIRST: on from 2026-11-10, before update 57 and the server file.
    * A fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD. Off only if the feature is removed.
