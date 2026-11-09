@@ -48,11 +48,20 @@ const UNIQUES_RARER: { day: string; what: string; from: string; to: string }[] =
 
 /**
  * Gifted copies tradable at once (owner 2026-11-01; app server 20261101213455_market_rules_1101, switch
- * app_config.economy.gift_copies_tradable): shown while LIVE.giftsTradable is on. When the switch goes off, add the
- * reverse change with its own day instead of removing this one.
+ * app_config.economy.gift_copies_tradable): always shown; GIFTS_BOUND_DEC7 below is the reverse change.
  */
 const GIFTS_TRADABLE: { day: string; what: string; from: string; to: string }[] = [
   { day: 'November 1, 2026', what: 'when items we give as gifts, items from a code and the Beta set can be traded', from: 'after 3 real games (gifts: never)', to: 'at once' },
+]
+
+/**
+ * The test phase's end (owner 2026-11-06, "tethered to that account"; WG, December 7, 2026, website U0): what we give and what
+ * comes from a code stays with the account, opened or not, with what is traded up from it; the Beta set keeps its
+ * old rule. Shown once LIVE.giftsTradable is off, with the line above kept as history.
+ */
+const GIFTS_BOUND_DEC7: { day: string; what: string; from: string; to: string }[] = [
+  { day: 'December 7, 2026', what: 'when items we give as gifts and items from a code can be traded (with what a trade-up makes from them)', from: 'at once', to: 'never: they stay with the account' },
+  { day: 'December 7, 2026', what: 'when the Beta set can be traded', from: 'at once', to: 'at once after a real game in an official Beta session, otherwise after 3 real games' },
 ]
 
 /**
@@ -126,6 +135,7 @@ const MARKET_NOV6: { day: string; what: string; from: string; to: string }[] = [
 
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.giftsTradable ? [] : GIFTS_BOUND_DEC7),
   ...(LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES : []),
   ...MARKET_NOV6,
   ...TEST_PHASE_NOV,
@@ -134,6 +144,6 @@ export const RULE_CHANGES: { day: string; what: string; from: string; to: string
   ...(LIVE.tradeNoLimits ? TRADE_NO_LIMITS : []),
   ...(LIVE.tradeGatesNov2 ? TRADE_GATES_NOV2 : []),
   ...(LIVE.interceptsMarket ? INTERCEPTS_MARKET : []),
-  ...(LIVE.giftsTradable ? GIFTS_TRADABLE : []),
+  ...GIFTS_TRADABLE,
   ...(LIVE.uniquesRarer ? UNIQUES_RARER : []),
 ]
