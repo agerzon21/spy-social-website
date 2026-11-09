@@ -64,7 +64,11 @@ const LaunchReminderSection = () => {
         {HELLO_STRINGS.en.privacyText} Backup copies expire within 30 more days. Supabase stores them for us and Resend
         sends the email, which has its own line to remove you. Before sending, we check that the address's domain can
         receive mail (a DNS lookup). We don't keep your IP address with the reminder; our host's own request logs see IP
-        addresses, as the IP Address item says. Asking for a reminder doesn't create a SpySocial account, and the
+        addresses, as the IP Address item says.
+        {PRIVACY.reminderNetworkCap1108
+          ? " To stop one network from filling the list, we count each hour's sign-ups from it using a one-way code made from its IP address (for IPv6, the address's first half) with a secret key, and delete that count after about two hours; we never keep the IP address itself, and the code is never stored with an email address."
+          : ''}{' '}
+        Asking for a reminder doesn't create a SpySocial account, and the
         reminder isn't linked to one even if you have one, so Delete Account and the data export don't reach it: write
         to support and we remove that address. We don't use it for anything else or share it for marketing.
         </span>

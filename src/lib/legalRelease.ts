@@ -1420,6 +1420,15 @@ export const LIVE = {
    */
   storePrivacy1108: true,
   /**
+   * srv-security-1108 (app repo nov03/srv-security-1108.md, server file 20261220400000_reminder_network_cap; owner "reminder
+   * cap", Nov 8): the reminder form takes at most 300 sign-ups an hour from one network. Privacy's Launch Reminder paragraph
+   * says what that keeps: a one-way code of the network (the IP address, or for IPv6 its first half) made with a secret key,
+   * counted per hour and deleted after about two hours, never the address itself and never with an email address. Push the
+   * site the same day the server file is applied (never before), with PRIVACY_LAST_UPDATED's entry below set to that day.
+   * Off only if that file is rolled back.
+   */
+  reminderNetworkCap1108: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1661,6 +1670,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.reminderNetworkCap1108
+    ? 'November 9, 2026' // the reminder form's per-network count (srv-security-1108): set to the day the site goes up with it on
   : LIVE.storePrivacy1108
     ? 'November 8, 2026' // store-privacy-1108: dictation's listen-for words, the host's request logs (IP Address): the site went up with it on
   : LIVE.deleteSteps1108
