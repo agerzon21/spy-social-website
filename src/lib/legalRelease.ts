@@ -1437,8 +1437,11 @@ export const LIVE = {
    * sentence. POLICY FIRST: flip it, and set SKETCH_CONSENT_RECORD_DAY (below) to the deploy day, when the server file is
    * applied live (before any app can write a row). A server fact for every app version at once: set in LIVE, never in
    * PRIVACY_AHEAD. Name no rate limit on a page.
+   * ON since 2026-11-09: server 20261109065729_sketch_consent_20261219200000 applied live Nov 9 01:57 ET (srv-apply-1109);
+   * the switch itself (app_config.sketch_consent_required) stays off until the owner turns it on. Off only if that file is
+   * rolled back.
    */
-  sketchConsentRecord: false,
+  sketchConsentRecord: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -1609,7 +1612,7 @@ export const OPERATOR: {
  */
 export const INTERCEPTS_IN_TRADES_DAY = 'November 7, 2026'
 
-/** LIVE.sketchConsentRecord's day in PRIVACY_LAST_UPDATED: planned; set to the day the site goes up with it on. */
+/** LIVE.sketchConsentRecord's day in PRIVACY_LAST_UPDATED: the day the site went up with it on (server 20261109065729 = Nov 9 01:57 ET). */
 export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
 export const LEGAL_LAST_UPDATED: string = LLC_SINCE
