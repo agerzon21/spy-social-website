@@ -1707,7 +1707,7 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.uniqueArchive
-    ? 'November 10, 2026' // the Archive: each Unique's sales and prices on its own page (rarefinds-page-1110): the day the site goes up with it on
+    ? 'November 10, 2026' // the Archive: each Unique's sales and prices on its own page (rarefinds-page-1110). The site went up with it on Nov 9, 2026 (srv-apply-1110a: server 20261109195256, ledger v5), but the page already said November 10 (practiceReportLog, eadaffb) and Last Updated never moves back, so it stays November 10
   : LIVE.practiceReportLog
     ? 'November 10, 2026' // Practice Games: the last practice game sent with Report a Problem when left ticked (privacy-reports-1109)
   : LIVE.sketchConsentRecord
