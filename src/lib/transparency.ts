@@ -55,13 +55,15 @@ const GIFTS_TRADABLE: { day: string; what: string; from: string; to: string }[] 
 ]
 
 /**
- * The test phase's end (owner 2026-11-06, "tethered to that account"; WG, December 7, 2026, website U0): what we give and what
- * comes from a code stays with the account, opened or not, with what is traded up from it; the Beta set keeps its
- * old rule. Shown once LIVE.giftsTradable is off, with the line above kept as history.
+ * The test phase's end (owner 2026-11-06, "tethered to that account", and 2026-11-08, gift-rules-1108; WG, December 7, 2026,
+ * website U0; app server 20261222100000_gift_rules_1108, Window W step WR): what we or our staff give (a Developer's Pick
+ * included) and what comes from a code stays with the account, opened or not, with what is traded up from it; Intel we add
+ * (a bug refund to one player, an outage make-good) is no longer locked. The Beta set trades at once, as since November 1:
+ * no row. Shown once LIVE.giftsTradable is off, with the line above kept as history.
  */
 const GIFTS_BOUND_DEC7: { day: string; what: string; from: string; to: string }[] = [
-  { day: 'December 7, 2026', what: 'when items we give as gifts and items from a code can be traded (with what a trade-up makes from them)', from: 'at once', to: 'never: they stay with the account' },
-  { day: 'December 7, 2026', what: 'when the Beta set can be traded', from: 'at once', to: 'at once after a real game in an official Beta session, otherwise after 3 real games' },
+  { day: 'December 7, 2026', what: "when items we or our staff give (a Developer's Pick included) and items from a code can be traded (with what a trade-up makes from them)", from: 'at once', to: 'never: they stay with the account' },
+  { day: 'December 7, 2026', what: 'when Intel we add ourselves (a bug refund to one player, an outage make-good) can be traded', from: 'never: it was locked', to: 'like any other Intel' },
 ]
 
 /**

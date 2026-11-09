@@ -262,7 +262,7 @@ const id: HelpText = {
             ...(o.interceptsInTrades ? ['Orang dewasa juga bisa memasukkan sadapan yang belum dibuka ke pertukaran: pilih berapa dari tiap tingkat. Masing-masing dihitung sebagai satu dari 10 item.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai 7 Desember, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
-            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? " Begitu juga yang berasal dari kode atau hadiah: tetap di akunmu." : ''),
+            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : ''),
             'Intel hanya bisa ditukar antar orang dewasa.',
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel. Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri.', 'Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual.']),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
@@ -384,7 +384,7 @@ const id: HelpText = {
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
             '<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu, dan streak panjang menambah lagi (tiap hari ke-30 berturut-turut, satu Enigma).',
             '<b>Malam Permainan:</b> para pemenang malam itu mendapat satu Enigma.',
-            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat." : ''}`,
+            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
             'Room privat tidak memberi sadapan.',
             ...(o.launch
               ? []
@@ -437,7 +437,7 @@ const id: HelpText = {
           q: 'Di mana hadiah penguji betaku?',
           a: [
             o.launch
-              ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
+              ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran. <b>Pin Beta</b> dan gelar <b>Penguji Lapangan</b> bisa ditukar seperti apa pun yang kamu raih; sadapannya hadiah, hanya untukmu.'
               : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',

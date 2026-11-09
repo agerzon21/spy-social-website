@@ -625,12 +625,14 @@ const Terms: React.FC = () => {
             happened, and the rule that works out each player's amount, as an incident on our{' '}
             <PageLink to="/transparency">transparency page</PageLink>, then pay what the rule works out for you.
             {LIVE.accountNotices
-              ? " If a bug cost only you Intel and there's no line to reverse, we may give it back to you alone, with one line that says it was a bug refund and no public incident; that Intel is locked and will never be tradable."
+              ? LIVE.giftsTradable
+                ? " If a bug cost only you Intel and there's no line to reverse, we may give it back to you alone, with one line that says it was a bug refund and no public incident; that Intel is locked and will never be tradable."
+                : " If a bug cost only you Intel and there's no line to reverse, we may give it back to you alone, with one line that says it was a bug refund and no public incident. That Intel is ordinary Intel, like the Intel you earn."
               : ''}{' '}
             Or we
             take back the Intel that a closed fair-play case shows was earned by breaking our rules (for example farmed
             games), and only the lines the case covers. When an outage we've announced affects players, we may also give
-            everyone it lists the same amount of Intel, which is locked and will never be tradable. A correction of more
+            everyone it lists the same amount of Intel{LIVE.giftsTradable ? ', which is locked and will never be tradable' : ': ordinary Intel, like the Intel you earn'}. A correction of more
             than 500 Intel, or one that affects more than 5 players, waits 24 hours before it takes effect ({LIVE.accountNotices ? 'a bug refund under a published incident' : 'a bug refund'}{' '}
             or an outage's Intel doesn't wait: the published incident is the notice). If you've already spent Intel we
             take back, your balance can go below 0: the Intel you earn next pays it back, and you can't spend Intel
@@ -786,11 +788,13 @@ const Terms: React.FC = () => {
             </ListItem>
             <ListItem>
               Not every item can be traded; the app marks the ones that can. Memberships, what a membership includes,
-              level rewards, items from the arcade games and Intel we add ourselves are never tradable.{' '}
-              {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). */}
+              level rewards, items from the arcade games{LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable.{' '}
+              {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). Off in U0
+                  (WG, Dec 7): the owner's rules of Nov 6 and Nov 8 (gift-rules-1108): codes and anything we or staff give, a Developer's
+                  Pick included, stay with the account; Intel is never bound; the Beta set trades like anything earned. */}
               {LIVE.giftsTradable
                 ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
-                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item or a title), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel you get by shredding a spare is ordinary Intel. The Beta set can be traded: at once if your account played a real game during an official Beta session, otherwise once it has played 3 real games (finished games with at least 3 players that give XP and that our fair-play checks don't flag)."}
+                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn."}
             </ListItem>
             <ListItem>
               What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,
