@@ -1671,7 +1671,7 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.reminderNetworkCap1108
-    ? 'November 9, 2026' // the reminder form's per-network count (srv-security-1108): set to the day the site goes up with it on
+    ? 'November 8, 2026' // the reminder form's per-network count (srv-security-1108): the site went up with it on (server 20261109023637 = Nov 8 21:36 ET)
   : LIVE.storePrivacy1108
     ? 'November 8, 2026' // store-privacy-1108: dictation's listen-for words, the host's request logs (IP Address): the site went up with it on
   : LIVE.deleteSteps1108
