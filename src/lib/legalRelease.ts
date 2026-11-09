@@ -1473,7 +1473,29 @@ export const LIVE = {
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
   oldAppsInUse: true,
+  /**
+   * economy-values-1110, ladder L (app repo nov03/economy-values-1110.md; server 20261225200000_economy_values): what an
+   * item shreds for, which is also its lowest Black Market price, from 5 / 15 / 40 / 100 / 250 / 600 to 40 / 100 / 250 /
+   * 650 / 1,800 / 5,000 Intel (Common to Legendary; a Unique's lowest price follows its Legendary). Turns on its row in
+   * Transparency's rule changes. Set ECONOMY_VALUES_L_DAY (below) to the New York day the server file is applied, then flip.
+   * DRAFT (econ-suites-1110, Nov 9): waits for the owner's "ok" on L; not pushed.
+   */
+  economyValuesL: false,
+  /**
+   * Incident I-2 "Test-phase Intel" (server 20261224500000_test_phase_intel, live 20261109110058; raised by
+   * 20261225220000_test_phase_grant_100k): shown in Transparency's incidents. Its summary is the database row's, word for
+   * word; its rule is the row's with the tester amount as it stands after the raise (the row itself is frozen at 50,000, so
+   * the page says what changed and when). Flip once the grant file is applied (or now with ECONOMY_I2_RAISED false).
+   * DRAFT (econ-suites-1110, Nov 9): not pushed.
+   */
+  testPhaseIncident: false,
 }
+
+/** LIVE.economyValuesL's day in Transparency's rule changes: the New York day 20261225200000 is applied (DRAFT: set then). */
+export const ECONOMY_VALUES_L_DAY = 'November 9, 2026'
+
+/** I-2's tester amount was raised from 50,000 to 100,000 (20261225220000_test_phase_grant_100k applied). DRAFT: true once applied. */
+export const ECONOMY_I2_RAISED = true
 
 /** A set of switches: LIVE, or PRIVACY on the pages that share the Privacy Policy's data facts. */
 export type Switches = typeof LIVE
