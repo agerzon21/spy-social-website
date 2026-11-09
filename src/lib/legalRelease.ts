@@ -1443,6 +1443,16 @@ export const LIVE = {
    */
   sketchConsentRecord: true,
   /**
+   * privacy-reports-1109 (app repo nov03/practice-log-1109.md, update 57; server file 20261224610000_problem_reports):
+   * the device keeps the last three practice games; Report a Problem sends the last one to our servers (table
+   * problem_reports: account, transcript, version/phone/language line; deleted after 90 days and with the account) only
+   * when the player leaves "Include my last Practice game" ticked (unticked by default for under-18s). Turns on a passage
+   * in Privacy's Practice Games item (shown even while practiceAi is off), the ImprovMX and Google exception, a Data
+   * Retention sentence and a deletedSummary line. POLICY FIRST: on from 2026-11-10, before update 57 and the server file.
+   * A fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD. Off only if the feature is removed.
+   */
+  practiceReportLog: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1687,6 +1697,8 @@ export const PRIVACY_LAST_UPDATED: string = LLC_SINCE
   ? LLC_SINCE // SpySocial LLC is the controller (LIVE.llcOperator): the day of the flip
   : LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.practiceReportLog
+    ? 'November 10, 2026' // Practice Games: the last practice game sent with Report a Problem when left ticked (privacy-reports-1109)
   : LIVE.sketchConsentRecord
     ? SKETCH_CONSENT_RECORD_DAY // Drawing Checks: the AGREE kept with the account (policy-1108): the day the site goes up with it on
   : LIVE.reminderNetworkCap1108

@@ -547,9 +547,11 @@ const Privacy: React.FC = () => {
             messages were checked and flagged, and what it cost, never the messages or who wrote them), for 90 days.
           </Item>
         )}
-        {/* LIVE.practiceAi: OpenAI rates practice lines for 16+ players who agreed (legalRelease). */}
-        {PRIVACY.practiceAi && (
+        {/* LIVE.practiceAi: OpenAI rates practice lines for 16+ players who agreed (legalRelease).
+            LIVE.practiceReportLog: the last practice game sent with Report a Problem when the player leaves it ticked. */}
+        {(PRIVACY.practiceAi || PRIVACY.practiceReportLog) && (
           <Item label="Practice Games">
+            {PRIVACY.practiceAi && <>
             In a practice game, your device rates every move you make. If you told us you're 16 or older (from the
             birth year the app asks for), are signed in to an account (not playing as a guest) and chose Try It in the
             app's one-time "Rate with AI?" note that names OpenAI, our servers also ask OpenAI to rate each line you
@@ -567,6 +569,9 @@ const Privacy: React.FC = () => {
             deleted. To keep this within its limits, we count how many lines each account had rated each day (deleted
             after 14 days) and keep daily totals for the whole app that don't identify anyone; we don't keep the lines
             themselves.
+            </>}
+            {PRIVACY.practiceReportLog &&
+              `${PRIVACY.practiceAi ? ' ' : ''}Your device keeps a transcript of your last three practice games (every line, the ones you typed and the agents' lines, with your grades and the tips shown). It leaves your device only if you use Report a Problem and leave "Include my last Practice game" ticked (for players who told us they're under 18, the box starts unticked): then, as the email opens, that one game's transcript is sent to our servers with your account, the app's version, your phone's model and the app's language, and kept for 90 days (or until your account is deleted) to find and fix the problem. If our servers can't take it, the transcript is put in the email instead, and goes only if you send it.`}
           </Item>
         )}
         {/* LIVE.spybots: the developer's AI players (legalRelease). */}
@@ -1042,6 +1047,7 @@ const Privacy: React.FC = () => {
         {chatRetention(PRIVACY.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
         made to deliver them live are deleted within 4 days. Translations are kept for 24 hours{PRIVACY.modTranslate1106 ? ' (those made for our moderators, for up to 30 days)' : ''}, and daily translation
         counts for 14 days.
+        {PRIVACY.practiceReportLog ? ' A practice game sent with Report a Problem is kept for 90 days.' : ''}
         {PRIVACY.playOnline
           ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
           : ''}
@@ -1249,8 +1255,10 @@ const Privacy: React.FC = () => {
         <Item label="ImprovMX and Google">
           Email you send to support@spysocial.app is forwarded by ImprovMX and read in Google's Gmail. When you use
           Report a Problem in the app's Settings, the email it prepares also lists the app's version and update, your
-          phone's model and operating system, and the app's language, to help us find the problem; nothing is sent
-          until you send the email, and you can delete those lines first.
+          phone's model and operating system, and the app's language, to help us find the problem; the email is sent
+          only when you send it, and you can delete those lines first.
+          {PRIVACY.practiceReportLog &&
+            ' The one thing sent before that is your last practice game, and only if you leave "Include my last Practice game" ticked (see Practice Games).'}
         </Item>
       </Bullets>
       <P>

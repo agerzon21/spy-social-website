@@ -49,6 +49,7 @@ export const deletedSummary = (): string =>
       : 'the players you blocked, and the warnings, mutes and bans on your account',
     'your settings and the answers you gave the app (such as your birth year)',
     PRIVACY.notifications ? "your devices' push addresses" : null,
+    PRIVACY.practiceReportLog ? 'the practice games you sent with Report a Problem' : null,
   ]
     .filter(Boolean)
     .join('; ')
