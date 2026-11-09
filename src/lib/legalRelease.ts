@@ -1469,6 +1469,15 @@ export const LIVE = {
    */
   uniqueArchive: true,
   /**
+   * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
+   * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
+   * included; problem_reports was already in it since 20261224610000) and their entry on a beta tester list (beta_testers,
+   * linked or matched by the account's email), and says it leaves out the coded copies (sha256) of the emails a tester
+   * gave us. Push the site with it on only after the server file is applied, and set EXPORT_TESTERS_DAY (below) to the
+   * push day. A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  exportTesters: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1648,6 +1657,9 @@ export const OPERATOR: {
  */
 export const INTERCEPTS_IN_TRADES_DAY = 'November 7, 2026'
 
+/** LIVE.exportTesters's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261226710000 is live). Never earlier than November 10, 2026 (Last Updated never moves back). */
+export const EXPORT_TESTERS_DAY = 'November 10, 2026'
+
 /** LIVE.sketchConsentRecord's day in PRIVACY_LAST_UPDATED: the day the site went up with it on (server 20261109065729 = Nov 9 01:57 ET). */
 export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
@@ -1722,6 +1734,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.exportTesters
+    ? EXPORT_TESTERS_DAY // Your Rights' data export: problem reports and the beta tester list in, testers' email hashes out (export-reports-1110)
   : LIVE.uniqueArchive
     ? 'November 10, 2026' // the Archive: each Unique's sales and prices on its own page (rarefinds-page-1110). The site went up with it on Nov 9, 2026 (srv-apply-1110a: server 20261109195256, ledger v5), but the page already said November 10 (practiceReportLog, eadaffb) and Last Updated never moves back, so it stays November 10
   : LIVE.practiceReportLog

@@ -1457,11 +1457,11 @@ const Privacy: React.FC = () => {
       <Bullets>
         <Item label="A copy of your data">
           {PRIVACY.dataRights
-            ? 'We email a copy of the personal data linked to your account, in a machine-readable file (JSON), to the email address on your account: your account and sign-in details, profile, settings and the answers you gave the app, your games, stats and rewards, the chat messages we still keep, purchases, trades, friends, follows and the other records we keep about your account. Other players appear in it only as "another player". '
+            ? `We email a copy of the personal data linked to your account, in a machine-readable file (JSON), to the email address on your account: your account and sign-in details, profile, settings and the answers you gave the app, your games, stats and rewards, the chat messages we still keep, purchases, trades, friends, follows${PRIVACY.exportTesters ? ", the problem reports you sent us (with any practice game you included), your entry on a beta tester list if you're on one" : ''} and the other records we keep about your account. Other players appear in it only as "another player". `
             : 'We send a copy of the personal data linked to your account, in a machine-readable file, to the email address on your account. Other players appear in it only as "another player". '}
           To protect other people and keep SpySocial safe, it doesn't include reports others made about you or who made
           them, who blocked you, the records and score of our fair-play and safety checks, the encrypted IP addresses
-          described above, or one-time codes; the copy lists what it leaves out and why.
+          described above{PRIVACY.exportTesters ? ', one-time codes, or the coded copies (hashes) of the email addresses you gave us to join a beta test' : ', or one-time codes'}; the copy lists what it leaves out and why.
         </Item>
         <Item label="Correcting your data">
           You can change your display name in the app at any time
