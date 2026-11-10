@@ -20,7 +20,9 @@ export const deletedSummary = (): string =>
     PRIVACY.passwordless ? 'your email address' : 'your email address and password',
     PRIVACY.socialSignIn ? 'the Apple or Google sign-in linked to your account' : null,
     namesAndPicture(),
-    'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
+    PRIVACY.coverage1110
+      ? 'your stats, XP, levels and achievements, your mini-game and Arcade scores and Call It picks, and your How to Play progress and practice grades'
+      : 'your stats, XP, levels and achievements, and your mini-game scores and Call It picks',
     'your game-night history and rewards',
     PRIVACY.intel
       ? PRIVACY.intelLedger

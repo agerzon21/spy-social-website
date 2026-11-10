@@ -1050,6 +1050,12 @@ export const LIVE = {
    * and set its PRIVACY_LAST_UPDATED date (below) to that day. A server switch for every app version at once: set in
    * LIVE, never in PRIVACY_AHEAD. No Terms text reads it. If the owner changes practice_openai_min_age, change "16" in
    * the Practice Games item.
+   * (legal/coverage-1110) Before flipping it: (1) set PRACTICE_AI_DAY (top of PRIVACY_LAST_UPDATED); (2) the app has no way
+   * to take back a TRY IT once given (RateWithAiNote is one-time, nothing in Settings calls set_practice_rate_consent):
+   * a consent must be as easy to withdraw as to give, so ship a Settings switch (or an "ask again") first, and name it in
+   * the Practice Games item and the Consent / Objecting lines. Spy Sketch practice never calls OpenAI
+   * (PracticeHost: sketchGame returns early); the month's cap (app_config practice_rate_monthly_usd_cap, $150 on
+   * Nov 10) falls back to the phone's rating.
    */
   practiceAi: false,
   /**
@@ -1478,6 +1484,28 @@ export const LIVE = {
    */
   exportTesters: true,
   /**
+   * legal/coverage-1110 (app repo nov03/legal-coverage-1110.md): five facts already live, read from the server files:
+   *   - Test-phase Intel (20261109110058 + sweep 20261109122429): incident I-2 "Test-phase Intel", published Nov 9; every
+   *     saved account that signs in to a 2.2 build before 2026-11-13 01:30 UTC gets 50,000 unlocked Intel once, the
+   *     developer's accounts what he sets; all of it taken back on Dec 7 (Window W's WK), never below 0. Terms 9 (Intel,
+   *     Trades' never-tradable list), Privacy's Intel item, the transparency page's incident (word for word the DB row).
+   *   - Beta testers' list (20261109233158 + 20261110043032): beta_testers (name, Discord name, phone platform, sha256 of
+   *     each email given, the account link), owner-only, deleted on Nov 19 (20261228100000_beta_testers_wipe_1119, GO
+   *     CLEANUP). Privacy's Test Versions item and Data Retention.
+   *   - How to Play progress and practice grades (tutorial_progress, record_tutorial_step's best letter; the Play Online
+   *     gate 20261030223654 + pass_c 20261031005753, switch app_config play_online_gate) and the owner's per-game "mark
+   *     complete" (play_online_gate_skips, mod_actions practice_marked). Privacy's Practice Games item, deletedSummary,
+   *     Terms 5 ("may": true with the gate off or on).
+   *   - The Arcade (arcade_scores 20261201995000, arcade_secrets 20261201997000): best score, runs and times for Night
+   *     Glide, Safecracker and Rooftop Run, outside games too; the secret titles and Player Two (bound). Privacy's
+   *     Mini-Game item, Terms 9's never-tradable list.
+   *   - Paper Trail (spy_rules 20261101153018): get_paper_trail answers watchers too, so a watcher can see how a caught
+   *     spy voted once their role is public. Privacy's Data Sharing (the watcher sentence).
+   * Not a material change (no new duty or penalty): no TERMS_PUBLISHED or terms_version raise. Set COVERAGE_1110_DAY
+   * (below) to the push day. Off only if the site must go back to the text before it.
+   */
+  coverage1110: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1663,9 +1691,20 @@ export const EXPORT_TESTERS_DAY = 'November 10, 2026'
 /** LIVE.sketchConsentRecord's day in PRIVACY_LAST_UPDATED: the day the site went up with it on (server 20261109065729 = Nov 9 01:57 ET). */
 export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
+/** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
+export const COVERAGE_1110_DAY = 'November 11, 2026'
+
+/**
+ * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
+ * site goes up with it on, the same day as app_config.practice_rate_enabled goes true (the key is due by December 6).
+ */
+export const PRACTICE_AI_DAY = 'December 6, 2026'
+
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.coverage1110
+    ? COVERAGE_1110_DAY // legal/coverage-1110: Terms 5's practice gate, Terms 9's test-phase Intel and never-tradable list
   : LIVE.testerMarket
     ? 'November 10, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the server opened it Nov 9 (app_config market.beta_players, 12:23 UTC); the site went up with it on Nov 10 UTC (launch-gaps-1110; Last Updated never moves back)
   : LIVE.interceptsInTrades
@@ -1734,6 +1773,10 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.practiceAi
+    ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.coverage1110
+    ? COVERAGE_1110_DAY // legal/coverage-1110: test-phase Intel, the testers' list, practice progress, the Arcade, Paper Trail for watchers
   : LIVE.exportTesters
     ? EXPORT_TESTERS_DAY // Your Rights' data export: problem reports and the beta tester list in, testers' email hashes out (export-reports-1110)
   : LIVE.uniqueArchive
@@ -1790,8 +1833,6 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? 'December 7, 2026' // sanction records kept after a deletion (ban tombstone): set to the day the site goes up with it on
     : LIVE.blackMarket
     ? 'November 1, 2026' // the Black Market item, Market Watch, market codes by Resend, the Intel and Intercepts lines (20261205100000): the site went up with it on
-    : LIVE.practiceAi
-    ? 'November 1, 2026' // the Practice Games item (OpenAI rates practice lines for 16+ who agreed): set to the day the site goes up with it on
     : LIVE.moneyChatSignals
     ? 'November 1, 2026' // Chat Messages: the record of a refused real-money offer (Integrity F3, 20261204160000): set to the day the site goes up with it on
     : LIVE.messagesOnDeviceOnly && LIVE.microsoftOff
