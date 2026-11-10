@@ -30,6 +30,8 @@ type EventInfo = {
   host_name: string | null
   capacity: number
   room: { player_count: number; full: boolean } | null
+  /** A night of tables (get_event, game_night_1103): every table has its own game mode, so the night names none. */
+  format?: 'tables'
 }
 
 // The event page for links opened without the app (/join/e/<LINKID>): what,
@@ -160,7 +162,7 @@ const JoinEvent = () => {
               ) : null}
               <Text color="ss.muted" fontSize="sm">
                 {/* One pool (LIVE.onePool): a game night has no language, every player sees it in their own. */}
-                {[event.game_type, event.game_mode, LIVE.onePool ? null : event.room_language.toUpperCase(), event.host_name ? t.hostedBy(event.host_name) : null]
+                {[event.game_type, event.format === 'tables' ? null : event.game_mode, LIVE.onePool ? null : event.room_language.toUpperCase(), event.host_name ? t.hostedBy(event.host_name) : null]
                   .filter(Boolean)
                   .join(' · ')}
               </Text>

@@ -245,6 +245,18 @@
       "destination": "/hello/index.html"
     },
     {
+      "source": "/join/e/:id",
+      "destination": "/join/e/index.html"
+    },
+    {
+      "source": "/join/:code",
+      "destination": "/join/index.html"
+    },
+    {
+      "source": "/join",
+      "destination": "/join/index.html"
+    },
+    {
       "source": "/((?!\\.well-known/|static/|assets/).*)",
       "destination": "/index.html"
     }
