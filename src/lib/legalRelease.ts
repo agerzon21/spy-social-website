@@ -1692,7 +1692,7 @@ export const EXPORT_TESTERS_DAY = 'November 10, 2026'
 export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
-export const COVERAGE_1110_DAY = 'November 11, 2026'
+export const COVERAGE_1110_DAY = 'November 10, 2026'
 
 /**
  * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
