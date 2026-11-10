@@ -85,6 +85,19 @@ const PREVIEW_PAGES = [
     { path: '/ledger', key: 'ledger' },
     { path: '/beta', key: 'beta' },
 ];
+/** The invite links' cards (English, as every page's card): a room's and a Game Night's. */
+const INVITE_PREVIEWS = [
+    {
+        path: '/join',
+        title: "You're Invited to a SpySocial Room",
+        description: 'Open the link to join the room in SpySocial, the party game of social deception: Spy Talk and Spy Sketch with friends.',
+    },
+    {
+        path: '/join/e',
+        title: 'Game Night on SpySocial',
+        description: 'A SpySocial Game Night: see when it starts in your own time, and join the tables from the app.',
+    },
+];
 /** The store listings (src/lib/stores.ts) and the social accounts (components/SocialLinks), for the structured data. */
 const APP_STORE_URL = 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390';
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.gerz.spysocial';
@@ -237,6 +250,38 @@ function pagePreviews() {
                 }
                 await mkdir(resolve(outDir, page.path.slice(1)), { recursive: true });
                 await writeFile(resolve(outDir, page.path.slice(1), 'index.html'), html);
+            }
+            // The invite links (qa-links-1110): a room's (/join/<CODE>, the app's share sheet and QR) and a Game Night's
+            // (/join/e/<ID>) said what they are in a Discord or iMessage card; they showed the home page's ("Gather your
+            // friends... launches December 8", the square icon). One card per kind, the large one: the link carries no room
+            // or night the previewer could read. vercel.json serves dist/join/index.html and dist/join/e/index.html there.
+            for (const invite of INVITE_PREVIEWS) {
+                let html = home;
+                const title = attr(invite.title);
+                const description = attr(invite.description);
+                const image = `${ORIGIN}/images/og-launch.jpg`;
+                const swaps = [
+                    [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
+                    [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
+                    [/(<meta property="og:url" content=")[^"]*"/, `$1${ORIGIN}${invite.path}"`],
+                    [/(<meta property="og:title" content=")[^"]*"/, `$1${title}"`],
+                    [/(<meta property="og:description" content=")[^"]*"/, `$1${description}"`],
+                    [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
+                    [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
+                    [/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`],
+                    [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'],
+                    [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'],
+                    [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial: Spy Talk and Spy Sketch, five agents in a police line-up')}"`],
+                    [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'],
+                    [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`],
+                ];
+                for (const [re, to] of swaps) {
+                    if (!re.test(html))
+                        throw new Error(`pagePreviews: index.html has no match for ${re}`);
+                    html = html.replace(re, to);
+                }
+                await mkdir(resolve(outDir, invite.path.slice(1)), { recursive: true });
+                await writeFile(resolve(outDir, invite.path.slice(1), 'index.html'), html);
             }
         },
     };
