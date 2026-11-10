@@ -196,6 +196,8 @@ const Privacy: React.FC = () => {
           naming the player they think is a spy) is also kept with the game; nobody else can see it until the game is
           over. Some scores and correct Call It picks earn achievements, and some achievements unlock cosmetic
           rewards.
+          {PRIVACY.coverage1110 &&
+            " Players who are out can also play Safecracker, and anyone can play Night Glide, Safecracker and Rooftop Run at any time in the Arcade. For each of these games we keep your best Arcade score, how many scores you sent, and when you last opened the game, sent a score and set your best, so we can check that a score could be reached in the time you played. Some Arcade scores earn secret achievements, with their titles and an accessory for your agent; these rewards stay with your account and can't be traded. It's kept with your account and deleted with it."}
         </Item>
         {PRIVACY.playOnline && (
           <Item label="Play Online">
@@ -226,6 +228,10 @@ const Privacy: React.FC = () => {
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
             Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
+            {PRIVACY.coverage1110 &&
+              (PRIVACY.launchSite
+                ? ' While SpySocial was being tested, we also gave test Intel to testers and to our own accounts under a published incident (I-2), and took all of it back on December 7, 2026.'
+                : " While SpySocial is being tested, we also give test Intel under a published incident (I-2): 50,000 once to each saved account that signs in to a test version before November 13, 2026, and what we choose to our own accounts. It's a line in your Intel history like any other, can be spent and traded, and is all taken back on December 7, 2026 (see our Terms, section 9).")}
             {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? (PRIVACY.launchSite ? 'Adults can spend it on the Black Market (see below) and trade it with other adults (see Trades).' : 'Adults can trade it with other adults (see Trades), and spend it on the Black Market (see below) once version 2.2 opens to everyone, or before that in a test whose sales are undone.') : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
@@ -553,13 +559,15 @@ const Privacy: React.FC = () => {
         )}
         {/* LIVE.practiceAi: OpenAI rates practice lines for 16+ players who agreed (legalRelease).
             LIVE.practiceReportLog: the last practice game sent with Report a Problem when the player leaves it ticked. */}
-        {(PRIVACY.practiceAi || PRIVACY.practiceReportLog) && (
+        {(PRIVACY.practiceAi || PRIVACY.practiceReportLog || PRIVACY.coverage1110) && (
           <Item label="Practice Games">
+            {PRIVACY.coverage1110 &&
+              "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it) and your best grade in each game's practice game, so your progress follows you to your other devices. Play Online can use them to open a game once you've passed its practice game (a C or better). We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
             {PRIVACY.practiceAi && <>
             In a practice game, your device rates every move you make. If you told us you're 16 or older (from the
             birth year the app asks for), are signed in to an account (not playing as a guest) and chose Try It in the
             app's one-time "Rate with AI?" note that names OpenAI, our servers also ask OpenAI to rate each line you
-            type, for a sharper score. For that, our servers send OpenAI only the line you typed (up to 160 characters),
+            type in a Spy Talk practice game, for a sharper score (Spy Sketch practice is rated only on your device). For that, our servers send OpenAI only the line you typed (up to 160 characters),
             whether it's an answer, a question or a follow-up, your role in the practice game (Local or spy), the game's
             secret location and the other locations in its pack, the question or answer from the practice game your
             line replies to, and the language it's probably in. They never send your name, username, account or a code
@@ -572,7 +580,8 @@ const Privacy: React.FC = () => {
             that note (which version of the note you answered, and when) until you answer it again or your account is
             deleted. To keep this within its limits, we count how many lines each account had rated each day (deleted
             after 14 days) and keep daily totals for the whole app that don't identify anyone; we don't keep the lines
-            themselves.
+            themselves. We spend at most a fixed amount on it each month and each day; when that runs out, your device's
+            rating is used until it resets.
             </>}
             {PRIVACY.practiceReportLog &&
               `${PRIVACY.practiceAi ? ' ' : ''}Your device keeps a transcript of your last three practice games (every line, the ones you typed and the agents' lines, with your grades and the tips shown). It leaves your device only if you use Report a Problem and leave "Include my last Practice game" ticked (the box starts unticked for players who told us they're under 18, or haven't told us their age): then, as the email opens, that one game's transcript is sent to our servers with your account, the app's version, your phone's model and the app's language, and kept for 90 days (or until your account is deleted) to find and fix the problem. If our servers can't take it, the transcript is put in the email instead, and goes only if you send it.`}
@@ -632,6 +641,8 @@ const Privacy: React.FC = () => {
               address you sign up with to look up a SpySocial account that has it (its age, when it was made, whether you
               tested before, and the app versions it used), and we email you about your seat through Resend. If your bug report
               or idea wins the one bonus for the session (a gift card), we send it to your email address. The rest of your sign-up is deleted after the test.
+              {PRIVACY.coverage1110 &&
+                " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026), even if you delete your account first."}
             </>
           )}{' '}
           Otherwise, a test version is the same app, and this policy applies to it.
@@ -1036,6 +1047,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings
           {PRIVACY.browserLegal ? " (in the browser version, in your browser's settings for the site)" : ''}.
           {PRIVACY.audit1103 ? " Also for sending your messages to OpenAI to be translated, which you can change with the app's own choices." : ''}
+          {PRIVACY.practiceAi ? ' Also for sending your practice lines to OpenAI to be rated (see Practice Games).' : ''}
         </Item>
         <Item label="Legal Obligations">
           To comply with the law, for example to answer lawful requests and to report child sexual exploitation.
@@ -1052,6 +1064,7 @@ const Privacy: React.FC = () => {
         made to deliver them live are deleted within 4 days. Translations are kept for 24 hours{PRIVACY.modTranslate1106 ? ' (those made for our moderators, for up to 30 days)' : ''}, and daily translation
         counts for 14 days.
         {PRIVACY.practiceReportLog ? ' A practice game sent with Report a Problem is kept for 90 days.' : ''}
+        {PRIVACY.coverage1110 && PRIVACY.playtestPayPal ? " A live playtest's list of testers is deleted within a week after the test." : ''}
         {PRIVACY.playOnline
           ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
           : ''}
@@ -1353,7 +1366,11 @@ const Privacy: React.FC = () => {
           ? ' the players do (in public play, agent names and usernames, never a display name or profile photo)'
           : ''}
         , the drawing and the room's chat, but
-        never a role or the secret word before every player can see it, or anyone's vote.
+        never a role or the secret word before every player can see it, or anyone's vote
+        {PRIVACY.coverage1110
+          ? " (except that in a room with the Paper Trail rule on, they see how a spy who was voted out voted, once that spy's role is shown)"
+          : ''}
+        .
         {PRIVACY.agentColoursPhase2 &&
           " In a private room, the players see who is watching by display name; in public play, they see only how many people are watching and an agent name for each."}
         {/* LIVE.developerWatch: the developer's visible watch at public tables (legalRelease). */}

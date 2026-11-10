@@ -221,6 +221,8 @@ const Terms: React.FC = () => {
           : "Public rooms are open to players you don't know."}{' '}
         Anyone who meets the requirements can play in them: a saved account with a confirmed email address
         {LIVE.socialSignIn ? ' (or Apple or Google sign-in)' : ''}, being 13 or older, and agreeing to the Community Rules.
+        {LIVE.coverage1110 &&
+          " Play Online may also ask you to pass a game's practice game first (a grade of C or better), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask."}
         {/* Play Online's presets all have rules.room_votes_in_game false (live, 2026-10-25), call_room_vote refuses kick and
             end votes in a standard game, and a Play Online table has no lobby; only a hosted event room (events.format
             'room', off while app_config.events_enabled is false) has them. */}
@@ -578,6 +580,10 @@ const Terms: React.FC = () => {
                 {LIVE.blackMarket
                   ? 'Adults can spend it on the Black Market (see below); we may add other uses for it later, and the app will say what they are.'
                   : "For now there's nothing to spend it on; we may add uses for it later, and the app will say what they are."}
+                {LIVE.coverage1110 &&
+                  (LIVE.launchSite
+                    ? ' While SpySocial was being tested, we also gave test Intel to testers and to our own accounts (incident I-2 on our transparency page); all of it was taken back on December 7, 2026.'
+                    : " While SpySocial is being tested, we also give test Intel: 50,000 once to each tester who signs in to a test version before November 13, 2026, and what we choose to our own accounts (incident I-2 on our transparency page). It can be spent and traded like earned Intel, and all of it is taken back on December 7, 2026, never below 0; nothing it paid for stays.")}
                 {LIVE.intelLedger ? (
                   <>
                     {' '}We may change how much Intel games, streaks and shredding give; a change counts from then on,
@@ -786,8 +792,10 @@ const Terms: React.FC = () => {
                 : "While SpySocial is being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in are off for trades and the Black Market, and adults can trade Intel. A confirmed email, trading only with friends, the 7-day protection and every rule for players under 18 still apply. On December 7 every amount of Intel traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned, never below 0, even if it was already spent. We publish this as an incident on our transparency page."}
             </ListItem>
             <ListItem>
-              Not every item can be traded; the app marks the ones that can. Memberships, what a membership includes,
-              level rewards, items from the arcade games and Intel we add ourselves are never tradable.{' '}
+              Not every item can be traded; the app marks the ones that can.{' '}
+              {LIVE.coverage1110
+                ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them) and Intel we add ourselves are never tradable${LIVE.launchSite ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
+                : 'Memberships, what a membership includes, level rewards, items from the arcade games and Intel we add ourselves are never tradable.'}{' '}
               {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). */}
               {LIVE.giftsTradable
                 ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
