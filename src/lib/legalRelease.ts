@@ -982,16 +982,16 @@ export const LIVE = {
   membershipWords1105: true,
   /**
    * Beta 2's open Black Market for testers (owner `open`, Nov 3; app repo .claude/handoff/scratchpad/nov03/beta2-market-open.md
-   * and site-nov12-prep.md). false: before the switch file runs. 'open': from Thu Nov 12, 2026 (set it no earlier than
-   * 7 PM ET, and only once the market switch is applied on live): adult testers buy and sell for Intel for real, and every
+   * and site-nov12-prep.md). false: before the switch file runs. 'open': from Mon Nov 9, 2026 (the server opened it early, Nov 9 12:23 UTC;
+   * set on Nov 10 by launch-gaps-1110): adult testers buy and sell for Intel for real, and every
    * sale is undone by Nov 16 (WP). 'closed': from Mon Nov 16, once the undo file and WP have run (the market is look-only
    * for testers again). The Terms' Black Market bullet names Beta 2's dates at any setting (legal-1106); 'open' turns on the help center's line that
    * testers trade there now, in place of "until then, you can look around" ('closed' brings that line back). Describes
-   * what's in force and adds no duty, so no TERMS_PUBLISHED or terms_version raise. Dates: November 12 by this switch in
+   * what's in force and adds no duty, so no TERMS_PUBLISHED or terms_version raise. Dates: November 10 by this switch in
    * LEGAL_LAST_UPDATED (Terms, Rules, Safety); Privacy has no line about it, so PRIVACY_LAST_UPDATED doesn't move.
    * A server fact: set in LIVE, never in PRIVACY_AHEAD.
    */
-  testerMarket: false as false | 'open' | 'closed',
+  testerMarket: 'open' as false | 'open' | 'closed',
   /**
    * Retention audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/retention-1103.md). Off: the pages say what happens today: room exits, unblocks, the
    * coded email and sign-up records, push receipts and sent notices are cleared by a later action, not on a clock, and the note that a trade or market code
@@ -1667,7 +1667,7 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.testerMarket
-    ? 'November 12, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the site goes up with it on Nov 12
+    ? 'November 10, 2026' // Terms 9's Black Market bullet: "except during testing" (Beta 2's open market): the server opened it Nov 9 (app_config market.beta_players, 12:23 UTC); the site went up with it on Nov 10 UTC (launch-gaps-1110; Last Updated never moves back)
   : LIVE.interceptsInTrades
     ? INTERCEPTS_IN_TRADES_DAY // Terms 9: adults trade unopened Intercepts with friends (the app update that offers it)
   : LIVE.siteFull1107

@@ -331,7 +331,7 @@ const ptBR: HelpText = {
             'Adultos que podem trocar: conta com pelo menos 7 dias, e-mail confirmado, 3 partidas contadas e trocas sem pausa.',
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta e de partidas contadas também estão desligadas aqui.']),
             'Menores de 18 podem olhar, mas não podem comprar, vender nem fazer ofertas.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: de 12 a 16 de novembro, adultos que podem trocar compram e vendem aqui de verdade. Toda venda feita durante o teste é desfeita em 16 de novembro: quem comprou recebe de volta a Intel que pagou, e quem vendeu devolve o que recebeu.' : 'A Intel começa a circular lá no lançamento da 2.2, em 8 de dezembro. Até lá, dá para dar uma olhada.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: de 9 a 16 de novembro, adultos que podem trocar compram e vendem aqui de verdade. Toda venda feita durante o teste é desfeita em 16 de novembro: quem comprou recebe de volta a Intel que pagou, e quem vendeu devolve o que recebeu.' : 'A Intel começa a circular lá no lançamento da 2.2, em 8 de dezembro. Até lá, dá para dar uma olhada.']),
           ],
         },
         {

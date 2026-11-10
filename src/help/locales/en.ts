@@ -337,7 +337,7 @@ const en: HelpText = {
             'Adults who can trade: an account at least 7 days old, a confirmed email, 3 counted games and no trading pause.',
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 12 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone on November 16: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 9 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone on November 16: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
           ],
         },
         {

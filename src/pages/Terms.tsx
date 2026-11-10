@@ -837,10 +837,10 @@ const Terms: React.FC = () => {
               The same rules as Trades decide who can use it (an adult,{' '}
               {LIVE.tradeGatesNov2 ? 'an account at least 7 days old that has played 3 counted games' : 'level 20, an account at least 14 days old'}, a
               confirmed email, no trading pause)
-              {/* LIVE.launchSite: Intel moves on it from the launch, so the condition goes (site-launch-walk). LIVE.testerMarket: Beta 2's open market from Nov 12 (its sales undone before the launch, Collectibles bullet above). */}
+              {/* LIVE.launchSite: Intel moves on it from the launch, so the condition goes (site-launch-walk). LIVE.testerMarket: Beta 2's open market from Nov 9 (server opened it Nov 9, 12:23 UTC) (its sales undone before the launch, Collectibles bullet above). */}
               {LIVE.launchSite
                 ? '.'
-                : ", and Intel moves on it only once SpySocial 2.2 opens to everyone, except in Beta 2's test from November 12 to 16, 2026 (its sales are undone on November 16, as described above)."}{' '}
+                : ", and Intel moves on it only once SpySocial 2.2 opens to everyone, except in Beta 2's test from November 9 to 16, 2026 (its sales are undone on November 16, as described above)."}{' '}
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
               instead no offer can be priced below an item's minimum price, what one copy of it shreds for{LIVE.interceptsMarket ? " (for an unopened Intercept, what the items its tier gives shred for on average, by its odds)" : ''}.
             </ListItem>
