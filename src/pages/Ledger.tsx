@@ -1,142 +1,137 @@
-import { Box, Button, Code, Flex, ListItem, Select, Text } from '@chakra-ui/react'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Box, Button, Code, Link as ChakraLink, ListItem, Stack, Text } from '@chakra-ui/react'
+import { useEffect, useMemo, useState } from 'react'
 import { LegalPage } from '../components/legal/LegalPage'
-import { B, Bullets, H2, OutLink, P, PageLink } from '../components/legal/LegalText'
+import { B, Bullets, H2, H3, Numbered, OutLink, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { InfoTable, type InfoRow } from '../components/legal/InfoTable'
-import { SearchField } from '../components/SearchField'
-import { useLang, useT, type LangCode } from '../i18n'
-import { checkHeads, parseHeadsCsv, verifyRows, ZERO_HASH, type Head, type LedgerRow } from '../lib/ledgerVerify'
+import {
+  LEDGER_FILES_BASE, LEDGER_REPO, cyberChefSha256, ledgerFile, repoPath, sizeOf, staticJson,
+  type LedgerChain, type LedgerSummary, type LedgerSupply,
+} from '../lib/ledgerFiles'
 
-// spysocial.app/ledger: the minted-collectibles ledger's supply per collectible and a verifier that recomputes the
-// whole chain in this browser (src/lib/ledgerVerify.ts) and checks it against the day heads this site's public
-// repository commits every day (public/ledger/heads.csv, .github/workflows/ledger-heads.yml). The data comes from the
-// app's ledger function (app repo supabase/functions/ledger), read without an account. The route exists only while
-// LIVE.mintedCollectibles is on (src/lib/legalRelease.ts): from genesis, the launch hour.
+// spysocial.app/ledger: the minted-collectibles ledger as files anyone can download and check with tools that aren't
+// ours (OpenTimestamps, a SHA-256 calculator, a few lines of Python), the day heads' public copies, and the supply. Every
+// file is static (src/lib/ledgerFiles.ts): the daily GitHub Action writes the day files, their OpenTimestamps proofs,
+// heads.csv and supply.json (.github/workflows/ledger-heads.yml); the build adds summary.json, the whole-ledger file and
+// the newest day's CSV (scripts/ledger-files.mjs). The page makes no call to our servers. The route exists only while
+// LIVE.mintedCollectibles is on (src/lib/legalRelease.ts).
 
-const LEDGER_URL = `${String(import.meta.env.VITE_SUPABASE_URL ?? '').replace(/\/$/, '')}/functions/v1/ledger`
-const REPO_HEADS = 'https://github.com/agerzon21/spy-social-website/commits/main/public/ledger/heads.csv'
-const PAGE = 2000
+const OTS_SITE = 'https://opentimestamps.org'
+const CYBERCHEF = "https://gchq.github.io/CyberChef/#recipe=SHA2('256',64,160)"
+const STAMPING_BEGAN = '2026-11-11'
+const WINDOW = 7
 
-type DayHead = { day: string; seq: number; hash: string; rules_fp: string; witnessed?: { wayback?: { url?: string } } }
-type HeadAnswer = { tip: { seq: number; hash: string; at: string } | null; heads: DayHead[]; chain?: string; notice?: string }
-type Supply = {
-  code: string; set: string; season: string; track: string; set_names: Record<string, string>; item_kind: string; item_code: string
-  variant: string; how: Record<string, string>; opens_at: string; closes_at: string; minted: number; burned: number; held: number
-  closed_at: string | null; close_seq: number | null; name: string | null
-}
+const day = (iso: string) => new Date(iso.length === 10 ? `${iso}T00:00:00Z` : iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
+const when = (iso: string) => `${day(iso)}, ${new Date(iso).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hour12: false })} UTC`
+const n = (x: number) => x.toLocaleString('en-US')
 
-/** Thrown when the ledger can't be read; the page shows a plain line, never the status code. */
-class LedgerBusy extends Error {}
+const PY_CHECK = (file: string) => `import gzip, json, hashlib
+prev = "0" * 64
+for row in map(json.loads, gzip.open("${file}", "rt")):
+    assert row["line"].endswith("|" + prev), row["seq"]
+    assert hashlib.sha256(row["line"].encode()).hexdigest() == row["hash"], row["seq"]
+    prev = row["hash"]
+print("All", row["seq"], "lines check out. Last fingerprint:", prev)`
 
-const wait = (ms: number) => new Promise((done) => setTimeout(done, ms))
+/** A file to download: a secondary button with the file's size under it. */
+const FileButton = ({ href, label, note }: { href: string; label: string; note: string }) => (
+  <Box>
+    <Button as="a" href={href} download variant="secondary" size="sm">
+      {label}
+    </Button>
+    <Text textStyle="meta" mt={1}>
+      {note}
+    </Text>
+  </Box>
+)
 
-/** One read of the ledger. A busy answer (429, 5xx) or a dropped connection is tried again up to twice, after the
- *  Retry-After the ledger names (at most 8 s) or 1.5 s, then 3 s. */
-async function get<T>(query: string): Promise<T> {
-  for (let attempt = 0; ; attempt++) {
-    let r: Response | null = null
-    try { r = await fetch(`${LEDGER_URL}?${query}`) } catch { r = null }
-    if (r?.ok) return (await r.json()) as T
-    const retry = !r || r.status === 429 || r.status >= 500
-    if (!retry || attempt >= 2) throw new LedgerBusy(r ? `ledger ${r.status}` : 'ledger unreachable')
-    const after = Number(r?.headers.get('retry-after'))
-    await wait(Number.isFinite(after) && after > 0 ? Math.min(after, 8) * 1000 : 1500 * (attempt + 1))
-  }
-}
+// Fingerprints and lines in a plain monospace face (the skin's code face is a condensed display one), each character
+// readable for comparing by eye.
+const MONO = 'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace'
 
-/**
- * Item names in the reader's language, the app's own (public/ledger/names/<code>.json, exported from the app's
- * localisation by scripts/ledger-names/run.sh: re-run it when an update adds Intercept items or titles). The ledger
- * sends names only for what the app doesn't name (Game Night titles, code titles): "Beta Game Night: Master Spy".
- */
-type Names = { unique: string; items: Record<string, [name: string, kind: string]> }
+const Hash = ({ children, block = false }: { children: string; block?: boolean }) => (
+  <Code fontFamily={MONO} fontSize="12px" wordBreak="break-all" whiteSpace="pre-wrap" {...(block ? { display: 'block', p: 2, my: 1 } : {})}>
+    {children}
+  </Code>
+)
 
-const namesCache = new Map<string, Promise<Names | null>>()
-function loadNames(code: LangCode): Promise<Names | null> {
-  let p = namesCache.get(code)
-  if (!p) {
-    p = fetch(`/ledger/names/${code}.json`)
-      .then((r) => (r.ok ? (r.json() as Promise<Names>) : null))
-      .catch(() => null)
-    namesCache.set(code, p)
-  }
-  return p
-}
-
-/** An item the names file doesn't have yet (newer than the export): its code as words, "frame_art_deco" "Art Deco". */
-const KINDS = ['facial_hair_color_', 'hair_color_', 'outfit_color_', 'accessory_', 'background_', 'celebration_', 'frame_', 'glasses_', 'hat_', 'outfit_', 'local_']
-const words = (code: string) => code.split('_').filter(Boolean).map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
-const guessName = (code: string) => words(code.slice(KINDS.find((k) => code.startsWith(k))?.length ?? 0))
-
-const short = (h: string) => `${h.slice(0, 12)}…`
-const day = (iso: string, locale = 'en-US') => new Date(iso).toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
-/** A date that never breaks across lines ("1 янв. 2100 г." kept whole in a narrow column). */
-const dayWhole = (iso: string, locale: string) => day(iso, locale).replace(/ /g, '\u00a0')
-
-type Check =
-  | { state: 'idle' }
-  | { state: 'running'; done: number }
-  | { state: 'done'; rows: number; head: string; heads: { day: string; ok: boolean | null }[] }
-  | { state: 'bad'; seq: number; reason: string }
-  | { state: 'error' }
+const Block = ({ children }: { children: string }) => (
+  <Box as="pre" fontFamily={MONO} bg="ss.surfaceStrong" borderRadius="var(--ss-radius-control)" p={3} overflowX="auto" fontSize="13px" lineHeight="1.5" whiteSpace="pre" my={2}>
+    <code>{children}</code>
+  </Box>
+)
 
 const Ledger: React.FC = () => {
-  const [head, setHead] = useState<HeadAnswer | null>(null)
-  const [supply, setSupply] = useState<Supply[] | null>(null)
-  const [error, setError] = useState(false)
-  const [attempt, setAttempt] = useState(0)
-  const [check, setCheck] = useState<Check>({ state: 'idle' })
+  const [chain, setChain] = useState<LedgerChain | null>(null)
+  const [summary, setSummary] = useState<LedgerSummary | null>(null)
+  const [supply, setSupply] = useState<LedgerSupply | null>(null)
+  const [missing, setMissing] = useState(false)
+  const [allDays, setAllDays] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     let on = true
-    Promise.all([get<HeadAnswer>('op=head'), get<{ collectibles: Supply[] }>('op=supply')])
-      .then(([h, s]) => { if (on) { setHead(h); setSupply(s.collectibles) } })
-      .catch(() => { if (on) setError(true) })
+    void (async () => {
+      const current = await staticJson<{ chain: LedgerChain }>(`${LEDGER_FILES_BASE}current.json`)
+      if (!on) return
+      if (!current) { setMissing(true); return }
+      setChain(current.chain)
+      const [s, sup] = await Promise.all([
+        staticJson<LedgerSummary>(ledgerFile(current.chain, 'summary.json')),
+        staticJson<LedgerSupply>(ledgerFile(current.chain, 'supply.json')),
+      ])
+      if (!on) return
+      if (!s) setMissing(true)
+      setSummary(s)
+      setSupply(sup)
+    })()
     return () => { on = false }
-  }, [attempt])
+  }, [])
 
-  const verify = useCallback(async () => {
-    setCheck({ state: 'running', done: 0 })
+  const rows: InfoRow[] = useMemo(() => (supply?.collectibles ?? []).map((c) => ({
+    label: `${c.name ?? c.item_code}${c.variant === 'unique' ? ' · Unique' : ''}`,
+    note: `${c.set_names?.en ?? c.set} · ${c.how?.en ?? ''}`,
+    cells: [
+      `${n(c.minted)} minted · ${n(c.burned)} burned · ${n(c.held)} held`,
+      c.closed_at ? (c.minted === 0 ? 'Never awarded' : `Closed ${day(c.closed_at)} (entry ${c.close_seq ?? '…'})`) : `Open until ${day(c.closes_at)}`,
+    ],
+  })), [supply])
+
+  const beta = chain === 'beta'
+  const days = summary ? [...summary.days].reverse() : []
+  const newest = days[0]
+  const shownDays = allDays ? days : days.slice(0, WINDOW)
+  const headsPath = chain ? repoPath(chain, 'heads.csv') : ''
+  const rawHeads = `https://raw.githubusercontent.com/${LEDGER_REPO.replace('https://github.com/', '')}/main/${headsPath}`
+  const exampleRow = summary?.last
+  const dayRows: InfoRow[] = shownDays.map((d) => ({
+    label: day(d.day),
+    note: `Entries ${n(d.from)} to ${n(d.to)}`,
+    cells: [
+      <Hash key="h">{d.hash}</Hash>,
+      <Stack key="f" spacing={1}>
+        <ChakraLink href={ledgerFile(summary!.chain, d.file)} download>File ({sizeOf(d.bytes)})</ChakraLink>
+        {d.ots ? <ChakraLink href={ledgerFile(summary!.chain, d.ots)} download>Proof (.ots)</ChakraLink> : <Text as="span">Proof tomorrow</Text>}
+      </Stack>,
+    ],
+  }))
+
+  const copyLine = async () => {
+    if (!exampleRow) return
     try {
-      const hashes = new Map<number, string>()
-      let prev = ZERO_HASH
-      let after = 0
-      for (;;) {
-        const page = await get<{ rows: LedgerRow[] }>(`op=rows&after=${after}&limit=${PAGE}`)
-        if (page.rows.length === 0) break
-        const r = await verifyRows(page.rows, prev, after + 1)
-        if (!r.ok) { setCheck({ state: 'bad', seq: r.badSeq, reason: r.reason }); return }
-        for (const row of page.rows) hashes.set(row.seq, row.hash)
-        prev = r.head
-        after = r.lastSeq
-        setCheck({ state: 'running', done: after })
-        if (page.rows.length < PAGE) break
-      }
-      // The heads published where we can't change them (this site's repository), then the ledger's own list.
-      let published: Head[] = []
-      try {
-        // (the beta test chain's heads are kept apart: public/ledger/beta/heads.csv)
-        const csv = await fetch(head?.chain === 'beta' ? '/ledger/beta/heads.csv' : '/ledger/heads.csv', { cache: 'no-store' })
-        if (csv.ok) published = parseHeadsCsv(await csv.text())
-      } catch { /* no published heads yet */ }
-      const own: Head[] = (head?.heads ?? []).map((h) => ({ day: h.day, seq: h.seq, hash: h.hash }))
-      const byDay = new Map<string, Head>([...own, ...published].map((h) => [h.day, h]))
-      setCheck({ state: 'done', rows: after, head: prev, heads: checkHeads([...byDay.values()], (s) => hashes.get(s)) })
-    } catch {
-      setCheck({ state: 'error' })
-    }
-  }, [head])
+      await navigator.clipboard.writeText(exampleRow.line)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 2000)
+    } catch { /* the text is on the page to select by hand */ }
+  }
 
-  const latest = head?.heads[0]
-  const beta = head?.chain === 'beta'
   return (
     <LegalPage english title="Collectibles Ledger" updated={<>Public record of every minted collectible</>}>
       {beta && (
         <Box borderWidth="2px" borderColor="orange.400" borderRadius="md" p={4} mb={4}>
           <P>
-            <B>This is the beta test chain.</B> Everything below (every copy, number, trade and day head) is for testing
-            only and is wiped before launch. The real ledger starts at launch with its own first entry, and its numbers
-            start at #1. Test heads are kept apart from the real ones.
+            <B>This is the beta test chain.</B> Everything below (every copy, number, trade and day's fingerprint) is
+            for testing only and is wiped before launch. The real ledger starts at launch with its own first entry, and
+            its numbers start at #1. Test files are kept apart from the real ones.
           </P>
         </Box>
       )}
@@ -144,183 +139,158 @@ const Ledger: React.FC = () => {
         Game Night titles, the Beta Pin, Field Tester and every item from an Intercept are <B>minted</B>: each copy
         has its own number and a record of how it was earned, and it can be made only by its rule, inside its window.
         Once a collectible closes, no more copies are ever made, by anyone, us included. Every copy, and everything
-        that happens to it later, is a line in this ledger. Each line carries the fingerprint (SHA-256) of the line
-        before it, so changing or removing any past line changes every fingerprint after it.
+        that happens to it later, is a line in this ledger. Holders appear only as tags (<Code fontFamily={MONO}>h:7f3a91c20b5e</Code>), a
+        different one on every copy, so the ledger never shows who holds what. See the{' '}
+        <PageLink to="/terms">Terms</PageLink> and the <PageLink to="/privacy">Privacy Policy</PageLink>.
       </P>
       <P>
-        Every day at 00:00 UTC the ledger records a checkpoint: the supply of every collectible and a fingerprint of the
-        rules' code. That checkpoint's fingerprint is the day's <B>head</B>. Minutes later it is committed to this
-        website's <OutLink href={REPO_HEADS}>public repository</OutLink> and saved by the Internet Archive's Wayback
-        Machine, two places we can't rewrite. Holders appear only as tags (<Code>h:7f3a91c20b5e</Code>), a different
-        one on every copy, so the ledger never shows who holds what. See the <PageLink to="/terms">Terms</PageLink> and
-        the <PageLink to="/privacy">Privacy Policy</PageLink>.
+        Each line ends with the <B>fingerprint</B> of the line before it (its SHA-256, a 64-character code that changes
+        completely if even one letter of the line changes). Every day at 00:00 UTC the ledger writes a checkpoint line;
+        its fingerprint is the day's <B>final fingerprint</B>. That day's lines are then published below as a file,
+        stamped into the Bitcoin blockchain with OpenTimestamps, and the final fingerprint is added to this
+        website's public file history and saved by the Internet Archive.
       </P>
 
-      <H2>Today's head</H2>
-      {error && (
-        <>
-          <P>The ledger is busy right now, so this part couldn't load. Give it a minute, then try again.</P>
-          <Button size="sm" variant="outline" mb={4} onClick={() => { setError(false); setAttempt((n) => n + 1) }}>Try again</Button>
-        </>
+      <H2>The ledger today</H2>
+      {missing && <P>The ledger's files aren't published yet. They appear here after the first daily update.</P>}
+      {!missing && !summary && <P>Loading…</P>}
+      {summary && !summary.ok && (
+        <P>
+          <B>The published copy doesn't check out:</B> {summary.problem}. Its files are held back until we find out why.
+          Please tell us at <SupportEmail subject="Ledger check" />.
+        </P>
       )}
-      {!error && !head && <P>Loading…</P>}
-      {head && (
+      {summary?.ok && newest && (
         <Bullets>
-          <ListItem>Entries so far: <B>{head.tip ? head.tip.seq.toLocaleString('en-US') : 0}</B>{head.tip ? <>, the newest <Code>{short(head.tip.hash)}</Code></> : null}</ListItem>
-          {latest ? (
-            <ListItem>
-              Head of {day(latest.day)}: <Code>{short(latest.hash)}</Code> at entry {latest.seq.toLocaleString('en-US')}
-              {latest.witnessed?.wayback?.url ? <> (<OutLink href={latest.witnessed.wayback.url}>Wayback Machine</OutLink>)</> : null}
-            </ListItem>
-          ) : (
-            <ListItem>No daily head yet: the first is recorded at the first 00:00 UTC after the ledger starts.</ListItem>
-          )}
+          <ListItem>
+            Entries: <B>{n(summary.rows)}</B>, through the final fingerprint of <B>{day(newest.day)}</B>
+          </ListItem>
+          <ListItem>
+            That final fingerprint: <Hash>{newest.hash}</Hash>
+          </ListItem>
+          <ListItem>The files are updated once a day, soon after 00:00 UTC. Entries made since then come in the next day's file.</ListItem>
         </Bullets>
       )}
 
-      <H2>Check it yourself</H2>
-      <P>
-        This recomputes every line's fingerprint in your browser, checks that each line points at the one before it,
-        and compares the result with every published day head. Nothing is taken on trust from our servers.
-      </P>
-      <Box>
-        <Button onClick={() => { void verify() }} isDisabled={check.state === 'running' || !head} size="md">
-          {check.state === 'running' ? `Checking… ${check.done.toLocaleString('en-US')} entries` : 'Check the whole ledger'}
-        </Button>
-      </Box>
-      {check.state === 'done' && (
-        <Text textStyle="body">
-          <B>All {check.rows.toLocaleString('en-US')} entries check out</B> (head <Code>{short(check.head)}</Code>).{' '}
-          {check.heads.length === 0
-            ? 'No day head has been published yet.'
-            : check.heads.every((h) => h.ok === true)
-              ? `Every published day head (${check.heads.length}) matches.`
-              : `Day heads that don't match: ${check.heads.filter((h) => h.ok === false).map((h) => h.day).join(', ') || 'none'}; not yet in the ledger: ${check.heads.filter((h) => h.ok === null).map((h) => h.day).join(', ') || 'none'}.`}
-        </Text>
+      {summary?.ok && newest && (
+        <>
+          <H2>Download the ledger</H2>
+          <Stack direction={{ base: 'column', md: 'row' }} spacing={4} align="flex-start">
+            {summary.files.all && (
+              <FileButton
+                href={ledgerFile(summary.chain, summary.files.all.path)}
+                label="Whole ledger"
+                note={`${n(summary.rows)} lines · JSON lines, gzip · ${sizeOf(summary.files.all.bytes)}`}
+              />
+            )}
+            {summary.files.latestCsv && (
+              <FileButton
+                href={ledgerFile(summary.chain, summary.files.latestCsv.path)}
+                label={`${day(summary.files.latestCsv.day)} as a spreadsheet`}
+                note={`${n(newest.rows)} lines · CSV · ${sizeOf(summary.files.latestCsv.bytes)}`}
+              />
+            )}
+          </Stack>
+          <P>
+            Each day also has its own file (its lines, gzipped JSON, one line per row) and its OpenTimestamps proof.
+            Every row has a <Code fontFamily={MONO}>line</Code>, the exact text that is fingerprinted, and a <Code fontFamily={MONO}>hash</Code>, its
+            fingerprint.
+          </P>
+          <InfoTable head={['Day', 'Final fingerprint', 'Files']} rows={dayRows} firstWidth={{ base: '30%', md: '24%' }} />
+          {days.length > WINDOW && (
+            <Box mt={3}>
+              <Button variant="secondary" size="sm" onClick={() => setAllDays(!allDays)}>
+                {allDays ? `Show the last ${WINDOW} days` : `Show all ${days.length} days`}
+              </Button>
+            </Box>
+          )}
+
+          <H2>Check it yourself</H2>
+          <P>You don't have to trust us or this page. Three checks, with tools that aren't ours:</P>
+
+          <H3>1. A day's file existed on its date</H3>
+          <Numbered>
+            <ListItem>Download a day's file and its proof (.ots) from the table above.</ListItem>
+            <ListItem>
+              Open <OutLink href={OTS_SITE}>opentimestamps.org</OutLink> and drop both files on its Stamp &amp; Verify
+              box.
+            </ListItem>
+            <ListItem>
+              It shows the Bitcoin block and date that hold the file's fingerprint. A file changed by even one letter
+              fails.
+            </ListItem>
+          </Numbered>
+          <P>
+            A proof less than a day old may show as pending: Bitcoin takes a few hours to include it, and the next daily
+            update adds the block to the proof. Days before {day(STAMPING_BEGAN)} were stamped on {day(STAMPING_BEGAN)},
+            when stamping began.
+          </P>
+
+          <H3>2. One line, by hand</H3>
+          <P>
+            Copy a line's text into a SHA-256 calculator, such as{' '}
+            <OutLink href={CYBERCHEF}>CyberChef</OutLink> (free and open source, made by GCHQ; it runs in your browser).
+            The result must equal that line's fingerprint. The end of every line is the fingerprint of the line before
+            it, so changing any old line breaks every line after it. Try the newest line:
+          </P>
+          {exampleRow && (
+            <Box border="var(--ss-card-border) solid" borderColor="ss.lineStrong" borderRadius="var(--ss-radius-card)" p={{ base: 3, md: 4 }} my={2}>
+              <Text textStyle="meta">Line {n(exampleRow.seq)}, the text:</Text>
+              <Hash block>{exampleRow.line}</Hash>
+              <Text textStyle="meta" mt={2}>Its fingerprint:</Text>
+              <Hash block>{exampleRow.hash}</Hash>
+              <Stack direction={{ base: 'column', sm: 'row' }} spacing={3} mt={3}>
+                <Button variant="secondary" size="sm" onClick={() => { void copyLine() }}>
+                  {copied ? 'Copied' : 'Copy the text'}
+                </Button>
+                <Button as="a" href={cyberChefSha256(exampleRow.line)} target="_blank" rel="noopener noreferrer" variant="secondary" size="sm">
+                  Open it in CyberChef
+                </Button>
+              </Stack>
+            </Box>
+          )}
+          <P>
+            In the spreadsheet, the text is the <Code fontFamily={MONO}>line</Code> column: copy the cell's text exactly, with no space or
+            line break after it.
+          </P>
+
+          <H3>3. The whole ledger (for programmers)</H3>
+          <P>Download the whole ledger, then run this with Python 3 in the same folder:</P>
+          <Block>{PY_CHECK(summary.files.all?.path ?? 'ledger-all.ndjson.gz')}</Block>
+          <P>
+            It stops at the first line that was changed or doesn't point at the line before it. Otherwise the last
+            fingerprint it prints must be the final fingerprint above, the same as in the public copies below.
+          </P>
+
+          <H3>Where the final fingerprints are kept</H3>
+          <Bullets>
+            <ListItem>
+              This website's public repository on GitHub: <OutLink href={`${LEDGER_REPO}/blob/main/${headsPath}`}>the list of final fingerprints</OutLink>,{' '}
+              <OutLink href={`${LEDGER_REPO}/blame/main/${headsPath}`}>the date each one was added</OutLink>, and{' '}
+              <OutLink href={`${LEDGER_REPO}/commits/main/${chain ? repoPath(chain, 'days') : ''}`}>the history of the day files</OutLink>.
+            </ListItem>
+            <ListItem>
+              The Internet Archive's Wayback Machine: <OutLink href={`https://web.archive.org/web/*/${rawHeads}`}>its saved copies of that list</OutLink>.
+            </ListItem>
+            <ListItem>Bitcoin, through each day file's OpenTimestamps proof.</ListItem>
+          </Bullets>
+
+          <H2>Why this proves no Unique was secretly re-made</H2>
+          <P>
+            Every copy ever made, every Unique included, is a line in these files, and each line carries the fingerprint
+            of the line before it. Making a second copy of an old Unique, or changing who got one, would mean adding or
+            changing an old line, which changes every fingerprint after it. Those fingerprints are already in Bitcoin,
+            in GitHub's history and in the Internet Archive, where nobody, us included, can change them.
+          </P>
+        </>
       )}
-      {check.state === 'bad' && <Text textStyle="body"><B>Entry {check.seq} doesn't check out</B> ({check.reason === 'hash' ? 'its fingerprint is not the fingerprint of its line' : check.reason === 'prev' ? 'it does not point at the entry before it' : 'an entry is missing before it'}). Please tell us at support@spysocial.app.</Text>}
-      {check.state === 'error' && <Text textStyle="body">The check stopped partway because the ledger is busy right now. Give it a minute, then check again.</Text>}
 
       <H2>Supply</H2>
-      {supply && supply.length === 0 && <P>Nothing has been minted yet.</P>}
-      {supply && supply.length > 0 && <SupplyTable supply={supply} />}
+      {supply && <Text textStyle="meta" mb={3}>As of {when(supply.as_of)}</Text>}
+      {supply && supply.collectibles.length === 0 && <P>Nothing has been minted yet.</P>}
+      {supply && supply.collectibles.length > 0 && <InfoTable head={['Collectible', 'Supply', 'Status']} rows={rows} firstWidth="44%" />}
+      {!supply && missing && <P>The supply is published with the first daily update.</P>}
     </LegalPage>
-  )
-}
-
-/** Rows per page of the Supply table (house rule: about 20). */
-const PER_PAGE = 20
-type SortKey = 'name' | 'minted' | 'held' | 'newest'
-
-/**
- * The Supply table, in the reader's language (the rest of the page is English only): item names as the app says them,
- * a search over names, kinds, sets and how each is earned, a sort, and 20 rows a page.
- */
-const SupplyTable = ({ supply }: { supply: Supply[] }) => {
-  const t = useT().ledger
-  const { language } = useLang()
-  const { code, locale } = language
-  const [names, setNames] = useState<Names | null>(null)
-  const [query, setQuery] = useState('')
-  const [sort, setSort] = useState<SortKey>('newest')
-  const [page, setPage] = useState(0)
-  const top = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    let on = true
-    void Promise.all([loadNames(code), code === 'en' ? null : loadNames('en')]).then(([own, en]) => {
-      if (on) setNames(own ?? en)
-    })
-    return () => { on = false }
-  }, [code])
-
-  const all = useMemo(() => {
-    const num = (n: number) => n.toLocaleString(locale)
-    return supply.map((c) => {
-      const named = names?.items[`${c.item_kind === 'title' ? 'title' : 'avatar'}:${c.item_code}`]
-      const name = named?.[0] ?? c.name ?? guessName(c.item_code)
-      const unique = c.variant === 'unique' ? (names?.unique ?? 'Unique') : ''
-      const set = c.set_names?.[code] ?? c.set_names?.en ?? c.set
-      // How it's earned: the ledger says it in English and Russian; another language shows the English, kept apart.
-      const own = c.how?.[code]
-      const how = own ?? c.how?.en ?? ''
-      const kind = named?.[1] ?? ''
-      const row: InfoRow = {
-        label: <bdi>{unique ? `${name} · ${unique}` : name}</bdi>,
-        note: (
-          <>
-            {[kind, set].filter(Boolean).join(' · ')}
-            {how && <>{' · '}{own ? how : <bdi lang="en">{how}</bdi>}</>}
-          </>
-        ),
-        cells: [
-          <>
-            {t.supply(num(c.minted), num(c.burned), num(c.held)).map((line) => <Text key={line} as="span" display="block">{line}</Text>)}
-            <Text as="span" display="block" mt={1} color="ss.muted" fontSize={{ base: '14px', md: '15px' }}>
-              {c.closed_at
-                ? (c.minted === 0 ? t.neverAwarded : t.closed(dayWhole(c.closed_at, locale), c.close_seq === null ? '…' : num(c.close_seq)))
-                : t.openUntil(dayWhole(c.closes_at, locale))}
-            </Text>
-          </>,
-        ],
-      }
-      return { c, name, row, text: [name, unique, kind, set, how, c.item_code].join(' ').toLocaleLowerCase(locale) }
-    })
-  }, [supply, names, code, locale, t])
-
-  const shown = useMemo(() => {
-    const terms = query.trim().toLocaleLowerCase(locale).split(/\s+/).filter(Boolean)
-    const hits = terms.length ? all.filter((r) => terms.every((w) => r.text.includes(w))) : [...all]
-    const byName = (a: (typeof all)[number], b: (typeof all)[number]) => a.name.localeCompare(b.name, locale)
-    const order: Record<SortKey, (a: (typeof all)[number], b: (typeof all)[number]) => number> = {
-      name: byName,
-      minted: (a, b) => b.c.minted - a.c.minted || byName(a, b),
-      held: (a, b) => b.c.held - a.c.held || byName(a, b),
-      newest: (a, b) => b.c.opens_at.localeCompare(a.c.opens_at) || byName(a, b),
-    }
-    return hits.sort(order[sort])
-  }, [all, query, sort, locale])
-
-  const pages = Math.max(1, Math.ceil(shown.length / PER_PAGE))
-  const at = Math.min(page, pages - 1)
-  const rows = shown.slice(at * PER_PAGE, (at + 1) * PER_PAGE).map((r) => r.row)
-  const go = (p: number) => {
-    setPage(p)
-    top.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })
-  }
-  const num = (n: number) => n.toLocaleString(locale)
-
-  return (
-    <Box ref={top} lang={code} dir={language.rtl ? 'rtl' : 'ltr'} scrollMarginTop="96px">
-      <SearchField value={query} onChange={(q) => { setQuery(q); setPage(0) }} label={t.search} hint={t.searchHint} clear={t.clear} />
-      <Flex mt={3} mb={4} gap={3} align="center" justify="space-between" wrap="wrap">
-        <Flex as="label" align="center" gap={2} fontSize="15px" color="ss.muted">
-          {t.sort}
-          <Select
-            size="md"
-            w="auto"
-            value={sort}
-            onChange={(e) => { setSort(e.target.value as SortKey); setPage(0) }}
-            color="ss.text"
-            bg="ss.surface"
-            borderColor="ss.lineStrong"
-          >
-            {(Object.keys(t.sortBy) as SortKey[]).map((k) => <option key={k} value={k}>{t.sortBy[k]}</option>)}
-          </Select>
-        </Flex>
-        <Text fontSize="15px" color="ss.muted" role="status" aria-live="polite">
-          {shown.length === 0 ? t.noMatch(query.trim()) : t.count(num(at * PER_PAGE + 1), num(at * PER_PAGE + rows.length), num(shown.length))}
-        </Text>
-      </Flex>
-      {rows.length > 0 && <InfoTable head={t.head} rows={rows} firstWidth="52%" />}
-      {pages > 1 && (
-        <Flex as="nav" aria-label={t.pages} mt={4} gap={3} align="center" justify="space-between">
-          <Button variant="outline" size="md" minW="44px" isDisabled={at === 0} onClick={() => go(at - 1)}>{t.prev}</Button>
-          <Text fontSize="15px" color="ss.muted">{t.page(num(at + 1), num(pages))}</Text>
-          <Button variant="outline" size="md" minW="44px" isDisabled={at >= pages - 1} onClick={() => go(at + 1)}>{t.next}</Button>
-        </Flex>
-      )}
-    </Box>
   )
 }
 

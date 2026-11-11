@@ -336,8 +336,10 @@ const Privacy: React.FC = () => {
                 ? "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its past holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. Its holder today is shown by username, with a link to their profile, only if they are an adult whose profile is public (see Follows and Profiles); for anyone else (a player under 18, a player whose age we don't know, or anyone who made their profile private in Privacy & Friends) the page says Held privately. Make your profile private and your username leaves those pages within about a minute. "
                 : "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. ")}
             Each
-            day only a fingerprint of the ledger is sent to GitHub and the Internet Archive, with no personal data in
-            it.{' '}
+            day that day's ledger lines, with holder codes only and never your account, username or name, are published
+            in this website's public GitHub repository and offered for download on the ledger page; only their
+            fingerprint is sent to the Internet Archive and to OpenTimestamps, which records it in the Bitcoin
+            blockchain.{' '}
             {/* LIVE.launchSite: the beta test chain is over (site-launch-walk). */}
             {PRIVACY.launchSite
               ? "Before the launch, the ledger was a beta test chain: every copy, number, trade and day's fingerprint on it was for testing and was wiped, and the real ledger started again from its first entry."

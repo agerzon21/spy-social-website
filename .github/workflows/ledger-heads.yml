@@ -1,6 +1,11 @@
 # The minted-collectibles ledger's daily witness: commits each day's head (the app's 00:00 UTC checkpoint) to
-# public/ledger/heads.csv in this public repository, and the rules' SQL of each new fingerprint next to it. Git's
-# history is the timestamp; the push deploys the site (spysocial.app/ledger reads the file). No secret is needed: the
+# public/ledger/heads.csv in this public repository, and the rules' SQL of each new fingerprint next to it; then the
+# day's lines themselves (public/ledger/days/<day>.ndjson.gz, gzip, scripts/ledger-rows.mjs), stamped with OpenTimestamps
+# (<day>.ndjson.gz.ots: the file's SHA-256 sent to the public calendars, which put it into Bitcoin within hours), and the
+# supply (supply.json). Each run upgrades the stamps still waiting for Bitcoin, so a day's .ots carries its block from
+# the next run on. The beta test chain's files go under public/ledger/beta/ instead. Git's history is the timestamp;
+# the push deploys the site (spysocial.app/ledger serves the files and the downloads built from them, no server call).
+# After the push, the Internet Archive's Wayback Machine is asked to save the heads file. No secret is needed: the
 # ledger is public. Before the ledger exists the run does nothing.
 name: ledger-heads
 
@@ -19,7 +24,7 @@ concurrency:
 jobs:
   witness:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -31,13 +36,52 @@ jobs:
         env:
           LEDGER_URL: ${{ vars.LEDGER_URL || 'https://ajobkfasquywiawjfdxg.supabase.co/functions/v1/ledger' }}
         run: node scripts/ledger-heads.mjs
-      - name: Commit any new head
+      - name: Copy the new days' lines and the supply
+        env:
+          LEDGER_URL: ${{ vars.LEDGER_URL || 'https://ajobkfasquywiawjfdxg.supabase.co/functions/v1/ledger' }}
+        run: node scripts/ledger-rows.mjs
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Stamp new days and upgrade waiting stamps (OpenTimestamps)
+        run: |
+          pip install --quiet opentimestamps-client==0.7.2
+          for dir in public/ledger/days public/ledger/beta/days; do
+            [ -d "$dir" ] || continue
+            for f in "$dir"/*.ndjson.gz; do
+              [ -e "$f" ] || continue
+              if [ ! -e "$f.ots" ]; then
+                ots stamp "$f" || echo "stamp failed for $f (tried again next run)"
+              elif ! ots info "$f.ots" | grep -q BitcoinBlockHeaderAttestation; then
+                ots upgrade "$f.ots" || echo "$f.ots still waiting for Bitcoin"
+              fi
+            done
+            rm -f "$dir"/*.ots.bak
+          done
+      - name: Commit and push
+        id: commit
         run: |
           if git diff --quiet -- public/ledger && [ -z "$(git ls-files --others --exclude-standard public/ledger)" ]; then
             echo "nothing new"; exit 0
           fi
+          heads=public/ledger/heads.csv
+          [ "$(grep -c '^[0-9]' public/ledger/heads.csv || true)" = "0" ] && heads=public/ledger/beta/heads.csv
           git config user.name "spysocial-ledger"
           git config user.email "ledger@users.noreply.github.com"
           git add public/ledger
-          git commit -m "Ledger head $(tail -1 public/ledger/heads.csv | cut -d, -f1): $(tail -1 public/ledger/heads.csv | cut -d, -f2,3)"
+          git commit -m "Ledger head $(tail -1 $heads | cut -d, -f1): $(tail -1 $heads | cut -d, -f2,3)"
+          git pull --rebase origin main
           git push origin HEAD:main
+          echo "heads=$heads" >> "$GITHUB_OUTPUT"
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Ask the Wayback Machine to save the heads file
+        if: steps.commit.outputs.heads != ''
+        continue-on-error: true
+        run: |
+          sleep 120   # the site's deploy and GitHub's raw copy catch up first
+          f=${{ steps.commit.outputs.heads }}
+          for u in "https://raw.githubusercontent.com/${{ github.repository }}/main/$f" \
+                   "https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.commit.outputs.sha }}/$f" \
+                   "https://www.spysocial.app/${f#public/}"; do
+            curl -s -m 90 -o /dev/null -w "%{http_code} $u\n" "https://web.archive.org/save/$u" || true
+          done
