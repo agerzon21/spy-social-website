@@ -65,8 +65,8 @@ const en = {
     how: {
       title: 'How a price is worked out',
       list: [
-        { title: 'From real trades', text: 'An item’s price is the average Intel paid for it in the last 7 days; when it trades less, the last 30 or 90 days.' },
-        { title: 'Five trades or none', text: 'No price shows until at least five trades make it, and nothing here ever names a buyer, a seller or a single trade.' },
+        { title: 'From real trades', text: 'An item’s price is the middle (median) Intel paid for it in the last 7 days, so one odd sale can’t move it; when it trades less, the last 30 or 90 days.' },
+        { title: 'Five trades or none', text: 'No price shows until at least five trades between at least three different pairs of players make it, and nothing here ever names a buyer, a seller or a single trade.' },
         { title: 'Never under its floor', text: 'Nobody can sell below an item’s shred value, the Intel it shreds for. Trades between linked accounts never count.' },
       ],
     },
@@ -90,13 +90,13 @@ const en = {
   },
   item: {
     price: 'Price',
-    priceNote: 'Average of the last 7 days’ trades',
+    priceNote: 'Middle price of the last 7 days’ trades',
     guide: 'Guide price in the app',
     floor: 'Shred value (lowest price)',
     changes: { today: 'Today', m1: '1 month', m3: '3 months', m6: '6 months' },
     chart: 'Price',
     chartRanges: { '30': '1 month', '90': '3 months', '180': '6 months' } as Record<string, string>,
-    chartAvg: 'Day’s average',
+    chartAvg: 'Day’s middle price',
     chartLine: 'Price',
     volume: 'Trades per day',
     noChart: 'No trades in this time.',
@@ -175,8 +175,8 @@ const ru: MarketStrings = {
     how: {
       title: 'Как считается цена',
       list: [
-        { title: 'По настоящим сделкам', text: 'Цена предмета — средняя сумма разведданных, уплаченная за него за последние 7 дней; если сделок мало — за 30 или 90 дней.' },
-        { title: 'Пять сделок или ничего', text: 'Цена появляется только после пяти сделок, и здесь никогда не называются покупатель, продавец или отдельная сделка.' },
+        { title: 'По настоящим сделкам', text: 'Цена предмета — медиана (середина) сумм разведданных, уплаченных за него за последние 7 дней, поэтому одна странная сделка её не сдвинет; если сделок мало — за 30 или 90 дней.' },
+        { title: 'Пять сделок или ничего', text: 'Цена появляется только после пяти сделок как минимум между тремя разными парами игроков, и здесь никогда не называются покупатель, продавец или отдельная сделка.' },
         { title: 'Не ниже минимума', text: 'Никто не может продать дешевле стоимости разбора предмета. Сделки между связанными аккаунтами не учитываются.' },
       ],
     },
@@ -200,13 +200,13 @@ const ru: MarketStrings = {
   },
   item: {
     price: 'Цена',
-    priceNote: 'Среднее по сделкам за 7 дней',
+    priceNote: 'Медиана сделок за 7 дней',
     guide: 'Ориентир цены в приложении',
     floor: 'Стоимость разбора (минимум)',
     changes: { today: 'Сегодня', m1: '1 месяц', m3: '3 месяца', m6: '6 месяцев' },
     chart: 'Цена',
     chartRanges: { '30': '1 месяц', '90': '3 месяца', '180': '6 месяцев' },
-    chartAvg: 'Среднее за день',
+    chartAvg: 'Медиана за день',
     chartLine: 'Цена',
     volume: 'Сделок в день',
     noChart: 'За это время сделок не было.',

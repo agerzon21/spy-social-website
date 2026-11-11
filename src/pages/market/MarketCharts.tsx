@@ -34,7 +34,7 @@ const PAD = { top: 14, right: 52, bottom: 26, left: 4 }
 
 /**
  * The price graph and the trades-per-day bars of one item, one hover between them: the price line (the 7-day rule),
- * the day's average as dots on days with enough trades, and a bar per day. Two charts, one x axis, never two y axes.
+ * the day's middle price (median) as dots on days with enough trades, and a bar per day. Two charts, one x axis, never two y axes.
  */
 export function ItemCharts({ days }: { days: MarketDay[] }) {
   const { w, locale } = useMarketWords()

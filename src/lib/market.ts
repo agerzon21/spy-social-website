@@ -4,8 +4,9 @@
  * market_public, 20261231990000_market_public_1110). Aggregates only: the server sends no player, order or single trade,
  * and an item has a price only when at least `min_trades` counted trades make it. Its days are UTC dates.
  *
- * An item's PRICE on a day is the average of its trades in the 7 days to that day (30, then 90 days while there are
- * fewer than min_trades); GUIDE is the app's own guide price. Cached 60 s at the function; a busy answer is tried again.
+ * An item's PRICE on a day is the median of its trades in the 7 days to that day, a pair of accounts counted once a day
+ * (30, then 90 days while there are fewer than min_trades trades or 3 pairs; server 20261231999984_market_public_median_1111,
+ * one wash sale can't set it); GUIDE is the app's own guide price. Cached 60 s at the function; a busy answer is tried again.
  * The Uniques are the Archive's (src/lib/archive.ts); this page leaves them out.
  */
 import type { LangCode } from '../i18n'
@@ -70,7 +71,7 @@ export type MarketDay = {
   d: string
   /** Trades that day. */
   n: number
-  /** That day's average, only with at least min_trades trades that day. */
+  /** That day's median (a pair of accounts once), only with at least min_trades trades and 3 pairs that day. */
   a: number | null
   /** The day's price (the 7-day rule). */
   p: number | null

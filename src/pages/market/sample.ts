@@ -97,7 +97,8 @@ function history(code: string, shred: number, rank: number) {
 }
 
 const K = 5
-/** The server's rule, client side: the 7-day average, then 30, then 90 days, with at least K trades. */
+/** The server's rule, roughly, client side (sample data only; the server takes the median, a pair of accounts once a day,
+ * and needs 3 pairs): the 7-day average, then 30, then 90 days, with at least K trades. */
 function priceAt(rows: { n: number; s: number }[], end: number): number | null {
   for (const w of [7, 30, 90]) {
     let n = 0

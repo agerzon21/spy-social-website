@@ -68,8 +68,8 @@ const ptBR: MarketStrings = {
     how: {
       title: 'Como o preço é calculado',
       list: [
-        { title: 'Com vendas reais', text: 'O preço de um item é a média de Intel paga por ele nos últimos 7 dias; quando ele vende menos, nos últimos 30 ou 90 dias.' },
-        { title: 'Cinco vendas ou nada', text: 'Nenhum preço aparece antes de pelo menos cinco vendas, e nada aqui cita um comprador, um vendedor ou uma venda específica.' },
+        { title: 'Com vendas reais', text: 'O preço de um item é a mediana (o valor do meio) de Intel paga por ele nos últimos 7 dias, então uma venda fora do comum não o muda; quando ele vende menos, nos últimos 30 ou 90 dias.' },
+        { title: 'Cinco vendas ou nada', text: 'Nenhum preço aparece antes de pelo menos cinco vendas entre pelo menos três pares diferentes de jogadores, e nada aqui cita um comprador, um vendedor ou uma venda específica.' },
         { title: 'Nunca abaixo do mínimo', text: 'Ninguém pode vender abaixo do que um item rende ao ser triturado. Vendas entre contas vinculadas nunca contam.' },
       ],
     },
@@ -98,13 +98,13 @@ const ptBR: MarketStrings = {
   },
   item: {
     price: 'Preço',
-    priceNote: 'Média das vendas dos últimos 7 dias',
+    priceNote: 'Mediana das vendas dos últimos 7 dias',
     guide: 'Preço de referência no app',
     floor: 'Valor ao triturar (preço mínimo)',
     changes: { today: 'Hoje', m1: '1 mês', m3: '3 meses', m6: '6 meses' },
     chart: 'Preço',
     chartRanges: { '30': '1 mês', '90': '3 meses', '180': '6 meses' },
-    chartAvg: 'Média do dia',
+    chartAvg: 'Mediana do dia',
     chartLine: 'Preço',
     volume: 'Vendas por dia',
     noChart: 'Nenhuma venda nesse período.',

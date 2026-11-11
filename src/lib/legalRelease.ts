@@ -1502,13 +1502,21 @@ export const LIVE = {
    * market-site-1110 (app repo: server file 20261231990000_market_public_1110, the ledger function's ops market /
    * market_item on fix/market-site-1110): the Market (market.spysocial.app: /, /movers/<list>, /catalogue[/<shelf>],
    * /item/<code>; www's /market sends there), the Black Market's prices for every item that isn't a Unique, for anyone without an account.
-   * Aggregates only (an item's price, its changes, trades and Intel traded per window, each day's trades, average and
+   * Aggregates only (an item's price, its changes, trades and Intel traded per window, each day's trades, middle price and
    * price), a price only with at least five counted trades; never a player, an order or a single trade. Turns on its
    * routes, its footer link and a sentence in Privacy's Data Sharing. Before the server file and the ledger version are
    * live, the pages say "Market opens December 8" (the function answers 400 for an op it doesn't know), so the site may
    * go up first; set MARKET_SITE_DAY (below) to the push day.
    */
   marketSite: true,
+  /**
+   * market-median-1111 (app repo: server file 20261231999984_market_public_median_1111; economy audit Nov 11, coordinator
+   * ruling): the Market's prices are the MEDIAN of recent trades, a pair of accounts counted once a day, and a price needs
+   * at least five trades between at least three different pairs (was the average: one wash sale could set it). Turns
+   * Privacy's Data Sharing sentence from "an average of its recent trades" to the median. On only once the server file is
+   * live (the site goes up after it); set MARKET_MEDIAN_DAY (below) to that day.
+   */
+  marketMedian: true,
   /**
    * archive-holder-1110 (owner Nov 10; app repo server file 20261231997000_archive_holder_1110, mint_unique_public's
    * holder_handle / profile_url): a Unique's Archive page names its holder today, "Held by @username" linked to
@@ -1749,6 +1757,8 @@ export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
 /** LIVE.marketSite's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const MARKET_SITE_DAY = 'November 10, 2026'
+/** LIVE.marketMedian's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231999984 is live). Never earlier than November 11, 2026. */
+export const MARKET_MEDIAN_DAY = 'November 11, 2026'
 /** LIVE.archiveHolders's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231997000 is live). Never earlier than November 10, 2026. */
 export const ARCHIVE_HOLDERS_DAY = 'November 11, 2026'
 /** LIVE.chatMildMask's day in LEGAL_LAST_UPDATED: the day the server file 20261231999920_mild_swear_mask_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
@@ -1843,6 +1853,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.marketMedian
+    ? MARKET_MEDIAN_DAY // the Market's prices as medians, three pairs of players (market-median-1111)
   : LIVE.emailCodes22
     ? EMAIL_CODES_22_DAY // Rate Limits, security logs, Resend, the deletion summary: 2.2's sign-in codes beside older versions' passwords (legal audit 1111)
   : LIVE.practiceAi

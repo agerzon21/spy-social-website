@@ -71,8 +71,8 @@ const fr: MarketStrings = {
     how: {
       title: 'Comment un prix est calculé',
       list: [
-        { title: 'D’après de vraies ventes', text: 'Le prix d’un objet est la moyenne de l’Intel payé pour lui sur les 7\u00a0derniers jours\u00a0; s’il se vend moins, sur les 30 ou 90\u00a0derniers jours.' },
-        { title: 'Cinq ventes ou rien', text: 'Aucun prix ne s’affiche avant au moins cinq ventes, et rien ici ne nomme jamais un acheteur, un vendeur ni une vente en particulier.' },
+        { title: 'D’après de vraies ventes', text: 'Le prix d’un objet est la médiane (la valeur du milieu) de l’Intel payé pour lui sur les 7\u00a0derniers jours, donc une vente isolée ne le fait pas bouger\u00a0; s’il se vend moins, sur les 30 ou 90\u00a0derniers jours.' },
+        { title: 'Cinq ventes ou rien', text: 'Aucun prix ne s’affiche avant au moins cinq ventes entre au moins trois paires de joueurs différentes, et rien ici ne nomme jamais un acheteur, un vendeur ni une vente en particulier.' },
         { title: 'Jamais sous son minimum', text: 'Personne ne peut vendre un objet sous sa valeur de déchiquetage, l’Intel que rapporte son déchiquetage. Les ventes entre comptes liés ne comptent jamais.' },
       ],
     },
@@ -101,13 +101,13 @@ const fr: MarketStrings = {
   },
   item: {
     price: 'Prix',
-    priceNote: 'Moyenne des ventes des 7\u00a0derniers jours',
+    priceNote: 'Médiane des ventes des 7\u00a0derniers jours',
     guide: 'Prix indicatif dans l’app',
     floor: 'Valeur de déchiquetage (prix minimum)',
     changes: { today: 'Aujourd’hui', m1: '1\u00a0mois', m3: '3\u00a0mois', m6: '6\u00a0mois' },
     chart: 'Prix',
     chartRanges: { '30': '1\u00a0mois', '90': '3\u00a0mois', '180': '6\u00a0mois' },
-    chartAvg: 'Moyenne du jour',
+    chartAvg: 'Médiane du jour',
     chartLine: 'Prix',
     volume: 'Ventes par jour',
     noChart: 'Aucune vente sur cette période.',

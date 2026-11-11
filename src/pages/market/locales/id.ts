@@ -68,8 +68,8 @@ const id: MarketStrings = {
     how: {
       title: 'Cara harga dihitung',
       list: [
-        { title: 'Dari transaksi sungguhan', text: 'Harga item adalah rata-rata Intel yang dibayar untuknya dalam 7 hari terakhir; jika jarang diperdagangkan, dalam 30 atau 90 hari terakhir.' },
-        { title: 'Lima transaksi atau tidak sama sekali', text: 'Harga baru muncul setelah minimal lima transaksi, dan di sini tidak pernah disebutkan pembeli, penjual, atau satu transaksi tertentu.' },
+        { title: 'Dari transaksi sungguhan', text: 'Harga item adalah median (nilai tengah) Intel yang dibayar untuknya dalam 7 hari terakhir, jadi satu transaksi aneh tidak menggesernya; jika jarang diperdagangkan, dalam 30 atau 90 hari terakhir.' },
+        { title: 'Lima transaksi atau tidak sama sekali', text: 'Harga baru muncul setelah minimal lima transaksi antara minimal tiga pasangan pemain yang berbeda, dan di sini tidak pernah disebutkan pembeli, penjual, atau satu transaksi tertentu.' },
         { title: 'Tak pernah di bawah batasnya', text: 'Tidak ada yang bisa menjual item di bawah nilai hancurnya, yaitu Intel yang didapat jika item itu dihancurkan. Transaksi antarakun yang terhubung tidak pernah dihitung.' },
       ],
     },
@@ -98,13 +98,13 @@ const id: MarketStrings = {
   },
   item: {
     price: 'Harga',
-    priceNote: 'Rata-rata transaksi 7 hari terakhir',
+    priceNote: 'Median transaksi 7 hari terakhir',
     guide: 'Harga panduan di aplikasi',
     floor: 'Nilai hancur (harga terendah)',
     changes: { today: 'Hari ini', m1: '1 bulan', m3: '3 bulan', m6: '6 bulan' },
     chart: 'Harga',
     chartRanges: { '30': '1 bulan', '90': '3 bulan', '180': '6 bulan' },
-    chartAvg: 'Rata-rata harian',
+    chartAvg: 'Median harian',
     chartLine: 'Harga',
     volume: 'Transaksi per hari',
     noChart: 'Tidak ada transaksi dalam periode ini.',
