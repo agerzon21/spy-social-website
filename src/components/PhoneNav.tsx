@@ -66,25 +66,32 @@ const Cross = () => (
 
 const no = (i: number) => String(i + 1).padStart(2, '0')
 
-/** Shrinks a one-line label (display type) until it fits its box, down to `min` px; past that it ends in an ellipsis. */
-function useFit(ref: RefObject<HTMLElement | null>, max: number, min: number, key: string) {
+/**
+ * Fits a label in display type to its box: one line from `max` down to `oneLine` px; when it still doesn't fit (long
+ * Russian names), two lines from `oneLine` down to `twoLines` (0: never wrap, an ellipsis past `oneLine`).
+ */
+function useFit(ref: RefObject<HTMLElement | null>, max: number, oneLine: number, twoLines = 0, key = '') {
   useLayoutEffect(() => {
     const el = ref.current
     if (!el) return
+    const set = (px: number) => (el.style.fontSize = `${px}px`)
+    const wide = () => el.scrollWidth > el.clientWidth + 0.5
+    const tall = () => el.scrollHeight > el.clientHeight + 1
     const fit = () => {
+      delete el.dataset.wrap
       let size = max
-      el.style.fontSize = `${size}px`
-      while (size > min && el.scrollWidth > el.clientWidth + 0.5) {
-        size -= 1
-        el.style.fontSize = `${size}px`
-      }
+      set(size)
+      while (size > oneLine && wide()) set(--size)
+      if (!twoLines || !wide()) return
+      el.dataset.wrap = ''
+      while (size > twoLines && (wide() || tall())) set(--size)
     }
     fit()
     const ro = new ResizeObserver(fit)
     ro.observe(el)
     document.fonts?.ready.then(fit).catch(() => {})
     return () => ro.disconnect()
-  }, [ref, max, min, key])
+  }, [ref, max, oneLine, twoLines, key])
 }
 
 /**
@@ -180,7 +187,7 @@ const TitleDrop = ({ label, items, current }: Props) => {
   const d = useDisclosure()
   const name = useRef<HTMLSpanElement>(null)
   const text = current?.label ?? label
-  useFit(name, 30, 15, text)
+  useFit(name, 30, 18, 13, text)
   return (
     <div className={s.root} data-option="A">
       <button {...d.button} className={`${s.trigger} ${s.aTrigger}`}>
@@ -198,6 +205,8 @@ const TitleDrop = ({ label, items, current }: Props) => {
 const Ticker = ({ label, items, current }: Props) => {
   const d = useDisclosure()
   const strip = useRef<HTMLDivElement>(null)
+  const name = useRef<HTMLSpanElement>(null)
+  useFit(name, 24, 15, 12, current?.label ?? label)
   const at = current ? items.indexOf(current) : -1
   const before = at < 0 ? [] : items.slice(0, at)
   const after = at < 0 ? items : items.slice(at + 1)
@@ -225,7 +234,7 @@ const Ticker = ({ label, items, current }: Props) => {
         <span className={s.bSpacer} aria-hidden="true" />
         {before.map(side)}
         <button {...d.button} className={`${s.trigger} ${s.bNow}`} aria-current={current ? 'page' : undefined}>
-          <span>{current?.label ?? label}</span>
+          <span ref={name} className={s.bName}>{current?.label ?? label}</span>
           <Chevron />
         </button>
         {after.map(side)}
@@ -245,7 +254,7 @@ const CaseLine = ({ items, current, label }: Props) => {
   const site = items[0]?.label ?? label
   const at = current ? items.indexOf(current) : -1
   const text = current?.label ?? label
-  useFit(name, 24, 14, text)
+  useFit(name, 24, 16, 12, text)
   // The index lies under the header, whatever its height.
   const [top, setTop] = useState(64)
   useLayoutEffect(() => {
@@ -254,9 +263,14 @@ const CaseLine = ({ items, current, label }: Props) => {
   return (
     <div className={s.root} data-option="C">
       <button {...d.button} className={`${s.trigger} ${s.cTrigger}`}>
-        <span className={s.cFile}>{site}</span>
-        <span className={s.cSlash} aria-hidden="true">/</span>
-        {at >= 0 && <span className={s.cNo} aria-hidden="true">{no(at)}</span>}
+        <span className={s.cStamp}>
+          <span className={s.cFile}>{site}</span>
+          {at >= 0 && (
+            <span className={s.cNo} dir="ltr" aria-hidden="true">
+              {no(at)}
+            </span>
+          )}
+        </span>
         <span ref={name} className={s.cName}>{text}</span>
         <Chevron />
       </button>
@@ -293,7 +307,7 @@ const Masthead = ({ items, current, label }: Props) => {
   const name = useRef<HTMLSpanElement>(null)
   const site = items[0]?.label ?? label
   const text = current?.label ?? label
-  useFit(name, 24, 14, text)
+  useFit(name, 24, 14, 0, text)
   return (
     <div className={s.root} data-option="D">
       <button {...d.button} className={`${s.trigger} ${s.dTrigger}`}>
@@ -340,7 +354,7 @@ const IndexRule = ({ items, current, label }: Props) => {
   const name = useRef<HTMLSpanElement>(null)
   const at = current ? items.indexOf(current) : -1
   const text = current?.label ?? label
-  useFit(name, 25, 14, text)
+  useFit(name, 25, 17, 12, text)
   return (
     <div className={s.root} data-option="E">
       <button {...d.button} className={`${s.trigger} ${s.eTrigger}`}>
