@@ -229,6 +229,7 @@ const id: HelpText = {
           q: 'Apa itu grup?',
           a: [
             'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Perlu keanggotaan untuk memulainya. Jika ketua pergi, peran ketua lebih dulu pindah ke orang yang punya keanggotaan.',
+            ...(o.partyLeaderLapse ? ['Jika keanggotaan ketua berakhir, grup dibubarkan untuk semua; peran ketua tidak pindah ke siapa pun. Permainan yang sedang berjalan tetap sampai selesai, lalu masing-masing mencari sendiri.'] : []),
             'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
             'Di meja 12 kursi Malam Permainan, sampai 6 orang. Anggota grup yang mencari sendiri juga dihitung: bersama-sama tak pernah lebih dari setengah meja.',
             'Agar duduk di satu meja, cari dari grup: <b>Main online</b> sendirian adalah pencarian sendiri. Setelah permainan Main online, <b>Kembali ke Grup</b> membawamu kembali ke grup.',

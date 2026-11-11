@@ -1276,6 +1276,15 @@ export const LIVE = {
    */
   partySizeCorrected: true,
   /**
+   * A leader whose membership ends closes the party (owner 2026-11-11; app server 20261231999870_party_leader_lapse_1111,
+   * STAGED, NOT APPLIED; app branch feat/party-lapse-1111 for update 61): the party is disbanded for everyone, never handed
+   * on; a game it is playing goes on to its end and after it each player searches alone. Turns on Terms' party bullet
+   * sentence and the help center's #parties line (10 languages; non-English agent-written). Flip it to true in the change
+   * that goes up after the server file is applied, and set PARTY_LEADER_LAPSE_DAY (below) to that day. A server rule for
+   * every app version at once: set in LIVE.
+   */
+  partyLeaderLapse: false,
+  /**
    * Trading's gates (owner 2026-11-02, live on the app server: app_config.trading.min_friend_days 0 and
    * 20261102002603_trade_games_not_level): friends can trade right away (no 3 days as friends; the 7-day protection and
    * reversal stay; under-18s still only with Friend Code friends), an account 7 days old (was 14), 3 counted games
@@ -1724,9 +1733,14 @@ export const COVERAGE_1110_DAY = 'November 10, 2026'
  */
 export const PRACTICE_AI_DAY = 'December 6, 2026'
 
+/** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
+export const PARTY_LEADER_LAPSE_DAY = 'November 11, 2026'
+
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.partyLeaderLapse
+    ? PARTY_LEADER_LAPSE_DAY // party-leader-lapse-1111: Terms' party bullet says a leader's membership ending closes the party
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: Terms 5's practice gate, Terms 9's test-phase Intel and never-tradable list
   : LIVE.testerMarket

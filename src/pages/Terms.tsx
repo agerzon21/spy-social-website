@@ -193,7 +193,11 @@ const Terms: React.FC = () => {
             <ListItem>
               A party is a leader and friends who play together, up to 21 people in all. It takes a membership to start a
               party; if the leader leaves, the lead goes to someone in it with a membership first, or else to whoever has been in
-              it longest. A player who is banned or paused from public rooms leaves the party. A party plays together at Play Online tables and game nights, where it takes at most half
+              it longest. A player who is banned or paused from public rooms leaves the party.
+              {/* LIVE.partyLeaderLapse: server party_leader_lapse_1111 (owner 2026-11-11). */}
+              {LIVE.partyLeaderLapse
+                ? " If the leader's membership ends, the party closes for everyone and the lead isn't passed on; a game the party is playing goes on to its end, and after it each player searches on their own."
+                : ''} A party plays together at Play Online tables and game nights, where it takes at most half
               of a table (2 at a table of 4, 4 at a table of 8, 6 at a Game Night table of 12) and is marked for everyone there. Party mates searching on their own count too: never more than half a table between them. Any party can start
               a private room together, and a party too big for a table plays there. A private room plays the host's
               packs, as it always does. A members-only search needs every member of the party to be a member.
