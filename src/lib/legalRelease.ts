@@ -1510,6 +1510,17 @@ export const LIVE = {
    */
   archiveHolders: true,
   /**
+   * drawing-minor-rooms-1111 (app repo: server file 20261231999100_drawing_minor_rooms_1111, owner Nov 11 "drawings:
+   * check"): in a private room where anyone who can see the drawing is under 18 or has no birth year, drawing turns get
+   * the public check (OpenAI moderation every turn, the smart check by the drawer's tier), except a drawer who declared an
+   * age under 18 (an ageless drawer is checked: security review 1111 #1); the path has its own daily share of the budget
+   * (#4); there the app doesn't ask AGREE first; a strike there goes to a person.
+   * Turns on a paragraph in Privacy's Drawing Checks and a clause in Age. POLICY FIRST: flip it when the server file is
+   * applied live, and set DRAWING_MINOR_ROOMS_DAY (below) to the push day. A server fact for every app version at once:
+   * set in LIVE, never in PRIVACY_AHEAD.
+   */
+  drawingMinorRooms: false,
+  /**
    * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
    * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
    * included; problem_reports was already in it since 20261224610000) and their entry on a beta tester list (beta_testers,
@@ -1754,6 +1765,9 @@ export const ARCHIVE_HOLDERS_DAY = 'November 11, 2026'
 /** LIVE.chatMildMask's day in LEGAL_LAST_UPDATED: the day the server file 20261231999920_mild_swear_mask_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
 export const CHAT_MILD_MASK_DAY = 'November 11, 2026'
 
+/** LIVE.drawingMinorRooms's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on. Never earlier than November 11, 2026. */
+export const DRAWING_MINOR_ROOMS_DAY = 'November 11, 2026'
+
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
@@ -1840,6 +1854,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.drawingMinorRooms
+    ? DRAWING_MINOR_ROOMS_DAY // Drawing Checks: adults' drawings checked in private rooms where a minor sits (drawing-minor-rooms-1111)
   : LIVE.unconfirmedSignups
     ? UNCONFIRMED_SIGNUPS_DAY // Data Retention: never-confirmed email sign-ups deleted about 24 hours after the last confirmation email (unconfirmed-signups-1111)
   : LIVE.archiveHolders
