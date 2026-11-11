@@ -50,7 +50,7 @@ export function DisplayCase({ ring, look, alt, wear = false, eager = false, stil
             {look.kind === 'scene' || live ? null : <span className={c.room} />}
             {look.kind === 'scene' || live ? null : <span className={c.beam} />}
             {live ? (
-              <LiveBackdrop item={look.item!} copy={look.copy ?? null} still={still || worn} alt={alt} />
+              <LiveBackdrop item={look.item!} copy={look.copy ?? null} still={still || worn} alt={alt} poster={look.alone} eager={eager} />
             ) : look.kind === 'scene' ? (
               <SceneMotion className={c.scene} poster={look.alone} motion={look.motion} alt={alt} eager={eager} still={still} />
             ) : look.kind === 'case' ? (

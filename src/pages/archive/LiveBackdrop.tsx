@@ -11,6 +11,8 @@ import type * as Engine from '../../lib/backdrop/engine.generated.js'
  * Still (the rest pose: the app's still picture) under Reduce Motion, with `still` (the grid, the Market's rows), off
  * screen and in a hidden tab. Panel Break's words are the reader's language (the app's own, LEGENDARY_BACKDROP_WORDS);
  * `simple` (a thumbnail under 72 px) draws the app's simple scene and no words, as the app does.
+ * `poster`: the copy's still picture (the rest pose, drawn by the same code: scripts/archive-item-art), shown while the
+ * engine loads (`eager`: the page's own picture, not a grid's; speed2-1111: the page paints the picture before the 140 KB engine arrives, then the drawing takes over).
  */
 
 type Copy = { float: string; pattern: number | null; serial?: number | null } | null
@@ -189,7 +191,7 @@ function WordText({ w }: { w: Word }) {
   )
 }
 
-export function LiveBackdrop({ item, copy, figure = null, still = false, simple = false, alt = '' }: { item: string; copy: Copy; figure?: 'm' | 'f' | null; still?: boolean; simple?: boolean; alt?: string }) {
+export function LiveBackdrop({ item, copy, figure = null, still = false, simple = false, alt = '', poster = '', eager = false }: { item: string; copy: Copy; figure?: 'm' | 'f' | null; still?: boolean; simple?: boolean; alt?: string; poster?: string; eager?: boolean }) {
   const { lang } = useLang()
   const [E, setE] = useState<typeof Engine | null>(null)
   useEffect(() => {
@@ -259,7 +261,12 @@ export function LiveBackdrop({ item, copy, figure = null, still = false, simple 
     }
   }, [E, B, still, reduced])
 
-  if (!B) return <span style={{ position: 'absolute', inset: 0, background: '#0d121d' }} aria-hidden />
+  if (!B)
+    return (
+      <span style={{ position: 'absolute', inset: 0, background: '#0d121d' }} aria-hidden={poster && alt ? undefined : true}>
+        {poster ? <img src={poster} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} /> : null}
+      </span>
+    )
   // The figure sits where the app's children go; Vault Zero's handle turns on its door (nested in its group).
   const htmlOf = (ly: Built['layers'][number]) =>
     ly.idx === -2 || (B.kind === 'panel' && ly.idx === E!.PL.figure) ? B.figure : B.kind === 'vault' && ly.idx === E!.VL.peakFigure ? B.peak : ly.html
