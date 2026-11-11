@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useLang, type LangCode } from '../../i18n'
 import { ArchiveBusy, fetchUniques, loadArchiveData, loadArtIndex, loadLookIndex, type ArchiveData, type Looks, type ArchiveList, type ArchiveSet } from '../../lib/archive'
 import { archiveStrings, type ArchiveStrings } from './strings'
+import { setName } from './serverWords'
 
 const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set(), motion: {} }
 
@@ -31,7 +32,8 @@ export const dayText = (iso: string, locale: string) =>
 export function setText(set: ArchiveSet | undefined | null, lang: string): { set: string; season: string } {
   if (!set) return { set: '', season: '' }
   const pick = (m: Record<string, string>) => m[lang] ?? m[lang.split('-')[0]] ?? m.en ?? ''
-  const name = pick(set.names)
+  // The set's name on the site's side in every language (serverWords: the server names it in two before archive_words_1111).
+  const name = setName(set, lang as LangCode)
   const season = pick(set.season_names)
   // "Beta · Intercepts" already names its season: say it once.
   return { set: name, season: season && name.toLocaleLowerCase().includes(season.toLocaleLowerCase()) ? '' : season }

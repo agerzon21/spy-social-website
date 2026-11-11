@@ -22,6 +22,7 @@ import {
 } from '../../lib/archive'
 import { ArchiveState, BetaNotice, FloatDigits, Piece } from './ArchiveBits'
 import { dayText, fmt, setText, useArchive } from './useArchive'
+import { howLine } from './serverWords'
 import s from './archive.module.css'
 import hs from './holder.module.css'
 import { LIVE } from '../../lib/legalRelease'
@@ -99,9 +100,9 @@ const ArchiveItem = () => {
       : u.source === 'trade_up' && u.inputs
         ? t.fromTradeUp(fmt(u.inputs, locale))
         : t.fromOther
-  // The rule's line, in the reader's language whenever the server has it (all ten once archive_words_1111 is applied;
-  // English and Russian before it), never another language's: the line above it already says how this copy was minted.
-  const rule = u?.how ? u.how[lang] ?? '' : ''
+  // The rule's line in the reader's language: the server's where it has it (all ten once archive_words_1111 is applied;
+  // English and Russian before it), else the same line on the site's side (serverWords), never another language's.
+  const rule = u ? howLine(u.how, u.set, lang) : ''
   // The holder today (archive-holder-1110): only with the switch on and a server that sends the holder keys.
   const holder = u && LIVE.archiveHolders ? holderOf(u) : ({ kind: 'unknown' } as const)
   const namesHolders = !!u && LIVE.archiveHolders && u.holder_handle !== undefined
