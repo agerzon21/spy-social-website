@@ -5,13 +5,15 @@
 # supply (supply.json). Each run upgrades the stamps still waiting for Bitcoin, so a day's .ots carries its block from
 # the next run on. The beta test chain's files go under public/ledger/beta/ instead. Git's history is the timestamp;
 # the push deploys the site (spysocial.app/ledger serves the files and the downloads built from them, no server call).
-# After the push, the Internet Archive's Wayback Machine is asked to save the heads file. No secret is needed: the
-# ledger is public. Before the ledger exists the run does nothing.
+# After the push, the Internet Archive's Wayback Machine is asked to save the heads file. This run is the ledger's only
+# witness: the app server does no Wayback save of its own and its heads' `witnessed` field stays {} (app server
+# 20261231999998_ledger_witness_1111). No secret is needed: the ledger is public. Before the ledger exists the run does
+# nothing.
 name: ledger-heads
 
 on:
   schedule:
-    - cron: '20 0 * * *'   # 00:20 UTC: after the 00:00 checkpoint and the 00:15 Wayback save
+    - cron: '20 0 * * *'   # 00:20 UTC: after the app's 00:00 checkpoint
   workflow_dispatch:
 
 permissions:

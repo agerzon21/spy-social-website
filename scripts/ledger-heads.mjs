@@ -1,5 +1,5 @@
 // ledger-heads.mjs : the daily witness (run by .github/workflows/ledger-heads.yml at 00:20 UTC, after the app's 00:00
-// UTC checkpoint and its 00:15 Wayback save). Reads the minted-collectibles ledger's day heads (the app's ledger
+// UTC checkpoint; the app server does no Wayback save of its own: this Action is the only witness). Reads the minted-collectibles ledger's day heads (the app's ledger
 // function, no sign-in), appends every day not yet in public/ledger/heads.csv (day,seq,hash,fetched_at), and saves the
 // rules' SQL of every new fingerprint as public/ledger/rules/<fp>.sql, so a head's rules can be read next to it. Git's
 // history is the timestamp. Never rewrites a row: a head that disagrees with one already committed fails the run.
