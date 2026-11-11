@@ -249,7 +249,7 @@ export function loadLookIndex(): Promise<Looks> {
  * How a Unique's picture shows its item: in the display case (a wearable), framed on its wall (a backdrop), or its
  * scene filling the picture (a celebration, a local, a border: public/archive/scene, full-bleed, no case).
  */
-export type ItemLook = { kind: 'case' | 'wall' | 'scene'; alone: string; worn: { m: string; f: string } | null }
+export type ItemLook = { kind: 'case' | 'wall' | 'scene'; alone: string; worn: { m: string; f: string } | null; big?: boolean }
 
 /** The copy's own look, else its item's plain Legendary's, else null (not drawn this way yet: the tile as it is). */
 export function lookOf(looks: Looks, item: string, serial?: number | null, small = false): ItemLook | null {
@@ -261,7 +261,8 @@ export function lookOf(looks: Looks, item: string, serial?: number | null, small
     return sc ? { kind: 'scene', alone: `/archive/scene/${sc}${small ? '-s' : ''}.webp`, worn: null } : null
   }
   const worn = looks.worn.has(`${key}-m`) && looks.worn.has(`${key}-f`) ? { m: `/archive/worn/${key}-m.webp`, f: `/archive/worn/${key}-f.webp` } : null
-  return { kind: item.startsWith('background_') ? 'wall' : 'case', alone: `/archive/item/${key}.webp`, worn }
+  // A border is a frame round nothing: shown larger in the case so it reads like the other items (owner Nov 11).
+  return { kind: item.startsWith('background_') ? 'wall' : 'case', alone: `/archive/item/${key}.webp`, worn, big: item.startsWith('frame_') }
 }
 
 /** A picture by its key (the float page's examples: x-cat-d1-3). */

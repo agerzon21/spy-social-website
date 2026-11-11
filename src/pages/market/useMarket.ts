@@ -1,23 +1,27 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useLang, type LangCode } from '../../i18n'
 import { fetchMarket, fetchMarketItem, marketSoon, type MarketItemPage, type MarketList } from '../../lib/market'
-import { loadArtIndex } from '../../lib/archive'
+import { loadArtIndex, loadLookIndex, type Looks } from '../../lib/archive'
 import { marketStrings, type MarketStrings } from './strings'
+
+const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set() }
 
 export type LoadState = 'loading' | 'ok' | 'busy' | 'soon'
 
 /** The page's words, the reader's language and the pictures the Archive has drawn (a Legendary's plain picture). */
-export function useMarketWords(): { w: MarketStrings; lang: LangCode; locale: string; art: Set<string> } {
+export function useMarketWords(): { w: MarketStrings; lang: LangCode; locale: string; art: Set<string>; looks: Looks } {
   const { lang, language } = useLang()
   const [art, setArt] = useState<Set<string>>(new Set())
+  const [looks, setLooks] = useState<Looks>(NO_LOOKS)
   useEffect(() => {
     let live = true
     loadArtIndex().then((a) => live && setArt(a))
+    loadLookIndex().then((l) => live && setLooks(l))
     return () => {
       live = false
     }
   }, [])
-  return { w: marketStrings(lang), lang, locale: language.locale, art }
+  return { w: marketStrings(lang), lang, locale: language.locale, art, looks }
 }
 
 /** Every item on the books (op=market): 'soon' while the server's Market reads aren't on yet (the function answers 400). */

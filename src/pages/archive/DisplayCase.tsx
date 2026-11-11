@@ -36,7 +36,7 @@ export function DisplayCase({ ring, look, alt, wear = false, eager = false }: { 
                 <span className={c.column} />
                 <span className={c.top} />
                 <span className={c.glass} />
-                <img className={c.item} src={look.alone} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+                <img className={`${c.item} ${look.big ? c.big : ''}`} src={look.alone} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
               </>
             ) : (
               <>

@@ -20,6 +20,8 @@ import {
 import { compact, fmt, pctText, useMarketWords, type LoadState } from './useMarket'
 import { CATEGORY_ICON } from './icons'
 import a from '../archive/archive.module.css'
+import { lookOf } from '../../lib/archive'
+import { DisplayCase } from '../archive/DisplayCase'
 import s from './market.module.css'
 
 /** Every Market page: the dark vault and the lines (its nav is in the header: components/HostNav) that must show above everything (sample, beta, paused). */
@@ -77,20 +79,33 @@ export function MarketState({ kind, onRetry }: { kind: LoadState; onRetry?: () =
   )
 }
 
-/** An item's picture: a Legendary's plain art from the Archive where it's drawn, else its shelf's mark in its rarity. */
+/**
+ * An item's picture: a Legendary drawn for the Archive shows the item alone (archive-item-art-1111, owner Nov 11: no
+ * sample agent anywhere on the site): big, in the Archive's display case inside its gold ring (a celebration's scene
+ * filling it); small, the item cut-out (or the scene) on the case's dark room. Else its Archive tile, else its
+ * shelf's mark in its rarity.
+ */
 export function ItemThumb({ it, size = 'sm' }: { it: Pick<MarketItem, 'k' | 'i' | 't' | 'r' | 'nm'>; size?: 'sm' | 'md' | 'lg' }) {
-  const { art } = useMarketWords()
+  const { art, looks } = useMarketWords()
   const cat = categoryOf(it)
   const Icon = CATEGORY_ICON[cat]
   const colour = RARITY_COLOUR[it.r] ?? RARITY_COLOUR.common
-  const pic = it.r === 'legendary' && art.has(`l-${it.i}`) ? `/archive/art/l-${it.i}${size === 'lg' ? '' : '-s'}.webp` : null
+  const legendary = it.r === 'legendary'
+  const pic = legendary && art.has(`l-${it.i}`) ? `/archive/art/l-${it.i}${size === 'lg' ? '' : '-s'}.webp` : null
+  const look = legendary ? lookOf(looks, it.i, null, size !== 'lg') : null
   return (
     <span
-      className={`${s.thumb} ${s[`thumb_${size}`]} ${pic ? s.thumbArt : ''}`}
+      className={`${s.thumb} ${s[`thumb_${size}`]} ${pic || look ? s.thumbArt : ''}`}
       style={{ ['--rar' as string]: colour.dark, ['--rar-light' as string]: colour.light }}
       aria-hidden
     >
-      {pic ? (
+      {pic && look && size === 'lg' ? (
+        <DisplayCase ring={pic} look={look} alt="" />
+      ) : look ? (
+        <span className={`${s.thumbAlone} ${look.kind === 'case' ? '' : s.thumbFill}`}>
+          <img src={look.alone} alt="" loading="lazy" decoding="async" />
+        </span>
+      ) : pic ? (
         <img src={pic} alt="" loading="lazy" decoding="async" width={size === 'lg' ? 640 : 320} height={size === 'lg' ? 640 : 320} />
       ) : it.t ? (
         <span className={s.thumbTier}>{it.i}</span>
