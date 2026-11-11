@@ -478,12 +478,12 @@ const ptBR: HelpText = {
               id: 'member-time',
               q: "O que é “Membro desde”?",
               a: [
-                "Enquanto você for membro, a <b>Conta</b> mostra quando a assinatura começou e há quanto tempo você é membro, e o <b>Cofre</b> mostra seus selos: 1, 3 e 6 meses, 1, 2 e 3 anos, e depois a cada ano.",
+                "Enquanto você for membro, a <b>Conta</b> mostra quando a assinatura começou e há quanto tempo você é membro, e o <b>Cofre</b> mostra seus carimbos: 1, 3 e 6 meses, 1, 2 e 3 anos, e depois a cada ano.",
                 "Conta o tempo em que sua assinatura ficou ativa sem interrupção: um passe, o Vitalício, um presente ou um código. Tempo reembolsado e compras de teste não contam.",
-                "Ele se ganha ficando. No primeiro dia em que sua assinatura não estiver mais ativa (depois do período de carência que a loja dá quando um pagamento falha), seu tempo de membro e seus selos somem. Se você voltar a ser membro, “Membro desde” e seu tempo começam do zero.",
-                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como membro, incluindo os meses de passe antes dele, e continua crescendo, com cada selo que adicionarmos depois.",
-                "Os outros jogadores veem só há quanto tempo, com seu selo, na sua ficha de jogador, nunca a data nem o preço. Desative <b>Mostrar meu tempo de membro</b> nos Ajustes para esconder. O tempo de uma conta de menor de 13 anos nunca aparece para os outros.",
-                "Os selos só mudam a aparência do seu perfil: não dão XP nem chances melhores, e não podem ser trocados.",
+                "Ele se ganha ficando. No primeiro dia em que sua assinatura não estiver mais ativa (depois do período de carência que a loja dá quando um pagamento falha), seu tempo como membro e seus carimbos zeram. Se você voltar a ser membro, “Membro desde” e seu tempo começam do zero.",
+                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como membro, incluindo os meses de passe antes dele, e continua crescendo, com cada carimbo que adicionarmos depois.",
+                "Os outros jogadores veem só há quanto tempo, com seu carimbo, na sua ficha de jogador, nunca a data nem o preço. Desative <b>Mostrar meu tempo como membro</b> nos Ajustes para esconder. O tempo de uma conta de menor de 13 anos nunca aparece para os outros.",
+                "Os carimbos só mudam a aparência do seu perfil: não dão XP nem chances melhores, e não podem ser trocados.",
               ],
             },
             {
@@ -504,7 +504,7 @@ const ptBR: HelpText = {
             '<b>iPhone ou iPad:</b> Ajustes, seu nome, Assinaturas, SpySocial.',
             '<b>Android:</b> o app Google Play Store, sua foto de perfil, Pagamentos e assinaturas, Assinaturas, SpySocial.',
             '<b>Gerenciar assinatura</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um passe.',
-            ...(o.memberLoyalty ? ["Antes de abrir a loja, o app mostra uma tela com os fatos: se sua assinatura acabar, seu tempo de membro e seus selos voltam a zero e seu preço deixa de ser mantido. Um botão leva direto à loja, e nada muda antes do fim do período pago."] : []),
+            ...(o.memberLoyalty ? ["No <b>Cofre</b>, <b>Cancelar assinatura</b> (abaixo de Gerenciar assinatura) mostra antes uma tela com os fatos: se a sua assinatura terminar, seu tempo como membro e seus carimbos zeram e começam do zero, e seu preço garantido termina. O único botão, <b>Continuar para cancelar</b>, leva direto à loja. <b>Gerenciar assinatura</b> continua abrindo a loja diretamente. Nada muda antes do fim do período pago."] : []),
           ],
         },
         {

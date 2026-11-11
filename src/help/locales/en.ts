@@ -510,7 +510,7 @@ const en: HelpText = {
             '<b>iPhone or iPad:</b> Settings, your name, Subscriptions, SpySocial.',
             '<b>Android:</b> the Google Play Store app, your profile picture, Payments & subscriptions, Subscriptions, SpySocial.',
             '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a pass.',
-            ...(o.memberLoyalty ? ["Before the store opens, the app shows one screen with the facts: if your membership ends, your member time and stamps start again from zero, and your price is no longer kept. One button goes straight on to the store, and nothing changes before the end of the period you paid for."] : []),
+            ...(o.memberLoyalty ? ["In the <b>Vault</b>, <b>Cancel Membership</b> (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and your locked price ends. Its one button, <b>Continue to Cancel</b>, goes straight on to the store. <b>Manage Subscription</b> itself still opens the store directly. Nothing changes before the end of the period you paid for."] : []),
           ],
         },
         {

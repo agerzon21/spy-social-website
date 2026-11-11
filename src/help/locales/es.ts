@@ -504,7 +504,7 @@ const es: HelpText = {
             '<b>iPhone o iPad:</b> Ajustes, tu nombre, Suscripciones, SpySocial.',
             '<b>Android:</b> la app Google Play Store, tu foto de perfil, Pagos y suscripciones, Suscripciones, SpySocial.',
             '<b>Gestionar suscripción</b> en la app abre la misma página. Borrar la app o tu cuenta, o comprar la membresía de por vida, no cancela un pase.',
-            ...(o.memberLoyalty ? ["Antes de abrir la tienda, la app muestra una pantalla con los hechos: si tu membresía termina, tu tiempo como miembro y tus sellos vuelven a cero y dejas de conservar tu precio. Un botón te lleva directamente a la tienda, y nada cambia antes del final del periodo que pagaste."] : []),
+            ...(o.memberLoyalty ? ["En la <b>Bóveda</b>, <b>Cancelar membresía</b> (debajo de Gestionar suscripción) muestra antes una pantalla con los hechos: si tu membresía termina, tu tiempo como miembro y tus sellos se reinician y empiezan desde cero, y tu precio fijado termina. Su único botón, <b>Continuar con la cancelación</b>, te lleva directamente a la tienda. <b>Gestionar suscripción</b> sigue abriendo la tienda directamente. Nada cambia antes del final del periodo que pagaste."] : []),
           ],
         },
         {

@@ -932,7 +932,7 @@ const Terms: React.FC = () => {
             doesn't cancel a subscription, and neither does buying Lifetime: cancel the pass in the store so it isn't
             charged again.
             {LIVE.memberLoyalty
-              ? " Before it opens the store's page to cancel, the app shows one screen with the facts (your member time and stamps start again from zero if the membership ends, and so does the price you keep while you stay) and one button that goes straight on to the store. Nothing changes before the end of the period you've paid for."
+              ? " In the Vault, Cancel Membership (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and the price you keep while you stay ends. Its one button, Continue to Cancel, goes straight on to the store's page. Manage Subscription itself still opens the store's page directly. Nothing changes before the end of the period you've paid for."
               : ''}
           </ListItem>
           <ListItem>

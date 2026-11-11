@@ -476,13 +476,13 @@ const id: HelpText = {
           ? [
             {
               id: 'member-time',
-              q: "Apa itu “Anggota sejak”?",
+              q: "Apa itu “Member sejak”?",
               a: [
-                "Selama kamu anggota, <b>Akun</b> menunjukkan kapan keanggotaanmu dimulai dan sudah berapa lama kamu menjadi anggota, dan <b>Brankas</b> menunjukkan capmu: 1, 3, dan 6 bulan, 1, 2, dan 3 tahun, lalu setiap tahun.",
+                "Selama kamu member, <b>Akun</b> menunjukkan kapan keanggotaanmu dimulai dan sudah berapa lama kamu menjadi member, dan <b>Brankas</b> menunjukkan capmu: 1, 3, dan 6 bulan, 1, 2, dan 3 tahun, lalu setiap tahun.",
                 "Yang dihitung adalah waktu keanggotaanmu aktif tanpa jeda: langganan, keanggotaan seumur hidup, hadiah, atau kode. Waktu yang dananya dikembalikan dan pembelian uji coba tidak dihitung.",
-                "Waktu ini didapat dengan bertahan. Pada hari pertama keanggotaanmu tidak aktif lagi (setelah masa tenggang yang diberikan toko saat pembayaran gagal), waktu anggota dan capmu hilang. Kalau kamu menjadi anggota lagi, “Anggota sejak” dan waktumu mulai dari nol.",
-                "Keanggotaan <b>seumur hidup</b> adalah pengecualian: waktumu dihitung sejak hari pertamamu sebagai anggota, termasuk bulan-bulan langganan sebelumnya, dan terus bertambah, dengan setiap cap yang kami tambahkan nanti.",
-                "Pemain lain hanya melihat sudah berapa lama, beserta capmu, di lembar pemainmu, tidak pernah tanggal atau harganya. Matikan <b>Tampilkan lama keanggotaanku</b> di Pengaturan untuk menyembunyikannya. Waktu akun di bawah 13 tahun tidak pernah ditampilkan ke orang lain.",
+                "Waktu ini didapat dengan bertahan. Pada hari pertama keanggotaanmu tidak aktif lagi (setelah masa tenggang yang diberikan toko saat pembayaran gagal), waktu member dan capmu hilang. Kalau kamu menjadi member lagi, “Member sejak” dan waktumu mulai dari nol.",
+                "Keanggotaan <b>seumur hidup</b> adalah pengecualian: waktumu dihitung sejak hari pertamamu sebagai member, termasuk bulan-bulan langganan sebelumnya, dan terus bertambah, dengan setiap cap yang kami tambahkan nanti.",
+                "Pemain lain hanya melihat sudah berapa lama, beserta capmu, di lembar pemainmu, tidak pernah tanggal atau harganya. Matikan <b>Tampilkan waktu memberku</b> di Pengaturan untuk menyembunyikannya. Waktu akun di bawah 13 tahun tidak pernah ditampilkan ke orang lain.",
                 "Cap hanya mengubah tampilan profilmu: tanpa XP, tanpa peluang lebih baik, dan tidak bisa diperdagangkan.",
               ],
             },
@@ -490,7 +490,7 @@ const id: HelpText = {
               id: 'membership-price',
               q: "Apakah hargaku akan naik?",
               a: [
-                "Selama langgananmu diperpanjang tanpa jeda, kamu tetap membayar harga yang sekarang, meski harganya naik untuk anggota baru. Toko masih bisa menyesuaikannya karena pajak setempat atau mata uang.",
+                "Selama langgananmu diperpanjang tanpa jeda, kamu tetap membayar harga yang sekarang, meski harganya naik untuk member baru. Toko masih bisa menyesuaikannya karena pajak setempat atau mata uang.",
                 "Kalau kamu pindah ke langganan yang lain, kamu membayar harga paket itu saat ini. Kalau keanggotaanmu berakhir dan kamu kembali nanti, kamu mungkin membayar harga saat itu. Keanggotaan seumur hidup dibayar sekali dan tidak pernah diperpanjang.",
               ],
             },
@@ -504,7 +504,7 @@ const id: HelpText = {
             '<b>iPhone atau iPad:</b> Pengaturan, namamu, Langganan, SpySocial.',
             '<b>Android:</b> aplikasi Google Play Store, foto profilmu, Pembayaran & langganan, Langganan, SpySocial.',
             '<b>Kelola langganan</b> di aplikasi membuka halaman yang sama. Menghapus aplikasi atau akun, atau membeli keanggotaan seumur hidup, tidak membatalkan langganan.',
-            ...(o.memberLoyalty ? ["Sebelum membuka toko, aplikasi menampilkan satu layar berisi faktanya: kalau keanggotaanmu berakhir, waktu anggota dan capmu mulai dari nol lagi, dan hargamu tidak dipertahankan lagi. Satu tombol langsung menuju toko, dan tidak ada yang berubah sebelum akhir periode yang sudah dibayar."] : []),
+            ...(o.memberLoyalty ? ["Di <b>Brankas</b>, <b>Batalkan Keanggotaan</b> (di bawah Kelola langganan) lebih dulu menampilkan satu layar berisi faktanya: kalau keanggotaanmu berakhir, waktu member dan capmu diulang dari nol, dan harga terkuncimu berakhir. Satu-satunya tombolnya, <b>Lanjut Batalkan</b>, langsung menuju toko. <b>Kelola langganan</b> sendiri tetap langsung membuka toko. Tidak ada yang berubah sebelum akhir periode yang sudah dibayar."] : []),
           ],
         },
         {
