@@ -1,5 +1,7 @@
 import { useMemo } from 'react'
-import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom'
+import { Navigate, useParams, useSearchParams } from 'react-router-dom'
+import Link from '../../components/SiteLink'
+import { sitePath } from '../../lib/siteHost'
 import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import { movers, MOVER_LISTS, WINDOWS, type MoverList, type Win } from '../../lib/market'
@@ -18,7 +20,7 @@ const MarketMovers = () => {
   const win = (WINDOWS as readonly string[]).includes(params.get('w') ?? '') ? (params.get('w') as Win) : '7d'
   const which = (MOVER_LISTS as string[]).includes(name ?? '') ? (name as MoverList) : null
   const top = useMemo(() => (which && list ? movers(list.items, which, win, 100) : []), [list, which, win])
-  if (!which) return <Navigate to="/market/movers/rises" replace />
+  if (!which) return <Navigate to={sitePath('/market/movers/rises')} replace />
   const L = w.lists[which]
   return (
     <MarketPage head={list}>

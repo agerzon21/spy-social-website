@@ -35,6 +35,7 @@ async function siteModule(root, file) {
  */
 const HOST_PAGES = [
     { host: 'archive', origin: 'https://archive.spysocial.app', key: 'archive', paths: ['/', '/uniques'], live: ['mintedCollectibles', 'uniqueArchive'] },
+    { host: 'market', origin: 'https://market.spysocial.app', key: 'market', paths: ['/', '/catalogue'], live: ['marketSite'] },
 ];
 /** A page's entries as public/sitemap.xml writes them: the bare address and each language's, each with all the alternates. */
 function entries(path, langs, origin = ORIGIN) {

@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
+import Link from '../../components/SiteLink'
+import { sitePath } from '../../lib/siteHost'
 import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import { CATEGORIES, categoryOf, itemChange, type Category, type MarketItem } from '../../lib/market'
@@ -35,7 +37,7 @@ const MarketCatalogue = () => {
       .filter((it) => rar === 'all' || it.r === rar)
       .sort((x, y) => by[sort](x, y) || x.nm.localeCompare(y.nm))
   }, [onShelf, rar, sort])
-  if (cat && !shelf) return <Navigate to="/market/catalogue" replace />
+  if (cat && !shelf) return <Navigate to={sitePath('/market/catalogue')} replace />
 
   if (!shelf) {
     return (

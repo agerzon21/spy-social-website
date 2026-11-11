@@ -13,9 +13,9 @@ const zhHans: Strings = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "收藏品账本",
-      /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      /** The Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>), live with LIVE.mintedCollectibles. */
       archive: "档案馆",
-      /** The Market (/market and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      /** The Market (market.spysocial.app and its pages), live with LIVE.marketSite: the Black Market's prices. */
       market: "黑市价格",
       transparency: "透明度报告",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */

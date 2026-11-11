@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import Link from '../../components/SiteLink'
 import { FaArrowRight } from 'react-icons/fa6'
 import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'
@@ -41,21 +41,19 @@ function MoverRow({ it, n, list, win }: { it: MarketItem; n: number; list: Mover
 }
 
 /** A board: one list's top few, and its Top 100. */
-function MoverBoard({ items, list, win, n, tabs }: { items: MarketItem[]; list: MoverList; win: Win; n: number; tabs?: React.ReactNode }) {
+function MoverBoard({ items, list, win, n }: { items: MarketItem[]; list: MoverList; win: Win; n: number }) {
   const { w } = useMarketWords()
   const top = useMemo(() => movers(items, list, win, n), [items, list, win, n])
   const Icon = LIST_ICON[list]
   return (
-    <section className={`${s.board} ${s[`board_${list}`]}`} aria-labelledby={tabs ? undefined : `board-${list}`} aria-label={tabs ? w.lists[list].title : undefined}>
-      {tabs ?? (
-        <header className={s.boardHead}>
-          <Icon className={s.boardIcon} aria-hidden focusable={false} />
-          <div>
-            <h3 id={`board-${list}`} className={s.boardTitle}>{w.lists[list].title}</h3>
-            <p className={s.boardText}>{w.lists[list].text}</p>
-          </div>
-        </header>
-      )}
+    <section className={`${s.board} ${s[`board_${list}`]}`} aria-labelledby={`board-${list}`}>
+      <header className={s.boardHead}>
+        <Icon className={s.boardIcon} aria-hidden focusable={false} />
+        <div>
+          <h3 id={`board-${list}`} className={s.boardTitle}>{w.lists[list].title}</h3>
+          <p className={s.boardText}>{w.lists[list].text}</p>
+        </div>
+      </header>
       {top.length ? (
         <ol className={s.moverList}>
           {top.map((it, k) => (
@@ -79,10 +77,6 @@ const MarketHome = () => {
   const items = useMemo(() => list?.items ?? [], [list])
   const [q, setQ] = useState('')
   const [win, setWin] = useState<Win>('7d')
-  const [tab, setTab] = useState<MoverList>('rises')
-  const [params] = useSearchParams()
-  // Layout B (one board, four tabs) for the owner's pick: ?look=b. Layout A (four boards) otherwise.
-  const look = params.get('look') === 'b' ? 'b' : 'a'
   const featured = featuredOf(list)
   const priced = items.filter((it) => it.p != null).length
   const shelves = useMemo(() => {
@@ -161,33 +155,12 @@ const MarketHome = () => {
               </div>
               <WindowChips win={win} onWin={setWin} label={w.movers.window} />
             </div>
-            {look === 'a' ? (
-              <div className={s.boards}>
-                {MOVER_LISTS.map((l) => (
-                  <MoverBoard key={l} items={items} list={l} win={win} n={5} />
-                ))}
-              </div>
-            ) : (
-              <MoverBoard
-                items={items}
-                list={tab}
-                win={win}
-                n={10}
-                tabs={
-                  <div className={s.tabs} role="tablist" aria-label={h.movers}>
-                    {MOVER_LISTS.map((l) => {
-                      const Icon = LIST_ICON[l]
-                      return (
-                        <button key={l} type="button" role="tab" aria-selected={tab === l} className={s.tab} onClick={() => setTab(l)}>
-                          <Icon aria-hidden focusable={false} />
-                          <span>{w.lists[l].short}</span>
-                        </button>
-                      )
-                    })}
-                  </div>
-                }
-              />
-            )}
+            {/* Four boards, five each (layout A, the owner's pick Nov 10). */}
+            <div className={s.boards}>
+              {MOVER_LISTS.map((l) => (
+                <MoverBoard key={l} items={items} list={l} win={win} n={5} />
+              ))}
+            </div>
           </section>
 
           <section className={a.section} aria-labelledby="market-catalogue">

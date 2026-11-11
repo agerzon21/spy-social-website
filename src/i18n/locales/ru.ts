@@ -13,9 +13,9 @@ const ru: Strings = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Реестр коллекционных предметов",
-      /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      /** The Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>), live with LIVE.mintedCollectibles. */
       archive: "Архив",
-      /** The Market (/market and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      /** The Market (market.spysocial.app and its pages), live with LIVE.marketSite: the Black Market's prices. */
       market: "Цены Чёрного рынка",
       transparency: "Отчёт о прозрачности",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */

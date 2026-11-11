@@ -13,9 +13,9 @@ const bn: Strings = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "সংগ্রহযোগ্য আইটেমের লেজার",
-      /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      /** The Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>), live with LIVE.mintedCollectibles. */
       archive: "আর্কাইভ",
-      /** The Market (/market and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      /** The Market (market.spysocial.app and its pages), live with LIVE.marketSite: the Black Market's prices. */
       market: "কালোবাজারের দাম",
       transparency: "স্বচ্ছতা প্রতিবেদন",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */

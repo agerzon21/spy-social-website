@@ -1,5 +1,7 @@
 import { useMemo, type ReactNode } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import Link from '../../components/SiteLink'
+import { canonicalPath } from '../../lib/siteHost'
 import { FaCaretDown, FaCaretUp, FaFlask, FaTriangleExclamation } from 'react-icons/fa6'
 import ui from '../../components/ui/ui.module.css'
 import { SearchField } from '../../components/SearchField'
@@ -25,7 +27,8 @@ import s from './market.module.css'
 /** The Market's places, and the Archive for Uniques. */
 export function SubNav() {
   const { w } = useMarketWords()
-  const { pathname } = useLocation()
+  // The canonical path ('/market/catalogue'), on market.spysocial.app too (its '/catalogue').
+  const pathname = canonicalPath(useLocation().pathname)
   const here = (p: string, exact = true) => ((exact ? pathname === p : pathname.startsWith(p)) ? 'page' : undefined)
   return (
     <nav aria-label={w.nav.label}>

@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import Link from '../../components/SiteLink'
 import { categoryOf, changeOf, type MarketItem as Item } from '../../lib/market'
 import { Change, ItemMeta, ItemThumb, MarketPage, MarketState, Price } from './MarketBits'
 import { ItemCharts } from './MarketCharts'

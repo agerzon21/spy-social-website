@@ -1476,8 +1476,8 @@ export const LIVE = {
   uniqueArchive: true,
   /**
    * market-site-1110 (app repo: server file 20261231990000_market_public_1110, the ledger function's ops market /
-   * market_item on fix/market-site-1110): the Market (/market, /market/movers/<list>, /market/catalogue[/<shelf>],
-   * /market/item/<code>), the Black Market's prices for every item that isn't a Unique, for anyone without an account.
+   * market_item on fix/market-site-1110): the Market (market.spysocial.app: /, /movers/<list>, /catalogue[/<shelf>],
+   * /item/<code>; www's /market sends there), the Black Market's prices for every item that isn't a Unique, for anyone without an account.
    * Aggregates only (an item's price, its changes, trades and Intel traded per window, each day's trades, average and
    * price), a price only with at least five counted trades; never a player, an order or a single trade. Turns on its
    * routes, its footer link and a sentence in Privacy's Data Sharing. Before the server file and the ledger version are

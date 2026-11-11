@@ -13,9 +13,9 @@ const hi: Strings = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "कलेक्टिबल्स लेजर",
-      /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      /** The Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>), live with LIVE.mintedCollectibles. */
       archive: "आर्काइव",
-      /** The Market (/market and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      /** The Market (market.spysocial.app and its pages), live with LIVE.marketSite: the Black Market's prices. */
       market: "काला बाज़ार के दाम",
       transparency: "पारदर्शिता रिपोर्ट",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */

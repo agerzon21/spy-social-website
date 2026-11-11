@@ -1,5 +1,5 @@
 /**
- * The Market's own words (www.spysocial.app/market). English and Russian; the other eight languages read the English
+ * The Market's own words (market.spysocial.app). English and Russian; the other eight languages read the English
  * for now, as the Archive does (the item names are the app's own in all ten: the server sends them). Never "Grand
  * Exchange" or any other game's words: it is the Black Market, as in the app. Numbers and dates arrive formatted.
  */
@@ -63,8 +63,6 @@ const en = {
       ],
     },
     trust: { title: 'Uniques live in the Archive', text: 'Each Unique is one of a kind and sells on its own in Rare Finds, so it has no market price. Its own page in the Archive shows every sale.', archive: 'Open the Archive', ledger: 'Check the ledger' },
-    lookA: 'Layout A: four boards',
-    lookB: 'Layout B: one board, four tabs',
   },
   movers: {
     title: (list: string) => list,
@@ -163,8 +161,6 @@ const ru: MarketStrings = {
       ],
     },
     trust: { title: 'Уникальные — в Архиве', text: 'Каждый уникальный предмет единственный в своём роде и продаётся отдельно в «Редких находках», поэтому рыночной цены у него нет. Все его продажи — на его странице в Архиве.', archive: 'Открыть Архив', ledger: 'Проверить реестр' },
-    lookA: 'Вариант A: четыре таблицы',
-    lookB: 'Вариант B: одна таблица, четыре вкладки',
   },
   movers: {
     title: (list: string) => list,
