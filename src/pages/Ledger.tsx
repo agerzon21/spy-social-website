@@ -20,6 +20,7 @@ const OTS_SITE = 'https://opentimestamps.org'
 const CYBERCHEF = "https://gchq.github.io/CyberChef/#recipe=SHA2('256',64,160)"
 const STAMPING_BEGAN = '2026-11-11'
 const WINDOW = 7
+const SUPPLY_PAGE = 20
 
 const day = (iso: string) => new Date(iso.length === 10 ? `${iso}T00:00:00Z` : iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
 const when = (iso: string) => `${day(iso)}, ${new Date(iso).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZone: 'UTC', hour12: false })} UTC`
@@ -66,7 +67,9 @@ const Ledger: React.FC = () => {
   const [summary, setSummary] = useState<LedgerSummary | null>(null)
   const [supply, setSupply] = useState<LedgerSupply | null>(null)
   const [missing, setMissing] = useState(false)
+  const [names, setNames] = useState<Record<string, [string, string]>>({})
   const [allDays, setAllDays] = useState(false)
+  const [allSupply, setAllSupply] = useState(false)
   const [copied, setCopied] = useState(false)
 
   useEffect(() => {
@@ -76,29 +79,34 @@ const Ledger: React.FC = () => {
       if (!on) return
       if (!current) { setMissing(true); return }
       setChain(current.chain)
-      const [s, sup] = await Promise.all([
+      const [s, sup, nm] = await Promise.all([
         staticJson<LedgerSummary>(ledgerFile(current.chain, 'summary.json')),
         staticJson<LedgerSupply>(ledgerFile(current.chain, 'supply.json')),
+        // The items' English names (the page is English-only), from scripts/ledger-names (public/ledger/names).
+        staticJson<{ items: Record<string, [string, string]> }>(`${LEDGER_FILES_BASE}names/en.json`),
       ])
       if (!on) return
       if (!s) setMissing(true)
       setSummary(s)
       setSupply(sup)
+      setNames(nm?.items ?? {})
     })()
     return () => { on = false }
   }, [])
 
   const rows: InfoRow[] = useMemo(() => (supply?.collectibles ?? []).map((c) => ({
-    label: `${c.name ?? c.item_code}${c.variant === 'unique' ? ' · Unique' : ''}`,
+    label: `${c.name ?? names[`${c.item_kind}:${c.item_code}`]?.[0] ?? c.item_code}${c.variant === 'unique' ? ' · Unique' : ''}`,
     note: `${c.set_names?.en ?? c.set} · ${c.how?.en ?? ''}`,
     cells: [
       // ledger-reasons-1111: copies removed for integrity, once the server sends them (LIVE.ledgerReasons).
       LIVE.ledgerReasons && typeof c.removed === 'number'
         ? `${n(c.minted)} minted · ${n(c.burned)} burned (${n(c.removed)} removed) · ${n(c.held)} in circulation`
         : `${n(c.minted)} minted · ${n(c.burned)} burned · ${n(c.held)} held`,
-      c.closed_at ? (c.minted === 0 ? 'Never awarded' : `Closed ${day(c.closed_at)} (entry ${c.close_seq ?? '…'})`) : `Open until ${day(c.closes_at)}`,
+      c.closed_at
+        ? (c.minted === 0 ? 'Never awarded' : `Closed ${day(c.closed_at)} (entry ${c.close_seq ?? '…'})`)
+        : new Date(c.closes_at).getUTCFullYear() >= 2099 ? 'Open' : `Open until ${day(c.closes_at)}`, // 2100-01-01: no closing date
     ],
-  })), [supply])
+  })), [supply, names])
 
   const beta = chain === 'beta'
   const days = summary ? [...summary.days].reverse() : []
@@ -316,7 +324,18 @@ const Ledger: React.FC = () => {
       <H2>Supply</H2>
       {supply && <Text textStyle="meta" mb={3}>As of {when(supply.as_of)}</Text>}
       {supply && supply.collectibles.length === 0 && <P>Nothing has been minted yet.</P>}
-      {supply && supply.collectibles.length > 0 && <InfoTable head={['Collectible', 'Supply', 'Status']} rows={rows} firstWidth="44%" />}
+      {supply && supply.collectibles.length > 0 && (
+        <>
+          <InfoTable head={['Collectible', 'Supply', 'Status']} rows={allSupply ? rows : rows.slice(0, SUPPLY_PAGE)} firstWidth="44%" />
+          {rows.length > SUPPLY_PAGE && (
+            <Box mt={3}>
+              <Button variant="secondary" size="sm" onClick={() => setAllSupply(!allSupply)}>
+                {allSupply ? `Show the first ${SUPPLY_PAGE}` : `Show all ${n(rows.length)} collectibles`}
+              </Button>
+            </Box>
+          )}
+        </>
+      )}
       {!supply && missing && <P>The supply is published with the first daily update.</P>}
     </LegalPage>
   )
