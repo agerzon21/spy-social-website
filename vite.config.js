@@ -458,12 +458,17 @@ async function hostHtml(outDir, home, host, bundle, ledger) {
     const byName = new Map(chunks.map((c) => [c.fileName, c]));
     const head = [];
     const styles = [];
+    // speed2-1111: each inlined file also stays named on the page as a stylesheet link of a type no browser reads (so
+    // never fetched or applied; `disabled` alone still downloads in Chrome), so the app's chunk loader, which looks for link[href][rel=stylesheet], doesn't fetch it again and hold
+    // the page until it arrives (a page chunk that lists the app's CSS among its own: the Ledger's did, ~0.2 s).
+    const inlined = [];
     let last = '';
     for (const t of own) {
         const css = /<link rel="stylesheet"[^>]*href="([^"]+)"/.exec(t);
         if (!css)
             head.push(t);
         else {
+            inlined.push(`<link rel="stylesheet" type="text/x-inlined" href="${css[1]}">`);
             const text = await read(css[1]);
             if (text.includes('--chakra-vh'))
                 last = inline(text);
@@ -517,7 +522,7 @@ async function hostHtml(outDir, home, host, bundle, ledger) {
     await writeFile(resolve(outDir, earlyName), early);
     // async, high priority: it runs as soon as it arrives (lang.js, before it, has set the page's language).
     head.unshift(`<script async fetchpriority="high" src="/${earlyName}"></script>`);
-    const parts = [...head, ...styles, ...[...css].map((c) => `<link rel="stylesheet" crossorigin href="/${c}">`), last];
+    const parts = [...head, ...styles, ...[...css].map((c) => `<link rel="stylesheet" crossorigin href="/${c}">`), last, ...inlined];
     await rm(file);
     return html.replace('</head>', `    ${parts.join('\n    ')}\n  </head>`);
 }
