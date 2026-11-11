@@ -1267,7 +1267,9 @@ export const LIVE = {
    * what comes from a code or a gift stays with the account for good (Terms 9, transparency's GIFTS_BOUND_DEC7, Game
    * Night Rules' bonus title); Intel we add (a refund, a make-good) is ordinary Intel (Terms 9's never-tradable list, the
    * corrections section); set LEGAL_LAST_UPDATED's entry to that day. A server switch for every app version at once:
-   * set in LIVE.
+   * set in LIVE. (gift-intel-lock-1111, owner 2026-11-11, WR as amended: a gift's value stays too: Intel from shredding a
+   * spare of a code or gift item is held on the account, never traded, sent or used on the Black Market: Terms 9, Help's
+   * who-can-trade and codes-and-gifts lines, Privacy's Intel history line; off also moves PRIVACY_LAST_UPDATED to that day.)
    */
   giftsTradable: true,
   /**
