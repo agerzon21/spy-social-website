@@ -94,10 +94,10 @@
    the links scroll sideways, the row fading at its ends. ---- */
 .headerHost .bar { justify-content: flex-start; }
 .headerHost .home { flex: none; }
-.homeMark { display: none; }
+.home .homeMark { display: none; }
 @media (max-width: 559px) {
   .headerHost .home img:not(.homeMark) { display: none; }
-  .headerHost .homeMark { display: block; width: 34px; height: 34px; }
+  .headerHost .home .homeMark { display: block; width: 34px; height: 34px; padding: 0; }
 }
 .headerHost .tools { flex: none; margin-inline-start: auto; }
 .headerHost .nav { display: none; }
