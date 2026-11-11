@@ -47,6 +47,7 @@ const MarketMovers = () => {
       <div className={s.toolbar}>
         <WindowChips win={win} onWin={(x) => setParams({ w: x }, { replace: true })} label={w.movers.window} />
       </div>
+      {state === 'loading' ? <div className={a.loading} aria-busy="true" /> : null}
       {state === 'soon' || state === 'busy' ? <MarketState kind={state} onRetry={retry} /> : null}
       {state === 'ok' ? top.length ? <ItemTable items={top} list={which} win={win} /> : <p className={a.empty}>{w.movers.none}</p> : null}
     </MarketPage>

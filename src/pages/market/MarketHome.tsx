@@ -127,6 +127,7 @@ const MarketHome = () => {
         </div>
       </section>
 
+      {state === 'loading' ? <div className={a.loading} aria-busy="true" /> : null}
       {state === 'soon' || state === 'busy' ? <MarketState kind={state} onRetry={retry} /> : null}
 
       {ok ? (
@@ -153,14 +154,22 @@ const MarketHome = () => {
                 <DisplayHeading id="market-movers">{h.movers}</DisplayHeading>
                 <p className={a.sectionLede}>{h.moversLede}</p>
               </div>
-              <WindowChips win={win} onWin={setWin} label={w.movers.window} />
+              {priced ? <WindowChips win={win} onWin={setWin} label={w.movers.window} /> : null}
             </div>
-            {/* Four boards, five each (layout A, the owner's pick Nov 10). */}
-            <div className={s.boards}>
-              {MOVER_LISTS.map((l) => (
-                <MoverBoard key={l} items={items} list={l} win={win} n={5} />
-              ))}
-            </div>
+            {/* Four boards, five each (layout A, the owner's pick Nov 10); while no item has a price, one plain panel
+                instead of four boards saying the same thing. */}
+            {priced ? (
+              <div className={s.boards}>
+                {MOVER_LISTS.map((l) => (
+                  <MoverBoard key={l} items={items} list={l} win={win} n={5} />
+                ))}
+              </div>
+            ) : (
+              <div className={s.noPrices} role="status">
+                <p className={s.noPricesTitle}>{h.empty.title}</p>
+                <p className={s.noPricesText}>{h.empty.text(list.min_trades)}</p>
+              </div>
+            )}
           </section>
 
           <section className={a.section} aria-labelledby="market-catalogue">

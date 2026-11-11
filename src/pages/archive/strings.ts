@@ -1,9 +1,16 @@
 /**
- * The Archive's own words (archive.spysocial.app). English and Russian; the other eight languages read the English
- * for now (the item names, attributes, sets, seasons and Intercept tiers are the app's own in all ten:
+ * The Archive's own words (archive.spysocial.app). All ten languages (English and Russian here, the other eight in ./locales; sites-polish-1111) (the item names, attributes, sets, seasons and Intercept tiers are the app's own in all ten:
  * public/archive/data). Numbers, dates and prices arrive formatted.
  */
 import type { LangCode } from '../../i18n'
+import es from './locales/es'
+import zhHans from './locales/zh-Hans'
+import hi from './locales/hi'
+import ar from './locales/ar'
+import fr from './locales/fr'
+import bn from './locales/bn'
+import ptBR from './locales/pt-BR'
+import id from './locales/id'
 
 const en = {
   nav: { archive: 'Archive', browse: 'All Uniques', ledger: 'Ledger', transparency: 'Transparency' },
@@ -72,7 +79,7 @@ const en = {
     season: 'Season',
     status: 'Status',
     any: 'Any',
-    types: { celebration: 'Celebrations', wearable: 'Avatar items', border: 'Borders', backdrop: 'Backgrounds', title: 'Titles' },
+    types: { celebration: 'Celebrations', wearable: 'Avatar items', border: 'Borders', backdrop: 'Backdrops', title: 'Titles' },
     listedOnly: 'For sale now',
     price: 'Price (Intel)',
     min: 'Min',
@@ -110,7 +117,7 @@ const en = {
     fromTradeUp: (n: string) => `Traded up from ${n} Legendary copies`,
     fromOther: 'Minted by its rule',
     recordedLater: 'Recorded on the ledger when it opened',
-    supply: (name: string, minted: string) => `${minted} Unique ${name} minted`,
+    supply: (name: string, minted: string, n: number) => `${name}: ${minted} ${n === 1 ? 'Unique' : 'Uniques'} minted`,
     others: 'Other Uniques of this item',
     history: 'Ledger history',
     historyNote: 'Holders are numbered in the order they first held it. The Archive never shows who they are.',
@@ -185,11 +192,11 @@ const ru: ArchiveStrings = {
       title: 'Два пути, и ни одного способа подделать',
       intercept: { title: 'Найден в «Энигме»', text: 'В самых редких перехватах, «Энигмах», уникальный выпадает с шансом 0,5%. В «Совсекретно» и ниже — никогда.' },
       tradeUp: { title: 'Получен обменом', text: 'Десять легендарных копий на входе, один уникальный на выходе. Десять копий уничтожаются в реестре.' },
-      market: { title: 'Куплен в «Редких находках»', text: 'Игроки продают уникальные друг другу на чёрном рынке за разведданные. Каждая продажа появляется здесь.' },
+      market: { title: 'Куплен в «Редких находках»', text: 'Игроки продают уникальные друг другу на Чёрном рынке за разведданные. Каждая продажа появляется здесь.' },
     },
     how: {
       title: 'Как получить',
-      steps: ['Играйте, чтобы получать перехваты, и забирайте ежедневный.', 'Открывайте их в Хранилище. В «Энигме» может оказаться уникальный.', 'Или обменяйте десять легендарных, или купите на чёрном рынке в «Редких находках».'],
+      steps: ['Играйте, чтобы получать перехваты, и забирайте ежедневный.', 'Открывайте их в Тайнике. В «Энигме» может оказаться уникальный.', 'Или обменяйте десять легендарных, или купите на Чёрном рынке в «Редких находках».'],
     },
     recent: 'Новое в Архиве',
     seeAll: 'Все',
@@ -229,7 +236,7 @@ const ru: ArchiveStrings = {
     notFoundText: 'Возможно, он ещё не выпущен или ссылка неверна.',
     status: { listed: 'В продаже', held: 'У игрока', burned: 'Списан' },
     listedFor: 'Цена',
-    buyHow: 'Купить можно в приложении: Хранилище > Чёрный рынок > Редкие находки.',
+    buyHow: 'Купить можно в приложении: Тайник > Чёрный рынок > Редкие находки.',
     retiredHow: (what: string) => `Списан: ${what}.`,
     burnWhy: { trade_up: 'обменян на другой предмет', shred: 'разобран на разведданные', other: 'снят с учёта' },
     certificate: 'Сертификат',
@@ -276,7 +283,7 @@ const ru: ArchiveStrings = {
   },
 }
 
-const BY_LANG: Partial<Record<LangCode, ArchiveStrings>> = { en, ru }
+const BY_LANG: Record<LangCode, ArchiveStrings> = { en, es, ru, 'zh-Hans': zhHans, hi, ar, fr, bn, 'pt-BR': ptBR, id }
 
 export function archiveStrings(lang: LangCode): ArchiveStrings {
   return BY_LANG[lang] ?? en

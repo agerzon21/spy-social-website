@@ -1,0 +1,125 @@
+/**
+ * The Market's words in French (tu, as the app). The app's names: Marché noir, Trouvailles rares, Intel, Uniques,
+ * Interceptions, Cadres, Célébrations, Titres; market trades are « ventes » (« échanges » is the friends' Trades).
+ * A no-break space before : ; ? ! % and inside « ».
+ */
+import type { MarketStrings } from '../strings'
+
+const items = (n: number) => (n < 2 ? `${n}\u00a0objet` : `${n}\u00a0objets`)
+const sales = (n: number) => (n < 2 ? `${n}\u00a0vente` : `${n}\u00a0ventes`)
+
+const fr: MarketStrings = {
+  nav: { market: 'Marché', movers: 'Tendances', catalogue: 'Catalogue', archive: 'Uniques', label: 'Prix du Marché noir' },
+  name: 'Marché noir',
+  beta: 'Marché de test\u00a0: ces prix viennent des ventes des testeurs et seront effacés le 7\u00a0décembre. Le vrai marché ouvre le 8\u00a0décembre.',
+  sample: 'DONNÉES FICTIVES\u00a0: inventées pour cet aperçu du design. Aucune vraie vente n’est montrée.',
+  halted: 'Le Marché noir est en pause pour le moment. Les prix restent tels qu’ils étaient à l’arrêt.',
+  busy: 'Le Marché n’arrive pas à charger les prix pour le moment. Réessaie dans une minute.',
+  soon: { title: 'Le Marché ouvre le 8\u00a0décembre', text: 'Les prix apparaîtront ici dès les premières ventes entre joueurs. D’ici là, tout ce qui se passe au Marché noir est un test.' },
+  retry: 'Réessayer',
+  intel: 'Intel',
+  noPrice: 'Pas encore assez de ventes',
+  noPriceLong: (n: number) => `Moins de ${sales(n)} en 90\u00a0jours, donc pas encore de prix. On n’affiche un prix qu’à partir de ${sales(n)}.`,
+  search: {
+    label: 'Chercher au Marché noir',
+    hint: 'Tape le nom d’un objet',
+    clear: 'Effacer',
+    start: 'Commence à taper pour trouver un objet.',
+    none: 'Aucun objet de ce nom au Marché noir.',
+    results: (n: number) => items(n),
+    more: (n: number) => `Voici les ${n} premiers. Continue à taper pour affiner.`,
+  },
+  windows: { '1d': 'Aujourd’hui', '7d': '7\u00a0jours', '30d': '30\u00a0jours', '90d': '90\u00a0jours', '180d': '180\u00a0jours' },
+  lists: {
+    rises: { title: 'Hausses de prix', short: 'Hausses', text: 'Les plus fortes hausses de prix.' },
+    falls: { title: 'Baisses de prix', short: 'Baisses', text: 'Les plus fortes baisses de prix.' },
+    traded: { title: 'Les plus vendus', short: 'Plus vendus', text: 'Les objets qui ont le plus changé de mains.' },
+    valuable: { title: 'Le plus d’Intel dépensé', short: 'Plus d’Intel', text: 'Les objets sur lesquels on a dépensé le plus d’Intel.' },
+  },
+  cols: { item: 'Objet', price: 'Prix', change: 'Variation', trades: 'Ventes', value: 'Intel échangé', rank: 'N°' },
+  categories: {
+    intercepts: 'Interceptions',
+    outfits: 'Tenues',
+    hats: 'Chapeaux',
+    glasses: 'Lunettes et masques',
+    accessories: 'Accessoires',
+    hair: 'Couleurs de cheveux',
+    facial_hair: 'Couleurs de barbe',
+    borders: 'Cadres',
+    backdrops: 'Fonds',
+    celebrations: 'Célébrations',
+    titles: 'Titres',
+  },
+  rarity: { common: 'Commun', uncommon: 'Peu commun', rare: 'Rare', epic: 'Épique', mythic: 'Mythique', legendary: 'Légendaire', intercept: 'Non ouverte' },
+  home: {
+    eyebrow: 'Le Marché noir',
+    title: 'Prix',
+    lede: 'Ce que vaut chaque objet au Marché noir, calculé d’après les ventes entre joueurs. Cherche un objet, regarde ce qui grimpe et vérifie un prix avant d’acheter ou de vendre.',
+    stats: { priced: 'Objets avec un prix', trades1d: 'Ventes aujourd’hui', trades30d: 'Ventes sur 30\u00a0jours', intel30d: 'Intel échangé sur 30\u00a0jours' },
+    movers: 'Tendances du marché',
+    moversLede: 'Le haut de chaque liste. Ouvre-en une pour voir son top 100.',
+    top100: 'Top 100',
+    featured: 'Objet à la une',
+    featuredText: 'L’objet le plus vendu cette semaine.',
+    catalogue: 'Catalogue',
+    catalogueLede: 'Tous les objets du Marché noir, rayon par rayon.',
+    items: (n: number) => items(n),
+    empty: {
+      title: 'Pas encore de prix',
+      text: (n: number) => `Un objet reçoit un prix au bout de ${sales(n)}, et aucun n’en est encore là. Ces listes se rempliront au fil des ventes.`,
+    },
+    how: {
+      title: 'Comment un prix est calculé',
+      list: [
+        { title: 'D’après de vraies ventes', text: 'Le prix d’un objet est la moyenne de l’Intel payé pour lui sur les 7\u00a0derniers jours\u00a0; s’il se vend moins, sur les 30 ou 90\u00a0derniers jours.' },
+        { title: 'Cinq ventes ou rien', text: 'Aucun prix ne s’affiche avant au moins cinq ventes, et rien ici ne nomme jamais un acheteur, un vendeur ni une vente en particulier.' },
+        { title: 'Jamais sous son minimum', text: 'Personne ne peut vendre un objet sous sa valeur de déchiquetage, l’Intel que rapporte son déchiquetage. Les ventes entre comptes liés ne comptent jamais.' },
+      ],
+    },
+    trust: {
+      title: 'Les Uniques sont dans les Archives',
+      text: 'Chaque Unique est un exemplaire sans pareil qui se vend à part, dans Trouvailles rares\u00a0: il n’a donc pas de prix de marché. Sa propre page dans les Archives montre chacune de ses ventes.',
+      archive: 'Ouvrir les Archives',
+      ledger: 'Vérifier le registre',
+    },
+  },
+  movers: {
+    title: (list: string) => list,
+    lede: 'Le top 100 sur la période choisie. Pour monter ou baisser, un objet doit avoir un prix au début et à la fin.',
+    none: 'Aucun objet n’a encore assez de ventes pour cette liste.',
+    window: 'Sur',
+  },
+  catalogue: {
+    title: 'Catalogue',
+    lede: 'Choisis un rayon. Chacun liste jusqu’à 100\u00a0objets, les plus vendus d’abord\u00a0; la recherche trouve tous les autres.',
+    shelf: (n: number, priced: number) => `${items(n)} · ${priced} avec un prix`,
+    showing: (n: number, of: number) => `${n} affichés sur ${of}. Cherche pour trouver les autres.`,
+    filter: 'Rareté',
+    all: 'Toutes',
+    sort: 'Trier',
+    sorts: { traded: 'Les plus vendus', price: 'Prix le plus haut', change: 'Plus forte variation (30\u00a0jours)', name: 'Nom' },
+  },
+  item: {
+    price: 'Prix',
+    priceNote: 'Moyenne des ventes des 7\u00a0derniers jours',
+    guide: 'Prix indicatif dans l’app',
+    floor: 'Valeur de déchiquetage (prix minimum)',
+    changes: { today: 'Aujourd’hui', m1: '1\u00a0mois', m3: '3\u00a0mois', m6: '6\u00a0mois' },
+    chart: 'Prix',
+    chartRanges: { '30': '1\u00a0mois', '90': '3\u00a0mois', '180': '6\u00a0mois' },
+    chartAvg: 'Moyenne du jour',
+    chartLine: 'Prix',
+    volume: 'Ventes par jour',
+    noChart: 'Aucune vente sur cette période.',
+    stats: { trades7: 'Ventes sur 7\u00a0jours', trades30: 'Ventes sur 30\u00a0jours', value30: 'Intel échangé sur 30\u00a0jours', trades180: 'Ventes sur 180\u00a0jours' },
+    tradeIt: 'Achète-le ou vends-le dans l’app, au Marché noir.',
+    back: 'Marché',
+    notFound: 'Cet objet n’est pas au Marché noir.',
+    notFoundLink: 'Voir tout le catalogue',
+    table: 'Afficher les chiffres',
+    tableHide: 'Masquer les chiffres',
+    day: 'Jour',
+  },
+}
+
+export default fr

@@ -119,7 +119,13 @@ export function ItemThumb({ it, size = 'sm' }: { it: Pick<MarketItem, 'k' | 'i' 
 /** "1,240" and a small "Intel", or the no-price words. */
 export function Price({ n, big = false }: { n: number | null | undefined; big?: boolean }) {
   const { w, locale } = useMarketWords()
-  if (n == null) return <span className={s.noPrice}>{w.noPrice}</span>
+  if (n == null)
+    return (
+      <>
+        <span className={s.noPrice}>{w.noPrice}</span>
+        <span className={s.noPriceShort} aria-hidden title={w.noPrice}>—</span>
+      </>
+    )
   return (
     <span className={big ? s.priceBig : s.price}>
       {fmt(n, locale)}
@@ -142,13 +148,13 @@ export function Change({ f, big = false }: { f: number | null | undefined; big?:
   )
 }
 
-/** Its shelf and rarity, in words. */
-export function ItemMeta({ it }: { it: MarketItem }) {
+/** Its shelf and rarity, in words (only the rarity on a shelf's own page, where the shelf goes without saying). */
+export function ItemMeta({ it, shelf = true }: { it: MarketItem; shelf?: boolean }) {
   const { w } = useMarketWords()
   return (
     <span className={s.meta}>
       <span className={s.rarDot} style={{ ['--rar' as string]: (RARITY_COLOUR[it.r] ?? RARITY_COLOUR.common).dark, ['--rar-light' as string]: (RARITY_COLOUR[it.r] ?? RARITY_COLOUR.common).light }} aria-hidden />
-      {w.categories[categoryOf(it)]} · {w.rarity[it.r] ?? it.r}
+      {shelf ? `${w.categories[categoryOf(it)]} · ` : ''}{w.rarity[it.r] ?? it.r}
     </span>
   )
 }
@@ -158,7 +164,7 @@ export function ItemMeta({ it }: { it: MarketItem }) {
  * (the change for rises / falls, trades for most traded, Intel for most valuable). Rows are links; the price and the
  * second number keep to the right; on a phone the second number sits under the price.
  */
-export function ItemTable({ items, list = 'traded', win = '30d', start = 1, showRank = true }: { items: MarketItem[]; list?: MoverList; win?: Win; start?: number; showRank?: boolean }) {
+export function ItemTable({ items, list = 'traded', win = '30d', start = 1, showRank = true, showShelf = true }: { items: MarketItem[]; list?: MoverList; win?: Win; start?: number; showRank?: boolean; showShelf?: boolean }) {
   const { w, locale } = useMarketWords()
   const i = winIndex(win)
   const third = `${list === 'rises' || list === 'falls' ? w.cols.change : list === 'valuable' ? w.cols.value : w.cols.trades} · ${w.windows[win]}`
@@ -182,7 +188,7 @@ export function ItemTable({ items, list = 'traded', win = '30d', start = 1, show
                   <ItemThumb it={it} />
                   <span className={s.rowName}>
                     <b>{it.nm}</b>
-                    <ItemMeta it={it} />
+                    <ItemMeta it={it} shelf={showShelf} />
                   </span>
                 </Link>
               </td>
@@ -207,7 +213,7 @@ export function ItemTable({ items, list = 'traded', win = '30d', start = 1, show
 }
 
 /** The search box and what it finds as you type (nothing until two letters: never every item). */
-export function MarketSearch({ items, q, onQ, limit, autoFocus = false }: { items: MarketItem[]; q: string; onQ: (q: string) => void; limit: number; autoFocus?: boolean }) {
+export function MarketSearch({ items, q, onQ, limit, autoFocus = false, showShelf = true }: { items: MarketItem[]; q: string; onQ: (q: string) => void; limit: number; autoFocus?: boolean; showShelf?: boolean }) {
   const { w } = useMarketWords()
   const found = useMemo(() => searchItems(items, q, limit + 1), [items, q, limit])
   const shown = found.slice(0, limit)
@@ -218,8 +224,8 @@ export function MarketSearch({ items, q, onQ, limit, autoFocus = false }: { item
         shown.length ? (
           <>
             <p className={s.searchCount} role="status">{w.search.results(shown.length)}</p>
-            <ItemTable items={shown} showRank={false} list="traded" win="30d" />
-            {found.length > limit ? <p className={s.searchCount}>{w.search.more}</p> : null}
+            <ItemTable items={shown} showRank={false} list="traded" win="30d" showShelf={showShelf} />
+            {found.length > limit ? <p className={s.searchCount}>{w.search.more(limit)}</p> : null}
           </>
         ) : (
           <p className={a.empty} role="status">{w.search.none}</p>

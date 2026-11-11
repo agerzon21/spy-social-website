@@ -34,7 +34,12 @@ const MarketItem = () => {
       </ol>
       {state === 'loading' ? <div className={a.loading} aria-busy="true" /> : null}
       {state === 'soon' || state === 'busy' ? <MarketState kind={state} onRetry={retry} /> : null}
-      {state === 'ok' && !it ? <p className={a.empty}>{w.item.notFound}</p> : null}
+      {state === 'ok' && !it ? (
+        <div className={a.empty}>
+          <p style={{ margin: 0 }}>{w.item.notFound}</p>
+          <Link to="/market/catalogue" className={`${a.linkBtn} ${s.notFoundLink}`}>{w.item.notFoundLink}</Link>
+        </div>
+      ) : null}
       {it ? (
         <>
           <header className={s.itemHead}>
@@ -53,13 +58,13 @@ const MarketItem = () => {
                 {it.g != null ? (
                   <div>
                     <dt>{w.item.guide}</dt>
-                    <dd>{fmt(it.g, locale)}</dd>
+                    <dd>{fmt(it.g, locale)} <small className={s.factUnit}>{w.intel}</small></dd>
                   </div>
                 ) : null}
                 {it.s != null ? (
                   <div>
                     <dt>{w.item.floor}</dt>
-                    <dd>{fmt(it.s, locale)}</dd>
+                    <dd>{fmt(it.s, locale)} <small className={s.factUnit}>{w.intel}</small></dd>
                   </div>
                 ) : null}
               </dl>

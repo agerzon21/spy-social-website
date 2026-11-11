@@ -78,6 +78,8 @@
 .priceBig { font: 900 clamp(52px, 14vw, 76px)/0.9 var(--ss-font-display); color: var(--ss-accent-text); font-variant-numeric: tabular-nums; }
 .priceBig small { font: 600 15px/1 var(--ss-font-body); color: var(--ss-muted); }
 .noPrice { font-size: 13px; color: var(--ss-muted); font-style: italic; }
+/* In a table on a phone the no-price words are a dash (the words stay for a screen reader), so the name keeps its room. */
+.noPriceShort { display: none; font: 800 16px/1 var(--ss-font-display); color: var(--ss-muted); font-style: normal; }
 .num { font: 800 19px/1 var(--ss-font-display); color: var(--ss-text); font-variant-numeric: tabular-nums; }
 .change { display: inline-flex; align-items: center; gap: 1px; font: 800 18px/1 var(--ss-font-display); font-variant-numeric: tabular-nums; white-space: nowrap; direction: ltr; }
 .change svg { width: 0.9em; height: 0.9em; }
@@ -124,9 +126,17 @@
 .tab:hover { color: var(--ss-text); }
 .tab[aria-selected='true'], .tab[aria-current='page'] { color: var(--ss-text); border-bottom-color: var(--ss-accent); }
 .tab:focus-visible { outline: 2px solid var(--ss-focus); outline-offset: -2px; }
+/* On a phone the four lists sit two by two, every label in view (a sideways strip hid the fourth). */
+@media (max-width: 559px) {
+  .tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
+  .tab { min-height: 46px; padding: 0 10px; font-size: 15px; white-space: normal; line-height: 1.05; }
+  .tab svg { flex: none; }
+}
 
 /* ---- catalogue ---- */
 .shelves { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 22px 0 0; padding: 0; list-style: none; }
+/* The narrowest phones: one shelf per row, so a long name (Russian, Bengali) keeps its words whole. */
+@media (max-width: 359px) { .shelves { grid-template-columns: minmax(0, 1fr); } }
 @media (min-width: 700px) { .shelves { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; } }
 @media (min-width: 1040px) { .shelves { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .shelf { display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 12px; align-items: center; min-height: 76px; padding: 14px; color: inherit; text-decoration: none; border: var(--ss-hairline) solid var(--ss-line); background: var(--ss-surface); transition: border-color 0.2s ease, background 0.2s ease; }
@@ -168,12 +178,29 @@
   .price, .num, .change { font-size: 16px; }
   .meta { font-size: 10px; letter-spacing: 0.04em; }
   .table .price small { display: none; }
+  .table th { white-space: normal; }
+  .table .noPrice { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .table .noPriceShort { display: inline; }
 }
+/* The narrowest phones: a smaller mark and no rank column (the order still shows it), so a name keeps whole words. */
+@media (max-width: 359px) {
+  .table .colRank { display: none; }
+  .table .thumb_sm { width: 32px; }
+  .rowLink { gap: 7px; }
+  .rowName b { font-size: 15px; }
+}
+
+/* No item has a price yet: one plain panel where the four boards go. */
+.noPrices { margin-top: 22px; padding: 26px 20px; border: 1px dashed var(--ss-line-strong); background: var(--ss-surface); }
+.noPrices .noPricesTitle { margin: 0; font: 900 clamp(26px, 7vw, 34px)/0.95 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); hyphens: manual; -webkit-hyphens: manual; }
+.noPricesText { margin: 10px 0 0; max-width: 40em; color: var(--ss-body); line-height: 1.55; }
+.notFoundLink { display: block; margin-top: 14px; text-align: center; }
 
 /* ---- the market not open / unreachable ---- */
 .soon { margin: 40px 0; padding: 40px 20px; text-align: center; border: var(--ss-hairline) solid var(--ss-line-strong); background: radial-gradient(60% 120% at 50% 0, var(--ss-glow), transparent 70%), var(--ss-surface); }
 .soonKicker { margin: 0; font: 700 12px/1 var(--ss-font-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--ss-highlight); }
-.soonTitle { margin: 14px 0 0; font: 900 clamp(40px, 11vw, 72px)/0.9 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); }
+/* Big type never hyphenates mid-word (Russian p text does: index.css), it balances its lines instead. */
+.soon .soonTitle { margin: 14px 0 0; font: 900 clamp(36px, 10vw, 72px)/0.9 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); hyphens: manual; -webkit-hyphens: manual; overflow-wrap: normal; text-wrap: balance; }
 .soonText { margin: 14px auto 0; max-width: 34em; color: var(--ss-body); line-height: 1.55; }
 
 /* ---- the item page ---- */
@@ -235,3 +262,4 @@
 @media (prefers-reduced-motion: reduce) {
   .featured, .shelf { transition: none; }
 }
+.factUnit { font: 600 13px/1 var(--ss-font-body); color: var(--ss-muted); }

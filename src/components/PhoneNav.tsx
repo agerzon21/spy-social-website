@@ -48,6 +48,11 @@ function useFit(ref: RefObject<HTMLElement | null>, max: number, oneLine: number
       set(size)
       while (size > oneLine && wide()) set(--size)
       if (!wide()) return
+      // One long word can't take two lines: it shrinks further on its one line (then ellipsis), never breaks mid-word.
+      if (!/\s/.test((el.textContent ?? '').trim())) {
+        while (size > twoLines && wide()) set(--size)
+        return
+      }
       el.dataset.wrap = ''
       while (size > twoLines && (wide() || tall())) set(--size)
     }

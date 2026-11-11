@@ -41,9 +41,10 @@ html.ss-theme-switching *:not([data-theme-toggle], [data-theme-toggle] *) {
 
 /*
  * Letter-spacing pulls apart the joined letters of Arabic, Devanagari and Bengali: none on those pages, except in
- * the parts that stay Latin and left to right (room codes).
+ * the parts that stay Latin and left to right (room codes). The exception counts only a dir inside the body: Hindi's
+ * and Bengali's <html> is dir="ltr" itself, which used to exempt every element on those pages.
  */
-html:is([lang='ar'], [lang='hi'], [lang='bn']) body *:not([dir='ltr'], [dir='ltr'] *) {
+html:is([lang='ar'], [lang='hi'], [lang='bn']) body *:not(body [dir='ltr'], body [dir='ltr'] *) {
   letter-spacing: 0 !important;
 }
 /* Spanish, French and Portuguese hero lines have longer words than English's: the poster face a size down. */

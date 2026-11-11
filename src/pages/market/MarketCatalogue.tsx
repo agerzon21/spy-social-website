@@ -51,6 +51,7 @@ const MarketCatalogue = () => {
           <DisplayHeading as="h1" size={2}>{w.catalogue.title}</DisplayHeading>
           <p className={a.sectionLede}>{w.catalogue.lede}</p>
         </header>
+        {state === 'loading' ? <div className={a.loading} aria-busy="true" /> : null}
         {state === 'soon' || state === 'busy' ? <MarketState kind={state} onRetry={retry} /> : null}
         {state === 'ok' ? (
           <>
@@ -96,11 +97,12 @@ const MarketCatalogue = () => {
           {state === 'ok' ? <p className={a.sectionLede}>{w.catalogue.shelf(onShelf.length, onShelf.filter((it) => it.p != null).length)}</p> : null}
         </div>
       </header>
+      {state === 'loading' ? <div className={a.loading} aria-busy="true" /> : null}
       {state === 'soon' || state === 'busy' ? <MarketState kind={state} onRetry={retry} /> : null}
       {state === 'ok' ? (
         <>
           <div className={s.toolbar}>
-            <MarketSearch items={onShelf} q={q} onQ={setQ} limit={50} />
+            <MarketSearch items={onShelf} q={q} onQ={setQ} limit={50} showShelf={false} />
             {q.trim().length < 2 ? (
               <div className={s.filterRow}>
                 {rarities.length > 1 ? (
@@ -124,7 +126,7 @@ const MarketCatalogue = () => {
           </div>
           {q.trim().length < 2 ? (
             <>
-              <ItemTable items={rows.slice(0, SHOWN)} list="traded" win="30d" />
+              <ItemTable items={rows.slice(0, SHOWN)} list="traded" win="30d" showShelf={false} />
               {rows.length > SHOWN ? <p className={s.searchCount}>{w.catalogue.showing(SHOWN, rows.length)}</p> : null}
             </>
           ) : null}

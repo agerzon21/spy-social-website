@@ -94,7 +94,9 @@ const ArchiveItem = () => {
       : u.source === 'trade_up' && u.inputs
         ? t.fromTradeUp(fmt(u.inputs, locale))
         : t.fromOther
-  const rule = u?.how ? u.how[lang] ?? u.how.en ?? '' : ''
+  // The rule's line, only in the reader's language: the server words it in English and Russian so far, and the line
+  // above it already says how this copy was minted in every language (an English line on a Chinese page read as a bug).
+  const rule = u?.how ? u.how[lang] ?? '' : ''
   // The holder today (archive-holder-1110): only with the switch on and a server that sends the holder keys.
   const holder = u && LIVE.archiveHolders ? holderOf(u) : ({ kind: 'unknown' } as const)
   const namesHolders = !!u && LIVE.archiveHolders && u.holder_handle !== undefined
@@ -230,7 +232,7 @@ const ArchiveItem = () => {
                   </div>
                 </dl>
                 <div className={s.supply}>
-                  {t.supply(name, fmt(u.item.minted, locale))}
+                  {t.supply(name, fmt(u.item.minted, locale), u.item.minted)}
                   {u.item.serials.length > 1 ? (
                     <div className={s.serials} aria-label={t.others}>
                       {u.item.serials.map((n) =>

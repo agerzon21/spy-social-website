@@ -187,8 +187,9 @@ const ArchiveHome = () => {
               <h3 className={s.tenTitle}>{h.float.scaleTitle}</h3>
               <div className={s.scaleBar}>
                 {Array.from({ length: 10 }, (_, d) => (
-                  <div key={d} className={s.band}>
-                    <span>{breed?.values[d]?.name}</span>
+                  <div key={d} className={s.band} title={breed?.values[d]?.name}>
+                    <span className={s.bandName}>{breed?.values[d]?.name}</span>
+                    <span className={s.bandDigit} aria-hidden>{d}</span>
                   </div>
                 ))}
                 {cats.map((c) => (
@@ -196,14 +197,15 @@ const ArchiveHome = () => {
                     key={c.serial}
                     to={uniquePath(c.item_code, c.serial)}
                     className={s.pin}
-                    style={{ insetInlineStart: `${Math.min(99.5, Number(c.float) * 100)}%` }}
+                    // Kept inside the bar at its two ends (a pin is 30 px wide, centred on its float).
+                    style={{ left: `clamp(15px, ${Math.min(100, Number(c.float) * 100)}%, calc(100% - 15px))` }}
                     title={`${nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
                   >
                     <img src={lookOf(looks, c.item_code, c.serial)?.alone ?? artOf(art, c.item_code, c.serial, true)?.src} alt={`#${c.serial}`} width={30} height={30} loading="lazy" />
                   </Link>
                 ))}
                 {[0, 0.5, 1].map((t) => (
-                  <span key={t} className={s.tick} style={{ insetInlineStart: `${t * 100}%` }}>
+                  <span key={t} className={s.tick} style={{ left: `${t * 100}%` }}>
                     {t.toFixed(1)}
                   </span>
                 ))}
@@ -222,7 +224,7 @@ const ArchiveHome = () => {
             <div className={s.source}>
               <h3>{h.sources.intercept.title}</h3>
               <p>{h.sources.intercept.text}</p>
-              <div className={s.odds} role="img" aria-label="Enigma: Unique 0.5%, Legendary 10%">
+              <div className={s.odds} role="img" aria-label={`${data?.words.tiers[4] ?? 'Enigma'}: ${data?.words.unique ?? 'Unique'} 0.5%, ${data?.words.legendary ?? 'Legendary'} 10%`}>
                 {ENIGMA.map((o) => (
                   <i key={o.key} style={{ width: `${Math.max(o.weight / 100, o.key === 'unique' ? 2 : 0)}%`, background: o.colour }} />
                 ))}

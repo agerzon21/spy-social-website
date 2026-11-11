@@ -131,7 +131,9 @@
 .stat:nth-child(3) { border-inline-start: 0; border-top: var(--ss-hairline) solid var(--ss-line); }
 .stat:nth-child(4) { border-top: var(--ss-hairline) solid var(--ss-line); }
 .statValue { margin: 0; font: 900 clamp(40px, 11vw, 64px)/0.9 var(--ss-font-display); color: var(--ss-text); font-variant-numeric: tabular-nums; }
-.statLabel { margin-top: 8px; font: 600 12px/1.3 var(--ss-font-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ss-muted); }
+.statLabel { margin-top: 8px; font: 600 12px/1.3 var(--ss-font-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ss-muted); overflow-wrap: normal; hyphens: auto; }
+/* Long words (Russian) on a phone: a little less tracking so a word breaks at a hyphen, never mid-letter. */
+@media (max-width: 420px) { .statLabel { letter-spacing: 0.06em; } }
 @media (min-width: 760px) {
   .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .stat:nth-child(3), .stat:nth-child(4) { border-top: 0; }
@@ -170,11 +172,13 @@
   align-items: flex-end;
   gap: 2px;
   margin-top: 12px;
-  font: 800 clamp(30px, 8.6vw, 60px)/1 var(--ss-font-display);
+  font: 800 clamp(20px, 6.6vw, 60px)/1 var(--ss-font-display);
   font-variant-numeric: tabular-nums;
   color: var(--ss-subtle);
   direction: ltr;
 }
+/* The digits stay on one line (they read as one number); the readout is sized to fit a 320 px phone. */
+.floatDigits { flex-wrap: nowrap; }
 .floatDigits .lead { color: var(--ss-muted); margin-inline-end: 2px; }
 .d { position: relative; display: inline-block; min-width: 0.55em; text-align: center; color: var(--ss-muted); }
 .d1, .d2, .d3, .d4 { color: var(--ss-text); }
@@ -211,7 +215,7 @@
 .tenRow {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(112px, 1fr);
+  grid-auto-columns: minmax(96px, 1fr);
   gap: 10px;
   overflow-x: auto;
   padding-bottom: 8px;
@@ -226,10 +230,13 @@
 
 /* The float scale: 0 to 1 in ten bands, the real copies as marks. */
 .scale { margin-top: 38px; }
-.scaleBar { position: relative; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); height: 64px; margin-top: 46px; border: var(--ss-hairline) solid var(--ss-line-strong); }
+.scaleBar { direction: ltr; position: relative; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); height: 64px; margin-top: 46px; border: var(--ss-hairline) solid var(--ss-line-strong); }
 .band { position: relative; border-inline-end: 1px solid var(--ss-line); background: linear-gradient(180deg, var(--ss-surface-strong), transparent); }
 .band:nth-child(odd) { background: linear-gradient(180deg, var(--ss-surface-hover), transparent); }
-.band span { position: absolute; left: 4px; bottom: 4px; right: 2px; font: 600 10px/1.1 var(--ss-font-body); color: var(--ss-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.band span { position: absolute; left: 4px; bottom: 4px; right: 2px; font: 600 10px/1.1 var(--ss-font-body); color: var(--ss-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; unicode-bidi: plaintext; text-align: left; }
+/* Too narrow for the breed names (they'd be a row of ellipses): each band shows its digit, as the rows above do. */
+.band .bandDigit { display: none; font: 800 13px/1 var(--ss-font-display); text-align: center; right: 4px; }
+@media (max-width: 899px) { .band .bandName { display: none; } .band .bandDigit { display: block; } }
 .tick { position: absolute; top: -8px; transform: translateX(-50%); font: 700 11px/1 var(--ss-font-body); color: var(--ss-muted); direction: ltr; }
 .tick { top: auto; bottom: -18px; }
 .pin { position: absolute; top: -40px; width: 30px; transform: translateX(-50%); text-decoration: none; }
@@ -299,6 +306,8 @@
 @media (min-width: 800px) { .trust { grid-template-columns: 1.4fr 1fr; align-items: center; padding: 34px; } }
 .trust p { margin: 0; color: var(--ss-body); line-height: 1.6; }
 .trustLinks { display: flex; flex-wrap: wrap; gap: 10px; }
+/* On a phone the two buttons take the full width, one under the other, so a long label never wraps inside one. */
+@media (max-width: 559px) { .trustLinks > * { flex: 1 1 100%; } }
 
 /* ---- browse: the controls ---- */
 .controls { display: grid; gap: 12px; margin-top: 22px; }

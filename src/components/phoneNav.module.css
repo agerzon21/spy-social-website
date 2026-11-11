@@ -46,8 +46,10 @@
   text-transform: uppercase;
   letter-spacing: 0.01em;
 }
-.name[data-wrap] { white-space: normal; text-overflow: clip; text-wrap: balance; line-height: 0.95; max-height: 1.95em; hyphens: auto; }
+.name[data-wrap] { white-space: normal; overflow-wrap: normal; word-break: normal; text-overflow: clip; text-wrap: balance; line-height: 0.95; max-height: 1.95em; hyphens: auto; }
 .count { flex: none; font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.06em; color: var(--ss-muted); }
+/* The narrowest phones: the page's name needs the room more (the cut rule under the header still shows which page). */
+@media (max-width: 359px) { .count { display: none; } }
 
 /* The header's bottom rule, cut into one segment per page, the current one in the accent. */
 .rule {

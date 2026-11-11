@@ -1,9 +1,16 @@
 /**
- * The Market's own words (market.spysocial.app). English and Russian; the other eight languages read the English
- * for now, as the Archive does (the item names are the app's own in all ten: the server sends them). Never "Grand
+ * The Market's own words (market.spysocial.app). All ten languages (English and Russian here, the other eight in ./locales; sites-polish-1111), as the Archive does (the item names are the app's own in all ten: the server sends them). Never "Grand
  * Exchange" or any other game's words: it is the Black Market, as in the app. Numbers and dates arrive formatted.
  */
 import type { LangCode } from '../../i18n'
+import es from './locales/es'
+import zhHans from './locales/zh-Hans'
+import hi from './locales/hi'
+import ar from './locales/ar'
+import fr from './locales/fr'
+import bn from './locales/bn'
+import ptBR from './locales/pt-BR'
+import id from './locales/id'
 import type { Category, MoverList, Win } from '../../lib/market'
 
 const en = {
@@ -18,7 +25,7 @@ const en = {
   intel: 'Intel',
   noPrice: 'Not enough trades yet',
   noPriceLong: (n: number) => `Fewer than ${n} trades in 90 days, so no price yet. We only show a price that at least ${n} trades make.`,
-  search: { label: 'Search the Black Market', hint: 'Type an item’s name', clear: 'Clear', start: 'Start typing to find an item.', none: 'Nothing on the Black Market by that name.', results: (n: number) => (n === 1 ? '1 item' : `${n} items`), more: 'Showing the first 50. Keep typing to narrow it down.' },
+  search: { label: 'Search the Black Market', hint: 'Type an item’s name', clear: 'Clear', start: 'Start typing to find an item.', none: 'Nothing on the Black Market by that name.', results: (n: number) => (n === 1 ? '1 item' : `${n} items`), more: (n: number) => `Showing the first ${n}. Keep typing to narrow it down.` },
   windows: { '1d': 'Today', '7d': '7 days', '30d': '30 days', '90d': '90 days', '180d': '180 days' } as Record<Win, string>,
   lists: {
     rises: { title: 'Price rises', short: 'Rises', text: 'The biggest climbs in price.' },
@@ -54,6 +61,7 @@ const en = {
     catalogue: 'Catalogue',
     catalogueLede: 'Every item on the Black Market, shelf by shelf.',
     items: (n: number) => (n === 1 ? '1 item' : `${n} items`),
+    empty: { title: 'No prices yet', text: (n: number) => `An item gets a price once ${n} trades make it, and none has reached ${n} yet. These lists fill in as players trade.` },
     how: {
       title: 'How a price is worked out',
       list: [
@@ -73,7 +81,7 @@ const en = {
   catalogue: {
     title: 'Catalogue',
     lede: 'Pick a shelf. Each one lists up to 100 items, the most traded first; search finds the rest.',
-    shelf: (n: number, priced: number) => `${n} items · ${priced} with a price`,
+    shelf: (n: number, priced: number) => `${n === 1 ? '1 item' : `${n} items`} · ${priced} with a price`,
     showing: (n: number, of: number) => `Showing ${n} of ${of}. Search to find any other.`,
     filter: 'Rarity',
     all: 'All',
@@ -96,6 +104,7 @@ const en = {
     tradeIt: 'Buy or sell it in the app, on the Black Market.',
     back: 'Market',
     notFound: 'That item isn’t on the Black Market.',
+    notFoundLink: 'See the whole catalogue',
     table: 'Show the numbers',
     tableHide: 'Hide the numbers',
     day: 'Day',
@@ -103,6 +112,16 @@ const en = {
 }
 
 export type MarketStrings = typeof en
+
+/** Russian's three plural forms: 1 предмет, 2 предмета, 5 предметов. */
+export function ruPlural(n: number, one: string, few: string, many: string): string {
+  const t = n % 100
+  const u = n % 10
+  if (t >= 11 && t <= 14) return many
+  if (u === 1) return one
+  if (u >= 2 && u <= 4) return few
+  return many
+}
 
 const ru: MarketStrings = {
   nav: { market: 'Рынок', movers: 'Взлёты и падения', catalogue: 'Каталог', archive: 'Уникальные', label: 'Цены Чёрного рынка' },
@@ -116,7 +135,7 @@ const ru: MarketStrings = {
   intel: 'разведданных',
   noPrice: 'Пока мало сделок',
   noPriceLong: (n: number) => `Меньше ${n} сделок за 90 дней, поэтому цены пока нет. Мы показываем цену, только когда её дают не меньше ${n} сделок.`,
-  search: { label: 'Поиск по Чёрному рынку', hint: 'Введите название предмета', clear: 'Очистить', start: 'Начните вводить, чтобы найти предмет.', none: 'На Чёрном рынке нет предмета с таким названием.', results: (n: number) => `Найдено: ${n}`, more: 'Показаны первые 50. Уточните запрос.' },
+  search: { label: 'Поиск по Чёрному рынку', hint: 'Введите название предмета', clear: 'Очистить', start: 'Начните вводить, чтобы найти предмет.', none: 'На Чёрном рынке нет предмета с таким названием.', results: (n: number) => `Найдено: ${n}`, more: (n: number) => `Показаны первые ${n}. Уточните запрос.` },
   windows: { '1d': 'Сегодня', '7d': '7 дней', '30d': '30 дней', '90d': '90 дней', '180d': '180 дней' },
   lists: {
     rises: { title: 'Рост цен', short: 'Рост', text: 'Самый большой рост цены.' },
@@ -151,7 +170,8 @@ const ru: MarketStrings = {
     featuredText: 'Самый ходовой предмет этой недели.',
     catalogue: 'Каталог',
     catalogueLede: 'Все предметы Чёрного рынка по разделам.',
-    items: (n: number) => `Предметов: ${n}`,
+    items: (n: number) => `${n} ${ruPlural(n, 'предмет', 'предмета', 'предметов')}`,
+    empty: { title: 'Цен пока нет', text: (n: number) => `Цена у предмета появляется после ${n} ${ruPlural(n, 'сделки', 'сделок', 'сделок')}, а столько пока не набрал ни один. Списки заполнятся, когда игроки начнут торговать.` },
     how: {
       title: 'Как считается цена',
       list: [
@@ -171,7 +191,7 @@ const ru: MarketStrings = {
   catalogue: {
     title: 'Каталог',
     lede: 'Выберите раздел. В каждом — до 100 предметов, сначала самые ходовые; остальные найдёт поиск.',
-    shelf: (n: number, priced: number) => `Предметов: ${n} · с ценой: ${priced}`,
+    shelf: (n: number, priced: number) => `${n} ${ruPlural(n, 'предмет', 'предмета', 'предметов')} · с ценой: ${priced}`,
     showing: (n: number, of: number) => `Показано ${n} из ${of}. Остальные — через поиск.`,
     filter: 'Редкость',
     all: 'Все',
@@ -194,13 +214,14 @@ const ru: MarketStrings = {
     tradeIt: 'Купить или продать его можно в приложении, на Чёрном рынке.',
     back: 'Рынок',
     notFound: 'Этого предмета нет на Чёрном рынке.',
+    notFoundLink: 'Весь каталог',
     table: 'Показать числа',
     tableHide: 'Скрыть числа',
     day: 'День',
   },
 }
 
-const BY_LANG: Partial<Record<LangCode, MarketStrings>> = { en, ru }
+const BY_LANG: Record<LangCode, MarketStrings> = { en, es, ru, 'zh-Hans': zhHans, hi, ar, fr, bn, 'pt-BR': ptBR, id }
 
 export function marketStrings(lang: LangCode): MarketStrings {
   return BY_LANG[lang] ?? en
