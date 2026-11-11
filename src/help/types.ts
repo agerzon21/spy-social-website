@@ -37,6 +37,8 @@ export interface HelpOpts {
   testerMarket: boolean
   /** A leader whose membership ends closes the party (LIVE.partyLeaderLapse; server party_leader_lapse_1111). */
   partyLeaderLapse: boolean
+  /** Member time and its stamps, reset when a membership ends, and the price kept while a pass renews (LIVE.memberLoyalty). */
+  memberLoyalty: boolean
 }
 
 export interface HelpItem {

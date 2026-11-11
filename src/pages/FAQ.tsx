@@ -30,6 +30,7 @@ const OPTS: HelpOpts = {
   testerMarket: LIVE.testerMarket === 'open',
   interceptsInTrades: LIVE.interceptsInTrades,
   partyLeaderLapse: LIVE.partyLeaderLapse,
+  memberLoyalty: LIVE.memberLoyalty,
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).

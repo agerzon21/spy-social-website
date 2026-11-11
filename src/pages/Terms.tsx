@@ -938,6 +938,9 @@ const Terms: React.FC = () => {
             You can switch between the monthly and yearly pass there too. Deleting the app, or your SpySocial account,
             doesn't cancel a subscription, and neither does buying Lifetime: cancel the pass in the store so it isn't
             charged again.
+            {LIVE.memberLoyalty
+              ? " In the Vault, Cancel Membership (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and the price you keep while you stay ends. Its one button, Continue to Cancel, goes straight on to the store's page. Manage Subscription itself still opens the store's page directly. Nothing changes before the end of the period you've paid for."
+              : ''}
           </ListItem>
           <ListItem>
             <B>Free trials.</B> We don't offer free trials or introductory prices today. If we ever do, the app and the
@@ -949,12 +952,39 @@ const Terms: React.FC = () => {
             <B>Lifetime</B> is a one-time purchase: you pay once and it never renews. It lasts for as long as we offer
             SpySocial, not for your lifetime.
           </ListItem>
-          <ListItem>
-            <B>Price changes.</B> We may change membership prices. A new price applies to a pass only from a renewal
-            after Apple or Google has told you about it, with the notice they require, and where the store or the law
-            needs your agreement to a higher price, the pass doesn't renew at it without your agreement. You can cancel
-            before a new price applies. A price change never affects a Lifetime you've already bought.
-          </ListItem>
+          {LIVE.memberLoyalty && (
+            <ListItem>
+              <B>Member time.</B> While you're a member, the app shows when your membership started ("Member since") and
+              how long you've been a member, with a stamp at 1, 3 and 6 months, then 1, 2 and 3 years, then every year.
+              It counts the time your membership has been active without a break, however it came: a monthly or yearly
+              pass, Lifetime, a gift from us or a code. Refunded time and test purchases don't count. Member time is
+              earned by staying: on the first day your membership isn't active any more (after any grace period the
+              store gives for a failed payment), your member time and stamps are gone, and if you become a member again,
+              "Member since" and your time start again from zero. A gap of less than a day while a renewal goes through
+              isn't a break. <B>Lifetime</B> is the exception: a Lifetime member's time counts from their first day as a
+              member, months on a pass before Lifetime included, and keeps growing for as long as we offer SpySocial,
+              with every stamp we add later. Member time and stamps only change how your profile looks: they give no XP
+              or better odds, can't be traded or sold, have no value in real money and aren't collectibles.
+            </ListItem>
+          )}
+          {LIVE.memberLoyalty ? (
+            <ListItem>
+              <B>Your price while you stay.</B> We may change membership prices for new members. When we raise the price
+              of a pass, we ask Apple and Google to keep existing members on the price they pay, so your pass keeps
+              renewing at the price you pay now for as long as it renews without a break. The store may still adjust
+              it for local taxes or currency, and tells you before it does; you can cancel before an adjusted price
+              applies. If you switch to the other pass, you pay that plan's current price. If your membership ends and
+              you come back later, you may pay the price at that time. A price change never affects a Lifetime you've
+              already bought.
+            </ListItem>
+          ) : (
+            <ListItem>
+              <B>Price changes.</B> We may change membership prices. A new price applies to a pass only from a renewal
+              after Apple or Google has told you about it, with the notice they require, and where the store or the law
+              needs your agreement to a higher price, the pass doesn't renew at it without your agreement. You can cancel
+              before a new price applies. A price change never affects a Lifetime you've already bought.
+            </ListItem>
+          )}
           <ListItem>
             A membership's benefits are described in the app when you buy it. We may change them; if a change takes away
             something important, we'll tell you in advance so you can cancel before your next renewal.

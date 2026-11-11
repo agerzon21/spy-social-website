@@ -479,6 +479,30 @@ const en: HelpText = {
             'Lifetime lasts as long as we offer SpySocial, not for your lifetime. There are no free trials, and memberships aren’t shared through Family Sharing.',
           ],
         },
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "What is “Member since”?",
+              a: [
+                "While you’re a member, <b>Account</b> shows when your membership started and how long you’ve been a member, and the <b>Vault</b> shows your stamps: 1, 3 and 6 months, 1, 2 and 3 years, then every year.",
+                "It counts the time your membership has been active without a break: a pass, Lifetime, a gift or a code. Refunded time and test purchases don’t count.",
+                "It’s earned by staying. On the first day your membership isn’t active any more (after any grace period the store gives for a failed payment), your member time and stamps are gone. If you become a member again, “Member since” and your time start again from zero.",
+                "<b>Lifetime</b> is the exception: your time counts from your first day as a member, months on a pass before it included, and keeps growing, with every stamp we add later.",
+                "Other players see only how long, with your stamp, on your player sheet, never the date or the price. Turn off <b>Show my membership time</b> in Settings to hide it. An under-13 account’s time is never shown to others.",
+                "Stamps only change how your profile looks: no XP, no better odds, and they can’t be traded.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "Will my price go up?",
+              a: [
+                "While your pass renews without a break, you keep the price you pay now, even if the price goes up for new members. The store may still adjust it for local taxes or currency.",
+                "Switching to the other pass means that plan’s current price. If your membership ends and you come back later, you may pay the price at that time. Lifetime is paid once and never renews.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: 'How do auto-renewal and cancelling work?',
@@ -487,6 +511,7 @@ const en: HelpText = {
             '<b>iPhone or iPad:</b> Settings, your name, Subscriptions, SpySocial.',
             '<b>Android:</b> the Google Play Store app, your profile picture, Payments & subscriptions, Subscriptions, SpySocial.',
             '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a pass.',
+            ...(o.memberLoyalty ? ["In the <b>Vault</b>, <b>Cancel Membership</b> (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and your locked price ends. Its one button, <b>Continue to Cancel</b>, goes straight on to the store. <b>Manage Subscription</b> itself still opens the store directly. Nothing changes before the end of the period you paid for."] : []),
           ],
         },
         {

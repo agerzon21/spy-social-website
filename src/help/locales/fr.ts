@@ -469,6 +469,30 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "L'accès à vie dure tant que nous proposons SpySocial, pas toute ta vie. Pas d'essai gratuit, et l'abonnement ne se partage pas via le Partage familial.",
         ],
       },
+      ...(o.memberLoyalty
+        ? [
+          {
+            id: 'member-time',
+            q: "C'est quoi, « Membre depuis » ?",
+            a: [
+              "Tant que tu es membre, le <b>Compte</b> indique depuis quand et depuis combien de temps tu l'es, et le <b>Coffre</b> montre tes tampons : 1, 3 et 6 mois, 1, 2 et 3 ans, puis chaque année.",
+              "On compte le temps où ton abonnement a été actif sans interruption : un abonnement mensuel ou annuel, l'accès à vie, un cadeau ou un code. Le temps remboursé et les achats de test ne comptent pas.",
+              "Ça se gagne en restant. Dès le premier jour où ton abonnement n'est plus actif (après le délai de grâce que le store accorde en cas d'échec de paiement), ton ancienneté et tes tampons disparaissent. Si tu redeviens membre, « Membre depuis » et ton ancienneté repartent de zéro.",
+              "L'<b>accès à vie</b> fait exception : ton ancienneté compte depuis ton premier jour de membre, mois d'abonnement d'avant compris, et continue de grandir, avec chaque tampon que nous ajouterons.",
+              "Les autres joueurs voient seulement ton ancienneté, avec ton tampon, sur ta fiche de joueur, jamais la date ni le prix. Désactive <b>Afficher mon ancienneté de membre</b> dans les Réglages pour le cacher. L'ancienneté d'un compte de moins de 13 ans n'est jamais montrée aux autres.",
+              "Les tampons changent seulement l'apparence de ton profil : pas d'XP, pas de meilleures chances, et ils ne s'échangent pas.",
+            ],
+          },
+          {
+            id: 'membership-price',
+            q: "Mon prix va-t-il augmenter ?",
+            a: [
+              "Tant que ton abonnement se renouvelle sans interruption, tu gardes le prix que tu paies aujourd'hui, même s'il augmente pour les nouveaux membres. Le store peut encore l'ajuster selon les taxes locales ou la devise.",
+              "Si tu passes à l'autre abonnement, tu paies le prix actuel de cette formule. Si ton abonnement prend fin et que tu reviens plus tard, tu paieras peut-être le prix du moment. L'accès à vie se paie une fois et ne se renouvelle jamais.",
+            ],
+          },
+          ]
+        : []),
       {
         id: 'cancel-membership',
         q: 'Comment marchent le renouvellement automatique et la résiliation ?',
@@ -477,6 +501,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           '<b>iPhone ou iPad :</b> Réglages, ton nom, Abonnements, SpySocial.',
           "<b>Android :</b> l'appli Google Play Store, ta photo de profil, Paiements et abonnements, Abonnements, SpySocial.",
           "<b>Gérer l'abonnement</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte, ou acheter l'accès à vie, ne résilie pas un abonnement.",
+          ...(o.memberLoyalty ? ["Dans le <b>Coffre</b>, <b>Résilier l’abonnement</b> (sous Gérer l'abonnement) affiche d'abord un seul écran avec les faits : si ton abonnement prend fin, ton ancienneté et tes tampons repartent à zéro, et ton prix bloqué prend fin. Son seul bouton, <b>Continuer la résiliation</b>, mène directement à la boutique. <b>Gérer l'abonnement</b> ouvre toujours directement la boutique. Rien ne change avant la fin de la période payée."] : []),
         ],
       },
       {

@@ -783,6 +783,9 @@ const Privacy: React.FC = () => {
             for as long as you have an account; if you use Restore Purchases while signed in to another account, your
             purchases move to that account. The updates RevenueCat sends us about a purchase (such as a renewal or a
             refund) are deleted after 90 days.{' '}
+            {PRIVACY.memberLoyalty
+              ? "To show your member time (\"Member since\" and how long you've been a member, see our Terms of Service), we keep a record of each period your membership was active: when it started and ended, how it came (a pass, Lifetime, a gift or a code), and whether it was refunded or a test purchase. We keep it for as long as you have an account and delete it with the account. It doesn't include the price you paid. "
+              : ''}
             {PRIVACY.revenueCatDeletion
               ? 'RevenueCat keeps its record of your purchases until you delete your account, and deletes it within 30 days after that.'
               : 'RevenueCat keeps its own record of your purchases until we ask it to delete it (see When you delete your account below).'}
@@ -1366,6 +1369,8 @@ const Privacy: React.FC = () => {
         membership (for example, the Spymaster title and its gold border) unless you choose another title and border,
         or None; a title or border that shows a membership is shown only to players who share a room with you or played
         a game with you in the last 24 hours, and with a room you host in the room list.
+        {PRIVACY.memberLoyalty &&
+          " While you're a member, how long you've been a member and its stamp are shown on your player sheet to the same players (in private rooms and at public tables), never the date it started or what you pay. This is on by default: other players see your membership length unless you turn off Show my membership time in Settings. An under-13 account's member time is never shown to other players."}
         {PRIVACY.creatorCodes &&
           " A content creator in our creator program shows a CONTENT CREATOR badge on their profile and player card to the players who share a private room with them or played a game in one with them in the last 24 hours; it isn't shown in public play. A title a creator code or a reward code gave you shows like any other title. We tell a content creator only totals for their code, never who entered it or what anyone bought."}
         {/* Agent Colours phase 2: get_my_game_view and get_watch_view send a pre-2.2 photo only to its owner at public tables. */}
