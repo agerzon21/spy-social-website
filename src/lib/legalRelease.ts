@@ -1884,7 +1884,7 @@ export const REPUTATION_DAY = 'November 14, 2026'
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
-/** LIVE.testerIntercepts's day (Terms 9's tester-rewards sentence, the counted-game condition): the day the site goes up with it, or with a flip of it. Never earlier than November 11, 2026. */
+/** LIVE.testerIntercepts's day (Terms 9's tester-rewards sentence, the counted-game condition): the day the site goes up with it, or with a flip of it. Never earlier than November 11, 2026. legal-integration-1111: it is the newest always-on entry, so it also dates the integration's unswitched changes (Terms 7, Child Safety and Safety's contacts: CSEA reported to NCMEC only). SET IT TO THE PUSH DAY (coordinator: Friday after Beta 2). */
 export const TESTER_GIFT_GAME_DAY = 'November 11, 2026'
 
 /**

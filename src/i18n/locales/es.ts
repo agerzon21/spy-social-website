@@ -524,7 +524,7 @@ const es: Strings = {
         text: 'Si te preocupa un abuso sexual en línea, o la forma en que alguien le ha estado hablando a un niño en línea, repórtalo a CEOP, parte de la National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Los jóvenes también pueden reportar, y un asesor de protección infantil lee cada reporte.',
       },
       spysocial: {
-        text: 'Reporta al jugador en la app y elige <b>Seguridad infantil</b>, y escribe a <email/> con «Child safety» en el asunto. Eliminamos el contenido, bloqueamos las cuentas involucradas y lo reportamos al NCMEC y a otras autoridades, como exige la ley.',
+        text: 'Reporta al jugador en la app y elige <b>Seguridad infantil</b>, y escribe a <email/> con «Child safety» en el asunto. Eliminamos el contenido, bloqueamos las cuentas involucradas y lo reportamos al NCMEC, como exige la ley de EE. UU.; el NCMEC lo envía a la policía del país correspondiente.',
       },
     },
     seeAlso: 'Consulta también nuestras <link>Normas de la comunidad</link>, los <link2>Términos de servicio</link2> y la <link3>Política de privacidad</link3>.',

@@ -524,7 +524,7 @@ const ptBR: Strings = {
         text: 'Se você está preocupado com abuso sexual on-line, ou com o jeito como alguém tem falado com uma criança na internet, denuncie ao CEOP, parte da National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Jovens também podem denunciar, e um Child Protection Advisor lê cada denúncia.',
       },
       spysocial: {
-        text: 'Denuncie o jogador no app escolhendo <b>Segurança infantil</b>, e escreva para <email/> com “Child safety” (segurança infantil) no assunto. Removemos o conteúdo, banimos as contas envolvidas e denunciamos ao NCMEC e a outras autoridades, como a lei exige.',
+        text: 'Denuncie o jogador no app escolhendo <b>Segurança infantil</b>, e escreva para <email/> com “Child safety” (segurança infantil) no assunto. Removemos o conteúdo, banimos as contas envolvidas e denunciamos ao NCMEC, como a lei dos EUA exige; o NCMEC repassa a denúncia à polícia do país em questão.',
       },
     },
     seeAlso: 'Veja também nossas <link>Regras da comunidade</link>, os <link2>Termos de uso</link2> e a <link3>Política de privacidade</link3>.',

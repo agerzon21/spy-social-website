@@ -523,7 +523,7 @@ const fr: Strings = {
         text: "Si tu t'inquiètes d'abus sexuels en ligne, ou de la façon dont quelqu'un parle à un enfant en ligne, signale-le au CEOP, qui fait partie de la National Crime Agency\u00A0: <link>ceop.police.uk/Safety-Centre</link>. Les jeunes peuvent aussi faire un signalement, et un conseiller en protection de l'enfance lit chaque signalement.",
       },
       spysocial: {
-        text: "Signale le joueur dans l'appli en choisissant <b>Sécurité des enfants</b>, et écris à <email/> avec «\u00A0Child safety\u00A0» en objet. Nous supprimons le contenu, bannissons les comptes concernés et le signalons au NCMEC et aux autres autorités, comme la loi l'exige.",
+        text: "Signale le joueur dans l'appli en choisissant <b>Sécurité des enfants</b>, et écris à <email/> avec «\u00A0Child safety\u00A0» en objet. Nous supprimons le contenu, bannissons les comptes concernés et le signalons au NCMEC, comme la loi américaine l'exige ; le NCMEC le transmet à la police du pays concerné.",
       },
     },
     seeAlso: "Consulte aussi nos <link>règles de la communauté</link>, nos <link2>conditions d'utilisation</link2> et notre <link3>politique de confidentialité</link3>.",

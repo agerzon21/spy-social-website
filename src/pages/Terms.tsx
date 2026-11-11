@@ -419,7 +419,7 @@ const Terms: React.FC = () => {
         Child sexual abuse and exploitation are never allowed. Never share, ask for or create sexual content
         involving anyone under 18, and never use SpySocial to groom, sexualize or exploit a child. We remove such
         content, ban the accounts involved, and report it to the National Center for Missing & Exploited Children
-        (NCMEC) and other authorities as the law requires. If you see anything like this, email <SupportEmail /> with
+        (NCMEC), as US law requires; NCMEC passes it to the police in the country it concerns. If you see anything like this, email <SupportEmail /> with
         "Child safety" in the subject, and report the player in the app if you shared a room with them. You can also
         report it directly to NCMEC's <OutLink href="https://report.cybertip.org">CyberTipline</OutLink>. If a child
         is in immediate danger, contact your local emergency services first.

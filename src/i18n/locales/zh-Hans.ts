@@ -522,7 +522,7 @@ const zhHans: Strings = {
         text: '如果你担心网络性侵害，或担心某人在网上和儿童交谈的方式，请向英国国家犯罪调查局下属的 CEOP 报告：<link>ceop.police.uk/Safety-Centre</link>。青少年也可以自己报告，每一份报告都由儿童保护顾问查看。',
       },
       spysocial: {
-        text: '在应用内举报该玩家并选择<b>儿童安全</b>，同时发邮件至 <email/>，主题写“Child safety”。我们会删除相关内容，封禁相关账号，并依法向 NCMEC 和其他主管机关报告。',
+        text: '在应用内举报该玩家并选择<b>儿童安全</b>，同时发邮件至 <email/>，主题写“Child safety”。我们会删除相关内容，封禁相关账号，并依照美国法律向 NCMEC 报告；NCMEC 会将报告转交相关国家的警方。',
       },
     },
     seeAlso: '另请参阅我们的<link>社区规则</link>、<link2>服务条款</link2>和<link3>隐私政策</link3>。',

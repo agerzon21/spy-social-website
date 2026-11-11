@@ -572,7 +572,7 @@ const en = {
         text: "If you're worried about online sexual abuse, or about the way someone has been talking to a child online, report it to CEOP, part of the National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Young people can report too, and a Child Protection Advisor reads every report.",
       },
       spysocial: {
-        text: 'Report the player in the app and choose <b>Child Safety</b>, and email <email/> with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC and other authorities as the law requires.',
+        text: 'Report the player in the app and choose <b>Child Safety</b>, and email <email/> with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC, as US law requires; NCMEC passes it to the police in the country it concerns.',
       },
     },
     seeAlso: 'See also our <link>Community Rules</link>, <link2>Terms of Service</link2> and <link3>Privacy Policy</link3>.',

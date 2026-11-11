@@ -524,7 +524,7 @@ const id: Strings = {
         text: 'Kalau kamu khawatir tentang pelecehan seksual online, atau tentang cara seseorang berbicara dengan anak secara online, laporkan ke CEOP, bagian dari National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Anak muda juga bisa melapor, dan setiap laporan dibaca oleh Child Protection Advisor.',
       },
       spysocial: {
-        text: 'Laporkan pemainnya di aplikasi dan pilih <b>Keselamatan anak</b>, lalu kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke NCMEC dan otoritas lain sesuai ketentuan hukum.',
+        text: 'Laporkan pemainnya di aplikasi dan pilih <b>Keselamatan anak</b>, lalu kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke NCMEC sesuai ketentuan hukum AS; NCMEC meneruskannya ke polisi di negara yang bersangkutan.',
       },
     },
     seeAlso: 'Lihat juga <link>Aturan Komunitas</link>, <link2>Ketentuan Layanan</link2>, dan <link3>Kebijakan Privasi</link3> kami.',

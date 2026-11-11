@@ -45,8 +45,8 @@ const rows: InfoRow[] = [
     cells: [
       <>
         Report the player in the app and choose <B>Child Safety</B>, and email <SupportEmail subject="Child safety" />{' '}
-        with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC and
-        other authorities as the law requires.
+        with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC, as
+        US law requires; NCMEC passes it to the police in the country it concerns.
       </>,
     ],
   },
