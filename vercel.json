@@ -93,6 +93,49 @@
   ],
   "redirects": [
     {
+      "source": "/archive",
+      "destination": "https://archive.spysocial.app/",
+      "statusCode": 301
+    },
+    {
+      "source": "/archive/:path((?!art/|data/).*)",
+      "destination": "https://archive.spysocial.app/:path",
+      "statusCode": 301
+    },
+    {
+      "source": "/u",
+      "has": [
+        {
+          "type": "host",
+          "value": "archive.spysocial.app"
+        }
+      ],
+      "destination": "/uniques",
+      "permanent": false
+    },
+    {
+      "source": "/(support|contact-us|rules|safety|privacy|terms|child-safety|whats-new|roadmap|delete-account|transparency|game-night-rules|ledger|beta|hello|help|reset-password|confirm-success|shop|merch|download|app|get|megan|megans-party)/?",
+      "has": [
+        {
+          "type": "host",
+          "value": "archive.spysocial.app"
+        }
+      ],
+      "destination": "https://www.spysocial.app/$1",
+      "permanent": false
+    },
+    {
+      "source": "/((?:join|agree)(?:/.*)?)",
+      "has": [
+        {
+          "type": "host",
+          "value": "archive.spysocial.app"
+        }
+      ],
+      "destination": "https://www.spysocial.app/$1",
+      "permanent": false
+    },
+    {
       "source": "/",
       "has": [
         {
@@ -112,39 +155,6 @@
         }
       ],
       "destination": "https://www.spysocial.app/$1",
-      "permanent": false
-    },
-    {
-      "source": "/u/:item/:serial",
-      "has": [
-        {
-          "type": "host",
-          "value": "archive.spysocial.app"
-        }
-      ],
-      "destination": "https://www.spysocial.app/archive/u/:item/:serial",
-      "permanent": false
-    },
-    {
-      "source": "/u",
-      "has": [
-        {
-          "type": "host",
-          "value": "archive.spysocial.app"
-        }
-      ],
-      "destination": "https://www.spysocial.app/archive/uniques",
-      "permanent": false
-    },
-    {
-      "source": "/((?!\\.well-known/).*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "archive.spysocial.app"
-        }
-      ],
-      "destination": "https://www.spysocial.app/archive",
       "permanent": false
     },
     {
@@ -184,6 +194,16 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/((?!\\.well-known/|static/|assets/|archive/|_host/).*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "archive.spysocial.app"
+        }
+      ],
+      "destination": "/_host/archive.html"
+    },
     {
       "source": "/support",
       "destination": "/support/index.html"

@@ -19,7 +19,7 @@ const TYPES: ItemType[] = ['celebration', 'wearable', 'border', 'backdrop', 'tit
 const priceOf = (c: ArchiveCopy) => (c.status === 'listed' ? c.price : c.last_sale)
 
 /**
- * Every Unique (www.spysocial.app/archive/uniques): a grid with search (name, codename, number), sort, and filters
+ * Every Unique (archive.spysocial.app/uniques): a grid with search (name, codename, number), sort, and filters
  * (item, type, set, season, for sale now, price), 20 a page. The filters live in the address, so a link keeps them.
  */
 const ArchiveBrowse = () => {

@@ -1467,8 +1467,8 @@ export const LIVE = {
   practiceReportLog: true,
   /**
    * rarefinds-page-1110 (app repo nov03/rarefinds-page-1110.md; server file 20261225300000_mint_unique_public and the
-   * ledger function's ops uniques / unique): the Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>; the
-   * app's "View in the Archive" and archive.spysocial.app land there). Turns on its routes (with mintedCollectibles)
+   * ledger function's ops uniques / unique): the Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>, lib/siteHost;
+   * the app's "View in the Archive" opens it; www's /archive sends there). Turns on its routes (with mintedCollectibles)
    * and a passage in Privacy's "Collectibles and the public ledger": each Unique's page shows its Black Market sales'
    * dates and prices in Intel, its holders only as numbers. Push the site with it on only after the server file is
    * applied and the ledger function redeployed, and set its PRIVACY_LAST_UPDATED day (below) to that day.

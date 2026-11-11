@@ -1,4 +1,4 @@
-import { Link as RouterLink } from 'react-router-dom'
+import RouterLink from './SiteLink'
 import { useMemo } from 'react'
 import { useT } from '../i18n'
 import { useClosed } from '../lib/betaSignup'

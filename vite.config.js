@@ -28,9 +28,17 @@ async function siteModule(root, file) {
     const { code } = await transformWithEsbuild(await readFile(path, 'utf8'), path, { loader: 'ts', format: 'esm' });
     return import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`);
 }
+/**
+ * The site's own hosts (src/lib/siteHost, subdomains-1110): one build serves them all, and vercel.json serves each
+ * host's pages from dist/_host/<host>.html, the app with that host's link preview (title, description, address). Each
+ * is in the sitemap while its switches in LIVE are on.
+ */
+const HOST_PAGES = [
+    { host: 'archive', origin: 'https://archive.spysocial.app', key: 'archive', paths: ['/', '/uniques'], live: ['mintedCollectibles', 'uniqueArchive'] },
+];
 /** A page's entries as public/sitemap.xml writes them: the bare address and each language's, each with all the alternates. */
-function entries(path, langs) {
-    const here = `${ORIGIN}${path}`;
+function entries(path, langs, origin = ORIGIN) {
+    const here = `${origin}${path}`;
     const links = [
         ...langs.map((lang) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${here}?lang=${lang}"/>`),
         `    <xhtml:link rel="alternate" hreflang="x-default" href="${here}"/>`,
@@ -54,14 +62,21 @@ function switchedSitemap() {
             const legal = (await siteModule(root, 'src/lib/legalRelease.ts'));
             const LIVE = { ...legal.LIVE, ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT };
             const on = SWITCHED_PAGES.filter((page) => page.live === null ? true : page.live.startsWith('!') ? LIVE[page.live.slice(1)] !== true : LIVE[page.live] === true);
-            if (!on.length)
+            const hosts = HOST_PAGES.filter((h) => h.live.every((key) => LIVE[key] === true));
+            if (!on.length && !hosts.length)
                 return;
             const { LANGUAGES } = (await siteModule(root, 'src/i18n/languages.ts'));
+            const langs = LANGUAGES.map((lang) => lang.code);
             const file = resolve(outDir, 'sitemap.xml');
             const xml = await readFile(file, 'utf8');
             if (!xml.includes('</urlset>'))
                 throw new Error(`${file} has no </urlset>`);
-            const added = on.map((page) => entries(page.path, LANGUAGES.map((lang) => lang.code))).join('');
+            // The Archive's and the Market's hosts too: robots.txt (one file, every host) names this sitemap, which lets it
+            // list their addresses.
+            const added = [
+                ...on.map((page) => entries(page.path, langs)),
+                ...hosts.flatMap((h) => h.paths.map((path) => entries(path, langs, h.origin))),
+            ].join('');
             await writeFile(file, xml.replace('</urlset>', `${added}</urlset>`));
         },
     };
@@ -282,6 +297,31 @@ function pagePreviews() {
                 }
                 await mkdir(resolve(outDir, invite.path.slice(1)), { recursive: true });
                 await writeFile(resolve(outDir, invite.path.slice(1), 'index.html'), html);
+            }
+            // Each host's app page (HOST_PAGES; vercel.json serves dist/_host/<host>.html on that host): its English title and
+            // description and its own address. With its switches off, the home page's file (the router sends its paths on).
+            await mkdir(resolve(outDir, '_host'), { recursive: true });
+            for (const h of HOST_PAGES) {
+                let html = home;
+                if (h.live.every((key) => LIVE[key] === true)) {
+                    const title = attr(`${en.meta.titles[h.key]} · ${en.meta.siteName}`);
+                    const description = attr(en.meta.descriptions[h.key] ?? en.meta.description);
+                    const swaps = [
+                        [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
+                        [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
+                        [/(<meta property="og:url" content=")[^"]*"/, `$1${h.origin}/"`],
+                        [/(<meta property="og:title" content=")[^"]*"/, `$1${title}"`],
+                        [/(<meta property="og:description" content=")[^"]*"/, `$1${description}"`],
+                        [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
+                        [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
+                    ];
+                    for (const [re, to] of swaps) {
+                        if (!re.test(html))
+                            throw new Error(`pagePreviews: index.html has no match for ${re}`);
+                        html = html.replace(re, to);
+                    }
+                }
+                await writeFile(resolve(outDir, '_host', `${h.host}.html`), html);
             }
         },
     };
