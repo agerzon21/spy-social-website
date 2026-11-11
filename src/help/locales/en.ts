@@ -53,7 +53,7 @@ const en: HelpText = {
           a: [
             '<b>With friends:</b> tap <b>Private Room</b>, then <b>Create Room</b>, and share the room code, the QR code or the invite link. You need at least 3 players.',
             '<b>With anyone:</b> tap <b>Play Online</b>, then <b>Find a Game</b>.',
-            '<b>New to it?</b> <b>How to Play</b> on Home has a 1-minute intro, walkthroughs, a glossary and a Practice Game.',
+            '<b>New to it?</b> <b>How to Play</b> on Home opens with the <b>Practice Game</b>: a short game against AI agents that shows you each step. The glossary is there too.',
           ],
         },
       ],

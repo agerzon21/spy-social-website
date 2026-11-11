@@ -43,7 +43,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           '<b>Entre amis :</b> touche <b>Salon privé</b>, puis <b>Créer un salon</b>, et partage le code du salon, le QR code ou le lien d\'invitation. Il faut au moins 3 joueurs.',
           '<b>Avec n\'importe qui :</b> touche <b>Jouer en ligne</b>, puis <b>Trouver une partie</b>.',
-          "<b>Tu débutes ?</b> <b>Comment jouer</b>, sur l'accueil, propose une intro d'une minute, des tutoriels, un glossaire et une partie d'entraînement.",
+          "<b>Tu débutes ?</b> <b>Comment jouer</b>, sur l'accueil, commence par la <b>partie d'entraînement</b> : une courte partie contre des agents IA qui te montre chaque étape. Le glossaire est là aussi.",
         ],
       },
     ],

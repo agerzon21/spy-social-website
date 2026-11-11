@@ -47,7 +47,7 @@ const ptBR: HelpText = {
           a: [
             '<b>Com amigos:</b> toque em <b>Sala privada</b> e depois em <b>Criar sala</b>, e compartilhe o código da sala, o QR code ou o link de convite. Precisa de pelo menos 3 jogadores.',
             '<b>Com qualquer pessoa:</b> toque em <b>Jogar online</b> e depois em <b>Buscar partida</b>.',
-            '<b>É novo?</b> <b>Como jogar</b>, no início, tem uma introdução de 1 minuto, tutoriais, um glossário e uma partida de treino.',
+            '<b>É novo?</b> <b>Como jogar</b>, no início, começa pela <b>partida de treino</b>: uma partida curta contra agentes de IA que mostra cada passo. O glossário também fica lá.',
           ],
         },
       ],

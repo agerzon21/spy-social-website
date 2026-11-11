@@ -47,7 +47,7 @@ const id: HelpText = {
           a: [
             '<b>Dengan teman:</b> ketuk <b>Room privat</b>, lalu <b>Buat room</b>, dan bagikan kode room, kode QR, atau link undangan. Butuh minimal 3 pemain.',
             '<b>Dengan siapa saja:</b> ketuk <b>Main online</b>, lalu <b>Cari permainan</b>.',
-            '<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda punya intro 1 menit, panduan, glosarium, dan permainan latihan.',
+            '<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda dibuka dengan <b>permainan latihan</b>: permainan singkat melawan agen AI yang memandu kamu langkah demi langkah. Glosariumnya juga ada di sana.',
           ],
         },
       ],

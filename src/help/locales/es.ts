@@ -47,7 +47,7 @@ const es: HelpText = {
           a: [
             '<b>Con amigos:</b> toca <b>Sala privada</b> y luego <b>Crear sala</b>, y comparte el código de la sala, el código QR o el enlace de invitación. Hacen falta al menos 3 jugadores.',
             '<b>Con cualquiera:</b> toca <b>Jugar en línea</b> y luego <b>Buscar partida</b>.',
-            '<b>¿Eres nuevo?</b> En <b>Cómo jugar</b>, en el inicio, hay una introducción de 1 minuto, guías, un glosario y una partida de práctica.',
+            '<b>¿Eres nuevo?</b> <b>Cómo jugar</b>, en el inicio, empieza con la <b>partida de práctica</b>: una partida corta contra agentes de IA que te muestra cada paso. El glosario también está ahí.',
           ],
         },
       ],
