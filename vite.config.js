@@ -1,4 +1,5 @@
-import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import { mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig, transformWithEsbuild } from 'vite';
@@ -541,9 +542,39 @@ function deepOver(base, top) {
         return Array.isArray(top) ? top : base;
     return typeof top === typeof base ? top : base;
 }
+/**
+ * www's page leaves the root (speed-1111): on Vercel a file wins over every rewrite, so a dist/index.html answered "/"
+ * on archive.spysocial.app and market.spysocial.app too, with www's whole app instead of the host's own. After every
+ * other plugin has read it, dist/index.html moves to dist/_host/www.html, which vercel.json's last rewrite serves for
+ * www's paths (each host's rewrite comes first). `vite preview` serves the same way.
+ */
+function wwwHtmlLast() {
+    let outDir = resolve(process.cwd(), 'dist');
+    return {
+        name: 'spysocial-www-html-last',
+        apply: 'build',
+        configResolved(config) {
+            outDir = resolve(config.root, config.build.outDir);
+        },
+        async closeBundle() {
+            await mkdir(resolve(outDir, '_host'), { recursive: true });
+            await rename(resolve(outDir, 'index.html'), resolve(outDir, '_host', 'www.html'));
+        },
+        configurePreviewServer(server) {
+            server.middlewares.use((req, _res, next) => {
+                const path = (req.url ?? '/').split(/[?#]/)[0];
+                if (!/\.[a-z0-9]+$/i.test(path) && !existsSync(resolve(outDir, `.${path}`, 'index.html'))) {
+                    const host = (req.headers.host ?? '').split('.')[0];
+                    req.url = `/_host/${host === 'archive' || host === 'market' ? host : 'www'}.html`;
+                }
+                next();
+            });
+        },
+    };
+}
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [react(), launchHead(), switchedSitemap(), pagePreviews(), helloPage()],
+    plugins: [react(), launchHead(), switchedSitemap(), pagePreviews(), helloPage(), wwwHtmlLast()],
     // Built files live in /static/ (renamed from /assets/ on 2026-10-17, so no browser keeps a stale copy from before)
     build: {
         assetsDir: 'static',

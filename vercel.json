@@ -342,7 +342,7 @@
     },
     {
       "source": "/((?!\\.well-known/|static/|assets/).*)",
-      "destination": "/index.html"
+      "destination": "/_host/www.html"
     }
   ]
 }
