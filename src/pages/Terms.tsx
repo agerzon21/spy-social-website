@@ -516,7 +516,7 @@ const Terms: React.FC = () => {
             moderator takes and why, we can undo any of them, and you can appeal them like any other decision (see
             Appeals below). Anything involving a child's safety, self-harm or threats{LIVE.safetyAnswers1106 ? ', and any report of personal information shared by or with a player under 18,' : ''} is handled by SpySocial only
             {LIVE.modCoverHold
-              ? ": if we haven't opened such a report within 15 minutes, a community moderator may pause the reported account for 24 hours, remove it from the room or party, or hide its messages until we do, and we review each of these steps. Only SpySocial decides the report."
+              ? ": if we haven't opened a report about a child's safety (grooming, or sexual content with a player under 18 involved) or self-harm within 15 minutes, a community moderator may pause the reported player from public rooms and mute their chat for 24 hours (never on a self-harm report), remove them from the room or party, or hide their messages until we do, and we review each of these steps. Only SpySocial decides the report."
               : '.'}
           </P>
         </>
