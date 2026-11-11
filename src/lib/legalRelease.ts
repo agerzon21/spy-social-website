@@ -1539,6 +1539,20 @@ export const LIVE = {
    */
   ledgerReasons: false,
   /**
+   * ledger-uniques-1111 (owner Nov 11, firm; app repo server file 20261231999989_ledger_uniques_1111): the public ledger
+   * carries UNIQUES ONLY. Regular Intercept items, Game Night titles, the Beta Pin and Field Tester are still minted and
+   * numbered, and kept in our own records exactly as before (copies, serials, trades, the transparency report), but they
+   * get no ledger line. On the 1st of each month the ledger also writes a snapshot line (a 'checkpoint' whose note reads
+   * snapshot:YYYY-MM;upto:N;state:<sha256>;rows:N;format:u1): the SHA-256 of every Unique's state as the ledger's own
+   * lines leave it (copy, number, held / burned / retired, holder code), so a check can start there. Turns on: the Terms'
+   * collectibles bullet, Privacy's Collectibles item and the ledger clauses of its Game Night, Intercepts and Trades items
+   * and its retention line, Delete Account's after-deletion line, the Ledger page's opening paragraphs, the ledger page's
+   * search description and the Archive's "Traded up" card (src/lib/ledgerScope.ts, ten languages). Same data, less of it
+   * public: no new data, no new sharing. OFF until the server file is applied; then set LEDGER_UNIQUES_DAY (below) to
+   * that day (both Last Updated dates move with it).
+   */
+  ledgerUniquesOnly: false,
+  /**
    * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
    * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
    * included; problem_reports was already in it since 20261224610000) and their entry on a beta tester list (beta_testers,
@@ -1771,6 +1785,8 @@ export const MARKET_SITE_DAY = 'November 10, 2026'
 export const MARKET_MEDIAN_DAY = 'November 11, 2026'
 /** LIVE.archiveHolders's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231997000 is live). Never earlier than November 10, 2026. */
 export const ARCHIVE_HOLDERS_DAY = 'November 11, 2026'
+/** LIVE.ledgerUniquesOnly's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the server file 20261231999989_ledger_uniques_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
+export const LEDGER_UNIQUES_DAY = 'November 11, 2026'
 /** LIVE.chatMildMask's day in LEGAL_LAST_UPDATED: the day the server file 20261231999920_mild_swear_mask_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
 export const CHAT_MILD_MASK_DAY = 'November 11, 2026'
 
@@ -1789,6 +1805,8 @@ export const EMAIL_CODES_22_DAY = 'November 11, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.ledgerUniquesOnly
+    ? LEDGER_UNIQUES_DAY // Terms 9's collectibles bullet: the public ledger carries Uniques only (ledger-uniques-1111)
   : LIVE.emailCodes22
     ? EMAIL_CODES_22_DAY // Terms 3: 2.2 signs in with an emailed code, older versions with a password (legal audit 1111)
   : LIVE.chatMildMask
@@ -1863,6 +1881,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.ledgerUniquesOnly
+    ? LEDGER_UNIQUES_DAY // Collectibles and the public ledger: Uniques only on it, the monthly snapshot (ledger-uniques-1111)
   : LIVE.marketMedian
     ? MARKET_MEDIAN_DAY // the Market's prices as medians, three pairs of players (market-median-1111)
   : LIVE.emailCodes22

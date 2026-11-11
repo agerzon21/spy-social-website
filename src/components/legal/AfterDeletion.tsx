@@ -160,7 +160,7 @@ export const AfterDeletionList = () => (
     )}
     {PRIVACY.mintedCollectibles && (
       <ListItem>
-        The public ledger's entries for your collectibles stay for good, so that it can always be checked. They never
+        The public ledger's entries for your {PRIVACY.ledgerUniquesOnly ? 'Uniques' : 'collectibles'} stay for good, so that it can always be checked. They never
         named you: we delete your account's secret and take your account out of your copies' records, so their holder
         codes no longer point at anyone.
       </ListItem>

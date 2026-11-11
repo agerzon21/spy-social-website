@@ -129,30 +129,54 @@ const Ledger: React.FC = () => {
   }
 
   return (
-    <LegalPage english title="Collectibles Ledger" updated={<>Public record of every minted collectible</>}>
+    <LegalPage english title="Collectibles Ledger" updated={<>{LIVE.ledgerUniquesOnly ? 'Public record of every Unique' : 'Public record of every minted collectible'}</>}>
       {beta && (
         <Box borderWidth="2px" borderColor="orange.400" borderRadius="md" p={4} mb={4}>
           <P>
             <B>This is the beta test chain.</B> Everything below (every copy, number, trade and day's fingerprint) is
             for testing only and is wiped before launch. The real ledger starts at launch with its own first entry, and
             its numbers start at #1. Test files are kept apart from the real ones.
+            {LIVE.ledgerUniquesOnly && ' Its earlier lines also list other items, from before the ledger carried Uniques only.'}
           </P>
         </Box>
       )}
-      <P>
-        Game Night titles, the Beta Pin, Field Tester and every item from an Intercept are <B>minted</B>: each copy
-        has its own number and a record of how it was earned, and it can be made only by its rule, inside its window.
-        Once a collectible closes, no more copies are ever made, by anyone, us included. Every copy, and everything
-        that happens to it later, is a line in this ledger. Holders appear only as tags (<Code fontFamily={MONO}>h:7f3a91c20b5e</Code>), a
-        different one on every copy, so the ledger never shows who holds what. See the{' '}
-        <PageLink to="/terms">Terms</PageLink> and the <PageLink to="/privacy">Privacy Policy</PageLink>.
-      </P>
+      {/* ledger-uniques-1111 (LIVE.ledgerUniquesOnly): the public ledger carries Uniques only */}
+      {LIVE.ledgerUniquesOnly ? (
+        <P>
+          This ledger holds <B>Uniques</B> only. Each Unique is <B>minted</B>: it has its own number and a record of how
+          it was earned (the Intercept or trade-up it came from), and it can be made only by its rule, inside its window.
+          Every Unique, and everything that happens to it later (a trade, a sale, a trade-up, a correction), is a line
+          in this ledger. Other items (Game Night titles, the Beta Pin, Field Tester and the other items from
+          Intercepts) are numbered and recorded by us in the same way, but they aren't on the public ledger. Holders
+          appear only as tags (<Code fontFamily={MONO}>h:7f3a91c20b5e</Code>), a different one on every copy, so the
+          ledger never shows who holds what. See the{' '}
+          <PageLink to="/terms">Terms</PageLink> and the <PageLink to="/privacy">Privacy Policy</PageLink>.
+        </P>
+      ) : (
+        <P>
+          Game Night titles, the Beta Pin, Field Tester and every item from an Intercept are <B>minted</B>: each copy
+          has its own number and a record of how it was earned, and it can be made only by its rule, inside its window.
+          Once a collectible closes, no more copies are ever made, by anyone, us included. Every copy, and everything
+          that happens to it later, is a line in this ledger. Holders appear only as tags (<Code fontFamily={MONO}>h:7f3a91c20b5e</Code>), a
+          different one on every copy, so the ledger never shows who holds what. See the{' '}
+          <PageLink to="/terms">Terms</PageLink> and the <PageLink to="/privacy">Privacy Policy</PageLink>.
+        </P>
+      )}
       <P>
         Each line ends with the <B>fingerprint</B> of the line before it (its SHA-256, a 64-character code that changes
         completely if even one letter of the line changes). Every day at 00:00 UTC the ledger writes a checkpoint line;
         its fingerprint is the day's <B>final fingerprint</B>. That day's lines are then published below as a file,
         stamped into the Bitcoin blockchain with OpenTimestamps, and the final fingerprint is added to this
         website's public file history and saved by the Internet Archive.
+        {LIVE.ledgerUniquesOnly && (
+          <>
+            {' '}On the 1st of each month the ledger also writes a <B>snapshot</B> line (a checkpoint whose note starts{' '}
+            <Code fontFamily={MONO}>snapshot:</Code>). Its <Code fontFamily={MONO}>state</Code> is the SHA-256 of a list
+            of every Unique as the lines before it leave it, one line per copy in copy order (
+            <Code fontFamily={MONO}>u1|copy|item|number|held, burned or retired|holder tag</Code>), so you can check the
+            ledger from that month on without going back to its first line. Nothing is ever deleted.
+          </>
+        )}
       </P>
 
       <H2>The ledger today</H2>

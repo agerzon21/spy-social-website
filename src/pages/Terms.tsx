@@ -712,6 +712,27 @@ const Terms: React.FC = () => {
         {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
         {LIVE.mintedCollectibles && (
           <ListItem>
+            {/* ledger-uniques-1111 (LIVE.ledgerUniquesOnly): the public ledger carries Uniques only */}
+            {LIVE.ledgerUniquesOnly ? (
+              <>
+                Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept are
+                minted collectibles. Each copy has its own number and a record of how it was earned (for example the
+                Game Night and the game, or the Intercept or trade-up it came from), and a copy can be made only by its
+                stated rule, inside its window. Once a collectible's window closes, no more copies of it are ever made,
+                by anyone, us included. Every Unique, and what happens to it later (a trade, a sale, a trade-up, a
+                correction), is written to a public ledger at <PageLink to="/ledger">spysocial.app/ledger</PageLink>,
+                which shows each holder only as a code that is different on every copy, never by name; we keep the
+                same record of every other collectible in our own systems, but it isn't on the public ledger. Each
+                day's fingerprint of the ledger is published where we can't change it (a public GitHub repository and
+                the Internet Archive), so anyone can check that no Unique was added, changed or removed afterwards. Like
+                every virtual item, collectibles have no cash value, and they aren't NFTs, tokens or cryptocurrency. We
+                take back a copy only if it was earned by cheating, issued by mistake, or taken back as a moderation
+                action; for a Unique the ledger then shows that it was taken back and why (never who held it), and if
+                we restore a copy after an appeal it comes back with the same number. A trade or a Black Market sale of
+                a Unique shows on the ledger only as the copy moving from one holder code to another.
+              </>
+            ) : (
+              <>
             Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept are
             minted collectibles. Each copy has its own number and a record of how it was earned (for example the
             Game Night and the game, or the Intercept or trade-up it came from), and a copy can be made only by its
@@ -726,6 +747,8 @@ const Terms: React.FC = () => {
             (never who held it), and if we restore it after an appeal it comes back with the same number.
             A trade or a Black Market sale shows on the ledger only as the copy moving from one holder code to
             another.
+              </>
+            )}
             {/* LIVE.launchSite: the beta test chain and Beta 2's market undo are over (site-launch-walk). */}
             {LIVE.launchSite ? (
               <>

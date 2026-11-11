@@ -6,6 +6,8 @@ import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import ui from '../../components/ui/ui.module.css'
 import { artKey, artOf, attributesOf, lookOf, nameOf, uniquePath } from '../../lib/archive'
+import { LIVE } from '../../lib/legalRelease'
+import { TRADE_UP_TEXT_UNIQUES } from '../../lib/ledgerScope'
 import { ArchiveState, BetaNotice, FloatDigits, Piece, UniqueCard } from './ArchiveBits'
 import { fmt, useArchive, useUniques } from './useArchive'
 import s from './archive.module.css'
@@ -23,7 +25,7 @@ const ENIGMA = [
 ]
 
 const ArchiveHome = () => {
-  const { w, data, art, looks, locale } = useArchive()
+  const { w, data, art, looks, locale, lang } = useArchive()
   const h = w.home
   const { list, state, retry } = useUniques()
   const copies = useMemo(() => list?.copies ?? [], [list])
@@ -241,7 +243,8 @@ const ArchiveHome = () => {
             </div>
             <div className={s.source}>
               <h3>{h.sources.tradeUp.title}</h3>
-              <p>{h.sources.tradeUp.text}</p>
+              {/* ledger-uniques-1111: the ten Legendary copies aren't burned on the ledger once it carries Uniques only */}
+              <p>{LIVE.ledgerUniquesOnly ? TRADE_UP_TEXT_UNIQUES[lang] : h.sources.tradeUp.text}</p>
               <div className={s.tradeUp} aria-hidden="true">
                 <div className={s.tradeGrid}>
                   {Array.from({ length: 10 }, (_, i) => (

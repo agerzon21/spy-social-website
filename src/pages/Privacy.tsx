@@ -220,7 +220,9 @@ const Privacy: React.FC = () => {
             shows. The titles are cosmetic and kept with your account, and this information is deleted with it. Apart
             from that chat line, it doesn't leave our servers and isn't shared with anyone
             {PRIVACY.mintedCollectibles
-              ? ", except that each title is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
+              ? PRIVACY.ledgerUniquesOnly
+                ? '. Each title is a numbered minted copy; titles aren\'t on the public ledger (see Collectibles and the public ledger).'
+                : ", except that each title is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
               : '.'}
           </Item>
         )}
@@ -311,7 +313,11 @@ const Privacy: React.FC = () => {
             as totals across all players (and at a player's own Intercepts only to answer a question or check a
             problem). It's kept with your account and deleted with it, and it doesn't leave our servers
             {PRIVACY.mintedCollectibles
-              ? PRIVACY.archiveHolders
+              ? PRIVACY.ledgerUniquesOnly
+                ? PRIVACY.archiveHolders
+                  ? ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and its page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger."
+                  : ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger."
+                : PRIVACY.archiveHolders
                 ? ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and a Unique's page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger)."
                 : ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
               : '.'}
@@ -326,11 +332,10 @@ const Privacy: React.FC = () => {
             trade-up, or the beta tester list and why you're on it), whether it was traded, sold on the Black Market,
             shredded, traded up or taken back and why, and whether you were under 18, an adult or of unknown age when you got it (from the birth year
             you gave us). We use this to give you your collectibles, to show how each was earned, to check that they
-            are earned fairly, and to keep the public ledger. The public ledger (spysocial.app/ledger) lists every
-            copy and what happened to it, but never your account, username or name: each copy's holder appears only
-            as a code made from that copy and a secret kept for your account, so two of your copies never share a
-            code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger
-            shows only that it moved from one holder code to another, never who traded or sold it, or the price.{' '}
+            are earned fairly, and to keep the public ledger.{' '}
+            {PRIVACY.ledgerUniquesOnly
+              ? "The public ledger (spysocial.app/ledger) lists only Uniques: every Unique and what happened to it, but never your account, username or name. Your other collectibles (Game Night titles, the Beta Pin, Field Tester and the other items from Intercepts) are kept in our own records as described above and aren't on the public ledger. On the ledger, each Unique's holder appears only as a code made from that copy and a secret kept for your account, so two of your copies never share a code and nobody else can link them to you or to each other. When a Unique is traded or sold, the ledger shows only that it moved from one holder code to another, never who traded or sold it, or the price. On the 1st of each month the ledger also records the fingerprint of a list of every Unique (its number, whether it is held, burned or retired, and its holder code), made from the ledger's own lines, so it can be checked from that month on."
+              : "The public ledger (spysocial.app/ledger) lists every copy and what happened to it, but never your account, username or name: each copy's holder appears only as a code made from that copy and a secret kept for your account, so two of your copies never share a code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger shows only that it moved from one holder code to another, never who traded or sold it, or the price."}{' '}
             {PRIVACY.uniqueArchive &&
               (PRIVACY.archiveHolders
                 ? "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its past holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. Its holder today is shown by username, with a link to their profile, only if they are an adult whose profile is public (see Follows and Profiles); for anyone else (a player under 18, a player whose age we don't know, or anyone who made their profile private in Privacy & Friends) the page says Held privately. Make your profile private and your username leaves those pages within about a minute. "
@@ -460,7 +465,7 @@ const Privacy: React.FC = () => {
             pause on your account (after a reversal, a change to your email or sign-in method, a sign-in on a new
             device, a lock you set{PRIVACY.audit1103 ? ", or a pause we set on an account that may have been taken or that we're looking into for fraud or farming" : ''}). For a big trade we email you a code; we keep only a coded (hashed) copy of it,
             and the code is removed from our mail queue once it's sent{PRIVACY.retentionSweep ? '; the note that we sent one (no address, no code) is deleted after 30 days' : '; the note that we sent one (no address, no code) stays until your account is deleted'}. Trades carry no message. Only you and the
-            other player see a trade{PRIVACY.mintedCollectibles ? ' (the public ledger shows only that a traded collectible moved from one holder code to another, never who traded it; see Collectibles and the public ledger)' : ''}.
+            other player see a trade{PRIVACY.mintedCollectibles ? (PRIVACY.ledgerUniquesOnly ? ' (the public ledger shows only that a traded Unique moved from one holder code to another, never who traded it; other items aren\'t on it; see Collectibles and the public ledger)' : ' (the public ledger shows only that a traded collectible moved from one holder code to another, never who traded it; see Collectibles and the public ledger)') : ''}.
             Trades are kept with your Intel and item history.
             {PRIVACY.tradeGatesNov2 && PRIVACY.gameDeviceChecks
               ? " Whether you can trade is decided from your account's age, whether its email is confirmed and how many counted games you've played (finished games with at least 2 other saved accounts on other phones, that count toward your stats and that our fair-play checks don't flag). To check that the players in a counted game are different people, we keep, for each game you play, the coded install code of the device you played it from (see Device Information). We don't compare networks for this, so people who share a home or Wi-Fi aren't affected. The device notes are kept for 90 days and deleted with your account."
@@ -1102,7 +1107,7 @@ const Privacy: React.FC = () => {
           : ''}
         {PRIVACY.intercepts ? ' Your Intercepts and what they gave you are kept for as long as you have an account.' : ''}
         {PRIVACY.mintedCollectibles
-          ? ' The public ledger\'s entries are kept for good, so that it can always be checked; when you delete your account we delete its secret and remove your account from your copies\' records, so the holder codes on them no longer point at anyone.'
+          ? (PRIVACY.ledgerUniquesOnly ? ' The public ledger\'s entries (Uniques only) are kept for good, so that it can always be checked; when you delete your account we delete its secret and remove your account from your copies\' records, so the holder codes on them no longer point at anyone.' : ' The public ledger\'s entries are kept for good, so that it can always be checked; when you delete your account we delete its secret and remove your account from your copies\' records, so the holder codes on them no longer point at anyone.')
           : ''}
         {PRIVACY.customPacks
           ? ` Your custom packs${PRIVACY.communityPacks ? ', your ratings and the Community Packs you added' : ''} are kept until you delete them or your account.${PRIVACY.communityPacks ? ' The record of a pack\'s review, and reports about a pack (with the pack as it was), are kept as long as we keep reports.' : ''}`

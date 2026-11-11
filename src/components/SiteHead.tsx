@@ -4,6 +4,7 @@ import { LANGUAGES, matchLang, useLang, useT, type Strings } from '../i18n'
 import { HELLO_STRINGS } from '../hello/strings'
 import { launchDayText } from '../lib/launchDay'
 import { LIVE, ONLINE_SAFETY_TEXT, STORES_OPEN } from '../lib/legalRelease'
+import { LEDGER_DESCRIPTION_UNIQUES } from '../lib/ledgerScope'
 import { canonicalPath, publicUrl } from '../lib/siteHost'
 
 type PageKey = keyof Strings['meta']['titles']
@@ -83,7 +84,10 @@ const SiteHead = () => {
   const general = STORES_OPEN
     ? t.meta.description
     : `${t.meta.description.replace(words.storeTail, '')} ${words.launchLine(launchDayText(language.locale))}`
-  const description = page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
+  // ledger-uniques-1111: with LIVE.ledgerUniquesOnly the ledger is described as the record of every Unique
+  const description = page === 'ledger' && LIVE.ledgerUniquesOnly
+    ? LEDGER_DESCRIPTION_UNIQUES[lang]
+    : page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
   const indexed = !(page && UNLISTED.has(page))
   // The address search engines know it by: www.spysocial.app (the bare spysocial.app redirects there, vercel.json),
   // archive.spysocial.app or market.spysocial.app.
