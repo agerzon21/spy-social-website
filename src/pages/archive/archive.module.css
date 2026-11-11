@@ -74,7 +74,21 @@
 @media (min-width: 560px) { .ctaRow > * { flex: 0 0 auto; } }
 
 /* The fan of three real Uniques in the spotlight. */
-.fan { position: relative; height: 270px; margin-inline: auto; width: min(100%, 420px); }
+/*
+ * No card is ever cut off, at rest, mid-spread or spread (owner Nov 10: the right card was clipped at the hero's edge
+ * on hover). The hero clips (overflow: clip, for the glow), so the fan sizes its cards from its own width: a card is
+ * at most 38% of it (--card, cqw: the fan is the container). Spread, an outer card's centre is 66% of a card out and
+ * it turns 12 degrees, so its far edge is 0.66 + 0.5 x (cos 12 + sin 12) = 1.25 cards from the middle: 47.6% of the
+ * fan, inside its half. At rest (56%, 10 degrees) 1.14 cards: 43%. Sides are symmetric, so Arabic mirrors as is.
+ */
+.fan {
+  position: relative;
+  height: 270px;
+  margin-inline: auto;
+  width: min(100%, 560px);
+  container-type: inline-size;
+  --card: min(168px, 38cqw);
+}
 .fan::before {
   content: '';
   position: absolute;
@@ -95,25 +109,26 @@
   position: absolute;
   top: 26px;
   left: 50%;
-  width: 168px;
-  margin-left: -84px;
+  width: var(--card);
+  margin-left: calc(var(--card) / -2);
   transition: transform 0.4s ease;
   z-index: 1;
 }
-.fanCard:nth-child(1) { transform: translateX(-62%) rotate(-11deg) translateY(18px); }
+.fanCard:nth-child(1) { transform: translateX(-56%) rotate(-10deg) translateY(18px); }
 .fanCard:nth-child(2) { transform: translateY(-6px); z-index: 2; }
-.fanCard:nth-child(3) { transform: translateX(62%) rotate(11deg) translateY(18px); }
-.fan:hover .fanCard:nth-child(1) { transform: translateX(-74%) rotate(-14deg) translateY(14px); }
-.fan:hover .fanCard:nth-child(3) { transform: translateX(74%) rotate(14deg) translateY(14px); }
+.fanCard:nth-child(3) { transform: translateX(56%) rotate(10deg) translateY(18px); }
+.fan:hover .fanCard:nth-child(1) { transform: translateX(-66%) rotate(-12deg) translateY(14px); }
+.fan:hover .fanCard:nth-child(3) { transform: translateX(66%) rotate(12deg) translateY(14px); }
 
 @media (min-width: 560px) {
   .fan { height: 320px; }
-  .fanCard { width: 200px; margin-left: -100px; }
+  .fan { --card: min(200px, 38cqw); }
 }
 @media (min-width: 900px) {
   .heroGrid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 40px; }
   .fan { height: 400px; }
-  .fanCard { width: 240px; margin-left: -120px; top: 40px; }
+  .fan { --card: min(240px, 38cqw); }
+  .fanCard { top: 40px; }
 }
 
 /* ---- a piece: the art in its foil rim ---- */
