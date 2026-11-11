@@ -1497,6 +1497,21 @@ export const LIVE = {
    */
   archiveHolders: true,
   /**
+   * Member loyalty (owner Nov 11; app repo feat/member-loyalty-1111, server file member_loyalty_1111 in
+   * supabase/migrations_pending, STAGED): "Member since" and the time as a member, milestone stamps at 1, 3 and 6 months,
+   * 1, 2 and 3 years, then yearly. Earned by staying: the day a membership is no longer active (after the store's own
+   * grace period; a gap of under a day while a renewal goes through isn't a break), the time and the stamps are gone and
+   * start again from zero on a return. Lifetime counts from the first day as a member and keeps growing. Cosmetic only.
+   * Other players see the time and the stamp on the player sheet (never the date or a price) unless Settings' "Show my
+   * membership time" is off; never an under-13 account's. The price stays while a pass renews without a break.
+   * Turns on: Terms 3's Member time and price lines, Privacy's membership-period record (Purchases) and Data Sharing
+   * line, and the help's member-time, price and cancel answers. Flip the day the server file is live AND the app update
+   * that shows it is out; set MEMBER_LOYALTY_DAY to that day. Not a material Terms change (it adds a benefit and states
+   * what the stores already do for the price): no TERMS_PUBLISHED or terms_version raise. A server + app fact: set in
+   * LIVE, never in PRIVACY_AHEAD.
+   */
+  memberLoyalty: false,
+  /**
    * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
    * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
    * included; problem_reports was already in it since 20261224610000) and their entry on a beta tester list (beta_testers,
@@ -1727,6 +1742,8 @@ export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 export const MARKET_SITE_DAY = 'November 10, 2026'
 /** LIVE.archiveHolders's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231997000 is live). Never earlier than November 10, 2026. */
 export const ARCHIVE_HOLDERS_DAY = 'November 11, 2026'
+/** LIVE.memberLoyalty's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after member_loyalty_1111 is live and the app update shows it). Never earlier than November 11, 2026. */
+export const MEMBER_LOYALTY_DAY = 'November 12, 2026'
 
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
@@ -1740,6 +1757,8 @@ export const PRACTICE_AI_DAY = 'December 6, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.memberLoyalty
+    ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a pass renews (member-loyalty-1111)
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: Terms 5's practice gate, Terms 9's test-phase Intel and never-tradable list
   : LIVE.testerMarket
@@ -1810,6 +1829,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.memberLoyalty
+    ? MEMBER_LOYALTY_DAY // Purchases: the membership-period record; Data Sharing: the member time on the player sheet (member-loyalty-1111)
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
   : LIVE.archiveHolders

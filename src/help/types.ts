@@ -35,6 +35,8 @@ export interface HelpOpts {
   interceptsInTrades: boolean
   /** Beta 2's Black Market is open to testers for real, Nov 9-16 (LIVE.testerMarket === 'open'). */
   testerMarket: boolean
+  /** Member time and its stamps, reset when a membership ends, and the price kept while a pass renews (LIVE.memberLoyalty). */
+  memberLoyalty: boolean
 }
 
 export interface HelpItem {

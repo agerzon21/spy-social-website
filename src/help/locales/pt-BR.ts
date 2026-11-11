@@ -472,6 +472,30 @@ const ptBR: HelpText = {
             'Vitalício dura enquanto oferecermos o SpySocial, não a sua vida toda. Não há teste grátis, e a assinatura não é compartilhada pelo Compartilhamento Familiar.',
           ],
         },
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "O que é “Membro desde”?",
+              a: [
+                "Enquanto você for membro, a <b>Conta</b> mostra quando a assinatura começou e há quanto tempo você é membro, e o <b>Cofre</b> mostra seus selos: 1, 3 e 6 meses, 1, 2 e 3 anos, e depois a cada ano.",
+                "Conta o tempo em que sua assinatura ficou ativa sem interrupção: um passe, o Vitalício, um presente ou um código. Tempo reembolsado e compras de teste não contam.",
+                "Ele se ganha ficando. No primeiro dia em que sua assinatura não estiver mais ativa (depois do período de carência que a loja dá quando um pagamento falha), seu tempo de membro e seus selos somem. Se você voltar a ser membro, “Membro desde” e seu tempo começam do zero.",
+                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como membro, incluindo os meses de passe antes dele, e continua crescendo, com cada selo que adicionarmos depois.",
+                "Os outros jogadores veem só há quanto tempo, com seu selo, na sua ficha de jogador, nunca a data nem o preço. Desative <b>Mostrar meu tempo de membro</b> nos Ajustes para esconder. O tempo de uma conta de menor de 13 anos nunca aparece para os outros.",
+                "Os selos só mudam a aparência do seu perfil: não dão XP nem chances melhores, e não podem ser trocados.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "Meu preço vai subir?",
+              a: [
+                "Enquanto seu passe renovar sem interrupção, você continua pagando o preço de agora, mesmo que o preço suba para novos membros. A loja ainda pode ajustá-lo por impostos locais ou câmbio.",
+                "Se trocar para o outro passe, você paga o preço atual desse plano. Se sua assinatura acabar e você voltar depois, pode pagar o preço da época. O Vitalício é pago uma vez e nunca renova.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: 'Como funcionam a renovação automática e o cancelamento?',
@@ -480,6 +504,7 @@ const ptBR: HelpText = {
             '<b>iPhone ou iPad:</b> Ajustes, seu nome, Assinaturas, SpySocial.',
             '<b>Android:</b> o app Google Play Store, sua foto de perfil, Pagamentos e assinaturas, Assinaturas, SpySocial.',
             '<b>Gerenciar assinatura</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um passe.',
+            ...(o.memberLoyalty ? ["Antes de abrir a loja, o app mostra uma tela com os fatos: se sua assinatura acabar, seu tempo de membro e seus selos voltam a zero e seu preço deixa de ser mantido. Um botão leva direto à loja, e nada muda antes do fim do período pago."] : []),
           ],
         },
         {

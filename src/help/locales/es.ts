@@ -472,6 +472,30 @@ const es: HelpText = {
             'La membresía de por vida dura mientras ofrezcamos SpySocial, no toda tu vida. No hay pruebas gratis, y la membresía no se comparte con En familia.',
           ],
         },
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "¿Qué es «Miembro desde»?",
+              a: [
+                "Mientras tengas membresía, <b>Cuenta</b> muestra cuándo empezó y cuánto tiempo llevas como miembro, y la <b>Bóveda</b> muestra tus sellos: 1, 3 y 6 meses, 1, 2 y 3 años, y después cada año.",
+                "Cuenta el tiempo que tu membresía ha estado activa sin interrupción: un pase, la membresía de por vida, un regalo o un código. El tiempo reembolsado y las compras de prueba no cuentan.",
+                "Se gana quedándote. El primer día en que tu membresía ya no esté activa (después del periodo de gracia que da la tienda si falla un pago), tu tiempo como miembro y tus sellos desaparecen. Si vuelves a ser miembro, «Miembro desde» y tu tiempo empiezan de cero.",
+                "La membresía <b>de por vida</b> es la excepción: tu tiempo cuenta desde tu primer día como miembro, incluidos los meses con un pase antes, y sigue creciendo, con cada sello que añadamos más adelante.",
+                "Los demás jugadores solo ven cuánto tiempo, con tu sello, en tu ficha de jugador; nunca la fecha ni el precio. Desactiva <b>Mostrar mi tiempo como miembro</b> en Ajustes para ocultarlo. El tiempo de una cuenta de menores de 13 años nunca se muestra a otros.",
+                "Los sellos solo cambian el aspecto de tu perfil: no dan XP ni mejores probabilidades, y no se pueden intercambiar.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "¿Me subirán el precio?",
+              a: [
+                "Mientras tu pase se renueve sin interrupción, sigues pagando el precio de ahora, aunque suba para los nuevos miembros. La tienda puede ajustarlo por impuestos locales o por la moneda.",
+                "Si cambias al otro pase, pagas el precio actual de ese plan. Si tu membresía termina y vuelves más tarde, puede que pagues el precio de ese momento. La membresía de por vida se paga una vez y nunca se renueva.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: '¿Cómo funcionan la renovación automática y la cancelación?',
@@ -480,6 +504,7 @@ const es: HelpText = {
             '<b>iPhone o iPad:</b> Ajustes, tu nombre, Suscripciones, SpySocial.',
             '<b>Android:</b> la app Google Play Store, tu foto de perfil, Pagos y suscripciones, Suscripciones, SpySocial.',
             '<b>Gestionar suscripción</b> en la app abre la misma página. Borrar la app o tu cuenta, o comprar la membresía de por vida, no cancela un pase.',
+            ...(o.memberLoyalty ? ["Antes de abrir la tienda, la app muestra una pantalla con los hechos: si tu membresía termina, tu tiempo como miembro y tus sellos vuelven a cero y dejas de conservar tu precio. Un botón te lleva directamente a la tienda, y nada cambia antes del final del periodo que pagaste."] : []),
           ],
         },
         {
