@@ -1,13 +1,10 @@
 /*
  * archive.spysocial.app's entry (speed-1111; archive.html). Its CSS is the host's whole look, inlined into the page by
- * the build: the site's base (index.css, the fonts), the Archive's pages' modules, then hosts/base.css last.
+ * the build: the site's base (index.css, the fonts) and hosts/base.css last; the pages' own CSS is linked beside it
+ * (vite.config.ts hostHtml).
  */
 import '../index.css'
 import '../theme/fonts.css'
-import '../components/ui/ui.module.css'
-import '../pages/archive/archive.module.css'
-import '../pages/archive/displayCase.module.css'
-import '../pages/archive/holder.module.css'
 import { fetchUnique, fetchUniques, loadArchiveData, loadArtIndex, loadLookIndex } from '../lib/archive'
 import { loadMarketLines } from '../lib/marketArt'
 import { startHost } from './start'

@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -227,12 +228,14 @@ function launchHead() {
 function pagePreviews() {
     let root = process.cwd();
     let outDir = resolve(root, 'dist');
+    let env = {};
     return {
         name: 'spysocial-page-previews',
         apply: 'build',
         configResolved(config) {
             root = config.root;
             outDir = resolve(config.root, config.build.outDir);
+            env = config.env;
         },
         async writeBundle(_options, bundle) {
             const site = await loadSite(root);
@@ -308,7 +311,7 @@ function pagePreviews() {
             // description and its own address. With its switches off, the home page's file (the router sends its paths on).
             await mkdir(resolve(outDir, '_host'), { recursive: true });
             for (const h of HOST_PAGES) {
-                let html = await hostHtml(outDir, home, h.host, bundle);
+                let html = await hostHtml(outDir, home, h.host, bundle, env.VITE_SUPABASE_URL ?? '');
                 if (h.live.every((key) => LIVE[key] === true)) {
                     const title = attr(`${en.meta.titles[h.key]} · ${en.meta.siteName}`);
                     const description = attr(en.meta.descriptions[h.key] ?? en.meta.description);
@@ -332,21 +335,77 @@ function pagePreviews() {
         },
     };
 }
-/** Each host's own app (speed-1111: src/hosts/<host>.tsx, built from <host>.html) and the pages it routes. */
+/**
+ * Each host's own app (speed-1111: src/hosts/<host>.tsx, built from <host>.html): its pages, each with the addresses it
+ * answers (the early script preloads only the page being opened), and what every page of it loads (the header nav).
+ */
 const HOST_APPS = {
-    archive: { pages: ['src/pages/archive/ArchiveHome.tsx', 'src/pages/archive/ArchiveBrowse.tsx', 'src/pages/archive/ArchiveItem.tsx', 'src/components/HostNav.tsx'] },
-    market: { pages: ['src/pages/market/MarketHome.tsx', 'src/pages/market/MarketMovers.tsx', 'src/pages/market/MarketCatalogue.tsx', 'src/pages/market/MarketItem.tsx', 'src/components/HostNav.tsx'] },
+    archive: {
+        pages: [
+            [/^\/u\/[^/]+\/\d+\/?$/, 'src/pages/archive/ArchiveItem.tsx'],
+            [/^\/uniques\/?$/, 'src/pages/archive/ArchiveBrowse.tsx'],
+            [/^\/$/, 'src/pages/archive/ArchiveHome.tsx'],
+        ],
+        always: ['src/components/HostNav.tsx'],
+    },
+    market: {
+        pages: [
+            [/^\/item\//, 'src/pages/market/MarketItem.tsx'],
+            [/^\/movers/, 'src/pages/market/MarketMovers.tsx'],
+            [/^\/catalogue/, 'src/pages/market/MarketCatalogue.tsx'],
+            [/^\/$/, 'src/pages/market/MarketHome.tsx'],
+        ],
+        always: ['src/components/HostNav.tsx'],
+    },
 };
 /** Fonts the hosts' first paint can wait for (font-display: swap with a matched fallback, src/theme/fonts.css): not preloaded there. */
 const HOST_LATE_FONTS = /<link rel="preload" href="\/static\/barlow-(600|700)-latin-[\w-]+\.woff2"[^>]*>\s*/g;
 /**
- * A host's page (speed-1111): the site's head (the built index.html: title, previews, theme.js, lang.js, fonts) with
- * the host's own app instead of www's: its script and modulepreloads from the built <host>.html, its CSS inlined (the
- * host's whole look, so the first paint needs no stylesheet request), and modulepreloads for the host's page chunks
- * (fetched alongside the app instead of after it). The built <host>.html itself is removed: only vercel.json's
- * dist/_host/<host>.html serves it.
+ * The head start a host's page gives its reads (speed-1111): a small classic script, run as soon as the page is parsed
+ * and long before the app's modules have arrived. It starts the fetches the page's first render needs (the ledger read
+ * for this address, the picture indexes, the Archive's tables in the reader's language) and keeps each promise in
+ * window.__ssEarly under its address, where lib/early.ts hands it to the app's own read of that address; and it
+ * modulepreloads the reader's language's chunks (the site's words, the page's words, the item lines). Same addresses as
+ * the app builds them (lib/archive.ts, lib/market.ts), or the app just fetches again.
  */
-async function hostHtml(outDir, home, host, bundle) {
+function earlyScript(host, ledger, langChunks, routes) {
+    const reads = host === 'archive'
+        ? String.raw `f('/archive/data/'+L+'.json');
+  if(m=/^\/u\/([^/]+)\/(\d+)\/?$/.exec(P))l('op=unique&item='+encodeURIComponent(decodeURIComponent(m[1]))+'&serial='+Number(m[2]));
+  else if(/^\/(uniques\/?)?$/.test(P))l('op=uniques');`
+        : String.raw `if(m=/^\/item\/([^/]+)\/?$/.exec(P))l('op=market_item&code='+encodeURIComponent(decodeURIComponent(m[1]))+'&lang='+encodeURIComponent(L));
+  else l('op=market&lang='+encodeURIComponent(L));`;
+    return `/* ${host}.spysocial.app: the page's reads start here (vite.config.ts earlyScript, speed-1111). */
+(function(){try{
+  var L=document.documentElement.getAttribute('lang')||'en',P=location.pathname,E=window.__ssEarly={},A=${JSON.stringify(ledger)},m;
+  var f=function(u){E[u]=fetch(u)},l=function(q){if(A)f(A+'?'+q)};
+  f('/archive/art/index.json');f('/archive/item/index.json');f('/archive/worn/index.json');f('/archive/scene/index.json');f('/archive/motion/index.json');
+  ${reads}
+  var g=function(c){var k=document.createElement('link');k.rel='modulepreload';k.crossOrigin='';k.href='/'+c;document.head.appendChild(k)};
+  var R=${JSON.stringify(routes)};for(var i=0;i<R.length;i++)if(new RegExp(R[i][0]).test(P)){R[i][1].forEach(g);break}
+  var C=${JSON.stringify(langChunks)};(C[L]||C.en||[]).forEach(g);
+}catch(e){}})();
+`;
+}
+/** The chunks of a language's own words (the site's, the Archive's and the Market's tables, the item lines), by language. */
+function langChunks(chunks) {
+    const out = {};
+    const re = /src\/(?:i18n\/locales|pages\/archive\/locales|pages\/market\/locales|pages\/market\/words)\/([\w-]+)\.(?:ts|json)$/;
+    for (const c of chunks) {
+        const m = c.facadeModuleId ? re.exec(c.facadeModuleId) : null;
+        if (m)
+            (out[m[1]] ??= []).push(c.fileName);
+    }
+    return out;
+}
+/**
+ * A host's page (speed-1111): the site's head (the built index.html: title, previews, theme.js, lang.js, fonts) with
+ * the host's own app instead of www's: its script and modulepreloads from the built <host>.html, its CSS inlined, and
+ * the host's page chunks (and their CSS) fetched alongside the app instead of after it. hosts/base.css (Chakra's reset
+ * and the theme's global styles) stays last, as Chakra's styles were. The early script (earlyScript) comes first. The
+ * built <host>.html itself is removed: only vercel.json's dist/_host/<host>.html serves it.
+ */
+async function hostHtml(outDir, home, host, bundle, ledger) {
     const file = resolve(outDir, `${host}.html`);
     const built = await readFile(file, 'utf8');
     const tags = (html) => html.match(/<script type="module"[^>]*><\/script>|<link rel="(modulepreload|stylesheet)"[^>]*>/g) ?? [];
@@ -357,34 +416,64 @@ async function hostHtml(outDir, home, host, bundle) {
     for (const t of tags(home))
         html = html.replace(t, '');
     html = html.replace(HOST_LATE_FONTS, '');
-    const parts = [];
-    for (const t of own) {
-        const css = /<link rel="stylesheet"[^>]*href="([^"]+)"/.exec(t);
-        if (css)
-            parts.push(`<style>${(await readFile(resolve(outDir, css[1].replace(/^\//, '')), 'utf8')).replace(/<\/style/gi, '<\\/style')}</style>`);
-        else
-            parts.push(t);
-    }
-    // The host's page chunks and their imports, minus what the app already loads.
+    const read = (href) => readFile(resolve(outDir, href.replace(/^\//, '')), 'utf8');
+    const inline = (css) => `<style>${css.replace(/<\/style/gi, '<\\/style')}</style>`;
     const chunks = Object.values(bundle).filter((c) => c.type === 'chunk');
     const byName = new Map(chunks.map((c) => [c.fileName, c]));
+    const head = [];
+    const styles = [];
+    let last = '';
+    for (const t of own) {
+        const css = /<link rel="stylesheet"[^>]*href="([^"]+)"/.exec(t);
+        if (!css)
+            head.push(t);
+        else {
+            const text = await read(css[1]);
+            if (text.includes('--chakra-vh'))
+                last = inline(text);
+            else
+                styles.push(inline(text));
+        }
+    }
+    if (!last)
+        throw new Error(`hostHtml: no hosts/base.css in ${host}.html`);
+    // The host's page chunks and their imports, minus what the app already loads: the nav's in the page, the page being
+    // opened's from the early script (its address picks it); their CSS as stylesheets (the app's chunk loader finds them
+    // on the page and doesn't fetch them again).
     const have = new Set(own.map((t) => /(?:src|href)="\/([^"]+)"/.exec(t)?.[1]).filter(Boolean));
-    const want = [];
-    const add = (name) => {
-        if (have.has(name))
-            return;
-        have.add(name);
-        want.push(name);
-        for (const dep of byName.get(name)?.imports ?? [])
-            add(dep);
-    };
-    for (const page of HOST_APPS[host].pages) {
+    const css = new Set();
+    const closure = (page) => {
         const chunk = chunks.find((c) => c.facadeModuleId?.endsWith(page));
         if (!chunk)
             throw new Error(`hostHtml: no chunk for ${page}`);
+        const out = [];
+        const seen = new Set();
+        const add = (name) => {
+            if (have.has(name) || seen.has(name))
+                return;
+            seen.add(name);
+            out.push(name);
+            const c = byName.get(name);
+            for (const dep of c?.imports ?? [])
+                add(dep);
+            // A chunk's CSS after its imports' (the order the app's chunk loader puts them in: a page's own rules win).
+            for (const f of c?.viteMetadata?.importedCss ?? [])
+                css.add(f);
+        };
         add(chunk.fileName);
-    }
-    parts.push(...want.map((name) => `<link rel="modulepreload" crossorigin href="/${name}">`));
+        return out;
+    };
+    const always = HOST_APPS[host].always.flatMap(closure);
+    for (const name of always)
+        have.add(name);
+    head.push(...always.map((name) => `<link rel="modulepreload" crossorigin href="/${name}">`));
+    const routes = HOST_APPS[host].pages.map(([re, page]) => [re.source, closure(page)]);
+    const early = earlyScript(host, ledger ? `${ledger.replace(/\/+$/, '')}/functions/v1/ledger` : '', langChunks(chunks), routes);
+    const earlyName = `static/early-${host}-${createHash('sha256').update(early).digest('hex').slice(0, 8)}.js`;
+    await writeFile(resolve(outDir, earlyName), early);
+    // async, high priority: it runs as soon as it arrives (lang.js, before it, has set the page's language).
+    head.unshift(`<script async fetchpriority="high" src="/${earlyName}"></script>`);
+    const parts = [...head, ...styles, ...[...css].map((c) => `<link rel="stylesheet" crossorigin href="/${c}">`), last];
     await rm(file);
     return html.replace('</head>', `    ${parts.join('\n    ')}\n  </head>`);
 }

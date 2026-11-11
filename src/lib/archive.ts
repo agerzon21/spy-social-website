@@ -14,6 +14,7 @@
  * plain Legendary until the next run.
  */
 import type { LangCode } from '../i18n'
+import { early } from './early'
 
 const LEDGER_URL = `${String(import.meta.env.VITE_SUPABASE_URL ?? '').replace(/\/$/, '')}/functions/v1/ledger`
 
@@ -142,7 +143,7 @@ export async function ledgerGet<T>(query: string): Promise<T | null> {
   for (let attempt = 0; ; attempt++) {
     let r: Response | null = null
     try {
-      r = await fetch(`${LEDGER_URL}?${query}`)
+      r = await (attempt === 0 ? early(`${LEDGER_URL}?${query}`) : fetch(`${LEDGER_URL}?${query}`))
     } catch {
       r = null
     }
@@ -204,7 +205,7 @@ const dataCache = new Map<string, Promise<ArchiveData | null>>()
 export function loadArchiveData(code: LangCode | string): Promise<ArchiveData | null> {
   let p = dataCache.get(code)
   if (!p) {
-    p = fetch(`/archive/data/${code}.json`)
+    p = early(`/archive/data/${code}.json`)
       .then((r) => (r.ok ? (r.json() as Promise<ArchiveData>) : null))
       .catch(() => null)
       .then((d) => d ?? (code === 'en' ? null : loadArchiveData('en')))
@@ -217,7 +218,7 @@ export function loadArchiveData(code: LangCode | string): Promise<ArchiveData | 
 let artCache: Promise<Set<string>> | null = null
 export function loadArtIndex(): Promise<Set<string>> {
   if (!artCache) {
-    artCache = fetch('/archive/art/index.json')
+    artCache = early('/archive/art/index.json')
       .then((r) => (r.ok ? (r.json() as Promise<string[]>) : []))
       .then((keys) => new Set(keys))
       .catch(() => new Set<string>())
@@ -248,11 +249,11 @@ let lookCache: Promise<Looks> | null = null
 export function loadLookIndex(): Promise<Looks> {
   if (!lookCache) {
     const keys = (path: string) =>
-      fetch(path)
+      early(path)
         .then((r) => (r.ok ? (r.json() as Promise<string[]>) : []))
         .then((k) => new Set(k))
         .catch(() => new Set<string>())
-    const motion = fetch('/archive/motion/index.json')
+    const motion = early('/archive/motion/index.json')
       .then((r) => (r.ok ? (r.json() as Promise<Record<string, string[]>>) : {}))
       .catch(() => ({}))
     lookCache = Promise.all([keys('/archive/item/index.json'), keys('/archive/worn/index.json'), keys('/archive/scene/index.json'), motion]).then(
