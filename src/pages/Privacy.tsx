@@ -649,6 +649,8 @@ const Privacy: React.FC = () => {
                 " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026), even if you delete your account first."}
             </>
           )}{' '}
+          {PRIVACY.launchTesterMail &&
+            "On the day version 2.2 comes out, we send one email, through Resend, to the email address of each saved account that tested it before the launch (only accounts whose birth year makes them an adult, and none under a ban), to say it's out and what the account received for testing. Reply \"stop\" to it, or to any later email like it, and we won't send you news like this again; we keep the address of everyone who asked us to stop, only so that we never send them such news again. "}
           Otherwise, a test version is the same app, and this policy applies to it.
         </Item>
         <Item label="Rate Limits">
@@ -977,6 +979,7 @@ const Privacy: React.FC = () => {
       <Bullets>
         <ListItem>Create and manage your account</ListItem>
         {PRIVACY.launchReminder && <ListItem>Send the one launch email you asked for</ListItem>}
+        {PRIVACY.launchTesterMail && <ListItem>Tell the players who tested version 2.2 by email that it's out and what they received for testing</ListItem>}
         <ListItem>Enable multiplayer game functionality, chat and translation</ListItem>
         {PRIVACY.purchases && <ListItem>Provide and restore what you buy</ListItem>}
         {PRIVACY.creatorCodes && (
@@ -1054,7 +1057,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs{PRIVACY.ipVault ? ', and the encrypted IP addresses of new accounts and sign-ins, for safety, fraud and legal requests' : ''}), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
-          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
+          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}
+          {PRIVACY.launchTesterMail ? ', and tell the adults who tested version 2.2 that it\'s out (you can reply "stop")' : ''}.
           You can object to this processing at any time by emailing <SupportEmail />.
         </Item>
         <Item label="Consent">
@@ -1266,7 +1270,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : PRIVACY.emailCodes22 ? ' sign-in codes, sign-up confirmations and password resets' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.launchTesterMail ? ', the email telling the players who tested version 2.2 that it\'s out' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">

@@ -1605,6 +1605,16 @@ export const LIVE = {
    */
   coverage1110: true,
   /**
+   * The launch email to the 2.2 testers (app repo nov03/launch-comms: testers.sql + send_launch.py, "M1"; store-privacy-1108):
+   * on launch day, one email through Resend to the account email of each saved account on beta_testers_2_2, adults only by
+   * birth year, none under a running ban, saying 2.2 is out and what the account got for testing; "Reply stop and we won't send
+   * you news like this again" (stop.txt, honoured within 10 business days). Turns on: a Test Versions sentence, a How We Use
+   * line, Legitimate Interests and Resend's item. NOT LIVE: flip it (and set PRIVACY_LAST_UPDATED's entry to that day) when the
+   * site goes up just before the send, never after. The store forms declare the matching purpose (Apple: Email Address,
+   * Developer's Advertising or Marketing; Google: Email address, Developer communications). A website fact: set in LIVE.
+   */
+  launchTesterMail: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1868,6 +1878,9 @@ export const PARTY_LEADER_LAPSE_DAY = 'November 11, 2026'
 /** LIVE.giftsTradable going false (website U0, owner's gift rules of Nov 6 and Nov 8: Terms 9, Intel corrections): its day in LEGAL_LAST_UPDATED (added by legal-integration-1111: before it, the flip moved no date). Set it to the day the site goes up with giftsTradable false. */
 export const GIFTS_BOUND_DAY = 'December 6, 2026'
 
+/** LIVE.launchTesterMail's day in PRIVACY_LAST_UPDATED (store-privacy-1108): the day the site goes up with it on, just before the launch email to the 2.2 testers, never after. */
+export const LAUNCH_TESTER_MAIL_DAY = 'December 8, 2026'
+
 /** LIVE.emailCodes22's day (Terms 3, Privacy's sign-in lines): the day the site went up with it on. */
 export const EMAIL_CODES_22_DAY = 'November 11, 2026'
 
@@ -1958,6 +1971,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.launchTesterMail
+    ? LAUNCH_TESTER_MAIL_DAY // the launch email to the 2.2 testers (store-privacy-1108): the day the site goes up with it on, before the send
   : LIVE.memberLoyalty
     ? MEMBER_LOYALTY_DAY // Purchases: the membership-period record; Data Sharing: the member time on the player sheet (member-loyalty-1111)
   : LIVE.emailCodes22
