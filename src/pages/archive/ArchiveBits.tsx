@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import Link from '../../components/SiteLink'
 import { FaTriangleExclamation } from 'react-icons/fa6'
 import { artOf, codenameOf, nameOf, serialText, swatchOf, uniquePath, type ArchiveCopy, type ArchiveSet } from '../../lib/archive'
 import { fmt, setText, useArchive } from './useArchive'
@@ -13,23 +13,6 @@ export function BetaNotice({ chain }: { chain?: string }) {
       <FaTriangleExclamation aria-hidden focusable={false} />
       <span>{w.beta}</span>
     </p>
-  )
-}
-
-/** The Archive's three places. */
-export function SubNav() {
-  const { w } = useArchive()
-  const { pathname } = useLocation()
-  const here = (p: string) => (pathname === p ? 'page' : undefined)
-  return (
-    <nav aria-label={w.nav.archive}>
-      <ul className={s.subnav}>
-        <li><Link to="/archive" aria-current={here('/archive')}>{w.nav.archive}</Link></li>
-        <li><Link to="/archive/uniques" aria-current={here('/archive/uniques')}>{w.nav.browse}</Link></li>
-        <li><Link to="/ledger">{w.nav.ledger}</Link></li>
-        <li><Link to="/transparency">{w.nav.transparency}</Link></li>
-      </ul>
-    </nav>
   )
 }
 

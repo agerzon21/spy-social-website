@@ -330,7 +330,7 @@ const Privacy: React.FC = () => {
             code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger
             shows only that it moved from one holder code to another, never who traded or sold it, or the price.{' '}
             {PRIVACY.uniqueArchive &&
-              "The Archive (spysocial.app/archive) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. "}
+              "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. "}
             Each
             day only a fingerprint of the ledger is sent to GitHub and the Internet Archive, with no personal data in
             it.{' '}
@@ -1387,6 +1387,8 @@ const Privacy: React.FC = () => {
         {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}
         {PRIVACY.blackMarket &&
           " The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling."}
+        {PRIVACY.marketSite &&
+          " Our website's Market (market.spysocial.app) shows anyone, without an account, totals worked out from Black Market trades: each item's price (an average of its recent trades), how it changed, how many times it was traded and how much Intel was spent on it, each day and over periods of up to 180 days. It shows a price only when at least five trades make it, and never a player, an offer or a single trade."}
         {/* LIVE.socialFeatures (legalRelease). */}
         {PRIVACY.socialFeatures &&
           " Your friends see your display name, your agent and, if you allow it, whether you're online now. An adult's public profile (see Follows and Profiles above) can be opened by any player; a private profile, and the profile of any player under 18, can't be opened by other players. A party is marked at the table for everyone there, and its members see each other by display name."}

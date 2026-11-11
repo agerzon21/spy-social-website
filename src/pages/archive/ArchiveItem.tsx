@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import Link from '../../components/SiteLink'
 import { Helmet } from 'react-helmet-async'
 import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'
@@ -17,7 +18,7 @@ import {
   type ArchiveUnique,
   type HistoryEvent,
 } from '../../lib/archive'
-import { ArchiveState, BetaNotice, FloatDigits, Piece, SubNav } from './ArchiveBits'
+import { ArchiveState, BetaNotice, FloatDigits, Piece } from './ArchiveBits'
 import { dayText, fmt, setText, useArchive } from './useArchive'
 import s from './archive.module.css'
 
@@ -27,8 +28,8 @@ const SERIAL = /^[1-9]\d{0,8}$/
 const EVENT_CLASS: Record<string, string | undefined> = { minted: s.evMinted, sold: s.evSold, sale_undone: s.evUndone, burned: s.evBurned }
 
 /**
- * One Unique's own page (www.spysocial.app/archive/u/<item>/<serial>; the app's "View in the Archive" button opens
- * archive.spysocial.app/u/<item>/<serial>, which forwards here): its picture, number, codename, set and season, its
+ * One Unique's own page (archive.spysocial.app/u/<item>/<serial>, which the app's "View in the Archive" button
+ * opens): its picture, number, codename, set and season, its
  * certificate (the float and what each digit picks), how it was minted, whether it's for sale, and its ledger history
  * with sale prices in Intel. Never a player: holders are numbered, nothing more.
  */
@@ -61,7 +62,6 @@ const ArchiveItem = () => {
     return (
       <div className={`${s.page} ${s.foil}`}>
         <div className={ui.wrap}>
-          <SubNav />
           <div className={s.state}>
             <DisplayHeading as="h1" size={3}>
               {t.notFound}
@@ -96,7 +96,6 @@ const ArchiveItem = () => {
         <title>{`${title} · Archive · SpySocial`}</title>
       </Helmet>
       <div className={ui.wrap}>
-        <SubNav />
         <ol className={s.crumbs}>
           <li><Link to="/archive">{t.crumbs}</Link></li>
           <li><Link to={`/archive/uniques?item=${encodeURIComponent(item)}`}>{name}</Link></li>

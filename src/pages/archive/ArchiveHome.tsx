@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import Link from '../../components/SiteLink'
 import { FaFingerprint, FaHashtag, FaLink } from 'react-icons/fa6'
 import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import ui from '../../components/ui/ui.module.css'
 import { artKey, artOf, attributesOf, nameOf, uniquePath } from '../../lib/archive'
-import { ArchiveState, BetaNotice, FloatDigits, Piece, SubNav, UniqueCard } from './ArchiveBits'
+import { ArchiveState, BetaNotice, FloatDigits, Piece, UniqueCard } from './ArchiveBits'
 import { fmt, useArchive, useUniques } from './useArchive'
 import s from './archive.module.css'
 
@@ -60,7 +60,6 @@ const ArchiveHome = () => {
   return (
     <div className={`${s.page} ${s.foil}`}>
       <div className={ui.wrap}>
-        <SubNav />
         <BetaNotice chain={list?.chain} />
 
         <section className={s.hero} aria-labelledby="archive-title">

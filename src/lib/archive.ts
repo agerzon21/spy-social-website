@@ -1,5 +1,5 @@
 /**
- * The Archive (www.spysocial.app/archive; archive.spysocial.app forwards here): every Unique, read from the app's
+ * The Archive (archive.spysocial.app, its own host: lib/siteHost; www.spysocial.app/archive sends there): every Unique, read from the app's
  * ledger function without an account (app repo supabase/functions/ledger, ops `uniques` and `unique`: the database's
  * mint_unique_public, 20261225300000). Its answers never carry a player: no name, id or tag; a copy's holders are
  * numbered by their first appearance on its own ledger lines. Cached 60 s at the function; a busy answer is tried again.
@@ -100,8 +100,11 @@ export class ArchiveBusy extends Error {}
 
 const wait = (ms: number) => new Promise((done) => setTimeout(done, ms))
 
-/** One read. 404: null (no such Unique). A busy answer (429, 5xx) or a dropped connection is tried again twice. */
-async function get<T>(query: string): Promise<T | null> {
+/**
+ * One read of the ledger function (the Archive's and the Market's). 404: null (nothing there). A busy answer (429, 5xx)
+ * or a dropped connection is tried again twice; then ArchiveBusy ("archive 400" when the function doesn't know the op yet).
+ */
+export async function ledgerGet<T>(query: string): Promise<T | null> {
   for (let attempt = 0; ; attempt++) {
     let r: Response | null = null
     try {
@@ -122,7 +125,7 @@ let listCache: { at: number; p: Promise<ArchiveList | null> } | null = null
 /** Every Unique (kept a minute in this tab: the home page and the browse page share it). */
 export function fetchUniques(): Promise<ArchiveList | null> {
   if (listCache && Date.now() - listCache.at < 60_000) return listCache.p
-  const p = get<ArchiveList>('op=uniques')
+  const p = ledgerGet<ArchiveList>('op=uniques')
   p.catch(() => {
     listCache = null
   })
@@ -131,7 +134,7 @@ export function fetchUniques(): Promise<ArchiveList | null> {
 }
 
 export function fetchUnique(item: string, serial: number): Promise<ArchiveUnique | null> {
-  return get<ArchiveUnique>(`op=unique&item=${encodeURIComponent(item)}&serial=${serial}`)
+  return ledgerGet<ArchiveUnique>(`op=unique&item=${encodeURIComponent(item)}&serial=${serial}`)
 }
 
 // ------------------------------------------------------------------ the app's words and tables

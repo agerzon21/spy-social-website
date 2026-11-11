@@ -4,9 +4,7 @@ import { LANGUAGES, matchLang, useLang, useT, type Strings } from '../i18n'
 import { HELLO_STRINGS } from '../hello/strings'
 import { launchDayText } from '../lib/launchDay'
 import { LIVE, ONLINE_SAFETY_TEXT, STORES_OPEN } from '../lib/legalRelease'
-
-/** The address search engines know the site by: the bare spysocial.app redirects here (vercel.json). */
-const ORIGIN = 'https://www.spysocial.app'
+import { canonicalPath, publicUrl } from '../lib/siteHost'
 
 type PageKey = keyof Strings['meta']['titles']
 type DescribedPage = keyof Strings['meta']['descriptions']
@@ -37,6 +35,8 @@ function pageOf(path: string): PageKey | null {
   if (path === '/join' || path.startsWith('/join/')) return 'join'
   // The Archive: its home, every Unique, and each Unique's own page (its own title comes from the page's Helmet).
   if (LIVE.mintedCollectibles && LIVE.uniqueArchive && (path === '/archive' || path === '/archive/uniques' || path.startsWith('/archive/u/'))) return 'archive'
+  // The Market: the Black Market's prices, every page of it (an item's page sets its own title in its Helmet).
+  if (LIVE.marketSite && (path === '/market' || path.startsWith('/market/'))) return 'market'
   const pages: Record<string, PageKey> = {
     '/support': 'faq',
     '/contact-us': 'contact',
@@ -73,8 +73,9 @@ const SiteHead = () => {
   const { pathname, search } = useLocation()
   const { lang, language } = useLang()
   const t = useT()
-  // One address per page: no trailing slash (/privacy/ is /privacy).
-  const path = pathname.replace(/\/+$/, '') || '/'
+  // One address per page: no trailing slash (/privacy/ is /privacy). Named by its canonical path: archive.spysocial.app's
+  // '/uniques' is '/archive/uniques' (lib/siteHost).
+  const path = canonicalPath(pathname.replace(/\/+$/, '') || '/')
   const page = pageOf(path)
   const title = page ? `${t.meta.titles[page]} · ${t.meta.siteName}` : t.meta.defaultTitle
   const words = HELLO_STRINGS[lang]
@@ -84,7 +85,9 @@ const SiteHead = () => {
     : `${t.meta.description.replace(words.storeTail, '')} ${words.launchLine(launchDayText(language.locale))}`
   const description = page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
   const indexed = !(page && UNLISTED.has(page))
-  const here = `${ORIGIN}${path}`
+  // The address search engines know it by: www.spysocial.app (the bare spysocial.app redirects there, vercel.json),
+  // archive.spysocial.app or market.spysocial.app.
+  const here = publicUrl(path)
   const asked = matchLang(new URLSearchParams(search).get('lang'))
   const canonical = asked === lang ? `${here}?lang=${lang}` : here
 

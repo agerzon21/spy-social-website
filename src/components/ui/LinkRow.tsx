@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import Link from '../SiteLink'
 import s from './LinkRow.module.css'
 
 /**

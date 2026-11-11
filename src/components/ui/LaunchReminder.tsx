@@ -1,6 +1,6 @@
 import { useId, useRef, useState, type FormEvent } from 'react'
 import { FaDiscord } from 'react-icons/fa6'
-import { Link } from 'react-router-dom'
+import Link from '../SiteLink'
 import { HELLO_STRINGS } from '../../hello/strings'
 import { useLang, useT } from '../../i18n'
 import { launchDayText, REMINDER_PAGE } from '../../lib/launchDay'
