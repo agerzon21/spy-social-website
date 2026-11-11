@@ -1,4 +1,4 @@
-import { ListItem, OrderedList, Text } from '@chakra-ui/react'
+import { OrderedList, Text } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { CalloutBox } from '../components/legal/Callout'
 import { B, Bullets, H2, H3, OutLink, P, PageLink } from '../components/legal/LegalText'
@@ -74,14 +74,14 @@ const Terms: React.FC = () => {
       <CalloutBox>
         <Text textStyle="body" color="ss.text" fontWeight="700" mb={2}>The short version</Text>
         <Bullets>
-          <ListItem>Be kind and play fair, and follow our Community Rules. We don't tolerate objectionable content or abusive players.</ListItem>
-          <ListItem>
+          <li>Be kind and play fair, and follow our Community Rules. We don't tolerate objectionable content or abusive players.</li>
+          <li>
             What you add (your name, {photosSeen ? 'photo, ' : ''}messages{LIVE.customPacks ? ', drawings and packs' : ' and drawings'})
             stays yours, but other players see it, and you let us use it to run SpySocial.
-          </ListItem>
-          <ListItem>Public rooms put you in games with people you don't know. Keep your personal information to yourself.</ListItem>
-          <ListItem>If you break the rules, we can remove your content and limit or ban your account.</ListItem>
-          <ListItem>SpySocial is provided as it is, and our responsibility is limited as far as the law allows.</ListItem>
+          </li>
+          <li>Public rooms put you in games with people you don't know. Keep your personal information to yourself.</li>
+          <li>If you break the rules, we can remove your content and limit or ban your account.</li>
+          <li>SpySocial is provided as it is, and our responsibility is limited as far as the law allows.</li>
         </Bullets>
         <Text textStyle="small" color="ss.muted" mt={2}>
           This summary is only a guide. The full Terms below are what apply.
@@ -151,10 +151,10 @@ const Terms: React.FC = () => {
       )}
       <H3>Rules for accounts</H3>
       <Bullets>
-        <ListItem>Your account is for you alone. Don't share, sell or give it to anyone, and don't use someone else's.</ListItem>
-        <ListItem>Give true information, including your birth year. A birth year can't be changed in the app. If you entered one that made you under 18 and you're an adult, email us: we change it only with proof of age.</ListItem>
-        <ListItem>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? ` You can change your username once every 30 days${LIVE.audit1103 ? " (a new account's first changes don't count)" : ''}; a username you stop using stays reserved for 14 days.` : ''}</ListItem>
-        <ListItem>Don't create another account to get around a limit, a penalty or someone's block.</ListItem>
+        <li>Your account is for you alone. Don't share, sell or give it to anyone, and don't use someone else's.</li>
+        <li>Give true information, including your birth year. A birth year can't be changed in the app. If you entered one that made you under 18 and you're an adult, email us: we change it only with proof of age.</li>
+        <li>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? ` You can change your username once every 30 days${LIVE.audit1103 ? " (a new account's first changes don't count)" : ''}; a username you stop using stays reserved for 14 days.` : ''}</li>
+        <li>Don't create another account to get around a limit, a penalty or someone's block.</li>
       </Bullets>
 
       <H2>4. Playing SpySocial</H2>
@@ -186,36 +186,36 @@ const Terms: React.FC = () => {
         <>
           <H3>Friends, follows and parties</H3>
           <Bullets>
-            <ListItem>
+            <li>
               Friends are two-way: both of you agree. You can add a friend in person with your Friend Code, from a
               private game you just played together, and, between adults who allow it, from a public table or by
               username. Some of these ways depend on age, and players under 18 have more private settings, as our
               Privacy Policy explains. You can remove or block a friend at any time; they aren't told.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               Adults can have a public profile that other players can open and follow. You can make yours private at
               any time in Privacy &amp; Friends. Players under 18 have no public profile and can't be followed.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               A party is a leader and friends who play together, up to 21 people in all. It takes a membership to start a
               party; if the leader leaves, the lead goes to someone in it with a membership first, or else to whoever has been in
               it longest. A player who is banned or paused from public rooms leaves the party. A party plays together at Play Online tables and game nights, where it takes at most half
               of a table (2 at a table of 4, 4 at a table of 8, 6 at a Game Night table of 12) and is marked for everyone there. Party mates searching on their own count too: never more than half a table between them. Any party can start
               a private room together, and a party too big for a table plays there. A private room plays the host's
               packs, as it always does. A members-only search needs every member of the party to be a member.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               Party chat follows the same rules as all chat in SpySocial (see section 7), and you can report any
               message in it.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               Invites, requests and notifications have limits, and we may change the limits on friends, follows and
               parties, or pause any of these features.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, friends, follows and parties aren't available to players under 18 until a version of the app
               that asks a parent's consent through Apple is out.
-            </ListItem>
+            </li>
           </Bullets>
         </>
       )}
@@ -399,16 +399,16 @@ const Terms: React.FC = () => {
         tolerance for objectionable content and abusive players. Don't post, send, draw or do anything that:
       </P>
       <Bullets>
-        <ListItem>is hateful or harassing, insults or targets other players, or attacks anyone for who they are</ListItem>
-        <ListItem>is sexual or shows nudity</ListItem>
-        <ListItem>threatens or promotes violence, or encourages anyone to hurt themselves</ListItem>
+        <li>is hateful or harassing, insults or targets other players, or attacks anyone for who they are</li>
+        <li>is sexual or shows nudity</li>
+        <li>threatens or promotes violence, or encourages anyone to hurt themselves</li>
         {ONLINE_SAFETY_TEXT && (
-          <ListItem>encourages, promotes or gives instructions for suicide, self-harm, eating disorders or dangerous challenges (this applies to everyone, whatever their age, in every room)</ListItem>
+          <li>encourages, promotes or gives instructions for suicide, self-harm, eating disorders or dangerous challenges (this applies to everyone, whatever their age, in every room)</li>
         )}
-        <ListItem>shares anyone's personal information, such as a real name, address, phone number or social media handle, yours included</ListItem>
-        <ListItem>is spam, an ad or a scam, or puts links in public rooms</ListItem>
-        <ListItem>pretends to be someone else, including us</ListItem>
-        <ListItem>is illegal, or infringes someone else's rights, such as their copyright or privacy</ListItem>
+        <li>shares anyone's personal information, such as a real name, address, phone number or social media handle, yours included</li>
+        <li>is spam, an ad or a scam, or puts links in public rooms</li>
+        <li>pretends to be someone else, including us</li>
+        <li>is illegal, or infringes someone else's rights, such as their copyright or privacy</li>
       </Bullets>
       <H3>Child safety</H3>
       <P>
@@ -422,9 +422,9 @@ const Terms: React.FC = () => {
       </P>
       <H3>Technical abuse</H3>
       <Bullets>
-        <ListItem>Don't use bugs, modified apps, bots, scripts or other tools to get an advantage, or to see what the game hides from you, such as other players' roles, the secret word or location, or chats you're not part of.</ListItem>
-        <ListItem>Don't try to get into other players' accounts, our systems, or data you're not meant to see, and don't overload, disrupt, scrape, copy or reverse-engineer SpySocial, except where the law allows it.</ListItem>
-        <ListItem>If you find a bug or a security problem, please tell us at <SupportEmail /> instead of using or sharing it.</ListItem>
+        <li>Don't use bugs, modified apps, bots, scripts or other tools to get an advantage, or to see what the game hides from you, such as other players' roles, the secret word or location, or chats you're not part of.</li>
+        <li>Don't try to get into other players' accounts, our systems, or data you're not meant to see, and don't overload, disrupt, scrape, copy or reverse-engineer SpySocial, except where the law allows it.</li>
+        <li>If you find a bug or a security problem, please tell us at <SupportEmail /> instead of using or sharing it.</li>
       </Bullets>
 
       <H2>8. Reports, Moderation and Appeals</H2>
@@ -479,17 +479,17 @@ const Terms: React.FC = () => {
       <H3>What we can do</H3>
       <P>If you break these Terms or the Community Rules, we may:</P>
       <Bullets>
-        <ListItem>remove or hide your content, or change your name{photos ? ' or remove your photo' : ''}</ListItem>
-        <ListItem>give you a warning</ListItem>
-        <ListItem>mute your chat for a while</ListItem>
-        <ListItem>pause you from public rooms and events for a while</ListItem>
-        <ListItem>ban your account</ListItem>
-        <ListItem>remove you from a room or end a game</ListItem>
+        <li>remove or hide your content, or change your name{photos ? ' or remove your photo' : ''}</li>
+        <li>give you a warning</li>
+        <li>mute your chat for a while</li>
+        <li>pause you from public rooms and events for a while</li>
+        <li>ban your account</li>
+        <li>remove you from a room or end a game</li>
         {LIVE.customPacks && (
-          <ListItem>
+          <li>
             remove or change a custom pack at any time{LIVE.communityPacks ? ', hold it or take it out of Community Packs,' : ''} or stop you
             from making{LIVE.communityPacks ? ' or publishing' : ''} packs
-          </ListItem>
+          </li>
         )}
       </Bullets>
       <P>
@@ -555,7 +555,7 @@ const Terms: React.FC = () => {
         example for playing in events.
       </P>
       <Bullets>
-        <ListItem>
+        <li>
           {/* LIVE.trading: trading between friends (Nov 1, 2026). */}
           {LIVE.trading && LIVE.blackMarket
             ? "Virtual items and Intel have no value in real money. You can trade some items with your friends inside SpySocial, and Intel between adults, as Trades below describes, and adults can buy and sell tradable items for Intel on the Black Market, as Black Market below describes. You can't sell or buy them for money, move them to another account in any other way, or exchange them for money."
@@ -564,20 +564,20 @@ const Terms: React.FC = () => {
             : "Virtual items have no value in real money. You can't sell or trade them, move them to another account, or exchange them for money."}
           {LIVE.purchases &&
             ` The one exception is Restore Purchases, which moves what you bought to the SpySocial account you're using (see ${LIVE.membershipsOnly ? 'Buying a membership' : 'Buying packs, items and membership'} below).`}
-        </ListItem>
+        </li>
         {/* LIVE.rmtGambling: no real-money trading, no gambling (Oct 31, 2026). */}
         {LIVE.rmtGambling && (
-          <ListItem>
+          <li>
             No real-money trading: you may not buy, sell or offer Intel, items or accounts for real money or anything outside
             SpySocial, or use other sites to do so. We may remove what was traded this way and suspend every account involved.
-          </ListItem>
+          </li>
         )}
-        {LIVE.rmtGambling && <ListItem>No gambling: you may not use SpySocial items or Intel to gamble, on SpySocial or anywhere else.</ListItem>}
-        <ListItem>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</ListItem>
-        <ListItem>In a private room, the host's packs decide: everyone there can play the packs the host has unlocked (another player's membership or packs don't add any). At Play Online tables and game nights, when someone at the table has unlocked a pack, everyone there can play it while they're there. We may change how this sharing works.</ListItem>
+        {LIVE.rmtGambling && <li>No gambling: you may not use SpySocial items or Intel to gamble, on SpySocial or anywhere else.</li>}
+        <li>You get a personal, limited right to use them in SpySocial. They aren't your property, and we may change how they work: update the words and locations in a pack, rebalance XP and levels, or retire an item.</li>
+        <li>In a private room, the host's packs decide: everyone there can play the packs the host has unlocked (another player's membership or packs don't add any). At Play Online tables and game nights, when someone at the table has unlocked a pack, everyone there can play it while they're there. We may change how this sharing works.</li>
         {/* LIVE.intel: Intel (the server's "coins"), earned only. */}
         {LIVE.intel && (
-          <ListItem>
+          <li>
             {LIVE.intercepts ? (
               <>
                 Intel is an earned currency: you get it only from playing (your games, and your first game of the day
@@ -616,22 +616,22 @@ const Terms: React.FC = () => {
                 stays yours like the other items you've earned.
               </>
             )}
-          </ListItem>
+          </li>
         )}
         {/* Integrity (live 2026-10-31, 20261031060528): quiet holds act from Dec 8, 2026 (shadow until then). */}
         {LIVE.intel && LIVE.intercepts && (
-          <ListItem>
+          <li>
             To keep rewards fair, our checks look for farming, bots and scripted play, games thrown on purpose and
             several accounts run by one person. From December 8, 2026, while one of our team checks a strong sign of
             this, we may hold an account's new rewards for up to 72 hours (an Intercept being held shows "Verifying" and
             can't be opened yet), and longer only while a case about it is open; you can ask for a review in the app.
             If a reward's odds or an item's count ever look broken, we may pause that reward for everyone until we've
             checked it.
-          </ListItem>
+          </li>
         )}
         {/* LIVE.intelCorrections: Economy Integrity E1, the three corrections (see legalRelease). */}
         {LIVE.intel && LIVE.intelCorrections && (
-          <ListItem>
+          <li>
             We correct Intel in only {LIVE.accountNotices ? 'four' : 'three'} ways, each a new line in your Intel ledger with its reason. We reverse one
             line, by exactly its amount: for example Intel paid twice for one game, a game we void, or a wrong price (if
             you bought an item by mistake, the item goes back with the Intel). We refund a bug: we first publish what
@@ -651,11 +651,11 @@ const Terms: React.FC = () => {
             <SupportEmail />; if we uphold your appeal, we give back what it took. You can ask us there for the record of
             any correction to your account. Each month we publish how much Intel was made, spent and corrected, counting
             every correction without naming anyone.
-          </ListItem>
+          </li>
         )}
         {/* LIVE.intercepts: Intercepts (the server's "crates"), earned only, odds shown (see legalRelease). */}
         {LIVE.intercepts && (
-          <ListItem>
+          <li>
             Intercepts are sealed rewards you earn only by playing, or that we give you. You get them for wins at Play
             Online tables (Game Night's included; never in a private room, or for a game that gives no Intel): every 10
             wins that count give you 5 Intercepts, 4 of a random tier and 1 of the Secret tier or better. Your first
@@ -707,11 +707,11 @@ const Terms: React.FC = () => {
             {LIVE.intelCorrections
               ? " We may take back unopened Intercepts given by mistake. We take back an item you've opened only when an incident we've published shows it was given in error, or a closed fair-play case shows it came from cheating; for a Unique this waits 24 hours, its number stays used and is never given to anyone else, and you can appeal within 30 days (an upheld appeal gives you back the same Unique). While a fair-play case is open, we may freeze a copy: it stays yours but can't be shredded or traded up. We never take an item from you to give it to someone else. Otherwise an item you've opened stays yours like the other items you've earned."
               : " We may take back Intercepts or items that were given by mistake or earned by cheating; an item you've opened otherwise stays yours like the other items you've earned."}
-          </ListItem>
+          </li>
         )}
         {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
         {LIVE.mintedCollectibles && (
-          <ListItem>
+          <li>
             {/* ledger-uniques-1111 (LIVE.ledgerUniquesOnly): the public ledger carries Uniques only */}
             {LIVE.ledgerUniquesOnly ? (
               <>
@@ -766,39 +766,39 @@ const Terms: React.FC = () => {
             the Intel they paid, and sellers give back what they received.
               </>
             )}
-          </ListItem>
+          </li>
         )}
         {/* LIVE.tournaments: Tournament Tokens, earned only. */}
         {LIVE.tournaments && (
-          <ListItem>
+          <li>
             Tournament Tokens are earned only by playing in tournaments: they can't be bought, and like every virtual
             item they have no cash value and can't be sold, traded or moved to another account. You can spend them only
             in the Tournament Shop, whose items and prices can change each season. We may correct a balance that's
             wrong or was earned by cheating, and reset balances if we change or stop Tournament Tokens.
-          </ListItem>
+          </li>
         )}
         {avatarsLive(LIVE) && (
-          <ListItem>
+          <li>
             Celebrations are avatar items: short animations that everyone at the table sees at a game's big moments, such
             as a spy guessing the secret or being caught. Ink Burst and Ink Check are free; Paper Storm and Case Closed
             are earned by playing (the app shows how); Gold Storm comes with Lifetime;
             {LIVE.membershipsOnly
               ? ` the others, such as Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board, aren't sold: they come ${LIVE.intercepts ? 'only from Intercepts (or a trade-up of spare copies)' : 'as rewards'}, and the app shows how to get each one.${LIVE.intercepts ? '' : ' Players who earned Cuffed earlier keep it.'}`
               : ' Searchlight, Most Wanted, The End, Curtain Call, Cuffed, Detective Badge, Fingerprint Match, Extra! Extra! and Evidence Board are sold one by one. Players who earned Cuffed before it went on sale keep it.'}
-          </ListItem>
+          </li>
         )}
-        <ListItem>
+        <li>
           If your account is deleted or banned, you lose the virtual items on it.
           {LIVE.purchases &&
             ' After a deletion, though, what you bought through the App Store or Google Play can come back on another SpySocial account with Restore Purchases.'}
-        </ListItem>
+        </li>
       </Bullets>
       {/* LIVE.trading: trading between friends (Nov 1, 2026; app_config.trading 'on'). */}
       {LIVE.trading && (
         <>
           <H3>Trades</H3>
           <Bullets>
-            <ListItem>
+            <li>
               {LIVE.tradeGatesNov2
                 ? "Trades are between friends, inside the app, and carry no message. You can trade with a friend as soon as you're friends, once your account is at least 7 days old, its email is confirmed and you've played 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones, and that our fair-play checks don't flag). Each side can offer up to 10 items and, between adults, up to 1,000,000 Intel, and both sides confirm what they'll get before the trade happens." +
                   (LIVE.helpTruth1105
@@ -808,19 +808,19 @@ const Terms: React.FC = () => {
                     ? " Adults can also offer unopened Intercepts, per tier, each counting as one item; one you receive stays sealed, and can't be traded or listed, until its protection ends."
                     : '')
                 : "Trades are between friends, inside the app, and carry no message. You can trade once you and your friend have been friends for 3 days, your account is at least 14 days old, its email is confirmed and you've reached level 20. Each side can offer up to 10 items, and both sides confirm what they'll get before the trade happens."}
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               Players 13–17 can trade items for items only (no gifts), only with friends they added in person with a
               Friend Code{LIVE.tradeNoLimits ? '' : ', and at most 3 trades a day (adults, 5)'}{LIVE.interceptsMarket && LIVE.interceptsInTrades ? ', and never unopened Intercepts' : ''}. Intel can be traded only between two adults. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, players under 18 can't trade until a version of the
               app that asks a parent's consent through Apple is out.
-            </ListItem>
+            </li>
             {/* The test phase (app server trade_test_phase, trade_intel_test_phase, Window W's WT and WQ): ends by itself on December 7, 2026. */}
-            <ListItem>
+            <li>
               {LIVE.launchSite
                 ? "While SpySocial was being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in were off for trades and the Black Market, and adults could trade Intel. On that day every amount of Intel traded went back: whoever gave it got it back, and everyone kept only the Intel they earned, never below 0. We published this as an incident on our transparency page."
                 : "While SpySocial is being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in are off for trades and the Black Market, and adults can trade Intel. A confirmed email, trading only with friends, the 7-day protection and every rule for players under 18 still apply. On December 7 every amount of Intel traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned, never below 0, even if it was already spent. We publish this as an incident on our transparency page."}
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               Not every item can be traded; the app marks the ones that can.{' '}
               {LIVE.coverage1110
                 ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them) and Intel we add ourselves are never tradable${LIVE.launchSite ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
@@ -829,8 +829,8 @@ const Terms: React.FC = () => {
               {LIVE.giftsTradable
                 ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
                 : "Items from a code, and the Beta set, become tradable only once your account has played 3 real games (finished games with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official Beta session."}
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,
               {LIVE.audit1103 ? ' sell it on the Black Market,' : ''} shred it or trade it up until then, and Intel you get can't be used until then. In that time you can
               reverse your trades (once every 90 days): this reverses all of your protected trades and pauses your
@@ -838,21 +838,21 @@ const Terms: React.FC = () => {
               final, except for items removed for cheating. If you delete your account within those 7 days, what you
               got goes back to the player who gave it. If the other player deletes their account within those 7 days,
               the trade is undone: you get back what you gave, and what you received from them is removed.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               Big trades ask for a code we email you. Trading pauses for a while after your email or sign-in method
               changes, after a sign-in on a new device, or when you lock it yourself (for up to a year).
               {LIVE.audit1103 ? ' We can also pause it, for up to 30 days, on an account that may have been taken, or on an account, alone or in a group, that we\'re looking into for fraud or farming.' : ''}
               {LIVE.tradeNoLimits
                 ? " There's no daily or weekly limit on how many trades anyone makes or on the items and Intel they receive."
                 : ' There are also weekly limits on the items and Intel you can receive, which the app shows.'}
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               We check trades for signs of real-money trading, account theft and unfair trades with players under 18;
               a person reviews what the checks flag. We may change trade limits (how many trades, how much Intel,
               which items) with notice in the app, and pause trading. Trades that break these Terms (for example
               real-money trades) may be reversed, and the accounts involved suspended.
-            </ListItem>
+            </li>
           </Bullets>
         </>
       )}
@@ -861,7 +861,7 @@ const Terms: React.FC = () => {
         <>
           <H3>Black Market</H3>
           <Bullets>
-            <ListItem>
+            <li>
               The Black Market, in the app's Vault, is where adults buy and sell tradable items for Intel, never for
               money. On Items you place offers to buy or sell an item at a price you choose; an offer matches the best
               price on the other side, and the price of the offer that was waiting is the price paid. On Rare Finds you
@@ -869,8 +869,8 @@ const Terms: React.FC = () => {
               buying or selling.
               {LIVE.interceptsMarket &&
                 " Unopened Intercepts can be bought and sold there too, by tier, for Intel only. What's inside one is random and is decided only when it's opened, by the odds the app shows for its tier."}
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               The same rules as Trades decide who can use it (an adult,{' '}
               {LIVE.tradeGatesNov2 ? 'an account at least 7 days old that has played 3 counted games' : 'level 20, an account at least 14 days old'}, a
               confirmed email, no trading pause)
@@ -880,15 +880,15 @@ const Terms: React.FC = () => {
                 : ", and Intel moves on it only once SpySocial 2.2 opens to everyone, except in Beta 2's test from November 9 to 16, 2026 (its sales are undone on November 16, as described above)."}{' '}
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
               instead no offer can be priced below an item's minimum price, what one copy of it shreds for{LIVE.interceptsMarket ? " (for an unopened Intercept, what the items its tier gives shred for on average, by its odds)" : ''}.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               While an offer or listing is open, what it offers is held for it: the Intel of a buy offer, or the items of
               a sell offer (you can still wear them). Each item sold costs a fee of 2% of its price (at least 1 Intel, at most 5,000
               Intel), which is removed from the game. Members can have 8 offers open at once, others 4. You can stop an
               offer or listing at any time and collect what's left.
-            </ListItem>
+            </li>
             {LIVE.audit1103 && (
-              <ListItem>
+              <li>
                 If your account is locked, whatever the reason, your open offers and listings, and your offers on Rare Finds,
                 close at once, as if you'd stopped them: a trading pause we set (because your account may have been taken, or
                 while we look into fraud or farming), your own lock, the pause after a reversal, a new device or a change of
@@ -899,9 +899,9 @@ const Terms: React.FC = () => {
                 {LIVE.launchSite ? '' : " While SpySocial is being tested, a new device or a change of sign-in doesn't pause trading, so neither closes anything until December 7, 2026."}{' '}
                 If we correct your birth year and you're under 18, your offers and listings close, and what they hold or earned
                 comes back to you at once.
-              </ListItem>
+              </li>
             )}
-            <ListItem>
+            <li>
               A sale on Items is final at once. A Unique bought on Rare Finds is protected for 3 days: it can't be traded,
               listed, shredded or traded up, and the seller's Intel waits until then; in that time the sale can be
               reversed as Trades above describes, or by us for account theft or fraud. If the buyer or the seller
@@ -910,7 +910,7 @@ const Terms: React.FC = () => {
               manipulation (for example sales between your own accounts or prices set to move Intel between players), may
               pause it, and may reverse sales and suspend the accounts involved when they break these Terms. We may change
               the fee, the limits and which items can be listed, with notice in the app.
-            </ListItem>
+            </li>
           </Bullets>
         </>
       )}
@@ -922,20 +922,20 @@ const Terms: React.FC = () => {
         {LIVE.membershipsOnly ? (
         <Bullets>
           {!LIVE.purchases && (
-            <ListItem>
+            <li>
               Memberships go on sale with version 2.2 of the app; until then, nothing in SpySocial can be bought. Before
               2.2 is released, Apple's and Google's app reviewers and our testers may take a membership with a test
               purchase, which charges no money. We take test memberships back once the review or test is over.
-            </ListItem>
+            </li>
           )}
-          <ListItem>
+          <li>
             The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the
             yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple
             App Store or Google Play and follow their terms. They handle payment: the price, and how long the membership
             lasts, are shown in the app and on the store's payment sheet before you buy, including any tax where it
             applies, and the payment is charged to your Apple Account or Google Play account when you confirm.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts
             {LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for
             everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a
@@ -944,103 +944,103 @@ const Terms: React.FC = () => {
             {LIVE.membershipCodes
               ? ' A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time.'
               : ''}
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>Automatic renewal.</B> The monthly and yearly Pack Pass are subscriptions that renew automatically. At
             the end of each month or year, the store charges your account the price for the next period (within the 24
             hours before the current period ends) unless you cancel first: on the App Store, at least 24 hours before
             the current period ends; on Google Play, before the renewal date. When you cancel, the pass doesn't renew,
             and you keep its benefits until the end of the period you've already paid for. If a renewal payment fails, your
             membership keeps working during any grace period the store gives, then stops until the payment is fixed or the store ends the pass.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>How to cancel.</B> On an iPhone or iPad: open Settings, tap your name, then Subscriptions, and choose
             SpySocial. On Android: open the Google Play Store app, tap your profile picture, then Payments &amp;
             subscriptions, then Subscriptions, and choose SpySocial. Manage Subscription in the app opens the same page.
             You can switch between the monthly and yearly pass there too. Deleting the app, or your SpySocial account,
             doesn't cancel a subscription, and neither does buying Lifetime: cancel the pass in the store so it isn't
             charged again.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>Free trials.</B> We don't offer free trials or introductory prices today. If we ever do, the app and the
             store will show before you buy how long the offer lasts and what you'll pay after it; the subscription then
             renews at the full price when the offer ends unless you cancel (on the App Store, at least 24 hours before it
             ends).
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>Lifetime</B> is a one-time purchase: you pay once and it never renews. It lasts for as long as we offer
             SpySocial, not for your lifetime.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>Price changes.</B> We may change membership prices. A new price applies to a pass only from a renewal
             after Apple or Google has told you about it, with the notice they require, and where the store or the law
             needs your agreement to a higher price, the pass doesn't renew at it without your agreement. You can cancel
             before a new price applies. A price change never affects a Lifetime you've already bought.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             A membership's benefits are described in the app when you buy it. We may change them; if a change takes away
             something important, we'll tell you in advance so you can cancel before your next renewal.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             The items a membership includes only change how your agent looks
             {avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. We
             may update the words and locations in a pack; if we ever have to withdraw a pack or an item a membership
             includes, we'll give you a comparable one where we reasonably can.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>Family Sharing.</B> Memberships aren't shared through Apple's Family Sharing or Google Play's family
             library. A membership belongs to the SpySocial account it's on.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>No cash value.</B> A membership has no value in real money. You can't sell, trade or give it to someone
             else, move it to another account (except with Restore Purchases, below), or exchange it for money.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>Refunds</B> are handled by Apple or Google under their policies, not by us: ask Apple at{' '}
             <OutLink href="https://reportaproblem.apple.com">reportaproblem.apple.com</OutLink>, or Google through your
             Google Play order history. If a purchase is refunded, we remove what it unlocked.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             <B>If you delete your account</B>, the membership on it stops with the account, but a pass keeps renewing
             (and being charged) until you cancel it in the store. What you bought can come back on another SpySocial
             account with Restore Purchases. If we ban an account for breaking these Terms, its membership stops working
             in SpySocial, but a pass keeps renewing (and being charged) until you cancel it in the store; refunds are
             still up to Apple or Google.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             To get your membership back on another device, or after losing or deleting an account, use Restore Purchases
             in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring
             moves your membership to the SpySocial account you're using, away from any other account it was on.
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             Nothing in these Terms takes away rights you have under consumer law, for example if something you bought
             doesn't work as described.
-          </ListItem>
+          </li>
         </Bullets>
         ) : (
         <Bullets>
           {LIVE.membershipsOnly ? (
-            <ListItem>The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
+            <li>The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
           ) : (
-            <ListItem>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</ListItem>
+            <li>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
           )}
-          <ListItem>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</ListItem>
-          <ListItem>Lifetime means for as long as we offer SpySocial, not for your lifetime.</ListItem>
+          <li>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</li>
+          <li>Lifetime means for as long as we offer SpySocial, not for your lifetime.</li>
           {LIVE.membershipsOnly && (
-            <ListItem>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for as long as we give it, and nothing is charged for it.{LIVE.membershipCodes ? " A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time." : ''}</ListItem>
+            <li>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for as long as we give it, and nothing is charged for it.{LIVE.membershipCodes ? " A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time." : ''}</li>
           )}
-          <ListItem>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</ListItem>
+          <li>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</li>
           {LIVE.membershipsOnly ? (
-            <ListItem>The items a membership includes only change how your agent looks{avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. We may update the words and locations in a pack; if we ever have to withdraw a pack or an item a membership includes, we'll give you a comparable one where we reasonably can.</ListItem>
+            <li>The items a membership includes only change how your agent looks{avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. We may update the words and locations in a pack; if we ever have to withdraw a pack or an item a membership includes, we'll give you a comparable one where we reasonably can.</li>
           ) : (
             <>
-              <ListItem>A pack you buy stays yours for as long as we offer SpySocial. We may update its words and locations, and if we ever have to withdraw a pack you bought, we'll give you a comparable one where we reasonably can.</ListItem>
-              <ListItem>An avatar item you buy only changes how your agent looks{avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. It stays yours for as long as we offer SpySocial; if we ever have to withdraw one, we'll give you a comparable one where we reasonably can. Lifetime includes only the items the app says it includes.</ListItem>
+              <li>A pack you buy stays yours for as long as we offer SpySocial. We may update its words and locations, and if we ever have to withdraw a pack you bought, we'll give you a comparable one where we reasonably can.</li>
+              <li>An avatar item you buy only changes how your agent looks{avatarsLive(LIVE) ? ' (a celebration, how a moment of the game looks)' : ''}, never how you play or score. It stays yours for as long as we offer SpySocial; if we ever have to withdraw one, we'll give you a comparable one where we reasonably can. Lifetime includes only the items the app says it includes.</li>
             </>
           )}
-          <ListItem>Refunds are handled by Apple or Google under their policies. If a purchase is refunded, we remove what it unlocked.</ListItem>
-          <ListItem>To get your purchases back on another device, or after losing or deleting an account, use Restore Purchases in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring moves your purchases to the SpySocial account you're using, away from any other account they were on.</ListItem>
-          <ListItem>Nothing in these Terms takes away rights you have under consumer law, for example if something you bought doesn't work as described.</ListItem>
+          <li>Refunds are handled by Apple or Google under their policies. If a purchase is refunded, we remove what it unlocked.</li>
+          <li>To get your purchases back on another device, or after losing or deleting an account, use Restore Purchases in the app while your device is signed in to the App Store or Google Play account you paid with. Restoring moves your purchases to the SpySocial account you're using, away from any other account they were on.</li>
+          <li>Nothing in these Terms takes away rights you have under consumer law, for example if something you bought doesn't work as described.</li>
         </Bullets>
         )}
         </>
@@ -1102,26 +1102,26 @@ const Terms: React.FC = () => {
       <H2>11. Apple App Store and Google Play</H2>
       <P>If you got SpySocial from Apple's App Store, these terms also apply:</P>
       <Bullets>
-        <ListItem>These Terms are between you and us, not Apple. We, not Apple, are responsible for SpySocial and its content.</ListItem>
-        <ListItem>
+        <li>These Terms are between you and us, not Apple. We, not Apple, are responsible for SpySocial and its content.</li>
+        <li>
           Your license to use the app can't be transferred, and lets you use it on Apple devices that you own or
           control, as the Usage Rules in the{' '}
           <OutLink href="https://www.apple.com/legal/internet-services/itunes/">Apple Media Services Terms and Conditions</OutLink>{' '}
           allow (including through Family Sharing, where it applies). Apple's{' '}
           <OutLink href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Licensed Application End User License Agreement</OutLink>{' '}
           also applies.
-        </ListItem>
-        <ListItem>Apple has no obligation to provide any maintenance or support for the app.</ListItem>
-        <ListItem>If the app fails to meet any warranty that applies, you can tell Apple, and Apple will refund the price you paid for the app, if any. To the extent the law allows, Apple has no other warranty obligation for the app.</ListItem>
-        <ListItem>Apple isn't responsible for addressing any claims about the app or your use of it, such as product liability claims, claims that the app doesn't meet a legal or regulatory requirement, or claims under consumer protection, privacy or similar laws. We, not Apple, are responsible for addressing them.</ListItem>
-        <ListItem>If someone claims that the app, or your use of it, infringes their intellectual property rights, we, not Apple, are responsible for investigating, defending, settling and discharging that claim.</ListItem>
-        <ListItem>You confirm that you're not located in a country that is subject to a US government embargo or that the US government has designated as a "terrorist supporting" country, and that you're not on any US government list of prohibited or restricted parties.</ListItem>
-        <ListItem>When you use the app, you must also follow any third-party terms that apply to you, such as your mobile carrier's.</ListItem>
-        <ListItem>Apple and its subsidiaries are third-party beneficiaries of these Terms, and once you accept them, Apple has the right to enforce them against you.</ListItem>
-        <ListItem>
+        </li>
+        <li>Apple has no obligation to provide any maintenance or support for the app.</li>
+        <li>If the app fails to meet any warranty that applies, you can tell Apple, and Apple will refund the price you paid for the app, if any. To the extent the law allows, Apple has no other warranty obligation for the app.</li>
+        <li>Apple isn't responsible for addressing any claims about the app or your use of it, such as product liability claims, claims that the app doesn't meet a legal or regulatory requirement, or claims under consumer protection, privacy or similar laws. We, not Apple, are responsible for addressing them.</li>
+        <li>If someone claims that the app, or your use of it, infringes their intellectual property rights, we, not Apple, are responsible for investigating, defending, settling and discharging that claim.</li>
+        <li>You confirm that you're not located in a country that is subject to a US government embargo or that the US government has designated as a "terrorist supporting" country, and that you're not on any US government list of prohibited or restricted parties.</li>
+        <li>When you use the app, you must also follow any third-party terms that apply to you, such as your mobile carrier's.</li>
+        <li>Apple and its subsidiaries are third-party beneficiaries of these Terms, and once you accept them, Apple has the right to enforce them against you.</li>
+        <li>
           Questions, complaints or claims about the app go to us at <SupportEmail />
           {OPERATOR.name && OPERATOR.address ? `, or by post to ${OPERATOR.name}, ${OPERATOR.address}` : ''}.
-        </ListItem>
+        </li>
       </Bullets>
       <P>
         If you got SpySocial from Google Play, the{' '}
@@ -1163,8 +1163,8 @@ const Terms: React.FC = () => {
       <H2>15. Limits on Our Liability</H2>
       <P>To the extent the law allows:</P>
       <Bullets>
-        <ListItem>we're not liable for indirect, incidental, special, consequential or punitive damages, or for lost profits, data, goodwill or virtual items, arising from SpySocial or these Terms; and</ListItem>
-        <ListItem>our total liability for all claims about SpySocial or these Terms is limited to the greater of what you paid us in the 12 months before the claim and US$50.</ListItem>
+        <li>we're not liable for indirect, incidental, special, consequential or punitive damages, or for lost profits, data, goodwill or virtual items, arising from SpySocial or these Terms; and</li>
+        <li>our total liability for all claims about SpySocial or these Terms is limited to the greater of what you paid us in the 12 months before the claim and US$50.</li>
       </Bullets>
       <P>
         These limits apply whatever the legal basis of the claim, and even if we were told the damage was
@@ -1201,12 +1201,12 @@ const Terms: React.FC = () => {
         notice must include:
       </P>
       <OrderedList spacing={2} pl={4} textStyle="body">
-        <ListItem>your name, address, phone number and email address;</ListItem>
-        <ListItem>a description of the work you believe is infringed;</ListItem>
-        <ListItem>where the content is in SpySocial (for example, the player's name and the room code);</ListItem>
-        <ListItem>a statement that you believe in good faith that the use isn't authorized by the copyright owner, its agent or the law;</ListItem>
-        <ListItem>a statement, under penalty of perjury, that the information in your notice is accurate and that you're the copyright owner or authorized to act for them; and</ListItem>
-        <ListItem>your physical or electronic signature.</ListItem>
+        <li>your name, address, phone number and email address;</li>
+        <li>a description of the work you believe is infringed;</li>
+        <li>where the content is in SpySocial (for example, the player's name and the room code);</li>
+        <li>a statement that you believe in good faith that the use isn't authorized by the copyright owner, its agent or the law;</li>
+        <li>a statement, under penalty of perjury, that the information in your notice is accurate and that you're the copyright owner or authorized to act for them; and</li>
+        <li>your physical or electronic signature.</li>
       </OrderedList>
       <P>
         We may remove the content and let the player who added it know; they can send us a counter-notice if they
@@ -1222,11 +1222,11 @@ const Terms: React.FC = () => {
 
       <H2>20. General</H2>
       <Bullets>
-        <ListItem>These Terms, together with the Community Rules and any terms shown when you buy something, are the whole agreement between you and us about SpySocial, and replace any earlier version.</ListItem>
-        <ListItem>If a court finds that part of these Terms can't be enforced, the rest still applies.</ListItem>
-        <ListItem>If we don't enforce part of these Terms straight away, we can still enforce it later.</ListItem>
-        <ListItem>We may transfer these Terms to someone who takes over SpySocial. You can't transfer them to anyone else.</ListItem>
-        <ListItem>If we translate these Terms, the English version applies where the versions differ.</ListItem>
+        <li>These Terms, together with the Community Rules and any terms shown when you buy something, are the whole agreement between you and us about SpySocial, and replace any earlier version.</li>
+        <li>If a court finds that part of these Terms can't be enforced, the rest still applies.</li>
+        <li>If we don't enforce part of these Terms straight away, we can still enforce it later.</li>
+        <li>We may transfer these Terms to someone who takes over SpySocial. You can't transfer them to anyone else.</li>
+        <li>If we translate these Terms, the English version applies where the versions differ.</li>
       </Bullets>
 
       <H2>21. Contact Us</H2>

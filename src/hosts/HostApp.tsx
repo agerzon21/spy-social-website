@@ -9,7 +9,10 @@ import { LIVE } from '../lib/legalRelease'
 import { HOST, sharedHere } from '../lib/siteHost'
 import { archiveRoutes, marketRoutes } from '../routes/hostRoutes'
 
-// www's pages these hosts serve too, and the 404 page: with Chakra, in one chunk (hosts/ChakraIsland).
+// www's pages the Archive serves too (lib/siteHost SHARED), plain CSS like the hosts' own (speed2-1111).
+const Ledger = lazyPage(() => import('../pages/Ledger'))
+const Transparency = lazyPage(() => import('../pages/Transparency'))
+// The 404 page: with Chakra (hosts/ChakraIsland).
 const ChakraPage = lazyPage(() => import('./ChakraIsland'))
 
 /**
@@ -25,8 +28,8 @@ export default function HostApp() {
         <Suspense fallback={<div className="ss-host-wait" />}>
           <Routes>
             {HOST === 'archive' ? archiveRoutes : marketRoutes}
-            {LIVE.mintedCollectibles && sharedHere('/ledger') && <Route path="/ledger" element={<Layout><ChakraPage page="ledger" /></Layout>} />}
-            {LIVE.transparencyPage && sharedHere('/transparency') && <Route path="/transparency" element={<Layout><ChakraPage page="transparency" /></Layout>} />}
+            {LIVE.mintedCollectibles && sharedHere('/ledger') && <Route path="/ledger" element={<Layout><Ledger /></Layout>} />}
+            {LIVE.transparencyPage && sharedHere('/transparency') && <Route path="/transparency" element={<Layout><Transparency /></Layout>} />}
             {/* A page on another host goes there (OffHost); anything else is the 404 page. */}
             <Route path="*" element={<OffHost><Layout><ChakraPage page="notFound" /></Layout></OffHost>} />
           </Routes>

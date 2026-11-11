@@ -1,4 +1,4 @@
-import { Link as ChakraLink, ListItem, OrderedList, Text } from '@chakra-ui/react'
+import { Link as ChakraLink, OrderedList, Text } from '@chakra-ui/react'
 import { Callout } from '../components/legal/Callout'
 import { ChildSafetyContacts } from '../components/legal/ChildSafetyContacts'
 import { B, Bullets, H2, H3, P, PageLink, SupportEmail } from '../components/legal/LegalText'
@@ -70,17 +70,17 @@ const ChildSafety: React.FC = () => {
         We have zero tolerance for child sexual abuse and exploitation. Nobody, of any age, may use SpySocial to:
       </P>
       <Bullets>
-        <ListItem>share, ask for or create sexual content involving anyone under 18, in chat, names or drawings, or link to it</ListItem>
-        <ListItem>
+        <li>share, ask for or create sexual content involving anyone under 18, in chat, names or drawings, or link to it</li>
+        <li>
           groom a child: win a young player's trust in order to sexualize or exploit them, for example by asking how
           old they are, where they live or which school they go to, asking for photos, asking to talk in another app,
           offering gifts or money, or asking them to keep a secret
-        </ListItem>
-        <ListItem>talk about sex with a minor, or send a minor sexual messages or drawings</ListItem>
-        <ListItem>
+        </li>
+        <li>talk about sex with a minor, or send a minor sexual messages or drawings</li>
+        <li>
           sexualize or exploit a child in any other way, such as pressuring or threatening a child for sexual images
           (sextortion), or helping anyone traffic a child
-        </ListItem>
+        </li>
       </Bullets>
       <P>
         Anything like this is removed, the accounts involved are banned, and we report it to NCMEC and other authorities as the law requires (see{' '}
@@ -89,7 +89,7 @@ const ChildSafety: React.FC = () => {
 
       <H2 id="protections">2. How SpySocial protects children</H2>
       <Bullets>
-        <ListItem>
+        <li>
           <B>Age:</B> SpySocial is for players 13 and older.
           {LIVE.ageGateEveryone &&
             ` Before the first game, the app asks for a birth year${LIVE.under13Deletion ? ', and an answer under 13 deletes the account' : ''}.`}
@@ -98,10 +98,10 @@ const ChildSafety: React.FC = () => {
           If you find that a child under 13 has an account, email us and we'll delete it.
           {LIVE.safetyAnswers1106 &&
             " A birth year can't be changed in the app. Only SpySocial's developer can raise an age from under 18 to an adult's, by email and with proof of age; an answer under 13 has no way back."}
-        </ListItem>
+        </li>
         {/* LIVE.socialFeatures: friends, follows, parties (Oct 31, 2026); LIVE.trading, LIVE.blackMarket (Nov 1). */}
         {LIVE.socialFeatures ? (
-          <ListItem>
+          <li>
             <B>No stranger can find or message a child:</B> there are no direct messages and no player search, and we
             never suggest friends. An adult can add a player under 16 as a friend only in person, by scanning the Friend
             Code on their phone (players 16 and 17 also from a private game they just played together); adding from a
@@ -110,26 +110,26 @@ const ChildSafety: React.FC = () => {
             party with a party chat, which goes through the same filters as game chat (the stricter ones when anyone
             in the party is under 18) and can be reported. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, friends and parties stay off for players under
             18 for now.
-          </ListItem>
+          </li>
         ) : (
-          <ListItem>
+          <li>
             <B>No way to reach a player outside a room:</B> players meet only inside a game room and chat only with the
             players in it. There are no direct messages, no friend or follower lists, no player search and no profiles
             to browse, so nobody can look a player up or contact them afterwards.
-          </ListItem>
+          </li>
         )}
         {LIVE.trading && (
-          <ListItem>
+          <li>
             <B>Trading:</B> players 13–17 can trade game items only for other items, only with friends they added in
             person{LIVE.tradeGatesNov2 ? ` with a Friend Code (friends can trade as soon as they're friends, so adding each other in person is what keeps strangers out; an account also has to be 7 days old and have played 3 counted games${LIVE.launchSite ? '' : ', though these two rules are off for everyone until December 7, 2026, while SpySocial is being tested'})` : ''}{LIVE.tradeNoLimits ? '' : ', at most 3 trades a day'}, with no gifts, no messages and no Intel. Trades with a player under 18 are
             checked for signs of grooming or unfair trades, and a person reviews what the checks flag.
             {LIVE.blackMarket ? ' Players under 18 can look at the Black Market but can\'t buy or sell there.' : ''}{' '}
             Nothing in SpySocial can be bought or sold for real money between players.
-          </ListItem>
+          </li>
         )}
         {/* LIVE.homeDiscord: Home's Discord pill (server get_home_discord: under 16 never, 16-17 a safety note first). */}
         {LIVE.homeDiscord && (
-          <ListItem>
+          <li>
             <B>Our Discord server:</B> the app can show a link to SpySocial's official Discord server, a separate app
             with its own rules and minimum age. Players under 16 (and players who haven't told us their age) never see
             the link; players 16 and 17 first see a note on staying safe there (Discord has private messages we can't
@@ -137,9 +137,9 @@ const ChildSafety: React.FC = () => {
             player under 18 sees it for now. Our team and
             volunteer moderators look after the server, and links to other apps stay blocked in any room with a player
             under 18.
-          </ListItem>
+          </li>
         )}
-        <ListItem>
+        <li>
           <B>No voice, video or photo sharing:</B> there's no voice or video chat, and no way to send photos or
           videos.
           {photos
@@ -147,8 +147,8 @@ const ChildSafety: React.FC = () => {
             : " The only pictures are Spy Sketch drawings, drawn with a finger during a turn, and avatars built from the parts the app offers."}
           {photosKept &&
             " Until October 20, 2026, versions of the app before 2.2 let a player add a profile photo, which only showed next to their name; no one can add one now, and those photos aren't shown to anyone."}
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           <B>Rooms:</B> only people with a private room's code, link or QR code{LIVE.socialFeatures ? ", or a friend's invite," : ''} can join it, and the host can remove a
           player. Players under 16 (and players who haven't told us their age) see no other player's private rooms in
           the app's room list, and a private room hosted by a player under 18 is listed to no one but its host. Some of
@@ -156,8 +156,8 @@ const ChildSafety: React.FC = () => {
           while a player under 18 is in the room or game. Public rooms are only for
           saved accounts of players 13 or older who have agreed to our Community
           Rules; guests can play only in private rooms, and a player with a pause or a ban can't join public rooms.
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           <B>Chat filter:</B> names and chat are checked before anyone else sees them. In public rooms, explicit sexual
           words are blocked; in private rooms, the most serious words are blocked. In any room{LIVE.safetyAnswers1106 ? " or party with a player under 18 or one who hasn't told us their age, " : ' with a player under 18, '}
           links, email addresses, phone numbers and social accounts are blocked for everyone
@@ -169,50 +169,50 @@ const ChildSafety: React.FC = () => {
             " Messages that can be part of grooming, and explicit sexual talk even when it was refused, in rooms and party chats with a player under 18, are flagged automatically for a person to read."}
           {LIVE.safetyAnswers1106 &&
             " What adults write in rooms and party chats with a player who told us they're under 18 may also be read, after it's sent, by an automated check (OpenAI's models) that looks for sexual talk aimed at a younger player and flags it for a person to read. It never blocks or changes a message, and what players under 18 or players who haven't told us their age write is never sent to it."}
-        </ListItem>
+        </li>
         {/* LIVE.communityPacks: shared packs are reviewed before anyone else sees them (legalRelease). */}
         {LIVE.communityPacks && (
-          <ListItem>
+          <li>
             <B>Community Packs:</B> every pack's text goes through our word filter and an automated check (OpenAI's
             moderation model) before anyone else can play or see it, and a pack it flags for child sexual content is
             logged for our child-safety review; a person on our team reads every pack a member publishes before anyone
             else can see it, and any player can report a Community Pack.
-          </ListItem>
+          </li>
         )}
-        <ListItem>
+        <li>
           <B>Evidence:</B> chat is kept on our servers for a while (about 24 hours in a private room, 14 days in a
           public room, 30 days in a party), so a report comes with the words actually sent.
-        </ListItem>
+        </li>
         {drawings ? (
-          <ListItem>
+          <li>
             <B>Drawing check:</B> Spy Sketch drawing turns in a public room are checked automatically as they're
             played, and so is a drawing reported in a private room. When the check finds a drawing that sexualizes a
             child, in any room, the drawing is taken off the board, the account is banned with no appeal, and the drawing is reported to NCMEC. A turn can
             go unchecked if the check can't run at that moment; a report of it still goes to a person.
             {drawingCheckTestersOnly(LIVE) &&
               ' For now, while we test it, the check runs only in games where every player is one of our testers (players trying a test version of the app); in other games, a person reviews the drawings players report.'}
-          </ListItem>
+          </li>
         ) : (
-          <ListItem>
+          <li>
             <B>Drawings:</B> a person reviews the drawings players report.
-          </ListItem>
+          </li>
         )}
       </Bullets>
 
       <H2 id="report">3. How to report a concern</H2>
       <H3>In the app</H3>
       <OrderedList spacing={2} pl={4} textStyle="body">
-        <ListItem>
+        <li>
           Long-press the player{LIVE.messageReports ? ', or something they wrote in the chat,' : ''} and tap{' '}
           <B>Report</B>.{drawings ? ' You can also report a drawing.' : ''}
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           Choose <B>Child Safety</B> ("Sexual talk with a minor, or a child at risk"), add details if you like, and
           send.
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           To stop seeing their chat, long-press the player again and tap <B>Block</B>.
-        </ListItem>
+        </li>
       </OrderedList>
       <P>
         You report without leaving the app, and you don't need screenshots: the report includes our servers' own copy
@@ -233,26 +233,26 @@ const ChildSafety: React.FC = () => {
 
       <H2 id="response">4. What we do</H2>
       <OrderedList spacing={2} pl={4} textStyle="body">
-        <ListItem>
+        <li>
           A person reads every report within 24 hours. Reports about child safety, and reports involving a player
           under 18, are marked urgent and read first.
           {LIVE.safetyAnswers1106 &&
             " Reports about a child's safety, and reports of personal info shared by or with a player under 18, are read by SpySocial's developer only, never by volunteer moderators."}
-        </ListItem>
-        <ListItem>We take the content down: the message, the drawing or the name.</ListItem>
-        <ListItem>
+        </li>
+        <li>We take the content down: the message, the drawing or the name.</li>
+        <li>
           We ban the accounts involved.
           {drawings ? ' A drawing that sexualizes a child ends the account, with no appeal.' : ''}
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           We keep the evidence the law requires us to keep
           {LIVE.childSafetyHolds ? ', even if the account is deleted first' : ''}.
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           We report it to the National Center for Missing &amp; Exploited Children (NCMEC), as US law requires. NCMEC
           passes reports linked to the UK to the UK's National Crime Agency, so we never report the same case twice.
           If we believe a child's life or safety is at risk, we tell the police.
-        </ListItem>
+        </li>
       </OrderedList>
 
       <H2 id="laws">5. Child safety laws</H2>

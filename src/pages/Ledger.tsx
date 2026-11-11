@@ -1,9 +1,10 @@
-import { Box, Button, Code, Link as ChakraLink, ListItem, Stack, Text } from '@chakra-ui/react'
 import { useEffect, useMemo, useState } from 'react'
 import { LegalPage } from '../components/legal/LegalPage'
-import { B, Bullets, H2, H3, Numbered, OutLink, P, PageLink, SupportEmail } from '../components/legal/LegalText'
+import { B, Bullets, H2, H3, InlineCode, LegalButton, Numbered, OutLink, P, PageLink, SupportEmail, TextLink } from '../components/legal/LegalText'
 import { InfoTable, type InfoRow } from '../components/legal/InfoTable'
 import { LIVE } from '../lib/legalRelease'
+import legal from '../components/legal/legal.module.css'
+import s from './Ledger.module.css'
 import {
   LEDGER_FILES_BASE, LEDGER_REPO, cyberChefSha256, ledgerFile, repoPath, sizeOf, staticJson,
   type LedgerChain, type LedgerSummary, type LedgerSupply,
@@ -36,30 +37,26 @@ print("All", row["seq"], "lines check out. Last fingerprint:", prev)`
 
 /** A file to download: a secondary button with the file's size under it. */
 const FileButton = ({ href, label, note }: { href: string; label: string; note: string }) => (
-  <Box>
-    <Button as="a" href={href} download variant="secondary" size="sm">
+  <div>
+    <LegalButton href={href} download>
       {label}
-    </Button>
-    <Text textStyle="meta" mt={1}>
-      {note}
-    </Text>
-  </Box>
+    </LegalButton>
+    <p className={`${legal.meta} ${legal.mt1}`}>{note}</p>
+  </div>
 )
 
 // Fingerprints and lines in a plain monospace face (the skin's code face is a condensed display one), each character
-// readable for comparing by eye.
-const MONO = 'ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace'
+// readable for comparing by eye (Ledger.module.css).
+const Code = ({ children }: { children: string }) => <InlineCode className={s.mono}>{children}</InlineCode>
 
 const Hash = ({ children, block = false }: { children: string; block?: boolean }) => (
-  <Code fontFamily={MONO} fontSize="12px" wordBreak="break-all" whiteSpace="pre-wrap" {...(block ? { display: 'block', p: 2, my: 1 } : {})}>
-    {children}
-  </Code>
+  <InlineCode className={block ? `${s.hash} ${s.hashBlock}` : s.hash}>{children}</InlineCode>
 )
 
 const Block = ({ children }: { children: string }) => (
-  <Box as="pre" fontFamily={MONO} bg="ss.surfaceStrong" borderRadius="var(--ss-radius-control)" p={3} overflowX="auto" fontSize="13px" lineHeight="1.5" whiteSpace="pre" my={2}>
+  <pre className={s.block}>
     <code>{children}</code>
-  </Box>
+  </pre>
 )
 
 const Ledger: React.FC = () => {
@@ -120,10 +117,10 @@ const Ledger: React.FC = () => {
     note: `Entries ${n(d.from)} to ${n(d.to)}`,
     cells: [
       <Hash key="h">{d.hash}</Hash>,
-      <Stack key="f" spacing={1}>
-        <ChakraLink href={ledgerFile(summary!.chain, d.file)} download>File ({sizeOf(d.bytes)})</ChakraLink>
-        {d.ots ? <ChakraLink href={ledgerFile(summary!.chain, d.ots)} download>Proof (.ots)</ChakraLink> : <Text as="span">Proof tomorrow</Text>}
-      </Stack>,
+      <div key="f" className={s.files}>
+        <TextLink href={ledgerFile(summary!.chain, d.file)} download>File ({sizeOf(d.bytes)})</TextLink>
+        {d.ots ? <TextLink href={ledgerFile(summary!.chain, d.ots)} download>Proof (.ots)</TextLink> : <span>Proof tomorrow</span>}
+      </div>,
     ],
   }))
 
@@ -139,14 +136,14 @@ const Ledger: React.FC = () => {
   return (
     <LegalPage english title="Collectibles Ledger" updated={<>{LIVE.ledgerUniquesOnly ? 'Public record of every Unique' : 'Public record of every minted collectible'}</>}>
       {beta && (
-        <Box borderWidth="2px" borderColor="orange.400" borderRadius="md" p={4} mb={4}>
+        <div className={s.betaBox}>
           <P>
             <B>This is the beta test chain.</B> Everything below (every copy, number, trade and day's fingerprint) is
             for testing only and is wiped before launch. The real ledger starts at launch with its own first entry, and
             its numbers start at #1. Test files are kept apart from the real ones.
             {LIVE.ledgerUniquesOnly && ' Its earlier lines also list other items, from before the ledger carried Uniques only.'}
           </P>
-        </Box>
+        </div>
       )}
       {/* ledger-uniques-1111 (LIVE.ledgerUniquesOnly): the public ledger carries Uniques only */}
       {LIVE.ledgerUniquesOnly ? (
@@ -156,7 +153,7 @@ const Ledger: React.FC = () => {
           Every Unique, and everything that happens to it later (a trade, a sale, a trade-up, a correction), is a line
           in this ledger. Other items (Game Night titles, the Beta Pin, Field Tester and the other items from
           Intercepts) are numbered and recorded by us in the same way, but they aren't on the public ledger. Holders
-          appear only as tags (<Code fontFamily={MONO}>h:7f3a91c20b5e</Code>), a different one on every copy, so the
+          appear only as tags (<Code>h:7f3a91c20b5e</Code>), a different one on every copy, so the
           ledger never shows who holds what. See the{' '}
           <PageLink to="/terms">Terms</PageLink> and the <PageLink to="/privacy">Privacy Policy</PageLink>.
         </P>
@@ -165,7 +162,7 @@ const Ledger: React.FC = () => {
           Game Night titles, the Beta Pin, Field Tester and every item from an Intercept are <B>minted</B>: each copy
           has its own number and a record of how it was earned, and it can be made only by its rule, inside its window.
           Once a collectible closes, no more copies are ever made, by anyone, us included. Every copy, and everything
-          that happens to it later, is a line in this ledger. Holders appear only as tags (<Code fontFamily={MONO}>h:7f3a91c20b5e</Code>), a
+          that happens to it later, is a line in this ledger. Holders appear only as tags (<Code>h:7f3a91c20b5e</Code>), a
           different one on every copy, so the ledger never shows who holds what. See the{' '}
           <PageLink to="/terms">Terms</PageLink> and the <PageLink to="/privacy">Privacy Policy</PageLink>.
         </P>
@@ -179,9 +176,9 @@ const Ledger: React.FC = () => {
         {LIVE.ledgerUniquesOnly && (
           <>
             {' '}On the 1st of each month the ledger also writes a <B>snapshot</B> line (a checkpoint whose note starts{' '}
-            <Code fontFamily={MONO}>snapshot:</Code>). Its <Code fontFamily={MONO}>state</Code> is the SHA-256 of a list
+            <Code>snapshot:</Code>). Its <Code>state</Code> is the SHA-256 of a list
             of every Unique as the lines before it leave it, one line per copy in copy order (
-            <Code fontFamily={MONO}>u1|copy|item|number|held, burned or retired|holder tag</Code>), so you can check the
+            <Code>u1|copy|item|number|held, burned or retired|holder tag</Code>), so you can check the
             ledger from that month on without going back to its first line. Nothing is ever deleted.
           </>
         )}
@@ -198,20 +195,20 @@ const Ledger: React.FC = () => {
       )}
       {summary?.ok && newest && (
         <Bullets>
-          <ListItem>
+          <li>
             Entries: <B>{n(summary.rows)}</B>, through the final fingerprint of <B>{day(newest.day)}</B>
-          </ListItem>
-          <ListItem>
+          </li>
+          <li>
             That final fingerprint: <Hash>{newest.hash}</Hash>
-          </ListItem>
-          <ListItem>The files are updated once a day, soon after 00:00 UTC. Entries made since then come in the next day's file.</ListItem>
+          </li>
+          <li>The files are updated once a day, soon after 00:00 UTC. Entries made since then come in the next day's file.</li>
         </Bullets>
       )}
 
       {summary?.ok && newest && (
         <>
           <H2>Download the ledger</H2>
-          <Stack direction={{ base: 'column', md: 'row' }} spacing={4} align="flex-start">
+          <div className={s.downloads}>
             {summary.files.all && (
               <FileButton
                 href={ledgerFile(summary.chain, summary.files.all.path)}
@@ -226,19 +223,17 @@ const Ledger: React.FC = () => {
                 note={`${n(newest.rows)} lines · CSV · ${sizeOf(summary.files.latestCsv.bytes)}`}
               />
             )}
-          </Stack>
+          </div>
           <P>
             Each day also has its own file (its lines, gzipped JSON, one line per row) and its OpenTimestamps proof.
-            Every row has a <Code fontFamily={MONO}>line</Code>, the exact text that is fingerprinted, and a <Code fontFamily={MONO}>hash</Code>, its
+            Every row has a <Code>line</Code>, the exact text that is fingerprinted, and a <Code>hash</Code>, its
             fingerprint.
           </P>
           <InfoTable head={['Day', 'Final fingerprint', 'Files']} rows={dayRows} firstWidth={{ base: '30%', md: '24%' }} />
           {days.length > WINDOW && (
-            <Box mt={3}>
-              <Button variant="secondary" size="sm" onClick={() => setAllDays(!allDays)}>
-                {allDays ? `Show the last ${WINDOW} days` : `Show all ${days.length} days`}
-              </Button>
-            </Box>
+            <div className={legal.mt3}>
+              <LegalButton onClick={() => setAllDays(!allDays)}>{allDays ? `Show the last ${WINDOW} days` : `Show all ${days.length} days`}</LegalButton>
+            </div>
           )}
 
           <H2>Check it yourself</H2>
@@ -246,15 +241,15 @@ const Ledger: React.FC = () => {
 
           <H3>1. A day's file existed on its date</H3>
           <Numbered>
-            <ListItem>Download a day's file and its proof (.ots) from the table above.</ListItem>
-            <ListItem>
+            <li>Download a day's file and its proof (.ots) from the table above.</li>
+            <li>
               Open <OutLink href={OTS_SITE}>opentimestamps.org</OutLink> and drop both files on its Stamp &amp; Verify
               box.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               It shows the Bitcoin block and date that hold the file's fingerprint. A file changed by even one letter
               fails.
-            </ListItem>
+            </li>
           </Numbered>
           <P>
             A proof less than a day old may show as pending: Bitcoin takes a few hours to include it, and the next daily
@@ -270,23 +265,21 @@ const Ledger: React.FC = () => {
             it, so changing any old line breaks every line after it. Try the newest line:
           </P>
           {exampleRow && (
-            <Box border="var(--ss-card-border) solid" borderColor="ss.lineStrong" borderRadius="var(--ss-radius-card)" p={{ base: 3, md: 4 }} my={2}>
-              <Text textStyle="meta">Line {n(exampleRow.seq)}, the text:</Text>
+            <div className={s.example}>
+              <p className={legal.meta}>Line {n(exampleRow.seq)}, the text:</p>
               <Hash block>{exampleRow.line}</Hash>
-              <Text textStyle="meta" mt={2}>Its fingerprint:</Text>
+              <p className={`${legal.meta} ${legal.mt2}`}>Its fingerprint:</p>
               <Hash block>{exampleRow.hash}</Hash>
-              <Stack direction={{ base: 'column', sm: 'row' }} spacing={3} mt={3}>
-                <Button variant="secondary" size="sm" onClick={() => { void copyLine() }}>
-                  {copied ? 'Copied' : 'Copy the text'}
-                </Button>
-                <Button as="a" href={cyberChefSha256(exampleRow.line)} target="_blank" rel="noopener noreferrer" variant="secondary" size="sm">
+              <div className={s.exampleButtons}>
+                <LegalButton onClick={() => { void copyLine() }}>{copied ? 'Copied' : 'Copy the text'}</LegalButton>
+                <LegalButton href={cyberChefSha256(exampleRow.line)} external>
                   Open it in CyberChef
-                </Button>
-              </Stack>
-            </Box>
+                </LegalButton>
+              </div>
+            </div>
           )}
           <P>
-            In the spreadsheet, the text is the <Code fontFamily={MONO}>line</Code> column: copy the cell's text exactly, with no space or
+            In the spreadsheet, the text is the <Code>line</Code> column: copy the cell's text exactly, with no space or
             line break after it.
           </P>
 
@@ -300,15 +293,15 @@ const Ledger: React.FC = () => {
 
           <H3>Where the final fingerprints are kept</H3>
           <Bullets>
-            <ListItem>
+            <li>
               This website's public repository on GitHub: <OutLink href={`${LEDGER_REPO}/blob/main/${headsPath}`}>the list of final fingerprints</OutLink>,{' '}
               <OutLink href={`${LEDGER_REPO}/blame/main/${headsPath}`}>the date each one was added</OutLink>, and{' '}
               <OutLink href={`${LEDGER_REPO}/commits/main/${chain ? repoPath(chain, 'days') : ''}`}>the history of the day files</OutLink>.
-            </ListItem>
-            <ListItem>
+            </li>
+            <li>
               The Internet Archive's Wayback Machine: <OutLink href={`https://web.archive.org/web/*/${rawHeads}`}>its saved copies of that list</OutLink>.
-            </ListItem>
-            <ListItem>Bitcoin, through each day file's OpenTimestamps proof.</ListItem>
+            </li>
+            <li>Bitcoin, through each day file's OpenTimestamps proof.</li>
           </Bullets>
 
           <H2>Why this proves no Unique was secretly re-made</H2>
@@ -322,17 +315,15 @@ const Ledger: React.FC = () => {
       )}
 
       <H2>Supply</H2>
-      {supply && <Text textStyle="meta" mb={3}>As of {when(supply.as_of)}</Text>}
+      {supply && <p className={`${legal.meta} ${legal.mb3}`}>As of {when(supply.as_of)}</p>}
       {supply && supply.collectibles.length === 0 && <P>Nothing has been minted yet.</P>}
       {supply && supply.collectibles.length > 0 && (
         <>
           <InfoTable head={['Collectible', 'Supply', 'Status']} rows={allSupply ? rows : rows.slice(0, SUPPLY_PAGE)} firstWidth="44%" />
           {rows.length > SUPPLY_PAGE && (
-            <Box mt={3}>
-              <Button variant="secondary" size="sm" onClick={() => setAllSupply(!allSupply)}>
-                {allSupply ? `Show the first ${SUPPLY_PAGE}` : `Show all ${n(rows.length)} collectibles`}
-              </Button>
-            </Box>
+            <div className={legal.mt3}>
+              <LegalButton onClick={() => setAllSupply(!allSupply)}>{allSupply ? `Show the first ${SUPPLY_PAGE}` : `Show all ${n(rows.length)} collectibles`}</LegalButton>
+            </div>
           )}
         </>
       )}

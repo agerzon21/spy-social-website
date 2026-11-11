@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Link as ChakraLink, ListItem, OrderedList, Text, VStack } from '@chakra-ui/react'
+import { Box, Flex, Icon, Link as ChakraLink, OrderedList, Text, VStack } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import { FiFlag, FiLogOut, FiMessageCircle, FiSlash } from 'react-icons/fi'
@@ -109,14 +109,14 @@ const Safety: React.FC = () => {
       <H3>{t.teens.afterTitle}</H3>
       <Bullets>
         {t.teens.after.map((line) => (
-          <ListItem key={line}>{line}</ListItem>
+          <li key={line}>{line}</li>
         ))}
       </Bullets>
 
       <H3>{t.teens.neverTitle}</H3>
       <Bullets>
         {t.teens.never.map((line) => (
-          <ListItem key={line}>{line}</ListItem>
+          <li key={line}>{line}</li>
         ))}
       </Bullets>
       <P>{r(t.teens.neverWhat)}</P>
@@ -126,39 +126,39 @@ const Safety: React.FC = () => {
 
       <H3>{p.hasTitle}</H3>
       <Bullets>
-        <ListItem>{r(p.chat)}</ListItem>
-        <ListItem>{r(p.sketch)}</ListItem>
-        <ListItem>{r(p.names({ avatars, photos }))}</ListItem>
-        <ListItem>{r(p.private)}</ListItem>
-        <ListItem>{LIVE.onePool ? r(p.publicOnePool) : r(p.public(LIVE.playOnline))}</ListItem>
-        {LIVE.customPacks && <ListItem>{r(p.customPacks(LIVE.communityPacks))}</ListItem>}
-        {LIVE.socialFeatures && <ListItem>{r(p.social)}</ListItem>}
-        {LIVE.trading && LIVE.blackMarket && <ListItem>{r(p.trading)}</ListItem>}
-        {LIVE.intercepts && <ListItem>{r(LIVE.interceptsMarket ? (LIVE.interceptsInTrades ? `${p.interceptsMarket} ${p.interceptsFriendTrades}` : p.interceptsMarket) : p.intercepts)}</ListItem>}
-        {LIVE.homeDiscord && <ListItem>{r(p.discord)}</ListItem>}
-        {LIVE.purchases && <ListItem>{r(LIVE.membershipsOnly ? p.buyMembers : p.buy)}</ListItem>}
+        <li>{r(p.chat)}</li>
+        <li>{r(p.sketch)}</li>
+        <li>{r(p.names({ avatars, photos }))}</li>
+        <li>{r(p.private)}</li>
+        <li>{LIVE.onePool ? r(p.publicOnePool) : r(p.public(LIVE.playOnline))}</li>
+        {LIVE.customPacks && <li>{r(p.customPacks(LIVE.communityPacks))}</li>}
+        {LIVE.socialFeatures && <li>{r(p.social)}</li>}
+        {LIVE.trading && LIVE.blackMarket && <li>{r(p.trading)}</li>}
+        {LIVE.intercepts && <li>{r(LIVE.interceptsMarket ? (LIVE.interceptsInTrades ? `${p.interceptsMarket} ${p.interceptsFriendTrades}` : p.interceptsMarket) : p.intercepts)}</li>}
+        {LIVE.homeDiscord && <li>{r(p.discord)}</li>}
+        {LIVE.purchases && <li>{r(LIVE.membershipsOnly ? p.buyMembers : p.buy)}</li>}
       </Bullets>
 
       <H3>{p.hasNotTitle}</H3>
       <Bullets>
-        <ListItem>{LIVE.socialFeatures ? p.noDmsSocial : p.noDms}</ListItem>
-        <ListItem>{LIVE.socialFeatures ? p.noSearch : p.noFriends}</ListItem>
-        <ListItem>{p.noVoice(photos)}</ListItem>
-        <ListItem>{p.noLocation}</ListItem>
+        <li>{LIVE.socialFeatures ? p.noDmsSocial : p.noDms}</li>
+        <li>{LIVE.socialFeatures ? p.noSearch : p.noFriends}</li>
+        <li>{p.noVoice(photos)}</li>
+        <li>{p.noLocation}</li>
       </Bullets>
 
       <H3>{p.safeTitle}</H3>
       <Bullets>
-        <ListItem>
+        <li>
           {r(p.age({ gate: LIVE.ageGateEveryone, under13Deletion: LIVE.under13Deletion, storeSignals: LIVE.storeAgeSignals }))}
-        </ListItem>
-        <ListItem>{r(p.publicRooms)}</ListItem>
-        <ListItem>
+        </li>
+        <li>{r(p.publicRooms)}</li>
+        <li>
           {r(p.filter)}
           {LIVE.chatMildMask && <> {r(p.filterMild)}</>}
-        </ListItem>
-        <ListItem>{r(p.reports, { link: page('/rules') })}</ListItem>
-        {LIVE.drawingCheck && <ListItem>{r(p.drawingCheck)}</ListItem>}
+        </li>
+        <li>{r(p.reports, { link: page('/rules') })}</li>
+        {LIVE.drawingCheck && <li>{r(p.drawingCheck)}</li>}
       </Bullets>
 
       {LIVE.purchases && (
@@ -171,7 +171,7 @@ const Safety: React.FC = () => {
       <H3>{p.deleteTitle}</H3>
       <OrderedList spacing={2} ps={4} textStyle="body">
         {p.deleteSteps({ avatars, oldApps: LIVE.oldAppsInUse }).map((step) => (
-          <ListItem key={step}>{r(step)}</ListItem>
+          <li key={step}>{r(step)}</li>
         ))}
       </OrderedList>
       <P>{r(p.deleteEmail, { email: () => <SupportEmail subject={p.deleteSubject} />, link: page('/delete-account') })}</P>

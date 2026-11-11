@@ -1,4 +1,4 @@
-import { Text, Link as ChakraLink, ListItem } from '@chakra-ui/react'
+import { Text, Link as ChakraLink } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
@@ -26,12 +26,12 @@ import { B, Bullets, H2, P } from '../components/legal/LegalText'
 
 /** A list item that starts with a bold label. */
 const Item = ({ label, children }: { label: string; children: ReactNode }) => (
-  <ListItem>
+  <li>
     <Text as="span" fontWeight="600" color="ss.text">
       {label}:
     </Text>{' '}
     {children}
-  </ListItem>
+  </li>
 )
 
 const SupportEmail = () => (
@@ -971,51 +971,51 @@ const Privacy: React.FC = () => {
       <H2>How We Use Your Information</H2>
       <P>We use your information to:</P>
       <Bullets>
-        <ListItem>Create and manage your account</ListItem>
-        {PRIVACY.launchReminder && <ListItem>Send the one launch email you asked for</ListItem>}
-        <ListItem>Enable multiplayer game functionality, chat and translation</ListItem>
-        {PRIVACY.purchases && <ListItem>Provide and restore what you buy</ListItem>}
+        <li>Create and manage your account</li>
+        {PRIVACY.launchReminder && <li>Send the one launch email you asked for</li>}
+        <li>Enable multiplayer game functionality, chat and translation</li>
+        {PRIVACY.purchases && <li>Provide and restore what you buy</li>}
         {PRIVACY.creatorCodes && (
-          <ListItem>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</ListItem>
+          <li>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</li>
         )}
         {PRIVACY.intel && (
-          <ListItem>
+          <li>
             {PRIVACY.intercepts ? 'Give you Intel and your daily streak' : 'Give you Intel, your daily streak and the items you unlock with Intel'}
-          </ListItem>
+          </li>
         )}
-        {PRIVACY.intercepts && <ListItem>Give you Intercepts and the items in them</ListItem>}
+        {PRIVACY.intercepts && <li>Give you Intercepts and the items in them</li>}
         {PRIVACY.customPacks && (
-          <ListItem>
+          <li>
             Keep your custom packs and check their text{PRIVACY.packAutoTranslate ? ', translate them into the languages the app offers' : ''}{PRIVACY.communityPacks ? ', review Community Packs (with an AI model\'s notes for our team first) and show them, count their ratings and adds, and give creators their titles' : ''}
             {PRIVACY.featuredPacks ? (PRIVACY.packAutoTranslate ? ', and play the packs we feature' : ', and translate and play the packs we feature') : ''}
-          </ListItem>
+          </li>
         )}
         {(PRIVACY.ranked || PRIVACY.tournaments) && (
-          <ListItem>
+          <li>
             Run {PRIVACY.ranked ? 'Ranked and its leaderboards' : ''}
             {PRIVACY.ranked && PRIVACY.tournaments ? ', and ' : ''}
             {PRIVACY.tournaments ? 'tournaments, their standings and Tournament Tokens' : ''}
-          </ListItem>
+          </li>
         )}
         {PRIVACY.notifications && (
-          <ListItem>Remind you of the game nights you asked about, tell you when a Play Online match is found, and send the other notifications you allow</ListItem>
+          <li>Remind you of the game nights you asked about, tell you when a Play Online match is found, and send the other notifications you allow</li>
         )}
         {PRIVACY.socialFeatures && (
-          <ListItem>Run friends, follows, profiles, parties and party chat, and send the social notifications you allow</ListItem>
+          <li>Run friends, follows, profiles, parties and party chat, and send the social notifications you allow</li>
         )}
-        {PRIVACY.trading && <ListItem>Run trades between friends: their limits, protection and reversals, and the codes we email for big trades</ListItem>}
-        {PRIVACY.blackMarket && <ListItem>Run the Black Market: offers, listings, sales, their fees and protection</ListItem>}
-        <ListItem>Improve and optimize the app experience</ListItem>
-        {PRIVACY.practiceAi && <ListItem>Rate the lines you type in practice games (with OpenAI, if you agree)</ListItem>}
-        {PRIVACY.spybots && <ListItem>Test the game with the AI players our developer plays with, and improve them</ListItem>}
-        <ListItem>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
-        <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
-        <ListItem>Protect against fraudulent or unauthorized activity</ListItem>
-        {PRIVACY.audit1103 && <ListItem>Help you when you write to us about your account, for example a lost email address or a stolen account</ListItem>}
-        <ListItem>
+        {PRIVACY.trading && <li>Run trades between friends: their limits, protection and reversals, and the codes we email for big trades</li>}
+        {PRIVACY.blackMarket && <li>Run the Black Market: offers, listings, sales, their fees and protection</li>}
+        <li>Improve and optimize the app experience</li>
+        {PRIVACY.practiceAi && <li>Rate the lines you type in practice games (with OpenAI, if you agree)</li>}
+        {PRIVACY.spybots && <li>Test the game with the AI players our developer plays with, and improve them</li>}
+        <li>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</li>
+        <li>Analyze usage patterns to enhance game design and user experience</li>
+        <li>Protect against fraudulent or unauthorized activity</li>
+        {PRIVACY.audit1103 && <li>Help you when you write to us about your account, for example a lost email address or a stolen account</li>}
+        <li>
           Keep players safe: review reports{PRIVACY.drawingCheck ? ', check drawings' : ''}, apply age limits, protect
           players under 18, and enforce our Terms of Service and Community Rules
-        </ListItem>
+        </li>
       </Bullets>
 
       <H2>Legal Basis for Processing</H2>
@@ -1473,12 +1473,12 @@ const Privacy: React.FC = () => {
       <H2>Your Rights</H2>
       <P>Depending on your location, you may have the right to:</P>
       <Bullets>
-        <ListItem>Access the personal information we have about you</ListItem>
-        <ListItem>Correct inaccurate information</ListItem>
-        <ListItem>Delete your personal information</ListItem>
-        <ListItem>Object to or restrict certain processing of your data</ListItem>
-        <ListItem>Data portability (receiving your data in a usable format)</ListItem>
-        <ListItem>Withdraw consent where processing is based on consent</ListItem>
+        <li>Access the personal information we have about you</li>
+        <li>Correct inaccurate information</li>
+        <li>Delete your personal information</li>
+        <li>Object to or restrict certain processing of your data</li>
+        <li>Data portability (receiving your data in a usable format)</li>
+        <li>Withdraw consent where processing is based on consent</li>
       </Bullets>
       <P>
         To exercise these rights, please contact us at <SupportEmail />. So we know a request is really yours, please

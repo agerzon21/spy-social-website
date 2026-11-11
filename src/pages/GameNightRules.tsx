@@ -1,4 +1,3 @@
-import { ListItem } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { LIVE } from '../lib/legalRelease'
@@ -62,39 +61,39 @@ const GameNightRules: React.FC = () => (
     <H2>The night's titles</H2>
     <P>Each Game Night has up to four cosmetic titles:</P>
     <Bullets>
-      <ListItem>
+      <li>
         <B>The night's title</B>, for everyone who plays a full game at a Game Night table that <B>starts</B> during
         the night's hours. A game that starts before the end and finishes after it still counts.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         <B>The Local winner's title</B>, for a player who also wins such a game as a Local.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         <B>The Spy winner's title</B>, for a player who also wins such a game as a spy.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         <B>The developer's bonus title</B> (for example, "Developer's Pick"): see below.
-      </ListItem>
+      </li>
     </Bullets>
     <P>For every title:</P>
     <Bullets>
-      <ListItem>
+      <li>
         Playing means taking part: asking, answering, drawing or voting when the game gives you the chance. Chatting
         alone doesn't count.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         These don't count: leaving a game before it ends, staying away from the game (not taking your turns), being
         removed from the table, a game cancelled before its end, a game our fair-play checks flag, and accounts
         that are banned.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         If another player leaves early and the game ends without a result, everyone who stayed still gets the
         night's title.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         <B>Each title once per account per night.</B> You can keep playing after you've got one, but winning more
         games doesn't give it twice.
-      </ListItem>
+      </li>
     </Bullets>
 
     <H2>The developer's bonus title</H2>

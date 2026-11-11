@@ -9,7 +9,6 @@ import {
   FormLabel,
   Heading,
   Input,
-  ListItem,
   Spinner,
   Text,
   VStack,
@@ -312,7 +311,7 @@ const Agree = () => {
               ) : b.kind === 'bullets' ? (
                 <Bullets key={i}>
                   {b.items.map((it, j) => (
-                    <ListItem key={j}>{inline(it)}</ListItem>
+                    <li key={j}>{inline(it)}</li>
                   ))}
                 </Bullets>
               ) : (

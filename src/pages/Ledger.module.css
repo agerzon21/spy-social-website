@@ -1,0 +1,75 @@
+/*
+ * The Ledger page's own pieces (speed2-1111: plain CSS, no Chakra, so the page also runs on archive.spysocial.app's
+ * lean app): the same values its Chakra props had. Fingerprints and lines in a plain monospace face (the skin's code
+ * face is a condensed display one), each character readable for comparing by eye. `code.x` outranks the shared
+ * InlineCode look (components/legal/legal.module.css) whatever order the two files load in.
+ */
+code.mono,
+code.hash,
+.block {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace;
+}
+code.hash {
+  font-size: 12px;
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+code.hashBlock {
+  display: block;
+  padding: 0.5rem;
+  margin-block: 0.25rem;
+}
+.block {
+  background: var(--ss-surface-strong);
+  border-radius: var(--ss-radius-control);
+  padding: 0.75rem;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre;
+  margin-block: 0.5rem;
+}
+.betaBox {
+  border-width: 2px;
+  border-color: #ed8936;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.files {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.downloads {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.example {
+  border: var(--ss-card-border) solid;
+  border-color: var(--ss-line-strong);
+  border-radius: var(--ss-radius-card);
+  padding: 0.75rem;
+  margin-block: 0.5rem;
+}
+.exampleButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+@media screen and (min-width: 30em) {
+  .exampleButtons {
+    flex-direction: row;
+  }
+}
+@media screen and (min-width: 48em) {
+  .downloads {
+    flex-direction: row;
+  }
+  .example {
+    padding: 1rem;
+  }
+}

@@ -1,4 +1,3 @@
-import { ListItem } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, H3, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { COVERAGE_1110_DAY, INTERCEPTS_IN_TRADES_DAY, LIVE } from '../lib/legalRelease'
@@ -37,30 +36,30 @@ const Transparency: React.FC = () => (
       Each report has:
     </P>
     <Bullets>
-      <ListItem>
+      <li>
         <B>Intel:</B> how much was made, by source (games, daily claims, streaks, shredding), how much was spent, by what
         it was spent on, and how much all players hold at the end of the month.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         <B>Corrections:</B> for each kind (a reversed line, a bug refund, {LIVE.accountNotices ? "one player's bug refund, " : ''}a fair-play take-back, an outage's Intel), how
         many there were, how many players they affected and the total, with each correction's reason and its incident
         or the category of its case. Never who was corrected.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         <B>Collectibles:</B> copies minted, copies taken back and why (in error, for cheating, or as a moderation action), copies given back
         after an appeal, sets that closed, and Intercepts given, by how they were earned (our own gifts included).
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         <B>Fair play:</B> cases opened and closed, sanctions by category, and appeals, with how many were upheld.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         <B>Incidents and rule changes:</B> the month's incidents with their summaries, and every change to how much
         Intel games give, to prices and to odds, with the old and new values.
-      </ListItem>
-      <ListItem>
+      </li>
+      <li>
         The totals as a file you can download. Any number covering fewer than 5 players shows as "fewer than 5". Our own
         test accounts are left out, and their total is stated.
-      </ListItem>
+      </li>
     </Bullets>
 
     {MONTHLY_REPORTS.map((r) => {
@@ -76,7 +75,7 @@ const Transparency: React.FC = () => (
               <H3>{s.heading}</H3>
               <Bullets>
                 {s.lines.map((line) => (
-                  <ListItem key={line}>{line}</ListItem>
+                  <li key={line}>{line}</li>
                 ))}
               </Bullets>
             </div>
@@ -87,9 +86,9 @@ const Transparency: React.FC = () => (
           ) : (
             <Bullets>
               {changes.map((c) => (
-                <ListItem key={`${c.day}-${c.what}`}>
+                <li key={`${c.day}-${c.what}`}>
                   {c.day}: {c.what}, from {c.from} to {c.to}.
-                </ListItem>
+                </li>
               ))}
             </Bullets>
           )}
@@ -114,12 +113,12 @@ const Transparency: React.FC = () => (
     ) : (
       <Bullets>
         {PUBLISHED_INCIDENTS.map((i) => (
-          <ListItem key={i.id}>
+          <li key={i.id}>
             <B>
               {i.id} · {i.title}
             </B>{' '}
             ({KIND[i.kind]}, published {i.published}). {i.summary} <B>How each player's amount is worked out:</B> {i.rule}
-          </ListItem>
+          </li>
         ))}
       </Bullets>
     )}
@@ -130,9 +129,9 @@ const Transparency: React.FC = () => (
     ) : (
       <Bullets>
         {RULE_CHANGES.map((c) => (
-          <ListItem key={`${c.day}-${c.what}`}>
+          <li key={`${c.day}-${c.what}`}>
             {c.day}: {c.what}, from {c.from} to {c.to}.
-          </ListItem>
+          </li>
         ))}
       </Bullets>
     )}

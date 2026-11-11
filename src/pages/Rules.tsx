@@ -1,4 +1,4 @@
-import { Heading, Link as ChakraLink, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { Heading, Link as ChakraLink, Text, UnorderedList } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { useLang, useT } from '../i18n'
@@ -39,29 +39,29 @@ const Rules: React.FC = () => {
         {t.kind.title}
       </Heading>
       <UnorderedList textStyle="body" spacing={1}>
-        <ListItem>{t.kind.hate}</ListItem>
-        <ListItem>{t.kind.sexual(photos)}</ListItem>
-        <ListItem>{t.kind.threats}</ListItem>
-        {ONLINE_SAFETY_TEXT && <ListItem>{t.kind.selfHarm}</ListItem>}
+        <li>{t.kind.hate}</li>
+        <li>{t.kind.sexual(photos)}</li>
+        <li>{t.kind.threats}</li>
+        {ONLINE_SAFETY_TEXT && <li>{t.kind.selfHarm}</li>}
       </UnorderedList>
 
       <Heading as="h2" size="sm" variant="section">
         {t.bluff.title}
       </Heading>
       <UnorderedList textStyle="body" spacing={1}>
-        <ListItem>{t.bluff.lying}</ListItem>
-        <ListItem>{t.bluff.cheating}</ListItem>
-        <ListItem>{t.bluff.leaving}</ListItem>
-        {LIVE.playOnline && <ListItem>{t.bluff.online(LIVE.onePool)}</ListItem>}
+        <li>{t.bluff.lying}</li>
+        <li>{t.bluff.cheating}</li>
+        <li>{t.bluff.leaving}</li>
+        {LIVE.playOnline && <li>{t.bluff.online(LIVE.onePool)}</li>}
       </UnorderedList>
 
       <Heading as="h2" size="sm" variant="section">
         {t.privacy.title}
       </Heading>
       <UnorderedList textStyle="body" spacing={1}>
-        <ListItem>{t.privacy.personal}</ListItem>
-        <ListItem>{t.privacy.spam}</ListItem>
-        <ListItem>{t.privacy.minors}</ListItem>
+        <li>{t.privacy.personal}</li>
+        <li>{t.privacy.spam}</li>
+        <li>{t.privacy.minors}</li>
       </UnorderedList>
 
       <Heading as="h2" size="sm" variant="section">
@@ -78,7 +78,7 @@ const Rules: React.FC = () => {
           <Text textStyle="body">{t.packs.intro}</Text>
           <UnorderedList textStyle="body" spacing={1}>
             {t.packs.rules.map((rule) => (
-              <ListItem key={rule}>{rule}</ListItem>
+              <li key={rule}>{rule}</li>
             ))}
           </UnorderedList>
           {LIVE.communityPacks && <Text textStyle="body">{t.packs.community}</Text>}

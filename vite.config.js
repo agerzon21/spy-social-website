@@ -40,6 +40,15 @@ const HOST_PAGES = [
     { host: 'archive', origin: 'https://archive.spysocial.app', key: 'archive', paths: ['/', '/uniques'], live: ['mintedCollectibles', 'uniqueArchive'] },
     { host: 'market', origin: 'https://market.spysocial.app', key: 'market', paths: ['/', '/catalogue'], live: ['marketSite'] },
 ];
+/**
+ * www's pages a host also serves (lib/siteHost SHARED: the Archive's Ledger and Transparency page), from that host's own
+ * lean app (speed2-1111). On Vercel a file wins over every rewrite, so their www preview files can't sit at
+ * dist/<page>/index.html (they'd answer the Archive's address too): they're dist/_page/<page>.html, and the host's are
+ * dist/_host/<host>-<page>.html, each with the page's link preview; vercel.json serves each on its host. The ledger's
+ * files under /ledger/ (days, proofs, heads.csv) are untouched.
+ */
+const SHARED_PAGES = { archive: ['/ledger', '/transparency'] };
+const isShared = (path) => Object.values(SHARED_PAGES).some((paths) => paths.includes(path));
 /** A page's entries as public/sitemap.xml writes them: the bare address and each language's, each with all the alternates. */
 function entries(path, langs, origin = ORIGIN) {
     const here = `${origin}${path}`;
@@ -248,32 +257,46 @@ function pagePreviews() {
                 '/ledger': LIVE.mintedCollectibles === true,
                 '/beta': LIVE.launchSite !== true,
             };
+            // A page's English title and description and its address (www's: the canonical one, on every host).
+            const pageSwaps = (page) => {
+                const title = attr(`${en.meta.titles[page.key]} · ${en.meta.siteName}`);
+                const description = attr(en.meta.descriptions[page.key] ?? en.meta.description);
+                return [
+                    [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
+                    [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
+                    [/(<meta property="og:url" content=")[^"]*"/, `$1${ORIGIN}${page.path}"`],
+                    [/(<meta property="og:title" content=")[^"]*"/, `$1${title}"`],
+                    [/(<meta property="og:description" content=")[^"]*"/, `$1${description}"`],
+                    [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
+                    [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
+                ];
+            };
+            const swapAll = (html, swaps) => {
+                for (const [re, to] of swaps) {
+                    if (!re.test(html))
+                        throw new Error(`pagePreviews: index.html has no match for ${re}`);
+                    html = html.replace(re, to);
+                }
+                return html;
+            };
             for (const page of PREVIEW_PAGES) {
                 let html = home;
                 if (routeOn[page.path] !== false) {
-                    const title = attr(`${en.meta.titles[page.key]} · ${en.meta.siteName}`);
-                    const description = attr(en.meta.descriptions[page.key] ?? en.meta.description);
-                    const swaps = [
-                        [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
-                        [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
-                        [/(<meta property="og:url" content=")[^"]*"/, `$1${ORIGIN}${page.path}"`],
-                        [/(<meta property="og:title" content=")[^"]*"/, `$1${title}"`],
-                        [/(<meta property="og:description" content=")[^"]*"/, `$1${description}"`],
-                        [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
-                        [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
-                    ];
+                    const swaps = pageSwaps(page);
                     if (page.path === '/beta') {
                         const image = `${ORIGIN}/images/og-beta.jpg?v=nov12`;
                         swaps.push([/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`], [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'], [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'], [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial Beta 2 playtest: Thursday, November 12, 7-8 PM Eastern')}"`], [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'], [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`]);
                     }
-                    for (const [re, to] of swaps) {
-                        if (!re.test(html))
-                            throw new Error(`pagePreviews: index.html has no match for ${re}`);
-                        html = html.replace(re, to);
-                    }
+                    html = swapAll(html, swaps);
                 }
-                await mkdir(resolve(outDir, page.path.slice(1)), { recursive: true });
-                await writeFile(resolve(outDir, page.path.slice(1), 'index.html'), html);
+                if (isShared(page.path)) {
+                    await mkdir(resolve(outDir, '_page'), { recursive: true });
+                    await writeFile(resolve(outDir, '_page', `${page.path.slice(1)}.html`), html);
+                }
+                else {
+                    await mkdir(resolve(outDir, page.path.slice(1)), { recursive: true });
+                    await writeFile(resolve(outDir, page.path.slice(1), 'index.html'), html);
+                }
             }
             // The invite links (qa-links-1110): a room's (/join/<CODE>, the app's share sheet and QR) and a Game Night's
             // (/join/e/<ID>) said what they are in a Discord or iMessage card; they showed the home page's ("Gather your
@@ -311,7 +334,15 @@ function pagePreviews() {
             // description and its own address. With its switches off, the home page's file (the router sends its paths on).
             await mkdir(resolve(outDir, '_host'), { recursive: true });
             for (const h of HOST_PAGES) {
-                let html = await hostHtml(outDir, home, h.host, bundle, env.VITE_SUPABASE_URL ?? '');
+                const app = await hostHtml(outDir, home, h.host, bundle, env.VITE_SUPABASE_URL ?? '');
+                // www's pages this host serves too: its app with the page's preview (the home page's while the page is off).
+                for (const path of SHARED_PAGES[h.host] ?? []) {
+                    const page = PREVIEW_PAGES.find((p) => p.path === path);
+                    if (!page)
+                        throw new Error(`pagePreviews: no preview for ${path}`);
+                    await writeFile(resolve(outDir, '_host', `${h.host}-${path.slice(1)}.html`), routeOn[path] !== false ? swapAll(app, pageSwaps(page)) : app);
+                }
+                let html = app;
                 if (h.live.every((key) => LIVE[key] === true)) {
                     const title = attr(`${en.meta.titles[h.key]} · ${en.meta.siteName}`);
                     const description = attr(en.meta.descriptions[h.key] ?? en.meta.description);
@@ -324,11 +355,7 @@ function pagePreviews() {
                         [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
                         [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
                     ];
-                    for (const [re, to] of swaps) {
-                        if (!re.test(html))
-                            throw new Error(`pagePreviews: index.html has no match for ${re}`);
-                        html = html.replace(re, to);
-                    }
+                    html = swapAll(html, swaps);
                 }
                 await writeFile(resolve(outDir, '_host', `${h.host}.html`), html);
             }
@@ -345,6 +372,9 @@ const HOST_APPS = {
             [/^\/u\/[^/]+\/\d+\/?$/, 'src/pages/archive/ArchiveItem.tsx'],
             [/^\/uniques\/?$/, 'src/pages/archive/ArchiveBrowse.tsx'],
             [/^\/$/, 'src/pages/archive/ArchiveHome.tsx'],
+            // www's pages the Archive serves too (SHARED_PAGES).
+            [/^\/ledger\/?$/, 'src/pages/Ledger.tsx'],
+            [/^\/transparency\/?$/, 'src/pages/Transparency.tsx'],
         ],
         always: ['src/components/HostNav.tsx'],
     },
@@ -373,7 +403,8 @@ function earlyScript(host, ledger, langChunks, routes) {
         ? String.raw `f('/archive/data/'+L+'.json');
   if(m=/^\/u\/([^/]+)\/(\d+)\/?$/.exec(P)){l('op=unique&item='+encodeURIComponent(decodeURIComponent(m[1]))+'&serial='+Number(m[2]));
     var key='u-'+decodeURIComponent(m[1])+'-'+Number(m[2]);
-    [['art','/archive/art/'],['item','/archive/item/']].forEach(function(d){E['/archive/'+d[0]+'/index.json'].then(function(r){return r.clone().json()}).then(function(k){if(k.indexOf(key)>=0){var i=document.createElement('link');i.rel='preload';i.as='image';i.href=d[1]+key+'.webp';i.fetchPriority='high';document.head.appendChild(i)}},function(){})})}
+    var lv=/^background_(vault_zero|panel_break)$/.test(decodeURIComponent(m[1]));
+    [['art','/archive/art/'],['item','/archive/item/']].forEach(function(d){E['/archive/'+d[0]+'/index.json'].then(function(r){return r.clone().json()}).then(function(k){if(k.indexOf(key)>=0){var i=document.createElement('link');i.rel='preload';i.as='image';i.href=d[1]+key+'.webp';i.fetchPriority=lv&&d[0]=='item'?'low':'high';document.head.appendChild(i)}},function(){})})}
   else if(/^\/(uniques\/?)?$/.test(P))l('op=uniques');`
         : String.raw `if(m=/^\/item\/([^/]+)\/?$/.exec(P))l('op=market_item&code='+encodeURIComponent(decodeURIComponent(m[1]))+'&lang='+encodeURIComponent(L));
   else l('op=market&lang='+encodeURIComponent(L));`;
@@ -381,10 +412,11 @@ function earlyScript(host, ledger, langChunks, routes) {
 (function(){try{
   var L=document.documentElement.getAttribute('lang')||'en',P=location.pathname,E=window.__ssEarly={},A=${JSON.stringify(ledger)},m;
   var f=function(u){E[u]=fetch(u)},l=function(q){if(A)f(A+'?'+q)};
+  if(!new RegExp(${JSON.stringify(`^/(${(SHARED_PAGES[host] ?? []).map((p) => p.slice(1)).join('|') || '-'})/?$`)}).test(P)){
   f('/archive/art/index.json');f('/archive/item/index.json');f('/archive/worn/index.json');f('/archive/scene/index.json');f('/archive/motion/index.json');
-  ${reads}
+  ${reads}}
   var g=function(c){var k=document.createElement('link');k.rel='modulepreload';k.crossOrigin='';k.href='/'+c;document.head.appendChild(k)};
-  var R=${JSON.stringify(routes)};for(var i=0;i<R.length;i++)if(new RegExp(R[i][0]).test(P)){R[i][1].forEach(g);break}
+  var R=${JSON.stringify(routes)};for(var i=0;i<R.length;i++)if(new RegExp(R[i][0]).test(P)){R[i][1].forEach(g);R[i][2].forEach(function(c){var k=document.createElement('link');k.rel='stylesheet';k.crossOrigin='';k.href='/'+c;document.head.appendChild(k)});break}
   var C=${JSON.stringify(langChunks)};(C[L]||C.en||[]).forEach(g);
 }catch(e){}})();
 `;
@@ -444,7 +476,7 @@ async function hostHtml(outDir, home, host, bundle, ledger) {
     // on the page and doesn't fetch them again).
     const have = new Set(own.map((t) => /(?:src|href)="\/([^"]+)"/.exec(t)?.[1]).filter(Boolean));
     const css = new Set();
-    const closure = (page) => {
+    const closure = (page, pageCss = css) => {
         const chunk = chunks.find((c) => c.facadeModuleId?.endsWith(page));
         if (!chunk)
             throw new Error(`hostHtml: no chunk for ${page}`);
@@ -460,16 +492,24 @@ async function hostHtml(outDir, home, host, bundle, ledger) {
                 add(dep);
             // A chunk's CSS after its imports' (the order the app's chunk loader puts them in: a page's own rules win).
             for (const f of c?.viteMetadata?.importedCss ?? [])
-                css.add(f);
+                pageCss.add(f);
         };
         add(chunk.fileName);
         return out;
     };
-    const always = HOST_APPS[host].always.flatMap(closure);
+    const always = HOST_APPS[host].always.flatMap((page) => closure(page));
     for (const name of always)
         have.add(name);
     head.push(...always.map((name) => `<link rel="modulepreload" crossorigin href="/${name}">`));
-    const routes = HOST_APPS[host].pages.map(([re, page]) => [re.source, closure(page)]);
+    // www's pages the host serves too (SHARED_PAGES): their CSS only on their own address, linked by the early script
+    // (the host's own pages don't pay for it).
+    const routes = HOST_APPS[host].pages.map(([re, page]) => {
+        if (!SHARED_PAGES[host]?.some((p) => re.test(p)))
+            return [re.source, closure(page), []];
+        const own = new Set();
+        const files = closure(page, own);
+        return [re.source, files, [...own].filter((c) => !css.has(c))];
+    });
     const early = earlyScript(host, ledger ? `${ledger.replace(/\/+$/, '')}/functions/v1/ledger` : '', langChunks(chunks), routes);
     const earlyName = `static/early-${host}-${createHash('sha256').update(early).digest('hex').slice(0, 8)}.js`;
     await writeFile(resolve(outDir, earlyName), early);
@@ -656,7 +696,14 @@ function wwwHtmlLast() {
                 const path = (req.url ?? '/').split(/[?#]/)[0];
                 if (!/\.[a-z0-9]+$/i.test(path) && !existsSync(resolve(outDir, `.${path}`, 'index.html'))) {
                     const host = (req.headers.host ?? '').split('.')[0];
-                    req.url = `/_host/${host === 'archive' || host === 'market' ? host : 'www'}.html`;
+                    const page = path.replace(/\/$/, '');
+                    // www's pages a host serves too (SHARED_PAGES), as vercel.json's rewrites serve them.
+                    if (SHARED_PAGES[host]?.includes(page))
+                        req.url = `/_host/${host}-${page.slice(1)}.html`;
+                    else if (isShared(page))
+                        req.url = `/_page/${page.slice(1)}.html`;
+                    else
+                        req.url = `/_host/${host === 'archive' || host === 'market' ? host : 'www'}.html`;
                 }
                 next();
             });

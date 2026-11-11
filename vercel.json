@@ -248,6 +248,8 @@
     }
   ],
   "rewrites": [
+    { "source": "/ledger{/}?", "has": [{ "type": "host", "value": "archive.spysocial.app" }], "destination": "/_host/archive-ledger.html" },
+    { "source": "/transparency{/}?", "has": [{ "type": "host", "value": "archive.spysocial.app" }], "destination": "/_host/archive-transparency.html" },
     {
       "source": "/((?!\\.well-known/|static/|assets/|archive/|_host/).*)",
       "has": [
@@ -309,16 +311,16 @@
       "destination": "/delete-account/index.html"
     },
     {
-      "source": "/transparency",
-      "destination": "/transparency/index.html"
+      "source": "/transparency{/}?",
+      "destination": "/_page/transparency.html"
     },
     {
       "source": "/game-night-rules",
       "destination": "/game-night-rules/index.html"
     },
     {
-      "source": "/ledger",
-      "destination": "/ledger/index.html"
+      "source": "/ledger{/}?",
+      "destination": "/_page/ledger.html"
     },
     {
       "source": "/beta",

@@ -1,4 +1,4 @@
-import { Box, Heading, Text, Link as ChakraLink, ListItem, OrderedList } from '@chakra-ui/react'
+import { Box, Heading, Text, Link as ChakraLink, OrderedList } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
@@ -37,7 +37,7 @@ const DeleteAccount: React.FC = () => {
       <Heading as="h2" size="sm" variant="section">{t.appTitle}</Heading>
       <OrderedList spacing={2} ps={4} textStyle="body">
         {t.steps({ avatars: avatarsLive(PRIVACY), oldApps: PRIVACY.oldAppsInUse }).map((step) => (
-          <ListItem key={step}>{rich(step, parts)}</ListItem>
+          <li key={step}>{rich(step, parts)}</li>
         ))}
       </OrderedList>
       <Text textStyle="body">{t.atOnce}</Text>

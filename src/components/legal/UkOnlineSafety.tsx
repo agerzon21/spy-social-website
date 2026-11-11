@@ -1,4 +1,3 @@
-import { ListItem } from '@chakra-ui/react'
 import { InfoTable, type InfoRow } from './InfoTable'
 import { B, Bullets, H2, H3, P, PageLink, SupportEmail } from './LegalText'
 import { LIVE, OPERATOR, photosShown } from '../../lib/legalRelease'
@@ -324,25 +323,25 @@ const UkOnlineSafety = () => {
 
       <H3>How we keep harmful content off SpySocial, and remove it fast</H3>
       <Bullets>
-        <ListItem>
+        <li>
           A person reads every report within 24 hours. Reports about child safety, self-harm, sexual content and personal
           information, and reports involving a player under 18, are marked urgent and read first.
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           A report comes with our own copy of the chat around it, so we can check it without waiting for screenshots.
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           When something breaks these Terms, we take it down (a message, a drawing or a name) and act against the account
           as section 8 describes.
-        </ListItem>
-        <ListItem>
+        </li>
+        <li>
           We tell the authorities when the law requires it, or when we believe someone's life or safety is at risk.
-        </ListItem>
+        </li>
       </Bullets>
 
       <H3>Automated tools</H3>
       <Bullets>
-        <ListItem>
+        <li>
           <B>Word filter.</B> Names, usernames and room codes are checked against our whole list of blocked words. Chat
           messages{LIVE.storedQuestions ? ' and typed questions and answers' : ''} are checked before anyone else sees
           them: in public rooms for slurs, explicit sexual words, insults and other blocked words; in private rooms for the
@@ -354,17 +353,17 @@ const UkOnlineSafety = () => {
             : ''}{' '}
           The filter works best in English, Spanish and Russian. It stops a
           message or a name from going out; it never penalizes anyone by itself.
-        </ListItem>
+        </li>
         {dc ? (
-          <ListItem>
+          <li>
             <B>Drawing check.</B> It looks at Spy Sketch drawing turns in public rooms, and at a drawing reported in
             a private room, and acts as section 8 describes. A turn can go unchecked if the check can't run at that
             moment; a report of it still goes to a person.
-          </ListItem>
+          </li>
         ) : (
-          <ListItem>
+          <li>
             <B>Drawings</B> aren't checked automatically yet. A person reviews the drawings players report.
-          </ListItem>
+          </li>
         )}
       </Bullets>
 

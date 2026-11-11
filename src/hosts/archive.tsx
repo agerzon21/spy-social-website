@@ -11,6 +11,8 @@ import { startHost } from './start'
 import './base.css'
 
 startHost((path, lang) => {
+  // www's pages the Archive serves too (the Ledger, the Transparency page) read none of the Archive's files.
+  if (/^\/(ledger|transparency)\/?$/.test(path)) return
   loadArchiveData(lang)
   loadArtIndex()
   loadLookIndex()

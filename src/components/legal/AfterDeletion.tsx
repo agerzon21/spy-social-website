@@ -1,4 +1,4 @@
-import { Link as ChakraLink, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { Link as ChakraLink, Text, UnorderedList } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 import { PRIVACY, photosInUse, photosShown } from '../../lib/legalRelease'
 
@@ -27,18 +27,18 @@ const SupportEmail = () => (
 /** What stays after a deletion, and for how long. */
 export const AfterDeletionList = () => (
   <UnorderedList spacing={2} ps={4} textStyle="body">
-    <ListItem>
+    <li>
       Chat messages{PRIVACY.storedQuestions ? ' and typed questions and answers' : ''} you sent stay in their room until{' '}
       {PRIVACY.scheduledRetention
         ? "they're deleted: about 24 hours after you sent them in a private room, 14 days after in a public room."
         : 'they expire (after 24 hours in private rooms, 14 days in public rooms); after that nobody can read them.'}
-    </ListItem>
-    <ListItem>
+    </li>
+    <li>
       Reports, including the names and chat lines attached to them, are kept for as long as we need them to keep players
       safe, handle appeals and meet legal obligations. They're no longer linked to your account.
-    </ListItem>
+    </li>
     {PRIVACY.banTombstone && (
-      <ListItem>
+      <li>
         If your account had a ban, pause or mute that was still running, or a warning or other sanction from the last 90
         days, we keep a short record of each: what it was, the rule it was for (as a category, not our notes), when it
         started and ends, and a coded fingerprint of each way you signed in (your email address once confirmed, and your
@@ -48,66 +48,66 @@ export const AfterDeletionList = () => (
         ended, and we review it. Each record also keeps its reference number, whether it can be appealed, how many
         warnings came before it and whether it was a child-safety case; none of these identify you. We don't keep your
         name, username, messages or anything else for this.
-      </ListItem>
+      </li>
     )}
-    <ListItem>
+    <li>
       Records of games you played (such as moves, votes and results) stay with those games, with no end date. They identify players only
       by a random ID, which no longer leads to your account. A room you still host with nobody to pass it to is deleted, with its games' records. Usage events, which use the same ID, are deleted after 180
       days{PRIVACY.playOnline ? ", and Play Online's matchmaking log, which uses it too, after 90 days" : ''}.
-    </ListItem>
+    </li>
     {PRIVACY.childSafetyHolds && (
-      <ListItem>
+      <li>
         If your account is part of a child-safety case, we first keep a restricted copy of the case, your email address,
         names, sign-in dates and the IP addresses in our sign-in log, your messages still on our servers and your encrypted IP addresses, for 1 year, or longer
         if the authorities ask us to. Nobody but the person who handles child-safety cases and the authorities can see it.
-      </ListItem>
+      </li>
     )}
     {PRIVACY.drawingCheck && (
-      <ListItem>
+      <li>
         A drawing kept as evidence (see Data Retention) stays until its period ends, even if the account that drew it is
         deleted.
-      </ListItem>
+      </li>
     )}
-    <ListItem>
+    <li>
       Security logs of account activity (such as sign-ups, sign-ins, {PRIVACY.passwordless ? 'sign-in codes sent' : PRIVACY.emailCodes22 ? 'sign-in codes sent, password resets' : 'password resets'} and email changes), which can include
       your email address and IP address, are kept{PRIVACY.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
       prevent abuse.
-    </ListItem>
+    </li>
     {PRIVACY.socialFeatures && (
-      <ListItem>
+      <li>
         The social safety log (see Safety Information) keeps its entries for 1 year with your account taken out of them,
         and party chat lines you wrote stay with the party, with your account taken out of them, until they're deleted 30 days after they were sent.
-      </ListItem>
+      </li>
     )}
     {PRIVACY.intercepts && (
-      <ListItem>
+      <li>
         The signs our fair-play checks found on your account stay until their 400 days end, or longer while they're
         part of an open case or an alert that's waiting for our review, identified only by a random ID that no longer leads to your account.
-      </ListItem>
+      </li>
     )}
     {PRIVACY.ipVault && (
-      <ListItem>
+      <li>
         The encrypted IP addresses of your account's sign-up and sign-ins stay until their 90 days end, or up to 1 year
         when they're part of a report to NCMEC{PRIVACY.childSafetyHolds ? ', a child-safety case' : ''} or a law-enforcement request.
-      </ListItem>
+      </li>
     )}
     {/* photosPrivate: a photo's public link no longer opens at all (the bucket is private), so no cached copy either. */}
     {photosInUse(PRIVACY) &&
       (PRIVACY.photoCleanup ? (
         photosShown(PRIVACY) && (
-          <ListItem>
+          <li>
             A copy of your profile photo that our content delivery network cached can still open by its link for up to
             an hour.
-          </ListItem>
+          </li>
         )
       ) : (
-        <ListItem>
+        <li>
           Your profile photo's file isn't deleted automatically yet. If you had one, email <SupportEmail /> and we'll
           delete it within one month.
-        </ListItem>
+        </li>
       ))}
     {PRIVACY.purchases && (
-      <ListItem>
+      <li>
         {PRIVACY.revenueCatDeletion ? (
           <>
             RevenueCat's record of your purchases (an ID linked to your account, and what you bought) is deleted within
@@ -123,49 +123,49 @@ export const AfterDeletionList = () => (
         can come back on another SpySocial account with Restore Purchases, on the App Store or Google Play account you
         paid with. Deleting your account doesn't cancel a subscription: cancel it in your App Store or Google Play
         settings.
-      </ListItem>
+      </li>
     )}
     {PRIVACY.creatorCodes && (
-      <ListItem>
+      <li>
         If you entered a creator code, the record that a player entered it, and the amounts of the purchases credited to
         the creator, stay so we can pay the creator and keep our accounting records. Nothing in them leads to your
         account any more.
-      </ListItem>
+      </li>
     )}
     {PRIVACY.communityPacks && (
-      <ListItem>
+      <li>
         The packs you published to Community Packs stay there for other players, with your username removed at once:
         they show Anonymous as their creator, and players who added them keep them.
-      </ListItem>
+      </li>
     )}
     {PRIVACY.trading && (
-      <ListItem>
+      <li>
         Trades you made stay, with your account taken out of them, because the other player's items and Intel came from
         them (who closed a trade can stay in its record as a random ID that no longer leads to your account). Items and Intel you got in a trade that's still protected (in its first 7 days) go back to the player who
         gave them.
-      </ListItem>
+      </li>
     )}
     {PRIVACY.blackMarket && (
-      <ListItem>
+      <li>
         Your Black Market offers, listings and sales stay in the market's records, with your account taken out of them,
         because the other players' items and Intel came from them (the market's event log can keep a random ID that no longer leads to your account).
-      </ListItem>
+      </li>
     )}
     {PRIVACY.intel && PRIVACY.intelLedger && (
-      <ListItem>
+      <li>
         The lines of your Intel ledger{PRIVACY.intelCorrections ? ', and the records of any correction to it,' : ''} stay
         for good with no link to you (we remove who they belonged to), so that totals and our published reports stay
         right; the app version and platform in a line are dropped once it's 2 years old.
-      </ListItem>
+      </li>
     )}
     {PRIVACY.mintedCollectibles && (
-      <ListItem>
+      <li>
         The public ledger's entries for your {PRIVACY.ledgerUniquesOnly ? 'Uniques' : 'collectibles'} stay for good, so that it can always be checked. They never
         named you: we delete your account's secret and take your account out of your copies' records, so their holder
         codes no longer point at anyone.
-      </ListItem>
+      </li>
     )}
-    <ListItem>Copies in our database backups are deleted as those backups expire, within 30 days.</ListItem>
+    <li>Copies in our database backups are deleted as those backups expire, within 30 days.</li>
   </UnorderedList>
 )
 
