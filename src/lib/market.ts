@@ -1,7 +1,7 @@
 /**
  * The Market (www.spysocial.app/market): the Black Market's prices for every non-Unique item, read from the app's
  * ledger function without an account (app repo supabase/functions/ledger, ops `market` and `market_item`: the database's
- * market_public, 20261231980000_market_public_1110). Aggregates only: the server sends no player, order or single trade,
+ * market_public, 20261231990000_market_public_1110). Aggregates only: the server sends no player, order or single trade,
  * and an item has a price only when at least `min_trades` counted trades make it. Its days are UTC dates.
  *
  * An item's PRICE on a day is the average of its trades in the 7 days to that day (30, then 90 days while there are
