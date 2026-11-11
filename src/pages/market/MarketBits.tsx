@@ -1,7 +1,5 @@
 import { useMemo, type ReactNode } from 'react'
-import { useLocation } from 'react-router-dom'
 import Link from '../../components/SiteLink'
-import { canonicalPath } from '../../lib/siteHost'
 import { FaCaretDown, FaCaretUp, FaFlask, FaTriangleExclamation } from 'react-icons/fa6'
 import ui from '../../components/ui/ui.module.css'
 import { SearchField } from '../../components/SearchField'
@@ -24,31 +22,12 @@ import { CATEGORY_ICON } from './icons'
 import a from '../archive/archive.module.css'
 import s from './market.module.css'
 
-/** The Market's places, and the Archive for Uniques. */
-export function SubNav() {
-  const { w } = useMarketWords()
-  // The canonical path ('/market/catalogue'), on market.spysocial.app too (its '/catalogue').
-  const pathname = canonicalPath(useLocation().pathname)
-  const here = (p: string, exact = true) => ((exact ? pathname === p : pathname.startsWith(p)) ? 'page' : undefined)
-  return (
-    <nav aria-label={w.nav.label}>
-      <ul className={a.subnav}>
-        <li><Link to="/market" aria-current={here('/market')}>{w.nav.market}</Link></li>
-        <li><Link to="/market/movers/rises" aria-current={here('/market/movers', false)}>{w.nav.movers}</Link></li>
-        <li><Link to="/market/catalogue" aria-current={here('/market/catalogue', false)}>{w.nav.catalogue}</Link></li>
-        <li><Link to="/archive">{w.nav.archive}</Link></li>
-      </ul>
-    </nav>
-  )
-}
-
-/** Every Market page: the dark vault, the sub-nav and the lines that must show above everything (sample, beta, paused). */
+/** Every Market page: the dark vault and the lines (its nav is in the header: components/HostNav) that must show above everything (sample, beta, paused). */
 export function MarketPage({ head, children }: { head?: MarketHead | null; children: ReactNode }) {
   const { w } = useMarketWords()
   return (
     <div className={`${a.page} ${s.page}`}>
       <div className={ui.wrap}>
-        <SubNav />
         {sampleOn() ? (
           <p className={`${a.notice} ${s.sample}`} role="note">
             <FaFlask aria-hidden focusable={false} />

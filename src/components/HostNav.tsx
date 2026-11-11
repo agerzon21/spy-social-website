@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useLang, type LangCode } from '../i18n'
 import { archiveStrings } from '../pages/archive/strings'
+import { marketStrings } from '../pages/market/strings'
 import { canonicalPath, type SiteHost } from '../lib/siteHost'
 import SiteLink from './SiteLink'
 import s from './shell.module.css'
 
 type Section = Exclude<SiteHost, 'main'>
-/** A link by canonical path; `also` is a prefix that marks it current too (a Unique's page is All Uniques'). */
-type Item = { to: string; label: string; also?: string }
+/** A link by canonical path; `also` holds prefixes that mark it current too (a Unique's page is All Uniques'). */
+type Item = { to: string; label: string; also?: string[] }
 
 /** Each subdomain's places, in its own words. */
 const ITEMS: Record<Section, (lang: LangCode) => { label: string; items: Item[] }> = {
@@ -18,13 +19,25 @@ const ITEMS: Record<Section, (lang: LangCode) => { label: string; items: Item[] 
       label: w.archive,
       items: [
         { to: '/archive', label: w.archive },
-        { to: '/archive/uniques', label: w.browse, also: '/archive/u/' },
+        { to: '/archive/uniques', label: w.browse, also: ['/archive/u/'] },
         { to: '/ledger', label: w.ledger },
         { to: '/transparency', label: w.transparency },
       ],
     }
   },
-  market: () => ({ label: '', items: [] }),
+  market: (lang) => {
+    const w = marketStrings(lang).nav
+    return {
+      label: w.label,
+      items: [
+        { to: '/market', label: w.market },
+        { to: '/market/movers/rises', label: w.movers, also: ['/market/movers'] },
+        // An item's page is the Catalogue's.
+        { to: '/market/catalogue', label: w.catalogue, also: ['/market/catalogue', '/market/item/'] },
+        { to: '/archive', label: w.archive },
+      ],
+    }
+  },
 }
 
 /**
@@ -37,7 +50,7 @@ const HostNav = ({ section }: { section: Section }) => {
   const { lang } = useLang()
   const path = canonicalPath(useLocation().pathname.replace(/\/+$/, '') || '/')
   const { label, items } = ITEMS[section](lang)
-  const current = items.find((it) => path === it.to || (it.also && path.startsWith(it.also)))?.to
+  const current = items.find((it) => path === it.to || it.also?.some((p) => path.startsWith(p)))?.to
   const ref = useRef<HTMLUListElement>(null)
   useEffect(() => {
     const list = ref.current
