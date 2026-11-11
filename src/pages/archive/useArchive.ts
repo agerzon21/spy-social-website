@@ -1,22 +1,26 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useLang, type LangCode } from '../../i18n'
-import { ArchiveBusy, fetchUniques, loadArchiveData, loadArtIndex, type ArchiveData, type ArchiveList, type ArchiveSet } from '../../lib/archive'
+import { ArchiveBusy, fetchUniques, loadArchiveData, loadArtIndex, loadLookIndex, type ArchiveData, type Looks, type ArchiveList, type ArchiveSet } from '../../lib/archive'
 import { archiveStrings, type ArchiveStrings } from './strings'
 
+const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set() }
+
 /** The page's words, the app's tables in the reader's language, and the pictures drawn so far. */
-export function useArchive(): { w: ArchiveStrings; data: ArchiveData | null; art: Set<string>; lang: LangCode; locale: string } {
+export function useArchive(): { w: ArchiveStrings; data: ArchiveData | null; art: Set<string>; looks: Looks; lang: LangCode; locale: string } {
   const { lang, language } = useLang()
   const [data, setData] = useState<ArchiveData | null>(null)
   const [art, setArt] = useState<Set<string>>(new Set())
+  const [looks, setLooks] = useState<Looks>(NO_LOOKS)
   useEffect(() => {
     let live = true
     loadArchiveData(lang).then((d) => live && setData(d))
     loadArtIndex().then((a) => live && setArt(a))
+    loadLookIndex().then((l) => live && setLooks(l))
     return () => {
       live = false
     }
   }, [lang])
-  return { w: archiveStrings(lang), data, art, lang, locale: language.locale }
+  return { w: archiveStrings(lang), data, art, looks, lang, locale: language.locale }
 }
 
 export const fmt = (n: number, locale: string) => n.toLocaleString(locale)

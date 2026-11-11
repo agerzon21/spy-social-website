@@ -223,6 +223,47 @@ export function artOf(art: Set<string>, item: string, serial?: number | null, sm
   return null
 }
 
+/**
+ * The item alone and "See it worn" (archive-item-art-1111, owner Nov 11: no agent on a Unique's picture; the
+ * standard agent only when asked): public/archive/item/<key>.webp (a wearable cut out of the app's own drawing,
+ * transparent; a backdrop's scene) and public/archive/worn/<key>-m|f.webp (the standard agents wearing it), made by
+ * scripts/archive-item-art. Celebrations, locals, titles and borders keep their full-frame picture (artOf).
+ */
+export type Looks = { item: Set<string>; worn: Set<string>; scene: Set<string> }
+let lookCache: Promise<Looks> | null = null
+export function loadLookIndex(): Promise<Looks> {
+  if (!lookCache) {
+    const keys = (path: string) =>
+      fetch(path)
+        .then((r) => (r.ok ? (r.json() as Promise<string[]>) : []))
+        .then((k) => new Set(k))
+        .catch(() => new Set<string>())
+    lookCache = Promise.all([keys('/archive/item/index.json'), keys('/archive/worn/index.json'), keys('/archive/scene/index.json')]).then(
+      ([item, worn, scene]) => ({ item, worn, scene }),
+    )
+  }
+  return lookCache
+}
+
+/**
+ * How a Unique's picture shows its item: in the display case (a wearable), framed on its wall (a backdrop), or its
+ * scene filling the picture (a celebration, a local, a border: public/archive/scene, full-bleed, no case).
+ */
+export type ItemLook = { kind: 'case' | 'wall' | 'scene'; alone: string; worn: { m: string; f: string } | null }
+
+/** The copy's own look, else its item's plain Legendary's, else null (not drawn this way yet: the tile as it is). */
+export function lookOf(looks: Looks, item: string, serial?: number | null, small = false): ItemLook | null {
+  const pick = (set: Set<string>) => (serial != null && set.has(`u-${item}-${serial}`) ? `u-${item}-${serial}` : set.has(`l-${item}`) ? `l-${item}` : null)
+  // An item alone first (a wearable, a backdrop, the border lifted off its scene), else a scene filling the frame.
+  const key = pick(looks.item)
+  if (!key) {
+    const sc = pick(looks.scene)
+    return sc ? { kind: 'scene', alone: `/archive/scene/${sc}${small ? '-s' : ''}.webp`, worn: null } : null
+  }
+  const worn = looks.worn.has(`${key}-m`) && looks.worn.has(`${key}-f`) ? { m: `/archive/worn/${key}-m.webp`, f: `/archive/worn/${key}-f.webp` } : null
+  return { kind: item.startsWith('background_') ? 'wall' : 'case', alone: `/archive/item/${key}.webp`, worn }
+}
+
 /** A picture by its key (the float page's examples: x-cat-d1-3). */
 export const artKey = (key: string, small = false) => `/archive/art/${key}${small ? '-s' : ''}.webp`
 

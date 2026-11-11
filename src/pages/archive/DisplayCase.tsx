@@ -1,0 +1,84 @@
+import { useState } from 'react'
+import { useLang } from '../../i18n'
+import type { ItemLook } from '../../lib/archive'
+import { archiveStrings } from './strings'
+import c from './displayCase.module.css'
+
+/**
+ * A wearable Unique alone in the display case, a backdrop framed on the wall (archive-item-art-1111, owner's pick
+ * Nov 11: option C, no agent on the picture), inside the copy's own foil ring (`ring`: its full tile, the inside
+ * covered). With `wear` (a Unique's page): "See it worn" turns the card over to the standard agent wearing it, on the
+ * same dark room, straight (no tilt), Him | Her. A mouse turns it while it hovers; a tap on the chip turns it on a
+ * phone. Celebrations, locals, titles and borders never come here: their picture is the full frame (Piece's img).
+ */
+export function DisplayCase({ ring, look, alt, wear = false, eager = false }: { ring: string; look: ItemLook; alt: string; wear?: boolean; eager?: boolean }) {
+  const { lang } = useLang()
+  const w = archiveStrings(lang).worn
+  const [worn, setWorn] = useState(false)
+  const [who, setWho] = useState<'m' | 'f'>('m')
+  const canWear = wear && !!look.worn
+  const mouse = (e: React.PointerEvent, on: boolean) => {
+    if (canWear && e.pointerType === 'mouse') setWorn(on)
+  }
+  const Ring = <img className={c.ring} src={ring} alt="" width={640} height={640} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  return (
+    <span className={c.box} data-worn={worn ? '1' : undefined} onPointerEnter={(e) => mouse(e, true)} onPointerLeave={(e) => mouse(e, false)}>
+      <span className={c.card}>
+        <span className={c.face} aria-hidden={worn || undefined}>
+          {Ring}
+          <span className={c.inside}>
+            {look.kind === 'scene' ? null : <span className={c.room} />}
+            {look.kind === 'scene' ? null : <span className={c.beam} />}
+            {look.kind === 'scene' ? (
+              <img className={c.scene} src={look.alone} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+            ) : look.kind === 'case' ? (
+              <>
+                <span className={c.column} />
+                <span className={c.top} />
+                <span className={c.glass} />
+                <img className={c.item} src={look.alone} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+              </>
+            ) : (
+              <>
+                <span className={c.painting}>
+                  <img src={look.alone} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+                </span>
+                <span className={c.bench} />
+              </>
+            )}
+          </span>
+          {canWear ? (
+            <button type="button" className={`${c.chip} ${c.chipSee}`} onClick={() => setWorn(true)} tabIndex={worn ? -1 : 0}>
+              <svg viewBox="0 0 24 24" aria-hidden focusable="false">
+                <circle cx="12" cy="8" r="4" />
+                <path d="M4 21c1.2-4.2 4.4-6.5 8-6.5s6.8 2.3 8 6.5" />
+              </svg>
+              {w.see}
+            </button>
+          ) : null}
+        </span>
+        {canWear && look.worn ? (
+          <span className={`${c.face} ${c.back}`} aria-hidden={!worn || undefined}>
+            {Ring}
+            <span className={c.inside}>
+              <span className={c.room} />
+              <span className={c.beam} />
+              <img className={look.kind === 'wall' ? c.scene : c.agent} src={look.worn[who]} alt={worn ? `${w.label}: ${who === 'm' ? w.him : w.her}` : ''} loading="lazy" decoding="async" />
+            </span>
+            <button type="button" className={`${c.chip} ${c.chipBack}`} onClick={() => setWorn(false)} tabIndex={worn ? 0 : -1}>
+              <span aria-hidden>↺</span>
+              {w.back}
+            </button>
+            <span className={c.toggle} role="group" aria-label={w.label}>
+              {(['m', 'f'] as const).map((g) => (
+                <button key={g} type="button" aria-pressed={who === g} onClick={() => setWho(g)} tabIndex={worn ? 0 : -1}>
+                  {g === 'm' ? w.him : w.her}
+                </button>
+              ))}
+            </span>
+          </span>
+        ) : null}
+      </span>
+    </span>
+  )
+}

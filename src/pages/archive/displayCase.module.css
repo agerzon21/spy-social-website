@@ -1,0 +1,57 @@
+/* The display case (DisplayCase.tsx). The picture is the same in the light and the dark site themes: a dark room
+   inside the copy's foil ring, as the app's tiles are. Every place and size is a share of the box, so one drawing
+   serves the 460 px stage and the 320 px grid card. */
+.box { position: relative; display: block; aspect-ratio: 1; perspective: 1600px; container-type: inline-size; }
+.card { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.box[data-worn] .card { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.back { transform: rotateY(180deg); }
+.ring { position: absolute; inset: 0; display: block; width: 100%; height: 100%; background: #0e131f; }
+/* archive.module.css gives every picture in a .piece the theme's deep colour behind it (light in the light theme): the
+   cut-outs here are see-through, so nothing behind them but the room. */
+.box .inside img { background: none; aspect-ratio: auto; }
+
+/* The tile's inside (58 .. 582 of its 640). */
+.inside { position: absolute; left: 9.0625%; top: 9.0625%; width: 81.875%; height: 81.875%; overflow: hidden; border-radius: 0.6cqi; }
+.inside > * { position: absolute; }
+.room { inset: 0; background: linear-gradient(#0d121d, #161d2c 64%, #0b0f18 64%, #121827); }
+.beam { inset: 0; background: conic-gradient(from 160deg at 50% -8%, transparent 0deg, rgba(255, 243, 214, 0.16) 14deg, rgba(255, 243, 214, 0.16) 26deg, transparent 40deg); }
+.column { left: 30%; top: 71%; width: 40%; height: 30%; background: linear-gradient(90deg, #26304a, #3b4763 45%, #222b42); }
+.top { left: 27%; top: 68%; width: 46%; height: 6%; border-radius: 50%; background: linear-gradient(#5a6684, #34405a); }
+.glass {
+  left: 20%; top: 8%; width: 60%; height: 63%;
+  border: max(1px, 0.35cqi) solid rgba(220, 235, 255, 0.22); border-bottom: none; border-radius: 1cqi 1cqi 0 0;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.07) 0 18%, transparent 18% 26%, rgba(255, 255, 255, 0.04) 26% 30%, transparent 30%);
+}
+.box .inside .item { width: auto; height: auto; left: 50%; bottom: 31%; max-width: 60%; max-height: 54%; transform: translateX(-50%); object-fit: contain; filter: drop-shadow(0 1.4cqi 1.8cqi rgba(0, 0, 0, 0.55)); }
+.painting { left: 16%; top: 12%; width: 68%; height: 52%; padding: 1.6cqi; background: #2a2016; box-shadow: 0 0 0 0.5cqi #c9a24a, 0 2.6cqi 5cqi rgba(0, 0, 0, 0.6); box-sizing: border-box; }
+.box .painting img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.bench { left: 30%; top: 69%; width: 40%; height: 9%; border-radius: 0.7cqi; background: #34405a; box-shadow: inset 0 0.5cqi 0 rgba(255, 255, 255, 0.12); }
+
+/* Worn: the standard agent standing in the same room, straight, its bust on the floor line; a backdrop's worn view is
+   its own scene with the agent in it. */
+.box .inside .agent { left: 0; bottom: 0; width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; }
+.box .inside .scene { inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.chip, .toggle button {
+  font: 700 clamp(11px, 3.1cqi, 14px)/1 var(--ss-font-body, sans-serif); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.chip {
+  position: absolute; display: inline-flex; align-items: center; gap: 0.5em; padding: 0.6em 1em;
+  background: rgba(16, 21, 34, 0.84); color: #f2e9d0; border: 1px solid rgba(201, 162, 74, 0.6); border-radius: 999px; cursor: pointer;
+}
+.chip svg { width: 1.15em; height: 1.15em; fill: none; stroke: #c9a24a; stroke-width: 2.2; stroke-linecap: round; }
+.chip:hover, .chip:focus-visible { border-color: #c9a24a; }
+.chipSee { right: 12%; top: 12%; }
+.chipBack { left: 12%; top: 12%; }
+.toggle {
+  position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%); display: flex; padding: 3px;
+  background: rgba(16, 21, 34, 0.84); border: 1px solid rgba(201, 162, 74, 0.6); border-radius: 999px;
+}
+.toggle button { padding: 0.55em 1.1em; border: 0; border-radius: 999px; background: transparent; color: #f2e9d0; cursor: pointer; }
+.toggle button[aria-pressed='true'] { background: #c9a24a; color: #101522; }
+.chip:focus-visible, .toggle button:focus-visible { outline: 2px solid #ffd166; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card { transition: none; }
+}

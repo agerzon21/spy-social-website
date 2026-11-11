@@ -8,6 +8,7 @@ import ui from '../../components/ui/ui.module.css'
 import {
   ArchiveBusy,
   artOf,
+  lookOf,
   attributesOf,
   codenameOf,
   fetchUnique,
@@ -39,7 +40,7 @@ const EVENT_CLASS: Record<string, string | undefined> = { minted: s.evMinted, so
  */
 const ArchiveItem = () => {
   const { item = '', serial: serialParam = '' } = useParams()
-  const { w, data, art, lang, locale } = useArchive()
+  const { w, data, art, looks, lang, locale } = useArchive()
   const t = w.item
   const valid = ITEM.test(item) && SERIAL.test(serialParam)
   const serial = Number(serialParam)
@@ -79,6 +80,7 @@ const ArchiveItem = () => {
   }
 
   const pic = artOf(art, item, serial)
+  const look = pic ? lookOf(looks, item, serial) : null
   const attrs = u ? attributesOf(data, item, u.float) : []
   const glow = u ? swatchOf(data, item, u.float) : null
   const st = setText(u?.set, lang)
@@ -115,7 +117,7 @@ const ArchiveItem = () => {
         <div className={s.itemGrid}>
           <div className={s.stage} style={glow ? ({ '--glow': `${glow}66` } as React.CSSProperties) : undefined}>
             <div className={s.stagePiece}>
-              <Piece src={pic?.src ?? null} alt={`${title}${code ? ` · ${code}` : ''}`} eager />
+              <Piece src={pic?.src ?? null} alt={`${title}${code ? ` · ${code}` : ''}`} eager look={look} wear />
             </div>
             <div className={s.plinth} aria-hidden />
           </div>

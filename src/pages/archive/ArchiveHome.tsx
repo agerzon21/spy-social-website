@@ -5,7 +5,7 @@ import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import ui from '../../components/ui/ui.module.css'
-import { artKey, artOf, attributesOf, nameOf, uniquePath } from '../../lib/archive'
+import { artKey, artOf, attributesOf, lookOf, nameOf, uniquePath } from '../../lib/archive'
 import { ArchiveState, BetaNotice, FloatDigits, Piece, UniqueCard } from './ArchiveBits'
 import { fmt, useArchive, useUniques } from './useArchive'
 import s from './archive.module.css'
@@ -23,7 +23,7 @@ const ENIGMA = [
 ]
 
 const ArchiveHome = () => {
-  const { w, data, art, locale } = useArchive()
+  const { w, data, art, looks, locale } = useArchive()
   const h = w.home
   const { list, state, retry } = useUniques()
   const copies = useMemo(() => list?.copies ?? [], [list])
@@ -81,7 +81,7 @@ const ArchiveHome = () => {
             <div className={s.fan} aria-hidden="true">
               {(fan.length ? fan : [null, null, null]).map((c, i) => (
                 <div key={c ? `${c.item_code}-${c.serial}` : i} className={s.fanCard}>
-                  <Piece src={c ? artOf(art, c.item_code, c.serial)?.src ?? null : null} alt="" eager />
+                  <Piece src={c ? artOf(art, c.item_code, c.serial)?.src ?? null : null} alt="" eager look={c && artOf(art, c.item_code, c.serial) ? lookOf(looks, c.item_code, c.serial) : null} />
                 </div>
               ))}
             </div>
@@ -199,7 +199,7 @@ const ArchiveHome = () => {
                     style={{ insetInlineStart: `${Math.min(99.5, Number(c.float) * 100)}%` }}
                     title={`${nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
                   >
-                    <img src={artOf(art, c.item_code, c.serial, true)?.src} alt={`#${c.serial}`} width={30} height={30} loading="lazy" />
+                    <img src={lookOf(looks, c.item_code, c.serial)?.alone ?? artOf(art, c.item_code, c.serial, true)?.src} alt={`#${c.serial}`} width={30} height={30} loading="lazy" />
                   </Link>
                 ))}
                 {[0, 0.5, 1].map((t) => (

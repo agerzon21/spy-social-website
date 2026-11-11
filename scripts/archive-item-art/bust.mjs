@@ -52,7 +52,8 @@ for (const j of jobs) {
   svgs.push([`${j.key}.field`, N.avatarXml({ config: WEARERS[0], spotlight: PLATES[0], layer: 'backdrop' })]);
   for (const [g, cfg] of Object.entries(STANDARD)) {
     const wear = { ...cfg, [j.slot]: j.code };
-    svgs.push([`${j.key}.worn-${g}`, N.avatarXml({ config: wear, unique: j.unique, spotlight: PLATE, crop: CROP[j.slot] })]);
+    // Bare (owner Nov 11: the worn view stands in the case's own dark room, never on a light field): the figure alone.
+    svgs.push([`${j.key}.worn-${g}`, N.avatarXml({ config: wear, unique: j.unique, spotlight: PLATE, crop: CROP[j.slot], bare: true })]);
   }
 }
 for (const [g, cfg] of Object.entries(STANDARD)) svgs.push([`plain-${g}`, N.avatarXml({ config: cfg, spotlight: PLATE })]);
@@ -71,8 +72,9 @@ const b = await chromium.launch({ executablePath: HS });
 const p = await b.newPage({ viewport: { width: PX, height: PX } });
 for (const [name, xml] of svgs) {
   const sized = xml.replace('<svg ', `<svg width="${PX}" height="${PX}" `);
-  await p.setContent(`<html><body style="margin:0;background:#000">${sized}</body></html>`);
-  await p.screenshot({ path: `${OUT}/${name}.png`, clip: { x: 0, y: 0, width: PX, height: PX } });
+  const clear = /\.worn-/.test(name) && !name.includes('background_');
+  await p.setContent(`<html><body style="margin:0;background:${clear ? 'transparent' : '#000'}">${sized}</body></html>`);
+  await p.screenshot({ path: `${OUT}/${name}.png`, clip: { x: 0, y: 0, width: PX, height: PX }, omitBackground: clear });
 }
 await b.close();
 console.log('rendered', svgs.length);

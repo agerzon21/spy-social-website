@@ -9,7 +9,8 @@
 #    same with hair_long), framed by the app's slot crop.
 # 3. layers.mjs: a hat's and an outfit's own layers from the full-body figure (fullBody pieces, the copy's dye), the
 #    outfit's skin taken out; finish.py crops every cut-out.
-# 4. webp.py: public/archive/item/<key>.webp (transparent) and public/archive/worn/<key>-m.webp / -f.webp, index.json.
+# 4. webp.py: public/archive/item/<key>.webp (transparent) and public/archive/worn/<key>-m.webp / -f.webp, index.json;
+#    border.py: the Black Diamond border lifted off its scene (public/archive/scene) for the case.
 # Heavy-ish (a few hundred headless renders): mind the machine guard. Needs Pillow, numpy, Playwright (PLAYWRIGHT_PKG).
 set -eu
 REF="$1"
@@ -31,3 +32,4 @@ python3 "$HERE/mask.py" "$WORK/r2" > /dev/null
 node "$HERE/layers.mjs" "$WORK/r3" "$WORK/uniques.json" 1200 > /dev/null
 python3 "$HERE/finish.py" "$WORK/r2" "$WORK/r3" > /dev/null
 python3 "$HERE/webp.py" "$WORK/r2" "$WORK/r3" "$SITE/public/archive"
+python3 "$HERE/border.py" "$SITE/public/archive"

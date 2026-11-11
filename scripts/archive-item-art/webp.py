@@ -13,7 +13,9 @@ for f in glob.glob(os.path.join(R2, '*.scene.png')):
     Image.open(f).convert('RGB').resize((640, 640), Image.LANCZOS).save(os.path.join(item, os.path.basename(f)[:-len('.scene.png')] + '.webp'), 'WEBP', quality=82, method=6)
 for f in glob.glob(os.path.join(R2, '*.worn-*.png')):
     k, g = os.path.basename(f)[:-4].split('.worn-')
-    Image.open(f).convert('RGB').resize((480, 480), Image.LANCZOS).save(os.path.join(worn, f'{k}-{g}.webp'), 'WEBP', quality=82, method=6)
+    im = Image.open(f)
+    im = im.convert('RGB') if 'background_' in k else im.convert('RGBA')  # a wearable's worn figure is bare (transparent)
+    im.resize((480, 480), Image.LANCZOS).save(os.path.join(worn, f'{k}-{g}.webp'), 'WEBP', quality=84, method=6)
 for d in (item, worn):
     keys = sorted(os.path.basename(p)[:-5] for p in glob.glob(os.path.join(d, '*.webp')))
     with open(os.path.join(d, 'index.json'), 'w') as fh: json.dump(keys, fh); fh.write('\n')
