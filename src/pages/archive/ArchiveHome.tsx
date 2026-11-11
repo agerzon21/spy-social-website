@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Link } from 'react-router-dom'
+import Link from '../../components/SiteLink'
 import { FaFingerprint, FaHashtag, FaLink } from 'react-icons/fa6'
 import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'

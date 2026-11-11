@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from './SiteLink'
 import { useT } from '../i18n'
 import { LIVE } from '../lib/legalRelease'
 import { SHOP_URL } from '../lib/shop'

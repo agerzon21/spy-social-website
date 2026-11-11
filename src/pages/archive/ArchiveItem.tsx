@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import Link from '../../components/SiteLink'
 import { Helmet } from 'react-helmet-async'
 import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'
@@ -27,8 +28,8 @@ const SERIAL = /^[1-9]\d{0,8}$/
 const EVENT_CLASS: Record<string, string | undefined> = { minted: s.evMinted, sold: s.evSold, sale_undone: s.evUndone, burned: s.evBurned }
 
 /**
- * One Unique's own page (www.spysocial.app/archive/u/<item>/<serial>; the app's "View in the Archive" button opens
- * archive.spysocial.app/u/<item>/<serial>, which forwards here): its picture, number, codename, set and season, its
+ * One Unique's own page (archive.spysocial.app/u/<item>/<serial>, which the app's "View in the Archive" button
+ * opens): its picture, number, codename, set and season, its
  * certificate (the float and what each digit picks), how it was minted, whether it's for sale, and its ledger history
  * with sale prices in Intel. Never a player: holders are numbered, nothing more.
  */

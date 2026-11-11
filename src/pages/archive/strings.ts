@@ -1,5 +1,5 @@
 /**
- * The Archive's own words (www.spysocial.app/archive). English and Russian; the other eight languages read the English
+ * The Archive's own words (archive.spysocial.app). English and Russian; the other eight languages read the English
  * for now (the item names, attributes, sets, seasons and Intercept tiers are the app's own in all ten:
  * public/archive/data). Numbers, dates and prices arrive formatted.
  */

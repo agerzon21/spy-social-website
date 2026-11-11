@@ -330,7 +330,7 @@ const Privacy: React.FC = () => {
             code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger
             shows only that it moved from one holder code to another, never who traded or sold it, or the price.{' '}
             {PRIVACY.uniqueArchive &&
-              "The Archive (spysocial.app/archive) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. "}
+              "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. "}
             Each
             day only a fingerprint of the ledger is sent to GitHub and the Internet Archive, with no personal data in
             it.{' '}

@@ -1,4 +1,6 @@
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import Link from '../../components/SiteLink'
+import { canonicalPath } from '../../lib/siteHost'
 import { FaTriangleExclamation } from 'react-icons/fa6'
 import { artOf, codenameOf, nameOf, serialText, swatchOf, uniquePath, type ArchiveCopy, type ArchiveSet } from '../../lib/archive'
 import { fmt, setText, useArchive } from './useArchive'
@@ -19,7 +21,8 @@ export function BetaNotice({ chain }: { chain?: string }) {
 /** The Archive's three places. */
 export function SubNav() {
   const { w } = useArchive()
-  const { pathname } = useLocation()
+  // The canonical path ('/archive/uniques'), on archive.spysocial.app too (its '/uniques').
+  const pathname = canonicalPath(useLocation().pathname)
   const here = (p: string) => (pathname === p ? 'page' : undefined)
   return (
     <nav aria-label={w.nav.archive}>

@@ -1,5 +1,5 @@
 /**
- * The Archive (www.spysocial.app/archive; archive.spysocial.app forwards here): every Unique, read from the app's
+ * The Archive (archive.spysocial.app, its own host: lib/siteHost; www.spysocial.app/archive sends there): every Unique, read from the app's
  * ledger function without an account (app repo supabase/functions/ledger, ops `uniques` and `unique`: the database's
  * mint_unique_public, 20261225300000). Its answers never carry a player: no name, id or tag; a copy's holders are
  * numbered by their first appearance on its own ledger lines. Cached 60 s at the function; a busy answer is tried again.
