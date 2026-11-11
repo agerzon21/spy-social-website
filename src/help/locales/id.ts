@@ -263,7 +263,7 @@ const id: HelpText = {
             ...(o.interceptsInTrades ? ['Orang dewasa juga bisa memasukkan sadapan yang belum dibuka ke pertukaran: pilih berapa dari tiap tingkat. Masing-masing dihitung sebagai satu dari 10 item.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai 7 Desember, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
-            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.',
+            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : ''),
             'Intel hanya bisa ditukar antar orang dewasa.',
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel. Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri.', 'Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual.']),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
@@ -385,7 +385,7 @@ const id: HelpText = {
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
             '<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu, dan streak panjang menambah lagi (tiap hari ke-30 berturut-turut, satu Enigma).',
             '<b>Malam Permainan:</b> para pemenang malam itu mendapat satu Enigma.',
-            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? ' Sadapan dari kode atau hadiah hanya untukmu: tidak bisa ditukar atau dijual.' : ''}`,
+            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
             'Room privat tidak memberi sadapan.',
             ...(o.launch
               ? []
@@ -397,7 +397,7 @@ const id: HelpText = {
           q: 'Apa yang bisa kulakukan dengan duplikat?',
           a: [
             '<b>Hancurkan</b> salinan duplikat untuk mendapat Intel, sebanyak yang ditampilkan aplikasi.',
-            '<b>Tukar Tambah:</b> 5 duplikat dari satu kelangkaan memberimu 1 item acak dari kelangkaan berikutnya, dan 10 duplikat Legendaris memberimu satu item Unik.',
+            '<b>Tukar Tambah:</b> 5 duplikat dari satu kelangkaan memberimu 1 item acak dari kelangkaan berikutnya, dan 10 duplikat Legendaris memberimu satu item Unik.' + (o.launch ? " Jika ada hadiah di antaranya, hasilnya juga hanya untukmu." : ''),
             'Hanya duplikat yang dihitung, bukan salinan pertamamu atau item Unik.',
             'Salinan yang kamu beli atau dapat dari pertukaran dihitung sebagai duplikat jika kamu punya salinan lain dari item itu. Satu-satunya salinanmu selalu tetap ada.',
           ],
@@ -444,8 +444,8 @@ const id: HelpText = {
               ? 'Penguji yang menyelesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.'
               : 'Selesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
             o.testerInterceptsTradable
-              ? 'Tidak seperti hadiah lain, sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.'
-              : 'Seperti hadiah lain, sadapan terima kasih tetap di akunmu.',
+              ? '<b>Pin Beta</b>, gelar <b>Penguji Lapangan</b>, dan sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.'
+              : '<b>Pin Beta</b> dan gelar <b>Penguji Lapangan</b> bisa ditukar seperti apa pun yang kamu dapatkan sendiri; seperti hadiah lain, sadapan terima kasih tetap di akunmu.',
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
             'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',

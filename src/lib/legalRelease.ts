@@ -1274,9 +1274,13 @@ export const LIVE = {
    * app_config.economy.gift_copies_tradable true): copies we give (owner gifts) and the code / Beta copies that were
    * waiting for 3 real games are tradable at once, each flip written to the public ledger with its evidence; while
    * the switch is on, new ones mint tradable. Switching it off binds FUTURE copies only (a flipped or traded copy is
-   * never bound again). Turns on: Terms 9 Trades' tradable-items line. Off again (the old 3-real-games line) when the
-   * owner turns economy.gift_copies_tradable off before the launch (planned, with a gift icon in the app); set
-   * LEGAL_LAST_UPDATED's entry to that day. A server switch for every app version at once: set in LIVE.
+   * never bound again). Turns on: Terms 9 Trades' tradable-items line. Off in website U0 (Dec 6) for WG (Dec 7, owner
+   * 2026-11-06: "tethered to that account", and 2026-11-08, gift-rules-1108: Developer's Picks and anything the owner, a
+   * dev or a moderator grants count like code rewards; Intel is never bound; the Beta set trades at once, no games rule):
+   * what comes from a code or a gift stays with the account for good (Terms 9, transparency's GIFTS_BOUND_DEC7, Game
+   * Night Rules' bonus title); Intel we add (a refund, a make-good) is ordinary Intel (Terms 9's never-tradable list, the
+   * corrections section); set LEGAL_LAST_UPDATED's entry to that day. A server switch for every app version at once:
+   * set in LIVE.
    */
   giftsTradable: true,
   /**

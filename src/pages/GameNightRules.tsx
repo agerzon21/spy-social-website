@@ -17,7 +17,7 @@ import { LIVE } from '../lib/legalRelease'
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
-const UPDATED = 'November 7, 2026' // titles trade and sell as Terms 9 says, Intercepts earned or given (site-full-1106); before it, November 5, 2026: the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
+const UPDATED = LIVE.giftsTradable ? 'November 7, 2026' : 'December 7, 2026' // December 7 (U0, giftsTradable off): the developer's bonus title is a gift that stays with its account (gift-rules-1108); before it, titles trade and sell as Terms 9 says, Intercepts earned or given (site-full-1106); before it, November 5, 2026: the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -103,6 +103,8 @@ const GameNightRules: React.FC = () => (
       joins). He may give the night's bonus title to one or two players at a table he visits, chosen by him, and the
       table's chat says who got it. It doesn't depend on winning the game, and it's never a payment or a reward for
       buying anything.
+      {/* LIVE.giftsTradable off (U0, December 7, 2026; owner 2026-11-08, gift-rules-1108): his pick is a gift, like a code's reward. */}
+      {LIVE.giftsTradable ? '' : " It's a gift from us: it stays with the account it was given to, and it can't be traded, sold or given to anyone."}
     </P>
 
     {/* LIVE.intercepts: Game Night wins count toward Intercepts; the night's winners get an Enigma Intercept (crates seed, earn.game_night). */}
