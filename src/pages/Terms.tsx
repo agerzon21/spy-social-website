@@ -865,8 +865,11 @@ const Terms: React.FC = () => {
               The Black Market, in the app's Vault, is where adults buy and sell tradable items for Intel, never for
               money. On Items you place offers to buy or sell an item at a price you choose; an offer matches the best
               price on the other side, and the price of the offer that was waiting is the price paid. On Rare Finds you
-              list a Unique at a price, and can let other players make lower offers. Other players never see who is
-              buying or selling.
+              list a Unique at a price, and can let other players make lower offers.{' '}
+              {/* LIVE.rarefindsOffers: Rare Finds offers like CSFloat's (app server 20261231999981_rarefinds_offers_1111). */}
+              {LIVE.rarefindsOffers &&
+                "You choose how far below your price an offer may go (up to 15%), or take no offers. You can accept an offer, decline it, or counter it with a price between the offer and yours; the buyer can then buy at your counter, decline it or counter back. A counter holds nothing: the buyer pays when they accept it, as with Buy Now. Once you decline an offer, nobody can offer that low on that listing again: its lowest offer rises above the declined one, until you change the price. An offer or counter that isn't answered ends after 24 hours. If many of your offers are declined and almost none accepted, you can't make new offers for up to 3 days. "}
+              Other players never see who is buying or selling.
               {LIVE.interceptsMarket &&
                 " Unopened Intercepts can be bought and sold there too, by tier, for Intel only. What's inside one is random and is decided only when it's opened, by the odds the app shows for its tier."}
             </li>
@@ -883,9 +886,9 @@ const Terms: React.FC = () => {
             </li>
             <li>
               While an offer or listing is open, what it offers is held for it: the Intel of a buy offer, or the items of
-              a sell offer (you can still wear them). Each item sold costs a fee of 2% of its price (at least 1 Intel, at most 5,000
+              a sell offer (you can still wear them){LIVE.rarefindsOffers ? "; the Intel of an offer on Rare Finds is held until the offer is accepted, declined, countered, taken back or ends, and then comes back to you if it didn't buy the Unique" : ''}. Each item sold costs a fee of 2% of its price (at least 1 Intel, at most 5,000
               Intel), which is removed from the game. Members can have 8 offers open at once, others 4. You can stop an
-              offer or listing at any time and collect what's left.
+              offer or listing at any time and collect what's left{LIVE.rarefindsOffers ? ", except that an offer on Rare Finds (or a counter you sent) can be taken back only once it has waited 30 minutes" : ''}.
             </li>
             {LIVE.audit1103 && (
               <li>

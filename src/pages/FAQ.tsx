@@ -29,6 +29,8 @@ const OPTS: HelpOpts = {
   storeAgeSignals: LIVE.storeAgeSignals,
   testerMarket: LIVE.testerMarket === 'open',
   interceptsInTrades: LIVE.interceptsInTrades,
+  rarefindsOffers: LIVE.rarefindsOffers,
+  rarefindsOfferPush: LIVE.rarefindsOfferPush,
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).

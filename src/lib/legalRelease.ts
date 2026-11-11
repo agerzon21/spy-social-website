@@ -1595,6 +1595,30 @@ export const LIVE = {
    * Transparency's rule changes. Live on the server since 20261111040938 (Nov 11 04:09 UTC = November 10 in New York).
    */
   economyValuesL: true,
+  /**
+   * rarefinds-offers-1111 (owner Nov 11: Rare Finds offers work like CSFloat's; app repo server file
+   * 20261231999981_rarefinds_offers_1111, app branch feat/rarefinds-offers-1111): the seller picks how far below the price
+   * buyers may offer (Off, 5, 10 or 15%); accept, decline or counter (a counter holds no Intel: the buyer pays on accepting
+   * it, as Buy Now; the buyer buys at it, declines it or counters back); a Decline raises that listing's lowest offer for
+   * everyone (the declined offer + 1% of the price); an offer ends after 24 hours (its Intel back) and can be taken back
+   * only after 30 minutes; an account whose offers are declined again and again, with almost none accepted, can't make
+   * offers for up to 3 days. The numbers are the server's defaults (app_config.market offer_* keys, none written): if the
+   * owner changes one, change the pages too. Name no spam threshold on a page (only the "up to 3 days").
+   * Turns on: Terms 9's Black Market bullets (Rare Finds, what is held, taking an offer back), Privacy's Black Market item
+   * (an offer's end, counters, the Decline's minimum, the spam count) and the help center's Rare Finds offers answer.
+   * OFF until the server file is applied; then push the site with it on and set RAREFINDS_OFFERS_DAY (below) to that day
+   * (both Last Updated dates move with it). Not a material change (no new duty or penalty beyond the market's own
+   * rules): no TERMS_PUBLISHED or terms_version raise. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  rarefindsOffers: false,
+  /**
+   * rarefinds-offer-push-1111 (app repo server file 20261231999979_rarefinds_offer_push_1111, applied after
+   * 20261231999981, with the social-push function that words it): a Rare Finds buyer gets a push when the seller counters
+   * their offer, and when their offer is declined or ends (Black Market switch; no item, price or name). Turns on its
+   * clause in Privacy's Social Notifications and the help center's line. OFF until that file is applied; it shares
+   * RAREFINDS_OFFERS_DAY (if it goes later, move that day to its push day).
+   */
+  rarefindsOfferPush: false,
 }
 
 /** LIVE.economyValuesL's day in Transparency's rule changes: the New York day 20261225200000 was applied (live 20261111040938). */
@@ -1790,6 +1814,9 @@ export const LEDGER_UNIQUES_DAY = 'November 11, 2026'
 /** LIVE.chatMildMask's day in LEGAL_LAST_UPDATED: the day the server file 20261231999920_mild_swear_mask_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
 export const CHAT_MILD_MASK_DAY = 'November 11, 2026'
 
+/** LIVE.rarefindsOffers's (and LIVE.rarefindsOfferPush's) day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the server file 20261231999981_rarefinds_offers_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
+export const RAREFINDS_OFFERS_DAY = 'November 13, 2026'
+
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
@@ -1805,6 +1832,8 @@ export const EMAIL_CODES_22_DAY = 'November 11, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.rarefindsOffers
+    ? RAREFINDS_OFFERS_DAY // Terms 9's Rare Finds offers: the seller's discount, counters, a Decline's minimum, 24 h ends, the 30-minute take-back, the offer pause (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
     ? LEDGER_UNIQUES_DAY // Terms 9's collectibles bullet: the public ledger carries Uniques only (ledger-uniques-1111)
   : LIVE.emailCodes22
@@ -1881,6 +1910,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.rarefindsOffers || LIVE.rarefindsOfferPush
+    ? RAREFINDS_OFFERS_DAY // the Black Market item's offer ends, counters and offer pause; Social Notifications' Rare Finds buyer pushes (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
     ? LEDGER_UNIQUES_DAY // Collectibles and the public ledger: Uniques only on it, the monthly snapshot (ledger-uniques-1111)
   : LIVE.marketMedian

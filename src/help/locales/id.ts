@@ -344,6 +344,23 @@ const id: HelpText = {
             'Kamu bisa menghentikan penawaran kapan saja dan mengambil sisanya.',
           ],
         },
+        ...(o.rarefindsOffers
+          ? [
+              {
+                id: 'rare-finds-offers',
+                q: "Bagaimana cara kerja penawaran di Temuan Langka?",
+                a: [
+                  "Penjual memilih seberapa jauh di bawah harga kamu boleh menawar: sampai 5%, 10%, atau 15%, atau tanpa penawaran.",
+                  "Intel penawaranmu ditahan selama menunggu. Kalau penjual tidak menjawab dalam 24 jam, penawaran berakhir dan Intel kembali.",
+                  "Kamu bisa menarik penawaran setelah menunggu 30 menit.",
+                  "Penjual bisa menerima, menolak, atau mengajukan harga balik di antara penawaranmu dan harganya. Harga balik tidak menahan Intel-mu: beli dengan harga itu, tolak, atau ajukan harga balik lagi.",
+                  "Setelah penjual menolak sebuah penawaran, tidak ada yang bisa menawar serendah itu lagi di listing tersebut: penawaran terendah naik.",
+                  "Kalau banyak penawaranmu ditolak dan hampir tidak ada yang diterima, kamu tidak bisa membuat penawaran baru sampai 3 hari.",
+                  ...(o.rarefindsOfferPush ? ["Dengan notifikasi Pasar Gelap aktif, kamu mendapat notifikasi saat penjual mengajukan harga balik, dan saat penawaranmu ditolak atau berakhir."] : []),
+                ],
+              },
+            ]
+          : []),
         {
           id: 'black-market-protection',
           q: 'Apakah penjualan di Pasar Gelap dilindungi?',

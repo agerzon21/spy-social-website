@@ -35,6 +35,14 @@ export interface HelpOpts {
   interceptsInTrades: boolean
   /** Beta 2's Black Market is open to testers for real, Nov 9-16 (LIVE.testerMarket === 'open'). */
   testerMarket: boolean
+  /**
+   * Rare Finds offers like CSFloat's (LIVE.rarefindsOffers): the seller's discount, counters, a Decline's minimum, 24 h
+   * ends, the 30-minute take-back, the offer pause. TRANSLATIONS UNREVIEWED: every language but English is an agent's
+   * (rarefinds-offers-1111), not read by a native speaker.
+   */
+  rarefindsOffers: boolean
+  /** The Rare Finds buyer's pushes: a counter, an offer declined or ended (LIVE.rarefindsOfferPush). */
+  rarefindsOfferPush: boolean
 }
 
 export interface HelpItem {

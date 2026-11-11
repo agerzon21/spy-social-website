@@ -344,6 +344,23 @@ const ptBR: HelpText = {
             'Dá para cancelar uma oferta quando quiser e pegar o que sobrou.',
           ],
         },
+        ...(o.rarefindsOffers
+          ? [
+              {
+                id: 'rare-finds-offers',
+                q: "Como funcionam as ofertas nos Achados raros?",
+                a: [
+                  "O vendedor escolhe quanto abaixo do preço dá para oferecer: até 5%, 10% ou 15%, ou nenhuma oferta.",
+                  "O Intel da sua oferta fica reservado enquanto ela espera. Se o vendedor não responder em 24 horas, a oferta termina e o Intel volta.",
+                  "Você pode retirar uma oferta depois que ela esperar 30 minutos.",
+                  "O vendedor pode aceitar, recusar ou fazer uma contraoferta, com um preço entre a sua oferta e o dele. A contraoferta não reserva o seu Intel: compre por ela, recuse ou faça outra contraoferta.",
+                  "Quando um vendedor recusa uma oferta, ninguém mais pode oferecer tão pouco naquele anúncio: a oferta mínima sobe.",
+                  "Se muitas das suas ofertas forem recusadas e quase nenhuma aceita, você fica sem poder fazer ofertas novas por até 3 dias.",
+                  ...(o.rarefindsOfferPush ? ["Com as notificações do Mercado Negro ligadas, você recebe uma quando o vendedor faz uma contraoferta e quando sua oferta é recusada ou termina."] : []),
+                ],
+              },
+            ]
+          : []),
         {
           id: 'black-market-protection',
           q: 'As vendas do Mercado Negro são protegidas?',
