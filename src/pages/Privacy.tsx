@@ -1358,7 +1358,7 @@ const Privacy: React.FC = () => {
         or None; a title or border that shows a membership is shown only to players who share a room with you or played
         a game with you in the last 24 hours, and with a room you host in the room list.
         {PRIVACY.memberLoyalty &&
-          " While you're a member, the same players (in private rooms and at public tables) see how long you've been a member and its stamp on your player sheet, never the date it started or what you pay; Show my membership time in Settings (on unless you turn it off) hides it. An under-13 account's member time is never shown to other players."}
+          " While you're a member, how long you've been a member and its stamp are shown on your player sheet to the same players (in private rooms and at public tables), never the date it started or what you pay. This is on by default: other players see your membership length unless you turn off Show my membership time in Settings. An under-13 account's member time is never shown to other players."}
         {PRIVACY.creatorCodes &&
           " A content creator in our creator program shows a CONTENT CREATOR badge on their profile and player card to the players who share a private room with them or played a game in one with them in the last 24 hours; it isn't shown in public play. A title a creator code or a reward code gave you shows like any other title. We tell a content creator only totals for their code, never who entered it or what anyone bought."}
         {/* Agent Colours phase 2: get_my_game_view and get_watch_view send a pre-2.2 photo only to its owner at public tables. */}
