@@ -1539,7 +1539,22 @@ export const LIVE = {
    * Transparency's rule changes. Live on the server since 20261111040938 (Nov 11 04:09 UTC = November 10 in New York).
    */
   economyValuesL: true,
+  /**
+   * mod-cover-1111, the cover hold (owner Nov 11; app repo server file 20261231998700_mod_cover_1111, app feat/mod-cover-1111):
+   * a child-safety, grooming, sexual-with-a-minor or self-harm case the developer hasn't opened for 15 minutes shows every
+   * community moderator a stripped card (why it was reported, the reported player's own messages as text, the room or party,
+   * that player's username and public name only when their birth year shows an adult; never who reported, a reporter's note,
+   * a minor's details or a drawing), from which they may pause the reported account 24 h, remove it from that room or party,
+   * or hide its messages; each step is logged on the case and the developer can undo it; only he decides the case or reports
+   * it (NCMEC). Turns on Privacy's community-moderator sentence, Terms 8's Community moderators line and Child Safety's
+   * response item. Push the site with it on only after the server file is applied, and set MOD_COVER_HOLD_DAY to that day.
+   * A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  modCoverHold: false,
 }
+
+/** LIVE.modCoverHold's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231998700 is live). Never earlier than November 11, 2026. */
+export const MOD_COVER_HOLD_DAY = 'November 11, 2026'
 
 /** LIVE.economyValuesL's day in Transparency's rule changes: the New York day 20261225200000 was applied (live 20261111040938). */
 export const ECONOMY_VALUES_L_DAY = 'November 10, 2026'
@@ -1740,6 +1755,8 @@ export const PRACTICE_AI_DAY = 'December 6, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.modCoverHold
+    ? MOD_COVER_HOLD_DAY // Terms 8 and Child Safety: community moderators may hold a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: Terms 5's practice gate, Terms 9's test-phase Intel and never-tradable list
   : LIVE.testerMarket
@@ -1812,6 +1829,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.modCoverHold
+    ? MOD_COVER_HOLD_DAY // Data Sharing: what community moderators see of a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.archiveHolders
     ? ARCHIVE_HOLDERS_DAY // the Archive names a Unique's holder today when their profile is public (archive-holder-1110)
   : LIVE.marketSite

@@ -1424,7 +1424,11 @@ const Privacy: React.FC = () => {
           the player's earlier warnings and penalties, how many of the reporter's reports led to action, whether a
           player under 18 is involved and, for fair-play cases, the game patterns behind the case.{PRIVACY.moderatorRoomActions ? ' With our permission, a community moderator may also watch a Game Night table while it plays (seeing what a watcher sees: the agents, chat and drawings at that table), and read the Community Packs waiting for review with their creator\'s username.' : ''} They never see your
           email address, sign-in details, IP address, payment details or your age. Cases involving a child's safety, self-harm
-          or threats{PRIVACY.safetyAnswers1106 ? ', and reports of personal info shared by or with a player under 18,' : ''} go to SpySocial's developer only, never to community moderators. We keep a record of every case a
+          or threats{PRIVACY.safetyAnswers1106 ? ', and reports of personal info shared by or with a player under 18,' : ''}{' '}
+          {PRIVACY.modCoverHold
+            ? "are decided by SpySocial's developer only. If he hasn't opened one about a child's safety, grooming, sexual content with a player under 18 involved, or self-harm within 15 minutes, community moderators see a limited view of it so they can protect players until he does: why it was reported, the reported player's own messages as text, the room or party it happened in, and that player's username and public name only if their birth year shows they're an adult. They never see who reported it, a reporter's note, any details about a player under 18, or any drawing. They can only pause the reported account for 24 hours, remove it from that room or party, or hide its messages; we record each step (who, what, when and why), SpySocial's developer reviews and can undo each one, and only he decides the case or reports it to the authorities."
+            : "go to SpySocial's developer only, never to community moderators."}{' '}
+          We keep a record of every case a
           community moderator opens and every action they take (what they did, to whom, when and why), for as long as
           we keep reports, and we can see and undo each one. We also keep, for each community moderator, that they are
           one, what they may do, when they accepted the agreement and which version, and when their role started and

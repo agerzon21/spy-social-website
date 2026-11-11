@@ -237,7 +237,9 @@ const ChildSafety: React.FC = () => {
           A person reads every report within 24 hours. Reports about child safety, and reports involving a player
           under 18, are marked urgent and read first.
           {LIVE.safetyAnswers1106 &&
-            " Reports about a child's safety, and reports of personal info shared by or with a player under 18, are read by SpySocial's developer only, never by volunteer moderators."}
+            (LIVE.modCoverHold
+              ? " Reports about a child's safety are decided by SpySocial's developer only. If he hasn't opened one within 15 minutes, volunteer moderators see a limited view of it (never who reported it, never details about a player under 18, never a drawing) and can pause the reported account for 24 hours, remove it from the room or party, or hide its messages until he does; he reviews and can undo each step, and only he reports to the authorities. Reports of personal info shared by or with a player under 18 are read by SpySocial's developer only."
+              : " Reports about a child's safety, and reports of personal info shared by or with a player under 18, are read by SpySocial's developer only, never by volunteer moderators.")}
         </ListItem>
         <ListItem>We take the content down: the message, the drawing or the name.</ListItem>
         <ListItem>
