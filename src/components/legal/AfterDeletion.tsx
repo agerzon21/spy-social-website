@@ -69,7 +69,7 @@ export const AfterDeletionList = () => (
       </ListItem>
     )}
     <ListItem>
-      Security logs of account activity (such as sign-ups, sign-ins, {PRIVACY.passwordless ? 'sign-in codes sent' : 'password resets'} and email changes), which can include
+      Security logs of account activity (such as sign-ups, sign-ins, {PRIVACY.passwordless ? 'sign-in codes sent' : PRIVACY.emailCodes22 ? 'sign-in codes sent, password resets' : 'password resets'} and email changes), which can include
       your email address and IP address, are kept{PRIVACY.scheduledRetention ? ' for 180 days' : ''} to protect accounts and
       prevent abuse.
     </ListItem>

@@ -1207,6 +1207,18 @@ export const LIVE = {
    */
   passwordless: false,
   /**
+   * Version 2.2 signs in with emailed codes, older versions with a password (legal audit 1111, coordinator ruling Nov 11).
+   * Every 2.2 build (beta ios-34 / android-19 on, updates 60 and 61: app lib/emailCode.ts) signs in, saves a guest and
+   * re-checks before Delete Account with a 6-digit code from Supabase Auth (signInWithOtp / verifyOtp, sent through Resend's
+   * SMTP from noreply@mail.spysocial.app; 6 digits, 3600 s, one code a minute per address: docs/auth-dashboard-steps.md),
+   * or with Apple / Google; only the App Review accounts keep a password step. 2.1.1 still signs in with a password, and its
+   * sign-ups, new links and resets still go through the signup function (auth_email_sends). While passwordless is off, this
+   * makes the pages say both, by app version: Terms 3 (saving an account, keeping it safe), Privacy's Rate Limits, Data
+   * Retention's and AfterDeletionList's security-log examples, the deletion summary and Resend's item. passwordless
+   * (passwords gone for every version) still wins where both are read. A fact of the apps in use: set in LIVE.
+   */
+  emailCodes22: true,
+  /**
    * Social Phase 1 for everyone (app repo feat/social-switchon; server social files live Oct 31, 2026 for testers:
    * social graph 20261031024235, presence / invites / profile 024240, report contexts 024242, followers list 024244,
    * party 024246, Social Watch 033922, social push 053549, Following feed 055059, Report Party 062014, iOS minors' hold
@@ -1856,6 +1868,9 @@ export const PARTY_LEADER_LAPSE_DAY = 'November 11, 2026'
 /** LIVE.giftsTradable going false (website U0, owner's gift rules of Nov 6 and Nov 8: Terms 9, Intel corrections): its day in LEGAL_LAST_UPDATED (added by legal-integration-1111: before it, the flip moved no date). Set it to the day the site goes up with giftsTradable false. */
 export const GIFTS_BOUND_DAY = 'December 6, 2026'
 
+/** LIVE.emailCodes22's day (Terms 3, Privacy's sign-in lines): the day the site went up with it on. */
+export const EMAIL_CODES_22_DAY = 'November 11, 2026'
+
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
@@ -1869,6 +1884,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? MOD_COVER_HOLD_DAY // Terms 8 and Child Safety: community moderators may hold a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.testerIntercepts
     ? TESTER_GIFT_GAME_DAY // tester-gift-game-1111: Terms 9 names the testers' thank-you, its counted-game condition and whether its Intercepts trade (always set, so it heads the chain)
+  : LIVE.emailCodes22
+    ? EMAIL_CODES_22_DAY // Terms 3: 2.2 signs in with an emailed code, older versions with a password (legal audit 1111)
   : LIVE.chatMildMask
     ? CHAT_MILD_MASK_DAY // mild-swear-mask-1111: Safety and the Terms' UK section say public tables censor everyday swear words
   : LIVE.coverage1110
@@ -1943,6 +1960,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.memberLoyalty
     ? MEMBER_LOYALTY_DAY // Purchases: the membership-period record; Data Sharing: the member time on the player sheet (member-loyalty-1111)
+  : LIVE.emailCodes22
+    ? EMAIL_CODES_22_DAY // Rate Limits, security logs, Resend, the deletion summary: 2.2's sign-in codes beside older versions' passwords (legal audit 1111)
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
   : LIVE.modCoverHold
