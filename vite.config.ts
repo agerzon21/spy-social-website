@@ -399,7 +399,9 @@ function earlyScript(host: string, ledger: string, langChunks: Record<string, st
   const reads =
     host === 'archive'
       ? String.raw`f('/archive/data/'+L+'.json');
-  if(m=/^\/u\/([^/]+)\/(\d+)\/?$/.exec(P))l('op=unique&item='+encodeURIComponent(decodeURIComponent(m[1]))+'&serial='+Number(m[2]));
+  if(m=/^\/u\/([^/]+)\/(\d+)\/?$/.exec(P)){l('op=unique&item='+encodeURIComponent(decodeURIComponent(m[1]))+'&serial='+Number(m[2]));
+    var key='u-'+decodeURIComponent(m[1])+'-'+Number(m[2]);
+    [['art','/archive/art/'],['item','/archive/item/']].forEach(function(d){E['/archive/'+d[0]+'/index.json'].then(function(r){return r.clone().json()}).then(function(k){if(k.indexOf(key)>=0){var i=document.createElement('link');i.rel='preload';i.as='image';i.href=d[1]+key+'.webp';i.fetchPriority='high';document.head.appendChild(i)}},function(){})})}
   else if(/^\/(uniques\/?)?$/.test(P))l('op=uniques');`
       : String.raw`if(m=/^\/item\/([^/]+)\/?$/.exec(P))l('op=market_item&code='+encodeURIComponent(decodeURIComponent(m[1]))+'&lang='+encodeURIComponent(L));
   else l('op=market&lang='+encodeURIComponent(L));`
