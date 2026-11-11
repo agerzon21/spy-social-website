@@ -510,7 +510,10 @@ const Terms: React.FC = () => {
               : ''}{' '}They can
             propose a ban, but only SpySocial can ban an account, permanently or otherwise. We record every action a
             moderator takes and why, we can undo any of them, and you can appeal them like any other decision (see
-            Appeals below). Anything involving a child's safety, self-harm or threats{LIVE.safetyAnswers1106 ? ', and any report of personal information shared by or with a player under 18,' : ''} is handled by SpySocial only.
+            Appeals below). Anything involving a child's safety, self-harm or threats{LIVE.safetyAnswers1106 ? ', and any report of personal information shared by or with a player under 18,' : ''} is handled by SpySocial only
+            {LIVE.modCoverHold
+              ? ": if we haven't opened such a report within 15 minutes, a community moderator may pause the reported account for 24 hours, remove it from the room or party, or hide its messages until we do, and we review each of these steps. Only SpySocial decides the report."
+              : '.'}
           </P>
         </>
       )}
