@@ -997,7 +997,8 @@ export const LIVE = {
    * coded email and sign-up records, push receipts and sent notices are cleared by a later action, not on a clock, and the note that a trade or market code
    * was sent stays with the account. On: flip the day supabase/migrations_pending/20261231999700_retention_sweep_1111.sql is live (an hourly job; owner
    * "sweep yes" Nov 11; it replaces the never-applied 20261209970000_retention_sweep_1103): the pages then state the plain periods, and Data Retention
-   * adds that only an aggregate daily count of these records is kept (retention_daily_counts: day, kind, count; no user). A server switch: set in LIVE, never in PRIVACY_AHEAD. Set PRIVACY_LAST_UPDATED's date that day.
+   * adds that only an aggregate daily count of these records is kept (retention_daily_counts: day, kind, count; no user). A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   * Set RETENTION_SWEEP_DAY (its PRIVACY_LAST_UPDATED entry, added by legal-integration-1111: before it, the flip moved no date) to that day.
    */
   retentionSweep: false,
   /**
@@ -1607,9 +1608,11 @@ export const LIVE = {
    * sign-up that is never confirmed is deleted about 24 hours after the last confirmation email (the nightly
    * unconfirmed-accounts-sweep, 04:53 UTC, switched on by that file; it takes only sign-ups that never signed in or did
    * anything). Turns on its sentence in Privacy's Data Retention. Push the site with it on the day the server file is
-   * applied, and set UNCONFIRMED_SIGNUPS_DAY to that day.
+   * applied, and set UNCONFIRMED_SIGNUPS_DAY to that day. OFF in legal-integration-1111 (Nov 11): the branch had it on,
+   * but 20261231999800 is STAGED, NOT APPLIED (live schema_migrations has no unconfirmed_cleanup row; the nightly job is
+   * still paused), so "is deleted about 24 hours after" would be untrue today.
    */
-  unconfirmedSignups: true,
+  unconfirmedSignups: false,
   /**
    * mod-cover-1111, the cover hold (owner Nov 11; app repo server file 20261231998700_mod_cover_1111, app feat/mod-cover-1111):
    * a child-safety, grooming, sexual-with-a-minor or self-harm case the developer hasn't opened for 15 minutes shows every
@@ -1627,6 +1630,9 @@ export const LIVE = {
 
 /** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
 export const UNCONFIRMED_SIGNUPS_DAY = 'November 12, 2026'
+
+/** LIVE.retentionSweep's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999700_retention_sweep_1111 is applied). Never earlier than November 12, 2026. */
+export const RETENTION_SWEEP_DAY = 'November 12, 2026'
 
 /** LIVE.modCoverHold's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231998700 is live). Never earlier than November 11, 2026. */
 export const MOD_COVER_HOLD_DAY = 'November 11, 2026'
@@ -1800,6 +1806,11 @@ export const OPERATOR: {
  * before its feature goes live carries its date here (newest first), so its one-line flip in LIVE moves the date too;
  * set each date to its deploy day when flipping. The first switch that's on wins, so a later change that isn't one of
  * these switches (the 2.2 launch's, for one) must fold the chain back to a plain string first, then set it.
+ * ORDER (legal-integration-1111): the switch flipped LAST must be the first one that's on. The Nov 11 switches still off
+ * (memberLoyalty, partyLeaderLapse, modCoverHold here; memberLoyalty, modCoverHold, drawingMinorRooms, retentionSweep,
+ * unconfirmedSignups in PRIVACY_LAST_UPDATED) sit above the ones already on in no particular order: when you flip one,
+ * move its two lines to just under LIVE.tournaments (and under LIVE.practiceAi too once that is on) so a later flip
+ * below it can't be hidden. LIVE.testerIntercepts is never false (a string), so nothing under it ever shows.
  */
 /**
  * The day unopened Intercepts in friend trades go up (LIVE.interceptsInTrades; app branch fix/intercept-trades-1106): Terms' and
@@ -1932,6 +1943,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? MOD_COVER_HOLD_DAY // Data Sharing: what community moderators see of a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.drawingMinorRooms
     ? DRAWING_MINOR_ROOMS_DAY // Drawing Checks: adults' drawings checked in private rooms where a minor sits (drawing-minor-rooms-1111)
+  : LIVE.retentionSweep
+    ? RETENTION_SWEEP_DAY // Data Retention: the short-lived records deleted on the clock by the hourly sweep, and only a daily count kept (retention-sweep-1111)
   : LIVE.unconfirmedSignups
     ? UNCONFIRMED_SIGNUPS_DAY // Data Retention: never-confirmed email sign-ups deleted about 24 hours after the last confirmation email (unconfirmed-signups-1111)
   : LIVE.archiveHolders
