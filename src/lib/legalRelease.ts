@@ -1546,8 +1546,9 @@ export const LIVE = {
    * that player's username and public name only when their birth year shows an adult; never who reported, a reporter's note,
    * a minor's details or a drawing), from which they may pause the reported account 24 h, remove it from that room or party,
    * or hide its messages; each step is logged on the case and the developer can undo it; only he decides the case or reports
-   * it (NCMEC). Turns on Privacy's community-moderator sentence, Terms 8's Community moderators line and Child Safety's
-   * response item. Push the site with it on only after the server file is applied, and set MOD_COVER_HOLD_DAY to that day.
+   * it (NCMEC). Moderators' phones get a push for such a card (report-alert v37): "Safety case needs a hold", nothing about
+   * the case. Turns on Privacy's community-moderator sentence and its push line, Terms 8's Community moderators line and
+   * Child Safety's response item. Push the site with it on only after the server file is applied, and set MOD_COVER_HOLD_DAY to that day.
    * A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
   modCoverHold: false,
