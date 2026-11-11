@@ -35,6 +35,8 @@ export interface HelpOpts {
   interceptsInTrades: boolean
   /** Beta 2's Black Market is open to testers for real, Nov 9-16 (LIVE.testerMarket === 'open'). */
   testerMarket: boolean
+  /** The testers' thank-you Intercepts trade like anything earned (LIVE.testerIntercepts === 'tradable'); false: they stay with the account. */
+  testerInterceptsTradable: boolean
 }
 
 export interface HelpItem {

@@ -1267,6 +1267,17 @@ export const LIVE = {
    */
   giftsTradable: true,
   /**
+   * The 2.2 testers' thank-you Intercepts (owner 2026-11-11; app server tester_gift_game_1111, staged): every account on
+   * the 2.2 tester list gets the Beta Pin and the Beta Tester title; only one with at least one counted game (played to
+   * the end, shown in its Stats, any room) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of
+   * each tier and 1 month of membership. This switch follows the server's app_config tester_gift.intercepts_tradable
+   * (default true): 'tradable' (true) = those Intercepts trade like anything earned (the owner's Nov 8 rule: Beta items
+   * trade right away after Dec 7); 'bound' (false) = they stay with the account, like other gifts. Turns on: Terms 9's
+   * tester-rewards sentence, the help center's tester-rewards answer and the /beta page's line. Flip it in the same change
+   * as the server switch, and set TESTER_GIFT_GAME_DAY (below) to that day. A server switch: set in LIVE.
+   */
+  testerIntercepts: 'tradable' as 'tradable' | 'bound',
+  /**
    * The party's size in the Terms and the Privacy Policy, corrected (November 3, 2026): they said a leader and up to 3
    * friends; the app server's rule is up to 21 people in all (live app_config.party.max_size 21, checked that day), the
    * leader a member, at most half a table at Play Online and Game Night (2 at 4, 4 at 8; party_search), bigger parties
@@ -1718,6 +1729,9 @@ export const MARKET_SITE_DAY = 'November 10, 2026'
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
+/** LIVE.testerIntercepts's day (Terms 9's tester-rewards sentence, the counted-game condition): the day the site goes up with it, or with a flip of it. Never earlier than November 11, 2026. */
+export const TESTER_GIFT_GAME_DAY = 'November 11, 2026'
+
 /**
  * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
  * site goes up with it on, the same day as app_config.practice_rate_enabled goes true (the key is due by December 6).
@@ -1727,6 +1741,8 @@ export const PRACTICE_AI_DAY = 'December 6, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.testerIntercepts
+    ? TESTER_GIFT_GAME_DAY // tester-gift-game-1111: Terms 9 names the testers' thank-you, its counted-game condition and whether its Intercepts trade (always set, so it heads the chain)
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: Terms 5's practice gate, Terms 9's test-phase Intel and never-tradable list
   : LIVE.testerMarket

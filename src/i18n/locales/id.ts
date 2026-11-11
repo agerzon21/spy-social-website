@@ -867,7 +867,7 @@ const id: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Playtest live',
     title: 'Main duluan',
-    lede: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+    lede: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta dan satu gelar untuk setiap penguji, dan dengan satu game yang selesai sebelum 7 Desember, gelar kedua, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Game, XP, dan item dari tes ini direset saat peluncuran.',
     headsUp: '<b>Perhatian:</b> SpySocial di App Store dan Google Play adalah versi lama. Beta ini build baru yang sangat berbeda; kamu menginstalnya dari link yang kami kirim lewat email.',
@@ -915,7 +915,10 @@ const id: Strings = {
     get: {
       eyebrow: 'Yang kamu dapat',
       title: 'Hadiah beta yang tetap jadi milikmu setelah peluncuran',
-      items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
+      items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b>'],
+      gameTitle: 'Selesaikan satu game sebelum 7 Desember untuk juga dapat',
+      gameItems: ['Gelar <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
+      trade: { tradable: 'Setelah peluncuran, sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.', bound: 'Sadapan terima kasih tetap di akunmu.' },
       prizeTitle: 'Terima kasih $10 lewat PayPal + satu bonus $50',
       prize: 'Ucapan terima kasih $10 lewat PayPal untuk waktumu di sesi live: setiap pemain terkonfirmasi yang ikut penuh satu jam dan mengirim survei 5 menit menerimanya dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Hanya memasang build uji tidak membuatmu mendapatkannya. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu.',
       seats: (day: string) => `24 kursi. Ucapan terima kasih hanya untuk pemain yang kami konfirmasi lewat email (paling lambat ${day}) dan ikut sesi; yang lain masuk daftar tunggu untuk tes berikutnya.`,
