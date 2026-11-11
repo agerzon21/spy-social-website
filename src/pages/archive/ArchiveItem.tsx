@@ -18,7 +18,7 @@ import {
   type ArchiveUnique,
   type HistoryEvent,
 } from '../../lib/archive'
-import { ArchiveState, BetaNotice, FloatDigits, Piece, SubNav } from './ArchiveBits'
+import { ArchiveState, BetaNotice, FloatDigits, Piece } from './ArchiveBits'
 import { dayText, fmt, setText, useArchive } from './useArchive'
 import s from './archive.module.css'
 
@@ -62,7 +62,6 @@ const ArchiveItem = () => {
     return (
       <div className={`${s.page} ${s.foil}`}>
         <div className={ui.wrap}>
-          <SubNav />
           <div className={s.state}>
             <DisplayHeading as="h1" size={3}>
               {t.notFound}
@@ -97,7 +96,6 @@ const ArchiveItem = () => {
         <title>{`${title} · Archive · SpySocial`}</title>
       </Helmet>
       <div className={ui.wrap}>
-        <SubNav />
         <ol className={s.crumbs}>
           <li><Link to="/archive">{t.crumbs}</Link></li>
           <li><Link to={`/archive/uniques?item=${encodeURIComponent(item)}`}>{name}</Link></li>

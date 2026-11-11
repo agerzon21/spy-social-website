@@ -6,7 +6,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Layout } from './components'
 import ScrollManager from './components/ScrollManager'
 import OffHost from './components/OffHost'
-import { HOST, onThisHost, sitePath } from './lib/siteHost'
+import { HOST, onThisHost, sharedHere, sitePath } from './lib/siteHost'
 import Home from './pages/Home'
 import { lazy, Suspense, useMemo } from 'react'
 import { LIVE, ONLINE_SAFETY_TEXT } from './lib/legalRelease'
@@ -108,6 +108,10 @@ function App() {
               {marketOn && <Route path={sitePath('/market/catalogue')} element={<Layout><MarketCatalogue /></Layout>} />}
               {marketOn && <Route path={sitePath('/market/catalogue/:cat')} element={<Layout><MarketCatalogue /></Layout>} />}
               {marketOn && <Route path={sitePath('/market/item/:code')} element={<Layout><MarketItem /></Layout>} />}
+              {/* www's pages a subdomain serves too, with its header nav (lib/siteHost SHARED: the Archive's Ledger and
+                  Transparency); their canonical address stays www's. */}
+              {HOST !== 'main' && LIVE.mintedCollectibles && sharedHere('/ledger') && <Route path="/ledger" element={<Layout><Ledger /></Layout>} />}
+              {HOST !== 'main' && LIVE.transparencyPage && sharedHere('/transparency') && <Route path="/transparency" element={<Layout><Transparency /></Layout>} />}
               {/* www.spysocial.app's own pages: on the Archive's and the Market's hosts, the catch-all sends them there. */}
               {HOST === 'main' && (<>
               <Route path="/" element={<Layout isHome><Home /></Layout>} />
