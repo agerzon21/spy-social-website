@@ -8,29 +8,15 @@ import ScrollManager from './components/ScrollManager'
 import OffHost from './components/OffHost'
 import { HOST, onThisHost, sharedHere, sitePath } from './lib/siteHost'
 import Home from './pages/Home'
-import { lazy, Suspense, useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
+import { lazyPage } from './lib/lazyPage'
 import { LIVE, ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 import { SKIN_CSS, theme } from './theme'
 import { colorModeManager } from './theme/mode'
 import { useLang } from './i18n'
 
-// A page opened before a deploy asks for chunks the new deploy no longer has: reload once to fetch the new ones,
-// instead of leaving a blank screen. The flag stops a reload loop if the chunk is really missing.
-const page = <T,>(load: () => Promise<T>) =>
-  lazy(() =>
-    load()
-      .then((mod) => {
-        try { sessionStorage.removeItem('ss-chunk-reload') } catch { /* no storage: nothing to clear */ }
-        return mod
-      })
-      .catch((err) => {
-        let again = false
-        try { again = sessionStorage.getItem('ss-chunk-reload') === '1'; sessionStorage.setItem('ss-chunk-reload', '1') } catch { again = true }
-        if (again) throw err
-        window.location.reload()
-        return new Promise<T>(() => {})
-      }) as Promise<{ default: React.ComponentType<object> }>
-  )
+// A chunk lost to a deploy reloads the page instead of leaving a blank screen (lib/lazyPage).
+const page = lazyPage
 
 // Every page but Home in its own chunk (Lighthouse 2026-11-02: the legal pages' text was most of the first load's
 // unused JavaScript). The first visit to one of them loads its chunk; `page` handles a chunk lost to a new deploy.

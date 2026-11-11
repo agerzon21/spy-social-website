@@ -1,4 +1,5 @@
-import { lazy, Suspense } from 'react'
+import { Suspense } from 'react'
+import { lazyPage } from '../lib/lazyPage'
 import { useLocation } from 'react-router-dom'
 import Link from './SiteLink'
 import { useT } from '../i18n'
@@ -18,7 +19,8 @@ import s from './shell.module.css'
  * market.spysocial.app the site's own places follow the wordmark (components/HostNav).
  */
 // The Archive's and the Market's own nav (archive. / market.spysocial.app): its own chunk, never loaded on www.
-const HostNav = lazy(() => import('./HostNav'))
+// A chunk lost to a deploy reloads the page (lib/lazyPage) rather than taking the whole page down with it.
+const HostNav = lazyPage(() => import('./HostNav'))
 
 const Header = ({ isHome = false }: { isHome?: boolean }) => {
   const t = useT()
