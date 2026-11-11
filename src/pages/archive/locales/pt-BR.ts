@@ -87,6 +87,7 @@ const ptBR: ArchiveStrings = {
     next: 'Próxima',
   },
   card: { forSale: 'À venda', lastSale: 'Última venda', held: 'Com dono', retired: 'Retirado', intel: 'Intel' },
+  worn: { see: 'Ver vestido', back: 'O item', him: 'Ele', her: 'Ela', label: 'O agente padrão usando este item' },
   item: {
     crumbs: 'Arquivo',
     notFound: 'Nenhum Único tem este número.',

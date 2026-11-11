@@ -89,6 +89,7 @@ const id: ArchiveStrings = {
     next: 'Berikutnya',
   },
   card: { forSale: 'Dijual', lastSale: 'Penjualan terakhir', held: 'Dimiliki', retired: 'Dimusnahkan', intel: 'Intel' },
+  worn: { see: 'Lihat dipakai', back: 'Itemnya', him: 'Pria', her: 'Wanita', label: 'Agen standar yang memakainya' },
   item: {
     crumbs: 'Arsip',
     notFound: 'Tidak ada Unik dengan nomor ini.',

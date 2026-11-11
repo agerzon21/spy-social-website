@@ -89,6 +89,7 @@ const hi: ArchiveStrings = {
     next: 'अगला',
   },
   card: { forSale: 'बिक्री पर', lastSale: 'आखिरी बिक्री', held: 'खिलाड़ी के पास', retired: 'हटाया गया', intel: 'इंटेल' },
+  worn: { see: 'पहनकर देखें', back: 'आइटम', him: 'पुरुष', her: 'महिला', label: 'यह आइटम पहने हुए स्टैंडर्ड एजेंट' },
   item: {
     crumbs: 'आर्काइव',
     notFound: 'इस नंबर का कोई अद्वितीय आइटम नहीं है।',

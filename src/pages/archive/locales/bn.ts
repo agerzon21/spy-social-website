@@ -89,6 +89,7 @@ const bn: ArchiveStrings = {
     next: 'পরের',
   },
   card: { forSale: 'বিক্রিতে', lastSale: 'শেষ বিক্রি', held: 'খেলোয়াড়ের কাছে', retired: 'প্রচলনের বাইরে', intel: 'ইন্টেল' },
+  worn: { see: 'পরে দেখুন', back: 'আইটেম', him: 'পুরুষ', her: 'নারী', label: 'এই আইটেম পরা সাধারণ এজেন্ট' },
   item: {
     crumbs: 'আর্কাইভ',
     notFound: 'এই নম্বরের কোনো অনন্য নেই।',

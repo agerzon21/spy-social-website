@@ -89,6 +89,7 @@ const fr: ArchiveStrings = {
     next: 'Suivante',
   },
   card: { forSale: 'En vente', lastSale: 'Dernière vente', held: 'Détenu', retired: 'Retiré', intel: 'Intel' },
+  worn: { see: 'Voir porté', back: 'L’objet', him: 'Lui', her: 'Elle', label: 'L’agent standard qui le porte' },
   item: {
     crumbs: 'Archives',
     notFound: 'Aucun Unique ne porte ce numéro.',

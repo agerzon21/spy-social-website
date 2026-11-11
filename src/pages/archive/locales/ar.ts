@@ -92,6 +92,7 @@ const ar: ArchiveStrings = {
     next: 'التالي',
   },
   card: { forSale: 'للبيع', lastSale: 'آخر بيع', held: 'لدى لاعب', retired: 'خارج التداول', intel: 'إنتل' },
+  worn: { see: 'شاهده ملبوسًا', back: 'القطعة', him: 'هو', her: 'هي', label: 'العميل القياسي وهو يرتدي هذه القطعة' },
   item: {
     crumbs: 'الأرشيف',
     notFound: 'لا توجد قطعة فريدة بهذا الرقم.',

@@ -84,6 +84,7 @@ const zh: ArchiveStrings = {
     next: '下一页',
   },
   card: { forSale: '出售中', lastSale: '最近成交', held: '玩家持有', retired: '已注销', intel: '情报' },
+  worn: { see: '查看穿戴效果', back: '物品', him: '他', her: '她', label: '穿戴这件物品的标准特工' },
   item: {
     crumbs: '档案馆',
     notFound: '没有这个编号的唯一物品。',
