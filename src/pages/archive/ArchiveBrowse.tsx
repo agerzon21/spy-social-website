@@ -5,7 +5,7 @@ import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import ui from '../../components/ui/ui.module.css'
 import { codenameOf, itemType, nameOf, serialText, type ArchiveCopy, type ItemType } from '../../lib/archive'
-import { ArchiveState, BetaNotice, SubNav, UniqueCard } from './ArchiveBits'
+import { ArchiveState, BetaNotice, UniqueCard } from './ArchiveBits'
 import { fmt, setText, useArchive, useUniques } from './useArchive'
 import s from './archive.module.css'
 
@@ -107,7 +107,6 @@ const ArchiveBrowse = () => {
   return (
     <div className={`${s.page} ${s.foil}`}>
       <div className={ui.wrap} ref={top}>
-        <SubNav />
         <BetaNotice chain={list?.chain} />
         <header style={{ marginTop: 30 }}>
           <Eyebrow>{b.eyebrow}</Eyebrow>

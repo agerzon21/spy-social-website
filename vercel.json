@@ -114,7 +114,7 @@
       "permanent": false
     },
     {
-      "source": "/(support|contact-us|rules|safety|privacy|terms|child-safety|whats-new|roadmap|delete-account|transparency|game-night-rules|ledger|beta|hello|help|reset-password|confirm-success|shop|merch|download|app|get|megan|megans-party)/?",
+      "source": "/(support|contact-us|rules|safety|privacy|terms|child-safety|whats-new|roadmap|delete-account|game-night-rules|beta|hello|help|reset-password|confirm-success|shop|merch|download|app|get|megan|megans-party)/?",
       "has": [
         {
           "type": "host",

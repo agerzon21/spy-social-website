@@ -38,31 +38,6 @@
 }
 .notice svg { flex: none; margin-top: 2px; color: var(--ss-warn); }
 
-/* ---- the sub-nav ---- */
-.subnav {
-  display: flex;
-  gap: 4px 18px;
-  margin: 0;
-  padding: 18px 0 0;
-  list-style: none;
-  overflow-x: auto;
-  white-space: nowrap;
-  scrollbar-width: none;
-  font: 700 13px/1 var(--ss-font-body);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.subnav a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  color: var(--ss-muted);
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-}
-.subnav a:hover { color: var(--ss-text); }
-.subnav a[aria-current='page'] { color: var(--ss-text); border-color: var(--ss-accent); }
-
 /* ---- the hero ---- */
 .hero { position: relative; padding-block: 34px 10px; overflow: clip; }
 .heroGrid { display: grid; gap: 28px; align-items: center; }

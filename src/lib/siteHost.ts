@@ -59,10 +59,30 @@ export function placeOf(to: string, split_ = SPLIT): { host: SiteHost; path: str
   return { host: 'main', path: to }
 }
 
+/**
+ * www's pages a subdomain also serves, so its header nav stays while you read them (owner Nov 10): the Archive's
+ * Ledger and Transparency. Their canonical address stays www's (SiteHead), so search engines see one page.
+ */
+const SHARED: Record<Exclude<SiteHost, 'main'>, string[]> = { archive: ['/ledger', '/transparency'], market: [] }
+
+/** Whether this host serves a www page too (SHARED). */
+export const sharedHere = (to: string) => HOST !== 'main' && SHARED[HOST].includes(split(to)[0])
+
 /** A link's target from this page: a router path when it stays on this host, a full address when it leaves. */
 export function siteTarget(to: string): { to: string } | { href: string } {
+  if (sharedHere(to)) return { to }
   const { host, path } = placeOf(to)
   return host === HOST ? { to: path } : { href: `${originOf(host)}${path}` }
+}
+
+/**
+ * Which subdomain's header nav a page shows (components/HostNav): its host's on archive. / market., and on a build
+ * that doesn't split (a preview) the section its canonical path is in. Null on www's own pages.
+ */
+export function sectionOf(pathname: string): Exclude<SiteHost, 'main'> | null {
+  if (HOST !== 'main') return HOST
+  const host = placeOf(pathname, true).host
+  return host === 'main' ? null : host
 }
 
 /** A canonical path's path on this host (for <Navigate>, which only moves within the host). */
@@ -76,9 +96,9 @@ export function publicUrl(to: string): string {
 
 /** This host's path back to its canonical path: the Archive's '/uniques' is '/archive/uniques', its '/' '/archive'. */
 export function canonicalPath(pathname: string, host: SiteHost = HOST): string {
-  if (host === 'main') return pathname
+  if (host === 'main' || SHARED[host].includes(pathname)) return pathname
   return pathname === '/' || pathname === '' ? PREFIX[host] : `${PREFIX[host]}${pathname}`
 }
 
-/** Whether a canonical path's page belongs on this host (App.tsx routes only those). */
-export const onThisHost = (to: string) => placeOf(to).host === HOST
+/** Whether a canonical path's page belongs on this host (App.tsx routes only those), SHARED pages included. */
+export const onThisHost = (to: string) => placeOf(to).host === HOST || sharedHere(to)
