@@ -879,7 +879,7 @@ const ptBR: Strings = {
       et: (time: string) => `${time}, horário do Leste dos EUA (ET)`,
       others: (pacific: string, utc: string) => `${pacific}, horário do Pacífico · ${utc}\u00a0UTC`,
       yours: (time: string) => `No seu horário: ${time}`,
-      checkIn: (time: string) => `O check-in abre às ${time} (horário do Leste) no canal de voz do Discord.`,
+      checkIn: (time: string) => `O check-in abre às ${time} (horário do Leste) no #beta-2-ask-hq do Discord (a sala de voz Beta 2 também fica aberta).`,
     },
     europe: {
       label: 'Europa · Segunda sessão opcional',
@@ -933,7 +933,7 @@ const ptBR: Strings = {
       form: '<link>Preencha o formulário de inscrição</link> (cerca de 2 minutos).',
       closes: (day: string, time: string) => `As inscrições fecham ${day}, às ${time} (horário do Leste).`,
       email: (day: string) => `Mandamos um e-mail até ${day} para confirmar sua vaga e enviar o link de instalação.`,
-      discord: '<link>Entre no nosso Discord</link>: o check-in é no canal de voz.',
+      discord: '<link>Entre no nosso Discord</link>: o check-in é no #beta-2-ask-hq (a sala de voz Beta 2 também fica aberta).',
       android: 'Android: o formulário pede o e-mail do Google da sua Play Store, porque o Google exige isso para versões de teste. Ele é apagado depois da sessão.',
       iphone: 'iPhone: você instala o SpySocial pelo TestFlight, com o link do e-mail.',
     },

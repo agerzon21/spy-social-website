@@ -155,7 +155,7 @@ const id: HelpText = {
           q: 'Apa itu permainan latihan?',
           a: [
             'Permainan 5 sampai 9 menit melawan agen AI, dengan pelatih, di <b>Cara bermain</b>. Kamu mendapat nilai A sampai F, dan bisa melanjutkan dari tempat terakhir.',
-            'Sebelum kamu main Spy Talk atau Spy Sketch online, aplikasi mungkin memintamu lulus latihan game itu dengan nilai C atau lebih. Malam Permainan tidak pernah memintanya.',
+            'Sebelum kamu main Spy Talk atau Spy Sketch online, aplikasi mungkin memintamu lulus latihan game itu dengan nilai D atau lebih. Malam Permainan tidak pernah memintanya.',
           ],
         },
         {

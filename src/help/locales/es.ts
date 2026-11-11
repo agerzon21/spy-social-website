@@ -155,7 +155,7 @@ const es: HelpText = {
           q: '¿Qué es la partida de práctica?',
           a: [
             'Una partida de 5 a 9 minutos contra agentes de IA, con un guía, en <b>Cómo jugar</b>. Recibes una nota de la A a la F y puedes seguir donde la dejaste.',
-            'Antes de jugar Spy Talk o Spy Sketch en línea, la app puede pedirte que apruebes la práctica de ese juego con una C o mejor. La Noche de Juegos nunca la pide.',
+            'Antes de jugar Spy Talk o Spy Sketch en línea, la app puede pedirte que apruebes la práctica de ese juego con una D o mejor. La Noche de Juegos nunca la pide.',
           ],
         },
         {

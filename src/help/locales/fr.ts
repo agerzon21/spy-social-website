@@ -151,7 +151,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "C'est quoi, la partie d'entraînement ?",
         a: [
           "Une partie de 5 à 9 minutes contre des agents IA, avec un coach, dans <b>Comment jouer</b>. Tu reçois une note de A à F et tu peux reprendre là où tu t'es arrêté.",
-          "Avant de jouer à Spy Talk ou Spy Sketch en ligne, l'appli peut te demander de réussir l'entraînement de ce jeu avec un C ou mieux. La Soirée jeux ne le demande jamais.",
+          "Avant de jouer à Spy Talk ou Spy Sketch en ligne, l'appli peut te demander de réussir l'entraînement de ce jeu avec un D ou mieux. La Soirée jeux ne le demande jamais.",
         ],
       },
       {

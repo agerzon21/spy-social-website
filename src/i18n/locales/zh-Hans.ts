@@ -856,7 +856,7 @@ const zhHans: Strings = {
       et: (time: string) => `美东时间（ET）${time}`,
       others: (pacific: string, utc: string) => `美西时间 ${pacific} · UTC\u00a0${utc}`,
       yours: (time: string) => `你的当地时间：${time}`,
-      checkIn: (time: string) => `美东时间 ${time} 起在 Discord 语音频道签到。`,
+      checkIn: (time: string) => `美东时间 ${time} 起在 Discord 的 #beta-2-ask-hq 签到（Beta 2 语音房间也会开放）。`,
     },
     europe: {
       label: '欧洲 · 可选的第二场',
@@ -910,7 +910,7 @@ const zhHans: Strings = {
       form: '<link>填写报名表</link>（约 2 分钟）。',
       closes: (day: string, time: string) => `报名截止：美东时间 ${day} ${time}。`,
       email: (day: string) => `我们会在 ${day}前发邮件给你，确认你的名额并发送安装链接。`,
-      discord: '<link>加入我们的 Discord</link>：签到在语音频道进行。',
+      discord: '<link>加入我们的 Discord</link>：签到在 #beta-2-ask-hq 进行（Beta 2 语音房间也会开放）。',
       android: 'Android：表单会询问你 Play 商店使用的 Google 邮箱，因为 Google 要求测试版必须提供。测试结束后即删除。',
       iphone: 'iPhone：通过邮件中的链接，用 TestFlight 安装 SpySocial。',
     },

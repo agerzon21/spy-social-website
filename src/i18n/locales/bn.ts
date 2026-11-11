@@ -881,7 +881,7 @@ const bn: Strings = {
       et: (time: string) => `${time} ইস্টার্ন টাইম (ET)`,
       others: (pacific: string, utc: string) => `${pacific} প্যাসিফিক টাইম · ${utc}\u00a0UTC`,
       yours: (time: string) => `আপনার সময়ে: ${time}`,
-      checkIn: (time: string) => `চেক-ইন শুরু হবে ইস্টার্ন টাইম ${time}-এ, Discord ভয়েসে।`,
+      checkIn: (time: string) => `চেক-ইন শুরু হবে ইস্টার্ন টাইম ${time}-এ, Discord-এর #beta-2-ask-hq-তে (Beta 2 ভয়েস রুমও খোলা থাকবে)।`,
     },
     europe: {
       label: 'ইউরোপ · ঐচ্ছিক দ্বিতীয় সেশন',
@@ -935,7 +935,7 @@ const bn: Strings = {
       form: '<link>সাইন-আপ ফর্ম পূরণ করুন</link> (প্রায় 2 মিনিট)।',
       closes: (day: string, time: string) => `সাইন-আপ বন্ধ হবে ${day}, ইস্টার্ন টাইম ${time}-এ।`,
       email: (day: string) => `${day}-এর মধ্যে আমরা ইমেল করে আপনার আসন নিশ্চিত করব আর ইনস্টল লিংক পাঠাব।`,
-      discord: '<link>আমাদের Discord-এ যোগ দিন</link>: চেক-ইন হবে এর ভয়েস চ্যানেলে।',
+      discord: '<link>আমাদের Discord-এ যোগ দিন</link>: চেক-ইন হবে #beta-2-ask-hq-তে (Beta 2 ভয়েস রুমও খোলা থাকবে)।',
       android: 'Android: ফর্মে আপনার Play Store-এর Google ইমেল চাওয়া হয়, কারণ টেস্ট বিল্ডের জন্য Google এটি চায়। সেশনের পরে এটি মুছে ফেলা হয়।',
       iphone: 'iPhone: ইমেলের লিংক থেকে TestFlight দিয়ে SpySocial ইনস্টল করবেন।',
     },

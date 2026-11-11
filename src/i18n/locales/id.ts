@@ -879,7 +879,7 @@ const id: Strings = {
       et: (time: string) => `${time} waktu Timur AS (ET)`,
       others: (pacific: string, utc: string) => `${pacific} waktu Pasifik · ${utc}\u00a0UTC`,
       yours: (time: string) => `Waktumu: ${time}`,
-      checkIn: (time: string) => `Check-in dibuka pukul ${time} waktu Timur AS di saluran suara Discord.`,
+      checkIn: (time: string) => `Check-in dibuka pukul ${time} waktu Timur AS di #beta-2-ask-hq di Discord (ruang suara Beta 2 juga dibuka).`,
     },
     europe: {
       label: 'Eropa · Sesi kedua opsional',
@@ -933,7 +933,7 @@ const id: Strings = {
       form: '<link>Isi formulir pendaftaran</link> (sekitar 2 menit).',
       closes: (day: string, time: string) => `Pendaftaran ditutup ${day}, pukul ${time} waktu Timur AS.`,
       email: (day: string) => `Kami kirim email paling lambat ${day} untuk mengonfirmasi tempatmu dan mengirim link instalasi.`,
-      discord: '<link>Gabung Discord kami</link>: check-in di saluran suaranya.',
+      discord: '<link>Gabung Discord kami</link>: check-in di #beta-2-ask-hq (ruang suara Beta 2 juga dibuka).',
       android: 'Android: formulir meminta email Google yang dipakai di Play Store-mu, karena Google mewajibkannya untuk build uji. Email itu dihapus setelah sesi.',
       iphone: 'iPhone: kamu memasang SpySocial lewat TestFlight, dari link di email.',
     },

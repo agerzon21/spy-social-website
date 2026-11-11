@@ -876,7 +876,7 @@ const es: Strings = {
       et: (time: string) => `${time}, hora del Este (EE.\u00a0UU.)`,
       others: (pacific: string, utc: string) => `${pacific}, hora del Pacífico · ${utc}\u00a0UTC`,
       yours: (time: string) => `Tu hora: ${time}`,
-      checkIn: (time: string) => `La entrada abre a las ${time} (hora del Este) en el canal de voz de Discord.`,
+      checkIn: (time: string) => `La entrada abre a las ${time} (hora del Este) en #beta-2-ask-hq de Discord (la sala de voz Beta 2 también estará abierta).`,
     },
     europe: {
       label: 'Europa · Segunda sesión opcional',
@@ -930,7 +930,7 @@ const es: Strings = {
       form: '<link>Rellena el formulario de inscripción</link> (unos 2 minutos).',
       closes: (day: string, time: string) => `Las inscripciones cierran el ${day}, a las ${time} (hora del Este).`,
       email: (day: string) => `Te escribimos a más tardar el ${day} para confirmar tu lugar y enviarte el enlace de instalación.`,
-      discord: '<link>Únete a nuestro Discord</link>: la entrada se hace en su canal de voz.',
+      discord: '<link>Únete a nuestro Discord</link>: la entrada se hace en #beta-2-ask-hq (la sala de voz Beta 2 también estará abierta).',
       android: 'Android: el formulario te pide el correo de Google de tu Play Store, porque Google lo exige para las versiones de prueba. Se borra después de la sesión.',
       iphone: 'iPhone: instalas SpySocial con TestFlight, desde el enlace del correo.',
     },

@@ -881,7 +881,7 @@ const ar: Strings = {
       et: (time: string) => `${time} بتوقيت شرق الولايات المتحدة (ET)`,
       others: (pacific: string, utc: string) => `${pacific} بتوقيت المحيط الهادئ · ${utc}\u00a0UTC`,
       yours: (time: string) => `بتوقيتك: ${time}`,
-      checkIn: (time: string) => `يبدأ تسجيل الحضور الساعة ${time} بتوقيت شرق الولايات المتحدة في القناة الصوتية على Discord.`,
+      checkIn: (time: string) => `يبدأ تسجيل الحضور الساعة ${time} بتوقيت شرق الولايات المتحدة في ‎#beta-2-ask-hq على Discord (والغرفة الصوتية Beta 2 مفتوحة أيضًا).`,
     },
     europe: {
       label: 'أوروبا · جلسة ثانية اختيارية',
@@ -935,7 +935,7 @@ const ar: Strings = {
       form: '<link>ملء نموذج التسجيل</link> (نحو دقيقتين).',
       closes: (day: string, time: string) => `يُغلق التسجيل ${day}، الساعة ${time} بتوقيت شرق الولايات المتحدة.`,
       email: (day: string) => `نرسل إليك بريدًا إلكترونيًا بحلول ${day} لتأكيد مقعدك وإرسال رابط التثبيت.`,
-      discord: '<link>الانضمام إلى Discord</link>: يجري تسجيل الحضور في قناته الصوتية.',
+      discord: '<link>الانضمام إلى Discord</link>: يجري تسجيل الحضور في ‎#beta-2-ask-hq (والغرفة الصوتية Beta 2 مفتوحة أيضًا).',
       android: 'Android: يطلب النموذج بريد Google المستخدم في متجر Play، لأن Google تشترطه لنسخ الاختبار. ويُحذف بعد الجلسة.',
       iphone: 'iPhone: يجري تثبيت SpySocial عبر TestFlight من الرابط الموجود في البريد.',
     },

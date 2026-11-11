@@ -881,7 +881,7 @@ const hi: Strings = {
       et: (time: string) => `${time} ईस्टर्न टाइम (ET)`,
       others: (pacific: string, utc: string) => `${pacific} पैसिफ़िक टाइम · ${utc}\u00a0UTC`,
       yours: (time: string) => `आपके समय में: ${time}`,
-      checkIn: (time: string) => `चेक-इन ईस्टर्न टाइम ${time} पर Discord वॉइस में शुरू होगा।`,
+      checkIn: (time: string) => `चेक-इन ईस्टर्न टाइम ${time} पर Discord के #beta-2-ask-hq में शुरू होगा (Beta 2 वॉइस रूम भी खुला रहेगा)।`,
     },
     europe: {
       label: 'यूरोप · वैकल्पिक दूसरा सेशन',
@@ -935,7 +935,7 @@ const hi: Strings = {
       form: '<link>साइन-अप फ़ॉर्म भरें</link> (लगभग 2 मिनट)।',
       closes: (day: string, time: string) => `साइन-अप ${day} को ईस्टर्न टाइम ${time} पर बंद होंगे।`,
       email: (day: string) => `हम ${day} तक ईमेल करके आपकी सीट पक्की करेंगे और इंस्टॉल लिंक भेजेंगे।`,
-      discord: '<link>हमारे Discord से जुड़ें</link>: चेक-इन उसके वॉइस चैनल पर होगा।',
+      discord: '<link>हमारे Discord से जुड़ें</link>: चेक-इन #beta-2-ask-hq में होगा (Beta 2 वॉइस रूम भी खुला रहेगा)।',
       android: 'Android: फ़ॉर्म में आपके Play Store वाला Google ईमेल माँगा जाता है, क्योंकि टेस्ट बिल्ड के लिए Google को इसकी ज़रूरत होती है। सेशन के बाद इसे मिटा दिया जाता है।',
       iphone: 'iPhone: आप ईमेल में मिले लिंक से TestFlight के ज़रिए SpySocial इंस्टॉल करेंगे।',
     },

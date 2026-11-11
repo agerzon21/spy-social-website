@@ -161,7 +161,7 @@ const en: HelpText = {
           q: 'What is the Practice Game?',
           a: [
             'A game of 5 to 9 minutes against AI agents, with a coach, in <b>How to Play</b>. You get a grade from A to F, and you can pick up where you left off.',
-            'Before you play Spy Talk or Spy Sketch online, the app may ask you to pass that game’s practice with a C or better. Game Night never asks.',
+            'Before you play Spy Talk or Spy Sketch online, the app may ask you to pass that game’s practice with a D or better. Game Night never asks.',
           ],
         },
         {

@@ -155,7 +155,7 @@ const ptBR: HelpText = {
           q: 'O que é a partida de treino?',
           a: [
             'Uma partida de 5 a 9 minutos contra agentes de IA, com um treinador, em <b>Como jogar</b>. Você ganha uma nota de A a F e pode continuar de onde parou.',
-            'Antes de você jogar Spy Talk ou Spy Sketch online, o app pode pedir que passe no treino desse jogo com C ou melhor. A Noite de Jogos nunca pede.',
+            'Antes de você jogar Spy Talk ou Spy Sketch online, o app pode pedir que passe no treino desse jogo com D ou melhor. A Noite de Jogos nunca pede.',
           ],
         },
         {

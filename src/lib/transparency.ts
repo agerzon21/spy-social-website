@@ -36,6 +36,8 @@ const I1: PublishedIncident = {
  * The row's rule says "50,000 Intel, once" and can't change (published incidents are frozen); the testers' amount was raised
  * to 100,000 by 20261225220000_test_phase_grant_100k (live 20261111040944, Nov 11 04:09 UTC = Nov 10 ET), so the rule here
  * says 100,000 and when it was raised (every tester already given 50,000 got the other 50,000 under the same incident).
+ * The grant window was extended from 01:30 to 03:00 UTC by 20261229800000_beta2_window_10pm (live 20261110185621, Nov 10 18:56 UTC),
+ * so the rule here says 03:00 UTC and when it was extended.
  */
 const I2: PublishedIncident = {
   id: 'I-2',
@@ -44,7 +46,7 @@ const I2: PublishedIncident = {
   published: 'November 9, 2026',
   summary:
     'While SpySocial is being tested, Intel is given to the developer\'s accounts and to every tester who signs in to a test version before November 13, so the Black Market and trades can be tried for real. All of it is taken back at launch, on December 7: nobody keeps any of it, and nothing it paid for stays.',
-  rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 01:30 UTC: 100,000 Intel, once (published as 50,000; raised to 100,000 on November 10, 2026, when item values went up, and testers already given 50,000 got the other 50,000). The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
+  rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 03:00 UTC (published as 01:30 UTC; extended on November 10, 2026, to 10 PM Eastern on November 12): 100,000 Intel, once (published as 50,000; raised to 100,000 on November 10, 2026, when item values went up, and testers already given 50,000 got the other 50,000). The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
 }
 
 /** Newest first. */

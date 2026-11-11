@@ -879,7 +879,7 @@ const ru: Strings = {
       et: (time: string) => `${time} по восточному времени США (ET)`,
       others: (pacific: string, utc: string) => `${pacific} по тихоокеанскому времени · ${utc}\u00a0UTC`,
       yours: (time: string) => `По вашему времени: ${time}`,
-      checkIn: (time: string) => `Сбор начинается в ${time} по восточному времени в голосовом канале Discord.`,
+      checkIn: (time: string) => `Сбор начинается в ${time} по восточному времени в #beta-2-ask-hq в Discord (голосовая комната Beta 2 тоже открыта).`,
     },
     europe: {
       label: 'Европа · Дополнительная сессия',
@@ -934,7 +934,7 @@ const ru: Strings = {
       closes: (day: string, time: string) => `Запись закрывается: ${day}, ${time} по восточному времени.`,
       /** `day` is "понедельник, 16 ноября": «в понедельник» keeps it in the accusative. */
       email: (day: string) => `Не позднее чем в ${day} мы напишем вам на почту: подтвердим место и пришлём ссылку на установку.`,
-      discord: '<link>Вступите в наш Discord</link>: сбор проходит в его голосовом канале.',
+      discord: '<link>Вступите в наш Discord</link>: сбор проходит в #beta-2-ask-hq (голосовая комната Beta 2 тоже открыта).',
       android: 'Android: в форме нужна почта Google, к которой привязан Play Маркет, — Google требует её для тестовых сборок. После сессии мы её удалим.',
       iphone: 'iPhone: SpySocial устанавливается через TestFlight по ссылке из письма.',
     },
