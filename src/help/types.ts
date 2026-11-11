@@ -35,6 +35,8 @@ export interface HelpOpts {
   interceptsInTrades: boolean
   /** Beta 2's Black Market is open to testers for real, Nov 9-16 (LIVE.testerMarket === 'open'). */
   testerMarket: boolean
+  /** A leader whose membership ends closes the party (LIVE.partyLeaderLapse; server party_leader_lapse_1111). */
+  partyLeaderLapse: boolean
 }
 
 export interface HelpItem {
