@@ -17,12 +17,15 @@ import {
   type Win,
   WINDOWS,
 } from '../../lib/market'
-import { compact, fmt, pctText, useMarketWords, type LoadState } from './useMarket'
+import { compact, fmt, pctText, useMarketLines, useMarketWords, type LoadState } from './useMarket'
 import { CATEGORY_ICON } from './icons'
 import a from '../archive/archive.module.css'
 import { lookOf } from '../../lib/archive'
 import { DisplayCase } from '../archive/DisplayCase'
 import { LiveBackdrop } from '../archive/LiveBackdrop'
+import { lineOf, marketPic, type MarketLines } from '../../lib/marketArt'
+import { MarketCase } from './MarketCase'
+import { SceneMotion } from '../archive/SceneMotion'
 import s from './market.module.css'
 
 /** Every Market page: the dark vault and the lines (its nav is in the header: components/HostNav) that must show above everything (sample, beta, paused). */
@@ -83,24 +86,34 @@ export function MarketState({ kind, onRetry }: { kind: LoadState; onRetry?: () =
 /**
  * An item's picture: a Legendary drawn for the Archive shows the item alone (archive-item-art-1111, owner Nov 11: no
  * sample agent anywhere on the site): big, in the Archive's display case inside its gold ring (a celebration's scene
- * or a moving backdrop filling it); small, the item cut-out (or the scene) on the case's dark room. Else its Archive tile, else its
- * shelf's mark in its rarity.
+ * or a moving backdrop filling it); small, the item cut-out (or the scene) on the case's dark room. Every other item (market-art-1111): its
+ * Market picture (lib/marketArt): big, in the display case in its rarity's frame (MarketCase), a backdrop or a
+ * celebration full frame; small, on the case's dark room in a rarity edge. Else its shelf's mark in its rarity.
  */
 export function ItemThumb({ it, size = 'sm' }: { it: Pick<MarketItem, 'k' | 'i' | 't' | 'r' | 'nm'>; size?: 'sm' | 'md' | 'lg' }) {
-  const { art, looks } = useMarketWords()
+  const { art, looks, lang } = useMarketWords()
   const cat = categoryOf(it)
   const Icon = CATEGORY_ICON[cat]
   const colour = RARITY_COLOUR[it.r] ?? RARITY_COLOUR.common
   const legendary = it.r === 'legendary'
   const pic = legendary && art.has(`l-${it.i}`) ? `/archive/art/l-${it.i}${size === 'lg' ? '' : '-s'}.webp` : null
   const look = legendary ? lookOf(looks, it.i, null, size !== 'lg') : null
+  const mine = look ? null : marketPic(it, lang, size !== 'lg')
+  // A celebration's scene fills the big picture with no ring (owner Nov 11: full frame, no case, no frame).
+  const fullScene = size === 'lg' && look?.kind === 'scene'
+  const frame = fullScene ? s.thumbBare : pic || look ? s.thumbArt : mine ? (size === 'lg' ? s.thumbBare : `${s.thumbArt} ${s.thumbRar}`) : ''
   return (
     <span
-      className={`${s.thumb} ${s[`thumb_${size}`]} ${pic || look ? s.thumbArt : ''}`}
+      className={`${s.thumb} ${s[`thumb_${size}`]} ${frame}`}
       style={{ ['--rar' as string]: colour.dark, ['--rar-light' as string]: colour.light }}
       aria-hidden
     >
-      {pic && look && size === 'lg' ? (
+      {fullScene && look ? (
+        // Full frame, moving as in the app where the Archive has its loop (pages/archive/SceneMotion).
+        <span className={s.caseSceneBox}>
+          <SceneMotion poster={look.alone} motion={look.motion} alt="" />
+        </span>
+      ) : pic && look && size === 'lg' ? (
         <DisplayCase ring={pic} look={look} alt="" />
       ) : look?.kind === 'live' && look.item ? (
         <span className={`${s.thumbAlone} ${s.thumbFill}`}>
@@ -109,6 +122,12 @@ export function ItemThumb({ it, size = 'sm' }: { it: Pick<MarketItem, 'k' | 'i' 
       ) : look ? (
         <span className={`${s.thumbAlone} ${look.kind === 'case' ? '' : s.thumbFill}`}>
           <img src={look.alone} alt="" loading="lazy" decoding="async" />
+        </span>
+      ) : mine && size === 'lg' ? (
+        <MarketCase pic={mine} alt="" />
+      ) : mine ? (
+        <span className={`${s.thumbAlone} ${mine.kind === 'scene' ? s.thumbFill : mine.kind === 'plate' ? s.thumbPlate : ''}`}>
+          <img src={mine.src} alt="" loading="lazy" decoding="async" />
         </span>
       ) : pic ? (
         <img src={pic} alt="" loading="lazy" decoding="async" width={size === 'lg' ? 640 : 320} height={size === 'lg' ? 640 : 320} />
@@ -169,7 +188,7 @@ export function ItemMeta({ it, shelf = true }: { it: MarketItem; shelf?: boolean
  * (the change for rises / falls, trades for most traded, Intel for most valuable). Rows are links; the price and the
  * second number keep to the right; on a phone the second number sits under the price.
  */
-export function ItemTable({ items, list = 'traded', win = '30d', start = 1, showRank = true, showShelf = true }: { items: MarketItem[]; list?: MoverList; win?: Win; start?: number; showRank?: boolean; showShelf?: boolean }) {
+export function ItemTable({ items, list = 'traded', win = '30d', start = 1, showRank = true, showShelf = true, lines = null }: { items: MarketItem[]; list?: MoverList; win?: Win; start?: number; showRank?: boolean; showShelf?: boolean; /** Search results: each item's description under its name, one line. */ lines?: MarketLines | null }) {
   const { w, locale } = useMarketWords()
   const i = winIndex(win)
   const third = `${list === 'rises' || list === 'falls' ? w.cols.change : list === 'valuable' ? w.cols.value : w.cols.trades} · ${w.windows[win]}`
@@ -194,6 +213,7 @@ export function ItemTable({ items, list = 'traded', win = '30d', start = 1, show
                   <span className={s.rowName}>
                     <b>{it.nm}</b>
                     <ItemMeta it={it} shelf={showShelf} />
+                    {lines && lineOf(lines, it) ? <span className={s.rowLine}>{lineOf(lines, it)}</span> : null}
                   </span>
                 </Link>
               </td>
@@ -221,6 +241,7 @@ export function ItemTable({ items, list = 'traded', win = '30d', start = 1, show
 /** The search box and what it finds as you type (nothing until two letters: never every item). */
 export function MarketSearch({ items, q, onQ, limit, autoFocus = false, showShelf = true }: { items: MarketItem[]; q: string; onQ: (q: string) => void; limit: number; autoFocus?: boolean; showShelf?: boolean }) {
   const { w } = useMarketWords()
+  const lines = useMarketLines()
   const found = useMemo(() => searchItems(items, q, limit + 1), [items, q, limit])
   const shown = found.slice(0, limit)
   const typed = q.trim().length >= 2
@@ -235,7 +256,7 @@ export function MarketSearch({ items, q, onQ, limit, autoFocus = false, showShel
         shown.length ? (
           <>
             <p className={s.searchCount}>{w.search.results(shown.length)}</p>
-            <ItemTable items={shown} showRank={false} list="traded" win="30d" showShelf={showShelf} />
+            <ItemTable items={shown} showRank={false} list="traded" win="30d" showShelf={showShelf} lines={lines} />
             {found.length > limit ? <p className={s.searchCount}>{w.search.more(limit)}</p> : null}
           </>
         ) : (

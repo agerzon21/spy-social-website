@@ -109,6 +109,8 @@ const hi: MarketStrings = {
     chartLine: 'दाम',
     volume: 'हर दिन के सौदे',
     noChart: 'इस दौरान कोई सौदा नहीं हुआ।',
+    noPriceYet: (n: number) => `अभी कोई दाम नहीं: ${n} सौदे चाहिए`,
+    zeroTrades: '0 सौदे',
     stats: { trades7: '7 दिन के सौदे', trades30: '30 दिन के सौदे', value30: '30 दिन में इंटेल का लेन-देन', trades180: '180 दिन के सौदे' },
     tradeIt: 'इसे ऐप में, काले बाज़ार में खरीदें या बेचें।',
     back: 'बाज़ार',

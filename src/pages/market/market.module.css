@@ -277,3 +277,29 @@
   text-transform: uppercase;
   color: var(--ss-highlight);
 }
+/* ---- the Market's own pictures (market-art-1111: lib/marketArt, MarketCase) ---- */
+/* A list's picture: the case's dark room in a rarity edge (the Legendaries keep the Archive's gold). */
+.thumbRar { background: linear-gradient(135deg, var(--rar), color-mix(in srgb, var(--rar) 35%, #0b0f18) 52%, var(--rar)); }
+:global([data-theme='light']) .thumbRar { background: linear-gradient(135deg, var(--rar-light), color-mix(in srgb, var(--rar-light) 45%, #0b0f18) 52%, var(--rar-light)); }
+.thumbArt .thumbPlate img { padding: 6%; }
+/* The big picture: no edge of its own (the case has its frame; a scene fills the square). */
+.thumbBare { border: 0; padding: 0; background: none; grid-template: 100% / 100%; place-items: stretch; }
+:global([data-theme='light']) .thumbBare { background: none; }
+.caseRing { background: linear-gradient(135deg, var(--rar), color-mix(in srgb, var(--rar) 30%, #0b0f18) 50%, var(--rar)); box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.35); }
+.caseScene { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); }
+.casePlate { left: 50%; top: 44%; width: auto; height: auto; max-width: 84%; max-height: 42%; transform: translate(-50%, -50%); object-fit: contain; filter: drop-shadow(0 1.4cqi 1.8cqi rgba(0, 0, 0, 0.55)); }
+/* The item's line (the app's description on its card): under its name on its page, one line under a search result. */
+.itemLine { margin: 2px 0 0; max-width: 46ch; font-size: 17px; line-height: 1.5; color: var(--ss-text); opacity: 0.88; }
+.rowLine { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; font-size: 13px; line-height: 1.4; color: var(--ss-muted); }
+@media (max-width: 560px) { .rowLine { -webkit-line-clamp: 2; font-size: 12px; } }
+/* The charts' time switch (owner Nov 11: as the Grand Exchange's, clearly above both charts). */
+.rangeTabs { display: inline-flex; margin: 14px 0 4px; padding: 3px; border: var(--ss-hairline) solid var(--ss-line-strong); background: var(--ss-surface); }
+.rangeTabs button { min-height: 40px; padding: 0 18px; border: 0; background: none; font: 800 14px/1 var(--ss-font-body); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ss-muted); cursor: pointer; }
+.rangeTabs button[aria-pressed='true'] { background: var(--ss-text); color: var(--ss-page); }
+.rangeTabs button:focus-visible { outline: 2px solid var(--ss-text); outline-offset: 2px; }
+@media (max-width: 420px) { .rangeTabs { display: flex; } .rangeTabs button { flex: 1; padding: 0 8px; } }
+/* An empty window's line over its frame (no price yet / 0 trades): plain, never a number. */
+.chartOverlay { position: absolute; inset-inline: 0; top: 42%; transform: translateY(-50%); width: fit-content; margin: 0 auto; max-width: 86%; padding: 8px 14px; text-align: center; font-size: 14px; line-height: 1.35; color: var(--ss-muted); background: color-mix(in srgb, var(--ss-surface) 88%, transparent); border: 1px dashed var(--ss-line-strong); pointer-events: none; }
+.chartOverlaySmall { top: 40%; padding: 4px 10px; font-size: 13px; }
+/* A Legendary celebration's loop (the Archive's SceneMotion), full frame like any scene. */
+.caseSceneBox { position: relative; display: block; width: 100%; aspect-ratio: 1; overflow: hidden; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); }

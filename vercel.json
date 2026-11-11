@@ -259,7 +259,7 @@
       "destination": "/_host/archive.html"
     },
     {
-      "source": "/((?!\\.well-known/|static/|assets/|archive/|_host/).*)",
+      "source": "/((?!\\.well-known/|static/|assets/|archive/|market-art/|_host/).*)",
       "has": [
         {
           "type": "host",

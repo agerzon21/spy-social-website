@@ -36,7 +36,7 @@ const PAD = { top: 14, right: 52, bottom: 26, left: 4 }
  * The price graph and the trades-per-day bars of one item, one hover between them: the price line (the 7-day rule),
  * the day's middle price (median) as dots on days with enough trades, and a bar per day. Two charts, one x axis, never two y axes.
  */
-export function ItemCharts({ days }: { days: MarketDay[] }) {
+export function ItemCharts({ days, minTrades = 5 }: { days: MarketDay[]; /** The trades a price needs (the empty chart's line). */ minTrades?: number }) {
   const { w, locale } = useMarketWords()
   const { ref, width } = useWidth()
   const [hover, setHover] = useState<number | null>(null)
@@ -89,16 +89,23 @@ export function ItemCharts({ days }: { days: MarketDay[] }) {
   const xLabels = n ? [0, Math.floor((n - 1) / 2), n - 1].filter((v, i, arr) => arr.indexOf(v) === i) : []
   const tipLeft = hover != null ? Math.min(Math.max(x(hover), 70), Math.max(70, width - 70)) : 0
 
-  const empty = !n || !days.some((d) => d.n > 0)
+  // Always drawn (owner Nov 11: the layout and the 1 / 3 / 6-month switch show even before any trade): with no price
+  // in the window the price chart is its frame and dates under a plain line ("No price yet: needs 5 trades"); with no
+  // trade the bars sit at zero ("0 trades"). Nothing is made up: an empty window draws no line and no bar.
+  const noPrice = !price
+  const noTrades = !days.some((d) => d.n > 0)
+  const emptyRows = [0.25, 0.5, 0.75].map((f) => PAD.top + f * (H1 - PAD.top - PAD.bottom))
 
   return (
     <div className={s.charts} ref={ref}>
-      {empty ? (
+      {!n ? (
         <p className={s.chartEmpty}>{w.item.noChart}</p>
       ) : width > 0 ? (
         <>
           <div className={s.chartBox}>
             <svg width={width} height={H1} role="img" aria-label={`${w.item.chart}: ${days[0].d} – ${days[n - 1].d}`} onPointerMove={onMove} onPointerLeave={() => setHover(null)} className={s.svg}>
+              {noPrice ? emptyRows.map((yy) => <line key={yy} x1={PAD.left} x2={PAD.left + plotW} y1={yy} y2={yy} className={s.grid} />) : null}
+              <line x1={PAD.left} x2={PAD.left + plotW} y1={H1 - PAD.bottom} y2={H1 - PAD.bottom} className={s.baseline} />
               {price?.ticks.map((t) => (
                 <g key={t}>
                   <line x1={PAD.left} x2={PAD.left + plotW} y1={y1(t)} y2={y1(t)} className={s.grid} />
@@ -117,6 +124,7 @@ export function ItemCharts({ days }: { days: MarketDay[] }) {
                 </>
               ) : null}
             </svg>
+            {noPrice ? <p className={s.chartOverlay}>{w.item.noPriceYet(minTrades)}</p> : null}
             {hd ? (
               <div className={s.tip} style={{ left: tipLeft }} role="status">
                 <b>{dayText(hd.d, locale, true)}</b>
@@ -126,10 +134,10 @@ export function ItemCharts({ days }: { days: MarketDay[] }) {
               </div>
             ) : null}
           </div>
-          <div className={s.legend} aria-hidden>
+          {noPrice ? null : <div className={s.legend} aria-hidden>
             <span><i className={s.legendLine} />{w.item.chartLine}</span>
             <span><i className={s.legendDot} />{w.item.chartAvg}</span>
-          </div>
+          </div>}
 
           <h3 className={s.chartTitle}>{w.item.volume}</h3>
           <div className={s.chartBox}>
@@ -156,15 +164,16 @@ export function ItemCharts({ days }: { days: MarketDay[] }) {
               ))}
               {hover != null ? <line x1={x(hover)} x2={x(hover)} y1={PAD.top} y2={H2 - PAD.bottom} className={s.cross} /> : null}
             </svg>
+            {noTrades ? <p className={`${s.chartOverlay} ${s.chartOverlaySmall}`}>{w.item.zeroTrades}</p> : null}
           </div>
         </>
       ) : (
         <div style={{ height: 380 }} />
       )}
-      {empty ? null : <button type="button" className={s.tableToggle} aria-expanded={showTable} onClick={() => setShowTable((v) => !v)}>
+      {noTrades ? null : <button type="button" className={s.tableToggle} aria-expanded={showTable} onClick={() => setShowTable((v) => !v)}>
         {showTable ? w.item.tableHide : w.item.table}
       </button>}
-      {showTable && !empty ? (
+      {showTable && !noTrades ? (
         <div className={s.dayTableWrap}>
           <table className={s.dayTable}>
             <thead>

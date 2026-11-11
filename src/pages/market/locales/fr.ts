@@ -113,6 +113,8 @@ const fr: MarketStrings = {
     chartLine: 'Prix',
     volume: 'Ventes par jour',
     noChart: 'Aucune vente sur cette période.',
+    noPriceYet: (n: number) => `Pas encore de prix\u00a0: il faut ${sales(n)}`,
+    zeroTrades: '0\u00a0vente',
     stats: { trades7: 'Ventes sur 7\u00a0jours', trades30: 'Ventes sur 30\u00a0jours', value30: 'Intel échangé sur 30\u00a0jours', trades180: 'Ventes sur 180\u00a0jours' },
     tradeIt: 'Achète-le ou vends-le dans l’app, au Marché noir.',
     back: 'Marché',

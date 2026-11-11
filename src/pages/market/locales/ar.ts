@@ -126,6 +126,8 @@ const ar: MarketStrings = {
     chartLine: 'السعر',
     volume: 'الصفقات يوميًا',
     noChart: 'لا صفقات في هذه المدة.',
+    noPriceYet: (n: number) => `لا سعر بعد: يلزم ${trades(n)}`,
+    zeroTrades: '0 صفقات',
     stats: { trades7: 'صفقات خلال 7 أيام', trades30: 'صفقات خلال 30 يومًا', value30: 'إنتل متداول خلال 30 يومًا', trades180: 'صفقات خلال 180 يومًا' },
     tradeIt: 'اشترِه أو بِعه في التطبيق، في السوق السوداء.',
     back: 'السوق',

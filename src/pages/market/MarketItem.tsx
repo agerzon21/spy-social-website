@@ -3,23 +3,40 @@ import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
 import { FaFlask } from 'react-icons/fa6'
 import Link from '../../components/SiteLink'
-import { categoryOf, changeOf, type MarketItem as Item } from '../../lib/market'
+import { categoryOf, changeOf, type MarketDay, type MarketItem as Item } from '../../lib/market'
 import { Change, ItemMeta, ItemThumb, MarketPage, MarketState, Price } from './MarketBits'
 import { ItemCharts } from './MarketCharts'
-import { compact, fmt, useMarketItem, useMarketWords } from './useMarket'
+import { compact, fmt, useMarketItem, useMarketLines, useMarketWords } from './useMarket'
+import { lineOf } from '../../lib/marketArt'
 import a from '../archive/archive.module.css'
 import s from './market.module.css'
 
 const RANGES = ['30', '90', '180'] as const
+
+/**
+ * The window's every day, oldest first, ending on the server's today (page.at, UTC): the server's day where it has one,
+ * else a day with no trade and no price (a quiet day is a real zero, never a made-up number).
+ */
+function windowDays(days: MarketDay[], count: number, at: string): MarketDay[] {
+  const by = new Map(days.map((d) => [d.d.slice(0, 10), d]))
+  const end = Date.parse(`${at.slice(0, 10)}T00:00:00Z`)
+  const out: MarketDay[] = []
+  for (let i = count - 1; i >= 0; i--) {
+    const d = new Date(end - i * 86_400_000).toISOString().slice(0, 10)
+    out.push(by.get(d) ?? { d, n: 0, a: null, p: null })
+  }
+  return out
+}
 
 /** One item: its price, its changes (today, 1, 3, 6 months), the graph with a 1 / 3 / 6-month switch and its trades. */
 const MarketItem = () => {
   const { w, locale } = useMarketWords()
   const { code = '' } = useParams()
   const { page, state, retry } = useMarketItem(code)
+  const lines = useMarketLines()
   const [range, setRange] = useState<(typeof RANGES)[number]>('90')
   const it: Item | null = page?.item ?? null
-  const days = useMemo(() => (page ? page.days.slice(-Number(range)) : []), [page, range])
+  const days = useMemo(() => (page ? windowDays(page.days, Number(range), page.at) : []), [page, range])
 
   return (
     <MarketPage head={page}>
@@ -56,6 +73,7 @@ const MarketItem = () => {
             <div className={s.itemInfo}>
               <ItemMeta it={it} />
               <h1 className={s.itemTitle}>{it.nm}</h1>
+              {lineOf(lines, it) ? <p className={s.itemLine}>{lineOf(lines, it)}</p> : null}
               <div className={s.priceBox}>
                 <span className={s.priceLabel}>{w.item.price}</span>
                 <Price n={it.p} big />
@@ -108,19 +126,18 @@ const MarketItem = () => {
             </dl>
           ) : null}
 
-          {page && page.days.length ? (
+          {page ? (
             <section className={s.chartSection} aria-labelledby="item-chart">
-              <div className={s.chartHead}>
-                <h2 id="item-chart" className={s.chartTitleBig}>{w.item.chart}</h2>
-                <div className={s.chips} role="group" aria-label={w.item.chart}>
-                  {RANGES.map((r) => (
-                    <button key={r} type="button" className={a.chip} aria-pressed={range === r} onClick={() => setRange(r)}>
-                      {w.item.chartRanges[r]}
-                    </button>
-                  ))}
-                </div>
+              <h2 id="item-chart" className={s.chartTitleBig}>{w.item.chart}</h2>
+              {/* The time switch above both charts, as the Grand Exchange's: 1 month, 3 months, 6 months. */}
+              <div className={s.rangeTabs} role="group" aria-label={w.item.chart}>
+                {RANGES.map((r) => (
+                  <button key={r} type="button" aria-pressed={range === r} onClick={() => setRange(r)}>
+                    {w.item.chartRanges[r]}
+                  </button>
+                ))}
               </div>
-              <ItemCharts days={days} />
+              <ItemCharts days={days} minTrades={page.min_trades} />
             </section>
           ) : null}
 

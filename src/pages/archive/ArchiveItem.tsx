@@ -26,6 +26,7 @@ import s from './archive.module.css'
 import hs from './holder.module.css'
 import { LIVE } from '../../lib/legalRelease'
 import { asRemoval, removalWords } from '../../lib/ledgerReasons'
+import { lineOf, useItemLines } from '../../lib/marketArt'
 
 const ITEM = /^[a-z0-9][a-z0-9_.]{0,127}$/
 const SERIAL = /^[1-9]\d{0,8}$/
@@ -62,6 +63,9 @@ const ArchiveItem = () => {
 
   const name = nameOf(data, item)
   const code = codenameOf(data, item, serial)
+  // The item's own line from the app (its card's description, owner Nov 11), in the reader's language.
+  const lines = useItemLines()
+  const line = lineOf(lines, { k: u?.item_kind ?? (lines?.d[`avatar:${item}`] ? 'avatar' : 'title'), i: item, t: false })
   const title = `${name} ${serialText(serial)}`
 
   if (state === 'missing') {
@@ -141,6 +145,7 @@ const ArchiveItem = () => {
             </div>
             <h1 className={s.itemTitle}>{name}</h1>
             {code ? <p className={s.codename}>“{code}”</p> : null}
+            {line ? <p className={s.itemLine}>{line}</p> : null}
             <span className={s.bigSerial}>{serialText(serial)}</span>
 
             {u ? (

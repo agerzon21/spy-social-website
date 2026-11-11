@@ -110,6 +110,8 @@ const ptBR: MarketStrings = {
     chartLine: 'Preço',
     volume: 'Vendas por dia',
     noChart: 'Nenhuma venda nesse período.',
+    noPriceYet: (n: number) => `Ainda sem preço: precisa de ${n} vendas`,
+    zeroTrades: '0 vendas',
     stats: { trades7: 'Vendas em 7 dias', trades30: 'Vendas em 30 dias', value30: 'Intel em vendas (30 dias)', trades180: 'Vendas em 180 dias' },
     tradeIt: 'Compre ou venda no app, no Mercado Negro.',
     back: 'Mercado',

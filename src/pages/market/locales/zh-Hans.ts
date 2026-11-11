@@ -106,6 +106,8 @@ const zh: MarketStrings = {
     chartLine: '价格',
     volume: '每日成交',
     noChart: '这段时间没有成交。',
+    noPriceYet: (n: number) => `暂无价格：需要 ${n} 次成交`,
+    zeroTrades: '0 次成交',
     stats: { trades7: '7 天成交', trades30: '30 天成交', value30: '30 天成交情报', trades180: '180 天成交' },
     tradeIt: '在应用的黑市里买卖它。',
     back: '市场',

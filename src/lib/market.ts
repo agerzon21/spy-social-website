@@ -11,6 +11,7 @@
  */
 import type { LangCode } from '../i18n'
 import { ArchiveBusy, ledgerGet } from './archive'
+import { loadMarketLines, nameFix } from './marketArt'
 
 /** The windows the server counts in: today, 7, 30, 90, 180 days (the order of `b`, `v` and `x`). */
 export const WINDOWS = ['1d', '7d', '30d', '90d', '180d'] as const
@@ -95,7 +96,9 @@ export function fetchMarket(lang: LangCode): Promise<MarketList | null> {
   if (kept && Date.now() - kept.at < 60_000) return kept.p
   const p = sampleOn()
     ? import('../pages/market/sample').then((m) => m.sampleMarket())
-    : ledgerGet<MarketList>(`op=market&lang=${encodeURIComponent(lang)}`)
+    : Promise.all([ledgerGet<MarketList>(`op=market&lang=${encodeURIComponent(lang)}`), loadMarketLines(lang)]).then(([l, lines]) =>
+        l ? { ...l, items: l.items.map((it) => nameFix(lines, it)) } : l,
+      )
   p.catch(() => listCache.delete(key))
   listCache.set(key, { at: Date.now(), p })
   return p
@@ -103,7 +106,9 @@ export function fetchMarket(lang: LangCode): Promise<MarketList | null> {
 
 export function fetchMarketItem(code: string, lang: LangCode): Promise<MarketItemPage | null> {
   if (sampleOn()) return import('../pages/market/sample').then((m) => m.sampleItem(code))
-  return ledgerGet<MarketItemPage>(`op=market_item&code=${encodeURIComponent(code)}&lang=${encodeURIComponent(lang)}`)
+  return Promise.all([ledgerGet<MarketItemPage>(`op=market_item&code=${encodeURIComponent(code)}&lang=${encodeURIComponent(lang)}`), loadMarketLines(lang)]).then(
+    ([page, lines]) => (page?.item ? { ...page, item: nameFix(lines, page.item) } : page),
+  )
 }
 
 /** The server's Market reads aren't on yet (the ledger function answers 400 for an op it doesn't know). */

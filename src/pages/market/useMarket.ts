@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useLang, type LangCode } from '../../i18n'
 import { fetchMarket, fetchMarketItem, marketSoon, withDemo, type MarketItemPage, type MarketList } from '../../lib/market'
 import { loadArtIndex, loadLookIndex, type Looks } from '../../lib/archive'
+import { useItemLines } from '../../lib/marketArt'
 import { marketStrings, type MarketStrings } from './strings'
 
 const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set(), motion: {} }
@@ -23,6 +24,9 @@ export function useMarketWords(): { w: MarketStrings; lang: LangCode; locale: st
   }, [])
   return { w: marketStrings(lang), lang, locale: language.locale, art, looks }
 }
+
+/** The item lines (descriptions) in the reader's language (lib/marketArt: the Archive's Unique pages read them too). */
+export const useMarketLines = useItemLines
 
 /** Every item on the books (op=market): 'soon' while the server's Market reads aren't on yet (the function answers 400). */
 export function useMarketList() {
