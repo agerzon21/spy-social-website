@@ -65,6 +65,7 @@ const zhHans: Strings = {
 
   header: {
     home: 'SpySocial 首页',
+    skip: '跳到正文',
     nav: '网站',
     join: '加入房间',
     joinShort: '加入',

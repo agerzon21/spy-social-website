@@ -217,18 +217,23 @@ export function MarketSearch({ items, q, onQ, limit, autoFocus = false, showShel
   const { w } = useMarketWords()
   const found = useMemo(() => searchItems(items, q, limit + 1), [items, q, limit])
   const shown = found.slice(0, limit)
+  const typed = q.trim().length >= 2
   return (
     <div className={s.searchBox} data-autofocus={autoFocus || undefined}>
       <SearchField value={q} onChange={onQ} label={w.search.label} hint={w.search.hint} clear={w.search.clear} />
-      {q.trim().length >= 2 ? (
+      {/* One live region that is always there (a11y-1111): one that appears with its text is often not read out. */}
+      <p className={a.srOnly} role="status">
+        {typed ? (shown.length ? w.search.results(shown.length) : w.search.none) : ''}
+      </p>
+      {typed ? (
         shown.length ? (
           <>
-            <p className={s.searchCount} role="status">{w.search.results(shown.length)}</p>
+            <p className={s.searchCount}>{w.search.results(shown.length)}</p>
             <ItemTable items={shown} showRank={false} list="traded" win="30d" showShelf={showShelf} />
             {found.length > limit ? <p className={s.searchCount}>{w.search.more(limit)}</p> : null}
           </>
         ) : (
-          <p className={a.empty} role="status">{w.search.none}</p>
+          <p className={a.empty}>{w.search.none}</p>
         )
       ) : null}
     </div>

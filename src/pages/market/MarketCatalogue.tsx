@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Navigate, useParams } from 'react-router-dom'
 import Link from '../../components/SiteLink'
 import { sitePath } from '../../lib/siteHost'
@@ -42,6 +43,10 @@ const MarketCatalogue = () => {
   if (!shelf) {
     return (
       <MarketPage head={list}>
+      {/* Each page its own title (WCAG 2.4.2, a11y-1111), as the item page has. */}
+      <Helmet>
+        <title>{`${shelf ? w.categories[shelf] : w.catalogue.title} · ${w.name} · SpySocial`}</title>
+      </Helmet>
         <ol className={a.crumbs}>
           <li><Link to="/market">{w.nav.market}</Link></li>
           <li>{w.catalogue.title}</li>
@@ -84,6 +89,10 @@ const MarketCatalogue = () => {
   const rarities = RARITIES.filter((r) => onShelf.some((it) => it.r === r))
   return (
     <MarketPage head={list}>
+      {/* Each page its own title (WCAG 2.4.2, a11y-1111), as the item page has. */}
+      <Helmet>
+        <title>{`${shelf ? w.categories[shelf] : w.catalogue.title} · ${w.name} · SpySocial`}</title>
+      </Helmet>
       <ol className={a.crumbs}>
         <li><Link to="/market">{w.nav.market}</Link></li>
         <li><Link to="/market/catalogue">{w.catalogue.title}</Link></li>

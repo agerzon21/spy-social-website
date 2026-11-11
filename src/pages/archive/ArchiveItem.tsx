@@ -104,7 +104,7 @@ const ArchiveItem = () => {
   return (
     <div className={`${s.page} ${s.foil}`}>
       <Helmet>
-        <title>{`${title} · Archive · SpySocial`}</title>
+        <title>{`${title} · ${t.crumbs} · SpySocial`}</title>
       </Helmet>
       <div className={ui.wrap}>
         <ol className={s.crumbs}>
@@ -226,9 +226,12 @@ const ArchiveItem = () => {
                   </div>
                   <div className={`${s.attr} ${s.wide}`}>
                     <dt>{t.how}</dt>
-                    <dd style={{ textTransform: 'none', fontFamily: 'var(--ss-font-body)', fontSize: 17, fontWeight: 700 }}>{how}</dd>
-                    {rule ? <p className={s.historyNote} style={{ marginTop: 6 }}>{rule}</p> : null}
-                    {u.history[0]?.retro ? <p className={s.historyNote} style={{ marginTop: 4 }}>{t.recordedLater}</p> : null}
+                    {/* The notes sit inside the <dd> (a <dl>'s groups hold only <dt> and <dd>), set back to the page's own text. */}
+                    <dd style={{ display: 'block', textTransform: 'none', fontFamily: 'var(--ss-font-body)', fontSize: 17, fontWeight: 700 }}>
+                      {how}
+                      {rule ? <p className={s.historyNote} style={{ marginTop: 6, fontWeight: 500, lineHeight: 1.6 }}>{rule}</p> : null}
+                      {u.history[0]?.retro ? <p className={s.historyNote} style={{ marginTop: 4, fontWeight: 500, lineHeight: 1.6 }}>{t.recordedLater}</p> : null}
+                    </dd>
                   </div>
                 </dl>
                 <div className={s.supply}>

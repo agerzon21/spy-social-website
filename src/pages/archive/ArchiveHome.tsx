@@ -152,8 +152,9 @@ const ArchiveHome = () => {
           <p className={s.scaleNote}>{h.float.pattern}</p>
 
           <div className={s.ten}>
-            <h3 className={s.tenTitle}>{h.float.variantsTitle}</h3>
-            <div className={s.tenRow}>
+            <h3 className={s.tenTitle} id="ten-variants">{h.float.variantsTitle}</h3>
+            {/* Scrolls sideways on a phone: a Tab stop so a keyboard can scroll it too (WCAG 2.1.1, a11y-1111). */}
+            <div className={s.tenRow} role="region" aria-labelledby="ten-variants" tabIndex={0}>
               {Array.from({ length: 10 }, (_, d) => (
                 <figure key={d} className={s.tenCell} style={{ margin: 0 }}>
                   <img src={artKey(`x-cat-d1-${d}`, true)} alt={breed?.values[d]?.name ?? ''} width={320} height={320} loading="lazy" decoding="async" />
@@ -167,8 +168,9 @@ const ArchiveHome = () => {
           </div>
 
           <div className={s.ten}>
-            <h3 className={s.tenTitle}>{h.float.coloursTitle}</h3>
-            <div className={s.tenRow}>
+            <h3 className={s.tenTitle} id="ten-colours">{h.float.coloursTitle}</h3>
+            {/* Scrolls sideways on a phone: a Tab stop so a keyboard can scroll it too (WCAG 2.1.1, a11y-1111). */}
+            <div className={s.tenRow} role="region" aria-labelledby="ten-colours" tabIndex={0}>
               {Array.from({ length: 10 }, (_, d) => (
                 <figure key={d} className={s.tenCell} style={{ margin: 0 }}>
                   <img src={artKey(`x-cat-d2-${d}`, true)} alt={colour?.values[d]?.name ?? ''} width={320} height={320} loading="lazy" decoding="async" />
@@ -200,8 +202,10 @@ const ArchiveHome = () => {
                     // Kept inside the bar at its two ends (a pin is 30 px wide, centred on its float).
                     style={{ left: `clamp(15px, ${Math.min(100, Number(c.float) * 100)}%, calc(100% - 15px))` }}
                     title={`${nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
+                    // Its name for a screen reader: the copy and its float, as the tooltip says, not just "#21".
+                    aria-label={`${nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
                   >
-                    <img src={lookOf(looks, c.item_code, c.serial)?.alone ?? artOf(art, c.item_code, c.serial, true)?.src} alt={`#${c.serial}`} width={30} height={30} loading="lazy" />
+                    <img src={lookOf(looks, c.item_code, c.serial)?.alone ?? artOf(art, c.item_code, c.serial, true)?.src} alt="" width={30} height={30} loading="lazy" />
                   </Link>
                 ))}
                 {[0, 0.5, 1].map((t) => (

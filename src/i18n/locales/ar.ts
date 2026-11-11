@@ -66,6 +66,7 @@ const ar: Strings = {
 
   header: {
     home: 'الصفحة الرئيسية لـ SpySocial',
+    skip: 'انتقل إلى المحتوى',
     nav: 'الموقع',
     join: 'الانضمام إلى غرفة',
     joinShort: 'انضمام',

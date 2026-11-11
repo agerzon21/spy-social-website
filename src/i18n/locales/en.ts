@@ -86,6 +86,8 @@ const en = {
 
   header: {
     home: 'SpySocial home',
+    /** A keyboard's first stop on every page, shown only while it has focus: jumps past the header to the page. */
+    skip: 'Skip to content',
     nav: 'Site',
     /** The link to the home page's room-code box, on a computer or tablet. */
     join: 'Join a room',

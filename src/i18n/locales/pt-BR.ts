@@ -66,6 +66,7 @@ const ptBR: Strings = {
 
   header: {
     home: 'Página inicial do SpySocial',
+    skip: 'Pular para o conteúdo',
     nav: 'Site',
     join: 'Entrar numa sala',
     joinShort: 'Entrar',

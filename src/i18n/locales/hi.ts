@@ -66,6 +66,7 @@ const hi: Strings = {
 
   header: {
     home: 'SpySocial होम',
+    skip: 'मुख्य सामग्री पर जाएँ',
     nav: 'साइट',
     join: 'रूम से जुड़ें',
     joinShort: 'जुड़ें',

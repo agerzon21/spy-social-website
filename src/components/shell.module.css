@@ -201,3 +201,21 @@
   .cols { gap: 80px; grid-template-columns: repeat(2, minmax(150px, auto)); }
   .bottom { flex-direction: row; justify-content: space-between; align-items: center; }
 }
+
+/* The skip link (components/Layout): off screen until a keyboard reaches it, then over the header's start. */
+.skip {
+  position: fixed;
+  inset-inline-start: 12px;
+  top: 8px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: var(--ss-accent);
+  color: var(--ss-on-accent);
+  font: 700 15px/1.2 var(--ss-font-body);
+  text-decoration: none;
+  transform: translateY(calc(-100% - 16px));
+}
+.skip:focus { transform: none; }
+/* The page takes focus from the skip link without a ring round all of it. */
+.main:focus { outline: none; }

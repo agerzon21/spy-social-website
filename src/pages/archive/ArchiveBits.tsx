@@ -40,7 +40,9 @@ export function Piece({ src, alt, unique = true, small = false, eager = false, l
 export function FloatDigits({ float, marks = true }: { float: string; marks?: boolean }) {
   const digits = (float.split('.')[1] ?? '').padEnd(16, '0').slice(0, 16).split('')
   return (
-    <div className={s.floatDigits} aria-label={float}>
+    <div className={s.floatDigits}>
+      {/* A plain <div> can't carry a name (aria-label): screen readers read the float from this text instead. */}
+      <span className={s.srOnly}>{float}</span>
       <span className={s.lead} aria-hidden>0.</span>
       {digits.map((d, i) => (
         <span key={i} aria-hidden className={`${s.d} ${marks && i < 4 ? s[`d${i + 1}`] : ''}`} data-n={marks && i < 4 ? String(i + 1) : undefined}>

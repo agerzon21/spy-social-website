@@ -66,6 +66,7 @@ const ru: Strings = {
 
   header: {
     home: 'SpySocial: главная',
+    skip: 'Перейти к содержимому',
     nav: 'Сайт',
     join: 'Войти в комнату',
     joinShort: 'Войти',

@@ -66,6 +66,7 @@ const bn: Strings = {
 
   header: {
     home: 'SpySocial হোম',
+    skip: 'মূল অংশে যান',
     nav: 'সাইট',
     join: 'রুমে যোগ দিন',
     joinShort: 'যোগ দিন',

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useSearchParams } from 'react-router-dom'
 import { SearchField } from '../../components/SearchField'
 import DisplayHeading from '../../components/ui/DisplayHeading'
@@ -107,6 +108,10 @@ const ArchiveBrowse = () => {
   return (
     <div className={`${s.page} ${s.foil}`}>
       <div className={ui.wrap} ref={top}>
+        {/* Its own title, not the Archive home's (WCAG 2.4.2, a11y-1111). */}
+        <Helmet>
+          <title>{`${b.title} · ${w.item.crumbs} · SpySocial`}</title>
+        </Helmet>
         <BetaNotice chain={list?.chain} />
         <header style={{ marginTop: 30 }}>
           <Eyebrow>{b.eyebrow}</Eyebrow>

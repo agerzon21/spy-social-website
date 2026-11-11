@@ -66,6 +66,7 @@ const id: Strings = {
 
   header: {
     home: 'Beranda SpySocial',
+    skip: 'Langsung ke konten',
     nav: 'Situs',
     join: 'Gabung ke room',
     joinShort: 'Gabung',
