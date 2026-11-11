@@ -1529,6 +1529,16 @@ export const LIVE = {
    */
   archiveHolders: true,
   /**
+   * ledger-reasons-1111 (owner Nov 11; app repo server file 20261231999988_ledger_reasons_1111): when SpySocial takes a
+   * minted copy away for integrity (a bot farm, cheating, a fraud refund, a glitch or duplicate, a correction of ours),
+   * the ledger says so plainly: the original lines stay, a new burn line's note reads "burn:<reason> case:<ref>", and the
+   * number is never used again. Turns on: a Unique's Archive page "Removed: <reason>, <date>" with its case, its
+   * history line, and the item's supply as minted / removed / in circulation (src/lib/ledgerReasons.ts, ten languages);
+   * the Ledger page's Supply column gains "removed". No personal data (a case number, never a player), no policy text.
+   * OFF until the server file is applied (until then the answers carry no removal keys and the pages stay as they are).
+   */
+  ledgerReasons: false,
+  /**
    * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
    * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
    * included; problem_reports was already in it since 20261224610000) and their entry on a beta tester list (beta_testers,

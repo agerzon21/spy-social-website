@@ -62,6 +62,8 @@ export type HistoryEvent = {
   event: 'minted' | 'tradable' | 'sold' | 'sale_undone' | 'traded' | 'moved' | 'burned' | string
   retro: boolean
   burn: 'trade_up' | 'shred' | 'other' | null
+  /** A removal's reason and case (ledger_reasons_1111): {code, ref}; absent before that server file. */
+  removal?: { code: string; ref?: string } | null
   from: number | null
   to: number | null
   price: number | null
@@ -90,7 +92,10 @@ export type ArchiveUnique = {
   evidence_sha256: string
   ledger_seq: number
   set: ArchiveSet | null
-  item: { minted: number; burned: number; held: number; serials: number[] }
+  /** removed / removed_by: copies taken away for integrity, by reason (ledger_reasons_1111; absent before it). */
+  item: { minted: number; burned: number; held: number; serials: number[]; removed?: number; removed_by?: Record<string, number> }
+  /** The copy's removal: {code, ref, at} when it was taken away for integrity (ledger_reasons_1111), else null / absent. */
+  removed?: { code: string; ref?: string; at: string } | null
   status: CopyStatus
   status_at: string | null
   listing: { price: number; listed_at: string } | null

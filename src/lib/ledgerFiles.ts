@@ -44,6 +44,8 @@ export type LedgerSupply = {
     code: string; set: string; season: string; track: string; set_names: Record<string, string>; item_kind: string; item_code: string
     variant: string; how: Record<string, string>; opens_at: string; closes_at: string; minted: number; burned: number; held: number
     closed_at: string | null; close_seq: number | null; name: string | null
+    /** ledger_reasons_1111: copies removed for integrity, and by reason (absent before that server file). */
+    removed?: number; removed_by?: Record<string, number>
   }[]
 }
 

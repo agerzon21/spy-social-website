@@ -25,6 +25,7 @@ import { dayText, fmt, setText, useArchive } from './useArchive'
 import s from './archive.module.css'
 import hs from './holder.module.css'
 import { LIVE } from '../../lib/legalRelease'
+import { asRemoval, removalWords } from '../../lib/ledgerReasons'
 
 const ITEM = /^[a-z0-9][a-z0-9_.]{0,127}$/
 const SERIAL = /^[1-9]\d{0,8}$/
@@ -100,6 +101,14 @@ const ArchiveItem = () => {
   // The holder today (archive-holder-1110): only with the switch on and a server that sends the holder keys.
   const holder = u && LIVE.archiveHolders ? holderOf(u) : ({ kind: 'unknown' } as const)
   const namesHolders = !!u && LIVE.archiveHolders && u.holder_handle !== undefined
+  // Taken away for integrity (ledger-reasons-1111): the reason in plain words, its date and case, and the supply as
+  // minted / removed / in circulation. Only with the switch on and a server that sends the removal keys.
+  const rw = removalWords(lang)
+  const removal = u && LIVE.ledgerReasons && u.status === 'burned' ? asRemoval(u.removed) : null
+  const removedAt = removal && u?.removed?.at ? u.removed.at : u?.status_at ?? null
+  const supplyParts = u && LIVE.ledgerReasons && typeof u.item.removed === 'number'
+    ? rw.supply(fmt(u.item.minted, locale), fmt(u.item.removed, locale), fmt(u.item.held, locale))
+    : null
 
   return (
     <div className={`${s.page} ${s.foil}`}>
@@ -151,7 +160,7 @@ const ArchiveItem = () => {
                   ) : (
                     <span className={`${s.statusPill} ${u.status === 'listed' ? s.listed : u.status === 'burned' ? s.burned : ''}`}>
                       <i aria-hidden />
-                      {u.status === 'held' && holder.kind === 'private' ? t.heldPrivately : t.status[u.status]}
+                      {removal ? rw.removed : u.status === 'held' && holder.kind === 'private' ? t.heldPrivately : t.status[u.status]}
                     </span>
                   )}
                   {u.status === 'listed' && u.listing ? (
@@ -173,7 +182,15 @@ const ArchiveItem = () => {
                 ) : u.status === 'listed' && holder.kind === 'private' ? (
                   <div className={`${hs.line} ${hs.private}`}>{t.heldPrivately}</div>
                 ) : null}
-                {u.status === 'burned' ? (
+                {removal ? (
+                  <div data-testid="archive-removed">
+                    <p>
+                      <strong>{rw.line(rw.why[removal.code], removedAt ? dayText(removedAt, locale) : '—')}</strong>
+                      {removal.ref ? <> · <span>{rw.case(removal.ref)}</span></> : null}
+                    </p>
+                    <p className={s.historyNote}>{rw.note}</p>
+                  </div>
+                ) : u.status === 'burned' ? (
                   <p>{t.retiredHow(t.burnWhy[(u.history.find((e) => e.event === 'burned')?.burn ?? 'other') as 'trade_up' | 'shred' | 'other'])}</p>
                 ) : null}
               </div>
@@ -236,6 +253,7 @@ const ArchiveItem = () => {
                 </dl>
                 <div className={s.supply}>
                   {t.supply(name, fmt(u.item.minted, locale), u.item.minted)}
+                  {supplyParts ? <div data-testid="archive-supply">{supplyParts.join(' · ')}</div> : null}
                   {u.item.serials.length > 1 ? (
                     <div className={s.serials} aria-label={t.others}>
                       {u.item.serials.map((n) =>
@@ -297,9 +315,12 @@ const ArchiveItem = () => {
 }
 
 function HistoryLine({ e }: { e: HistoryEvent }) {
-  const { w, locale } = useArchive()
+  const { w, locale, lang } = useArchive()
   const t = w.item
-  const label = (t.events as Record<string, string>)[e.event] ?? e.event
+  // A removal's line says why, with its case (ledger-reasons-1111).
+  const removal = LIVE.ledgerReasons && e.event === 'burned' ? asRemoval(e.removal) : null
+  const rw = removalWords(lang)
+  const label = removal ? rw.removed : (t.events as Record<string, string>)[e.event] ?? e.event
   const who =
     e.from != null && e.to != null
       ? `${t.holder(fmt(e.from, locale))} → ${t.holder(fmt(e.to, locale))}`
@@ -319,6 +340,7 @@ function HistoryLine({ e }: { e: HistoryEvent }) {
       <div className={s.evMeta}>
         {dayText(e.at, locale)}
         {e.sale_state === 'undone' ? ` · ${t.undone}` : ''}
+        {removal ? ` · ${rw.why[removal.code]}${removal.ref ? ` · ${rw.case(removal.ref)}` : ''}` : ''}
       </div>
       {who ? <span className={s.evWho}>{who}</span> : null}
     </li>

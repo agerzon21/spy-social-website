@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, H3, Numbered, OutLink, P, PageLink, SupportEmail } from '../components/legal/LegalText'
 import { InfoTable, type InfoRow } from '../components/legal/InfoTable'
+import { LIVE } from '../lib/legalRelease'
 import {
   LEDGER_FILES_BASE, LEDGER_REPO, cyberChefSha256, ledgerFile, repoPath, sizeOf, staticJson,
   type LedgerChain, type LedgerSummary, type LedgerSupply,
@@ -91,7 +92,10 @@ const Ledger: React.FC = () => {
     label: `${c.name ?? c.item_code}${c.variant === 'unique' ? ' · Unique' : ''}`,
     note: `${c.set_names?.en ?? c.set} · ${c.how?.en ?? ''}`,
     cells: [
-      `${n(c.minted)} minted · ${n(c.burned)} burned · ${n(c.held)} held`,
+      // ledger-reasons-1111: copies removed for integrity, once the server sends them (LIVE.ledgerReasons).
+      LIVE.ledgerReasons && typeof c.removed === 'number'
+        ? `${n(c.minted)} minted · ${n(c.burned)} burned (${n(c.removed)} removed) · ${n(c.held)} in circulation`
+        : `${n(c.minted)} minted · ${n(c.burned)} burned · ${n(c.held)} held`,
       c.closed_at ? (c.minted === 0 ? 'Never awarded' : `Closed ${day(c.closed_at)} (entry ${c.close_seq ?? '…'})`) : `Open until ${day(c.closes_at)}`,
     ],
   })), [supply])
