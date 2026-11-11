@@ -509,6 +509,9 @@ const en = {
         "<b>Public rooms</b> need a saved account with a confirmed email address, an age of 13 or older and agreement to our Community Rules. Guests can play only in private rooms, and players with a pause or a ban can't join public rooms.",
       filter:
         "<b>Chat filter:</b> names and chat are checked before anyone sees them. In public rooms, slurs, explicit sexual words and insults are blocked. In private rooms, the most serious words are blocked. In any room or party with a player under 18 or one who hasn't told us their age, links, email addresses, phone numbers, social accounts and other personal details (a home address, where someone lives, a school, a real name) are blocked for everyone. At Play Online tables and game nights they're always blocked.",
+      /** At public tables the mild swears go censored (app server 20261231999920_mild_swear_mask_1111); shown with `filter` while LIVE.chatMildMask. */
+      filterMild:
+        "At Play Online tables and game nights, everyday swear words aren't blocked, but everyone sees them censored: the first letter, then asterisks (s***). Milder words like \"damn\" and \"hell\" show as typed.",
       reports:
         "<b>Reports, blocks and penalties:</b> a person reads every report within 24 hours, and the reported player isn't told who sent it. Reports involving a player under 18 are read first. Penalties go from a warning to a chat mute, a pause from public rooms, or a ban. Our <link>Community Rules</link> list what isn't allowed.",
       drawingCheck:

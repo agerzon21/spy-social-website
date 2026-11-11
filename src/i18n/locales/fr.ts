@@ -463,6 +463,8 @@ const fr: Strings = {
         "<b>Les salons publics</b> demandent un compte enregistré avec une adresse e-mail confirmée, un âge de 13 ans ou plus et l'acceptation de nos règles de la communauté. Les invités ne peuvent jouer que dans des salons privés, et les joueurs suspendus ou bannis ne peuvent pas rejoindre les salons publics.",
       filter:
         "<b>Filtre du chat\u00A0:</b> les noms et le chat sont vérifiés avant que quiconque les voie. Dans les salons publics, les injures, les mots sexuels explicites et les insultes sont bloqués. Dans les salons privés, les mots les plus graves sont bloqués. Dans tout salon ou groupe où se trouve un joueur de moins de 18 ans ou qui ne nous a pas donné son âge, les liens, adresses e-mail, numéros de téléphone, comptes de réseaux sociaux et autres informations personnelles (adresse du domicile, lieu de vie, école, vrai nom) sont bloqués pour tout le monde. Aux tables de «\u00A0Jouer en ligne\u00A0» et aux soirées jeux, ils sont toujours bloqués.",
+      filterMild:
+        "Aux tables de «\u00A0Jouer en ligne\u00A0» et aux soirées jeux, les gros mots courants ne sont pas bloqués, mais tout le monde les voit censurés\u00A0: la première lettre, puis des astérisques (m****). Les mots plus légers s'affichent tels quels.",
       reports:
         "<b>Signalements, blocages et sanctions\u00A0:</b> une personne lit chaque signalement sous 24 heures, et le joueur signalé ne sait pas qui l'a signalé. Les signalements qui concernent un joueur de moins de 18 ans sont lus en priorité. Les sanctions vont de l'avertissement au blocage du chat, à une suspension des salons publics ou au bannissement. Nos <link>règles de la communauté</link> listent ce qui est interdit.",
       drawingCheck:

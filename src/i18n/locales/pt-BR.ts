@@ -464,6 +464,8 @@ const ptBR: Strings = {
         '<b>Salas públicas</b> exigem uma conta salva com e-mail confirmado, idade de 13 anos ou mais e aceite das nossas Regras da comunidade. Visitantes só podem jogar em salas privadas, e jogadores com pausa ou banimento não podem entrar em salas públicas.',
       filter:
         '<b>Filtro do chat:</b> nomes e mensagens são verificados antes que alguém os veja. Em salas públicas, ofensas discriminatórias, palavras sexuais explícitas e insultos são bloqueados. Em salas privadas, as palavras mais graves são bloqueadas. Em qualquer sala ou grupo com um jogador menor de 18 anos ou que não nos informou a idade, links, e-mails, números de telefone, redes sociais e outros dados pessoais (endereço de casa, onde alguém mora, escola, nome verdadeiro) ficam bloqueados para todos. Nas mesas do Jogar online e nas noites de jogos, eles ficam sempre bloqueados.',
+      filterMild:
+        'Nas mesas do Jogar online e nas noites de jogos, palavrões comuns não são bloqueados, mas todos os veem censurados: a primeira letra e depois asteriscos (m****). Palavras mais leves aparecem como foram escritas.',
       reports:
         '<b>Denúncias, bloqueios e punições:</b> uma pessoa lê cada denúncia em até 24 horas, e o jogador denunciado não fica sabendo quem fez a denúncia. Denúncias que envolvem um jogador menor de 18 anos são lidas primeiro. As punições vão de uma advertência a um bloqueio do chat, uma pausa nas salas públicas ou um banimento. Nossas <link>Regras da comunidade</link> listam o que não é permitido.',
       drawingCheck:

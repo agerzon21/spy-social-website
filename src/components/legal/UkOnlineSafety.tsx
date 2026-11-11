@@ -348,7 +348,11 @@ const UkOnlineSafety = () => {
           them: in public rooms for slurs, explicit sexual words, insults and other blocked words; in private rooms for the
           most serious words, such as slurs, sexual insults and telling someone to kill themselves. Links, email
           addresses, phone numbers, social accounts and other personal details (a home address, where someone lives, a school, a real name) are refused for everyone at Play Online tables and game nights,
-          and in any room or party with a player under 18 or one who hasn't told us their age. The filter works best in English, Spanish and Russian. It stops a
+          and in any room or party with a player under 18 or one who hasn't told us their age.
+          {LIVE.chatMildMask
+            ? ' At Play Online tables and game nights, everyday swear words aren\'t refused: they go out censored for everyone (the first letter, then asterisks, like s***).'
+            : ''}{' '}
+          The filter works best in English, Spanish and Russian. It stops a
           message or a name from going out; it never penalizes anyone by itself.
         </ListItem>
         {dc ? (

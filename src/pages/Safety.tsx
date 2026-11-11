@@ -153,7 +153,10 @@ const Safety: React.FC = () => {
           {r(p.age({ gate: LIVE.ageGateEveryone, under13Deletion: LIVE.under13Deletion, storeSignals: LIVE.storeAgeSignals }))}
         </ListItem>
         <ListItem>{r(p.publicRooms)}</ListItem>
-        <ListItem>{r(p.filter)}</ListItem>
+        <ListItem>
+          {r(p.filter)}
+          {LIVE.chatMildMask && <> {r(p.filterMild)}</>}
+        </ListItem>
         <ListItem>{r(p.reports, { link: page('/rules') })}</ListItem>
         {LIVE.drawingCheck && <ListItem>{r(p.drawingCheck)}</ListItem>}
       </Bullets>

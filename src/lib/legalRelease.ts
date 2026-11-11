@@ -1000,6 +1000,17 @@ export const LIVE = {
    */
   retentionSweep: false,
   /**
+   * mild-swear-mask-1111 (owner Nov 11; app repo server file supabase/migrations_pending/20261231999920_mild_swear_mask_1111.sql):
+   * at Play Online tables and game nights the shit / crap level of swearing is no longer refused: it goes out censored for
+   * everyone (first letter, then asterisks); damn / hell as typed; strong swears, slurs, sexual words and contact details
+   * refused as before; private rooms unchanged. Turns on the Safety page's sentence after the chat filter's (filterMild, ten
+   * languages) and the Terms' UK online safety Word filter sentence. Flip the day the server file is applied and set
+   * CHAT_MILD_MASK_DAY to it (LEGAL_LAST_UPDATED: Terms, Safety). Not a material change (it relaxes a refusal into a mask;
+   * no new duty): no TERMS_PUBLISHED or terms_version. Privacy: nothing new is collected or kept, so it doesn't move.
+   * A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  chatMildMask: false,
+  /**
    * Unopened Intercepts inside a friend trade. The server takes them (trade_set_intercepts), and the app offers it since
    * update 48 (November 7, 2026); Terms 9, Privacy's Intercepts item, Transparency, help and Safety say so.
    */
@@ -1727,6 +1738,8 @@ export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 export const MARKET_SITE_DAY = 'November 10, 2026'
 /** LIVE.archiveHolders's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231997000 is live). Never earlier than November 10, 2026. */
 export const ARCHIVE_HOLDERS_DAY = 'November 11, 2026'
+/** LIVE.chatMildMask's day in LEGAL_LAST_UPDATED: the day the server file 20261231999920_mild_swear_mask_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
+export const CHAT_MILD_MASK_DAY = 'November 11, 2026'
 
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
@@ -1740,6 +1753,8 @@ export const PRACTICE_AI_DAY = 'December 6, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.chatMildMask
+    ? CHAT_MILD_MASK_DAY // mild-swear-mask-1111: Safety and the Terms' UK section say public tables censor everyday swear words
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: Terms 5's practice gate, Terms 9's test-phase Intel and never-tradable list
   : LIVE.testerMarket
