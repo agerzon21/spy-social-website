@@ -73,7 +73,7 @@ const MarketCatalogue = () => {
                     <Link to={`/market/catalogue/${c}`} className={s.shelf}>
                       <Icon className={s.shelfIcon} aria-hidden focusable={false} />
                       <span className={s.shelfName}>{w.categories[c]}</span>
-                      <span className={s.shelfCount}>{w.catalogue.shelf(on.length, on.filter((it) => it.p != null).length)}</span>
+                      <span className={s.shelfCount}>{w.catalogue.shelf(on.length, on.filter((it) => it.p != null && !it.demo).length)}</span>
                     </Link>
                   </li>
                 )
@@ -103,7 +103,7 @@ const MarketCatalogue = () => {
         <div>
           <Eyebrow>{w.catalogue.title}</Eyebrow>
           <DisplayHeading as="h1" size={2}>{w.categories[shelf]}</DisplayHeading>
-          {state === 'ok' ? <p className={a.sectionLede}>{w.catalogue.shelf(onShelf.length, onShelf.filter((it) => it.p != null).length)}</p> : null}
+          {state === 'ok' ? <p className={a.sectionLede}>{w.catalogue.shelf(onShelf.length, onShelf.filter((it) => it.p != null && !it.demo).length)}</p> : null}
         </div>
       </header>
       {state === 'loading' ? <div className={a.loading} aria-busy="true" /> : null}

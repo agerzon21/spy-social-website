@@ -18,6 +18,9 @@ const en = {
   name: 'Black Market',
   beta: 'Beta test market: these prices come from testers’ trades and are wiped on December 7. The real market opens December 8.',
   sample: 'SAMPLE DATA: made up for this design preview. No real trade is shown.',
+  /** (market-demo-1111) the server's sample history on a few items (beta only): their item page and their price in a list. */
+  demoNote: 'Sample history: example data to show how the charts work, not real trades. Wiped at launch.',
+  sampleTag: 'Sample',
   halted: 'The Black Market is paused right now. Prices stay as they were when it stopped.',
   busy: 'The Market can’t reach the prices right now. Try again in a minute.',
   soon: { title: 'Market opens December 8', text: 'Prices appear here once players trade. Until then, everything on the Black Market is a test.' },
@@ -128,6 +131,8 @@ const ru: MarketStrings = {
   name: 'Чёрный рынок',
   beta: 'Тестовый рынок: эти цены сложились из сделок тестировщиков и будут стёрты 7 декабря. Настоящий рынок откроется 8 декабря.',
   sample: 'ПРИМЕР ДАННЫХ: придуман для показа дизайна. Ни одной настоящей сделки здесь нет.',
+  demoNote: 'Пример истории: условные данные, чтобы показать, как работают графики, а не настоящие сделки. Будут стёрты к запуску.',
+  sampleTag: 'Пример',
   halted: 'Чёрный рынок сейчас приостановлен. Цены остаются такими, какими были в момент остановки.',
   busy: 'Рынок сейчас не может получить цены. Попробуйте через минуту.',
   soon: { title: 'Рынок откроется 8 декабря', text: 'Цены появятся здесь, когда игроки начнут торговать. До тех пор всё на Чёрном рынке — тест.' },

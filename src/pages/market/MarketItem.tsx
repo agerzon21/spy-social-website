@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
+import { FaFlask } from 'react-icons/fa6'
 import Link from '../../components/SiteLink'
 import { categoryOf, changeOf, type MarketItem as Item } from '../../lib/market'
 import { Change, ItemMeta, ItemThumb, MarketPage, MarketState, Price } from './MarketBits'
@@ -42,6 +43,12 @@ const MarketItem = () => {
       ) : null}
       {it ? (
         <>
+          {it.demo ? (
+            <p className={`${a.notice} ${s.sample}`} role="note">
+              <FaFlask aria-hidden focusable={false} />
+              <span>{w.demoNote}</span>
+            </p>
+          ) : null}
           <header className={s.itemHead}>
             <div className={s.itemStage}>
               <ItemThumb it={it} size="lg" />

@@ -78,14 +78,14 @@ const MarketHome = () => {
   const [q, setQ] = useState('')
   const [win, setWin] = useState<Win>('7d')
   const featured = featuredOf(list)
-  const priced = items.filter((it) => it.p != null).length
+  const priced = items.filter((it) => it.p != null && !it.demo).length
   const shelves = useMemo(() => {
     const m = new Map<string, { n: number; priced: number }>()
     for (const it of items) {
       const c = categoryOf(it)
       const e = m.get(c) ?? { n: 0, priced: 0 }
       e.n++
-      if (it.p != null) e.priced++
+      if (it.p != null && !it.demo) e.priced++
       m.set(c, e)
     }
     return m

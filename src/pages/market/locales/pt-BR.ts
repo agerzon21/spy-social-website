@@ -8,6 +8,8 @@ const ptBR: MarketStrings = {
   name: 'Mercado Negro',
   beta: 'Mercado de teste da beta: estes preços vêm das vendas dos testadores e serão zerados em 7 de dezembro. O mercado de verdade abre em 8 de dezembro.',
   sample: 'DADOS DE EXEMPLO: inventados para esta prévia do design. Nenhuma venda real aparece aqui.',
+  demoNote: 'Histórico de exemplo: dados fictícios para mostrar como os gráficos funcionam, não vendas reais. Será apagado no lançamento.',
+  sampleTag: 'Exemplo',
   halted: 'O Mercado Negro está pausado agora. Os preços ficam como estavam quando ele parou.',
   busy: 'O Mercado não consegue acessar os preços agora. Tente de novo em um minuto.',
   soon: { title: 'O mercado abre em 8 de dezembro', text: 'Os preços aparecem aqui quando os jogadores começarem a negociar. Até lá, tudo no Mercado Negro é um teste.' },

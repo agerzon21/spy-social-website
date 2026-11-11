@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useLang, type LangCode } from '../../i18n'
-import { fetchMarket, fetchMarketItem, marketSoon, type MarketItemPage, type MarketList } from '../../lib/market'
+import { fetchMarket, fetchMarketItem, marketSoon, withDemo, type MarketItemPage, type MarketList } from '../../lib/market'
 import { loadArtIndex, loadLookIndex, type Looks } from '../../lib/archive'
 import { marketStrings, type MarketStrings } from './strings'
 
@@ -33,7 +33,7 @@ export function useMarketList() {
     setState('loading')
     fetchMarket(lang)
       .then((l) => {
-        setList(l)
+        setList(l ? withDemo(l) : l)
         setState(l ? 'ok' : 'busy')
       })
       .catch((e) => setState(marketSoon(e) ? 'soon' : 'busy'))
@@ -51,7 +51,7 @@ export function useMarketItem(code: string) {
     setState('loading')
     fetchMarketItem(code, lang)
       .then((p) => {
-        setPage(p)
+        setPage(p ? withDemo(p) : p)
         setState('ok')
       })
       .catch((e) => setState(marketSoon(e) ? 'soon' : 'busy'))

@@ -46,6 +46,8 @@ export type MarketItem = {
   v?: number[]
   /** Intel traded in the same windows (null: fewer than min_trades there). */
   x?: (number | null)[]
+  /** (market-demo-1111) set here, not by the server: the item's history is the server's SAMPLE (head.demo). */
+  demo?: boolean
 }
 
 export type MarketHead = {
@@ -58,6 +60,8 @@ export type MarketHead = {
   /** The market is paused (the owner's switch or its own safety pause). */
   halted: boolean
   notice?: string
+  /** (market-demo-1111) items whose history is a SAMPLE (example data, not trades; beta only): labelled, never in the movers. */
+  demo?: string[]
 }
 
 export type MarketList = MarketHead & {
@@ -148,7 +152,7 @@ export const MOVER_LISTS: MoverList[] = ['rises', 'falls', 'traded', 'valuable']
 /** A list of Market Movers over a window, at most `limit` items (never every item). */
 export function movers(items: MarketItem[], list: MoverList, w: Win, limit: number): MarketItem[] {
   const i = winIndex(w)
-  const priced = items.filter((it) => it.p != null)
+  const priced = items.filter((it) => it.p != null && !it.demo)
   let out: { it: MarketItem; key: number }[]
   switch (list) {
     case 'rises':
@@ -174,7 +178,7 @@ export function movers(items: MarketItem[], list: MoverList, w: Win, limit: numb
 /** The featured item: the server's pick (the owner's), else the most traded priced item of the week. */
 export function featuredOf(list: MarketList | null): MarketItem | null {
   if (!list) return null
-  return list.items.find((it) => it.c === list.featured) ?? movers(list.items, 'traded', '7d', 1)[0] ?? null
+  return list.items.find((it) => it.c === list.featured && !it.demo) ?? movers(list.items, 'traded', '7d', 1)[0] ?? null
 }
 
 /** Search the names (and codes) a reader types: starts-with first, then contains; at most `limit`. */
@@ -204,4 +208,12 @@ export const RARITY_COLOUR: Record<string, { dark: string; light: string }> = {
   mythic: { dark: '#FF7FB0', light: '#C2185B' },
   legendary: { dark: '#F2B64D', light: '#B26B00' },
   intercept: { dark: '#ffd166', light: '#8a5e12' },
+}
+
+/** (market-demo-1111) marks the items the server names under head.demo (a sample history), on a list or an item page. */
+export function withDemo<T extends MarketList | MarketItemPage>(page: T): T {
+  const demo = new Set(page.demo ?? [])
+  if (!demo.size) return page
+  if ('items' in page) return { ...page, items: page.items.map((it) => (demo.has(it.c) ? { ...it, demo: true } : it)) }
+  return demo.has(page.item.c) ? { ...page, item: { ...page.item, demo: true } } : page
 }

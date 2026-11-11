@@ -13,6 +13,8 @@ const fr: MarketStrings = {
   name: 'Marché noir',
   beta: 'Marché de test\u00a0: ces prix viennent des ventes des testeurs et seront effacés le 7\u00a0décembre. Le vrai marché ouvre le 8\u00a0décembre.',
   sample: 'DONNÉES FICTIVES\u00a0: inventées pour cet aperçu du design. Aucune vraie vente n’est montrée.',
+  demoNote: 'Historique d’exemple\u00a0: des données fictives pour montrer comment marchent les graphiques, pas de vraies ventes. Effacé au lancement.',
+  sampleTag: 'Exemple',
   halted: 'Le Marché noir est en pause pour le moment. Les prix restent tels qu’ils étaient à l’arrêt.',
   busy: 'Le Marché n’arrive pas à charger les prix pour le moment. Réessaie dans une minute.',
   soon: { title: 'Le Marché ouvre le 8\u00a0décembre', text: 'Les prix apparaîtront ici dès les premières ventes entre joueurs. D’ici là, tout ce qui se passe au Marché noir est un test.' },

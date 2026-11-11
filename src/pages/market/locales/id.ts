@@ -10,6 +10,8 @@ const id: MarketStrings = {
   name: 'Pasar Gelap',
   beta: 'Pasar uji coba: harga ini berasal dari transaksi para penguji dan akan dihapus pada 7 Desember. Pasar sungguhan dibuka 8 Desember.',
   sample: 'DATA CONTOH: dibuat untuk pratinjau desain ini. Tidak ada transaksi sungguhan yang ditampilkan.',
+  demoNote: 'Riwayat contoh: data contoh untuk menunjukkan cara kerja grafik, bukan transaksi sungguhan. Dihapus saat peluncuran.',
+  sampleTag: 'Contoh',
   halted: 'Pasar Gelap sedang dijeda. Harga tetap seperti saat pasar berhenti.',
   busy: 'Pasar tidak bisa memuat harga sekarang. Coba lagi dalam semenit.',
   soon: { title: 'Pasar dibuka 8 Desember', text: 'Harga muncul di sini setelah pemain mulai bertransaksi. Sampai saat itu, semua yang ada di Pasar Gelap hanyalah uji coba.' },

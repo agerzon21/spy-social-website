@@ -268,3 +268,12 @@
    4.5:1 on the page (a11y-1111, coordinator Nov 11: ranks only, the faint colour elsewhere stays). */
 .moverRank, .colRank { color: rgba(254, 250, 234, 0.46); }
 :global([data-theme='light']) .moverRank, :global([data-theme='light']) .colRank { color: rgba(10, 10, 10, 0.57); }
+
+/* (market-demo-1111) a sample-history item's price in a list: labelled, never mistaken for a real price */
+.sampleTag {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+}

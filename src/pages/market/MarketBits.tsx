@@ -199,6 +199,7 @@ export function ItemTable({ items, list = 'traded', win = '30d', start = 1, show
               </td>
               <td className={s.colNum}>
                 <Price n={it.p} />
+                {it.demo ? <small className={s.sampleTag} title={w.demoNote}>{w.sampleTag}</small> : null}
               </td>
               <td className={s.colNum}>
                 {list === 'rises' || list === 'falls' ? (
