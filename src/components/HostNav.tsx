@@ -52,7 +52,7 @@ const HostNav = ({ section }: { section: Section }) => {
           </li>
         ))}
       </ul>
-      <PhoneNav site={section} label={label} items={items} current={current} />
+      <PhoneNav label={label} items={items} current={current} />
     </nav>
   )
 }
