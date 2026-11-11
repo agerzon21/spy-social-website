@@ -153,11 +153,11 @@ const ArchiveHome = () => {
 
           <div className={s.ten}>
             <h3 className={s.tenTitle} id="ten-variants">{h.float.variantsTitle}</h3>
-            {/* Scrolls sideways on a phone: a Tab stop so a keyboard can scroll it too (WCAG 2.1.1, a11y-1111). */}
+            {/* Each picture's alt is empty: its caption names it (said once, not twice). Scrolls sideways on a phone: a Tab stop so a keyboard can scroll it too (WCAG 2.1.1, a11y-1111). */}
             <div className={s.tenRow} role="region" aria-labelledby="ten-variants" tabIndex={0}>
               {Array.from({ length: 10 }, (_, d) => (
                 <figure key={d} className={s.tenCell} style={{ margin: 0 }}>
-                  <img src={artKey(`x-cat-d1-${d}`, true)} alt={breed?.values[d]?.name ?? ''} width={320} height={320} loading="lazy" decoding="async" />
+                  <img src={artKey(`x-cat-d1-${d}`, true)} alt="" width={320} height={320} loading="lazy" decoding="async" />
                   <figcaption className={s.tenDigit}>
                     <b>{d}</b>
                     <span>{breed?.values[d]?.name}</span>
@@ -169,11 +169,11 @@ const ArchiveHome = () => {
 
           <div className={s.ten}>
             <h3 className={s.tenTitle} id="ten-colours">{h.float.coloursTitle}</h3>
-            {/* Scrolls sideways on a phone: a Tab stop so a keyboard can scroll it too (WCAG 2.1.1, a11y-1111). */}
+            {/* Each picture's alt is empty: its caption names it (said once, not twice). Scrolls sideways on a phone: a Tab stop so a keyboard can scroll it too (WCAG 2.1.1, a11y-1111). */}
             <div className={s.tenRow} role="region" aria-labelledby="ten-colours" tabIndex={0}>
               {Array.from({ length: 10 }, (_, d) => (
                 <figure key={d} className={s.tenCell} style={{ margin: 0 }}>
-                  <img src={artKey(`x-cat-d2-${d}`, true)} alt={colour?.values[d]?.name ?? ''} width={320} height={320} loading="lazy" decoding="async" />
+                  <img src={artKey(`x-cat-d2-${d}`, true)} alt="" width={320} height={320} loading="lazy" decoding="async" />
                   <figcaption className={s.tenDigit}>
                     <b>{d}</b>
                     {colour?.values[d]?.hex ? <span className="sw" style={{ width: 14, height: 14, background: colour.values[d].hex ?? undefined, border: '1px solid rgba(255,255,255,.4)' }} aria-hidden /> : null}

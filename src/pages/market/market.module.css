@@ -263,3 +263,8 @@
   .featured, .shelf { transition: none; }
 }
 .factUnit { font: 600 13px/1 var(--ss-font-body); color: var(--ss-muted); }
+
+/* The rank numbers (the table's column and the movers'): a touch stronger than --ss-subtle, the least that reaches
+   4.5:1 on the page (a11y-1111, coordinator Nov 11: ranks only, the faint colour elsewhere stays). */
+.moverRank, .colRank { color: rgba(254, 250, 234, 0.46); }
+:global([data-theme='light']) .moverRank, :global([data-theme='light']) .colRank { color: rgba(10, 10, 10, 0.57); }
