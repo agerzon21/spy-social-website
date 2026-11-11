@@ -42,6 +42,8 @@
   text-transform: uppercase;
   letter-spacing: 0.01em;
 }
+/* Too long for one line even small (useFit): two balanced lines. */
+:is(.aName, .bName, .cName, .eName)[data-wrap] { white-space: normal; text-overflow: clip; text-wrap: balance; line-height: 0.95; max-height: 1.95em; hyphens: auto; }
 
 /* Under the header: the page dims (taps on it close the menu). */
 .scrim, .scrimOver {
@@ -110,8 +112,8 @@
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scrollbar-width: none;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 26%, #000 74%, transparent);
-  mask-image: linear-gradient(to right, transparent, #000 26%, #000 74%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 17%, #000 83%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 17%, #000 83%, transparent);
 }
 .bStrip::-webkit-scrollbar { display: none; }
 .bSpacer { flex: 0 0 50%; }
@@ -119,34 +121,46 @@
   flex: none;
   display: inline-flex;
   align-items: center;
-  padding-inline: 12px;
+  padding-inline: 10px;
   white-space: nowrap;
-  font: 800 18px/1 var(--ss-font-display);
+  font: 800 17px/1 var(--ss-font-display);
   text-transform: uppercase;
   text-decoration: none;
   color: var(--ss-muted);
   opacity: 0.6;
 }
 .bSide:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -4px; opacity: 1; }
-.bNow { flex: none; gap: 6px; font-size: 24px; color: var(--ss-text); opacity: 1; box-shadow: inset 0 -2px 0 var(--ss-accent); }
+.bNow { flex: none; gap: 5px; max-width: 72%; padding-inline: 8px; font-size: 24px; color: var(--ss-text); opacity: 1; box-shadow: inset 0 -2px 0 var(--ss-accent); }
+.bName { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .bNow .chev { width: 13px; height: 13px; }
 
 /* ---- C  Case Line: a dossier's header row, between two rules ---- */
 .cTrigger {
-  gap: 7px;
-  padding-inline: 12px 8px;
+  gap: 8px;
+  padding-inline: 9px 4px;
   border-inline: var(--ss-hairline) solid var(--ss-line);
 }
-.cFile, .cSlash, .cNo, .cLinkNo, .cHead {
+.cFile, .cNo, .cLinkNo, .cHead {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
-.cFile { flex: none; font-size: 10.5px; color: var(--ss-muted); max-width: 30%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.cSlash { flex: none; font-size: 12px; color: var(--ss-line-strong); }
-.cNo { flex: none; font-size: 12.5px; color: var(--ss-accent); }
+/* The stamp: the site over its number, then a rule, then the page's name. */
+.cStamp {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: none;
+  max-width: 30%;
+  padding-inline-end: 8px;
+  border-inline-end: var(--ss-hairline) solid var(--ss-line);
+  line-height: 1;
+}
+.cFile { font-size: 8.5px; letter-spacing: 0.04em; color: var(--ss-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cNo { font-size: 15px; font-weight: 700; color: var(--ss-accent); }
 .cName { font-size: 24px; padding-top: 2px; }
+.cTrigger .chev { width: 14px; height: 14px; }
 .cTrigger[aria-expanded='true'] { background: var(--ss-deep); }
 
 /* C's index: the whole screen under the header */
