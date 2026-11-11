@@ -1,0 +1,114 @@
+/* The phone's nav on archive. / market.spysocial.app (components/PhoneNav; under 560 px), the Index Rule: it fills
+   the header's whole middle, from the round mark to the language menu, and its grid opens flush with the header.
+   Logical sides only. */
+
+.root { display: none; }
+@media (max-width: 559px) {
+  .root { display: flex; flex: 1 1 auto; min-width: 0; align-self: stretch; }
+}
+
+/* The middle's button: the header's full height and the whole middle's width. */
+.trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  padding-inline: 2px 6px;
+  color: var(--ss-text);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.trigger:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -4px; }
+.chev { flex: none; width: 16px; height: 16px; color: var(--ss-muted); transition: transform 0.18s ease-out, color 0.15s; }
+.trigger[aria-expanded='true'] .chev { transform: rotate(180deg); color: var(--ss-accent); }
+
+/* The page's name: one line of display type, shrunk to fit (useFit); two balanced lines when one won't do. */
+.name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-top: 2px;
+  font-family: var(--ss-font-display);
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+.name[data-wrap] { white-space: normal; text-overflow: clip; text-wrap: balance; line-height: 0.95; max-height: 1.95em; hyphens: auto; }
+.count { flex: none; font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.06em; color: var(--ss-muted); }
+
+/* The header's bottom rule, cut into one segment per page, the current one in the accent. */
+.rule {
+  position: absolute;
+  inset-inline: 0;
+  bottom: calc(var(--ss-hairline) * -1);
+  display: flex;
+  gap: 4px;
+  height: 3px;
+}
+.rule i { flex: 1 1 0; background: var(--ss-line-strong); transition: background 0.15s; }
+.rule i[data-on] { background: var(--ss-accent); }
+
+/* Under the header: the page dims (taps on it close the grid). */
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(3, 6, 12, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease-out, visibility 0s linear 0.18s;
+}
+.scrim[data-open] { opacity: 1; visibility: visible; transition-delay: 0s; }
+
+/* The grid: full width, flush with the header's bottom edge, the header's own colour. */
+.panel {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  padding: 14px 16px 16px;
+  background: var(--ss-page);
+  border-bottom: var(--ss-hairline) solid var(--ss-line-strong);
+  box-shadow: 0 28px 40px -20px rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.2s ease-out, visibility 0s linear 0.2s;
+}
+.panel[data-open] { visibility: visible; clip-path: inset(0 0 -60px 0); transition-delay: 0s; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  height: 100%;
+  min-height: 96px;
+  padding: 12px 12px 14px;
+  border: var(--ss-hairline) solid var(--ss-line);
+  border-top: 3px solid var(--ss-line-strong);
+  color: var(--ss-muted);
+  background: var(--ss-deep);
+  text-decoration: none;
+}
+.tileNo { font: 600 11.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.08em; color: var(--ss-muted); }
+.tileName { font: 800 24px/0.98 var(--ss-font-display); text-transform: uppercase; overflow-wrap: anywhere; hyphens: auto; }
+.tile:hover { color: var(--ss-text); }
+.tile:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -2px; }
+.tile[aria-current='page'] { color: var(--ss-text); border-top-color: var(--ss-accent); background: linear-gradient(var(--ss-glow), transparent 80%), var(--ss-deep); }
+.tile[aria-current='page'] .tileNo { color: var(--ss-accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .chev, .scrim, .panel, .rule i { transition: none; }
+}

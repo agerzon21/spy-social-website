@@ -3,7 +3,7 @@
 // database's row once it's published there, and never changes after (the database refuses to). Add a new one the day
 // it's published in the Owner Console.
 
-import { INTERCEPTS_IN_TRADES_DAY, LIVE } from './legalRelease'
+import { ECONOMY_VALUES_L_DAY, INTERCEPTS_IN_TRADES_DAY, LIVE } from './legalRelease'
 
 export type PublishedIncident = {
   id: string
@@ -30,7 +30,28 @@ const I1: PublishedIncident = {
   rule: 'Per account, from its Intel rows before the wipe: Intel spent on Intel-shop items and requisitions comes back; Intel made by shredding pre-launch copies is taken back, never below 0.',
 }
 
-export const PUBLISHED_INCIDENTS: PublishedIncident[] = [...(LIVE.launchResetIncident ? [I1] : [])]
+/**
+ * I-2, Test-phase Intel (app server 20261109110058_test_phase_intel, published 2026-11-09; the sweep 20261109122429):
+ * word for word the economy_incidents row (title, summary, rule_text). Shown while LIVE.coverage1110 is on.
+ * The row's rule says "50,000 Intel, once" and can't change (published incidents are frozen); the testers' amount was raised
+ * to 100,000 by 20261225220000_test_phase_grant_100k (live 20261111040944, Nov 11 04:09 UTC = Nov 10 ET), so the rule here
+ * says 100,000 and when it was raised (every tester already given 50,000 got the other 50,000 under the same incident).
+ */
+const I2: PublishedIncident = {
+  id: 'I-2',
+  kind: 'reset',
+  title: 'Test-phase Intel',
+  published: 'November 9, 2026',
+  summary:
+    'While SpySocial is being tested, Intel is given to the developer\'s accounts and to every tester who signs in to a test version before November 13, so the Black Market and trades can be tried for real. All of it is taken back at launch, on December 7: nobody keeps any of it, and nothing it paid for stays.',
+  rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 01:30 UTC: 100,000 Intel, once (published as 50,000; raised to 100,000 on November 10, 2026, when item values went up, and testers already given 50,000 got the other 50,000). The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
+}
+
+/** Newest first. */
+export const PUBLISHED_INCIDENTS: PublishedIncident[] = [
+  ...(LIVE.launchResetIncident ? [I1] : []),
+  ...(LIVE.coverage1110 ? [I2] : []),
+]
 
 /**
  * Uniques rarer (owner 2026-10-30; app server 20261202450000_unique_rarity): shown once LIVE.uniquesRarer is on (set
@@ -135,9 +156,20 @@ const MARKET_NOV6: { day: string; what: string; from: string; to: string }[] = [
   { day: 'November 6, 2026', what: 'what closes open Black Market offers and listings', from: 'a trading pause we set, or a change of email we make', to: 'also your own lock, the pause after a reversal, a new device or a change of sign-in, a ban, a suspension and a fair-play hold' },
 ]
 
+/**
+ * Item values up, ladder L (owner 2026-11-09; app server 20261225200000_economy_values, live 20261111040938 = Nov 10 ET):
+ * shown while LIVE.economyValuesL is on.
+ * The November 1 row's Intercept minimums stay as history; the new ones are in this row.
+ */
+const ECONOMY_VALUES_L: { day: string; what: string; from: string; to: string }[] = [
+  { day: ECONOMY_VALUES_L_DAY, what: 'what an item shreds for, which is also its lowest Black Market price (Common, Uncommon, Rare, Epic, Mythic, Legendary; a Unique\'s lowest price is its Legendary\'s)', from: '5, 15, 40, 100, 250 and 600 Intel', to: '40, 100, 250, 650, 1,800 and 5,000 Intel' },
+  { day: ECONOMY_VALUES_L_DAY, what: 'the lowest Black Market price of an unopened Intercept, from the lowest tier to the highest (what its items shred for, on average)', from: '8, 15, 50, 113 and 168 Intel', to: '63, 107, 340, 799 and 1,248 Intel' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
   ...(LIVE.giftsTradable ? [] : GIFTS_BOUND_DEC7),
+  ...(LIVE.economyValuesL ? ECONOMY_VALUES_L : []),
   ...(LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES : []),
   ...MARKET_NOV6,
   ...TEST_PHASE_NOV,

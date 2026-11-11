@@ -33,8 +33,10 @@ export interface HelpOpts {
    * language but English, are agents' (intercept-trades-1106, econ-calls-1106), not read by a native speaker.
    */
   interceptsInTrades: boolean
-  /** Beta 2's Black Market is open to testers for real, Nov 12-16 (LIVE.testerMarket === 'open'). */
+  /** Beta 2's Black Market is open to testers for real, Nov 9-16 (LIVE.testerMarket === 'open'). */
   testerMarket: boolean
+  /** The testers' thank-you Intercepts trade like anything earned (LIVE.testerIntercepts === 'tradable'); false: they stay with the account. */
+  testerInterceptsTradable: boolean
 }
 
 export interface HelpItem {

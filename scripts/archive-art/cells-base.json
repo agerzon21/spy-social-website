@@ -1,0 +1,317 @@
+[
+{
+"kind": "avatar",
+"code": "accessory_midnight_star",
+"key": "l-accessory_midnight_star"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"key": "l-accessory_spy_cat"
+},
+{
+"kind": "avatar",
+"code": "background_panel_break",
+"key": "l-background_panel_break"
+},
+{
+"kind": "avatar",
+"code": "background_vault_zero",
+"key": "l-background_vault_zero"
+},
+{
+"kind": "avatar",
+"code": "celebration_getaway",
+"key": "l-celebration_getaway"
+},
+{
+"kind": "avatar",
+"code": "celebration_heist",
+"key": "l-celebration_heist"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"key": "l-celebration_paper_plane"
+},
+{
+"kind": "avatar",
+"code": "celebration_vanishing_act",
+"key": "l-celebration_vanishing_act"
+},
+{
+"kind": "avatar",
+"code": "frame_black_diamond",
+"key": "l-frame_black_diamond"
+},
+{
+"kind": "avatar",
+"code": "glasses_incognito",
+"key": "l-glasses_incognito"
+},
+{
+"kind": "avatar",
+"code": "hat_nom_de_plume",
+"key": "l-hat_nom_de_plume"
+},
+{
+"kind": "title",
+"code": "hologram",
+"key": "l-hologram"
+},
+{
+"kind": "avatar",
+"code": "local_laser_trap",
+"key": "l-local_laser_trap"
+},
+{
+"kind": "avatar",
+"code": "local_unmasked",
+"key": "l-local_unmasked"
+},
+{
+"kind": "avatar",
+"code": "outfit_diplomatic_immunity",
+"key": "l-outfit_diplomatic_immunity"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 900,
+"float": "0.060050000000000",
+"pattern": 400,
+"key": "x-cat-d1-0"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 901,
+"float": "0.163750000000000",
+"pattern": 401,
+"key": "x-cat-d1-1"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 902,
+"float": "0.266450000000000",
+"pattern": 402,
+"key": "x-cat-d1-2"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 903,
+"float": "0.369150000000000",
+"pattern": 403,
+"key": "x-cat-d1-3"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 904,
+"float": "0.462850000000000",
+"pattern": 404,
+"key": "x-cat-d1-4"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 905,
+"float": "0.565550000000000",
+"pattern": 405,
+"key": "x-cat-d1-5"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 906,
+"float": "0.668250000000000",
+"pattern": 406,
+"key": "x-cat-d1-6"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 907,
+"float": "0.761950000000000",
+"pattern": 407,
+"key": "x-cat-d1-7"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 908,
+"float": "0.864650000000000",
+"pattern": 408,
+"key": "x-cat-d1-8"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 909,
+"float": "0.967350000000000",
+"pattern": 409,
+"key": "x-cat-d1-9"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 910,
+"float": "0.102450000000000",
+"pattern": 450,
+"key": "x-cat-d2-0"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 911,
+"float": "0.112450000000000",
+"pattern": 450,
+"key": "x-cat-d2-1"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 912,
+"float": "0.122450000000000",
+"pattern": 450,
+"key": "x-cat-d2-2"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 913,
+"float": "0.132450000000000",
+"pattern": 450,
+"key": "x-cat-d2-3"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 914,
+"float": "0.142450000000000",
+"pattern": 450,
+"key": "x-cat-d2-4"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 915,
+"float": "0.152450000000000",
+"pattern": 450,
+"key": "x-cat-d2-5"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 916,
+"float": "0.162450000000000",
+"pattern": 450,
+"key": "x-cat-d2-6"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 917,
+"float": "0.172450000000000",
+"pattern": 450,
+"key": "x-cat-d2-7"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 918,
+"float": "0.182450000000000",
+"pattern": 450,
+"key": "x-cat-d2-8"
+},
+{
+"kind": "avatar",
+"code": "accessory_spy_cat",
+"serial": 919,
+"float": "0.192450000000000",
+"pattern": 450,
+"key": "x-cat-d2-9"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 920,
+"float": "0.000050000000000",
+"pattern": 300,
+"key": "x-plane-d1-0"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 921,
+"float": "0.137950000000000",
+"pattern": 301,
+"key": "x-plane-d1-1"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 922,
+"float": "0.264850000000000",
+"pattern": 302,
+"key": "x-plane-d1-2"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 923,
+"float": "0.391750000000000",
+"pattern": 303,
+"key": "x-plane-d1-3"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 924,
+"float": "0.428650000000000",
+"pattern": 304,
+"key": "x-plane-d1-4"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 925,
+"float": "0.555550000000000",
+"pattern": 305,
+"key": "x-plane-d1-5"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 926,
+"float": "0.682450000000000",
+"pattern": 306,
+"key": "x-plane-d1-6"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 927,
+"float": "0.719350000000000",
+"pattern": 307,
+"key": "x-plane-d1-7"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 928,
+"float": "0.846250000000000",
+"pattern": 308,
+"key": "x-plane-d1-8"
+},
+{
+"kind": "avatar",
+"code": "celebration_paper_plane",
+"serial": 929,
+"float": "0.973150000000000",
+"pattern": 309,
+"key": "x-plane-d1-9"
+}
+]

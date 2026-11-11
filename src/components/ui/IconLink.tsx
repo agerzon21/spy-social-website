@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import Link from '../SiteLink'
 import s from './ui.module.css'
 
 /** A short text link with a leading icon ("Join with a room code"), 44 px tall. */

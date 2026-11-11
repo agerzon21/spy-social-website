@@ -8,6 +8,7 @@ import {
   LEGAL_LAST_UPDATED,
   LIVE,
   LLC_SINCE,
+  LLC_STORE_NOTE,
   ONLINE_SAFETY_TEXT,
   OPERATOR,
   TERMS_EFFECTIVE_FOR_EXISTING,
@@ -59,7 +60,7 @@ const Terms: React.FC = () => {
         <P>
           <B>Change on {LLC_SINCE}:</B> SpySocial is now run by {OPERATOR.legalName} owned by {OPERATOR.person}, who
           ran it himself until then. He transferred SpySocial and these Terms to it (section 20 allows this). Nothing
-          else in these Terms changed, and you don't need to do anything.
+          else in these Terms changed, and you don't need to do anything.{LLC_STORE_NOTE ? ` ${LLC_STORE_NOTE}` : ''}
         </P>
       )}
 
@@ -220,6 +221,8 @@ const Terms: React.FC = () => {
           : "Public rooms are open to players you don't know."}{' '}
         Anyone who meets the requirements can play in them: a saved account with a confirmed email address
         {LIVE.socialSignIn ? ' (or Apple or Google sign-in)' : ''}, being 13 or older, and agreeing to the Community Rules.
+        {LIVE.coverage1110 &&
+          " Play Online may also ask you to pass a game's practice game first (a grade of C or better), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask."}
         {/* Play Online's presets all have rules.room_votes_in_game false (live, 2026-10-25), call_room_vote refuses kick and
             end votes in a standard game, and a Play Online table has no lobby; only a hosted event room (events.format
             'room', off while app_config.events_enabled is false) has them. */}
@@ -577,6 +580,10 @@ const Terms: React.FC = () => {
                 {LIVE.blackMarket
                   ? 'Adults can spend it on the Black Market (see below); we may add other uses for it later, and the app will say what they are.'
                   : "For now there's nothing to spend it on; we may add uses for it later, and the app will say what they are."}
+                {LIVE.coverage1110 &&
+                  (LIVE.launchSite
+                    ? ' While SpySocial was being tested, we also gave test Intel to testers and to our own accounts (incident I-2 on our transparency page); all of it was taken back on December 7, 2026.'
+                    : " While SpySocial is being tested, we also give test Intel: 50,000 once to each tester who signs in to a test version before November 13, 2026, and what we choose to our own accounts (incident I-2 on our transparency page). It can be spent and traded like earned Intel, and all of it is taken back on December 7, 2026, never below 0; nothing it paid for stays.")}
                 {LIVE.intelLedger ? (
                   <>
                     {' '}We may change how much Intel games, streaks and shredding give; a change counts from then on,
@@ -787,14 +794,23 @@ const Terms: React.FC = () => {
                 : "While SpySocial is being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in are off for trades and the Black Market, and adults can trade Intel. A confirmed email, trading only with friends, the 7-day protection and every rule for players under 18 still apply. On December 7 every amount of Intel traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned, never below 0, even if it was already spent. We publish this as an incident on our transparency page."}
             </ListItem>
             <ListItem>
-              Not every item can be traded; the app marks the ones that can. Memberships, what a membership includes,
-              level rewards, items from the arcade games{LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable.{' '}
+              Not every item can be traded; the app marks the ones that can.{' '}
+              {LIVE.coverage1110
+                ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them)${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable${LIVE.launchSite || !LIVE.giftsTradable ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
+                : `Memberships, what a membership includes, level rewards, items from the arcade games${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable.`}{' '}
               {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). Off in U0
                   (WG, Dec 7): the owner's rules of Nov 6 and Nov 8 (gift-rules-1108): codes and anything we or staff give, a Developer's
                   Pick included, stay with the account; Intel is never bound; the Beta set trades like anything earned. */}
               {LIVE.giftsTradable
                 ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
-                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn."}
+                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn."}{' '}
+              {/* LIVE.testerIntercepts: the 2.2 testers' thank-you (owner Nov 11; server app_config tester_gift.intercepts_tradable). */}
+              {LIVE.launchSite
+                ? 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list got the Beta Pin and the Beta Tester title, and an account that finished at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also got the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'
+                : 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list gets the Beta Pin and the Beta Tester title, and an account that finishes at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'}{' '}
+              {LIVE.testerIntercepts === 'tradable'
+                ? 'Unlike Intercepts from a gift, those Intercepts trade like anything you earn, opened or not.'
+                : "Like Intercepts from a gift, those Intercepts, opened or not, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone."}
             </ListItem>
             <ListItem>
               What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,
@@ -840,10 +856,10 @@ const Terms: React.FC = () => {
               The same rules as Trades decide who can use it (an adult,{' '}
               {LIVE.tradeGatesNov2 ? 'an account at least 7 days old that has played 3 counted games' : 'level 20, an account at least 14 days old'}, a
               confirmed email, no trading pause)
-              {/* LIVE.launchSite: Intel moves on it from the launch, so the condition goes (site-launch-walk). LIVE.testerMarket: Beta 2's open market from Nov 12 (its sales undone before the launch, Collectibles bullet above). */}
+              {/* LIVE.launchSite: Intel moves on it from the launch, so the condition goes (site-launch-walk). LIVE.testerMarket: Beta 2's open market from Nov 9 (server opened it Nov 9, 12:23 UTC) (its sales undone before the launch, Collectibles bullet above). */}
               {LIVE.launchSite
                 ? '.'
-                : ", and Intel moves on it only once SpySocial 2.2 opens to everyone, except in Beta 2's test from November 12 to 16, 2026 (its sales are undone on November 16, as described above)."}{' '}
+                : ", and Intel moves on it only once SpySocial 2.2 opens to everyone, except in Beta 2's test from November 9 to 16, 2026 (its sales are undone on November 16, as described above)."}{' '}
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
               instead no offer can be priced below an item's minimum price, what one copy of it shreds for{LIVE.interceptsMarket ? " (for an unopened Intercept, what the items its tier gives shred for on average, by its odds)" : ''}.
             </ListItem>

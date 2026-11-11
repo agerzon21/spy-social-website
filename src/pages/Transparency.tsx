@@ -1,7 +1,7 @@
 import { ListItem } from '@chakra-ui/react'
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, H3, P, PageLink, SupportEmail } from '../components/legal/LegalText'
-import { INTERCEPTS_IN_TRADES_DAY, LIVE } from '../lib/legalRelease'
+import { COVERAGE_1110_DAY, INTERCEPTS_IN_TRADES_DAY, LIVE } from '../lib/legalRelease'
 import { PUBLISHED_INCIDENTS, RULE_CHANGES } from '../lib/transparency'
 import { dayInMonth, MONTHLY_REPORTS } from '../lib/transparencyReports'
 
@@ -16,6 +16,7 @@ const UPDATED = LIVE.launchSite
   ? 'December 8, 2026' // 2.2 is out: the monthly report's first date and the Intel fingerprint's start told in the past (site-launch-walk)
   : LIVE.launchResetIncident
   ? 'December 7, 2026' // incident I-1 and the Dec 7 gift-trading rule change (website update U0, the day WI runs)
+  : LIVE.coverage1110 ? COVERAGE_1110_DAY /* incident I-2, Test-phase Intel (published Nov 9), in the list (legal/coverage-1110) */
   : LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES_DAY /* unopened Intercepts in friend trades are in the list */
   : LIVE.accountNotices ? 'November 6, 2026' /* the Nov 6 test-phase Intel rule change is in the list (site-eye-1106) */ : LIVE.tradeNoLimits || LIVE.tradeGatesNov2 ? 'November 2, 2026' : LIVE.giftsTradable ? 'November 1, 2026' : LIVE.uniquesRarer ? 'October 31, 2026' : 'October 30, 2026'
 
@@ -103,8 +104,8 @@ const Transparency: React.FC = () => (
 
     <H2>Incidents</H2>
     <P>
-      When something goes wrong with Intel or items (a bug, an outage, or the reset before launch), we publish what
-      happened and the rule that works out each player's amount here first, and only then put it right.
+      When something goes wrong with Intel or items (a bug, an outage, or the reset before launch){LIVE.coverage1110 ? ', or we give Intel that will be taken back (the test Intel while SpySocial is being tested)' : ''}, we publish what
+      happened and the rule that works out each player's amount here first, and only then {LIVE.coverage1110 ? 'act on it' : 'put it right'}.
       {LIVE.accountNotices ? " The one exception is a bug that cost a single player Intel with no line to reverse: we refund that player with no incident here, and it's counted under Corrections." : ''} A published
       incident is never changed.
     </P>

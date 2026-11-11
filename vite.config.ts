@@ -32,9 +32,19 @@ async function siteModule(root: string, file: string): Promise<Record<string, un
   return import(`data:text/javascript;base64,${Buffer.from(code).toString('base64')}`)
 }
 
+/**
+ * The site's own hosts (src/lib/siteHost, subdomains-1110): one build serves them all, and vercel.json serves each
+ * host's pages from dist/_host/<host>.html, the app with that host's link preview (title, description, address). Each
+ * is in the sitemap while its switches in LIVE are on.
+ */
+const HOST_PAGES: { host: string; origin: string; key: string; paths: string[]; live: string[] }[] = [
+  { host: 'archive', origin: 'https://archive.spysocial.app', key: 'archive', paths: ['/', '/uniques'], live: ['mintedCollectibles', 'uniqueArchive'] },
+  { host: 'market', origin: 'https://market.spysocial.app', key: 'market', paths: ['/', '/catalogue'], live: ['marketSite'] },
+]
+
 /** A page's entries as public/sitemap.xml writes them: the bare address and each language's, each with all the alternates. */
-function entries(path: string, langs: string[]): string {
-  const here = `${ORIGIN}${path}`
+function entries(path: string, langs: string[], origin = ORIGIN): string {
+  const here = `${origin}${path}`
   const links = [
     ...langs.map((lang) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${here}?lang=${lang}"/>`),
     `    <xhtml:link rel="alternate" hreflang="x-default" href="${here}"/>`,
@@ -61,12 +71,19 @@ function switchedSitemap(): Plugin {
       const on = SWITCHED_PAGES.filter((page) =>
         page.live === null ? true : page.live.startsWith('!') ? LIVE[page.live.slice(1)] !== true : LIVE[page.live] === true,
       )
-      if (!on.length) return
+      const hosts = HOST_PAGES.filter((h) => h.live.every((key) => LIVE[key] === true))
+      if (!on.length && !hosts.length) return
       const { LANGUAGES } = (await siteModule(root, 'src/i18n/languages.ts')) as { LANGUAGES: { code: string }[] }
+      const langs = LANGUAGES.map((lang) => lang.code)
       const file = resolve(outDir, 'sitemap.xml')
       const xml = await readFile(file, 'utf8')
       if (!xml.includes('</urlset>')) throw new Error(`${file} has no </urlset>`)
-      const added = on.map((page) => entries(page.path, LANGUAGES.map((lang) => lang.code))).join('')
+      // The Archive's and the Market's hosts too: robots.txt (one file, every host) names this sitemap, which lets it
+      // list their addresses.
+      const added = [
+        ...on.map((page) => entries(page.path, langs)),
+        ...hosts.flatMap((h) => h.paths.map((path) => entries(path, langs, h.origin))),
+      ].join('')
       await writeFile(file, xml.replace('</urlset>', `${added}</urlset>`))
     },
   }
@@ -91,6 +108,20 @@ const PREVIEW_PAGES: { path: string; key: string }[] = [
   { path: '/game-night-rules', key: 'gameNightRules' },
   { path: '/ledger', key: 'ledger' },
   { path: '/beta', key: 'beta' },
+]
+
+/** The invite links' cards (English, as every page's card): a room's and a Game Night's. */
+const INVITE_PREVIEWS: { path: string; title: string; description: string }[] = [
+  {
+    path: '/join',
+    title: "You're Invited to a SpySocial Room",
+    description: 'Open the link to join the room in SpySocial, the party game of social deception: Spy Talk and Spy Sketch with friends.',
+  },
+  {
+    path: '/join/e',
+    title: 'Game Night on SpySocial',
+    description: 'A SpySocial Game Night: see when it starts in your own time, and join the tables from the app.',
+  },
 ]
 
 /** The store listings (src/lib/stores.ts) and the social accounts (components/SocialLinks), for the structured data. */
@@ -259,6 +290,61 @@ function pagePreviews(): Plugin {
         }
         await mkdir(resolve(outDir, page.path.slice(1)), { recursive: true })
         await writeFile(resolve(outDir, page.path.slice(1), 'index.html'), html)
+      }
+      // The invite links (qa-links-1110): a room's (/join/<CODE>, the app's share sheet and QR) and a Game Night's
+      // (/join/e/<ID>) said what they are in a Discord or iMessage card; they showed the home page's ("Gather your
+      // friends... launches December 8", the square icon). One card per kind, the large one: the link carries no room
+      // or night the previewer could read. vercel.json serves dist/join/index.html and dist/join/e/index.html there.
+      for (const invite of INVITE_PREVIEWS) {
+        let html = home
+        const title = attr(invite.title)
+        const description = attr(invite.description)
+        const image = `${ORIGIN}/images/og-launch.jpg`
+        const swaps: [RegExp, string][] = [
+          [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
+          [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
+          [/(<meta property="og:url" content=")[^"]*"/, `$1${ORIGIN}${invite.path}"`],
+          [/(<meta property="og:title" content=")[^"]*"/, `$1${title}"`],
+          [/(<meta property="og:description" content=")[^"]*"/, `$1${description}"`],
+          [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
+          [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
+          [/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`],
+          [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'],
+          [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'],
+          [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial: Spy Talk and Spy Sketch, five agents in a police line-up')}"`],
+          [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'],
+          [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`],
+        ]
+        for (const [re, to] of swaps) {
+          if (!re.test(html)) throw new Error(`pagePreviews: index.html has no match for ${re}`)
+          html = html.replace(re, to)
+        }
+        await mkdir(resolve(outDir, invite.path.slice(1)), { recursive: true })
+        await writeFile(resolve(outDir, invite.path.slice(1), 'index.html'), html)
+      }
+      // Each host's app page (HOST_PAGES; vercel.json serves dist/_host/<host>.html on that host): its English title and
+      // description and its own address. With its switches off, the home page's file (the router sends its paths on).
+      await mkdir(resolve(outDir, '_host'), { recursive: true })
+      for (const h of HOST_PAGES) {
+        let html = home
+        if (h.live.every((key) => LIVE[key] === true)) {
+          const title = attr(`${en.meta.titles[h.key]} · ${en.meta.siteName}`)
+          const description = attr(en.meta.descriptions[h.key] ?? en.meta.description)
+          const swaps: [RegExp, string][] = [
+            [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
+            [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
+            [/(<meta property="og:url" content=")[^"]*"/, `$1${h.origin}/"`],
+            [/(<meta property="og:title" content=")[^"]*"/, `$1${title}"`],
+            [/(<meta property="og:description" content=")[^"]*"/, `$1${description}"`],
+            [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
+            [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
+          ]
+          for (const [re, to] of swaps) {
+            if (!re.test(html)) throw new Error(`pagePreviews: index.html has no match for ${re}`)
+            html = html.replace(re, to)
+          }
+        }
+        await writeFile(resolve(outDir, '_host', `${h.host}.html`), html)
       }
     },
   }

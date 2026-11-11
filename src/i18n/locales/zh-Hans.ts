@@ -13,6 +13,10 @@ const zhHans: Strings = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "收藏品账本",
+      /** The Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      archive: "档案馆",
+      /** The Market (market.spysocial.app and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      market: "黑市价格",
       transparency: "透明度报告",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "游戏之夜规则",
@@ -37,6 +41,8 @@ const zhHans: Strings = {
     descriptions: {
       beta: '加入 SpySocial 的 1 小时线上集体试玩。SpySocial 是一款免费的社交推理派对游戏。时间：2026 年 11 月 12 日（星期四）美东时间晚上 7–8 点。仅限 18 岁以上成年人，iPhone 或 Android 均可。测试玩家可获得内测徽章等奖励。',
       ledger: "SpySocial 每件收藏品的公开记录：每一份副本及其编号，人人都可核验。",
+      archive: "SpySocial 每件唯一物品的公开记录：图片、编号、属性、铸造方式和每笔交易，不显示任何玩家。",
+      market: "SpySocial 每件物品在黑市的成交价：根据玩家交易得出的价格、涨跌榜和最常交易的物品，不显示任何玩家。",
       transparency: "每月公布 SpySocial 中情报的获得、花费和更正数量，以及每一起事件和每一次规则变更，不点名任何玩家。",
       gameNightRules: "SpySocial 每周游戏之夜的规则：举办时间、参与资格、如何获得当晚的称号，以及开发者的额外称号。",
       faq: "SpySocial 帮助：如何玩 Spy Talk 和 Spy Sketch、在线游戏、私密房间和游戏之夜、好友、交易、黑市、密函、情报、会员、你的账号、安全和故障排除。",
@@ -68,6 +74,10 @@ const zhHans: Strings = {
   },
 
   footer: {
+
+    /** The link to the Market (LIVE.marketSite). */
+
+    market: "黑市价格",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "透明度",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -834,7 +844,7 @@ const zhHans: Strings = {
   beta: {
     eyebrow: '第 2 轮内测 · 线上试玩',
     title: '抢先玩',
-    lede: '每位确认参加、全程参与这场 1 小时线上集体试玩并提交 5 分钟问卷的玩家，都会通过 PayPal 收到 <b>10 美元谢礼</b>，iPhone 和 Android 玩家一视同仁；本场最有价值的一份问题反馈或建议还可再获得 50 美元奖励。试玩的是免费的社交推理派对游戏 SpySocial。 另外还有上线后依然归你的内测奖励：内测徽章、两个称号、每个等级各 10 封密函和 1 个月会员。',
+    lede: '每位确认参加、全程参与这场 1 小时线上集体试玩并提交 5 分钟问卷的玩家，都会通过 PayPal 收到 <b>10 美元谢礼</b>，iPhone 和 Android 玩家一视同仁；本场最有价值的一份问题反馈或建议还可再获得 50 美元奖励。试玩的是免费的社交推理派对游戏 SpySocial。 另外还有上线后依然归你的内测奖励：每位测试玩家都有内测徽章和一个称号；12 月 7 日前完整打完一局，还能再得一个称号、每个等级各 10 封密函和 1 个月会员。',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: '试玩中的对局、经验值和获得的道具会在上线时重置。',
     headsUp: '<b>请注意：</b>App Store 和 Google Play 上的 SpySocial 是旧版本。内测版是全新的、差别很大的版本，需通过我们邮件中的链接安装。',
@@ -882,7 +892,10 @@ const zhHans: Strings = {
     get: {
       eyebrow: '你能得到',
       title: '上线后依然归你所有的内测奖励',
-      items: ['<b>内测徽章</b>', '<b>“内测玩家”</b>和<b>“外勤测试员”</b>称号', '每个等级各 <b>10 封密函</b>', '<b>1 个月</b>会员'],
+      items: ['<b>内测徽章</b>', '<b>“内测玩家”</b>称号'],
+      gameTitle: '12 月 7 日前完整打完一局，还能获得',
+      gameItems: ['<b>“外勤测试员”</b>称号', '每个等级各 <b>10 封密函</b>', '<b>1 个月</b>会员'],
+      trade: { tradable: '上线后，感谢密函可以像你赚到的任何东西一样交易。', bound: '感谢密函会留在你的账号里。' },
       prizeTitle: 'PayPal 10 美元谢礼 + 一份 50 美元奖励',
       prize: '10 美元 PayPal 谢礼，感谢你在线上试玩中付出的时间：每位确认参加、全程参与一小时并提交 5 分钟问卷的玩家，会在试玩后 7 天内收到，iPhone 和 Android 玩家一视同仁。仅安装测试版并不能获得。另有一份 50 美元奖励（礼品卡），送给本场最有价值的一份问题反馈或建议，由开发者在一周内选出。',
       seats: (day: string) => `共 24 个名额。谢礼只发给我们通过邮件确认（${day}前）并参加试玩的玩家；其他人将进入下一次测试的候补名单。`,

@@ -8,6 +8,7 @@ import { useLang } from '../i18n'
 import { deletedAlso, deletedSummary } from '../lib/legalText'
 import {
   LLC_SINCE,
+  LLC_STORE_NOTE,
   OPERATOR,
   PRIVACY,
   PRIVACY_LAST_UPDATED,
@@ -64,7 +65,11 @@ const LaunchReminderSection = () => {
         {HELLO_STRINGS.en.privacyText} Backup copies expire within 30 more days. Supabase stores them for us and Resend
         sends the email, which has its own line to remove you. Before sending, we check that the address's domain can
         receive mail (a DNS lookup). We don't keep your IP address with the reminder; our host's own request logs see IP
-        addresses, as the IP Address item says. Asking for a reminder doesn't create a SpySocial account, and the
+        addresses, as the IP Address item says.
+        {PRIVACY.reminderNetworkCap1108
+          ? " To stop one network from filling the list, we count each hour's sign-ups from it using a one-way code made from its IP address (for IPv6, the address's first half) with a secret key, and delete that count after about two hours; we never keep the IP address itself, and the code is never stored with an email address."
+          : ''}{' '}
+        Asking for a reminder doesn't create a SpySocial account, and the
         reminder isn't linked to one even if you have one, so Delete Account and the data export don't reach it: write
         to support and we remove that address. We don't use it for anything else or share it for marketing.
         </span>
@@ -142,7 +147,7 @@ const Privacy: React.FC = () => {
           <B>Change on {LLC_SINCE}:</B> {OPERATOR.legalName} owned by {OPERATOR.person}, now runs SpySocial and is the
           controller of your personal data, in place of {OPERATOR.person} himself. Your information moved to it under
           this privacy policy (see If SpySocial Changes Hands). Nothing changed in what we collect, how we use it or who
-          we share it with, and you don't need to do anything.
+          we share it with, and you don't need to do anything.{LLC_STORE_NOTE ? ` ${LLC_STORE_NOTE}` : ''}
         </P>
       )}
 
@@ -191,6 +196,8 @@ const Privacy: React.FC = () => {
           naming the player they think is a spy) is also kept with the game; nobody else can see it until the game is
           over. Some scores and correct Call It picks earn achievements, and some achievements unlock cosmetic
           rewards.
+          {PRIVACY.coverage1110 &&
+            " Players who are out can also play Safecracker, and anyone can play Night Glide, Safecracker and Rooftop Run at any time in the Arcade. For each of these games we keep your best Arcade score, how many scores you sent, and when you last opened the game, sent a score and set your best, so we can check that a score could be reached in the time you played. Some Arcade scores earn secret achievements, with their titles and an accessory for your agent; these rewards stay with your account and can't be traded. It's kept with your account and deleted with it."}
         </Item>
         {PRIVACY.playOnline && (
           <Item label="Play Online">
@@ -221,6 +228,10 @@ const Privacy: React.FC = () => {
         {PRIVACY.intel && (
           <Item label="Intel and Daily Streak">
             Intel is SpySocial's in-app currency. It's earned only by playing: it can't be bought.
+            {PRIVACY.coverage1110 &&
+              (PRIVACY.launchSite
+                ? ' While SpySocial was being tested, we also gave test Intel to testers and to our own accounts under a published incident (I-2), and took all of it back on December 7, 2026.'
+                : " While SpySocial is being tested, we also give test Intel under a published incident (I-2): 50,000 once to each saved account that signs in to a test version before November 13, 2026, and what we choose to our own accounts. It's a line in your Intel history like any other, can be spent and traded, and is all taken back on December 7, 2026 (see our Terms, section 9).")}
             {PRIVACY.intercepts ? ` You also get it by shredding spare copies of items. ${PRIVACY.blackMarket ? (PRIVACY.launchSite ? 'Adults can spend it on the Black Market (see below) and trade it with other adults (see Trades).' : 'Adults can trade it with other adults (see Trades), and spend it on the Black Market (see below) once version 2.2 opens to everyone, or before that in a test whose sales are undone.') : 'For now there\'s nothing to spend it on.'} The Intel for your first game of the day and your streak waits until you claim it in the app; we keep each day's reward, and when you claimed it, with your account.` : ''} When a game you
             played earns Intel, our servers record it in your Intel history: the game, the day, how much it gave and
             for what (the game itself, your first game of the day, your daily streak), and your balance after it. We
@@ -317,7 +328,10 @@ const Privacy: React.FC = () => {
             copy and what happened to it, but never your account, username or name: each copy's holder appears only
             as a code made from that copy and a secret kept for your account, so two of your copies never share a
             code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger
-            shows only that it moved from one holder code to another, never who traded or sold it, or the price. Each
+            shows only that it moved from one holder code to another, never who traded or sold it, or the price.{' '}
+            {PRIVACY.uniqueArchive &&
+              "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. "}
+            Each
             day only a fingerprint of the ledger is sent to GitHub and the Internet Archive, with no personal data in
             it.{' '}
             {/* LIVE.launchSite: the beta test chain is over (site-launch-walk). */}
@@ -466,7 +480,7 @@ const Privacy: React.FC = () => {
             {PRIVACY.audit1103 ? " When a lock lands on an account, whatever the reason (a pause we set because it may have been taken or while we look into fraud or farming, your own lock, the pause after a reversal, a ban, a suspension, a fair-play hold, and from December 7, 2026 a new device or a change of sign-in), or when we change its email address or correct its birth year to under 18, its open offers and listings close, and we keep that as we keep a stopped offer." : ''}{' '}
             {PRIVACY.launchSite
               ? "Sales made while SpySocial was being tested were undone before the launch, with matching lines in the Intel ledger of everyone they touched, and we keep the record of each undo like the sale. "
-              : "Before version 2.2 opens to everyone, only test accounts use the market, except in Beta 2's test from November 12 to 16, 2026, when adults who can trade buy and sell for real. Those sales are undone on November 16, and any later test sales before the launch, with matching lines in the Intel ledger of everyone they touch, and we keep the record of each undo like the sale. "}
+              : "Before version 2.2 opens to everyone, only test accounts use the market, except in Beta 2's test from November 9 to 16, 2026, when adults who can trade buy and sell for real. Those sales are undone on November 16, and any later test sales before the launch, with matching lines in the Intel ledger of everyone they touch, and we keep the record of each undo like the sale. "}
             Other players see the market without names: an item's prices and quantities on offer, the prices and times
             of past sales, and, for a Unique listed on Rare Finds, its number, its colour and its price, never who is
             buying or selling. Sales are kept for good, like the Intel ledger, with no link to you once you delete your
@@ -543,13 +557,17 @@ const Privacy: React.FC = () => {
             messages were checked and flagged, and what it cost, never the messages or who wrote them), for 90 days.
           </Item>
         )}
-        {/* LIVE.practiceAi: OpenAI rates practice lines for 16+ players who agreed (legalRelease). */}
-        {PRIVACY.practiceAi && (
+        {/* LIVE.practiceAi: OpenAI rates practice lines for 16+ players who agreed (legalRelease).
+            LIVE.practiceReportLog: the last practice game sent with Report a Problem when the player leaves it ticked. */}
+        {(PRIVACY.practiceAi || PRIVACY.practiceReportLog || PRIVACY.coverage1110) && (
           <Item label="Practice Games">
+            {PRIVACY.coverage1110 &&
+              "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it) and your best grade in each game's practice game, so your progress follows you to your other devices. Play Online can use them to open a game once you've passed its practice game (a C or better). We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
+            {PRIVACY.practiceAi && <>
             In a practice game, your device rates every move you make. If you told us you're 16 or older (from the
             birth year the app asks for), are signed in to an account (not playing as a guest) and chose Try It in the
             app's one-time "Rate with AI?" note that names OpenAI, our servers also ask OpenAI to rate each line you
-            type, for a sharper score. For that, our servers send OpenAI only the line you typed (up to 160 characters),
+            type in a Spy Talk practice game, for a sharper score (Spy Sketch practice is rated only on your device). For that, our servers send OpenAI only the line you typed (up to 160 characters),
             whether it's an answer, a question or a follow-up, your role in the practice game (Local or spy), the game's
             secret location and the other locations in its pack, the question or answer from the practice game your
             line replies to, and the language it's probably in. They never send your name, username, account or a code
@@ -562,7 +580,11 @@ const Privacy: React.FC = () => {
             that note (which version of the note you answered, and when) until you answer it again or your account is
             deleted. To keep this within its limits, we count how many lines each account had rated each day (deleted
             after 14 days) and keep daily totals for the whole app that don't identify anyone; we don't keep the lines
-            themselves.
+            themselves. We spend at most a fixed amount on it each month and each day; when that runs out, your device's
+            rating is used until it resets.
+            </>}
+            {PRIVACY.practiceReportLog &&
+              `${PRIVACY.practiceAi ? ' ' : ''}Your device keeps a transcript of your last three practice games (every line, the ones you typed and the agents' lines, with your grades and the tips shown). It leaves your device only if you use Report a Problem and leave "Include my last Practice game" ticked (the box starts unticked for players who told us they're under 18, or haven't told us their age): then, as the email opens, that one game's transcript is sent to our servers with your account, the app's version, your phone's model and the app's language, and kept for 90 days (or until your account is deleted) to find and fix the problem. If our servers can't take it, the transcript is put in the email instead, and goes only if you send it.`}
           </Item>
         )}
         {/* LIVE.spybots: the developer's AI players (legalRelease). */}
@@ -619,6 +641,8 @@ const Privacy: React.FC = () => {
               address you sign up with to look up a SpySocial account that has it (its age, when it was made, whether you
               tested before, and the app versions it used), and we email you about your seat through Resend. If your bug report
               or idea wins the one bonus for the session (a gift card), we send it to your email address. The rest of your sign-up is deleted after the test.
+              {PRIVACY.coverage1110 &&
+                " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026), even if you delete your account first."}
             </>
           )}{' '}
           Otherwise, a test version is the same app, and this policy applies to it.
@@ -683,7 +707,10 @@ const Privacy: React.FC = () => {
             the checks can't run at that moment and still can't after a few more tries, that turn goes unchecked; a
             report of it still goes to a person, as every report does. The
             app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
-            turns are checked you draw only after you agree. For the first check, our servers send OpenAI's
+            turns are checked you draw only after you agree.
+            {PRIVACY.sketchConsentRecord &&
+              " When you agree, the app also tells our servers, and we keep with your account that it agreed, to which version of the note and when, so that your answer counts on every device you use. It counts only for the account that agreed, never for another account signed in on the same device. Not Now isn't recorded. Our servers can use this record to seat only players who have agreed at public Spy Sketch tables (Play Online and Game Nights, alone or in a party); when they do, and someone in a party hasn't agreed yet, the app tells the party's leader which member it is."}{' '}
+            For the first check, our servers send OpenAI's
             moderation service a picture of the turn's own lines (and any lines the player drew and then undid), with
             nothing else. The second check gets a picture of the turn (the earlier drawing in light grey) with the
             round's secret word (which helps tell an innocent drawing from an offensive one) and a code made from your
@@ -1020,6 +1047,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings
           {PRIVACY.browserLegal ? " (in the browser version, in your browser's settings for the site)" : ''}.
           {PRIVACY.audit1103 ? " Also for sending your messages to OpenAI to be translated, which you can change with the app's own choices." : ''}
+          {PRIVACY.practiceAi ? ' Also for sending your practice lines to OpenAI to be rated (see Practice Games).' : ''}
         </Item>
         <Item label="Legal Obligations">
           To comply with the law, for example to answer lawful requests and to report child sexual exploitation.
@@ -1035,11 +1063,16 @@ const Privacy: React.FC = () => {
         {chatRetention(PRIVACY.storedQuestions ? 'Chat messages and typed questions and answers' : 'Chat messages')} Copies
         made to deliver them live are deleted within 4 days. Translations are kept for 24 hours{PRIVACY.modTranslate1106 ? ' (those made for our moderators, for up to 30 days)' : ''}, and daily translation
         counts for 14 days.
+        {PRIVACY.practiceReportLog ? ' A practice game sent with Report a Problem is kept for 90 days.' : ''}
+        {PRIVACY.coverage1110 && PRIVACY.playtestPayPal ? " A live playtest's list of testers is deleted within a week after the test." : ''}
         {PRIVACY.playOnline
           ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
           : ''}
         {PRIVACY.drawingCheck
           ? ' The results of drawing checks are kept for 90 days. A drawing taken off or reported is kept as evidence for 90 days, or longer while its report is still open. A drawing we must report as child sexual exploitation is kept for 1 year after we report it to NCMEC, as US law requires, in restricted storage, and shared with no one except the authorities.'
+          : ''}
+        {PRIVACY.drawingCheck && PRIVACY.sketchConsentRecord
+          ? " The record that an account agreed to the drawing check's note is kept until the account is deleted."
           : ''}{' '}
         When we report child sexual exploitation to NCMEC, we keep what we reported (such as the messages, drawings or
         packs involved and the account details in the report) for at least 1 year after the report, as US law requires,
@@ -1239,8 +1272,10 @@ const Privacy: React.FC = () => {
         <Item label="ImprovMX and Google">
           Email you send to support@spysocial.app is forwarded by ImprovMX and read in Google's Gmail. When you use
           Report a Problem in the app's Settings, the email it prepares also lists the app's version and update, your
-          phone's model and operating system, and the app's language, to help us find the problem; nothing is sent
-          until you send the email, and you can delete those lines first.
+          phone's model and operating system, and the app's language, to help us find the problem; the email is sent
+          only when you send it, and you can delete those lines first.
+          {PRIVACY.practiceReportLog &&
+            ' The one thing sent before that is your last practice game, and only if you leave "Include my last Practice game" ticked (see Practice Games).'}
         </Item>
       </Bullets>
       <P>
@@ -1331,7 +1366,11 @@ const Privacy: React.FC = () => {
           ? ' the players do (in public play, agent names and usernames, never a display name or profile photo)'
           : ''}
         , the drawing and the room's chat, but
-        never a role or the secret word before every player can see it, or anyone's vote.
+        never a role or the secret word before every player can see it, or anyone's vote
+        {PRIVACY.coverage1110
+          ? " (except that in a room with the Paper Trail rule on, they see how a spy who was voted out voted, once that spy's role is shown)"
+          : ''}
+        .
         {PRIVACY.agentColoursPhase2 &&
           " In a private room, the players see who is watching by display name; in public play, they see only how many people are watching and an agent name for each."}
         {/* LIVE.developerWatch: the developer's visible watch at public tables (legalRelease). */}
@@ -1348,6 +1387,8 @@ const Privacy: React.FC = () => {
         {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}
         {PRIVACY.blackMarket &&
           " The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling."}
+        {PRIVACY.marketSite &&
+          " Our website's Market (market.spysocial.app) shows anyone, without an account, totals worked out from Black Market trades: each item's price (an average of its recent trades), how it changed, how many times it was traded and how much Intel was spent on it, each day and over periods of up to 180 days. It shows a price only when at least five trades make it, and never a player, an offer or a single trade."}
         {/* LIVE.socialFeatures (legalRelease). */}
         {PRIVACY.socialFeatures &&
           " Your friends see your display name, your agent and, if you allow it, whether you're online now. An adult's public profile (see Follows and Profiles above) can be opened by any player; a private profile, and the profile of any player under 18, can't be opened by other players. A party is marked at the table for everyone there, and its members see each other by display name."}
@@ -1435,11 +1476,11 @@ const Privacy: React.FC = () => {
       <Bullets>
         <Item label="A copy of your data">
           {PRIVACY.dataRights
-            ? 'We email a copy of the personal data linked to your account, in a machine-readable file (JSON), to the email address on your account: your account and sign-in details, profile, settings and the answers you gave the app, your games, stats and rewards, the chat messages we still keep, purchases, trades, friends, follows and the other records we keep about your account. Other players appear in it only as "another player". '
+            ? `We email a copy of the personal data linked to your account, in a machine-readable file (JSON), to the email address on your account: your account and sign-in details, profile, settings and the answers you gave the app, your games, stats and rewards, the chat messages we still keep, purchases, trades, friends, follows${PRIVACY.exportTesters ? ", the problem reports you sent us (with any practice game you included), your entry on a beta tester list if you're on one" : ''} and the other records we keep about your account. Other players appear in it only as "another player". `
             : 'We send a copy of the personal data linked to your account, in a machine-readable file, to the email address on your account. Other players appear in it only as "another player". '}
           To protect other people and keep SpySocial safe, it doesn't include reports others made about you or who made
           them, who blocked you, the records and score of our fair-play and safety checks, the encrypted IP addresses
-          described above, or one-time codes; the copy lists what it leaves out and why.
+          described above{PRIVACY.exportTesters ? ', one-time codes, or the coded copies (hashes) of the email addresses you gave us to join a beta test' : ', or one-time codes'}; the copy lists what it leaves out and why.
         </Item>
         <Item label="Correcting your data">
           You can change your display name in the app at any time

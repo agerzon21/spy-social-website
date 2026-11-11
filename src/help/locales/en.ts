@@ -337,7 +337,7 @@ const en: HelpText = {
             'Adults who can trade: an account at least 7 days old, a confirmed email, 3 counted games and no trading pause.',
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 12 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone on November 16: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 9 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone on November 16: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
           ],
         },
         {
@@ -443,8 +443,14 @@ const en: HelpText = {
           q: 'Where are my beta tester rewards?',
           a: [
             o.launch
-              ? 'They were added at the 2.2 launch and are yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership. A thank-you card shows when you first open the app after launch. The <b>Beta Pin</b> and the <b>Field Tester</b> title can be traded like anything you earn; the Intercepts are a gift, just for you.'
-              : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership.',
+              ? 'They were added at the 2.2 launch and are yours to keep. Everyone on the tester list got the <b>Beta Pin</b> and the <b>Beta Tester</b> title. A thank-you card shows when you first open the app after launch.'
+              : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep. Everyone on the tester list gets the <b>Beta Pin</b> and the <b>Beta Tester</b> title.',
+            o.launch
+              ? 'Testers who finished at least one game before December 7 (played to the end, in any room, so it shows in their Stats) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.'
+              : 'Finish at least one game before December 7 (played to the end, in any room, so it shows in your Stats) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.',
+            o.testerInterceptsTradable
+              ? 'The <b>Beta Pin</b>, the <b>Field Tester</b> title and the thank-you Intercepts trade like anything you earn.'
+              : 'The <b>Beta Pin</b> and the <b>Field Tester</b> title trade like anything you earn; like other gifts, the thank-you Intercepts stay with your account.',
             ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
             'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
             'Something missing? Email <email/> with your username and the email you signed in with during the test. A guest account isn’t on the list, so a different account is the usual reason.',

@@ -13,6 +13,10 @@ const es: Strings = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Registro de coleccionables",
+      /** The Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      archive: "El Archivo",
+      /** The Market (market.spysocial.app and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      market: "Precios del Mercado Negro",
       transparency: "Informe de transparencia",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Reglas de la Noche de Juego",
@@ -37,6 +41,8 @@ const es: Strings = {
     descriptions: {
       beta: 'Únete a una prueba de juego en grupo, en vivo y de 1 hora, de SpySocial, un juego gratis de deducción social para fiestas: jueves 12 de noviembre de 2026, de 7 a 8 p. m., hora del Este de EE. UU. Solo mayores de 18, en iPhone o Android. Los testers se quedan con el Pin beta y más.',
       ledger: "El registro público de cada coleccionable de SpySocial: cada copia y su número. Cualquiera puede comprobarlo.",
+      archive: "Cada Único de SpySocial registrado: su imagen, número, atributos, cómo se acuñó y cada venta, sin nombrar a ningún jugador.",
+      market: "Lo que vale cada objeto de SpySocial en el Mercado Negro: precios según las operaciones de los jugadores, lo que más sube y baja y lo más comerciado, sin nombrar a ningún jugador.",
       transparency: "Cada mes, cuánta Intel se ganó, gastó y corrigió en SpySocial, cada incidente y cada cambio de reglas, sin nombrar a ningún jugador.",
       gameNightRules: "Las reglas de la Noche de Juego semanal de SpySocial: cuándo es, quién puede participar, cómo conseguir los títulos de la noche y el título extra del desarrollador.",
       faq: "Ayuda de SpySocial: cómo jugar Spy Talk y Spy Sketch, Jugar en línea, salas privadas y Noche de Juegos, amigos, intercambios, el Mercado Negro, intercepciones, Intel, membresía, tu cuenta, seguridad y solución de problemas.",
@@ -69,6 +75,10 @@ const es: Strings = {
   },
 
   footer: {
+
+    /** The link to the Market (LIVE.marketSite). */
+
+    market: "Precios del Mercado Negro",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparencia",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -854,7 +864,7 @@ const es: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Prueba en vivo',
     title: 'Juega primero',
-    lede: '<b>10\u00a0USD por PayPal como agradecimiento</b> para cada jugador confirmado que se una a la hora completa de esta sesión de prueba de juego en grupo y en vivo de SpySocial, el juego gratis de deducción social para fiestas, y envíe la encuesta de 5 minutos, igual en iPhone y Android, más un bono de 50\u00a0USD para el reporte de error o la idea más útil de la sesión. Además, recompensas beta que te quedas después del lanzamiento: el Pin beta, dos títulos, 10 intercepciones de cada nivel y 1 mes de membresía.',
+    lede: '<b>10\u00a0USD por PayPal como agradecimiento</b> para cada jugador confirmado que se una a la hora completa de esta sesión de prueba de juego en grupo y en vivo de SpySocial, el juego gratis de deducción social para fiestas, y envíe la encuesta de 5 minutos, igual en iPhone y Android, más un bono de 50\u00a0USD para el reporte de error o la idea más útil de la sesión. Además, recompensas beta que te quedas después del lanzamiento: el Pin beta y un título para cada tester, y con una partida terminada antes del 7 de diciembre, otro título, 10 intercepciones de cada nivel y 1 mes de membresía.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Las partidas, la XP y los objetos de la prueba se reinician en el lanzamiento.',
     headsUp: '<b>Ojo:</b> el SpySocial de la App Store y Google Play es una versión antigua. La beta es una versión nueva y muy distinta; la instalas desde el enlace que te enviamos por correo.',
@@ -902,7 +912,10 @@ const es: Strings = {
     get: {
       eyebrow: 'Qué recibes',
       title: 'Recompensas beta que te quedas tras el lanzamiento',
-      items: ['El <b>Pin beta</b>', 'Los títulos <b>Tester beta</b> y <b>Tester de Campo</b>', '<b>10 intercepciones</b> de cada nivel', '<b>1 mes</b> de membresía'],
+      items: ['El <b>Pin beta</b>', 'El título <b>Tester beta</b>'],
+      gameTitle: 'Termina una partida antes del 7 de diciembre y recibe además',
+      gameItems: ['El título <b>Tester de Campo</b>', '<b>10 intercepciones</b> de cada nivel', '<b>1 mes</b> de membresía'],
+      trade: { tradable: 'Tras el lanzamiento, las intercepciones de agradecimiento se intercambian como todo lo que ganas.', bound: 'Las intercepciones de agradecimiento se quedan en tu cuenta.' },
       prizeTitle: '10\u00a0USD de agradecimiento por PayPal + un bono de 50\u00a0USD',
       prize: 'Un agradecimiento de 10 USD por PayPal por tu tiempo en la sesión en vivo: cada jugador confirmado que se una a la hora completa y envíe la encuesta de 5 minutos lo recibe en los 7 días siguientes a la sesión, igual en iPhone y Android. Instalar la versión de prueba no da derecho a él por sí solo. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil de la sesión, elegido por el desarrollador en el plazo de una semana.',
       seats: (day: string) => `24 lugares. El agradecimiento es solo para los jugadores que confirmemos por correo (a más tardar el ${day}) y que se unan a la sesión; los demás pasan a la lista de espera de la próxima prueba.`,

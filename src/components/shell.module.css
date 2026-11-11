@@ -88,6 +88,73 @@
   .home img { height: 42px; padding-block: calc(21px * (1 - var(--wm))); }
 }
 
+/* ---- the Archive's and the Market's own nav (components/HostNav, archive. / market.spysocial.app): beside the
+   wordmark in the one header row, the current place underlined on the header's bottom edge like a tab. www's Join a
+   room and Shop show only where there's room (1100 px); the wordmark and the footer carry www everywhere. On a phone
+   the links scroll sideways, the row fading at its ends. ---- */
+.headerHost .bar { justify-content: flex-start; }
+.headerHost .home { flex: none; }
+.home .homeMark { display: none; }
+@media (max-width: 559px) {
+  .headerHost .home img:not(.homeMark) { display: none; }
+  .headerHost .home .homeMark { display: block; width: 34px; height: 34px; padding: 0; }
+}
+.headerHost .tools { flex: none; margin-inline-start: auto; }
+.headerHost .nav { display: none; }
+@media (min-width: 1100px) { .headerHost .nav { display: flex; } }
+.hostNav { flex: 1 1 auto; min-width: 0; align-self: stretch; display: flex; margin-inline: 22px 8px; }
+.hostList {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.hostList::-webkit-scrollbar { display: none; }
+.hostList li { display: flex; }
+.hostLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 11px;
+  font: 700 14px/1 var(--ss-font-body);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--ss-muted);
+  transition: color 0.15s, box-shadow 0.15s;
+}
+.hostLink:hover { color: var(--ss-text); }
+.hostLink[aria-current='page'] { color: var(--ss-text); box-shadow: inset 0 -2px 0 var(--ss-accent); }
+.hostList li:first-child .hostLink { padding-inline-start: 0; }
+@media (max-width: 899px) {
+  .hostNav { margin-inline: 12px 4px; }
+  .hostList {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 10px, #000 calc(100% - 26px), transparent);
+    mask-image: linear-gradient(to right, transparent, #000 10px, #000 calc(100% - 26px), transparent);
+  }
+  :global(html[dir='rtl']) .hostList {
+    -webkit-mask-image: linear-gradient(to left, transparent, #000 10px, #000 calc(100% - 26px), transparent);
+    mask-image: linear-gradient(to left, transparent, #000 10px, #000 calc(100% - 26px), transparent);
+  }
+  .hostList li:first-child .hostLink { padding-inline-start: 10px; }
+  .hostList li:last-child .hostLink { padding-inline-end: 26px; }
+  .hostLink { padding: 0 8px; font-size: 12.5px; letter-spacing: 0.06em; }
+}
+:global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) .hostLink { letter-spacing: 0.02em; }
+
+/* On a phone the row gives way to PhoneNav (phoneNav.module.css), which fills the header's middle. */
+@media (max-width: 559px) {
+  .hostList { display: none; }
+  .hostNav { margin-inline: 12px 10px; }
+}
+
 /* ---- footer ---- */
 .footer {
   background: var(--ss-deep);

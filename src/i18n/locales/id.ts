@@ -13,6 +13,10 @@ const id: Strings = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Buku besar koleksi",
+      /** The Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      archive: "Arsip",
+      /** The Market (market.spysocial.app and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      market: "Harga Pasar Gelap",
       transparency: "Laporan transparansi",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Aturan Malam Permainan",
@@ -37,6 +41,8 @@ const id: Strings = {
     descriptions: {
       beta: 'Ikut playtest grup live selama 1 jam untuk SpySocial, game pesta deduksi sosial gratis, pada Kamis, 12 November 2026, pukul 19.00–20.00 waktu Timur AS. Khusus 18+, di iPhone atau Android. Penguji mendapat Pin Beta dan lainnya.',
       ledger: "Catatan publik setiap item koleksi SpySocial: setiap salinan dan nomornya. Siapa saja bisa memeriksanya.",
+      archive: "Setiap Unik SpySocial tercatat: gambarnya, nomornya, atributnya, cara dicetak, dan setiap penjualan, tanpa menyebut pemain.",
+      market: "Harga setiap item SpySocial di Pasar Gelap: harga dari transaksi pemain, yang paling naik dan turun, dan yang paling banyak diperdagangkan, tanpa menyebut pemain.",
       transparency: "Setiap bulan: berapa Intel yang didapat, dibelanjakan, dan dikoreksi di SpySocial, setiap insiden, dan setiap perubahan aturan, tanpa menyebut nama pemain.",
       gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara mendapatkan gelar malam itu, dan gelar bonus dari pengembang.",
       faq: "Bantuan SpySocial: cara main Spy Talk dan Spy Sketch, Main online, room privat dan Malam Permainan, teman, tukar item, Pasar Gelap, sadapan, Intel, keanggotaan, akunmu, keamanan, dan cara mengatasi masalah.",
@@ -69,6 +75,10 @@ const id: Strings = {
   },
 
   footer: {
+
+    /** The link to the Market (LIVE.marketSite). */
+
+    market: "Harga Pasar Gelap",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparansi",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -857,7 +867,7 @@ const id: Strings = {
   beta: {
     eyebrow: 'Beta 2 · Playtest live',
     title: 'Main duluan',
-    lede: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+    lede: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta dan satu gelar untuk setiap penguji, dan dengan satu game yang selesai sebelum 7 Desember, gelar kedua, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Game, XP, dan item dari tes ini direset saat peluncuran.',
     headsUp: '<b>Perhatian:</b> SpySocial di App Store dan Google Play adalah versi lama. Beta ini build baru yang sangat berbeda; kamu menginstalnya dari link yang kami kirim lewat email.',
@@ -905,7 +915,10 @@ const id: Strings = {
     get: {
       eyebrow: 'Yang kamu dapat',
       title: 'Hadiah beta yang tetap jadi milikmu setelah peluncuran',
-      items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
+      items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b>'],
+      gameTitle: 'Selesaikan satu game sebelum 7 Desember untuk juga dapat',
+      gameItems: ['Gelar <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
+      trade: { tradable: 'Setelah peluncuran, sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.', bound: 'Sadapan terima kasih tetap di akunmu.' },
       prizeTitle: 'Terima kasih $10 lewat PayPal + satu bonus $50',
       prize: 'Ucapan terima kasih $10 lewat PayPal untuk waktumu di sesi live: setiap pemain terkonfirmasi yang ikut penuh satu jam dan mengirim survei 5 menit menerimanya dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Hanya memasang build uji tidak membuatmu mendapatkannya. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu.',
       seats: (day: string) => `24 kursi. Ucapan terima kasih hanya untuk pemain yang kami konfirmasi lewat email (paling lambat ${day}) dan ikut sesi; yang lain masuk daftar tunggu untuk tes berikutnya.`,

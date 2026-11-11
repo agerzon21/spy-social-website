@@ -5,6 +5,8 @@ import { Global } from '@emotion/react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { Layout } from './components'
 import ScrollManager from './components/ScrollManager'
+import OffHost from './components/OffHost'
+import { HOST, onThisHost, sharedHere, sitePath } from './lib/siteHost'
 import Home from './pages/Home'
 import { lazy, Suspense, useMemo } from 'react'
 import { LIVE, ONLINE_SAFETY_TEXT } from './lib/legalRelease'
@@ -54,8 +56,22 @@ const GameNightRules = page(() => import('./pages/GameNightRules'))
 // The minted-collectibles ledger: the route exists only while LIVE.mintedCollectibles is on (from genesis).
 const Ledger = page(() => import('./pages/Ledger'))
 const Transparency = page(() => import('./pages/Transparency'))
+// The Archive (rarefinds-page-1110): every Unique, its own page per copy; with the ledger (LIVE.mintedCollectibles).
+const ArchiveHome = page(() => import('./pages/archive/ArchiveHome'))
+const ArchiveBrowse = page(() => import('./pages/archive/ArchiveBrowse'))
+const ArchiveItem = page(() => import('./pages/archive/ArchiveItem'))
+// The Market (market-site-1110): the Black Market's prices, read from the ledger function (LIVE.marketSite).
+const MarketHome = page(() => import('./pages/market/MarketHome'))
+const MarketMovers = page(() => import('./pages/market/MarketMovers'))
+const MarketCatalogue = page(() => import('./pages/market/MarketCatalogue'))
+const MarketItem = page(() => import('./pages/market/MarketItem'))
 // The Beta 2 playtester page (linked from Reddit and Discord), its own chunk.
 const Beta = page(() => import('./pages/Beta'))
+
+// The Archive's routes, on the host it lives on (lib/siteHost: archive.spysocial.app; www's /archive goes there).
+const archiveOn = LIVE.mintedCollectibles && LIVE.uniqueArchive && onThisHost('/archive')
+// The Market's, likewise (market.spysocial.app; www's /market goes there).
+const marketOn = LIVE.marketSite && onThisHost('/market')
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
@@ -80,6 +96,24 @@ function App() {
           <ScrollManager />
           <Suspense fallback={<Box flex="1" bg="ss.page" />}>
             <Routes>
+              {/* The Archive on archive.spysocial.app ('/', '/uniques', '/u/<item>/<serial>'; lib/siteHost), at /archive on
+                  a preview build. */}
+              {archiveOn && <Route path={sitePath('/archive')} element={<Layout><ArchiveHome /></Layout>} />}
+              {archiveOn && <Route path={sitePath('/archive/uniques')} element={<Layout><ArchiveBrowse /></Layout>} />}
+              {archiveOn && <Route path={sitePath('/archive/u/:item/:serial')} element={<Layout><ArchiveItem /></Layout>} />}
+              {/* The Market on market.spysocial.app ('/', '/movers/<list>', '/catalogue[/<shelf>]', '/item/<code>'). */}
+              {marketOn && <Route path={sitePath('/market')} element={<Layout><MarketHome /></Layout>} />}
+              {marketOn && <Route path={sitePath('/market/movers/:list')} element={<Layout><MarketMovers /></Layout>} />}
+              {marketOn && <Route path={sitePath('/market/movers')} element={<Navigate to={sitePath('/market/movers/rises')} replace />} />}
+              {marketOn && <Route path={sitePath('/market/catalogue')} element={<Layout><MarketCatalogue /></Layout>} />}
+              {marketOn && <Route path={sitePath('/market/catalogue/:cat')} element={<Layout><MarketCatalogue /></Layout>} />}
+              {marketOn && <Route path={sitePath('/market/item/:code')} element={<Layout><MarketItem /></Layout>} />}
+              {/* www's pages a subdomain serves too, with its header nav (lib/siteHost SHARED: the Archive's Ledger and
+                  Transparency); their canonical address stays www's. */}
+              {HOST !== 'main' && LIVE.mintedCollectibles && sharedHere('/ledger') && <Route path="/ledger" element={<Layout><Ledger /></Layout>} />}
+              {HOST !== 'main' && LIVE.transparencyPage && sharedHere('/transparency') && <Route path="/transparency" element={<Layout><Transparency /></Layout>} />}
+              {/* www.spysocial.app's own pages: on the Archive's and the Market's hosts, the catch-all sends them there. */}
+              {HOST === 'main' && (<>
               <Route path="/" element={<Layout isHome><Home /></Layout>} />
               <Route path="/reset-password" element={<Layout><ResetPassword /></Layout>} />
               <Route path="/confirm-success" element={<Layout><ConfirmSuccess /></Layout>} />
@@ -107,7 +141,9 @@ function App() {
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
               <Route path="/join" element={<Layout><Join /></Layout>} />
               <Route path="/agree/:token" element={<Layout><Agree /></Layout>} />
-              <Route path="*" element={<Layout><NotFound /></Layout>} />
+              </>)}
+              {/* A page on another host goes there (OffHost); anything else is the 404 page. */}
+              <Route path="*" element={<OffHost><Layout><NotFound /></Layout></OffHost>} />
             </Routes>
           </Suspense>
         </Box>

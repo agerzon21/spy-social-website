@@ -327,7 +327,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les adultes qui peuvent échanger : un compte d'au moins 7 jours, un e-mail confirmé, 3 parties comptées et pas de pause des échanges.",
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte et de parties comptées sont levées ici aussi.']),
           "Les moins de 18 ans peuvent regarder, mais ni acheter, ni vendre, ni faire d'offres.",
-          ...(o.launch ? [] : [o.testerMarket ? "Bêta 2 : du 12 au 16 novembre, les adultes qui peuvent échanger achètent et vendent ici pour de vrai. Toutes les ventes faites pendant le test sont annulées le 16 novembre : l'acheteur récupère l'Intel payé et le vendeur rend ce qu'il a reçu." : "L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
+          ...(o.launch ? [] : [o.testerMarket ? "Bêta 2 : du 9 au 16 novembre, les adultes qui peuvent échanger achètent et vendent ici pour de vrai. Toutes les ventes faites pendant le test sont annulées le 16 novembre : l'acheteur récupère l'Intel payé et le vendeur rend ce qu'il a reçu." : "L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
         ],
       },
       {
@@ -433,8 +433,14 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Où sont mes récompenses de la bêta ?',
         a: [
           o.launch
-            ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi : le <b>Pin bêta</b>, les titres <b>« Bêta-testeur »</b> et <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement. Le <b>Pin bêta</b> et le titre <b>« Testeur de terrain »</b> s'échangent comme tout ce que tu gagnes ; les interceptions sont un cadeau, pour toi seul."
-            : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi : le <b>Pin bêta</b>, les titres <b>« Bêta-testeur »</b> et <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement.",
+            ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi. Tous les testeurs de la liste ont reçu le <b>Pin bêta</b> et le titre <b>« Bêta-testeur »</b>. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
+            : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi. Tous les testeurs de la liste reçoivent le <b>Pin bêta</b> et le titre <b>« Bêta-testeur »</b>.",
+          o.launch
+            ? "Les testeurs qui ont terminé au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans leurs Stats) ont aussi reçu le titre <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement."
+            : "Termine au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans tes Stats) et tu reçois aussi le titre <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement.",
+          o.testerInterceptsTradable
+            ? "Le <b>Pin bêta</b>, le titre <b>« Testeur de terrain »</b> et les interceptions de remerciement s'échangent comme tout ce que tu gagnes."
+            : "Le <b>Pin bêta</b> et le titre <b>« Testeur de terrain »</b> s'échangent comme tout ce que tu gagnes ; comme les autres cadeaux, les interceptions de remerciement restent sur ton compte.",
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
           "Il manque quelque chose ? Écris à <email/> avec ton nom d'utilisateur et l'e-mail utilisé pendant le test. Un compte invité n'est pas sur la liste : c'est souvent une question de compte différent.",

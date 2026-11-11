@@ -30,6 +30,10 @@ const en = {
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Collectibles ledger",
+      /** The Archive (archive.spysocial.app: /, /uniques, /u/<item>/<serial>), live with LIVE.mintedCollectibles. */
+      archive: "The Archive",
+      /** The Market (market.spysocial.app and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      market: "Black Market prices",
       transparency: "Transparency report",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Game Night rules",
@@ -55,6 +59,8 @@ const en = {
     descriptions: {
       beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 12, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
       ledger: "The public record of every minted SpySocial collectible: each copy and its number. Anyone can check it.",
+      archive: "Every SpySocial Unique on the record: its picture, number, attributes, how it was minted and every sale, with no player named.",
+      market: "What every SpySocial item sells for on the Black Market: prices from players’ trades, the biggest rises and falls and the most traded items, with no player named.",
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
       gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
       faq: "SpySocial help: how to play Spy Talk and Spy Sketch, Play Online, private rooms and Game Night, friends, trading, the Black Market, Intercepts, Intel, membership, your account, safety and troubleshooting.",
@@ -91,6 +97,10 @@ const en = {
   },
 
   footer: {
+
+    /** The link to the Market (LIVE.marketSite). */
+
+    market: "Black Market Prices",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparency",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -930,7 +940,7 @@ const en = {
     eyebrow: 'Beta 2 · Live playtest',
     /** The poster line, set huge: it must fit a 320 px phone. The full stop after it is home.hero.titleMark. */
     title: 'Play it first',
-    lede: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin, two titles, 10 Intercepts of each tier and a month of membership.',
+    lede: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin and a title for every tester, and with one finished game before December 7, a second title, 10 Intercepts of each tier and a month of membership.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Games, XP and items from the test reset at launch.',
     /** Under the lede: the store app is the old version; the beta comes from the emailed link. */
@@ -991,8 +1001,13 @@ const en = {
     get: {
       eyebrow: 'What you get',
       title: 'Beta rewards you keep after launch',
-      /** The app's own names for the pin, the titles and the Intercepts. */
-      items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> and <b>Field Tester</b> titles', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
+      /** Every tester on the 2.2 list (the app's own names for the pin and the title). */
+      items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> title'],
+      /** The rest needs one counted game (played to the end, any room) before December 7 (owner Nov 11). */
+      gameTitle: 'Finish one game before December 7 to also get',
+      gameItems: ['The <b>Field Tester</b> title', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
+      /** Under the lists; LIVE.testerIntercepts picks one (server app_config tester_gift.intercepts_tradable). */
+      trade: { tradable: 'The thank-you Intercepts trade after launch like anything you earn.', bound: 'The thank-you Intercepts stay with your account.' },
       prizeTitle: '$10 PayPal thank-you + one $50 bonus',
       prize: 'A $10 thank-you by PayPal for your time in the live session: every confirmed player who joins the full hour and sends the 5-minute survey gets it within 7 days of the session, the same on iPhone and Android. Installing the test build doesn\'t earn it on its own. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week.',
       /** `day`: the day we confirm seats by email ("Monday, November 9"). */
