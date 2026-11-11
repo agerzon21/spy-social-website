@@ -1487,9 +1487,10 @@ export const LIVE = {
   marketSite: true,
   /**
    * drawing-minor-rooms-1111 (app repo: server file 20261231999100_drawing_minor_rooms_1111, owner Nov 11 "drawings:
-   * check"): in a private room where anyone who can see the drawing is under 18 or has no birth year, an adult's drawing
-   * turns get the public check (OpenAI moderation every turn, the smart check by the drawer's tier); a minor's or an
-   * ageless player's drawing is never sent that way; there the app doesn't ask AGREE first; a strike there goes to a person.
+   * check"): in a private room where anyone who can see the drawing is under 18 or has no birth year, drawing turns get
+   * the public check (OpenAI moderation every turn, the smart check by the drawer's tier), except a drawer who declared an
+   * age under 18 (an ageless drawer is checked: security review 1111 #1); the path has its own daily share of the budget
+   * (#4); there the app doesn't ask AGREE first; a strike there goes to a person.
    * Turns on a paragraph in Privacy's Drawing Checks and a clause in Age. POLICY FIRST: flip it when the server file is
    * applied live, and set DRAWING_MINOR_ROOMS_DAY (below) to the push day. A server fact for every app version at once:
    * set in LIVE, never in PRIVACY_AHEAD.
