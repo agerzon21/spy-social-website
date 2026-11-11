@@ -1007,9 +1007,10 @@ export const LIVE = {
    * languages) and the Terms' UK online safety Word filter sentence. Flip the day the server file is applied and set
    * CHAT_MILD_MASK_DAY to it (LEGAL_LAST_UPDATED: Terms, Safety). Not a material change (it relaxes a refusal into a mask;
    * no new duty): no TERMS_PUBLISHED or terms_version. Privacy: nothing new is collected or kept, so it doesn't move.
-   * A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   * A server switch: set in LIVE, never in PRIVACY_AHEAD. ON Nov 11 (server file live 2026-11-11 07:00 UTC, version
+   * 20261111070033, main 9ab75f740).
    */
-  chatMildMask: false,
+  chatMildMask: true,
   /**
    * Unopened Intercepts inside a friend trade. The server takes them (trade_set_intercepts), and the app offers it since
    * update 48 (November 7, 2026); Terms 9, Privacy's Intercepts item, Transparency, help and Safety say so.
