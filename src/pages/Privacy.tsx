@@ -656,7 +656,7 @@ const Privacy: React.FC = () => {
           (such as sending a message, joining or trying to join a room, poking a player, or saving its avatar or title),
           without what was said. Notes about joining rooms are deleted after 24 hours and the others after 2 days, even if
           the account is deleted first. To limit account emails, when you sign up, save a guest account,
-          {PRIVACY.passwordless ? ' ask for a sign-in code' : ' ask for a new confirmation link, reset your password'} or
+          {PRIVACY.passwordless ? ' ask for a sign-in code' : PRIVACY.emailCodes22 ? ' ask for a new confirmation link or reset your password in a version of the app before 2.2,' : ' ask for a new confirmation link, reset your password'} or
           change your email address, our servers keep a record of each email
           they send: a coded form of the email address and of your network (your IP address, or for IPv6 its first
           half), made with a secret key, the kind of email and when, never the address or the IP address itself. Under
@@ -666,7 +666,9 @@ const Privacy: React.FC = () => {
             ' To stop rapid-fire follows and friend requests, our servers also use the times in the social safety log (see Safety Information) to slow an account down for a few seconds, and when an account reaches the daily limit for follows or for friend requests, they count how many times that day it was turned away (the account, which limit, the day and the count), for our team to spot spam. These counts aren\'t shown to any player, don\'t change anything on their own, and are deleted after 90 days.'}
           {PRIVACY.passwordless
             ? ' Sign-in codes are made and checked by our sign-in service (Supabase Auth): a code has 6 digits, works only once and for 1 hour, and a new one can be asked for after a minute; the service keeps only a coded form of the code, never the code itself.'
-            : ''}
+            : PRIVACY.emailCodes22
+              ? " From version 2.2, the app signs you in, saves a guest account and checks it's you before Delete Account with a one-time code we email you, instead of a password (older versions still use a password). These codes are made, sent (through Resend) and checked by our sign-in service (Supabase Auth): a code has 6 digits, works only once and for 1 hour, and a new one can be asked for after a minute; the service keeps only a coded form of the code, never the code itself."
+              : ''}
         </Item>
         <Item label="Safety Information">
           Reports you make or that are made about you, players you block (and when you unblock someone, which counts for 24 hours so a player can't be blocked and unblocked over and over{PRIVACY.retentionSweep ? ' and is then deleted' : ', and is deleted the next time you unblock someone or with your account'}), removals from rooms, and any warnings,
@@ -1086,7 +1088,7 @@ const Privacy: React.FC = () => {
         Usage events are kept
         for 180 days
         {PRIVACY.scheduledRetention
-          ? `, and security logs (such as sign-ups, sign-ins, ${PRIVACY.passwordless ? 'sign-in codes sent' : 'password resets'} and email changes, which can include your email address and IP address) for 180 days.`
+          ? `, and security logs (such as sign-ups, sign-ins, ${PRIVACY.passwordless ? 'sign-in codes sent' : PRIVACY.emailCodes22 ? 'sign-in codes sent, password resets' : 'password resets'} and email changes, which can include your email address and IP address) for 180 days.`
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests {PRIVACY.retentionSweep ? 'after a day' : 'after a day of no use, the next time a request clears them'}.
@@ -1248,7 +1250,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.resendAccountEmail && (
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
-            {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
+            {PRIVACY.passwordless ? ' sign-in codes' : PRIVACY.emailCodes22 ? ' sign-in codes, sign-up confirmations and password resets' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
             trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
