@@ -81,7 +81,7 @@ const ArchiveHome = () => {
             <div className={s.fan} aria-hidden="true">
               {(fan.length ? fan : [null, null, null]).map((c, i) => (
                 <div key={c ? `${c.item_code}-${c.serial}` : i} className={s.fanCard}>
-                  <Piece src={c ? artOf(art, c.item_code, c.serial)?.src ?? null : null} alt="" eager look={c && artOf(art, c.item_code, c.serial) ? lookOf(looks, c.item_code, c.serial) : null} />
+                  <Piece src={c ? artOf(art, c.item_code, c.serial)?.src ?? null : null} alt="" eager still look={c && artOf(art, c.item_code, c.serial) ? lookOf(looks, c.item_code, c.serial, false, { float: c.float, pattern: c.pattern, serial: c.serial }) : null} />
                 </div>
               ))}
             </div>

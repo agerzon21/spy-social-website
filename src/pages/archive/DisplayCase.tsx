@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useLang } from '../../i18n'
 import type { ItemLook } from '../../lib/archive'
 import { archiveStrings } from './strings'
+import { LiveBackdrop } from './LiveBackdrop'
 import c from './displayCase.module.css'
 
 /**
@@ -13,12 +14,13 @@ import c from './displayCase.module.css'
  * Keyboard (a11y-1111): the side turned away is hidden from screen readers, so focus follows the turn (See it worn ->
  * Back, Back -> See it worn), and Escape turns it back.
  */
-export function DisplayCase({ ring, look, alt, wear = false, eager = false }: { ring: string; look: ItemLook; alt: string; wear?: boolean; eager?: boolean }) {
+export function DisplayCase({ ring, look, alt, wear = false, eager = false, still = false }: { ring: string; look: ItemLook; alt: string; wear?: boolean; eager?: boolean; still?: boolean }) {
   const { lang } = useLang()
   const w = archiveStrings(lang).worn
   const [worn, setWorn] = useState(false)
   const [who, setWho] = useState<'m' | 'f'>('m')
-  const canWear = wear && !!look.worn
+  const live = look.kind === 'live' && !!look.item
+  const canWear = wear && (live || !!look.worn)
   const seeBtn = useRef<HTMLButtonElement>(null)
   const backBtn = useRef<HTMLButtonElement>(null)
   // Focus left on the side that just turned away (now aria-hidden) moves to the other side's chip.
@@ -44,9 +46,11 @@ export function DisplayCase({ ring, look, alt, wear = false, eager = false }: { 
         <span className={c.face} aria-hidden={worn || undefined}>
           {Ring}
           <span className={c.inside}>
-            {look.kind === 'scene' ? null : <span className={c.room} />}
-            {look.kind === 'scene' ? null : <span className={c.beam} />}
-            {look.kind === 'scene' ? (
+            {look.kind === 'scene' || live ? null : <span className={c.room} />}
+            {look.kind === 'scene' || live ? null : <span className={c.beam} />}
+            {live ? (
+              <LiveBackdrop item={look.item!} copy={look.copy ?? null} still={still || worn} alt={alt} />
+            ) : look.kind === 'scene' ? (
               <img className={c.scene} src={look.alone} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
             ) : look.kind === 'case' ? (
               <>
@@ -74,13 +78,17 @@ export function DisplayCase({ ring, look, alt, wear = false, eager = false }: { 
             </button>
           ) : null}
         </span>
-        {canWear && look.worn ? (
+        {canWear && (live || look.worn) ? (
           <span className={`${c.face} ${c.back}`} aria-hidden={!worn || undefined}>
             {Ring}
             <span className={c.inside}>
               <span className={c.room} />
               <span className={c.beam} />
-              <img className={look.kind === 'wall' ? c.scene : c.agent} src={look.worn[who]} alt={worn ? `${w.label}: ${who === 'm' ? w.him : w.her}` : ''} loading="lazy" decoding="async" />
+              {live ? (
+                worn ? <LiveBackdrop item={look.item!} copy={look.copy ?? null} figure={who} alt={`${w.label}: ${who === 'm' ? w.him : w.her}`} /> : null
+              ) : look.worn ? (
+                <img className={c.agent} src={look.worn[who]} alt={worn ? `${w.label}: ${who === 'm' ? w.him : w.her}` : ''} loading="lazy" decoding="async" />
+              ) : null}
             </span>
             <button ref={backBtn} type="button" className={`${c.chip} ${c.chipBack}`} onClick={() => setWorn(false)} tabIndex={worn ? 0 : -1}>
               <span aria-hidden>↺</span>

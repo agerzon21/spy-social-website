@@ -80,7 +80,7 @@ const ArchiveItem = () => {
   }
 
   const pic = artOf(art, item, serial)
-  const look = pic ? lookOf(looks, item, serial) : null
+  const look = pic ? lookOf(looks, item, serial, false, u ? { float: u.float, pattern: u.pattern, serial } : null) : null
   const attrs = u ? attributesOf(data, item, u.float) : []
   const glow = u ? swatchOf(data, item, u.float) : null
   const st = setText(u?.set, lang)

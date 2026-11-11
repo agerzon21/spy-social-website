@@ -22,11 +22,11 @@ export function BetaNotice({ chain }: { chain?: string }) {
  * picture is the item alone in its display case, a backdrop on its wall or a scene filling the frame, inside the
  * copy's own ring (`src`, its tile); `wear` adds "See it worn" (a Unique's page).
  */
-export function Piece({ src, alt, unique = true, small = false, eager = false, look = null, wear = false }: { src: string | null; alt: string; unique?: boolean; small?: boolean; eager?: boolean; look?: ItemLook | null; wear?: boolean }) {
+export function Piece({ src, alt, unique = true, small = false, eager = false, look = null, wear = false, still = small }: { src: string | null; alt: string; unique?: boolean; small?: boolean; eager?: boolean; look?: ItemLook | null; wear?: boolean; still?: boolean }) {
   return (
     <span className={`${s.piece} ${unique ? '' : s.piecePlain}`}>
       {src && look ? (
-        <DisplayCase ring={src} look={look} alt={alt} wear={wear} eager={eager} />
+        <DisplayCase ring={src} look={look} alt={alt} wear={wear} eager={eager} still={still} />
       ) : src ? (
         <img src={src} alt={alt} width={small ? 320 : 640} height={small ? 320 : 640} loading={eager ? 'eager' : 'lazy'} decoding="async" />
       ) : (
@@ -59,7 +59,7 @@ export function UniqueCard({ c, sets }: { c: ArchiveCopy; sets: ArchiveSet[] }) 
   const name = nameOf(data, c.item_code)
   const code = codenameOf(data, c.item_code, c.serial)
   const pic = artOf(art, c.item_code, c.serial, true)
-  const look = pic ? lookOf(looks, c.item_code, c.serial, true) : null
+  const look = pic ? lookOf(looks, c.item_code, c.serial, true, { float: c.float, pattern: c.pattern, serial: c.serial }) : null
   const sw = swatchOf(data, c.item_code, c.float)
   const st = setText(sets.find((x) => x.code === c.set), lang)
   return (

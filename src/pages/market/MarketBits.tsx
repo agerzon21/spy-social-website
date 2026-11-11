@@ -22,6 +22,7 @@ import { CATEGORY_ICON } from './icons'
 import a from '../archive/archive.module.css'
 import { lookOf } from '../../lib/archive'
 import { DisplayCase } from '../archive/DisplayCase'
+import { LiveBackdrop } from '../archive/LiveBackdrop'
 import s from './market.module.css'
 
 /** Every Market page: the dark vault and the lines (its nav is in the header: components/HostNav) that must show above everything (sample, beta, paused). */
@@ -82,7 +83,7 @@ export function MarketState({ kind, onRetry }: { kind: LoadState; onRetry?: () =
 /**
  * An item's picture: a Legendary drawn for the Archive shows the item alone (archive-item-art-1111, owner Nov 11: no
  * sample agent anywhere on the site): big, in the Archive's display case inside its gold ring (a celebration's scene
- * filling it); small, the item cut-out (or the scene) on the case's dark room. Else its Archive tile, else its
+ * or a moving backdrop filling it); small, the item cut-out (or the scene) on the case's dark room. Else its Archive tile, else its
  * shelf's mark in its rarity.
  */
 export function ItemThumb({ it, size = 'sm' }: { it: Pick<MarketItem, 'k' | 'i' | 't' | 'r' | 'nm'>; size?: 'sm' | 'md' | 'lg' }) {
@@ -101,6 +102,10 @@ export function ItemThumb({ it, size = 'sm' }: { it: Pick<MarketItem, 'k' | 'i' 
     >
       {pic && look && size === 'lg' ? (
         <DisplayCase ring={pic} look={look} alt="" />
+      ) : look?.kind === 'live' && look.item ? (
+        <span className={`${s.thumbAlone} ${s.thumbFill}`}>
+          <LiveBackdrop item={look.item} copy={null} still simple={size === 'sm'} />
+        </span>
       ) : look ? (
         <span className={`${s.thumbAlone} ${look.kind === 'case' ? '' : s.thumbFill}`}>
           <img src={look.alone} alt="" loading="lazy" decoding="async" />

@@ -249,10 +249,26 @@ export function loadLookIndex(): Promise<Looks> {
  * How a Unique's picture shows its item: in the display case (a wearable), framed on its wall (a backdrop), or its
  * scene filling the picture (a celebration, a local, a border: public/archive/scene, full-bleed, no case).
  */
-export type ItemLook = { kind: 'case' | 'wall' | 'scene'; alone: string; worn: { m: string; f: string } | null; big?: boolean }
+/** The backdrops that move in the app (lib/avatar/legendaryBackdrops LIVE_BACKDROPS). */
+const LIVE_BACKDROP_ITEMS: ReadonlySet<string> = new Set(['background_vault_zero', 'background_panel_break'])
+
+/** A copy's float and pattern (the live backdrops draw its colours from them). */
+export type CopyMark = { float: string; pattern: number | null; serial?: number | null }
+
+/**
+ * `live`: a moving Legendary backdrop (Vault Zero, Panel Break), drawn and moved on the page by the app's own code
+ * (pages/archive/LiveBackdrop), full frame like a scene (owner Nov 11: no case, no frame on the wall); `alone` its
+ * still picture (the small pins).
+ */
+export type ItemLook = { kind: 'case' | 'wall' | 'scene' | 'live'; alone: string; worn: { m: string; f: string } | null; big?: boolean; item?: string; copy?: CopyMark | null }
 
 /** The copy's own look, else its item's plain Legendary's, else null (not drawn this way yet: the tile as it is). */
-export function lookOf(looks: Looks, item: string, serial?: number | null, small = false): ItemLook | null {
+export function lookOf(looks: Looks, item: string, serial?: number | null, small = false, copy: CopyMark | null = null): ItemLook | null {
+  // The two moving Legendary backdrops: always live, a copy in its colours, else the designed Legendary.
+  if (LIVE_BACKDROP_ITEMS.has(item)) {
+    const own = serial != null && looks.item.has(`u-${item}-${serial}`)
+    return { kind: 'live', alone: own ? `/archive/item/u-${item}-${serial}.webp` : '', worn: null, item, copy: own ? copy : null }
+  }
   const pick = (set: Set<string>) => (serial != null && set.has(`u-${item}-${serial}`) ? `u-${item}-${serial}` : set.has(`l-${item}`) ? `l-${item}` : null)
   // An item alone first (a wearable, a backdrop, the border lifted off its scene), else a scene filling the frame.
   const key = pick(looks.item)
@@ -262,7 +278,7 @@ export function lookOf(looks: Looks, item: string, serial?: number | null, small
   }
   const worn = looks.worn.has(`${key}-m`) && looks.worn.has(`${key}-f`) ? { m: `/archive/worn/${key}-m.webp`, f: `/archive/worn/${key}-f.webp` } : null
   // A border is a frame round nothing: shown larger in the case so it reads like the other items (owner Nov 11).
-  return { kind: item.startsWith('background_') ? 'wall' : 'case', alone: `/archive/item/${key}.webp`, worn, big: item.startsWith('frame_') }
+  return { kind: 'case', alone: `/archive/item/${key}.webp`, worn, big: item.startsWith('frame_') }
 }
 
 /** A picture by its key (the float page's examples: x-cat-d1-3). */
