@@ -1271,12 +1271,12 @@ export const LIVE = {
    * the 2.2 tester list gets the Beta Pin and the Beta Tester title; only one with at least one counted game (played to
    * the end, shown in its Stats, any room) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of
    * each tier and 1 month of membership. This switch follows the server's app_config tester_gift.intercepts_tradable
-   * (default true): 'tradable' (true) = those Intercepts trade like anything earned (the owner's Nov 8 rule: Beta items
-   * trade right away after Dec 7); 'bound' (false) = they stay with the account, like other gifts. Turns on: Terms 9's
+   * (default false since the owner's word of Nov 11, "untradeable"): 'bound' (false) = they stay with the account, like
+   * other gifts (opened as usual); 'tradable' (true) = those Intercepts trade like anything earned. Turns on: Terms 9's
    * tester-rewards sentence, the help center's tester-rewards answer and the /beta page's line. Flip it in the same change
    * as the server switch, and set TESTER_GIFT_GAME_DAY (below) to that day. A server switch: set in LIVE.
    */
-  testerIntercepts: 'tradable' as 'tradable' | 'bound',
+  testerIntercepts: 'bound' as 'tradable' | 'bound',
   /**
    * The party's size in the Terms and the Privacy Policy, corrected (November 3, 2026): they said a leader and up to 3
    * friends; the app server's rule is up to 21 people in all (live app_config.party.max_size 21, checked that day), the
