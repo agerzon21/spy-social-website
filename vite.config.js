@@ -1,5 +1,6 @@
-import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react';
 /** The address search engines know the site by (components/SiteHead.tsx). */
@@ -189,7 +190,10 @@ function launchHead() {
         configResolved(config) {
             root = config.root;
         },
-        async transformIndexHtml(html) {
+        async transformIndexHtml(html, ctx) {
+            // The site's own page only: archive.html and market.html are the hosts' apps (hostPages writes their heads).
+            if (!/(^|\/)index\.html$/.test(ctx.filename))
+                return html;
             const site = await loadSite(root);
             if (site.LIVE.launchSite !== true)
                 return prelaunch(html);
@@ -229,7 +233,7 @@ function pagePreviews() {
             root = config.root;
             outDir = resolve(config.root, config.build.outDir);
         },
-        async writeBundle() {
+        async writeBundle(_options, bundle) {
             const site = await loadSite(root);
             const { LIVE, en } = site;
             const home = await readFile(resolve(outDir, 'index.html'), 'utf8');
@@ -303,7 +307,7 @@ function pagePreviews() {
             // description and its own address. With its switches off, the home page's file (the router sends its paths on).
             await mkdir(resolve(outDir, '_host'), { recursive: true });
             for (const h of HOST_PAGES) {
-                let html = home;
+                let html = await hostHtml(outDir, home, h.host, bundle);
                 if (h.live.every((key) => LIVE[key] === true)) {
                     const title = attr(`${en.meta.titles[h.key]} · ${en.meta.siteName}`);
                     const description = attr(en.meta.descriptions[h.key] ?? en.meta.description);
@@ -326,6 +330,62 @@ function pagePreviews() {
             }
         },
     };
+}
+/** Each host's own app (speed-1111: src/hosts/<host>.tsx, built from <host>.html) and the pages it routes. */
+const HOST_APPS = {
+    archive: { pages: ['src/pages/archive/ArchiveHome.tsx', 'src/pages/archive/ArchiveBrowse.tsx', 'src/pages/archive/ArchiveItem.tsx', 'src/components/HostNav.tsx'] },
+    market: { pages: ['src/pages/market/MarketHome.tsx', 'src/pages/market/MarketMovers.tsx', 'src/pages/market/MarketCatalogue.tsx', 'src/pages/market/MarketItem.tsx', 'src/components/HostNav.tsx'] },
+};
+/** Fonts the hosts' first paint can wait for (font-display: swap with a matched fallback, src/theme/fonts.css): not preloaded there. */
+const HOST_LATE_FONTS = /<link rel="preload" href="\/static\/barlow-(600|700)-latin-[\w-]+\.woff2"[^>]*>\s*/g;
+/**
+ * A host's page (speed-1111): the site's head (the built index.html: title, previews, theme.js, lang.js, fonts) with
+ * the host's own app instead of www's: its script and modulepreloads from the built <host>.html, its CSS inlined (the
+ * host's whole look, so the first paint needs no stylesheet request), and modulepreloads for the host's page chunks
+ * (fetched alongside the app instead of after it). The built <host>.html itself is removed: only vercel.json's
+ * dist/_host/<host>.html serves it.
+ */
+async function hostHtml(outDir, home, host, bundle) {
+    const file = resolve(outDir, `${host}.html`);
+    const built = await readFile(file, 'utf8');
+    const tags = (html) => html.match(/<script type="module"[^>]*><\/script>|<link rel="(modulepreload|stylesheet)"[^>]*>/g) ?? [];
+    const own = tags(built);
+    if (!own.some((t) => t.startsWith('<script')))
+        throw new Error(`hostHtml: no module script in ${host}.html`);
+    let html = home;
+    for (const t of tags(home))
+        html = html.replace(t, '');
+    html = html.replace(HOST_LATE_FONTS, '');
+    const parts = [];
+    for (const t of own) {
+        const css = /<link rel="stylesheet"[^>]*href="([^"]+)"/.exec(t);
+        if (css)
+            parts.push(`<style>${(await readFile(resolve(outDir, css[1].replace(/^\//, '')), 'utf8')).replace(/<\/style/gi, '<\\/style')}</style>`);
+        else
+            parts.push(t);
+    }
+    // The host's page chunks and their imports, minus what the app already loads.
+    const chunks = Object.values(bundle).filter((c) => c.type === 'chunk');
+    const byName = new Map(chunks.map((c) => [c.fileName, c]));
+    const have = new Set(own.map((t) => /(?:src|href)="\/([^"]+)"/.exec(t)?.[1]).filter(Boolean));
+    const want = [];
+    const add = (name) => {
+        if (have.has(name))
+            return;
+        have.add(name);
+        want.push(name);
+        for (const dep of byName.get(name)?.imports ?? [])
+            add(dep);
+    };
+    for (const page of HOST_APPS[host].pages) {
+        const chunk = chunks.find((c) => c.facadeModuleId?.endsWith(page));
+        if (!chunk)
+            throw new Error(`hostHtml: no chunk for ${page}`);
+        add(chunk.fileName);
+    }
+    parts.push(...want.map((name) => `<link rel="modulepreload" crossorigin href="/${name}">`));
+    await rm(file);
+    return html.replace('</head>', `    ${parts.join('\n    ')}\n  </head>`);
 }
 /** A `const NAME = new Date('...')` in one of the site's sources: the page below reads the same instant the site does. */
 async function sourceDate(root, file, name) {
@@ -485,5 +545,9 @@ function deepOver(base, top) {
 export default defineConfig({
     plugins: [react(), launchHead(), switchedSitemap(), pagePreviews(), helloPage()],
     // Built files live in /static/ (renamed from /assets/ on 2026-10-17, so no browser keeps a stale copy from before)
-    build: { assetsDir: 'static' },
+    build: {
+        assetsDir: 'static',
+        // www's page and each host's own app (speed-1111: src/hosts; hostPages above writes dist/_host/<host>.html).
+        rollupOptions: { input: Object.fromEntries(['index', 'archive', 'market'].map((name) => [name === 'index' ? 'main' : name, fileURLToPath(new URL(`./${name}.html`, import.meta.url))])) },
+    },
 });

@@ -1,4 +1,5 @@
 import type { ChakraProviderProps } from '@chakra-ui/react'
+import { useSyncExternalStore } from 'react'
 import { flushSync } from 'react-dom'
 import { daylight } from './skins/daylight'
 import { noir } from './skins/noir'
@@ -32,6 +33,42 @@ export const colorModeManager: NonNullable<ChakraProviderProps['colorModeManager
   get: () => pageTheme(),
   set: () => {},
 }
+
+/*
+ * The theme the page wears, as a small store of its own (speed-1111): the Archive's and the Market's hosts run without
+ * Chakra (src/hosts), so the header's switch and the wordmark read and change the theme here. Where Chakra is on the
+ * page (www, and the Archive's Chakra pages: src/hosts/ChakraIsland), its colour mode registers as an applier
+ * (ChakraModeBridge) and follows in the same flush, as before.
+ */
+const listeners = new Set<() => void>()
+const appliers = new Set<(theme: ThemeName) => void>()
+
+/** Puts the page in `theme`: Chakra's colour mode where it is on the page, <html data-theme> and color-scheme always. */
+export function wearTheme(theme: ThemeName) {
+  for (const apply of appliers) apply(theme)
+  const root = document.documentElement
+  root.dataset.theme = theme
+  root.style.colorScheme = theme
+  for (const listener of listeners) listener()
+}
+
+/** Chakra's colour mode (or anything else) follows wearTheme from now until the returned function is called. */
+export function addThemeApplier(apply: (theme: ThemeName) => void): () => void {
+  appliers.add(apply)
+  return () => {
+    appliers.delete(apply)
+  }
+}
+
+const subscribe = (listener: () => void) => {
+  listeners.add(listener)
+  return () => {
+    listeners.delete(listener)
+  }
+}
+
+/** The theme the page wears now, kept up to date (the header's switch, the wordmark). */
+export const useThemeName = (): ThemeName => useSyncExternalStore(subscribe, pageTheme, () => 'dark')
 
 export function rememberTheme(theme: ThemeName) {
   try {

@@ -104,8 +104,20 @@ export function fetchMarket(lang: LangCode): Promise<MarketList | null> {
   return p
 }
 
+const itemCache = new Map<string, { at: number; p: Promise<MarketItemPage | null> }>()
+/** One item's page (kept 30 s in this tab: the host's entry starts the read before the page asks; speed-1111). */
 export function fetchMarketItem(code: string, lang: LangCode): Promise<MarketItemPage | null> {
   if (sampleOn()) return import('../pages/market/sample').then((m) => m.sampleItem(code))
+  const key = `${lang}:${code}`
+  const kept = itemCache.get(key)
+  if (kept && Date.now() - kept.at < 30_000) return kept.p
+  const p = readMarketItem(code, lang)
+  p.catch(() => itemCache.delete(key))
+  itemCache.set(key, { at: Date.now(), p })
+  return p
+}
+
+function readMarketItem(code: string, lang: LangCode): Promise<MarketItemPage | null> {
   return Promise.all([ledgerGet<MarketItemPage>(`op=market_item&code=${encodeURIComponent(code)}&lang=${encodeURIComponent(lang)}`), loadMarketLines(lang)]).then(
     ([page, lines]) => (page?.item ? { ...page, item: nameFix(lines, page.item) } : page),
   )
@@ -154,10 +166,17 @@ export const itemChange = (it: MarketItem, w: Win) => changeOf(it.p, it.b?.[winI
 export type MoverList = 'rises' | 'falls' | 'traded' | 'valuable'
 export const MOVER_LISTS: MoverList[] = ['rises', 'falls', 'traded', 'valuable']
 
-/** A list of Market Movers over a window, at most `limit` items (never every item). */
-export function movers(items: MarketItem[], list: MoverList, w: Win, limit: number): MarketItem[] {
+/** Whether the lists show the server's sample items too (speed-1111): in the beta only, tagged Sample, after every real item. */
+export const samplesShown = (head: MarketHead | null | undefined): boolean => head?.phase === 'beta' && (head.demo?.length ?? 0) > 0
+
+/**
+ * A list of Market Movers over a window, at most `limit` items (never every item). With `samples` (the beta,
+ * samplesShown) the sample items join it, each after every real item, so the lists aren't bare while few real trades
+ * make a price; without (always from the launch, when the server's list of samples is gone) they never count.
+ */
+export function movers(items: MarketItem[], list: MoverList, w: Win, limit: number, samples = false): MarketItem[] {
   const i = winIndex(w)
-  const priced = items.filter((it) => it.p != null && !it.demo)
+  const priced = items.filter((it) => it.p != null && (samples || !it.demo))
   let out: { it: MarketItem; key: number }[]
   switch (list) {
     case 'rises':
@@ -175,7 +194,7 @@ export function movers(items: MarketItem[], list: MoverList, w: Win, limit: numb
       break
   }
   return out
-    .sort((a, b) => a.key - b.key || (b.it.v?.[i] ?? 0) - (a.it.v?.[i] ?? 0) || a.it.nm.localeCompare(b.it.nm))
+    .sort((a, b) => Number(!!a.it.demo) - Number(!!b.it.demo) || a.key - b.key || (b.it.v?.[i] ?? 0) - (a.it.v?.[i] ?? 0) || a.it.nm.localeCompare(b.it.nm))
     .slice(0, limit)
     .map((x) => x.it)
 }

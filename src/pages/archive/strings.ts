@@ -3,14 +3,7 @@
  * public/archive/data). Numbers, dates and prices arrive formatted.
  */
 import type { LangCode } from '../../i18n'
-import es from './locales/es'
-import zhHans from './locales/zh-Hans'
-import hi from './locales/hi'
-import ar from './locales/ar'
-import fr from './locales/fr'
-import bn from './locales/bn'
-import ptBR from './locales/pt-BR'
-import id from './locales/id'
+import { pageTable } from '../../i18n/pageTable'
 
 const en = {
   nav: { archive: 'Archive', browse: 'All Uniques', ledger: 'Ledger', transparency: 'Transparency' },
@@ -283,8 +276,9 @@ const ru: ArchiveStrings = {
   },
 }
 
-const BY_LANG: Record<LangCode, ArchiveStrings> = { en, es, ru, 'zh-Hans': zhHans, hi, ar, fr, bn, 'pt-BR': ptBR, id }
+// English and Russian are here; each other language is its own chunk, loaded before the page paints in it (speed-1111).
+const table = pageTable<ArchiveStrings>({ en, ru }, import.meta.glob<{ default: ArchiveStrings }>('./locales/*.ts'))
 
 export function archiveStrings(lang: LangCode): ArchiveStrings {
-  return BY_LANG[lang] ?? en
+  return table(lang)
 }

@@ -1,7 +1,6 @@
-import { useColorMode } from '@chakra-ui/react'
 import cream from '../assets/brand/wordmark-cream-outline.svg'
 import ink from '../assets/brand/wordmark-ink.svg'
-import { PALETTES, type ThemeName } from '../theme/mode'
+import { PALETTES, useThemeName } from '../theme/mode'
 
 /**
  * The SpySocial wordmark in the artwork that reads on the page's theme: cream lettering with an ink outline on the
@@ -9,7 +8,7 @@ import { PALETTES, type ThemeName } from '../theme/mode'
  * switch. /images/logo*.png in public/ stay for the email templates.
  */
 const Wordmark = ({ className, height }: { className?: string; height?: number }) => {
-  const dark = PALETTES[useColorMode().colorMode as ThemeName].wordmark === 'cream'
+  const dark = PALETTES[useThemeName()].wordmark === 'cream'
   return (
     <img
       className={className}

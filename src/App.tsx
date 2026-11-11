@@ -6,13 +6,15 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Layout } from './components'
 import ScrollManager from './components/ScrollManager'
 import OffHost from './components/OffHost'
-import { HOST, onThisHost, sharedHere, sitePath } from './lib/siteHost'
+import { HOST, sharedHere } from './lib/siteHost'
 import Home from './pages/Home'
 import { Suspense, useMemo } from 'react'
 import { lazyPage } from './lib/lazyPage'
 import { LIVE, ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 import { SKIN_CSS, theme } from './theme'
 import { colorModeManager } from './theme/mode'
+import ChakraModeBridge from './theme/ChakraModeBridge'
+import { archiveRoutes, marketRoutes } from './routes/hostRoutes'
 import { useLang } from './i18n'
 
 // A chunk lost to a deploy reloads the page instead of leaving a blank screen (lib/lazyPage).
@@ -44,22 +46,8 @@ const GameNightRules = page(() => import('./pages/GameNightRules'))
 // The minted-collectibles ledger: the route exists only while LIVE.mintedCollectibles is on (from genesis).
 const Ledger = page(() => import('./pages/Ledger'))
 const Transparency = page(() => import('./pages/Transparency'))
-// The Archive (rarefinds-page-1110): every Unique, its own page per copy; with the ledger (LIVE.mintedCollectibles).
-const ArchiveHome = page(() => import('./pages/archive/ArchiveHome'))
-const ArchiveBrowse = page(() => import('./pages/archive/ArchiveBrowse'))
-const ArchiveItem = page(() => import('./pages/archive/ArchiveItem'))
-// The Market (market-site-1110): the Black Market's prices, read from the ledger function (LIVE.marketSite).
-const MarketHome = page(() => import('./pages/market/MarketHome'))
-const MarketMovers = page(() => import('./pages/market/MarketMovers'))
-const MarketCatalogue = page(() => import('./pages/market/MarketCatalogue'))
-const MarketItem = page(() => import('./pages/market/MarketItem'))
 // The Beta 2 playtester page (linked from Reddit and Discord), its own chunk.
 const Beta = page(() => import('./pages/Beta'))
-
-// The Archive's routes, on the host it lives on (lib/siteHost: archive.spysocial.app; www's /archive goes there).
-const archiveOn = LIVE.mintedCollectibles && LIVE.uniqueArchive && onThisHost('/archive')
-// The Market's, likewise (market.spysocial.app; www's /market goes there).
-const marketOn = LIVE.marketSite && onThisHost('/market')
 
 function App() {
   // Arabic lays Chakra's own components out right to left too.
@@ -69,6 +57,7 @@ function App() {
     <HelmetProvider>
       {/* Chakra's colour mode reads the page's theme (public/theme.js, the header's switch) and stores nothing itself. */}
       <ChakraProvider theme={themed} colorModeManager={colorModeManager}>
+        <ChakraModeBridge />
         <Global styles={SKIN_CSS} />
         {/* Framer animations (What's New) stop under Reduce Motion, like the CSS ones (src/theme). */}
         <MotionConfig reducedMotion="user">
@@ -84,18 +73,10 @@ function App() {
           <ScrollManager />
           <Suspense fallback={<Box flex="1" bg="ss.page" />}>
             <Routes>
-              {/* The Archive on archive.spysocial.app ('/', '/uniques', '/u/<item>/<serial>'; lib/siteHost), at /archive on
-                  a preview build. */}
-              {archiveOn && <Route path={sitePath('/archive')} element={<Layout><ArchiveHome /></Layout>} />}
-              {archiveOn && <Route path={sitePath('/archive/uniques')} element={<Layout><ArchiveBrowse /></Layout>} />}
-              {archiveOn && <Route path={sitePath('/archive/u/:item/:serial')} element={<Layout><ArchiveItem /></Layout>} />}
-              {/* The Market on market.spysocial.app ('/', '/movers/<list>', '/catalogue[/<shelf>]', '/item/<code>'). */}
-              {marketOn && <Route path={sitePath('/market')} element={<Layout><MarketHome /></Layout>} />}
-              {marketOn && <Route path={sitePath('/market/movers/:list')} element={<Layout><MarketMovers /></Layout>} />}
-              {marketOn && <Route path={sitePath('/market/movers')} element={<Navigate to={sitePath('/market/movers/rises')} replace />} />}
-              {marketOn && <Route path={sitePath('/market/catalogue')} element={<Layout><MarketCatalogue /></Layout>} />}
-              {marketOn && <Route path={sitePath('/market/catalogue/:cat')} element={<Layout><MarketCatalogue /></Layout>} />}
-              {marketOn && <Route path={sitePath('/market/item/:code')} element={<Layout><MarketItem /></Layout>} />}
+              {/* The Archive's and the Market's pages (routes/hostRoutes): on their own hosts in production their own lean
+                  app serves them (src/hosts); here on a preview build (one host) and the dev server. */}
+              {archiveRoutes}
+              {marketRoutes}
               {/* www's pages a subdomain serves too, with its header nav (lib/siteHost SHARED: the Archive's Ledger and
                   Transparency); their canonical address stays www's. */}
               {HOST !== 'main' && LIVE.mintedCollectibles && sharedHere('/ledger') && <Route path="/ledger" element={<Layout><Ledger /></Layout>} />}

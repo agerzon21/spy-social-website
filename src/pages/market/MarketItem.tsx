@@ -1,17 +1,21 @@
-import { useMemo, useState } from 'react'
+import { Suspense, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
 import { FaFlask } from 'react-icons/fa6'
 import Link from '../../components/SiteLink'
 import { categoryOf, changeOf, type MarketDay, type MarketItem as Item } from '../../lib/market'
 import { Change, ItemMeta, ItemThumb, MarketPage, MarketState, Price } from './MarketBits'
-import { ItemCharts } from './MarketCharts'
+import { lazyPage } from '../../lib/lazyPage'
 import { compact, fmt, useMarketItem, useMarketLines, useMarketWords } from './useMarket'
 import { lineOf } from '../../lib/marketArt'
 import a from '../archive/archive.module.css'
 import s from './market.module.css'
 
 const RANGES = ['30', '90', '180'] as const
+
+// The charts are their own chunk (speed-1111): the picture and the price paint first; the charts follow, in a box their
+// own height so nothing below them moves when they arrive. A chunk lost to a deploy reloads the page (lib/lazyPage).
+const ItemCharts = lazyPage(() => import('./MarketCharts'))
 
 /**
  * The window's every day, oldest first, ending on the server's today (page.at, UTC): the server's day where it has one,
@@ -137,7 +141,9 @@ const MarketItem = () => {
                   </button>
                 ))}
               </div>
-              <ItemCharts days={days} minTrades={page.min_trades} />
+              <Suspense fallback={<div className={s.chartWait} aria-busy="true" />}>
+                <ItemCharts days={days} minTrades={page.min_trades} />
+              </Suspense>
             </section>
           ) : null}
 

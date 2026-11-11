@@ -200,3 +200,5 @@ export function ItemCharts({ days, minTrades = 5 }: { days: MarketDay[]; /** The
     </div>
   )
 }
+
+export default ItemCharts

@@ -1,7 +1,6 @@
-import { useColorMode } from '@chakra-ui/react'
 import type { MouseEvent } from 'react'
 import { useT } from '../i18n'
-import { rememberTheme, switchTheme, type ThemeName } from '../theme/mode'
+import { rememberTheme, switchTheme, useThemeName, wearTheme, type ThemeName } from '../theme/mode'
 import s from './ThemeToggle.module.css'
 
 const Moon = ({ className }: { className: string }) => (
@@ -28,14 +27,13 @@ const Sun = ({ className }: { className: string }) => (
  * tap, click, Enter or Space, in a 44 px target. The choice is kept for the next visit (src/theme/mode.ts).
  */
 const ThemeToggle = () => {
-  const { colorMode, setColorMode } = useColorMode()
-  const light = colorMode === 'light'
+  const light = useThemeName() === 'light'
   const t = useT()
 
   const flip = (e: MouseEvent<HTMLButtonElement>) => {
     const next: ThemeName = light ? 'dark' : 'light'
     rememberTheme(next)
-    switchTheme(next, setColorMode, e.currentTarget)
+    switchTheme(next, wearTheme, e.currentTarget)
   }
 
   return (

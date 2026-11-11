@@ -9,6 +9,7 @@ import {
   itemPath,
   RARITY_COLOUR,
   sampleOn,
+  samplesShown,
   searchItems,
   winIndex,
   type MarketHead,
@@ -29,7 +30,7 @@ import { SceneMotion } from '../archive/SceneMotion'
 import s from './market.module.css'
 
 /** Every Market page: the dark vault and the lines (its nav is in the header: components/HostNav) that must show above everything (sample, beta, paused). */
-export function MarketPage({ head, children }: { head?: MarketHead | null; children: ReactNode }) {
+export function MarketPage({ head, children, movers = false }: { head?: MarketHead | null; children: ReactNode; /** A page with Market Movers' lists: the beta notice says why some items are tagged Sample. */ movers?: boolean }) {
   const { w } = useMarketWords()
   return (
     <div className={`${a.page} ${s.page}`}>
@@ -43,7 +44,11 @@ export function MarketPage({ head, children }: { head?: MarketHead | null; child
         {head?.phase === 'beta' && !sampleOn() ? (
           <p className={a.notice} role="note">
             <FaTriangleExclamation aria-hidden focusable={false} />
-            <span>{w.beta}</span>
+            <span>
+              {w.beta}
+              {/* The sample items in Market Movers (speed-1111): said once, with the beta notice. */}
+              {movers && samplesShown(head) ? <> {w.demoMovers}</> : null}
+            </span>
           </p>
         ) : null}
         {head?.halted ? (

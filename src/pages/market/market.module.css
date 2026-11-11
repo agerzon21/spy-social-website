@@ -206,8 +206,9 @@
 /* ---- the item page ---- */
 .itemHead { display: grid; gap: 22px; margin-top: 20px; }
 @media (min-width: 760px) { .itemHead { grid-template-columns: minmax(200px, 300px) minmax(0, 1fr); gap: 40px; align-items: start; } }
-.itemStage { position: relative; width: min(56vw, 260px); }
-@media (min-width: 760px) { .itemStage { width: 100%; } }
+/* On a phone the picture is centred at the content's width, up to 360 px (site QA Nov 11: it sat small on the left). */
+.itemStage { position: relative; width: 100%; max-width: 360px; margin-inline: auto; }
+@media (min-width: 760px) { .itemStage { width: 100%; max-width: none; margin-inline: 0; } }
 .itemStage::before { content: ''; position: absolute; inset: -20% -15% 0; background: radial-gradient(closest-side, var(--ss-art-pool), transparent); opacity: 0.6; pointer-events: none; }
 .itemInfo { display: grid; gap: 10px; align-content: start; }
 .itemTitle { margin: 0; font: 900 clamp(46px, 13vw, 92px)/0.86 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); overflow-wrap: anywhere; hyphens: manual; }
@@ -303,3 +304,6 @@
 .chartOverlaySmall { top: 40%; padding: 4px 10px; font-size: 13px; }
 /* A Legendary celebration's loop (the Archive's SceneMotion), full frame like any scene. */
 .caseSceneBox { position: relative; display: block; width: 100%; aspect-ratio: 1; overflow: hidden; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); }
+/* The charts' place while their chunk loads (speed-1111): the height they take with no trades (394 px), so the page
+   below hardly moves when they arrive. */
+.chartWait { min-height: 394px; }

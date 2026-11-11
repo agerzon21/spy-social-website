@@ -3,14 +3,7 @@
  * Exchange" or any other game's words: it is the Black Market, as in the app. Numbers and dates arrive formatted.
  */
 import type { LangCode } from '../../i18n'
-import es from './locales/es'
-import zhHans from './locales/zh-Hans'
-import hi from './locales/hi'
-import ar from './locales/ar'
-import fr from './locales/fr'
-import bn from './locales/bn'
-import ptBR from './locales/pt-BR'
-import id from './locales/id'
+import { pageTable } from '../../i18n/pageTable'
 import type { Category, MoverList, Win } from '../../lib/market'
 
 const en = {
@@ -21,6 +14,8 @@ const en = {
   /** (market-demo-1111) the server's sample history on a few items (beta only): their item page and their price in a list. */
   demoNote: 'Sample history: example data to show how the charts work, not real trades. Wiped at launch.',
   sampleTag: 'Sample',
+  /** (speed-1111) the beta notice's second line while Market Movers shows the sample items too (beta only). */
+  demoMovers: 'Until launch, Market Movers also lists a few items tagged Sample: example history to show how the lists work, not real trades. Real trades always rank first, and the samples are gone at launch.',
   halted: 'The Black Market is paused right now. Prices stay as they were when it stopped.',
   busy: 'The Market can’t reach the prices right now. Try again in a minute.',
   soon: { title: 'Market opens December 8', text: 'Prices appear here once players trade. Until then, everything on the Black Market is a test.' },
@@ -135,6 +130,7 @@ const ru: MarketStrings = {
   sample: 'ПРИМЕР ДАННЫХ: придуман для показа дизайна. Ни одной настоящей сделки здесь нет.',
   demoNote: 'Пример истории: условные данные, чтобы показать, как работают графики, а не настоящие сделки. Будут стёрты к запуску.',
   sampleTag: 'Пример',
+  demoMovers: 'До запуска во «Взлётах и падениях» есть и несколько предметов с пометкой «Пример»: это условная история, чтобы показать, как работают списки, а не настоящие сделки. Настоящие сделки всегда идут первыми, а к запуску примеры исчезнут.',
   halted: 'Чёрный рынок сейчас приостановлен. Цены остаются такими, какими были в момент остановки.',
   busy: 'Рынок сейчас не может получить цены. Попробуйте через минуту.',
   soon: { title: 'Рынок откроется 8 декабря', text: 'Цены появятся здесь, когда игроки начнут торговать. До тех пор всё на Чёрном рынке — тест.' },
@@ -230,8 +226,9 @@ const ru: MarketStrings = {
   },
 }
 
-const BY_LANG: Record<LangCode, MarketStrings> = { en, es, ru, 'zh-Hans': zhHans, hi, ar, fr, bn, 'pt-BR': ptBR, id }
+// English and Russian are here; each other language is its own chunk, loaded before the page paints in it (speed-1111).
+const table = pageTable<MarketStrings>({ en, ru }, import.meta.glob<{ default: MarketStrings }>('./locales/*.ts'))
 
 export function marketStrings(lang: LangCode): MarketStrings {
-  return BY_LANG[lang] ?? en
+  return table(lang)
 }

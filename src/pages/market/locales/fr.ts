@@ -15,6 +15,7 @@ const fr: MarketStrings = {
   sample: 'DONNÉES FICTIVES\u00a0: inventées pour cet aperçu du design. Aucune vraie vente n’est montrée.',
   demoNote: 'Historique d’exemple\u00a0: des données fictives pour montrer comment marchent les graphiques, pas de vraies ventes. Effacé au lancement.',
   sampleTag: 'Exemple',
+  demoMovers: 'Jusqu’au lancement, les Tendances montrent aussi quelques objets marqués Exemple\u00a0: un historique fictif pour montrer comment marchent les listes, pas de vraies ventes. Les vraies ventes passent toujours en premier, et les exemples disparaissent au lancement.',
   halted: 'Le Marché noir est en pause pour le moment. Les prix restent tels qu’ils étaient à l’arrêt.',
   busy: 'Le Marché n’arrive pas à charger les prix pour le moment. Réessaie dans une minute.',
   soon: { title: 'Le Marché ouvre le 8\u00a0décembre', text: 'Les prix apparaîtront ici dès les premières ventes entre joueurs. D’ici là, tout ce qui se passe au Marché noir est un test.' },

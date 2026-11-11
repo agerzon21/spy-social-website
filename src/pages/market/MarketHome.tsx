@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa6'
 import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
-import { CATEGORIES, categoryOf, featuredOf, itemChange, itemPath, movers, MOVER_LISTS, winIndex, type MarketItem, type MoverList, type Win } from '../../lib/market'
+import { CATEGORIES, categoryOf, featuredOf, itemChange, itemPath, movers, MOVER_LISTS, samplesShown, winIndex, type MarketItem, type MoverList, type Win } from '../../lib/market'
 import { Change, ItemMeta, ItemThumb, MarketPage, MarketSearch, MarketState, Price, WindowChips } from './MarketBits'
 import { compact, fmt, useMarketList, useMarketWords } from './useMarket'
 import { CATEGORY_ICON, LIST_ICON } from './icons'
@@ -24,6 +24,7 @@ function MoverRow({ it, n, list, win }: { it: MarketItem; n: number; list: Mover
           <b>{it.nm}</b>
           <span className={s.moverPrice}>
             <Price n={it.p} />
+            {it.demo ? <small className={s.sampleTag} title={w.demoNote}>{w.sampleTag}</small> : null}
           </span>
         </span>
         <span className={s.moverMetric}>
@@ -41,9 +42,9 @@ function MoverRow({ it, n, list, win }: { it: MarketItem; n: number; list: Mover
 }
 
 /** A board: one list's top few, and its Top 100. */
-function MoverBoard({ items, list, win, n }: { items: MarketItem[]; list: MoverList; win: Win; n: number }) {
+function MoverBoard({ items, list, win, n, samples }: { items: MarketItem[]; list: MoverList; win: Win; n: number; samples: boolean }) {
   const { w } = useMarketWords()
-  const top = useMemo(() => movers(items, list, win, n), [items, list, win, n])
+  const top = useMemo(() => movers(items, list, win, n, samples), [items, list, win, n, samples])
   const Icon = LIST_ICON[list]
   return (
     <section className={`${s.board} ${s[`board_${list}`]}`} aria-labelledby={`board-${list}`}>
@@ -79,6 +80,9 @@ const MarketHome = () => {
   const [win, setWin] = useState<Win>('7d')
   const featured = featuredOf(list)
   const priced = items.filter((it) => it.p != null && !it.demo).length
+  // The beta's sample items fill the boards too (tagged Sample, after the real ones; speed-1111); the count stays real.
+  const samples = samplesShown(list)
+  const boards = priced > 0 || (samples && items.some((it) => it.p != null && it.demo))
   const shelves = useMemo(() => {
     const m = new Map<string, { n: number; priced: number }>()
     for (const it of items) {
@@ -93,7 +97,7 @@ const MarketHome = () => {
   const ok = state === 'ok' && list
 
   return (
-    <MarketPage head={list}>
+    <MarketPage head={list} movers>
       <section className={`${a.hero} ${s.hero}`} aria-labelledby="market-title">
         <div className={s.heroGrid}>
           <div>
@@ -154,14 +158,14 @@ const MarketHome = () => {
                 <DisplayHeading id="market-movers">{h.movers}</DisplayHeading>
                 <p className={a.sectionLede}>{h.moversLede}</p>
               </div>
-              {priced ? <WindowChips win={win} onWin={setWin} label={w.movers.window} /> : null}
+              {boards ? <WindowChips win={win} onWin={setWin} label={w.movers.window} /> : null}
             </div>
             {/* Four boards, five each (layout A, the owner's pick Nov 10); while no item has a price, one plain panel
                 instead of four boards saying the same thing. */}
-            {priced ? (
+            {boards ? (
               <div className={s.boards}>
                 {MOVER_LISTS.map((l) => (
-                  <MoverBoard key={l} items={items} list={l} win={win} n={5} />
+                  <MoverBoard key={l} items={items} list={l} win={win} n={5} samples={samples} />
                 ))}
               </div>
             ) : (

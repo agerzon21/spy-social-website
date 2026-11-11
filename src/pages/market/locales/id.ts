@@ -12,6 +12,7 @@ const id: MarketStrings = {
   sample: 'DATA CONTOH: dibuat untuk pratinjau desain ini. Tidak ada transaksi sungguhan yang ditampilkan.',
   demoNote: 'Riwayat contoh: data contoh untuk menunjukkan cara kerja grafik, bukan transaksi sungguhan. Dihapus saat peluncuran.',
   sampleTag: 'Contoh',
+  demoMovers: 'Sampai peluncuran, Pergerakan juga menampilkan beberapa item bertanda Contoh: riwayat contoh untuk menunjukkan cara kerja daftar, bukan transaksi sungguhan. Transaksi sungguhan selalu di urutan teratas, dan contohnya hilang saat peluncuran.',
   halted: 'Pasar Gelap sedang dijeda. Harga tetap seperti saat pasar berhenti.',
   busy: 'Pasar tidak bisa memuat harga sekarang. Coba lagi dalam semenit.',
   soon: { title: 'Pasar dibuka 8 Desember', text: 'Harga muncul di sini setelah pemain mulai bertransaksi. Sampai saat itu, semua yang ada di Pasar Gelap hanyalah uji coba.' },

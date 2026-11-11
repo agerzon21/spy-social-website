@@ -5,7 +5,7 @@ import Link from '../../components/SiteLink'
 import { sitePath } from '../../lib/siteHost'
 import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
-import { movers, MOVER_LISTS, WINDOWS, type MoverList, type Win } from '../../lib/market'
+import { movers, MOVER_LISTS, samplesShown, WINDOWS, type MoverList, type Win } from '../../lib/market'
 import { ItemTable, MarketPage, MarketState, WindowChips } from './MarketBits'
 import { useMarketList, useMarketWords } from './useMarket'
 import { LIST_ICON } from './icons'
@@ -20,11 +20,11 @@ const MarketMovers = () => {
   const { list, state, retry } = useMarketList()
   const win = (WINDOWS as readonly string[]).includes(params.get('w') ?? '') ? (params.get('w') as Win) : '7d'
   const which = (MOVER_LISTS as string[]).includes(name ?? '') ? (name as MoverList) : null
-  const top = useMemo(() => (which && list ? movers(list.items, which, win, 100) : []), [list, which, win])
+  const top = useMemo(() => (which && list ? movers(list.items, which, win, 100, samplesShown(list)) : []), [list, which, win])
   if (!which) return <Navigate to={sitePath('/market/movers/rises')} replace />
   const L = w.lists[which]
   return (
-    <MarketPage head={list}>
+    <MarketPage head={list} movers>
       {/* Each page its own title (WCAG 2.4.2, a11y-1111), as the item page has. */}
       <Helmet>
         <title>{`${L.title} · ${w.name} · SpySocial`}</title>

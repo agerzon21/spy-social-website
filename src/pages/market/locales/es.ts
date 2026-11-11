@@ -10,6 +10,7 @@ const es: MarketStrings = {
   sample: 'DATOS DE EJEMPLO: inventados para esta vista previa del diseño. No se muestra ninguna venta real.',
   demoNote: 'Historial de ejemplo: datos de muestra para enseñar cómo funcionan los gráficos, no ventas reales. Se borra en el lanzamiento.',
   sampleTag: 'Ejemplo',
+  demoMovers: 'Hasta el lanzamiento, Movimientos también muestra algunos objetos con la etiqueta Ejemplo: un historial de muestra para enseñar cómo funcionan las listas, no ventas reales. Las ventas reales siempre van primero, y los ejemplos desaparecen en el lanzamiento.',
   halted: 'El Mercado Negro está en pausa ahora mismo. Los precios se quedan como estaban cuando se detuvo.',
   busy: 'El Mercado no puede obtener los precios ahora mismo. Vuelve a intentarlo en un minuto.',
   soon: { title: 'El mercado abre el 8 de diciembre', text: 'Los precios aparecerán aquí cuando los jugadores empiecen a comerciar. Hasta entonces, todo en el Mercado Negro es una prueba.' },

@@ -167,8 +167,16 @@ export function fetchUniques(): Promise<ArchiveList | null> {
   return p
 }
 
+const uniqueCache = new Map<string, { at: number; p: Promise<ArchiveUnique | null> }>()
+/** One Unique's page (kept 30 s in this tab: the host's entry starts the read before the page asks; speed-1111). */
 export function fetchUnique(item: string, serial: number): Promise<ArchiveUnique | null> {
-  return ledgerGet<ArchiveUnique>(`op=unique&item=${encodeURIComponent(item)}&serial=${serial}`)
+  const key = `${item}/${serial}`
+  const kept = uniqueCache.get(key)
+  if (kept && Date.now() - kept.at < 30_000) return kept.p
+  const p = ledgerGet<ArchiveUnique>(`op=unique&item=${encodeURIComponent(item)}&serial=${serial}`)
+  p.catch(() => uniqueCache.delete(key))
+  uniqueCache.set(key, { at: Date.now(), p })
+  return p
 }
 
 // ------------------------------------------------------------------ the app's words and tables

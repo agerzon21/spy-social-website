@@ -42,9 +42,10 @@ export const noir: Skin = {
   },
   fonts: {
     // Oswald draws the Cyrillic headlines (Big Shoulders has no Cyrillic): src/theme/fonts.css.
-    display: '"Big Shoulders Display", Oswald, "Arial Narrow", Impact, sans-serif',
-    body: 'Barlow, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
-    code: '"Big Shoulders Display", "Arial Narrow", sans-serif',
+    // Each face's matched fallback next (fonts.css, speed-1111): what shows while it loads.
+    display: '"Big Shoulders Display", "Big Shoulders Fallback", Oswald, "Arial Narrow", Impact, sans-serif',
+    body: 'Barlow, "Barlow Fallback", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+    code: '"Big Shoulders Display", "Big Shoulders Fallback", "Arial Narrow", sans-serif',
   },
   type: {
     body: [16, 17],
