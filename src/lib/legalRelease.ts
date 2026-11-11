@@ -878,8 +878,19 @@ export const LIVE = {
    * code's rewards. Not a material change (gifts were already in the Terms): LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED
    * move (below), no TERMS_PUBLISHED or terms_version. Deploy the site with it on in the update that ships the app's
    * Membership field (update 12); off only if the server file is rolled back.
+   * OFF since 2026-11-10 (Apple 3.1.1, coordinator decision; app server 20261231900000_codes_no_membership_1110): our
+   * codes no longer give membership. See codesNoMembership.
    */
-  membershipCodes: true,
+  membershipCodes: false,
+  /**
+   * Codes give no membership (Apple 3.1.1, coordinator 2026-11-10; app server 20261231900000_codes_no_membership_1110,
+   * app branch fix/codes-no-membership-1110). Terms 3's gift line says a code entered in the app never gives a
+   * membership, and that an offer code or promo code for one is redeemed on the App Store or Google Play under their
+   * terms; individuals still get a gifted membership (the Owner Grant). Privacy's Creator and Reward Codes item already
+   * reads membershipCodes (now off: a title or an avatar item). Not a material change (it narrows what we give):
+   * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED move to CODES_NO_MEMBERSHIP_DAY, no TERMS_PUBLISHED or terms_version.
+   */
+  codesNoMembership: true,
   /**
    * Volunteer community moderators (app repo feat/moderator, server 20261202460000_moderator_role: moderators, scopes,
    * moderator_agreements, mod_actions; owner 2026-10-30/31; first test moderator granted on live 2026-10-31). Terms 8
@@ -1694,6 +1705,9 @@ export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
+/** LIVE.codesNoMembership's day (Terms, Privacy): the day the site goes up with it on. Never earlier than November 10, 2026. */
+export const CODES_NO_MEMBERSHIP_DAY = 'November 10, 2026'
+
 /**
  * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
  * site goes up with it on, the same day as app_config.practice_rate_enabled goes true (the key is due by December 6).
@@ -1703,6 +1717,8 @@ export const PRACTICE_AI_DAY = 'December 6, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.codesNoMembership
+    ? CODES_NO_MEMBERSHIP_DAY // Terms 3: codes never give a membership; store offer and promo codes
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: Terms 5's practice gate, Terms 9's test-phase Intel and never-tradable list
   : LIVE.testerMarket
@@ -1775,6 +1791,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.codesNoMembership
+    ? CODES_NO_MEMBERSHIP_DAY // Creator and Reward Codes: membership no longer among a code's rewards
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: test-phase Intel, the testers' list, practice progress, the Arcade, Paper Trail for watchers
   : LIVE.exportTesters
