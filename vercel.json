@@ -98,7 +98,7 @@
       "statusCode": 301
     },
     {
-      "source": "/archive/:path((?!art/|data/).*)",
+      "source": "/archive/:path((?!art/|data/|item/|worn/|scene/).*)",
       "destination": "https://archive.spysocial.app/:path",
       "statusCode": 301
     },
