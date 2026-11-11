@@ -1552,7 +1552,18 @@ export const LIVE = {
    * Transparency's rule changes. Live on the server since 20261111040938 (Nov 11 04:09 UTC = November 10 in New York).
    */
   economyValuesL: true,
+  /**
+   * unconfirmed-signups-1111 (owner Nov 11; app repo server file 20261231999800_unconfirmed_cleanup_1111): an email
+   * sign-up that is never confirmed is deleted about 24 hours after the last confirmation email (the nightly
+   * unconfirmed-accounts-sweep, 04:53 UTC, switched on by that file; it takes only sign-ups that never signed in or did
+   * anything). Turns on its sentence in Privacy's Data Retention. Push the site with it on the day the server file is
+   * applied, and set UNCONFIRMED_SIGNUPS_DAY to that day.
+   */
+  unconfirmedSignups: true,
 }
+
+/** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
+export const UNCONFIRMED_SIGNUPS_DAY = 'November 12, 2026'
 
 /** LIVE.economyValuesL's day in Transparency's rule changes: the New York day 20261225200000 was applied (live 20261111040938). */
 export const ECONOMY_VALUES_L_DAY = 'November 10, 2026'
@@ -1829,6 +1840,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.unconfirmedSignups
+    ? UNCONFIRMED_SIGNUPS_DAY // Data Retention: never-confirmed email sign-ups deleted about 24 hours after the last confirmation email (unconfirmed-signups-1111)
   : LIVE.archiveHolders
     ? ARCHIVE_HOLDERS_DAY // the Archive names a Unique's holder today when their profile is public (archive-holder-1110)
   : LIVE.marketSite

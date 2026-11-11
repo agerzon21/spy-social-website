@@ -1090,6 +1090,7 @@ const Privacy: React.FC = () => {
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests {PRIVACY.retentionSweep ? 'after a day' : 'after a day of no use, the next time a request clears them'}.
+        {PRIVACY.unconfirmedSignups ? ' An email sign-up that is never confirmed is deleted about 24 hours after the last confirmation email we sent for it.' : ''}
         {PRIVACY.socialLimits ? ' Counts of daily limits reached for follows and friend requests are deleted after 90 days.' : ''}
         {PRIVACY.intel
           ? PRIVACY.intelLedger
