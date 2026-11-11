@@ -27,9 +27,9 @@ const id: ArchiveStrings = {
       ],
     },
     float: {
-      eyebrow: 'Float',
+      eyebrow: 'Rona',
       title: 'Satu angka menentukan segalanya',
-      lede: 'Saat Unik dicetak, server mengundi float-nya: angka antara 0 dan 1 dengan enam belas desimal. Aplikasi membacanya digit demi digit, dan setiap digit memilih satu dari sepuluh tampilan.',
+      lede: 'Saat Unik dicetak, server mengundi rona-nya: angka antara 0 dan 1 dengan enam belas desimal. Aplikasi membacanya digit demi digit, dan setiap digit memilih satu dari sepuluh tampilan.',
       digits: [
         { n: 'Digit ke-1', what: 'Varian', text: 'Keluarganya: ras Kucing mata-mata, model Pesawat Kertas, kait Berlian Hitam.' },
         { n: 'Digit ke-2', what: 'Warna', text: 'Satu dari sepuluh warna bernama, dari Rubi sampai Perak, di seluruh item.' },
@@ -40,7 +40,7 @@ const id: ArchiveStrings = {
       example: 'Contoh',
       variantsTitle: 'Digit 1: sepuluh ras Kucing mata-mata',
       coloursTitle: 'Digit 2: sepuluh warna kucing yang sama',
-      scaleTitle: 'Setiap Kucing mata-mata yang tercatat, menurut float',
+      scaleTitle: 'Setiap Kucing mata-mata yang tercatat, menurut rona',
       scaleNote: 'Setiap tanda adalah Unik sungguhan. Posisinya di skala menentukan rasnya.',
     },
     sources: {
@@ -68,7 +68,7 @@ const id: ArchiveStrings = {
     search: 'Cari nama, nama sandi, atau nomor',
     clearSearch: 'Hapus',
     sort: 'Urutkan',
-    sorts: { newest: 'Terbaru dulu', price_low: 'Harga: rendah ke tinggi', price_high: 'Harga: tinggi ke rendah', serial: 'Nomor', float: 'Float' },
+    sorts: { newest: 'Terbaru dulu', price_low: 'Harga: rendah ke tinggi', price_high: 'Harga: tinggi ke rendah', serial: 'Nomor', float: 'Rona' },
     filters: 'Filter',
     item: 'Item',
     type: 'Jenis',
@@ -100,7 +100,7 @@ const id: ArchiveStrings = {
     retiredHow: (what: string) => `Dimusnahkan: ${what}.`,
     burnWhy: { trade_up: 'ditukar tambah menjadi item lain', shred: 'dihancurkan menjadi Intel', other: 'dihapus dari catatan' },
     certificate: 'Sertifikat',
-    float: 'Float',
+    float: 'Rona',
     pattern: 'Pola',
     serial: 'Nomor',
     codename: 'Nama sandi',

@@ -22,9 +22,9 @@ const ptBR: ArchiveStrings = {
       ],
     },
     float: {
-      eyebrow: 'O float',
+      eyebrow: 'O tom',
       title: 'Um número decide tudo',
-      lede: 'Quando um Único é cunhado, o servidor sorteia o float dele: um número entre 0 e 1 com dezesseis casas decimais. O app lê esse número dígito por dígito, e cada dígito escolhe um entre dez visuais.',
+      lede: 'Quando um Único é cunhado, o servidor sorteia o tom dele: um número entre 0 e 1 com dezesseis casas decimais. O app lê esse número dígito por dígito, e cada dígito escolhe um entre dez visuais.',
       digits: [
         { n: '1º dígito', what: 'A variante', text: 'A família: a raça do Gato espião, o modelo do Avião de papel, o fecho do Diamante Negro.' },
         { n: '2º dígito', what: 'A cor', text: 'Uma entre dez cores com nome, de Rubi a Prata, aplicada no item inteiro.' },
@@ -35,7 +35,7 @@ const ptBR: ArchiveStrings = {
       example: 'Exemplo',
       variantsTitle: 'Dígito 1: dez raças de Gato espião',
       coloursTitle: 'Dígito 2: dez cores do mesmo gato',
-      scaleTitle: 'Todos os Gatos espiões registrados, por float',
+      scaleTitle: 'Todos os Gatos espiões registrados, por tom',
       scaleNote: 'Cada marca é um Único real. O ponto da escala onde ele cai decide a raça.',
     },
     sources: {
@@ -66,7 +66,7 @@ const ptBR: ArchiveStrings = {
     search: 'Busque por nome, codinome ou número',
     clearSearch: 'Limpar',
     sort: 'Ordenar',
-    sorts: { newest: 'Mais recentes', price_low: 'Preço: menor para maior', price_high: 'Preço: maior para menor', serial: 'Número', float: 'Float' },
+    sorts: { newest: 'Mais recentes', price_low: 'Preço: menor para maior', price_high: 'Preço: maior para menor', serial: 'Número', float: 'Tom' },
     filters: 'Filtros',
     item: 'Item',
     type: 'Tipo',
@@ -98,7 +98,7 @@ const ptBR: ArchiveStrings = {
     retiredHow: (what: string) => `Retirado: ${what}.`,
     burnWhy: { trade_up: 'fundido em outro item', shred: 'triturado por Intel', other: 'tirado do registro' },
     certificate: 'Certificado',
-    float: 'Float',
+    float: 'Tom',
     pattern: 'Padrão',
     serial: 'Número',
     codename: 'Codinome',

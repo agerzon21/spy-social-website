@@ -26,9 +26,9 @@ const zh: ArchiveStrings = {
       ],
     },
     float: {
-      eyebrow: '浮点值',
+      eyebrow: '色相',
       title: '一个数字决定一切',
-      lede: '唯一物品铸造时，服务器会抽取它的浮点值：一个介于 0 和 1 之间、带十六位小数的数字。应用逐位读取它，每一位数字都会从十种外观中选出一种。',
+      lede: '唯一物品铸造时，服务器会抽取它的色相：一个介于 0 和 1 之间、带十六位小数的数字。应用逐位读取它，每一位数字都会从十种外观中选出一种。',
       digits: [
         { n: '第 1 位', what: '款式', text: '它的类别：间谍猫的品种、纸飞机的型号、黑钻的扣饰。' },
         { n: '第 2 位', what: '颜色', text: '十种有名字的颜色之一，从红宝石到银色，铺满整件物品。' },
@@ -39,7 +39,7 @@ const zh: ArchiveStrings = {
       example: '示例',
       variantsTitle: '第 1 位：十种间谍猫品种',
       coloursTitle: '第 2 位：同一只猫的十种颜色',
-      scaleTitle: '记录中的每只间谍猫，按浮点值排列',
+      scaleTitle: '记录中的每只间谍猫，按色相排列',
       scaleNote: '每个标记都是一件真实的唯一物品。它落在刻度上的位置决定了它的品种。',
     },
     sources: {
@@ -63,7 +63,7 @@ const zh: ArchiveStrings = {
     search: '按名称、代号或编号搜索',
     clearSearch: '清除',
     sort: '排序',
-    sorts: { newest: '最新在前', price_low: '价格：从低到高', price_high: '价格：从高到低', serial: '编号', float: '浮点值' },
+    sorts: { newest: '最新在前', price_low: '价格：从低到高', price_high: '价格：从高到低', serial: '编号', float: '色相' },
     filters: '筛选',
     item: '物品',
     type: '类型',
@@ -95,7 +95,7 @@ const zh: ArchiveStrings = {
     retiredHow: (what: string) => `已注销：${what}。`,
     burnWhy: { trade_up: '合成升级成了另一件物品', shred: '粉碎换成了情报', other: '已从记录中移除' },
     certificate: '证书',
-    float: '浮点值',
+    float: '色相',
     pattern: '图案',
     serial: '编号',
     codename: '代号',

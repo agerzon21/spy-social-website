@@ -27,9 +27,9 @@ const fr: ArchiveStrings = {
       ],
     },
     float: {
-      eyebrow: 'Le float',
+      eyebrow: 'La teinte',
       title: 'Un seul nombre décide de tout',
-      lede: 'Quand un Unique est frappé, le serveur tire son float\u00a0: un nombre entre 0 et 1 à seize décimales. L’app le lit chiffre par chiffre, et chaque chiffre choisit un look parmi dix.',
+      lede: 'Quand un Unique est frappé, le serveur tire sa teinte\u00a0: un nombre entre 0 et 1 à seize décimales. L’app la lit chiffre par chiffre, et chaque chiffre choisit un look parmi dix.',
       digits: [
         { n: '1er chiffre', what: 'La variante', text: 'Sa famille\u00a0: la race d’un Chat espion, le modèle d’un Avion en papier, le fermoir d’un Diamant noir.' },
         { n: '2e chiffre', what: 'La couleur', text: 'Une des dix couleurs nommées, de Rubis à Argent, appliquée à tout l’objet.' },
@@ -40,7 +40,7 @@ const fr: ArchiveStrings = {
       example: 'Exemple',
       variantsTitle: 'Chiffre\u00a01\u00a0: dix races de Chat espion',
       coloursTitle: 'Chiffre\u00a02\u00a0: dix couleurs du même chat',
-      scaleTitle: 'Chaque Chat espion consigné, par float',
+      scaleTitle: 'Chaque Chat espion consigné, par teinte',
       scaleNote: 'Chaque marque est un vrai Unique. Sa place sur l’échelle décide de sa race.',
     },
     sources: {
@@ -68,7 +68,7 @@ const fr: ArchiveStrings = {
     search: 'Chercher par nom, nom de code ou numéro',
     clearSearch: 'Effacer',
     sort: 'Trier',
-    sorts: { newest: 'Plus récents', price_low: 'Prix croissant', price_high: 'Prix décroissant', serial: 'Numéro', float: 'Float' },
+    sorts: { newest: 'Plus récents', price_low: 'Prix croissant', price_high: 'Prix décroissant', serial: 'Numéro', float: 'Teinte' },
     filters: 'Filtres',
     item: 'Objet',
     type: 'Type',
@@ -100,7 +100,7 @@ const fr: ArchiveStrings = {
     retiredHow: (what: string) => `Retiré\u00a0: ${what}.`,
     burnWhy: { trade_up: 'fusionné en un autre objet', shred: 'déchiqueté contre de l’Intel', other: 'rayé du registre' },
     certificate: 'Certificat',
-    float: 'Float',
+    float: 'Teinte',
     pattern: 'Motif',
     serial: 'Numéro',
     codename: 'Nom de code',

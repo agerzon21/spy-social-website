@@ -94,8 +94,8 @@ const ArchiveItem = () => {
       : u.source === 'trade_up' && u.inputs
         ? t.fromTradeUp(fmt(u.inputs, locale))
         : t.fromOther
-  // The rule's line, only in the reader's language: the server words it in English and Russian so far, and the line
-  // above it already says how this copy was minted in every language (an English line on a Chinese page read as a bug).
+  // The rule's line, in the reader's language whenever the server has it (all ten once archive_words_1111 is applied;
+  // English and Russian before it), never another language's: the line above it already says how this copy was minted.
   const rule = u?.how ? u.how[lang] ?? '' : ''
   // The holder today (archive-holder-1110): only with the switch on and a server that sends the holder keys.
   const holder = u && LIVE.archiveHolders ? holderOf(u) : ({ kind: 'unknown' } as const)

@@ -22,9 +22,9 @@ const es: ArchiveStrings = {
       ],
     },
     float: {
-      eyebrow: 'El float',
+      eyebrow: 'El tono',
       title: 'Un número lo decide todo',
-      lede: 'Cuando se acuña un Único, el servidor sortea su float: un número entre 0 y 1 con dieciséis decimales. La app lo lee dígito a dígito, y cada dígito elige uno de diez aspectos.',
+      lede: 'Cuando se acuña un Único, el servidor sortea su tono: un número entre 0 y 1 con dieciséis decimales. La app lo lee dígito a dígito, y cada dígito elige uno de diez aspectos.',
       digits: [
         { n: '1.er dígito', what: 'La variante', text: 'Su familia: la raza del Gato espía, el modelo del Avión de papel, el broche del Diamante Negro.' },
         { n: '2.º dígito', what: 'El color', text: 'Uno de diez colores con nombre, de Rubí a Plata, que pinta todo el objeto.' },
@@ -35,7 +35,7 @@ const es: ArchiveStrings = {
       example: 'Ejemplo',
       variantsTitle: 'Dígito 1: diez razas de Gato espía',
       coloursTitle: 'Dígito 2: diez colores del mismo gato',
-      scaleTitle: 'Cada Gato espía registrado, por float',
+      scaleTitle: 'Cada Gato espía registrado, por tono',
       scaleNote: 'Cada marca es un Único real. El punto de la escala donde cae decide su raza.',
     },
     sources: {
@@ -66,7 +66,7 @@ const es: ArchiveStrings = {
     search: 'Busca por nombre, nombre en clave o número',
     clearSearch: 'Borrar',
     sort: 'Ordenar',
-    sorts: { newest: 'Más recientes', price_low: 'Precio: de menor a mayor', price_high: 'Precio: de mayor a menor', serial: 'Número', float: 'Float' },
+    sorts: { newest: 'Más recientes', price_low: 'Precio: de menor a mayor', price_high: 'Precio: de mayor a menor', serial: 'Número', float: 'Tono' },
     filters: 'Filtros',
     item: 'Objeto',
     type: 'Tipo',
@@ -98,7 +98,7 @@ const es: ArchiveStrings = {
     retiredHow: (what: string) => `Retirado: ${what}.`,
     burnWhy: { trade_up: 'canjeado por otro objeto', shred: 'triturado por Intel', other: 'retirado del registro' },
     certificate: 'Certificado',
-    float: 'Float',
+    float: 'Tono',
     pattern: 'Patrón',
     serial: 'Número',
     codename: 'Nombre en clave',
