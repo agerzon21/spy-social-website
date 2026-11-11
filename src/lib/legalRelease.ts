@@ -16,7 +16,8 @@
 // ageGateEveryone, birthMonth, under13Deletion, storeAgeSignals, crashReports,
 // notifications, socialSignIn, purchases, onDeviceTranslation,
 // storedQuestions, qrScanner, playOnline (before the play_online switch goes
-// 'on', runbook 3.8c), onePool, messageReports; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
+// 'on', runbook 3.8c), onePool, messageReports, passwordless (legal audit 1111: every 2.2 build since beta ios-34 /
+// android-19, u60 and u61 signs in with Supabase email codes, not passwords; check its comment's Oct 28 notes first); oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
 // photosRemoved once no photo file is left. myMemory is already 'off' (the
 // translate function's MyMemory backup is off from the 2.2 submissions, owner
 // 2026-10-07): it stays 'off' unless the backup comes back. Not at launch unless its own
@@ -1852,9 +1853,14 @@ export const PRACTICE_AI_DAY = 'December 6, 2026'
 /** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
 export const PARTY_LEADER_LAPSE_DAY = 'November 11, 2026'
 
+/** LIVE.giftsTradable going false (website U0, owner's gift rules of Nov 6 and Nov 8: Terms 9, Intel corrections): its day in LEGAL_LAST_UPDATED (added by legal-integration-1111: before it, the flip moved no date). Set it to the day the site goes up with giftsTradable false. */
+export const GIFTS_BOUND_DAY = 'December 6, 2026'
+
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : !LIVE.giftsTradable
+    ? GIFTS_BOUND_DAY // U0: Terms 9's codes and gifts stay with the account, Intel we add is ordinary Intel (gift-rules-1108)
   : LIVE.memberLoyalty
     ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a pass renews (member-loyalty-1111)
   : LIVE.partyLeaderLapse
