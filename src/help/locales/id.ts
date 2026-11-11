@@ -438,8 +438,14 @@ const id: HelpText = {
           q: 'Di mana hadiah penguji betaku?',
           a: [
             o.launch
-              ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
-              : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+              ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
+              : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>.',
+            o.launch
+              ? 'Penguji yang menyelesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.'
+              : 'Selesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+            o.testerInterceptsTradable
+              ? 'Tidak seperti hadiah lain, sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.'
+              : 'Seperti hadiah lain, sadapan terima kasih tetap di akunmu.',
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
             'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',

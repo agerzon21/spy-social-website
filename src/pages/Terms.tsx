@@ -806,7 +806,14 @@ const Terms: React.FC = () => {
               {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). */}
               {LIVE.giftsTradable
                 ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
-                : "Items from a code, and the Beta set, become tradable only once your account has played 3 real games (finished games with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official Beta session."}
+                : "Items from a code, and the Beta set, become tradable only once your account has played 3 real games (finished games with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official Beta session."}{' '}
+              {/* LIVE.testerIntercepts: the 2.2 testers' thank-you (owner Nov 11; server app_config tester_gift.intercepts_tradable). */}
+              {LIVE.launchSite
+                ? 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list got the Beta Pin and the Beta Tester title, and an account that finished at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also got the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'
+                : 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list gets the Beta Pin and the Beta Tester title, and an account that finishes at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'}{' '}
+              {LIVE.testerIntercepts === 'tradable'
+                ? 'Unlike Intercepts from a gift, those Intercepts trade like anything you earn, opened or not.'
+                : "Like Intercepts from a gift, those Intercepts, opened or not, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone."}
             </ListItem>
             <ListItem>
               What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,

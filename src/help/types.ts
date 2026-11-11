@@ -39,6 +39,8 @@ export interface HelpOpts {
   partyLeaderLapse: boolean
   /** Member time and its stamps, reset when a membership ends, and the price kept while a pass renews (LIVE.memberLoyalty). */
   memberLoyalty: boolean
+  /** The testers' thank-you Intercepts trade like anything earned (LIVE.testerIntercepts === 'tradable'); false: they stay with the account. */
+  testerInterceptsTradable: boolean
 }
 
 export interface HelpItem {

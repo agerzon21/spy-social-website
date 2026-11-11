@@ -27,6 +27,7 @@ import ui from '../components/ui/ui.module.css'
 import { LANGUAGES, useLang, useT } from '../i18n'
 import { bold, rich } from '../i18n/rich'
 import { useClosed } from '../lib/betaSignup'
+import { LIVE } from '../lib/legalRelease'
 import s from './Beta.module.css'
 
 /**
@@ -319,6 +320,16 @@ const Beta = () => {
               </li>
             ))}
           </ul>
+          {/* The rest needs one counted game before December 7 (owner Nov 11); LIVE.testerIntercepts: whether its Intercepts trade. */}
+          <p className={s.subhead}>{b.get.gameTitle}</p>
+          <ul className={s.rewards}>
+            {b.get.gameItems.map((item) => (
+              <li key={item}>
+                <span>{rich(item, { b: bold })}</span>
+              </li>
+            ))}
+          </ul>
+          <p className={s.reset}>{LIVE.testerIntercepts === 'tradable' ? b.get.trade.tradable : b.get.trade.bound}</p>
           <p className={s.reset}>{b.reset}</p>
           <div className={s.prize}>
             <FaGift className={s.prizeIcon} aria-hidden focusable={false} />
