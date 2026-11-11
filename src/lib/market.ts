@@ -214,6 +214,6 @@ export const RARITY_COLOUR: Record<string, { dark: string; light: string }> = {
 export function withDemo<T extends MarketList | MarketItemPage>(page: T): T {
   const demo = new Set(page.demo ?? [])
   if (!demo.size) return page
-  if ('items' in page) return { ...page, items: page.items.map((it) => (demo.has(it.c) ? { ...it, demo: true } : it)) }
-  return demo.has(page.item.c) ? { ...page, item: { ...page.item, demo: true } } : page
+  if ('item' in page) return demo.has(page.item.c) ? { ...page, item: { ...page.item, demo: true } } : page
+  return { ...page, items: page.items.map((it) => (demo.has(it.c) ? { ...it, demo: true } : it)) }
 }
