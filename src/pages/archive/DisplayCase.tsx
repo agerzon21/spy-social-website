@@ -3,6 +3,7 @@ import { useLang } from '../../i18n'
 import type { ItemLook } from '../../lib/archive'
 import { archiveStrings } from './strings'
 import { LiveBackdrop } from './LiveBackdrop'
+import { SceneMotion } from './SceneMotion'
 import c from './displayCase.module.css'
 
 /**
@@ -51,7 +52,7 @@ export function DisplayCase({ ring, look, alt, wear = false, eager = false, stil
             {live ? (
               <LiveBackdrop item={look.item!} copy={look.copy ?? null} still={still || worn} alt={alt} />
             ) : look.kind === 'scene' ? (
-              <img className={c.scene} src={look.alone} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+              <SceneMotion className={c.scene} poster={look.alone} motion={look.motion} alt={alt} eager={eager} still={still} />
             ) : look.kind === 'case' ? (
               <>
                 <span className={c.column} />

@@ -4,7 +4,7 @@ import { fetchMarket, fetchMarketItem, marketSoon, withDemo, type MarketItemPage
 import { loadArtIndex, loadLookIndex, type Looks } from '../../lib/archive'
 import { marketStrings, type MarketStrings } from './strings'
 
-const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set() }
+const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set(), motion: {} }
 
 export type LoadState = 'loading' | 'ok' | 'busy' | 'soon'
 

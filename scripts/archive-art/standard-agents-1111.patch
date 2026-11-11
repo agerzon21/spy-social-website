@@ -1,5 +1,5 @@
 diff --git a/components/celebrations/CelebrationPreview.tsx b/components/celebrations/CelebrationPreview.tsx
-index 8ae7c5e24..325a62a19 100644
+index 8ae7c5e24..b5118f00e 100644
 --- a/components/celebrations/CelebrationPreview.tsx
 +++ b/components/celebrations/CelebrationPreview.tsx
 @@ -178,7 +178,7 @@ function useSteadyOwner(owner: CelebrationOwner): CelebrationOwner {
@@ -24,6 +24,19 @@ index 8ae7c5e24..325a62a19 100644
      [code, local, width, height, layout, owner, still, t, moment, treatment, looping],
    );
    // (Its motion's moment; Reduce Motion's still version has its own timing.)
+@@ -353,6 +357,12 @@ export function CelebrationPreview({
+   // Its own stage loops seamlessly (./previewLoop: cut at its closing fade, the seam crossfaded, never black); on the
+   // card it plays whole and rests on the card.
+   const loop = useMemo(() => previewLoop(scene, { w: width, h: height }, !!ground), [scene, width, height, ground]);
++  // archive-item-art-1111 (scratch, not committed): the website's capture reads each preview's loop length.
++  const reg = (globalThis as unknown as { __archiveLoops?: Record<string, number[]> }).__archiveLoops;
++  if (reg) {
++    const k = String(local ?? code);
++    reg[k] = Array.from(new Set([...(reg[k] ?? []), loop.period]));
++  }
+   const clock = useSharedValue(-1);
+   // The run's own moment and, during the seam, the run before's tail over it (written only while it shows).
+   const head = useSharedValue(-1);
 diff --git a/qa/overflow/archiveArt.mjs b/qa/overflow/archiveArt.mjs
 index 043241f26..935598fd1 100644
 --- a/qa/overflow/archiveArt.mjs
@@ -45,7 +58,7 @@ index 043241f26..935598fd1 100644
    await page.waitForFunction(() => window.__mounted, null, { timeout: 180000, polling: 100 });
    await page.waitForTimeout(3000);
 diff --git a/qa/overflow/harness/scenes/archiveArt.tsx b/qa/overflow/harness/scenes/archiveArt.tsx
-index f0efee192..26627346d 100644
+index f0efee192..69322e330 100644
 --- a/qa/overflow/harness/scenes/archiveArt.tsx
 +++ b/qa/overflow/harness/scenes/archiveArt.tsx
 @@ -10,6 +10,12 @@
@@ -115,7 +128,7 @@ index f0efee192..26627346d 100644
 +            <EmptyBorder code={c.code} size={Math.round(size * 0.72)} mark={mark} />
 +          </View>
 +        ) : (
-+          <ItemArt item={entry.item} owner={OWNER} width={size} height={size} unique={entry.unique} />
++          <ItemArt item={entry.item} owner={OWNER} width={size} height={size} unique={entry.unique} active={!!(globalThis as unknown as { __archiveActive?: boolean }).__archiveActive} />
 +        )}
 +      </View>
 +    );
@@ -136,3 +149,90 @@ index f0efee192..26627346d 100644
    return (
      <View testID={`aa-${c.key}`} style={{ width: size, height: size }}>
        <RarityTile rarity={tileRarity(entry)} unique={entry.unique} size={size} inset={Math.round((size - art) / 2)} animated={false}>
+diff --git a/qa/overflow/archiveMotion.mjs b/qa/overflow/archiveMotion.mjs
+new file mode 100644
+index 000000000..0a972f27a
+--- /dev/null
++++ b/qa/overflow/archiveMotion.mjs
+@@ -0,0 +1,81 @@
++// archive-item-art-1111 (scratch, not committed; in scripts/archive-art/standard-agents-1111.patch): the website's
++// moving celebrations. The archive_art scene (bare cells, the standard agents, no plate) with motion on, pinned frame
++// frame by frame on Playwright's clock (the page's timers, requestAnimationFrame and performance.now under it): the
++// previews loop as in the app; paused, then stepped `dt` ms per frame, every cell shot each frame. find the loop after.
++//   PLAYWRIGHT_PATH=... node qa/overflow/archiveMotion.mjs <cells.json> <outdir> --lang en [--port 8441] [--size 320] [--dpr 1.5] [--to 8000] [--dt 100]
++import { readFileSync, mkdirSync, writeFileSync } from 'node:fs';
++import { join } from 'node:path';
++import { TREE, serving, startMetro, stopMetro, syncTree, warmBundle } from './lib/tree.mjs';
++import { launch, loadPlaywright } from './lib/browser.mjs';
++
++const args = process.argv.slice(2);
++const opt = (name, dflt) => {
++  const i = args.indexOf(`--${name}`);
++  return i >= 0 ? args[i + 1] : dflt;
++};
++const [cellsFile, out] = args;
++const port = Number(opt('port', '8441'));
++const size = Number(opt('size', '320'));
++const dpr = Number(opt('dpr', '1.5'));
++const to = Number(opt('to', '8000'));
++const dt = Number(opt('dt', '100'));
++const langs = opt('lang', 'en').split(',');
++const cells = JSON.parse(readFileSync(cellsFile, 'utf8'));
++
++let metro = null;
++if (!(await serving(port))) {
++  syncTree();
++  const idx = join(TREE, 'ovf/scenes/index.ts');
++  let s = readFileSync(idx, 'utf8');
++  if (!s.includes("id: 'archive_art'")) {
++    s = s.replace('export const SCENES: SceneEntry[] = [', "export const SCENES: SceneEntry[] = [\n  { id: 'archive_art', group: 'Archive', title: 'The website Archive pictures', langs: ['en'], load: () => require('./archiveArt').scenes },");
++    writeFileSync(idx, s);
++  }
++  metro = await startMetro(port);
++  console.log('metro', metro.child.pid, metro.log);
++  const w = await warmBundle(port);
++  console.log('bundle', w.bytes, w.ms, 'ms');
++}
++try {
++  const { chromium } = loadPlaywright();
++  const browser = await launch(chromium);
++  const her = { userId: null, name: 'Agent', color: '#8e99ae', config: { v: 1, skin: 'skin_sand', hair: 'hair_long', hair_color: 'hair_color_brown', face: 'face_smile', outfit: 'outfit_trench', outfit_color: 'outfit_color_khaki' } };
++  for (const lang of langs) {
++    const page = await browser.newPage({ deviceScaleFactor: dpr, viewport: { width: 1400, height: 1000 } });
++    const errs = [];
++    page.on('pageerror', (e) => errs.push(String(e).slice(0, 300)));
++    await page.clock.install({ time: 0 });
++    await page.addInitScript(([c, h]) => {
++      globalThis.__archiveCells = c;
++      globalThis.__archiveSubject = h;
++      globalThis.__archiveNoPlate = true;
++      globalThis.__archiveActive = true;
++      globalThis.__archiveLoops = {};
++    }, [cells, her]);
++    await page.goto(`http://localhost:${port}/ovf.html?scene=archive_art&lang=${lang}&fs=1&device=desk&motion=1&size=${size}`, { waitUntil: 'load', timeout: 180000 });
++    await page.waitForFunction(() => window.__mounted, null, { timeout: 180000, polling: 100 });
++    await page.waitForTimeout(3000);
++    const els = [];
++    for (const c of cells) {
++      const el = await page.$(`[data-testid="aa-${c.key}"]`);
++      if (el) els.push([c.key, el]);
++      mkdirSync(join(out, lang, c.key), { recursive: true });
++    }
++    writeFileSync(join(out, lang, 'loops.json'), JSON.stringify(await page.evaluate(() => globalThis.__archiveLoops)));
++    await page.clock.pauseAt(await page.evaluate(() => Date.now() + 200));
++    await page.clock.runFor(200);
++    let i = 0;
++    for (let t = 0; t <= to; t += dt, i++) {
++      for (const [key, el] of els) {
++        await el.scrollIntoViewIfNeeded();
++        await el.screenshot({ path: join(out, lang, key, `${String(i).padStart(3, '0')}.png`), animations: 'allow' });
++      }
++      await page.clock.runFor(dt);
++    }
++    console.log(lang, 'frames', i, 'cells', els.length, errs.length ? `page errors: ${errs.slice(0, 3).join(' | ')}` : '');
++    await page.close();
++  }
++  await browser.close();
++} finally {
++  if (metro) stopMetro(metro);
++}

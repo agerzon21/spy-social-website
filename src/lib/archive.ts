@@ -234,7 +234,8 @@ export function artOf(art: Set<string>, item: string, serial?: number | null, sm
  * transparent; a backdrop's scene) and public/archive/worn/<key>-m|f.webp (the standard agents wearing it), made by
  * scripts/archive-item-art. Celebrations, locals, titles and borders keep their full-frame picture (artOf).
  */
-export type Looks = { item: Set<string>; worn: Set<string>; scene: Set<string> }
+/** motion: the moving celebrations' loops (public/archive/motion/index.json: key -> ["*"] one file, or its languages). */
+export type Looks = { item: Set<string>; worn: Set<string>; scene: Set<string>; motion: Record<string, string[]> }
 let lookCache: Promise<Looks> | null = null
 export function loadLookIndex(): Promise<Looks> {
   if (!lookCache) {
@@ -243,8 +244,11 @@ export function loadLookIndex(): Promise<Looks> {
         .then((r) => (r.ok ? (r.json() as Promise<string[]>) : []))
         .then((k) => new Set(k))
         .catch(() => new Set<string>())
-    lookCache = Promise.all([keys('/archive/item/index.json'), keys('/archive/worn/index.json'), keys('/archive/scene/index.json')]).then(
-      ([item, worn, scene]) => ({ item, worn, scene }),
+    const motion = fetch('/archive/motion/index.json')
+      .then((r) => (r.ok ? (r.json() as Promise<Record<string, string[]>>) : {}))
+      .catch(() => ({}))
+    lookCache = Promise.all([keys('/archive/item/index.json'), keys('/archive/worn/index.json'), keys('/archive/scene/index.json'), motion]).then(
+      ([item, worn, scene, motion]) => ({ item, worn, scene, motion }),
     )
   }
   return lookCache
@@ -265,7 +269,16 @@ export type CopyMark = { float: string; pattern: number | null; serial?: number 
  * (pages/archive/LiveBackdrop), full frame like a scene (owner Nov 11: no case, no frame on the wall); `alone` its
  * still picture (the small pins).
  */
-export type ItemLook = { kind: 'case' | 'wall' | 'scene' | 'live'; alone: string; worn: { m: string; f: string } | null; big?: boolean; item?: string; copy?: CopyMark | null }
+export type ItemLook = {
+  kind: 'case' | 'wall' | 'scene' | 'live'
+  alone: string
+  worn: { m: string; f: string } | null
+  big?: boolean
+  item?: string
+  copy?: CopyMark | null
+  /** A celebration's moving loop (pages/archive/SceneMotion): its key and the languages it has ("*": one for all). */
+  motion?: { key: string; langs: string[] } | null
+}
 
 /** The copy's own look, else its item's plain Legendary's, else null (not drawn this way yet: the tile as it is). */
 export function lookOf(looks: Looks, item: string, serial?: number | null, small = false, copy: CopyMark | null = null): ItemLook | null {
@@ -278,6 +291,13 @@ export function lookOf(looks: Looks, item: string, serial?: number | null, small
   // An item alone first (a wearable, a backdrop, the border lifted off its scene), else a scene filling the frame.
   const key = pick(looks.item)
   if (!key) {
+    // A celebration or a local: its loop where one is made (its still a frame of it, in the reader's language where it
+    // has words: SceneMotion picks), else its scene picture.
+    const mk = pick(new Set(Object.keys(looks.motion)))
+    if (mk) {
+      const langs = looks.motion[mk]
+      return { kind: 'scene', alone: `/archive/motion/${mk}${langs.includes('*') ? '' : '.en'}.poster.webp`, worn: null, motion: { key: mk, langs } }
+    }
     const sc = pick(looks.scene)
     return sc ? { kind: 'scene', alone: `/archive/scene/${sc}${small ? '-s' : ''}.webp`, worn: null } : null
   }

@@ -3,7 +3,7 @@ import { useLang, type LangCode } from '../../i18n'
 import { ArchiveBusy, fetchUniques, loadArchiveData, loadArtIndex, loadLookIndex, type ArchiveData, type Looks, type ArchiveList, type ArchiveSet } from '../../lib/archive'
 import { archiveStrings, type ArchiveStrings } from './strings'
 
-const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set() }
+const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set(), motion: {} }
 
 /** The page's words, the app's tables in the reader's language, and the pictures drawn so far. */
 export function useArchive(): { w: ArchiveStrings; data: ArchiveData | null; art: Set<string>; looks: Looks; lang: LangCode; locale: string } {
