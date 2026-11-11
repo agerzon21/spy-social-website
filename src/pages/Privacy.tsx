@@ -1122,6 +1122,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.audit1103
           ? ' Emails waiting in our account mail queue are kept for 30 days (the address and any code are removed once sent), coded copies of ban-notice codes stop working after 30 minutes and are deleted 2 days later, and push receipt numbers are deleted after about 2 days' + (PRIVACY.retentionSweep ? '' : ', the next time we send a push') + '. The record of what we did for you in Account Support is kept as long as we keep reports.'
           : ''}
+        {PRIVACY.retentionSweep
+          ? " When these short-lived records are deleted (notes about leaving rooms and unblocking, the coded email and sign-up records, room-creation notes, push receipts, notices waiting or sent, daily Practice rating counts and the notes that we sent a trade or market code), we keep only a count of how many there were each day, which doesn't identify anyone."
+          : ''}
         {PRIVACY.banTombstone
           ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
           : ''}
