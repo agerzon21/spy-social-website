@@ -149,90 +149,10 @@
 }
 :global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) .hostLink { letter-spacing: 0.02em; }
 
-/* The phone's case file (HostNav, under 560 px; owner Nov 10): a folder tab on the header's bottom edge naming the
-   current page, which opens a file drawer that slides down from the header with every place, numbered like a
-   dossier's tabs, the current one marked. The tab and the open drawer are one sheet. */
-.fileTab, .fileDrawer { display: none; }
+/* On a phone the row gives way to PhoneNav (phoneNav.module.css), which fills the header's middle. */
 @media (max-width: 559px) {
   .hostList { display: none; }
-  .hostNav { margin-inline: 10px 6px; align-items: flex-end; }
-  .fileTab {
-    position: relative;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    min-width: 0;
-    max-width: 100%;
-    height: 44px;
-    margin-bottom: calc(var(--ss-hairline) * -1);
-    padding: 0 12px;
-    font: 700 12.5px/1 var(--ss-font-body);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ss-text);
-    background: var(--ss-deep);
-    border: var(--ss-hairline) solid var(--ss-line-strong);
-    border-bottom-color: var(--ss-line);
-    border-radius: 7px 7px 0 0;
-    cursor: pointer;
-  }
-  .fileTab[aria-expanded='true'] { border-bottom-color: var(--ss-deep); }
-  .fileTab svg { flex: none; }
-  .fileTab > svg:first-child { color: var(--ss-highlight); font-size: 14px; }
-  .fileTabText { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .fileChevron { font-size: 10px; color: var(--ss-muted); transition: transform 0.15s ease-out; }
-  .fileTab[aria-expanded='true'] .fileChevron { transform: rotate(180deg); }
-  .fileTab:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: 2px; }
-
-  .fileDrawer {
-    display: block;
-    position: absolute;
-    top: 100%;
-    inset-inline: 0;
-    padding: 16px 16px 20px;
-    background: var(--ss-deep);
-    border-top: var(--ss-hairline) solid var(--ss-line-strong);
-    border-bottom: var(--ss-hairline) solid var(--ss-line-strong);
-    box-shadow: 0 24px 40px -16px rgba(0, 0, 0, 0.75);
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: transform 0.15s ease-out, opacity 0.15s ease-out, visibility 0s linear 0.15s;
-  }
-  .fileDrawer[data-open] { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
-  .fileHead {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 0 0 8px;
-    font: 600 11.5px/1.2 var(--ss-font-body);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ss-highlight);
-  }
-  .fileHead::before { content: ''; flex: none; width: 28px; height: var(--ss-hairline); background: currentColor; }
-  .fileList { margin: 0; padding: 0; list-style: none; }
-  .fileList li + li { border-top: var(--ss-hairline) solid var(--ss-line); }
-  .fileLink {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    min-height: 54px;
-    padding-inline: 12px;
-    border-inline-start: 3px solid transparent;
-    font: 800 24px/1 var(--ss-font-display);
-    text-transform: uppercase;
-    color: var(--ss-muted);
-    text-decoration: none;
-  }
-  .fileLink:hover { color: var(--ss-text); }
-  .fileLink:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -2px; }
-  .fileLink[aria-current='page'] { color: var(--ss-text); border-inline-start-color: var(--ss-accent); background: var(--ss-glow); }
-  .fileNo { flex: none; min-width: 2ch; font: 600 12px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.06em; color: var(--ss-highlight); }
-}
-@media (max-width: 559px) and (prefers-reduced-motion: reduce) {
-  .fileDrawer, .fileChevron { transition: none; }
+  .hostNav { margin-inline: 12px 10px; }
 }
 
 /* ---- footer ---- */

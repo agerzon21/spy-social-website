@@ -1,0 +1,308 @@
+/* The phone's nav on archive. / market.spysocial.app (components/PhoneNav; under 560 px). It fills the header's whole
+   middle, from the round mark to the language menu; every menu opens flush with the header. Logical sides only. */
+
+.root { display: none; }
+@media (max-width: 559px) {
+  .root { display: flex; flex: 1 1 auto; min-width: 0; align-self: stretch; }
+}
+
+/* The middle's button: the header's full height and the whole middle's width. */
+.trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  color: var(--ss-text);
+  background: none;
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.trigger:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -4px; }
+.chev { flex: none; width: 16px; height: 16px; color: var(--ss-muted); transition: transform 0.18s ease-out, color 0.15s; }
+.trigger[aria-expanded='true'] .chev { transform: rotate(180deg); color: var(--ss-accent); }
+
+/* One line of display type, shrunk to fit (useFit), never wrapped. */
+.aName, .cName, .dName, .eName {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--ss-font-display);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+/* Under the header: the page dims (taps on it close the menu). */
+.scrim, .scrimOver {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(3, 6, 12, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.18s ease-out, visibility 0s linear 0.18s;
+}
+.scrimOver { z-index: 101; }
+.scrim[data-open], .scrimOver[data-open] { opacity: 1; visibility: visible; transition-delay: 0s; }
+
+/* ---- A + B's panel: full width, flush with the header's bottom edge, the header's own colour ---- */
+.panel {
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  padding: 4px 16px 14px;
+  background: var(--ss-page);
+  border-bottom: var(--ss-hairline) solid var(--ss-line-strong);
+  box-shadow: 0 28px 40px -20px rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.2s ease-out, visibility 0s linear 0.2s;
+}
+.panel[data-open] { visibility: visible; clip-path: inset(0 0 -60px 0); transition-delay: 0s; }
+.dropList { margin: 0; padding: 0; list-style: none; }
+.dropList li + li { border-top: var(--ss-hairline) solid var(--ss-line); }
+.dropLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  padding-inline: 0 4px;
+  color: var(--ss-muted);
+  text-decoration: none;
+  font: 800 30px/1 var(--ss-font-display);
+  text-transform: uppercase;
+}
+.dropName { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+.dropLink:hover { color: var(--ss-text); }
+.dropLink:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -2px; }
+.dropLink[aria-current='page'] { color: var(--ss-text); }
+.dropLink[aria-current='page']::after {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-inline-start: auto;
+  background: var(--ss-accent);
+}
+
+/* ---- A  Title Drop: the page's name across the middle, a thin chevron at its far end ---- */
+.aTrigger { padding-inline: 2px 6px; }
+.aName { font-size: 30px; padding-top: 2px; }
+.aTrigger[aria-expanded='true'] { box-shadow: inset 0 -2px 0 var(--ss-accent); }
+
+/* ---- B  Ticker: the page centred, its neighbours dimmed toward the strip's ends ---- */
+.bStrip {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 26%, #000 74%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 26%, #000 74%, transparent);
+}
+.bStrip::-webkit-scrollbar { display: none; }
+.bSpacer { flex: 0 0 50%; }
+.bSide, .bNow {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  padding-inline: 12px;
+  white-space: nowrap;
+  font: 800 18px/1 var(--ss-font-display);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ss-muted);
+  opacity: 0.6;
+}
+.bSide:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -4px; opacity: 1; }
+.bNow { flex: none; gap: 6px; font-size: 24px; color: var(--ss-text); opacity: 1; box-shadow: inset 0 -2px 0 var(--ss-accent); }
+.bNow .chev { width: 13px; height: 13px; }
+
+/* ---- C  Case Line: a dossier's header row, between two rules ---- */
+.cTrigger {
+  gap: 7px;
+  padding-inline: 12px 8px;
+  border-inline: var(--ss-hairline) solid var(--ss-line);
+}
+.cFile, .cSlash, .cNo, .cLinkNo, .cHead {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cFile { flex: none; font-size: 10.5px; color: var(--ss-muted); max-width: 30%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cSlash { flex: none; font-size: 12px; color: var(--ss-line-strong); }
+.cNo { flex: none; font-size: 12.5px; color: var(--ss-accent); }
+.cName { font-size: 24px; padding-top: 2px; }
+.cTrigger[aria-expanded='true'] { background: var(--ss-deep); }
+
+/* C's index: the whole screen under the header */
+.cIndex {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 99;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 18px max(16px, env(safe-area-inset-right, 0px)) 32px max(16px, env(safe-area-inset-left, 0px));
+  background: var(--ss-deep);
+  border-top: var(--ss-hairline) solid var(--ss-line-strong);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out, visibility 0s linear 0.18s;
+}
+.cIndex[data-open] { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
+.cHead {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 6px;
+  padding-bottom: 10px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ss-highlight);
+  border-bottom: var(--ss-hairline) solid var(--ss-line-strong);
+}
+.cList { margin: 0; padding: 0; list-style: none; }
+.cList li { border-bottom: var(--ss-hairline) solid var(--ss-line); }
+.cLink {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  min-height: 78px;
+  padding: 18px 12px 14px;
+  border-inline-start: 3px solid transparent;
+  color: var(--ss-muted);
+  text-decoration: none;
+}
+.cLinkNo { flex: none; font-size: 13px; color: var(--ss-muted); }
+.cLinkName { min-width: 0; font: 800 44px/0.95 var(--ss-font-display); text-transform: uppercase; overflow-wrap: anywhere; hyphens: auto; }
+.cLink:hover { color: var(--ss-text); }
+.cLink:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -2px; }
+.cLink[aria-current='page'] { color: var(--ss-text); border-inline-start-color: var(--ss-accent); background: linear-gradient(to right, var(--ss-glow), transparent 70%); }
+:global(html[dir='rtl']) .cLink[aria-current='page'] { background: linear-gradient(to left, var(--ss-glow), transparent 70%); }
+.cLink[aria-current='page'] .cLinkNo { color: var(--ss-accent); }
+
+/* ---- D  Masthead: "SpySocial Archive" over the page's name; a sheet comes down over the header ---- */
+.dTrigger { flex-direction: column; align-items: stretch; justify-content: center; gap: 3px; padding-inline: 2px 6px; }
+.dKicker {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font: 700 10.5px/1.1 var(--ss-font-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ss-muted);
+}
+.dSite { color: var(--ss-highlight); }
+.dLine { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.dName { flex: 0 1 auto; font-size: 24px; }
+.dSheet {
+  position: fixed;
+  top: 0;
+  inset-inline: 0;
+  z-index: 102;
+  padding: 0 max(16px, env(safe-area-inset-right, 0px)) 26px max(16px, env(safe-area-inset-left, 0px));
+  background: var(--ss-page);
+  border-bottom: var(--ss-hairline) solid var(--ss-line-strong);
+  border-radius: 0 0 18px 18px;
+  box-shadow: 0 30px 50px -10px rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  transform: translateY(-104%);
+  transition: transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1), visibility 0s linear 0.24s;
+}
+.dSheet[data-open] { visibility: visible; transform: none; transition-delay: 0s; }
+.dTop { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 64px; border-bottom: var(--ss-hairline) solid var(--ss-line); }
+.dClose {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  margin-inline-end: -10px;
+  padding: 0;
+  color: var(--ss-text);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.dClose svg { width: 18px; height: 18px; }
+.dClose:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -2px; }
+.dList { margin: 10px 0 0; padding: 0; list-style: none; }
+.dLink {
+  display: flex;
+  align-items: center;
+  min-height: 56px;
+  padding-inline: 14px 0;
+  border-inline-start: 2px solid var(--ss-line);
+  color: var(--ss-muted);
+  text-decoration: none;
+  font: 800 32px/1 var(--ss-font-display);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+.dLink:hover { color: var(--ss-text); }
+.dLink:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -2px; }
+.dLink[aria-current='page'] { color: var(--ss-accent); border-inline-start-color: var(--ss-accent); }
+.dHandle { display: block; width: 44px; height: 4px; margin: 18px auto 0; border-radius: 2px; background: var(--ss-line-strong); }
+
+/* ---- E  Index Rule: the name, "03/04", and the header's bottom rule cut into one segment per page ---- */
+.eTrigger { padding-inline: 2px 6px; gap: 10px; }
+.eName { font-size: 25px; padding-top: 2px; }
+.eCount { flex: none; font: 600 11px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.06em; color: var(--ss-muted); }
+.eRule {
+  position: absolute;
+  inset-inline: 0;
+  bottom: calc(var(--ss-hairline) * -1);
+  display: flex;
+  gap: 4px;
+  height: 3px;
+}
+.eRule i { flex: 1 1 0; background: var(--ss-line-strong); transition: background 0.15s; }
+.eRule i[data-on] { background: var(--ss-accent); }
+.ePanel { padding: 14px 16px 16px; }
+.eGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.eTile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  height: 100%;
+  min-height: 96px;
+  padding: 12px 12px 14px;
+  border: var(--ss-hairline) solid var(--ss-line);
+  border-top: 3px solid var(--ss-line-strong);
+  color: var(--ss-muted);
+  background: var(--ss-deep);
+  text-decoration: none;
+}
+.eTileNo { font: 600 11.5px/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.08em; color: var(--ss-muted); }
+.eTileName { font: 800 24px/0.98 var(--ss-font-display); text-transform: uppercase; overflow-wrap: anywhere; hyphens: auto; }
+.eTile:hover { color: var(--ss-text); }
+.eTile:focus-visible { outline: 2px solid var(--ss-accent); outline-offset: -2px; }
+.eTile[aria-current='page'] { color: var(--ss-text); border-top-color: var(--ss-accent); background: linear-gradient(var(--ss-glow), transparent 80%), var(--ss-deep); }
+.eTile[aria-current='page'] .eTileNo { color: var(--ss-accent); }
+
+/* Scripts with no capitals read better untracked. */
+:global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) :is(.dKicker, .cHead, .cFile) { letter-spacing: 0.04em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .chev, .scrim, .scrimOver, .panel, .cIndex, .dSheet, .eRule i { transition: none; }
+}
