@@ -1121,6 +1121,17 @@ const Terms: React.FC = () => {
         continue, such as the license for copies we keep, the disclaimers, the limits on liability and the rules
         on disputes, still apply after your account ends.
       </P>
+      {LIVE.reputation && (
+        <P>
+          Every account has a reputation (Excellent, Good, Poor, At Risk or Banned), shown in Settings and worked out from
+          its record (see our Privacy Policy). If your reputation is Banned, you can still sign in and keep your items,
+          Intel and membership, but you can't play at Play Online tables, public rooms or game nights, trade, send gifts or use the
+          Black Market, and private rooms are closed too unless the app tells you they stay open for you, until it
+          recovers or we lift it. A reputation recovers on its own as older notes fade, and nothing older than 90 days
+          counts. We may also set a reputation by hand, for example after a case; you can ask us to review it at
+          support@spysocial.app. As with a ban, a pass keeps renewing (and being charged) until you cancel it in the store.
+        </P>
+      )}
 
       <H2>14. Disclaimers</H2>
       <P>

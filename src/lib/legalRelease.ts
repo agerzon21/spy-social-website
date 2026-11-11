@@ -1506,6 +1506,24 @@ export const LIVE = {
    */
   coverage1110: true,
   /**
+   * Reputation (app repo feat/reputation-1110, server file 20261231970000_reputation_1110, STAGED; spec
+   * .claude/handoff/scratchpad/reputation-1110/SPEC.md in the app repo): every account has a reputation (Excellent,
+   * Good, Poor, At Risk or Banned) worked out on the server from what it already keeps (account age, level and games;
+   * warnings, mutes, pauses and bans; reports and whether they led to action; drawing check results; Play Online
+   * penalties) plus ONE new record: a per-account daily count of the messages the chat filter stopped and their kind
+   * (blocked word, link, zero-tolerance word), never the message, kept 90 days. The player sees only the tier
+   * (Settings); the owner sees the score and its reasons, a moderator the tier and its reasons through a case. It sets
+   * how often a player's drawings get the smart check, and Banned (by the record, or set by the owner with a note)
+   * keeps them out of Play Online, public rooms, game nights, trading, gifts and the Black Market, and private rooms
+   * unless the owner's switch opens them; they still sign in. Older notes fade to nothing over 90 days. Turns on:
+   * Privacy's Safety Information (two sentences) and a Terms 13 paragraph. Not a material change (Terms 13 already says
+   * we may limit what you can do; this names how): no TERMS_PUBLISHED or terms_version raise; LEGAL_LAST_UPDATED and
+   * PRIVACY_LAST_UPDATED move to REPUTATION_DAY (below). A server switch for every app version at once: set in LIVE,
+   * never in PRIVACY_AHEAD, the day the server file is applied live (apply slot 14, after Beta 2), with REPUTATION_DAY
+   * set to that day. Off only if the file is rolled back.
+   */
+  reputation: false,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
@@ -1691,6 +1709,9 @@ export const EXPORT_TESTERS_DAY = 'November 10, 2026'
 /** LIVE.sketchConsentRecord's day in PRIVACY_LAST_UPDATED: the day the site went up with it on (server 20261109065729 = Nov 9 01:57 ET). */
 export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
+/** LIVE.reputation's day (Terms 13, Privacy's Safety Information): the day the server file is applied and the site goes up with it on. Never earlier than November 13, 2026. */
+export const REPUTATION_DAY = 'November 14, 2026'
+
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
@@ -1703,6 +1724,8 @@ export const PRACTICE_AI_DAY = 'December 6, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.reputation
+    ? REPUTATION_DAY // legal/reputation-1110: Terms 13's reputation paragraph
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: Terms 5's practice gate, Terms 9's test-phase Intel and never-tradable list
   : LIVE.testerMarket
@@ -1775,6 +1798,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.reputation
+    ? REPUTATION_DAY // legal/reputation-1110: Safety Information's reputation and the chat filter's daily count
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: test-phase Intel, the testers' list, practice progress, the Arcade, Paper Trail for watchers
   : LIVE.exportTesters
