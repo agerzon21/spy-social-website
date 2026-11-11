@@ -8,8 +8,8 @@ import c from './displayCase.module.css'
  * A wearable Unique alone in the display case, a backdrop framed on the wall (archive-item-art-1111, owner's pick
  * Nov 11: option C, no agent on the picture), inside the copy's own foil ring (`ring`: its full tile, the inside
  * covered). With `wear` (a Unique's page): "See it worn" turns the card over to the standard agent wearing it, on the
- * same dark room, straight (no tilt), Him | Her. A mouse turns it while it hovers; a tap on the chip turns it on a
- * phone. Celebrations, locals, titles and borders never come here: their picture is the full frame (Piece's img).
+ * same dark room, straight (no tilt), Him | Her. It turns only when asked: a click or tap on the chip (Enter or Space
+ * on it by keyboard, a button), never on hover (owner Nov 11); "The item" turns it back. Celebrations, locals, titles and borders never come here: their picture is the full frame (Piece's img).
  */
 export function DisplayCase({ ring, look, alt, wear = false, eager = false }: { ring: string; look: ItemLook; alt: string; wear?: boolean; eager?: boolean }) {
   const { lang } = useLang()
@@ -17,12 +17,9 @@ export function DisplayCase({ ring, look, alt, wear = false, eager = false }: { 
   const [worn, setWorn] = useState(false)
   const [who, setWho] = useState<'m' | 'f'>('m')
   const canWear = wear && !!look.worn
-  const mouse = (e: React.PointerEvent, on: boolean) => {
-    if (canWear && e.pointerType === 'mouse') setWorn(on)
-  }
   const Ring = <img className={c.ring} src={ring} alt="" width={640} height={640} loading={eager ? 'eager' : 'lazy'} decoding="async" />
   return (
-    <span className={c.box} data-worn={worn ? '1' : undefined} onPointerEnter={(e) => mouse(e, true)} onPointerLeave={(e) => mouse(e, false)}>
+    <span className={c.box} data-worn={worn ? '1' : undefined}>
       <span className={c.card}>
         <span className={c.face} aria-hidden={worn || undefined}>
           {Ring}
