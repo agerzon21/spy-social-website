@@ -703,7 +703,10 @@ const Privacy: React.FC = () => {
           <Item label="Drawing Checks">
             In public rooms (Play Online tables and Game Nights), drawing turns in a Spy Sketch game go through an
             automated check by OpenAI for content that breaks our Community Rules, and some are also checked by a
-            second, more detailed OpenAI model. In any room, a drawing is checked by both when someone reports it. If
+            second, more detailed OpenAI model.
+            {PRIVACY.drawingMinorRooms &&
+              " The same checks also run in a private room while anyone who can see the drawing there (members, players in the game and watchers) is under 18 or hasn't told us their age: they check the drawings of players who've told us they're 18 or older. A drawing by a player under 18, or by a player who hasn't told us their age, is never sent from a private room this way. There, the app doesn't wait for you to agree before you draw. A drawing these checks find against our rules in a private room goes to one of our team; only the most serious (as in any room) is acted on by itself."}{' '}
+            In any room, a drawing is checked by both when someone reports it. If
             the checks can't run at that moment and still can't after a few more tries, that turn goes unchecked; a
             report of it still goes to a person, as every report does. The
             app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
@@ -721,7 +724,7 @@ const Privacy: React.FC = () => {
             old it is, whether it's saved, and any strikes or upheld reports). We don't use this for anything else or
             show it to other players. If the second check can't give an answer, the first check's answer is used. Our
             servers never send your name, username, email address, chat or your
-            device's IP address.{PRIVACY.audit1103 ? " These checks run the same way at every age, players under 16 included (unlike translation, see Translations): they're how we keep drawings safe, and OpenAI never receives your age." : ''} According to OpenAI, it doesn't use what it receives to train
+            device's IP address.{PRIVACY.audit1103 ? ` These checks run the same way at every age${PRIVACY.drawingMinorRooms ? ' in public rooms and for reported drawings' : ''}, players under 16 included (unlike translation, see Translations): they're how we keep drawings safe, and OpenAI never receives your age.` : ''} According to OpenAI, it doesn't use what it receives to train
             its models, and keeps it for up to 30 days to watch for misuse, unless the law requires it to keep it
             longer. The check acts by itself: it can take a turn off the drawing for everyone in the game, give a
             strike (which can lead to a pause or a ban from public rooms and Game Nights), or remove a player from the game
@@ -743,7 +746,8 @@ const Privacy: React.FC = () => {
           We use your age only to apply age limits
           {PRIVACY.openAiTranslation ? (msOff ? ', to decide whether your messages may be sent to OpenAI to be translated (see Translations)' : ', to choose which service translates your messages (see Translations)') : ''}
           {PRIVACY.practiceAi ? ', to decide whether OpenAI may rate your practice lines (see Practice Games)' : ''}
-          {PRIVACY.safetyAnswers1106 ? ', to decide whether what you write may get the chat safety check (see Chat Safety Checks)' : ''} and
+          {PRIVACY.safetyAnswers1106 ? ', to decide whether what you write may get the chat safety check (see Chat Safety Checks)' : ''}
+          {PRIVACY.drawingMinorRooms ? ', to decide whether drawings in a private room are checked (see Drawing Checks)' : ''} and
           to protect players under 18.
           In any room{PRIVACY.safetyAnswers1106 ? ', game or party' : ' or game'} where anyone, watchers included, is under 18 or hasn't told us their age, its chats and
           typed questions and answers block links, email addresses, websites, phone numbers and social media accounts
