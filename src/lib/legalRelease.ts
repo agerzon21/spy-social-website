@@ -1475,6 +1475,17 @@ export const LIVE = {
    */
   uniqueArchive: true,
   /**
+   * market-site-1110 (app repo: server file 20261231980000_market_public_1110, the ledger function's ops market /
+   * market_item on fix/market-site-1110): the Market (/market, /market/movers/<list>, /market/catalogue[/<shelf>],
+   * /market/item/<code>), the Black Market's prices for every item that isn't a Unique, for anyone without an account.
+   * Aggregates only (an item's price, its changes, trades and Intel traded per window, each day's trades, average and
+   * price), a price only with at least five counted trades; never a player, an order or a single trade. Turns on its
+   * routes, its footer link and a sentence in Privacy's Data Sharing. Before the server file and the ledger version are
+   * live, the pages say "Market opens December 8" (the function answers 400 for an op it doesn't know), so the site may
+   * go up first; set MARKET_SITE_DAY (below) to the push day.
+   */
+  marketSite: true,
+  /**
    * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
    * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
    * included; problem_reports was already in it since 20261224610000) and their entry on a beta tester list (beta_testers,
@@ -1691,6 +1702,9 @@ export const EXPORT_TESTERS_DAY = 'November 10, 2026'
 /** LIVE.sketchConsentRecord's day in PRIVACY_LAST_UPDATED: the day the site went up with it on (server 20261109065729 = Nov 9 01:57 ET). */
 export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
+/** LIVE.marketSite's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on. Never earlier than November 10, 2026. */
+export const MARKET_SITE_DAY = 'November 10, 2026'
+
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
@@ -1775,6 +1789,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.marketSite
+    ? MARKET_SITE_DAY // the Market (market-site-1110): the Black Market's public prices, aggregates only (Data Sharing)
   : LIVE.coverage1110
     ? COVERAGE_1110_DAY // legal/coverage-1110: test-phase Intel, the testers' list, practice progress, the Arcade, Paper Trail for watchers
   : LIVE.exportTesters

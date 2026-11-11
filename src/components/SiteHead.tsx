@@ -37,6 +37,8 @@ function pageOf(path: string): PageKey | null {
   if (path === '/join' || path.startsWith('/join/')) return 'join'
   // The Archive: its home, every Unique, and each Unique's own page (its own title comes from the page's Helmet).
   if (LIVE.mintedCollectibles && LIVE.uniqueArchive && (path === '/archive' || path === '/archive/uniques' || path.startsWith('/archive/u/'))) return 'archive'
+  // The Market: the Black Market's prices, every page of it (an item's page sets its own title in its Helmet).
+  if (LIVE.marketSite && (path === '/market' || path.startsWith('/market/'))) return 'market'
   const pages: Record<string, PageKey> = {
     '/support': 'faq',
     '/contact-us': 'contact',

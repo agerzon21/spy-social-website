@@ -32,6 +32,8 @@ const en = {
       ledger: "Collectibles ledger",
       /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
       archive: "The Archive",
+      /** The Market (/market and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      market: "Black Market prices",
       transparency: "Transparency report",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Game Night rules",
@@ -58,6 +60,7 @@ const en = {
       beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 12, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
       ledger: "The public record of every minted SpySocial collectible: each copy and its number. Anyone can check it.",
       archive: "Every SpySocial Unique on the record: its picture, number, attributes, how it was minted and every sale, with no player named.",
+      market: "What every SpySocial item sells for on the Black Market: prices from players’ trades, the biggest rises and falls and the most traded items, with no player named.",
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
       gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
       faq: "SpySocial help: how to play Spy Talk and Spy Sketch, Play Online, private rooms and Game Night, friends, trading, the Black Market, Intercepts, Intel, membership, your account, safety and troubleshooting.",
@@ -94,6 +97,10 @@ const en = {
   },
 
   footer: {
+
+    /** The link to the Market (LIVE.marketSite). */
+
+    market: "Black Market Prices",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparency",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

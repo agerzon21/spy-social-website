@@ -15,6 +15,8 @@ const ar: Strings = {
       ledger: "سجل المقتنيات",
       /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
       archive: "الأرشيف",
+      /** The Market (/market and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      market: "أسعار السوق السوداء",
       transparency: "تقرير الشفافية",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "قواعد ليلة اللعب",
@@ -40,6 +42,7 @@ const ar: Strings = {
       beta: 'اختبار لعب جماعي مباشر لمدة ساعة واحدة للعبة SpySocial، لعبة الاستنتاج الاجتماعي المجانية للحفلات: الخميس 12 نوفمبر 2026، من 7 إلى 8 مساءً بتوقيت شرق الولايات المتحدة. للبالغين 18+ فقط، على iPhone أو Android. يحتفظ المختبِرون بدبوس بيتا وغيره.',
       ledger: "السجل العام لكل مقتنى في SpySocial: كل نسخة ورقمها. ويمكن لأي شخص التحقق منه.",
       archive: "كل عنصر فريد في SpySocial موثّق: صورته ورقمه وسماته وكيف صُكّ وكل عملية بيع، دون ذكر أي لاعب.",
+      market: "بكم يُباع كل عنصر في SpySocial في السوق السوداء: أسعار من صفقات اللاعبين، والأكثر ارتفاعًا وانخفاضًا، والأكثر تداولًا، دون ذكر أي لاعب.",
       transparency: "كل شهر: كم من الإنتل كُسب وأُنفق وصُحّح في SpySocial، وكل حادثة وكل تغيير في القواعد، دون ذكر اسم أي لاعب.",
       gameNightRules: "قواعد ليلة اللعب الأسبوعية في SpySocial: موعدها، ومن يمكنه المشاركة، وكيف تحصل على ألقاب الليلة، واللقب الإضافي من المطوّر.",
       faq: "مساعدة SpySocial: طريقة لعب Spy Talk وSpy Sketch، واللعب عبر الإنترنت والغرف الخاصة وليلة الألعاب، والأصدقاء والمبادلات والسوق السوداء والملفات المُعترَضة والإنتل والعضوية وحسابك والأمان وحل المشكلات.",
@@ -72,6 +75,10 @@ const ar: Strings = {
   },
 
   footer: {
+
+    /** The link to the Market (LIVE.marketSite). */
+
+    market: "أسعار السوق السوداء",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "الشفافية",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

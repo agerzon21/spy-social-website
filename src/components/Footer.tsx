@@ -58,6 +58,8 @@ const Footer = () => {
     ...(betaClosed || LIVE.launchSite ? [] : [{ label: f.beta, to: '/beta' }]),
     // The roadmap, once the owner has approved it (LIVE.roadmap).
     ...(LIVE.roadmap ? [{ label: f.roadmap, to: '/roadmap' }] : []),
+    // The Black Market's prices (LIVE.marketSite).
+    ...(LIVE.marketSite ? [{ label: f.market, to: '/market' }] : []),
     { label: f.rules, to: '/rules' },
     // The Game Night rules, once they're live (LIVE.gameNightRules).
     ...(LIVE.gameNightRules ? [{ label: f.gameNightRules, to: '/game-night-rules' }] : []),

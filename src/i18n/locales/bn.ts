@@ -15,6 +15,8 @@ const bn: Strings = {
       ledger: "সংগ্রহযোগ্য আইটেমের লেজার",
       /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
       archive: "আর্কাইভ",
+      /** The Market (/market and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      market: "কালোবাজারের দাম",
       transparency: "স্বচ্ছতা প্রতিবেদন",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "গেম নাইটের নিয়ম",
@@ -40,6 +42,7 @@ const bn: Strings = {
       beta: 'SpySocial-এর 1 ঘণ্টার লাইভ গ্রুপ প্লেটেস্টে যোগ দিন। এটি একটি ফ্রি সোশ্যাল ডিডাকশন পার্টি গেম। বৃহস্পতিবার, 12 নভেম্বর 2026, সন্ধ্যা 7টা–8টা (মার্কিন ইস্টার্ন টাইম)। শুধু 18+ বয়সীদের জন্য, iPhone বা Android-এ। টেস্টাররা বিটা পিন আর আরও অনেক কিছু পাবেন।',
       ledger: "SpySocial-এর প্রতিটি সংগ্রহযোগ্য আইটেমের সর্বজনীন রেকর্ড: প্রতিটি কপি ও তার নম্বর। যে কেউ এটি যাচাই করতে পারে।",
       archive: "SpySocial-এর প্রতিটি অনন্য আইটেমের রেকর্ড: ছবি, নম্বর, বৈশিষ্ট্য, কীভাবে তৈরি হলো আর প্রতিটি বিক্রি, কোনো খেলোয়াড়ের নাম ছাড়াই।",
+      market: "SpySocial-এর প্রতিটি আইটেম কালোবাজারে কত দামে বিক্রি হয়: খেলোয়াড়দের লেনদেন থেকে দাম, সবচেয়ে বেশি ওঠা-নামা আর সবচেয়ে বেশি কেনাবেচা হওয়া আইটেম, কোনো খেলোয়াড়ের নাম ছাড়াই।",
       transparency: "প্রতি মাসে: SpySocial-এ কত ইন্টেল পাওয়া, খরচ ও সংশোধন হয়েছে, প্রতিটি ঘটনা ও নিয়মের প্রতিটি পরিবর্তন, কোনো খেলোয়াড়ের নাম ছাড়া।",
       gameNightRules: "SpySocial-এর সাপ্তাহিক গেম নাইটের নিয়ম: কখন হয়, কারা অংশ নিতে পারে, রাতের টাইটেলগুলো কীভাবে পাওয়া যায় এবং ডেভেলপারের বোনাস টাইটেল।",
       faq: "SpySocial সহায়তা: Spy Talk ও Spy Sketch কীভাবে খেলবেন, অনলাইনে খেলা, প্রাইভেট রুম ও গেম নাইট, বন্ধু, লেনদেন, কালোবাজার, ইন্টারসেপ্ট, ইন্টেল, মেম্বারশিপ, আপনার অ্যাকাউন্ট, নিরাপত্তা আর সমস্যার সমাধান।",
@@ -72,6 +75,10 @@ const bn: Strings = {
   },
 
   footer: {
+
+    /** The link to the Market (LIVE.marketSite). */
+
+    market: "কালোবাজারের দাম",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "স্বচ্ছতা",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

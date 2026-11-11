@@ -1387,6 +1387,8 @@ const Privacy: React.FC = () => {
         {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}
         {PRIVACY.blackMarket &&
           " The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling."}
+        {PRIVACY.marketSite &&
+          " Our website's Market (spysocial.app/market) shows anyone, without an account, totals worked out from Black Market trades: each item's price (an average of its recent trades), how it changed, how many times it was traded and how much Intel was spent on it, each day and over periods of up to 180 days. It shows a price only when at least five trades make it, and never a player, an offer or a single trade."}
         {/* LIVE.socialFeatures (legalRelease). */}
         {PRIVACY.socialFeatures &&
           " Your friends see your display name, your agent and, if you allow it, whether you're online now. An adult's public profile (see Follows and Profiles above) can be opened by any player; a private profile, and the profile of any player under 18, can't be opened by other players. A party is marked at the table for everyone there, and its members see each other by display name."}

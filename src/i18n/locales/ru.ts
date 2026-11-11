@@ -15,6 +15,8 @@ const ru: Strings = {
       ledger: "Реестр коллекционных предметов",
       /** The Archive (/archive, /archive/uniques, /archive/u/<item>/<serial>), live with LIVE.mintedCollectibles. */
       archive: "Архив",
+      /** The Market (/market and its pages), live with LIVE.marketSite: the Black Market's prices. */
+      market: "Цены Чёрного рынка",
       transparency: "Отчёт о прозрачности",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
       gameNightRules: "Правила игрового вечера",
@@ -40,6 +42,7 @@ const ru: Strings = {
       beta: 'Живой групповой плейтест SpySocial — бесплатной компанейской игры на социальную дедукцию — на 1 час: четверг, 12 ноября 2026 г., 19:00–20:00 по восточному времени США. Только 18+, iPhone или Android. Тестеры сохранят бета-значок и не только.',
       ledger: "Публичный реестр коллекционных предметов SpySocial: каждая копия и её номер. Проверить его может любой.",
       archive: "Каждый уникальный предмет SpySocial на учёте: изображение, номер, свойства, как он выпущен и все продажи, без имён игроков.",
+      market: "За сколько продаётся каждый предмет SpySocial на Чёрном рынке: цены по сделкам игроков, что дорожает и дешевеет, что продают чаще всего. Без имён игроков.",
       transparency: "Каждый месяц: сколько разведданных в SpySocial выдано, потрачено и исправлено, все инциденты и все изменения правил. Без имён игроков.",
       gameNightRules: "Правила еженедельного игрового вечера SpySocial: когда он проходит, кто может участвовать, как получить титулы вечера и бонусный титул от разработчика.",
       faq: "Помощь SpySocial: как играть в Spy Talk и Spy Sketch, «Играть онлайн», приватные комнаты и игровой вечер, друзья, обмен, «Чёрный рынок», перехваты, разведданные, подписка, аккаунт, безопасность и решение проблем.",
@@ -72,6 +75,10 @@ const ru: Strings = {
   },
 
   footer: {
+
+    /** The link to the Market (LIVE.marketSite). */
+
+    market: "Цены Чёрного рынка",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Прозрачность",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

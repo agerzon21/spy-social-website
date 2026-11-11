@@ -58,6 +58,11 @@ const Transparency = page(() => import('./pages/Transparency'))
 const ArchiveHome = page(() => import('./pages/archive/ArchiveHome'))
 const ArchiveBrowse = page(() => import('./pages/archive/ArchiveBrowse'))
 const ArchiveItem = page(() => import('./pages/archive/ArchiveItem'))
+// The Market (market-site-1110): the Black Market's prices, read from the ledger function (LIVE.marketSite).
+const MarketHome = page(() => import('./pages/market/MarketHome'))
+const MarketMovers = page(() => import('./pages/market/MarketMovers'))
+const MarketCatalogue = page(() => import('./pages/market/MarketCatalogue'))
+const MarketItem = page(() => import('./pages/market/MarketItem'))
 // The Beta 2 playtester page (linked from Reddit and Discord), its own chunk.
 const Beta = page(() => import('./pages/Beta'))
 
@@ -96,6 +101,12 @@ function App() {
               {LIVE.mintedCollectibles && LIVE.uniqueArchive && <Route path="/archive" element={<Layout><ArchiveHome /></Layout>} />}
               {LIVE.mintedCollectibles && LIVE.uniqueArchive && <Route path="/archive/uniques" element={<Layout><ArchiveBrowse /></Layout>} />}
               {LIVE.mintedCollectibles && LIVE.uniqueArchive && <Route path="/archive/u/:item/:serial" element={<Layout><ArchiveItem /></Layout>} />}
+              {LIVE.marketSite && <Route path="/market" element={<Layout><MarketHome /></Layout>} />}
+              {LIVE.marketSite && <Route path="/market/movers/:list" element={<Layout><MarketMovers /></Layout>} />}
+              {LIVE.marketSite && <Route path="/market/movers" element={<Navigate to="/market/movers/rises" replace />} />}
+              {LIVE.marketSite && <Route path="/market/catalogue" element={<Layout><MarketCatalogue /></Layout>} />}
+              {LIVE.marketSite && <Route path="/market/catalogue/:cat" element={<Layout><MarketCatalogue /></Layout>} />}
+              {LIVE.marketSite && <Route path="/market/item/:code" element={<Layout><MarketItem /></Layout>} />}
               {LIVE.transparencyPage && <Route path="/transparency" element={<Layout><Transparency /></Layout>} />}
               <Route path="/child-safety" element={<Layout><ChildSafety /></Layout>} />
               <Route path="/contact-us" element={<Layout><Support /></Layout>} />
