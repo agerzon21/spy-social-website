@@ -33,6 +33,9 @@ const I1: PublishedIncident = {
 /**
  * I-2, Test-phase Intel (app server 20261109110058_test_phase_intel, published 2026-11-09; the sweep 20261109122429):
  * word for word the economy_incidents row (title, summary, rule_text). Shown while LIVE.coverage1110 is on.
+ * The row's rule says "50,000 Intel, once" and can't change (published incidents are frozen); the testers' amount was raised
+ * to 100,000 by 20261225220000_test_phase_grant_100k (live 20261111040944, Nov 11 04:09 UTC = Nov 10 ET), so the rule here
+ * says 100,000 and when it was raised (every tester already given 50,000 got the other 50,000 under the same incident).
  */
 const I2: PublishedIncident = {
   id: 'I-2',
@@ -41,7 +44,7 @@ const I2: PublishedIncident = {
   published: 'November 9, 2026',
   summary:
     'While SpySocial is being tested, Intel is given to the developer\'s accounts and to every tester who signs in to a test version before November 13, so the Black Market and trades can be tried for real. All of it is taken back at launch, on December 7: nobody keeps any of it, and nothing it paid for stays.',
-  rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 01:30 UTC: 50,000 Intel, once. The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
+  rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 01:30 UTC: 100,000 Intel, once (published as 50,000; raised to 100,000 on November 10, 2026, when item values went up, and testers already given 50,000 got the other 50,000). The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
 }
 
 /** Newest first. */
