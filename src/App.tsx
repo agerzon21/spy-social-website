@@ -45,6 +45,8 @@ const Support = page(() => import('./pages/Support'))
 const FAQ = page(() => import('./pages/FAQ'))
 const Join = page(() => import('./pages/Join'))
 const JoinEvent = page(() => import('./pages/JoinEvent'))
+// A Unique's holder on the Archive links here (archive-holder-1110): the way into the app's profile. Nothing from the server.
+const Profile = page(() => import('./pages/Profile'))
 const WhatsNew = page(() => import('./pages/WhatsNew'))
 const DeleteAccount = page(() => import('./pages/DeleteAccount'))
 const ConfirmSuccess = page(() => import('./pages/ConfirmSuccess'))
@@ -140,6 +142,7 @@ function App() {
               <Route path="/join/f/:token" element={<Layout><Join /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
               <Route path="/join" element={<Layout><Join /></Layout>} />
+              <Route path="/profile/:username" element={<Layout><Profile /></Layout>} />
               <Route path="/agree/:token" element={<Layout><Agree /></Layout>} />
               </>)}
               {/* A page on another host goes there (OffHost); anything else is the 404 page. */}

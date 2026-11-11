@@ -311,7 +311,9 @@ const Privacy: React.FC = () => {
             as totals across all players (and at a player's own Intercepts only to answer a question or check a
             problem). It's kept with your account and deleted with it, and it doesn't leave our servers
             {PRIVACY.mintedCollectibles
-              ? ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
+              ? PRIVACY.archiveHolders
+                ? ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and a Unique's page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger)."
+                : ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
               : '.'}
           </Item>
         )}
@@ -330,7 +332,9 @@ const Privacy: React.FC = () => {
             code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger
             shows only that it moved from one holder code to another, never who traded or sold it, or the price.{' '}
             {PRIVACY.uniqueArchive &&
-              "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. "}
+              (PRIVACY.archiveHolders
+                ? "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its past holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. Its holder today is shown by username, with a link to their profile, only if they are an adult whose profile is public (see Follows and Profiles); for anyone else (a player under 18, a player whose age we don't know, or anyone who made their profile private in Privacy & Friends) the page says Held privately. Make your profile private and your username leaves those pages within about a minute. "
+                : "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. ")}
             Each
             day only a fingerprint of the ledger is sent to GitHub and the Internet Archive, with no personal data in
             it.{' '}
@@ -432,7 +436,7 @@ const Privacy: React.FC = () => {
             who allows follows; the people you follow, and the new packs and showcase changes of the people you follow,
             make up your Following feed. On your followers list you see by name only the followers whose own profiles
             are public; the rest are a number{PRIVACY.audit1103 ? ', and you can search those names' : ''}. Adults are told once, the first time their profile is public, and can
-            make it private at any time in Privacy &amp; Friends. Players under 18 have no public profile, can't be
+            make it private at any time in Privacy &amp; Friends.{PRIVACY.mintedCollectibles && PRIVACY.uniqueArchive && PRIVACY.archiveHolders ? " While your profile is public, your username also shows on the Archive's page of each Unique you hold, for anyone to see (see Collectibles and the public ledger)." : ''} Players under 18 have no public profile, can't be
             followed and aren't named on anyone's followers list, and a private profile, or any player under 18, makes
             their Community Packs anonymous.
           </Item>
@@ -1386,7 +1390,7 @@ const Privacy: React.FC = () => {
           ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosShown(PRIVACY) ? ', with no profile photo' : ''}.`}
         {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}
         {PRIVACY.blackMarket &&
-          " The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling."}
+          ` The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling${PRIVACY.archiveHolders && PRIVACY.uniqueArchive ? " (a Unique's page on the Archive does name its holder today when their profile is public: see Collectibles and the public ledger)" : ''}.`}
         {PRIVACY.marketSite &&
           " Our website's Market (market.spysocial.app) shows anyone, without an account, totals worked out from Black Market trades: each item's price (an average of its recent trades), how it changed, how many times it was traded and how much Intel was spent on it, each day and over periods of up to 180 days. It shows a price only when at least five trades make it, and never a player, an offer or a single trade."}
         {/* LIVE.socialFeatures (legalRelease). */}

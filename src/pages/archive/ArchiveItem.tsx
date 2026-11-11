@@ -11,6 +11,7 @@ import {
   attributesOf,
   codenameOf,
   fetchUnique,
+  holderOf,
   nameOf,
   serialText,
   swatchOf,
@@ -21,6 +22,8 @@ import {
 import { ArchiveState, BetaNotice, FloatDigits, Piece } from './ArchiveBits'
 import { dayText, fmt, setText, useArchive } from './useArchive'
 import s from './archive.module.css'
+import hs from './holder.module.css'
+import { LIVE } from '../../lib/legalRelease'
 
 const ITEM = /^[a-z0-9][a-z0-9_.]{0,127}$/
 const SERIAL = /^[1-9]\d{0,8}$/
@@ -31,7 +34,8 @@ const EVENT_CLASS: Record<string, string | undefined> = { minted: s.evMinted, so
  * One Unique's own page (archive.spysocial.app/u/<item>/<serial>, which the app's "View in the Archive" button
  * opens): its picture, number, codename, set and season, its
  * certificate (the float and what each digit picks), how it was minted, whether it's for sale, and its ledger history
- * with sale prices in Intel. Never a player: holders are numbered, nothing more.
+ * with sale prices in Intel. Past holders are numbered, nothing more; the holder today is named by @username, linked to
+ * their profile, only when the server names them (LIVE.archiveHolders, lib/archive holderOf), else "Held privately".
  */
 const ArchiveItem = () => {
   const { item = '', serial: serialParam = '' } = useParams()
@@ -89,6 +93,9 @@ const ArchiveItem = () => {
         ? t.fromTradeUp(fmt(u.inputs, locale))
         : t.fromOther
   const rule = u?.how ? u.how[lang] ?? u.how.en ?? '' : ''
+  // The holder today (archive-holder-1110): only with the switch on and a server that sends the holder keys.
+  const holder = u && LIVE.archiveHolders ? holderOf(u) : ({ kind: 'unknown' } as const)
+  const namesHolders = !!u && LIVE.archiveHolders && u.holder_handle !== undefined
 
   return (
     <div className={`${s.page} ${s.foil}`}>
@@ -126,10 +133,23 @@ const ArchiveItem = () => {
             {u ? (
               <div className={s.statusBox}>
                 <div className={s.statusTop}>
-                  <span className={`${s.statusPill} ${u.status === 'listed' ? s.listed : u.status === 'burned' ? s.burned : ''}`}>
-                    <i aria-hidden />
-                    {t.status[u.status]}
-                  </span>
+                  {/* Held, with the holder known (archive-holder-1110): "Held by @name" or "Held privately" is the status itself. */}
+                  {u.status === 'held' && holder.kind === 'named' ? (
+                    <span className={hs.top}>
+                      <span className={s.statusPill}>
+                        <i aria-hidden />
+                        {t.heldBy}
+                      </span>
+                      <a className={`${hs.handle} ${hs.big}`} href={holder.url} rel="nofollow" aria-label={t.profileOf(`@${holder.handle}`)}>
+                        @{holder.handle}
+                      </a>
+                    </span>
+                  ) : (
+                    <span className={`${s.statusPill} ${u.status === 'listed' ? s.listed : u.status === 'burned' ? s.burned : ''}`}>
+                      <i aria-hidden />
+                      {u.status === 'held' && holder.kind === 'private' ? t.heldPrivately : t.status[u.status]}
+                    </span>
+                  )}
                   {u.status === 'listed' && u.listing ? (
                     <span className={s.price}>
                       {fmt(u.listing.price, locale)}
@@ -138,6 +158,17 @@ const ArchiveItem = () => {
                   ) : null}
                 </div>
                 {u.status === 'listed' ? <p>{t.buyHow}</p> : null}
+                {/* For sale: who is selling it, under the price. */}
+                {u.status === 'listed' && holder.kind === 'named' ? (
+                  <div className={hs.line}>
+                    <span className={hs.label}>{t.heldBy}</span>
+                    <a className={hs.handle} href={holder.url} rel="nofollow" aria-label={t.profileOf(`@${holder.handle}`)}>
+                      @{holder.handle}
+                    </a>
+                  </div>
+                ) : u.status === 'listed' && holder.kind === 'private' ? (
+                  <div className={`${hs.line} ${hs.private}`}>{t.heldPrivately}</div>
+                ) : null}
                 {u.status === 'burned' ? (
                   <p>{t.retiredHow(t.burnWhy[(u.history.find((e) => e.event === 'burned')?.burn ?? 'other') as 'trade_up' | 'shred' | 'other'])}</p>
                 ) : null}
@@ -222,7 +253,7 @@ const ArchiveItem = () => {
             <DisplayHeading id="history-title" size={3}>
               {t.history}
             </DisplayHeading>
-            <p className={s.historyNote}>{t.historyNote}</p>
+            <p className={s.historyNote}>{namesHolders ? t.historyNoteNamed : t.historyNote}</p>
             <div className={s.summary}>
               <div><b>{fmt(u.holders, locale)}</b><span>{t.holders}</span></div>
               <div><b>{fmt(sales.length, locale)}</b><span>{t.sales}</span></div>

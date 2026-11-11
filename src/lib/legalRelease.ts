@@ -1486,6 +1486,17 @@ export const LIVE = {
    */
   marketSite: true,
   /**
+   * archive-holder-1110 (owner Nov 10; app repo server file 20261231997000_archive_holder_1110, mint_unique_public's
+   * holder_handle / profile_url): a Unique's Archive page names its holder today, "Held by @username" linked to
+   * spysocial.app/profile/<username> (pages/Profile: the way into the app's profile), or says "Held privately". The
+   * server names only an adult (by birth year) whose profile is public, never a minor, an account with no birth year, a
+   * guest, a banned or paused account or the test fleet. Turns on the page's holder line and Privacy's sentence in
+   * "Collectibles and the public ledger". Push the site with it on only after the server file is applied (no ledger
+   * function redeploy: it passes the answer through), and set ARCHIVE_HOLDERS_DAY to that day. ON Nov 11 (owner GO,
+   * site first: until the server file is live the key is absent and the page keeps its old line, holderOf unknown).
+   */
+  archiveHolders: true,
+  /**
    * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
    * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
    * included; problem_reports was already in it since 20261224610000) and their entry on a beta tester list (beta_testers,
@@ -1714,6 +1725,8 @@ export const SKETCH_CONSENT_RECORD_DAY = 'November 9, 2026'
 
 /** LIVE.marketSite's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const MARKET_SITE_DAY = 'November 10, 2026'
+/** LIVE.archiveHolders's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231997000 is live). Never earlier than November 10, 2026. */
+export const ARCHIVE_HOLDERS_DAY = 'November 11, 2026'
 
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
@@ -1799,6 +1812,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.archiveHolders
+    ? ARCHIVE_HOLDERS_DAY // the Archive names a Unique's holder today when their profile is public (archive-holder-1110)
   : LIVE.marketSite
     ? MARKET_SITE_DAY // the Market (market-site-1110): the Black Market's public prices, aggregates only (Data Sharing)
   : LIVE.coverage1110

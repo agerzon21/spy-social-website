@@ -1,8 +1,11 @@
 /**
  * The Archive (archive.spysocial.app, its own host: lib/siteHost; www.spysocial.app/archive sends there): every Unique, read from the app's
  * ledger function without an account (app repo supabase/functions/ledger, ops `uniques` and `unique`: the database's
- * mint_unique_public, 20261225300000). Its answers never carry a player: no name, id or tag; a copy's holders are
- * numbered by their first appearance on its own ledger lines. Cached 60 s at the function; a busy answer is tried again.
+ * mint_unique_public, 20261225300000). Its answers never carry a player's id or tag; a copy's holders are numbered by
+ * their first appearance on its own ledger lines. One Unique's page (op unique) may name its holder today by @username,
+ * only when the server allows it (archive-holder-1110: an adult with a public profile; never a minor, an account with no
+ * birth year, a guest, a banned or paused account or the test fleet): holderOf. Cached 60 s at the function; a busy
+ * answer is tried again.
  *
  * The words and tables come from the app's own code (public/archive/data/<lang>.json, scripts/archive-data/run.sh):
  * a copy's float read digit by digit gives its attributes exactly as the app's certificate lists them, and its serial
@@ -92,7 +95,33 @@ export type ArchiveUnique = {
   status_at: string | null
   listing: { price: number; listed_at: string } | null
   holders: number
+  /**
+   * The holder today (archive-holder-1110, server 20261231997000_archive_holder_1110): their username when the server
+   * names them, null when it doesn't (private, under 18, unknown age...). Absent from a server before that file.
+   */
+  holder_handle?: string | null
+  /** https://spysocial.app/profile/<username> alongside holder_handle, else null. */
+  profile_url?: string | null
   history: HistoryEvent[]
+}
+
+/** A username as the app allows it (update_profile): the only kind the page shows or links. */
+const HANDLE = /^[A-Za-z0-9_.]{3,30}$/
+const PROFILE_URL = /^https:\/\/spysocial\.app\/profile\/([A-Za-z0-9_.]{3,30})$/
+
+/**
+ * Who holds a Unique, as its page says it: 'unknown' (a server before the holder keys, or a retired copy: the page says
+ * what it said before), 'private' (Held privately) or 'named' with the handle and its profile link. Anything that
+ * doesn't look right reads as private: the page never shows a name the server didn't send in the expected shape.
+ */
+export type HolderView = { kind: 'unknown' } | { kind: 'private' } | { kind: 'named'; handle: string; url: string }
+
+export function holderOf(u: Pick<ArchiveUnique, 'status' | 'holder_handle' | 'profile_url'>): HolderView {
+  if (u.status === 'burned' || !('holder_handle' in u) || u.holder_handle === undefined) return { kind: 'unknown' }
+  const handle = u.holder_handle
+  if (typeof handle !== 'string' || !HANDLE.test(handle)) return { kind: 'private' }
+  const m = typeof u.profile_url === 'string' ? PROFILE_URL.exec(u.profile_url) : null
+  return m && m[1] === handle ? { kind: 'named', handle, url: u.profile_url as string } : { kind: 'private' }
 }
 
 /** The ledger can't be read now (busy, offline, or the Archive's reads aren't on the server yet). */

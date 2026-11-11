@@ -46,7 +46,7 @@
       ]
     },
     {
-      "source": "/(join|reset-password|confirm-success)(.*)",
+      "source": "/(join|reset-password|confirm-success|profile)(.*)",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -135,7 +135,7 @@
       "permanent": false
     },
     {
-      "source": "/((?:join|agree)(?:/.*)?)",
+      "source": "/((?:join|agree|profile)(?:/.*)?)",
       "has": [
         {
           "type": "host",
