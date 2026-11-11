@@ -396,7 +396,9 @@ const HOST_LATE_FONTS = /<link rel="preload" href="\/static\/barlow-(600|700)-la
  * for this address, the picture indexes, the Archive's tables in the reader's language) and keeps each promise in
  * window.__ssEarly under its address, where lib/early.ts hands it to the app's own read of that address; and it
  * modulepreloads the reader's language's chunks (the site's words, the page's words, the item lines). Same addresses as
- * the app builds them (lib/archive.ts, lib/market.ts), or the app just fetches again.
+ * the app builds them (lib/archive.ts, lib/market.ts), or the app just fetches again. A moving backdrop's still (Vault
+ * Zero, Panel Break) isn't preloaded: it only stands in while the drawing engine loads, and fetched early it slowed the
+ * page's scripts (speed2-1111).
  */
 function earlyScript(host, ledger, langChunks, routes) {
     const reads = host === 'archive'
@@ -404,7 +406,7 @@ function earlyScript(host, ledger, langChunks, routes) {
   if(m=/^\/u\/([^/]+)\/(\d+)\/?$/.exec(P)){l('op=unique&item='+encodeURIComponent(decodeURIComponent(m[1]))+'&serial='+Number(m[2]));
     var key='u-'+decodeURIComponent(m[1])+'-'+Number(m[2]);
     var lv=/^background_(vault_zero|panel_break)$/.test(decodeURIComponent(m[1]));
-    [['art','/archive/art/'],['item','/archive/item/']].forEach(function(d){E['/archive/'+d[0]+'/index.json'].then(function(r){return r.clone().json()}).then(function(k){if(k.indexOf(key)>=0){var i=document.createElement('link');i.rel='preload';i.as='image';i.href=d[1]+key+'.webp';i.fetchPriority=lv&&d[0]=='item'?'low':'high';document.head.appendChild(i)}},function(){})})}
+    [['art','/archive/art/'],['item','/archive/item/']].forEach(function(d){if(lv&&d[0]=='item')return;E['/archive/'+d[0]+'/index.json'].then(function(r){return r.clone().json()}).then(function(k){if(k.indexOf(key)>=0){var i=document.createElement('link');i.rel='preload';i.as='image';i.href=d[1]+key+'.webp';i.fetchPriority='high';document.head.appendChild(i)}},function(){})})}
   else if(/^\/(uniques\/?)?$/.test(P))l('op=uniques');`
         : String.raw `if(m=/^\/item\/([^/]+)\/?$/.exec(P))l('op=market_item&code='+encodeURIComponent(decodeURIComponent(m[1]))+'&lang='+encodeURIComponent(L));
   else l('op=market&lang='+encodeURIComponent(L));`;
