@@ -44,9 +44,9 @@
 .chip svg { width: 1.15em; height: 1.15em; fill: none; stroke: #c9a24a; stroke-width: 2.2; stroke-linecap: round; }
 .chip:hover, .chip:focus-visible { border-color: #c9a24a; }
 .chipSee { right: 12%; top: 12%; }
-.chipBack { left: 12%; top: 12%; }
+.chipBack { right: 12%; top: 12%; }
 .toggle {
-  position: absolute; left: 50%; bottom: 12%; transform: translateX(-50%); display: flex; padding: 3px;
+  position: absolute; right: 12%; bottom: 12%; display: flex; padding: 3px;
   background: rgba(16, 21, 34, 0.84); border: 1px solid rgba(201, 162, 74, 0.6); border-radius: 999px;
 }
 .toggle button { padding: 0.55em 1.1em; border: 0; border-radius: 999px; background: transparent; color: #f2e9d0; cursor: pointer; }

@@ -26,8 +26,8 @@ const WEARERS = [
   { v: 1, skin: 'skin_honey', hair: 'hair_locs', hair_color: 'hair_color_silver', face: 'face_cool', outfit: 'outfit_turtleneck', outfit_color: 'outfit_color_yellow' },
 ];
 const PLATE = '#8e99ae';
-// "See it worn" frames the item the app's way (lib/avatar/slotCrop): a hat the head, glasses the face, an outfit the torso.
-const CROP = { hat: 'hat', glasses: 'eyewear', outfit: 'outfit', accessory: 'bust' };
+// The whole bust for every kind (QA Nov 11: the app's tight crops cut the head under glasses and the hat's crown on the site).
+const CROP = { hat: 'bust', glasses: 'bust', outfit: 'bust', accessory: 'bust' };
 // Each wearer on its own spotlight, so the body's rim and cast (its colour) never agree across them.
 const PLATES = process.env.PLATES ? process.env.PLATES.split(',') : [PLATE, PLATE, PLATE];
 
