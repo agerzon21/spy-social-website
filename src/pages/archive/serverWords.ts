@@ -41,10 +41,10 @@ const LINES: Record<LangCode, Lines> = {
   fr: {
     icUnique: (p) => `Un Unique, issu d’une interception ou d’une fusion en ${p}`,
     ic: (p) => `Issu d’une interception ou d’une fusion en ${p}`,
-    gnPlayed: (p) => `Partie comptée : ${p}`,
-    gnLocal: (p) => `Victoire en Local : ${p}`,
-    gnSpy: (p) => `Victoire en espion : ${p}`,
-    gnBonus: (p) => `Choix du développeur : ${p}`,
+    gnPlayed: (p) => `Partie comptée\u00a0: ${p}`,
+    gnLocal: (p) => `Victoire en Local\u00a0: ${p}`,
+    gnSpy: (p) => `Victoire en espion\u00a0: ${p}`,
+    gnBonus: (p) => `Choix du développeur\u00a0: ${p}`,
   },
   'pt-BR': {
     icUnique: (p) => `Um Único, de uma Interceptação ou de uma fusão: ${p}`,
