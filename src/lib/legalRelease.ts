@@ -1521,7 +1521,17 @@ export const LIVE = {
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
   oldAppsInUse: true,
+  /**
+   * economy-values-1110, ladder L (app repo nov03/economy-values-1110.md; server 20261225200000_economy_values): what an
+   * item shreds for, which is also its lowest Black Market price, from 5 / 15 / 40 / 100 / 250 / 600 to 40 / 100 / 250 /
+   * 650 / 1,800 / 5,000 Intel (Common to Legendary; a Unique's lowest price follows its Legendary). Turns on its row in
+   * Transparency's rule changes. Live on the server since 20261111040938 (Nov 11 04:09 UTC = November 10 in New York).
+   */
+  economyValuesL: true,
 }
+
+/** LIVE.economyValuesL's day in Transparency's rule changes: the New York day 20261225200000 was applied (live 20261111040938). */
+export const ECONOMY_VALUES_L_DAY = 'November 10, 2026'
 
 /** A set of switches: LIVE, or PRIVACY on the pages that share the Privacy Policy's data facts. */
 export type Switches = typeof LIVE

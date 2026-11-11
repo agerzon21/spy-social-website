@@ -3,7 +3,7 @@
 // database's row once it's published there, and never changes after (the database refuses to). Add a new one the day
 // it's published in the Owner Console.
 
-import { INTERCEPTS_IN_TRADES_DAY, LIVE } from './legalRelease'
+import { ECONOMY_VALUES_L_DAY, INTERCEPTS_IN_TRADES_DAY, LIVE } from './legalRelease'
 
 export type PublishedIncident = {
   id: string
@@ -145,8 +145,19 @@ const MARKET_NOV6: { day: string; what: string; from: string; to: string }[] = [
   { day: 'November 6, 2026', what: 'what closes open Black Market offers and listings', from: 'a trading pause we set, or a change of email we make', to: 'also your own lock, the pause after a reversal, a new device or a change of sign-in, a ban, a suspension and a fair-play hold' },
 ]
 
+/**
+ * Item values up, ladder L (owner 2026-11-09; app server 20261225200000_economy_values, live 20261111040938 = Nov 10 ET):
+ * shown while LIVE.economyValuesL is on.
+ * The November 1 row's Intercept minimums stay as history; the new ones are in this row.
+ */
+const ECONOMY_VALUES_L: { day: string; what: string; from: string; to: string }[] = [
+  { day: ECONOMY_VALUES_L_DAY, what: 'what an item shreds for, which is also its lowest Black Market price (Common, Uncommon, Rare, Epic, Mythic, Legendary; a Unique\'s lowest price is its Legendary\'s)', from: '5, 15, 40, 100, 250 and 600 Intel', to: '40, 100, 250, 650, 1,800 and 5,000 Intel' },
+  { day: ECONOMY_VALUES_L_DAY, what: 'the lowest Black Market price of an unopened Intercept, from the lowest tier to the highest (what its items shred for, on average)', from: '8, 15, 50, 113 and 168 Intel', to: '63, 107, 340, 799 and 1,248 Intel' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.economyValuesL ? ECONOMY_VALUES_L : []),
   ...(LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES : []),
   ...MARKET_NOV6,
   ...TEST_PHASE_NOV,
