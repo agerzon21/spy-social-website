@@ -58,6 +58,10 @@ const MarketItem = () => {
       {state === 'soon' || state === 'busy' ? <MarketState kind={state} onRetry={retry} /> : null}
       {state === 'ok' && !it ? (
         <div className={a.empty}>
+          {/* No such item: answered with 200 like every route, so kept out of search (site sweep Nov 12). */}
+          <Helmet>
+            <meta name="robots" content="noindex" />
+          </Helmet>
           <p style={{ margin: 0 }}>{w.item.notFound}</p>
           <Link to="/market/catalogue" className={`${a.linkBtn} ${s.notFoundLink}`}>{w.item.notFoundLink}</Link>
         </div>

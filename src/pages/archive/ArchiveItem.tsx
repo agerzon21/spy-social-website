@@ -72,6 +72,10 @@ const ArchiveItem = () => {
   if (state === 'missing') {
     return (
       <div className={`${s.page} ${s.foil}`}>
+        {/* No such copy: answered with 200 like every route, so kept out of search (site sweep Nov 12). */}
+        <Helmet>
+          <meta name="robots" content="noindex" />
+        </Helmet>
         <div className={ui.wrap}>
           <div className={s.state}>
             <DisplayHeading as="h1" size={3}>
