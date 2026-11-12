@@ -153,6 +153,10 @@ const en = {
     /** On an Android phone, under Open in SpySocial. */
     noAppAndroid: "Don't have the app? Get it",
     playInBrowser: 'Play in Your Browser',
+    /** lib/lazyPage: a page that wouldn't load after three reloads (components/ReloadNotice). */
+    reloadTitle: 'Please reload',
+    reloadText: 'This page didn\'t finish loading. Reloading usually fixes it.',
+    reload: 'Reload',
   },
 
   /** The store badges: the small line over the store's name, as each store words its badge in the language. */

@@ -125,6 +125,9 @@ const ptBR: Strings = {
     noAppIos: 'Não tem o app? Baixe',
     noAppAndroid: 'Não tem o app? Baixe',
     playInBrowser: 'Jogue no navegador',
+    reloadTitle: 'Recarregue a página',
+    reloadText: 'A página não terminou de carregar. Recarregar costuma resolver.',
+    reload: 'Recarregar',
   },
 
   badges: {

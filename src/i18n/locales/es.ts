@@ -125,6 +125,9 @@ const es: Strings = {
     noAppIos: '¿No tienes la app? Descárgala',
     noAppAndroid: '¿No tienes la app? Consíguela',
     playInBrowser: 'Juega en tu navegador',
+    reloadTitle: 'Vuelve a cargar la página',
+    reloadText: 'La página no terminó de cargarse. Volver a cargarla suele solucionarlo.',
+    reload: 'Volver a cargar',
   },
 
   badges: {

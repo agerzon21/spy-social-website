@@ -1,0 +1,16 @@
+/* lib/lazyPage's last word: a page part that wouldn't load (components/ReloadNotice). */
+.box {
+  max-width: 520px;
+  margin: clamp(40px, 10vh, 96px) auto;
+  padding: 28px 22px;
+  border: var(--ss-hairline) solid var(--ss-line-strong);
+  background: var(--ss-surface);
+  text-align: center;
+  color: var(--ss-body);
+}
+.text {
+  margin: 0 auto 22px;
+  max-width: 40ch;
+  font-size: 17px;
+  line-height: 1.5;
+}

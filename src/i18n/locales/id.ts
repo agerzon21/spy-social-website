@@ -125,6 +125,9 @@ const id: Strings = {
     noAppIos: 'Belum punya aplikasinya? Download',
     noAppAndroid: 'Belum punya aplikasinya? Unduh',
     playInBrowser: 'Main di browser',
+    reloadTitle: 'Muat ulang halaman',
+    reloadText: 'Halaman ini belum selesai dimuat. Memuat ulang biasanya bisa mengatasinya.',
+    reload: 'Muat ulang',
   },
 
   badges: {

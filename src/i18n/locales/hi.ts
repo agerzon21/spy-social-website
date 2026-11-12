@@ -124,6 +124,9 @@ const hi: Strings = {
     noAppIos: 'ऐप नहीं है? डाउनलोड करें',
     noAppAndroid: 'ऐप नहीं है? यहाँ से पाएँ',
     playInBrowser: 'ब्राउज़र में खेलें',
+    reloadTitle: 'कृपया पेज रीलोड करें',
+    reloadText: 'यह पेज पूरा लोड नहीं हुआ। रीलोड करने से आमतौर पर ठीक हो जाता है।',
+    reload: 'रीलोड करें',
   },
 
   badges: {

@@ -123,6 +123,9 @@ const zhHans: Strings = {
     noAppIos: '还没有安装应用？去下载',
     noAppAndroid: '还没有安装应用？去下载',
     playInBrowser: '在浏览器中玩',
+    reloadTitle: '请重新加载',
+    reloadText: '此页面未能完整加载。重新加载通常可以解决。',
+    reload: '重新加载',
   },
 
   badges: {

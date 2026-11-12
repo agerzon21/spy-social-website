@@ -124,6 +124,9 @@ const fr: Strings = {
     noAppIos: "Pas encore l'appli\u00A0? Télécharge-la",
     noAppAndroid: "Pas encore l'appli\u00A0? Installe-la",
     playInBrowser: 'Jouer dans le navigateur',
+    reloadTitle: 'Rechargez la page',
+    reloadText: 'La page ne s’est pas chargée entièrement. La recharger règle généralement le problème.',
+    reload: 'Recharger',
   },
 
   badges: {
