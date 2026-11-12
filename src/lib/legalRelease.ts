@@ -1749,10 +1749,10 @@ export const LIVE = {
    * friday-flips-1111 (Nov 11): legal-integration-1111's CSEA line (coordinator ruling Nov 11, legal audit 1111: we report
    * to NCMEC only, "as US law requires; NCMEC passes it to the police in the country it concerns", instead of "NCMEC and
    * other authorities as the law requires") was unswitched. Held here so the merge changes nothing visible: Terms 7, Child
-   * Safety's opening section and the contacts table on Child Safety and Safety (10 languages). No server side: flip it on
-   * Friday with the other switches (or any day the coordinator says) and set NCMEC_ONLY_DAY to that day.
+   * Safety's opening section and the contacts table on Child Safety and Safety (10 languages). No server side. ON since
+   * November 11, 2026 (coordinator: the owner's settled rule, NCMEC only); its chain lines sit under Friday's group.
    */
-  ncmecOnly: false,
+  ncmecOnly: true,
 }
 
 /** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
@@ -2023,10 +2023,10 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? MOD_COVER_HOLD_DAY // Terms 8 and Child Safety: community moderators may hold a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.codesNoMembership
     ? CODES_NO_MEMBERSHIP_DAY // Terms 3: codes never give a membership; store offer and promo codes
-  : LIVE.ncmecOnly
-    ? NCMEC_ONLY_DAY // Terms 7, Child Safety and Safety's contacts: CSEA reported to NCMEC only (legal audit 1111)
   : LIVE.testerGiftGame
     ? TESTER_GIFT_GAME_DAY // tester-gift-game-1111: Terms 9 names the testers' thank-you, its counted-game condition and whether its Intercepts trade (LIVE.testerGiftGame since friday-flips-1111)
+  : LIVE.ncmecOnly
+    ? NCMEC_ONLY_DAY // Terms 7, Child Safety and Safety's contacts: CSEA reported to NCMEC only (legal audit 1111); on since November 11, 2026, so it sits under Friday's group
   : LIVE.emailCodes22
     ? EMAIL_CODES_22_DAY // Terms 3: 2.2 signs in with an emailed code, older versions with a password (legal audit 1111)
   : LIVE.chatMildMask

@@ -24,7 +24,7 @@ const SWITCHES = {
   ledgerReasons: { live: [['ledgerReasons', true]], day: null, step: '48S' },
   ledgerUniquesOnly: { live: [['ledgerUniquesOnly', true]], day: 'LEDGER_UNIQUES_DAY', step: '49S' },
   rarefinds: { live: [['rarefindsOffers', true], ['rarefindsOfferPush', true]], day: 'RAREFINDS_OFFERS_DAY', step: '52S' },
-  ncmecOnly: { live: [['ncmecOnly', true]], day: 'NCMEC_ONLY_DAY', step: 'no server step (coordinator: with Friday)' },
+  ncmecOnly: { live: [['ncmecOnly', true]], day: 'NCMEC_ONLY_DAY', step: 'on since Nov 11 (coordinator)' },
 }
 
 const args = process.argv.slice(2)
