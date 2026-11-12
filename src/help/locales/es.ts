@@ -229,6 +229,7 @@ const es: HelpText = {
           q: '¿Qué es un grupo?',
           a: [
             'Un líder y sus amigos que juegan juntos, hasta 21 personas en total. Para empezar hace falta una membresía. Si el líder se va, el puesto pasa primero a alguien con membresía.',
+            ...(o.partyLeaderLapse ? ['Si la membresía del líder termina, el grupo se cierra para todos; el puesto no pasa a nadie. La partida en curso sigue hasta el final y, después, cada uno busca por su cuenta.'] : []),
             'En las mesas de Jugar en línea y en la Noche de Juegos, un grupo ocupa como mucho media mesa, y todos lo ven: hasta 2 en una mesa de 4, hasta 4 en una mesa de 8.',
             'En una mesa de 12 de la Noche de Juegos, hasta 6. Los miembros del grupo que buscan partida por su cuenta también cuentan: entre todos, nunca más de media mesa.',
             'Para jugar en la misma mesa, busca desde el grupo: <b>Jugar en línea</b> por tu cuenta es una búsqueda individual. Después de una partida de Jugar en línea, <b>Volver a tu grupo</b> te lleva de vuelta a él.',
@@ -262,7 +263,7 @@ const es: HelpText = {
             ...(o.interceptsInTrades ? ['Los adultos también pueden poner Intercepciones sin abrir en un intercambio: eligen cuántas de cada nivel. Cada una cuenta como uno de los 10.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Durante la beta, hasta el 7 de diciembre, cualquier Intercepción sin abrir puede entrar en un intercambio, sea cual sea su origen. De todos modos, las Intercepciones empiezan de cero con el lanzamiento.'] : []),
             'Lo que pones en un intercambio abierto queda reservado para él: no puede ir a otro intercambio ni al Mercado Negro al mismo tiempo. Si el Intel de un intercambio se gasta antes de que se haga, aparece un aviso en ese lado y el intercambio no puede hacerse hasta que se baje la cantidad.',
-            'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.',
+            'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.' + (o.launch ? " Tampoco lo que venga de un código ni lo que te demos nosotros o nuestro equipo, incluida una Elección del desarrollador: se queda en tu cuenta. La Intel nunca queda ligada a una cuenta, venga de donde venga." : ''),
             'El Intel solo se puede intercambiar entre adultos.',
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, los testers adultos también intercambian Intel. El 7 de diciembre se devuelve todo el Intel intercambiado: quien lo dio lo recupera y cada uno se queda solo con el Intel que ganó.', 'Desde el 7 de diciembre, las intercepciones de un código o un regalo, lo que salga de ellas y lo que consigas con ellas en un Canje se quedan en tu cuenta: puedes usarlas, pero no intercambiarlas ni venderlas.']),
             'Comprar o vender objetos, Intel o cuentas por dinero real va contra las reglas.',
@@ -401,7 +402,7 @@ const es: HelpText = {
             '<b>Victorias:</b> cada 10 victorias en Jugar en línea te dan 5 intercepciones, una de ellas de nivel Secreto o mejor.',
             '<b>Diaria:</b> tu primera partida del día en Jugar en línea te da una, y las rachas largas suman más (cada 30.º día seguido, una Enigma).',
             '<b>Noche de Juegos:</b> los ganadores de la noche reciben una Enigma.',
-            `<b>Códigos y regalos:</b> un código de un creador o nuestro funciona una vez por cuenta, y sus intercepciones se desbloquean tras tu primera partida de Jugar en línea que cuente. También regalamos algunas.${o.launch ? ' Las intercepciones de un código o de un regalo son solo para ti: no se pueden intercambiar ni vender.' : ''}`,
+            `<b>Códigos y regalos:</b> un código de un creador o nuestro funciona una vez por cuenta, y sus intercepciones se desbloquean tras tu primera partida de Jugar en línea que cuente. También regalamos algunas.${o.launch ? " Las intercepciones de un código o de un regalo, lo que sale de ellas y lo que consigas al canjearlas son solo para ti: no se pueden intercambiar, vender ni regalar, por muchas partidas que juegues. Puedes abrirlas, ponerte lo que salga, canjearlas y triturar los repetidos. Triturar un repetido da Intel normal." : ''}`,
             'Las salas privadas no dan intercepciones.',
             ...(o.launch
               ? []
@@ -413,7 +414,7 @@ const es: HelpText = {
           q: '¿Qué hago con los repetidos?',
           a: [
             '<b>Tritura</b> una copia repetida para obtener Intel, por la cantidad que muestra la app.',
-            '<b>Canje:</b> 5 copias repetidas de una rareza te dan 1 objeto al azar de la rareza siguiente, y 10 copias Legendarias repetidas te dan un Único.',
+            '<b>Canje:</b> 5 copias repetidas de una rareza te dan 1 objeto al azar de la rareza siguiente, y 10 copias Legendarias repetidas te dan un Único.' + (o.launch ? " Si hay un regalo entre ellas, lo que consigas también será solo para ti." : ''),
             'Solo cuentan los repetidos, nunca tu primera copia ni un Único.',
             'Una copia que compraste o recibiste en un intercambio cuenta como repetida si tienes otra copia de ese objeto. Tu única copia siempre se queda.',
           ],
@@ -454,8 +455,14 @@ const es: HelpText = {
           q: '¿Dónde están mis recompensas de la beta?',
           a: [
             o.launch
-              ? 'Se añadieron en el lanzamiento de 2.2 y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de Campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
-              : 'Llegan con el lanzamiento de 2.2, el 8 de diciembre, en una tarjeta de agradecimiento al abrir la app, y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de Campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.',
+              ? 'Se añadieron en el lanzamiento de 2.2 y son tuyas. Todos los de la lista de testers recibieron el <b>Pin beta</b> y el título <b>Tester beta</b>. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
+              : 'Llegan con el lanzamiento de 2.2, el 8 de diciembre, en una tarjeta de agradecimiento al abrir la app, y son tuyas. Todos los de la lista de testers reciben el <b>Pin beta</b> y el título <b>Tester beta</b>.',
+            o.launch
+              ? 'Quienes terminaron al menos una partida antes del 7 de diciembre (jugada hasta el final, en cualquier sala, así que aparece en sus Estadísticas) recibieron además el título <b>Tester de Campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.'
+              : 'Termina al menos una partida antes del 7 de diciembre (jugada hasta el final, en cualquier sala, así que aparece en tus Estadísticas) y recibirás además el título <b>Tester de Campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.',
+            o.testerInterceptsTradable
+              ? 'El <b>Pin beta</b>, el título <b>Tester de Campo</b> y las intercepciones de agradecimiento se intercambian como todo lo que ganas.'
+              : 'El <b>Pin beta</b> y el título <b>Tester de Campo</b> se intercambian como todo lo que ganas; como otros regalos, las intercepciones de agradecimiento se quedan en tu cuenta.',
             ...(o.launch ? [] : ['Lo que tienes ahora en una versión de prueba es para probar y se borra antes del lanzamiento. Tus recompensas no dependen de eso, siempre que sigas con la misma cuenta guardada.']),
             'Para ponerte el pin: <b>Cuenta</b>, <b>Editar agente</b>, <b>Accesorios</b>, <b>Pin beta</b>, <b>Guardar</b>.',
             '¿Falta algo? Escribe a <email/> con tu nombre de usuario y el correo con el que entraste durante la prueba. Una cuenta de invitado no está en la lista, así que lo habitual es que se trate de otra cuenta.',
@@ -489,6 +496,30 @@ const es: HelpText = {
             'La membresía de por vida dura mientras ofrezcamos SpySocial, no toda tu vida. No hay pruebas gratis, y la membresía no se comparte con En familia.',
           ],
         },
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "¿Qué es «Miembro desde»?",
+              a: [
+                "Mientras tengas membresía, <b>Cuenta</b> muestra cuándo empezó y cuánto tiempo llevas como miembro, y la <b>Bóveda</b> muestra tus sellos: 1, 3 y 6 meses, 1, 2 y 3 años, y después cada año.",
+                "Cuenta el tiempo que tu membresía ha estado activa sin interrupción: un pase, la membresía de por vida, un regalo o un código. El tiempo reembolsado y las compras de prueba no cuentan.",
+                "Se gana quedándote. El primer día en que tu membresía ya no esté activa (después del periodo de gracia que da la tienda si falla un pago), tu tiempo como miembro y tus sellos desaparecen. Si vuelves a ser miembro, «Miembro desde» y tu tiempo empiezan de cero.",
+                "La membresía <b>de por vida</b> es la excepción: tu tiempo cuenta desde tu primer día como miembro, incluidos los meses con un pase antes, y sigue creciendo, con cada sello que añadamos más adelante.",
+                "Los demás jugadores solo ven cuánto tiempo, con tu sello, en tu ficha de jugador; nunca la fecha ni el precio. Desactiva <b>Mostrar mi tiempo como miembro</b> en Ajustes para ocultarlo. El tiempo de una cuenta de menores de 13 años nunca se muestra a otros.",
+                "Los sellos solo cambian el aspecto de tu perfil: no dan XP ni mejores probabilidades, y no se pueden intercambiar.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "¿Me subirán el precio?",
+              a: [
+                "Mientras tu pase se renueve sin interrupción, sigues pagando el precio de ahora, aunque suba para los nuevos miembros. La tienda puede ajustarlo por impuestos locales o por la moneda.",
+                "Si cambias al otro pase, pagas el precio actual de ese plan. Si tu membresía termina y vuelves más tarde, puede que pagues el precio de ese momento. La membresía de por vida se paga una vez y nunca se renueva.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: '¿Cómo funcionan la renovación automática y la cancelación?',
@@ -497,6 +528,7 @@ const es: HelpText = {
             '<b>iPhone o iPad:</b> Ajustes, tu nombre, Suscripciones, SpySocial.',
             '<b>Android:</b> la app Google Play Store, tu foto de perfil, Pagos y suscripciones, Suscripciones, SpySocial.',
             '<b>Gestionar suscripción</b> en la app abre la misma página. Borrar la app o tu cuenta, o comprar la membresía de por vida, no cancela un pase.',
+            ...(o.memberLoyalty ? ["En la <b>Bóveda</b>, <b>Cancelar membresía</b> (debajo de Gestionar suscripción) muestra antes una pantalla con los hechos: si tu membresía termina, tu tiempo como miembro y tus sellos se reinician y empiezan desde cero, y tu precio fijado termina. Su único botón, <b>Continuar con la cancelación</b>, te lleva directamente a la tienda. <b>Gestionar suscripción</b> sigue abriendo la tienda directamente. Nada cambia antes del final del periodo que pagaste."] : []),
           ],
         },
         {

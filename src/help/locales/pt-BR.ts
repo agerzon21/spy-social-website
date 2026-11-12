@@ -229,6 +229,7 @@ const ptBR: HelpText = {
           q: 'O que é um grupo?',
           a: [
             'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso uma assinatura para começar. Se o líder sair, a liderança passa primeiro para alguém com assinatura.',
+            ...(o.partyLeaderLapse ? ['Se a assinatura do líder terminar, o grupo é encerrado para todos; a liderança não passa para ninguém. Uma partida em andamento vai até o fim e, depois, cada um busca sozinho.'] : []),
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
             'Numa mesa de 12 lugares da Noite de Jogos, até 6. Membros do grupo que procuram partida sozinhos também contam: juntos, nunca mais que meia mesa.',
             'Para sentar na mesma mesa, busquem pelo grupo: <b>Jogar online</b> sozinho é uma busca individual. Depois de uma partida do Jogar online, <b>Voltar ao seu grupo</b> leva você de volta a ele.',
@@ -262,7 +263,7 @@ const ptBR: HelpText = {
             ...(o.interceptsInTrades ? ['Adultos também podem colocar Interceptações fechadas numa troca: escolha quantas de cada nível. Cada uma conta como um dos 10 itens.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Durante o teste beta, até 7 de dezembro, qualquer Interceptação fechada pode entrar numa troca, não importa como você a conseguiu. De qualquer forma, as Interceptações recomeçam do zero no lançamento.'] : []),
             'O que você coloca numa troca aberta fica reservado para ela: não pode ir para outra troca nem para o Mercado Negro ao mesmo tempo. Se a Intel de uma troca for gasta antes de a troca acontecer, aparece um aviso naquele lado, e a troca não pode acontecer até a quantia ser reduzida.',
-            'O app marca quais itens dá para trocar. A assinatura e o que ela inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.',
+            'O app marca quais itens dá para trocar. A assinatura e o que ela inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.' + (o.launch ? " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você, incluindo uma Escolha do desenvolvedor: fica na sua conta. A Intel nunca fica presa a uma conta, venha de onde vier." : ''),
             'Intel só pode ser trocada entre adultos.',
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, testadores adultos também trocam Intel. Em 7 de dezembro, toda a Intel trocada volta: quem deu recebe de volta, e cada um fica só com a Intel que ganhou.', 'A partir de 7 de dezembro, interceptações de um código ou presente, o que sair delas e o que você conseguir com elas na Troca ficam na sua conta: dá para usar, mas não para trocar nem vender.']),
             'Comprar ou vender itens, Intel ou contas por dinheiro de verdade é contra as regras.',
@@ -401,7 +402,7 @@ const ptBR: HelpText = {
             '<b>Vitórias:</b> a cada 10 vitórias no Jogar online, você ganha 5 interceptações, uma delas de nível Secreto ou melhor.',
             '<b>Diária:</b> sua primeira partida do dia no Jogar online dá uma, e sequências longas dão mais (a cada 30 dias seguidos, uma Enigma).',
             '<b>Noite de Jogos:</b> os vencedores da noite ganham uma Enigma.',
-            `<b>Códigos e presentes:</b> um código de um criador ou nosso vale uma vez por conta, e as interceptações dele são liberadas depois da sua primeira partida contada no Jogar online. Também damos algumas de presente.${o.launch ? ' Interceptações de código ou de presente são só suas: não podem ser trocadas nem vendidas.' : ''}`,
+            `<b>Códigos e presentes:</b> um código de um criador ou nosso vale uma vez por conta, e as interceptações dele são liberadas depois da sua primeira partida contada no Jogar online. Também damos algumas de presente.${o.launch ? " Interceptações de código ou de presente, o que sai delas e o que você consegue com elas na Troca são só seus: não podem ser trocados, vendidos nem dados, não importa quantas partidas você jogue. Você ainda pode abri-las, usar o que sair, fazer Trocas e triturar repetidos. Triturar um repetido dá Intel comum." : ''}`,
             'Salas privadas não dão interceptações.',
             ...(o.launch
               ? []
@@ -413,7 +414,7 @@ const ptBR: HelpText = {
           q: 'O que faço com os repetidos?',
           a: [
             '<b>Triture</b> uma cópia repetida por Intel, no valor que o app mostra.',
-            '<b>Troca:</b> 5 cópias repetidas de uma raridade dão 1 item aleatório da raridade seguinte, e 10 cópias Lendárias repetidas dão um Único.',
+            '<b>Troca:</b> 5 cópias repetidas de uma raridade dão 1 item aleatório da raridade seguinte, e 10 cópias Lendárias repetidas dão um Único.' + (o.launch ? " Se houver um presente entre elas, o que você receber também será só seu." : ''),
             'Só contam os repetidos, nunca sua primeira cópia nem um Único.',
             'Uma cópia que você comprou ou recebeu numa troca conta como repetida se você tem outra cópia desse item. Sua única cópia sempre fica.',
           ],
@@ -454,8 +455,14 @@ const ptBR: HelpText = {
           q: 'Onde estão minhas recompensas do beta?',
           a: [
             o.launch
-              ? 'Elas foram adicionadas no lançamento da 2.2 e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
-              : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
+              ? 'Elas foram adicionadas no lançamento da 2.2 e são suas. Todos da lista de testadores ganharam o <b>Pin beta</b> e o título <b>Beta tester</b>. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
+              : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
+            o.launch
+              ? 'Quem terminou pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas) também ganhou o título <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.'
+              : 'Termine pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas) e você também ganha o título <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
+            o.testerInterceptsTradable
+              ? 'O <b>Pin beta</b>, o título <b>Testador de Campo</b> e as interceptações de agradecimento podem ser trocados como tudo o que você ganha.'
+              : 'O <b>Pin beta</b> e o título <b>Testador de Campo</b> podem ser trocados como tudo o que você ganha; como outros presentes, as interceptações de agradecimento ficam na sua conta.',
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
             'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de convidado não está na lista, então o mais comum é ser outra conta.',
@@ -489,6 +496,30 @@ const ptBR: HelpText = {
             'Vitalício dura enquanto oferecermos o SpySocial, não a sua vida toda. Não há teste grátis, e a assinatura não é compartilhada pelo Compartilhamento Familiar.',
           ],
         },
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "O que é “Assinante desde”?",
+              a: [
+                "Enquanto você for assinante, a <b>Conta</b> mostra quando a assinatura começou e há quanto tempo você é assinante, e o <b>Cofre</b> mostra seus carimbos: 1, 3 e 6 meses, 1, 2 e 3 anos, e depois a cada ano.",
+                "Conta o tempo em que sua assinatura ficou ativa sem interrupção: um passe, o Vitalício, um presente ou um código. Tempo reembolsado e compras de teste não contam.",
+                "Ele se ganha ficando. No primeiro dia em que sua assinatura não estiver mais ativa (depois do período de carência que a loja dá quando um pagamento falha), seu tempo de assinante e seus carimbos zeram. Se você assinar de novo, “Assinante desde” e seu tempo começam do zero.",
+                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como assinante, incluindo os meses de passe antes dele, e continua crescendo, com cada carimbo que adicionarmos depois.",
+                "Os outros jogadores veem só há quanto tempo, com seu carimbo, na sua ficha de jogador, nunca a data nem o preço. Desative <b>Mostrar meu tempo de assinante</b> nos Ajustes para esconder. O tempo de uma conta de menor de 13 anos nunca aparece para os outros.",
+                "Os carimbos só mudam a aparência do seu perfil: não dão XP nem chances melhores, e não podem ser trocados.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "Meu preço vai subir?",
+              a: [
+                "Enquanto seu passe renovar sem interrupção, você continua pagando o preço de agora, mesmo que o preço suba para novos assinantes. A loja ainda pode ajustá-lo por impostos locais ou câmbio.",
+                "Se trocar para o outro passe, você paga o preço atual desse plano. Se sua assinatura acabar e você voltar depois, pode pagar o preço da época. O Vitalício é pago uma vez e nunca renova.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: 'Como funcionam a renovação automática e o cancelamento?',
@@ -497,6 +528,7 @@ const ptBR: HelpText = {
             '<b>iPhone ou iPad:</b> Ajustes, seu nome, Assinaturas, SpySocial.',
             '<b>Android:</b> o app Google Play Store, sua foto de perfil, Pagamentos e assinaturas, Assinaturas, SpySocial.',
             '<b>Gerenciar assinatura</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um passe.',
+            ...(o.memberLoyalty ? ["No <b>Cofre</b>, <b>Cancelar assinatura</b> (abaixo de Gerenciar assinatura) mostra antes uma tela com os fatos: se a sua assinatura terminar, seu tempo de assinante e seus carimbos zeram e começam do zero, e seu preço garantido termina. O único botão, <b>Continuar para cancelar</b>, leva direto à loja. <b>Gerenciar assinatura</b> continua abrindo a loja diretamente. Nada muda antes do fim do período pago."] : []),
           ],
         },
         {

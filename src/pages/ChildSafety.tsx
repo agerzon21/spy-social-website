@@ -83,7 +83,7 @@ const ChildSafety: React.FC = () => {
         </li>
       </Bullets>
       <P>
-        Anything like this is removed, the accounts involved are banned, and we report it to NCMEC and other authorities as the law requires (see{' '}
+        Anything like this is removed, the accounts involved are banned, and we report it to NCMEC, as US law requires, which passes it to the police in the country it concerns (see{' '}
         <ChakraLink href="#response">what we do</ChakraLink>).
       </P>
 
@@ -237,7 +237,9 @@ const ChildSafety: React.FC = () => {
           A person reads every report within 24 hours. Reports about child safety, and reports involving a player
           under 18, are marked urgent and read first.
           {LIVE.safetyAnswers1106 &&
-            " Reports about a child's safety, and reports of personal info shared by or with a player under 18, are read by SpySocial's developer only, never by volunteer moderators."}
+            (LIVE.modCoverHold
+              ? " Reports about a child's safety are decided by SpySocial's developer only. If he hasn't opened one within 15 minutes, volunteer moderators see a limited view of it (never who reported it, never details or messages of a player under 18, never a private room's code, never a drawing) and can pause the reported player from public rooms and mute their chat for 24 hours, remove them from the room or party, or hide their messages until he does; he reviews and can undo each step, and only he reports to the authorities. Reports of personal info shared by or with a player under 18 are read by SpySocial's developer only."
+              : " Reports about a child's safety, and reports of personal info shared by or with a player under 18, are read by SpySocial's developer only, never by volunteer moderators.")}
         </li>
         <li>We take the content down: the message, the drawing or the name.</li>
         <li>

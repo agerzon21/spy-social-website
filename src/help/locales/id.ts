@@ -229,6 +229,7 @@ const id: HelpText = {
           q: 'Apa itu grup?',
           a: [
             'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Perlu keanggotaan untuk memulainya. Jika ketua pergi, peran ketua lebih dulu pindah ke orang yang punya keanggotaan.',
+            ...(o.partyLeaderLapse ? ['Jika keanggotaan ketua berakhir, grup dibubarkan untuk semua; peran ketua tidak pindah ke siapa pun. Permainan yang sedang berjalan tetap sampai selesai, lalu masing-masing mencari sendiri.'] : []),
             'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
             'Di meja 12 kursi Malam Permainan, sampai 6 orang. Anggota grup yang mencari sendiri juga dihitung: bersama-sama tak pernah lebih dari setengah meja.',
             'Agar duduk di satu meja, cari dari grup: <b>Main online</b> sendirian adalah pencarian sendiri. Setelah permainan Main online, <b>Kembali ke Grup</b> membawamu kembali ke grup.',
@@ -262,7 +263,7 @@ const id: HelpText = {
             ...(o.interceptsInTrades ? ['Orang dewasa juga bisa memasukkan sadapan yang belum dibuka ke pertukaran: pilih berapa dari tiap tingkat. Masing-masing dihitung sebagai satu dari 10 item.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai 7 Desember, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
-            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.',
+            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : ''),
             'Intel hanya bisa ditukar antar orang dewasa.',
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel. Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri.', 'Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual.']),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
@@ -401,7 +402,7 @@ const id: HelpText = {
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
             '<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu, dan streak panjang menambah lagi (tiap hari ke-30 berturut-turut, satu Enigma).',
             '<b>Malam Permainan:</b> para pemenang malam itu mendapat satu Enigma.',
-            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? ' Sadapan dari kode atau hadiah hanya untukmu: tidak bisa ditukar atau dijual.' : ''}`,
+            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
             'Room privat tidak memberi sadapan.',
             ...(o.launch
               ? []
@@ -413,7 +414,7 @@ const id: HelpText = {
           q: 'Apa yang bisa kulakukan dengan duplikat?',
           a: [
             '<b>Hancurkan</b> salinan duplikat untuk mendapat Intel, sebanyak yang ditampilkan aplikasi.',
-            '<b>Tukar Tambah:</b> 5 duplikat dari satu kelangkaan memberimu 1 item acak dari kelangkaan berikutnya, dan 10 duplikat Legendaris memberimu satu item Unik.',
+            '<b>Tukar Tambah:</b> 5 duplikat dari satu kelangkaan memberimu 1 item acak dari kelangkaan berikutnya, dan 10 duplikat Legendaris memberimu satu item Unik.' + (o.launch ? " Jika ada hadiah di antaranya, hasilnya juga hanya untukmu." : ''),
             'Hanya duplikat yang dihitung, bukan salinan pertamamu atau item Unik.',
             'Salinan yang kamu beli atau dapat dari pertukaran dihitung sebagai duplikat jika kamu punya salinan lain dari item itu. Satu-satunya salinanmu selalu tetap ada.',
           ],
@@ -454,8 +455,14 @@ const id: HelpText = {
           q: 'Di mana hadiah penguji betaku?',
           a: [
             o.launch
-              ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
-              : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+              ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
+              : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>.',
+            o.launch
+              ? 'Penguji yang menyelesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.'
+              : 'Selesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+            o.testerInterceptsTradable
+              ? '<b>Pin Beta</b>, gelar <b>Penguji Lapangan</b>, dan sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.'
+              : '<b>Pin Beta</b> dan gelar <b>Penguji Lapangan</b> bisa ditukar seperti apa pun yang kamu dapatkan sendiri; seperti hadiah lain, sadapan terima kasih tetap di akunmu.',
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
             'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',
@@ -489,6 +496,30 @@ const id: HelpText = {
             'Seumur hidup berarti selama kami menyediakan SpySocial, bukan seumur hidupmu. Tidak ada uji coba gratis, dan keanggotaan tidak dibagikan lewat Berbagi Keluarga.',
           ],
         },
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "Apa itu “Member sejak”?",
+              a: [
+                "Selama kamu member, <b>Akun</b> menunjukkan kapan keanggotaanmu dimulai dan sudah berapa lama kamu menjadi member, dan <b>Brankas</b> menunjukkan capmu: 1, 3, dan 6 bulan, 1, 2, dan 3 tahun, lalu setiap tahun.",
+                "Yang dihitung adalah waktu keanggotaanmu aktif tanpa jeda: langganan, keanggotaan seumur hidup, hadiah, atau kode. Waktu yang dananya dikembalikan dan pembelian uji coba tidak dihitung.",
+                "Waktu ini didapat dengan bertahan. Pada hari pertama keanggotaanmu tidak aktif lagi (setelah masa tenggang yang diberikan toko saat pembayaran gagal), waktu member dan capmu hilang. Kalau kamu menjadi member lagi, “Member sejak” dan waktumu mulai dari nol.",
+                "Keanggotaan <b>seumur hidup</b> adalah pengecualian: waktumu dihitung sejak hari pertamamu sebagai member, termasuk bulan-bulan langganan sebelumnya, dan terus bertambah, dengan setiap cap yang kami tambahkan nanti.",
+                "Pemain lain hanya melihat sudah berapa lama, beserta capmu, di lembar pemainmu, tidak pernah tanggal atau harganya. Matikan <b>Tampilkan waktu memberku</b> di Pengaturan untuk menyembunyikannya. Waktu akun di bawah 13 tahun tidak pernah ditampilkan ke orang lain.",
+                "Cap hanya mengubah tampilan profilmu: tanpa XP, tanpa peluang lebih baik, dan tidak bisa diperdagangkan.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "Apakah hargaku akan naik?",
+              a: [
+                "Selama langgananmu diperpanjang tanpa jeda, kamu tetap membayar harga yang sekarang, meski harganya naik untuk member baru. Toko masih bisa menyesuaikannya karena pajak setempat atau mata uang.",
+                "Kalau kamu pindah ke langganan yang lain, kamu membayar harga paket itu saat ini. Kalau keanggotaanmu berakhir dan kamu kembali nanti, kamu mungkin membayar harga saat itu. Keanggotaan seumur hidup dibayar sekali dan tidak pernah diperpanjang.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: 'Bagaimana perpanjangan otomatis dan pembatalan?',
@@ -497,6 +528,7 @@ const id: HelpText = {
             '<b>iPhone atau iPad:</b> Pengaturan, namamu, Langganan, SpySocial.',
             '<b>Android:</b> aplikasi Google Play Store, foto profilmu, Pembayaran & langganan, Langganan, SpySocial.',
             '<b>Kelola langganan</b> di aplikasi membuka halaman yang sama. Menghapus aplikasi atau akun, atau membeli keanggotaan seumur hidup, tidak membatalkan langganan.',
+            ...(o.memberLoyalty ? ["Di <b>Brankas</b>, <b>Batalkan Keanggotaan</b> (di bawah Kelola langganan) lebih dulu menampilkan satu layar berisi faktanya: kalau keanggotaanmu berakhir, waktu member dan capmu diulang dari nol, dan harga terkuncimu berakhir. Satu-satunya tombolnya, <b>Lanjut Batalkan</b>, langsung menuju toko. <b>Kelola langganan</b> sendiri tetap langsung membuka toko. Tidak ada yang berubah sebelum akhir periode yang sudah dibayar."] : []),
           ],
         },
         {

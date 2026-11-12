@@ -199,7 +199,11 @@ const Terms: React.FC = () => {
             <li>
               A party is a leader and friends who play together, up to 21 people in all. It takes a membership to start a
               party; if the leader leaves, the lead goes to someone in it with a membership first, or else to whoever has been in
-              it longest. A player who is banned or paused from public rooms leaves the party. A party plays together at Play Online tables and game nights, where it takes at most half
+              it longest. A player who is banned or paused from public rooms leaves the party.
+              {/* LIVE.partyLeaderLapse: server party_leader_lapse_1111 (owner 2026-11-11). */}
+              {LIVE.partyLeaderLapse
+                ? " If the leader's membership ends, the party closes for everyone and the lead isn't passed on; a game the party is playing goes on to its end, and after it each player searches on their own."
+                : ''} A party plays together at Play Online tables and game nights, where it takes at most half
               of a table (2 at a table of 4, 4 at a table of 8, 6 at a Game Night table of 12) and is marked for everyone there. Party mates searching on their own count too: never more than half a table between them. Any party can start
               a private room together, and a party too big for a table plays there. A private room plays the host's
               packs, as it always does. A members-only search needs every member of the party to be a member.
@@ -415,7 +419,7 @@ const Terms: React.FC = () => {
         Child sexual abuse and exploitation are never allowed. Never share, ask for or create sexual content
         involving anyone under 18, and never use SpySocial to groom, sexualize or exploit a child. We remove such
         content, ban the accounts involved, and report it to the National Center for Missing & Exploited Children
-        (NCMEC) and other authorities as the law requires. If you see anything like this, email <SupportEmail /> with
+        (NCMEC), as US law requires; NCMEC passes it to the police in the country it concerns. If you see anything like this, email <SupportEmail /> with
         "Child safety" in the subject, and report the player in the app if you shared a room with them. You can also
         report it directly to NCMEC's <OutLink href="https://report.cybertip.org">CyberTipline</OutLink>. If a child
         is in immediate danger, contact your local emergency services first.
@@ -516,7 +520,10 @@ const Terms: React.FC = () => {
               : ''}{' '}They can
             propose a ban, but only SpySocial can ban an account, permanently or otherwise. We record every action a
             moderator takes and why, we can undo any of them, and you can appeal them like any other decision (see
-            Appeals below). Anything involving a child's safety, self-harm or threats{LIVE.safetyAnswers1106 ? ', and any report of personal information shared by or with a player under 18,' : ''} is handled by SpySocial only.
+            Appeals below). Anything involving a child's safety, self-harm or threats{LIVE.safetyAnswers1106 ? ', and any report of personal information shared by or with a player under 18,' : ''} is handled by SpySocial only
+            {LIVE.modCoverHold
+              ? ": if we haven't opened a report about a child's safety (grooming, or sexual content with a player under 18 involved) or self-harm within 15 minutes, a community moderator may pause the reported player from public rooms and mute their chat for 24 hours (never on a self-harm report), remove them from the room or party, or hide their messages until we do, and we review each of these steps. Only SpySocial decides the report."
+              : '.'}
           </P>
         </>
       )}
@@ -638,12 +645,14 @@ const Terms: React.FC = () => {
             happened, and the rule that works out each player's amount, as an incident on our{' '}
             <PageLink to="/transparency">transparency page</PageLink>, then pay what the rule works out for you.
             {LIVE.accountNotices
-              ? " If a bug cost only you Intel and there's no line to reverse, we may give it back to you alone, with one line that says it was a bug refund and no public incident; that Intel is locked and will never be tradable."
+              ? LIVE.giftsTradable
+                ? " If a bug cost only you Intel and there's no line to reverse, we may give it back to you alone, with one line that says it was a bug refund and no public incident; that Intel is locked and will never be tradable."
+                : " If a bug cost only you Intel and there's no line to reverse, we may give it back to you alone, with one line that says it was a bug refund and no public incident. That Intel is ordinary Intel, like the Intel you earn."
               : ''}{' '}
             Or we
             take back the Intel that a closed fair-play case shows was earned by breaking our rules (for example farmed
             games), and only the lines the case covers. When an outage we've announced affects players, we may also give
-            everyone it lists the same amount of Intel, which is locked and will never be tradable. A correction of more
+            everyone it lists the same amount of Intel{LIVE.giftsTradable ? ', which is locked and will never be tradable' : ': ordinary Intel, like the Intel you earn'}. A correction of more
             than 500 Intel, or one that affects more than 5 players, waits 24 hours before it takes effect ({LIVE.accountNotices ? 'a bug refund under a published incident' : 'a bug refund'}{' '}
             or an outage's Intel doesn't wait: the published incident is the notice). If you've already spent Intel we
             take back, your balance can go below 0: the Intel you earn next pays it back, and you can't spend Intel
@@ -823,12 +832,21 @@ const Terms: React.FC = () => {
             <li>
               Not every item can be traded; the app marks the ones that can.{' '}
               {LIVE.coverage1110
-                ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them) and Intel we add ourselves are never tradable${LIVE.launchSite ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
-                : 'Memberships, what a membership includes, level rewards, items from the arcade games and Intel we add ourselves are never tradable.'}{' '}
-              {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). */}
+                ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them)${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable${LIVE.launchSite || !LIVE.giftsTradable ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
+                : `Memberships, what a membership includes, level rewards, items from the arcade games${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable.`}{' '}
+              {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). Off in U0
+                  (WG, Dec 7): the owner's rules of Nov 6 and Nov 8 (gift-rules-1108): codes and anything we or staff give, a Developer's
+                  Pick included, stay with the account; Intel is never bound; the Beta set trades like anything earned. */}
               {LIVE.giftsTradable
                 ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
-                : "Items from a code, and the Beta set, become tradable only once your account has played 3 real games (finished games with at least 3 players that give XP and that our fair-play checks don't flag), or, for the Beta set, one such game during an official Beta session."}
+                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn."}{' '}
+              {/* LIVE.testerIntercepts: the 2.2 testers' thank-you (owner Nov 11; server app_config tester_gift.intercepts_tradable). */}
+              {LIVE.launchSite
+                ? 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list got the Beta Pin and the Beta Tester title, and an account that finished at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also got the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'
+                : 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list gets the Beta Pin and the Beta Tester title, and an account that finishes at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'}{' '}
+              {LIVE.testerIntercepts === 'tradable'
+                ? 'Unlike Intercepts from a gift, those Intercepts trade like anything you earn, opened or not.'
+                : "Like Intercepts from a gift, those Intercepts, opened or not, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone."}
             </li>
             <li>
               What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,
@@ -963,6 +981,9 @@ const Terms: React.FC = () => {
             You can switch between the monthly and yearly pass there too. Deleting the app, or your SpySocial account,
             doesn't cancel a subscription, and neither does buying Lifetime: cancel the pass in the store so it isn't
             charged again.
+            {LIVE.memberLoyalty
+              ? " In the Vault, Cancel Membership (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and the price you keep while you stay ends. Its one button, Continue to Cancel, goes straight on to the store's page. Manage Subscription itself still opens the store's page directly. Nothing changes before the end of the period you've paid for."
+              : ''}
           </li>
           <li>
             <B>Free trials.</B> We don't offer free trials or introductory prices today. If we ever do, the app and the
@@ -974,12 +995,39 @@ const Terms: React.FC = () => {
             <B>Lifetime</B> is a one-time purchase: you pay once and it never renews. It lasts for as long as we offer
             SpySocial, not for your lifetime.
           </li>
-          <li>
-            <B>Price changes.</B> We may change membership prices. A new price applies to a pass only from a renewal
-            after Apple or Google has told you about it, with the notice they require, and where the store or the law
-            needs your agreement to a higher price, the pass doesn't renew at it without your agreement. You can cancel
-            before a new price applies. A price change never affects a Lifetime you've already bought.
-          </li>
+          {LIVE.memberLoyalty && (
+            <li>
+              <B>Member time.</B> While you're a member, the app shows when your membership started ("Member since") and
+              how long you've been a member, with a stamp at 1, 3 and 6 months, then 1, 2 and 3 years, then every year.
+              It counts the time your membership has been active without a break, however it came: a monthly or yearly
+              pass, Lifetime, a gift from us or a code. Refunded time and test purchases don't count. Member time is
+              earned by staying: on the first day your membership isn't active any more (after any grace period the
+              store gives for a failed payment), your member time and stamps are gone, and if you become a member again,
+              "Member since" and your time start again from zero. A gap of less than a day while a renewal goes through
+              isn't a break. <B>Lifetime</B> is the exception: a Lifetime member's time counts from their first day as a
+              member, months on a pass before Lifetime included, and keeps growing for as long as we offer SpySocial,
+              with every stamp we add later. Member time and stamps only change how your profile looks: they give no XP
+              or better odds, can't be traded or sold, have no value in real money and aren't collectibles.
+            </li>
+          )}
+          {LIVE.memberLoyalty ? (
+            <li>
+              <B>Your price while you stay.</B> We may change membership prices for new members. When we raise the price
+              of a pass, we ask Apple and Google to keep existing members on the price they pay, so your pass keeps
+              renewing at the price you pay now for as long as it renews without a break. The store may still adjust
+              it for local taxes or currency, and tells you before it does; you can cancel before an adjusted price
+              applies. If you switch to the other pass, you pay that plan's current price. If your membership ends and
+              you come back later, you may pay the price at that time. A price change never affects a Lifetime you've
+              already bought.
+            </li>
+          ) : (
+            <li>
+              <B>Price changes.</B> We may change membership prices. A new price applies to a pass only from a renewal
+              after Apple or Google has told you about it, with the notice they require, and where the store or the law
+              needs your agreement to a higher price, the pass doesn't renew at it without your agreement. You can cancel
+              before a new price applies. A price change never affects a Lifetime you've already bought.
+            </li>
+          )}
           <li>
             A membership's benefits are described in the app when you buy it. We may change them; if a change takes away
             something important, we'll tell you in advance so you can cancel before your next renewal.
@@ -1153,6 +1201,17 @@ const Terms: React.FC = () => {
         continue, such as the license for copies we keep, the disclaimers, the limits on liability and the rules
         on disputes, still apply after your account ends.
       </P>
+      {LIVE.reputation && (
+        <P>
+          Every account has a reputation (Excellent, Good, Poor, At Risk or Banned), shown in Settings and worked out from
+          its record (see our Privacy Policy). If your reputation is Banned, you can still sign in and keep your items,
+          Intel and membership, but you can't play at Play Online tables, public rooms or game nights, trade, send gifts or use the
+          Black Market, and private rooms are closed too unless the app tells you they stay open for you, until it
+          recovers or we lift it. A reputation recovers on its own as older notes fade, and nothing older than 90 days
+          counts. We may also set a reputation by hand, for example after a case; you can ask us to review it at
+          support@spysocial.app. As with a ban, a pass keeps renewing (and being charged) until you cancel it in the store.
+        </P>
+      )}
 
       <H2>14. Disclaimers</H2>
       <P>

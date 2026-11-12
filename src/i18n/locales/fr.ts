@@ -524,7 +524,7 @@ const fr: Strings = {
         text: "Si tu t'inquiètes d'abus sexuels en ligne, ou de la façon dont quelqu'un parle à un enfant en ligne, signale-le au CEOP, qui fait partie de la National Crime Agency\u00A0: <link>ceop.police.uk/Safety-Centre</link>. Les jeunes peuvent aussi faire un signalement, et un conseiller en protection de l'enfance lit chaque signalement.",
       },
       spysocial: {
-        text: "Signale le joueur dans l'appli en choisissant <b>Sécurité des enfants</b>, et écris à <email/> avec «\u00A0Child safety\u00A0» en objet. Nous supprimons le contenu, bannissons les comptes concernés et le signalons au NCMEC et aux autres autorités, comme la loi l'exige.",
+        text: "Signale le joueur dans l'appli en choisissant <b>Sécurité des enfants</b>, et écris à <email/> avec «\u00A0Child safety\u00A0» en objet. Nous supprimons le contenu, bannissons les comptes concernés et le signalons au NCMEC, comme la loi américaine l'exige ; le NCMEC le transmet à la police du pays concerné.",
       },
     },
     seeAlso: "Consulte aussi nos <link>règles de la communauté</link>, nos <link2>conditions d'utilisation</link2> et notre <link3>politique de confidentialité</link3>.",
@@ -875,7 +875,7 @@ const fr: Strings = {
   beta: {
     eyebrow: 'Bêta\u00a02 · Test en direct',
     title: 'Joue en premier',
-    lede: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta, deux titres, 10\u00a0interceptions de chaque niveau et 1\u00a0mois d’abonnement.',
+    lede: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta et un titre pour chaque testeur, et avec une partie terminée avant le 7\u00a0décembre, un second titre, 10\u00a0interceptions de chaque niveau et 1\u00a0mois d’abonnement.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Les parties, l’XP et les objets du test sont remis à zéro à la sortie.',
     headsUp: '<b>Attention\u00a0:</b> le SpySocial de l’App Store et de Google Play est une ancienne version. La bêta est une nouvelle version très différente\u00a0; tu l’installes depuis le lien qu’on t’envoie par e-mail.',
@@ -923,7 +923,10 @@ const fr: Strings = {
     get: {
       eyebrow: 'Ce que tu reçois',
       title: 'Récompenses bêta à garder après la sortie',
-      items: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Bêta-testeur\u00a0»</b> et <b>«\u00a0Testeur de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
+      items: ['Le <b>Pin bêta</b>', 'Le titre <b>«\u00a0Bêta-testeur\u00a0»</b>'],
+      gameTitle: 'Termine une partie avant le 7\u00a0décembre et reçois aussi',
+      gameItems: ['Le titre <b>«\u00a0Testeur de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
+      trade: { tradable: 'Après la sortie, les interceptions de remerciement s’échangent comme tout ce que tu gagnes.', bound: 'Les interceptions de remerciement restent sur ton compte.' },
       prizeTitle: '10\u00a0$ de remerciement par PayPal + un bonus de 50\u00a0$',
       prize: 'Un remerciement de 10\u00a0$ par PayPal pour ton temps pendant la session en direct\u00a0: chaque joueur confirmé qui participe à toute l’heure et envoie le questionnaire de 5\u00a0minutes le reçoit dans les 7\u00a0jours après la session, pareil sur iPhone et Android. Installer la version de test ne suffit pas à l’obtenir. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile de la session, choisi par le développeur sous une semaine.',
       seats: (day: string) => `24\u00a0places. Le remerciement va seulement aux joueurs qu’on confirme par e-mail (au plus tard le ${day}) et qui participent à la session\u00a0; les autres passent sur la liste d’attente du prochain test.`,

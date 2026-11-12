@@ -574,7 +574,7 @@ const en = {
         text: "If you're worried about online sexual abuse, or about the way someone has been talking to a child online, report it to CEOP, part of the National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Young people can report too, and a Child Protection Advisor reads every report.",
       },
       spysocial: {
-        text: 'Report the player in the app and choose <b>Child Safety</b>, and email <email/> with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC and other authorities as the law requires.',
+        text: 'Report the player in the app and choose <b>Child Safety</b>, and email <email/> with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC, as US law requires; NCMEC passes it to the police in the country it concerns.',
       },
     },
     seeAlso: 'See also our <link>Community Rules</link>, <link2>Terms of Service</link2> and <link3>Privacy Policy</link3>.',
@@ -945,7 +945,7 @@ const en = {
     eyebrow: 'Beta 2 · Live playtest',
     /** The poster line, set huge: it must fit a 320 px phone. The full stop after it is home.hero.titleMark. */
     title: 'Play it first',
-    lede: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin, two titles, 10 Intercepts of each tier and a month of membership.',
+    lede: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin and a title for every tester, and with one finished game before December 7, a second title, 10 Intercepts of each tier and a month of membership.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Games, XP and items from the test reset at launch.',
     /** Under the lede: the store app is the old version; the beta comes from the emailed link. */
@@ -1006,8 +1006,13 @@ const en = {
     get: {
       eyebrow: 'What you get',
       title: 'Beta rewards you keep after launch',
-      /** The app's own names for the pin, the titles and the Intercepts. */
-      items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> and <b>Field Tester</b> titles', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
+      /** Every tester on the 2.2 list (the app's own names for the pin and the title). */
+      items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> title'],
+      /** The rest needs one counted game (played to the end, any room) before December 7 (owner Nov 11). */
+      gameTitle: 'Finish one game before December 7 to also get',
+      gameItems: ['The <b>Field Tester</b> title', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
+      /** Under the lists; LIVE.testerIntercepts picks one (server app_config tester_gift.intercepts_tradable). */
+      trade: { tradable: 'The thank-you Intercepts trade after launch like anything you earn.', bound: 'The thank-you Intercepts stay with your account.' },
       prizeTitle: '$10 PayPal thank-you + one $50 bonus',
       prize: 'A $10 thank-you by PayPal for your time in the live session: every confirmed player who joins the full hour and sends the 5-minute survey gets it within 7 days of the session, the same on iPhone and Android. Installing the test build doesn\'t earn it on its own. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week.',
       /** `day`: the day we confirm seats by email ("Monday, November 9"). */

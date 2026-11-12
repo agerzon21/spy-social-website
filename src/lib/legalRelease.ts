@@ -16,7 +16,8 @@
 // ageGateEveryone, birthMonth, under13Deletion, storeAgeSignals, crashReports,
 // notifications, socialSignIn, purchases, onDeviceTranslation,
 // storedQuestions, qrScanner, playOnline (before the play_online switch goes
-// 'on', runbook 3.8c), onePool, messageReports; oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
+// 'on', runbook 3.8c), onePool, messageReports, passwordless (legal audit 1111: every 2.2 build since beta ios-34 /
+// android-19, u60 and u61 signs in with Supabase email codes, not passwords; check its comment's Oct 28 notes first); oldAppsInUse to false once the lockdown (DB3) shuts 2.1.1 out, and
 // photosRemoved once no photo file is left. myMemory is already 'off' (the
 // translate function's MyMemory backup is off from the 2.2 submissions, owner
 // 2026-10-07): it stays 'off' unless the backup comes back. Not at launch unless its own
@@ -995,8 +996,10 @@ export const LIVE = {
   /**
    * Retention audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/retention-1103.md). Off: the pages say what happens today: room exits, unblocks, the
    * coded email and sign-up records, push receipts and sent notices are cleared by a later action, not on a clock, and the note that a trade or market code
-   * was sent stays with the account. On: flip the day the owner says yes and supabase/migrations_pending/20261209970000_retention_sweep_1103.sql is live (an
-   * hourly job): the pages then state the plain periods. A server switch: set in LIVE, never in PRIVACY_AHEAD. Set PRIVACY_LAST_UPDATED's date that day.
+   * was sent stays with the account. On: flip the day supabase/migrations_pending/20261231999700_retention_sweep_1111.sql is live (an hourly job; owner
+   * "sweep yes" Nov 11; it replaces the never-applied 20261209970000_retention_sweep_1103): the pages then state the plain periods, and Data Retention
+   * adds that only an aggregate daily count of these records is kept (retention_daily_counts: day, kind, count; no user). A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   * Set RETENTION_SWEEP_DAY (its PRIVACY_LAST_UPDATED entry, added by legal-integration-1111: before it, the flip moved no date) to that day.
    */
   retentionSweep: false,
   /**
@@ -1285,11 +1288,26 @@ export const LIVE = {
    * app_config.economy.gift_copies_tradable true): copies we give (owner gifts) and the code / Beta copies that were
    * waiting for 3 real games are tradable at once, each flip written to the public ledger with its evidence; while
    * the switch is on, new ones mint tradable. Switching it off binds FUTURE copies only (a flipped or traded copy is
-   * never bound again). Turns on: Terms 9 Trades' tradable-items line. Off again (the old 3-real-games line) when the
-   * owner turns economy.gift_copies_tradable off before the launch (planned, with a gift icon in the app); set
-   * LEGAL_LAST_UPDATED's entry to that day. A server switch for every app version at once: set in LIVE.
+   * never bound again). Turns on: Terms 9 Trades' tradable-items line. Off in website U0 (Dec 6) for WG (Dec 7, owner
+   * 2026-11-06: "tethered to that account", and 2026-11-08, gift-rules-1108: Developer's Picks and anything the owner, a
+   * dev or a moderator grants count like code rewards; Intel is never bound; the Beta set trades at once, no games rule):
+   * what comes from a code or a gift stays with the account for good (Terms 9, transparency's GIFTS_BOUND_DEC7, Game
+   * Night Rules' bonus title); Intel we add (a refund, a make-good) is ordinary Intel (Terms 9's never-tradable list, the
+   * corrections section); set LEGAL_LAST_UPDATED's entry to that day. A server switch for every app version at once:
+   * set in LIVE.
    */
   giftsTradable: true,
+  /**
+   * The 2.2 testers' thank-you Intercepts (owner 2026-11-11; app server tester_gift_game_1111, staged): every account on
+   * the 2.2 tester list gets the Beta Pin and the Beta Tester title; only one with at least one counted game (played to
+   * the end, shown in its Stats, any room) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of
+   * each tier and 1 month of membership. This switch follows the server's app_config tester_gift.intercepts_tradable
+   * (default false since the owner's word of Nov 11, "untradeable"): 'bound' (false) = they stay with the account, like
+   * other gifts (opened as usual); 'tradable' (true) = those Intercepts trade like anything earned. Turns on: Terms 9's
+   * tester-rewards sentence, the help center's tester-rewards answer and the /beta page's line. Flip it in the same change
+   * as the server switch, and set TESTER_GIFT_GAME_DAY (below) to that day. A server switch: set in LIVE.
+   */
+  testerIntercepts: 'bound' as 'tradable' | 'bound',
   /**
    * The party's size in the Terms and the Privacy Policy, corrected (November 3, 2026): they said a leader and up to 3
    * friends; the app server's rule is up to 21 people in all (live app_config.party.max_size 21, checked that day), the
@@ -1299,6 +1317,15 @@ export const LIVE = {
    * terms_version. Only those dates read it; the corrected text is unconditional.
    */
   partySizeCorrected: true,
+  /**
+   * A leader whose membership ends closes the party (owner 2026-11-11; app server 20261231999870_party_leader_lapse_1111,
+   * STAGED, NOT APPLIED; app branch feat/party-lapse-1111 for update 61): the party is disbanded for everyone, never handed
+   * on; a game it is playing goes on to its end and after it each player searches alone. Turns on Terms' party bullet
+   * sentence and the help center's #parties line (10 languages; non-English agent-written). Flip it to true in the change
+   * that goes up after the server file is applied, and set PARTY_LEADER_LAPSE_DAY (below) to that day. A server rule for
+   * every app version at once: set in LIVE.
+   */
+  partyLeaderLapse: false,
   /**
    * Trading's gates (owner 2026-11-02, live on the app server: app_config.trading.min_friend_days 0 and
    * 20261102002603_trade_games_not_level): friends can trade right away (no 3 days as friends; the 7-day protection and
@@ -1553,6 +1580,32 @@ export const LIVE = {
    */
   ledgerUniquesOnly: false,
   /**
+   * drawing-minor-rooms-1111 (app repo: server file 20261231999100_drawing_minor_rooms_1111, owner Nov 11 "drawings:
+   * check"): in a private room where anyone who can see the drawing is under 18 or has no birth year, drawing turns get
+   * the public check (OpenAI moderation every turn, the smart check by the drawer's tier), except a drawer who declared an
+   * age under 18 (an ageless drawer is checked: security review 1111 #1); the path has its own daily share of the budget
+   * (#4); there the app doesn't ask AGREE first; a strike there goes to a person.
+   * Turns on a paragraph in Privacy's Drawing Checks and a clause in Age. POLICY FIRST: flip it when the server file is
+   * applied live, and set DRAWING_MINOR_ROOMS_DAY (below) to the push day. A server fact for every app version at once:
+   * set in LIVE, never in PRIVACY_AHEAD.
+   */
+  drawingMinorRooms: false,
+  /**
+   * Member loyalty (owner Nov 11; app repo feat/member-loyalty-1111, server file member_loyalty_1111 in
+   * supabase/migrations_pending, STAGED): "Member since" and the time as a member, milestone stamps at 1, 3 and 6 months,
+   * 1, 2 and 3 years, then yearly. Earned by staying: the day a membership is no longer active (after the store's own
+   * grace period; a gap of under a day while a renewal goes through isn't a break), the time and the stamps are gone and
+   * start again from zero on a return. Lifetime counts from the first day as a member and keeps growing. Cosmetic only.
+   * Other players see the time and the stamp on the player sheet (never the date or a price) unless Settings' "Show my
+   * membership time" is off; never an under-13 account's. The price stays while a pass renews without a break.
+   * Turns on: Terms 3's Member time and price lines, Privacy's membership-period record (Purchases) and Data Sharing
+   * line, and the help's member-time, price and cancel answers. Flip the day the server file is live AND the app update
+   * that shows it is out; set MEMBER_LOYALTY_DAY to that day. Not a material Terms change (it adds a benefit and states
+   * what the stores already do for the price): no TERMS_PUBLISHED or terms_version raise. A server + app fact: set in
+   * LIVE, never in PRIVACY_AHEAD.
+   */
+  memberLoyalty: false,
+  /**
    * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
    * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
    * included; problem_reports was already in it since 20261224610000) and their entry on a beta tester list (beta_testers,
@@ -1583,6 +1636,34 @@ export const LIVE = {
    * (below) to the push day. Off only if the site must go back to the text before it.
    */
   coverage1110: true,
+  /**
+   * The launch email to the 2.2 testers (app repo nov03/launch-comms: testers.sql + send_launch.py, "M1"; store-privacy-1108):
+   * on launch day, one email through Resend to the account email of each saved account on beta_testers_2_2, adults only by
+   * birth year, none under a running ban, saying 2.2 is out and what the account got for testing; "Reply stop and we won't send
+   * you news like this again" (stop.txt, honoured within 10 business days). Turns on: a Test Versions sentence, a How We Use
+   * line, Legitimate Interests and Resend's item. NOT LIVE: flip it (and set PRIVACY_LAST_UPDATED's entry to that day) when the
+   * site goes up just before the send, never after. The store forms declare the matching purpose (Apple: Email Address,
+   * Developer's Advertising or Marketing; Google: Email address, Developer communications). A website fact: set in LIVE.
+   */
+  launchTesterMail: false,
+  /**
+   * Reputation (app repo feat/reputation-1110, server file 20261231970000_reputation_1110, STAGED; spec
+   * .claude/handoff/scratchpad/reputation-1110/SPEC.md in the app repo): every account has a reputation (Excellent,
+   * Good, Poor, At Risk or Banned) worked out on the server from what it already keeps (account age, level and games;
+   * warnings, mutes, pauses and bans; reports and whether they led to action; drawing check results; Play Online
+   * penalties) plus ONE new record: a per-account daily count of the messages the chat filter stopped and their kind
+   * (blocked word, link, zero-tolerance word), never the message, kept 90 days. The player sees only the tier
+   * (Settings); the owner sees the score and its reasons, a moderator the tier and its reasons through a case. It sets
+   * how often a player's drawings get the smart check, and Banned (by the record, or set by the owner with a note)
+   * keeps them out of Play Online, public rooms, game nights, trading, gifts and the Black Market, and private rooms
+   * unless the owner's switch opens them; they still sign in. Older notes fade to nothing over 90 days. Turns on:
+   * Privacy's Safety Information (two sentences) and a Terms 13 paragraph. Not a material change (Terms 13 already says
+   * we may limit what you can do; this names how): no TERMS_PUBLISHED or terms_version raise; LEGAL_LAST_UPDATED and
+   * PRIVACY_LAST_UPDATED move to REPUTATION_DAY (below). A server switch for every app version at once: set in LIVE,
+   * never in PRIVACY_AHEAD, the day the server file is applied live (apply slot 14, after Beta 2), with REPUTATION_DAY
+   * set to that day. Off only if the file is rolled back.
+   */
+  reputation: false,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -1619,7 +1700,39 @@ export const LIVE = {
    * RAREFINDS_OFFERS_DAY (if it goes later, move that day to its push day).
    */
   rarefindsOfferPush: false,
+  /**
+   * unconfirmed-signups-1111 (owner Nov 11; app repo server file 20261231999800_unconfirmed_cleanup_1111): an email
+   * sign-up that is never confirmed is deleted about 24 hours after the last confirmation email (the nightly
+   * unconfirmed-accounts-sweep, 04:53 UTC, switched on by that file; it takes only sign-ups that never signed in or did
+   * anything). Turns on its sentence in Privacy's Data Retention. Push the site with it on the day the server file is
+   * applied, and set UNCONFIRMED_SIGNUPS_DAY to that day. OFF in legal-integration-1111 (Nov 11): the branch had it on,
+   * but 20261231999800 is STAGED, NOT APPLIED (live schema_migrations has no unconfirmed_cleanup row; the nightly job is
+   * still paused), so "is deleted about 24 hours after" would be untrue today.
+   */
+  unconfirmedSignups: false,
+  /**
+   * mod-cover-1111, the cover hold (owner Nov 11; app repo server file 20261231998700_mod_cover_1111, app feat/mod-cover-1111):
+   * a child-safety, grooming, sexual-with-a-minor or self-harm case the developer hasn't opened for 15 minutes shows every
+   * community moderator a stripped card (why it was reported, the reported player's own messages as text, the room or party,
+   * that player's username and public name only when their birth year shows an adult; never who reported, a reporter's note,
+   * a minor's details or a drawing), from which they may pause the reported account 24 h, remove it from that room or party,
+   * or hide its messages; each step is logged on the case and the developer can undo it; only he decides the case or reports
+   * it (NCMEC). Moderators' phones get a push for such a card (report-alert v37): "Safety case needs a hold", nothing about
+   * the case. Turns on Privacy's community-moderator sentence and its push line, Terms 8's Community moderators line and
+   * Child Safety's response item. Push the site with it on only after the server file is applied, and set MOD_COVER_HOLD_DAY to that day.
+   * A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  modCoverHold: false,
 }
+
+/** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
+export const UNCONFIRMED_SIGNUPS_DAY = 'November 12, 2026'
+
+/** LIVE.retentionSweep's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999700_retention_sweep_1111 is applied). Never earlier than November 12, 2026. */
+export const RETENTION_SWEEP_DAY = 'November 12, 2026'
+
+/** LIVE.modCoverHold's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231998700 is live). Never earlier than November 11, 2026. */
+export const MOD_COVER_HOLD_DAY = 'November 11, 2026'
 
 /** LIVE.economyValuesL's day in Transparency's rule changes: the New York day 20261225200000 was applied (live 20261111040938). */
 export const ECONOMY_VALUES_L_DAY = 'November 10, 2026'
@@ -1790,6 +1903,12 @@ export const OPERATOR: {
  * before its feature goes live carries its date here (newest first), so its one-line flip in LIVE moves the date too;
  * set each date to its deploy day when flipping. The first switch that's on wins, so a later change that isn't one of
  * these switches (the 2.2 launch's, for one) must fold the chain back to a plain string first, then set it.
+ * ORDER (legal-integration-1111, re-ordered by friday-flips-1111): the switch flipped LAST must be the first one that's
+ * on. Both chains run: the December flips (tournaments, !giftsTradable here; tournaments, launchTesterMail, practiceAi
+ * in PRIVACY_LAST_UPDATED) first, then the Friday Nov 13 group (all set to the same apply day, so their order among
+ * themselves doesn't matter), then the switches already on. A switch flipped on a later day than Friday's group moves
+ * its two lines above that group. LIVE.testerIntercepts is never false (a string), so nothing under it ever shows.
+ * Friday's flips: FRIDAY-SITE-FLIPS.md (app repo handoff) and scripts/flip-switch.mjs.
  */
 /**
  * The day unopened Intercepts in friend trades go up (LIVE.interceptsInTrades; app branch fix/intercept-trades-1106): Terms' and
@@ -1816,9 +1935,20 @@ export const CHAT_MILD_MASK_DAY = 'November 11, 2026'
 
 /** LIVE.rarefindsOffers's (and LIVE.rarefindsOfferPush's) day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the server file 20261231999981_rarefinds_offers_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
 export const RAREFINDS_OFFERS_DAY = 'November 13, 2026'
+/** LIVE.drawingMinorRooms's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on. Never earlier than November 11, 2026. */
+export const DRAWING_MINOR_ROOMS_DAY = 'November 11, 2026'
+
+/** LIVE.memberLoyalty's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after member_loyalty_1111 is live and the app update shows it). Never earlier than November 11, 2026. */
+export const MEMBER_LOYALTY_DAY = 'November 12, 2026'
+
+/** LIVE.reputation's day (Terms 13, Privacy's Safety Information): the day the server file is applied and the site goes up with it on. Never earlier than November 13, 2026. */
+export const REPUTATION_DAY = 'November 14, 2026'
 
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
+
+/** LIVE.testerIntercepts's day (Terms 9's tester-rewards sentence, the counted-game condition): the day the site goes up with it, or with a flip of it. Never earlier than November 11, 2026. legal-integration-1111: it is the newest always-on entry, so it also dates the integration's unswitched changes (Terms 7, Child Safety and Safety's contacts: CSEA reported to NCMEC only). SET IT TO THE PUSH DAY (coordinator: Friday after Beta 2). */
+export const TESTER_GIFT_GAME_DAY = 'November 11, 2026'
 
 /**
  * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
@@ -1826,16 +1956,37 @@ export const COVERAGE_1110_DAY = 'November 10, 2026'
  */
 export const PRACTICE_AI_DAY = 'December 6, 2026'
 
+/** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
+export const PARTY_LEADER_LAPSE_DAY = 'November 11, 2026'
+
+/** LIVE.giftsTradable going false (website U0, owner's gift rules of Nov 6 and Nov 8: Terms 9, Intel corrections): its day in LEGAL_LAST_UPDATED (added by legal-integration-1111: before it, the flip moved no date). Set it to the day the site goes up with giftsTradable false. */
+export const GIFTS_BOUND_DAY = 'December 6, 2026'
+
+/** LIVE.launchTesterMail's day in PRIVACY_LAST_UPDATED (store-privacy-1108): the day the site goes up with it on, just before the launch email to the 2.2 testers, never after. */
+export const LAUNCH_TESTER_MAIL_DAY = 'December 8, 2026'
+
 /** LIVE.emailCodes22's day (Terms 3, Privacy's sign-in lines): the day the site went up with it on. */
 export const EMAIL_CODES_22_DAY = 'November 11, 2026'
 
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : !LIVE.giftsTradable
+    ? GIFTS_BOUND_DAY // U0: Terms 9's codes and gifts stay with the account, Intel we add is ordinary Intel (gift-rules-1108)
   : LIVE.rarefindsOffers
     ? RAREFINDS_OFFERS_DAY // Terms 9's Rare Finds offers: the seller's discount, counters, a Decline's minimum, 24 h ends, the 30-minute take-back, the offer pause (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
     ? LEDGER_UNIQUES_DAY // Terms 9's collectibles bullet: the public ledger carries Uniques only (ledger-uniques-1111)
+  : LIVE.reputation
+    ? REPUTATION_DAY // legal/reputation-1110: Terms 13's reputation paragraph
+  : LIVE.memberLoyalty
+    ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a pass renews (member-loyalty-1111)
+  : LIVE.partyLeaderLapse
+    ? PARTY_LEADER_LAPSE_DAY // party-leader-lapse-1111: Terms' party bullet says a leader's membership ending closes the party
+  : LIVE.modCoverHold
+    ? MOD_COVER_HOLD_DAY // Terms 8 and Child Safety: community moderators may hold a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
+  : LIVE.testerIntercepts
+    ? TESTER_GIFT_GAME_DAY // tester-gift-game-1111: Terms 9 names the testers' thank-you, its counted-game condition and whether its Intercepts trade (always set, so it heads the chain)
   : LIVE.emailCodes22
     ? EMAIL_CODES_22_DAY // Terms 3: 2.2 signs in with an emailed code, older versions with a password (legal audit 1111)
   : LIVE.chatMildMask
@@ -1910,16 +2061,30 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.launchTesterMail
+    ? LAUNCH_TESTER_MAIL_DAY // the launch email to the 2.2 testers (store-privacy-1108): the day the site goes up with it on, before the send
+  : LIVE.practiceAi
+    ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
   : LIVE.rarefindsOffers || LIVE.rarefindsOfferPush
     ? RAREFINDS_OFFERS_DAY // the Black Market item's offer ends, counters and offer pause; Social Notifications' Rare Finds buyer pushes (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
     ? LEDGER_UNIQUES_DAY // Collectibles and the public ledger: Uniques only on it, the monthly snapshot (ledger-uniques-1111)
+  : LIVE.memberLoyalty
+    ? MEMBER_LOYALTY_DAY // Purchases: the membership-period record; Data Sharing: the member time on the player sheet (member-loyalty-1111)
+  : LIVE.reputation
+    ? REPUTATION_DAY // legal/reputation-1110: Safety Information's reputation and the chat filter's daily count
+  : LIVE.modCoverHold
+    ? MOD_COVER_HOLD_DAY // Data Sharing: what community moderators see of a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
+  : LIVE.drawingMinorRooms
+    ? DRAWING_MINOR_ROOMS_DAY // Drawing Checks: adults' drawings checked in private rooms where a minor sits (drawing-minor-rooms-1111)
+  : LIVE.retentionSweep
+    ? RETENTION_SWEEP_DAY // Data Retention: the short-lived records deleted on the clock by the hourly sweep, and only a daily count kept (retention-sweep-1111)
+  : LIVE.unconfirmedSignups
+    ? UNCONFIRMED_SIGNUPS_DAY // Data Retention: never-confirmed email sign-ups deleted about 24 hours after the last confirmation email (unconfirmed-signups-1111)
   : LIVE.marketMedian
     ? MARKET_MEDIAN_DAY // the Market's prices as medians, three pairs of players (market-median-1111)
   : LIVE.emailCodes22
     ? EMAIL_CODES_22_DAY // Rate Limits, security logs, Resend, the deletion summary: 2.2's sign-in codes beside older versions' passwords (legal audit 1111)
-  : LIVE.practiceAi
-    ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
   : LIVE.archiveHolders
     ? ARCHIVE_HOLDERS_DAY // the Archive names a Unique's holder today when their profile is public (archive-holder-1110)
   : LIVE.marketSite

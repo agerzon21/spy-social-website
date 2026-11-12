@@ -31,6 +31,9 @@ const OPTS: HelpOpts = {
   interceptsInTrades: LIVE.interceptsInTrades,
   rarefindsOffers: LIVE.rarefindsOffers,
   rarefindsOfferPush: LIVE.rarefindsOfferPush,
+  partyLeaderLapse: LIVE.partyLeaderLapse,
+  memberLoyalty: LIVE.memberLoyalty,
+  testerInterceptsTradable: LIVE.testerIntercepts === 'tradable',
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).

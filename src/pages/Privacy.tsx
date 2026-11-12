@@ -656,6 +656,8 @@ const Privacy: React.FC = () => {
                 " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026), even if you delete your account first."}
             </>
           )}{' '}
+          {PRIVACY.launchTesterMail &&
+            "On the day version 2.2 comes out, we send one email, through Resend, to the email address of each saved account that tested it before the launch (only accounts whose birth year makes them an adult, and none under a ban), to say it's out and what the account received for testing. Reply \"stop\" to it, or to any later email like it, and we won't send you news like this again; we keep the address of everyone who asked us to stop, only so that we never send them such news again. "}
           Otherwise, a test version is the same app, and this policy applies to it.
         </Item>
         <Item label="Rate Limits">
@@ -701,6 +703,8 @@ const Privacy: React.FC = () => {
           keep reports. For each player who reports, our moderators can see how many of their reports led to action
           and how many were dismissed. We work this out from the reports we already keep, use it only to review
           reports and to find players who might help us moderate, and never show it to other players.
+          {PRIVACY.reputation &&
+            " We also work out a reputation for each account (Excellent, Good, Poor, At Risk or Banned) from what we already keep: how old the account is, its level and games played, and its moderation record (warnings, mutes, pauses and bans; reports about it and whether they led to action; drawing check results; messages our chat filter stopped; and Play Online penalties such as leaving games). It isn't a profile of you and uses nothing else; buying a membership or anything else never changes it. You see your tier in Settings; the score itself is seen only by our team, and moderators see the tier and the main reasons behind it when they review a report about you. We use it to decide how often your drawings are checked automatically (more often for new accounts and lower tiers) and, at Banned, to stop online play, trading and the Black Market (see our Terms). Older notes count less and stop counting after 90 days. We keep your current tier and the reasons behind it with your account, and a short history of tier changes for as long as we keep reports; both are deleted with your account. When our chat filter stops a message you send, we keep a count for that day of how many it stopped and what kind (blocked words, a link, a zero-tolerance word), never the message itself; these counts are deleted after 90 days."}
           {PRIVACY.groomingFlag &&
             ` We automatically flag possible grooming language in rooms with minors for human review: ${PRIVACY.groomingScope ? "in any room or game where anyone else, watchers included, is under 18 or hasn't told us their age, our servers check the messages written there by adults and by players who haven't told us their age (such as guests)" : "in any room or game where anyone, watchers included, is under 18 or hasn't told us their age, our servers check the messages adults write there"} for phrases that can be part of grooming (for example asking a younger player's age or school, asking them to keep secrets, to talk somewhere else, to meet up or to send photos, or offering gifts), and a message that has one is flagged for one of our team to review.${PRIVACY.groomingScope ? " So that this still works after a younger player leaves, our servers also note which messages were sent while someone else there was under 18 or hadn't told us their age: only the message's ID, kept on our servers and never shown to any player, for as long as we keep the message itself." : ''} A flag doesn't block, hide or change the message, isn't shown to any player and isn't a report to anyone; we decide what to do, as with a report.${PRIVACY.childSafetyHolds ? " We do the same for party chat when someone else in the party is under 18 or hasn't told us their age. Explicit sexual talk is refused at public tables and in any room or party with a player under 18 or one who hasn't told us their age. With such a player there, lines that could be sexual but may be innocent are refused too, and those are never flagged. When an adult or a player who hasn't told us their age writes an explicit line with such a player there, the refused words are flagged too, though nobody else ever saw them. A flag keeps which message it was, what kind of phrase it had, and a copy of the message and the chat just before it, in a child-safety case or with a report from that room, for as long as we keep reports, so that a person can still read it after the chat schedule (see Chat Messages above) has deleted the message itself." : " A flag keeps only which message it was and what kind of phrase it had, with the player's report case, for as long as we keep reports. The message itself is still deleted on the chat schedule (see Chat Messages above)."}`}
           {PRIVACY.socialFeatures &&
@@ -716,7 +720,10 @@ const Privacy: React.FC = () => {
           <Item label="Drawing Checks">
             In public rooms (Play Online tables and Game Nights), drawing turns in a Spy Sketch game go through an
             automated check by OpenAI for content that breaks our Community Rules, and some are also checked by a
-            second, more detailed OpenAI model. In any room, a drawing is checked by both when someone reports it. If
+            second, more detailed OpenAI model.
+            {PRIVACY.drawingMinorRooms &&
+              " The same checks also run on a player's drawing in a private room when anyone else who can see it there (members, players in the game and watchers) is under 18 or hasn't told us their age, unless that player has told us they're under 18 (a player who hasn't told us their age is checked too). A drawing by a player who's told us they're under 18 is never sent from a private room this way. These checks have their own share of each day's drawing-check budget; once it's used up, drawings in those rooms go unchecked for the rest of that day (UTC), unless someone reports one. There, the app doesn't wait for you to agree before you draw. A drawing these checks find against our rules in a private room goes to one of our team; only the most serious (as in any room) is acted on by itself."}{' '}
+            In any room, a drawing is checked by both when someone reports it. If
             the checks can't run at that moment and still can't after a few more tries, that turn goes unchecked; a
             report of it still goes to a person, as every report does. The
             app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
@@ -734,7 +741,7 @@ const Privacy: React.FC = () => {
             old it is, whether it's saved, and any strikes or upheld reports). We don't use this for anything else or
             show it to other players. If the second check can't give an answer, the first check's answer is used. Our
             servers never send your name, username, email address, chat or your
-            device's IP address.{PRIVACY.audit1103 ? " These checks run the same way at every age, players under 16 included (unlike translation, see Translations): they're how we keep drawings safe, and OpenAI never receives your age." : ''} According to OpenAI, it doesn't use what it receives to train
+            device's IP address.{PRIVACY.audit1103 ? ` These checks run the same way at every age${PRIVACY.drawingMinorRooms ? ' in public rooms and for reported drawings' : ''}, players under 16 included (unlike translation, see Translations): they're how we keep drawings safe, and OpenAI never receives your age.` : ''} According to OpenAI, it doesn't use what it receives to train
             its models, and keeps it for up to 30 days to watch for misuse, unless the law requires it to keep it
             longer. The check acts by itself: it can take a turn off the drawing for everyone in the game, give a
             strike (which can lead to a pause or a ban from public rooms and Game Nights), or remove a player from the game
@@ -756,7 +763,8 @@ const Privacy: React.FC = () => {
           We use your age only to apply age limits
           {PRIVACY.openAiTranslation ? (msOff ? ', to decide whether your messages may be sent to OpenAI to be translated (see Translations)' : ', to choose which service translates your messages (see Translations)') : ''}
           {PRIVACY.practiceAi ? ', to decide whether OpenAI may rate your practice lines (see Practice Games)' : ''}
-          {PRIVACY.safetyAnswers1106 ? ', to decide whether what you write may get the chat safety check (see Chat Safety Checks)' : ''} and
+          {PRIVACY.safetyAnswers1106 ? ', to decide whether what you write may get the chat safety check (see Chat Safety Checks)' : ''}
+          {PRIVACY.drawingMinorRooms ? ', to decide whether drawings in a private room are checked (see Drawing Checks)' : ''} and
           to protect players under 18.
           In any room{PRIVACY.safetyAnswers1106 ? ', game or party' : ' or game'} where anyone, watchers included, is under 18 or hasn't told us their age, its chats and
           typed questions and answers block links, email addresses, websites, phone numbers and social media accounts
@@ -788,6 +796,9 @@ const Privacy: React.FC = () => {
             for as long as you have an account; if you use Restore Purchases while signed in to another account, your
             purchases move to that account. The updates RevenueCat sends us about a purchase (such as a renewal or a
             refund) are deleted after 90 days.{' '}
+            {PRIVACY.memberLoyalty
+              ? "To show your member time (\"Member since\" and how long you've been a member, see our Terms of Service), we keep a record of each period your membership was active: when it started and ended, how it came (a pass, Lifetime, a gift or a code), and whether it was refunded or a test purchase. We keep it for as long as you have an account and delete it with the account. It doesn't include the price you paid. "
+              : ''}
             {PRIVACY.revenueCatDeletion
               ? 'RevenueCat keeps its record of your purchases until you delete your account, and deletes it within 30 days after that.'
               : 'RevenueCat keeps its own record of your purchases until we ask it to delete it (see When you delete your account below).'}
@@ -832,7 +843,11 @@ const Privacy: React.FC = () => {
               ` If you send a pack to Community Packs, we also use that push address to tell you when we approve or turn it down (with the pack's name and our reason)${PRIVACY.helpTruth1105 ? "; a player under 18 gets it only between 7 AM and 10 PM local time, and not at all while we don't know their time zone" : ''}.`}{' '}
             {PRIVACY.socialFeatures
               ? "Apart from that and the notifications in Social Notifications above, the only other push notifications we send go to our moderators' phones when a new report comes in, a report is waiting past its time or our safety checks flag something, and to SpySocial's developer's phone when our fair-play, economy or email checks need him."
-              : "Apart from that, the only other push notifications we send go to our moderators' phones when a new report comes in."} They pass through Expo's push service and Apple's or Google's, and say
+              : "Apart from that, the only other push notifications we send go to our moderators' phones when a new report comes in."}
+            {PRIVACY.modCoverHold
+              ? " A community moderator's phone also gets one when a safety report SpySocial's developer hasn't opened for 15 minutes needs a hold; it says only that, never which report, who or what was said."
+              : ''}{' '}
+            They pass through Expo's push service and Apple's or Google's, and say
             only what kind of report it is and its case number, never a player's name or what was said. The developer's own alerts say what kind
             of alert it is and its counts, and one about trades can name the account it's about.
             {PRIVACY.fcmAutoInit
@@ -973,6 +988,7 @@ const Privacy: React.FC = () => {
       <Bullets>
         <li>Create and manage your account</li>
         {PRIVACY.launchReminder && <li>Send the one launch email you asked for</li>}
+        {PRIVACY.launchTesterMail && <li>Tell the players who tested version 2.2 by email that it's out and what they received for testing</li>}
         <li>Enable multiplayer game functionality, chat and translation</li>
         {PRIVACY.purchases && <li>Provide and restore what you buy</li>}
         {PRIVACY.creatorCodes && (
@@ -1050,7 +1066,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs{PRIVACY.ipVault ? ', and the encrypted IP addresses of new accounts and sign-ins, for safety, fraud and legal requests' : ''}), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
-          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
+          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}
+          {PRIVACY.launchTesterMail ? ', and tell the adults who tested version 2.2 that it\'s out (you can reply "stop")' : ''}.
           You can object to this processing at any time by emailing <SupportEmail />.
         </Item>
         <Item label="Consent">
@@ -1099,6 +1116,7 @@ const Privacy: React.FC = () => {
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests {PRIVACY.retentionSweep ? 'after a day' : 'after a day of no use, the next time a request clears them'}.
+        {PRIVACY.unconfirmedSignups ? ' An email sign-up that is never confirmed is deleted about 24 hours after the last confirmation email we sent for it.' : ''}
         {PRIVACY.socialLimits ? ' Counts of daily limits reached for follows and friend requests are deleted after 90 days.' : ''}
         {PRIVACY.intel
           ? PRIVACY.intelLedger
@@ -1134,6 +1152,9 @@ const Privacy: React.FC = () => {
           : ''}
         {PRIVACY.audit1103
           ? ' Emails waiting in our account mail queue are kept for 30 days (the address and any code are removed once sent), coded copies of ban-notice codes stop working after 30 minutes and are deleted 2 days later, and push receipt numbers are deleted after about 2 days' + (PRIVACY.retentionSweep ? '' : ', the next time we send a push') + '. The record of what we did for you in Account Support is kept as long as we keep reports.'
+          : ''}
+        {PRIVACY.retentionSweep
+          ? " When these short-lived records are deleted (notes about leaving rooms and unblocking, the coded email and sign-up records, room-creation notes, push receipts, notices waiting or sent, daily Practice rating counts and the notes that we sent a trade or market code), we keep only a count of how many there were each day, which doesn't identify anyone."
           : ''}
         {PRIVACY.banTombstone
           ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
@@ -1258,7 +1279,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : PRIVACY.emailCodes22 ? ' sign-in codes, sign-up confirmations and password resets' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.launchTesterMail ? ', the email telling the players who tested version 2.2 that it\'s out' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">
@@ -1363,6 +1384,8 @@ const Privacy: React.FC = () => {
         membership (for example, the Spymaster title and its gold border) unless you choose another title and border,
         or None; a title or border that shows a membership is shown only to players who share a room with you or played
         a game with you in the last 24 hours, and with a room you host in the room list.
+        {PRIVACY.memberLoyalty &&
+          " While you're a member, how long you've been a member and its stamp are shown on your player sheet to the same players (in private rooms and at public tables), never the date it started or what you pay. This is on by default: other players see your membership length unless you turn off Show my membership time in Settings. An under-13 account's member time is never shown to other players."}
         {PRIVACY.creatorCodes &&
           " A content creator in our creator program shows a CONTENT CREATOR badge on their profile and player card to the players who share a private room with them or played a game in one with them in the last 24 hours; it isn't shown in public play. A title a creator code or a reward code gave you shows like any other title. We tell a content creator only totals for their code, never who entered it or what anyone bought."}
         {/* Agent Colours phase 2: get_my_game_view and get_watch_view send a pre-2.2 photo only to its owner at public tables. */}
@@ -1433,7 +1456,11 @@ const Privacy: React.FC = () => {
           the player's earlier warnings and penalties, how many of the reporter's reports led to action, whether a
           player under 18 is involved and, for fair-play cases, the game patterns behind the case.{PRIVACY.moderatorRoomActions ? ' With our permission, a community moderator may also watch a Game Night table while it plays (seeing what a watcher sees: the agents, chat and drawings at that table), and read the Community Packs waiting for review with their creator\'s username.' : ''} They never see your
           email address, sign-in details, IP address, payment details or your age. Cases involving a child's safety, self-harm
-          or threats{PRIVACY.safetyAnswers1106 ? ', and reports of personal info shared by or with a player under 18,' : ''} go to SpySocial's developer only, never to community moderators. We keep a record of every case a
+          or threats{PRIVACY.safetyAnswers1106 ? ', and reports of personal info shared by or with a player under 18,' : ''}{' '}
+          {PRIVACY.modCoverHold
+            ? "are decided by SpySocial's developer only. If he hasn't opened one about a child's safety, grooming, sexual content with a player under 18 involved, or self-harm within 15 minutes, community moderators see a limited view of it so they can protect players until he does: why it was reported, whether it happened at a public table (with its code), in a private room or in a party, and, only if their birth year shows the reported player is an adult, that player's username, public name and own messages as text (otherwise just how many messages). They never see who reported it, a reporter's note, a private room's code, any details about a player under 18, or any drawing. They can only pause the reported player from public rooms and mute their chat for 24 hours (never on a self-harm report), remove them from that room or party, or hide their messages; we record each step (who, what, when and why), SpySocial's developer reviews and can undo each one, and only he decides the case or reports it to the authorities."
+            : "go to SpySocial's developer only, never to community moderators."}{' '}
+          We keep a record of every case a
           community moderator opens and every action they take (what they did, to whom, when and why), for as long as
           we keep reports, and we can see and undo each one. We also keep, for each community moderator, that they are
           one, what they may do, when they accepted the agreement and which version, and when their role started and

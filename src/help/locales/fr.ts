@@ -225,6 +225,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "C'est quoi, un groupe ?",
         a: [
           "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut un abonnement pour en créer un. Si le chef part, la main passe d'abord à quelqu'un qui a un abonnement.",
+          ...(o.partyLeaderLapse ? ["Si l'abonnement du chef prend fin, le groupe est dissous pour tout le monde ; la main ne passe à personne. Une partie en cours va jusqu'au bout, puis chacun cherche de son côté."] : []),
           "Aux tables de Jouer en ligne et aux Soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
           "À une table de 12 places d'une Soirée jeux, jusqu'à 6. Les membres du groupe qui cherchent seuls comptent aussi : ensemble, jamais plus de la moitié d'une table.",
           "Pour s'asseoir à la même table, cherchez depuis le groupe : <b>Jouer en ligne</b> tout seul, c'est une recherche en solo. Après une partie de Jouer en ligne, <b>Retour à ton groupe</b> t'y ramène.",
@@ -258,7 +259,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.interceptsInTrades ? ['Les adultes peuvent aussi mettre des Interceptions non ouvertes dans un échange : choisis combien de chaque niveau. Chacune compte pour un des 10 objets.'] : []),
           ...(o.interceptsInTrades && !o.launch ? ["Pendant la bêta, jusqu'au 7 décembre, n'importe quelle Interception non ouverte peut entrer dans un échange, quelle que soit son origine. De toute façon, les Interceptions repartent de zéro au lancement."] : []),
           "Ce que tu mets dans un échange ouvert lui est réservé : ça ne peut pas aller dans un autre échange ou sur le Marché noir en même temps. Si l'Intel d'un échange est dépensé avant qu'il se fasse, un avertissement s'affiche de ce côté, et l'échange ne peut pas se faire tant que le montant n'est pas baissé.",
-          "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais.",
+          "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons, Choix du développeur compris : ça reste sur ton compte. L'Intel n'est jamais liée à un compte, d'où qu'elle vienne." : ''),
           "L'Intel ne s'échange qu'entre adultes.",
           ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel. Le 7 décembre, toute l’Intel échangée est rendue : celui qui l’a donnée la récupère, et chacun ne garde que l’Intel qu’il a gagnée.', 'À partir du 7 décembre, les interceptions reçues par un code ou un cadeau, ce qu’elles contiennent et ce que tu obtiens avec elles par Échange restent sur ton compte : tu peux t’en servir, mais pas les échanger ni les vendre.']),
           "Acheter ou vendre des objets, de l'Intel ou des comptes contre de l'argent réel est interdit.",
@@ -397,7 +398,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           '<b>Victoires :</b> toutes les 10 victoires à Jouer en ligne, tu reçois 5 interceptions, dont une de niveau Secret ou mieux.',
           "<b>Chaque jour :</b> ta première partie du jour à Jouer en ligne t'en donne une, et les longues séries en ajoutent (tous les 30 jours d'affilée, une Enigma).",
           '<b>Soirée jeux :</b> les gagnants de la soirée reçoivent une Enigma.',
-          `<b>Codes et cadeaux :</b> un code d'un créateur ou de nous marche une fois par compte, et ses interceptions se débloquent après ta première partie comptée à Jouer en ligne. Nous en offrons aussi.${o.launch ? " Les interceptions d'un code ou d'un cadeau sont pour toi seul : elles ne s'échangent ni ne se vendent." : ''}`,
+          `<b>Codes et cadeaux :</b> un code d'un créateur ou de nous marche une fois par compte, et ses interceptions se débloquent après ta première partie comptée à Jouer en ligne. Nous en offrons aussi.${o.launch ? " Les interceptions d'un code ou d'un cadeau, ce qu'elles contiennent et ce que tu en tires par Échange sont pour toi seul : ils ne s'échangent, ne se vendent et ne s'offrent pas, quel que soit ton nombre de parties. Tu peux toujours les ouvrir, porter ce qui en sort, les utiliser dans un Échange et déchiqueter les doublons. Déchiqueter un doublon donne de l'Intel ordinaire." : ''}`,
           'Les salons privés ne donnent pas d\'interceptions.',
           ...(o.launch
             ? []
@@ -409,7 +410,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Que faire des doublons ?',
         a: [
           "<b>Déchiquette</b> un doublon contre de l'Intel, au montant affiché par l'appli.",
-          "<b>Échange :</b> 5 doublons d'une rareté te donnent 1 objet au hasard de la rareté suivante, et 10 doublons Légendaires te donnent un Unique.",
+          "<b>Échange :</b> 5 doublons d'une rareté te donnent 1 objet au hasard de la rareté suivante, et 10 doublons Légendaires te donnent un Unique." + (o.launch ? " S'il y a un cadeau parmi eux, ce que tu obtiens est pour toi seul aussi." : ''),
           'Seuls les doublons comptent, jamais ton premier exemplaire ni un Unique.',
           'Un exemplaire acheté ou reçu dans un échange compte comme doublon si tu as un autre exemplaire de cet objet. Ton seul exemplaire reste toujours.',
         ],
@@ -450,8 +451,14 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Où sont mes récompenses de la bêta ?',
         a: [
           o.launch
-            ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi : le <b>Pin bêta</b>, les titres <b>« Bêta-testeur »</b> et <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
-            : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi : le <b>Pin bêta</b>, les titres <b>« Bêta-testeur »</b> et <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement.",
+            ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi. Tous les testeurs de la liste ont reçu le <b>Pin bêta</b> et le titre <b>« Bêta-testeur »</b>. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
+            : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi. Tous les testeurs de la liste reçoivent le <b>Pin bêta</b> et le titre <b>« Bêta-testeur »</b>.",
+          o.launch
+            ? "Les testeurs qui ont terminé au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans leurs Stats) ont aussi reçu le titre <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement."
+            : "Termine au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans tes Stats) et tu reçois aussi le titre <b>« Testeur de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement.",
+          o.testerInterceptsTradable
+            ? "Le <b>Pin bêta</b>, le titre <b>« Testeur de terrain »</b> et les interceptions de remerciement s'échangent comme tout ce que tu gagnes."
+            : "Le <b>Pin bêta</b> et le titre <b>« Testeur de terrain »</b> s'échangent comme tout ce que tu gagnes ; comme les autres cadeaux, les interceptions de remerciement restent sur ton compte.",
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
           "Il manque quelque chose ? Écris à <email/> avec ton nom d'utilisateur et l'e-mail utilisé pendant le test. Un compte invité n'est pas sur la liste : c'est souvent une question de compte différent.",
@@ -485,6 +492,30 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "L'accès à vie dure tant que nous proposons SpySocial, pas toute ta vie. Pas d'essai gratuit, et l'abonnement ne se partage pas via le Partage familial.",
         ],
       },
+      ...(o.memberLoyalty
+        ? [
+          {
+            id: 'member-time',
+            q: "C'est quoi, « Membre depuis » ?",
+            a: [
+              "Tant que tu es membre, le <b>Compte</b> indique depuis quand et depuis combien de temps tu l'es, et le <b>Coffre</b> montre tes tampons : 1, 3 et 6 mois, 1, 2 et 3 ans, puis chaque année.",
+              "On compte le temps où ton abonnement a été actif sans interruption : un abonnement mensuel ou annuel, l'accès à vie, un cadeau ou un code. Le temps remboursé et les achats de test ne comptent pas.",
+              "Ça se gagne en restant. Dès le premier jour où ton abonnement n'est plus actif (après le délai de grâce que le store accorde en cas d'échec de paiement), ton ancienneté et tes tampons disparaissent. Si tu redeviens membre, « Membre depuis » et ton ancienneté repartent de zéro.",
+              "L'<b>accès à vie</b> fait exception : ton ancienneté compte depuis ton premier jour de membre, mois d'abonnement d'avant compris, et continue de grandir, avec chaque tampon que nous ajouterons.",
+              "Les autres joueurs voient seulement ton ancienneté, avec ton tampon, sur ta fiche de joueur, jamais la date ni le prix. Désactive <b>Afficher mon ancienneté de membre</b> dans les Réglages pour le cacher. L'ancienneté d'un compte de moins de 13 ans n'est jamais montrée aux autres.",
+              "Les tampons changent seulement l'apparence de ton profil : pas d'XP, pas de meilleures chances, et ils ne s'échangent pas.",
+            ],
+          },
+          {
+            id: 'membership-price',
+            q: "Mon prix va-t-il augmenter ?",
+            a: [
+              "Tant que ton abonnement se renouvelle sans interruption, tu gardes le prix que tu paies aujourd'hui, même s'il augmente pour les nouveaux membres. Le store peut encore l'ajuster selon les taxes locales ou la devise.",
+              "Si tu passes à l'autre abonnement, tu paies le prix actuel de cette formule. Si ton abonnement prend fin et que tu reviens plus tard, tu paieras peut-être le prix du moment. L'accès à vie se paie une fois et ne se renouvelle jamais.",
+            ],
+          },
+          ]
+        : []),
       {
         id: 'cancel-membership',
         q: 'Comment marchent le renouvellement automatique et la résiliation ?',
@@ -493,6 +524,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           '<b>iPhone ou iPad :</b> Réglages, ton nom, Abonnements, SpySocial.',
           "<b>Android :</b> l'appli Google Play Store, ta photo de profil, Paiements et abonnements, Abonnements, SpySocial.",
           "<b>Gérer l'abonnement</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte, ou acheter l'accès à vie, ne résilie pas un abonnement.",
+          ...(o.memberLoyalty ? ["Dans le <b>Coffre</b>, <b>Résilier l’abonnement</b> (sous Gérer l'abonnement) affiche d'abord un seul écran avec les faits : si ton abonnement prend fin, ton ancienneté et tes tampons repartent à zéro, et ton prix bloqué prend fin. Son seul bouton, <b>Continuer la résiliation</b>, mène directement à la boutique. <b>Gérer l'abonnement</b> ouvre toujours directement la boutique. Rien ne change avant la fin de la période payée."] : []),
         ],
       },
       {

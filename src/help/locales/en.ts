@@ -235,6 +235,7 @@ const en: HelpText = {
           q: 'What is a party?',
           a: [
             'A leader and friends who play together, up to 21 people in all. It takes a membership to start one. If the leader leaves, the lead goes to someone with a membership first.',
+            ...(o.partyLeaderLapse ? ['If the leader’s membership ends, the party closes for everyone; the lead isn’t passed on. A game you’re in goes on to the end, and after it each of you searches on your own.'] : []),
             'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',
             'At a 12-seat Game Night table, up to 6. Party mates searching on their own count too: never more than half a table between them.',
             'To sit at one table, search from the party: <b>Play Online</b> on your own is a solo search. After a Play Online game, <b>Back to Your Party</b> takes you back to it.',
@@ -268,7 +269,7 @@ const en: HelpText = {
             ...(o.interceptsInTrades ? ['Adults can also put unopened Intercepts in a trade: choose how many of each tier. Each one counts as one of the 10.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['During the beta test, until December 7, every unopened Intercept can go in a trade, however you got it. Intercepts start fresh at launch anyway.'] : []),
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
-            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.',
+            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel is never tied to an account, whatever it came from." : ''),
             'Intel can be traded only between adults.',
             ...(o.launch ? [] : ['During the beta test, until December 7, adult testers trade Intel too. On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned.', 'From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them.']),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
@@ -407,7 +408,7 @@ const en: HelpText = {
             '<b>Wins:</b> every 10 Play Online wins give you 5 Intercepts, one of them Secret or better.',
             '<b>Daily:</b> your first Play Online game of the day gives you one, and long streaks add more (every 30th day in a row, an Enigma).',
             '<b>Game Night:</b> the night’s winners get an Enigma.',
-            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? ' Intercepts from a code or a gift are just for you: they can’t be traded or sold.' : ''}`,
+            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding a spare gives ordinary Intel." : ''}`,
             'Private rooms don’t give Intercepts.',
             ...(o.launch
               ? []
@@ -419,7 +420,7 @@ const en: HelpText = {
           q: 'What can I do with duplicates?',
           a: [
             '<b>Shred</b> a spare copy for Intel, at the amount the app shows.',
-            '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.',
+            '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.' + (o.launch ? " With a gift among them, what you get is just for you too." : ''),
             'Only spares count, never your first copy or a Unique.',
             'A copy you bought or got in a trade counts as a spare when you hold another copy of that item. Your only copy always stays.',
           ],
@@ -460,8 +461,14 @@ const en: HelpText = {
           q: 'Where are my beta tester rewards?',
           a: [
             o.launch
-              ? 'They were added at the 2.2 launch and are yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership. A thank-you card shows when you first open the app after launch.'
-              : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership.',
+              ? 'They were added at the 2.2 launch and are yours to keep. Everyone on the tester list got the <b>Beta Pin</b> and the <b>Beta Tester</b> title. A thank-you card shows when you first open the app after launch.'
+              : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep. Everyone on the tester list gets the <b>Beta Pin</b> and the <b>Beta Tester</b> title.',
+            o.launch
+              ? 'Testers who finished at least one game before December 7 (played to the end, in any room, so it shows in their Stats) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.'
+              : 'Finish at least one game before December 7 (played to the end, in any room, so it shows in your Stats) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.',
+            o.testerInterceptsTradable
+              ? 'The <b>Beta Pin</b>, the <b>Field Tester</b> title and the thank-you Intercepts trade like anything you earn.'
+              : 'The <b>Beta Pin</b> and the <b>Field Tester</b> title trade like anything you earn; like other gifts, the thank-you Intercepts stay with your account.',
             ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
             'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
             'Something missing? Email <email/> with your username and the email you signed in with during the test. A guest account isn’t on the list, so a different account is the usual reason.',
@@ -495,6 +502,30 @@ const en: HelpText = {
             'Lifetime lasts as long as we offer SpySocial, not for your lifetime. There are no free trials, and memberships aren’t shared through Family Sharing.',
           ],
         },
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "What is “Member since”?",
+              a: [
+                "While you’re a member, <b>Account</b> shows when your membership started and how long you’ve been a member, and the <b>Vault</b> shows your stamps: 1, 3 and 6 months, 1, 2 and 3 years, then every year.",
+                "It counts the time your membership has been active without a break: a pass, Lifetime, a gift or a code. Refunded time and test purchases don’t count.",
+                "It’s earned by staying. On the first day your membership isn’t active any more (after any grace period the store gives for a failed payment), your member time and stamps are gone. If you become a member again, “Member since” and your time start again from zero.",
+                "<b>Lifetime</b> is the exception: your time counts from your first day as a member, months on a pass before it included, and keeps growing, with every stamp we add later.",
+                "Other players see only how long, with your stamp, on your player sheet, never the date or the price. Turn off <b>Show my membership time</b> in Settings to hide it. An under-13 account’s time is never shown to others.",
+                "Stamps only change how your profile looks: no XP, no better odds, and they can’t be traded.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "Will my price go up?",
+              a: [
+                "While your pass renews without a break, you keep the price you pay now, even if the price goes up for new members. The store may still adjust it for local taxes or currency.",
+                "Switching to the other pass means that plan’s current price. If your membership ends and you come back later, you may pay the price at that time. Lifetime is paid once and never renews.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: 'How do auto-renewal and cancelling work?',
@@ -503,6 +534,7 @@ const en: HelpText = {
             '<b>iPhone or iPad:</b> Settings, your name, Subscriptions, SpySocial.',
             '<b>Android:</b> the Google Play Store app, your profile picture, Payments & subscriptions, Subscriptions, SpySocial.',
             '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a pass.',
+            ...(o.memberLoyalty ? ["In the <b>Vault</b>, <b>Cancel Membership</b> (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and your locked price ends. Its one button, <b>Continue to Cancel</b>, goes straight on to the store. <b>Manage Subscription</b> itself still opens the store directly. Nothing changes before the end of the period you paid for."] : []),
           ],
         },
         {
