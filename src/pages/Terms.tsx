@@ -458,8 +458,12 @@ const Terms: React.FC = () => {
         {drawings ? (
           <>
             {' '}An automated check also looks at Spy Sketch drawing turns in public rooms (
-            {LIVE.onePool ? 'Play Online tables and events' : 'including Play Online tables and events'}), and at
-            drawings people report. A turn can go unchecked if the check can't run at that moment, and the check can
+            {LIVE.onePool ? 'Play Online tables and events' : 'including Play Online tables and events'}),
+            {/* LIVE.drawingMinorRooms: app server drawing_minor_rooms_1111 (friday-allon-read-1112: Terms matched to Privacy's Drawing Checks). */}
+            {LIVE.drawingMinorRooms
+              ? " at a player's turns in a private room where anyone else who can see the drawing is under 18 or hasn't told us their age (never the turns of a player who has told us they're under 18),"
+              : ''}{' '}
+            and at drawings people report. A turn can go unchecked if the check can't run at that moment, and the check can
             miss things, so reports still matter: a person reads every report.
             {drawingCheckTestersOnly(LIVE) &&
               ' For now, while we test it, it does this only in games where every player is one of our testers (players trying a test version of the app).'}{' '}

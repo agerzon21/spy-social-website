@@ -2038,6 +2038,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? REPUTATION_DAY // legal/reputation-1110: Terms 13's reputation paragraph
   : LIVE.partyLeaderLapse
     ? PARTY_LEADER_LAPSE_DAY // party-leader-lapse-1111: Terms' party bullet says a leader's membership ending closes the party
+  : LIVE.drawingMinorRooms
+    ? DRAWING_MINOR_ROOMS_DAY // Terms 8's automated tools: adults' drawings checked in private rooms where a minor can see them (drawing-minor-rooms-1111; added to Terms by friday-allon-read-1112)
   : LIVE.codesNoMembership
     ? CODES_NO_MEMBERSHIP_DAY // Terms 3: codes never give a membership; store offer and promo codes
   : LIVE.testerGiftGame
