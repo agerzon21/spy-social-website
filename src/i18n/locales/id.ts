@@ -526,6 +526,7 @@ const id: Strings = {
       },
       spysocial: {
         text: 'Laporkan pemainnya di aplikasi dan pilih <b>Keselamatan anak</b>, lalu kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke NCMEC sesuai ketentuan hukum AS; NCMEC meneruskannya ke polisi di negara yang bersangkutan.',
+        textBefore: 'Laporkan pemainnya di aplikasi dan pilih <b>Keselamatan anak</b>, lalu kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke NCMEC dan otoritas lain sesuai ketentuan hukum.',
       },
     },
     seeAlso: 'Lihat juga <link>Aturan Komunitas</link>, <link2>Ketentuan Layanan</link2>, dan <link3>Kebijakan Privasi</link3> kami.',
@@ -871,6 +872,7 @@ const id: Strings = {
     eyebrow: 'Beta 2 · Playtest live',
     title: 'Main duluan',
     lede: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta dan satu gelar untuk setiap penguji, dan dengan satu game yang selesai sebelum 7 Desember, gelar kedua, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+    ledeBefore: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Game, XP, dan item dari tes ini direset saat peluncuran.',
     headsUp: '<b>Perhatian:</b> SpySocial di App Store dan Google Play adalah versi lama. Beta ini build baru yang sangat berbeda; kamu menginstalnya dari link yang kami kirim lewat email.',
@@ -919,6 +921,7 @@ const id: Strings = {
       eyebrow: 'Yang kamu dapat',
       title: 'Hadiah beta yang tetap jadi milikmu setelah peluncuran',
       items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b>'],
+      itemsBefore: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
       gameTitle: 'Selesaikan satu game sebelum 7 Desember untuk juga dapat',
       gameItems: ['Gelar <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
       trade: { tradable: 'Setelah peluncuran, sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.', bound: 'Sadapan terima kasih tetap di akunmu.' },

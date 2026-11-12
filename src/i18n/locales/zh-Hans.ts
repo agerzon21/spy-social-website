@@ -524,6 +524,7 @@ const zhHans: Strings = {
       },
       spysocial: {
         text: '在应用内举报该玩家并选择<b>儿童安全</b>，同时发邮件至 <email/>，主题写“Child safety”。我们会删除相关内容，封禁相关账号，并依照美国法律向 NCMEC 报告；NCMEC 会将报告转交相关国家的警方。',
+        textBefore: '在应用内举报该玩家并选择<b>儿童安全</b>，同时发邮件至 <email/>，主题写“Child safety”。我们会删除相关内容，封禁相关账号，并依法向 NCMEC 和其他主管机关报告。',
       },
     },
     seeAlso: '另请参阅我们的<link>社区规则</link>、<link2>服务条款</link2>和<link3>隐私政策</link3>。',
@@ -848,6 +849,7 @@ const zhHans: Strings = {
     eyebrow: '第 2 轮内测 · 线上试玩',
     title: '抢先玩',
     lede: '每位确认参加、全程参与这场 1 小时线上集体试玩并提交 5 分钟问卷的玩家，都会通过 PayPal 收到 <b>10 美元谢礼</b>，iPhone 和 Android 玩家一视同仁；本场最有价值的一份问题反馈或建议还可再获得 50 美元奖励。试玩的是免费的社交推理派对游戏 SpySocial。 另外还有上线后依然归你的内测奖励：每位测试玩家都有内测徽章和一个称号；12 月 7 日前完整打完一局，还能再得一个称号、每个等级各 10 封密函和 1 个月会员。',
+    ledeBefore: '每位确认参加、全程参与这场 1 小时线上集体试玩并提交 5 分钟问卷的玩家，都会通过 PayPal 收到 <b>10 美元谢礼</b>，iPhone 和 Android 玩家一视同仁；本场最有价值的一份问题反馈或建议还可再获得 50 美元奖励。试玩的是免费的社交推理派对游戏 SpySocial。 另外还有上线后依然归你的内测奖励：内测徽章、两个称号、每个等级各 10 封密函和 1 个月会员。',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: '试玩中的对局、经验值和获得的道具会在上线时重置。',
     headsUp: '<b>请注意：</b>App Store 和 Google Play 上的 SpySocial 是旧版本。内测版是全新的、差别很大的版本，需通过我们邮件中的链接安装。',
@@ -896,6 +898,7 @@ const zhHans: Strings = {
       eyebrow: '你能得到',
       title: '上线后依然归你所有的内测奖励',
       items: ['<b>内测徽章</b>', '<b>“内测玩家”</b>称号'],
+      itemsBefore: ['<b>内测徽章</b>', '<b>“内测玩家”</b>和<b>“外勤测试员”</b>称号', '每个等级各 <b>10 封密函</b>', '<b>1 个月</b>会员'],
       gameTitle: '12 月 7 日前完整打完一局，还能获得',
       gameItems: ['<b>“外勤测试员”</b>称号', '每个等级各 <b>10 封密函</b>', '<b>1 个月</b>会员'],
       trade: { tradable: '上线后，感谢密函可以像你赚到的任何东西一样交易。', bound: '感谢密函会留在你的账号里。' },

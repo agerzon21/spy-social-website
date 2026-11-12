@@ -49,6 +49,8 @@ export interface HelpOpts {
   memberLoyalty: boolean
   /** The testers' thank-you Intercepts trade like anything earned (LIVE.testerIntercepts === 'tradable'); false: they stay with the account. */
   testerInterceptsTradable: boolean
+  /** The tester thank-you's counted-game condition (LIVE.testerGiftGame; server tester_gift_game_1111). Off: the old one-line answer. */
+  testerGiftGame: boolean
 }
 
 export interface HelpItem {

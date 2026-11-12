@@ -1736,6 +1736,23 @@ export const LIVE = {
    * A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
   modCoverHold: false,
+  /**
+   * friday-flips-1111 (Nov 11): legal-integration-1111's tester-gift wording was unswitched (it read LIVE.testerIntercepts,
+   * a string that is always set). This switch holds it until app server tester_gift_game_1111 is applied (run sheet step
+   * 19, Friday Nov 13): Terms 9's thank-you sentence (the counted-game condition and whether its Intercepts trade), the
+   * /beta page's lede and its two reward lists, and Help's "Where are my beta tester rewards?" (10 languages). Off: the
+   * words live before (one list: the Beta Pin, both titles, 10 Intercepts of each tier, 1 month). Flip it with
+   * TESTER_GIFT_GAME_DAY set to the apply day; LIVE.testerIntercepts stays 'bound'.
+   */
+  testerGiftGame: false,
+  /**
+   * friday-flips-1111 (Nov 11): legal-integration-1111's CSEA line (coordinator ruling Nov 11, legal audit 1111: we report
+   * to NCMEC only, "as US law requires; NCMEC passes it to the police in the country it concerns", instead of "NCMEC and
+   * other authorities as the law requires") was unswitched. Held here so the merge changes nothing visible: Terms 7, Child
+   * Safety's opening section and the contacts table on Child Safety and Safety (10 languages). No server side: flip it on
+   * Friday with the other switches (or any day the coordinator says) and set NCMEC_ONLY_DAY to that day.
+   */
+  ncmecOnly: false,
 }
 
 /** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
@@ -1920,7 +1937,7 @@ export const OPERATOR: {
  * on. Both chains run: the December flips (tournaments, !giftsTradable here; tournaments, launchTesterMail, practiceAi
  * in PRIVACY_LAST_UPDATED) first, then the Friday Nov 13 group (all set to the same apply day, so their order among
  * themselves doesn't matter), then the switches already on. A switch flipped on a later day than Friday's group moves
- * its two lines above that group. LIVE.testerIntercepts is never false (a string), so nothing under it ever shows.
+ * its two lines above that group.
  * Friday's flips: FRIDAY-SITE-FLIPS.md (app repo handoff) and scripts/flip-switch.mjs.
  */
 /**
@@ -1960,8 +1977,11 @@ export const REPUTATION_DAY = 'November 14, 2026'
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
-/** LIVE.testerIntercepts's day (Terms 9's tester-rewards sentence, the counted-game condition): the day the site goes up with it, or with a flip of it. Never earlier than November 11, 2026. legal-integration-1111: it is the newest always-on entry, so it also dates the integration's unswitched changes (Terms 7, Child Safety and Safety's contacts: CSEA reported to NCMEC only). SET IT TO THE PUSH DAY (coordinator: Friday after Beta 2). */
+/** LIVE.testerIntercepts's day (Terms 9's tester-rewards sentence, the counted-game condition): the day the site goes up with it, or with a flip of it. Never earlier than November 11, 2026. Since friday-flips-1111 it heads LEGAL_LAST_UPDATED only while LIVE.testerGiftGame is on (the NCMEC wording has its own LIVE.ncmecOnly / NCMEC_ONLY_DAY). SET IT TO THE APPLY DAY of tester_gift_game_1111 (Friday Nov 13). */
 export const TESTER_GIFT_GAME_DAY = 'November 11, 2026'
+
+/** LIVE.ncmecOnly's day (Terms 7, Child Safety, the Safety page's contacts): the day the site goes up with it on. Never earlier than November 11, 2026. */
+export const NCMEC_ONLY_DAY = 'November 11, 2026'
 
 /** LIVE.codesNoMembership's day (Terms, Privacy): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const CODES_NO_MEMBERSHIP_DAY = 'November 10, 2026'
@@ -2003,8 +2023,10 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? MOD_COVER_HOLD_DAY // Terms 8 and Child Safety: community moderators may hold a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.codesNoMembership
     ? CODES_NO_MEMBERSHIP_DAY // Terms 3: codes never give a membership; store offer and promo codes
-  : LIVE.testerIntercepts
-    ? TESTER_GIFT_GAME_DAY // tester-gift-game-1111: Terms 9 names the testers' thank-you, its counted-game condition and whether its Intercepts trade (always set, so it heads the chain)
+  : LIVE.ncmecOnly
+    ? NCMEC_ONLY_DAY // Terms 7, Child Safety and Safety's contacts: CSEA reported to NCMEC only (legal audit 1111)
+  : LIVE.testerGiftGame
+    ? TESTER_GIFT_GAME_DAY // tester-gift-game-1111: Terms 9 names the testers' thank-you, its counted-game condition and whether its Intercepts trade (LIVE.testerGiftGame since friday-flips-1111)
   : LIVE.emailCodes22
     ? EMAIL_CODES_22_DAY // Terms 3: 2.2 signs in with an emailed code, older versions with a password (legal audit 1111)
   : LIVE.chatMildMask

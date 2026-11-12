@@ -419,7 +419,7 @@ const Terms: React.FC = () => {
         Child sexual abuse and exploitation are never allowed. Never share, ask for or create sexual content
         involving anyone under 18, and never use SpySocial to groom, sexualize or exploit a child. We remove such
         content, ban the accounts involved, and report it to the National Center for Missing & Exploited Children
-        (NCMEC), as US law requires; NCMEC passes it to the police in the country it concerns. If you see anything like this, email <SupportEmail /> with
+        (NCMEC){LIVE.ncmecOnly ? ', as US law requires; NCMEC passes it to the police in the country it concerns.' : ' and other authorities as the law requires.'} If you see anything like this, email <SupportEmail /> with
         "Child safety" in the subject, and report the player in the app if you shared a room with them. You can also
         report it directly to NCMEC's <OutLink href="https://report.cybertip.org">CyberTipline</OutLink>. If a child
         is in immediate danger, contact your local emergency services first.
@@ -839,14 +839,20 @@ const Terms: React.FC = () => {
                   Pick included, stay with the account; Intel is never bound; the Beta set trades like anything earned. */}
               {LIVE.giftsTradable
                 ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
-                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn."}{' '}
-              {/* LIVE.testerIntercepts: the 2.2 testers' thank-you (owner Nov 11; server app_config tester_gift.intercepts_tradable). */}
-              {LIVE.launchSite
-                ? 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list got the Beta Pin and the Beta Tester title, and an account that finished at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also got the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'
-                : 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list gets the Beta Pin and the Beta Tester title, and an account that finishes at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'}{' '}
-              {LIVE.testerIntercepts === 'tradable'
-                ? 'Unlike Intercepts from a gift, those Intercepts trade like anything you earn, opened or not.'
-                : "Like Intercepts from a gift, those Intercepts, opened or not, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone."}
+                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn."}
+              {/* LIVE.testerGiftGame (off until server tester_gift_game_1111 is applied, friday-flips-1111): the sentence below. */}
+              {LIVE.testerGiftGame && (
+                <>
+                  {' '}
+                  {/* LIVE.testerIntercepts: the 2.2 testers' thank-you (owner Nov 11; server app_config tester_gift.intercepts_tradable). */}
+                  {LIVE.launchSite
+                    ? 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list got the Beta Pin and the Beta Tester title, and an account that finished at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also got the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'
+                    : 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list gets the Beta Pin and the Beta Tester title, and an account that finishes at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'}{' '}
+                  {LIVE.testerIntercepts === 'tradable'
+                    ? 'Unlike Intercepts from a gift, those Intercepts trade like anything you earn, opened or not.'
+                    : "Like Intercepts from a gift, those Intercepts, opened or not, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone."}
+                </>
+              )}
             </li>
             <li>
               What you get in a trade is protected for 7 days: you can wear an item at once, but you can't trade it,

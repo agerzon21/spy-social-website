@@ -177,7 +177,7 @@ const Beta = () => {
             {b.title}
             <span className={s.mark}>{t.home.hero.titleMark}</span>
           </DisplayHeading>
-          <p className={s.lede}>{rich(b.lede, { b: bold })}</p>
+          <p className={s.lede}>{rich(LIVE.testerGiftGame ? b.lede : b.ledeBefore, { b: bold })}</p>
           <p className={s.reset}>{b.reset}</p>
           <p className={s.headsUp}>{rich(b.headsUp, { b: bold })}</p>
           <ul className={s.facts}>
@@ -314,22 +314,26 @@ const Beta = () => {
         {/* ---- what testers get ---- */}
         <Section id="beta-get" area={s.areaGet} eyebrow={b.get.eyebrow} title={b.get.title}>
           <ul className={s.rewards}>
-            {b.get.items.map((item) => (
+            {(LIVE.testerGiftGame ? b.get.items : b.get.itemsBefore).map((item) => (
               <li key={item}>
                 <span>{rich(item, { b: bold })}</span>
               </li>
             ))}
           </ul>
-          {/* The rest needs one counted game before December 7 (owner Nov 11); LIVE.testerIntercepts: whether its Intercepts trade. */}
-          <p className={s.subhead}>{b.get.gameTitle}</p>
-          <ul className={s.rewards}>
-            {b.get.gameItems.map((item) => (
-              <li key={item}>
-                <span>{rich(item, { b: bold })}</span>
-              </li>
-            ))}
-          </ul>
-          <p className={s.reset}>{LIVE.testerIntercepts === 'tradable' ? b.get.trade.tradable : b.get.trade.bound}</p>
+          {/* The rest needs one counted game before December 7 (owner Nov 11; LIVE.testerGiftGame, off until server tester_gift_game_1111 is applied); LIVE.testerIntercepts: whether its Intercepts trade. */}
+          {LIVE.testerGiftGame && (
+            <>
+              <p className={s.subhead}>{b.get.gameTitle}</p>
+              <ul className={s.rewards}>
+                {b.get.gameItems.map((item) => (
+                  <li key={item}>
+                    <span>{rich(item, { b: bold })}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className={s.reset}>{LIVE.testerIntercepts === 'tradable' ? b.get.trade.tradable : b.get.trade.bound}</p>
+            </>
+          )}
           <p className={s.reset}>{b.reset}</p>
           <div className={s.prize}>
             <FaGift className={s.prizeIcon} aria-hidden focusable={false} />

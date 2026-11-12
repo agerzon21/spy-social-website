@@ -526,6 +526,7 @@ const ptBR: Strings = {
       },
       spysocial: {
         text: 'Denuncie o jogador no app escolhendo <b>Segurança infantil</b>, e escreva para <email/> com “Child safety” (segurança infantil) no assunto. Removemos o conteúdo, banimos as contas envolvidas e denunciamos ao NCMEC, como a lei dos EUA exige; o NCMEC repassa a denúncia à polícia do país em questão.',
+        textBefore: 'Denuncie o jogador no app escolhendo <b>Segurança infantil</b>, e escreva para <email/> com “Child safety” (segurança infantil) no assunto. Removemos o conteúdo, banimos as contas envolvidas e denunciamos ao NCMEC e a outras autoridades, como a lei exige.',
       },
     },
     seeAlso: 'Veja também nossas <link>Regras da comunidade</link>, os <link2>Termos de uso</link2> e a <link3>Política de privacidade</link3>.',
@@ -871,6 +872,7 @@ const ptBR: Strings = {
     eyebrow: 'Beta 2 · Teste ao vivo',
     title: 'Jogue primeiro',
     lede: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta e um título para cada testador e, com uma partida terminada antes de 7 de dezembro, outro título, 10 interceptações de cada nível e 1 mês de assinatura.',
+    ledeBefore: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta, dois títulos, 10 interceptações de cada nível e 1 mês de assinatura.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Partidas, XP e itens do teste são zerados no lançamento.',
     headsUp: '<b>Atenção:</b> o SpySocial da App Store e do Google Play é uma versão antiga. A beta é uma versão nova e bem diferente; você instala pelo link que mandamos por e-mail.',
@@ -919,6 +921,7 @@ const ptBR: Strings = {
       eyebrow: 'O que você ganha',
       title: 'Recompensas beta que ficam com você depois do lançamento',
       items: ['O <b>Pin beta</b>', 'O título <b>Beta tester</b>'],
+      itemsBefore: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Testador de Campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> de assinatura'],
       gameTitle: 'Termine uma partida antes de 7 de dezembro e ganhe também',
       gameItems: ['O título <b>Testador de Campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> de assinatura'],
       trade: { tradable: 'Depois do lançamento, as interceptações de agradecimento podem ser trocadas como tudo o que você ganha.', bound: 'As interceptações de agradecimento ficam na sua conta.' },

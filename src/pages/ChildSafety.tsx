@@ -83,7 +83,7 @@ const ChildSafety: React.FC = () => {
         </li>
       </Bullets>
       <P>
-        Anything like this is removed, the accounts involved are banned, and we report it to NCMEC, as US law requires, which passes it to the police in the country it concerns (see{' '}
+        Anything like this is removed, the accounts involved are banned, and we report it to NCMEC{LIVE.ncmecOnly ? ', as US law requires, which passes it to the police in the country it concerns' : ' and other authorities as the law requires'} (see{' '}
         <ChakraLink href="#response">what we do</ChakraLink>).
       </P>
 

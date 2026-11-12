@@ -2,6 +2,7 @@ import { useT } from '../../i18n'
 import { rich } from '../../i18n/rich'
 import { InfoTable, type InfoRow } from './InfoTable'
 import { B, OutLink, SupportEmail } from './LegalText'
+import { LIVE } from '../../lib/legalRelease'
 
 // Where to report child sexual exploitation: emergency numbers, NCMEC's
 // CyberTipline, CEOP and us. Shared by the Safety page and the Child Safety
@@ -45,8 +46,8 @@ const rows: InfoRow[] = [
     cells: [
       <>
         Report the player in the app and choose <B>Child Safety</B>, and email <SupportEmail subject="Child safety" />{' '}
-        with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC, as
-        US law requires; NCMEC passes it to the police in the country it concerns.
+        with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC
+        {LIVE.ncmecOnly ? ', as US law requires; NCMEC passes it to the police in the country it concerns.' : ' and other authorities as the law requires.'}
       </>,
     ],
   },
@@ -66,7 +67,7 @@ export const ChildSafetyContacts = ({ localized = false }: { localized?: boolean
     { label: c.danger.label, cells: [rich(c.danger.text, parts)] },
     { label: 'NCMEC CyberTipline', note: c.ncmec.note, cells: [rich(c.ncmec.text, { ...parts, link: out('https://report.cybertip.org') })] },
     { label: 'CEOP', note: c.ceop.note, cells: [rich(c.ceop.text, { ...parts, link: out('https://www.ceop.police.uk/Safety-Centre/') })] },
-    { label: 'SpySocial', cells: [rich(c.spysocial.text, parts)] },
+    { label: 'SpySocial', cells: [rich(LIVE.ncmecOnly ? c.spysocial.text : c.spysocial.textBefore, parts)] },
   ]
   return <InfoTable head={[t.tableWho, t.tableHow]} rows={translated} firstWidth={{ base: '40%', md: '30%' }} />
 }
