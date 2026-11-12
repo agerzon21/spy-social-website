@@ -13,13 +13,14 @@
  * - Chakra's styles (Emotion's) for the page in <style data-s> tags after them, where Emotion in the browser finds and
  *   keeps them, the same order as when the app inserts them.
  * Written to dist/_pre/<page>/<base>.html, named by the language's base code (zh for zh-Hans, pt for pt-BR, the way
- * lang.js matches a browser's language; vercel.json's rewrites pick the file by ?lang= and the browser's first language), and the English one over the page's own file too (dist/<page>/index.html, dist/_page/<page>.html). Help
+ * lang.js matches a browser's language; vercel.json's rewrites pick the file by ?lang= and the browser's first
+ * language, English by default); the page's own dist/<page>/index.html goes (see the end). Help
  * keeps a plain copy (_pre/support/shell.html) for a search link (?q=), which the page answers in the browser.
  *
  * Usage: node scripts/prerender.mjs dist
  */
 import { existsSync } from 'node:fs'
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, readFile, rename, rm, rmdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
@@ -35,8 +36,8 @@ const { render, PRERENDER_PAGES, LANGUAGE_CODES } = await import(pathToFileURL(s
  * page's own file as it is, so a rewrite never points at a missing file. Keep in step with vercel.json.
  */
 const ROUTED = ['privacy', 'terms', 'rules', 'safety', 'game-night-rules', 'ledger', 'transparency', 'child-safety', 'contact-us', 'support', 'whats-new', 'roadmap', 'beta', 'delete-account', 'join']
-/** Pages whose built file also answers other addresses (dist/join/index.html: every /join/<code>): never overwritten. */
-const KEEP_FILE = new Set(['join'])
+/** Pages whose built file also answers other addresses (dist/join/index.html: every /join/<code>): moved, not dropped. */
+const MOVED = { join: '_page/join.html' }
 /** The pages whose built file is dist/_page/<page>.html (vite.config.ts SHARED_PAGES), not dist/<page>/index.html. */
 const SHARED = new Set(['ledger', 'transparency'])
 
@@ -130,10 +131,22 @@ for (const slug of ['home', ...ROUTED]) {
     if (!html.includes('<main')) throw new Error(`prerender: ${page.path} in ${code} rendered no <main>`)
     const out = compose(template, code, rtl, html, styles, files)
     await writeFile(resolve(dist, '_pre', slug, `${baseOf(code)}.html`), out)
-    if (code === 'en' && slug !== 'home' && !KEEP_FILE.has(slug)) await writeFile(resolve(dist, fileOf(slug)), out)
     count++
     bytes += out.length
   }
+}
+/*
+ * On Vercel a file wins over every rewrite, and /<page> found dist/<page>/index.html before vercel.json's language
+ * rewrites could pick _pre/<page>/<lang>.html (www-speed-1112, seen live): the page's own file goes (its English is
+ * _pre/<page>/en.html, which vercel.json serves by default). /join's moves to _page/join.html (vercel.json: /join/<code>).
+ */
+for (const slug of ROUTED) {
+  if (SHARED.has(slug)) continue
+  const file = resolve(dist, fileOf(slug))
+  if (MOVED[slug]) await rename(file, resolve(dist, MOVED[slug]))
+  else await rm(file)
+  const dir = resolve(dist, slug)
+  if (!(await readdir(dir)).length) await rmdir(dir)
 }
 await rm(resolve(dist, '.vite'), { recursive: true, force: true })
 console.log(`prerender: ${count} pages (${rendered.size} addresses x ${LANGUAGE_CODES.length} languages), ${Math.round(bytes / 1024)} KB of HTML`)

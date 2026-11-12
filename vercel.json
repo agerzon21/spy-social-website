@@ -270,68 +270,13 @@
       ],
       "destination": "/_host/market.html"
     },
-    { "source": "/support", "has": [{ "type": "query", "key": "q" }], "destination": "/_pre/support/shell.html" },
+    { "source": "/support{/}?", "has": [{ "type": "query", "key": "q" }], "destination": "/_pre/support/shell.html" },
     { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/home/:lang.html" },
-    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join)", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/:page/:lang.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/:page/:lang.html" },
     { "source": "/", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/home/:lang.html" },
-    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join)", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/:page/:lang.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/:page/:lang.html" },
     { "source": "/", "destination": "/_pre/home/en.html" },
-    {
-      "source": "/support",
-      "destination": "/support/index.html"
-    },
-    {
-      "source": "/contact-us",
-      "destination": "/contact-us/index.html"
-    },
-    {
-      "source": "/rules",
-      "destination": "/rules/index.html"
-    },
-    {
-      "source": "/safety",
-      "destination": "/safety/index.html"
-    },
-    {
-      "source": "/privacy",
-      "destination": "/privacy/index.html"
-    },
-    {
-      "source": "/terms",
-      "destination": "/terms/index.html"
-    },
-    {
-      "source": "/child-safety",
-      "destination": "/child-safety/index.html"
-    },
-    {
-      "source": "/whats-new",
-      "destination": "/whats-new/index.html"
-    },
-    {
-      "source": "/roadmap",
-      "destination": "/roadmap/index.html"
-    },
-    {
-      "source": "/delete-account",
-      "destination": "/delete-account/index.html"
-    },
-    {
-      "source": "/transparency{/}?",
-      "destination": "/_page/transparency.html"
-    },
-    {
-      "source": "/game-night-rules",
-      "destination": "/game-night-rules/index.html"
-    },
-    {
-      "source": "/ledger{/}?",
-      "destination": "/_page/ledger.html"
-    },
-    {
-      "source": "/beta",
-      "destination": "/beta/index.html"
-    },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "destination": "/_pre/:page/en.html" },
     {
       "source": "/hello(/?)",
       "destination": "/hello/index.html"
@@ -342,11 +287,7 @@
     },
     {
       "source": "/join/:code",
-      "destination": "/join/index.html"
-    },
-    {
-      "source": "/join",
-      "destination": "/_pre/join/en.html"
+      "destination": "/_page/join.html"
     },
     {
       "source": "/((?!\\.well-known/|static/|assets/).*)",
