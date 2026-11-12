@@ -965,6 +965,9 @@ const Terms: React.FC = () => {
             {LIVE.membershipCodes
               ? ' A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time.'
               : ''}
+            {LIVE.codesNoMembership
+              ? ' A code you enter in the app never gives a membership. An offer code or promo code for a membership is redeemed on the App Store or Google Play and follows their terms.'
+              : ''}
           </li>
           <li>
             <B>Automatic renewal.</B> The monthly and yearly Pack Pass are subscriptions that renew automatically. At
@@ -1078,7 +1081,7 @@ const Terms: React.FC = () => {
           <li>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</li>
           <li>Lifetime means for as long as we offer SpySocial, not for your lifetime.</li>
           {LIVE.membershipsOnly && (
-            <li>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for as long as we give it, and nothing is charged for it.{LIVE.membershipCodes ? " A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time." : ''}</li>
+            <li>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for as long as we give it, and nothing is charged for it.{LIVE.membershipCodes ? " A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time." : ''}{LIVE.codesNoMembership ? ' A code you enter in the app never gives a membership. An offer code or promo code for a membership is redeemed on the App Store or Google Play and follows their terms.' : ''}</li>
           )}
           <li>A membership's benefits are described in the app when you buy it. We may change them; if a change takes away something important, we'll tell you in advance so you can cancel before your next renewal.</li>
           {LIVE.membershipsOnly ? (

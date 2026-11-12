@@ -879,8 +879,21 @@ export const LIVE = {
    * code's rewards. Not a material change (gifts were already in the Terms): LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED
    * move (below), no TERMS_PUBLISHED or terms_version. Deploy the site with it on in the update that ships the app's
    * Membership field (update 12); off only if the server file is rolled back.
+   * Goes OFF (with codesNoMembership on) the day app server 20261231900000_codes_no_membership_1110 is applied (Apple
+   * 3.1.1, coordinator decision 2026-11-10): our codes no longer give membership. See codesNoMembership. Still ON until
+   * then (friday-flips-1111: the Friday Nov 13 apply, step 11S).
    */
   membershipCodes: true,
+  /**
+   * Codes give no membership (Apple 3.1.1, coordinator 2026-11-10; app server 20261231900000_codes_no_membership_1110,
+   * app branch fix/codes-no-membership-1110). Terms 3's gift line says a code entered in the app never gives a
+   * membership, and that an offer code or promo code for one is redeemed on the App Store or Google Play under their
+   * terms; individuals still get a gifted membership (the Owner Grant). Privacy's Creator and Reward Codes item already
+   * reads membershipCodes (now off: a title or an avatar item). Not a material change (it narrows what we give):
+   * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED move to CODES_NO_MEMBERSHIP_DAY, no TERMS_PUBLISHED or terms_version.
+   * OFF until the server file is applied (friday-flips-1111: flip it with membershipCodes false, step 11S).
+   */
+  codesNoMembership: false,
   /**
    * Volunteer community moderators (app repo feat/moderator, server 20261202460000_moderator_role: moderators, scopes,
    * moderator_agreements, mod_actions; owner 2026-10-30/31; first test moderator granted on live 2026-10-31). Terms 8
@@ -1950,6 +1963,9 @@ export const COVERAGE_1110_DAY = 'November 10, 2026'
 /** LIVE.testerIntercepts's day (Terms 9's tester-rewards sentence, the counted-game condition): the day the site goes up with it, or with a flip of it. Never earlier than November 11, 2026. legal-integration-1111: it is the newest always-on entry, so it also dates the integration's unswitched changes (Terms 7, Child Safety and Safety's contacts: CSEA reported to NCMEC only). SET IT TO THE PUSH DAY (coordinator: Friday after Beta 2). */
 export const TESTER_GIFT_GAME_DAY = 'November 11, 2026'
 
+/** LIVE.codesNoMembership's day (Terms, Privacy): the day the site goes up with it on. Never earlier than November 10, 2026. */
+export const CODES_NO_MEMBERSHIP_DAY = 'November 10, 2026'
+
 /**
  * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
  * site goes up with it on, the same day as app_config.practice_rate_enabled goes true (the key is due by December 6).
@@ -1985,6 +2001,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? PARTY_LEADER_LAPSE_DAY // party-leader-lapse-1111: Terms' party bullet says a leader's membership ending closes the party
   : LIVE.modCoverHold
     ? MOD_COVER_HOLD_DAY // Terms 8 and Child Safety: community moderators may hold a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
+  : LIVE.codesNoMembership
+    ? CODES_NO_MEMBERSHIP_DAY // Terms 3: codes never give a membership; store offer and promo codes
   : LIVE.testerIntercepts
     ? TESTER_GIFT_GAME_DAY // tester-gift-game-1111: Terms 9 names the testers' thank-you, its counted-game condition and whether its Intercepts trade (always set, so it heads the chain)
   : LIVE.emailCodes22
@@ -2081,6 +2099,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? RETENTION_SWEEP_DAY // Data Retention: the short-lived records deleted on the clock by the hourly sweep, and only a daily count kept (retention-sweep-1111)
   : LIVE.unconfirmedSignups
     ? UNCONFIRMED_SIGNUPS_DAY // Data Retention: never-confirmed email sign-ups deleted about 24 hours after the last confirmation email (unconfirmed-signups-1111)
+  : LIVE.codesNoMembership
+    ? CODES_NO_MEMBERSHIP_DAY // Creator and Reward Codes: membership no longer among a code's rewards
   : LIVE.marketMedian
     ? MARKET_MEDIAN_DAY // the Market's prices as medians, three pairs of players (market-median-1111)
   : LIVE.emailCodes22
