@@ -347,10 +347,10 @@ const sections = (o: HelpOpts): HelpSection[] => [
               id: 'rare-finds-offers',
               q: "Comment marchent les offres sur Trouvailles rares ?",
               a: [
-                "Le vendeur choisit jusqu'où sous son prix on peut proposer : jusqu'à 5 %, 10 % ou 15 %, ou aucune offre.",
+                ...(o.appU61 ? ["Le vendeur choisit jusqu'où sous son prix on peut proposer : jusqu'à 5 %, 10 % ou 15 %, ou aucune offre."] : []),
                 "L'Intel de ton offre est réservé tant qu'elle attend. Si le vendeur ne répond pas sous 24 heures, l'offre prend fin et l'Intel revient.",
                 "Tu peux retirer une offre une fois qu'elle a attendu 30 minutes.",
-                "Le vendeur peut accepter, refuser ou faire une contre-offre, à un prix entre ton offre et le sien. Une contre-offre ne réserve pas ton Intel : achète à ce prix, refuse-la ou fais une contre-offre à ton tour.",
+                ...(o.appU61 ? ["Le vendeur peut accepter, refuser ou faire une contre-offre, à un prix entre ton offre et le sien. Une contre-offre ne réserve pas ton Intel : achète à ce prix, refuse-la ou fais une contre-offre à ton tour."] : []),
                 "Une fois qu'un vendeur a refusé une offre, plus personne ne peut proposer aussi bas sur cette annonce : l'offre minimale monte.",
                 "Si beaucoup de tes offres sont refusées et presque aucune acceptée, tu ne peux plus faire de nouvelle offre pendant 3 jours au plus.",
                 ...(o.rarefindsOfferPush ? ["Avec les notifications du Marché noir activées, tu en reçois une quand le vendeur fait une contre-offre, et quand ton offre est refusée ou prend fin."] : []),

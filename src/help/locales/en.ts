@@ -357,10 +357,10 @@ const en: HelpText = {
                 id: 'rare-finds-offers',
                 q: "How do offers on Rare Finds work?",
                 a: [
-                  "The seller chooses how far below the price you can offer: up to 5%, 10% or 15%, or no offers at all.",
+                  ...(o.appU61 ? ["The seller chooses how far below the price you can offer: up to 5%, 10% or 15%, or no offers at all."] : []),
                   "Your offer’s Intel is held while it waits. If the seller doesn’t answer within 24 hours, the offer ends and the Intel comes back.",
                   "You can take an offer back once it has waited 30 minutes.",
-                  "The seller can accept, decline or counter with a price between your offer and theirs. A counter holds none of your Intel: buy at it, decline it or counter back.",
+                  ...(o.appU61 ? ["The seller can accept, decline or counter with a price between your offer and theirs. A counter holds none of your Intel: buy at it, decline it or counter back."] : []),
                   "Once a seller declines an offer, nobody can offer that low on that listing again: its lowest offer goes up.",
                   "If many of your offers are declined and almost none accepted, you can’t make new offers for up to 3 days.",
                   ...(o.rarefindsOfferPush ? ["With Black Market notifications on, you get one when the seller counters your offer, and when your offer is declined or ends."] : []),

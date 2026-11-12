@@ -846,8 +846,8 @@ const Terms: React.FC = () => {
                   {' '}
                   {/* LIVE.testerIntercepts: the 2.2 testers' thank-you (owner Nov 11; server app_config tester_gift.intercepts_tradable). */}
                   {LIVE.launchSite
-                    ? 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list got the Beta Pin and the Beta Tester title, and an account that finished at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also got the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'
-                    : 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list gets the Beta Pin and the Beta Tester title, and an account that finishes at least one counted game (a game played to the end, in any room, that shows in its Stats) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'}{' '}
+                    ? 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list got the Beta Pin and the Beta Tester title, and an account that finished at least one game (played to the end, in any room, so that it shows in its Stats) before December 7, 2026 also got the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'
+                    : 'Our thank-you to the testers of version 2.2, given at its launch: every account on our tester list gets the Beta Pin and the Beta Tester title, and an account that finishes at least one game (played to the end, in any room, so that it shows in its Stats) before December 7, 2026 also gets the Field Tester title, 10 Intercepts of each tier and 1 month of membership.'}{' '}
                   {LIVE.testerIntercepts === 'tradable'
                     ? 'Unlike Intercepts from a gift, those Intercepts trade like anything you earn, opened or not.'
                     : "Like Intercepts from a gift, those Intercepts, opened or not, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone."}
@@ -891,8 +891,9 @@ const Terms: React.FC = () => {
               price on the other side, and the price of the offer that was waiting is the price paid. On Rare Finds you
               list a Unique at a price, and can let other players make lower offers.{' '}
               {/* LIVE.rarefindsOffers: Rare Finds offers like CSFloat's (app server 20261231999981_rarefinds_offers_1111). */}
+              {/* LIVE.appU61: counters are made in update 61 of the app (feat rarefinds-offers b962de894); before it a seller only accepts or declines. */}
               {LIVE.rarefindsOffers &&
-                "You choose how far below your price an offer may go (up to 15%), or take no offers. You can accept an offer, decline it, or counter it with a price between the offer and yours; the buyer can then buy at your counter, decline it or counter back. A counter holds nothing: the buyer pays when they accept it, as with Buy Now. Once you decline an offer, nobody can offer that low on that listing again: its lowest offer rises above the declined one, until you change the price. An offer or counter that isn't answered ends after 24 hours. If many of your offers are declined and almost none accepted, you can't make new offers for up to 3 days. "}
+                `You choose how far below your price an offer may go (up to 15%), or take no offers. ${LIVE.appU61 ? 'You can accept an offer, decline it, or counter it with a price between the offer and yours; the buyer can then buy at your counter, decline it or counter back. A counter holds nothing: the buyer pays when they accept it, as with Buy Now.' : 'You can accept an offer or decline it.'} Once you decline an offer, nobody can offer that low on that listing again: its lowest offer rises above the declined one, until you change the price. An offer or counter that isn't answered ends after 24 hours. If many of your offers are declined and almost none accepted, you can't make new offers for up to 3 days. `}
               Other players never see who is buying or selling.
               {LIVE.interceptsMarket &&
                 " Unopened Intercepts can be bought and sold there too, by tier, for Intel only. What's inside one is random and is decided only when it's opened, by the odds the app shows for its tier."}
@@ -1212,8 +1213,9 @@ const Terms: React.FC = () => {
       </P>
       {LIVE.reputation && (
         <P>
-          Every account has a reputation (Excellent, Good, Poor, At Risk or Banned), shown in Settings and worked out from
-          its record (see our Privacy Policy). If your reputation is Banned, you can still sign in and keep your items,
+          Every account has a reputation (Excellent, Good, Poor, At Risk or Banned),{' '}
+          {/* LIVE.appU61: the Settings row is in update 61 of the app (reputation-1110 1b561a0eb). */}
+          {LIVE.appU61 ? 'shown in Settings and worked out' : 'worked out'} from its record (see our Privacy Policy). If your reputation is Banned, you can still sign in and keep your items,
           Intel and membership, but you can't play at Play Online tables, public rooms or game nights, trade, send gifts or use the
           Black Market, and private rooms are closed too unless the app tells you they stay open for you, until it
           recovers or we lift it. A reputation recovers on its own as older notes fade, and nothing older than 90 days

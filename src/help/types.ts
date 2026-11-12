@@ -43,6 +43,8 @@ export interface HelpOpts {
   rarefindsOffers: boolean
   /** The Rare Finds buyer's pushes: a counter, an offer declined or ended (LIVE.rarefindsOfferPush). */
   rarefindsOfferPush: boolean
+  /** Update 61 of the app is on phones (LIVE.appU61): Rare Finds' discount choices (5, 10 or 15%) and counters. Off: those two lines hidden. */
+  appU61: boolean
   /** A leader whose membership ends closes the party (LIVE.partyLeaderLapse; server party_leader_lapse_1111). */
   partyLeaderLapse: boolean
   /** Member time and its stamps, reset when a membership ends, and the price kept while a pass renews (LIVE.memberLoyalty). */

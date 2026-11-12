@@ -17,14 +17,16 @@ const SWITCHES = {
   drawingMinorRooms: { live: [['drawingMinorRooms', true]], day: 'DRAWING_MINOR_ROOMS_DAY', step: '18S' },
   testerGiftGame: { live: [['testerGiftGame', true]], day: 'TESTER_GIFT_GAME_DAY', step: '19S' },
   partyLeaderLapse: { live: [['partyLeaderLapse', true]], day: 'PARTY_LEADER_LAPSE_DAY', step: '20S' },
-  memberLoyalty: { live: [['memberLoyalty', true]], day: 'MEMBER_LOYALTY_DAY', step: '21S' },
-  modCoverHold: { live: [['modCoverHold', true]], day: 'MOD_COVER_HOLD_DAY', step: '22S' },
+  memberLoyalty: { live: [['memberLoyalty', true]], day: 'MEMBER_LOYALTY_DAY', step: '21S->u61' }, // with appU61, not Friday (friday-allon-read-1112)
+  modCoverHold: { live: [['modCoverHold', true]], day: 'MOD_COVER_HOLD_DAY', step: '22S->u61' }, // with appU61, not Friday (friday-allon-read-1112)
   unconfirmedSignups: { live: [['unconfirmedSignups', true]], day: 'UNCONFIRMED_SIGNUPS_DAY', step: '31S' },
   retentionSweep: { live: [['retentionSweep', true]], day: 'RETENTION_SWEEP_DAY', step: '33S' },
   ledgerReasons: { live: [['ledgerReasons', true]], day: null, step: '48S' },
   ledgerUniquesOnly: { live: [['ledgerUniquesOnly', true]], day: 'LEDGER_UNIQUES_DAY', step: '49S' },
   rarefinds: { live: [['rarefindsOffers', true], ['rarefindsOfferPush', true]], day: 'RAREFINDS_OFFERS_DAY', step: '52S' },
   ncmecOnly: { live: [['ncmecOnly', true]], day: 'NCMEC_ONLY_DAY', step: 'on since Nov 11 (coordinator)' },
+  // friday-allon-read-1112: NOT Friday. Flip when the u61 OTA ships, with memberLoyalty and modCoverHold, all three with --day <that day>.
+  appU61: { live: [['appU61', true]], day: 'APP_U61_DAY', step: 'u61' },
 }
 
 const args = process.argv.slice(2)

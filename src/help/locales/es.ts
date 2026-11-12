@@ -351,10 +351,10 @@ const es: HelpText = {
                 id: 'rare-finds-offers',
                 q: "¿Cómo funcionan las ofertas en Rarezas?",
                 a: [
-                  "El vendedor elige cuánto por debajo del precio puedes ofrecer: hasta un 5 %, 10 % o 15 %, o ninguna oferta.",
+                  ...(o.appU61 ? ["El vendedor elige cuánto por debajo del precio puedes ofrecer: hasta un 5 %, 10 % o 15 %, o ninguna oferta."] : []),
                   "El Intel de tu oferta queda reservado mientras espera. Si el vendedor no responde en 24 horas, la oferta termina y el Intel vuelve.",
                   "Puedes retirar una oferta cuando lleve 30 minutos esperando.",
-                  "El vendedor puede aceptar, rechazar o hacer una contraoferta con un precio entre tu oferta y el suyo. Una contraoferta no reserva tu Intel: compra a ese precio, recházala o haz otra contraoferta.",
+                  ...(o.appU61 ? ["El vendedor puede aceptar, rechazar o hacer una contraoferta con un precio entre tu oferta y el suyo. Una contraoferta no reserva tu Intel: compra a ese precio, recházala o haz otra contraoferta."] : []),
                   "Cuando un vendedor rechaza una oferta, nadie puede volver a ofrecer tan poco en ese anuncio: la oferta mínima sube.",
                   "Si rechazan muchas de tus ofertas y casi ninguna se acepta, no podrás hacer ofertas nuevas durante un máximo de 3 días.",
                   ...(o.rarefindsOfferPush ? ["Con las notificaciones del Mercado Negro activadas, recibes una cuando el vendedor hace una contraoferta y cuando tu oferta se rechaza o termina."] : []),
