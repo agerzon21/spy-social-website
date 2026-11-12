@@ -572,8 +572,13 @@ const Privacy: React.FC = () => {
             LIVE.practiceReportLog: the last practice game sent with Report a Problem when the player leaves it ticked. */}
         {(PRIVACY.practiceAi || PRIVACY.practiceReportLog || PRIVACY.coverage1110) && (
           <Item label="Practice Games">
+            {/* LIVE.practiceResults: each finished practice game's result kept on the server, the Practice Ace title,
+                the spies' chat note seen (app server practice_results_1111, run sheet step 47; spy_chat_intro_backfill_1112). */}
             {PRIVACY.coverage1110 &&
-              "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it) and your best grade in each game's practice game, so your progress follows you to your other devices. Play Online can use them to open a game once you've passed its practice game (a C or better). We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
+              (PRIVACY.practiceResults
+                ? "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it, including whether you've already seen the note about the spies' chat) and the result of each practice game you finish: the game, your role (Local or spy), the table size (4 or 8 seats), your grade, your score, whether you won, and when. We use them so your progress and results follow you to your other devices, to show you your best grades, and to award the Practice Ace title (an A in every game, role and table size). If you played a game with 8 or more players before the spies' chat note existed, we marked the note as seen from your game history."
+                : "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it) and your best grade in each game's practice game, so your progress follows you to your other devices.") +
+              " Play Online can use them to open a game once you've passed its practice game (a C or better). We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
             {PRIVACY.practiceAi && <>
             In a practice game, your device rates every move you make. If you told us you're 16 or older (from the
             birth year the app asks for), are signed in to an account (not playing as a guest) and chose Try It in the

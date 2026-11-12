@@ -21,6 +21,7 @@ const SWITCHES = {
   modCoverHold: { live: [['modCoverHold', true]], day: 'MOD_COVER_HOLD_DAY', step: '22S->u61' }, // with appU61, not Friday (friday-allon-read-1112)
   unconfirmedSignups: { live: [['unconfirmedSignups', true]], day: 'UNCONFIRMED_SIGNUPS_DAY', step: '31S' },
   retentionSweep: { live: [['retentionSweep', true]], day: 'RETENTION_SWEEP_DAY', step: '33S' },
+  practiceResults: { live: [['practiceResults', true]], day: 'PRACTICE_RESULTS_DAY', step: '47S' },
   ledgerReasons: { live: [['ledgerReasons', true]], day: null, step: '48S' },
   ledgerUniquesOnly: { live: [['ledgerUniquesOnly', true]], day: 'LEDGER_UNIQUES_DAY', step: '49S' },
   rarefinds: { live: [['rarefindsOffers', true], ['rarefindsOfferPush', true]], day: 'RAREFINDS_OFFERS_DAY', step: '52S' },

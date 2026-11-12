@@ -1765,7 +1765,22 @@ export const LIVE = {
    * appU61 --day "<the day u61 ships, ET>" (and memberLoyalty, modCoverHold with the same day).
    */
   appU61: false,
+  /**
+   * privacy-practice-results-1112 (app repo server file practice_results_1111, Friday run sheet step 47; then
+   * spy_chat_intro_backfill_1112, commit 614a73f82, right after Friday's batch): the server keeps the result of each finished
+   * practice game (game, role, 4 or 8 seats, grade, score, won, when) for best grades on every device and the Practice Ace
+   * title (an A in every game, role and table size), and How to Play progress includes whether the spies' chat note was
+   * seen; players who played an 8+ game before the note existed are marked as having seen it from their game history.
+   * Turns on the new first sentences of Privacy's Practice Games item (under LIVE.coverage1110). English only (the Privacy
+   * Policy has no other languages). Not a Terms change. A server switch: set in LIVE, never in PRIVACY_AHEAD. Flip it the
+   * day step 47 is applied (node scripts/flip-switch.mjs practiceResults --day "<apply day>"); the backfill sentence is
+   * true once spy_chat_intro_backfill_1112 runs, right after Friday's batch.
+   */
+  practiceResults: false,
 }
+
+/** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
+export const PRACTICE_RESULTS_DAY = 'November 13, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 15, 2026'
@@ -2130,6 +2145,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? MEMBER_LOYALTY_DAY // Purchases: the membership-period record; Data Sharing: the member time on the player sheet (member-loyalty-1111)
   : LIVE.modCoverHold
     ? MOD_COVER_HOLD_DAY // Data Sharing: what community moderators see of a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
+  : LIVE.practiceResults
+    ? PRACTICE_RESULTS_DAY // Practice Games: each finished practice game's result, best grades, the Practice Ace title, the spies' chat note (privacy-practice-results-1112; Friday group, step 47)
   : LIVE.rarefindsOffers || LIVE.rarefindsOfferPush
     ? RAREFINDS_OFFERS_DAY // the Black Market item's offer ends, counters and offer pause; Social Notifications' Rare Finds buyer pushes (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
