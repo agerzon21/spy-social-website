@@ -31,7 +31,7 @@ export const LegalPage = ({
       <div {...(english ? { lang: 'en', dir: 'ltr' } : {})}>
         <div className={s.titleBlock}>
           <h1 className={s.h1}>{title}</h1>
-          <p className={`${s.meta} ${s.mt4}`}>{updated}</p>
+          <p className={`${s.meta} ${s.mt4}`} suppressHydrationWarning>{updated}</p>
           {/* A CSS logical side: it sits at the start of the title whichever way the page reads. */}
           <div className={s.titleRule} aria-hidden />
         </div>

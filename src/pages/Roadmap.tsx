@@ -56,7 +56,7 @@ const Roadmap = () => {
               {r.title}
               <span className={s.mark}>{t.home.hero.titleMark}</span>
             </DisplayHeading>
-            <p className={s.lede}>{out ? r.ledeOut : r.lede(day)}</p>
+            <p className={s.lede} suppressHydrationWarning>{out ? r.ledeOut : r.lede(day)}</p>
           </div>
           {/* Decoration (a computer's width only): the agent in the fedora from the home line-up, in the spotlight. */}
           <div className={s.heroArt} aria-hidden="true">
@@ -69,7 +69,7 @@ const Roadmap = () => {
         <ol className={s.timeline}>
           <li className={`${s.stage} ${s.now}`}>
             <section aria-labelledby="roadmap-now">
-              <p className={s.when}>{out ? r.now.out : r.now.coming(day)}</p>
+              <p className={s.when} suppressHydrationWarning>{out ? r.now.out : r.now.coming(day)}</p>
               <DisplayHeading id="roadmap-now">{r.now.title}</DisplayHeading>
               <p className={s.sub}>{r.now.sub}</p>
               <ul className={s.features}>

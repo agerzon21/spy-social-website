@@ -2,10 +2,11 @@ import { Box, Container, Heading, Text, VStack, Button } from '@chakra-ui/react'
 import { FaApple } from 'react-icons/fa'
 import { IoDesktopOutline, IoLogoGooglePlaystore } from 'react-icons/io5'
 import { useParams, useSearchParams } from 'react-router-dom'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
 import { openAppHref, tryAppOnLoad, tryAppOnce } from '../lib/appLink'
 import { keepCodeChars } from '../lib/roomCode'
 import { currentPlatform } from '../lib/platform'
+import { useClientValue } from '../lib/clientValue'
 import { playJoinUrl } from '../lib/playUrl'
 import { STORES_OPEN } from '../lib/legalRelease'
 import { REMINDER_PAGE } from '../lib/launchDay'
@@ -36,13 +37,14 @@ const Join = () => {
   const webLink = playJoinUrl(code, passcode)
 
   // iPadOS Safari says "Macintosh" (desktop-class browsing): lib/platform tells it by touch (QA F207).
-  const platform = useMemo(currentPlatform, [])
+  // The browser's (a computer until React has taken over the build's HTML of /join: www-speed-1112).
+  const platform = useClientValue(currentPlatform, 'desktop')
 
   const isMobile = platform === 'ios' || platform === 'android'
   // Until the launch the stores hold the old 2.1.1. A room code keeps its way there, as the second choice with plain words: a
   // friend on 2.1.1 can only be joined from 2.1.1. A Friend Code (2.2 only) or no code has no use for it: the reminder instead.
   const storesHere = STORES_OPEN || (!!code && !token)
-  const appLink = storesHere ? openAppHref(appPath, platform) : openAppHref(appPath, platform, `${window.location.origin}${REMINDER_PAGE}`)
+  const appLink = storesHere ? openAppHref(appPath, platform) : openAppHref(appPath, platform, `${typeof window === 'undefined' ? '' : window.location.origin}${REMINDER_PAGE}`)
   // The store buttons step back (outlined) when something above them is the main way in.
   const storesSecondary = !STORES_OPEN || isMobile || (platform === 'desktop' && !!webLink)
 

@@ -272,9 +272,9 @@
     },
     { "source": "/support", "has": [{ "type": "query", "key": "q" }], "destination": "/_pre/support/shell.html" },
     { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/home/:lang.html" },
-    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account)", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/:page/:lang.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join)", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/:page/:lang.html" },
     { "source": "/", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/home/:lang.html" },
-    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account)", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/:page/:lang.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join)", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/:page/:lang.html" },
     { "source": "/", "destination": "/_pre/home/en.html" },
     {
       "source": "/support",
@@ -346,7 +346,7 @@
     },
     {
       "source": "/join",
-      "destination": "/join/index.html"
+      "destination": "/_pre/join/en.html"
     },
     {
       "source": "/((?!\\.well-known/|static/|assets/).*)",

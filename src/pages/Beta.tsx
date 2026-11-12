@@ -209,13 +209,13 @@ const Beta = () => {
           <p id="beta-when" className={s.ticketLabel}>
             {b.when.label}
           </p>
-          <p className={s.day}>{day}</p>
-          <p className={s.time}>{b.when.et(et)}</p>
-          <p className={s.zones}>{b.when.others(pacific, utc)}</p>
+          <p className={s.day} suppressHydrationWarning>{day}</p>
+          <p className={s.time} suppressHydrationWarning>{b.when.et(et)}</p>
+          <p className={s.zones} suppressHydrationWarning>{b.when.others(pacific, utc)}</p>
           <YoursLine text={yours && b.when.yours(yours)} />
           <p className={s.checkIn}>
             <FaHeadphones className={s.checkIcon} aria-hidden focusable={false} />
-            <span>{b.when.checkIn(checkIn)}</span>
+            <span suppressHydrationWarning>{b.when.checkIn(checkIn)}</span>
           </p>
 
           <div className={s.cta}>
@@ -235,7 +235,7 @@ const Beta = () => {
                   {b.signUp}
                   <FaArrowUpRightFromSquare className={s.goIcon} aria-hidden focusable={false} />
                 </External>
-                <p className={s.ctaNote}>{b.signUpNote(closeDay, closeTime)}</p>
+                <p className={s.ctaNote} suppressHydrationWarning>{b.signUpNote(closeDay, closeTime)}</p>
                 <External href={DISCORD_URL} className={`${ui.btn} ${ui.secondary} ${s.go}`}>
                   <FaDiscord aria-hidden focusable={false} />
                   {b.discord}
@@ -247,10 +247,10 @@ const Beta = () => {
           {EUROPE_SESSION && (
             <div className={s.europe}>
               <p className={s.ticketLabel}>{b.europe.label}</p>
-              <p className={s.euDay}>{euDay}</p>
-              <p className={s.euTime}>{b.europe.time(cet, uk)}</p>
+              <p className={s.euDay} suppressHydrationWarning>{euDay}</p>
+              <p className={s.euTime} suppressHydrationWarning>{b.europe.time(cet, uk)}</p>
               <YoursLine text={euYours && b.when.yours(euYours)} />
-              <p className={s.euNote}>{b.europe.note(confirmDate)}</p>
+              <p className={s.euNote} suppressHydrationWarning>{b.europe.note(confirmDate)}</p>
             </div>
           )}
         </aside>

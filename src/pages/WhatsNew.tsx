@@ -188,7 +188,7 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
             </Badge>
           )}
         </HStack>
-        <Text textStyle="meta" mb={4}>
+        <Text textStyle="meta" mb={4} suppressHydrationWarning>
           {release.date}
         </Text>
         <Text fontSize={{ base: '17px', md: '18px' }} color="ss.body" lineHeight="1.6">

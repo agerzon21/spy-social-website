@@ -71,6 +71,8 @@ const PRERENDERED: Record<string, { page: { preload: () => Promise<void> } | nul
   '/roadmap': { page: Roadmap, src: 'src/pages/Roadmap.tsx' },
   ...(LIVE.launchSite ? {} : { '/beta': { page: Beta, src: 'src/pages/Beta.tsx' } }),
   '/delete-account': { page: DeleteAccount, src: 'src/pages/DeleteAccount.tsx' },
+  // /join alone (no code: the page says to open an invite); a room's /join/<code> stays the plain app.
+  '/join': { page: Join, src: 'src/pages/Join.tsx' },
 }
 
 /** The addresses the build renders to HTML on www and their pages' source files (scripts/prerender.mjs). */

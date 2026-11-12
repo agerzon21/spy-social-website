@@ -34,7 +34,9 @@ const { render, PRERENDER_PAGES, LANGUAGE_CODES } = await import(pathToFileURL(s
  * Every page vercel.json's language rewrites name: each needs a file per language, rendered or (its route off) the
  * page's own file as it is, so a rewrite never points at a missing file. Keep in step with vercel.json.
  */
-const ROUTED = ['privacy', 'terms', 'rules', 'safety', 'game-night-rules', 'ledger', 'transparency', 'child-safety', 'contact-us', 'support', 'whats-new', 'roadmap', 'beta', 'delete-account']
+const ROUTED = ['privacy', 'terms', 'rules', 'safety', 'game-night-rules', 'ledger', 'transparency', 'child-safety', 'contact-us', 'support', 'whats-new', 'roadmap', 'beta', 'delete-account', 'join']
+/** Pages whose built file also answers other addresses (dist/join/index.html: every /join/<code>): never overwritten. */
+const KEEP_FILE = new Set(['join'])
 /** The pages whose built file is dist/_page/<page>.html (vite.config.ts SHARED_PAGES), not dist/<page>/index.html. */
 const SHARED = new Set(['ledger', 'transparency'])
 
@@ -128,7 +130,7 @@ for (const slug of ['home', ...ROUTED]) {
     if (!html.includes('<main')) throw new Error(`prerender: ${page.path} in ${code} rendered no <main>`)
     const out = compose(template, code, rtl, html, styles, files)
     await writeFile(resolve(dist, '_pre', slug, `${baseOf(code)}.html`), out)
-    if (code === 'en' && slug !== 'home') await writeFile(resolve(dist, fileOf(slug)), out)
+    if (code === 'en' && slug !== 'home' && !KEEP_FILE.has(slug)) await writeFile(resolve(dist, fileOf(slug)), out)
     count++
     bytes += out.length
   }
