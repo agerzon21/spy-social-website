@@ -713,6 +713,27 @@ function deepOver(base: unknown, top: unknown): unknown {
   return typeof top === typeof base ? top : base
 }
 
+/** The languages' codes as public/lang.js and vercel.json's rewrites name them (src/i18n/languages.ts). */
+const LANG_CODES = ['en', 'es', 'ru', 'zh-Hans', 'hi', 'ar', 'fr', 'bn', 'pt-BR', 'id']
+
+/**
+ * The prerendered file vercel.json's rewrites serve for a www address (www-speed-1112; scripts/prerender.mjs writes
+ * dist/_pre/<page>/<base>.html, by the language's base code): the language a ?lang= names, else the one the browser's
+ * first language is, else English; Help with a search (?q=) gets the plain app. `vite preview` serves the same way.
+ */
+function prerenderedFile(outDir: string, path: string, query: string, acceptLanguage: string): string | null {
+  const slug = path === '/' ? 'home' : /^\/([a-z-]+)$/.exec(path)?.[1]
+  if (!slug || !existsSync(resolve(outDir, '_pre', slug, 'en.html'))) return null
+  const q = new URLSearchParams(query)
+  if (slug === 'support' && q.has('q')) return '/_pre/support/shell.html'
+  const bases = LANG_CODES.map((code) => code.split('-')[0]).filter((base) => base !== 'en')
+  // vercel.json's values: ?lang=(?<lang>es|ru|zh|...)(?:-Hans|-BR)?, Accept-Language ^\s*(?<lang>es|ru|zh|...)(?:[-_;,].*)?$
+  const asked = q.get('lang')
+  const fromQuery = asked === null ? null : (new RegExp(`^(${bases.join('|')})(?:-Hans|-BR)?$`).exec(asked)?.[1] ?? 'en')
+  const fromHeader = new RegExp(`^\\s*(${bases.join('|')})(?:[-_;,].*)?$`).exec(acceptLanguage)?.[1]
+  return `/_pre/${slug}/${fromQuery ?? fromHeader ?? 'en'}.html`
+}
+
 /**
  * www's page leaves the root (speed-1111): on Vercel a file wins over every rewrite, so a dist/index.html answered "/"
  * on archive.spysocial.app and market.spysocial.app too, with www's whole app instead of the host's own. After every
@@ -723,7 +744,8 @@ function wwwHtmlLast(): Plugin {
   let outDir = resolve(process.cwd(), 'dist')
   return {
     name: 'spysocial-www-html-last',
-    apply: 'build',
+    // And `vite preview` (which resolves the config as 'serve'), for its routing below.
+    apply: (_config, env) => env.command === 'build' || env.isPreview === true,
     configResolved(config) {
       outDir = resolve(config.root, config.build.outDir)
     },
@@ -734,14 +756,17 @@ function wwwHtmlLast(): Plugin {
     configurePreviewServer(server) {
       server.middlewares.use((req, _res, next) => {
         const path = (req.url ?? '/').split(/[?#]/)[0]
-        if (!/\.[a-z0-9]+$/i.test(path) && !existsSync(resolve(outDir, `.${path}`, 'index.html'))) {
-          const host = (req.headers.host ?? '').split('.')[0]
+        const host = (req.headers.host ?? '').split('.')[0]
+        // www's prerendered pages (scripts/prerender.mjs), picked as vercel.json's rewrites pick them.
+        const pre = host === 'archive' || host === 'market' ? null : prerenderedFile(outDir, path, (req.url ?? '').split('?')[1] ?? '', String(req.headers['accept-language'] ?? ''))
+        if (pre) req.url = pre
+        else if (!/\.[a-z0-9]+$/i.test(path) && !existsSync(resolve(outDir, `.${path}`, 'index.html'))) {
           const page = path.replace(/\/$/, '')
           // www's pages a host serves too (SHARED_PAGES), as vercel.json's rewrites serve them.
           if (SHARED_PAGES[host]?.includes(page)) req.url = `/_host/${host}-${page.slice(1)}.html`
           else if (isShared(page)) req.url = `/_page/${page.slice(1)}.html`
           else req.url = `/_host/${host === 'archive' || host === 'market' ? host : 'www'}.html`
-        }
+        } else if (!/\.[a-z0-9]+$/i.test(path)) req.url = `${path.replace(/\/$/, '')}/index.html` // vercel.json's /<page> rewrites
         next()
       })
     },
@@ -749,12 +774,25 @@ function wwwHtmlLast(): Plugin {
 }
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [react(), launchHead(), switchedSitemap(), pagePreviews(), helloPage(), wwwHtmlLast()],
-  // Built files live in /static/ (renamed from /assets/ on 2026-10-17, so no browser keeps a stale copy from before)
-  build: {
-    assetsDir: 'static',
-    // www's page and each host's own app (speed-1111: src/hosts; hostPages above writes dist/_host/<host>.html).
-    rollupOptions: { input: Object.fromEntries(['index', 'archive', 'market'].map((name) => [name === 'index' ? 'main' : name, fileURLToPath(new URL(`./${name}.html`, import.meta.url))])) },
-  },
-})
+export default defineConfig(({ isSsrBuild }) =>
+  isSsrBuild
+    ? {
+        // www's prerender (www-speed-1112): `vite build --ssr src/prerender.tsx` with the same plugins that shape the
+        // markup (React) and the same asset names, into dist-ssr/; scripts/prerender.mjs runs it after the main build.
+        plugins: [react()],
+        // Every package bundled in (some are CommonJS that Node's ESM can't name exports from).
+        ssr: { noExternal: true },
+        build: { assetsDir: 'static', outDir: 'dist-ssr', emptyOutDir: true },
+      }
+    : {
+        plugins: [react(), launchHead(), switchedSitemap(), pagePreviews(), helloPage(), wwwHtmlLast()],
+        // Built files live in /static/ (renamed from /assets/ on 2026-10-17, so no browser keeps a stale copy from before)
+        build: {
+          assetsDir: 'static',
+          // Which chunks and CSS each page needs, for scripts/prerender.mjs (which deletes the file after reading it).
+          manifest: true,
+          // www's page and each host's own app (speed-1111: src/hosts; hostPages above writes dist/_host/<host>.html).
+          rollupOptions: { input: Object.fromEntries(['index', 'archive', 'market'].map((name) => [name === 'index' ? 'main' : name, fileURLToPath(new URL(`./${name}.html`, import.meta.url))])) },
+        },
+      },
+)

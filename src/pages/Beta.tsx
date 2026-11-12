@@ -4,6 +4,7 @@
  */
 const EUROPE_SESSION = false
 
+import { useClientValue } from '../lib/clientValue'
 import type { ReactNode } from 'react'
 import type { IconType } from 'react-icons'
 import {
@@ -68,13 +69,15 @@ function range(locale: string, opts: Intl.DateTimeFormatOptions, a: Date, b: Dat
 }
 const fmt = (locale: string, opts: Intl.DateTimeFormatOptions, d: Date) => new Intl.DateTimeFormat(locale, opts).format(d)
 /**
- * A time or a date with a time kept on one line: its spaces become no-break ones (a thin space a narrow one). On a
+ * A time or a date with a time kept on one line: its spaces become no-break ones. Every space Intl puts in (a plain,
+ * thin or narrow one: browsers and Node's ICU differ) becomes the same no-break space, the one Chrome's plain spaces
+ * always gave, so the page the build draws (www-speed-1112) reads exactly as the browser's. On a
  * right-to-left page (Arabic) each run of Latin digits from one hour to the other ("7:00–8:00") is isolated left to
  * right, or the bidi algorithm would show the range back to front ("8:00–7:00").
  */
 const RANGE = /\d{1,2}[:.]\d{2}[\s\u2009\u202f]*[–-][\s\u2009\u202f]*\d{1,2}[:.]\d{2}/g
 const nb = (text: string, rtl = false) => {
-  const kept = text.replace(/ /g, '\u00a0').replace(/\u2009/g, '\u202f')
+  const kept = text.replace(/[ \u2009\u202f]/g, '\u00a0')
   return rtl ? kept.replace(RANGE, (run) => `\u2066${run}\u2069`) : kept
 }
 
@@ -89,6 +92,20 @@ function visitorZone(): string | undefined {
   } catch {
     return undefined
   }
+}
+
+/**
+ * The time in the visitor's own zone. Until the browser has said which zone (the build's HTML), an empty line in its
+ * place, so the ticket doesn't grow when it arrives.
+ */
+const YoursLine = ({ text }: { text: ReactNode | null | undefined }) => {
+  const known = useClientValue(() => visitorZone() !== undefined, true)
+  if (text) return <p className={s.yours}>{text}</p>
+  return known ? null : (
+    <p className={s.yours} aria-hidden="true" style={{ visibility: 'hidden' }}>
+      {'\u00a0'}
+    </p>
+  )
 }
 
 const External = ({ href, className, children }: { href: string; className?: string; children: ReactNode }) => (
@@ -136,7 +153,8 @@ const Beta = () => {
   const locale = language.locale
   const rtl = language.rtl
   const closed = useClosed()
-  const zone = visitorZone()
+  // The visitor's zone is the browser's: not in the build's HTML (www-speed-1112), which keeps its line's place.
+  const zone = useClientValue(visitorZone, undefined)
 
   // The session in Eastern time (the one the page leads with), then Pacific, UTC and the visitor's own.
   const day = fmt(locale, { ...DAY, timeZone: ET }, START)
@@ -194,7 +212,7 @@ const Beta = () => {
           <p className={s.day}>{day}</p>
           <p className={s.time}>{b.when.et(et)}</p>
           <p className={s.zones}>{b.when.others(pacific, utc)}</p>
-          {yours && <p className={s.yours}>{b.when.yours(yours)}</p>}
+          <YoursLine text={yours && b.when.yours(yours)} />
           <p className={s.checkIn}>
             <FaHeadphones className={s.checkIcon} aria-hidden focusable={false} />
             <span>{b.when.checkIn(checkIn)}</span>
@@ -231,7 +249,7 @@ const Beta = () => {
               <p className={s.ticketLabel}>{b.europe.label}</p>
               <p className={s.euDay}>{euDay}</p>
               <p className={s.euTime}>{b.europe.time(cet, uk)}</p>
-              {euYours && <p className={s.yours}>{b.when.yours(euYours)}</p>}
+              <YoursLine text={euYours && b.when.yours(euYours)} />
               <p className={s.euNote}>{b.europe.note(confirmDate)}</p>
             </div>
           )}

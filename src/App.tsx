@@ -49,6 +49,39 @@ const Transparency = page(() => import('./pages/Transparency'))
 // The Beta 2 playtester page (linked from Reddit and Discord), its own chunk.
 const Beta = page(() => import('./pages/Beta'))
 
+/**
+ * www's pages the build renders to HTML (scripts/prerender.mjs, www-speed-1112), by address, each with its source file
+ * (the build's manifest names the page's chunk and CSS by it): main.tsx loads the page's chunk before it hydrates that
+ * HTML, and the prerender loads it before rendering. Home is in the app's own chunk. Pages whose route is off (their
+ * switch) aren't rendered: their address keeps the plain app.
+ */
+const PRERENDERED: Record<string, { page: { preload: () => Promise<void> } | null; src: string }> = {
+  '/': { page: null, src: 'src/pages/Home.tsx' },
+  '/privacy': { page: Privacy, src: 'src/pages/Privacy.tsx' },
+  '/terms': { page: Terms, src: 'src/pages/Terms.tsx' },
+  '/rules': { page: Rules, src: 'src/pages/Rules.tsx' },
+  ...(ONLINE_SAFETY_TEXT ? { '/safety': { page: Safety, src: 'src/pages/Safety.tsx' } } : {}),
+  ...(LIVE.gameNightRules ? { '/game-night-rules': { page: GameNightRules, src: 'src/pages/GameNightRules.tsx' } } : {}),
+  ...(LIVE.mintedCollectibles ? { '/ledger': { page: Ledger, src: 'src/pages/Ledger.tsx' } } : {}),
+  ...(LIVE.transparencyPage ? { '/transparency': { page: Transparency, src: 'src/pages/Transparency.tsx' } } : {}),
+  '/child-safety': { page: ChildSafety, src: 'src/pages/ChildSafety.tsx' },
+  '/contact-us': { page: Support, src: 'src/pages/Support.tsx' },
+  '/support': { page: FAQ, src: 'src/pages/FAQ.tsx' },
+  '/whats-new': { page: WhatsNew, src: 'src/pages/WhatsNew.tsx' },
+  '/roadmap': { page: Roadmap, src: 'src/pages/Roadmap.tsx' },
+  ...(LIVE.launchSite ? {} : { '/beta': { page: Beta, src: 'src/pages/Beta.tsx' } }),
+  '/delete-account': { page: DeleteAccount, src: 'src/pages/DeleteAccount.tsx' },
+}
+
+/** The addresses the build renders to HTML on www and their pages' source files (scripts/prerender.mjs). */
+export const PRERENDER_PAGES = Object.entries(PRERENDERED).map(([path, { src }]) => ({ path, src }))
+
+/** Loads the chunk of the page at `path` (nothing to load for an address the build doesn't render, or Home). */
+export function preloadPage(path: string): Promise<void> {
+  const at = path.replace(/\/+$/, '') || '/'
+  return (HOST === 'main' && PRERENDERED[at]?.page?.preload()) || Promise.resolve()
+}
+
 function App() {
   // Arabic lays Chakra's own components out right to left too.
   const rtl = useLang().language.rtl

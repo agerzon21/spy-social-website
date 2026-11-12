@@ -1,13 +1,22 @@
 import { Box, Container, Heading, Text, VStack, HStack, Badge, Stack, Icon } from '@chakra-ui/react'
 import { FaWandSparkles, FaPalette, FaWrench, FaBug, FaRocket, FaAndroid } from 'react-icons/fa6'
 import type { IconType } from 'react-icons'
-import { motion } from 'framer-motion'
+import { keyframes } from '@emotion/react'
 import { useLang, useT, type Strings } from '../i18n'
 import { formatDate } from '../i18n/rich'
 import { LIVE, STORES_OPEN } from '../lib/legalRelease'
 import { LaunchLine } from '../components/ui/LaunchReminder'
 
-const MotionBox = motion(Box)
+/*
+ * Each release rises into place as the page opens (it was Framer Motion's y 20 -> 0, opacity 0 -> 1, 0.5 s, easeOut):
+ * a CSS animation now (www-speed-1112), so it runs from the first paint of the build's HTML instead of waiting for
+ * the app. Framer's easeOut is cubic-bezier(0, 0, 0.58, 1); `backwards` so it ends on the box's own transform (none),
+ * as Framer left it. Reduce Motion stops it (src/theme's global rule).
+ */
+const rise = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+`
 
 interface BulletItem {
   title?: string
@@ -144,10 +153,8 @@ const SectionBlock = ({ section }: { section: Section }) => (
 )
 
 const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean }) => (
-  <MotionBox
-    initial={{ y: 20, opacity: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    transition={{ duration: 0.5 }}
+  <Box
+    animation={`${rise} 0.5s cubic-bezier(0, 0, 0.58, 1) backwards`}
     bg="ss.surface"
     borderRadius="var(--ss-radius-card)"
     border="var(--ss-card-border) solid"
@@ -197,7 +204,7 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
         </VStack>
       )}
     </VStack>
-  </MotionBox>
+  </Box>
 )
 
 const WhatsNew = () => {

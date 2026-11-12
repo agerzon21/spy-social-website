@@ -2,6 +2,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState, type RefObject } f
 import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
 import SiteLink from './SiteLink'
+import { useClientValue } from '../lib/clientValue'
 import s from './phoneNav.module.css'
 
 /**
@@ -117,7 +118,8 @@ function useDisclosure() {
 
 /** Dims the page under the open grid (under the header, which stays lit). Taps on it close the grid. */
 const Scrim = ({ open }: { open: boolean }) =>
-  createPortal(<div className={s.scrim} data-open={open || undefined} aria-hidden="true" />, document.body)
+  // Not in the build's HTML (www-speed-1112): there's no document to portal into there.
+  useClientValue(() => true, false) ? createPortal(<div className={s.scrim} data-open={open || undefined} aria-hidden="true" />, document.body) : null
 
 const PhoneNav = ({ items, current, label }: Props) => {
   const d = useDisclosure()

@@ -19,6 +19,12 @@ body {
   color: #0a0a0a;
 }
 
+/* The wordmark in each theme's artwork (components/Wordmark): both are on the page, the theme shows its own. */
+:root:not([data-theme='light']) [data-theme-only='light'],
+:root[data-theme='light'] [data-theme-only='dark'] {
+  display: none !important;
+}
+
 /*
  * Switching theme (src/theme/mode.ts): the new page spreads over the old one in a circle from the switch (the
  * circle is mode.ts's animation; no cross-fade), while the switch itself shows live on top with its knob sliding

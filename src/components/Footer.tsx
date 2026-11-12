@@ -1,9 +1,9 @@
 import RouterLink from './SiteLink'
-import { useMemo } from 'react'
 import { useT } from '../i18n'
 import { useClosed } from '../lib/betaSignup'
 import { LIVE, LLC_SINCE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
+import { useClientValue } from '../lib/clientValue'
 import { PLAY_URL } from '../lib/playUrl'
 import { SHOP_URL } from '../lib/shop'
 import SocialLinks from './SocialLinks'
@@ -45,7 +45,7 @@ const FooterColumn = ({ id, title, links }: { id: string; title: string; links: 
 // 44 px row.
 const Footer = () => {
   // The browser version, on a computer once it's live (LIVE.browserLinks); phones keep the app.
-  const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
+  const showBrowser = useClientValue(() => LIVE.browserLinks && currentPlatform() === 'desktop', false)
 
   // The Beta 2 playtest link shows only while sign-ups are open, and never in the launch version (/beta goes home).
   const betaClosed = useClosed()

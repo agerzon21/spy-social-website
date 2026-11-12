@@ -2,7 +2,7 @@ import { Heading } from '@chakra-ui/react'
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { useLang, type LangCode } from '../i18n'
+import { addTableLoader, useLang, type LangCode } from '../i18n'
 import { rich, type Parts } from '../i18n/rich'
 import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { DISCORD_URL } from '../lib/social'
@@ -42,19 +42,29 @@ const OPTS: HelpOpts = {
 const loaders = import.meta.glob<{ default: HelpText }>(['../help/locales/*.ts', '!../help/locales/en.ts'])
 const cache = new Map<LangCode, HelpText>([['en', en]])
 
+/** The help text in `lang`, fetched once; English if its chunk can't load. */
+const loadHelp = (lang: LangCode): Promise<void> => {
+  if (cache.has(lang)) return Promise.resolve()
+  const load = loaders[`../help/locales/${lang}.ts`]
+  return (load ? load().then((m) => m.default) : Promise.resolve(en))
+    .catch(() => en)
+    .then((text) => {
+      cache.set(lang, text)
+    })
+}
+// The page's language loads with the site's words (i18n loadStrings waits for it), so the page is drawn in it from
+// the start: in the build's HTML (www-speed-1112) and when main.tsx hydrates it, which must match.
+addTableLoader(loadHelp)
+
 function useHelp(lang: LangCode): HelpText | null {
   const [, setTick] = useState(0)
   const ready = cache.get(lang) ?? null
   useEffect(() => {
     if (cache.has(lang)) return
-    const load = loaders[`../help/locales/${lang}.ts`]
     let live = true
-    ;(load ? load().then((m) => m.default) : Promise.resolve(en))
-      .catch(() => en)
-      .then((text) => {
-        cache.set(lang, text)
-        if (live) setTick((n) => n + 1)
-      })
+    loadHelp(lang).then(() => {
+      if (live) setTick((n) => n + 1)
+    })
     return () => {
       live = false
     }
@@ -122,7 +132,8 @@ const FAQ = () => {
   const help = useHelp(lang)
   const sections = useMemo(() => (help ? help.sections(OPTS) : []), [help])
   // /support?q=refund opens the page on that search (a link support can send).
-  const [query, setQuery] = useState(() => new URLSearchParams(window.location.search).get('q')?.slice(0, 80) ?? '')
+  // (The build's HTML has no search: vercel.json serves a search link the plain app.)
+  const [query, setQuery] = useState(() => (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('q')?.slice(0, 80) ?? ''))
 
   const words = useMemo(() => fold(query).split(/\s+/).filter(Boolean), [query])
   const shown = useMemo(

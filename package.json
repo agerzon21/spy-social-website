@@ -5,13 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/ledger-files.mjs dist",
+    "build": "tsc -b && vite build && vite build --ssr src/prerender.tsx && node scripts/prerender.mjs dist && node scripts/ledger-files.mjs dist",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^2.8.2",
+    "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@supabase/supabase-js": "^2.39.7",
