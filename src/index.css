@@ -57,10 +57,13 @@ html:is([lang='ar'], [lang='hi'], [lang='bn']) body *:not(body [dir='ltr'], body
 html:is([lang='es'], [lang='fr'], [lang='pt-BR']) {
   --ss-fit: 0.8;
 }
-/* Running Russian text breaks a long word at a hyphenation point, never anywhere else. */
+/* Running Russian text breaks a long word at a hyphenation point, never anywhere else. Only words of 10 letters or
+   more, with 4 on each side, so the 9-letter brand never splits into "Spy-Social" (site-qa-1113: Help, Roadmap and
+   Delete Account at phone width; browsers without hyphenate-limit-chars hyphenate as before). */
 html[lang='ru'] :is(p, li, td) {
   hyphens: auto;
   -webkit-hyphens: auto;
+  hyphenate-limit-chars: 10 4 4;
 }
 
 #root {
