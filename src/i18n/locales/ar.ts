@@ -8,8 +8,8 @@ const ar: Strings = {
     description:
       'اجمعوا أصدقاءكم واكشفوا الجاسوس، أو اخدعوا الجميع. لعبة سهرات مجانية متعددة اللاعبين في الوقت الفعلي لـ 3–21 لاعبًا. متوفرة على iOS وGoogle Play.',
     titles: {
-      /** The Beta 2 playtester page (/beta). */
-      beta: 'بيتا 2: تجربة SpySocial قبل الإطلاق',
+      /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
+      beta: 'بيتا 3: آخر اختبار لعب لـ SpySocial',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "سجل المقتنيات",
@@ -39,7 +39,7 @@ const ar: Strings = {
       notFound: 'الصفحة غير موجودة',
     },
     descriptions: {
-      beta: 'اختبار لعب جماعي مباشر لمدة ساعة واحدة للعبة SpySocial، لعبة الاستنتاج الاجتماعي المجانية للحفلات: الخميس 12 نوفمبر 2026، من 7 إلى 8 مساءً بتوقيت شرق الولايات المتحدة. للبالغين 18+ فقط، على iPhone أو Android. يحتفظ المختبِرون بدبوس بيتا وغيره.',
+      beta: 'انتهت بيتا 2. شكرًا لكل من لعب معنا. بيتا 3، آخر اختبار لعب قبل إطلاق SpySocial، يوم الثلاثاء 24 نوفمبر. يفتح التسجيل قريبًا: انضم إلى Discord الخاص بنا لتعرف أولًا.',
       ledger: "السجل العام لكل مقتنى في SpySocial: كل نسخة ورقمها. ويمكن لأي شخص التحقق منه.",
       archive: "كل عنصر فريد في SpySocial موثّق: صورته ورقمه وسماته وكيف صُكّ وكل عملية بيع، دون ذكر أي لاعب.",
       market: "بكم يُباع كل عنصر في SpySocial في السوق السوداء: أسعار من صفقات اللاعبين، والأكثر ارتفاعًا وانخفاضًا، والأكثر تداولًا، دون ذكر أي لاعب.",
@@ -874,6 +874,16 @@ const ar: Strings = {
   },
 
   beta: {
+    /** site-qa-1113: /beta between Beta 2 and Beta 3's sign-ups (Beta 3: Tue Nov 24, the final playtest; no form yet). The page writes the day. */
+    hold: {
+      eyebrow: 'اختبارات اللعب',
+      /** The poster line; the page adds home.hero.titleMark after it. */
+      title: 'انتهت بيتا 2',
+      lede: 'شكرًا لكل من لعب بيتا 2 وأرسل إلينا الأخطاء والأفكار.',
+      label: 'التالي: بيتا 3',
+      note: 'آخر اختبار لعب قبل الإطلاق.',
+      soon: 'يفتح التسجيل قريبًا. انضم إلى Discord الخاص بنا لتعرف أولًا.',
+    },
     eyebrow: 'بيتا 2 · اختبار لعب مباشر',
     title: 'قبل الجميع',
     lede: '<b>10 دولارات عبر PayPal شكرًا لك</b> لكل لاعب مؤكَّد يشارك في الساعة كاملة من جلسة اختبار اللعب الجماعي المباشر هذه للعبة SpySocial، لعبة الاستنتاج الاجتماعي المجانية للحفلات، ويرسل استبيان الدقائق الخمس، بالتساوي على iPhone وAndroid، ومكافأة واحدة بقيمة 50 دولارًا لأفضل بلاغ عن خطأ أو فكرة من الجلسة. بالإضافة إلى مكافآت بيتا التي تبقى لك بعد الإطلاق: دبوس بيتا ولقب لكل مختبر، ومع إنهاء مباراة واحدة قبل 7 ديسمبر، لقب ثانٍ، و10 ملفات من كل درجة، وشهر من العضوية.',

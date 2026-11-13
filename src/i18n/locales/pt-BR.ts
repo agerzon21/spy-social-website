@@ -8,8 +8,8 @@ const ptBR: Strings = {
     description:
       'Junte os amigos e descubra o espião — ou engane todo mundo. Jogo de festa multijogador grátis em tempo real, de 3–21 jogadores. Para iOS e Google Play.',
     titles: {
-      /** The Beta 2 playtester page (/beta). */
-      beta: 'Beta 2: jogue SpySocial antes do lançamento',
+      /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
+      beta: 'Beta 3: o último teste de jogo do SpySocial',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Registro de colecionáveis",
@@ -39,7 +39,7 @@ const ptBR: Strings = {
       notFound: 'Página não encontrada',
     },
     descriptions: {
-      beta: 'Participe de um teste de jogo em grupo, ao vivo e de 1 hora, do SpySocial, um jogo grátis de dedução social para festas: quinta-feira, 12 de novembro de 2026, das 19h às 20h no horário do Leste dos EUA. Só maiores de 18, no iPhone ou Android. Os testadores ficam com o Pin beta e mais.',
+      beta: 'O Beta 2 terminou. Obrigado a todo mundo que jogou! O Beta 3, o último teste de jogo antes do lançamento do SpySocial, é na terça-feira, 24 de novembro. As inscrições abrem em breve: entre no nosso Discord para saber primeiro.',
       ledger: "O registro público de cada colecionável do SpySocial: cada cópia e seu número. Qualquer pessoa pode conferir.",
       archive: "Cada Único do SpySocial registrado: imagem, número, atributos, como foi cunhado e cada venda, sem nomear nenhum jogador.",
       market: "Quanto vale cada item do SpySocial no Mercado Negro: preços a partir das trocas dos jogadores, o que mais sobe e cai e o mais negociado, sem nomear nenhum jogador.",
@@ -872,6 +872,16 @@ const ptBR: Strings = {
   },
 
   beta: {
+    /** site-qa-1113: /beta between Beta 2 and Beta 3's sign-ups (Beta 3: Tue Nov 24, the final playtest; no form yet). The page writes the day. */
+    hold: {
+      eyebrow: 'Testes de jogo',
+      /** The poster line; the page adds home.hero.titleMark after it. */
+      title: 'O Beta 2 terminou',
+      lede: 'Obrigado a todo mundo que jogou o Beta 2 e nos mandou bugs e ideias.',
+      label: 'Próximo: Beta 3',
+      note: 'O último teste de jogo antes do lançamento.',
+      soon: 'As inscrições abrem em breve. Entre no nosso Discord para saber primeiro.',
+    },
     eyebrow: 'Beta 2 · Teste ao vivo',
     title: 'Jogue primeiro',
     lede: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta e um título para cada testador e, com uma partida terminada antes de 7 de dezembro, outro título, 10 interceptações de cada nível e 1 mês de assinatura.',

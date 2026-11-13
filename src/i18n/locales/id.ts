@@ -8,8 +8,8 @@ const id: Strings = {
     description:
       'Kumpulkan temanmu dan temukan mata-matanya, atau kelabui semua orang. Game pesta multipemain real-time gratis untuk 3–21 pemain. Di iOS dan Google Play.',
     titles: {
-      /** The Beta 2 playtester page (/beta). */
-      beta: 'Beta 2: main SpySocial sebelum peluncuran',
+      /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
+      beta: 'Beta 3: playtest terakhir SpySocial',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Buku besar koleksi",
@@ -39,7 +39,7 @@ const id: Strings = {
       notFound: 'Halaman tidak ditemukan',
     },
     descriptions: {
-      beta: 'Ikut playtest grup live selama 1 jam untuk SpySocial, game pesta deduksi sosial gratis, pada Kamis, 12 November 2026, pukul 19.00–20.00 waktu Timur AS. Khusus 18+, di iPhone atau Android. Penguji mendapat Pin Beta dan lainnya.',
+      beta: 'Beta 2 sudah selesai. Terima kasih untuk semua yang sudah bermain. Beta 3, playtest terakhir sebelum SpySocial diluncurkan, berlangsung pada Selasa, 24 November. Pendaftaran segera dibuka: gabung ke Discord kami agar jadi yang pertama tahu.',
       ledger: "Catatan publik setiap item koleksi SpySocial: setiap salinan dan nomornya. Siapa saja bisa memeriksanya.",
       archive: "Setiap Unik SpySocial tercatat: gambarnya, nomornya, atributnya, cara dicetak, dan setiap penjualan, tanpa menyebut pemain.",
       market: "Harga setiap item SpySocial di Pasar Gelap: harga dari transaksi pemain, yang paling naik dan turun, dan yang paling banyak diperdagangkan, tanpa menyebut pemain.",
@@ -872,6 +872,16 @@ const id: Strings = {
   },
 
   beta: {
+    /** site-qa-1113: /beta between Beta 2 and Beta 3's sign-ups (Beta 3: Tue Nov 24, the final playtest; no form yet). The page writes the day. */
+    hold: {
+      eyebrow: 'Playtest',
+      /** The poster line; the page adds home.hero.titleMark after it. */
+      title: 'Beta 2 sudah selesai',
+      lede: 'Terima kasih untuk semua yang sudah memainkan Beta 2 dan mengirimi kami bug serta ide.',
+      label: 'Berikutnya: Beta 3',
+      note: 'Playtest terakhir sebelum peluncuran.',
+      soon: 'Pendaftaran segera dibuka. Gabung ke Discord kami agar jadi yang pertama tahu.',
+    },
     eyebrow: 'Beta 2 · Playtest live',
     title: 'Main duluan',
     lede: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta dan satu gelar untuk setiap penguji, dan dengan satu game yang selesai sebelum 7 Desember, gelar kedua, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',

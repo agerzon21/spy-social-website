@@ -8,8 +8,8 @@ const zhHans: Strings = {
     description:
       '叫上朋友，找出卧底，或者骗过所有人。免费实时多人派对游戏，支持 3–21 名玩家。iOS 和 Google Play 均可下载。',
     titles: {
-      /** The Beta 2 playtester page (/beta). */
-      beta: '第 2 轮内测：上线前抢先玩 SpySocial',
+      /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
+      beta: '第 3 轮内测：SpySocial 上线前的最后一次试玩',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "收藏品账本",
@@ -39,7 +39,7 @@ const zhHans: Strings = {
       notFound: '页面不存在',
     },
     descriptions: {
-      beta: '加入 SpySocial 的 1 小时线上集体试玩。SpySocial 是一款免费的社交推理派对游戏。时间：2026 年 11 月 12 日（星期四）美东时间晚上 7–8 点。仅限 18 岁以上成年人，iPhone 或 Android 均可。测试玩家可获得内测徽章等奖励。',
+      beta: '第 2 轮内测已结束，感谢每一位参与的玩家。第 3 轮内测是 SpySocial 上线前的最后一次试玩，时间为 11 月 24 日（星期二）。报名即将开放：加入我们的 Discord，第一时间获知消息。',
       ledger: "SpySocial 每件收藏品的公开记录：每一份副本及其编号，人人都可核验。",
       archive: "SpySocial 每件唯一物品的公开记录：图片、编号、属性、铸造方式和每笔交易，不显示任何玩家。",
       market: "SpySocial 每件物品在黑市的成交价：根据玩家交易得出的价格、涨跌榜和最常交易的物品，不显示任何玩家。",
@@ -849,6 +849,16 @@ const zhHans: Strings = {
   },
 
   beta: {
+    /** site-qa-1113: /beta between Beta 2 and Beta 3's sign-ups (Beta 3: Tue Nov 24, the final playtest; no form yet). The page writes the day. */
+    hold: {
+      eyebrow: '试玩测试',
+      /** The poster line; the page adds home.hero.titleMark after it. */
+      title: '第 2 轮内测已结束',
+      lede: '感谢每一位参加第 2 轮内测、向我们反馈问题和想法的玩家。',
+      label: '下一轮：第 3 轮内测',
+      note: '上线前的最后一次试玩。',
+      soon: '报名即将开放。加入我们的 Discord，第一时间获知消息。',
+    },
     eyebrow: '第 2 轮内测 · 线上试玩',
     title: '抢先玩',
     lede: '每位确认参加、全程参与这场 1 小时线上集体试玩并提交 5 分钟问卷的玩家，都会通过 PayPal 收到 <b>10 美元谢礼</b>，iPhone 和 Android 玩家一视同仁；本场最有价值的一份问题反馈或建议还可再获得 50 美元奖励。试玩的是免费的社交推理派对游戏 SpySocial。 另外还有上线后依然归你的内测奖励：每位测试玩家都有内测徽章和一个称号；12 月 7 日前完整打完一局，还能再得一个称号、每个等级各 10 封密函和 1 个月会员。',

@@ -25,8 +25,8 @@ const en = {
     description:
       'Gather your friends and find the spy — or fool everyone trying. Free real-time multiplayer party game for 3–21 players. Available on iOS and Google Play.',
     titles: {
-      /** The Beta 2 playtester page (/beta). */
-      beta: 'Beta 2 playtest: play SpySocial before launch',
+      /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
+      beta: 'Beta 3: the final SpySocial playtest',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Collectibles ledger",
@@ -57,7 +57,7 @@ const en = {
     },
     /** Each page's own description for search results; the home page and the unlisted pages use `description`. */
     descriptions: {
-      beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 12, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
+      beta: 'Beta 2 is done. Thank you to everyone who played. Beta 3, the final playtest before SpySocial launches, is on Tuesday, November 24. Sign-ups open soon: join our Discord to hear first.',
       ledger: "The public record of every minted SpySocial collectible: each copy and its number. Anyone can check it.",
       archive: "Every SpySocial Unique on the record: its picture, number, attributes, how it was minted and every sale, with no player named.",
       market: "What every SpySocial item sells for on the Black Market: prices from players’ trades, the biggest rises and falls and the most traded items, with no player named.",
@@ -948,6 +948,16 @@ const en = {
    * US time zones (ET, PT); CET is Central European Time; UK is the time in the United Kingdom.
    */
   beta: {
+    /** site-qa-1113: /beta between Beta 2 and Beta 3's sign-ups (Beta 3: Tue Nov 24, the final playtest; no form yet). The page writes the day. */
+    hold: {
+      eyebrow: 'Playtests',
+      /** The poster line; the page adds home.hero.titleMark after it. */
+      title: 'Beta 2 is done',
+      lede: 'Thank you to everyone who played Beta 2 and sent us bugs and ideas.',
+      label: 'Next: Beta 3',
+      note: 'The final playtest before launch.',
+      soon: 'Sign-ups open soon. Join our Discord to hear first.',
+    },
     eyebrow: 'Beta 2 · Live playtest',
     /** The poster line, set huge: it must fit a 320 px phone. The full stop after it is home.hero.titleMark. */
     title: 'Play it first',

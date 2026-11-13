@@ -230,8 +230,8 @@ function launchHead() {
  * Each page's link preview. Reddit, Discord, iMessage and the other link previewers don't run the page's script, so
  * they'd see the home page's title and card everywhere; the build writes dist/<page>/index.html for each page in
  * PREVIEW_PAGES, the same page with its English title and description (src/i18n/locales/en.ts: meta.titles,
- * meta.descriptions) and its own address. vercel.json serves each at its path. /beta keeps its own large card
- * (public/images/og-beta.jpg) until the launch version, which sends /beta home (its file is the home page's then);
+ * meta.descriptions) and its own address. vercel.json serves each at its path. /beta's own large Beta 2 card
+ * (public/images/og-beta.jpg) is retired (site-qa-1113); the launch version sends /beta home (its file is the home page's then);
  * a page whose route is off (its switch) gets the home page's file too.
  */
 function pagePreviews() {
@@ -283,10 +283,8 @@ function pagePreviews() {
                 let html = home;
                 if (routeOn[page.path] !== false) {
                     const swaps = pageSwaps(page);
-                    if (page.path === '/beta') {
-                        const image = `${ORIGIN}/images/og-beta.jpg?v=nov12`;
-                        swaps.push([/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`], [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'], [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'], [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial Beta 2 playtest: Thursday, November 12, 7-8 PM Eastern')}"`], [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'], [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`]);
-                    }
+                    // /beta's large Beta 2 card (og-beta.jpg: "Thursday, November 12") is gone with Beta 2 (site-qa-1113): the
+                    // holding page shows the home page's card with its own title and description.
                     html = swapAll(html, swaps);
                 }
                 if (isShared(page.path)) {

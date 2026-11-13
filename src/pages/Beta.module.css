@@ -14,8 +14,10 @@
 /* ---- the poster ---- */
 .hero { display: grid; gap: 28px; padding-top: 36px; }
 .heroCopy { min-width: 0; }
-.title { margin: 0; }
+/* Room over a capital's accent (French Ê, Russian Й) under the eyebrow. */
+.title { margin: 0; padding-top: 0.12em; }
 .mark { color: var(--ss-accent-text); }
+.nowrap { white-space: nowrap; }
 .lede { margin: 18px 0 0; max-width: 32em; font-size: clamp(17px, 4.6vw, 20px); line-height: 1.5; color: var(--ss-muted); }
 .lede b { color: var(--ss-text); font-weight: 700; }
 .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 18px 0 0; padding: 0; list-style: none; font-size: 15px; font-weight: 600; color: var(--ss-text); }
