@@ -913,7 +913,7 @@ export const LIVE = {
    * 3.1.1, coordinator decision 2026-11-10): our codes no longer give membership. See codesNoMembership. Still ON until
    * then (friday-flips-1111: the Friday Nov 13 apply, step 11S).
    */
-  membershipCodes: true,
+  membershipCodes: false,
   /**
    * Codes give no membership (Apple 3.1.1, coordinator 2026-11-10; app server 20261231900000_codes_no_membership_1110,
    * app branch fix/codes-no-membership-1110). Terms 3's gift line says a code entered in the app never gives a
@@ -923,7 +923,7 @@ export const LIVE = {
    * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED move to CODES_NO_MEMBERSHIP_DAY, no TERMS_PUBLISHED or terms_version.
    * OFF until the server file is applied (friday-flips-1111: flip it with membershipCodes false, step 11S).
    */
-  codesNoMembership: false,
+  codesNoMembership: true,
   /**
    * Volunteer community moderators (app repo feat/moderator, server 20261202460000_moderator_role: moderators, scopes,
    * moderator_agreements, mod_actions; owner 2026-10-30/31; first test moderator granted on live 2026-10-31). Terms 8
@@ -1044,7 +1044,7 @@ export const LIVE = {
    * adds that only an aggregate daily count of these records is kept (retention_daily_counts: day, kind, count; no user). A server switch: set in LIVE, never in PRIVACY_AHEAD.
    * Set RETENTION_SWEEP_DAY (its PRIVACY_LAST_UPDATED entry, added by legal-integration-1111: before it, the flip moved no date) to that day.
    */
-  retentionSweep: false,
+  retentionSweep: true,
   /**
    * mild-swear-mask-1111 (owner Nov 11; app repo server file supabase/migrations_pending/20261231999920_mild_swear_mask_1111.sql):
    * at Play Online tables and game nights the shit / crap level of swearing is no longer refused: it goes out censored for
@@ -1368,7 +1368,7 @@ export const LIVE = {
    * that goes up after the server file is applied, and set PARTY_LEADER_LAPSE_DAY (below) to that day. A server rule for
    * every app version at once: set in LIVE.
    */
-  partyLeaderLapse: false,
+  partyLeaderLapse: true,
   /**
    * Trading's gates (owner 2026-11-02, live on the app server: app_config.trading.min_friend_days 0 and
    * 20261102002603_trade_games_not_level): friends can trade right away (no 3 days as friends; the 7-day protection and
@@ -1607,7 +1607,7 @@ export const LIVE = {
    * file is applied (the ledger edge function passes the answer through, no redeploy), and set
    * ARCHIVE_HOLDERS_LIST_DAY to that day.
    */
-  archiveHoldersList: false,
+  archiveHoldersList: true,
   /**
    * ledger-reasons-1111 (owner Nov 11; app repo server file 20261231999988_ledger_reasons_1111): when SpySocial takes a
    * minted copy away for integrity (a bot farm, cheating, a fraud refund, a glitch or duplicate, a correction of ours),
@@ -1617,7 +1617,7 @@ export const LIVE = {
    * the Ledger page's Supply column gains "removed". No personal data (a case number, never a player), no policy text.
    * OFF until the server file is applied (until then the answers carry no removal keys and the pages stay as they are).
    */
-  ledgerReasons: false,
+  ledgerReasons: true,
   /**
    * ledger-uniques-1111 (owner Nov 11, firm; app repo server file 20261231999989_ledger_uniques_1111): the public ledger
    * carries UNIQUES ONLY. Regular Intercept items, Game Night titles, the Beta Pin and Field Tester are still minted and
@@ -1631,7 +1631,7 @@ export const LIVE = {
    * public: no new data, no new sharing. OFF until the server file is applied; then set LEDGER_UNIQUES_DAY (below) to
    * that day (both Last Updated dates move with it).
    */
-  ledgerUniquesOnly: false,
+  ledgerUniquesOnly: true,
   /**
    * drawing-minor-rooms-1111 (app repo: server file 20261231999100_drawing_minor_rooms_1111, owner Nov 11 "drawings:
    * check"): in a private room where anyone who can see the drawing is under 18 or has no birth year, drawing turns get
@@ -1716,7 +1716,7 @@ export const LIVE = {
    * never in PRIVACY_AHEAD, the day the server file is applied live (apply slot 14, after Beta 2), with REPUTATION_DAY
    * set to that day. Off only if the file is rolled back.
    */
-  reputation: false,
+  reputation: true,
   /**
    * reputation-export-1113 (app repo server file 20261231999961_reputation_export_1113): a data export carries the
    * reputation tier, its reason and history and the chat filter counts, never the score, its points, the watched flag
@@ -1724,7 +1724,7 @@ export const LIVE = {
    * 20261231970000_reputation_1110 and 20261231800000_data_export_gaps first; with or after LIVE.reputation), and set
    * REPUTATION_EXPORT_DAY to that day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
-  reputationExport: false,
+  reputationExport: true,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -1752,7 +1752,7 @@ export const LIVE = {
    * (both Last Updated dates move with it). Not a material change (no new duty or penalty beyond the market's own
    * rules): no TERMS_PUBLISHED or terms_version raise. A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
-  rarefindsOffers: false,
+  rarefindsOffers: true,
   /**
    * rarefinds-offer-push-1111 (app repo server file 20261231999979_rarefinds_offer_push_1111, applied after
    * 20261231999981, with the social-push function that words it): a Rare Finds buyer gets a push when the seller counters
@@ -1760,7 +1760,7 @@ export const LIVE = {
    * clause in Privacy's Social Notifications and the help center's line. OFF until that file is applied; it shares
    * RAREFINDS_OFFERS_DAY (if it goes later, move that day to its push day).
    */
-  rarefindsOfferPush: false,
+  rarefindsOfferPush: true,
   /**
    * unconfirmed-signups-1111 (owner Nov 11; app repo server file 20261231999800_unconfirmed_cleanup_1111): an email
    * sign-up that is never confirmed is deleted about 24 hours after the last confirmation email (the nightly
@@ -1770,7 +1770,7 @@ export const LIVE = {
    * but 20261231999800 is STAGED, NOT APPLIED (live schema_migrations has no unconfirmed_cleanup row; the nightly job is
    * still paused), so "is deleted about 24 hours after" would be untrue today.
    */
-  unconfirmedSignups: false,
+  unconfirmedSignups: true,
   /**
    * mod-cover-1111, the cover hold (owner Nov 11; app repo server file 20261231998700_mod_cover_1111, app feat/mod-cover-1111):
    * a child-safety, grooming, sexual-with-a-minor or self-harm case the developer hasn't opened for 15 minutes shows every
@@ -1792,7 +1792,7 @@ export const LIVE = {
    * words live before (one list: the Beta Pin, both titles, 10 Intercepts of each tier, 1 month). Flip it with
    * TESTER_GIFT_GAME_DAY set to the apply day; LIVE.testerIntercepts stays 'bound'.
    */
-  testerGiftGame: false,
+  testerGiftGame: true,
   /**
    * friday-flips-1111 (Nov 11): legal-integration-1111's CSEA line (coordinator ruling Nov 11, legal audit 1111: we report
    * to NCMEC only, "as US law requires; NCMEC passes it to the police in the country it concerns", instead of "NCMEC and
@@ -1833,7 +1833,7 @@ export const LIVE = {
    * day step 47 is applied (node scripts/flip-switch.mjs practiceResults --day "<apply day>"); the backfill sentence is
    * true once spy_chat_intro_backfill_1112 runs, right after Friday's batch.
    */
-  practiceResults: false,
+  practiceResults: true,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -1843,10 +1843,10 @@ export const PRACTICE_RESULTS_DAY = 'November 13, 2026'
 export const APP_U61_DAY = 'November 15, 2026'
 
 /** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
-export const UNCONFIRMED_SIGNUPS_DAY = 'November 12, 2026'
+export const UNCONFIRMED_SIGNUPS_DAY = 'November 13, 2026'
 
 /** LIVE.retentionSweep's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999700_retention_sweep_1111 is applied). Never earlier than November 12, 2026. */
-export const RETENTION_SWEEP_DAY = 'November 12, 2026'
+export const RETENTION_SWEEP_DAY = 'November 13, 2026'
 
 /** LIVE.modCoverHold's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231998700 is live). Never earlier than November 11, 2026. */
 export const MOD_COVER_HOLD_DAY = 'November 11, 2026'
@@ -2046,9 +2046,9 @@ export const MARKET_MEDIAN_DAY = 'November 11, 2026'
 /** LIVE.archiveHolders's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231997000 is live). Never earlier than November 10, 2026. */
 export const ARCHIVE_HOLDERS_DAY = 'November 11, 2026'
 /** LIVE.archiveHoldersList's day in PRIVACY_LAST_UPDATED: the day the server file 20261231999975_archive_holder_uniques_1113 is applied and the site goes up with it on. Never earlier than November 13, 2026. */
-export const ARCHIVE_HOLDERS_LIST_DAY = 'November 14, 2026'
+export const ARCHIVE_HOLDERS_LIST_DAY = 'November 13, 2026'
 /** LIVE.ledgerUniquesOnly's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the server file 20261231999989_ledger_uniques_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
-export const LEDGER_UNIQUES_DAY = 'November 11, 2026'
+export const LEDGER_UNIQUES_DAY = 'November 13, 2026'
 /** LIVE.chatMildMask's day in LEGAL_LAST_UPDATED: the day the server file 20261231999920_mild_swear_mask_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
 export const CHAT_MILD_MASK_DAY = 'November 11, 2026'
 
@@ -2061,21 +2061,21 @@ export const DRAWING_MINOR_ROOMS_DAY = 'November 11, 2026'
 export const MEMBER_LOYALTY_DAY = 'November 12, 2026'
 
 /** LIVE.reputation's day (Terms 13, Privacy's Safety Information): the day the server file is applied and the site goes up with it on. Never earlier than November 13, 2026. */
-export const REPUTATION_DAY = 'November 14, 2026'
+export const REPUTATION_DAY = 'November 13, 2026'
 /** LIVE.reputationExport's day in PRIVACY_LAST_UPDATED: the day 20261231999961_reputation_export_1113 is applied live. Never earlier than REPUTATION_DAY. */
-export const REPUTATION_EXPORT_DAY = 'November 14, 2026'
+export const REPUTATION_EXPORT_DAY = 'November 13, 2026'
 
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
 
 /** LIVE.testerIntercepts's day (Terms 9's tester-rewards sentence, the counted-game condition): the day the site goes up with it, or with a flip of it. Never earlier than November 11, 2026. Since friday-flips-1111 it heads LEGAL_LAST_UPDATED only while LIVE.testerGiftGame is on (the NCMEC wording has its own LIVE.ncmecOnly / NCMEC_ONLY_DAY). SET IT TO THE APPLY DAY of tester_gift_game_1111 (Friday Nov 13). */
-export const TESTER_GIFT_GAME_DAY = 'November 11, 2026'
+export const TESTER_GIFT_GAME_DAY = 'November 13, 2026'
 
 /** LIVE.ncmecOnly's day (Terms 7, Child Safety, the Safety page's contacts): the day the site goes up with it on. Never earlier than November 11, 2026. */
 export const NCMEC_ONLY_DAY = 'November 11, 2026'
 
 /** LIVE.codesNoMembership's day (Terms, Privacy): the day the site goes up with it on. Never earlier than November 10, 2026. */
-export const CODES_NO_MEMBERSHIP_DAY = 'November 10, 2026'
+export const CODES_NO_MEMBERSHIP_DAY = 'November 13, 2026'
 
 /**
  * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
@@ -2084,7 +2084,7 @@ export const CODES_NO_MEMBERSHIP_DAY = 'November 10, 2026'
 export const PRACTICE_AI_DAY = 'December 6, 2026'
 
 /** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
-export const PARTY_LEADER_LAPSE_DAY = 'November 11, 2026'
+export const PARTY_LEADER_LAPSE_DAY = 'November 13, 2026'
 
 /** LIVE.giftsTradable going false (website U0, owner's gift rules of Nov 6 and Nov 8: Terms 9, Intel corrections): its day in LEGAL_LAST_UPDATED (added by legal-integration-1111: before it, the flip moved no date). Set it to the day the site goes up with giftsTradable false. */
 export const GIFTS_BOUND_DAY = 'December 6, 2026'
