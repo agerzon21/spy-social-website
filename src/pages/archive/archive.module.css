@@ -6,6 +6,9 @@
 
 .page {
   flex: 1;
+  /* The footer starts below the fold (site-qa-1113): a page that grows when its data arrives never pulls it into view
+     and pushes it out again (most of the layout shift on a Market item page). */
+  min-height: 100vh;
   padding-bottom: 72px;
   background:
     radial-gradient(80% 520px at 50% -60px, var(--ss-glow), transparent 70%),

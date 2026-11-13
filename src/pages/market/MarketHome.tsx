@@ -202,35 +202,40 @@ const MarketHome = () => {
         </>
       ) : null}
 
-      <section className={a.section} aria-labelledby="market-how">
-        <DisplayHeading id="market-how">{h.how.title}</DisplayHeading>
-        <ul className={a.pillars}>
-          {h.how.list.map((p, i) => (
-            <li key={p.title} className={a.pillar}>
-              <span className={a.pillarNo}>0{i + 1}</span>
-              <h3 style={{ marginTop: 14 }}>{p.title}</h3>
-              <p>{p.text}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {/* After the prices (site-qa-1113): drawn during the load, these sat in view and the data pushed them down. */}
+      {state === 'loading' ? null : (
+        <>
+          <section className={a.section} aria-labelledby="market-how">
+            <DisplayHeading id="market-how">{h.how.title}</DisplayHeading>
+            <ul className={a.pillars}>
+              {h.how.list.map((p, i) => (
+                <li key={p.title} className={a.pillar}>
+                  <span className={a.pillarNo}>0{i + 1}</span>
+                  <h3 style={{ marginTop: 14 }}>{p.title}</h3>
+                  <p>{p.text}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-      <section className={a.trust} aria-labelledby="market-trust">
-        <div>
-          <DisplayHeading as="h2" size={3} id="market-trust">
-            {h.trust.title}
-          </DisplayHeading>
-          <p>{h.trust.text}</p>
-        </div>
-        <div className={a.trustLinks}>
-          <ActionLink to="/archive" tone="secondary">
-            {h.trust.archive}
-          </ActionLink>
-          <ActionLink to="/ledger" tone="secondary">
-            {h.trust.ledger}
-          </ActionLink>
-        </div>
-      </section>
+          <section className={a.trust} aria-labelledby="market-trust">
+            <div>
+              <DisplayHeading as="h2" size={3} id="market-trust">
+                {h.trust.title}
+              </DisplayHeading>
+              <p>{h.trust.text}</p>
+            </div>
+            <div className={a.trustLinks}>
+              <ActionLink to="/archive" tone="secondary">
+                {h.trust.archive}
+              </ActionLink>
+              <ActionLink to="/ledger" tone="secondary">
+                {h.trust.ledger}
+              </ActionLink>
+            </div>
+          </section>
+        </>
+      )}
     </MarketPage>
   )
 }

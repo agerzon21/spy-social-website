@@ -15,6 +15,14 @@
  */
 import type { LangCode } from '../i18n'
 import { early } from './early'
+import { LIVE } from './legalRelease'
+
+/**
+ * site-qa-1113 (layout shift): until the server says otherwise, the Archive's and the Market's pages are the beta's, so
+ * their beta notice shows from the first paint (it used to arrive with the data and push the page down, CLS 0.58-0.92).
+ * A server answer that isn't the beta's takes it away; the launch build (LIVE.launchSite) starts without it.
+ */
+export const BETA_UNTIL_TOLD: boolean = !LIVE.launchSite
 
 const LEDGER_URL = `${String(import.meta.env.VITE_SUPABASE_URL ?? '').replace(/\/$/, '')}/functions/v1/ledger`
 

@@ -21,7 +21,7 @@ import {
 import { compact, fmt, pctText, useMarketLines, useMarketWords, type LoadState } from './useMarket'
 import { CATEGORY_ICON } from './icons'
 import a from '../archive/archive.module.css'
-import { lookOf } from '../../lib/archive'
+import { BETA_UNTIL_TOLD, lookOf } from '../../lib/archive'
 import { DisplayCase } from '../archive/DisplayCase'
 import { LiveBackdrop } from '../archive/LiveBackdrop'
 import { lineOf, marketPic, type MarketLines } from '../../lib/marketArt'
@@ -32,6 +32,10 @@ import s from './market.module.css'
 /** Every Market page: the dark vault and the lines (its nav is in the header: components/HostNav) that must show above everything (sample, beta, paused). */
 export function MarketPage({ head, children, movers = false }: { head?: MarketHead | null; children: ReactNode; /** A page with Market Movers' lists: the beta notice says why some items are tagged Sample. */ movers?: boolean }) {
   const { w } = useMarketWords()
+  // From the first paint (site-qa-1113): the beta notice, with its sample-items line, until the server's answer says
+  // otherwise; it used to arrive with the data and push the whole page down.
+  const beta = head ? head.phase === 'beta' : BETA_UNTIL_TOLD
+  const demo = head ? samplesShown(head) : BETA_UNTIL_TOLD
   return (
     <div className={`${a.page} ${s.page}`}>
       <div className={ui.wrap}>
@@ -41,13 +45,13 @@ export function MarketPage({ head, children, movers = false }: { head?: MarketHe
             <span>{w.sample}</span>
           </p>
         ) : null}
-        {head?.phase === 'beta' && !sampleOn() ? (
+        {beta && !sampleOn() ? (
           <p className={a.notice} role="note">
             <FaTriangleExclamation aria-hidden focusable={false} />
             <span>
               {w.beta}
               {/* The sample items in Market Movers (speed-1111): said once, with the beta notice. */}
-              {movers && samplesShown(head) ? <> {w.demoMovers}</> : null}
+              {movers && demo ? <> {w.demoMovers}</> : null}
             </span>
           </p>
         ) : null}

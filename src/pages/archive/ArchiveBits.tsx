@@ -1,15 +1,15 @@
 import Link from '../../components/SiteLink'
 import { FaTriangleExclamation } from 'react-icons/fa6'
-import { artOf, attributesOf, codenameOf, holderOf, lookOf, nameOf, serialText, uniquePath, type ArchiveCopy, type ArchiveSet, type ItemLook } from '../../lib/archive'
+import { artOf, attributesOf, BETA_UNTIL_TOLD, codenameOf, holderOf, lookOf, nameOf, serialText, uniquePath, type ArchiveCopy, type ArchiveSet, type ItemLook } from '../../lib/archive'
 import { LIVE } from '../../lib/legalRelease'
 import { DisplayCase } from './DisplayCase'
 import { fmt, setBadge, useArchive } from './useArchive'
 import s from './archive.module.css'
 
-/** The beta chain's notice (the server's; the page's words for it). */
+/** The beta chain's notice (the server's; the page's words for it). Shown from the first paint until the server names another chain (site-qa-1113). */
 export function BetaNotice({ chain }: { chain?: string }) {
   const { w } = useArchive()
-  if (chain !== 'beta') return null
+  if (chain === undefined ? !BETA_UNTIL_TOLD : chain !== 'beta') return null
   return (
     <p className={s.notice} role="note">
       <FaTriangleExclamation aria-hidden focusable={false} />
