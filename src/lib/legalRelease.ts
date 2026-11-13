@@ -1657,7 +1657,7 @@ export const LIVE = {
    * what the stores already do for the price): no TERMS_PUBLISHED or terms_version raise. A server + app fact: set in
    * LIVE, never in PRIVACY_AHEAD.
    */
-  memberLoyalty: false,
+  memberLoyalty: true,
   /**
    * export-reports-1110 (app repo nov03/export-reports-1110.md; server file 20261226710000_data_export_testers): the
    * data export (Your Rights, "A copy of your data") names the problem reports a player sent (with any practice game
@@ -1812,7 +1812,7 @@ export const LIVE = {
    * one, not on Friday. Their chain lines sit with this one's, above Friday's group. Flip: node scripts/flip-switch.mjs
    * appU61 --day "<the day u61 ships, ET>" (and memberLoyalty, modCoverHold with the same day).
    */
-  appU61: false,
+  appU61: true,
   /**
    * legal-1113 (audit AUDIT-RR-u62.md items 2 and 4), on since November 13, 2026. Text only, true of the live app: the
    * Safety page's "No direct messages" (noDmsSocial, 10 languages), Child Safety's friends-and-parties item and the UK
@@ -1840,7 +1840,7 @@ export const LIVE = {
 export const PRACTICE_RESULTS_DAY = 'November 13, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
-export const APP_U61_DAY = 'November 15, 2026'
+export const APP_U61_DAY = 'November 13, 2026'
 
 /** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
 export const UNCONFIRMED_SIGNUPS_DAY = 'November 13, 2026'
@@ -2024,7 +2024,9 @@ export const OPERATOR: {
  * on. Both chains run: the December flips (tournaments, !giftsTradable here; tournaments, launchTesterMail, practiceAi
  * in PRIVACY_LAST_UPDATED) first, then the Friday Nov 13 group (all set to the same apply day, so their order among
  * themselves doesn't matter), then the switches already on. A switch flipped on a later day than Friday's group moves
- * its two lines above that group.
+ * its two lines above that group. Nov 13 (u61-flips-1113): update 61 shipped Nov 13, so appU61 and memberLoyalty went on
+ * with Friday's group; creatorInvites, drawingMinorRooms and modCoverHold (Saturday or later) now sit at the top of the
+ * non-December entries in both chains so their flips move the dates.
  * Friday's flips: FRIDAY-SITE-FLIPS.md (app repo handoff) and scripts/flip-switch.mjs.
  */
 /**
@@ -2058,7 +2060,7 @@ export const RAREFINDS_OFFERS_DAY = 'November 13, 2026'
 export const DRAWING_MINOR_ROOMS_DAY = 'November 11, 2026'
 
 /** LIVE.memberLoyalty's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after member_loyalty_1111 is live and the app update shows it). Never earlier than November 11, 2026. */
-export const MEMBER_LOYALTY_DAY = 'November 12, 2026'
+export const MEMBER_LOYALTY_DAY = 'November 13, 2026'
 
 /** LIVE.reputation's day (Terms 13, Privacy's Safety Information): the day the server file is applied and the site goes up with it on. Never earlier than November 13, 2026. */
 export const REPUTATION_DAY = 'November 13, 2026'
@@ -2112,26 +2114,26 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : !LIVE.giftsTradable
     ? GIFTS_BOUND_DAY // U0: Terms 9's codes and gifts stay with the account, Intel we add is ordinary Intel (gift-rules-1108)
-  : LIVE.appU61
-    ? APP_U61_DAY // update 61 on phones: Terms 9's Rare Finds counters, Terms 13's Settings row (friday-allon-read-1112); the u61 group goes above Friday's
   : LIVE.creatorInvites
     ? CREATOR_INVITES_DAY // Terms 8: names held for someone we've invited (creator invites, legal-1113)
+  : LIVE.drawingMinorRooms
+    ? DRAWING_MINOR_ROOMS_DAY // Terms 8's automated tools: adults' drawings checked in private rooms where a minor can see them (drawing-minor-rooms-1111; added to Terms by friday-allon-read-1112)
+  : LIVE.modCoverHold
+    ? MOD_COVER_HOLD_DAY // Terms 8 and Child Safety: community moderators may hold a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
+  : LIVE.appU61
+    ? APP_U61_DAY // update 61 on phones: Terms 9's Rare Finds counters, Terms 13's Settings row (friday-allon-read-1112); the u61 group goes above Friday's
   : LIVE.reputation
     ? REPUTATION_DAY // legal/reputation-1110: Terms 13's reputation paragraph (moved up by legal-batch-1113: below the Nov 13 entries it never moved the date)
   : LIVE.spyChatDisclosed
     ? SPY_CHAT_DISCLOSED_DAY // legal-1113: the spies' chat named on Safety, Child Safety and Terms 22 (UK); Terms 6 "and record". On since Nov 13, above Friday's group (same day)
   : LIVE.memberLoyalty
     ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a pass renews (member-loyalty-1111)
-  : LIVE.modCoverHold
-    ? MOD_COVER_HOLD_DAY // Terms 8 and Child Safety: community moderators may hold a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.rarefindsOffers
     ? RAREFINDS_OFFERS_DAY // Terms 9's Rare Finds offers: the seller's discount, counters, a Decline's minimum, 24 h ends, the 30-minute take-back, the offer pause (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
     ? LEDGER_UNIQUES_DAY // Terms 9's collectibles bullet: the public ledger carries Uniques only (ledger-uniques-1111)
   : LIVE.partyLeaderLapse
     ? PARTY_LEADER_LAPSE_DAY // party-leader-lapse-1111: Terms' party bullet says a leader's membership ending closes the party
-  : LIVE.drawingMinorRooms
-    ? DRAWING_MINOR_ROOMS_DAY // Terms 8's automated tools: adults' drawings checked in private rooms where a minor can see them (drawing-minor-rooms-1111; added to Terms by friday-allon-read-1112)
   : LIVE.codesNoMembership
     ? CODES_NO_MEMBERSHIP_DAY // Terms 3: codes never give a membership; store offer and promo codes
   : LIVE.testerGiftGame
@@ -2216,12 +2218,16 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? LAUNCH_TESTER_MAIL_DAY // the launch email to the 2.2 testers (store-privacy-1108): the day the site goes up with it on, before the send
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.creatorInvites
+    ? CREATOR_INVITES_DAY // Accounts We Set Up for Creators, its retention and deletion lines (legal-1113)
+  : LIVE.drawingMinorRooms
+    ? DRAWING_MINOR_ROOMS_DAY // Drawing Checks: adults' drawings checked in private rooms where a minor sits (drawing-minor-rooms-1111)
+  : LIVE.modCoverHold
+    ? MOD_COVER_HOLD_DAY // Data Sharing: what community moderators see of a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.archiveHoldersList
     ? ARCHIVE_HOLDERS_LIST_DAY // the Archive's list of all Uniques names each holder too, by a Unique's page's rule (archive-holder-uniques-1113)
   : LIVE.appU61
     ? APP_U61_DAY // update 61 on phones: Safety Information's Settings row and the moderators' view of a tier (friday-allon-read-1112); the u61 group goes above Friday's
-  : LIVE.creatorInvites
-    ? CREATOR_INVITES_DAY // Accounts We Set Up for Creators, its retention and deletion lines (legal-1113)
   : LIVE.reputationExport
     ? REPUTATION_EXPORT_DAY // A copy of your data: the reputation tier, reason and history are in it, the score and its points aren't (reputation-export-1113)
   : LIVE.reputation
@@ -2232,16 +2238,12 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? PLAYTEST_SURVEY_DAY // Test Versions: the playtest exit survey (username + PayPal), seat confirms, survey answers kept without identifiers, one invite to the next test (legal-1113)
   : LIVE.memberLoyalty
     ? MEMBER_LOYALTY_DAY // Purchases: the membership-period record; Data Sharing: the member time on the player sheet (member-loyalty-1111)
-  : LIVE.modCoverHold
-    ? MOD_COVER_HOLD_DAY // Data Sharing: what community moderators see of a safety report the developer hasn't opened for 15 minutes (mod-cover-1111)
   : LIVE.practiceResults
     ? PRACTICE_RESULTS_DAY // Practice Games: each finished practice game's result, best grades, the Practice Ace title, the spies' chat note (privacy-practice-results-1112; Friday group, step 47)
   : LIVE.rarefindsOffers || LIVE.rarefindsOfferPush
     ? RAREFINDS_OFFERS_DAY // the Black Market item's offer ends, counters and offer pause; Social Notifications' Rare Finds buyer pushes (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
     ? LEDGER_UNIQUES_DAY // Collectibles and the public ledger: Uniques only on it, the monthly snapshot (ledger-uniques-1111)
-  : LIVE.drawingMinorRooms
-    ? DRAWING_MINOR_ROOMS_DAY // Drawing Checks: adults' drawings checked in private rooms where a minor sits (drawing-minor-rooms-1111)
   : LIVE.retentionSweep
     ? RETENTION_SWEEP_DAY // Data Retention: the short-lived records deleted on the clock by the hourly sweep, and only a daily count kept (retention-sweep-1111)
   : LIVE.unconfirmedSignups
