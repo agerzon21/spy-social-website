@@ -149,8 +149,9 @@
  * Devanagari and Bengali).
  */
 .display { overflow-wrap: break-word; hyphens: manual; }
-:global(html[lang='ru']) .display1 { font-size: clamp(54px, 15.5vw, 150px); line-height: 0.92; }
-:global(html[lang='ru']) .display2 { font-size: clamp(36px, 10vw, 84px); line-height: 0.95; }
+/* Russian leading leaves room for Д, Ц and Щ's descenders over the next line (0.92 / 0.95 let them touch it; site-qa-1113). */
+:global(html[lang='ru']) .display1 { font-size: clamp(54px, 15.5vw, 150px); line-height: 0.98; }
+:global(html[lang='ru']) .display2 { font-size: clamp(36px, 10vw, 84px); line-height: 1; }
 :global(html[lang='ru']) .display3 { font-size: clamp(30px, 8vw, 46px); line-height: 0.98; }
 :global(html[lang='ru']) .display4 { font-size: clamp(25px, 6.4vw, 32px); line-height: 1; }
 :global(html:is([lang='zh-Hans'], [lang='hi'], [lang='bn'], [lang='ar'])) .display {

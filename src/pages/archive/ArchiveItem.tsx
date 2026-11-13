@@ -316,7 +316,7 @@ const ArchiveItem = () => {
 
         <p style={{ marginTop: 40 }}>
           <Link to="/archive/uniques" className={s.seeAll}>
-            ← {t.back}
+            <span className={s.backArrow} aria-hidden>←</span> {t.back}
           </Link>
         </p>
       </div>
@@ -333,7 +333,7 @@ function HistoryLine({ e }: { e: HistoryEvent }) {
   const label = removal ? rw.removed : (t.events as Record<string, string>)[e.event] ?? e.event
   const who =
     e.from != null && e.to != null
-      ? `${t.holder(fmt(e.from, locale))} → ${t.holder(fmt(e.to, locale))}`
+      ? `${t.holder(fmt(e.from, locale))} ${lang === 'ar' ? '←' : '→'} ${t.holder(fmt(e.to, locale))}`
       : e.to != null && e.event === 'minted'
         ? t.holder(fmt(e.to, locale))
         : null

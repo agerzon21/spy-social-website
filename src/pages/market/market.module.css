@@ -212,6 +212,12 @@
 .itemStage::before { content: ''; position: absolute; inset: -20% -15% 0; background: radial-gradient(closest-side, var(--ss-art-pool), transparent); opacity: 0.6; pointer-events: none; }
 .itemInfo { display: grid; gap: 10px; align-content: start; }
 .itemTitle { margin: 0; font: 900 clamp(46px, 13vw, 92px)/0.86 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); overflow-wrap: anywhere; hyphens: manual; }
+/* The title in the other scripts (site-qa-1113): Russian a size its longest word fits at phone width, hyphenated rather
+   than cut mid-word, with room for Д's and Щ's descenders; Devanagari, Bengali and Arabic the taller lines their marks
+   need, Chinese a little more than Latin capitals (the same leading as ui.module.css's .display for those scripts). */
+:global(html[lang='ru']) .itemTitle { font-size: clamp(40px, 11vw, 92px); line-height: 1.04; hyphens: auto; }
+:global(html:is([lang='hi'], [lang='bn'], [lang='ar'])) .itemTitle { line-height: 1.28; }
+:global(html[lang='zh-Hans']) .itemTitle { line-height: 1.12; }
 .priceBox { display: grid; gap: 6px; margin-top: 8px; padding: 16px; border: var(--ss-hairline) solid var(--ss-line-strong); background: var(--ss-surface); }
 .priceLabel { font: 700 12px/1 var(--ss-font-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ss-highlight); }
 .priceNote { margin: 0; font-size: 13px; color: var(--ss-muted); line-height: 1.45; }

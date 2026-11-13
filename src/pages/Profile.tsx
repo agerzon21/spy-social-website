@@ -30,7 +30,9 @@ const HANDLE = /^[A-Za-z0-9_.]{3,30}$/
  */
 const Profile = () => {
   const { username = '' } = useParams<{ username: string }>()
-  const { lang } = useLang()
+  const { lang, language } = useLang()
+  // "Back" points the way the page reads: right in Arabic (site-qa-1113).
+  const rtl = language.rtl
   const c = useT().common
   const t = profileStrings(lang)
   const ok = HANDLE.test(username)
@@ -103,7 +105,7 @@ const Profile = () => {
 
           <Text textAlign="center" fontSize="15px">
             <Link to="/archive" style={{ color: 'var(--ss-link)', fontWeight: 700 }}>
-              ← {t.back}
+              {rtl ? '→' : '←'} {t.back}
             </Link>
           </Text>
         </VStack>

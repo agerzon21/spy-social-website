@@ -178,7 +178,7 @@ const ArchiveHome = () => {
                   <img src={artKey(`x-cat-d2-${d}`, true)} alt="" width={320} height={320} loading="lazy" decoding="async" />
                   <figcaption className={s.tenDigit}>
                     <b>{d}</b>
-                    {colour?.values[d]?.hex ? <span className="sw" style={{ width: 14, height: 14, background: colour.values[d].hex ?? undefined, border: '1px solid rgba(255,255,255,.4)' }} aria-hidden /> : null}
+                    {colour?.values[d]?.hex ? <span className={s.sw} style={{ background: colour.values[d].hex ?? undefined }} aria-hidden /> : null}
                     <span>{colour?.values[d]?.name}</span>
                   </figcaption>
                 </figure>
