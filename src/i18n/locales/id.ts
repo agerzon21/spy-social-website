@@ -449,7 +449,7 @@ const id: Strings = {
       noFriends:
         'Tidak ada daftar teman atau pengikut, tidak ada pencarian pemain, tidak ada profil untuk dijelajahi, dan tidak ada bio, jadi tidak ada yang bisa mencari anak Anda atau menghubunginya di luar room.',
       noDmsSocial:
-        "Tidak ada pesan langsung: pemain hanya chat di dalam room, dengan pemain yang ada di room itu, atau di chat grup, dengan teman-teman di grup itu. Semua chat difilter, disimpan untuk sementara, dan bisa dilaporkan.",
+        "Tidak ada pesan langsung: pemain hanya chat di dalam room, dengan pemain yang ada di room itu, atau di chat grup, dengan teman-teman di grup itu. Di beberapa permainan, para mata-mata juga punya chat yang hanya bisa dibaca oleh mereka, khusus untuk permainan itu saja. Semua chat difilter, disimpan untuk sementara, dan bisa dilaporkan.",
       noSearch:
         "Tidak ada pencarian pemain dan tidak ada saran teman, jadi orang asing tidak bisa mencari anak Anda. Pemain di bawah 18 tahun tidak punya profil publik dan tidak bisa diikuti.",
       social:

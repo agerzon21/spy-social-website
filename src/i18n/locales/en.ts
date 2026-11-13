@@ -495,7 +495,7 @@ const en = {
         'No friend or follower lists, no player search, no profiles to browse and no bios, so nobody can look your child up or contact them outside a room.',
       /** Once friends, follows and parties are live (LIVE.socialFeatures): in place of noDms and noFriends. */
       noDmsSocial:
-        "No direct messages: players chat only inside a room, with the players in it, or in a party's chat, with the friends in that party. Every chat is filtered, kept for a while and can be reported.",
+        "No direct messages: players chat only inside a room, with the players in it, or in a party's chat, with the friends in that party. In some games the spies also get a chat only they can read, for that game only. Every chat is filtered, kept for a while and can be reported.",
       noSearch:
         "No player search and no friend suggestions, so a stranger can't look your child up. Players under 18 have no public profile and can't be followed.",
       /** What SpySocial has, once live: social (LIVE.socialFeatures), trading (LIVE.trading with LIVE.blackMarket). */

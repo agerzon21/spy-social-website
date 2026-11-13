@@ -448,7 +448,7 @@ const fr: Strings = {
       noFriends:
         "Pas de listes d'amis ni d'abonnés, pas de recherche de joueurs, pas de profils à parcourir ni de bios\u00A0: personne ne peut chercher ton enfant ni le contacter en dehors d'un salon.",
       noDmsSocial:
-        "Pas de messages privés : les joueurs ne discutent que dans un salon, avec les joueurs qui s'y trouvent, ou dans le chat d'un groupe, avec les amis qui en font partie. Tous les chats sont filtrés, conservés un temps et signalables.",
+        "Pas de messages privés : les joueurs ne discutent que dans un salon, avec les joueurs qui s'y trouvent, ou dans le chat d'un groupe, avec les amis qui en font partie. Dans certaines parties, les espions ont aussi un chat qu'eux seuls peuvent lire, et seulement pendant cette partie. Tous les chats sont filtrés, conservés un temps et signalables.",
       noSearch:
         "Pas de recherche de joueurs ni de suggestions d'amis : un inconnu ne peut pas chercher ton enfant. Les moins de 18 ans n'ont pas de profil public et personne ne peut les suivre.",
       social:

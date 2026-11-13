@@ -1775,6 +1775,15 @@ export const LIVE = {
    */
   appU61: false,
   /**
+   * legal-1113 (audit AUDIT-RR-u62.md items 2 and 4), on since November 13, 2026. Text only, true of the live app: the
+   * Safety page's "No direct messages" (noDmsSocial, 10 languages), Child Safety's friends-and-parties item and the UK
+   * Online Safety section name the spies' chat (one game only, filtered, grooming-checked, reportable); Terms 6 says
+   * other players may record what you share, as well as take screenshots. Not a material change (no new duty or
+   * penalty): LEGAL_LAST_UPDATED moves to SPY_CHAT_DISCLOSED_DAY, no TERMS_PUBLISHED or terms_version. The texts aren't
+   * behind the switch; it only carries the date in the chain.
+   */
+  spyChatDisclosed: true,
+  /**
    * privacy-practice-results-1112 (app repo server file practice_results_1111, Friday run sheet step 47; then
    * spy_chat_intro_backfill_1112, commit 614a73f82, right after Friday's batch): the server keeps the result of each finished
    * practice game (game, role, 4 or 8 seats, grade, score, won, when) for best grades on every device and the Practice Ace
@@ -2046,6 +2055,9 @@ export const EMAIL_CODES_22_DAY = 'November 11, 2026'
 /** LIVE.playtestSurvey's day in PRIVACY_LAST_UPDATED (legal-1113): the day the site went up with it on. */
 export const PLAYTEST_SURVEY_DAY = 'November 13, 2026'
 
+/** LIVE.spyChatDisclosed's day in LEGAL_LAST_UPDATED (legal-1113): the day the site went up with the spies' chat named on Safety, Child Safety and the UK section, and Terms 6's recording line. */
+export const SPY_CHAT_DISCLOSED_DAY = 'November 13, 2026'
+
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
@@ -2053,6 +2065,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? GIFTS_BOUND_DAY // U0: Terms 9's codes and gifts stay with the account, Intel we add is ordinary Intel (gift-rules-1108)
   : LIVE.appU61
     ? APP_U61_DAY // update 61 on phones: Terms 9's Rare Finds counters, Terms 13's Settings row (friday-allon-read-1112); the u61 group goes above Friday's
+  : LIVE.spyChatDisclosed
+    ? SPY_CHAT_DISCLOSED_DAY // legal-1113: the spies' chat named on Safety, Child Safety and Terms 22 (UK); Terms 6 "and record". On since Nov 13, above Friday's group (same day)
   : LIVE.memberLoyalty
     ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a pass renews (member-loyalty-1111)
   : LIVE.modCoverHold

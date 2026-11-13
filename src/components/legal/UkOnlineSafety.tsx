@@ -52,7 +52,7 @@ const UkOnlineSafety = () => {
         <>
           Never allowed (see Child safety in section 7).{' '}
           {LIVE.socialFeatures
-            ? "There are no direct messages or player search, and we never suggest friends. An adult can add a player under 16 only in person, with the Friend Code on the child's phone (16 and 17 also from a private game they just played together); players under 18 have no public profile, can't be followed and get no social notifications at night, and our checks look at friend requests, invites and trades with players under 18 for signs of grooming, for a person to review. Party chat goes through the same filters as game chat."
+            ? "There are no direct messages or player search, and we never suggest friends. An adult can add a player under 16 only in person, with the Friend Code on the child's phone (16 and 17 also from a private game they just played together); players under 18 have no public profile, can't be followed and get no social notifications at night, and our checks look at friend requests, invites and trades with players under 18 for signs of grooming, for a person to review. Party chat goes through the same filters as game chat. So does the spies' chat in a Spy Mafia game, the only chat a few players at a table share apart from the rest, which also gets the grooming check."
             : 'There are no direct messages, friend lists or player search, so nobody can contact a player outside a shared room.'}{' '}
           Sharing contact details or social media handles is against
           the rules. In any room or party with a player under 18 or one who hasn't told us their age, chat refuses links, email addresses, phone numbers,
@@ -311,7 +311,7 @@ const UkOnlineSafety = () => {
         Much of the protection comes from what SpySocial doesn't have: there are no {without.slice(0, -1).join(', ')}, or{' '}
         {without[without.length - 1]}.{' '}
         {LIVE.socialFeatures
-          ? "Players meet inside a game room and chat only with the players in that room or, in a party, with the friends in it. Nobody can search for a player; friends are added in person with a Friend Code, from a game played together or, between adults only, by exact username."
+          ? "Players meet inside a game room and chat only with the players in that room or, in a party, with the friends in it. In a Spy Mafia game, the spies also share a chat that only they can read, for that game only; it's filtered, checked and reportable like every other chat. Nobody can search for a player; friends are added in person with a Friend Code, from a game played together or, between adults only, by exact username."
           : "Players meet only inside a game room, chat only with the players in that room, and can't look each other up afterwards."}
         {LIVE.onePool &&
           " Players can't create public rooms, and no player hosts one: the public rooms are Play Online's tables, where the app seats players automatically under the same standard rules, and game nights we host."}{' '}

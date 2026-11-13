@@ -449,7 +449,7 @@ const ptBR: Strings = {
       noFriends:
         'Nada de listas de amigos ou seguidores, busca de jogadores, perfis para navegar ou biografias, então ninguém pode procurar seu filho ou sua filha nem entrar em contato fora de uma sala.',
       noDmsSocial:
-        "Nada de mensagens diretas: os jogadores só conversam dentro de uma sala, com os jogadores que estão nela, ou no chat de um grupo, com os amigos que fazem parte dele. Todos os chats são filtrados, guardados por um tempo e podem ser denunciados.",
+        "Nada de mensagens diretas: os jogadores só conversam dentro de uma sala, com os jogadores que estão nela, ou no chat de um grupo, com os amigos que fazem parte dele. Em algumas partidas, os espiões também têm um chat que só eles podem ler, e só durante aquela partida. Todos os chats são filtrados, guardados por um tempo e podem ser denunciados.",
       noSearch:
         "Nada de busca de jogadores nem de sugestões de amigos, então um desconhecido não pode procurar seu filho ou sua filha. Menores de 18 anos não têm perfil público e ninguém pode segui-los.",
       social:

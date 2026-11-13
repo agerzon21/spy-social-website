@@ -329,8 +329,8 @@ const Terms: React.FC = () => {
       <P>
         You're responsible for your content. Only add content you have the right to share
         {photosSeen ? " (for example, don't upload a photo of someone else without their permission)" : ''}, and make
-        sure it follows these Terms and the Community Rules. Other players can see, remember and take screenshots of
-        what you share in a room, and we can't control what they do with it, so think before you share.
+        sure it follows these Terms and the Community Rules. Other players can see, remember, take screenshots of and
+        record what you share in a room (for example, a content creator filming a game for a video), and we can't control what they do with it, so think before you share.
       </P>
       <H3>Other players' content</H3>
       <P>

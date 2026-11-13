@@ -108,7 +108,11 @@ const ChildSafety: React.FC = () => {
             public table or by username is only between adults. Players under 18 have no public profile, can't be
             followed and get no social or trade notifications at night. Friends can invite each other to games and play as a
             party with a party chat, which goes through the same filters as game chat (the stricter ones when anyone
-            in the party is under 18) and can be reported. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, friends and parties stay off for players under
+            in the party is under 18) and can be reported.{' '}
+            {/* legal-1113 item 2 (SPY_CHAT_DISCLOSED_DAY): the one chat a few players at a table share apart from the rest. */}
+            In a Spy Mafia game, the spies dealt also share a chat that only they can read, for that game only. It
+            goes through the same filters, the same grooming check and the same reports as the table's chat, and when
+            anyone in the room is under 18 or hasn't told us their age, the stricter rules apply there too. On iPhone{LIVE.membershipWords1105 ? ' and iPad' : ''}, friends and parties stay off for players under
             18 for now.
           </li>
         ) : (
