@@ -133,7 +133,8 @@ export function holderOf(u: Pick<ArchiveUnique, 'status' | 'holder_handle' | 'pr
   const handle = u.holder_handle
   if (typeof handle !== 'string' || !HANDLE.test(handle)) return { kind: 'private' }
   const m = typeof u.profile_url === 'string' ? PROFILE_URL.exec(u.profile_url) : null
-  return m && m[1] === handle ? { kind: 'named', handle, url: u.profile_url as string } : { kind: 'private' }
+  // Linked at www directly: the server's spysocial.app address only redirects there (one hop saved; site-qa-1113).
+  return m && m[1] === handle ? { kind: 'named', handle, url: `https://www.spysocial.app/profile/${handle}` } : { kind: 'private' }
 }
 
 /** The ledger can't be read now (busy, offline, or the Archive's reads aren't on the server yet). */
