@@ -947,7 +947,7 @@ const ptBR: Strings = {
       android: 'Android: o formulário pede o e-mail do Google da sua Play Store, porque o Google exige isso para versões de teste. Ele é apagado depois da sessão.',
       iphone: 'iPhone: você instala o SpySocial pelo TestFlight, com o link do e-mail.',
     },
-    fine: 'Versão de pré-lançamento. Não compartilhe nomes nem o chat de outros jogadores. Seus dados de inscrição são apagados depois da Beta 2. Seu e-mail do PayPal é apagado assim que enviarmos o seu agradecimento.',
+    fine: 'Versão de pré-lançamento. Não compartilhe nomes nem o chat de outros jogadores. Seus dados de inscrição são apagados até 19 de novembro de 2026, uma semana depois da Beta 2. Seu e-mail do PayPal é apagado assim que enviarmos o seu agradecimento.',
   },
 
   notFound: {

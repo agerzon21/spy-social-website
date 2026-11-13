@@ -1043,7 +1043,7 @@ const en = {
       android: "Android: the form asks for your Play Store's Google email, because Google requires it for test builds. It's deleted after the session.",
       iphone: 'iPhone: you install SpySocial with TestFlight, from the link in your email.',
     },
-    fine: 'Pre-release build. Don\'t share other players\' names or chat. Your sign-up data is deleted after Beta 2. Your PayPal email is deleted once we have sent your thank-you.',
+    fine: 'Pre-release build. Don\'t share other players\' names or chat. Your sign-up data is deleted by November 19, 2026, a week after Beta 2. Your PayPal email is deleted once we have sent your thank-you.',
   },
 
   notFound: {

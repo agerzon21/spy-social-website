@@ -104,6 +104,27 @@ export const LIVE = {
    */
   playtestSurvey: true,
   /**
+   * The playtests' retention, said plainly before the Beta 3 invites (legal-batch-1113): sign-ups and survey answers
+   * deleted within a week after the test (Beta 2's by November 19, 2026, Beta 3's by December 1, 2026); no sign-up kept
+   * for a later test (Beta 3's "Beta 1/2 testers first" is told from the new form's answer, the Beta Pin / tester title on
+   * the account, or the Discord tester role: app repo .claude/handoff/scratchpad/beta3/recruit/SELECTION.md); deletion
+   * sooner on request (seat given up); and the Beta 3 form's optional clip consent (FORM.md Q21: in-game name and
+   * drawings, never the voice). Matches the form's consent line (FORM.md Q23). A website fact: set in LIVE, never in
+   * PRIVACY_AHEAD. Went up with it on PLAYTEST_RETENTION_DAY.
+   */
+  playtestRetention: true,
+  /**
+   * Creator invites (app repo server file 20261231999966_creator_invites_1112, slot A3; legal-1113): owner-made invites
+   * keyed by a hashed email (unkeyed SHA-256 of the normalised address: never say it can't be reversed) + a hint; the
+   * username, its look-alikes and the display name held against every player while open; the account set up at once on
+   * a Google / Apple sign-up or a sign-up's first confirmation, matched for the owner otherwise; mod_actions records.
+   * No account FK: not in the export, and the row stays after a deletion (the app README's before-launch follow-ups).
+   * Turns on Privacy's "Accounts We Set Up for Creators" item, its How We Use / Legitimate Interests / Data Retention
+   * lines, the AfterDeletion bullet and Terms 8's held-names clause (not material). Flip the hour A3 is applied live,
+   * with CREATOR_INVITES_DAY set to that day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  creatorInvites: false,
+  /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
    * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)
@@ -1578,6 +1599,16 @@ export const LIVE = {
    */
   archiveHolders: true,
   /**
+   * archive-holder-uniques-1113 (owner Nov 13; app repo server file 20261231999975_archive_holder_uniques_1113:
+   * mint_unique_public op 'uniques' gains holder_handle / profile_url on each copy, by the SAME rule as op 'unique'): the
+   * Archive's list of all Uniques (archive.spysocial.app/uniques) names each card's holder too, "Held by @username" or
+   * "Held privately" (site/archive-held-by-1113 reads the keys once they come). Turns on Privacy's sentences that the
+   * username shows on that list as well as on the Unique's own page. Push the site with it on right after the server
+   * file is applied (the ledger edge function passes the answer through, no redeploy), and set
+   * ARCHIVE_HOLDERS_LIST_DAY to that day.
+   */
+  archiveHoldersList: false,
+  /**
    * ledger-reasons-1111 (owner Nov 11; app repo server file 20261231999988_ledger_reasons_1111): when SpySocial takes a
    * minted copy away for integrity (a bot farm, cheating, a fraud refund, a glitch or duplicate, a correction of ours),
    * the ledger says so plainly: the original lines stay, a new burn line's note reads "burn:<reason> case:<ref>", and the
@@ -1686,6 +1717,14 @@ export const LIVE = {
    * set to that day. Off only if the file is rolled back.
    */
   reputation: false,
+  /**
+   * reputation-export-1113 (app repo server file 20261231999961_reputation_export_1113): a data export carries the
+   * reputation tier, its reason and history and the chat filter counts, never the score, its points, the watched flag
+   * or a pin's notes. Privacy > A copy of your data says so. Flip on the day the server file is applied (it needs
+   * 20261231970000_reputation_1110 and 20261231800000_data_export_gaps first; with or after LIVE.reputation), and set
+   * REPUTATION_EXPORT_DAY to that day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  reputationExport: false,
   /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
@@ -2006,6 +2045,8 @@ export const MARKET_SITE_DAY = 'November 10, 2026'
 export const MARKET_MEDIAN_DAY = 'November 11, 2026'
 /** LIVE.archiveHolders's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231997000 is live). Never earlier than November 10, 2026. */
 export const ARCHIVE_HOLDERS_DAY = 'November 11, 2026'
+/** LIVE.archiveHoldersList's day in PRIVACY_LAST_UPDATED: the day the server file 20261231999975_archive_holder_uniques_1113 is applied and the site goes up with it on. Never earlier than November 13, 2026. */
+export const ARCHIVE_HOLDERS_LIST_DAY = 'November 14, 2026'
 /** LIVE.ledgerUniquesOnly's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the server file 20261231999989_ledger_uniques_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
 export const LEDGER_UNIQUES_DAY = 'November 11, 2026'
 /** LIVE.chatMildMask's day in LEGAL_LAST_UPDATED: the day the server file 20261231999920_mild_swear_mask_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
@@ -2021,6 +2062,8 @@ export const MEMBER_LOYALTY_DAY = 'November 12, 2026'
 
 /** LIVE.reputation's day (Terms 13, Privacy's Safety Information): the day the server file is applied and the site goes up with it on. Never earlier than November 13, 2026. */
 export const REPUTATION_DAY = 'November 14, 2026'
+/** LIVE.reputationExport's day in PRIVACY_LAST_UPDATED: the day 20261231999961_reputation_export_1113 is applied live. Never earlier than REPUTATION_DAY. */
+export const REPUTATION_EXPORT_DAY = 'November 14, 2026'
 
 /** LIVE.coverage1110's day (Terms, Privacy, Delete Account, Transparency): the day the site goes up with it on. Never earlier than November 10, 2026. */
 export const COVERAGE_1110_DAY = 'November 10, 2026'
@@ -2055,8 +2098,14 @@ export const EMAIL_CODES_22_DAY = 'November 11, 2026'
 /** LIVE.playtestSurvey's day in PRIVACY_LAST_UPDATED (legal-1113): the day the site went up with it on. */
 export const PLAYTEST_SURVEY_DAY = 'November 13, 2026'
 
+/** LIVE.playtestRetention's day in PRIVACY_LAST_UPDATED (legal-batch-1113): the day the site went up with it on. */
+export const PLAYTEST_RETENTION_DAY = 'November 13, 2026'
+
 /** LIVE.spyChatDisclosed's day in LEGAL_LAST_UPDATED (legal-1113): the day the site went up with the spies' chat named on Safety, Child Safety and the UK section, and Terms 6's recording line. */
 export const SPY_CHAT_DISCLOSED_DAY = 'November 13, 2026'
+
+/** LIVE.creatorInvites's day (Privacy and Terms 8): the day A3 (20261231999966_creator_invites_1112) is applied live. */
+export const CREATOR_INVITES_DAY = 'November 14, 2026'
 
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
@@ -2065,6 +2114,10 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? GIFTS_BOUND_DAY // U0: Terms 9's codes and gifts stay with the account, Intel we add is ordinary Intel (gift-rules-1108)
   : LIVE.appU61
     ? APP_U61_DAY // update 61 on phones: Terms 9's Rare Finds counters, Terms 13's Settings row (friday-allon-read-1112); the u61 group goes above Friday's
+  : LIVE.creatorInvites
+    ? CREATOR_INVITES_DAY // Terms 8: names held for someone we've invited (creator invites, legal-1113)
+  : LIVE.reputation
+    ? REPUTATION_DAY // legal/reputation-1110: Terms 13's reputation paragraph (moved up by legal-batch-1113: below the Nov 13 entries it never moved the date)
   : LIVE.spyChatDisclosed
     ? SPY_CHAT_DISCLOSED_DAY // legal-1113: the spies' chat named on Safety, Child Safety and Terms 22 (UK); Terms 6 "and record". On since Nov 13, above Friday's group (same day)
   : LIVE.memberLoyalty
@@ -2075,8 +2128,6 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? RAREFINDS_OFFERS_DAY // Terms 9's Rare Finds offers: the seller's discount, counters, a Decline's minimum, 24 h ends, the 30-minute take-back, the offer pause (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
     ? LEDGER_UNIQUES_DAY // Terms 9's collectibles bullet: the public ledger carries Uniques only (ledger-uniques-1111)
-  : LIVE.reputation
-    ? REPUTATION_DAY // legal/reputation-1110: Terms 13's reputation paragraph
   : LIVE.partyLeaderLapse
     ? PARTY_LEADER_LAPSE_DAY // party-leader-lapse-1111: Terms' party bullet says a leader's membership ending closes the party
   : LIVE.drawingMinorRooms
@@ -2165,8 +2216,18 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? LAUNCH_TESTER_MAIL_DAY // the launch email to the 2.2 testers (store-privacy-1108): the day the site goes up with it on, before the send
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.archiveHoldersList
+    ? ARCHIVE_HOLDERS_LIST_DAY // the Archive's list of all Uniques names each holder too, by a Unique's page's rule (archive-holder-uniques-1113)
   : LIVE.appU61
     ? APP_U61_DAY // update 61 on phones: Safety Information's Settings row and the moderators' view of a tier (friday-allon-read-1112); the u61 group goes above Friday's
+  : LIVE.creatorInvites
+    ? CREATOR_INVITES_DAY // Accounts We Set Up for Creators, its retention and deletion lines (legal-1113)
+  : LIVE.reputationExport
+    ? REPUTATION_EXPORT_DAY // A copy of your data: the reputation tier, reason and history are in it, the score and its points aren't (reputation-export-1113)
+  : LIVE.reputation
+    ? REPUTATION_DAY // legal/reputation-1110: Safety Information's reputation and the chat filter's daily count (moved up by legal-batch-1113: below the Nov 13 entries it never moved the date)
+  : LIVE.playtestRetention
+    ? PLAYTEST_RETENTION_DAY // Test Versions: sign-ups deleted within a week after the test (Beta 2's Nov 19, Beta 3's Dec 1), none kept for a later test, deletion on request, the clip consent (legal-batch-1113)
   : LIVE.playtestSurvey
     ? PLAYTEST_SURVEY_DAY // Test Versions: the playtest exit survey (username + PayPal), seat confirms, survey answers kept without identifiers, one invite to the next test (legal-1113)
   : LIVE.memberLoyalty
@@ -2179,8 +2240,6 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? RAREFINDS_OFFERS_DAY // the Black Market item's offer ends, counters and offer pause; Social Notifications' Rare Finds buyer pushes (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
     ? LEDGER_UNIQUES_DAY // Collectibles and the public ledger: Uniques only on it, the monthly snapshot (ledger-uniques-1111)
-  : LIVE.reputation
-    ? REPUTATION_DAY // legal/reputation-1110: Safety Information's reputation and the chat filter's daily count
   : LIVE.drawingMinorRooms
     ? DRAWING_MINOR_ROOMS_DAY // Drawing Checks: adults' drawings checked in private rooms where a minor sits (drawing-minor-rooms-1111)
   : LIVE.retentionSweep

@@ -952,7 +952,7 @@ const fr: Strings = {
       android: 'Android\u00a0: le formulaire demande l’adresse Google de ton Play Store, car Google l’exige pour les versions de test. Elle est supprimée après la session.',
       iphone: 'iPhone\u00a0: tu installes SpySocial avec TestFlight, via le lien de l’e-mail.',
     },
-    fine: 'Version de pré-lancement. Ne partage pas les noms ni le chat des autres joueurs. Tes données d’inscription sont supprimées après la Bêta\u00a02. Ton adresse PayPal est supprimée une fois ton remerciement envoyé.',
+    fine: 'Version de pré-lancement. Ne partage pas les noms ni le chat des autres joueurs. Tes données d’inscription sont supprimées au plus tard le 19\u00a0novembre 2026, une semaine après la Bêta\u00a02. Ton adresse PayPal est supprimée une fois ton remerciement envoyé.',
   },
 
   notFound: {

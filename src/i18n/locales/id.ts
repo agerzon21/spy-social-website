@@ -947,7 +947,7 @@ const id: Strings = {
       android: 'Android: formulir meminta email Google yang dipakai di Play Store-mu, karena Google mewajibkannya untuk build uji. Email itu dihapus setelah sesi.',
       iphone: 'iPhone: kamu memasang SpySocial lewat TestFlight, dari link di email.',
     },
-    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus setelah Beta 2. Email PayPal-mu dihapus setelah ucapan terima kasihmu kami kirim.',
+    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus paling lambat 19 November 2026, seminggu setelah Beta 2. Email PayPal-mu dihapus setelah ucapan terima kasihmu kami kirim.',
   },
 
   notFound: {

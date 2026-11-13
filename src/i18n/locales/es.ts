@@ -944,7 +944,7 @@ const es: Strings = {
       android: 'Android: el formulario te pide el correo de Google de tu Play Store, porque Google lo exige para las versiones de prueba. Se borra después de la sesión.',
       iphone: 'iPhone: instalas SpySocial con TestFlight, desde el enlace del correo.',
     },
-    fine: 'Versión previa al lanzamiento. No compartas los nombres ni el chat de otros jugadores. Tus datos de inscripción se borran después de la Beta 2. Tu correo de PayPal se borra en cuanto te enviemos el agradecimiento.',
+    fine: 'Versión previa al lanzamiento. No compartas los nombres ni el chat de otros jugadores. Tus datos de inscripción se borran a más tardar el 19 de noviembre de 2026, una semana después de la Beta 2. Tu correo de PayPal se borra en cuanto te enviemos el agradecimiento.',
   },
 
   notFound: {

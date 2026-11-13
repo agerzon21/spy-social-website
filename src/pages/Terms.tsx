@@ -448,7 +448,7 @@ const Terms: React.FC = () => {
         We also use automated tools to keep SpySocial safe: a word filter that can block certain words in names,
         usernames, room codes{LIVE.customPacks ? ', chat messages, typed questions and answers, and custom packs' : ', chat messages and typed questions and answers'}, and limits
         on how often some actions can be repeated. Names and usernames are also refused if they're blank or unreadable, hold a
-        link or a phone number, or look like our staff or an Agent colour.
+        link or a phone number, {LIVE.creatorInvites ? "look like our staff or an Agent colour, or match or look like a name we're holding for someone we've invited (such as a content creator we work with)." : 'or look like our staff or an Agent colour.'}
         {LIVE.safetyAnswers1106 &&
           " The filter also refuses links, contact details and other personal details (a home address, asking or saying where someone lives, a school or a real name) at Play Online tables and game nights, and in any room or party with a player under 18 or one who hasn't told us their age. Other automated checks can flag a message for a person to read, such as possible grooming language or sexual talk near a younger player, and these may include OpenAI's models reading what adults write beside a player under 18. A flag doesn't block or change a message, or penalize anyone by itself."}
         {photosSeen &&

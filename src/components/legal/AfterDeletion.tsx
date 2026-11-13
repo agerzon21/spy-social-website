@@ -37,6 +37,13 @@ export const AfterDeletionList = () => (
       Reports, including the names and chat lines attached to them, are kept for as long as we need them to keep players
       safe, handle appeals and meet legal obligations. They're no longer linked to your account.
     </li>
+    {PRIVACY.creatorInvites && (
+      <li>
+        If your account was set up from a creator invite, the invite (with the coded copy of its email address, its hint,
+        and the username and display name it gave) and our record of what it set up stay with our moderation records, as
+        long as we keep reports. They no longer lead to your account.
+      </li>
+    )}
     {PRIVACY.banTombstone && (
       <li>
         If your account had a ban, pause or mute that was still running, or a warning or other sanction from the last 90

@@ -315,10 +315,14 @@ const Privacy: React.FC = () => {
             {PRIVACY.mintedCollectibles
               ? PRIVACY.ledgerUniquesOnly
                 ? PRIVACY.archiveHolders
-                  ? ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and its page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger."
+                  ? (PRIVACY.archiveHoldersList
+                    ? ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and the Archive shows your username while you hold it, on the Unique's page and in the Archive's list of all Uniques, if your profile is public (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger."
+                    : ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and its page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger.")
                   : ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger."
                 : PRIVACY.archiveHolders
-                ? ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and a Unique's page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger)."
+                ? (PRIVACY.archiveHoldersList
+                    ? ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and the Archive shows your username while you hold a Unique, on its page and in the Archive's list of all Uniques, if your profile is public (see Collectibles and the public ledger)."
+                    : ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and a Unique's page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger).")
                 : ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
               : '.'}
           </Item>
@@ -338,7 +342,9 @@ const Privacy: React.FC = () => {
               : "The public ledger (spysocial.app/ledger) lists every copy and what happened to it, but never your account, username or name: each copy's holder appears only as a code made from that copy and a secret kept for your account, so two of your copies never share a code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger shows only that it moved from one holder code to another, never who traded or sold it, or the price."}{' '}
             {PRIVACY.uniqueArchive &&
               (PRIVACY.archiveHolders
-                ? "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its past holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. Its holder today is shown by username, with a link to their profile, only if they are an adult whose profile is public (see Follows and Profiles); for anyone else (a player under 18, a player whose age we don't know, or anyone who made their profile private in Privacy & Friends) the page says Held privately. Make your profile private and your username leaves those pages within about a minute. "
+                ? (PRIVACY.archiveHoldersList
+                    ? "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its past holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. Its holder today is shown by username, with a link to their profile, on that page and on the Archive's list of all Uniques (archive.spysocial.app/uniques), only if they are an adult whose profile is public (see Follows and Profiles); for anyone else (a player under 18, a player whose age we don't know, or anyone who made their profile private in Privacy & Friends) both say Held privately. Make your profile private and your username leaves the Archive's pages and its list within about a minute. "
+                    : "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its past holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. Its holder today is shown by username, with a link to their profile, only if they are an adult whose profile is public (see Follows and Profiles); for anyone else (a player under 18, a player whose age we don't know, or anyone who made their profile private in Privacy & Friends) the page says Held privately. Make your profile private and your username leaves those pages within about a minute. ")
                 : "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. ")}
             Each
             day that day's ledger lines, with holder codes only and never your account, username or name, are published
@@ -443,7 +449,9 @@ const Privacy: React.FC = () => {
             who allows follows; the people you follow, and the new packs and showcase changes of the people you follow,
             make up your Following feed. On your followers list you see by name only the followers whose own profiles
             are public; the rest are a number{PRIVACY.audit1103 ? ', and you can search those names' : ''}. Adults are told once, the first time their profile is public, and can
-            make it private at any time in Privacy &amp; Friends.{PRIVACY.mintedCollectibles && PRIVACY.uniqueArchive && PRIVACY.archiveHolders ? " While your profile is public, your username also shows on the Archive's page of each Unique you hold, for anyone to see (see Collectibles and the public ledger)." : ''} Players under 18 have no public profile, can't be
+            make it private at any time in Privacy &amp; Friends.{PRIVACY.mintedCollectibles && PRIVACY.uniqueArchive && PRIVACY.archiveHolders ? (PRIVACY.archiveHoldersList
+                    ? " While your profile is public, your username also shows on the Archive, on the page of each Unique you hold and in its list of all Uniques, for anyone to see (see Collectibles and the public ledger)."
+                    : " While your profile is public, your username also shows on the Archive's page of each Unique you hold, for anyone to see (see Collectibles and the public ledger).") : ''} Players under 18 have no public profile, can't be
             followed and aren't named on anyone's followers list, and a private profile, or any player under 18, makes
             their Community Packs anonymous.
           </Item>
@@ -673,7 +681,12 @@ const Privacy: React.FC = () => {
               address you sign up with to look up a SpySocial account that has it (its age, when it was made, whether you
               tested before, and the app versions it used), and we email you about your seat through Resend. If your bug report
               or idea wins the one bonus for the session (a gift card), we send it to your email address.
-              {PRIVACY.playtestSurvey
+              {PRIVACY.playtestRetention
+                ? " If you agree in the sign-up form, our gameplay videos may use short clips of games you played in the test; they can show your in-game name and your drawings, never your voice. If you say no or don't answer, they won't."
+                : ''}
+              {PRIVACY.playtestRetention
+                ? " The rest of your sign-up, and of your survey, is deleted within a week after the test (Beta 2's by November 19, 2026; Beta 3's by December 1, 2026); before that, we may email you once to invite you to our next test. We don't keep a sign-up for a later test: when a later test gives earlier testers seats first, we tell from what you answer in its own sign-up form, the Beta Pin or tester title on your SpySocial account, or your tester role in our Discord server. If you tell us you don't want to hear about future tests, we keep your address only on a list of people we never email about them. To have your sign-up deleted sooner, reply to any of our emails about the test or write to support@spysocial.app; you then give up your seat."
+                : PRIVACY.playtestSurvey
                 ? " The rest of your sign-up, and of your survey, is deleted after the test; before that, we may email you once to invite you to our next test. If you tell us you don't want to hear about future tests, we keep your address only on a list of people we never email about them."
                 : ' The rest of your sign-up is deleted after the test.'}
               {PRIVACY.coverage1110 &&
@@ -848,6 +861,25 @@ const Privacy: React.FC = () => {
             badge on your profile and player card (see Data Sharing); your own purchases never count toward your share.
           </Item>
         )}
+        {PRIVACY.creatorInvites && (
+          <Item label="Accounts We Set Up for Creators">
+            When we work with a content creator, they (or someone acting for them, such as their manager) may give us
+            their email address and those of the people they play with, so that their SpySocial accounts are ready the
+            first time they sign in. We don't keep these addresses. For each one we keep a coded (hashed) copy, a hint of
+            it (its first two letters and its domain, such as "lm***@gmail.com"), the username and display name agreed
+            with them, and what the account should get (for example a membership, playing in the browser version, a
+            title or the creator's code). While an invite is open, no other player can take its username, a username
+            that looks like it, or its display name. When someone first signs up with that address through Apple or
+            Google, or confirms it with the code we email when they sign up, our servers set the account up at once. If
+            the address turns up on an account any other way (for example a guest account saved with it, an email
+            address changed to it, or an Apple or Google sign-in added later), nothing happens by itself: our developer
+            checks with the creator first and then sets it up by hand. We record each step in our moderation records:
+            what was set up, the account's username and display name before it, and, when we wait, how many sign-in
+            sessions the account had, whether it had a password and whether it began as a guest. Only our developer sees
+            these records. We keep each invite and its records as long as we keep reports, as a record of what we gave
+            and why.
+          </Item>
+        )}
         {PRIVACY.notifications && (
           <Item label="Reminders and Notifications">
             When you tap Remind Me on a game night, we record it so the reminder reaches every device you play on;
@@ -1019,6 +1051,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.creatorCodes && (
           <li>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</li>
         )}
+        {PRIVACY.creatorInvites && (
+          <li>Set up the accounts of content creators we work with, and of the people they play with, before they first sign in</li>
+        )}
         {PRIVACY.intel && (
           <li>
             {PRIVACY.intercepts ? 'Give you Intel and your daily streak' : 'Give you Intel, your daily streak and the items you unlock with Intel'}
@@ -1091,7 +1126,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs{PRIVACY.ipVault ? ', and the encrypted IP addresses of new accounts and sign-ins, for safety, fraud and legal requests' : ''}), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
-          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}
+          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}{PRIVACY.creatorInvites ? ', and set up the accounts of content creators we work with, and of the people they play with, when they ask us to (creator invites)' : ''}
           {PRIVACY.launchTesterMail ? ', and tell the adults who tested version 2.2 that it\'s out (you can reply "stop")' : ''}.
           You can object to this processing at any time by emailing <SupportEmail />.
         </Item>
@@ -1159,6 +1194,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.tournaments ? ' Your tournament entries, results and Tournament Tokens are kept for as long as you have an account.' : ''}
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
+          : ''}
+        {PRIVACY.creatorInvites
+          ? ' Creator invites (the coded copy of an email address, its hint and what the invite set up) are kept as long as we keep reports.'
           : ''}
         {PRIVACY.trading
           ? " Trades and their steps are kept for good, like the Intel ledger, with no link to you once you delete your account; a code we email for a big trade stops working after 10 minutes."
@@ -1447,7 +1485,9 @@ const Privacy: React.FC = () => {
           ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosShown(PRIVACY) ? ', with no profile photo' : ''}.`}
         {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}
         {PRIVACY.blackMarket &&
-          ` The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling${PRIVACY.archiveHolders && PRIVACY.uniqueArchive ? " (a Unique's page on the Archive does name its holder today when their profile is public: see Collectibles and the public ledger)" : ''}.`}
+          ` The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling${PRIVACY.archiveHolders && PRIVACY.uniqueArchive ? (PRIVACY.archiveHoldersList
+                    ? " (the Archive does name a Unique's holder today, on its page and in its list of all Uniques, when their profile is public: see Collectibles and the public ledger)"
+                    : " (a Unique's page on the Archive does name its holder today when their profile is public: see Collectibles and the public ledger)") : ''}.`}
         {PRIVACY.marketSite &&
           ` Our website's Market (market.spysocial.app) shows anyone, without an account, totals worked out from Black Market trades: each item's price (${PRIVACY.marketMedian ? 'the middle, or median, of its recent trades' : 'an average of its recent trades'}), how it changed, how many times it was traded and how much Intel was spent on it, each day and over periods of up to 180 days. It shows a price only when at least five trades${PRIVACY.marketMedian ? ' between at least three different pairs of players' : ''} make it, and never a player, an offer or a single trade.`}
         {/* LIVE.socialFeatures (legalRelease). */}
@@ -1543,6 +1583,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.dataRights
             ? `We email a copy of the personal data linked to your account, in a machine-readable file (JSON), to the email address on your account: your account and sign-in details, profile, settings and the answers you gave the app, your games, stats and rewards, the chat messages we still keep, purchases, trades, friends, follows${PRIVACY.exportTesters ? ", the problem reports you sent us (with any practice game you included), your entry on a beta tester list if you're on one" : ''} and the other records we keep about your account. Other players appear in it only as "another player". `
             : 'We send a copy of the personal data linked to your account, in a machine-readable file, to the email address on your account. Other players appear in it only as "another player". '}
+          {PRIVACY.reputationExport &&
+            "Your reputation is in it: your tier, why it is at that tier, when it changed and the chat filter's daily counts. Its exact score and the points behind it aren't, so that nobody can work out how to game our safety checks. Whether there are open reports about you and our team's notes are left out too. "}
           To protect other people and keep SpySocial safe, it doesn't include reports others made about you or who made
           them, who blocked you, the records and score of our fair-play and safety checks, the encrypted IP addresses
           described above{PRIVACY.exportTesters ? ', one-time codes, or the coded copies (hashes) of the email addresses you gave us to join a beta test' : ', or one-time codes'}; the copy lists what it leaves out and why.

@@ -924,7 +924,7 @@ const zhHans: Strings = {
       android: 'Android：表单会询问你 Play 商店使用的 Google 邮箱，因为 Google 要求测试版必须提供。测试结束后即删除。',
       iphone: 'iPhone：通过邮件中的链接，用 TestFlight 安装 SpySocial。',
     },
-    fine: '预发布版本。请勿分享其他玩家的名字或聊天内容。你的报名信息将在第 2 轮内测结束后删除。你的 PayPal 邮箱会在谢礼发出后删除。',
+    fine: '预发布版本。请勿分享其他玩家的名字或聊天内容。你的报名信息将在 2026 年 11 月 19 日前删除，即第 2 轮内测结束一周后。你的 PayPal 邮箱会在谢礼发出后删除。',
   },
 
   notFound: {
