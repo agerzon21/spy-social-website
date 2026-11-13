@@ -125,6 +125,18 @@ export const LIVE = {
    */
   creatorInvites: false,
   /**
+   * creator-invite-data-1113 (app repo server file 20270101000010_creator_invite_data_1113; draft
+   * .claude/handoff/scratchpad/legal-1113/CREATOR-INVITE-DATA.md): a data export lists the account's creator invites
+   * (never the coded email); account deletion deletes or unlinks them; an unused invite expires after 60 days (the
+   * coordinator's window, Nov 13), a removed or expired one is deleted 90 days after it ends, a used one's coded email +
+   * hint go 90 days after use. With it on, Privacy's creator-invite retention sentence, Data Retention line and the
+   * AfterDeletion bullet change and "A copy of your data" names the invites (AUDIT.md 1a-1d's interim wording goes).
+   * Flip on the day the server file is applied (after LIVE.creatorInvites), with CREATOR_INVITE_DATA_DAY set to that
+   * day: node scripts/flip-switch.mjs creatorInviteData --day "<day>". If the sweep's 60 / 90 change, change the text
+   * the same day. Off again if the file is rolled back. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  creatorInviteData: false,
+  /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
    * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)
@@ -2109,6 +2121,9 @@ export const SPY_CHAT_DISCLOSED_DAY = 'November 13, 2026'
 /** LIVE.creatorInvites's day (Privacy and Terms 8): the day A3 (20261231999966_creator_invites_1112) is applied live. */
 export const CREATOR_INVITES_DAY = 'November 14, 2026'
 
+/** LIVE.creatorInviteData's day in PRIVACY_LAST_UPDATED: the day 20270101000010_creator_invite_data_1113 is applied live. Never earlier than CREATOR_INVITES_DAY. */
+export const CREATOR_INVITE_DATA_DAY = 'November 14, 2026'
+
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
@@ -2218,6 +2233,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? LAUNCH_TESTER_MAIL_DAY // the launch email to the 2.2 testers (store-privacy-1108): the day the site goes up with it on, before the send
   : LIVE.practiceAi
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
+  : LIVE.creatorInviteData
+    ? CREATOR_INVITE_DATA_DAY // creator invites in A copy of your data, deleted with the account, unused ones expire after 60 days, ended ones deleted after 90 (creator-invite-data-1113)
   : LIVE.creatorInvites
     ? CREATOR_INVITES_DAY // Accounts We Set Up for Creators, its retention and deletion lines (legal-1113)
   : LIVE.drawingMinorRooms

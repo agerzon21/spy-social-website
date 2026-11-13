@@ -39,9 +39,9 @@ export const AfterDeletionList = () => (
     </li>
     {PRIVACY.creatorInvites && (
       <li>
-        If your account was set up from a creator invite, the invite (with the coded copy of its email address, its hint,
-        and the username and display name it gave) and our record of what it set up stay with our moderation records, as
-        long as we keep reports. They no longer lead to your account.
+        {PRIVACY.creatorInviteData
+          ? 'If your account was set up from a creator invite, the invite is deleted with your account. If an invite was waiting for us to confirm it was yours, it no longer points to your account. Our moderation record of what an invite set up is kept as long as we keep reports.'
+          : 'If your account was set up from a creator invite, the invite (with the coded copy of its email address, its hint, and the username and display name it gave) and our record of what it set up stay with our moderation records, as long as we keep reports. They no longer lead to your account.'}
       </li>
     )}
     {PRIVACY.banTombstone && (

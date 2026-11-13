@@ -28,6 +28,8 @@ const SWITCHES = {
   ncmecOnly: { live: [['ncmecOnly', true]], day: 'NCMEC_ONLY_DAY', step: 'on since Nov 11 (coordinator)' },
   // friday-allon-read-1112: NOT Friday. Flip when the u61 OTA ships, with memberLoyalty and modCoverHold, all three with --day <that day>.
   appU61: { live: [['appU61', true]], day: 'APP_U61_DAY', step: 'u61' },
+  // creator-invite-data-1113: Saturday or later, after 20270101000010_creator_invite_data_1113 is applied (and LIVE.creatorInvites is on).
+  creatorInviteData: { live: [['creatorInviteData', true]], day: 'CREATOR_INVITE_DATA_DAY', step: 'creator-invite-data-1113' },
 }
 
 const args = process.argv.slice(2)

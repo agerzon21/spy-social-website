@@ -876,8 +876,10 @@ const Privacy: React.FC = () => {
             checks with the creator first and then sets it up by hand. We record each step in our moderation records:
             what was set up, the account's username and display name before it, and, when we wait, how many sign-in
             sessions the account had, whether it had a password and whether it began as a guest. Only our developer sees
-            these records. We keep each invite and its records as long as we keep reports, as a record of what we gave
-            and why.
+            these records.{' '}
+            {PRIVACY.creatorInviteData
+              ? 'An invite nobody has used expires 60 days after we make or last change it, and the names it held are free again. We delete a removed or expired invite 90 days after it ends. Once an invite is used, we delete its coded email address and its hint 90 days later; what it set up stays with the account and is deleted with it. Our moderation records of each step are kept as long as we keep reports.'
+              : 'We keep each invite and its records as long as we keep reports, as a record of what we gave and why.'}
           </Item>
         )}
         {PRIVACY.notifications && (
@@ -1195,9 +1197,11 @@ const Privacy: React.FC = () => {
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
           : ''}
-        {PRIVACY.creatorInvites
-          ? ' Creator invites (the coded copy of an email address, its hint and what the invite set up) are kept as long as we keep reports.'
-          : ''}
+        {PRIVACY.creatorInviteData
+          ? ' Creator invites: an unused invite expires after 60 days; a removed or expired one is deleted 90 days after it ends; a used one keeps its coded email address and hint for 90 days, and the rest is deleted with the account.'
+          : PRIVACY.creatorInvites
+            ? ' Creator invites (the coded copy of an email address, its hint and what the invite set up) are kept as long as we keep reports.'
+            : ''}
         {PRIVACY.trading
           ? " Trades and their steps are kept for good, like the Intel ledger, with no link to you once you delete your account; a code we email for a big trade stops working after 10 minutes."
           : ''}
@@ -1588,6 +1592,8 @@ const Privacy: React.FC = () => {
           To protect other people and keep SpySocial safe, it doesn't include reports others made about you or who made
           them, who blocked you, the records and score of our fair-play and safety checks, the encrypted IP addresses
           described above{PRIVACY.exportTesters ? ', one-time codes, or the coded copies (hashes) of the email addresses you gave us to join a beta test' : ', or one-time codes'}; the copy lists what it leaves out and why.
+          {PRIVACY.creatorInviteData &&
+            ' If a creator invite was set up on your account, matched to it, or made for an email address you proved, the copy includes it (the names it gives, the hint of its email address, what it gives and when), but not the coded copy of the address.'}
         </Item>
         <Item label="Correcting your data">
           You can change your display name in the app at any time
