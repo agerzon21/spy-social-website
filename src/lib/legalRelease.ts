@@ -95,6 +95,15 @@ export const LIVE = {
    */
   playtestPayPal: true,
   /**
+   * The playtests' exit survey (legal-1113, coordinator Nov 13): after a session a Google Form survey asks for the
+   * player's SpySocial username and PayPal email (the thank-you), seats are confirmed by an @username post in Discord or
+   * an email reply, survey answers are kept without identifiers, sign-ups are deleted after the test with one possible
+   * invite to the next test, and a "no more tests" list is kept. Beta 2's list still goes on November 19, 2026; Beta 3's
+   * by December 1, 2026. Turns on Privacy's new Test Versions wording. A website fact: set in LIVE, never in
+   * PRIVACY_AHEAD. Went up with it on PLAYTEST_SURVEY_DAY.
+   */
+  playtestSurvey: true,
+  /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
    * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)
@@ -2034,6 +2043,9 @@ export const LAUNCH_TESTER_MAIL_DAY = 'December 8, 2026'
 /** LIVE.emailCodes22's day (Terms 3, Privacy's sign-in lines): the day the site went up with it on. */
 export const EMAIL_CODES_22_DAY = 'November 11, 2026'
 
+/** LIVE.playtestSurvey's day in PRIVACY_LAST_UPDATED (legal-1113): the day the site went up with it on. */
+export const PLAYTEST_SURVEY_DAY = 'November 13, 2026'
+
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
@@ -2141,6 +2153,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? PRACTICE_AI_DAY // the Practice Games item's OpenAI rating (was low in the chain, where its flip moved nothing)
   : LIVE.appU61
     ? APP_U61_DAY // update 61 on phones: Safety Information's Settings row and the moderators' view of a tier (friday-allon-read-1112); the u61 group goes above Friday's
+  : LIVE.playtestSurvey
+    ? PLAYTEST_SURVEY_DAY // Test Versions: the playtest exit survey (username + PayPal), seat confirms, survey answers kept without identifiers, one invite to the next test (legal-1113)
   : LIVE.memberLoyalty
     ? MEMBER_LOYALTY_DAY // Purchases: the membership-period record; Data Sharing: the member time on the player sheet (member-loyalty-1111)
   : LIVE.modCoverHold

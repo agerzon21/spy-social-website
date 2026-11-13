@@ -650,15 +650,34 @@ const Privacy: React.FC = () => {
           {PRIVACY.playtestPayPal && (
             <>
               {' '}
-              If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form,
-              including, if you get the session thank-you, the email address of your PayPal account. We use that address only
-              to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete
-              it once it's sent. The form is a Google Form, which Google handles for us. To choose seats, we also use the email
+              {PRIVACY.playtestSurvey ? (
+                <>
+                  If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form.
+                  After a session, we send its players a short survey (a sign-up form may ask some of this too): to get the
+                  session thank-you, you give us there your SpySocial username and the email address of your PayPal account.
+                  We use that address only to send your thank-you through PayPal, which handles it under its own terms and
+                  privacy policy, and we delete it once it's sent. Both forms are Google Forms, which Google handles for us.
+                  To confirm a seat, you may also post your SpySocial username in our Discord server's sign-up channel,
+                  where its members can see it, or reply to our email with it. We keep your survey answers about the app,
+                  without your name, email address, PayPal address or username, to improve SpySocial.
+                </>
+              ) : (
+                <>
+                  If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form,
+                  including, if you get the session thank-you, the email address of your PayPal account. We use that address only
+                  to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete
+                  it once it's sent. The form is a Google Form, which Google handles for us.
+                </>
+              )}{' '}
+              To choose seats, we also use the email
               address you sign up with to look up a SpySocial account that has it (its age, when it was made, whether you
               tested before, and the app versions it used), and we email you about your seat through Resend. If your bug report
-              or idea wins the one bonus for the session (a gift card), we send it to your email address. The rest of your sign-up is deleted after the test.
+              or idea wins the one bonus for the session (a gift card), we send it to your email address.
+              {PRIVACY.playtestSurvey
+                ? " The rest of your sign-up, and of your survey, is deleted after the test; before that, we may email you once to invite you to our next test. If you tell us you don't want to hear about future tests, we keep your address only on a list of people we never email about them."
+                : ' The rest of your sign-up is deleted after the test.'}
               {PRIVACY.coverage1110 &&
-                " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026), even if you delete your account first."}
+                " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026" + (PRIVACY.playtestSurvey ? "; Beta 3's by December 1, 2026" : '') + "), even if you delete your account first."}
             </>
           )}{' '}
           {PRIVACY.launchTesterMail &&
