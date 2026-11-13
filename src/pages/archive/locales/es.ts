@@ -86,7 +86,7 @@ const es: ArchiveStrings = {
     prev: 'Anterior',
     next: 'Siguiente',
   },
-  card: { forSale: 'A la venta', lastSale: 'Última venta', held: 'Con dueño', retired: 'Retirado', intel: 'Intel' },
+  card: { forSale: 'A la venta', lastSale: 'Última venta', held: 'Con dueño', retired: 'Retirado', intel: 'Intel', season: (n: string) => `T${n}` },
   worn: { see: 'Verlo puesto', back: 'El objeto', him: 'Él', her: 'Ella', label: 'El agente estándar con este objeto puesto' },
   item: {
     crumbs: 'Archivo',

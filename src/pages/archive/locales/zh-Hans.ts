@@ -83,7 +83,7 @@ const zh: ArchiveStrings = {
     prev: '上一页',
     next: '下一页',
   },
-  card: { forSale: '出售中', lastSale: '最近成交', held: '玩家持有', retired: '已注销', intel: '情报' },
+  card: { forSale: '出售中', lastSale: '最近成交', held: '玩家持有', retired: '已注销', intel: '情报', season: (n: string) => `第${n}季` },
   worn: { see: '查看穿戴效果', back: '物品', him: '他', her: '她', label: '穿戴这件物品的标准特工' },
   item: {
     crumbs: '档案馆',

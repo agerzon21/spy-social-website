@@ -38,6 +38,12 @@ export type ArchiveCopy = {
   last_sale: number | null
   last_sale_at: string | null
   sales: number
+  /**
+   * The holder today on the grid's cards (owner Nov 13: "Held by @name"), the same keys and the same rule as op unique's
+   * (_unique_holder_named). Absent until mint_unique_public's op uniques sends them: the card then says "Held" as before.
+   */
+  holder_handle?: string | null
+  profile_url?: string | null
 }
 
 export type ArchiveSet = {

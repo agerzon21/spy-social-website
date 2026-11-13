@@ -91,7 +91,7 @@ const ar: ArchiveStrings = {
     prev: 'السابق',
     next: 'التالي',
   },
-  card: { forSale: 'للبيع', lastSale: 'آخر بيع', held: 'لدى لاعب', retired: 'خارج التداول', intel: 'إنتل' },
+  card: { forSale: 'للبيع', lastSale: 'آخر بيع', held: 'لدى لاعب', retired: 'خارج التداول', intel: 'إنتل', season: (n: string) => `م${n}` },
   worn: { see: 'شاهده ملبوسًا', back: 'القطعة', him: 'هو', her: 'هي', label: 'العميل القياسي وهو يرتدي هذه القطعة' },
   item: {
     crumbs: 'الأرشيف',

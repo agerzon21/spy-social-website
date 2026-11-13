@@ -88,7 +88,7 @@ const hi: ArchiveStrings = {
     prev: 'पिछला',
     next: 'अगला',
   },
-  card: { forSale: 'बिक्री पर', lastSale: 'आखिरी बिक्री', held: 'खिलाड़ी के पास', retired: 'हटाया गया', intel: 'इंटेल' },
+  card: { forSale: 'बिक्री पर', lastSale: 'आखिरी बिक्री', held: 'खिलाड़ी के पास', retired: 'हटाया गया', intel: 'इंटेल', season: (n: string) => `S${n}` },
   worn: { see: 'पहनकर देखें', back: 'आइटम', him: 'पुरुष', her: 'महिला', label: 'यह आइटम पहने हुए स्टैंडर्ड एजेंट' },
   item: {
     crumbs: 'आर्काइव',

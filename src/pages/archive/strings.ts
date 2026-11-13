@@ -84,7 +84,7 @@ const en = {
     prev: 'Previous',
     next: 'Next',
   },
-  card: { forSale: 'For sale', lastSale: 'Last sale', held: 'Held', retired: 'Retired', intel: 'Intel' },
+  card: { forSale: 'For sale', lastSale: 'Last sale', held: 'Held', retired: 'Retired', intel: 'Intel', season: (n: string) => `S${n}` },
   /** "See it worn" on a Unique's picture (archive-item-art-1111): the item on the standard agent, Him or Her. */
   worn: { see: 'See it worn', back: 'The item', him: 'Him', her: 'Her', label: 'The standard agent wearing it' },
   item: {
@@ -221,7 +221,7 @@ const ru: ArchiveStrings = {
     prev: 'Назад',
     next: 'Дальше',
   },
-  card: { forSale: 'В продаже', lastSale: 'Последняя продажа', held: 'У игрока', retired: 'Списан', intel: 'разведданных' },
+  card: { forSale: 'В продаже', lastSale: 'Последняя продажа', held: 'У игрока', retired: 'Списан', intel: 'разведданных', season: (n: string) => `С${n}` },
   worn: { see: 'Примерить', back: 'Предмет', him: 'Он', her: 'Она', label: 'Стандартный агент в этом предмете' },
   item: {
     crumbs: 'Архив',

@@ -1,8 +1,9 @@
 import Link from '../../components/SiteLink'
 import { FaTriangleExclamation } from 'react-icons/fa6'
-import { artOf, codenameOf, lookOf, nameOf, serialText, swatchOf, uniquePath, type ArchiveCopy, type ArchiveSet, type ItemLook } from '../../lib/archive'
+import { artOf, attributesOf, codenameOf, holderOf, lookOf, nameOf, serialText, uniquePath, type ArchiveCopy, type ArchiveSet, type ItemLook } from '../../lib/archive'
+import { LIVE } from '../../lib/legalRelease'
 import { DisplayCase } from './DisplayCase'
-import { fmt, setText, useArchive } from './useArchive'
+import { fmt, setBadge, useArchive } from './useArchive'
 import s from './archive.module.css'
 
 /** The beta chain's notice (the server's; the page's words for it). */
@@ -53,29 +54,43 @@ export function FloatDigits({ float, marks = true }: { float: string; marks?: bo
   )
 }
 
-/** One Unique in a grid: its picture, number, name, codename, set, and its price or last sale. */
+/**
+ * One Unique in a grid: its picture (the gem top-left, its number bottom-left, its colour bottom-right), name,
+ * codename, set (its season's mark, then the set), and its price, last sale or holder. The card is one link to the
+ * Unique's page (its name's link stretched over the card); a named holder's @username is a link of its own to their
+ * profile (spysocial.app/profile/<name>, as on the Unique's page), on top of it. A holder the server doesn't name
+ * reads "Held privately"; a server that sends no holder keys, "Held" as before.
+ */
 export function UniqueCard({ c, sets }: { c: ArchiveCopy; sets: ArchiveSet[] }) {
   const { w, data, art, looks, lang, locale } = useArchive()
   const name = nameOf(data, c.item_code)
   const code = codenameOf(data, c.item_code, c.serial)
   const pic = artOf(art, c.item_code, c.serial, true)
   const look = pic ? lookOf(looks, c.item_code, c.serial, true, { float: c.float, pattern: c.pattern, serial: c.serial }) : null
-  const sw = swatchOf(data, c.item_code, c.float)
-  const st = setText(sets.find((x) => x.code === c.set), lang)
+  const colour = attributesOf(data, c.item_code, c.float).find((a) => a.place === 2)
+  const sb = setBadge(sets.find((x) => x.code === c.set), lang, locale, w.card.season)
+  const holder = LIVE.archiveHolders && c.status === 'held' ? holderOf(c) : ({ kind: 'unknown' } as const)
   return (
     <li>
-      <Link to={uniquePath(c.item_code, c.serial)} className={s.card} aria-label={`${name}${code ? ` · ${code}` : ''} ${serialText(c.serial)}`}>
+      <div className={s.card}>
         <div className={s.cardArt}>
           <Piece src={pic?.src ?? null} alt="" small look={look} />
           <span className={s.cardSerial}>{serialText(c.serial)}</span>
+          {colour?.hex ? <span className={s.cardColour} style={{ background: colour.hex }} title={colour.value || undefined} aria-hidden /> : null}
         </div>
         <div className={s.cardBody}>
-          <p className={s.cardName}>{name}</p>
-          {code ? <p className={s.cardCode}>{code}</p> : null}
-          <p className={s.cardSet}>
-            {sw ? <span className={s.swDot} style={{ background: sw }} aria-hidden /> : null}
-            {[st.set, st.season && st.season !== st.set ? st.season : ''].filter(Boolean).join(' · ')}
+          <p className={s.cardName}>
+            <Link to={uniquePath(c.item_code, c.serial)} className={s.cardLink} aria-label={`${name}${code ? ` · ${code}` : ''} ${serialText(c.serial)}`}>
+              {name}
+            </Link>
           </p>
+          {code ? <p className={s.cardCode}>{code}</p> : null}
+          {sb.mark || sb.name ? (
+            <p className={s.cardSet}>
+              {sb.mark ? <span className={s.setMark}>{sb.mark}</span> : null}
+              <span className={s.setName}>{sb.name}</span>
+            </p>
+          ) : null}
           <div className={`${s.cardFoot} ${c.status === 'listed' ? s.forSale : ''}`}>
             {c.status === 'listed' && c.price != null ? (
               <>
@@ -89,12 +104,21 @@ export function UniqueCard({ c, sets }: { c: ArchiveCopy; sets: ArchiveSet[] }) 
                 <span>{w.card.lastSale}</span>
                 <b>{fmt(c.last_sale, locale)}</b>
               </>
+            ) : holder.kind === 'named' ? (
+              <span className={s.heldBy}>
+                <span>{w.item.heldBy}</span>
+                <a className={s.holder} href={holder.url} rel="nofollow" title={`@${holder.handle}`} aria-label={w.item.profileOf(`@${holder.handle}`)}>
+                  @{holder.handle}
+                </a>
+              </span>
+            ) : holder.kind === 'private' ? (
+              <span className={s.heldPrivately}>{w.item.heldPrivately}</span>
             ) : (
               <span>{w.card.held}</span>
             )}
           </div>
         </div>
-      </Link>
+      </div>
     </li>
   )
 }

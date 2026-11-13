@@ -39,6 +39,25 @@ export function setText(set: ArchiveSet | undefined | null, lang: string): { set
   return { set: name, season: season && name.toLocaleLowerCase().includes(season.toLocaleLowerCase()) ? '' : season }
 }
 
+/**
+ * A card's set line (owner Nov 13): a short mark for the set's season, then the set's own name without the season it
+ * already says. All from the server's set: a numbered season reads "S1" (strings card.season), the pre-season Beta its
+ * season's name in capitals ("BETA"). "Beta · Intercepts" -> BETA + Intercepts; "Season 1 · Origins" -> S1 + Origins;
+ * a set whose name doesn't start with its season (a Game Night) keeps its whole name.
+ */
+export function setBadge(set: ArchiveSet | undefined | null, lang: string, locale: string, season: (n: string) => string): { mark: string; name: string } {
+  if (!set) return { mark: '', name: '' }
+  const name = setName(set, lang as LangCode)
+  const pick = (m: Record<string, string> | undefined) => (m ? (m[lang] ?? m[lang.split('-')[0]] ?? m.en ?? '') : '')
+  const seasonName = pick(set.season_names)
+  const n = Number(set.season_number)
+  const mark = Number.isFinite(n) && n >= 1 ? season(fmt(n, locale)) : seasonName.toLocaleUpperCase(locale)
+  const parts = name.split(' · ')
+  const rest =
+    parts.length > 1 && seasonName && parts[0].trim().toLocaleLowerCase(locale) === seasonName.toLocaleLowerCase(locale) ? parts.slice(1).join(' · ') : name
+  return { mark, name: rest }
+}
+
 /** Every Unique (op=uniques), its state: 'soon' while the server's Archive reads aren't on (the function answers 400). */
 export function useUniques() {
   const [list, setList] = useState<ArchiveList | null>(null)

@@ -88,7 +88,7 @@ const id: ArchiveStrings = {
     prev: 'Sebelumnya',
     next: 'Berikutnya',
   },
-  card: { forSale: 'Dijual', lastSale: 'Penjualan terakhir', held: 'Dimiliki', retired: 'Dimusnahkan', intel: 'Intel' },
+  card: { forSale: 'Dijual', lastSale: 'Penjualan terakhir', held: 'Dimiliki', retired: 'Dimusnahkan', intel: 'Intel', season: (n: string) => `S${n}` },
   worn: { see: 'Lihat dipakai', back: 'Itemnya', him: 'Pria', her: 'Wanita', label: 'Agen standar yang memakainya' },
   item: {
     crumbs: 'Arsip',
