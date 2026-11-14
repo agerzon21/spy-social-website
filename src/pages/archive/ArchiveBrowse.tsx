@@ -137,11 +137,11 @@ const ArchiveBrowse = () => {
           </div>
 
           <div className={s.filterBar} role="group" aria-label={b.type}>
-            <button type="button" className={s.chip} aria-pressed={listed} onClick={() => put('listed', listed ? '' : '1')}>
+            <button type="button" className={`${s.chip} ss-hit`} aria-pressed={listed} onClick={() => put('listed', listed ? '' : '1')}>
               {b.listedOnly}
             </button>
             {TYPES.filter((t) => copies.some((c) => itemType(c.item_code, c.item_kind) === t)).map((t) => (
-              <button key={t} type="button" className={s.chip} aria-pressed={type === t} onClick={() => put('type', type === t ? '' : t)}>
+              <button key={t} type="button" className={`${s.chip} ss-hit`} aria-pressed={type === t} onClick={() => put('type', type === t ? '' : t)}>
                 {b.types[t]}
               </button>
             ))}

@@ -70,3 +70,18 @@ html[lang='ru'] :is(p, li, td) {
   width: 100%;
   height: 100%;
 }
+
+/*
+ * A tap target of at least 44 x 44 px that looks exactly as before (crawl2-1114, WCAG 2.5.5): a clear layer over the
+ * element, centred on it and never smaller than it, takes the taps around it. Where neighbours sit closer than that,
+ * --hit-w / --hit-h cap it at the space there is, so it never covers the next control.
+ */
+.ss-hit {
+  position: relative;
+}
+.ss-hit::before {
+  content: '';
+  position: absolute;
+  inset-block: min(0px, calc(50% - var(--hit-h, 44px) / 2));
+  inset-inline: min(0px, calc(50% - var(--hit-w, 44px) / 2));
+}

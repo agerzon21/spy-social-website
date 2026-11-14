@@ -24,6 +24,9 @@ const ENIGMA = [
   { key: 'rest', weight: 8950, colour: 'var(--ss-line-strong)' },
 ]
 
+/** A fan card's width (archive.module.css .fan --card): what its picture's srcset picks by (crawl2-1114). */
+const FAN_SIZES = '(min-width: 900px) 240px, (min-width: 560px) 200px, min(168px, 38vw)'
+
 const ArchiveHome = () => {
   const { w, data, art, looks, locale, lang } = useArchive()
   const h = w.home
@@ -83,7 +86,7 @@ const ArchiveHome = () => {
             <div className={s.fan} aria-hidden="true">
               {(fan.length ? fan : [null, null, null]).map((c, i) => (
                 <div key={c ? `${c.item_code}-${c.serial}` : i} className={s.fanCard}>
-                  <Piece src={c ? artOf(art, c.item_code, c.serial)?.src ?? null : null} alt="" eager still look={c && artOf(art, c.item_code, c.serial) ? lookOf(looks, c.item_code, c.serial, false, { float: c.float, pattern: c.pattern, serial: c.serial }) : null} />
+                  <Piece src={c ? artOf(art, c.item_code, c.serial)?.src ?? null : null} alt="" eager still sizes={FAN_SIZES} look={c && artOf(art, c.item_code, c.serial) ? lookOf(looks, c.item_code, c.serial, false, { float: c.float, pattern: c.pattern, serial: c.serial }) : null} />
                 </div>
               ))}
             </div>

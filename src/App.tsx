@@ -14,6 +14,7 @@ import { LIVE, ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 import { SKIN_CSS, theme } from './theme'
 import { colorModeManager } from './theme/mode'
 import ChakraModeBridge from './theme/ChakraModeBridge'
+import ToastRegionLabels from './theme/ToastRegionLabels'
 import { archiveRoutes, marketRoutes } from './routes/hostRoutes'
 import { useLang } from './i18n'
 
@@ -94,6 +95,7 @@ function App({ helmetContext }: { helmetContext?: object } = {}) {
       {/* Chakra's colour mode reads the page's theme (public/theme.js, the header's switch) and stores nothing itself. */}
       <ChakraProvider theme={themed} colorModeManager={colorModeManager}>
         <ChakraModeBridge />
+        <ToastRegionLabels />
         <Global styles={SKIN_CSS} />
         {/* Framer animations (What's New) stop under Reduce Motion, like the CSS ones (src/theme). */}
         <MotionConfig reducedMotion="user">

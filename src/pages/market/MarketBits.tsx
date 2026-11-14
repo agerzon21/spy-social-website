@@ -283,7 +283,7 @@ export function WindowChips({ win, onWin, label }: { win: Win; onWin: (w: Win) =
   return (
     <div className={s.chips} role="group" aria-label={label}>
       {WINDOWS.map((x) => (
-        <button key={x} type="button" className={a.chip} aria-pressed={x === win} onClick={() => onWin(x)}>
+        <button key={x} type="button" className={`${a.chip} ss-hit`} aria-pressed={x === win} onClick={() => onWin(x)}>
           {w.windows[x]}
         </button>
       ))}

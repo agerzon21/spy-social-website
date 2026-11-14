@@ -2,6 +2,7 @@ import { useMemo, type ReactNode } from 'react'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { MotionConfig } from 'framer-motion'
 import ChakraModeBridge from '../theme/ChakraModeBridge'
+import ToastRegionLabels from '../theme/ToastRegionLabels'
 import { useLang } from '../i18n'
 import { theme } from '../theme'
 import { colorModeManager } from '../theme/mode'
@@ -19,6 +20,7 @@ function Island({ children }: { children: ReactNode }) {
   return (
     <ChakraProvider theme={themed} colorModeManager={colorModeManager}>
       <ChakraModeBridge />
+      <ToastRegionLabels />
       <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ChakraProvider>
   )

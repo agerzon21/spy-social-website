@@ -116,9 +116,9 @@ const MarketCatalogue = () => {
               <div className={s.filterRow}>
                 {rarities.length > 1 ? (
                   <div className={s.chips} role="group" aria-label={w.catalogue.filter}>
-                    <button type="button" className={a.chip} aria-pressed={rar === 'all'} onClick={() => setRar('all')}>{w.catalogue.all}</button>
+                    <button type="button" className={`${a.chip} ss-hit`} aria-pressed={rar === 'all'} onClick={() => setRar('all')}>{w.catalogue.all}</button>
                     {rarities.map((r) => (
-                      <button key={r} type="button" className={a.chip} aria-pressed={rar === r} onClick={() => setRar(r)}>{w.rarity[r]}</button>
+                      <button key={r} type="button" className={`${a.chip} ss-hit`} aria-pressed={rar === r} onClick={() => setRar(r)}>{w.rarity[r]}</button>
                     ))}
                   </div>
                 ) : <span />}

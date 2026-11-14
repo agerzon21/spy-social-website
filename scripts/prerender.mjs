@@ -29,7 +29,7 @@ process.env.NODE_ENV = 'production'
 const dist = resolve(process.argv[2] ?? 'dist')
 const ssrEntry = resolve('dist-ssr/prerender.js')
 if (!existsSync(ssrEntry)) throw new Error(`prerender: no ${ssrEntry} (run vite build --ssr src/prerender.tsx first)`)
-const { render, PRERENDER_PAGES, LANGUAGE_CODES } = await import(pathToFileURL(ssrEntry).href)
+const { render, renderHostHead, HOST_PAGES, HOSTS_ON, PRERENDER_PAGES, LANGUAGE_CODES } = await import(pathToFileURL(ssrEntry).href)
 
 /**
  * Every page vercel.json's language rewrites name: each needs a file per language, rendered or (its route off) the
@@ -93,7 +93,7 @@ const unescapeAttr = (text) => text.replace(/&quot;/g, '"').replace(/&#x27;|&#39
  * file answers ?lang=<lang> and a browser asking for <lang> first, so its canonical is ?lang=<lang> (English: the
  * bare address, the default). The link-preview tags (og:/twitter: title and description) follow in that language.
  */
-function localHead(out, lang, head) {
+function localHead(out, lang, head, previews = lang !== 'en') {
   const titleTag = head.title
   const title = unescapeAttr((titleTag.match(/<title[^>]*>([^<]*)<\/title>/) ?? [])[1] ?? '')
   const desc = (head.meta.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"/) ?? [])[1]
@@ -104,7 +104,7 @@ function localHead(out, lang, head) {
   if (!/<meta name="description"[^>]*>/.test(out)) throw new Error('prerender: the built page has no description')
   out = out.replace(/<meta name="description"[^>]*>\s*/, '')
   out = out.replace(/<title>[^<]*<\/title>/, () => [titleTag, head.meta, link].filter(Boolean).join('\n    '))
-  if (lang !== 'en') {
+  if (previews) {
     const t = escapeAttr(title)
     for (const [re, value] of [
       [/(<meta property="og:title" content=")[^"]*"/, t],
@@ -148,13 +148,15 @@ for (const slug of rendered.keys()) if (slug !== 'home' && !ROUTED.includes(slug
 
 let count = 0
 let bytes = 0
+const offPages = []
 for (const slug of ['home', ...ROUTED]) {
   const template = await readFile(resolve(dist, fileOf(slug)), 'utf8')
-  await mkdir(resolve(dist, '_pre', slug), { recursive: true })
   const page = rendered.get(slug)
+  if (page) await mkdir(resolve(dist, '_pre', slug), { recursive: true })
   if (!page) {
-    // Its route is off: every language gets the page's file as it is (the app answers the address).
-    for (const { code } of LANGUAGE_CODES) await writeFile(resolve(dist, '_pre', slug, `${baseOf(code)}.html`), template)
+    // Its route is off (the app has no such page): no file, so vercel.json's rewrite finds none and the address is the
+    // site's 404 (crawl2-1114; it was the app's page, which drew the 404 page with a 200).
+    offPages.push(slug)
     continue
   }
   if (slug === 'support') await writeFile(resolve(dist, '_pre', slug, 'shell.html'), template)
@@ -169,6 +171,33 @@ for (const slug of ['home', ...ROUTED]) {
   }
 }
 /*
+ * The Archive's and the Market's fixed pages (crawl2-1114): the host's own page (dist/_host/<host>.html, the app, its
+ * body empty until the script runs) with that page's head in each language, as SiteHead and the page's Helmet set it
+ * in the browser: dist/_host/pre/<host>/<page>/<lang>.html, which vercel.json's rewrites pick by ?lang= and the
+ * browser's first language as for www. The link-preview tags follow (og:url the page's own address).
+ */
+let hostCount = 0
+for (const [i, page] of HOST_PAGES.entries()) {
+  if (!HOSTS_ON[page.host]) continue
+  const template = await readFile(resolve(dist, '_host', `${page.host}.html`), 'utf8')
+  const dir = resolve(dist, '_host', 'pre', page.host, page.file)
+  await mkdir(dir, { recursive: true })
+  for (const { code, rtl } of LANGUAGE_CODES) {
+    const tags = await renderHostHead(i, code)
+    const here = (tags.link.match(/rel="canonical" href="([^"]*)"/) ?? [])[1]
+    if (!here) throw new Error(`prerender: ${page.path} in ${code} has no canonical`)
+    let out = template.replace(/<html lang="[^"]*"/, `<html lang="${code}"${rtl ? ' dir="rtl"' : ''}`)
+    if (!/<meta property="og:url" content="[^"]*"/.test(out)) throw new Error(`prerender: _host/${page.host}.html has no og:url`)
+    out = out.replace(/(<meta property="og:url" content=")[^"]*"/, (_m, a) => `${a}${here}"`)
+    // The title and description in every language's preview tags (English included: a page's own title).
+    out = localHead(out, code, tags, true)
+    await writeFile(resolve(dir, `${baseOf(code)}.html`), out)
+    hostCount++
+  }
+}
+if (hostCount) console.log(`prerender: ${hostCount} host pages' heads (the Archive's and the Market's fixed pages x ${LANGUAGE_CODES.length} languages)`)
+
+/*
  * On Vercel a file wins over every rewrite, and /<page> found dist/<page>/index.html before vercel.json's language
  * rewrites could pick _pre/<page>/<lang>.html (www-speed-1112, seen live): the page's own file goes (its English is
  * _pre/<page>/en.html, which vercel.json serves by default). /join's moves to _page/join.html (vercel.json: /join/<code>).
@@ -181,5 +210,12 @@ for (const slug of ROUTED) {
   const dir = resolve(dist, slug)
   if (!(await readdir(dir)).length) await rmdir(dir)
 }
+/*
+ * A real 404 (crawl2-1114): vercel.json routes only the addresses the apps have, and Vercel answers any other with
+ * dist/404.html and the status 404. It is www's app, which draws the 404 page (on the Archive's and the Market's hosts
+ * its catch-all sends a www address to www first, as their own apps do: components/OffHost).
+ */
+await writeFile(resolve(dist, '404.html'), await readFile(resolve(dist, '_host/www.html'), 'utf8'))
+if (offPages.length) console.log(`prerender: off, answered with the 404: ${offPages.join(', ')}`)
 await rm(resolve(dist, '.vite'), { recursive: true, force: true })
 console.log(`prerender: ${count} pages (${rendered.size} addresses x ${LANGUAGE_CODES.length} languages), ${Math.round(bytes / 1024)} KB of HTML`)

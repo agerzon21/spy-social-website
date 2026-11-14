@@ -18,18 +18,23 @@ export function BetaNotice({ chain }: { chain?: string }) {
   )
 }
 
+/** A full-size picture of public/archive/art (640) with its 320 one beside it (scripts/archive-art/webp.py writes both). */
+const artSrcSet = (src: string) => (/^\/archive\/art\/[^/]+\.webp$/.test(src) && !src.endsWith('-s.webp') ? `${src.replace(/\.webp$/, '-s.webp')} 320w, ${src} 640w` : undefined)
+
 /**
  * A piece: its picture in the Unique's foil rim (the plain Legendary in gold). With `look` (archive-item-art-1111) the
  * picture is the item alone in its display case, a backdrop on its wall or a scene filling the frame, inside the
  * copy's own ring (`src`, its tile); `wear` adds "See it worn" (a Unique's page).
  */
-export function Piece({ src, alt, unique = true, small = false, eager = false, look = null, wear = false, still = small }: { src: string | null; alt: string; unique?: boolean; small?: boolean; eager?: boolean; look?: ItemLook | null; wear?: boolean; still?: boolean }) {
+export function Piece({ src, alt, unique = true, small = false, eager = false, look = null, wear = false, still = small, sizes }: { src: string | null; alt: string; unique?: boolean; small?: boolean; eager?: boolean; look?: ItemLook | null; wear?: boolean; still?: boolean; sizes?: string }) {
+  // `sizes` (crawl2-1114): the picture's width on the page, so a screen that needs less than 640 px takes the 320 one.
+  const srcSet = src && sizes && !small ? artSrcSet(src) : undefined
   return (
     <span className={`${s.piece} ${unique ? '' : s.piecePlain}`}>
       {src && look ? (
-        <DisplayCase ring={src} look={look} alt={alt} wear={wear} eager={eager} still={still} />
+        <DisplayCase ring={src} ringSrcSet={srcSet} ringSizes={srcSet ? sizes : undefined} look={look} alt={alt} wear={wear} eager={eager} still={still} />
       ) : src ? (
-        <img src={src} alt={alt} width={small ? 320 : 640} height={small ? 320 : 640} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+        <img src={src} srcSet={srcSet} sizes={srcSet ? sizes : undefined} alt={alt} width={small ? 320 : 640} height={small ? 320 : 640} loading={eager ? 'eager' : 'lazy'} decoding="async" />
       ) : (
         <span className={s.skeleton} style={{ display: 'block', aspectRatio: '1' }} />
       )}

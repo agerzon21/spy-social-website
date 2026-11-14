@@ -15,7 +15,7 @@ import c from './displayCase.module.css'
  * Keyboard (a11y-1111): the side turned away is hidden from screen readers, so focus follows the turn (See it worn ->
  * Back, Back -> See it worn), and Escape turns it back.
  */
-export function DisplayCase({ ring, look, alt, wear = false, eager = false, still = false }: { ring: string; look: ItemLook; alt: string; wear?: boolean; eager?: boolean; still?: boolean }) {
+export function DisplayCase({ ring, ringSrcSet, ringSizes, look, alt, wear = false, eager = false, still = false }: { ring: string; ringSrcSet?: string; ringSizes?: string; look: ItemLook; alt: string; wear?: boolean; eager?: boolean; still?: boolean }) {
   const { lang } = useLang()
   const w = archiveStrings(lang).worn
   const [worn, setWorn] = useState(false)
@@ -31,7 +31,7 @@ export function DisplayCase({ ring, look, alt, wear = false, eager = false, stil
     const at = document.activeElement
     if (away && to && at instanceof HTMLElement && away.parentElement?.contains(at)) to.focus({ preventScroll: true })
   }, [worn])
-  const Ring = <img className={c.ring} src={ring} alt="" width={640} height={640} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+  const Ring = <img className={c.ring} src={ring} srcSet={ringSrcSet} sizes={ringSizes} alt="" width={640} height={640} loading={eager ? 'eager' : 'lazy'} decoding="async" />
   return (
     <span
       className={c.box}

@@ -42,7 +42,7 @@ const Header = ({ isHome = false }: { isHome?: boolean }) => {
         )}
         <div className={s.tools}>
           <nav className={s.nav} aria-label={t.header.nav}>
-            <Link to="/#join" className={s.navLink}>
+            <Link to="/#join" className={`${s.navLink} ss-hit`}>
               <span className={s.long}>{t.header.join}</span>
               <span className={s.short} aria-hidden="true">
                 {t.header.joinShort}

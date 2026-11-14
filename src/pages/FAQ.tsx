@@ -200,7 +200,7 @@ const FAQ = () => {
             <ul className={s.topics}>
               {sections.map((sec) => (
                 <li key={sec.id}>
-                  <a href={`#${sec.id}`}>{sec.title}</a>
+                  <a href={`#${sec.id}`} className="ss-hit">{sec.title}</a>
                 </li>
               ))}
             </ul>
