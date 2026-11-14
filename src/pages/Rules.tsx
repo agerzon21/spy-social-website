@@ -107,7 +107,7 @@ const Rules: React.FC = () => {
       </Heading>
       <Text textStyle="body">{t.breaking.text}</Text>
       {drawingCheckTestersOnly(LIVE) && <Text textStyle="body">{t.breaking.drawingsTesters}</Text>}
-      {drawings && <Text textStyle="body">{t.breaking.drawings}</Text>}
+      {drawings && <Text textStyle="body">{t.breaking.drawings(LIVE.safetyFacts1114)}</Text>}
 
       <Heading as="h2" size="sm" variant="section">
         {t.age.title}

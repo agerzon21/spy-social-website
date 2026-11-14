@@ -1924,7 +1924,8 @@ export const LIVE = {
    * (earlier lines that would be refused now are hidden while a minor is there), the reputation paragraph (a
    * moderator's safety hold takes nothing off until upheld; the held player's drawings get the detailed check), Accounts
    * We Set Up for Creators (only a certainly adult account is set up: no birth year waits, under 18 never); Terms 8's
-   * private-room drawing line; Child Safety's chat-filter and drawing-check bullets. Not a material Terms change (it
+   * private-room drawing line; Child Safety's chat-filter and drawing-check bullets; the Community Rules' drawings
+   * paragraph (breaking.drawings(minorRooms), 10 languages). Not a material Terms change (it
    * names a removal the Community Rules already allow): no TERMS_PUBLISHED or terms_version. Off only if those files
    * are rolled back. A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
@@ -2247,7 +2248,7 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
   : LIVE.safetyFacts1114
-    ? SAFETY_FACTS_1114_DAY // Terms 8's private-room drawing line and Child Safety's chat and drawing bullets (legal-cov2-1114)
+    ? SAFETY_FACTS_1114_DAY // Terms 8's private-room drawing line, the Community Rules' drawings paragraph and Child Safety's chat and drawing bullets (legal-cov2-1114)
   : LIVE.reputationHoldCap
     ? REPUTATION_HOLD_CAP_DAY // Terms 13: a fair-play hold caps the reputation at Good (legal-coverage-1114)
   : LIVE.tradeMinorSafety
