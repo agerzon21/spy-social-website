@@ -36,6 +36,7 @@ const OPTS: HelpOpts = {
   memberLoyalty: LIVE.memberLoyalty,
   testerInterceptsTradable: LIVE.testerIntercepts === 'tradable',
   testerGiftGame: LIVE.testerGiftGame,
+  roleReveal: LIVE.helpRoleReveal,
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).

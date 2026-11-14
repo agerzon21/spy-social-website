@@ -47,7 +47,7 @@ const id: HelpText = {
           a: [
             '<b>Dengan teman:</b> ketuk <b>Room privat</b>, lalu <b>Buat room</b>, dan bagikan kode room, kode QR, atau link undangan. Butuh minimal 3 pemain.',
             '<b>Dengan siapa saja:</b> ketuk <b>Main online</b>, lalu <b>Cari permainan</b>.',
-            '<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda dibuka dengan <b>permainan latihan</b>: permainan singkat melawan agen AI yang memandu kamu langkah demi langkah. Glosariumnya juga ada di sana.',
+            "<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda punya tutorial 3 menit untuk tiap game, lalu permainan latihan melawan agen AI. Glosariumnya juga ada di sana.",
           ],
         },
       ],
@@ -152,10 +152,11 @@ const id: HelpText = {
         },
         {
           id: 'practice-game',
-          q: 'Apa itu permainan latihan?',
+          q: "Apa itu tutorial dan permainan latihan?",
           a: [
-            'Permainan 5 sampai 9 menit melawan agen AI, dengan pelatih, di <b>Cara bermain</b>. Kamu mendapat nilai A sampai F, dan bisa melanjutkan dari tempat terakhir.',
-            'Sebelum kamu main Spy Talk atau Spy Sketch online, aplikasi mungkin memintamu lulus latihan game itu dengan nilai D atau lebih. Malam Permainan tidak pernah memintanya.',
+            "Di <b>Cara bermain</b>, pilih Spy Talk atau Spy Sketch. <b>Langkah 1, Tutorial:</b> permainan berpemandu 3 menit melawan agen AI. Mainkan sebagai warga atau mata-mata: lulus salah satunya sudah cukup.",
+            "<b>Langkah 2, Permainan latihan:</b> permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir.",
+            "Saat ini kamu tidak perlu keduanya untuk main online. Malam Permainan tidak pernah memintanya.",
           ],
         },
         {
@@ -180,6 +181,29 @@ const id: HelpText = {
       id: 'in-game',
       title: 'Saat bermain',
       items: [
+        ...(o.roleReveal
+          ? [
+            {
+              id: 'role-reveal',
+              q: "Bagaimana cara kerja pengungkapan peran?",
+              a: [
+                "Di permainan online, kartu peranmu berbalik dan menunjukkan peranmu. Warga melihat rahasianya dan berapa mata-mata di antara mereka.",
+                "Di Mafia dengan lebih dari satu mata-mata, para mata-mata saling melihat di kartu, dan label merah MATA-MATA menandai foto mata-mata lain. Mata-mata mengetuk <b>Saluran mata-mata</b> untuk chat secara pribadi. Warga tidak melihat semua itu.",
+                "Sedang telepon suara? Nyalakan <b>Suara sama untuk semua peran</b> di Pengaturan, bagian Suara & musik, supaya mikrofonmu tidak membocorkan apa pun.",
+              ],
+            },
+            {
+              id: 'poker-face',
+              q: "Apa itu Muka datar?",
+              a: [
+                "Untuk teman yang main mengelilingi satu meja. Setelah membuat room privat, host memilih <b>Online</b> (semua di ponsel masing-masing, di mana pun) atau <b>Satu ruangan</b>, yang menyalakan Muka datar. Bisa diubah nanti di Aturan.",
+                "Dengan Muka datar, semua kartu peran terlihat sama: tanpa kartu mata-mata gelap, tanpa label merah MATA-MATA. Mata-mata membuka chat dengan menahan kartunya.",
+                "Lirikan ke layarmu tidak membocorkan apa pun. Ini mencegah kecelakaan, bukan kecurangan.",
+                "Pemain yang masuk melihat pemberitahuan saat fitur ini aktif. Hanya di room privat dan Malam Permainan: Main online tidak punya fitur ini.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'wax-seal',
           q: 'Apa itu Segel Lilin?',
@@ -356,6 +380,7 @@ const id: HelpText = {
                   "Kamu bisa menarik penawaran setelah menunggu 30 menit.",
                   ...(o.appU61 ? ["Penjual bisa menerima, menolak, atau mengajukan harga balik di antara penawaranmu dan harganya. Harga balik tidak menahan Intel-mu: beli dengan harga itu, tolak, atau ajukan harga balik lagi."] : []),
                   "Setelah penjual menolak sebuah penawaran, tidak ada yang bisa menawar serendah itu lagi di listing tersebut: penawaran terendah naik.",
+                  ...(o.appU61 ? ["Penjual melihat tawaran terendah yang baru. Kalau penolakan membuatnya naik sampai ke harga, listing itu tidak menerima tawaran lagi: hanya Beli Sekarang."] : []),
                   "Kalau banyak penawaranmu ditolak dan hampir tidak ada yang diterima, kamu tidak bisa membuat penawaran baru sampai 3 hari.",
                   ...(o.rarefindsOfferPush ? ["Dengan notifikasi Pasar Gelap aktif, kamu mendapat notifikasi saat penjual mengajukan harga balik, dan saat penawaranmu ditolak atau berakhir."] : []),
                 ],
@@ -369,6 +394,15 @@ const id: HelpText = {
             'Penjualan di Item langsung final.',
             'Item Unik yang dibeli di Temuan Langka dilindungi 3 hari: tidak bisa ditukar, dipasang, dihancurkan, atau dipakai Tukar Tambah, dan Intel penjual menunggu. Dalam waktu itu penjualan bisa dibatalkan, seperti pertukaran.',
             'Kalau pembeli atau penjual menghapus akunnya dalam 3 hari itu, penjualan dibatalkan: pembeli mendapat Intel-nya kembali, atau penjual mendapat item Unik-nya kembali.',
+          ],
+        },
+        {
+          id: 'archive-holder',
+          q: "Bisakah orang lain melihat bahwa aku memegang item Unik?",
+          a: [
+            "Setiap Unik punya halaman sendiri di archive.spysocial.app. Pemiliknya saat ini tampil sebagai “Dimiliki oleh @username”, dengan tautan ke profilnya, hanya kalau dia dewasa dengan profil publik.",
+            "Untuk yang lain, termasuk pemain di bawah 18 tahun, tertulis “Pemilik disembunyikan”.",
+            "Untuk menyembunyikan namamu, jadikan profilmu privat di <b>Privasi & Teman</b>. Namamu hilang dari Arsip dalam sekitar satu menit.",
           ],
         },
       ],
@@ -477,6 +511,20 @@ const id: HelpText = {
             ...(o.launch ? [] : ['Beta 2: ucapan terima kasih $10 dikirim lewat PayPal ke setiap pemain terkonfirmasi yang ikut sesi live satu jam penuh dan mengirim survei, dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu.']),
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'beta-reset',
+              q: "Aplikasi bilang semuanya direset sebelum peluncuran. Apa artinya?",
+              a: [
+                "SpySocial masih diuji. Sebelum peluncuran tanggal 8 Desember, item, sadapan, Intel, transaksi Pasar Gelap, dan pertukaran direset, dan semua mulai dari nol.",
+                "Akun, teman, dan paketmu tetap ada.",
+                "Para penguji akan mendapat hadiah khusus karena sudah membantu.",
+                "Pemberitahuan ini muncul di Brankas, Pasar Gelap, dan layar pertukaran. Ketuk untuk membaca lebih lanjut, atau ketuk X untuk menyembunyikannya di ponsel itu.",
+              ],
+            },
+            ]),
       ],
     },
     {
@@ -630,6 +678,7 @@ const id: HelpText = {
           a: [
             'Ganti nama tampilanmu kapan saja di halaman Akun, dan username sekali tiap 30 hari.',
             'Akun baru dimulai dengan nama tampilan acak dalam bahasa aplikasimu.',
+            "Saat kamu membuat akun baru, @username-mu dibuat dari nama tampilan yang kamu ketik dan mengikutinya sampai kamu mengetik sendiri atau melempar dadu. Username tidak pernah memakai nama dari akun Google atau Apple-mu.",
             'Di meja Main online, pemain yang tidak kamu kenal melihat warna Agen-mu. Nama harus mengikuti <rules>aturan komunitas</rules>.',
           ],
         },
@@ -682,6 +731,17 @@ const id: HelpText = {
           a: [
             'Tim kami membaca setiap laporan dan memutuskan tindakannya. Moderator sukarelawan tepercaya membantu, dengan izin kami: di meja Malam Permainan, untuk pesan yang dilaporkan, dan untuk paket komunitas.',
             'Kamu bisa mengajukan banding atas keputusan apa pun lewat email ke <email/>.',
+          ],
+        },
+        {
+          id: 'reputation',
+          q: "Apa itu reputasiku?",
+          a: [
+            "Setiap akun punya reputasi. Lihat milikmu di Pengaturan, di <b>Reputasi</b>: Sangat Baik, Baik, Buruk, Berisiko, atau Diblokir. Akun baru mulai dari Baik.",
+            "Reputasimu berasal dari catatanmu: sudah berapa lama kamu main, dan ada tidaknya laporan, peringatan, chat dibisukan, atau jeda. Skor pastinya tidak ditampilkan. Catatan lama makin kecil bobotnya dan tidak dihitung lagi setelah 90 hari.",
+            "Akun baru dan pemain dengan reputasi lebih rendah lebih banyak gambarnya dicek otomatis.",
+            "Selama reputasimu Diblokir, Main online, room publik, Malam Permainan, tukar item, hadiah, dan Pasar Gelap tertutup untukmu, dan room privat mungkin juga. Kamu tetap bisa masuk dan itemmu tetap milikmu. Reputasi pulih seiring waktu selama kamu main jujur.",
+            "Merasa ini salah? Kirim email ke <email/> dan kami akan memeriksanya.",
           ],
         },
         {

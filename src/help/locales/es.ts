@@ -47,7 +47,7 @@ const es: HelpText = {
           a: [
             '<b>Con amigos:</b> toca <b>Sala privada</b> y luego <b>Crear sala</b>, y comparte el código de la sala, el código QR o el enlace de invitación. Hacen falta al menos 3 jugadores.',
             '<b>Con cualquiera:</b> toca <b>Jugar en línea</b> y luego <b>Buscar partida</b>.',
-            '<b>¿Eres nuevo?</b> <b>Cómo jugar</b>, en el inicio, empieza con la <b>partida de práctica</b>: una partida corta contra agentes de IA que te muestra cada paso. El glosario también está ahí.',
+            "<b>¿Eres nuevo?</b> <b>Cómo jugar</b>, en el inicio, tiene un tutorial de 3 minutos para cada juego y después partidas de práctica contra agentes de IA. El glosario también está ahí.",
           ],
         },
       ],
@@ -152,10 +152,11 @@ const es: HelpText = {
         },
         {
           id: 'practice-game',
-          q: '¿Qué es la partida de práctica?',
+          q: "¿Qué son el tutorial y las partidas de práctica?",
           a: [
-            'Una partida de 5 a 9 minutos contra agentes de IA, con un guía, en <b>Cómo jugar</b>. Recibes una nota de la A a la F y puedes seguir donde la dejaste.',
-            'Antes de jugar Spy Talk o Spy Sketch en línea, la app puede pedirte que apruebes la práctica de ese juego con una D o mejor. La Noche de Juegos nunca la pide.',
+            "En <b>Cómo jugar</b>, elige Spy Talk o Spy Sketch. <b>Paso 1, Tutorial:</b> una partida guiada de 3 minutos contra agentes de IA. Juégala como local o como espía: superar cualquiera de las dos cuenta.",
+            "<b>Paso 2, Partidas de práctica:</b> partidas completas de 5 a 9 minutos contra agentes de IA, con nota de la A a la F. Se desbloquean al superar el tutorial de ese juego, y puedes seguir donde la dejaste.",
+            "Hoy no necesitas ninguno de los dos para jugar en línea. La Noche de Juegos nunca los pide.",
           ],
         },
         {
@@ -180,6 +181,29 @@ const es: HelpText = {
       id: 'in-game',
       title: 'Durante la partida',
       items: [
+        ...(o.roleReveal
+          ? [
+            {
+              id: 'role-reveal',
+              q: "¿Cómo funciona la revelación de roles?",
+              a: [
+                "En las partidas en línea, tu carta de rol se voltea y muestra tu rol. Los locales ven el secreto y cuántos espías hay entre ellos.",
+                "En Espía Mafia con más de un espía, los espías se ven en la carta y una etiqueta roja de «Espía» marca las fotos de los demás espías. Los espías tocan <b>Canal de espías</b> para chatear en privado. Los locales no ven nada de esto.",
+                "¿Juegas en una llamada? Activa <b>Mismo sonido para todos los roles</b> en Ajustes, en «Sonido y música», para que tu micrófono no revele nada.",
+              ],
+            },
+            {
+              id: 'poker-face',
+              q: "¿Qué es Cara de póker?",
+              a: [
+                "Es para amigos que juegan alrededor de una mesa. Al crear una sala privada, el anfitrión elige <b>En línea</b> (cada quien en su teléfono, donde sea) o <b>En persona</b>, que activa Cara de póker. Se puede cambiar después en Reglas.",
+                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía ni etiquetas rojas de «Espía». Los espías abren su chat manteniendo presionada su carta.",
+                "Una mirada a tu pantalla no revela nada. Evita descuidos, no trampas.",
+                "Quien entra ve un aviso cuando está activada. Solo en salas privadas y Noches de Juegos: Jugar en línea no la tiene.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'wax-seal',
           q: '¿Qué es el Sello de Cera?',
@@ -356,6 +380,7 @@ const es: HelpText = {
                   "Puedes retirar una oferta cuando lleve 30 minutos esperando.",
                   ...(o.appU61 ? ["El vendedor puede aceptar, rechazar o hacer una contraoferta con un precio entre tu oferta y el suyo. Una contraoferta no reserva tu Intel: compra a ese precio, recházala o haz otra contraoferta."] : []),
                   "Cuando un vendedor rechaza una oferta, nadie puede volver a ofrecer tan poco en ese anuncio: la oferta mínima sube.",
+                  ...(o.appU61 ? ["El vendedor ve la nueva oferta mínima. Si los rechazos la suben hasta el precio, el anuncio ya no acepta ofertas: solo Comprar ya."] : []),
                   "Si rechazan muchas de tus ofertas y casi ninguna se acepta, no podrás hacer ofertas nuevas durante un máximo de 3 días.",
                   ...(o.rarefindsOfferPush ? ["Con las notificaciones del Mercado Negro activadas, recibes una cuando el vendedor hace una contraoferta y cuando tu oferta se rechaza o termina."] : []),
                 ],
@@ -369,6 +394,15 @@ const es: HelpText = {
             'Una venta en Objetos es definitiva al instante.',
             'Un Único comprado en Rarezas queda protegido 3 días: no se puede intercambiar, publicar, triturar ni canjear, y el Intel de quien vende espera. En ese tiempo la venta se puede revertir, como un intercambio.',
             'Si quien compra o quien vende borra su cuenta en esos 3 días, la venta se deshace: el comprador recupera el Intel, o el vendedor recupera el Único.',
+          ],
+        },
+        {
+          id: 'archive-holder',
+          q: "¿Pueden otros ver que tengo un Único?",
+          a: [
+            "Cada Único tiene su propia página en archive.spysocial.app. Su dueño actual aparece como «En manos de @usuario», con un enlace a su perfil, solo si es adulto y tiene el perfil público.",
+            "Para todos los demás, incluidos los menores de 18, dice «Dueño privado».",
+            "Para ocultar tu nombre, haz privado tu perfil en <b>Privacidad y amigos</b>. Desaparece del Archivo en más o menos un minuto.",
           ],
         },
       ],
@@ -477,6 +511,20 @@ const es: HelpText = {
             ...(o.launch ? [] : ['Beta 2: el agradecimiento de 10 $ llega por PayPal a cada jugador confirmado que se une a la hora completa en vivo y envía la encuesta, dentro de los 7 días posteriores a la sesión, igual en iPhone y Android. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil de la sesión, elegido por el desarrollador en el plazo de una semana.']),
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'beta-reset',
+              q: "La app dice que todo se reinicia antes del lanzamiento. ¿Qué significa?",
+              a: [
+                "SpySocial todavía está en pruebas. Antes del lanzamiento del 8 de diciembre se reinician los objetos, las intercepciones, el Intel, las operaciones del Mercado Negro y los intercambios, y todos empiezan de cero.",
+                "Tu cuenta, tus amigos y tus paquetes se quedan.",
+                "Los testers recibirán una recompensa especial por ayudar.",
+                "El aviso aparece en la Bóveda, el Mercado Negro y las pantallas de intercambios. Tócalo para leer más, o toca la X para ocultarlo en ese teléfono.",
+              ],
+            },
+            ]),
       ],
     },
     {
@@ -630,6 +678,7 @@ const es: HelpText = {
           a: [
             'Cambia tu nombre visible cuando quieras en la página de tu cuenta, y tu nombre de usuario una vez cada 30 días.',
             'Una cuenta nueva empieza con un nombre visible al azar en el idioma de tu app.',
+            "Al crear una cuenta nueva, tu @usuario se forma a partir del nombre visible que escribes y lo sigue hasta que pongas uno propio o tires el dado. Nunca usa el nombre de tu cuenta de Google o Apple.",
             'En las mesas de Jugar en línea, quienes no te conocen ven el color de tu agente. Los nombres siguen las <rules>normas de la comunidad</rules>.',
           ],
         },
@@ -682,6 +731,17 @@ const es: HelpText = {
           a: [
             'Nuestro equipo lee cada reporte y decide qué pasa. Moderadores voluntarios de confianza ayudan, con nuestro permiso: en las mesas de la Noche de Juegos, con mensajes reportados y con los paquetes de la comunidad.',
             'Puedes apelar cualquier decisión escribiendo a <email/>.',
+          ],
+        },
+        {
+          id: 'reputation',
+          q: "¿Qué es mi reputación?",
+          a: [
+            "Toda cuenta tiene una. Mira la tuya en Ajustes, en <b>Reputación</b>: Excelente, Buena, Baja, En riesgo o Bloqueada. Las cuentas nuevas empiezan en Buena.",
+            "Tu reputación sale de tu historial: cuánto llevas jugando y si hubo reportes, advertencias, silencios o pausas. La puntuación exacta no se muestra. Las notas antiguas cuentan menos con el tiempo y dejan de contar a los 90 días.",
+            "A las cuentas nuevas y a los jugadores con menos reputación se les revisan automáticamente más dibujos.",
+            "Mientras está Bloqueada, no puedes usar Jugar en línea, las salas públicas, las Noches de Juegos, los intercambios, los regalos ni el Mercado Negro, y puede que tampoco las salas privadas. Puedes seguir iniciando sesión y conservas tus objetos. Se recupera con el tiempo si juegas limpio.",
+            "¿Crees que es un error? Escribe a <email/> y lo revisamos.",
           ],
         },
         {

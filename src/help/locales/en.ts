@@ -1,7 +1,10 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). The game's rules (voting, winning, the spy's guess, leaving, a game that doesn't count) checked on 2026-11-06 (site-rules-1106) against the server and the game-logic audit. Facts checked on 2026-11-05 (help-truth-4: guests asked to save for Friends, Trades and the Black Market; Couldn't Open
+ * English: the source (../types.ts). help-u61-1113 (2026-11-13, against u61.1 0516de145 and int/rr-u62): How to Play's Step 1 Tutorial and Step 2
+ * Practice Games (the Play Online gate is off on the server, so nothing says it's required), Reputation in Settings, the beta-reset note, Rare
+ * Finds' lowest offer reaching the price, the Archive's holder line, the @username made from the typed name; #role-reveal and #poker-face wait
+ * for LIVE.helpRoleReveal (Beta 3). The game's rules (voting, winning, the spy's guess, leaving, a game that doesn't count) checked on 2026-11-06 (site-rules-1106) against the server and the game-logic audit. Facts checked on 2026-11-05 (help-truth-4: guests asked to save for Friends, Trades and the Black Market; Couldn't Open
  * Your Account; You Were Signed Out on This Device; a dead invite before the birth year; names in the app's language; chat resent after a drop;
  * Android's Friends, Party & Trades category and the minors' night hold for pack answers; what's in an open trade is held), 2026-11-04 (help-truth-3: parties, Waiting and Put Back, the Intel tile, the translator offer, no-answer lines, Teaming) and 2026-11-03 (nov03/legal-audit-1103b.md) against the Terms (sections 4, 5, 8, 9), the Privacy
  * Policy's Your Rights, the Game Night rules and the app (integrate/2.2: the How to Play glossary, the Members page,
@@ -53,7 +56,7 @@ const en: HelpText = {
           a: [
             '<b>With friends:</b> tap <b>Private Room</b>, then <b>Create Room</b>, and share the room code, the QR code or the invite link. You need at least 3 players.',
             '<b>With anyone:</b> tap <b>Play Online</b>, then <b>Find a Game</b>.',
-            '<b>New to it?</b> <b>How to Play</b> on Home opens with the <b>Practice Game</b>: a short game against AI agents that shows you each step. The glossary is there too.',
+            "<b>New to it?</b> <b>How to Play</b> on Home has a 3-minute tutorial for each game, then Practice Games against AI agents. The glossary is there too.",
           ],
         },
       ],
@@ -158,10 +161,11 @@ const en: HelpText = {
         },
         {
           id: 'practice-game',
-          q: 'What is the Practice Game?',
+          q: "What are the Tutorial and the Practice Games?",
           a: [
-            'A game of 5 to 9 minutes against AI agents, with a coach, in <b>How to Play</b>. You get a grade from A to F, and you can pick up where you left off.',
-            'Before you play Spy Talk or Spy Sketch online, the app may ask you to pass that game’s practice with a D or better. Game Night never asks.',
+            "In <b>How to Play</b>, pick Spy Talk or Spy Sketch. <b>Step 1, Tutorial:</b> a guided 3-minute game with AI agents. Play it as a Local or as the Spy: passing either one counts.",
+            "<b>Step 2, Practice Games:</b> full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off.",
+            "You don’t need either one to play online today. Game Night never asks.",
           ],
         },
         {
@@ -186,6 +190,29 @@ const en: HelpText = {
       id: 'in-game',
       title: 'In the game',
       items: [
+        ...(o.roleReveal
+          ? [
+            {
+              id: 'role-reveal',
+              q: "How does the role reveal work?",
+              a: [
+                "In games played online, your role card turns over to show your role. Locals see the secret and how many spies are among them.",
+                "In Spy Mafia with more than one spy, spies see each other on the card, and a red SPY tag marks the other spies’ pictures. Spies tap <b>SPY CHANNEL</b> to chat in private. Locals never see any of it.",
+                "On a voice call? Turn on <b>Same Sound for Every Role</b> in Settings, under Sound & Music, so your mic gives nothing away.",
+              ],
+            },
+            {
+              id: 'poker-face',
+              q: "What is Poker Face?",
+              a: [
+                "For friends playing around one table. After creating a private room, the host picks <b>Online</b> (everyone on their own phone, wherever they are) or <b>Same Room</b>, which turns Poker Face on. It can be changed later under Rules.",
+                "With Poker Face on, every role card looks alike: no dark spy card, no red SPY tags. Spies open their chat by pressing and holding their card.",
+                "A glance at your screen gives nothing away. It stops accidents, not cheaters.",
+                "Players who join see a note when it’s on. Private rooms and Game Nights only: Play Online doesn’t have it.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'wax-seal',
           q: 'What is the Wax Seal?',
@@ -362,6 +389,7 @@ const en: HelpText = {
                   "You can take an offer back once it has waited 30 minutes.",
                   ...(o.appU61 ? ["The seller can accept, decline or counter with a price between your offer and theirs. A counter holds none of your Intel: buy at it, decline it or counter back."] : []),
                   "Once a seller declines an offer, nobody can offer that low on that listing again: its lowest offer goes up.",
+                  ...(o.appU61 ? ["The seller sees the new lowest offer. Once declines bring it up to the price, the listing takes no more offers: Buy Now only."] : []),
                   "If many of your offers are declined and almost none accepted, you can’t make new offers for up to 3 days.",
                   ...(o.rarefindsOfferPush ? ["With Black Market notifications on, you get one when the seller counters your offer, and when your offer is declined or ends."] : []),
                 ],
@@ -375,6 +403,15 @@ const en: HelpText = {
             'A sale on Items is final at once.',
             'A Unique bought on Rare Finds is protected for 3 days: it can’t be traded, listed, shredded or traded up, and the seller’s Intel waits. In that time the sale can be reversed, like a trade.',
             'If the buyer or the seller deletes their account in those 3 days, the sale is undone: the buyer gets the Intel back, or the seller gets the Unique back.',
+          ],
+        },
+        {
+          id: 'archive-holder',
+          q: "Can other people see that I hold a Unique?",
+          a: [
+            "Every Unique has its own page on archive.spysocial.app. Its holder today shows as “Held by @username”, with a link to their profile, only if they’re an adult with a public profile.",
+            "For everyone else, players under 18 included, it says “Held privately”.",
+            "To hide your name, make your profile private in <b>Privacy & Friends</b>. It leaves the Archive within about a minute.",
           ],
         },
       ],
@@ -483,6 +520,20 @@ const en: HelpText = {
             ...(o.launch ? [] : ['Beta 2: the $10 thank-you goes by PayPal to every confirmed player who joins the full live hour and sends the survey, within 7 days of the session, the same on iPhone and Android. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week.']),
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'beta-reset',
+              q: "The app says everything resets before launch. What does that mean?",
+              a: [
+                "SpySocial is still being tested. Before launch on December 8, items, Intercepts, Intel, Black Market deals and trades are reset, and everyone starts from scratch.",
+                "Your account, friends and packs stay.",
+                "Testers get a special reward for helping.",
+                "The note shows in the Vault, the Black Market and the trading screens. Tap it to read more, or tap X to hide it on that phone.",
+              ],
+            },
+            ]),
       ],
     },
     {
@@ -636,6 +687,7 @@ const en: HelpText = {
           a: [
             'Change your display name on your Account page any time, and your username once every 30 days.',
             'A new account starts with a random display name in your app’s language.',
+            "When you set up a new account, your @username is made from the display name you type and follows it until you type your own or roll the dice. It never uses the name on your Google or Apple account.",
             'At Play Online tables, players you don’t know see your Agent colour instead. Names follow the <rules>community rules</rules>.',
           ],
         },
@@ -688,6 +740,17 @@ const en: HelpText = {
           a: [
             'Our team reads every report and decides what happens. Trusted volunteer moderators help, with our permission: at Game Night tables, with reported messages and with Community Packs.',
             'You can appeal any decision by emailing <email/>.',
+          ],
+        },
+        {
+          id: 'reputation',
+          q: "What is my reputation?",
+          a: [
+            "Every account has one. See yours in Settings, under <b>Reputation</b>: Excellent, Good, Poor, At Risk or Banned. New accounts start at Good.",
+            "Your reputation comes from your record: how long you've played, and any reports, warnings, mutes and pauses. The exact score isn't shown. Older notes count less over time and stop counting after 90 days.",
+            "New accounts and players with a lower reputation have more of their drawings checked automatically.",
+            "While it’s Banned, Play Online, public rooms, Game Nights, trading, gifts and the Black Market are closed to you, and private rooms may be too. You can still sign in and keep your items. It recovers over time while you play fair.",
+            "Think it’s wrong? Email <email/> and we’ll review it.",
           ],
         },
         {

@@ -43,7 +43,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           '<b>Entre amis :</b> touche <b>Salon privé</b>, puis <b>Créer un salon</b>, et partage le code du salon, le QR code ou le lien d\'invitation. Il faut au moins 3 joueurs.',
           '<b>Avec n\'importe qui :</b> touche <b>Jouer en ligne</b>, puis <b>Trouver une partie</b>.',
-          "<b>Tu débutes ?</b> <b>Comment jouer</b>, sur l'accueil, commence par la <b>partie d'entraînement</b> : une courte partie contre des agents IA qui te montre chaque étape. Le glossaire est là aussi.",
+          "<b>Tu débutes ?</b> <b>Comment jouer</b>, sur l'accueil, propose un tutoriel de 3 minutes pour chaque jeu, puis des parties d'entraînement contre des agents IA. Le glossaire est là aussi.",
         ],
       },
     ],
@@ -148,10 +148,11 @@ const sections = (o: HelpOpts): HelpSection[] => [
       },
       {
         id: 'practice-game',
-        q: "C'est quoi, la partie d'entraînement ?",
+        q: "C'est quoi, le tutoriel et les parties d'entraînement ?",
         a: [
-          "Une partie de 5 à 9 minutes contre des agents IA, avec un coach, dans <b>Comment jouer</b>. Tu reçois une note de A à F et tu peux reprendre là où tu t'es arrêté.",
-          "Avant de jouer à Spy Talk ou Spy Sketch en ligne, l'appli peut te demander de réussir l'entraînement de ce jeu avec un D ou mieux. La Soirée jeux ne le demande jamais.",
+          "Dans <b>Comment jouer</b>, choisis Spy Talk ou Spy Sketch. <b>Étape 1, Tutoriel :</b> une partie guidée de 3 minutes contre des agents IA. Joue-la côté local ou côté espion : réussir l'un ou l'autre suffit.",
+          "<b>Étape 2, Parties d'entraînement :</b> des parties complètes de 5 à 9 minutes contre des agents IA, notées de A à F. Elles se débloquent quand tu réussis le tutoriel de ce jeu, et tu peux reprendre là où tu t'es arrêté.",
+          "Aujourd'hui, aucun des deux n'est nécessaire pour jouer en ligne. La Soirée jeux ne le demande jamais.",
         ],
       },
       {
@@ -176,6 +177,29 @@ const sections = (o: HelpOpts): HelpSection[] => [
     id: 'in-game',
     title: 'Pendant la partie',
     items: [
+      ...(o.roleReveal
+        ? [
+          {
+            id: 'role-reveal',
+            q: "Comment marche la révélation des rôles ?",
+            a: [
+              "Dans les parties en ligne, ta carte de rôle se retourne et montre ton rôle. Les locaux voient le secret et combien d'espions se cachent parmi eux.",
+              "En mode Mafia avec plus d'un espion, les espions se voient sur la carte, et une étiquette rouge « Espion » marque les photos des autres espions. Les espions touchent <b>Canal des espions</b> pour discuter en privé. Les locaux ne voient rien de tout ça.",
+              "En appel vocal ? Active <b>Même son pour tous les rôles</b> dans les Réglages, rubrique « Son et musique », pour que ton micro ne trahisse rien.",
+            ],
+          },
+          {
+            id: 'poker-face',
+            q: "C'est quoi, Poker face ?",
+            a: [
+              "C'est pour les amis qui jouent autour d'une même table. Après avoir créé un salon privé, l'hôte choisit <b>En ligne</b> (chacun sur son téléphone, où qu'il soit) ou <b>Même pièce</b>, qui active Poker face. On peut le changer ensuite dans les Règles.",
+              "Avec Poker face, toutes les cartes de rôle se ressemblent : pas de carte d'espion sombre, pas d'étiquettes rouges « Espion ». Les espions ouvrent leur chat par un appui long sur leur carte.",
+              "Un coup d'œil à ton écran ne révèle rien. Ça évite les accidents, pas la triche.",
+              "Les joueurs qui rejoignent voient un message quand il est activé. Salons privés et Soirées jeux seulement : Jouer en ligne ne l'a pas.",
+            ],
+          },
+          ]
+        : []),
       {
         id: 'wax-seal',
         q: "C'est quoi, le sceau de cire ?",
@@ -352,6 +376,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
                 "Tu peux retirer une offre une fois qu'elle a attendu 30 minutes.",
                 ...(o.appU61 ? ["Le vendeur peut accepter, refuser ou faire une contre-offre, à un prix entre ton offre et le sien. Une contre-offre ne réserve pas ton Intel : achète à ce prix, refuse-la ou fais une contre-offre à ton tour."] : []),
                 "Une fois qu'un vendeur a refusé une offre, plus personne ne peut proposer aussi bas sur cette annonce : l'offre minimale monte.",
+                ...(o.appU61 ? ["Le vendeur voit la nouvelle offre minimale. Si les refus la font monter jusqu'au prix, l'annonce ne prend plus d'offres : Achat immédiat seulement."] : []),
                 "Si beaucoup de tes offres sont refusées et presque aucune acceptée, tu ne peux plus faire de nouvelle offre pendant 3 jours au plus.",
                 ...(o.rarefindsOfferPush ? ["Avec les notifications du Marché noir activées, tu en reçois une quand le vendeur fait une contre-offre, et quand ton offre est refusée ou prend fin."] : []),
               ],
@@ -365,6 +390,15 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Une vente sur Objets est définitive tout de suite.',
           "Un Unique acheté sur Trouvailles rares est protégé pendant 3 jours : impossible de l'échanger, de le remettre en vente, de le déchiqueter ou de l'utiliser dans un Échange, et l'Intel du vendeur attend. Pendant ce temps, la vente peut être annulée, comme un échange.",
           "Si l'acheteur ou le vendeur supprime son compte pendant ces 3 jours, la vente est annulée : l'acheteur récupère son Intel, ou le vendeur récupère l'Unique.",
+        ],
+      },
+      {
+        id: 'archive-holder',
+        q: "Les autres peuvent-ils voir que je détiens un Unique ?",
+        a: [
+          "Chaque Unique a sa page sur archive.spysocial.app. Son détenteur actuel s'affiche comme « Détenu par @pseudo », avec un lien vers son profil, seulement s'il est adulte et que son profil est public.",
+          "Pour tous les autres, y compris les moins de 18 ans, c'est « Détenteur masqué ».",
+          "Pour cacher ton nom, rends ton profil privé dans <b>Confidentialité et amis</b>. Il quitte les Archives en une minute environ.",
         ],
       },
     ],
@@ -473,6 +507,20 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.launch ? [] : ["Bêta 2 : le remerciement de 10 $ est envoyé par PayPal à chaque joueur confirmé qui participe à toute l'heure en direct et envoie le questionnaire, dans les 7 jours après la session, pareil sur iPhone et Android. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile de la session, choisi par le développeur sous une semaine."]),
         ],
       },
+      ...(o.launch
+        ? []
+        : [
+          {
+            id: 'beta-reset',
+            q: "L'appli dit que tout sera réinitialisé avant le lancement. Ça veut dire quoi ?",
+            a: [
+              "SpySocial est encore en test. Avant le lancement du 8 décembre, les objets, les interceptions, l'Intel, les transactions du Marché noir et les échanges seront réinitialisés, et tout le monde repartira de zéro.",
+              "Ton compte, tes amis et tes packs restent.",
+              "Les testeurs recevront une récompense spéciale pour leur aide.",
+              "Le message s'affiche dans le Coffre, le Marché noir et les écrans d'échanges. Touche-le pour en savoir plus, ou touche X pour le masquer sur ce téléphone.",
+            ],
+          },
+          ]),
     ],
   },
   {
@@ -626,6 +674,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Change ton nom affiché quand tu veux sur la page de ton compte, et ton nom d'utilisateur une fois tous les 30 jours.",
           "Un nouveau compte commence avec un nom d'affichage au hasard, dans la langue de ton appli.",
+          "Quand tu crées un compte, ton @nom d'utilisateur est formé à partir du nom affiché que tu tapes et le suit jusqu'à ce que tu en tapes un toi-même ou que tu lances le dé. Il ne reprend jamais le nom de ton compte Google ou Apple.",
           "Aux tables de Jouer en ligne, les joueurs que tu ne connais pas voient ta couleur d'agent à la place. Les noms suivent les <rules>règles de la communauté</rules>.",
         ],
       },
@@ -678,6 +727,17 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Notre équipe lit chaque signalement et décide de la suite. Des modérateurs bénévoles de confiance aident, avec notre accord : aux tables de la Soirée jeux, avec les messages signalés et avec les packs de la communauté.",
           'Tu peux faire appel de toute décision en écrivant à <email/>.',
+        ],
+      },
+      {
+        id: 'reputation',
+        q: "C'est quoi, ma réputation ?",
+        a: [
+          "Chaque compte en a une. Regarde la tienne dans les Réglages, sous <b>Réputation</b> : Excellente, Bonne, Faible, En danger ou Bloquée. Les nouveaux comptes commencent à Bonne.",
+          "Ta réputation vient de ton historique : depuis quand tu joues, et les signalements, avertissements, chats coupés et pauses. Le score exact n'est pas affiché. Les anciennes notes comptent moins avec le temps et ne comptent plus après 90 jours.",
+          "Pour les nouveaux comptes et les joueurs à la réputation plus faible, davantage de dessins sont vérifiés automatiquement.",
+          "Tant qu'elle est Bloquée, Jouer en ligne, les salons publics, les Soirées jeux, les échanges, les cadeaux et le Marché noir te sont fermés, et parfois les salons privés aussi. Tu peux toujours te connecter et tu gardes tes objets. Elle remonte avec le temps si tu joues franc jeu.",
+          "Tu penses que c'est une erreur ? Écris à <email/> et on vérifiera.",
         ],
       },
       {

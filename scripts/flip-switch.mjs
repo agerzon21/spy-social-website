@@ -30,6 +30,8 @@ const SWITCHES = {
   appU61: { live: [['appU61', true]], day: 'APP_U61_DAY', step: 'u61' },
   // creator-invite-data-1113: Saturday or later, after 20270101000010_creator_invite_data_1113 is applied (and LIVE.creatorInvites is on).
   creatorInviteData: { live: [['creatorInviteData', true]], day: 'CREATOR_INVITE_DATA_DAY', step: 'creator-invite-data-1113' },
+  // help-u61-1113: Beta 3 day (Tue Nov 24), once u62 is on testers' phones and role_reveal_online is 'everyone'. Help only, no date.
+  helpRoleReveal: { live: [['helpRoleReveal', true]], day: null, step: 'beta3' },
 }
 
 const args = process.argv.slice(2)

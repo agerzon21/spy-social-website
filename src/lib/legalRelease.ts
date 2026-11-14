@@ -137,6 +137,15 @@ export const LIVE = {
    */
   creatorInviteData: false,
   /**
+   * help-u61-1113: the Help center's answers for Beta 3's role reveal and Poker Face (app repo int/rr-u62; owner picks
+   * Nov 13: B Spotlight, the red SPY tag, Same Sound for Every Role; Poker Face entered from "Where Are You Playing?",
+   * Online | Same Room). Turns on Help's #role-reveal and #poker-face (10 languages). Help text only: no legal page reads
+   * it, no Last Updated date. Flip on Beta 3 day (Tue Nov 24), the hour the u62 update is on testers' phones and
+   * app_config role_reveal_online is 'everyone': node scripts/flip-switch.mjs helpRoleReveal. Off again if the reveal
+   * is rolled back (role_reveal_online 'off' or 'owner_testers').
+   */
+  helpRoleReveal: false,
+  /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
    * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)

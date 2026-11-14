@@ -53,6 +53,11 @@ export interface HelpOpts {
   testerInterceptsTradable: boolean
   /** The tester thank-you's counted-game condition (LIVE.testerGiftGame; server tester_gift_game_1111). Off: the old one-line answer. */
   testerGiftGame: boolean
+  /**
+   * Beta 3's role reveal and Poker Face are on testers' phones (LIVE.helpRoleReveal): #role-reveal and #poker-face.
+   * TRANSLATIONS UNREVIEWED: every language but English is an agent's (help-u61-1113), in the app's own words for them.
+   */
+  roleReveal: boolean
 }
 
 export interface HelpItem {
