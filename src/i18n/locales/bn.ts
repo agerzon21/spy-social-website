@@ -71,8 +71,7 @@ const bn: Strings = {
     join: 'রুমে যোগ দিন',
     joinShort: 'যোগ দিন',
     shop: 'শপ',
-    toLight: 'লাইট মোডে যান',
-    toDark: 'ডার্ক মোডে যান',
+    lightMode: 'লাইট মোড',
   },
 
   footer: {

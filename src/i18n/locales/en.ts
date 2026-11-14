@@ -94,8 +94,8 @@ const en = {
     /** The same link on a phone, where the header has little room: one short word if you can. */
     joinShort: 'Join',
     shop: 'Shop',
-    toLight: 'Switch to light mode',
-    toDark: 'Switch to dark mode',
+    /** The header's light / dark switch's one name (a switch: on = the light theme, off = dark; its state is read out separately). */
+    lightMode: 'Light mode',
   },
 
   footer: {

@@ -70,8 +70,7 @@ const zhHans: Strings = {
     join: '加入房间',
     joinShort: '加入',
     shop: '商店',
-    toLight: '切换到浅色模式',
-    toDark: '切换到深色模式',
+    lightMode: '浅色模式',
   },
 
   footer: {

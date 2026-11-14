@@ -71,8 +71,7 @@ const ar: Strings = {
     join: 'الانضمام إلى غرفة',
     joinShort: 'انضمام',
     shop: 'المتجر',
-    toLight: 'التبديل إلى الوضع الفاتح',
-    toDark: 'التبديل إلى الوضع الداكن',
+    lightMode: 'الوضع الفاتح',
   },
 
   footer: {

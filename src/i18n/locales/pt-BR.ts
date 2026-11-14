@@ -71,8 +71,7 @@ const ptBR: Strings = {
     join: 'Entrar numa sala',
     joinShort: 'Entrar',
     shop: 'Loja',
-    toLight: 'Mudar para o modo claro',
-    toDark: 'Mudar para o modo escuro',
+    lightMode: 'Modo claro',
   },
 
   footer: {

@@ -41,7 +41,8 @@ const ThemeToggle = () => {
       type="button"
       role="switch"
       aria-checked={light}
-      aria-label={light ? t.header.toDark : t.header.toLight}
+      // One fixed name; aria-checked carries on (light) / off (dark), as the knob shows it (a11y2-1114).
+      aria-label={t.header.lightMode}
       className={s.toggle}
       data-theme-toggle=""
       dir="ltr"

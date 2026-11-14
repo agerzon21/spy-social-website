@@ -71,8 +71,7 @@ const fr: Strings = {
     join: 'Rejoindre un salon',
     joinShort: 'Entrer',
     shop: 'Boutique',
-    toLight: 'Passer en mode clair',
-    toDark: 'Passer en mode sombre',
+    lightMode: 'Mode clair',
   },
 
   footer: {

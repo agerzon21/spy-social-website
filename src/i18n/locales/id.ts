@@ -71,8 +71,7 @@ const id: Strings = {
     join: 'Gabung ke room',
     joinShort: 'Gabung',
     shop: 'Toko',
-    toLight: 'Ganti ke mode terang',
-    toDark: 'Ganti ke mode gelap',
+    lightMode: 'Mode terang',
   },
 
   footer: {

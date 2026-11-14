@@ -71,8 +71,7 @@ const es: Strings = {
     join: 'Unirse a una sala',
     joinShort: 'Unirse',
     shop: 'Tienda',
-    toLight: 'Cambiar a modo claro',
-    toDark: 'Cambiar a modo oscuro',
+    lightMode: 'Modo claro',
   },
 
   footer: {

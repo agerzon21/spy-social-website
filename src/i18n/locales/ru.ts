@@ -71,8 +71,7 @@ const ru: Strings = {
     join: 'Войти в комнату',
     joinShort: 'Войти',
     shop: 'Мерч',
-    toLight: 'Включить светлую тему',
-    toDark: 'Включить тёмную тему',
+    lightMode: 'Светлая тема',
   },
 
   footer: {

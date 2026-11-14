@@ -71,8 +71,7 @@ const hi: Strings = {
     join: 'रूम से जुड़ें',
     joinShort: 'जुड़ें',
     shop: 'शॉप',
-    toLight: 'लाइट मोड चालू करें',
-    toDark: 'डार्क मोड चालू करें',
+    lightMode: 'लाइट मोड',
   },
 
   footer: {
