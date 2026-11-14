@@ -8,6 +8,7 @@
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/react'
 import { renderToString } from 'react-dom/server'
+import type { HelmetServerState } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
 import App, { PRERENDER_PAGES, preloadPage } from './App'
 import { LANGUAGES, loadStrings, type LangCode } from './i18n'
@@ -20,17 +21,21 @@ export const LANGUAGE_CODES = LANGUAGES.map((l) => ({ code: l.code, rtl: l.rtl }
 export type StyleChunk = { key: string; ids: string[]; css: string }
 
 /** The page at `path` in `lang`: the markup inside #root and Chakra's styles, in the order Emotion inserts them. */
-export async function render(path: string, lang: LangCode): Promise<{ html: string; styles: StyleChunk[] }> {
+/** The page's <head> tags as SiteHead (and the page's own Helmet) set them in the browser: title, meta, link. */
+export type HeadTags = { title: string; meta: string; link: string }
+
+export async function render(path: string, lang: LangCode): Promise<{ html: string; styles: StyleChunk[]; head: HeadTags }> {
   await Promise.all([loadStrings(lang), preloadPage(path)])
   // Again, now with any table the page brought (Help's), as main.tsx does.
   const strings = await loadStrings(lang)
   const cache = createCache({ key: 'css' })
   cache.compat = true
+  const helmetContext: { helmet?: HelmetServerState } = {}
   const html = renderToString(
     <CacheProvider value={cache}>
       <StaticRouter location={path}>
         <I18nProvider lang={lang} strings={strings}>
-          <App />
+          <App helmetContext={helmetContext} />
         </I18nProvider>
       </StaticRouter>
     </CacheProvider>,
@@ -50,5 +55,7 @@ export async function render(path: string, lang: LangCode): Promise<{ html: stri
     } else styles.push({ key: `${cache.key}-global`, ids: [id], css })
   }
   styles.push(regular)
-  return { html, styles }
+  const helmet = helmetContext.helmet
+  if (!helmet) throw new Error(`prerender: ${path} in ${lang} set no <head> (HelmetProvider's context is empty)`)
+  return { html, styles, head: { title: helmet.title.toString(), meta: helmet.meta.toString(), link: helmet.link.toString() } }
 }

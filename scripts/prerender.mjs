@@ -83,8 +83,41 @@ function pageFiles(src) {
 
 const escapeAttr = (text) => text.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
 
+const unescapeAttr = (text) => text.replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+
+/**
+ * The page's <head> in `lang` as SiteHead sets it in the browser (crawl-1114: every language's file had the English
+ * title and description and no canonical or hreflang alternates until the app's script ran, so a search engine or a
+ * link previewer reading the HTML saw the English page): the title, description, og:locale and, for an indexed page,
+ * the canonical and the ten languages' alternates, all marked data-rh so Helmet in the browser takes them over. This
+ * file answers ?lang=<lang> and a browser asking for <lang> first, so its canonical is ?lang=<lang> (English: the
+ * bare address, the default). The link-preview tags (og:/twitter: title and description) follow in that language.
+ */
+function localHead(out, lang, head) {
+  const titleTag = head.title
+  const title = unescapeAttr((titleTag.match(/<title[^>]*>([^<]*)<\/title>/) ?? [])[1] ?? '')
+  const desc = (head.meta.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"/) ?? [])[1]
+  if (!title || desc === undefined) throw new Error(`prerender: ${lang}: the rendered head has no title or description`)
+  let link = head.link
+  if (lang !== 'en') link = link.replace(/(rel="canonical" href="[^"?]*)"/, `$1?lang=${lang}"`)
+  if (!/<title>[^<]*<\/title>/.test(out)) throw new Error('prerender: the built page has no <title>')
+  if (!/<meta name="description"[^>]*>/.test(out)) throw new Error('prerender: the built page has no description')
+  out = out.replace(/<meta name="description"[^>]*>\s*/, '')
+  out = out.replace(/<title>[^<]*<\/title>/, () => [titleTag, head.meta, link].filter(Boolean).join('\n    '))
+  if (lang !== 'en') {
+    const t = escapeAttr(title)
+    for (const [re, value] of [
+      [/(<meta property="og:title" content=")[^"]*"/, t],
+      [/(<meta name="twitter:title" content=")[^"]*"/, t],
+      [/(<meta property="og:description" content=")[^"]*"/, desc],
+      [/(<meta name="twitter:description" content=")[^"]*"/, desc],
+    ]) out = out.replace(re, (_m, a) => `${a}${value}"`)
+  }
+  return out
+}
+
 /** The built page with the rendered one in it, in `lang`. */
-function compose(template, lang, rtl, html, styles, files) {
+function compose(template, lang, rtl, html, styles, files, tags) {
   const head = [
     // Shown only to the visitor whose page lang.js put in this language (lang.js runs before this is parsed).
     `<style>html:not([lang="${lang}"]) #root[data-pre]{visibility:hidden}</style>`,
@@ -106,7 +139,7 @@ function compose(template, lang, rtl, html, styles, files) {
   if (!out.includes('<div id="root"></div>')) throw new Error('prerender: the built page has no empty #root')
   out = out.replace('<div id="root"></div>', () => `<div id="root" data-pre="${lang}">${html}</div>`)
   out = out.replace(/<html lang="[^"]*"/, `<html lang="${lang}"${rtl ? ' dir="rtl"' : ''}`)
-  return out
+  return localHead(out, lang, tags)
 }
 
 const rendered = new Map(PRERENDER_PAGES.map((p) => [p.path === '/' ? 'home' : p.path.slice(1), p]))
@@ -127,9 +160,9 @@ for (const slug of ['home', ...ROUTED]) {
   if (slug === 'support') await writeFile(resolve(dist, '_pre', slug, 'shell.html'), template)
   const files = pageFiles(page.src)
   for (const { code, rtl } of LANGUAGE_CODES) {
-    const { html, styles } = await render(page.path, code)
+    const { html, styles, head: tags } = await render(page.path, code)
     if (!html.includes('<main')) throw new Error(`prerender: ${page.path} in ${code} rendered no <main>`)
-    const out = compose(template, code, rtl, html, styles, files)
+    const out = compose(template, code, rtl, html, styles, files, tags)
     await writeFile(resolve(dist, '_pre', slug, `${baseOf(code)}.html`), out)
     count++
     bytes += out.length

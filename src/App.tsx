@@ -84,12 +84,13 @@ export function preloadPage(path: string): Promise<void> {
   return (HOST === 'main' && PRERENDERED[at]?.page?.preload()) || Promise.resolve()
 }
 
-function App() {
+/** `helmetContext`: the build's renderer (src/prerender.tsx) reads each page's <head> from it; the browser passes none. */
+function App({ helmetContext }: { helmetContext?: object } = {}) {
   // Arabic lays Chakra's own components out right to left too.
   const rtl = useLang().language.rtl
   const themed = useMemo(() => (rtl ? extendTheme({ direction: 'rtl' }, theme) : theme), [rtl])
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       {/* Chakra's colour mode reads the page's theme (public/theme.js, the header's switch) and stores nothing itself. */}
       <ChakraProvider theme={themed} colorModeManager={colorModeManager}>
         <ChakraModeBridge />

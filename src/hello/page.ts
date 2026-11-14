@@ -216,6 +216,8 @@ export function helloHtml(input: HelloInput): string {
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
 <meta property="og:image" content="${esc(input.origin)}/images/og-image.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="${esc(input.origin)}/images/og-image.jpg">
 <script src="/theme.js"></script>
 <script src="/lang.js"></script>
 <script src="/hello/hello.js" defer></script>
