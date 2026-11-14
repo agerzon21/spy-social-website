@@ -25,7 +25,24 @@ const SupportEmail = () => (
 )
 
 /** What stays after a deletion, and for how long. */
-export const AfterDeletionList = () => (
+/**
+ * A pointer to a Privacy Policy section. Inside the Privacy Policy it names the section; on the Delete Account page
+ * (onDeletePage) it says where that section is and links to the policy, so it never points at a section the page
+ * doesn't have (legal-flips-check-1114).
+ */
+const PolicySection = ({ name, onDeletePage }: { name: string; onDeletePage?: boolean }) =>
+  onDeletePage ? (
+    <>
+      {name} in our{' '}
+      <ChakraLink as={Link} to="/privacy">
+        Privacy Policy
+      </ChakraLink>
+    </>
+  ) : (
+    <>{name}</>
+  )
+
+export const AfterDeletionList = ({ onDeletePage }: { onDeletePage?: boolean } = {}) => (
   <UnorderedList spacing={2} ps={4} textStyle="body">
     <li>
       Chat messages{PRIVACY.storedQuestions ? ' and typed questions and answers' : ''} you sent stay in their room until{' '}
@@ -71,7 +88,7 @@ export const AfterDeletionList = () => (
     )}
     {PRIVACY.drawingCheck && (
       <li>
-        A drawing kept as evidence (see Data Retention) stays until its period ends, even if the account that drew it is
+        A drawing kept as evidence (see <PolicySection name="Data Retention" onDeletePage={onDeletePage} />) stays until its period ends, even if the account that drew it is
         deleted.
       </li>
     )}
@@ -82,7 +99,7 @@ export const AfterDeletionList = () => (
     </li>
     {PRIVACY.socialFeatures && (
       <li>
-        The social safety log (see Safety Information) keeps its entries for 1 year with your account taken out of them,
+        The social safety log (see <PolicySection name="Safety Information" onDeletePage={onDeletePage} />) keeps its entries for 1 year with your account taken out of them,
         and party chat lines you wrote stay with the party, with your account taken out of them, until they're deleted 30 days after they were sent.
       </li>
     )}
@@ -150,6 +167,14 @@ export const AfterDeletionList = () => (
         Trades you made stay, with your account taken out of them, because the other player's items and Intel came from
         them (who closed a trade can stay in its record as a random ID that no longer leads to your account). Items and Intel you got in a trade that's still protected (in its first 7 days) go back to the player who
         gave them.
+        {/* LIVE.tradeWatchEvidence (legal-flips-check-1114): Privacy's Trades item keeps this copy even if an account in the trade is deleted. */}
+        {PRIVACY.tradeWatchEvidence && (
+          <>
+            {' '}A trade our checks flagged for a case, or one between an adult and a player under 18, also keeps a
+            restricted copy (with who traded) for at least 1 year, or for 1 year after we report it to NCMEC if we do
+            (see <PolicySection name="Trades" onDeletePage={onDeletePage} />); only SpySocial&apos;s developer can read it.
+          </>
+        )}
       </li>
     )}
     {PRIVACY.blackMarket && (

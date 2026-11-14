@@ -57,7 +57,7 @@ const DeleteAccount: React.FC = () => {
 
       <Heading as="h2" size="sm" variant="section">{t.staysTitle}</Heading>
       <Box w="100%" {...english}>
-        <AfterDeletionList />
+        <AfterDeletionList onDeletePage />
         <Box mt={5}>
           <AfterDeletionLaw />
         </Box>
