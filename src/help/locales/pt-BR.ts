@@ -494,16 +494,16 @@ const ptBR: HelpText = {
                   ? 'Elas foram adicionadas no lançamento da 2.2 e são suas. Todos da lista de testadores ganharam o <b>Pin beta</b> e o título <b>Beta tester</b>. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
                   : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
                 o.launch
-                  ? 'Quem terminou pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas) também ganhou o título <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.'
-                  : 'Termine pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas) e você também ganha o título <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
+                  ? 'Quem terminou pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas) também ganhou o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.'
+                  : 'Termine pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas) e você também ganha o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
                 o.testerInterceptsTradable
-                  ? 'O <b>Pin beta</b>, o título <b>Testador de Campo</b> e as interceptações de agradecimento podem ser trocados como tudo o que você ganha.'
-                  : 'O <b>Pin beta</b> e o título <b>Testador de Campo</b> podem ser trocados como tudo o que você ganha; como outros presentes, as interceptações de agradecimento ficam na sua conta.',
+                  ? 'O <b>Pin beta</b>, o título <b>Teste de campo</b> e as interceptações de agradecimento podem ser trocados como tudo o que você ganha.'
+                  : 'O <b>Pin beta</b> e o título <b>Teste de campo</b> podem ser trocados como tudo o que você ganha; como outros presentes, as interceptações de agradecimento ficam na sua conta.',
               ]
               : [
                 o.launch
-                  ? 'Elas foram adicionadas no lançamento da 2.2 e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
-                  : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
+                  ? 'Elas foram adicionadas no lançamento da 2.2 e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês de assinatura. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
+                  : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
               ]),
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',

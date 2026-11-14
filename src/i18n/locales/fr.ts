@@ -938,10 +938,10 @@ const fr: Strings = {
     get: {
       eyebrow: 'Ce que tu reçois',
       title: 'Récompenses bêta à garder après la sortie',
-      items: ['Le <b>Pin bêta</b>', 'Le titre <b>«\u00a0Bêta-testeur\u00a0»</b>'],
-      itemsBefore: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Bêta-testeur\u00a0»</b> et <b>«\u00a0Testeur de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
+      items: ['Le <b>Pin bêta</b>', 'Le titre <b>«\u00a0Équipe bêta\u00a0»</b>'],
+      itemsBefore: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Équipe bêta\u00a0»</b> et <b>«\u00a0Test de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
       gameTitle: 'Termine une partie avant le 7\u00a0décembre et reçois aussi',
-      gameItems: ['Le titre <b>«\u00a0Testeur de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
+      gameItems: ['Le titre <b>«\u00a0Test de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
       trade: { tradable: 'Après la sortie, les interceptions de remerciement s’échangent comme tout ce que tu gagnes.', bound: 'Les interceptions de remerciement restent sur ton compte.' },
       prizeTitle: '10\u00a0$ de remerciement par PayPal + un bonus de 50\u00a0$',
       prize: 'Un remerciement de 10\u00a0$ par PayPal pour ton temps pendant la session en direct\u00a0: chaque joueur confirmé qui participe à toute l’heure et envoie le questionnaire de 5\u00a0minutes le reçoit dans les 7\u00a0jours après la session, pareil sur iPhone et Android. Installer la version de test ne suffit pas à l’obtenir. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile de la session, choisi par le développeur sous une semaine.',
