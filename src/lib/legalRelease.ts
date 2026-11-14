@@ -123,7 +123,7 @@ export const LIVE = {
    * lines, the AfterDeletion bullet and Terms 8's held-names clause (not material). Flip the hour A3 is applied live,
    * with CREATOR_INVITES_DAY set to that day. A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
-  creatorInvites: false,
+  creatorInvites: true,
   /**
    * creator-invite-data-1113 (app repo server file 20270101000010_creator_invite_data_1113; draft
    * .claude/handoff/scratchpad/legal-1113/CREATOR-INVITE-DATA.md): a data export lists the account's creator invites
@@ -135,7 +135,7 @@ export const LIVE = {
    * day: node scripts/flip-switch.mjs creatorInviteData --day "<day>". If the sweep's 60 / 90 change, change the text
    * the same day. Off again if the file is rolled back. A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
-  creatorInviteData: false,
+  creatorInviteData: true,
   /**
    * help-u61-1113: the Help center's answers for Beta 3's role reveal and Poker Face (app repo int/rr-u62; owner picks
    * Nov 13: B Spotlight, the red SPY tag, Same Sound for Every Role; Poker Face entered from "Where Are You Playing?",
@@ -1663,7 +1663,7 @@ export const LIVE = {
    * applied live, and set DRAWING_MINOR_ROOMS_DAY (below) to the push day. A server fact for every app version at once:
    * set in LIVE, never in PRIVACY_AHEAD.
    */
-  drawingMinorRooms: false,
+  drawingMinorRooms: true,
   /**
    * Member loyalty (owner Nov 11; app repo feat/member-loyalty-1111, server file member_loyalty_1111 in
    * supabase/migrations_pending, STAGED): "Member since" and the time as a member, milestone stamps at 1, 3 and 6 months,
@@ -1804,7 +1804,7 @@ export const LIVE = {
    * Child Safety's response item. Push the site with it on only after the server file is applied, and set MOD_COVER_HOLD_DAY to that day.
    * A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
-  modCoverHold: false,
+  modCoverHold: true,
   /**
    * friday-flips-1111 (Nov 11): legal-integration-1111's tester-gift wording was unswitched (it read LIVE.testerIntercepts,
    * a string that is always set). This switch holds it until app server tester_gift_game_1111 is applied (run sheet step
@@ -1865,7 +1865,7 @@ export const LIVE = {
    * terms_version. A server switch: set in LIVE, never in PRIVACY_AHEAD. Flip the day row 25 is applied
    * (node scripts/flip-switch.mjs reputationHoldCap --day "<apply day>"). Off only if the file is rolled back.
    */
-  reputationHoldCap: false,
+  reputationHoldCap: true,
   /**
    * legal-coverage-1114 (app repo server file 20261127179500_trade_watch_evidence, STAGED, runsheet row 24 TWE, with the
    * secfix-1114 TRUNCATE guard): every Trade Watch flag with a case or signal adult_minor is copied, with its trade, items,
@@ -1876,7 +1876,7 @@ export const LIVE = {
    * request needs it, so the owner (or a later purge job) must honour that. Turns on a Trades sentence and a retention
    * sentence in Privacy. Flip the day row 24 is applied (flip-switch.mjs tradeWatchEvidence --day "<apply day>").
    */
-  tradeWatchEvidence: false,
+  tradeWatchEvidence: true,
   /**
    * legal-coverage-1114 (app repo server file 20261231999957_trade_minor_safety_1114, STAGED Nov 14, runsheet row 21):
    * an adult/minor trade lopsided in EITHER direction (or the pair's 3rd trade in 30 days) opens a system case with
@@ -1885,14 +1885,14 @@ export const LIVE = {
    * Child Safety page's Trading bullet. Not a Terms change; LEGAL_LAST_UPDATED moves for Child Safety. Flip the day row
    * 21 is applied (flip-switch.mjs tradeMinorSafety --day "<apply day>").
    */
-  tradeMinorSafety: false,
+  tradeMinorSafety: true,
   /**
    * legal-coverage-1114: the practice bots are played by the app on the device and make no AI call (no client code
    * calls practice_rate or OpenAI; LIVE.practiceAi stays off). Turns on one sentence in Privacy's Practice Games item,
    * shown only while practiceAi is off. True of every shipped build today: flip at the next site publish with
    * --day "<publish day>". Off again if practiceAi (or any AI call from practice) goes live.
    */
-  practiceNoAi: false,
+  practiceNoAi: true,
   /**
    * photosens-u62 (legal-1113 AUDIT-RR-u62.md item 3): update 62 of the app (int/rr-u62) brings the online role reveal
    * (B Spotlight): the room goes dark, a lamp's beam sweeps, one flicker, the spotlight slams on with a soft bloom, a red
@@ -1929,7 +1929,7 @@ export const UNCONFIRMED_SIGNUPS_DAY = 'November 13, 2026'
 export const RETENTION_SWEEP_DAY = 'November 13, 2026'
 
 /** LIVE.modCoverHold's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after 20261231998700 is live). Never earlier than November 11, 2026. */
-export const MOD_COVER_HOLD_DAY = 'November 11, 2026'
+export const MOD_COVER_HOLD_DAY = 'November 14, 2026'
 
 /** LIVE.economyValuesL's day in Transparency's rule changes: the New York day 20261225200000 was applied (live 20261111040938). */
 export const ECONOMY_VALUES_L_DAY = 'November 10, 2026'
@@ -2137,7 +2137,7 @@ export const CHAT_MILD_MASK_DAY = 'November 11, 2026'
 /** LIVE.rarefindsOffers's (and LIVE.rarefindsOfferPush's) day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the server file 20261231999981_rarefinds_offers_1111 is applied and the site goes up with it on. Never earlier than November 11, 2026. */
 export const RAREFINDS_OFFERS_DAY = 'November 13, 2026'
 /** LIVE.drawingMinorRooms's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on. Never earlier than November 11, 2026. */
-export const DRAWING_MINOR_ROOMS_DAY = 'November 11, 2026'
+export const DRAWING_MINOR_ROOMS_DAY = 'November 14, 2026'
 
 /** LIVE.memberLoyalty's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED: the day the site goes up with it on (after member_loyalty_1111 is live and the app update shows it). Never earlier than November 11, 2026. */
 export const MEMBER_LOYALTY_DAY = 'November 13, 2026'
