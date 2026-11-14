@@ -908,10 +908,12 @@ const Privacy: React.FC = () => {
               ? "Apart from that and the notifications in Social Notifications above, the only other push notifications we send go to our moderators' phones when a new report comes in, a report is waiting past its time or our safety checks flag something, and to SpySocial's developer's phone when our fair-play, economy or email checks need him."
               : "Apart from that, the only other push notifications we send go to our moderators' phones when a new report comes in."}
             {PRIVACY.modCoverHold
-              ? " A community moderator's phone also gets one when a safety report SpySocial's developer hasn't opened for 15 minutes needs a hold; it says only that, never which report, who or what was said."
+              ? " A community moderator's phone also gets one when a safety report SpySocial's developer hasn't opened for 15 minutes needs a hold; it says only that a safety case needs a hold, with nothing about the report or the case: not which report, its kind or case number, who is in it or what was said."
               : ''}{' '}
-            They pass through Expo's push service and Apple's or Google's, and say
-            only what kind of report it is and its case number, never a player's name or what was said. The developer's own alerts say what kind
+            {/* legal-flips-check-1114: with modCoverHold on, the next sentence says it covers the other report notifications, so it can't be read as contradicting the hold notification above. */}
+            {PRIVACY.modCoverHold
+              ? "All of these pass through Expo's push service and Apple's or Google's. Every other report notification says only what kind of report it is and its case number, never a player's name or what was said."
+              : "They pass through Expo's push service and Apple's or Google's, and say only what kind of report it is and its case number, never a player's name or what was said."} The developer's own alerts say what kind
             of alert it is and its counts, and one about trades can name the account it's about.
             {PRIVACY.fcmAutoInit
               ? `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. We receive that address only when you allow notifications, as described above.`
