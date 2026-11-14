@@ -105,7 +105,9 @@ const Ledger: React.FC = () => {
     ],
   })), [supply, names])
 
-  const beta = chain === 'beta'
+  // The beta box from the first paint until the files name another chain, as the Archive's notice does (lib/archive
+  // BETA_UNTIL_TOLD): it used to arrive with current.json and push the whole page down (archive-qa-1114: CLS 0.23 at 390 px).
+  const beta = chain === null ? !missing && !LIVE.launchSite : chain === 'beta'
   const days = summary ? [...summary.days].reverse() : []
   const newest = days[0]
   const shownDays = allDays ? days : days.slice(0, WINDOW)
@@ -186,7 +188,13 @@ const Ledger: React.FC = () => {
 
       <H2>The ledger today</H2>
       {missing && <P>The ledger's files aren't published yet. They appear here after the first daily update.</P>}
-      {!missing && !summary && <P>Loading…</P>}
+      {/* A screen tall while the files load, so the Supply heading below isn't on screen and pushed away when the
+          day table arrives (archive-qa-1114: CLS 0.23 at 390 px). */}
+      {!missing && !summary && (
+        <div style={{ minHeight: '100vh' }}>
+          <P>Loading…</P>
+        </div>
+      )}
       {summary && !summary.ok && (
         <P>
           <B>The published copy doesn't check out:</B> {summary.problem}. Its files are held back until we find out why.

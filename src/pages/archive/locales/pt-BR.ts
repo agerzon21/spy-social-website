@@ -82,6 +82,7 @@ const ptBR: ArchiveStrings = {
     clear: 'Limpar filtros',
     count: (shown: string, total: string) => `${shown} de ${total}`,
     none: 'Nenhum Único corresponde a esses filtros.',
+    noneYet: 'Nenhum Único foi cunhado ainda. Cada um aparece aqui assim que é cunhado.',
     page: (n: string, of: string) => `Página ${n} de ${of}`,
     prev: 'Anterior',
     next: 'Próxima',

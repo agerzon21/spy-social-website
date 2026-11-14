@@ -87,6 +87,7 @@ const ar: ArchiveStrings = {
     clear: 'مسح التصفية',
     count: (shown: string, total: string) => `${RLM}${shown} من ${total}`,
     none: 'لا توجد قطعة فريدة تطابق هذه التصفية.',
+    noneYet: 'لم تُصكّ أي قطعة فريدة بعد. تظهر كل قطعة هنا فور صكّها.',
     page: (n: string, of: string) => `الصفحة ${n} من ${of}`,
     prev: 'السابق',
     next: 'التالي',

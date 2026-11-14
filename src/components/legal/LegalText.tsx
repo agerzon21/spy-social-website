@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import Link from '../SiteLink'
 import s from './legal.module.css'
 
 // The text pieces of the legal and safety pages. Their look is the theme's (src/theme), as plain CSS
@@ -31,6 +31,10 @@ export const Numbered = ({ children }: { children: ReactNode }) => (
 /** Bold words inside a sentence, such as a button's name. */
 export const B = ({ children }: { children: ReactNode }) => <span className={s.bold}>{children}</span>
 
+/**
+ * A link to one of the site's pages by its canonical path. Through SiteLink: on the Archive's host (which serves the
+ * Ledger and Transparency pages too) '/terms' is www's full address, not archive.spysocial.app/terms and a redirect.
+ */
 export const PageLink = ({ to, children }: { to: string; children: ReactNode }) => (
   <Link to={to} className={s.link}>
     {children}

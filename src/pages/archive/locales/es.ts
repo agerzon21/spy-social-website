@@ -82,6 +82,7 @@ const es: ArchiveStrings = {
     clear: 'Borrar filtros',
     count: (shown: string, total: string) => `${shown} de ${total}`,
     none: 'Ningún Único coincide con estos filtros.',
+    noneYet: 'Todavía no se ha acuñado ningún Único. Cada uno aparece aquí en cuanto se acuña.',
     page: (n: string, of: string) => `Página ${n} de ${of}`,
     prev: 'Anterior',
     next: 'Siguiente',

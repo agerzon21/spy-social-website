@@ -200,7 +200,7 @@ const ArchiveBrowse = () => {
           ) : null}
         </div>
 
-        {state === 'ok' && !shown.length ? <p className={s.empty}>{b.none}</p> : null}
+        {state === 'ok' && !shown.length ? <p className={s.empty}>{copies.length ? b.none : b.noneYet}</p> : null}
         {state === 'loading' ? (
           <ul className={s.grid} aria-hidden>
             {Array.from({ length: 8 }, (_, i) => (

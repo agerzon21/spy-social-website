@@ -149,8 +149,10 @@ const ArchiveItem = () => {
               {st.season && st.season !== st.set ? <span>{st.season}</span> : null}
             </div>
             <h1 className={s.itemTitle}>{name}</h1>
-            {code ? <p className={s.codename}>“{code}”</p> : null}
-            {line ? <p className={s.itemLine}>{line}</p> : null}
+            {code ? <p className={s.codename}>“{code}”</p> : data ? null : <p className={s.codename} aria-hidden>{'\u00a0'}</p>}
+            {/* Two lines kept for the item's line while its words load (every Unique's runs about two lines), so the
+                serial, the status and the certificate don't jump down when it arrives (archive-qa-1114: CLS up to 0.12 at 1440). */}
+            {line ? <p className={s.itemLine}>{line}</p> : lines ? null : <p className={s.itemLine} style={{ minHeight: '3em' }} aria-hidden />}
             <span className={s.bigSerial}>{serialText(serial)}</span>
 
             {u ? (
@@ -279,6 +281,9 @@ const ArchiveItem = () => {
                   ) : null}
                 </div>
               </section>
+            ) : state === 'loading' ? (
+              // The certificate's room while the copy loads (archive-qa-1114: the back link below jumped away on arrival).
+              <div className={`${s.cert} ${s.skeleton}`} style={{ height: 600 }} aria-hidden />
             ) : null}
           </div>
         </div>

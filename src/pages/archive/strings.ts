@@ -80,6 +80,8 @@ const en = {
     clear: 'Clear filters',
     count: (shown: string, total: string) => `${shown} of ${total}`,
     none: 'No Unique matches these filters.',
+    /** Nothing minted at all (a new chain, archive-qa-1114): not the filters' fault. */
+    noneYet: 'No Unique has been minted yet. Each one appears here the moment it is.',
     page: (n: string, of: string) => `Page ${n} of ${of}`,
     prev: 'Previous',
     next: 'Next',
@@ -217,6 +219,7 @@ const ru: ArchiveStrings = {
     clear: 'Сбросить фильтры',
     count: (shown: string, total: string) => `${shown} из ${total}`,
     none: 'Нет уникальных с такими фильтрами.',
+    noneYet: 'Уникальные ещё не выпущены. Каждый появится здесь сразу после выпуска.',
     page: (n: string, of: string) => `Страница ${n} из ${of}`,
     prev: 'Назад',
     next: 'Дальше',

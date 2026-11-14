@@ -84,6 +84,7 @@ const bn: ArchiveStrings = {
     clear: 'ফিল্টার মুছুন',
     count: (shown: string, total: string) => `${total}টির মধ্যে ${shown}টি`,
     none: 'এই ফিল্টারে কোনো অনন্য মেলেনি।',
+    noneYet: 'এখনো কোনো অনন্য মিন্ট হয়নি। প্রতিটি মিন্ট হওয়ার সঙ্গে সঙ্গে এখানে দেখা যাবে।',
     page: (n: string, of: string) => `পাতা ${n} / ${of}`,
     prev: 'আগের',
     next: 'পরের',

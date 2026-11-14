@@ -68,6 +68,24 @@
       ]
     },
     {
+      "source": "/archive/:dir(art|item|motion|scene|worn)/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/market-art/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
       "source": "/(join|reset-password|confirm-success|profile)(.*)",
       "headers": [
         {

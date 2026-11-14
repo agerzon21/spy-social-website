@@ -84,6 +84,7 @@ const hi: ArchiveStrings = {
     clear: 'फ़िल्टर हटाएँ',
     count: (shown: string, total: string) => `${total} में से ${shown}`,
     none: 'इन फ़िल्टर से कोई अद्वितीय आइटम मेल नहीं खाता।',
+    noneYet: 'अभी तक कोई अद्वितीय आइटम मिंट नहीं हुआ है। हर आइटम मिंट होते ही यहाँ दिखेगा।',
     page: (n: string, of: string) => `पेज ${n} / ${of}`,
     prev: 'पिछला',
     next: 'अगला',

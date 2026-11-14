@@ -84,6 +84,7 @@ const id: ArchiveStrings = {
     clear: 'Hapus filter',
     count: (shown: string, total: string) => `${shown} dari ${total}`,
     none: 'Tidak ada Unik yang cocok dengan filter ini.',
+    noneYet: 'Belum ada Unik yang dicetak. Setiap Unik muncul di sini begitu dicetak.',
     page: (n: string, of: string) => `Halaman ${n} dari ${of}`,
     prev: 'Sebelumnya',
     next: 'Berikutnya',

@@ -79,6 +79,7 @@ const zh: ArchiveStrings = {
     clear: '清除筛选',
     count: (shown: string, total: string) => `${shown} / ${total}`,
     none: '没有符合这些筛选条件的唯一物品。',
+    noneYet: '还没有铸造任何唯一物品。每件铸造后会立即出现在这里。',
     page: (n: string, of: string) => `第 ${n} / ${of} 页`,
     prev: '上一页',
     next: '下一页',
