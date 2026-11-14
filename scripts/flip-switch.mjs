@@ -37,6 +37,9 @@ const SWITCHES = {
   tradeWatchEvidence: { live: [['tradeWatchEvidence', true]], day: 'TRADE_WATCH_EVIDENCE_DAY', step: 'row 24 TWE' },
   tradeMinorSafety: { live: [['tradeMinorSafety', true]], day: 'TRADE_MINOR_SAFETY_DAY', step: 'row 21 (999957)' },
   practiceNoAi: { live: [['practiceNoAi', true]], day: 'PRACTICE_NO_AI_DAY', step: 'next publish' },
+  // legal-cov2-1114: each the day its server file is applied (999925 = NEXT-BATCH row 23; 999938 = row AG, before Dec 7).
+  modGuard: { live: [['modGuard', true]], day: 'MOD_GUARD_DAY', step: 'row 23 (999925)' },
+  resetArchiveForget: { live: [['resetArchiveForget', true]], day: 'RESET_ARCHIVE_FORGET_DAY', step: 'row AG (999938)' },
   // photosens-u62: Beta 3 day (Tue Nov 24) 7:24 PM, after role_reveal_online is 'everyone'. Pass --day "November 24, 2026".
   appU62: { live: [['appU62', true]], day: 'APP_U62_DAY', step: 'beta3' },
 }

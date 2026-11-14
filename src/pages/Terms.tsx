@@ -489,7 +489,7 @@ const Terms: React.FC = () => {
             once a second check agrees. If that removal decides the game, it ends with no winner and doesn't count. A
             drawing that sexualizes a child ends the account, with no appeal, and is reported to NCMEC. Gore and
             monsters are not against the drawing rules. In a private room, the check does nothing by itself about
-            anything less serious. A person reviews every permanent decision within 24 hours. If you think the check
+            anything less serious{LIVE.safetyFacts1114 ? ", except that where a player under 18 or one who hasn't told us their age can see the drawing, a sexual drawing is taken off the board at once and a person decides the rest" : ''}. A person reviews every permanent decision within 24 hours. If you think the check
             got it wrong, you can appeal by email with the code in the notice (see Appeals below), and a person will
             look at it. Other decisions on reports and penalties are made by a person.
           </>

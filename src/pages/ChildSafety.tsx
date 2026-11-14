@@ -172,6 +172,8 @@ const ChildSafety: React.FC = () => {
           is against our Community Rules.
           {LIVE.childSafetyHolds &&
             " Messages that can be part of grooming, and explicit sexual talk even when it was refused, in rooms and party chats with a player under 18, are flagged automatically for a person to read."}
+          {LIVE.safetyFacts1114 &&
+            " When a player under 18 or one who hasn't told us their age joins a room, earlier messages there that would be blocked now are hidden from everyone while they're there."}
           {LIVE.safetyAnswers1106 &&
             " What adults write in rooms and party chats with a player who told us they're under 18 may also be read, after it's sent, by an automated check (OpenAI's models) that looks for sexual talk aimed at a younger player and flags it for a person to read. It never blocks or changes a message, and what players under 18 or players who haven't told us their age write is never sent to it."}
         </li>
@@ -191,7 +193,10 @@ const ChildSafety: React.FC = () => {
         {drawings ? (
           <li>
             <B>Drawing check:</B> Spy Sketch drawing turns in a public room are checked automatically as they're
-            played, and so is a drawing reported in a private room. When the check finds a drawing that sexualizes a
+            played, and so is a drawing reported in a private room.
+            {LIVE.drawingMinorRooms && LIVE.safetyFacts1114 &&
+              " In a private room, drawing turns are checked too whenever a player under 18 or one who hasn't told us their age can see them (turns drawn before they arrived included), except the turns of a player who told us they're under 18, and their lines are never sent to the check from there. A sexual drawing in such a room is taken off the board at once and goes to a person."}{' '}
+            When the check finds a drawing that sexualizes a
             child, in any room, the drawing is taken off the board, the account is banned with no appeal, and the drawing is reported to NCMEC. A turn can
             go unchecked if the check can't run at that moment; a report of it still goes to a person.
             {drawingCheckTestersOnly(LIVE) &&

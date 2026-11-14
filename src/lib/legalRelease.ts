@@ -1914,6 +1914,39 @@ export const LIVE = {
    * reveal goes back to 'off' or 'owner_testers' (flip-switch.mjs appU62 --undo).
    */
   appU62: false,
+  /**
+   * legal-cov2-1114 (app repo server files live Sat Nov 14: 20261231999944 drawing_minor_room_strike, 999942
+   * drawing_minor_prior, 999936 child_safety_review_fixes, 999931 minor_join_drawing_checks, 999940
+   * minor_history_withhold v2, 999941 cover_hold_followups, 999937 minor_guards). Text true of the live server today:
+   * Privacy's Drawing Checks (in a private room a minor can see: a sexual drawing comes off at once, a person decides the
+   * rest; a minor's lines are left out of the grey context and such turns go to a person; turns drawn before a minor
+   * arrived are checked when they arrive), Data Retention (a child-safety case's drawings kept at least 1 year), Age
+   * (earlier lines that would be refused now are hidden while a minor is there), the reputation paragraph (a
+   * moderator's safety hold takes nothing off until upheld; the held player's drawings get the detailed check), Accounts
+   * We Set Up for Creators (only a certainly adult account is set up: no birth year waits, under 18 never); Terms 8's
+   * private-room drawing line; Child Safety's chat-filter and drawing-check bullets. Not a material Terms change (it
+   * names a removal the Community Rules already allow): no TERMS_PUBLISHED or terms_version. Off only if those files
+   * are rolled back. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  safetyFacts1114: true,
+  /**
+   * legal-cov2-1114, STAGED OFF: app repo server file 20261231999925_mod_guard_1114 (NEXT-BATCH row 23, not applied).
+   * The moderators' read log (mod_reads: each open of a case, a player's record, a safety-hold card or the pack list;
+   * deleted after 1 year by mod-reads-prune), the burst guard (past 20 sanctions in 10 minutes or 40 in an hour a
+   * moderator's writes pause until the owner resumes them; owner_mod_undo_since) and the pack recusal (a friend's or
+   * another moderator's pack). Turns on one passage in Privacy's community-moderator paragraph. Flip the day row 23 is
+   * applied: node scripts/flip-switch.mjs modGuard --day "<apply day>". Off again if 999925 is rolled back.
+   */
+  modGuard: false,
+  /**
+   * legal-cov2-1114, STAGED OFF: app repo server file 20261231999938_reset_archive_forget_1114 (NEXT-BATCH row AG, not
+   * applied; must be live before Window W, Mon Dec 7). Deleting an account forgets it in the reset's server-only copies
+   * (its own rows deleted, its id taken out of the rest; trade_watch_evidence untouched). Turns on one bullet in
+   * AfterDeletion (Privacy and Delete Account). Flip the day the file is applied: node scripts/flip-switch.mjs
+   * resetArchiveForget --day "<apply day>". IF IT IS NOT LIVE BY DEC 7: publish dexp-1114/POLICY-DRAFT.md D2 instead
+   * (the reset copies would keep a deleted account's rows, and "we delete your account's secret" would be untrue).
+   */
+  resetArchiveForget: false,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -1926,6 +1959,11 @@ export const TRADE_MINOR_SAFETY_DAY = 'November 14, 2026'
 /** LIVE.exportOthersAge's day in PRIVACY_LAST_UPDATED: the day 20261231999943_data_export_policy_1114 went live and the site went up with it on. */
 export const EXPORT_OTHERS_AGE_DAY = 'November 14, 2026'
 export const PRACTICE_NO_AI_DAY = 'November 14, 2026'
+/** legal-cov2-1114: LIVE.safetyFacts1114's day (the Nov 14 child-safety server files' apply day and the site's publish). */
+export const SAFETY_FACTS_1114_DAY = 'November 14, 2026'
+/** LIVE.modGuard's / LIVE.resetArchiveForget's days: each its server file's apply day. Set by flip-switch (--day). Never earlier than November 15, 2026. */
+export const MOD_GUARD_DAY = 'November 15, 2026'
+export const RESET_ARCHIVE_FORGET_DAY = 'November 15, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
@@ -2208,6 +2246,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
+  : LIVE.safetyFacts1114
+    ? SAFETY_FACTS_1114_DAY // Terms 8's private-room drawing line and Child Safety's chat and drawing bullets (legal-cov2-1114)
   : LIVE.reputationHoldCap
     ? REPUTATION_HOLD_CAP_DAY // Terms 13: a fair-play hold caps the reputation at Good (legal-coverage-1114)
   : LIVE.tradeMinorSafety
@@ -2314,6 +2354,12 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.modGuard
+    ? MOD_GUARD_DAY // the community moderators' read log, burst pause and pack recusal (legal-cov2-1114, 999925)
+  : LIVE.resetArchiveForget
+    ? RESET_ARCHIVE_FORGET_DAY // AfterDeletion: a deletion forgets the account in the Dec 7 reset copies (legal-cov2-1114, 999938)
+  : LIVE.safetyFacts1114
+    ? SAFETY_FACTS_1114_DAY // Drawing Checks, Data Retention, Age, reputation and creator invites: the Nov 14 child-safety files (legal-cov2-1114)
   : LIVE.reputationHoldCap
     ? REPUTATION_HOLD_CAP_DAY // Safety Information's reputation: a fair-play hold caps it at Good (legal-coverage-1114)
   : LIVE.exportOthersAge

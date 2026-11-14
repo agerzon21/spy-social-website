@@ -197,6 +197,13 @@ export const AfterDeletionList = ({ onDeletePage }: { onDeletePage?: boolean } =
         codes no longer point at anyone.
       </li>
     )}
+    {/* legal-cov2-1114: LIVE.resetArchiveForget, app server 20261231999938_reset_archive_forget_1114 (staged; before Dec 7). */}
+    {PRIVACY.resetArchiveForget && (
+      <li>
+        The server-only copies of test-phase records we keep from the December 7, 2026 reset stay with your account taken
+        out of them: its own rows there (such as your collectibles' secret) are deleted.
+      </li>
+    )}
     <li>Copies in our database backups are deleted as those backups expire, within 30 days.</li>
   </UnorderedList>
 )
