@@ -1894,6 +1894,15 @@ export const LIVE = {
    */
   practiceNoAi: true,
   /**
+   * dexp-1114 (app repo server file 20261231999943_data_export_policy_1114, LIVE Nov 14 as 20261114185411; _data_export
+   * prosrc d6226809; PLAN B16): the data export leaves out whether another player was under 18 or had not told us their
+   * age (trades.minor_rules and the settle step's copy, party_messages.minor_present, a sent report's urgency fields) and
+   * the December 7, 2026 reset's server-only copies (mint_beta_archive, launch_locks_archive). Turns on the B16 wording in
+   * Your Rights' "A copy of your data". A server fact for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   * Off again only if 999943 is rolled back.
+   */
+  exportOthersAge: true,
+  /**
    * photosens-u62 (legal-1113 AUDIT-RR-u62.md item 3): update 62 of the app (int/rr-u62) brings the online role reveal
    * (B Spotlight): the room goes dark, a lamp's beam sweeps, one flicker, the spotlight slams on with a soft bloom, a red
    * neon rim strikes on, with sound and Heavy haptics. Built to at most two flash pairs in any second, nothing strobes
@@ -1914,6 +1923,8 @@ export const PRACTICE_RESULTS_DAY = 'November 13, 2026'
 export const REPUTATION_HOLD_CAP_DAY = 'November 14, 2026'
 export const TRADE_WATCH_EVIDENCE_DAY = 'November 14, 2026'
 export const TRADE_MINOR_SAFETY_DAY = 'November 14, 2026'
+/** LIVE.exportOthersAge's day in PRIVACY_LAST_UPDATED: the day 20261231999943_data_export_policy_1114 went live and the site went up with it on. */
+export const EXPORT_OTHERS_AGE_DAY = 'November 14, 2026'
 export const PRACTICE_NO_AI_DAY = 'November 14, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
@@ -2305,6 +2316,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.reputationHoldCap
     ? REPUTATION_HOLD_CAP_DAY // Safety Information's reputation: a fair-play hold caps it at Good (legal-coverage-1114)
+  : LIVE.exportOthersAge
+    ? EXPORT_OTHERS_AGE_DAY // A copy of your data: other players' under-18 marks and the Dec 7 reset copies left out (dexp-1114, PLAN B16)
   : LIVE.tradeWatchEvidence
     ? TRADE_WATCH_EVIDENCE_DAY // Trades + retention: child-safety trade evidence kept at least 1 year (legal-coverage-1114)
   : LIVE.tradeMinorSafety
