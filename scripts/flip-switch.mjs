@@ -37,6 +37,8 @@ const SWITCHES = {
   tradeWatchEvidence: { live: [['tradeWatchEvidence', true]], day: 'TRADE_WATCH_EVIDENCE_DAY', step: 'row 24 TWE' },
   tradeMinorSafety: { live: [['tradeMinorSafety', true]], day: 'TRADE_MINOR_SAFETY_DAY', step: 'row 21 (999957)' },
   practiceNoAi: { live: [['practiceNoAi', true]], day: 'PRACTICE_NO_AI_DAY', step: 'next publish' },
+  // photosens-u62: Beta 3 day (Tue Nov 24) 7:24 PM, after role_reveal_online is 'everyone'. Pass --day "November 24, 2026".
+  appU62: { live: [['appU62', true]], day: 'APP_U62_DAY', step: 'beta3' },
 }
 
 const args = process.argv.slice(2)

@@ -172,6 +172,19 @@ const Terms: React.FC = () => {
         Anyone who has the code or the link can join, so share it only with people you want to play with. The host of a private room can remove
         a player, who then can't come back unless the host allows it.
       </P>
+      {LIVE.appU62 && (
+        <>
+          <H3>Flashing light</H3>
+          <P>
+            Some moments in SpySocial, such as the role reveal, use a dark screen, a moving beam of bright light, quick
+            flashes, sound and vibration. We keep the flashes under the usual guideline for flashing light (no more than
+            two in any second, and nothing strobes), but no design suits everyone. If you or anyone you play with has had a
+            seizure or is sensitive to flashing light, take care, and turn on your device's Reduce Motion setting before
+            you play (in a browser, its reduced-motion setting): the app follows it and shows the role reveal as a short
+            fade, without the light effects.
+          </P>
+        </>
+      )}
       <H3>Fair play</H3>
       <P>
         Bluffing and lying about your role are part of the game, and never a reason to report anyone. Cheating

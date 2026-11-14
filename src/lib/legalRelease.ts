@@ -1893,6 +1893,18 @@ export const LIVE = {
    * --day "<publish day>". Off again if practiceAi (or any AI call from practice) goes live.
    */
   practiceNoAi: false,
+  /**
+   * photosens-u62 (legal-1113 AUDIT-RR-u62.md item 3): update 62 of the app (int/rr-u62) brings the online role reveal
+   * (B Spotlight): the room goes dark, a lamp's beam sweeps, one flicker, the spotlight slams on with a soft bloom, a red
+   * neon rim strikes on, with sound and Heavy haptics. Built to at most two flash pairs in any second, nothing strobes
+   * (WCAG 2.3.1; rrA11yCardU62.test.tsx counts them); under the system's Reduce Motion (prefers-reduced-motion on web,
+   * read at launch by the kit's useReducedMotion) revealRunFor plays a 150 ms cross-fade, no cinematic. Turns on Terms
+   * 4's "Flashing light" paragraph. Not a material change (a notice, no new duty): no TERMS_PUBLISHED or terms_version;
+   * LEGAL_LAST_UPDATED moves (below). Flip the hour app_config role_reveal_online goes to 'everyone' (Beta 3, Tue Nov 24),
+   * never on the preview OTA alone: node scripts/flip-switch.mjs appU62 --day "November 24, 2026". Off again if the
+   * reveal goes back to 'off' or 'owner_testers' (flip-switch.mjs appU62 --undo).
+   */
+  appU62: false,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -1906,6 +1918,9 @@ export const PRACTICE_NO_AI_DAY = 'November 14, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
+
+/** LIVE.appU62's day in LEGAL_LAST_UPDATED: the day role_reveal_online goes to 'everyone' (Beta 3). Set by flip-switch (--day). Never earlier than November 24, 2026. */
+export const APP_U62_DAY = 'November 24, 2026'
 
 /** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
 export const UNCONFIRMED_SIGNUPS_DAY = 'November 13, 2026'
@@ -2180,6 +2195,8 @@ export const CREATOR_INVITE_DATA_DAY = 'November 14, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.appU62
+    ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
   : LIVE.reputationHoldCap
     ? REPUTATION_HOLD_CAP_DAY // Terms 13: a fair-play hold caps the reputation at Good (legal-coverage-1114)
   : LIVE.tradeMinorSafety
