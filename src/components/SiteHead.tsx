@@ -25,8 +25,8 @@ const UNLISTED = new Set<PageKey>([
   // The collectibles ledger is a public record to check, not a page to find in search.
   'ledger',
   ...(LIVE.roadmap ? [] : (['roadmap'] as const)),
-  // The Beta 2 page is over at the launch (LIVE.launchSite sends /beta home).
-  ...(LIVE.launchSite ? (['beta'] as const) : []),
+  // The Beta 2 page is over once LIVE.beta2Off or LIVE.launchSite sends /beta home.
+  ...(LIVE.launchSite || LIVE.beta2Off ? (['beta'] as const) : []),
 ])
 
 /** Which page a path is, for its title. The home page takes the site's own title, anything unknown notFound's. */

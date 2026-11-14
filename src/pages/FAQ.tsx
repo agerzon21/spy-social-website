@@ -105,6 +105,10 @@ const fold = (text: string) => text.toLocaleLowerCase().normalize('NFD').replace
 
 const lines = (item: HelpItem) => item.a.filter(keep)
 
+/** AU22: the beta rewards answer is off the site from Nov 15 until the launch version's words bring it back. */
+const BETA_ANSWER_OFF = LIVE.beta2Off && !LIVE.launchSite
+const onSite = (item: HelpItem) => !(BETA_ANSWER_OFF && item.id === 'tester-rewards')
+
 function matches(item: HelpItem, section: HelpSection, words: string[]): boolean {
   const hay = fold([item.q, section.title, ...lines(item)].map(plain).join(' '))
   return words.every((w) => hay.includes(w))
@@ -131,7 +135,10 @@ const Answer = ({ item }: { item: HelpItem }): ReactNode => {
 const FAQ = () => {
   const { lang } = useLang()
   const help = useHelp(lang)
-  const sections = useMemo(() => (help ? help.sections(OPTS) : []), [help])
+  const sections = useMemo(
+    () => (help ? help.sections(OPTS).map((sec) => ({ ...sec, items: sec.items.filter(onSite) })) : []),
+    [help],
+  )
   // /support?q=refund opens the page on that search (a link support can send).
   // (The build's HTML has no search: vercel.json serves a search link the plain app.)
   const [query, setQuery] = useState(() => (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('q')?.slice(0, 80) ?? ''))

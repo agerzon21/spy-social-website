@@ -55,7 +55,7 @@ const Footer = () => {
   const play: FooterLinkItem[] = [
     ...(showBrowser ? [{ label: f.browser, href: PLAY_URL }] : []),
     { label: f.whatsNew, to: '/whats-new' },
-    ...(betaClosed || LIVE.launchSite ? [] : [{ label: f.beta, to: '/beta' }]),
+    ...(betaClosed || LIVE.launchSite || LIVE.beta2Off ? [] : [{ label: f.beta, to: '/beta' }]),
     // The roadmap, once the owner has approved it (LIVE.roadmap).
     ...(LIVE.roadmap ? [{ label: f.roadmap, to: '/roadmap' }] : []),
     // The Black Market's prices (LIVE.marketSite).

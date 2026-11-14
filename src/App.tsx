@@ -70,7 +70,7 @@ const PRERENDERED: Record<string, { page: { preload: () => Promise<void> } | nul
   '/support': { page: FAQ, src: 'src/pages/FAQ.tsx' },
   '/whats-new': { page: WhatsNew, src: 'src/pages/WhatsNew.tsx' },
   '/roadmap': { page: Roadmap, src: 'src/pages/Roadmap.tsx' },
-  ...(LIVE.launchSite ? {} : { '/beta': { page: Beta, src: 'src/pages/Beta.tsx' } }),
+  ...(LIVE.launchSite || LIVE.beta2Off ? {} : { '/beta': { page: Beta, src: 'src/pages/Beta.tsx' } }),
   '/delete-account': { page: DeleteAccount, src: 'src/pages/DeleteAccount.tsx' },
   // /join alone (no code: the page says to open an invite); a room's /join/<code> stays the plain app.
   '/join': { page: Join, src: 'src/pages/Join.tsx' },
@@ -138,8 +138,8 @@ function App({ helmetContext }: { helmetContext?: object } = {}) {
               <Route path="/help" element={<Navigate to="/support" replace />} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
-              {/* After Beta 2, the launch version sends the old playtest link home (LIVE.launchSite). */}
-              <Route path="/beta" element={LIVE.launchSite ? <Navigate to="/" replace /> : <Layout><Beta /></Layout>} />
+              {/* After Beta 2, the old playtest link goes home (LIVE.beta2Off from Nov 15, then LIVE.launchSite). */}
+              <Route path="/beta" element={LIVE.launchSite || LIVE.beta2Off ? <Navigate to="/" replace /> : <Layout><Beta /></Layout>} />
               {/* The plain reminder page answers /hello until the launch; from the launch flip its file is this app's, which goes home. */}
               <Route path="/hello" element={<Navigate to="/" replace />} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />

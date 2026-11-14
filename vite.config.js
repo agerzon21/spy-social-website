@@ -13,8 +13,8 @@ const ORIGIN = 'https://www.spysocial.app';
  * with LIVE.transparencyPage (those routes exist only while they're on). public/sitemap.xml lists every other page.
  */
 const SWITCHED_PAGES = [
-    // The Beta 2 playtester page: listed until the launch version (LIVE.launchSite sends /beta home); '!' means off.
-    { path: '/beta', live: '!launchSite' },
+    // The Beta 2 playtester page: listed until LIVE.beta2Off or the launch version (LIVE.launchSite) sends /beta home.
+    { path: '/beta', live: 'BETA2_PAGE' },
     { path: '/roadmap', live: 'roadmap' },
     { path: '/game-night-rules', live: 'gameNightRules' },
     { path: '/transparency', live: 'transparencyPage' },
@@ -73,7 +73,11 @@ function switchedSitemap() {
         },
         async writeBundle() {
             const legal = (await siteModule(root, 'src/lib/legalRelease.ts'));
-            const LIVE = { ...legal.LIVE, ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT };
+            const LIVE = {
+                ...legal.LIVE,
+                ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT,
+                BETA2_PAGE: legal.LIVE.launchSite !== true && legal.LIVE.beta2Off !== true,
+            };
             const on = SWITCHED_PAGES.filter((page) => page.live === null ? true : page.live.startsWith('!') ? LIVE[page.live.slice(1)] !== true : LIVE[page.live] === true);
             const hosts = HOST_PAGES.filter((h) => h.live.every((key) => LIVE[key] === true));
             if (!on.length && !hosts.length)
@@ -255,7 +259,7 @@ function pagePreviews() {
                 '/transparency': LIVE.transparencyPage === true,
                 '/game-night-rules': LIVE.gameNightRules === true,
                 '/ledger': LIVE.mintedCollectibles === true,
-                '/beta': LIVE.launchSite !== true,
+                '/beta': LIVE.launchSite !== true && LIVE.beta2Off !== true,
             };
             // A page's English title and description and its address (www's: the canonical one, on every host).
             const pageSwaps = (page) => {

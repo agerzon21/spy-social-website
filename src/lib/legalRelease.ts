@@ -1747,6 +1747,15 @@ export const LIVE = {
    */
   reputationExport: true,
   /**
+   * AU22 (Decided for you, To-Do; site-full-1106): the Beta 2 page and the help center's beta rewards answer come off
+   * the site before the store reviews start (Google Mon Nov 16, Apple Wed Nov 18). true: /beta goes to the home page and
+   * leaves the sitemap and search, the footer link goes, and help hides #tester-rewards until LIVE.launchSite, whose
+   * words ("they were added at the 2.2 launch") bring it back for the testers who got them. Terms and Privacy keep what
+   * they say about Beta 2's test and its data: those stay true whatever this says. A website fact: set in LIVE only.
+   * Push Sun Nov 15 (branch site/nov15-beta2-off).
+   */
+  beta2Off: true,
+  /**
    * App versions before 2.2 still connect: they had a profile photo (added until 2026-10-20: photosPrivate), and
    * Account is the icon at the bottom right of their home screen. (They have no chat and never call MyMemory.)
    */
