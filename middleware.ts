@@ -231,7 +231,9 @@ export default async function middleware(request: Request): Promise<Response> {
     headers.set('content-type', 'text/html; charset=utf-8')
     headers.set('cache-control', 'public, max-age=0, must-revalidate')
     headers.set('vary', 'User-Agent')
-    return new Response(request.method === 'HEAD' ? null : html, { status: 200, headers })
+    // A copy or item the ledger says doesn't exist (or a malformed address) answers 404 to crawlers, not a soft 404
+    // (archive-qa-1114); people still get the app's page, which says so and is noindex.
+    return new Response(request.method === 'HEAD' ? null : html, { status: preview.noindex ? 404 : 200, headers })
   } catch {
     return next()
   }
