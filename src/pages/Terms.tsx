@@ -1223,7 +1223,7 @@ const Terms: React.FC = () => {
           Intel and membership, but you can't play at Play Online tables, public rooms or game nights, trade, send gifts or use the
           Black Market, and private rooms are closed too unless the app tells you they stay open for you, until it
           recovers or we lift it. A reputation recovers on its own as older notes fade, and nothing older than 90 days
-          counts. We may also set a reputation by hand, for example after a case; you can ask us to review it at
+          counts.{LIVE.reputationHoldCap ? " While a fair-play hold is on your account (see section 9), your reputation can't rise and shows at most Good; once the hold ends, it is worked out again as if there had been no hold." : ''} We may also set a reputation by hand, for example after a case; you can ask us to review it at
           support@spysocial.app. As with a ban, a pass keeps renewing (and being charged) until you cancel it in the store.
         </P>
       )}

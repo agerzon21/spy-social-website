@@ -32,6 +32,11 @@ const SWITCHES = {
   creatorInviteData: { live: [['creatorInviteData', true]], day: 'CREATOR_INVITE_DATA_DAY', step: 'creator-invite-data-1113' },
   // help-u61-1113: Beta 3 day (Tue Nov 24), once u62 is on testers' phones and role_reveal_online is 'everyone'. Help only, no date.
   helpRoleReveal: { live: [['helpRoleReveal', true]], day: null, step: 'beta3' },
+  // legal-coverage-1114: each the day its server file is applied (practiceNoAi: the next site publish).
+  reputationHoldCap: { live: [['reputationHoldCap', true]], day: 'REPUTATION_HOLD_CAP_DAY', step: 'row 25 (999954)' },
+  tradeWatchEvidence: { live: [['tradeWatchEvidence', true]], day: 'TRADE_WATCH_EVIDENCE_DAY', step: 'row 24 TWE' },
+  tradeMinorSafety: { live: [['tradeMinorSafety', true]], day: 'TRADE_MINOR_SAFETY_DAY', step: 'row 21 (999957)' },
+  practiceNoAi: { live: [['practiceNoAi', true]], day: 'PRACTICE_NO_AI_DAY', step: 'next publish' },
 }
 
 const args = process.argv.slice(2)

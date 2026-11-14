@@ -127,6 +127,7 @@ const ChildSafety: React.FC = () => {
             <B>Trading:</B> players 13–17 can trade game items only for other items, only with friends they added in
             person{LIVE.tradeGatesNov2 ? ` with a Friend Code (friends can trade as soon as they're friends, so adding each other in person is what keeps strangers out; an account also has to be 7 days old and have played 3 counted games${LIVE.launchSite ? '' : ', though these two rules are off for everyone until December 7, 2026, while SpySocial is being tested'})` : ''}{LIVE.tradeNoLimits ? '' : ', at most 3 trades a day'}, with no gifts, no messages and no Intel. Trades with a player under 18 are
             checked for signs of grooming or unfair trades, and a person reviews what the checks flag.
+            {LIVE.tradeMinorSafety ? " A trade between an adult and a player under 18 that is lopsided either way, or a third trade between the same two within 30 days, opens a child-safety case that our developer is alerted to and reviews first. It doesn't block or undo the trade by itself." : ''}
             {LIVE.blackMarket ? ' Players under 18 can look at the Black Market but can\'t buy or sell there.' : ''}{' '}
             Nothing in SpySocial can be bought or sold for real money between players.
           </li>

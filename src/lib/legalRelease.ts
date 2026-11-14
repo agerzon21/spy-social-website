@@ -1855,10 +1855,54 @@ export const LIVE = {
    * true once spy_chat_intro_backfill_1112 runs, right after Friday's batch.
    */
   practiceResults: true,
+  /**
+   * legal-coverage-1114 (app repo server file 20261231999954_integrity_hold_reputation_1114, STAGED Nov 14, runsheet
+   * row 25): while an integrity (fair-play) hold is active, _reputation_refresh caps the stored tier at Good, never
+   * lets the score rise, and sets watched (drawings sampled at the risky rate); on release the next refresh computes as
+   * if there had been no hold. Turns on one clause and one sentence in Privacy's reputation paragraph (Privacy's
+   * "uses nothing else" is no longer true once the file is live) and one sentence in Terms 13. Not a material change
+   * (Terms 13 already says the record limits what you can do; this names one input): no TERMS_PUBLISHED or
+   * terms_version. A server switch: set in LIVE, never in PRIVACY_AHEAD. Flip the day row 25 is applied
+   * (node scripts/flip-switch.mjs reputationHoldCap --day "<apply day>"). Off only if the file is rolled back.
+   */
+  reputationHoldCap: false,
+  /**
+   * legal-coverage-1114 (app repo server file 20261127179500_trade_watch_evidence, STAGED, runsheet row 24 TWE, with the
+   * secfix-1114 TRUNCATE guard): every Trade Watch flag with a case or signal adult_minor is copied, with its trade, items,
+   * Intercepts, Intel lines and events, to public.trade_watch_evidence (server only, no client access, owner functions
+   * only), kept until the later of 1 year and 1 year after the case's NCMEC report; a trigger refuses deletes before
+   * then; Window W re-copies before the Dec 7 wipe (WE1 / WE2), so the copy outlives the reset and account deletion.
+   * NOTHING DELETES IT AFTER keep_until today: the Privacy wording promises a delete once no case, report or legal
+   * request needs it, so the owner (or a later purge job) must honour that. Turns on a Trades sentence and a retention
+   * sentence in Privacy. Flip the day row 24 is applied (flip-switch.mjs tradeWatchEvidence --day "<apply day>").
+   */
+  tradeWatchEvidence: false,
+  /**
+   * legal-coverage-1114 (app repo server file 20261231999957_trade_minor_safety_1114, STAGED Nov 14, runsheet row 21):
+   * an adult/minor trade lopsided in EITHER direction (or the pair's 3rd trade in 30 days) opens a system case with
+   * child_safety = true: the safety push to the developer, triage rank 0, child-safety evidence retention. Nothing
+   * blocks, reverses or slows a trade. Turns on one sentence in Privacy's Safety Information (trading) and one on the
+   * Child Safety page's Trading bullet. Not a Terms change; LEGAL_LAST_UPDATED moves for Child Safety. Flip the day row
+   * 21 is applied (flip-switch.mjs tradeMinorSafety --day "<apply day>").
+   */
+  tradeMinorSafety: false,
+  /**
+   * legal-coverage-1114: the practice bots are played by the app on the device and make no AI call (no client code
+   * calls practice_rate or OpenAI; LIVE.practiceAi stays off). Turns on one sentence in Privacy's Practice Games item,
+   * shown only while practiceAi is off. True of every shipped build today: flip at the next site publish with
+   * --day "<publish day>". Off again if practiceAi (or any AI call from practice) goes live.
+   */
+  practiceNoAi: false,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
 export const PRACTICE_RESULTS_DAY = 'November 13, 2026'
+
+/** legal-coverage-1114: the days LIVE.reputationHoldCap / tradeWatchEvidence / tradeMinorSafety / practiceNoAi go on (each its server file's apply day; practiceNoAi the publish day). Never earlier than November 14, 2026. */
+export const REPUTATION_HOLD_CAP_DAY = 'November 14, 2026'
+export const TRADE_WATCH_EVIDENCE_DAY = 'November 14, 2026'
+export const TRADE_MINOR_SAFETY_DAY = 'November 14, 2026'
+export const PRACTICE_NO_AI_DAY = 'November 14, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
@@ -2136,6 +2180,10 @@ export const CREATOR_INVITE_DATA_DAY = 'November 14, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.reputationHoldCap
+    ? REPUTATION_HOLD_CAP_DAY // Terms 13: a fair-play hold caps the reputation at Good (legal-coverage-1114)
+  : LIVE.tradeMinorSafety
+    ? TRADE_MINOR_SAFETY_DAY // Child Safety's Trading bullet: an adult/minor lopsided trade either way is a child-safety case (legal-coverage-1114)
   : !LIVE.giftsTradable
     ? GIFTS_BOUND_DAY // U0: Terms 9's codes and gifts stay with the account, Intel we add is ordinary Intel (gift-rules-1108)
   : LIVE.creatorInvites
@@ -2238,6 +2286,14 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.reputationHoldCap
+    ? REPUTATION_HOLD_CAP_DAY // Safety Information's reputation: a fair-play hold caps it at Good (legal-coverage-1114)
+  : LIVE.tradeWatchEvidence
+    ? TRADE_WATCH_EVIDENCE_DAY // Trades + retention: child-safety trade evidence kept at least 1 year (legal-coverage-1114)
+  : LIVE.tradeMinorSafety
+    ? TRADE_MINOR_SAFETY_DAY // Safety Information: an adult/minor lopsided trade either way is a child-safety case (legal-coverage-1114)
+  : LIVE.practiceNoAi
+    ? PRACTICE_NO_AI_DAY // Practice Games: the practice bots run on the device, no AI (legal-coverage-1114)
   : LIVE.launchTesterMail
     ? LAUNCH_TESTER_MAIL_DAY // the launch email to the 2.2 testers (store-privacy-1108): the day the site goes up with it on, before the send
   : LIVE.practiceAi
