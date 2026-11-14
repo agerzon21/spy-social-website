@@ -152,7 +152,8 @@ const MarketItem = () => {
           ) : null}
 
           {it.v ? (
-            <dl className={`${a.summary} ${s.itemStats}`}>
+            // A grid of figures, as on the Archive's item page (a <dl> may not hold <b> / <span> directly: axe definition-list).
+            <div className={`${a.summary} ${s.itemStats}`}>
               {(
                 [
                   [it.v[1], w.item.stats.trades7],
@@ -166,7 +167,7 @@ const MarketItem = () => {
                   <span>{label}</span>
                 </div>
               ))}
-            </dl>
+            </div>
           ) : null}
         </>
       ) : null}
