@@ -88,7 +88,7 @@ const Terms: React.FC = () => {
         </Text>
       </CalloutBox>
 
-      <H2>1. Accepting These Terms</H2>
+      <H2 id="accepting-these-terms">1. Accepting These Terms</H2>
       <P>
         By using SpySocial, or by tapping Agree when the app asks you to, you accept these Terms. Our{' '}
         <PageLink to="/rules">Community Rules</PageLink> are part of these Terms. Our{' '}
@@ -96,7 +96,7 @@ const Terms: React.FC = () => {
         accept these Terms, please don't use SpySocial.
       </P>
 
-      <H2>2. Who Can Use SpySocial</H2>
+      <H2 id="who-can-use-spysocial">2. Who Can Use SpySocial</H2>
       <P>
         You must be at least 13 years old to use SpySocial.{' '}
         {LIVE.ageGateEveryone
@@ -113,7 +113,7 @@ const Terms: React.FC = () => {
         where you live doesn't allow you to.
       </P>
 
-      <H2>3. Your Account</H2>
+      <H2 id="your-account">3. Your Account</H2>
       <H3>Guests and saved accounts</H3>
       <P>
         You can play as a guest without giving us an email address. A guest account lives on your device
@@ -157,7 +157,7 @@ const Terms: React.FC = () => {
         <li>Don't create another account to get around a limit, a penalty or someone's block.</li>
       </Bullets>
 
-      <H2>4. Playing SpySocial</H2>
+      <H2 id="playing-spysocial">4. Playing SpySocial</H2>
       <P>
         SpySocial is a party game of bluffing and deduction, with games such as Spy Talk and Spy Sketch. Every
         player uses their own device, whether you're in the same place or far apart.
@@ -237,7 +237,7 @@ const Terms: React.FC = () => {
         </>
       )}
 
-      <H2>5. Public Rooms and Events</H2>
+      <H2 id="public-rooms-and-events">5. Public Rooms and Events</H2>
       <P>
         {LIVE.onePool
           ? "Public rooms are Play Online's tables and the events we schedule; players can't create public rooms. They're open to players you don't know."
@@ -314,7 +314,7 @@ const Terms: React.FC = () => {
         them off.
       </P>
 
-      <H2>6. Your Content</H2>
+      <H2 id="your-content">6. Your Content</H2>
       <P>
         "Your content" means everything you add to SpySocial: your display name, username
         {photos ? ', profile photo' : ''} and any room code you choose; your chat messages, including in the spy
@@ -408,7 +408,7 @@ const Terms: React.FC = () => {
       <H3>Ideas and feedback</H3>
       <P>If you send us ideas or suggestions, we may use them freely, without owing you anything.</P>
 
-      <H2>7. Community Rules and Zero Tolerance</H2>
+      <H2 id="community-rules-and-zero-tolerance">7. Community Rules and Zero Tolerance</H2>
       <P>
         Our <PageLink to="/rules">Community Rules</PageLink> are part of these Terms. They apply to names,
         {photosSeen ? ' photos,' : ''} chat, drawings{LIVE.customPacks ? ', custom packs' : ''} and how you play, in
@@ -444,7 +444,7 @@ const Terms: React.FC = () => {
         <li>If you find a bug or a security problem, please tell us at <SupportEmail /> instead of using or sharing it.</li>
       </Bullets>
 
-      <H2>8. Reports, Moderation and Appeals</H2>
+      <H2 id="reports-moderation-and-appeals">8. Reports, Moderation and Appeals</H2>
       <H3>Reporting and blocking</H3>
       <P>
         You can report or block a player from their name in the app
@@ -568,7 +568,7 @@ const Terms: React.FC = () => {
         </P>
       )}
 
-      <H2>9. Packs, XP and Other Virtual Items</H2>
+      <H2 id="packs-xp-and-other-virtual-items">9. Packs, XP and Other Virtual Items</H2>
       <P>
         SpySocial has virtual items, such as packs of words and locations,
         {avatarsLive(LIVE) ? ' avatar items (hats, glasses, colours and the like, and celebrations),' : ''} XP, levels,
@@ -1124,7 +1124,7 @@ const Terms: React.FC = () => {
         </>
       )}
 
-      <H2>10. Translation and Other Services</H2>
+      <H2 id="translation-and-other-services">10. Translation and Other Services</H2>
       <H3>Translations</H3>
       <P>
         {LIVE.autoTranslation
@@ -1177,7 +1177,7 @@ const Terms: React.FC = () => {
         {LIVE.homeDiscord ? " (such as our Discord server, which runs under Discord's own terms and minimum age)" : ''}.
       </P>
 
-      <H2>11. Apple App Store and Google Play</H2>
+      <H2 id="apple-app-store-and-google-play">11. Apple App Store and Google Play</H2>
       <P>If you got SpySocial from Apple's App Store, these terms also apply:</P>
       <Bullets>
         <li>These Terms are between you and us, not Apple. We, not Apple, are responsible for SpySocial and its content.</li>
@@ -1207,14 +1207,14 @@ const Terms: React.FC = () => {
         apply. Google isn't a party to these Terms and isn't responsible for SpySocial.
       </P>
 
-      <H2>12. Changes to SpySocial</H2>
+      <H2 id="changes-to-spysocial">12. Changes to SpySocial</H2>
       <P>
         SpySocial keeps changing. We may add, change or remove features, game rules, packs and settings, and we
         may limit or stop parts of SpySocial, or all of it. If we stop SpySocial completely, we'll tell you in
         advance in the app or on our website where we can.
       </P>
 
-      <H2>13. Ending Your Use of SpySocial</H2>
+      <H2 id="ending-your-use-of-spysocial">13. Ending Your Use of SpySocial</H2>
       <P>
         You can stop using SpySocial at any time. To delete a saved account, go to Account, then Settings, then Delete Account; to
         delete a guest account, sign out of it. Our Privacy Policy explains what we keep afterwards.
@@ -1241,7 +1241,7 @@ const Terms: React.FC = () => {
         </P>
       )}
 
-      <H2>14. Disclaimers</H2>
+      <H2 id="disclaimers">14. Disclaimers</H2>
       <P>
         We work hard to make SpySocial fun, fair and safe, but we can't promise it will always work. SpySocial is
         provided "as is" and "as available". To the extent the law allows, we make no promises or warranties,
@@ -1250,7 +1250,7 @@ const Terms: React.FC = () => {
         for what other players say or do, in SpySocial or outside it.
       </P>
 
-      <H2>15. Limits on Our Liability</H2>
+      <H2 id="limits-on-our-liability">15. Limits on Our Liability</H2>
       <P>To the extent the law allows:</P>
       <Bullets>
         <li>we're not liable for indirect, incidental, special, consequential or punitive damages, or for lost profits, data, goodwill or virtual items, arising from SpySocial or these Terms; and</li>
@@ -1263,13 +1263,13 @@ const Terms: React.FC = () => {
         you have as a consumer where you live.
       </P>
 
-      <H2>16. Your Responsibility to Us</H2>
+      <H2 id="your-responsibility-to-us">16. Your Responsibility to Us</H2>
       <P>
         If you break these Terms or the law and someone makes a claim against us because of it, you agree to cover
         our reasonable losses and costs from that claim, to the extent the law allows.
       </P>
 
-      <H2>17. Disputes and Governing Law</H2>
+      <H2 id="disputes-and-governing-law">17. Disputes and Governing Law</H2>
       <P>
         If you have a problem with SpySocial, please contact us first at <SupportEmail />. Most problems can be
         solved that way. If we can't solve it within 30 days, either of us can take it further.
@@ -1282,7 +1282,7 @@ const Terms: React.FC = () => {
         law, you keep that right.
       </P>
 
-      <H2>18. Copyright Complaints</H2>
+      <H2 id="copyright-complaints">18. Copyright Complaints</H2>
       <P>
         If you believe something in SpySocial infringes your copyright, send a notice to our designated copyright
         agent{LLC_SINCE ? ` for ${OPERATOR.name}` : ''}, {OPERATOR.person}, by email to <SupportEmail />, or by mail to{' '}
@@ -1303,14 +1303,14 @@ const Terms: React.FC = () => {
         believe it was removed by mistake. We close the accounts of players who repeatedly infringe copyright.
       </P>
 
-      <H2>19. Changes to These Terms</H2>
+      <H2 id="changes-to-these-terms">19. Changes to These Terms</H2>
       <P>
         We may update these Terms from time to time. When we do, we'll change the date at the top. If a change is
         significant, we'll tell you in the app before it applies, and we may ask you to agree to the new Terms
         before you keep playing. If you don't agree to a change, stop using SpySocial and delete your account.
       </P>
 
-      <H2>20. General</H2>
+      <H2 id="general">20. General</H2>
       <Bullets>
         <li>These Terms, together with the Community Rules and any terms shown when you buy something, are the whole agreement between you and us about SpySocial, and replace any earlier version.</li>
         <li>If a court finds that part of these Terms can't be enforced, the rest still applies.</li>
@@ -1319,7 +1319,7 @@ const Terms: React.FC = () => {
         <li>If we translate these Terms, the English version applies where the versions differ.</li>
       </Bullets>
 
-      <H2>21. Contact Us</H2>
+      <H2 id="contact-us">21. Contact Us</H2>
       <P>
         For questions, complaints or legal notices about SpySocial, email <SupportEmail />
         {OPERATOR.name && OPERATOR.address ? `, or write to ${OPERATOR.name}, ${OPERATOR.address}` : ''}

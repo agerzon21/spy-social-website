@@ -25,8 +25,9 @@ import { B, Bullets, H2, P } from '../components/legal/LegalText'
 // This page reads PRIVACY, which can run ahead of the Terms (PRIVACY_AHEAD there).
 
 /** A list item that starts with a bold label. */
-const Item = ({ label, children }: { label: string; children: ReactNode }) => (
-  <li>
+/** `id`: a stable anchor (e.g. #drawing-checks, which the app links to); it stops just under the sticky header, as H2s do. */
+const Item = ({ label, id, children }: { label: string; id?: string; children: ReactNode }) => (
+  <li id={id} style={id ? { scrollMarginTop: '84px' } : undefined}>
     <Text as="span" fontWeight="600" color="ss.text">
       {label}:
     </Text>{' '}
@@ -132,7 +133,7 @@ const Privacy: React.FC = () => {
   return (
     <LegalPage english title="Privacy Policy for SpySocial" updated={<>Last Updated: {PRIVACY_LAST_UPDATED}</>}>
 
-      <H2>Introduction</H2>
+      <H2 id="introduction">Introduction</H2>
       <P>
         Welcome to SpySocial ("we," "our," or "us"). We respect your privacy and are committed to protecting your
         personal data. This privacy policy explains how we handle your personal information when you use our app
@@ -151,7 +152,7 @@ const Privacy: React.FC = () => {
         </P>
       )}
 
-      <H2>Information We Collect</H2>
+      <H2 id="information-we-collect">Information We Collect</H2>
       <P>When you use SpySocial, we collect the following information:</P>
       <Bullets>
         <Item label="Account Information">
@@ -759,7 +760,7 @@ const Privacy: React.FC = () => {
             " To keep rewards fair, our servers also look for signs of farming, bots and scripted play, games thrown on purpose and several accounts run by one person, using records we already keep (games and their results, rewards, trades and sales, reports, and the coded device and network notes described under Device Information and IP Address)." + (PRIVACY.integrityProbes ? " Our servers also note when an account sends them a request that our app never makes, which can be a sign of a modified app or a script: which account, what kind of request, the day and how many times, nothing else." : '') + " Some signs add to a score for the account that only our team sees; others only alert our team and change nothing for the account. From December 8, 2026, while one of our team checks a strong sign, the app may hold an account's new rewards for up to 72 hours (an Intercept shows \"Verifying\" and stays sealed), and longer only while a case about it is open; you can ask for a review there. A hold never becomes a penalty by itself: a person decides. If signs like these point to a group of accounts, SpySocial's developer may pause trading on all of them together for up to 30 days, after reading who is in the group. Nothing does this by itself, we record it for each account as we keep moderation records, and it can be undone account by account. If a reward's odds or an item's count ever look broken, that reward pauses for everyone until we've checked it."}
         </Item>
         {PRIVACY.drawingCheck && (
-          <Item label="Drawing Checks">
+          <Item label="Drawing Checks" id="drawing-checks">
             In public rooms (Play Online tables and Game Nights), drawing turns in a Spy Sketch game go through an
             automated check by OpenAI for content that breaks our Community Rules, and some are also checked by a
             second, more detailed OpenAI model.
@@ -1052,7 +1053,7 @@ const Privacy: React.FC = () => {
       {/* LIVE.launchReminder: the reminder form on /hello (src/hello/strings.ts has this text in each language). */}
       {PRIVACY.launchReminder && <LaunchReminderSection />}
 
-      <H2>How We Use Your Information</H2>
+      <H2 id="how-we-use-your-information">How We Use Your Information</H2>
       <P>We use your information to:</P>
       <Bullets>
         <li>Create and manage your account</li>
@@ -1106,7 +1107,7 @@ const Privacy: React.FC = () => {
         </li>
       </Bullets>
 
-      <H2>Legal Basis for Processing</H2>
+      <H2 id="legal-basis">Legal Basis for Processing</H2>
       <P>Where the law asks for one (for example in the European Economic Area and the UK), we rely on:</P>
       <Bullets>
         <Item label="Performance of Contract">
@@ -1156,7 +1157,7 @@ const Privacy: React.FC = () => {
         </Item>
       </Bullets>
 
-      <H2>Data Retention</H2>
+      <H2 id="data-retention">Data Retention</H2>
       <P>
         We keep your account information for as long as you have an account. Records of games (moves, votes, roles and
         results) have no end date: we don't delete them on a schedule, and they stay after an account is deleted (see below).
@@ -1261,7 +1262,7 @@ const Privacy: React.FC = () => {
       <AfterDeletionList />
       <AfterDeletionLaw />
 
-      <H2>Third-Party Service Providers</H2>
+      <H2 id="third-party-service-providers">Third-Party Service Providers</H2>
       <P>We use the following service providers to help deliver our services:</P>
       <Bullets>
         <Item label="Supabase">
@@ -1404,7 +1405,7 @@ const Privacy: React.FC = () => {
 
       {PRIVACY.merchShop && (
         <>
-          <H2>Merch Shop</H2>
+          <H2 id="merch-shop">Merch Shop</H2>
           <P>
             SpySocial merch is sold and fulfilled by Fourthwall (Fourthwall, Inc.), which runs our shop at{' '}
             <ShopLink /> for us. To take and ship your order, Fourthwall processes your order data: your name,
@@ -1431,14 +1432,14 @@ const Privacy: React.FC = () => {
         </>
       )}
 
-      <H2>Data Storage and Security</H2>
+      <H2 id="data-storage-and-security">Data Storage and Security</H2>
       <P>
         Your data is stored in our Supabase database with appropriate security measures in place. We implement
         reasonable security practices including encryption, access controls, and regular security reviews to protect
         your information from unauthorized access or disclosure.
       </P>
 
-      <H2>International Transfers</H2>
+      <H2 id="international-transfers">International Transfers</H2>
       <P>
         Your information is stored and processed in the United States, where our servers and most of our service
         providers are, and may be processed in other countries where our providers work. When we transfer personal
@@ -1448,7 +1449,7 @@ const Privacy: React.FC = () => {
         and Swiss extensions where the provider is certified under them.
       </P>
 
-      <H2>Data Sharing</H2>
+      <H2 id="data-sharing">Data Sharing</H2>
       <P>
         We do not sell your personal information or share it for targeted advertising. At Play Online tables and game
         nights (public play), other players see you as an agent named after your color (for example, "Agent Blue"),
@@ -1559,7 +1560,7 @@ const Privacy: React.FC = () => {
 
       {PRIVACY.homeDiscord && (
         <>
-          <H2>Links to Other Services</H2>
+          <H2 id="links-to-other-services">Links to Other Services</H2>
           <P>
             The app and this website link to services we don't run, such as SpySocial's official Discord server (the app
             can show a link to it on Home, but never to players under 16) and our social media pages. Opening a link
@@ -1570,7 +1571,7 @@ const Privacy: React.FC = () => {
         </>
       )}
 
-      <H2>If SpySocial Changes Hands</H2>
+      <H2 id="if-spysocial-changes-hands">If SpySocial Changes Hands</H2>
       <P>
         {LLC_SINCE
           ? `On ${LLC_SINCE}, SpySocial moved to ${OPERATOR.name}, a company its owner controls, and your information moved with it under this privacy policy. SpySocial may move again to someone else who takes over SpySocial, such as a buyer.`
@@ -1581,7 +1582,7 @@ const Privacy: React.FC = () => {
         before or after a change.
       </P>
 
-      <H2>Your Rights</H2>
+      <H2 id="your-rights">Your Rights</H2>
       <P>Depending on your location, you may have the right to:</P>
       <Bullets>
         <li>Access the personal information we have about you</li>
@@ -1652,7 +1653,7 @@ const Privacy: React.FC = () => {
         )}
       </Bullets>
 
-      <H2>California Privacy Rights</H2>
+      <H2 id="california-privacy-rights">California Privacy Rights</H2>
       <P>
         If you are a California resident, the California Consumer Privacy Act (CCPA), as amended by the California
         Privacy Rights Act, gives you the right to know what personal information we collect, use and disclose (this
@@ -1670,14 +1671,14 @@ const Privacy: React.FC = () => {
         keep it secure, never to infer anything about you.
       </P>
 
-      <H2>European Economic Area (EEA) and UK Users</H2>
+      <H2 id="eea-and-uk-users">European Economic Area (EEA) and UK Users</H2>
       <P>
         If you are in the EEA or the UK, you have rights under the General Data Protection Regulation (GDPR) or the UK
         GDPR. In addition to the rights listed above, you have the right to lodge a complaint with your local data
         protection authority.
       </P>
 
-      <H2>Children's Privacy</H2>
+      <H2 id="childrens-privacy">Children's Privacy</H2>
       <P>
         SpySocial is for players 13 and older.{' '}
         {PRIVACY.ageGateEveryone &&
@@ -1721,21 +1722,21 @@ const Privacy: React.FC = () => {
         and the game never picks one by itself while a player under 18 is in the room or game.{PRIVACY.homeDiscord ? " Players under 16 never see the app's link to our Discord server, and players 16 and 17 see a note on staying safe before it opens (on iPhone" + (PRIVACY.membershipWords1105 ? ' and iPad' : '') + ", no player under 18 sees it for now)." : ''}
       </P>
 
-      <H2>Do Not Track Signals</H2>
+      <H2 id="do-not-track">Do Not Track Signals</H2>
       <P>
         Some browsers have a "Do Not Track" feature that signals websites not to track your online activity. We
         currently do not respond to Do Not Track signals, as there is not yet a common understanding of how to
         interpret these signals.
       </P>
 
-      <H2>Changes to This Privacy Policy</H2>
+      <H2 id="changes">Changes to This Privacy Policy</H2>
       <P>
         We may update this privacy policy from time to time. We will notify you of any changes by posting the new
         privacy policy on this page and updating the "Last Updated" date. For significant changes, we may also provide
         additional notice, such as an in-app notification.
       </P>
 
-      <H2>Contact Us</H2>
+      <H2 id="contact-us">Contact Us</H2>
       <P>
         If you have any questions about this privacy policy or our data practices, please contact us at <SupportEmail />
         {OPERATOR.name && OPERATOR.address ? `, or write to ${OPERATOR.name}, ${OPERATOR.address}` : ''}
