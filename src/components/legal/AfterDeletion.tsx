@@ -204,6 +204,16 @@ export const AfterDeletionList = ({ onDeletePage }: { onDeletePage?: boolean } =
         out of them: its own rows there (such as your collectibles' secret) are deleted.
       </li>
     )}
+    {PRIVACY.integritySignupNetwork && (
+      <li>
+        The one-way, salted code of the network your account was created from (never the address itself) stays for 30
+        days after sign-up.
+      </li>
+    )}
+    <li>
+      Our servers' notes that an account did certain things (such as sending a message or joining a room), kept to stop
+      floods and abuse, stay until they expire: notes about joining rooms after 24 hours, the others after 2 days.
+    </li>
     <li>Copies in our database backups are deleted as those backups expire, within 30 days.</li>
   </UnorderedList>
 )

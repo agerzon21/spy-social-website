@@ -1250,8 +1250,8 @@ const Privacy: React.FC = () => {
       </P>
       <Text textStyle="body" color="ss.text" fontWeight="500">When you delete your account</Text>
       <P>
-        You can delete your account in the app at any time (Account, then Settings, then Delete Account; signing out of a guest
-        account deletes it), or ask us to delete it (see{' '}
+        You can delete your account in the app at any time (Account, then Settings, then Delete Account; a guest
+        deletes their account the same way, with Settings &gt; Delete Account), or ask us to delete it (see{' '}
         <ChakraLink as={Link} to="/delete-account">Delete Your Account</ChakraLink>).
         We then delete your account and the personal data linked to it: {deletedSummary()}.{deletedAlso()} Some
         information stays for a while:
@@ -1632,7 +1632,7 @@ const Privacy: React.FC = () => {
         </Item>
         <Item label="Guest accounts">
           A guest account has no email address, so we can't confirm by email that a request is yours. A guest can
-          delete their account at any time by signing out; to get a copy or a correction, first save the account with
+          delete their account at any time with Settings &gt; Delete Account in the app; to get a copy or a correction, first save the account with
           an email address in the app.
         </Item>
         <Item label="Checking that it's you">
@@ -1696,7 +1696,7 @@ const Privacy: React.FC = () => {
         If you're the parent or guardian of a player under 18, you can ask us to delete your child's account, to
         correct its birth year, or for a copy of its data (see Your Rights). Email <SupportEmail /> with your child's
         username. So that we never act on a stranger's request, we confirm it with the email address on the account
-        (or, for a guest account, which has none, we explain how to delete it in the app by signing out), and for a
+        (or, for a guest account, which has none, we explain how to delete it in the app with Settings &gt; Delete Account), and for a
         copy of the data we may also ask you to show that you're the child's parent or guardian. We reply within one
         month. A request to delete the account of a child under 13 is always granted. A copy never includes other
         players' data.

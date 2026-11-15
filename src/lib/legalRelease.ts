@@ -1948,6 +1948,12 @@ export const LIVE = {
    * (the reset copies would keep a deleted account's rows, and "we delete your account's secret" would be untrue).
    */
   resetArchiveForget: false,
+  /**
+   * guest-delete-1114: Privacy says a guest deletes their account with Settings > Delete Account (the app's guest row,
+   * which signs out and deletes), not "by signing out"; the deletion lists name the sign-up network code (30 days) and
+   * the rate-limit notes (24 hours to 2 days). Wording only; on since the site went up with it.
+   */
+  guestDeleteWording1114: true,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -1962,6 +1968,8 @@ export const EXPORT_OTHERS_AGE_DAY = 'November 14, 2026'
 export const PRACTICE_NO_AI_DAY = 'November 14, 2026'
 /** legal-cov2-1114: LIVE.safetyFacts1114's day (the Nov 14 child-safety server files' apply day and the site's publish). */
 export const SAFETY_FACTS_1114_DAY = 'November 14, 2026'
+/** guest-delete-1114: LIVE.guestDeleteWording1114's day in PRIVACY_LAST_UPDATED (the site went up with it on). */
+export const GUEST_DELETE_WORDING_DAY = 'November 14, 2026'
 /** LIVE.modGuard's / LIVE.resetArchiveForget's days: each its server file's apply day. Set by flip-switch (--day). Never earlier than November 15, 2026. */
 export const MOD_GUARD_DAY = 'November 15, 2026'
 export const RESET_ARCHIVE_FORGET_DAY = 'November 15, 2026'
@@ -2359,6 +2367,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? MOD_GUARD_DAY // the community moderators' read log, burst pause and pack recusal (legal-cov2-1114, 999925)
   : LIVE.resetArchiveForget
     ? RESET_ARCHIVE_FORGET_DAY // AfterDeletion: a deletion forgets the account in the Dec 7 reset copies (legal-cov2-1114, 999938)
+  : LIVE.guestDeleteWording1114
+    ? GUEST_DELETE_WORDING_DAY // Privacy's guest Delete Account wording, AfterDeletion's network code and rate-limit notes (guest-delete-1114)
   : LIVE.safetyFacts1114
     ? SAFETY_FACTS_1114_DAY // Drawing Checks, Data Retention, Age, reputation and creator invites: the Nov 14 child-safety files (legal-cov2-1114)
   : LIVE.reputationHoldCap
