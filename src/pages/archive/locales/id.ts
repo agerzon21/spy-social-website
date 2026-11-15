@@ -112,6 +112,7 @@ const id: ArchiveStrings = {
     pattern: 'Pola',
     serial: 'Nomor',
     codename: 'Nama sandi',
+    drawing: 'Gambar segera hadir',
     set: 'Set',
     season: 'Musim',
     preSeason: 'Pramusim',

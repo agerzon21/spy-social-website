@@ -278,8 +278,9 @@ def archive_cards(fonts: Fonts, index: dict):
         tint = hex_rgb(swatch(data, item, floats.get(key)) or LEGENDARY)
         sub = f"{data['words']['unique']} {serial_text(serial)}" if serial else data['words']['unique']
         cn = codename(data, item, serial) if serial else None
-        note = f'“{cn}”' if cn else info.get('kindLine', '').replace('Avatar · ', '')
-        img = card(fonts, pic, kind, 'The Archive', info['name'], sub, hex_rgb(LEGENDARY), note, tint)
+        # A Unique's own name leads, the Legendary it was minted from under it (unique-look-1115, owner Nov 15).
+        note = info['name'] if cn else info.get('kindLine', '').replace('Avatar · ', '')
+        img = card(fonts, pic, kind, 'The Archive', cn or info['name'], sub, hex_rgb(LEGENDARY), note, tint)
         out[key] = save(img, os.path.join(OUT, 'a', f'{key}.jpg'))
     index['a'] = out
 

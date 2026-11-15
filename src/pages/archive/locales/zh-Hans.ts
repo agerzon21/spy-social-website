@@ -107,6 +107,7 @@ const zh: ArchiveStrings = {
     pattern: '图案',
     serial: '编号',
     codename: '代号',
+    drawing: '图片即将上线',
     set: '系列',
     season: '赛季',
     preSeason: '赛季前',

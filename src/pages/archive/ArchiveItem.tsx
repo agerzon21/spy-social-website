@@ -7,13 +7,13 @@ import DisplayHeading from '../../components/ui/DisplayHeading'
 import ui from '../../components/ui/ui.module.css'
 import {
   ArchiveBusy,
-  artOf,
   lookOf,
   attributesOf,
   codenameOf,
   fetchUnique,
   holderOf,
   nameOf,
+  ownArtOf,
   serialText,
   swatchOf,
   uniquePath,
@@ -67,7 +67,8 @@ const ArchiveItem = () => {
   // The item's own line from the app (its card's description, owner Nov 11), in the reader's language.
   const lines = useItemLines()
   const line = lineOf(lines, { k: u?.item_kind ?? (lines?.d[`avatar:${item}`] ? 'avatar' : 'title'), i: item, t: false })
-  const title = `${name} ${serialText(serial)}`
+  // Its own name leads (owner Nov 15: "exactly what they're called"), the Legendary it was minted from after it.
+  const title = code ? `${code} ${serialText(serial)} · ${name}` : `${name} ${serialText(serial)}`
 
   if (state === 'missing') {
     return (
@@ -89,10 +90,12 @@ const ArchiveItem = () => {
     )
   }
 
-  const pic = artOf(art, item, serial)
+  // Its own picture only (owner Nov 15: never its plain Legendary's); not drawn yet: its colour on a plain card.
+  const pic = ownArtOf(art, item, serial)
   const look = pic ? lookOf(looks, item, serial, false, u ? { float: u.float, pattern: u.pattern, serial } : null) : null
   const attrs = u ? attributesOf(data, item, u.float) : []
   const glow = u ? swatchOf(data, item, u.float) : null
+  const pending = !pic && art.size > 0 && u ? { colour: glow, text: t.drawing } : null
   const st = setText(u?.set, lang)
   const sales = (u?.history ?? []).filter((e) => e.event === 'sold' && e.price != null && e.sale_state !== 'undone')
   const high = sales.reduce<number | null>((m, e) => (m == null || (e.price ?? 0) > m ? e.price : m), null)
@@ -137,7 +140,7 @@ const ArchiveItem = () => {
         <div className={s.itemGrid}>
           <div className={s.stage} style={glow ? ({ '--glow': `${glow}66` } as React.CSSProperties) : undefined}>
             <div className={s.stagePiece}>
-              <Piece src={pic?.src ?? null} alt={`${title}${code ? ` · ${code}` : ''}`} eager look={look} wear />
+              <Piece src={pic?.src ?? null} alt={title} eager look={look} wear pending={pending} />
             </div>
             <div className={s.plinth} aria-hidden />
           </div>
@@ -148,8 +151,10 @@ const ArchiveItem = () => {
               {st.set ? <span>{st.set}</span> : null}
               {st.season && st.season !== st.set ? <span>{st.season}</span> : null}
             </div>
-            <h1 className={s.itemTitle}>{name}</h1>
-            {code ? <p className={s.codename}>“{code}”</p> : data ? null : <p className={s.codename} aria-hidden>{'\u00a0'}</p>}
+            {/* The Unique's own name is the title; the Legendary it was minted from under it (owner Nov 15). Before the
+                words load, a blank title of the same height (no base name flashing in its place). */}
+            <h1 className={s.itemTitle}>{code ?? (data ? name : '\u00a0')}</h1>
+            {code || !data ? <p className={s.baseName}>{data ? name : '\u00a0'}</p> : null}
             {/* Two lines kept for the item's line while its words load (every Unique's runs about two lines), so the
                 serial, the status and the certificate don't jump down when it arrives (archive-qa-1114: CLS up to 0.12 at 1440). */}
             {line ? <p className={s.itemLine}>{line}</p> : lines ? null : <p className={s.itemLine} style={{ minHeight: '3em' }} aria-hidden />}

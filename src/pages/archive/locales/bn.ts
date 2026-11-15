@@ -112,6 +112,7 @@ const bn: ArchiveStrings = {
     pattern: 'প্যাটার্ন',
     serial: 'নম্বর',
     codename: 'কোডনেম',
+    drawing: 'ছবি শিগগিরই আসছে',
     set: 'সেট',
     season: 'সিজন',
     preSeason: 'সিজন শুরুর আগে',

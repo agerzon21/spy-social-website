@@ -110,6 +110,7 @@ const es: ArchiveStrings = {
     pattern: 'Patrón',
     serial: 'Número',
     codename: 'Nombre en clave',
+    drawing: 'Imagen muy pronto',
     set: 'Colección',
     season: 'Temporada',
     preSeason: 'Pretemporada',

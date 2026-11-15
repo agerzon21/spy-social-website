@@ -1,6 +1,6 @@
 import Link from '../../components/SiteLink'
 import { FaTriangleExclamation } from 'react-icons/fa6'
-import { artOf, attributesOf, BETA_UNTIL_TOLD, codenameOf, holderOf, lookOf, nameOf, serialText, uniquePath, type ArchiveCopy, type ArchiveSet, type ItemLook } from '../../lib/archive'
+import { attributesOf, BETA_UNTIL_TOLD, codenameOf, holderOf, lookOf, nameOf, ownArtOf, serialText, uniquePath, type ArchiveCopy, type ArchiveSet, type ItemLook } from '../../lib/archive'
 import { LIVE } from '../../lib/legalRelease'
 import { DisplayCase } from './DisplayCase'
 import { fmt, setBadge, useArchive } from './useArchive'
@@ -26,12 +26,18 @@ const artSrcSet = (src: string) => (/^\/archive\/art\/[^/]+\.webp$/.test(src) &&
  * picture is the item alone in its display case, a backdrop on its wall or a scene filling the frame, inside the
  * copy's own ring (`src`, its tile); `wear` adds "See it worn" (a Unique's page).
  */
-export function Piece({ src, alt, unique = true, small = false, eager = false, look = null, wear = false, still = small, sizes }: { src: string | null; alt: string; unique?: boolean; small?: boolean; eager?: boolean; look?: ItemLook | null; wear?: boolean; still?: boolean; sizes?: string }) {
+export function Piece({ src, alt, unique = true, small = false, eager = false, look = null, wear = false, still = small, sizes, pending = null }: { src: string | null; alt: string; unique?: boolean; small?: boolean; eager?: boolean; look?: ItemLook | null; wear?: boolean; still?: boolean; sizes?: string; pending?: { colour: string | null; text: string } | null }) {
   // `sizes` (crawl2-1114): the picture's width on the page, so a screen that needs less than 640 px takes the 320 one.
   const srcSet = src && sizes && !small ? artSrcSet(src) : undefined
   return (
     <span className={`${s.piece} ${unique ? '' : s.piecePlain}`}>
-      {src && look ? (
+      {pending ? (
+        // A copy minted after the pictures were drawn (unique-look-1115): its own colour on a plain card, never its
+        // plain Legendary's picture (owner Nov 15), until scripts/archive-art draws it.
+        <span className={s.pending} style={pending.colour ? ({ '--copy': pending.colour } as React.CSSProperties) : undefined} {...(alt ? { role: 'img', 'aria-label': alt } : { 'aria-hidden': true })}>
+          <span className={s.pendingText}>{pending.text}</span>
+        </span>
+      ) : src && look ? (
         <DisplayCase ring={src} ringSrcSet={srcSet} ringSizes={srcSet ? sizes : undefined} look={look} alt={alt} wear={wear} eager={eager} still={still} />
       ) : src ? (
         <img src={src} srcSet={srcSet} sizes={srcSet ? sizes : undefined} alt={alt} width={small ? 320 : 640} height={small ? 320 : 640} loading={eager ? 'eager' : 'lazy'} decoding="async" />
@@ -70,26 +76,29 @@ export function UniqueCard({ c, sets }: { c: ArchiveCopy; sets: ArchiveSet[] }) 
   const { w, data, art, looks, lang, locale } = useArchive()
   const name = nameOf(data, c.item_code)
   const code = codenameOf(data, c.item_code, c.serial)
-  const pic = artOf(art, c.item_code, c.serial, true)
+  // Its own picture only (owner Nov 15: never its plain Legendary's); not drawn yet: its colour on a plain card.
+  const pic = ownArtOf(art, c.item_code, c.serial, true)
   const look = pic ? lookOf(looks, c.item_code, c.serial, true, { float: c.float, pattern: c.pattern, serial: c.serial }) : null
   const colour = attributesOf(data, c.item_code, c.float).find((a) => a.place === 2)
+  const pending = !pic && art.size > 0 ? { colour: colour?.hex ?? null, text: w.item.drawing } : null
   const sb = setBadge(sets.find((x) => x.code === c.set), lang, locale, w.card.season)
   const holder = LIVE.archiveHolders && c.status === 'held' ? holderOf(c) : ({ kind: 'unknown' } as const)
   return (
     <li>
       <div className={s.card}>
         <div className={s.cardArt}>
-          <Piece src={pic?.src ?? null} alt="" small look={look} />
+          <Piece src={pic?.src ?? null} alt="" small look={look} pending={pending} />
           <span className={s.cardSerial}>{serialText(c.serial)}</span>
           {colour?.hex ? <span className={s.cardColour} style={{ background: colour.hex }} title={colour.value || undefined} aria-hidden /> : null}
         </div>
         <div className={s.cardBody}>
+          {/* Its own name first, the Legendary it was minted from under it (owner Nov 15: "exactly what they're called"). */}
           <p className={s.cardName}>
-            <Link to={uniquePath(c.item_code, c.serial)} className={s.cardLink} aria-label={`${name}${code ? ` · ${code}` : ''} ${serialText(c.serial)}`}>
-              {name}
+            <Link to={uniquePath(c.item_code, c.serial)} className={s.cardLink} aria-label={`${code ? `${code} · ` : ''}${name} ${serialText(c.serial)}`}>
+              {code ?? name}
             </Link>
           </p>
-          {code ? <p className={s.cardCode}>{code}</p> : null}
+          {code ? <p className={s.cardBase}>{name}</p> : null}
           {sb.mark || sb.name ? (
             <p className={s.cardSet}>
               {sb.mark ? <span className={s.setMark}>{sb.mark}</span> : null}

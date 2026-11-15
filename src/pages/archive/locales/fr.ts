@@ -112,6 +112,7 @@ const fr: ArchiveStrings = {
     pattern: 'Motif',
     serial: 'Numéro',
     codename: 'Nom de code',
+    drawing: 'Image bientôt disponible',
     set: 'Collection',
     season: 'Saison',
     preSeason: 'Avant-saison',

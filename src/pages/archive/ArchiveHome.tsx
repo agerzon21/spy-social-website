@@ -5,7 +5,7 @@ import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import ui from '../../components/ui/ui.module.css'
-import { artKey, artOf, attributesOf, lookOf, nameOf, uniquePath } from '../../lib/archive'
+import { artKey, artOf, attributesOf, codenameOf, lookOf, nameOf, ownArtOf, uniquePath } from '../../lib/archive'
 import { launchDayShort, launchDayWeekday } from '../../lib/launchDay'
 import { LIVE } from '../../lib/legalRelease'
 import { TRADE_UP_TEXT_UNIQUES } from '../../lib/ledgerScope'
@@ -257,11 +257,16 @@ const ArchiveHome = () => {
                     className={s.pin}
                     // Kept inside the bar at its two ends (a pin is 30 px wide, centred on its float).
                     style={{ left: `clamp(15px, ${Math.min(100, Number(c.float) * 100)}%, calc(100% - 15px))` }}
-                    title={`${nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
+                    title={`${codenameOf(data, c.item_code, c.serial) ?? nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
                     // Its name for a screen reader: the copy and its float, as the tooltip says, not just "#21".
-                    aria-label={`${nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
+                    aria-label={`${codenameOf(data, c.item_code, c.serial) ?? nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
                   >
-                    <img src={lookOf(looks, c.item_code, c.serial)?.alone ?? artOf(art, c.item_code, c.serial, true)?.src} alt="" width={30} height={30} loading="lazy" />
+                    {/* The copy's own picture only (unique-look-1115: never its plain Legendary); not drawn yet, its colour. */}
+                    {ownArtOf(art, c.item_code, c.serial) ? (
+                      <img src={lookOf(looks, c.item_code, c.serial)?.alone ?? ownArtOf(art, c.item_code, c.serial, true)?.src} alt="" width={30} height={30} loading="lazy" />
+                    ) : (
+                      <span className={s.pinPending} style={{ background: attributesOf(data, c.item_code, c.float).find((a) => a.place === 2)?.hex ?? undefined }} />
+                    )}
                   </Link>
                 ))}
                 {[0, 0.5, 1].map((t) => (

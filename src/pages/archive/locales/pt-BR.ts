@@ -110,6 +110,7 @@ const ptBR: ArchiveStrings = {
     pattern: 'Padrão',
     serial: 'Número',
     codename: 'Codinome',
+    drawing: 'Imagem em breve',
     set: 'Coleção',
     season: 'Temporada',
     preSeason: 'Pré-temporada',

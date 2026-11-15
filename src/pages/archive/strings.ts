@@ -111,6 +111,8 @@ const en = {
     pattern: 'Pattern',
     serial: 'Number',
     codename: 'Codename',
+    // A copy minted after the pictures were drawn (unique-look-1115): on its plain card until it's drawn.
+    drawing: 'Picture coming soon',
     set: 'Set',
     season: 'Season',
     preSeason: 'Pre-season',
@@ -255,6 +257,7 @@ const ru: ArchiveStrings = {
     pattern: 'Узор',
     serial: 'Номер',
     codename: 'Кодовое имя',
+    drawing: 'Картинка скоро появится',
     set: 'Набор',
     season: 'Сезон',
     preSeason: 'До сезонов',

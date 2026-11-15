@@ -115,6 +115,7 @@ const ar: ArchiveStrings = {
     pattern: 'النقش',
     serial: 'الرقم',
     codename: 'الاسم الرمزي',
+    drawing: 'الصورة قريبًا',
     set: 'المجموعة',
     season: 'الموسم',
     preSeason: 'ما قبل المواسم',

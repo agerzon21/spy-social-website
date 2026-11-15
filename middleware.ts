@@ -107,13 +107,15 @@ async function uniquePreview(path: string, host: string): Promise<Preview | null
   const cn = codename(item, serial)
   const line = LINES.d[`${u?.item_kind === 'title' ? 'title' : 'avatar'}:${item}`] ?? LINES.d[`avatar:${item}`] ?? LINES.d[`title:${item}`] ?? null
   const what = `${ARCHIVE.words.unique} ${number}${u?.status === 'burned' ? ', retired' : u ? `, one of ${u.item.minted.toLocaleString('en-US')} minted` : ''}`
-  const head = cn ? `“${cn}” · ${what}.` : `${what}.`
+  // Its own name leads, the Legendary it was minted from after it (unique-look-1115, owner Nov 15).
+  const head = cn ? `${name} ${what}.` : `${what}.`
   return {
-    title: `${name} #${serial} · The Archive`,
+    title: cn ? `${cn} #${serial} · ${name} · The Archive` : `${name} #${serial} · The Archive`,
     description: `${head} ${line ?? 'Its picture, attributes, how it was minted and every sale, on the public record.'}`,
     url: `https://${host}/u/${encodeURIComponent(item)}/${serial}`,
-    image: card('a', `u-${item}-${serial}`) ?? card('a', `l-${item}`),
-    alt: `${name} ${number}, a SpySocial Unique`,
+    // Its own card only (never its plain Legendary's): not drawn yet, the host's card.
+    image: card('a', `u-${item}-${serial}`),
+    alt: cn ? `${cn} ${number}, a SpySocial Unique minted from ${name}` : `${name} ${number}, a SpySocial Unique`,
   }
 }
 

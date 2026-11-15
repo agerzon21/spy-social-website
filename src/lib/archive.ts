@@ -10,8 +10,8 @@
  * The words and tables come from the app's own code (public/archive/data/<lang>.json, scripts/archive-data/run.sh):
  * a copy's float read digit by digit gives its attributes exactly as the app's certificate lists them, and its serial
  * its codename, so a Unique minted after the export still reads right. The pictures (public/archive/art) are the app's
- * own Unique tiles, drawn from each copy's float (scripts/archive-art/run.sh); a copy drawn after the export shows its
- * plain Legendary until the next run.
+ * own Unique tiles, drawn from each copy's float (scripts/archive-art/run.sh); a copy minted after the last run shows
+ * its own name and colour on a plain card until the next run (ownArtOf), never its plain Legendary.
  */
 import type { LangCode } from '../i18n'
 import { early } from './early'
@@ -309,9 +309,12 @@ export function lookOf(looks: Looks, item: string, serial?: number | null, small
   // The two moving Legendary backdrops: always live, a copy in its colours, else the designed Legendary.
   if (LIVE_BACKDROP_ITEMS.has(item)) {
     const own = serial != null && looks.item.has(`u-${item}-${serial}`)
-    return { kind: 'live', alone: own ? `/archive/item/u-${item}-${serial}.webp` : '', worn: null, item, copy: own ? copy : null }
+    // The copy's colours come from its float through the app's own engine (pages/archive/LiveBackdrop), drawn or not.
+    return { kind: 'live', alone: own ? `/archive/item/u-${item}-${serial}.webp` : '', worn: null, item, copy: serial != null ? copy : null }
   }
-  const pick = (set: Set<string>) => (serial != null && set.has(`u-${item}-${serial}`) ? `u-${item}-${serial}` : set.has(`l-${item}`) ? `l-${item}` : null)
+  // A copy: its own pictures only (unique-look-1115: never its plain Legendary's in its ring; none drawn this way, its
+  // own tile as it is). The plain Legendary (no serial: the Market's) its own.
+  const pick = (set: Set<string>) => (serial != null ? (set.has(`u-${item}-${serial}`) ? `u-${item}-${serial}` : null) : set.has(`l-${item}`) ? `l-${item}` : null)
   // An item alone first (a wearable, a backdrop, the border lifted off its scene), else a scene filling the frame.
   const key = pick(looks.item)
   if (!key) {
@@ -328,6 +331,16 @@ export function lookOf(looks: Looks, item: string, serial?: number | null, small
   const worn = looks.worn.has(`${key}-m`) && looks.worn.has(`${key}-f`) ? { m: `/archive/worn/${key}-m.webp`, f: `/archive/worn/${key}-f.webp` } : null
   // A border is a frame round nothing: shown larger in the case so it reads like the other items (owner Nov 11).
   return { kind: 'case', alone: `/archive/item/${key}.webp`, worn, big: item.startsWith('frame_') }
+}
+
+/**
+ * A copy's own picture, or null while it isn't drawn yet (unique-look-1115, owner Nov 15: "every unique is different ...
+ * Legendaries are for market.spysocial.app"): a Unique's card and page never stand its plain Legendary in for it; they
+ * show the copy's own name and colour on a plain card until scripts/archive-art draws it.
+ */
+export function ownArtOf(art: Set<string>, item: string, serial: number, small = false): { src: string; own: true } | null {
+  const a = artOf(art, item, serial, small)
+  return a?.own ? { src: a.src, own: true } : null
 }
 
 /** A picture by its key (the float page's examples: x-cat-d1-3). */

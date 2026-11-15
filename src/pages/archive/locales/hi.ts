@@ -112,6 +112,7 @@ const hi: ArchiveStrings = {
     pattern: 'पैटर्न',
     serial: 'नंबर',
     codename: 'कोडनेम',
+    drawing: 'तस्वीर जल्द आएगी',
     set: 'सेट',
     season: 'सीज़न',
     preSeason: 'सीज़न से पहले',
