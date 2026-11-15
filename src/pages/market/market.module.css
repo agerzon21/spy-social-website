@@ -178,7 +178,8 @@
   .price, .num, .change { font-size: 16px; }
   .meta { font-size: 10px; letter-spacing: 0.04em; }
   .table .price small { display: none; }
-  .table th { white-space: normal; }
+  /* Headers wrap on a phone, but never inside a CJK word: "价格" stays one line instead of one character a line (site-qa-1115). */
+  .table th { white-space: normal; word-break: keep-all; }
   .table .noPrice { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .table .noPriceShort { display: inline; }
 }

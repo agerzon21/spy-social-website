@@ -47,6 +47,20 @@
 .heroTitle { margin: 0; font-size: clamp(56px, 15vw, 132px) !important; }
 /* Russian's long title word (УНИКАЛЬНЫЙ) fits a 360 phone whole, a size down there (archive-empty-1115). */
 :global(html[lang='ru']) .heroTitle { font-size: clamp(46px, 13.8vw, 132px) !important; }
+/* The two-column hero (900 px and up): its column is 0.535 x (page - 72 px) wide, 600 px at most. A language whose
+   longest title word (dot included) is wider than about 3 x the font size gets a size that keeps that word whole
+   (--hero-word: the word's width over the font size, measured live). Before, at 132 px, Russian broke "УНИКАЛЬ / НЫЙ"
+   at 900-1920, and Spanish / Portuguese "REGISTRA / DO.", French "CONSIGNÉ.", Indonesian "TERCATAT." at 900-1024
+   (site-qa-1115). English and the rest stay at 132 px. The Archive's hero only, not the Market's. */
+:global(html[lang='ru']) .hero { --hero-word: 6.35; }
+:global(html:is([lang='es'], [lang='pt-BR'])) .hero { --hero-word: 4.9; }
+:global(html[lang='fr']) .hero { --hero-word: 4.1; }
+:global(html[lang='id']) .hero { --hero-word: 3.75; }
+@media (min-width: 900px) {
+  .hero .heroGrid .heroTitle {
+    font-size: min(132px, calc((53.5vw - 38.5px) / var(--hero-word, 3)), calc(600px / var(--hero-word, 3))) !important;
+  }
+}
 .mark { color: var(--ss-accent-text); }
 .lede { margin: 18px 0 0; max-width: 34em; font-size: clamp(17px, 4.4vw, 20px); line-height: 1.55; color: var(--ss-muted); }
 .ctaRow { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
