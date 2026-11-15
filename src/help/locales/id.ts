@@ -365,7 +365,7 @@ const id: HelpText = {
           a: [
             'Setiap item yang terjual kena biaya 2% (paling sedikit 1 Intel, paling banyak 5.000 Intel), yang dihapus dari permainan.',
             'Tidak ada tawaran yang boleh di bawah harga minimum item: nilai hancur satu salinannya. Untuk sadapan yang belum dibuka, itu rata-rata tingkatnya.',
-            'Anggota bisa punya 8 penawaran terbuka sekaligus, yang lain 4. Selama penawaran terbuka, Intel atau itemnya ditahan (item tetap bisa dipakai).',
+            'Member bisa punya 8 penawaran terbuka sekaligus, yang lain 4. Selama penawaran terbuka, Intel atau itemnya ditahan (item tetap bisa dipakai).',
             'Kamu bisa menghentikan penawaran kapan saja dan mengambil sisanya.',
           ],
         },
@@ -400,7 +400,7 @@ const id: HelpText = {
           id: 'archive-holder',
           q: "Bisakah orang lain melihat bahwa aku memegang item Unik?",
           a: [
-            "Setiap Unik punya halaman sendiri di archive.spysocial.app. Pemiliknya saat ini tampil sebagai “Dimiliki oleh @username”, dengan tautan ke profilnya, hanya kalau dia dewasa dengan profil publik.",
+            "Setiap Unik punya halaman sendiri di archive.spysocial.app. Pemiliknya saat ini tampil sebagai “Dimiliki oleh @username”, dengan link ke profilnya, hanya kalau dia dewasa dengan profil publik.",
             "Untuk yang lain, termasuk pemain di bawah 18 tahun, tertulis “Pemilik disembunyikan”.",
             "Untuk menyembunyikan namamu, jadikan profilmu privat di <b>Privasi & Teman</b>. Namamu hilang dari Arsip dalam sekitar satu menit.",
           ],
@@ -415,7 +415,7 @@ const id: HelpText = {
           id: 'intercepts',
           q: 'Apa itu sadapan?',
           a: [
-            'Hadiah tersegel yang kamu dapat dengan bermain. Masing-masing berisi satu item kosmetik acak, seperti tampilan untuk agenmu atau perayaan.',
+            'Hadiah tersegel yang kamu dapat dengan bermain. Masing-masing berisi satu item kosmetik acak, seperti tampilan untuk agenmu atau selebrasi.',
             'Sadapan tidak pernah dijual dengan uang, dan keanggotaan tidak memberi lebih banyak atau peluang lebih baik.',
             o.launch ? 'Sebelum kamu membuka atau membelinya, aplikasi menampilkan peluang pastinya di <b>Peluang</b>.' : 'Sebelum kamu membukanya, aplikasi menampilkan peluang pastinya di <b>Peluang</b>.',
           ],
@@ -434,7 +434,7 @@ const id: HelpText = {
           q: 'Bagaimana cara mendapat sadapan?',
           a: [
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
-            '<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu, dan streak panjang menambah lagi (tiap hari ke-30 berturut-turut, satu Enigma).',
+            '<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu, dan rentetan harian yang panjang menambah lagi (tiap hari ke-30 berturut-turut, satu Enigma).',
             '<b>Malam Permainan:</b> para pemenang malam itu mendapat satu Enigma.',
             `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
             'Room privat tidak memberi sadapan.',
@@ -457,8 +457,8 @@ const id: HelpText = {
           id: 'intel',
           q: 'Apa itu Intel?',
           a: [
-            'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan streak harian, serta dari menghancurkan duplikat.',
-            'Streak-mu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
+            'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan rentetan harian, serta dari menghancurkan duplikat.',
+            'Rentetan harianmu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
             o.launch ? 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.' : 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa bisa menukarnya dengan orang dewasa lain, dan memakainya di Pasar Gelap mulai peluncuran 2.2 tanggal 8 Desember, atau dalam uji yang penjualannya dibatalkan.',
             'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya. Lihat milikmu di <b>Riwayat Intel</b>, di dalam «Cara Kerja Intel», pada pembaruan terbaru aplikasi.',
             'Di <b>Brankas</b>, Intel-mu punya ubin sendiri, tumpukan yang tumbuh sesuai jumlahnya. Ketuk untuk melihat yang didapat hari ini, didapat seluruhnya, dan dipakai seluruhnya. Intel yang tertahan di penawaran Pasar Gelap yang masih terbuka dihitung terpakai sampai kembali.',
@@ -548,7 +548,7 @@ const id: HelpText = {
           q: 'Apa itu Agen, Elite, dan Dalang?',
           a: [
             '<b>Agen</b> adalah langganan paket bulanan, <b>Elite</b> yang tahunan, dan <b>Dalang</b> adalah keanggotaan seumur hidup: sekali bayar, tanpa perpanjangan.',
-            'Dalang menambahkan ketiga bingkai logam, gelar Kartu Emas, perayaan Badai Emas, dan item agen yang hanya ada di keanggotaan seumur hidup.',
+            'Dalang menambahkan ketiga bingkai logam, gelar Kartu Emas, selebrasi Badai Emas, dan item agen yang hanya ada di keanggotaan seumur hidup.',
             'Seumur hidup berarti selama kami menyediakan SpySocial, bukan seumur hidupmu. Tidak ada uji coba gratis, dan keanggotaan tidak dibagikan lewat Berbagi Keluarga.',
           ],
         },
@@ -798,7 +798,7 @@ const id: HelpText = {
             'Aplikasi tersambung lagi sendiri saat koneksimu kembali.',
             'Pesan chat yang tidak terkirim menampilkan <b>Tidak terkirim</b>. Jika koneksimu kembali dalam 2 menit, pesan itu terkirim lagi sendiri; setelah itu, ketuk pesannya untuk mengirim.',
             'Kalau kamu sampai di Beranda, ketuk <b>Kembali</b> di kartu room-mu. Kursimu tetap disimpan.',
-            'Jika aplikasi bilang tidak mendapat jawaban setelah vote, tebakan, pembelian, penghancuran, atau pertukaran, mungkin itu tetap berhasil. Periksa dulu, lalu coba lagi jika belum: tidak ada yang dibayar atau ditukar dua kali.',
+            'Jika aplikasi bilang tidak mendapat jawaban setelah voting, tebakan, pembelian, penghancuran, atau pertukaran, mungkin itu tetap berhasil. Periksa dulu, lalu coba lagi jika belum: tidak ada yang dibayar atau ditukar dua kali.',
           ],
         },
         {

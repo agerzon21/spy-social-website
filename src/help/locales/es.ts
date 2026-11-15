@@ -5,10 +5,10 @@ const es: HelpText = {
   title: 'Ayuda y preguntas frecuentes',
   lede: 'Respuestas rápidas sobre cómo jugar SpySocial, tu cuenta, las recompensas y la membresía.',
   search: 'Buscar en la ayuda',
-  searchHint: 'Prueba “votar” o “cancelar”',
+  searchHint: 'Prueba «votar» o «cancelar»',
   clear: 'Borrar',
   results: (n) => (n === 1 ? '1 respuesta' : `${n} respuestas`),
-  noResults: (q) => `No hay nada para “${q}”. Prueba con una palabra más corta o escríbenos.`,
+  noResults: (q) => `No hay nada para «${q}». Prueba con una palabra más corta o escríbenos.`,
   topics: 'Temas',
   stillStuck: '¿Sigues con dudas? Escribe a',
   sections: (o) => [
@@ -197,7 +197,7 @@ const es: HelpText = {
               q: "¿Qué es Cara de póker?",
               a: [
                 "Es para amigos que juegan alrededor de una mesa. Al crear una sala privada, el anfitrión elige <b>En línea</b> (cada quien en su teléfono, donde sea) o <b>En persona</b>, que activa Cara de póker. Se puede cambiar después en Reglas.",
-                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía ni etiquetas rojas de «Espía». Los espías abren su chat manteniendo presionada su carta.",
+                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía ni etiquetas rojas de «Espía». Los espías abren su chat manteniendo pulsada su carta.",
                 "Una mirada a tu pantalla no revela nada. Evita descuidos, no trampas.",
                 "Quien entra ve un aviso cuando está activada. Solo en salas privadas y Noches de Juegos: Jugar en línea no la tiene.",
               ],
@@ -210,7 +210,7 @@ const es: HelpText = {
           a: [
             'El sello arriba a la derecha de la pantalla de juego. Tócalo cuando quieras para abrir el chat completo de la partida, tus notas y la información del juego. Un punto rojo indica mensajes nuevos.',
             'Toca la foto de un jugador para preguntarle en el chat. Desliza un mensaje para responderlo.',
-            'Mentir y fanfarronear es parte del juego. Decir el secreto directamente, no.',
+            'Mentir y farolear es parte del juego. Decir el secreto directamente, no.',
           ],
         },
         {
@@ -284,10 +284,10 @@ const es: HelpText = {
             'Intercambias con amigos, dentro de la app. Necesitas una cuenta de al menos 7 días, el correo confirmado y 3 partidas que cuenten (partidas terminadas que suman a tus estadísticas, con al menos otras 2 cuentas guardadas en otros teléfonos).',
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, no se aplican las reglas de antigüedad de la cuenta, partidas contadas ni dispositivo nuevo: cualquier tester puede intercambiar en cuanto confirme su correo.']),
             'Cada lado ofrece hasta 10 objetos, y los dos confirman antes de que se haga. Los intercambios grandes piden un código que te enviamos por correo.',
-            ...(o.interceptsInTrades ? ['Los adultos también pueden poner Intercepciones sin abrir en un intercambio: eligen cuántas de cada nivel. Cada una cuenta como uno de los 10.'] : []),
-            ...(o.interceptsInTrades && !o.launch ? ['Durante la beta, hasta el 7 de diciembre, cualquier Intercepción sin abrir puede entrar en un intercambio, sea cual sea su origen. De todos modos, las Intercepciones empiezan de cero con el lanzamiento.'] : []),
+            ...(o.interceptsInTrades ? ['Los adultos también pueden poner intercepciones sin abrir en un intercambio: eligen cuántas de cada nivel. Cada una cuenta como uno de los 10.'] : []),
+            ...(o.interceptsInTrades && !o.launch ? ['Durante la beta, hasta el 7 de diciembre, cualquier intercepción sin abrir puede entrar en un intercambio, sea cual sea su origen. De todos modos, las intercepciones empiezan de cero con el lanzamiento.'] : []),
             'Lo que pones en un intercambio abierto queda reservado para él: no puede ir a otro intercambio ni al Mercado Negro al mismo tiempo. Si el Intel de un intercambio se gasta antes de que se haga, aparece un aviso en ese lado y el intercambio no puede hacerse hasta que se baje la cantidad.',
-            'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.' + (o.launch ? " Tampoco lo que venga de un código ni lo que te demos nosotros o nuestro equipo, incluida una Elección del desarrollador: se queda en tu cuenta. La Intel nunca queda ligada a una cuenta, venga de donde venga." : ''),
+            'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.' + (o.launch ? " Tampoco lo que venga de un código ni lo que te demos nosotros o nuestro equipo, incluida una Elección del desarrollador: se queda en tu cuenta. El Intel nunca queda ligado a una cuenta, venga de donde venga." : ''),
             'El Intel solo se puede intercambiar entre adultos.',
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, los testers adultos también intercambian Intel. El 7 de diciembre se devuelve todo el Intel intercambiado: quien lo dio lo recupera y cada uno se queda solo con el Intel que ganó.', 'Desde el 7 de diciembre, las intercepciones de un código o un regalo, lo que salga de ellas y lo que consigas con ellas en un Canje se quedan en tu cuenta: puedes usarlas, pero no intercambiarlas ni venderlas.']),
             'Comprar o vender objetos, Intel o cuentas por dinero real va contra las reglas.',
@@ -298,7 +298,7 @@ const es: HelpText = {
           q: '¿Qué es la protección de 7 días? ¿Puedo deshacer un intercambio?',
           a: [
             'Lo que recibes en un intercambio queda protegido 7 días. Puedes usar un objeto enseguida, pero aún no puedes intercambiarlo, triturarlo ni canjearlo, y el Intel recibido aún no se puede gastar.',
-            ...(o.interceptsInTrades ? ['Una Intercepción sin abrir que recibes sigue sellada esos 7 días: aún no puedes abrirla, intercambiarla ni ponerla a la venta.'] : []),
+            ...(o.interceptsInTrades ? ['Una intercepción sin abrir que recibes sigue sellada esos 7 días: aún no puedes abrirla, intercambiarla ni ponerla a la venta.'] : []),
             'En esos 7 días puedes revertir tus intercambios, una vez cada 90 días. Se revierten todos tus intercambios protegidos y tus intercambios se pausan 30 días.',
             'Pasados 7 días, el intercambio es definitivo. También podemos revertirlo por robo de cuenta o fraude.',
           ],
@@ -466,7 +466,7 @@ const es: HelpText = {
         },
         {
           id: 'verifying',
-          q: '¿Por qué una recompensa dice “Verificando”?',
+          q: '¿Por qué una recompensa dice «Verificando»?',
           a: [
             'Desde el 8 de diciembre de 2026, nuestras comprobaciones de juego limpio pueden retener las recompensas nuevas de una cuenta hasta 72 horas mientras alguien del equipo revisa una señal clara de farmeo, bots o trampas.',
             'Puedes pedir una revisión en la app.',
@@ -480,7 +480,7 @@ const es: HelpText = {
             'Puede que lo hayas triturado o usado en un Canje.',
             'Un intercambio revertido lo devuelve al jugador que lo dio.',
             'Cuando una membresía termina o se reembolsa, lo que venía con ella deja de estar disponible.',
-            ...(o.launch ? [] : ['Las intercepciones de las versiones de prueba y sus objetos se borran antes de que 2.2 abra para todos.']),
+            ...(o.launch ? [] : ['Las intercepciones de las versiones de prueba y sus objetos se borran antes de que la 2.2 abra para todos.']),
             '¿Nada de esto? Escribe a <email/> con tu nombre de usuario, el nombre del objeto y cuándo lo viste por última vez.',
           ],
         },
@@ -491,8 +491,8 @@ const es: HelpText = {
             ...(o.testerGiftGame
               ? [
                 o.launch
-                  ? 'Se añadieron en el lanzamiento de 2.2 y son tuyas. Todos los de la lista de testers recibieron el <b>Pin beta</b> y el título <b>Tester beta</b>. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
-                  : 'Llegan con el lanzamiento de 2.2, el 8 de diciembre, en una tarjeta de agradecimiento al abrir la app, y son tuyas. Todos los de la lista de testers reciben el <b>Pin beta</b> y el título <b>Tester beta</b>.',
+                  ? 'Se añadieron en el lanzamiento de la 2.2 y son tuyas. Todos los de la lista de testers recibieron el <b>Pin beta</b> y el título <b>Tester beta</b>. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
+                  : 'Llegan con el lanzamiento de la 2.2, el 8 de diciembre, en una tarjeta de agradecimiento al abrir la app, y son tuyas. Todos los de la lista de testers reciben el <b>Pin beta</b> y el título <b>Tester beta</b>.',
                 o.launch
                   ? 'Quienes terminaron al menos una partida antes del 7 de diciembre (jugada hasta el final, en cualquier sala, así que aparece en sus Estadísticas) recibieron además el título <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.'
                   : 'Termina al menos una partida antes del 7 de diciembre (jugada hasta el final, en cualquier sala, así que aparece en tus Estadísticas) y recibirás además el título <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.',
@@ -502,13 +502,13 @@ const es: HelpText = {
               ]
               : [
                 o.launch
-                  ? 'Se añadieron en el lanzamiento de 2.2 y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
-                  : 'Llegan con el lanzamiento de 2.2, el 8 de diciembre, en una tarjeta de agradecimiento al abrir la app, y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.',
+                  ? 'Se añadieron en el lanzamiento de la 2.2 y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
+                  : 'Llegan con el lanzamiento de la 2.2, el 8 de diciembre, en una tarjeta de agradecimiento al abrir la app, y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.',
               ]),
             ...(o.launch ? [] : ['Lo que tienes ahora en una versión de prueba es para probar y se borra antes del lanzamiento. Tus recompensas no dependen de eso, siempre que sigas con la misma cuenta guardada.']),
             'Para ponerte el pin: <b>Cuenta</b>, <b>Editar agente</b>, <b>Accesorios</b>, <b>Pin beta</b>, <b>Guardar</b>.',
             '¿Falta algo? Escribe a <email/> con tu nombre de usuario y el correo con el que entraste durante la prueba. Una cuenta de invitado no está en la lista, así que lo habitual es que se trate de otra cuenta.',
-            ...(o.launch ? [] : ['Beta 2: el agradecimiento de 10 $ llega por PayPal a cada jugador confirmado que se une a la hora completa en vivo y envía la encuesta, dentro de los 7 días posteriores a la sesión, igual en iPhone y Android. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil de la sesión, elegido por el desarrollador en el plazo de una semana.']),
+            ...(o.launch ? [] : ['Beta 2: el agradecimiento de 10 USD llega por PayPal a cada jugador confirmado que se une a la hora completa en vivo y envía la encuesta, dentro de los 7 días posteriores a la sesión, igual en iPhone y Android. Además, un bono de 50 USD (tarjeta regalo) para el reporte de error o la idea más útil de la sesión, elegido por el desarrollador en el plazo de una semana.']),
           ],
         },
         ...(o.launch
@@ -536,7 +536,7 @@ const es: HelpText = {
           q: '¿Qué incluye la membresía?',
           a: [
             ...(o.purchases ? [] : ['La membresía sale a la venta con la versión 2.2.']),
-            'Todos los paquetes premium, incluidos los nuevos. Todos los juegan en las salas donde eres anfitrión y en tu mesa de Jugar en línea.',
+            'Todos los paquetes premium, incluidos los nuevos. Todos pueden jugarlos en las salas donde eres anfitrión y en tu mesa de Jugar en línea.',
             'Crea tus propios paquetes con el creador y compártelos en la comunidad.',
             '+50 % de XP en cada partida y salas solo para miembros en Jugar en línea.',
             'El marco, la etiqueta y el título de tu rango. Puedes liderar un grupo y tener 8 ofertas abiertas en el Mercado Negro en vez de 4.',
@@ -721,8 +721,8 @@ const es: HelpText = {
             'Mantén pulsada su tarjeta, en la sala de espera, en la partida o en el final, y elige <b>Reportar</b> o <b>Bloquear</b>.',
             'Una persona lee cada reporte, y el jugador no sabe quién lo envió.',
             'Bloquear los mantiene separados: ninguno puede entrar en una sala donde esté el otro. Desbloquea en Ajustes, en <b>Jugadores bloqueados</b>.',
-            'Mentir y fanfarronear es parte del juego y no se reporta.',
-            'En una mesa con un grupo, elige <b>Juego en equipo</b> si crees que se ayudan fuera del juego. <b>Denunciar al grupo</b> cubre a todos los de su grupo en esa mesa.',
+            'Mentir y farolear es parte del juego y no se reporta.',
+            'En una mesa con un grupo, elige <b>Juego en equipo</b> si crees que se ayudan fuera del juego. <b>Reportar al grupo</b> cubre a todos los de su grupo en esa mesa.',
           ],
         },
         {
@@ -738,7 +738,7 @@ const es: HelpText = {
           q: "¿Qué es mi reputación?",
           a: [
             "Toda cuenta tiene una. Mira la tuya en Ajustes, en <b>Reputación</b>: Excelente, Buena, Baja, En riesgo o Bloqueada. Las cuentas nuevas empiezan en Buena.",
-            "Tu reputación sale de tu historial: cuánto llevas jugando y si hubo reportes, advertencias, silencios o pausas. La puntuación exacta no se muestra. Las notas antiguas cuentan menos con el tiempo y dejan de contar a los 90 días.",
+            "Tu reputación sale de tu historial: cuánto llevas jugando y si hubo reportes, advertencias, silenciamientos o pausas. La puntuación exacta no se muestra. Las notas antiguas cuentan menos con el tiempo y dejan de contar a los 90 días.",
             "A las cuentas nuevas y a los jugadores con menos reputación se les revisan automáticamente más dibujos.",
             "Mientras está Bloqueada, no puedes usar Jugar en línea, las salas públicas, las Noches de Juegos, los intercambios, los regalos ni el Mercado Negro, y puede que tampoco las salas privadas. Puedes seguir iniciando sesión y conservas tus objetos. Se recupera con el tiempo si juegas limpio.",
             "¿Crees que es un error? Escribe a <email/> y lo revisamos.",

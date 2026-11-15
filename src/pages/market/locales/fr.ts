@@ -105,7 +105,7 @@ const fr: MarketStrings = {
   item: {
     price: 'Prix',
     priceNote: 'Médiane des ventes des 7\u00a0derniers jours',
-    guide: 'Prix indicatif dans l’app',
+    guide: 'Prix indicatif dans l’appli',
     floor: 'Valeur de déchiquetage (prix minimum)',
     changes: { today: 'Aujourd’hui', m1: '1\u00a0mois', m3: '3\u00a0mois', m6: '6\u00a0mois' },
     chart: 'Prix',
@@ -117,7 +117,7 @@ const fr: MarketStrings = {
     noPriceYet: (n: number) => `Pas encore de prix\u00a0: il faut ${sales(n)}`,
     zeroTrades: '0\u00a0vente',
     stats: { trades7: 'Ventes sur 7\u00a0jours', trades30: 'Ventes sur 30\u00a0jours', value30: 'Intel échangé sur 30\u00a0jours', trades180: 'Ventes sur 180\u00a0jours' },
-    tradeIt: 'Achète-le ou vends-le dans l’app, au Marché noir.',
+    tradeIt: 'Achète-le ou vends-le dans l’appli, au Marché noir.',
     back: 'Marché',
     notFound: 'Cet objet n’est pas au Marché noir.',
     notFoundLink: 'Voir tout le catalogue',

@@ -6,7 +6,7 @@ const ptBR: Strings = {
     siteName: 'SpySocial',
     defaultTitle: 'SpySocial — O jogo de festa da dedução social',
     description:
-      'Junte os amigos e descubra o espião — ou engane todo mundo. Jogo de festa multijogador grátis em tempo real, de 3–21 jogadores. Para iOS e Google Play.',
+      'Junte os amigos e descubra o espião — ou engane todo mundo. Jogo de festa multijogador grátis em tempo real, de 3 a 21 jogadores. Para iOS e Google Play.',
     titles: {
       /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
       beta: 'Beta 3: o último teste de jogo do SpySocial',
@@ -19,7 +19,7 @@ const ptBR: Strings = {
       market: "Preços do Mercado Negro",
       transparency: "Relatório de transparência",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
-      gameNightRules: "Regras da Noite de Jogo",
+      gameNightRules: "Regras da Noite de Jogos",
       faq: "Ajuda e perguntas frequentes",
       contact: 'Fale conosco',
       rules: 'Regras da comunidade',
@@ -44,7 +44,7 @@ const ptBR: Strings = {
       archive: "Cada Único do SpySocial registrado: imagem, número, atributos, como foi cunhado e cada venda, sem nomear nenhum jogador.",
       market: "Quanto vale cada item do SpySocial no Mercado Negro: preços a partir das trocas dos jogadores, o que mais sobe e cai e o mais negociado, sem nomear nenhum jogador.",
       transparency: "Todo mês: quanta Intel foi ganha, gasta e corrigida no SpySocial, cada incidente e cada mudança de regra, sem citar nenhum jogador.",
-      gameNightRules: "As regras da Noite de Jogo semanal do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
+      gameNightRules: "As regras da Noite de Jogos semanal do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
       faq: "Ajuda do SpySocial: como jogar Spy Talk e Spy Sketch, Jogar online, salas privadas e Noite de Jogos, amigos, trocas, o Mercado Negro, interceptações, Intel, assinatura, sua conta, segurança e solução de problemas.",
       contact: 'Fale com a equipe do SpySocial: escreva para support@spysocial.app se precisar de ajuda com o app, sua conta ou qualquer outra coisa.',
       rules: 'As regras da comunidade do SpySocial: seja gentil, blefe sem trapacear, mantenha a privacidade e o que acontece quando alguém quebra as regras.',
@@ -82,7 +82,7 @@ const ptBR: Strings = {
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparência",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
-    gameNightRules: "Regras da Noite de Jogo",
+    gameNightRules: "Regras da Noite de Jogos",
     /** The link to the /beta playtest page, shown only until sign-ups close. */
     beta: "Teste Beta 2",
     tagline: 'O jogo de festa da dedução social.',
@@ -156,7 +156,7 @@ const ptBR: Strings = {
       credit: (creator: string) => `Vídeo de <link>${creator}</link>`,
       cta: 'Jogue grátis no navegador',
       play: (creator: string) => `Assistir ao vídeo de ${creator}`,
-      consent: 'Ao dar play, o vídeo é carregado do YouTube, que pode usar cookies. <link>Política de Privacidade</link>',
+      consent: 'Ao dar play, o vídeo é carregado do YouTube, que pode usar cookies. <link>Política de privacidade</link>',
     },
     lineup: {
       group: 'Uma fila de cinco agentes. Toque em um para acusar.',
@@ -811,7 +811,7 @@ const ptBR: Strings = {
     cancelled: 'Cancelada',
     ended: 'Encerrada',
     upcoming: 'Em breve',
-    full: 'Lotado agora',
+    full: 'Lotada agora',
     inRoom: (count: number, capacity: number) => `${count} / ${capacity} na sala`,
     yourTime: 'Seu horário',
     hostTime: (who: string, when: string) => `Horário de ${who}: ${when}`,
@@ -892,7 +892,7 @@ const ptBR: Strings = {
     ledeBefore: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta, dois títulos, 10 interceptações de cada nível e 1 mês de assinatura.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Partidas, XP e itens do teste são zerados no lançamento.',
-    headsUp: '<b>Atenção:</b> o SpySocial da App Store e do Google Play é uma versão antiga. A beta é uma versão nova e bem diferente; você instala pelo link que mandamos por e-mail.',
+    headsUp: '<b>Atenção:</b> o SpySocial da App Store e do Google Play é uma versão antiga. O beta é uma versão nova e bem diferente; você instala pelo link que mandamos por e-mail.',
     facts: ['1 hora, ao vivo', 'Só maiores de 18', '24 vagas', 'iPhone ou Android'],
     when: {
       label: 'Quando',
@@ -949,7 +949,7 @@ const ptBR: Strings = {
     friends: {
       eyebrow: 'Amigos',
       title: 'Traga um amigo',
-      text: '<b>Coloque o nome de um amigo no formulário</b> para jogar na mesma mesa. Quem testou a Beta 1 tem prioridade.',
+      text: '<b>Coloque o nome de um amigo no formulário</b> para jogar na mesma mesa. Quem testou o Beta 1 tem prioridade.',
     },
     join: {
       eyebrow: 'Como participar',
@@ -961,7 +961,7 @@ const ptBR: Strings = {
       android: 'Android: o formulário pede o e-mail do Google da sua Play Store, porque o Google exige isso para versões de teste. Ele é apagado depois da sessão.',
       iphone: 'iPhone: você instala o SpySocial pelo TestFlight, com o link do e-mail.',
     },
-    fine: 'Versão de pré-lançamento. Não compartilhe nomes nem o chat de outros jogadores. Seus dados de inscrição são apagados até 19 de novembro de 2026, uma semana depois da Beta 2. Seu e-mail do PayPal é apagado assim que enviarmos o seu agradecimento.',
+    fine: 'Versão de pré-lançamento. Não compartilhe nomes nem o chat de outros jogadores. Seus dados de inscrição são apagados até 19 de novembro de 2026, uma semana depois do Beta 2. Seu e-mail do PayPal é apagado assim que enviarmos o seu agradecimento.',
   },
 
   notFound: {

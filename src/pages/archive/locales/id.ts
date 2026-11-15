@@ -94,7 +94,7 @@ const id: ArchiveStrings = {
   item: {
     crumbs: 'Arsip',
     notFound: 'Tidak ada Unik dengan nomor ini.',
-    notFoundText: 'Mungkin belum dicetak, atau tautannya salah.',
+    notFoundText: 'Mungkin belum dicetak, atau link-nya salah.',
     status: { listed: 'Dijual', held: 'Dimiliki pemain', burned: 'Dimusnahkan' },
     listedFor: 'Dijual seharga',
     buyHow: 'Beli di aplikasi: Brankas > Pasar Gelap > Temuan Langka.',

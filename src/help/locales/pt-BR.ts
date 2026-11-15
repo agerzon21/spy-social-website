@@ -26,7 +26,7 @@ const ptBR: HelpText = {
         },
         {
           id: 'how-many-players',
-          q: 'Quantos jogadores precisa?',
+          q: 'De quantos jogadores eu preciso?',
           a: [
             'Uma sala privada joga com 3 a 21 jogadores.',
             '<b>Jogar online</b> coloca você numa mesa de 4 ou 8.',
@@ -136,7 +136,7 @@ const ptBR: HelpText = {
           id: 'private-rooms',
           q: 'Como funcionam as salas privadas?',
           a: [
-            'As salas que os jogadores criam são privadas, para quem você conhece. Os amigos entram com o código da sala, o QR code ou o link de convite. Convidados sem conta também entram.',
+            'As salas que os jogadores criam são privadas, para quem você conhece. Os amigos entram com o código da sala, o QR code ou o link de convite. Visitantes sem conta também entram.',
             'O anfitrião define as regras: jogo, espiões, tempos, votação e pacotes. O máximo vai até 21 jogadores, e <b>Trancar sala</b> impede que gente nova entre.',
             'Todos jogam com os pacotes que o anfitrião liberou.',
           ],
@@ -376,9 +376,9 @@ const ptBR: HelpText = {
                 q: "Como funcionam as ofertas nos Achados raros?",
                 a: [
                   ...(o.appU61 ? ["O vendedor escolhe quanto abaixo do preço dá para oferecer: até 5%, 10% ou 15%, ou nenhuma oferta."] : []),
-                  "O Intel da sua oferta fica reservado enquanto ela espera. Se o vendedor não responder em 24 horas, a oferta termina e o Intel volta.",
+                  "A Intel da sua oferta fica reservada enquanto ela espera. Se o vendedor não responder em 24 horas, a oferta termina e a Intel volta.",
                   "Você pode retirar uma oferta depois que ela esperar 30 minutos.",
-                  ...(o.appU61 ? ["O vendedor pode aceitar, recusar ou fazer uma contraoferta, com um preço entre a sua oferta e o dele. A contraoferta não reserva o seu Intel: compre por ela, recuse ou faça outra contraoferta."] : []),
+                  ...(o.appU61 ? ["O vendedor pode aceitar, recusar ou fazer uma contraoferta, com um preço entre a sua oferta e o dele. A contraoferta não reserva a sua Intel: compre por ela, recuse ou faça outra contraoferta."] : []),
                   "Quando um vendedor recusa uma oferta, ninguém mais pode oferecer tão pouco naquele anúncio: a oferta mínima sobe.",
                   ...(o.appU61 ? ["O vendedor vê a nova oferta mínima. Se as recusas a levarem até o preço, o anúncio não aceita mais ofertas: só Comprar já."] : []),
                   "Se muitas das suas ofertas forem recusadas e quase nenhuma aceita, você fica sem poder fazer ofertas novas por até 3 dias.",
@@ -460,8 +460,8 @@ const ptBR: HelpText = {
             'A moeda que você ganha jogando: com suas partidas, sua primeira partida do dia e sua sequência diária, e triturando cópias repetidas.',
             'Sua sequência: uma partida de Jogar online por dia a mantém. Uma partida que você começa antes do novo dia também a mantém, mesmo se terminar depois.',
             o.launch ? 'A Intel nunca é vendida e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-la com outros adultos.' : 'A Intel nunca é vendida e não vale dinheiro. Adultos podem trocá-la com outros adultos e gastá-la no Mercado Negro a partir do lançamento da 2.2, em 8 de dezembro, ou em um teste cujas vendas são desfeitas.',
-            'Cada mudança na sua Intel é uma linha no seu registro de Intel, com o motivo. Veja o seu em <b>Histórico de Intel</b>, em «Como o Intel funciona», na atualização mais recente do app.',
-            'No <b>Cofre</b>, seu Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. Intel preso numa oferta aberta do Mercado Negro conta como gasto até voltar.',
+            'Cada mudança na sua Intel é uma linha no seu registro de Intel, com o motivo. Veja o seu em <b>Histórico de Intel</b>, em “Como a Intel funciona”, na atualização mais recente do app.',
+            'No <b>Cofre</b>, sua Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. A Intel presa numa oferta aberta do Mercado Negro conta como gasto até voltar.',
           ],
         },
         {
@@ -507,7 +507,7 @@ const ptBR: HelpText = {
               ]),
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
-            'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de convidado não está na lista, então o mais comum é ser outra conta.',
+            'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de visitante não está na lista, então o mais comum é ser outra conta.',
             ...(o.launch ? [] : ['Beta 2: o agradecimento de US$ 10 vai por PayPal para cada jogador confirmado que participa da hora inteira ao vivo e envia a pesquisa, em até 7 dias após a sessão, igual no iPhone e no Android. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil da sessão, escolhido pelo desenvolvedor em até uma semana.']),
           ],
         },
@@ -611,11 +611,11 @@ const ptBR: HelpText = {
       items: [
         {
           id: 'guest-or-saved',
-          q: 'Conta de convidado ou salva: qual a diferença?',
+          q: 'Conta de visitante ou salva: qual a diferença?',
           a: [
-            'Um <b>convidado</b> joga em salas privadas na hora. Uma conta de convidado fica num celular só, e sair dela apaga a conta para sempre.',
+            'Um <b>visitante</b> joga em salas privadas na hora. Uma conta de visitante fica num celular só, e sair dela apaga a conta para sempre.',
             `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e sua assinatura em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
-            'Você pode salvar uma conta de convidado quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o convidado salve a conta primeiro.',
+            'Você pode salvar uma conta de visitante quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o visitante salve a conta primeiro.',
           ],
         },
         {
@@ -623,7 +623,7 @@ const ptBR: HelpText = {
           q: 'Perdi minha conta. Dá para recuperar?',
           a: [
             'Uma <b>conta salva</b> volta em qualquer celular: abra o SpySocial e entre do mesmo jeito de antes (Apple, Google ou o mesmo e-mail). Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia, e muitas vezes é por isso que o progresso parece ter sumido.',
-            'Uma <b>conta de convidado</b> fica num celular só. Se o app foi apagado, o celular foi perdido ou você saiu da conta, ela se foi para sempre e não conseguimos trazê-la de volta.',
+            'Uma <b>conta de visitante</b> fica num celular só. Se o app foi apagado, o celular foi perdido ou você saiu da conta, ela se foi para sempre e não conseguimos trazê-la de volta.',
             'Se o app mostrar <b>Não foi possível abrir sua conta</b>, sua conta continua salva no celular, só não deu para lê-la naquele momento. Toque em <b>Tentar de novo</b>, ou feche o app e abra de novo.',
             'A assinatura não se perde: <b>Restaurar compras</b> traz de volta. Não conseguimos juntar contas nem mover itens entre elas.',
             'Se você tinha uma conta salva, escreva para <email/> com seu nome de usuário e como entrava, e nós verificamos.',
@@ -635,7 +635,7 @@ const ptBR: HelpText = {
           a: [
             ...(o.passwordless ? ['Você pode entrar com Apple, com Google ou com um código de 6 dígitos que mandamos por e-mail. Não há mais senhas: se o app ainda pedir uma, atualize-o na App Store ou no Google Play.'] : []),
             'Entre do mesmo jeito de antes. Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia no lugar da sua.',
-            'Se o app abrir na tela de login com <b>Sua sessão neste dispositivo foi encerrada</b>, encerramos seu login ali do nosso lado, geralmente porque a conta foi desconectada de todos os aparelhos. Entre de novo do mesmo jeito: seu progresso está salvo. Uma conta de convidado não consegue entrar de novo.',
+            'Se o app abrir na tela de login com <b>Sua sessão neste dispositivo foi encerrada</b>, encerramos seu login ali do nosso lado, geralmente porque a conta foi desconectada de todos os aparelhos. Entre de novo do mesmo jeito: seu progresso está salvo. Uma conta de visitante não consegue entrar de novo.',
             'Se o app disser “Esta conta não pode entrar”, escreva para <email/> pelo e-mail da conta, e nós verificamos.',
             'Se a conta foi banida, nosso e-mail para esse endereço informa a referência, o motivo e como recorrer.',
           ],
@@ -695,7 +695,7 @@ const ptBR: HelpText = {
           id: 'delete-account',
           q: 'Como excluo minha conta?',
           a: [
-            'No app: <b>Conta</b>, <b>Ajustes</b>, <b>Excluir conta</b>. Para um convidado, sair da conta já a exclui.',
+            'No app: <b>Conta</b>, <b>Ajustes</b>, <b>Excluir conta</b>. Para um visitante, sair da conta já a exclui.',
             'Você também pode pedir por e-mail: veja <delete>Excluir sua conta</delete>.',
             'Excluir a conta não cancela um passe de assinatura: cancele também na loja.',
           ],
@@ -705,7 +705,7 @@ const ptBR: HelpText = {
           q: 'Posso receber uma cópia dos meus dados?',
           a: [
             'Sim. Escreva para <email/> do e-mail da sua conta. Mandamos uma cópia num arquivo legível por máquina (JSON) em até um mês.',
-            'Uma conta de convidado não tem e-mail, então salve com um e-mail antes. Detalhes: <privacy>Política de Privacidade</privacy>.',
+            'Uma conta de visitante não tem e-mail, então salve com um e-mail antes. Detalhes: <privacy>Política de privacidade</privacy>.',
           ],
         },
       ],
@@ -831,7 +831,7 @@ const ptBR: HelpText = {
             'Permita as notificações do SpySocial nos ajustes do celular.',
             'No app, <b>Privacidade e amigos</b> tem chaves para pedidos de amizade, convites, pacotes novos, trocas e o Mercado Negro.',
             'No Android, as notificações de amigos, grupo, trocas e Mercado Negro ficam numa só categoria nos ajustes do celular, <b>Amigos, grupo e trocas</b>: desligá-la ali desliga todas.',
-            'Os avisos de partida chegam quando você busca no Jogar online, e os lembretes da Noite de Jogos quando você toca em <b>Me avise</b>. Convidados não recebem.',
+            'Os avisos de partida chegam quando você busca no Jogar online, e os lembretes da Noite de Jogos quando você toca em <b>Me avise</b>. Visitantes não recebem.',
             'Menores de 18 não recebem notificações sociais, nem nossa resposta sobre um pacote que enviaram para a Comunidade, entre 22h e 7h.',
           ],
         },

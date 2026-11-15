@@ -19,7 +19,7 @@ const es: Strings = {
       market: "Precios del Mercado Negro",
       transparency: "Informe de transparencia",
       /** The Game Night rules page (/game-night-rules), live with LIVE.gameNightRules. */
-      gameNightRules: "Reglas de la Noche de Juego",
+      gameNightRules: "Reglas de la Noche de Juegos",
       faq: "Ayuda y preguntas frecuentes",
       contact: 'Contacto',
       rules: 'Normas de la comunidad',
@@ -43,8 +43,8 @@ const es: Strings = {
       ledger: "El registro público de cada coleccionable de SpySocial: cada copia y su número. Cualquiera puede comprobarlo.",
       archive: "Cada Único de SpySocial registrado: su imagen, número, atributos, cómo se acuñó y cada venta, sin nombrar a ningún jugador.",
       market: "Lo que vale cada objeto de SpySocial en el Mercado Negro: precios según las operaciones de los jugadores, lo que más sube y baja y lo más comerciado, sin nombrar a ningún jugador.",
-      transparency: "Cada mes, cuánta Intel se ganó, gastó y corrigió en SpySocial, cada incidente y cada cambio de reglas, sin nombrar a ningún jugador.",
-      gameNightRules: "Las reglas de la Noche de Juego semanal de SpySocial: cuándo es, quién puede participar, cómo conseguir los títulos de la noche y el título extra del desarrollador.",
+      transparency: "Cada mes, cuánto Intel se ganó, gastó y corrigió en SpySocial, cada incidente y cada cambio de reglas, sin nombrar a ningún jugador.",
+      gameNightRules: "Las reglas de la Noche de Juegos semanal de SpySocial: cuándo es, quién puede participar, cómo conseguir los títulos de la noche y el título extra del desarrollador.",
       faq: "Ayuda de SpySocial: cómo jugar Spy Talk y Spy Sketch, Jugar en línea, salas privadas y Noche de Juegos, amigos, intercambios, el Mercado Negro, intercepciones, Intel, membresía, tu cuenta, seguridad y solución de problemas.",
       contact: 'Contacta al equipo de SpySocial: escríbenos a support@spysocial.app para pedir ayuda con la app, tu cuenta o cualquier otra cosa.',
       rules: 'Las normas de la comunidad de SpySocial: sé amable, farolea sin hacer trampa, mantén tus datos en privado y qué pasa cuando alguien rompe las normas.',
@@ -82,7 +82,7 @@ const es: Strings = {
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparencia",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
-    gameNightRules: "Reglas de la Noche de Juego",
+    gameNightRules: "Reglas de la Noche de Juegos",
     /** The link to the /beta playtest page, shown only until sign-ups close. */
     beta: "Prueba Beta 2",
     tagline: 'El juego de fiesta del engaño social.',
@@ -153,7 +153,7 @@ const es: Strings = {
     creatorShort: {
       eyebrow: 'Creador destacado',
       title: (creator: string) => `Mira a ${creator} jugar Spy Sketch`,
-      credit: (creator: string) => `Vídeo de <link>${creator}</link>`,
+      credit: (creator: string) => `Video de <link>${creator}</link>`,
       cta: 'Juega gratis en tu navegador',
       play: (creator: string) => `Reproducir el vídeo de ${creator}`,
       consent: 'Al darle a reproducir, el vídeo se carga desde YouTube, que puede usar cookies. <link>Política de privacidad</link>',
@@ -340,7 +340,7 @@ const es: Strings = {
     },
     breaking: {
       title: 'Qué pasa cuando alguien rompe las normas',
-      text: 'Normalmente, primero una advertencia. Los problemas repetidos o graves llevan a un silencio en el chat (de 1 hora a 7 días), una pausa de las salas públicas y las Noches de Juegos (de 1 a 30 días) o un bloqueo de la cuenta. Compartir información personal de otra persona, o cualquier cosa que sexualice a un niño, puede significar un bloqueo inmediato. Cada aviso en la app dice qué está limitado, por qué y hasta cuándo, con un ID como S-207.',
+      text: 'Normalmente, primero una advertencia. Los problemas repetidos o graves llevan a un silenciamiento del chat (de 1 hora a 7 días), una pausa de las salas públicas y las Noches de Juegos (de 1 a 30 días) o un bloqueo de la cuenta. Compartir información personal de otra persona, o cualquier cosa que sexualice a un niño, puede significar un bloqueo inmediato. Cada aviso en la app dice qué está limitado, por qué y hasta cuándo, con un ID como S-207.',
       /** minorRooms: LIVE.safetyFacts1114 (legal-cov2-1114): a sexual drawing in a private room a minor can see comes off at once. */
       drawings: (minorRooms: boolean) =>
         'Los dibujos en salas públicas y Noches de Juegos pueden revisarse automáticamente en cualquier momento, y los dibujos reportados también se revisan. Si un dibujo tuyo rompe estas normas, tu cuenta puede quedar pausada o bloqueada de las salas públicas y las Noches de Juegos, sin importar cuánto tiempo lleves jugando. En una sala pública, un turno que rompe estas normas se quita del dibujo y cuenta como falta: primero una advertencia, luego 3, 7 y 30 días sin salas públicas ni Noches de Juegos, y a la quinta falta en 90 días, para siempre. En cualquier sala, un símbolo de odio (una esvástica cuenta, salvo que la palabra de la ronda deje claro un significado religioso), un término ofensivo escrito o un mensaje de odio dirigido a alguien saca al jugador de la partida y de las salas públicas y las Noches de Juegos para siempre, y un dibujo que sexualiza a un niño cierra la cuenta y se trata como se indica arriba en Seguridad infantil. La sangre y los monstruos están permitidos. ' +
@@ -901,9 +901,9 @@ const es: Strings = {
     europe: {
       label: 'Europa · Segunda sesión opcional',
       time: (cet: string, uk: string) => `${cet}\u00a0CET · ${uk} en el Reino Unido`,
-      note: (date: string) => `Solo se hace si se apuntan suficientes personas en Europa. Lo confirmamos a más tardar el ${date}.`,
+      note: (date: string) => `Solo se hace si se inscriben suficientes personas en Europa. Lo confirmamos a más tardar el ${date}.`,
     },
-    signUp: 'Apúntate',
+    signUp: 'Inscríbete',
     signUpNote: (day: string, time: string) => `Unos 2 minutos. Las inscripciones cierran el ${day}, a las ${time} (hora del Este).`,
     discord: 'Únete a nuestro Discord',
     closed: 'Las inscripciones están cerradas. Síguenos en Discord para la próxima prueba.',
@@ -951,7 +951,7 @@ const es: Strings = {
     join: {
       eyebrow: 'Cómo unirte',
       title: 'Cuatro pasos',
-      form: '<link>Rellena el formulario de inscripción</link> (unos 2 minutos).',
+      form: '<link>Completa el formulario de inscripción</link> (unos 2 minutos).',
       closes: (day: string, time: string) => `Las inscripciones cierran el ${day}, a las ${time} (hora del Este).`,
       email: (day: string) => `Te escribimos a más tardar el ${day} para confirmar tu lugar y enviarte el enlace de instalación.`,
       discord: '<link>Únete a nuestro Discord</link>: la entrada se hace en #beta-2-ask-hq (la sala de voz Beta 2 también estará abierta).',
@@ -980,12 +980,12 @@ const es: Strings = {
   launch: {
     railLabel: "Pantallas de SpySocial 2.2",
     shots: {
-      talk: "Spy Talk: Haz preguntas astutas. Encuentra al espía.",
-      sketch: "Spy Sketch: Dibuja la palabra secreta. Atrapa al que finge.",
-      online: "Jugar en línea: Mesas de 4 u 8, cuando quieras",
-      gamenight: "Noche de Juegos: Títulos que solo se ganan esa noche",
-      market: "Mercado Negro: Intercambia objetos con otros agentes",
-      friends: "Amigos: Agrega amigos. Jueguen juntos.",
+      talk: "Spy Talk: haz preguntas astutas. Encuentra al espía.",
+      sketch: "Spy Sketch: dibuja la palabra secreta. Atrapa al que finge.",
+      online: "Jugar en línea: mesas de 4 u 8, cuando quieras",
+      gamenight: "Noche de Juegos: títulos que solo se ganan esa noche",
+      market: "Mercado Negro: intercambia objetos con otros agentes",
+      friends: "Amigos: agrega amigos. Jueguen juntos.",
     },
     cards: [
       { title: "Spy Sketch", text: "Dibuja la palabra secreta en una pizarra compartida y atrapa al espía que finge saberla." },

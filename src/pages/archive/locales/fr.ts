@@ -29,7 +29,7 @@ const fr: ArchiveStrings = {
     float: {
       eyebrow: 'La teinte',
       title: 'Un seul nombre décide de tout',
-      lede: 'Quand un Unique est frappé, le serveur tire sa teinte\u00a0: un nombre entre 0 et 1 à seize décimales. L’app la lit chiffre par chiffre, et chaque chiffre choisit un look parmi dix.',
+      lede: 'Quand un Unique est frappé, le serveur tire sa teinte\u00a0: un nombre entre 0 et 1 à seize décimales. L’appli la lit chiffre par chiffre, et chaque chiffre choisit un look parmi dix.',
       digits: [
         { n: '1er chiffre', what: 'La variante', text: 'Sa famille\u00a0: la race d’un Chat espion, le modèle d’un Avion en papier, le fermoir d’un Diamant noir.' },
         { n: '2e chiffre', what: 'La couleur', text: 'Une des dix couleurs nommées, de Rubis à Argent, appliquée à tout l’objet.' },
@@ -53,7 +53,7 @@ const fr: ArchiveStrings = {
     how: {
       title: 'Comment en obtenir un',
       steps: [
-        'Joue pour gagner des interceptions, et récupère ta quotidienne.',
+        'Joue pour gagner des interceptions, et récupère celle du jour.',
         'Ouvre-les dans le Coffre. Une Enigma peut contenir un Unique.',
         'Ou fusionne dix Légendaires, ou achètes-en un dans Marché noir > Trouvailles rares.',
       ],
@@ -97,7 +97,7 @@ const fr: ArchiveStrings = {
     notFoundText: 'Il n’est peut-être pas encore frappé, ou le lien est erroné.',
     status: { listed: 'En vente', held: 'Détenu par un joueur', burned: 'Retiré' },
     listedFor: 'En vente à',
-    buyHow: 'Achète-le dans l’app\u00a0: Coffre > Marché noir > Trouvailles rares.',
+    buyHow: 'Achète-le dans l’appli\u00a0: Coffre > Marché noir > Trouvailles rares.',
     retiredHow: (what: string) => `Retiré\u00a0: ${what}.`,
     burnWhy: { trade_up: 'fusionné en un autre objet', shred: 'déchiqueté contre de l’Intel', other: 'rayé du registre' },
     certificate: 'Certificat',

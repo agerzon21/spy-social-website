@@ -985,7 +985,7 @@ const id: Strings = {
     shots: {
       talk: "Spy Talk: Tanya dengan cerdik. Temukan mata-matanya.",
       sketch: "Spy Sketch: Gambar kata rahasia. Tangkap si peniru.",
-      online: "Main Online: Meja 4 atau 8 orang, kapan saja",
+      online: "Main online: Meja 4 atau 8 orang, kapan saja",
       gamenight: "Malam Permainan: Gelar yang hanya didapat malam itu",
       market: "Pasar Gelap: Tukar item dengan agen lain",
       friends: "Teman: Tambah teman. Main bareng.",

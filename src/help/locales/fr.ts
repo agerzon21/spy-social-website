@@ -33,7 +33,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'is-it-free',
         q: 'SpySocial est-il gratuit ?',
         a: [
-          'Oui. Les deux jeux, Jouer en ligne, les salons privés et la Soirée jeux sont gratuits, sans publicité.',
+          'Oui. Les deux jeux, Jouer en ligne, les salons privés et la soirée jeux sont gratuits, sans publicité.',
           `L'abonnement, facultatif, débloque les packs premium et quelques looks pour ton agent. Rien de ce que tu achètes ne t'aide à gagner.${o.purchases ? '' : " L'abonnement sera en vente avec la version 2.2."}`,
         ],
       },
@@ -98,7 +98,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Un espion ouvre <b>Actions</b> et touche <b>Deviner</b>. Il a 60 secondes pour choisir le secret dans une liste d\'une trentaine de réponses.',
           "Bonne réponse : tous les espions gagnent. Mauvaise réponse, ou temps écoulé : cet espion est éliminé. Si c'était le dernier, les locaux gagnent.",
           'Tout le monde voit qui devine : ça te trahit.',
-          "Avec <b>Une seule tentative</b> (salons privés et Soirées jeux qui l'activent), l'équipe des espions n'a qu'un essai : raté, et c'est toute l'équipe qui perd.",
+          "Avec <b>Une seule tentative</b> (salons privés et soirées jeux qui l'activent), l'équipe des espions n'a qu'un essai : raté, et c'est toute l'équipe qui perd.",
         ],
       },
       {
@@ -108,8 +108,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les <b>locaux</b> gagnent en éliminant tous les espions par vote, ou si le dernier espion se trompe.",
           "Les <b>espions</b> gagnent avec une bonne réponse, quand le chrono de la partie arrive à zéro, ou quand un vote laisse autant d'espions que de locaux.",
           "Partir compte comme être éliminé par un vote : si le dernier espion part, les locaux gagnent ; si trop de locaux partent, les espions gagnent. Si cela arrive avant la fin des questions (dans Spy Sketch, au premier tour), la partie affiche « Pas de résultat » et ne compte pas.",
-          "<b>Vote final :</b> si le temps est écoulé et qu'il reste exactement un espion, tout le monde vote une dernière fois. Démasquez-le et les locaux gagnent. Il est actif à Jouer en ligne et c'est un réglage dans les salons privés.",
-          "<b>Informateur</b> (salons privés et Soirées jeux qui l'activent) : un local connaît un espion. Si les espions sont pris par un vote ou une mauvaise réponse, ils ont 30 secondes pour nommer ce local et voler la victoire.",
+          "<b>Vote final :</b> si le temps est écoulé et qu'il reste exactement un espion, tout le monde vote une dernière fois. Démasquez-le et les locaux gagnent. Il est actif dans Jouer en ligne, et c'est un réglage dans les salons privés.",
+          "<b>Informateur</b> (salons privés et soirées jeux qui l'activent) : un local connaît un espion. Si les espions sont pris par un vote ou une mauvaise réponse, ils ont 30 secondes pour nommer ce local et voler la victoire.",
         ],
       },
     ],
@@ -139,11 +139,11 @@ const sections = (o: HelpOpts): HelpSection[] => [
       },
       {
         id: 'game-night',
-        q: "C'est quoi, la Soirée jeux ?",
+        q: "C'est quoi, la soirée jeux ?",
         a: [
-          "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte Soirée jeux de l'accueil.",
+          "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
           'Chaque soirée a ses packs, ses réglages et ses titres. Le (i) à côté de la soirée affiche ses packs et ses réglages, et <b>Prix</b>, sur la carte, ses titres.',
-          "C'est gratuit, et rien de ce que tu achètes n'améliore tes chances. Le règlement complet : <gnr>règles de la Soirée jeux</gnr> (en anglais).",
+          "C'est gratuit, et rien de ce que tu achètes n'améliore tes chances. Le règlement complet : <gnr>règles de la soirée jeux</gnr> (en anglais).",
         ],
       },
       {
@@ -152,7 +152,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Dans <b>Comment jouer</b>, choisis Spy Talk ou Spy Sketch. <b>Étape 1, Tutoriel :</b> une partie guidée de 3 minutes contre des agents IA. Joue-la côté local ou côté espion : réussir l'un ou l'autre suffit.",
           "<b>Étape 2, Parties d'entraînement :</b> des parties complètes de 5 à 9 minutes contre des agents IA, notées de A à F. Elles se débloquent quand tu réussis le tutoriel de ce jeu, et tu peux reprendre là où tu t'es arrêté.",
-          "Aujourd'hui, aucun des deux n'est nécessaire pour jouer en ligne. La Soirée jeux ne le demande jamais.",
+          "Aujourd'hui, aucun des deux n'est nécessaire pour jouer en ligne. La soirée jeux ne le demande jamais.",
         ],
       },
       {
@@ -195,7 +195,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
               "C'est pour les amis qui jouent autour d'une même table. Après avoir créé un salon privé, l'hôte choisit <b>En ligne</b> (chacun sur son téléphone, où qu'il soit) ou <b>Même pièce</b>, qui active Poker face. On peut le changer ensuite dans les Règles.",
               "Avec Poker face, toutes les cartes de rôle se ressemblent : pas de carte d'espion sombre, pas d'étiquettes rouges « Espion ». Les espions ouvrent leur chat par un appui long sur leur carte.",
               "Un coup d'œil à ton écran ne révèle rien. Ça évite les accidents, pas la triche.",
-              "Les joueurs qui rejoignent voient un message quand il est activé. Salons privés et Soirées jeux seulement : Jouer en ligne ne l'a pas.",
+              "Les joueurs qui rejoignent voient un message quand il est activé. Salons privés et soirées jeux seulement : Jouer en ligne ne l'a pas.",
             ],
           },
           ]
@@ -250,8 +250,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut un abonnement pour en créer un. Si le chef part, la main passe d'abord à quelqu'un qui a un abonnement.",
           ...(o.partyLeaderLapse ? ["Si l'abonnement du chef prend fin, le groupe est dissous pour tout le monde ; la main ne passe à personne. Une partie en cours va jusqu'au bout, puis chacun cherche de son côté."] : []),
-          "Aux tables de Jouer en ligne et aux Soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
-          "À une table de 12 places d'une Soirée jeux, jusqu'à 6. Les membres du groupe qui cherchent seuls comptent aussi : ensemble, jamais plus de la moitié d'une table.",
+          "Aux tables de Jouer en ligne et aux soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
+          "À une table de 12 places d'une soirée jeux, jusqu'à 6. Les membres du groupe qui cherchent seuls comptent aussi : ensemble, jamais plus de la moitié d'une table.",
           "Pour s'asseoir à la même table, cherchez depuis le groupe : <b>Jouer en ligne</b> tout seul, c'est une recherche en solo. Après une partie de Jouer en ligne, <b>Retour à ton groupe</b> t'y ramène.",
           'Quitter une partie en cours te vaut la pause habituelle de Jouer en ligne, et ton groupe ne peut pas chercher de table avant la fin de celle-ci. Tant que tu as une place dans une partie, tu restes dans le groupe, même si ton téléphone se met en veille.',
           'Tout groupe peut ouvrir un salon privé ensemble, et un groupe trop grand pour une table y joue.',
@@ -263,7 +263,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Qui peut voir que je suis en ligne, ou m'inviter ?",
         a: [
           "C'est toi qui décides, dans <b>Confidentialité et amis</b> : qui peut t'ajouter, si tes amis te voient en ligne, et qui peut t'inviter dans des salons et des groupes.",
-          'Tes amis voient seulement En ligne, Joue en ligne, Dans un salon privé ou À la Soirée jeux, jamais quel salon. Personne ne voit ta liste d\'amis.',
+          'Tes amis voient seulement En ligne, Joue en ligne, Dans un salon privé ou À la soirée jeux, jamais quel salon. Personne ne voit ta liste d\'amis.',
           'Les adultes peuvent avoir un profil public et des abonnés. Pas les moins de 18 ans.',
         ],
       },
@@ -280,12 +280,12 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Tu échanges avec tes amis, dans l'appli. Il te faut un compte d'au moins 7 jours, un e-mail confirmé et 3 parties comptées (des parties terminées qui comptent dans tes stats, avec au moins 2 autres comptes sauvegardés sur d'autres téléphones).",
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte, de parties comptées et de nouvel appareil sont levées : chaque testeur peut échanger dès que son e-mail est confirmé.']),
           "Chaque côté propose jusqu'à 10 objets, et les deux confirment avant l'échange. Les gros échanges demandent un code envoyé par e-mail.",
-          ...(o.interceptsInTrades ? ['Les adultes peuvent aussi mettre des Interceptions non ouvertes dans un échange : choisis combien de chaque niveau. Chacune compte pour un des 10 objets.'] : []),
-          ...(o.interceptsInTrades && !o.launch ? ["Pendant la bêta, jusqu'au 7 décembre, n'importe quelle Interception non ouverte peut entrer dans un échange, quelle que soit son origine. De toute façon, les Interceptions repartent de zéro au lancement."] : []),
+          ...(o.interceptsInTrades ? ['Les adultes peuvent aussi mettre des interceptions non ouvertes dans un échange : choisis combien de chaque niveau. Chacune compte pour un des 10 objets.'] : []),
+          ...(o.interceptsInTrades && !o.launch ? ["Pendant la bêta, jusqu'au 7 décembre, n'importe quelle interception non ouverte peut entrer dans un échange, quelle que soit son origine. De toute façon, les interceptions repartent de zéro au lancement."] : []),
           "Ce que tu mets dans un échange ouvert lui est réservé : ça ne peut pas aller dans un autre échange ou sur le Marché noir en même temps. Si l'Intel d'un échange est dépensé avant qu'il se fasse, un avertissement s'affiche de ce côté, et l'échange ne peut pas se faire tant que le montant n'est pas baissé.",
-          "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons, Choix du développeur compris : ça reste sur ton compte. L'Intel n'est jamais liée à un compte, d'où qu'elle vienne." : ''),
+          "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons, Choix du développeur compris : ça reste sur ton compte. L'Intel n'est jamais lié à un compte, d'où qu'il vienne." : ''),
           "L'Intel ne s'échange qu'entre adultes.",
-          ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel. Le 7 décembre, toute l’Intel échangée est rendue : celui qui l’a donnée la récupère, et chacun ne garde que l’Intel qu’il a gagnée.', 'À partir du 7 décembre, les interceptions reçues par un code ou un cadeau, ce qu’elles contiennent et ce que tu obtiens avec elles par Échange restent sur ton compte : tu peux t’en servir, mais pas les échanger ni les vendre.']),
+          ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel. Le 7 décembre, tout l’Intel échangé est rendu : celui qui l’a donné le récupère, et chacun ne garde que l’Intel qu’il a gagné.', 'À partir du 7 décembre, les interceptions reçues par un code ou un cadeau, ce qu’elles contiennent et ce que tu obtiens avec elles par Échange restent sur ton compte : tu peux t’en servir, mais pas les échanger ni les vendre.']),
           "Acheter ou vendre des objets, de l'Intel ou des comptes contre de l'argent réel est interdit.",
         ],
       },
@@ -294,7 +294,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "C'est quoi, la protection de 7 jours ? Puis-je annuler un échange ?",
         a: [
           "Ce que tu reçois dans un échange est protégé pendant 7 jours. Tu peux porter un objet tout de suite, mais pas encore l'échanger, le déchiqueter ni l'utiliser dans un Échange, et l'Intel reçu ne se dépense pas encore.",
-          ...(o.interceptsInTrades ? ["Une Interception non ouverte que tu reçois reste scellée pendant ces 7 jours : tu ne peux pas encore l'ouvrir, l'échanger ni la mettre en vente."] : []),
+          ...(o.interceptsInTrades ? ["Une interception non ouverte que tu reçois reste scellée pendant ces 7 jours : tu ne peux pas encore l'ouvrir, l'échanger ni la mettre en vente."] : []),
           'Pendant ces 7 jours, tu peux annuler tes échanges, une fois tous les 90 jours. Ça annule tous tes échanges protégés et met tes échanges en pause pendant 30 jours.',
           "Après 7 jours, l'échange est définitif. Nous pouvons aussi annuler un échange en cas de vol de compte ou de fraude.",
         ],
@@ -462,7 +462,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
       },
       {
         id: 'verifying',
-        q: 'Pourquoi une récompense affiche « Vérification » ?',
+        q: 'Pourquoi une récompense affiche-t-elle « Vérification » ?',
         a: [
           "À partir du 8 décembre 2026, nos contrôles de fair-play peuvent retenir les nouvelles récompenses d'un compte jusqu'à 72 heures, le temps qu'un membre de l'équipe examine un signe net de farm, de bots ou de triche.",
           "Tu peux demander un réexamen dans l'appli.",
@@ -610,7 +610,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Compte invité ou sauvegardé : quelle différence ?',
         a: [
           "Un <b>invité</b> joue tout de suite dans les salons privés. Un compte invité vit sur un seul téléphone, et se déconnecter le supprime pour de bon.",
-          `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton abonnement sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la Soirée jeux et d'ajouter des amis.`,
+          `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton abonnement sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la soirée jeux et d'ajouter des amis.`,
           "Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre. Amis, Échanges et le Marché noir demandent d'abord à un invité de le sauvegarder.",
         ],
       },
@@ -725,7 +725,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'moderators',
         q: 'Qui modère SpySocial ?',
         a: [
-          "Notre équipe lit chaque signalement et décide de la suite. Des modérateurs bénévoles de confiance aident, avec notre accord : aux tables de la Soirée jeux, avec les messages signalés et avec les packs de la communauté.",
+          "Notre équipe lit chaque signalement et décide de la suite. Des modérateurs bénévoles de confiance aident, avec notre accord : aux tables de la soirée jeux, avec les messages signalés et avec les packs de la communauté.",
           'Tu peux faire appel de toute décision en écrivant à <email/>.',
         ],
       },
@@ -736,7 +736,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Chaque compte en a une. Regarde la tienne dans les Réglages, sous <b>Réputation</b> : Excellente, Bonne, Faible, En danger ou Bloquée. Les nouveaux comptes commencent à Bonne.",
           "Ta réputation vient de ton historique : depuis quand tu joues, et les signalements, avertissements, chats coupés et pauses. Le score exact n'est pas affiché. Les anciennes notes comptent moins avec le temps et ne comptent plus après 90 jours.",
           "Pour les nouveaux comptes et les joueurs à la réputation plus faible, davantage de dessins sont vérifiés automatiquement.",
-          "Tant qu'elle est Bloquée, Jouer en ligne, les salons publics, les Soirées jeux, les échanges, les cadeaux et le Marché noir te sont fermés, et parfois les salons privés aussi. Tu peux toujours te connecter et tu gardes tes objets. Elle remonte avec le temps si tu joues franc jeu.",
+          "Tant qu'elle est Bloquée, Jouer en ligne, les salons publics, les soirées jeux, les échanges, les cadeaux et le Marché noir te sont fermés, et parfois les salons privés aussi. Tu peux toujours te connecter et tu gardes tes objets. Elle remonte avec le temps si tu joues franc jeu.",
           "Tu penses que c'est une erreur ? Écris à <email/> et on vérifiera.",
         ],
       },
@@ -784,7 +784,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Impossible de rejoindre une partie en cours : attends qu'elle finisse. Le salon peut aussi être plein ou verrouillé.",
           "Si l'hôte a changé le code, les anciens liens et QR codes ne marchent plus. Si l'hôte t'a exclu, tu ne peux pas revenir dans ce salon.",
           "Une invitation vers un salon qui n'existe plus affiche tout de suite <b>Cette invitation ne fonctionne pas</b> ou <b>Salon fermé</b>, avant de te demander ton année de naissance.",
-          'Jouer en ligne et la Soirée jeux demandent un compte sauvegardé.',
+          'Jouer en ligne et la soirée jeux demandent un compte sauvegardé.',
         ],
       },
       {
@@ -827,7 +827,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Autorise les notifications de SpySocial dans les réglages de ton téléphone.',
           "Dans l'appli, <b>Confidentialité et amis</b> a des interrupteurs pour les demandes d'ami, les invitations, les nouveaux packs, les échanges et le Marché noir.",
           "Sur Android, les notifications d'amis, de groupe, d'échanges et du Marché noir partagent une seule catégorie dans les réglages du téléphone, <b>Amis, groupe et échanges</b> : la désactiver là-bas les arrête toutes.",
-          "Les notifications de partie arrivent quand tu cherches une partie à Jouer en ligne, et les rappels de Soirée jeux quand tu touches <b>Me le rappeler</b>. Les invités n'en reçoivent pas.",
+          "Les notifications de partie arrivent quand tu cherches une partie à Jouer en ligne, et les rappels de soirée jeux quand tu touches <b>Me le rappeler</b>. Les invités n'en reçoivent pas.",
           'Les moins de 18 ans ne reçoivent pas de notifications sociales, ni notre réponse sur un pack envoyé à Communauté, entre 22 h et 7 h.',
         ],
       },
@@ -836,7 +836,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Comment contacter le support ?',
         a: [
           "Écris à <email/>. Pour ton compte, écris depuis son adresse e-mail. Une personne lit chaque message.",
-          'Pour les nouvelles, les Soirées jeux et les joueurs qui cherchent une partie, rejoins notre <discord>Discord</discord>.',
+          'Pour les nouvelles, les soirées jeux et les joueurs qui cherchent une partie, rejoins notre <discord>Discord</discord>.',
         ],
       },
     ],

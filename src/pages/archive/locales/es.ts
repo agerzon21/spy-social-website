@@ -41,7 +41,7 @@ const es: ArchiveStrings = {
     sources: {
       eyebrow: 'De dónde salen',
       title: 'Dos formas de entrar, ninguna de falsificarlo',
-      intercept: { title: 'Encontrado en una Enigma', text: 'Las Intercepciones Enigma, las más raras, traen un Único el 0,5% de las veces. Las de Alto secreto o menos, nunca.' },
+      intercept: { title: 'Encontrado en una Enigma', text: 'Las intercepciones Enigma, las más raras, traen un Único el 0,5 % de las veces. Las de Alto secreto o menos, nunca.' },
       tradeUp: { title: 'Canjeado', text: 'Entran diez copias Legendarias y sale un Único. Las diez se destruyen en el registro.' },
       market: { title: 'Comprado en Rarezas', text: 'Los jugadores se venden Únicos entre ellos en el Mercado Negro, por Intel. Cada venta aparece en esta página.' },
     },
@@ -108,7 +108,7 @@ const es: ArchiveStrings = {
     preSeason: 'Pretemporada',
     minted: 'Acuñado',
     how: 'Cómo se acuñó',
-    fromIntercept: (tier: string) => `Encontrado en una Intercepción ${tier}`,
+    fromIntercept: (tier: string) => `Encontrado en una intercepción ${tier}`,
     fromTradeUp: (n: string) => `Canjeado a partir de ${n} copias Legendarias`,
     fromOther: 'Acuñado según su regla',
     recordedLater: 'Anotado en el registro cuando este se abrió',

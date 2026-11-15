@@ -71,7 +71,7 @@ const es: MarketStrings = {
     how: {
       title: 'Cómo se calcula un precio',
       list: [
-        { title: 'Con ventas reales', text: 'El precio de un objeto es la mediana (el valor del medio) de la Intel que se pagó por él en los últimos 7 días, así que una venta rara no lo mueve; si se vende menos, en los últimos 30 o 90 días.' },
+        { title: 'Con ventas reales', text: 'El precio de un objeto es la mediana (el valor del medio) del Intel que se pagó por él en los últimos 7 días, así que una venta rara no lo mueve; si se vende menos, en los últimos 30 o 90 días.' },
         { title: 'Cinco ventas o nada', text: 'No se muestra ningún precio hasta que salga de al menos cinco ventas entre al menos tres parejas distintas de jugadores, y aquí nunca se nombra a un comprador, a un vendedor ni una venta concreta.' },
         { title: 'Nunca por debajo de su mínimo', text: 'Nadie puede vender por debajo de lo que da un objeto al triturarlo. Las ventas entre cuentas vinculadas nunca cuentan.' },
       ],

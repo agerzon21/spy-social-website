@@ -160,7 +160,7 @@ const ru: MarketStrings = {
     celebrations: 'Празднования',
     titles: 'Титулы',
   },
-  rarity: { common: 'Обычный', uncommon: 'Необычный', rare: 'Редкий', epic: 'Эпический', mythic: 'Мифический', legendary: 'Легендарный', intercept: 'Нераскрытый' },
+  rarity: { common: 'Обычный', uncommon: 'Необычный', rare: 'Редкий', epic: 'Эпический', mythic: 'Мифический', legendary: 'Легендарный', intercept: 'Неоткрытый' },
   home: {
     eyebrow: 'Чёрный рынок',
     title: 'Цены',
