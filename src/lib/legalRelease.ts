@@ -1938,7 +1938,7 @@ export const LIVE = {
    * another moderator's pack). Turns on one passage in Privacy's community-moderator paragraph. Flip the day row 23 is
    * applied: node scripts/flip-switch.mjs modGuard --day "<apply day>". Off again if 999925 is rolled back.
    */
-  modGuard: false,
+  modGuard: true,
   /**
    * legal-cov2-1114, STAGED OFF: app repo server file 20261231999938_reset_archive_forget_1114 (NEXT-BATCH row AG, not
    * applied; must be live before Window W, Mon Dec 7). Deleting an account forgets it in the reset's server-only copies
@@ -1947,7 +1947,7 @@ export const LIVE = {
    * resetArchiveForget --day "<apply day>". IF IT IS NOT LIVE BY DEC 7: publish dexp-1114/POLICY-DRAFT.md D2 instead
    * (the reset copies would keep a deleted account's rows, and "we delete your account's secret" would be untrue).
    */
-  resetArchiveForget: false,
+  resetArchiveForget: true,
   /**
    * guest-delete-1114: Privacy says a guest deletes their account with Settings > Delete Account (the app's guest row,
    * which signs out and deletes), not "by signing out"; the deletion lists name the sign-up network code (30 days) and
