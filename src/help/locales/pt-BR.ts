@@ -84,6 +84,17 @@ const ptBR: HelpText = {
           ],
         },
         {
+          id: 'new-page',
+          q: "O que é Página nova no Spy Sketch?",
+          a: [
+            "Uma pausa no desenho para o jogo por até 20 segundos: estude o desenho, converse e confira suas anotações. Todos que ainda estão no jogo votam em <b>Manter esta</b> ou <b>Página nova</b>. A pausa acaba antes quando todos já votaram.",
+            "A página fica só se mais da metade dos jogadores que ainda estão no jogo votar para mantê-la. Empate, ou nenhum voto, significa página em branco. Dá para voltar e ver as páginas anteriores.",
+            "<b>Jogar online:</b> no máximo uma página a mais. A pausa vem a cada 2 rodadas numa mesa de 4, e depois de cada rodada numa mesa de 8. Se a mesa mantiver a página, a pausa seguinte vem o mesmo número de rodadas depois.",
+            "<b>Salas privadas e Noites de Jogos:</b> o anfitrião (ou a noite) escolhe <b>Página nova</b> nas regras: Não, 2, 3 ou 4 páginas, ou Sem limite; 3 se ninguém mudar. A pausa vem quando a folha fica cheia.",
+            "Nenhuma pausa começa nos últimos 45 segundos da partida.",
+          ],
+        },
+        {
           id: 'voting',
           q: 'Como funciona a votação?',
           a: [
@@ -156,6 +167,7 @@ const ptBR: HelpText = {
           a: [
             "Em <b>Como jogar</b>, escolha Spy Talk ou Spy Sketch. <b>Passo 1, Tutorial:</b> uma partida guiada de 3 minutos contra agentes de IA. Jogue como local ou como espião: concluir qualquer um dos dois vale.",
             "<b>Passo 2, Partidas de treino:</b> partidas completas de 5 a 9 minutos contra agentes de IA, com nota de A a F. Elas são liberadas quando você conclui o tutorial daquele jogo, e dá para continuar de onde parou.",
+            "Cada jogo tem quatro: como local ou como espião, numa mesa de 4 ou de 8. Tirar A nas oito dá o título <b>Nota dez</b> (só contas salvas).",
             "Hoje você não precisa de nenhum dos dois para jogar online. A Noite de Jogos nunca pede.",
           ],
         },
@@ -171,7 +183,7 @@ const ptBR: HelpText = {
                     ? 'Mensagens em outro idioma são traduzidas para o seu automaticamente. Para traduzir só quando tocar, desligue <b>Traduzir mensagens automaticamente</b> nos Ajustes.'
                     : 'Toque em <b>Traduzir</b> numa mensagem para ler no seu idioma.',
                 ]
-              : ['Numa sala privada, o anfitrião escolhe o idioma da partida para o segredo e as dicas.']),
+              : ['Numa sala privada, o anfitrião escolhe o idioma da partida para o segredo e as dicas.', ...(o.autoTranslation ? ['Mensagens em outro idioma são traduzidas para o seu automaticamente. Para traduzir só quando tocar, desligue <b>Traduzir mensagens automaticamente</b> nos Ajustes.'] : [])]),
             ...(o.autoTranslation ? ['O Jogar online pode oferecer adicionar seu idioma ao tradutor do próprio telefone. É opcional, e mantém as linhas em inglês do chat traduzidas quando nosso tradutor está ocupado.'] : []),
           ],
         },
@@ -242,7 +254,7 @@ const ptBR: HelpText = {
           id: 'add-friends',
           q: 'Como adiciono amigos?',
           a: [
-            '<b>Pessoalmente:</b> mostre seu <b>código de amigo</b> e deixe a pessoa escanear no SpySocial. Ele muda com frequência, então um print para de funcionar.',
+            "<b>Pessoalmente:</b> mostre seu <b>código de amigo</b> e deixe a pessoa escanear no SpySocial. Um código novo aparece a cada 5 minutos e vale para no máximo 3 leituras, então um print logo para de funcionar.",
             '<b>De uma partida privada</b> que vocês jogaram juntos nas últimas 24 horas.',
             '<b>Só adultos:</b> de uma mesa pública, ou pelo nome de usuário exato, se a pessoa permitir.',
             'A amizade é dos dois lados. Você pode remover ou bloquear um amigo quando quiser, e ele não fica sabendo. Não existem mensagens privadas.',
@@ -282,7 +294,9 @@ const ptBR: HelpText = {
           q: 'Quem pode trocar, e o quê?',
           a: [
             'Você troca com amigos, dentro do app. Precisa de uma conta com pelo menos 7 dias, e-mail confirmado e 3 partidas contadas (partidas terminadas que entram nas suas estatísticas, com pelo menos outras 2 contas salvas em outros celulares).',
+            "Os 7 dias contam a partir de quando a conta foi salva: o tempo como visitante não conta.",
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta, partidas contadas e novo aparelho estão desligadas: qualquer testador pode trocar assim que confirmar o e-mail.']),
+            ...(o.launch ? ["Testadores que jogaram 3 partidas contadas durante o teste beta não precisam de mais 3."] : ["Testadores que jogarem 3 partidas contadas durante o teste beta não vão precisar de mais 3 depois do lançamento."]),
             'Cada lado oferece até 10 itens, e os dois confirmam antes da troca. Trocas grandes pedem um código que mandamos por e-mail.',
             ...(o.interceptsInTrades ? ['Adultos também podem colocar Interceptações fechadas numa troca: escolha quantas de cada nível. Cada uma conta como um dos 10 itens.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Durante o teste beta, até 7 de dezembro, qualquer Interceptação fechada pode entrar numa troca, não importa como você a conseguiu. De qualquer forma, as Interceptações recomeçam do zero no lançamento.'] : []),
@@ -300,6 +314,7 @@ const ptBR: HelpText = {
             'O que você recebe numa troca fica protegido por 7 dias. Dá para usar um item na hora, mas ainda não dá para trocá-lo, triturá-lo nem usá-lo numa Troca, e a Intel recebida ainda não pode ser gasta.',
             ...(o.interceptsInTrades ? ['Uma Interceptação fechada que você recebe fica lacrada nesses 7 dias: ainda não dá para abrir, trocar nem anunciar.'] : []),
             'Nesses 7 dias, você pode reverter suas trocas, uma vez a cada 90 dias. Isso reverte todas as suas trocas protegidas e pausa suas trocas por 30 dias.',
+            "Reverter também desfaz suas compras e vendas nos Achados raros que ainda estão nos 3 dias de proteção.",
             'Depois de 7 dias, a troca é definitiva. Também podemos reverter uma troca por roubo de conta ou fraude.',
           ],
         },
@@ -329,6 +344,7 @@ const ptBR: HelpText = {
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, entrar em um novo aparelho ou mudar o e-mail ou a forma de entrar não pausa as trocas.']),
             'Isso protege seus itens se outra pessoa entrar na sua conta.',
             'Também podemos pausar nós mesmos as trocas de uma conta, para protegê-la ou enquanto verificamos uma fraude.',
+            "Uma verificação de jogo limpo pausa as trocas e o Mercado Negro enquanto durar. Com a reputação Banida, trocas, presentes e o Mercado Negro ficam fechados até ela se recuperar: veja <b>Reputação</b> em Ajustes.",
             'Qualquer uma dessas pausas, inclusive o seu próprio bloqueio, fecha na hora suas ofertas e anúncios abertos no Mercado Negro. O mesmo acontece com um banimento, uma suspensão ou uma verificação de jogo limpo. Os itens voltam para você, a Intel de uma oferta de compra espera você coletar, e as ofertas de outros jogadores nos seus anúncios voltam para eles. Nada reabre quando termina: é preciso anunciar de novo.',
             'Se desconectarmos sua conta em todos os aparelhos sem pausar as trocas, suas ofertas e anúncios do Mercado Negro feitos antes disso mostram <b>Em espera</b> e não são executados. Quando seu novo login puder trocar, toque em <b>Colocar de volta</b> em cada um que for seu, ou pare-o.',
           ],
@@ -354,6 +370,7 @@ const ptBR: HelpText = {
           q: 'Quem pode usar o Mercado Negro?',
           a: [
             'Adultos que podem trocar: conta com pelo menos 7 dias, e-mail confirmado, 3 partidas contadas e trocas sem pausa.',
+            "Os 7 dias contam a partir de quando a conta foi salva: o tempo como visitante não conta.",
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta e de partidas contadas também estão desligadas aqui.']),
             'Menores de 18 podem olhar, mas não podem comprar, vender nem fazer ofertas.',
             ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: de 9 a 16 de novembro, adultos que podem trocar compram e vendem aqui de verdade. Toda venda feita durante o teste é desfeita em 16 de novembro: quem comprou recebe de volta a Intel que pagou, e quem vendeu devolve o que recebeu.' : 'A Intel começa a circular lá no lançamento da 2.2, em 8 de dezembro. Até lá, dá para dar uma olhada.']),
@@ -366,6 +383,8 @@ const ptBR: HelpText = {
             'Cada item vendido paga uma taxa de 2% (no mínimo 1 e no máximo 5.000 de Intel), que sai do jogo.',
             'Nenhuma oferta pode ficar abaixo do preço mínimo de um item: o que uma cópia rende ao ser triturada. Para uma interceptação fechada, é a média do seu nível.',
             'Membros podem ter 8 ofertas abertas ao mesmo tempo; os outros, 4. Enquanto uma oferta está aberta, a Intel ou os itens dela ficam reservados (você ainda pode usar os itens).',
+            "Um preço pode chegar a 1.000.000 de Intel por cópia, e uma oferta pode ser de até 1.000 cópias.",
+            "Nos Achados raros, você pode anunciar até 25 itens Únicos ao mesmo tempo e ter até 20 ofertas abertas em anúncios de outros jogadores.",
             'Dá para cancelar uma oferta quando quiser e pegar o que sobrou.',
           ],
         },
@@ -508,7 +527,7 @@ const ptBR: HelpText = {
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
             'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de visitante não está na lista, então o mais comum é ser outra conta.',
-            ...(o.launch ? [] : ['Beta 2: o agradecimento de US$ 10 vai por PayPal para cada jogador confirmado que participa da hora inteira ao vivo e envia a pesquisa, em até 7 dias após a sessão, igual no iPhone e no Android. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil da sessão, escolhido pelo desenvolvedor em até uma semana.']),
+            ...(o.launch ? [] : ["O Beta 3 é na terça-feira, 24 de novembro, das 20h às 21h no horário do leste dos EUA (dá para entrar a partir das 19h30). Se o e-mail da sua vaga fala do agradecimento de US$ 10: jogue pelo menos uma partida naquela noite e envie a pesquisa até sexta-feira, 27 de novembro, às 23h59 no horário do leste, e os US$ 10 chegam por PayPal até 1º de dezembro. Um testador também ganha um vale-presente de US$ 50 pelo relato ou pela ideia mais útil, escolhido por nós."]),
           ],
         },
         ...(o.launch
@@ -695,7 +714,7 @@ const ptBR: HelpText = {
           id: 'delete-account',
           q: 'Como excluo minha conta?',
           a: [
-            'No app: <b>Conta</b>, <b>Ajustes</b>, <b>Excluir conta</b>. Para um visitante, sair da conta já a exclui.',
+            "No app: <b>Conta</b>, <b>Ajustes</b>, <b>Conta e acesso</b>, <b>Excluir conta</b>. Não dá para desfazer. Uma conta de visitante também é excluída ali, ou ao sair da conta.",
             'Você também pode pedir por e-mail: veja <delete>Excluir sua conta</delete>.',
             'Excluir a conta não cancela um passe de assinatura: cancele também na loja.',
           ],

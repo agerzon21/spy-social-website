@@ -93,6 +93,17 @@ const en: HelpText = {
           ],
         },
         {
+          id: 'new-page',
+          q: "What is New Page in Spy Sketch?",
+          a: [
+            "A sketch break stops play for up to 20 seconds: study the drawing, chat and check your notes. Everyone still in votes <b>Keep this page</b> or <b>New page</b>. The break ends sooner once everyone has voted.",
+            "The page stays only if more than half of the players still in vote to keep it. A tie, or no vote, means a blank sheet. You can still look back at earlier pages.",
+            "<b>Play Online:</b> one extra page at most. The break comes after every 2 rounds at a table of 4, and after every round at a table of 8. If the table keeps the page, the next break comes as many rounds later.",
+            "<b>Private rooms and Game Nights:</b> the host (or the night) sets <b>New page</b> in the rules: Off, 2, 3 or 4 pages, or Unlimited; 3 unless it’s changed. The break comes when the sheet fills up.",
+            "No break starts in the game’s last 45 seconds.",
+          ],
+        },
+        {
           id: 'voting',
           q: 'How does voting work?',
           a: [
@@ -165,6 +176,7 @@ const en: HelpText = {
           a: [
             "In <b>How to Play</b>, pick Spy Talk or Spy Sketch. <b>Step 1, Tutorial:</b> a guided 3-minute game with AI agents. Play it as a Local or as the Spy: passing either one counts.",
             "<b>Step 2, Practice Games:</b> full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off.",
+            "Each game has four: as a Local or as the Spy, at a table of 4 or of 8. An A in all eight earns the <b>Straight A’s</b> title (saved accounts only).",
             "You don’t need either one to play online today. Game Night never asks.",
           ],
         },
@@ -177,10 +189,10 @@ const en: HelpText = {
               ? [
                   'Everyone sees the game in their own language, the secret and the hints included, so one table can mix languages.',
                   o.autoTranslation
-                    ? 'Messages in another language are translated into yours automatically. To translate only when you tap, turn off <b>Translate messages automatically</b> in Settings.'
+                    ? 'Messages in another language are translated into yours automatically. To translate only when you tap, turn off <b>Translate Messages Automatically</b> in Settings.'
                     : 'Tap <b>Translate</b> on a message to read it in your language.',
                 ]
-              : ['In a private room, the host picks the game’s language for the secret and the hints.']),
+              : ['In a private room, the host picks the game’s language for the secret and the hints.', ...(o.autoTranslation ? ['Messages in another language are translated into yours automatically. To translate only when you tap, turn off <b>Translate Messages Automatically</b> in Settings.'] : [])]),
             ...(o.autoTranslation ? ['Play Online may offer to add your language to your phone’s own translator. It’s optional, and it keeps English chat lines translated when our translator is busy.'] : []),
           ],
         },
@@ -251,7 +263,7 @@ const en: HelpText = {
           id: 'add-friends',
           q: 'How do I add friends?',
           a: [
-            '<b>In person:</b> show your <b>Friend Code</b> and let them scan it in SpySocial. It changes often, so a screenshot stops working.',
+            "<b>In person:</b> show your <b>Friend Code</b> and let them scan it in SpySocial. A new code comes every 5 minutes and works for up to 3 scans, so a screenshot soon stops working.",
             '<b>From a private game</b> you played together in the last 24 hours.',
             '<b>Adults only:</b> from a public table, or by exact username, if they allow it.',
             'Friends are two-way. You can remove or block a friend any time; they aren’t told. There are no private messages.',
@@ -291,7 +303,9 @@ const en: HelpText = {
           q: 'Who can trade, and what?',
           a: [
             'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones).',
+            "The 7 days count from when the account was saved: time as a guest doesn’t count.",
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age, counted-games and new-device rules are off: every tester can trade once their email is confirmed.']),
+            ...(o.launch ? ["Testers who played 3 counted games during the beta test don’t need 3 more."] : ["Testers who play 3 counted games during the beta test won’t need 3 more after launch."]),
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
             ...(o.interceptsInTrades ? ['Adults can also put unopened Intercepts in a trade: choose how many of each tier. Each one counts as one of the 10.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['During the beta test, until December 7, every unopened Intercept can go in a trade, however you got it. Intercepts start fresh at launch anyway.'] : []),
@@ -309,6 +323,7 @@ const en: HelpText = {
             'What you get in a trade is protected for 7 days. You can wear an item at once, but you can’t trade it, shred it or trade it up yet, and Intel you get can’t be spent yet.',
             ...(o.interceptsInTrades ? ['An unopened Intercept you get stays sealed for those 7 days: you can’t open it, trade it or list it yet.'] : []),
             'In those 7 days you can reverse your trades, once every 90 days. It reverses all of your protected trades and pauses your trading for 30 days.',
+            "Reversing also undoes your Rare Finds buys and sales that are still in their 3 days of protection.",
             'After 7 days a trade is final. We can also reverse a trade for account theft or fraud.',
           ],
         },
@@ -338,6 +353,7 @@ const en: HelpText = {
             ...(o.launch ? [] : ['During the beta test, until December 7, a sign-in on a new device or an email or sign-in change doesn’t pause trading.']),
             'It’s there to protect your items if someone else gets into your account.',
             'We can also pause an account’s trading ourselves, to protect it or while we look into fraud.',
+            "A fair-play hold pauses trading and the Black Market while it lasts. With a Banned reputation, trading, gifts and the Black Market stay closed until it recovers: see <b>Reputation</b> in Settings.",
             'Any of these pauses, your own lock included, closes your open Black Market offers and listings at once. A ban, a suspension or a fair-play hold does too. Items come back to you, Intel from a buy offer waits for you to collect, and other players’ offers on your listings go back to them. Nothing reopens when it ends: you list again.',
             'If we sign your account out on every device without pausing trading, your Black Market offers and listings from before that show <b>Waiting</b> and don’t fill. Once your new sign-in can trade, tap <b>Put Back</b> on each one that’s yours, or stop it.',
           ],
@@ -363,6 +379,7 @@ const en: HelpText = {
           q: 'Who can use the Black Market?',
           a: [
             'Adults who can trade: an account at least 7 days old, a confirmed email, 3 counted games and no trading pause.',
+            "The 7 days count from when the account was saved: time as a guest doesn’t count.",
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
             ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 9 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone on November 16: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
@@ -375,6 +392,8 @@ const en: HelpText = {
             'Each item sold costs a 2% fee (at least 1 Intel, at most 5,000 Intel), which is removed from the game.',
             'No offer can go below an item’s minimum price: what one copy shreds for. For an unopened Intercept, it’s the average its tier shreds for.',
             'Members can have 8 offers open at once, others 4. While an offer is open, its Intel or items are held for it (you can still wear the items).',
+            "A price can be up to 1,000,000 Intel each, and one offer can be for up to 1,000 copies.",
+            "On Rare Finds, you can list up to 25 Uniques at once and have up to 20 offers open on other players’ listings.",
             'You can stop an offer any time and collect what’s left.',
           ],
         },
@@ -517,7 +536,7 @@ const en: HelpText = {
             ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
             'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
             'Something missing? Email <email/> with your username and the email you signed in with during the test. A guest account isn’t on the list, so a different account is the usual reason.',
-            ...(o.launch ? [] : ['Beta 2: the $10 thank-you goes by PayPal to every confirmed player who joins the full live hour and sends the survey, within 7 days of the session, the same on iPhone and Android. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week.']),
+            ...(o.launch ? [] : ["Beta 3 is on Tuesday, November 24, 8 to 9 PM Eastern (join from 7:30). If your seat email mentions the $10 thank-you: play at least one game that night and send the survey by Friday, November 27, 11:59 PM Eastern, and the $10 comes by PayPal by December 1. One tester also gets a $50 gift card for the most useful report or idea, chosen by us."]),
           ],
         },
         ...(o.launch
@@ -704,7 +723,7 @@ const en: HelpText = {
           id: 'delete-account',
           q: 'How do I delete my account?',
           a: [
-            'In the app: <b>Account</b>, <b>Settings</b>, <b>Delete Account</b>. For a guest, signing out deletes it.',
+            "In the app: <b>Account</b>, <b>Settings</b>, <b>Account & Sign-In</b>, <b>Delete Account</b>. It can’t be undone. A guest account is deleted there too, or by signing out.",
             'You can also ask us by email: see <delete>Delete your account</delete>.',
             'Deleting doesn’t cancel a membership pass: cancel it in the store too.',
           ],

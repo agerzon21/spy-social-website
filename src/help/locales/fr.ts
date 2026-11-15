@@ -80,6 +80,17 @@ const sections = (o: HelpOpts): HelpSection[] => [
         ],
       },
       {
+        id: 'new-page',
+        q: "C’est quoi, Nouvelle page dans Spy Sketch ?",
+        a: [
+          "Une pause dessin arrête le jeu jusqu’à 20 secondes : étudie le dessin, discute et regarde tes notes. Tous ceux encore en jeu votent <b>Garder la page</b> ou <b>Nouvelle page</b>. La pause finit plus tôt dès que tout le monde a voté.",
+          "La page reste seulement si plus de la moitié des joueurs encore en jeu votent pour la garder. Une égalité, ou aucun vote, donne une page blanche. Tu peux toujours revoir les pages d’avant.",
+          "<b>Jouer en ligne :</b> une page en plus au maximum. La pause arrive toutes les 2 manches à une table de 4, et après chaque manche à une table de 8. Si la table garde la page, la pause suivante arrive autant de manches plus tard.",
+          "<b>Salons privés et soirées jeux :</b> l’hôte (ou la soirée) règle <b>Nouvelle page</b> dans les règles : Non, 2, 3 ou 4 pages, ou Illimité ; 3 si personne n’y touche. La pause arrive quand la feuille est pleine.",
+          "Aucune pause ne commence dans les 45 dernières secondes de la partie.",
+        ],
+      },
+      {
         id: 'voting',
         q: 'Comment fonctionne le vote ?',
         a: [
@@ -152,6 +163,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Dans <b>Comment jouer</b>, choisis Spy Talk ou Spy Sketch. <b>Étape 1, Tutoriel :</b> une partie guidée de 3 minutes contre des agents IA. Joue-la côté local ou côté espion : réussir l'un ou l'autre suffit.",
           "<b>Étape 2, Parties d'entraînement :</b> des parties complètes de 5 à 9 minutes contre des agents IA, notées de A à F. Elles se débloquent quand tu réussis le tutoriel de ce jeu, et tu peux reprendre là où tu t'es arrêté.",
+          "Chaque jeu en a quatre : côté local ou côté espion, à une table de 4 ou de 8. Un A dans les huit te vaut le titre <b>Sans-faute</b> (comptes sauvegardés seulement).",
           "Aujourd'hui, aucun des deux n'est nécessaire pour jouer en ligne. La soirée jeux ne le demande jamais.",
         ],
       },
@@ -167,7 +179,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
                   ? 'Les messages dans une autre langue sont traduits automatiquement dans la tienne. Pour traduire seulement quand tu touches, désactive <b>Traduire les messages automatiquement</b> dans les Réglages.'
                   : 'Touche <b>Traduire</b> sur un message pour le lire dans ta langue.',
               ]
-            : ["Dans un salon privé, l'hôte choisit la langue de la partie pour le secret et les indices."]),
+            : ["Dans un salon privé, l'hôte choisit la langue de la partie pour le secret et les indices.", ...(o.autoTranslation ? ['Les messages dans une autre langue sont traduits automatiquement dans la tienne. Pour traduire seulement quand tu touches, désactive <b>Traduire les messages automatiquement</b> dans les Réglages.'] : [])]),
           ...(o.autoTranslation ? ["Jouer en ligne peut te proposer d'ajouter ta langue au traducteur de ton téléphone. C'est facultatif, et ça garde les lignes en anglais du chat traduites quand notre traducteur est occupé."] : []),
         ],
       },
@@ -238,7 +250,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'add-friends',
         q: 'Comment ajouter des amis ?',
         a: [
-          "<b>En personne :</b> montre ton <b>code ami</b> et laisse ton ami le scanner dans SpySocial. Il change souvent : une capture d'écran cesse vite de marcher.",
+          "<b>En personne :</b> montre ton <b>code ami</b> et laisse ton ami le scanner dans SpySocial. Un nouveau code arrive toutes les 5 minutes et marche pour 3 scans au plus : une capture d’écran cesse vite de marcher.",
           '<b>Depuis une partie privée</b> jouée ensemble dans les dernières 24 heures.',
           "<b>Entre adultes :</b> depuis une table publique, ou par nom d'utilisateur exact, s'ils l'autorisent.",
           "L'amitié est réciproque. Tu peux retirer ou bloquer un ami à tout moment, sans qu'il soit prévenu. Il n'y a pas de messages privés.",
@@ -278,7 +290,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Qui peut échanger, et quoi ?',
         a: [
           "Tu échanges avec tes amis, dans l'appli. Il te faut un compte d'au moins 7 jours, un e-mail confirmé et 3 parties comptées (des parties terminées qui comptent dans tes stats, avec au moins 2 autres comptes sauvegardés sur d'autres téléphones).",
+          "Les 7 jours comptent à partir de la sauvegarde du compte : le temps passé en invité ne compte pas.",
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte, de parties comptées et de nouvel appareil sont levées : chaque testeur peut échanger dès que son e-mail est confirmé.']),
+          ...(o.launch ? ["Les testeurs qui ont joué 3 parties comptées pendant le test bêta n’ont pas besoin de 3 autres."] : ["Les testeurs qui jouent 3 parties comptées pendant le test bêta n’en auront pas besoin de 3 autres après le lancement."]),
           "Chaque côté propose jusqu'à 10 objets, et les deux confirment avant l'échange. Les gros échanges demandent un code envoyé par e-mail.",
           ...(o.interceptsInTrades ? ['Les adultes peuvent aussi mettre des interceptions non ouvertes dans un échange : choisis combien de chaque niveau. Chacune compte pour un des 10 objets.'] : []),
           ...(o.interceptsInTrades && !o.launch ? ["Pendant la bêta, jusqu'au 7 décembre, n'importe quelle interception non ouverte peut entrer dans un échange, quelle que soit son origine. De toute façon, les interceptions repartent de zéro au lancement."] : []),
@@ -296,6 +310,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Ce que tu reçois dans un échange est protégé pendant 7 jours. Tu peux porter un objet tout de suite, mais pas encore l'échanger, le déchiqueter ni l'utiliser dans un Échange, et l'Intel reçu ne se dépense pas encore.",
           ...(o.interceptsInTrades ? ["Une interception non ouverte que tu reçois reste scellée pendant ces 7 jours : tu ne peux pas encore l'ouvrir, l'échanger ni la mettre en vente."] : []),
           'Pendant ces 7 jours, tu peux annuler tes échanges, une fois tous les 90 jours. Ça annule tous tes échanges protégés et met tes échanges en pause pendant 30 jours.',
+          "L’annulation défait aussi tes achats et ventes sur les Trouvailles rares encore dans leurs 3 jours de protection.",
           "Après 7 jours, l'échange est définitif. Nous pouvons aussi annuler un échange en cas de vol de compte ou de fraude.",
         ],
       },
@@ -325,6 +340,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, une connexion sur un nouvel appareil ou un changement d’e-mail ou de mode de connexion ne met pas les échanges en pause.']),
           "Ça protège tes objets si quelqu'un d'autre accède à ton compte.",
           "Nous pouvons aussi mettre nous-mêmes en pause les échanges d'un compte, pour le protéger ou le temps de vérifier une fraude.",
+          "Une vérification de fair-play met en pause les échanges et le Marché noir tant qu’elle dure. Avec une réputation Bloquée, les échanges, les cadeaux et le Marché noir restent fermés jusqu’à ce qu’elle remonte : vois <b>Réputation</b> dans les Réglages.",
             "Chacune de ces pauses, ton propre verrouillage compris, ferme aussitôt tes offres et annonces ouvertes sur le Marché noir. Un bannissement, une suspension ou une vérification de fair-play aussi. Les objets te reviennent, l'Intel d'une offre d'achat attend que tu la récupères, et les offres des autres joueurs sur tes annonces leur reviennent. Rien ne rouvre à la fin : il faut republier.",
           "Si nous déconnectons ton compte sur tous les appareils sans mettre les échanges en pause, tes offres et annonces du Marché noir d'avant cela affichent <b>En attente</b> et ne s'exécutent pas. Quand ta nouvelle connexion peut échanger, touche <b>Remettre</b> sur chacune qui est à toi, ou arrête-la.",
         ],
@@ -350,6 +366,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Qui peut utiliser le Marché noir ?',
         a: [
           "Les adultes qui peuvent échanger : un compte d'au moins 7 jours, un e-mail confirmé, 3 parties comptées et pas de pause des échanges.",
+          "Les 7 jours comptent à partir de la sauvegarde du compte : le temps passé en invité ne compte pas.",
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte et de parties comptées sont levées ici aussi.']),
           "Les moins de 18 ans peuvent regarder, mais ni acheter, ni vendre, ni faire d'offres.",
           ...(o.launch ? [] : [o.testerMarket ? "Bêta 2 : du 9 au 16 novembre, les adultes qui peuvent échanger achètent et vendent ici pour de vrai. Toutes les ventes faites pendant le test sont annulées le 16 novembre : l'acheteur récupère l'Intel payé et le vendeur rend ce qu'il a reçu." : "L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
@@ -362,6 +379,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Chaque objet vendu coûte 2 % de frais (1 Intel au moins, 5 000 au plus), retirés du jeu.",
           "Aucune offre ne peut passer sous le prix minimum d'un objet : ce que rapporte le déchiquetage d'un exemplaire. Pour une interception non ouverte, c'est la moyenne de son niveau.",
           "Les membres peuvent avoir 8 offres ouvertes à la fois, les autres 4. Tant qu'une offre est ouverte, son Intel ou ses objets sont réservés (tu peux toujours porter les objets).",
+          "Un prix peut aller jusqu’à 1 000 000 d’Intel par exemplaire, et une offre peut porter sur 1 000 exemplaires au plus.",
+          "Sur les Trouvailles rares, tu peux mettre en vente jusqu’à 25 objets Uniques à la fois et avoir jusqu’à 20 offres ouvertes sur les annonces des autres joueurs.",
           'Tu peux arrêter une offre à tout moment et récupérer ce qui reste.',
         ],
       },
@@ -504,7 +523,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
           "Il manque quelque chose ? Écris à <email/> avec ton nom d'utilisateur et l'e-mail utilisé pendant le test. Un compte invité n'est pas sur la liste : c'est souvent une question de compte différent.",
-          ...(o.launch ? [] : ["Bêta 2 : le remerciement de 10 $ est envoyé par PayPal à chaque joueur confirmé qui participe à toute l'heure en direct et envoie le questionnaire, dans les 7 jours après la session, pareil sur iPhone et Android. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile de la session, choisi par le développeur sous une semaine."]),
+          ...(o.launch ? [] : ["La Bêta 3 a lieu le mardi 24 novembre, de 20 h à 21 h, heure de l’Est des États-Unis (on peut rejoindre dès 19 h 30). Si l’e-mail de ta place parle du remerciement de 10 $ : joue au moins une partie ce soir-là et envoie le questionnaire avant le vendredi 27 novembre, 23 h 59 heure de l’Est, et les 10 $ arrivent par PayPal avant le 1er décembre. Un testeur reçoit aussi une carte cadeau de 50 $ pour le rapport ou l’idée la plus utile, choisi par nous."]),
         ],
       },
       ...(o.launch
@@ -691,7 +710,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'delete-account',
         q: 'Comment supprimer mon compte ?',
         a: [
-          "Dans l'appli : <b>Compte</b>, <b>Réglages</b>, <b>Supprimer le compte</b>. Pour un invité, se déconnecter le supprime.",
+          "Dans l’appli : <b>Compte</b>, <b>Réglages</b>, <b>Compte et connexion</b>, <b>Supprimer le compte</b>. C’est définitif. Un compte invité se supprime au même endroit, ou en se déconnectant.",
           'Tu peux aussi nous le demander par e-mail : voir <delete>Supprimer ton compte</delete>.',
           "Supprimer ton compte ne résilie pas un abonnement : résilie-le aussi dans le store.",
         ],

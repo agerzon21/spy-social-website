@@ -84,6 +84,17 @@ const id: HelpText = {
           ],
         },
         {
+          id: 'new-page',
+          q: "Apa itu Halaman baru di Spy Sketch?",
+          a: [
+            "Jeda menggambar menghentikan permainan sampai 20 detik: amati gambarnya, chat, dan cek catatanmu. Semua yang masih bermain memilih <b>Simpan halaman ini</b> atau <b>Halaman baru</b>. Jeda selesai lebih cepat kalau semua sudah memilih.",
+            "Halaman tetap dipakai hanya jika lebih dari separuh pemain yang masih bermain memilih menyimpannya. Seri, atau tidak ada yang memilih, berarti halaman kosong. Halaman sebelumnya tetap bisa dilihat.",
+            "<b>Main online:</b> paling banyak satu halaman tambahan. Jeda datang setiap 2 ronde di meja 4 pemain, dan setelah setiap ronde di meja 8 pemain. Kalau meja menyimpan halamannya, jeda berikutnya datang setelah jumlah ronde yang sama.",
+            "<b>Room privat dan Malam Permainan:</b> host (atau pengaturan malam itu) memilih <b>Halaman baru</b> di aturan: Mati, 2, 3, atau 4 halaman, atau Tanpa batas; 3 kalau tidak diubah. Jeda datang saat lembar penuh.",
+            "Tidak ada jeda yang dimulai pada 45 detik terakhir permainan.",
+          ],
+        },
+        {
           id: 'voting',
           q: 'Bagaimana voting bekerja?',
           a: [
@@ -156,6 +167,7 @@ const id: HelpText = {
           a: [
             "Di <b>Cara bermain</b>, pilih Spy Talk atau Spy Sketch. <b>Langkah 1, Tutorial:</b> permainan berpemandu 3 menit melawan agen AI. Mainkan sebagai warga atau mata-mata: lulus salah satunya sudah cukup.",
             "<b>Langkah 2, Permainan latihan:</b> permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir.",
+            "Tiap game punya empat: sebagai warga atau mata-mata, di meja 4 atau 8 pemain. Nilai A di kedelapannya memberimu gelar <b>Nilai Sempurna</b> (khusus akun tersimpan).",
             "Saat ini kamu tidak perlu keduanya untuk main online. Malam Permainan tidak pernah memintanya.",
           ],
         },
@@ -171,7 +183,7 @@ const id: HelpText = {
                     ? 'Pesan dalam bahasa lain diterjemahkan ke bahasamu otomatis. Untuk menerjemahkan hanya saat diketuk, matikan <b>Terjemahkan pesan otomatis</b> di Pengaturan.'
                     : 'Ketuk <b>Terjemahkan</b> pada pesan untuk membacanya dalam bahasamu.',
                 ]
-              : ['Di room privat, host memilih bahasa permainan untuk rahasia dan petunjuk.']),
+              : ['Di room privat, host memilih bahasa permainan untuk rahasia dan petunjuk.', ...(o.autoTranslation ? ['Pesan dalam bahasa lain diterjemahkan ke bahasamu otomatis. Untuk menerjemahkan hanya saat diketuk, matikan <b>Terjemahkan pesan otomatis</b> di Pengaturan.'] : [])]),
             ...(o.autoTranslation ? ['Main online bisa menawarkan untuk menambahkan bahasamu ke penerjemah bawaan ponsel. Ini opsional, dan membuat baris bahasa Inggris di chat tetap diterjemahkan saat penerjemah kami sibuk.'] : []),
           ],
         },
@@ -242,7 +254,7 @@ const id: HelpText = {
           id: 'add-friends',
           q: 'Bagaimana cara menambah teman?',
           a: [
-            '<b>Langsung:</b> tunjukkan <b>Kode Teman</b>-mu dan biarkan dia memindainya di SpySocial. Kodenya sering berganti, jadi tangkapan layar cepat tidak berlaku.',
+            "<b>Langsung:</b> tunjukkan <b>Kode Teman</b>-mu dan biarkan dia memindainya di SpySocial. Kode baru muncul tiap 5 menit dan hanya bisa dipindai sampai 3 kali, jadi tangkapan layar cepat tidak berlaku.",
             '<b>Dari permainan privat</b> yang kalian mainkan bersama dalam 24 jam terakhir.',
             '<b>Khusus dewasa:</b> dari meja publik, atau lewat username yang persis, kalau dia mengizinkan.',
             'Pertemanan berlaku dua arah. Kamu bisa menghapus atau memblokir teman kapan saja, dan dia tidak diberi tahu. Tidak ada pesan pribadi.',
@@ -282,7 +294,9 @@ const id: HelpText = {
           q: 'Siapa yang bisa tukar, dan apa saja?',
           a: [
             'Kamu bertukar dengan teman, di dalam aplikasi. Kamu butuh akun berusia minimal 7 hari, email terkonfirmasi, dan 3 permainan yang dihitung (permainan selesai yang masuk ke statistikmu, dengan minimal 2 akun tersimpan lain di ponsel lain).',
+            "7 hari itu dihitung sejak akun disimpan: waktu sebagai tamu tidak dihitung.",
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun, permainan yang dihitung, dan perangkat baru tidak berlaku: setiap penguji bisa bertukar begitu email-nya dikonfirmasi.']),
+            ...(o.launch ? ["Penguji yang memainkan 3 permainan yang dihitung selama uji beta tidak perlu 3 lagi."] : ["Penguji yang memainkan 3 permainan yang dihitung selama uji beta tidak perlu 3 lagi setelah peluncuran."]),
             'Tiap pihak menawarkan sampai 10 item, dan keduanya mengonfirmasi sebelum pertukaran terjadi. Pertukaran besar meminta kode yang kami kirim lewat email.',
             ...(o.interceptsInTrades ? ['Orang dewasa juga bisa memasukkan sadapan yang belum dibuka ke pertukaran: pilih berapa dari tiap tingkat. Masing-masing dihitung sebagai satu dari 10 item.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai 7 Desember, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
@@ -300,6 +314,7 @@ const id: HelpText = {
             'Yang kamu dapat dari pertukaran dilindungi selama 7 hari. Item bisa langsung dipakai, tapi belum bisa ditukar, dihancurkan, atau dipakai untuk Tukar Tambah, dan Intel yang diterima belum bisa dipakai.',
             ...(o.interceptsInTrades ? ['Sadapan belum dibuka yang kamu dapat tetap tersegel selama 7 hari itu: belum bisa dibuka, ditukar, atau dijual.'] : []),
             'Dalam 7 hari itu kamu bisa membatalkan pertukaranmu, sekali tiap 90 hari. Semua pertukaranmu yang masih dilindungi dibatalkan, dan pertukaranmu dijeda 30 hari.',
+            "Pembatalan itu juga membatalkan pembelian dan penjualanmu di Temuan Langka yang masih dalam 3 hari perlindungannya.",
             'Setelah 7 hari, pertukaran bersifat final. Kami juga bisa membatalkan pertukaran karena pencurian akun atau penipuan.',
           ],
         },
@@ -329,6 +344,7 @@ const id: HelpText = {
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, masuk di perangkat baru atau mengganti email atau cara masuk tidak menjeda pertukaran.']),
             'Ini melindungi itemmu kalau ada orang lain yang masuk ke akunmu.',
             'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan.',
+            "Pemeriksaan permainan adil menjeda pertukaran dan Pasar Gelap selama berlangsung. Selama reputasimu Diblokir, tukar item, hadiah, dan Pasar Gelap tetap tertutup sampai reputasi pulih: lihat <b>Reputasi</b> di Pengaturan.",
             'Jeda apa pun ini, termasuk kuncianmu sendiri, langsung menutup penawaran dan item yang kamu pasang di Pasar Gelap. Begitu juga blokir, penangguhan, atau pemeriksaan permainan adil. Item kembali kepadamu, Intel dari penawaran beli menunggu untuk kamu ambil, dan penawaran pemain lain pada itemmu kembali kepada mereka. Tidak ada yang dibuka lagi saat berakhir: kamu perlu memasangnya lagi.',
             'Jika kami mengeluarkan akunmu dari semua perangkat tanpa menjeda pertukaran, penawaran dan item yang kamu pasang di Pasar Gelap sebelum itu bertanda <b>Menunggu</b> dan tidak terpenuhi. Setelah login barumu bisa bertukar, ketuk <b>Kembalikan</b> pada tiap yang milikmu, atau hentikan.',
           ],
@@ -354,6 +370,7 @@ const id: HelpText = {
           q: 'Siapa yang bisa memakai Pasar Gelap?',
           a: [
             'Orang dewasa yang bisa bertukar: akun minimal 7 hari, email terkonfirmasi, 3 permainan yang dihitung, dan pertukaran tidak sedang dijeda.',
+            "7 hari itu dihitung sejak akun disimpan: waktu sebagai tamu tidak dihitung.",
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun dan permainan yang dihitung juga tidak berlaku di sini.']),
             'Pemain di bawah 18 tahun bisa melihat, tapi tidak bisa membeli, menjual, atau menawar.',
             ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: dari 9 sampai 16 November, orang dewasa yang bisa bertukar benar-benar membeli dan menjual di sini. Semua penjualan selama pengujian dibatalkan pada 16 November: pembeli mendapatkan kembali Intel yang dibayarnya, dan penjual mengembalikan apa yang diterimanya.' : 'Intel mulai berpindah di sana saat peluncuran 2.2, tanggal 8 Desember. Sampai saat itu, kamu bisa melihat-lihat.']),
@@ -366,6 +383,8 @@ const id: HelpText = {
             'Setiap item yang terjual kena biaya 2% (paling sedikit 1 Intel, paling banyak 5.000 Intel), yang dihapus dari permainan.',
             'Tidak ada tawaran yang boleh di bawah harga minimum item: nilai hancur satu salinannya. Untuk sadapan yang belum dibuka, itu rata-rata tingkatnya.',
             'Member bisa punya 8 penawaran terbuka sekaligus, yang lain 4. Selama penawaran terbuka, Intel atau itemnya ditahan (item tetap bisa dipakai).',
+            "Harga bisa sampai 1.000.000 Intel per salinan, dan satu penawaran bisa sampai 1.000 salinan.",
+            "Di Temuan Langka, kamu bisa memasang sampai 25 item Unik sekaligus dan punya sampai 20 tawaran terbuka di item pemain lain.",
             'Kamu bisa menghentikan penawaran kapan saja dan mengambil sisanya.',
           ],
         },
@@ -508,7 +527,7 @@ const id: HelpText = {
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
             'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',
-            ...(o.launch ? [] : ['Beta 2: ucapan terima kasih $10 dikirim lewat PayPal ke setiap pemain terkonfirmasi yang ikut sesi live satu jam penuh dan mengirim survei, dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu.']),
+            ...(o.launch ? [] : ["Beta 3 diadakan Selasa, 24 November, pukul 20.00–21.00 waktu bagian timur AS (bisa masuk mulai 19.30). Jika email kursimu menyebut ucapan terima kasih $10: mainkan setidaknya satu permainan malam itu dan kirim survei sebelum Jumat, 27 November, pukul 23.59 waktu bagian timur, lalu $10 dikirim lewat PayPal paling lambat 1 Desember. Satu penguji juga mendapat kartu hadiah $50 untuk laporan atau ide paling berguna, kami yang memilih."]),
           ],
         },
         ...(o.launch
@@ -695,7 +714,7 @@ const id: HelpText = {
           id: 'delete-account',
           q: 'Bagaimana cara menghapus akunku?',
           a: [
-            'Di aplikasi: <b>Akun</b>, <b>Pengaturan</b>, <b>Hapus akun</b>. Untuk tamu, keluar dari akun sudah menghapusnya.',
+            "Di aplikasi: <b>Akun</b>, <b>Pengaturan</b>, <b>Akun & masuk</b>, <b>Hapus akun</b>. Ini tidak bisa dibatalkan. Akun tamu juga dihapus di sana, atau dengan keluar dari akun.",
             'Kamu juga bisa minta lewat email: lihat <delete>Hapus akunmu</delete>.',
             'Menghapus akun tidak membatalkan langganan: batalkan juga di toko aplikasi.',
           ],
