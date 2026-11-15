@@ -1974,6 +1974,20 @@ export const LIVE = {
    * site goes up with it (SITE_STORAGE_1115_DAY). Not a Terms change.
    */
   siteStorage1115: true,
+  /**
+   * privacy-anchors-1115, STAGED OFF: withdrawing the drawing check's agreement. ON only once BOTH (1) app server file
+   * 20261231999902_sketch_consent_withdraw_1115 is applied on live (it adds withdraw_drawing_check_consent and a
+   * withdrawn_at column on drawing_check_consents: a withdrawal marks the account's record withdrawn, and the server then
+   * treats the account as not agreed) AND (2) the app update u62.12 with the Settings > Privacy & Safety > Drawing Checks
+   * row and its Withdraw (app repo branch fix/consent-withdraw-1115) is on players' phones; the app asks again on the next
+   * Spy Sketch search. Turns on, in Privacy's Drawing Checks item (after the sketchConsentRecord passage), where to
+   * withdraw and what happens after, and in Data Retention, the record sentence naming the version, the time and the
+   * withdrawal. Privacy only (Your Rights already says consent can be withdrawn; drawing checks rest on legitimate
+   * interests): no Terms change, so no LEGAL_LAST_UPDATED. Flip: node scripts/flip-switch.mjs drawingCheckWithdraw --day
+   * "<the day both hold>" (sets this true and DRAWING_CHECK_WITHDRAW_DAY, which moves PRIVACY_LAST_UPDATED). A server and
+   * app fact: set in LIVE, never in PRIVACY_AHEAD. Off again if 999902 is rolled back or u62.12 is pulled.
+   */
+  drawingCheckWithdraw: false,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -1997,6 +2011,8 @@ export const RESET_ARCHIVE_FORGET_DAY = 'November 15, 2026'
 /** legal-1115: LIVE.reputationBanMarket's day (999909's apply day; set by flip-switch --day) and LIVE.siteStorage1115's (the publish day). Never earlier than November 15, 2026. */
 export const REPUTATION_BAN_MARKET_DAY = 'November 15, 2026'
 export const SITE_STORAGE_1115_DAY = 'November 15, 2026'
+/** LIVE.drawingCheckWithdraw's day in PRIVACY_LAST_UPDATED: the day both its conditions hold and the site goes up with it on (set by flip-switch --day). Never earlier than November 15, 2026. */
+export const DRAWING_CHECK_WITHDRAW_DAY = 'November 15, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
@@ -2389,6 +2405,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.drawingCheckWithdraw
+    ? DRAWING_CHECK_WITHDRAW_DAY // Drawing Checks: withdrawing the agreement in Settings, and its Data Retention line (privacy-anchors-1115, 999902 + u62.12)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // the Black Market item: a reputation that becomes Banned closes the account's offers and listings (legal-1115, 999909)
   : LIVE.siteStorage1115

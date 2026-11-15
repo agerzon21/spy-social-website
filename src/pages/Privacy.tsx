@@ -772,7 +772,10 @@ const Privacy: React.FC = () => {
             app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
             turns are checked you draw only after you agree.
             {PRIVACY.sketchConsentRecord &&
-              " When you agree, the app also tells our servers, and we keep with your account that it agreed, to which version of the note and when, so that your answer counts on every device you use. It counts only for the account that agreed, never for another account signed in on the same device. Not Now isn't recorded. Our servers can use this record to seat only players who have agreed at public Spy Sketch tables (Play Online and Game Nights, alone or in a party); when they do, and someone in a party hasn't agreed yet, the app tells the party's leader which member it is."}{' '}
+              " When you agree, the app also tells our servers, and we keep with your account that it agreed, to which version of the note and when, so that your answer counts on every device you use. It counts only for the account that agreed, never for another account signed in on the same device. Not Now isn't recorded. Our servers can use this record to seat only players who have agreed at public Spy Sketch tables (Play Online and Game Nights, alone or in a party); when they do, and someone in a party hasn't agreed yet, the app tells the party's leader which member it is."}
+            {PRIVACY.sketchConsentRecord &&
+              PRIVACY.drawingCheckWithdraw &&
+              " You can withdraw your agreement at any time in the app's Settings, under Privacy & Safety, Drawing Checks. Our servers then count your account as not agreed, and the app asks you again before you play Spy Sketch in a public room (Play Online or a Game Night). Until you agree again, you can still play Spy Talk, and Spy Sketch in private rooms (where, as described here, a drawing can still be checked without asking). Withdrawing doesn't undo checks already made."}{' '}
             For the first check, our servers send OpenAI's
             moderation service a picture of the turn's own lines (and any lines the player drew and then undid), with
             nothing else. The second check gets a picture of the turn (the earlier drawing in light grey) with the
@@ -1175,7 +1178,9 @@ const Privacy: React.FC = () => {
           ? ' The results of drawing checks are kept for 90 days. A drawing taken off or reported is kept as evidence for 90 days, or longer while its report is still open. A drawing we must report as child sexual exploitation is kept for 1 year after we report it to NCMEC, as US law requires, in restricted storage, and shared with no one except the authorities.' + (PRIVACY.safetyFacts1114 ? ' A drawing that is part of a child-safety case is kept for at least 1 year from when the case opened, even once the case is closed.' : '')
           : ''}
         {PRIVACY.drawingCheck && PRIVACY.sketchConsentRecord
-          ? " The record that an account agreed to the drawing check's note is kept until the account is deleted."
+          ? PRIVACY.drawingCheckWithdraw
+            ? " The record that an account agreed to the drawing check's note (which version, and when), and when it withdrew that agreement if it did, is kept until the account is deleted."
+            : " The record that an account agreed to the drawing check's note is kept until the account is deleted."
           : ''}{' '}
         When we report child sexual exploitation to NCMEC, we keep what we reported (such as the messages, drawings or
         packs involved and the account details in the report) for at least 1 year after the report, as US law requires,

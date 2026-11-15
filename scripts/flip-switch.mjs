@@ -45,6 +45,8 @@ const SWITCHES = {
   // legal-1115: reputationBanMarket the day NEXT-BATCH row 35 (999909) is applied; siteStorage1115 is on (--day re-dates it to the publish day).
   reputationBanMarket: { live: [['reputationBanMarket', true]], day: 'REPUTATION_BAN_MARKET_DAY', step: 'row 35 (999909)' },
   siteStorage1115: { live: [['siteStorage1115', true]], day: 'SITE_STORAGE_1115_DAY', step: 'publish' },
+  // privacy-anchors-1115: only once 20261231999902_sketch_consent_withdraw_1115 is applied live AND u62.12 (Settings > Drawing Checks > Withdraw) is on the phones.
+  drawingCheckWithdraw: { live: [['drawingCheckWithdraw', true]], day: 'DRAWING_CHECK_WITHDRAW_DAY', step: '999902 + u62.12' },
 }
 
 const args = process.argv.slice(2)
