@@ -468,7 +468,7 @@ const fr: Strings = {
           o.gate ? ` Avant la première partie, l'appli demande l'année de naissance${o.under13Deletion ? ', et une réponse de moins de 13 ans supprime le compte' : ''}.` : ''
         }${o.storeSignals ? " Si Apple ou Google indique à l'appli que son utilisateur a moins de 13 ans, l'appli ne le laisse pas jouer." : ''} Nous ne vérifions pas l'âge\u00A0: si tu découvres qu'un enfant de moins de 13 ans a un compte, écris-nous et nous le supprimerons.`,
       publicRooms:
-        "<b>Les salons publics</b> demandent un compte enregistré avec une adresse e-mail confirmée, un âge de 13 ans ou plus et l'acceptation de nos règles de la communauté. Les invités ne peuvent jouer que dans des salons privés, et les joueurs suspendus ou bannis ne peuvent pas rejoindre les salons publics.",
+        "<b>Les salons publics</b> demandent un compte sauvegardé avec une adresse e-mail confirmée, un âge de 13 ans ou plus et l'acceptation de nos règles de la communauté. Les invités ne peuvent jouer que dans des salons privés, et les joueurs suspendus ou bannis ne peuvent pas rejoindre les salons publics.",
       filter:
         "<b>Filtre du chat\u00A0:</b> les noms et le chat sont vérifiés avant que quiconque les voie. Dans les salons publics, les injures, les mots sexuels explicites et les insultes sont bloqués. Dans les salons privés, les mots les plus graves sont bloqués. Dans tout salon ou groupe où se trouve un joueur de moins de 18 ans ou qui ne nous a pas donné son âge, les liens, adresses e-mail, numéros de téléphone, comptes de réseaux sociaux et autres informations personnelles (adresse du domicile, lieu de vie, école, vrai nom) sont bloqués pour tout le monde. Aux tables de «\u00A0Jouer en ligne\u00A0» et aux soirées jeux, ils sont toujours bloqués.",
       filterMild:
@@ -494,7 +494,7 @@ const fr: Strings = {
         "Ou écris à <email/> depuis l'adresse du compte, avec l'objet «\u00A0Delete my SpySocial account\u00A0». Si tu ne peux pas écrire depuis cette adresse, écris-nous quand même avec le nom d'utilisateur et nous t'aiderons. Notre page <link>Supprimer le compte</link> indique ce qui est supprimé et ce que nous conservons.",
       deleteSubject: 'Delete my SpySocial account',
       dataRequests:
-        "<b>Les données de ton enfant :</b> en tant que parent ou tuteur, tu peux nous demander une copie des données de son compte, la correction de son année de naissance ou la suppression du compte. Notre <link>Politique de confidentialité</link> (Confidentialité des enfants) explique comment nous vérifions la demande et ce qu'elle couvre.",
+        "<b>Les données de ton enfant :</b> en tant que parent ou tuteur, tu peux nous demander une copie des données de son compte, la correction de son année de naissance ou la suppression du compte. Notre <link>politique de confidentialité</link> (Confidentialité des enfants) explique comment nous vérifions la demande et ce qu'elle couvre.",
       contactTitle: 'Nous contacter',
       contact: (section: number) =>
         `Écris à <email/> pour tout ce qui concerne cette page. Pour tout ce qui touche à la sécurité d'un enfant, mets «\u00A0Child safety\u00A0» en objet et nous le traiterons en priorité. Pour contester une décision ou déposer une réclamation, y compris sur la façon dont nous respectons l'Online Safety Act du Royaume-Uni, consulte la section ${section} de nos <link>conditions d'utilisation</link>.`,
@@ -619,7 +619,7 @@ const fr: Strings = {
             label: "Refonte visuelle",
             items: [
               { title: "Fin de partie", text: "De nouvelles cartes joueur, un trophée pour les gagnants, le lieu avec une épingle sur la carte et un bouton clair pour revenir au salon." },
-              { title: "Compte", text: "Une seule liste bien rangée, des sections claires et la Zone de danger tout en bas." },
+              { title: "Compte", text: "Une seule liste bien rangée, des sections claires et la Zone dangereuse tout en bas." },
               { title: "iPad", text: "Le grand écran mieux utilisé\u00A0: six cartes joueur par rangée dans le salon, des vignettes de joueur plus grandes en partie, et plus rien de coupé." },
             ],
           },
@@ -740,7 +740,7 @@ const fr: Strings = {
         },
         {
           title: 'Ton agent et le Coffre',
-          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. Le Coffre ne vend que des abonnements\u00A0: tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, le créateur de packs et mener un groupe. Tout est facultatif, et rien ne change la façon de jouer.",
+          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. Le Coffre ne vend que des abonnements\u00A0: tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, le créateur de packs et le droit de mener un groupe. Tout est facultatif, et rien ne change la façon de jouer.",
         },
         {
           title: 'Soirées jeux',

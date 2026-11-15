@@ -475,7 +475,7 @@ const es: Strings = {
       filterMild:
         'En las mesas de «Jugar en línea» y en las noches de juegos, las palabrotas comunes no se bloquean, pero todos las ven censuradas: la primera letra y luego asteriscos (m*****). Las palabras más suaves se muestran tal cual.',
       reports:
-        '<b>Reportes, bloqueos y sanciones:</b> una persona lee cada reporte en menos de 24 horas, y el jugador reportado no sabe quién lo envió. Los reportes que involucran a un jugador menor de 18 años se leen primero. Las sanciones van desde una advertencia hasta un silencio en el chat, una pausa de las salas públicas o un bloqueo de la cuenta. Nuestras <link>Normas de la comunidad</link> indican lo que no está permitido.',
+        '<b>Reportes, bloqueos y sanciones:</b> una persona lee cada reporte en menos de 24 horas, y el jugador reportado no sabe quién lo envió. Los reportes que involucran a un jugador menor de 18 años se leen primero. Las sanciones van desde una advertencia hasta un silenciamiento del chat, una pausa de las salas públicas o un bloqueo de la cuenta. Nuestras <link>Normas de la comunidad</link> indican lo que no está permitido.',
       drawingCheck:
         '<b>Revisión de dibujos:</b> los turnos de dibujo en una sala pública pueden revisarse automáticamente, y un turno que la revisión detecta que rompe las normas se quita del dibujo.',
       buyTitle: 'Compras',
@@ -636,7 +636,7 @@ const es: Strings = {
           {
             label: "Mejoras",
             items: [
-              { title: "Temporizadores", text: "Las cuentas atrás siguen el reloj del juego, así que van bien aunque el reloj de tu teléfono no." },
+              { title: "Temporizadores", text: "Las cuentas regresivas siguen el reloj del juego, así que van bien aunque el reloj de tu teléfono no." },
               { title: "Registro y correo", text: "Registrarte, reenviar la confirmación, restablecer tu contraseña y cambiar tu correo funcionan de forma más fiable." },
               { title: "Correos de soporte", text: "Si tu teléfono no tiene app de correo, tocar una dirección de soporte la copia en lugar de mostrar un error." },
               { title: "Idiomas", text: "Todo lo nuevo está en inglés, español y ruso." },
@@ -740,7 +740,7 @@ const es: Strings = {
           title: 'Tu agente y la Bóveda',
           text: "Crea tu propio avatar de espía y gana estilos nuevos jugando. La Bóveda solo vende membresías: todos los paquetes premium en las salas que organizas y en tu mesa de Jugar en línea, el creador de paquetes y dirigir un grupo. Todo es opcional y nada cambia cómo se juega.",
         },
-        { title: 'Noches de juegos', text: 'Partidas en línea programadas. Toca «Recordarme» y te avisaremos antes de que empiecen.' },
+        { title: 'Noches de Juegos', text: 'Partidas en línea programadas. Toca «Recordarme» y te avisaremos antes de que empiecen.' },
         {
           title: 'Colores de agente',
           text: 'En las mesas de «Jugar en línea» y en las noches de juegos, los desconocidos ven el color de tu agente, como el Agente Turquesa, nunca tu nombre. Elige tus tres colores favoritos.',

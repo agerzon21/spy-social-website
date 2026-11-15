@@ -441,10 +441,10 @@ const id: Strings = {
         "Orang dewasa juga bisa menukar sadapan yang belum dibuka dengan teman.",
       /** Home's Discord pill (LIVE.homeDiscord; under 16 never, 16-17 a safety note first). */
       discord:
-        "<b>Tautan ke Discord kami:</b> beranda bisa menampilkan tautan ke server Discord resmi SpySocial, tempat pemain mencari teman bermain. Discord adalah aplikasi terpisah dengan aturan dan batas usianya sendiri. Pemain di bawah 16 tahun tidak pernah melihat tautan ini, dan pemain 16 dan 17 tahun lebih dulu melihat catatan agar tetap aman di sana. Moderator kami menjaga server itu, tetapi tidak ada seorang pun di SpySocial yang bisa melihat pesan pribadi di Discord.",
+        "<b>Link ke Discord kami:</b> beranda bisa menampilkan link ke server Discord resmi SpySocial, tempat pemain mencari teman bermain. Discord adalah aplikasi terpisah dengan aturan dan batas usianya sendiri. Pemain di bawah 16 tahun tidak pernah melihat link ini, dan pemain 16 dan 17 tahun lebih dulu melihat catatan agar tetap aman di sana. Moderator kami menjaga server itu, tetapi tidak ada seorang pun di SpySocial yang bisa melihat pesan pribadi di Discord.",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
-        `<b>Pembuat paket:</b> anggota bisa membuat paket lokasi atau kata sendiri untuk room privat mereka.${
+        `<b>Pembuat paket:</b> member bisa membuat paket lokasi atau kata sendiri untuk room privat mereka.${
           community ? ' Tim kami membaca setiap paket yang dibagikan ke Paket Komunitas sebelum orang lain bisa melihatnya, dan pemain mana pun bisa melaporkannya.' : ''
         }`,
       hasNotTitle: 'Apa yang tidak ada di SpySocial',
@@ -605,14 +605,14 @@ const id: Strings = {
         ],
       },
       {
-        tag: "Pembaruan poles",
+        tag: "Pembaruan penyempurnaan",
         summary:
-          "Pembaruan poles: layar Selamat datang baru, layar Permainan selesai dan Akun yang lebih segar, tata letak iPad yang lebih baik, dan sederet perbaikan.",
+          "Pembaruan penyempurnaan: layar Selamat datang baru, layar Permainan selesai dan Akun yang lebih segar, tata letak iPad yang lebih baik, dan sederet perbaikan.",
         sections: [
           {
             label: "Fitur baru",
             items: [
-              { title: "Layar Selamat datang baru", text: "Tampilan baru, tombol masuk dan daftar yang jelas, serta tautan sederhana untuk lanjut sebagai tamu." },
+              { title: "Layar Selamat datang baru", text: "Tampilan baru, tombol masuk dan daftar yang jelas, serta link sederhana untuk lanjut sebagai tamu." },
               { title: "Menyimpan akun tamu", text: "Sambil menunggu email konfirmasi, layar Akun menunjukkan kamu sudah di langkah mana, lengkap dengan Kirim ulang, Batal, dan Muat ulang." },
             ],
           },
@@ -657,7 +657,7 @@ const id: Strings = {
               { title: "Terjemahan petunjuk", text: "Kalau permainan memakai bahasa lain, ketuk petunjuk untuk membacanya dalam bahasamu. Semua pemain di meja tetap mendapat petunjuk yang sama." },
               { title: "Colekan", text: "Ketuk kartu pemain di lobi untuk mencoleknya." },
               { title: "Kode QR", text: "Bagikan room lewat menu berbagi di ponselmu, lengkap dengan kode QR untuk dipindai." },
-              { title: "Tautan room", text: "Tautan room membuka aplikasi dan langsung membawamu ke room, meski aplikasi sedang tertutup." },
+              { title: "Link room", text: "Link room membuka aplikasi dan langsung membawamu ke room, meski aplikasi sedang tertutup." },
               { title: "Kode room lebih pendek", text: "Cuma 5 karakter, lebih gampang diucapkan. Kode lama 6 karakter tetap berfungsi." },
               { title: "Siapa yang memulai voting", text: "Pengaturan lobi yang menunjukkan siapa yang memulai setiap voting." },
               { title: "Akhiri permainan", text: "Host bisa mengakhiri permainan lebih awal." },
@@ -701,7 +701,7 @@ const id: Strings = {
               { title: "", text: "Memperbaiki cara abstain dihitung. Tombol Abstain kini ada bersama tombol voting lainnya." },
               { title: "", text: "Memperbaiki header yang menutupi hasil tebakan." },
               { title: "", text: "Memperbaiki kedipan saat layar permainan dibuka." },
-              { title: "", text: "Memperbaiki menyimpan akun tamu yang malah membuatmu keluar dari akun." },
+              { title: "", text: "Memperbaiki masalah saat menyimpan akun tamu malah membuatmu keluar dari akun." },
               { title: "", text: "Memperbaiki kolom email di layar Akun." },
               { title: "", text: "Memperbaiki teks terpotong di kartu beranda dan di header bahasa Spanyol." },
             ],
@@ -762,10 +762,10 @@ const id: Strings = {
         },
         {
           title: 'Keamanan',
-          text: 'SpySocial untuk usia 13 tahun ke atas. Chat punya filter kata, kamu bisa melaporkan atau memblokir pemain mana pun, dan room yang ada pemain di bawah 18 tahun memblokir tautan, nomor telepon, dan akun media sosial di chat.',
+          text: 'SpySocial untuk usia 13 tahun ke atas. Chat punya filter kata, kamu bisa melaporkan atau memblokir pemain mana pun, dan room yang ada pemain di bawah 18 tahun memblokir link, nomor telepon, dan akun media sosial di chat.',
         },
       ],
-      more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, tautan undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
+      more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, link undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
       launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 8 Desember, Spy Sketch hari Jumat, 11 Desember, dan Mafia hari Sabtu, 12 Desember, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
     },
     next: {

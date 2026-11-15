@@ -391,7 +391,7 @@ const ptBR: Strings = {
       after: [
         'Uma pessoa, não um robô, lê cada denúncia em até 24 horas. Denúncias sobre segurança infantil, automutilação, conteúdo sexual ou dados pessoais são lidas primeiro, assim como as que envolvem um jogador menor de 18 anos.',
         'O jogador denunciado não fica sabendo quem o denunciou.',
-        'Se ele quebrou as regras, podemos dar uma advertência, bloquear o chat dele, pausá-lo das salas públicas ou bani-lo.',
+        'Se ele quebrou as regras, podemos dar uma advertência, bloquear o chat dele, afastá-lo das salas públicas ou bani-lo.',
         'Não enviamos o resultado para você, mas toda denúncia é lida e tratada.',
         'Blefar e mentir sobre o seu papel fazem parte do jogo, então não são motivo de denúncia.',
       ],
@@ -429,7 +429,7 @@ const ptBR: Strings = {
       buy: '<b>Itens para comprar:</b> pacotes e assinaturas, pela App Store ou pelo Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        '<b>Itens para comprar:</b> só assinaturas (o Pack Pass, mensal ou anual, e o Passe vitalício), pela App Store ou pelo Google Play. Uma assinatura libera os pacotes que não são grátis; nada mais é vendido.',
+        '<b>Itens para comprar:</b> só assinaturas (o Passe de pacotes, mensal ou anual, e o plano Vitalício), pela App Store ou pelo Google Play. Uma assinatura libera os pacotes que não são grátis; nada mais é vendido.',
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>Interceptações:</b> recompensas ganhas jogando, cada uma com um item aleatório, como um visual novo para o agente. Não podem ser compradas, nem com dinheiro nem com a moeda ganha no jogo, e o app mostra as chances antes de alguém abrir uma.',
@@ -477,10 +477,10 @@ const ptBR: Strings = {
       reports:
         '<b>Denúncias, bloqueios e punições:</b> uma pessoa lê cada denúncia em até 24 horas, e o jogador denunciado não fica sabendo quem fez a denúncia. Denúncias que envolvem um jogador menor de 18 anos são lidas primeiro. As punições vão de uma advertência a um bloqueio do chat, uma pausa nas salas públicas ou um banimento. Nossas <link>Regras da comunidade</link> listam o que não é permitido.',
       drawingCheck:
-        '<b>Verificação dos desenhos:</b> as vezes de desenhar numa sala pública podem ser verificadas automaticamente, e a vez que a verificação constatar que quebra as regras é removida do desenho.',
+        '<b>Verificação dos desenhos:</b> cada vez de desenhar numa sala pública pode ser verificada automaticamente, e a vez que quebrar as regras é removida do desenho.',
       buyTitle: 'Compras',
       buyText:
-        'Adolescentes precisam da permissão dos pais ou do responsável legal para comprar qualquer coisa. As compras passam pela App Store ou pelo Google Play, então os controles parentais deles, como o Pedir Compra da Apple e as aprovações de compra do Google Family Link, funcionam normalmente. Um Pack Pass é renovado até ser cancelado nos ajustes da loja.',
+        'Adolescentes precisam da permissão dos pais ou do responsável legal para comprar qualquer coisa. As compras passam pela App Store ou pelo Google Play, então os controles parentais deles, como o Pedir Compra da Apple e as aprovações de compra do Google Family Link, funcionam normalmente. Um Passe de pacotes é renovado até ser cancelado nos ajustes da loja.',
       deleteTitle: 'Excluir uma conta',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Abra o SpySocial.',
@@ -495,7 +495,7 @@ const ptBR: Strings = {
         'Ou escreva para <email/> do endereço da conta, com o assunto “Delete my SpySocial account” (excluir minha conta do SpySocial). Se não puder escrever desse endereço, escreva mesmo assim informando o nome de usuário, e vamos ajudar. Nossa página <link>Excluir conta</link> explica o que é excluído e o que guardamos.',
       deleteSubject: 'Delete my SpySocial account',
       dataRequests:
-        '<b>Os dados do seu filho ou filha:</b> como pai, mãe ou responsável, você pode nos pedir uma cópia dos dados da conta, a correção do ano de nascimento ou a exclusão da conta. Nossa <link>Política de Privacidade</link> (Privacidade das crianças) explica como confirmamos o pedido e o que ele inclui.',
+        '<b>Os dados do seu filho ou filha:</b> como pai, mãe ou responsável, você pode nos pedir uma cópia dos dados da conta, a correção do ano de nascimento ou a exclusão da conta. Nossa <link>Política de privacidade</link> (Privacidade das crianças) explica como confirmamos o pedido e o que ele inclui.',
       contactTitle: 'Fale conosco',
       contact: (section: number) =>
         `Escreva para <email/> sobre qualquer assunto desta página. Para qualquer coisa sobre a segurança de uma criança, coloque “Child safety” (segurança infantil) no assunto, e vamos tratar disso primeiro. Para recorrer de uma decisão ou fazer uma reclamação, inclusive sobre como cumprimos a Online Safety Act do Reino Unido, veja a seção ${section} dos nossos <link>Termos de uso</link>.`,
@@ -509,7 +509,7 @@ const ptBR: Strings = {
     helplines: {
       childline: {
         note: 'Reino Unido, para menores de 19 anos',
-        text: 'Ligue para <b>0800 1111</b>, de graça, a qualquer hora, ou converse com um conselheiro on-line em <link>childline.org.uk</link>. As ligações não aparecem na conta de telefone.',
+        text: 'Ligue para <b>0800 1111</b>, de graça, a qualquer hora, ou converse com um conselheiro online em <link>childline.org.uk</link>. As ligações não aparecem na conta de telefone.',
       },
       samaritans: { note: 'Reino Unido e Irlanda, qualquer idade', text: 'Ligue para <b>116 123</b>, de graça, a qualquer hora, de dia ou de noite (<link>samaritans.org</link>).' },
       lifeline: { note: 'EUA', text: 'Ligue ou mande mensagem para <b>988</b>, ou converse em <link>988lifeline.org</link>, de graça, a qualquer hora.' },
@@ -525,11 +525,11 @@ const ptBR: Strings = {
       },
       ncmec: {
         note: 'Exploração sexual infantil, de qualquer país',
-        text: 'Denuncie on-line em <link>report.cybertip.org</link>, ou ligue para 1-800-843-5678 (1-800-THE-LOST), a qualquer hora. Mantido pelo National Center for Missing & Exploited Children.',
+        text: 'Denuncie online em <link>report.cybertip.org</link>, ou ligue para 1-800-843-5678 (1-800-THE-LOST), a qualquer hora. Mantido pelo National Center for Missing & Exploited Children.',
       },
       ceop: {
         note: 'No Reino Unido',
-        text: 'Se você está preocupado com abuso sexual on-line, ou com o jeito como alguém tem falado com uma criança na internet, denuncie ao CEOP, parte da National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Jovens também podem denunciar, e um Child Protection Advisor lê cada denúncia.',
+        text: 'Se você está preocupado com abuso sexual online, ou com o jeito como alguém tem falado com uma criança na internet, denuncie ao CEOP, parte da National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Jovens também podem denunciar, e um Child Protection Advisor lê cada denúncia.',
       },
       spysocial: {
         text: 'Denuncie o jogador no app escolhendo <b>Segurança infantil</b>, e escreva para <email/> com “Child safety” (segurança infantil) no assunto. Removemos o conteúdo, banimos as contas envolvidas e denunciamos ao NCMEC, como a lei dos EUA exige; o NCMEC repassa a denúncia à polícia do país em questão.',
