@@ -88,7 +88,7 @@ const en = {
   },
   item: {
     price: 'Price',
-    priceNote: 'Middle price of the last 7 days’ trades',
+    priceNote: 'Middle price of the last 7 days’ trades (30 or 90 days when there are few)',
     guide: 'Guide price in the app',
     floor: 'Shred value (lowest price)',
     changes: { today: 'Today', m1: '1 month', m3: '3 months', m6: '6 months' },
@@ -203,7 +203,7 @@ const ru: MarketStrings = {
   },
   item: {
     price: 'Цена',
-    priceNote: 'Медиана сделок за 7 дней',
+    priceNote: 'Медиана сделок за 7 дней (за 30 или 90, если сделок мало)',
     guide: 'Ориентир цены в приложении',
     floor: 'Стоимость разбора (минимум)',
     changes: { today: 'Сегодня', m1: '1 месяц', m3: '3 месяца', m6: '6 месяцев' },

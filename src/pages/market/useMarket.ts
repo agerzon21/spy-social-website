@@ -75,8 +75,11 @@ export function compact(n: number, locale: string): string {
 export function pctText(f: number, locale: string): string {
   const p = f * 100
   const abs = Math.abs(p)
-  const txt = new Intl.NumberFormat(locale, { maximumFractionDigits: abs < 10 ? 1 : 0 }).format(abs)
-  return `${p > 0 ? '+' : p < 0 ? '−' : ''}${txt}%`
+  const digits = abs < 10 ? 1 : 0
+  const txt = new Intl.NumberFormat(locale, { maximumFractionDigits: digits }).format(abs)
+  // No sign on a change that rounds to 0 ("0%", not "+0%"; market-acc-1115).
+  const zero = Math.round(abs * 10 ** digits) === 0
+  return `${zero ? '' : p > 0 ? '+' : p < 0 ? '−' : ''}${txt}%`
 }
 
 export const dayText = (iso: string, locale: string, withYear = false) =>

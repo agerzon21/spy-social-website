@@ -101,7 +101,7 @@ const es: MarketStrings = {
   },
   item: {
     price: 'Precio',
-    priceNote: 'Mediana de las ventas de los últimos 7 días',
+    priceNote: 'Mediana de las ventas de los últimos 7 días (30 o 90 si hay pocas)',
     guide: 'Precio guía en la app',
     floor: 'Valor al triturar (precio mínimo)',
     changes: { today: 'Hoy', m1: '1 mes', m3: '3 meses', m6: '6 meses' },

@@ -101,7 +101,7 @@ const id: MarketStrings = {
   },
   item: {
     price: 'Harga',
-    priceNote: 'Median transaksi 7 hari terakhir',
+    priceNote: 'Median transaksi 7 hari terakhir (30 atau 90 hari bila transaksinya sedikit)',
     guide: 'Harga panduan di aplikasi',
     floor: 'Nilai hancur (harga terendah)',
     changes: { today: 'Hari ini', m1: '1 bulan', m3: '3 bulan', m6: '6 bulan' },

@@ -97,7 +97,7 @@ const zh: MarketStrings = {
   },
   item: {
     price: '价格',
-    priceNote: '过去 7 天成交价的中位数',
+    priceNote: '过去 7 天成交价的中位数（成交少时取 30 或 90 天）',
     guide: '应用内参考价',
     floor: '粉碎所得（最低价）',
     changes: { today: '今天', m1: '1 个月', m3: '3 个月', m6: '6 个月' },

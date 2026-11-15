@@ -14,6 +14,12 @@ import s from './market.module.css'
 
 const SHOWN = 100
 const RARITIES = ['common', 'uncommon', 'rare', 'epic', 'mythic', 'legendary'] as const
+
+/** An item's 30-day change, unsigned, or -1 without one (sorts last). */
+const absChange = (it: MarketItem) => {
+  const c = itemChange(it, '30d')
+  return c == null ? -1 : Math.abs(c)
+}
 type Sort = 'traded' | 'price' | 'change' | 'name'
 
 /** Every shelf with its count (/market/catalogue), or one shelf's items (/market/catalogue/:cat): at most 100 shown. */
@@ -31,12 +37,14 @@ const MarketCatalogue = () => {
     const by: Record<Sort, (x: MarketItem, y: MarketItem) => number> = {
       traded: (x, y) => (y.v?.[2] ?? -1) - (x.v?.[2] ?? -1),
       price: (x, y) => (y.p ?? -1) - (x.p ?? -1),
-      change: (x, y) => Math.abs(itemChange(y, '30d') ?? -1) - Math.abs(itemChange(x, '30d') ?? -1),
+      // An item with no change (no price at one end) goes last, never as a 100% change (market-acc-1115).
+      change: (x, y) => absChange(y) - absChange(x),
       name: () => 0,
     }
     return onShelf
       .filter((it) => rar === 'all' || it.r === rar)
-      .sort((x, y) => by[sort](x, y) || x.nm.localeCompare(y.nm))
+      // A sample item (the beta's example history) after every real one, as in Market Movers (market-acc-1115).
+      .sort((x, y) => Number(!!x.demo) - Number(!!y.demo) || by[sort](x, y) || x.nm.localeCompare(y.nm))
   }, [onShelf, rar, sort])
   if (cat && !shelf) return <Navigate to={sitePath('/market/catalogue')} replace />
 

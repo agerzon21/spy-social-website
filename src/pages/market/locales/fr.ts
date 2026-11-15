@@ -104,7 +104,7 @@ const fr: MarketStrings = {
   },
   item: {
     price: 'Prix',
-    priceNote: 'Médiane des ventes des 7\u00a0derniers jours',
+    priceNote: 'Médiane des ventes des 7\u00a0derniers jours (30 ou 90 s’il y en a peu)',
     guide: 'Prix indicatif dans l’appli',
     floor: 'Valeur de déchiquetage (prix minimum)',
     changes: { today: 'Aujourd’hui', m1: '1\u00a0mois', m3: '3\u00a0mois', m6: '6\u00a0mois' },

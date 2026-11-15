@@ -101,7 +101,7 @@ const ptBR: MarketStrings = {
   },
   item: {
     price: 'Preço',
-    priceNote: 'Mediana das vendas dos últimos 7 dias',
+    priceNote: 'Mediana das vendas dos últimos 7 dias (30 ou 90 se houver poucas)',
     guide: 'Preço de referência no app',
     floor: 'Valor ao triturar (preço mínimo)',
     changes: { today: 'Hoje', m1: '1 mês', m3: '3 meses', m6: '6 meses' },
