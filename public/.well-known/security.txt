@@ -1,0 +1,8 @@
+# SpySocial security contact (RFC 9116). Renew Expires before it passes.
+Contact: mailto:support@spysocial.app
+Expires: 2027-11-15T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://spysocial.app/.well-known/security.txt
+Canonical: https://www.spysocial.app/.well-known/security.txt
+Canonical: https://archive.spysocial.app/.well-known/security.txt
+Canonical: https://market.spysocial.app/.well-known/security.txt
