@@ -42,6 +42,9 @@ const SWITCHES = {
   resetArchiveForget: { live: [['resetArchiveForget', true]], day: 'RESET_ARCHIVE_FORGET_DAY', step: 'row AG (999938)' },
   // photosens-u62: Beta 3 day (Tue Nov 24) 7:24 PM, after role_reveal_online is 'everyone'. Pass --day "November 24, 2026".
   appU62: { live: [['appU62', true]], day: 'APP_U62_DAY', step: 'beta3' },
+  // legal-1115: reputationBanMarket the day NEXT-BATCH row 35 (999909) is applied; siteStorage1115 is on (--day re-dates it to the publish day).
+  reputationBanMarket: { live: [['reputationBanMarket', true]], day: 'REPUTATION_BAN_MARKET_DAY', step: 'row 35 (999909)' },
+  siteStorage1115: { live: [['siteStorage1115', true]], day: 'SITE_STORAGE_1115_DAY', step: 'publish' },
 }
 
 const args = process.argv.slice(2)

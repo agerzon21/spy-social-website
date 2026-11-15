@@ -1954,6 +1954,26 @@ export const LIVE = {
    * the rate-limit notes (24 hours to 2 days). Wording only; on since the site went up with it.
    */
   guestDeleteWording1114: true,
+  /**
+   * legal-1115, STAGED OFF: app repo server file 20261231999909_reputation_ban_market_1115 (NEXT-BATCH row 35, not
+   * applied; trade-e2e-1115 R01). When an account's reputation becomes Banned, a trigger (reputation_market_close) closes
+   * its open Black Market offers and listings at once (_market_close_paused 'reputation_banned'), and _market_held treats
+   * Banned as a lock, so nothing of it fills while Banned; nothing reopens when the tier recovers or is lifted. Turns on
+   * the Banned reputation in Terms 9's lock bullet (what closes your offers and listings) and in Privacy's Black Market
+   * item (the same list). Not a material change (Terms 13 already says a Banned reputation can't use the Black Market):
+   * no TERMS_PUBLISHED or terms_version. A server switch: set in LIVE, never in PRIVACY_AHEAD. Flip the day row 35 is
+   * applied: node scripts/flip-switch.mjs reputationBanMarket --day "<apply day>". Off again if 999909 is rolled back.
+   */
+  reputationBanMarket: false,
+  /**
+   * legal-1115: what the website itself keeps in the visitor's browser, true of www today (public/lang.js, public/theme.js,
+   * src/i18n wear(), src/theme/mode.ts, src/lib/lazyPage.ts, src/lib/appLink.ts): the language from ?lang=, then the
+   * stored choice (localStorage ss-lang), then navigator.languages; the light / dark choice (ss-theme, only once the
+   * visitor flips the switch); per-tab sessionStorage notes (ss-app-tried:<path>, ss-chunk-reload). Nothing of it is sent
+   * to our servers. Privacy's Your Browser said only what the browser version of the game keeps. Text only: on since the
+   * site goes up with it (SITE_STORAGE_1115_DAY). Not a Terms change.
+   */
+  siteStorage1115: true,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -1973,6 +1993,10 @@ export const GUEST_DELETE_WORDING_DAY = 'November 14, 2026'
 /** LIVE.modGuard's / LIVE.resetArchiveForget's days: each its server file's apply day. Set by flip-switch (--day). Never earlier than November 15, 2026. */
 export const MOD_GUARD_DAY = 'November 15, 2026'
 export const RESET_ARCHIVE_FORGET_DAY = 'November 15, 2026'
+
+/** legal-1115: LIVE.reputationBanMarket's day (999909's apply day; set by flip-switch --day) and LIVE.siteStorage1115's (the publish day). Never earlier than November 15, 2026. */
+export const REPUTATION_BAN_MARKET_DAY = 'November 15, 2026'
+export const SITE_STORAGE_1115_DAY = 'November 15, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
@@ -2255,6 +2279,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
+  : LIVE.reputationBanMarket
+    ? REPUTATION_BAN_MARKET_DAY // Terms 9: a reputation that becomes Banned closes your Black Market offers and listings (legal-1115, 999909)
   : LIVE.safetyFacts1114
     ? SAFETY_FACTS_1114_DAY // Terms 8's private-room drawing line, the Community Rules' drawings paragraph and Child Safety's chat and drawing bullets (legal-cov2-1114)
   : LIVE.reputationHoldCap
@@ -2363,6 +2389,10 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.reputationBanMarket
+    ? REPUTATION_BAN_MARKET_DAY // the Black Market item: a reputation that becomes Banned closes the account's offers and listings (legal-1115, 999909)
+  : LIVE.siteStorage1115
+    ? SITE_STORAGE_1115_DAY // Your Browser: what the website keeps in the browser (language, light or dark, per-visit notes) (legal-1115)
   : LIVE.modGuard
     ? MOD_GUARD_DAY // the community moderators' read log, burst pause and pack recusal (legal-cov2-1114, 999925)
   : LIVE.resetArchiveForget

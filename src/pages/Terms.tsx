@@ -937,7 +937,7 @@ const Terms: React.FC = () => {
                 If your account is locked, whatever the reason, your open offers and listings, and your offers on Rare Finds,
                 close at once, as if you'd stopped them: a trading pause we set (because your account may have been taken, or
                 while we look into fraud or farming), your own lock, the pause after a reversal, a new device or a change of
-                sign-in, a ban, a suspension, or a fair-play hold. So does a change of your email address that we make at your
+                sign-in, a ban, a suspension, {LIVE.reputationBanMarket ? 'a fair-play hold, or your reputation becoming Banned (see section 13)' : 'or a fair-play hold'}. So does a change of your email address that we make at your
                 request. What they hold comes back to you (Intel from a buy offer waits for you to collect it, and you can
                 collect it while locked), and other players' offers on your listing go back to them. Nothing reopens when the
                 lock ends; you place them again. Sales already made stay as they are.
