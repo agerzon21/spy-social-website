@@ -729,7 +729,7 @@ const en: HelpText = {
           a: [
             'Press and hold their card, in the lobby, in a game or on Game Over, and choose <b>Report</b> or <b>Block</b>.',
             'A person reads every report, and the player isn’t told who sent it.',
-            'Blocking keeps you apart: neither of you can join a room the other is in. Unblock in Settings, under <b>Blocked Players</b>.',
+            'Blocking keeps you apart: neither of you can join a room the other is in. Unblock in Settings, under <b>Privacy & Safety</b>: <b>Blocked Players</b>.',
             'Lying and bluffing are part of the game and aren’t reportable.',
             'At a table with a party, choose <b>Teaming</b> if you think they’re working together outside the game. <b>Report Party</b> covers everyone in their party at that table.',
           ],

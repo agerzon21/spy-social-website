@@ -898,7 +898,7 @@ const ar: Strings = {
     facts: ['ساعة واحدة، مباشرة', '18+ فقط', '24 مقعدًا', 'iPhone أو Android'],
     when: {
       label: 'متى',
-      et: (time: string) => `${time} بتوقيت شرق الولايات المتحدة (ET)`,
+      et: (time: string) => `${time} بتوقيت شرق الولايات المتحدة`,
       others: (pacific: string, utc: string) => `${pacific} بتوقيت المحيط الهادئ · ${utc}\u00a0UTC`,
       yours: (time: string) => `بتوقيتك: ${time}`,
       checkIn: (time: string) => `يبدأ تسجيل الحضور الساعة ${time} بتوقيت شرق الولايات المتحدة في ‎#beta-2-ask-hq على Discord (والغرفة الصوتية Beta 2 مفتوحة أيضًا).`,

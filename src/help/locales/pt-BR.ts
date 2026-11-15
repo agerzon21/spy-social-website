@@ -720,7 +720,7 @@ const ptBR: HelpText = {
           a: [
             'Toque e segure o cartão da pessoa, no lobby, na partida ou no fim de jogo, e escolha <b>Denunciar</b> ou <b>Bloquear</b>.',
             'Uma pessoa lê cada denúncia, e o jogador não fica sabendo quem enviou.',
-            'Bloquear mantém vocês separados: nenhum dos dois entra numa sala onde o outro está. Desbloqueie nos Ajustes, em <b>Jogadores bloqueados</b>.',
+            'Bloquear mantém vocês separados: nenhum dos dois entra numa sala onde o outro está. Desbloqueie nos Ajustes, em <b>Privacidade e segurança</b>: <b>Jogadores bloqueados</b>.',
             'Mentir e blefar faz parte do jogo e não é motivo de denúncia.',
             'Numa mesa com um grupo, escolha <b>Conluio</b> se achar que eles se ajudam fora do jogo. <b>Denunciar o grupo</b> cobre todos do grupo deles naquela mesa.',
           ],

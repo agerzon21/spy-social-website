@@ -716,7 +716,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           'Appuie longuement sur sa carte, dans le salon, en partie ou sur l\'écran de fin, et choisis <b>Signaler</b> ou <b>Bloquer</b>.',
           "Une personne lit chaque signalement, et le joueur ne sait pas qui l'a envoyé.",
-          "Bloquer vous sépare : aucun de vous ne peut rejoindre un salon où se trouve l'autre. Débloque dans les Réglages, sous <b>Joueurs bloqués</b>.",
+          "Bloquer vous sépare : aucun de vous ne peut rejoindre un salon où se trouve l'autre. Débloque dans les Réglages, sous <b>Confidentialité et sécurité</b> : <b>Joueurs bloqués</b>.",
           'Mentir et bluffer font partie du jeu et ne se signalent pas.',
           "À une table avec un groupe, choisis <b>Entente</b> si tu penses qu'ils s'aident en dehors du jeu. <b>Signaler le groupe</b> couvre tous les membres de leur groupe à cette table.",
         ],

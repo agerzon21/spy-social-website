@@ -720,7 +720,7 @@ const es: HelpText = {
           a: [
             'Mantén pulsada su tarjeta, en la sala de espera, en la partida o en el final, y elige <b>Reportar</b> o <b>Bloquear</b>.',
             'Una persona lee cada reporte, y el jugador no sabe quién lo envió.',
-            'Bloquear los mantiene separados: ninguno puede entrar en una sala donde esté el otro. Desbloquea en Ajustes, en <b>Jugadores bloqueados</b>.',
+            'Bloquear los mantiene separados: ninguno puede entrar en una sala donde esté el otro. Desbloquea en Ajustes, en <b>Privacidad y seguridad</b>: <b>Jugadores bloqueados</b>.',
             'Mentir y farolear es parte del juego y no se reporta.',
             'En una mesa con un grupo, elige <b>Juego en equipo</b> si crees que se ayudan fuera del juego. <b>Reportar al grupo</b> cubre a todos los de su grupo en esa mesa.',
           ],

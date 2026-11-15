@@ -720,7 +720,7 @@ const id: HelpText = {
           a: [
             'Tekan lama kartunya, di lobi, di permainan, atau di layar akhir, lalu pilih <b>Laporkan</b> atau <b>Blokir</b>.',
             'Setiap laporan dibaca oleh manusia, dan pemain itu tidak tahu siapa yang melapor.',
-            'Memblokir memisahkan kalian: tidak ada yang bisa masuk ke room tempat yang lain berada. Buka blokir di Pengaturan, di <b>Pemain diblokir</b>.',
+            'Memblokir memisahkan kalian: tidak ada yang bisa masuk ke room tempat yang lain berada. Buka blokir di Pengaturan, di <b>Privasi & keamanan</b>: <b>Pemain diblokir</b>.',
             'Berbohong dan menggertak itu bagian dari permainan dan tidak bisa dilaporkan.',
             'Di meja dengan grup, pilih <b>Main sekongkol</b> jika kamu kira mereka bekerja sama di luar permainan. <b>Laporkan Grup</b> mencakup semua anggota grup mereka di meja itu.',
           ],
