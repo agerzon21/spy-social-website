@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import Link from '../../components/SiteLink'
 import { FaFingerprint, FaHashtag, FaLink } from 'react-icons/fa6'
 import ActionLink from '../../components/ui/ActionLink'
@@ -6,6 +6,7 @@ import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import ui from '../../components/ui/ui.module.css'
 import { artKey, artOf, attributesOf, lookOf, nameOf, uniquePath } from '../../lib/archive'
+import { launchDayShort, launchDayWeekday } from '../../lib/launchDay'
 import { LIVE } from '../../lib/legalRelease'
 import { TRADE_UP_TEXT_UNIQUES } from '../../lib/ledgerScope'
 import { ArchiveState, BetaNotice, FloatDigits, Piece, UniqueCard } from './ArchiveBits'
@@ -27,11 +28,31 @@ const ENIGMA = [
 /** A fan card's width (archive.module.css .fan --card): what its picture's srcset picks by (crawl2-1114). */
 const FAN_SIZES = '(min-width: 900px) 240px, (min-width: 560px) 200px, min(168px, 38vw)'
 
+/** The empty Archive's fan (pick 10A, archive-empty-1115): three real Legendaries, dimmed, before the first Unique is minted. */
+const FIRST_MINT_FAN = ['celebration_heist', 'accessory_spy_cat', 'celebration_paper_plane']
+
+/**
+ * The empty Archive, seen locally: `?empty` on the dev server (archive.localhost:5173/?empty) shows it over today's data (the ledger read's list
+ * emptied). Production builds drop it (import.meta.env.DEV is false there), so the live page only shows it with no Uniques.
+ */
+const PREVIEW_EMPTY = import.meta.env.DEV && typeof window !== 'undefined' && new URLSearchParams(window.location.search).has('empty')
+
+/** "{day}" and "{n}" in a line, filled; the day in bold (pick 10A's caption). */
+function fillCaption(text: string, day: string, n: string) {
+  return text.split(/(\{day\}|\{n\})/).map((part, i) =>
+    part === '{day}' ? <b key={i}>{day}</b> : part === '{n}' ? <Fragment key={i}>{n}</Fragment> : <Fragment key={i}>{part}</Fragment>,
+  )
+}
+
 const ArchiveHome = () => {
   const { w, data, art, looks, locale, lang } = useArchive()
   const h = w.home
-  const { list, state, retry } = useUniques()
-  const copies = useMemo(() => list?.copies ?? [], [list])
+  const { list, state: readState, retry } = useUniques()
+  const state = PREVIEW_EMPTY ? 'ok' : readState
+  const copies = useMemo(() => (PREVIEW_EMPTY ? [] : list?.copies ?? []), [list])
+  // No Unique minted yet (after the Dec 7 reset, until the first mint at launch): the fan shows three Legendaries under
+  // a "First mint" stamp and the stats say what launch brings, instead of placeholders that never fill and four zeros.
+  const empty = state === 'ok' && copies.length === 0
 
   // The hero's fan: three of the newest drawn Uniques, each a different item where there are three.
   const fan = useMemo(() => {
@@ -55,6 +76,9 @@ const ArchiveHome = () => {
     }
   }, [copies, data])
 
+  // The Legendaries a first Unique can be (15 at launch), before the app's tables load: never "one of the 0".
+  const legendaries = stats.items || 15
+
   const example = copies.find((c) => c.item_code === EXAMPLE_ITEM) ?? null
   const exampleFloat = example?.float ?? '0.4808210000000000'
   const exampleAttrs = attributesOf(data, EXAMPLE_ITEM, exampleFloat)
@@ -65,7 +89,7 @@ const ArchiveHome = () => {
   return (
     <div className={`${s.page} ${s.foil}`}>
       <div className={ui.wrap}>
-        <BetaNotice chain={list?.chain} />
+        <BetaNotice chain={PREVIEW_EMPTY ? 'launch' : list?.chain} />
 
         <section className={s.hero} aria-labelledby="archive-title">
           <div className={s.heroGrid}>
@@ -83,6 +107,24 @@ const ArchiveHome = () => {
                 </ActionLink>
               </div>
             </div>
+            {empty ? (
+              <figure className={s.mintFigure}>
+                <div className={`${s.fan} ${s.mintFan}`} aria-hidden="true">
+                  {FIRST_MINT_FAN.map((code) => (
+                    <div key={code} className={s.fanCard}>
+                      <Piece src={artKey(`l-${code}`)} alt="" unique={false} eager still sizes={FAN_SIZES} />
+                    </div>
+                  ))}
+                  <div className={s.mintStamp}>
+                    <span className={s.mintStampTop}>{h.empty.stampTop}</span>
+                    <span className={s.mintStampDay} suppressHydrationWarning>{launchDayShort(locale)}</span>
+                  </div>
+                </div>
+                <figcaption className={s.mintCaption} suppressHydrationWarning>
+                  {fillCaption(h.empty.caption, launchDayWeekday(locale), fmt(legendaries, locale))}
+                </figcaption>
+              </figure>
+            ) : (
             <div className={s.fan} aria-hidden="true">
               {(fan.length ? fan : [null, null, null]).map((c, i) => (
                 <div key={c ? `${c.item_code}-${c.serial}` : i} className={s.fanCard}>
@@ -90,23 +132,32 @@ const ArchiveHome = () => {
                 </div>
               ))}
             </div>
+            )}
           </div>
         </section>
 
         {state === 'soon' || state === 'busy' ? <ArchiveState kind={state} onRetry={retry} /> : null}
 
         <dl className={s.stats}>
-          {(
-            [
-              [stats.minted, h.stats.minted],
-              [stats.items, h.stats.items],
-              [stats.listed, h.stats.listed],
-              [stats.sales, h.stats.sales],
-            ] as const
-          ).map(([n, label]) => (
+          {(empty
+            ? [
+                [launchDayShort(locale), h.empty.statDay],
+                [fmt(legendaries, locale), h.stats.items],
+                [`#${fmt(1, locale)}`, h.empty.statSerial],
+                [(0.005).toLocaleString(locale, { style: 'percent', maximumFractionDigits: 1 }), h.empty.statOdds],
+              ]
+            : (
+                [
+                  [stats.minted, h.stats.minted],
+                  [stats.items, h.stats.items],
+                  [stats.listed, h.stats.listed],
+                  [stats.sales, h.stats.sales],
+                ] as const
+              ).map(([n, label]) => [state === 'ok' ? fmt(n, locale) : '—', label])
+          ).map(([value, label], i) => (
             <div key={label} className={s.stat}>
               <dt className={s.statLabel}>{label}</dt>
-              <dd className={s.statValue}>{state === 'ok' ? fmt(n, locale) : '—'}</dd>
+              <dd className={`${s.statValue} ${empty && i === 0 ? s.statDay : ''}`}>{value}</dd>
             </div>
           ))}
         </dl>

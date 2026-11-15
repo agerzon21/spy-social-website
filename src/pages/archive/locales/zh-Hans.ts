@@ -56,6 +56,13 @@ const zh: ArchiveStrings = {
     recent: '档案馆最新收录',
     seeAll: '查看全部',
     trust: { title: '亲自核验', text: '账本公开且环环相扣；我们每月的透明度报告也涵盖每一件被铸造、更正或收回的物品。' },
+    empty: {
+      stampTop: '首次铸造',
+      caption: '首批唯一物品将在上线当天（{day}）铸造。每一件都出自 {n} 件传说物品之一，就像这几件。',
+      statDay: '首批唯一物品铸造',
+      statSerial: '每件物品的首个编号',
+      statOdds: '恩尼格玛密函开出唯一物品的几率',
+    },
   },
   browse: {
     eyebrow: '档案馆',

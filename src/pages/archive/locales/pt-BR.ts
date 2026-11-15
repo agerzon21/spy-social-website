@@ -59,6 +59,13 @@ const ptBR: ArchiveStrings = {
       title: 'Confira você mesmo',
       text: 'O registro é público e encadeado, e nosso relatório mensal de transparência mostra cada item cunhado, corrigido ou retirado.',
     },
+    empty: {
+      stampTop: 'Primeira cunhagem',
+      caption: 'Os primeiros Únicos serão cunhados no lançamento, {day}. Cada um começa como um dos {n} Lendários, como estes.',
+      statDay: 'Primeiros Únicos cunhados',
+      statSerial: 'Primeiro número de cada',
+      statOdds: 'Chance de Único numa Enigma',
+    },
   },
   browse: {
     eyebrow: 'O Arquivo',

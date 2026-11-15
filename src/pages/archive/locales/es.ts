@@ -59,6 +59,13 @@ const es: ArchiveStrings = {
       title: 'Compruébalo por tu cuenta',
       text: 'El registro es público y está encadenado, y nuestro informe mensual de transparencia recoge cada objeto acuñado, corregido o retirado.',
     },
+    empty: {
+      stampTop: 'Primera acuñación',
+      caption: 'Los primeros Únicos se acuñarán con el lanzamiento, el {day}. Cada uno parte de uno de los {n} Legendarios, como estos.',
+      statDay: 'Primeros Únicos acuñados',
+      statSerial: 'Primer número de cada uno',
+      statOdds: 'Probabilidad de Único en una Enigma',
+    },
   },
   browse: {
     eyebrow: 'El Archivo',

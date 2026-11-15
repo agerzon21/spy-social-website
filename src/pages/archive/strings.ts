@@ -57,6 +57,14 @@ const en = {
     recent: 'Newest in the Archive',
     seeAll: 'See all',
     trust: { title: 'Check it yourself', text: 'The ledger is public and chained, and our monthly transparency report covers every item minted, corrected or taken back.' },
+    // The empty Archive before the first mint (pick 10A, archive-empty-1115): {day} is the launch day with its weekday, {n} the Legendaries.
+    empty: {
+      stampTop: 'First mint',
+      caption: 'The first Uniques are minted at launch, {day}. Each one starts as one of the {n} Legendaries, like these.',
+      statDay: 'First Uniques minted',
+      statSerial: 'First serial of each',
+      statOdds: 'Unique odds in an Enigma',
+    },
   },
   browse: {
     eyebrow: 'The Archive',
@@ -196,6 +204,13 @@ const ru: ArchiveStrings = {
     recent: 'Новое в Архиве',
     seeAll: 'Все',
     trust: { title: 'Проверьте сами', text: 'Реестр открыт и сцеплен, а ежемесячный отчёт о прозрачности показывает каждый выпущенный, исправленный и изъятый предмет.' },
+    empty: {
+      stampTop: 'Первый выпуск',
+      caption: 'Запуск — {day}: в этот день выпустят первые уникальные предметы. Каждый из них — особая копия одного из {n} легендарных, вроде этих.',
+      statDay: 'Выпуск первых уникальных',
+      statSerial: 'Первый номер каждого',
+      statOdds: 'Шанс уникального в «Энигме»',
+    },
   },
   browse: {
     eyebrow: 'Архив',
