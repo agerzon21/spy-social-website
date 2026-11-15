@@ -634,6 +634,25 @@ const en = {
     /** The release notes, newest first, in players' words: what changed for a player, never a library, file or error name. Keep every array's length and order. */
     releases: [
       {
+        tag: "Weekend Update",
+        summary:
+          "Two updates to the new SpySocial this weekend, ahead of its launch: easier reading, clearer help for new players and a faster start in the browser.",
+        sections: [
+          {
+            label: "Improvements",
+            items: [
+              { title: "Voting", text: "Abstain is now the same size as Confirm Vote." },
+              { title: "Easier reading", text: "The smallest text in the app is a little bigger." },
+              { title: "Black Market", text: "New to it? A “How the Black Market works” card shows how to win, sell and buy items." },
+              { title: "Tutorial", text: "When the tutorial asks you to tap the suggestion, its tip now sits at the bottom of the screen, so you can still read the question." },
+              { title: "Friend Code", text: "The scans left on your code count down as soon as a friend scans it." },
+              { title: "Playing in a browser", text: "The game loads faster. On a phone, turning it sideways during a game shows a “Turn your phone upright” card, and your game keeps going while you turn." },
+              { title: "Languages", text: "Arabic, Hindi, Bengali and Chinese text looks better: no more cut-off words, odd line breaks or words out of order." },
+            ],
+          },
+        ],
+      },
+      {
         tag: "Android Launch",
         summary:
           "SpySocial is now on Google Play, with a round of fixes from testing on real Android phones.",

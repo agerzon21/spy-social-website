@@ -577,6 +577,25 @@ const id: Strings = {
     sub: 'Catatan rilis SpySocial. Pembaruan besar, fitur baru, dan perbaikan, langsung saat kami merilisnya.',
     releases: [
       {
+        tag: "Pembaruan akhir pekan",
+        summary:
+          "Dua pembaruan untuk SpySocial yang baru akhir pekan ini, menjelang peluncuran: teks lebih mudah dibaca, panduan lebih jelas untuk pemain baru, dan lebih cepat dimuat di browser.",
+        sections: [
+          {
+            label: "Peningkatan",
+            items: [
+              { title: "Voting", text: "Tombol “Tidak memilih” kini sama besar dengan “Konfirmasi”." },
+              { title: "Lebih mudah dibaca", text: "Teks terkecil di aplikasi kini sedikit lebih besar." },
+              { title: "Pasar Gelap", text: "Baru pertama kali ke sana? Kartu “Cara kerja Pasar Gelap” menjelaskan cara memenangkan, menjual, dan membeli item." },
+              { title: "Tutorial", text: "Saat tutorial memintamu mengetuk saran, tipsnya kini ada di bagian bawah layar, jadi pertanyaannya tetap mudah dibaca." },
+              { title: "Kode Teman", text: "Sisa jatah pindai kodemu langsung berkurang begitu teman memindainya." },
+              { title: "Bermain di browser", text: "Game dimuat lebih cepat. Di ponsel, kalau kamu memiringkan ponsel saat bermain, muncul kartu “Putar ponselmu ke posisi tegak”, dan permainanmu tetap berjalan selagi kamu memutarnya." },
+              { title: "Bahasa", text: "Teks bahasa Arab, Hindi, Bengali, dan Mandarin tampil lebih rapi: tidak ada lagi kata terpotong, pindah baris yang aneh, atau urutan kata yang tertukar." },
+            ],
+          },
+        ],
+      },
+      {
         tag: "Rilis Android",
         summary:
           "SpySocial kini ada di Google Play, plus sederet perbaikan dari pengujian di ponsel Android sungguhan.",

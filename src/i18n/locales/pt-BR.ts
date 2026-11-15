@@ -577,6 +577,25 @@ const ptBR: Strings = {
     sub: 'Notas de versão do SpySocial. Grandes atualizações, recursos novos e melhorias, conforme lançamos.',
     releases: [
       {
+        tag: "Atualização de fim de semana",
+        summary:
+          "Duas atualizações do novo SpySocial neste fim de semana, antes do lançamento: textos mais fáceis de ler, ajuda mais clara para quem está começando e carregamento mais rápido no navegador.",
+        sections: [
+          {
+            label: "Melhorias",
+            items: [
+              { title: "Votação", text: "O botão “Abster-se” agora tem o mesmo tamanho de “Confirmar”." },
+              { title: "Mais fácil de ler", text: "Os menores textos do app ficaram um pouco maiores." },
+              { title: "Mercado Negro", text: "Se é sua primeira vez, um cartão “Como funciona o Mercado Negro” mostra como ganhar, vender e comprar itens." },
+              { title: "Tutorial", text: "Quando o tutorial pede para tocar na sugestão, a dica agora fica na parte de baixo da tela, e a pergunta continua fácil de ler." },
+              { title: "Código de amigo", text: "As leituras que restam no seu código diminuem assim que um amigo o lê." },
+              { title: "Jogar no navegador", text: "O jogo carrega mais rápido. No celular, se você virar o aparelho de lado durante uma partida, aparece o cartão “Coloque o celular na vertical”, e sua partida continua enquanto você gira." },
+              { title: "Idiomas", text: "Textos em árabe, hindi, bengali e chinês aparecem melhor: sem palavras cortadas, quebras de linha estranhas ou palavras fora de ordem." },
+            ],
+          },
+        ],
+      },
+      {
         tag: "Lançamento no Android",
         summary:
           "O SpySocial chegou ao Google Play, com uma leva de correções dos testes em celulares Android de verdade.",
