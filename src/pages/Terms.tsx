@@ -699,9 +699,9 @@ const Terms: React.FC = () => {
             {/* The offer sheet's odds (Nov 10 store build, store-compliance-1103) are out by the launch: LIVE.launchSite. */}
             {LIVE.launchSite && LIVE.interceptsMarket ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds)
             the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
-            app always shows the ones in use, with the date they last changed. If you get an item you already have, you
+            app always shows the ones in use, with the date they last changed.{LIVE.sameOdds ? ' Which item of a rarity you get never depends on what you already own.' : ''} If you get an item you already have, you
             keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
-            one rarity give you 1 random item of the next rarity (one you don't have yet, while there is one), and{' '}
+            one rarity give you 1 random item of the next rarity{/* LIVE.sameOdds: server 999888 no_repeat_drop_1115 (legal-1116) */}{LIVE.sameOdds ? ', whatever you already own' : " (one you don't have yet, while there is one)"}, and{' '}
             {LIVE.uniquesRarer ? '10' : '5'} spare Legendary copies give you a Unique of one of those{' '}
             {LIVE.uniquesRarer ? 'ten' : 'five'} items, with the odds shown in the app before you trade. Only spare copies count (never your first copy of an item, your only copy of it, or a Unique; a copy you bought or got in a trade is a spare when you hold another copy of that item), and the copies you trade
             up are used up. A Unique is a copy of an item with a colour and a number that no other copy of it has (it

@@ -47,6 +47,10 @@ const SWITCHES = {
   siteStorage1115: { live: [['siteStorage1115', true]], day: 'SITE_STORAGE_1115_DAY', step: 'publish' },
   // privacy-anchors-1115: only once 20261231999902_sketch_consent_withdraw_1115 is applied live AND u62.12 (Settings > Drawing Checks > Withdraw) is on the phones.
   drawingCheckWithdraw: { live: [['drawingCheckWithdraw', true]], day: 'DRAWING_CHECK_WITHDRAW_DAY', step: '999902 + u62.12' },
+  // legal-1116: sameOdds the day NEXT-BATCH row 54 (999888) is applied; playtestTremendous only if the owner picks Tremendous (before the Beta 3 upload); payPalTiming1116 is on.
+  sameOdds: { live: [['sameOdds', true]], day: 'SAME_ODDS_DAY', step: 'row 54 (999888)' },
+  playtestTremendous: { live: [['playtestTremendous', true]], day: 'PLAYTEST_TREMENDOUS_DAY', step: 'owner picks Tremendous' },
+  payPalTiming1116: { live: [['payPalTiming1116', true]], day: 'PAYPAL_TIMING_1116_DAY', step: 'publish' },
 }
 
 const args = process.argv.slice(2)

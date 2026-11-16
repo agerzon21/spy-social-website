@@ -1997,6 +1997,39 @@ export const LIVE = {
    * app fact: set in LIVE, never in PRIVACY_AHEAD. Off again if 999902 is rolled back or u62.12 is pulled.
    */
   drawingCheckWithdraw: false,
+  /**
+   * legal-1116, ON: Privacy's Test Versions said the PayPal address is deleted "once it's sent", one tester at a time. What
+   * happens (app repo .claude/handoff/scratchpad/beta2/WIPE-1119.md): the address is in the survey's Google Form responses,
+   * which are deleted all at once after the test's thank-yous are sent (Beta 2's on November 19, 2026, with the owner's
+   * "paid"); an unclaimed payment's one line is kept until it's resolved. Says that: deleted once the test's thank-yous
+   * are sent, with the rest of the survey. Privacy only; PAYPAL_TIMING_1116_DAY moves PRIVACY_LAST_UPDATED. A website fact:
+   * set in LIVE, never in PRIVACY_AHEAD.
+   */
+  payPalTiming1116: true,
+  /**
+   * legal-1116, STAGED OFF (owner undecided, Nov 16): Beta 3's thank-yous through Tremendous (Tremendous, Inc.) instead of
+   * PayPal (app repo .claude/handoff/scratchpad/beta3/payouts/PAYOUT-OPTIONS-1116.md): we upload each paid tester's name
+   * (sign-up name, else @username), the email address they gave for the thank-you (the survey's "PayPal email"), the
+   * amount and our own reference; Tremendous emails a claim link and the tester picks PayPal, a local wallet such as GCash,
+   * a gift card or another option. Turns on, in Privacy's Test Versions item, Tremendous in place of PayPal (Beta 2's
+   * PayPal sentence kept in the past tense) and the bonus through Tremendous, and adds Tremendous to the providers'
+   * paragraph. Flip ONLY if the owner picks Tremendous and its first order is approved, BEFORE the Beta 3 thank-you file is
+   * uploaded (Sat Nov 28): node scripts/flip-switch.mjs playtestTremendous --day "<publish day>". If PayPal stays (the
+   * fallback), leave it off. A website fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  playtestTremendous: false,
+  /**
+   * legal-1116, STAGED OFF: app repo server file 20261231999888_no_repeat_drop_1115 v2 (NEXT-BATCH row 54, Tue Nov 17
+   * 09:00 batch; owner Nov 15 "as kosher as possible"): Intercepts and trade-ups give every item of the rarity the same
+   * chance whatever the player owns (crate_rarities.no_repeat off for Mythic and Legendary; _crate_trade_rules
+   * prefer_unowned false). Terms 9's trade-up sentence said "1 random item of the next rarity (one you don't have yet,
+   * while there is one)": with it on, "1 random item of the next rarity, whatever you already own", and the Intercepts
+   * bullet adds "Which item of a rarity you get never depends on what you already own." Not a material change (the odds the app shows decide, as for uniquesRarer): no
+   * TERMS_PUBLISHED or terms_version; LEGAL_LAST_UPDATED moves to SAME_ODDS_DAY. Flip the day row 54 is applied: node
+   * scripts/flip-switch.mjs sameOdds --day "<apply day>". Off again if 999888 is rolled back. A server switch: set in
+   * LIVE, never in PRIVACY_AHEAD.
+   */
+  sameOdds: false,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -2022,6 +2055,10 @@ export const REPUTATION_BAN_MARKET_DAY = 'November 15, 2026'
 export const SITE_STORAGE_1115_DAY = 'November 15, 2026'
 /** LIVE.drawingCheckWithdraw's day in PRIVACY_LAST_UPDATED: the day both its conditions hold and the site goes up with it on (set by flip-switch --day). Never earlier than November 15, 2026. */
 export const DRAWING_CHECK_WITHDRAW_DAY = 'November 15, 2026'
+/** legal-1116: LIVE.payPalTiming1116's day (the publish day), LIVE.playtestTremendous's and LIVE.sameOdds's (set by flip-switch --day). Never earlier than November 16, 2026. */
+export const PAYPAL_TIMING_1116_DAY = 'November 16, 2026'
+export const PLAYTEST_TREMENDOUS_DAY = 'November 16, 2026'
+export const SAME_ODDS_DAY = 'November 17, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
@@ -2304,6 +2341,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
+  : LIVE.sameOdds
+    ? SAME_ODDS_DAY // Terms 9's trade-up: every item of the next rarity with the same chance, whatever you own (legal-1116, 999888)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // Terms 9: a reputation that becomes Banned closes your Black Market offers and listings (legal-1115, 999909)
   : LIVE.safetyFacts1114
@@ -2414,10 +2453,14 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
 export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.playtestTremendous
+    ? PLAYTEST_TREMENDOUS_DAY // Test Versions: Beta 3's thank-yous through Tremendous; providers' paragraph (legal-1116)
   : LIVE.drawingCheckWithdraw
     ? DRAWING_CHECK_WITHDRAW_DAY // Drawing Checks: withdrawing the agreement in Settings, and its Data Retention line (privacy-anchors-1115, 999902 + u62.12)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // the Black Market item: a reputation that becomes Banned closes the account's offers and listings (legal-1115, 999909)
+  : LIVE.payPalTiming1116
+    ? PAYPAL_TIMING_1116_DAY // Test Versions: the PayPal address is deleted once the test's thank-yous are sent, with the survey (legal-1116)
   : LIVE.siteStorage1115
     ? SITE_STORAGE_1115_DAY // Your Browser: what the website keeps in the browser (language, light or dark, per-visit notes) (legal-1115)
   : LIVE.modGuard

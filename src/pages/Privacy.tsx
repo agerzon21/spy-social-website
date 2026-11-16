@@ -667,9 +667,17 @@ const Privacy: React.FC = () => {
                 <>
                   If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form.
                   After a session, we send its players a short survey (a sign-up form may ask some of this too): to get the
-                  session thank-you, you give us there your SpySocial username and the email address of your PayPal account.
-                  We use that address only to send your thank-you through PayPal, which handles it under its own terms and
-                  privacy policy, and we delete it once it's sent. Both forms are Google Forms, which Google handles for us.
+                  session thank-you, you give us there your SpySocial username and{' '}
+                  {PRIVACY.playtestTremendous
+                    ? 'an email address for it (the survey calls it your PayPal email).'
+                    : 'the email address of your PayPal account.'}{' '}
+                  {/* legal-1116: LIVE.playtestTremendous (STAGED OFF, owner undecided) and LIVE.payPalTiming1116 (on). */}
+                  {PRIVACY.playtestTremendous
+                    ? "We use that address only for your thank-you: we give Tremendous (Tremendous, Inc.), which sends our playtest thank-yous for us, your name as you gave it to us (or your username), that address and the amount. Tremendous emails you a link there to choose how you receive it (such as PayPal, a local wallet like GCash, or a gift card) and handles that choice, and what you give it to receive it, under its own terms and privacy policy. We delete the address once that test's thank-yous have been sent, with the rest of your survey (see below); Tremendous and the service you choose keep their own record of the payment. Beta 2's thank-yous went through PayPal, which handled them under its own terms and privacy policy."
+                    : PRIVACY.payPalTiming1116
+                      ? "We use that address only to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete it once that test's thank-yous have been sent, with the rest of your survey (see below)."
+                      : "We use that address only to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete it once it's sent."}{' '}
+                  Both forms are Google Forms, which Google handles for us.
                   To confirm a seat, you may also post your SpySocial username in our Discord server's sign-up channel,
                   where its members can see it, or reply to our email with it. We keep your survey answers about the app,
                   without your name, email address, PayPal address or username, to improve SpySocial.
@@ -685,7 +693,7 @@ const Privacy: React.FC = () => {
               To choose seats, we also use the email
               address you sign up with to look up a SpySocial account that has it (its age, when it was made, whether you
               tested before, and the app versions it used), and we email you about your seat through Resend. If your bug report
-              or idea wins the one bonus for the session (a gift card), we send it to your email address.
+              or idea wins the one bonus for the session (a gift card), we send it to your email address{PRIVACY.playtestTremendous ? ', through Tremendous in the same way' : ''}.
               {PRIVACY.playtestRetention
                 ? " If you agree in the sign-up form, our gameplay videos may use short clips of games you played in the test; they can show your in-game name and your drawings, never your voice. If you say no or don't answer, they won't."
                 : ''}
@@ -1405,7 +1413,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.crashReports ? ', Sentry' : ''}
         {PRIVACY.resendAccountEmail ? ', Resend' : ''} and Vercel process it for us under contracts that bind them to protect it
         at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''}, ImprovMX and
-        testing services such as BetaTesting{PRIVACY.playtestPayPal ? ', and PayPal (for playtest payments),' : ''} handle what they receive under their own terms and privacy policies.
+        testing services such as BetaTesting{PRIVACY.playtestPayPal ? (PRIVACY.playtestTremendous ? ', and PayPal and Tremendous (for playtest thank-yous),' : ', and PayPal (for playtest payments),') : ''} handle what they receive under their own terms and privacy policies.
       </P>
 
       {PRIVACY.merchShop && (
