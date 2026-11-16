@@ -46,3 +46,23 @@ export const marketRoutes = marketOn ? (
     <Route path={sitePath('/market/item/:code')} element={<Layout><MarketItem /></Layout>} />
   </>
 ) : null
+
+/**
+ * Loads the chunk of the host page at `path` (this host's own path: '/', '/uniques', '/movers/rises'...), so a page the
+ * build drew into the HTML (scripts/prerender.mjs, archive-speed-1116) renders at once when React takes it over
+ * (hosts/start.tsx) or when the build draws it, instead of suspending. Nothing to load for another address.
+ */
+export function preloadHostPage(path: string): Promise<void> {
+  const at = path.replace(/\/+$/, '') || '/'
+  const pages: [boolean, RegExp, { preload: () => Promise<void> }][] = [
+    [!!archiveOn, /^\/$/, ArchiveHome],
+    [!!archiveOn, /^\/uniques$/, ArchiveBrowse],
+    [!!archiveOn, /^\/u\/[^/]+\/\d+$/, ArchiveItem],
+    [!!marketOn, /^\/$/, MarketHome],
+    [!!marketOn, /^\/movers\/[^/]+$/, MarketMovers],
+    [!!marketOn, /^\/catalogue(\/[^/]+)?$/, MarketCatalogue],
+    [!!marketOn, /^\/item\/[^/]+$/, MarketItem],
+  ]
+  const hit = pages.find(([on, re]) => on && re.test(at))
+  return hit ? hit[2].preload() : Promise.resolve()
+}

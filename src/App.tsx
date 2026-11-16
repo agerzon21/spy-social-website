@@ -79,10 +79,23 @@ const PRERENDERED: Record<string, { page: { preload: () => Promise<void> } | nul
 /** The addresses the build renders to HTML on www and their pages' source files (scripts/prerender.mjs). */
 export const PRERENDER_PAGES = Object.entries(PRERENDERED).map(([path, { src }]) => ({ path, src }))
 
+/**
+ * Pages whose address carries a value (a room's code, a username), drawn once per language for every such address
+ * (archive-speed-1116): `path` is the address the build draws, `match` the addresses its file answers (vercel.json:
+ * /join/<code> and /profile/<name> -> dist/_pre/<slug>/<lang>.html). The page draws nothing from the address until
+ * React has taken the HTML over (Join, Profile: lib/clientValue), so the HTML is the same for every address.
+ */
+const SHELLS: { slug: string; path: string; match: RegExp; page: { preload: () => Promise<void> }; src: string }[] = [
+  { slug: 'join-code', path: '/join/QZQZQ', match: /^\/join\/(?!e$|f$)[^/]+$/, page: Join, src: 'src/pages/Join.tsx' },
+  { slug: 'profile', path: '/profile/zz_standin_zz', match: /^\/profile\/[^/]+$/, page: Profile, src: 'src/pages/Profile.tsx' },
+]
+export const PRERENDER_SHELLS = SHELLS.map(({ slug, path, src }) => ({ slug, path, src }))
+
 /** Loads the chunk of the page at `path` (nothing to load for an address the build doesn't render, or Home). */
 export function preloadPage(path: string): Promise<void> {
   const at = path.replace(/\/+$/, '') || '/'
-  return (HOST === 'main' && PRERENDERED[at]?.page?.preload()) || Promise.resolve()
+  if (HOST !== 'main') return Promise.resolve()
+  return PRERENDERED[at]?.page?.preload() || SHELLS.find((s) => s.match.test(at))?.page.preload() || Promise.resolve()
 }
 
 /** `helmetContext`: the build's renderer (src/prerender.tsx) reads each page's <head> from it; the browser passes none. */

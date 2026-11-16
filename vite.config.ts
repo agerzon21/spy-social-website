@@ -362,7 +362,11 @@ function pagePreviews(): Plugin {
         for (const path of SHARED_PAGES[h.host] ?? []) {
           const page = PREVIEW_PAGES.find((p) => p.path === path)
           if (!page) throw new Error(`pagePreviews: no preview for ${path}`)
-          await writeFile(resolve(outDir, '_host', `${h.host}-${path.slice(1)}.html`), routeOn[path] !== false ? swapAll(app, pageSwaps(page)) : app)
+          let shared = routeOn[path] !== false ? swapAll(app, pageSwaps(page)) : app
+          // archive-speed-1116: the ledger is noindex on every host, in the HTML (as www's prerendered copy says it,
+          // SiteHead's UNLISTED; the Archive's said it only once the app had run). data-rh: Helmet takes it over.
+          if (page.key === 'ledger') shared = shared.replace('</title>', '</title>\n    <meta name="robots" content="noindex" data-rh="true">')
+          await writeFile(resolve(outDir, '_host', `${h.host}-${path.slice(1)}.html`), shared)
         }
         let html = app
         if (h.live.every((key) => LIVE[key] === true)) {

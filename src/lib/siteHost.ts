@@ -25,7 +25,12 @@ export const PUBLIC_ORIGIN: Record<SiteHost, string> = {
   market: 'https://market.spysocial.app',
 }
 
-const hostname = typeof window === 'undefined' ? 'www.spysocial.app' : window.location.hostname.toLowerCase()
+/**
+ * The build's renderer (src/prerender.tsx) draws www's pages as www.spysocial.app; scripts/prerender.mjs draws the
+ * Archive's and the Market's pages in a process of their own that names its host first (archive-speed-1116).
+ */
+const ssrHost = (globalThis as { __ssSsrHost?: string }).__ssSsrHost
+const hostname = typeof window === 'undefined' ? (ssrHost ?? 'www.spysocial.app') : window.location.hostname.toLowerCase()
 
 /** Whether this host splits by subdomain: production and localhost (see the top). */
 const SPLIT = /(^|\.)spysocial\.app$/.test(hostname) || /(^|\.)localhost$/.test(hostname)

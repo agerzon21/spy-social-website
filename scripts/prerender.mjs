@@ -23,13 +23,33 @@ import { existsSync } from 'node:fs'
 import { mkdir, readdir, readFile, rename, rm, rmdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
+import { execFileSync } from 'node:child_process'
 
 // React's production build, as in the browser.
 process.env.NODE_ENV = 'production'
 const dist = resolve(process.argv[2] ?? 'dist')
 const ssrEntry = resolve('dist-ssr/prerender.js')
 if (!existsSync(ssrEntry)) throw new Error(`prerender: no ${ssrEntry} (run vite build --ssr src/prerender.tsx first)`)
-const { render, renderHostHead, HOST_PAGES, HOSTS_ON, PRERENDER_PAGES, LANGUAGE_CODES } = await import(pathToFileURL(ssrEntry).href)
+/*
+ * archive-speed-1116: `--host-bodies <archive|market>` is this script run again for one host (below): lib/siteHost
+ * reads the page's host once, when the module loads, so each host's pages are drawn in a process that names it first.
+ * It writes dist-ssr/bodies-<host>.json ({ "<file>/<lang>": html }) and stops.
+ */
+const bodiesFor = process.argv[3] === '--host-bodies' ? process.argv[4] : null
+if (bodiesFor) globalThis.__ssSsrHost = `${bodiesFor}.spysocial.app`
+const { render, renderHostHead, renderHostBody, SKIN_CSS, HOST_BODIES, HOST_PAGES, HOSTS_ON, PRERENDER_PAGES, PRERENDER_SHELLS, LANGUAGE_CODES } = await import(pathToFileURL(ssrEntry).href)
+if (bodiesFor) {
+  const out = {}
+  for (const page of HOST_BODIES.filter((p) => p.host === bodiesFor)) {
+    for (const { code } of LANGUAGE_CODES) {
+      const html = await renderHostBody(page.path, code)
+      if (!html.includes('<main')) throw new Error(`prerender: ${bodiesFor} ${page.path} in ${code} rendered no <main>`)
+      out[`${page.file}/${code}`] = html
+    }
+  }
+  await writeFile(resolve('dist-ssr', `bodies-${bodiesFor}.json`), JSON.stringify(out))
+  process.exit(0)
+}
 
 /**
  * Every page vercel.json's language rewrites name: each needs a file per language, rendered or (its route off) the
@@ -121,7 +141,7 @@ function localHead(out, lang, head, previews = lang !== 'en') {
 }
 
 /** The built page with the rendered one in it, in `lang`. */
-function compose(template, lang, rtl, html, styles, files, tags) {
+function compose(template, lang, rtl, html, styles, files, tags, previews = lang !== 'en') {
   const head = [
     // Shown only to the visitor whose page lang.js put in this language (lang.js runs before this is parsed).
     `<style>html:not([lang="${lang}"]) #root[data-pre]{visibility:hidden}</style>`,
@@ -143,7 +163,7 @@ function compose(template, lang, rtl, html, styles, files, tags) {
   if (!out.includes('<div id="root"></div>')) throw new Error('prerender: the built page has no empty #root')
   out = out.replace('<div id="root"></div>', () => `<div id="root" data-pre="${lang}">${html}</div>`)
   out = out.replace(/<html lang="[^"]*"/, `<html lang="${lang}"${rtl ? ' dir="rtl"' : ''}`)
-  return localHead(out, lang, tags)
+  return localHead(out, lang, tags, previews)
 }
 
 const rendered = new Map(PRERENDER_PAGES.map((p) => [p.path === '/' ? 'home' : p.path.slice(1), p]))
@@ -175,11 +195,58 @@ for (const slug of ['home', ...ROUTED]) {
   }
 }
 /*
+ * Pages whose address carries a value (archive-speed-1116, App.tsx SHELLS): /join/<code> (a room's invite) and
+ * /profile/<name>, drawn once per language at a stand-in address; the page shows nothing of the address until React has
+ * taken it over (Join, Profile), so the one file answers every code and name (vercel.json: dist/_pre/<slug>/<lang>.html).
+ * They kept www's empty page until its app had loaded (first paint ~3 s on a throttled phone). /join/<code> keeps the
+ * invite's own link preview (dist/join/index.html, its English); a profile keeps the site's (dist/_host/www.html).
+ */
+let shellCount = 0
+for (const shell of PRERENDER_SHELLS) {
+  const join = shell.slug === 'join-code'
+  const template = await readFile(resolve(dist, join ? 'join/index.html' : '_host/www.html'), 'utf8')
+  const files = pageFiles(shell.src)
+  await mkdir(resolve(dist, '_pre', shell.slug), { recursive: true })
+  for (const { code, rtl } of LANGUAGE_CODES) {
+    const { html, styles, head: tags } = await render(shell.path, code)
+    if (!html.includes('<main')) throw new Error(`prerender: ${shell.path} in ${code} rendered no <main>`)
+    if (html.includes(shell.path.split('/')[2])) throw new Error(`prerender: ${shell.path} in ${code} shows its stand-in`)
+    const out = compose(template, code, rtl, html, styles, files, tags, join && code !== 'en')
+    await writeFile(resolve(dist, '_pre', shell.slug, `${baseOf(code)}.html`), out)
+    shellCount++
+  }
+}
+if (shellCount) console.log(`prerender: ${shellCount} pages for every address (${PRERENDER_SHELLS.map((s) => s.slug).join(', ')} x ${LANGUAGE_CODES.length} languages)`)
+
+/*
  * The Archive's and the Market's fixed pages (crawl2-1114): the host's own page (dist/_host/<host>.html, the app, its
  * body empty until the script runs) with that page's head in each language, as SiteHead and the page's Helmet set it
  * in the browser: dist/_host/pre/<host>/<page>/<lang>.html, which vercel.json's rewrites pick by ?lang= and the
  * browser's first language as for www. The link-preview tags follow (og:url the page's own address).
  */
+/*
+ * archive-speed-1116: and the page itself, in the state it has before its reads come back (renderHostBody), drawn
+ * into #root (data-pre: hosts/start.tsx hydrates it when lang.js chose the same language; the rule keeps it hidden
+ * otherwise, as on www). On a throttled phone the Archive's and the Market's pages showed nothing until the host's
+ * app and its words had arrived (first paint ~2.3 s; www's drawn pages ~1.2 s).
+ */
+const bodies = {}
+for (const host of ['archive', 'market']) {
+  if (!HOSTS_ON[host]) continue
+  execFileSync(process.execPath, [new URL(import.meta.url).pathname, process.argv[2] ?? 'dist', '--host-bodies', host], { stdio: 'inherit' })
+  bodies[host] = JSON.parse(await readFile(resolve('dist-ssr', `bodies-${host}.json`), 'utf8'))
+}
+const withBody = (out, host, file, lang) => {
+  const html = bodies[host]?.[`${file}/${lang}`]
+  if (html === undefined) throw new Error(`prerender: no body for ${host} ${file} in ${lang}`)
+  if (!out.includes('<div id="root"></div>')) throw new Error(`prerender: _host/${host}.html has no empty #root`)
+  // The skin's variables (fonts, colours, the display type's size and leading), last in the head where hosts/start.tsx
+  // puts them (it doesn't again when they're here): without them the drawn page painted in the browser's defaults and
+  // moved when the app arrived.
+  if (!SKIN_CSS || /<\/style/i.test(SKIN_CSS)) throw new Error('prerender: no usable SKIN_CSS')
+  out = out.replace('</head>', () => `  <style data-ss-skin="">${SKIN_CSS}</style>\n    <style>html:not([lang="${lang}"]) #root[data-pre]{visibility:hidden}</style>\n  </head>`)
+  return out.replace('<div id="root"></div>', () => `<div id="root" data-pre="${lang}">${html}</div>`)
+}
 let hostCount = 0
 for (const [i, page] of HOST_PAGES.entries()) {
   if (!HOSTS_ON[page.host]) continue
@@ -195,11 +262,31 @@ for (const [i, page] of HOST_PAGES.entries()) {
     out = out.replace(/(<meta property="og:url" content=")[^"]*"/, (_m, a) => `${a}${here}"`)
     // The title and description in every language's preview tags (English included: a page's own title).
     out = localHead(out, code, tags, true)
+    out = withBody(out, page.host, page.file, code)
     await writeFile(resolve(dir, `${baseOf(code)}.html`), out)
     hostCount++
   }
 }
-if (hostCount) console.log(`prerender: ${hostCount} host pages' heads (the Archive's and the Market's fixed pages x ${LANGUAGE_CODES.length} languages)`)
+/*
+ * The Archive's ledger (www's page it serves too): drawn the same way, with www's ledger head in each language (noindex,
+ * no canonical: SiteHead's UNLISTED), from its own file (dist/_host/archive-ledger.html); vercel.json picks the
+ * language as above.
+ */
+if (bodies.archive && HOST_BODIES.some((p) => p.host === 'archive' && p.file === 'ledger')) {
+  const template = (await readFile(resolve(dist, '_host', 'archive-ledger.html'), 'utf8')).replace(/\s*<meta name="robots"[^>]*>/, '')
+  const dir = resolve(dist, '_host', 'pre', 'archive', 'ledger')
+  await mkdir(dir, { recursive: true })
+  for (const { code, rtl } of LANGUAGE_CODES) {
+    const { head: tags } = await render('/ledger', code)
+    if (!/name="robots" content="noindex"/.test(tags.meta)) throw new Error(`prerender: the ledger's head in ${code} isn't noindex`)
+    let out = template.replace(/<html lang="[^"]*"/, `<html lang="${code}"${rtl ? ' dir="rtl"' : ''}`)
+    out = localHead(out, code, tags, true)
+    out = withBody(out, 'archive', 'ledger', code)
+    await writeFile(resolve(dir, `${baseOf(code)}.html`), out)
+    hostCount++
+  }
+}
+if (hostCount) console.log(`prerender: ${hostCount} host pages drawn (the Archive's and the Market's fixed pages and the Archive's ledger x ${LANGUAGE_CODES.length} languages)`)
 
 /*
  * On Vercel a file wins over every rewrite, and /<page> found dist/<page>/index.html before vercel.json's language

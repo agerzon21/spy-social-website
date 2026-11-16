@@ -4,16 +4,10 @@ import { Route, Routes } from 'react-router-dom'
 import { Layout } from '../components'
 import OffHost from '../components/OffHost'
 import ScrollManager from '../components/ScrollManager'
-import { lazyPage } from '../lib/lazyPage'
 import { LIVE } from '../lib/legalRelease'
 import { HOST, sharedHere } from '../lib/siteHost'
 import { archiveRoutes, marketRoutes } from '../routes/hostRoutes'
-
-// www's pages the Archive serves too (lib/siteHost SHARED), plain CSS like the hosts' own (speed2-1111).
-const Ledger = lazyPage(() => import('../pages/Ledger'))
-const Transparency = lazyPage(() => import('../pages/Transparency'))
-// The 404 page: with Chakra (hosts/ChakraIsland).
-const ChakraPage = lazyPage(() => import('./ChakraIsland'))
+import { ChakraPage, Ledger, Transparency } from './hostChunks'
 
 /**
  * archive.spysocial.app's and market.spysocial.app's own app (speed-1111): App.tsx's routes for this host, without

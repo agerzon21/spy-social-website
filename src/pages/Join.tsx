@@ -16,8 +16,18 @@ import { RoomCodePlate } from '../components/ui/RoomCodePlate'
 import { useT } from '../i18n'
 
 
+/**
+ * archive-speed-1116: the build draws /join/<code> once for every code (scripts/prerender.mjs, App.tsx SHELLS), so until
+ * React has taken that HTML over the page stands in a code of its own and shows none of it: an empty plate, no link
+ * into the app or the browser version (no href to follow yet). Then the address's own code, at once.
+ */
+const STAND_IN = 'AAAAA'
+
 const Join = () => {
-  const { code: rawCode = '', token = '' } = useParams<{ code: string; token: string }>()
+  const params = useParams<{ code: string; token: string }>()
+  const live = useClientValue(() => true, false)
+  const rawCode = live ? params.code ?? '' : params.code !== undefined ? STAND_IN : ''
+  const token = live ? params.token ?? '' : params.token !== undefined ? STAND_IN : ''
   // A link typed in lowercase or with spaces, or with a code's look-alike letters: the code the app reads (lib/roomCode).
   const code = keepCodeChars(rawCode)
   const [searchParams] = useSearchParams()
@@ -28,7 +38,7 @@ const Join = () => {
   // A private room whose host changed its code carries that code as ?p=.
   // Forward it to the app so the invite still joins in one tap, and show it
   // here because it's the code the player would type.
-  const passcode = keepCodeChars(searchParams.get('p') ?? '')
+  const passcode = live ? keepCodeChars(searchParams.get('p') ?? '') : ''
   const displayCode = passcode || code
   // The app's own path for this invite, ?p= included (lib/appLink makes it spysocial:// or Android's intent://).
   // A Friend Code's link (/join/f/<token>, shown as a QR in person): the same way in, no room to name.
@@ -52,8 +62,8 @@ const Join = () => {
   // and spysocial:// without the app is iOS Safari's "Cannot Open Page". Only an in-app browser on iOS (Instagram,
   // TikTok, Facebook), which never hands a link to the app, tries it once (lib/appLink).
   useEffect(() => {
-    if ((code || token) && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
-  }, [platform, code, token, appPath])
+    if (live && (code || token) && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
+  }, [live, platform, code, token, appPath])
 
   return (
     <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="radial-gradient(70% 320px at 50% 0, var(--ss-glow), transparent 70%)">
@@ -76,17 +86,17 @@ const Join = () => {
             </Text>
           </VStack>
 
-          {code && <RoomCodePlate code={displayCode} label={t.roomCode} />}
+          {code && <RoomCodePlate code={live ? displayCode : '\u00a0'} label={t.roomCode} />}
 
           <VStack spacing={3} align="stretch">
             {platform === 'desktop' && webLink && (
-              <Button as="a" href={webLink} size="lg" variant="primary" leftIcon={<IoDesktopOutline size={22} />}>
+              <Button as="a" href={live ? webLink : undefined} size="lg" variant="primary" leftIcon={<IoDesktopOutline size={22} />}>
                 {c.playInBrowser}
               </Button>
             )}
 
             {isMobile && (code || token) && (
-              <Button as="a" href={appLink} size="lg" variant="primary">
+              <Button as="a" href={live ? appLink : undefined} size="lg" variant="primary">
                 {c.openInApp}
               </Button>
             )}

@@ -10,16 +10,21 @@ import { CacheProvider } from '@emotion/react'
 import { renderToString } from 'react-dom/server'
 import { Helmet, HelmetProvider, type HelmetServerState } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
-import App, { PRERENDER_PAGES, preloadPage } from './App'
+import App, { PRERENDER_PAGES, PRERENDER_SHELLS, preloadPage } from './App'
 import { LANGUAGES, loadStrings, type LangCode } from './i18n'
 import I18nProvider from './i18n/I18nProvider'
 import SiteHead from './components/SiteHead'
 import { CATEGORIES, MOVER_LISTS, type Category, type MoverList } from './lib/market'
 import { LIVE } from './lib/legalRelease'
 import { archiveStrings } from './pages/archive/strings'
+import HostApp from './hosts/HostApp'
+import { preloadHost } from './hosts/hostChunks'
+import { placeOf } from './lib/siteHost'
 import { marketStrings } from './pages/market/strings'
 
-export { PRERENDER_PAGES }
+export { PRERENDER_PAGES, PRERENDER_SHELLS }
+/** The skin's variables, which hosts/start.tsx puts on a host's page: in the HTML of a page the build draws (archive-speed-1116). */
+export { SKIN_CSS } from './theme/skinCss'
 export const LANGUAGE_CODES = LANGUAGES.map((l) => ({ code: l.code, rtl: l.rtl }))
 
 /** One <style> of Emotion's: its key ('css' or 'css-global'), the rules' names and their CSS. */
@@ -108,4 +113,31 @@ export async function renderHostHead(index: number, lang: LangCode): Promise<Hea
   const helmet = helmetContext.helmet
   if (!helmet) throw new Error(`prerender: ${page.path} in ${lang} set no <head>`)
   return { title: helmet.title.toString(), meta: helmet.meta.toString(), link: helmet.link.toString() }
+}
+
+/**
+ * A host page's own path ('/archive/uniques' is the Archive's '/uniques'), for its body (renderHostBody). The Archive's
+ * ledger (www's page it serves too, lib/siteHost SHARED) is drawn as well: HOST_BODIES.
+ */
+export const HOST_BODIES: { host: 'archive' | 'market'; file: string; path: string }[] = [
+  ...HOST_PAGES.map((p) => ({ host: p.host, file: p.file, path: placeOf(p.path, true).path })),
+  ...(LIVE.mintedCollectibles ? [{ host: 'archive' as const, file: 'ledger', path: '/ledger' }] : []),
+]
+
+/**
+ * A host page's body (archive-speed-1116): the host's own app (hosts/HostApp, as hosts/start.tsx renders it) at its
+ * path in `lang`, before any read has come back (the page's own loading state), so it paints before the app's script
+ * arrives and hosts/start.tsx hydrates it. Only in a process whose host is that host (scripts/prerender.mjs sets
+ * globalThis.__ssSsrHost before loading this module: lib/siteHost reads it once).
+ */
+export async function renderHostBody(path: string, lang: LangCode): Promise<string> {
+  await Promise.all([loadStrings(lang), preloadHost(path)])
+  const strings = await loadStrings(lang)
+  return renderToString(
+    <StaticRouter location={path}>
+      <I18nProvider lang={lang} strings={strings}>
+        <HostApp />
+      </I18nProvider>
+    </StaticRouter>,
+  )
 }

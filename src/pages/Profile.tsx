@@ -3,7 +3,8 @@ import { FaApple } from 'react-icons/fa'
 import { IoLogoGooglePlaystore } from 'react-icons/io5'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
-import { useEffect, useMemo } from 'react'
+import { useEffect } from 'react'
+import { useClientValue } from '../lib/clientValue'
 import Link from '../components/SiteLink'
 import { openAppHref, tryAppOnLoad, tryAppOnce } from '../lib/appLink'
 import { currentPlatform } from '../lib/platform'
@@ -28,28 +29,37 @@ const HANDLE = /^[A-Za-z0-9_.]{3,30}$/
  * a minor is the app's to decide (get_player_profile, signed in, rate-limited), so this page can't be used to sort
  * accounts. Not indexed (vercel.json's X-Robots-Tag and the robots meta below).
  */
+/*
+ * archive-speed-1116: the build draws /profile/<name> once for every name (scripts/prerender.mjs, App.tsx SHELLS), so
+ * until React has taken that HTML over the page names nobody (an empty heading, no link into the app) and says what a
+ * computer is told (lib/clientValue, as /join does); then the address's own name and the phone's words, at once.
+ */
 const Profile = () => {
-  const { username = '' } = useParams<{ username: string }>()
+  const params = useParams<{ username: string }>()
+  const live = useClientValue(() => true, false)
+  const username = live ? params.username ?? '' : ''
   const { lang, language } = useLang()
   // "Back" points the way the page reads: right in Arabic (site-qa-1113).
   const rtl = language.rtl
   const c = useT().common
   const t = profileStrings(lang)
-  const ok = HANDLE.test(username)
+  const ok = !live || HANDLE.test(username)
   const appPath = `profile/${encodeURIComponent(username)}`
-  const platform = useMemo(currentPlatform, [])
+  const platform = useClientValue(currentPlatform, 'desktop')
   const isMobile = platform === 'ios' || platform === 'android'
   // Before the launch the stores hold 2.1.1, which has no profiles: the reminder page instead (as /join's Friend Code).
-  const appLink = STORES_OPEN ? openAppHref(appPath, platform) : openAppHref(appPath, platform, `${window.location.origin}${REMINDER_PAGE}`)
+  const appLink = STORES_OPEN
+    ? openAppHref(appPath, platform)
+    : openAppHref(appPath, platform, `${typeof window === 'undefined' ? '' : window.location.origin}${REMINDER_PAGE}`)
 
   useEffect(() => {
-    if (ok && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
-  }, [ok, platform, appPath])
+    if (live && ok && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
+  }, [live, ok, platform, appPath])
 
   return (
     <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="radial-gradient(70% 320px at 50% 0, var(--ss-glow), transparent 70%)">
       <Helmet>
-        <title>{ok ? `@${username} · SpySocial` : 'SpySocial'}</title>
+        <title>{live && ok ? `@${username} · SpySocial` : 'SpySocial'}</title>
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
       <Container maxW="560px" px={{ base: 4, md: 6 }}>
@@ -61,7 +71,7 @@ const Profile = () => {
                   {t.eyebrow}
                 </Text>
                 <Heading as="h1" size="xl" style={{ overflowWrap: 'anywhere', direction: 'ltr', textTransform: 'none' }}>
-                  @{username}
+                  {live ? `@${username}` : '\u00a0'}
                 </Heading>
                 <Text color="ss.muted" fontSize={{ base: '18px', md: '20px' }} lineHeight="1.45">
                   {isMobile ? t.phone : t.desktop}
@@ -82,7 +92,7 @@ const Profile = () => {
           {ok && (
             <VStack spacing={3} align="stretch">
               {isMobile && (
-                <Button as="a" href={appLink} size="lg" variant="primary">
+                <Button as="a" href={live ? appLink : undefined} size="lg" variant="primary">
                   {c.openInApp}
                 </Button>
               )}
