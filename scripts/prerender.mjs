@@ -104,6 +104,10 @@ function localHead(out, lang, head, previews = lang !== 'en') {
   if (!/<meta name="description"[^>]*>/.test(out)) throw new Error('prerender: the built page has no description')
   out = out.replace(/<meta name="description"[^>]*>\s*/, '')
   out = out.replace(/<title>[^<]*<\/title>/, () => [titleTag, head.meta, link].filter(Boolean).join('\n    '))
+  // og:url names the page in this language (site-audit-1116: every language's file said the bare, English address,
+  // and Facebook takes a page's preview from its og:url).
+  const canonical = (link.match(/rel="canonical" href="([^"]*)"/) ?? [])[1]
+  if (canonical) out = out.replace(/(<meta property="og:url" content=")[^"]*"/, (_m, a) => `${a}${canonical}"`)
   if (previews) {
     const t = escapeAttr(title)
     for (const [re, value] of [

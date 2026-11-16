@@ -53,10 +53,11 @@ const isShared = (path) => Object.values(SHARED_PAGES).some((paths) => paths.inc
 function entries(path, langs, origin = ORIGIN) {
     const here = `${origin}${path}`;
     const links = [
-        ...langs.map((lang) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${here}?lang=${lang}"/>`),
+        // English's address is the bare one (site-audit-1116: ?lang=en's canonical is the bare address; SiteHead).
+        ...langs.map((lang) => `    <xhtml:link rel="alternate" hreflang="${lang}" href="${lang === 'en' ? here : `${here}?lang=${lang}`}"/>`),
         `    <xhtml:link rel="alternate" hreflang="x-default" href="${here}"/>`,
     ].join('\n');
-    return [here, ...langs.map((lang) => `${here}?lang=${lang}`)]
+    return [here, ...langs.filter((lang) => lang !== 'en').map((lang) => `${here}?lang=${lang}`)]
         .map((loc) => `  <url>\n    <loc>${loc}</loc>\n${links}\n  </url>\n`)
         .join('');
 }

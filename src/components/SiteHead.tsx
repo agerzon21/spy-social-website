@@ -93,7 +93,10 @@ const SiteHead = () => {
   // archive.spysocial.app or market.spysocial.app.
   const here = publicUrl(path)
   const asked = matchLang(new URLSearchParams(search).get('lang'))
-  const canonical = asked === lang ? `${here}?lang=${lang}` : here
+  // English's address is the bare one (site-audit-1116): the server answers ?lang=en with the bare address's file, whose
+  // canonical is the bare address, so the 'en' alternate names it too (an alternate must be a canonical address).
+  const at = (code: string) => (code === 'en' ? here : `${here}?lang=${code}`)
+  const canonical = asked === lang ? at(lang) : here
 
   return (
     <Helmet htmlAttributes={{ lang, dir: language.rtl ? 'rtl' : 'ltr' }}>
@@ -102,7 +105,7 @@ const SiteHead = () => {
       <meta property="og:locale" content={language.og} />
       {!indexed && <meta name="robots" content="noindex" />}
       {indexed && <link rel="canonical" href={canonical} />}
-      {indexed && LANGUAGES.map((l) => <link key={l.code} rel="alternate" hrefLang={l.code} href={`${here}?lang=${l.code}`} />)}
+      {indexed && LANGUAGES.map((l) => <link key={l.code} rel="alternate" hrefLang={l.code} href={at(l.code)} />)}
       {indexed && <link rel="alternate" hrefLang="x-default" href={here} />}
     </Helmet>
   )
