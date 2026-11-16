@@ -193,6 +193,10 @@ const Terms: React.FC = () => {
         remove XP, levels, achievements or rewards that were earned by cheating.
         {LIVE.socialFeatures &&
           " Playing in a party doesn't change these rules: telling anyone at your table your role, the location or the word outside the game is cheating. We may pause a party, ban a player from parties, and take back anything won in those games."}
+        {/* LIVE.coverage1116 with LIVE.spybots: Terms 7 forbids players' bots; say whose computer-controlled players exist (Privacy's AI Players item). */}
+        {LIVE.coverage1116 &&
+          LIVE.spybots &&
+          ' The only computer-controlled players in SpySocial are ours: the other agents in a practice game, and AI players that SpySocial\'s developer sometimes brings to a table where he plays himself, only while everyone else there is an adult he knows or one of our test accounts. They always show an "AI" tag next to their name.'}
       </P>
       {/* LIVE.socialFeatures: Social Phase 1 for everyone (legalRelease). */}
       {LIVE.socialFeatures && (
@@ -317,8 +321,8 @@ const Terms: React.FC = () => {
       <H2 id="your-content">6. Your Content</H2>
       <P>
         "Your content" means everything you add to SpySocial: your display name, username
-        {photos ? ', profile photo' : ''} and any room code you choose; your chat messages, including in the spy
-        chat and the chat for players who are out; the questions and answers you type; your Spy Sketch drawings;
+        {photos ? ', profile photo' : ''} and any room code you choose; your chat messages, including in {LIVE.appU62 ? "the spies' chat (Spy Channel)" : 'the spy chat'}{' '}
+        and the chat for players who are out; the questions and answers you type; your Spy Sketch drawings;
         {LIVE.customPacks ? ' the custom packs you make, and their drafts (their names, descriptions and entries);' : ''}
         {LIVE.communityPacks ? ' the ratings you give Community Packs;' : ''} and the reports you send.
       </P>

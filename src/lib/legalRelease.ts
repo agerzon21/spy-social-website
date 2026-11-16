@@ -1921,6 +1921,9 @@ export const LIVE = {
    * LEGAL_LAST_UPDATED moves (below). Flip the hour app_config role_reveal_online goes to 'everyone' (Beta 3, Tue Nov 24),
    * never on the preview OTA alone: node scripts/flip-switch.mjs appU62 --day "November 24, 2026". Off again if the
    * reveal goes back to 'off' or 'owner_testers' (flip-switch.mjs appU62 --undo).
+   * legal-coverage-1116: it also names the spies' chat as the app does from update 62, "Spy Channel" (the reveal card's
+   * button, lib/glossary/roleReveal1113.ts): Privacy's Chat Messages item and Terms 6's "your content". Same chat, same
+   * table, same retention; only the name. So it moves PRIVACY_LAST_UPDATED too.
    */
   appU62: false,
   /**
@@ -2030,6 +2033,48 @@ export const LIVE = {
    * LIVE, never in PRIVACY_AHEAD.
    */
   sameOdds: false,
+  /**
+   * legal-coverage-1116, ON (true today; app repo .claude/handoff/scratchpad/legal-1116/COVERAGE.md):
+   * - Privacy, Reminders and Notifications: the developer's alerts (integrity_alerts, pushed with their body through
+   *   report-alert by _integrity_alert_claim) said only "one about trades can name the account". Live alerts also name an
+   *   account or room: the fair-play hold page (hold_new_page 20261209989000: "as many whole names as fit"), the drawing
+   *   check's daily share page (abuse_followups_1114, live Nov 15: the top drawer and room, ID prefix). Now: some alerts
+   *   can name the account or room they're about.
+   * - Privacy, Data Sharing (community moderators): what a moderator sees left out two things the page says elsewhere:
+   *   the reported player's reputation tier and its main reasons (Safety Information, appU61) and the Mod Console's
+   *   translation of a report (Translations, modTranslate1106).
+   * - Privacy, Vercel: it also hosts the Archive and Market pages, and its firewall (live on www: 403
+   *   x-vercel-mitigated: challenge, websec-1115 / web-smoke-1115) can make a browser pass an automatic check and then
+   *   sets a short-lived cookie; we use no Vercel analytics (no @vercel/analytics or speed-insights in either site). Your
+   *   Browser's "It uses no cookies" (the browser version) becomes "The game itself uses no cookies (Vercel's security
+   *   check can set one ...)".
+   * - Terms 4, Fair play: the only computer-controlled players are ours (the practice game's agents, played on the device,
+   *   and the developer's AI players, always tagged AI: Privacy's AI Players item, LIVE.spybots); Terms 7 forbids
+   *   players' bots. A notice, not a new duty: not material, no TERMS_PUBLISHED or terms_version.
+   * COVERAGE_1116_DAY moves LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED (re-date to the publish day with
+   * node scripts/flip-switch.mjs coverage1116 --day "<publish day>"). A website fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  coverage1116: true,
+  /**
+   * legal-coverage-1116, STAGED OFF: app repo server files 20261231999875_heavy_reads_1116 (NEXT-BATCH row 62) and
+   * 20261231999863_heavy_reads_1116b (row 68, after 62 and 24): Home / Locker / pack catalogue / avatar / titles reads and
+   * the Black Market's tradables / top movers / Uniques / trade-up previews share one per-account count in rate_hits
+   * (bucket heavy_read_m, 60 a minute by default, pruned after 2 days like every rate note); over it the read is refused and
+   * the owner gets ONE LOAD alert a day (integrity_alerts P2) naming the first account refused. Turns on, in Privacy's Rate
+   * Limits item, those reads in the list of noted actions and the one alert a day. Privacy only. Flip the day row 62 is
+   * applied live: node scripts/flip-switch.mjs heavyReads --day "<apply day>". Off again if 999875 is rolled back. A
+   * server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  heavyReads: false,
+  /**
+   * legal-coverage-1116, STAGED OFF: app repo server file 20261231999873_community_search_shown_language_1116 (NEXT-BATCH
+   * row 63): search_community_packs also matches the pack's title, description and theme as translated into the
+   * searcher's language (today: the pack's own title and description, and the creator's username). Turns on Privacy's
+   * Community Packs search sentence. Privacy only. Flip the day row 63 is applied: node scripts/flip-switch.mjs
+   * communitySearchShown --day "<apply day>". Off again if 999873 is rolled back. A server switch: set in LIVE, never in
+   * PRIVACY_AHEAD.
+   */
+  communitySearchShown: false,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -2059,6 +2104,10 @@ export const DRAWING_CHECK_WITHDRAW_DAY = 'November 15, 2026'
 export const PAYPAL_TIMING_1116_DAY = 'November 16, 2026'
 export const PLAYTEST_TREMENDOUS_DAY = 'November 16, 2026'
 export const SAME_ODDS_DAY = 'November 17, 2026'
+/** legal-coverage-1116: LIVE.coverage1116's day (the publish day), LIVE.heavyReads's and LIVE.communitySearchShown's (their apply days; set by flip-switch --day). Never earlier than November 16, 2026. */
+export const COVERAGE_1116_DAY = 'November 16, 2026'
+export const HEAVY_READS_DAY = 'November 17, 2026'
+export const COMMUNITY_SEARCH_DAY = 'November 17, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
@@ -2345,6 +2394,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? SAME_ODDS_DAY // Terms 9's trade-up: every item of the next rarity with the same chance, whatever you own (legal-1116, 999888)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // Terms 9: a reputation that becomes Banned closes your Black Market offers and listings (legal-1115, 999909)
+  : LIVE.coverage1116
+    ? COVERAGE_1116_DAY // Terms 4's Fair play: the only computer-controlled players are ours, tagged AI (legal-coverage-1116)
   : LIVE.safetyFacts1114
     ? SAFETY_FACTS_1114_DAY // Terms 8's private-room drawing line, the Community Rules' drawings paragraph and Child Safety's chat and drawing bullets (legal-cov2-1114)
   : LIVE.reputationHoldCap
@@ -2455,10 +2506,18 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.playtestTremendous
     ? PLAYTEST_TREMENDOUS_DAY // Test Versions: Beta 3's thank-yous through Tremendous; providers' paragraph (legal-1116)
+  : LIVE.appU62
+    ? APP_U62_DAY // Chat Messages: the spies' chat named "Spy Channel", as update 62 names it (legal-coverage-1116; Beta 3, Nov 24)
   : LIVE.drawingCheckWithdraw
     ? DRAWING_CHECK_WITHDRAW_DAY // Drawing Checks: withdrawing the agreement in Settings, and its Data Retention line (privacy-anchors-1115, 999902 + u62.12)
+  : LIVE.heavyReads
+    ? HEAVY_READS_DAY // Rate Limits: the heavy reads' per-account count and the one alert a day (legal-coverage-1116, 999875)
+  : LIVE.communitySearchShown
+    ? COMMUNITY_SEARCH_DAY // Community Packs: search also reads the translated name, description and theme (legal-coverage-1116, 999873)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // the Black Market item: a reputation that becomes Banned closes the account's offers and listings (legal-1115, 999909)
+  : LIVE.coverage1116
+    ? COVERAGE_1116_DAY // the developer's alerts, the moderators' view, Vercel's firewall and Your Browser's cookie line (legal-coverage-1116)
   : LIVE.payPalTiming1116
     ? PAYPAL_TIMING_1116_DAY // Test Versions: the PayPal address is deleted once the test's thank-yous are sent, with the survey (legal-1116)
   : LIVE.siteStorage1115

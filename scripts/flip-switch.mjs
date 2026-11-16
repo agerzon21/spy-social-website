@@ -51,6 +51,10 @@ const SWITCHES = {
   sameOdds: { live: [['sameOdds', true]], day: 'SAME_ODDS_DAY', step: 'row 54 (999888)' },
   playtestTremendous: { live: [['playtestTremendous', true]], day: 'PLAYTEST_TREMENDOUS_DAY', step: 'owner picks Tremendous' },
   payPalTiming1116: { live: [['payPalTiming1116', true]], day: 'PAYPAL_TIMING_1116_DAY', step: 'publish' },
+  // legal-coverage-1116: coverage1116 is on (--day re-dates it to the publish day); heavyReads the day NEXT-BATCH row 62 (999875) is applied; communitySearchShown the day row 63 (999873) is applied.
+  coverage1116: { live: [['coverage1116', true]], day: 'COVERAGE_1116_DAY', step: 'publish' },
+  heavyReads: { live: [['heavyReads', true]], day: 'HEAVY_READS_DAY', step: 'row 62 (999875)' },
+  communitySearchShown: { live: [['communitySearchShown', true]], day: 'COMMUNITY_SEARCH_DAY', step: 'row 63 (999873)' },
 }
 
 const args = process.argv.slice(2)
