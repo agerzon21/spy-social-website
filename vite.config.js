@@ -262,9 +262,12 @@ function pagePreviews() {
                 '/beta': LIVE.launchSite !== true && LIVE.beta2Off !== true,
             };
             // A page's English title and description and its address (www's: the canonical one, on every host).
+            // The ledger's as SiteHead says it while LIVE.ledgerUniquesOnly is on (qa-fixes2-1116: the Archive's /ledger and
+            // www's English file still described "every minted collectible").
+            const { LEDGER_DESCRIPTION_UNIQUES } = (await siteModule(root, 'src/lib/ledgerScope.ts'));
             const pageSwaps = (page) => {
                 const title = attr(`${en.meta.titles[page.key]} · ${en.meta.siteName}`);
-                const description = attr(en.meta.descriptions[page.key] ?? en.meta.description);
+                const description = attr(page.key === 'ledger' && LIVE.ledgerUniquesOnly === true ? LEDGER_DESCRIPTION_UNIQUES.en : en.meta.descriptions[page.key] ?? en.meta.description);
                 return [
                     [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
                     [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
@@ -593,6 +596,8 @@ function helloPage() {
                     code,
                     native,
                     rtl,
+                    // The tab's title: the page's <title> is English for every language (one file); hello.js sets this one.
+                    docTitle: code === 'en' ? null : words.launchLine(day).replace(/[.。।]\s*$/, ''),
                     title: t.home.hero.title,
                     mark: t.home.hero.titleMark,
                     eyebrow: t.home.hero.eyebrow,

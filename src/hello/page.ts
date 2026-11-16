@@ -22,6 +22,8 @@ export interface HelloLanguage {
   code: string
   native: string
   rtl: boolean
+  /** The tab's title in this language (qa-fixes2-1116), or null for English, whose is the page's own <title>. */
+  docTitle: string | null
   title: string
   mark: string
   eyebrow: string
@@ -173,7 +175,7 @@ function pageFor(l: HelloLanguage, input: HelloInput): string {
   const beta = input.closesAt
     ? `<section class="beta" data-beta hidden><p class="eyebrow">${esc(l.betaEyebrow)}</p><p class="facts">${l.betaFacts.map((fact) => `<span>${esc(fact)}</span>`).join('')}</p><p class="closes">${esc(l.betaCloses)}</p><a class="btn secondary" href="/beta">${esc(l.betaSignUp)}${icon('arrow', 'arrow')}</a></section>`
     : ''
-  return `<main data-l="${esc(l.code)}" lang="${esc(l.code)}" dir="${l.rtl ? 'rtl' : 'ltr'}">
+  return `<main data-l="${esc(l.code)}"${l.docTitle ? ` data-title="${esc(l.docTitle)}"` : ''} lang="${esc(l.code)}" dir="${l.rtl ? 'rtl' : 'ltr'}">
 ${icon('head', 'head')}
 <h1>${esc(l.title)}<span>${esc(l.mark)}</span></h1>
 <p class="eyebrow">${esc(l.eyebrow)}</p>

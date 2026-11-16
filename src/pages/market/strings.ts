@@ -229,6 +229,30 @@ const ru: MarketStrings = {
 // English and Russian are here; each other language is its own chunk, loaded before the page paints in it (speed-1111).
 const table = pageTable<MarketStrings>({ en, ru }, import.meta.glob<{ default: MarketStrings }>('./locales/*.ts'))
 
+/** A number and the word after it ("7 days", "dalam 7 hari", "3 месяца") never split over two lines (qa-fixes2-1116). */
+const glue = <T extends Record<string, string>>(labels: T): T =>
+  Object.fromEntries(Object.entries(labels).map(([k, v]) => [k, v.replace(/(\d) (?=\p{L})/gu, '$1\u00a0')])) as T
+
+/**
+ * The short labels set in small capitals in narrow cells (the window chips, the home and item figures, the item's
+ * changes), each language's own words with its numbers glued to their units: at 320-393 px they wrapped as
+ * «TRANSAKSI DALAM 7 / HARI», «СДЕЛОК ЗА 7 / ДНЕЙ». Once per table.
+ */
+const glued = new WeakMap<MarketStrings, MarketStrings>()
+function withGlue(t: MarketStrings): MarketStrings {
+  let g = glued.get(t)
+  if (!g) {
+    g = {
+      ...t,
+      windows: glue(t.windows),
+      home: { ...t.home, stats: glue(t.home.stats) },
+      item: { ...t.item, stats: glue(t.item.stats), changes: glue(t.item.changes), chartRanges: glue(t.item.chartRanges) },
+    }
+    glued.set(t, g)
+  }
+  return g
+}
+
 export function marketStrings(lang: LangCode): MarketStrings {
-  return table(lang)
+  return withGlue(table(lang))
 }

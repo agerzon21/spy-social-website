@@ -182,6 +182,8 @@ function withPreview(html: string, p: Preview): string {
     put(/<title>[^<]*<\/title>/, `<title>${t}</title>`)
     put(/<meta name="description"[^>]*>/, `<meta name="description" content="${d}" />`)
     put(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${attr(p.url)}" />`)
+    // The address it's known by, in the HTML itself (qa-fixes2-1116: only the page's script added it, which no crawler runs).
+    put(/<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${attr(p.url)}" />`)
     put(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${t}" />`)
     put(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${d}" />`)
     put(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${t}" />`)
