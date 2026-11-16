@@ -114,7 +114,9 @@ const MarketHome = () => {
             ) : null}
           </div>
           {ok && featured ? (
-            <Link to={itemPath(featured.c)} className={s.featured} aria-label={`${h.featured}: ${featured.nm}`}>
+            // No aria-label (site-audit-1116): it hid the price, change and note from screen readers and left the
+            // visible words out of the name (Lighthouse label-content-name-mismatch); the card's own text names it.
+            <Link to={itemPath(featured.c)} className={s.featured}>
               <span className={s.featuredKicker}>{h.featured}</span>
               <span className={s.featuredStage}>
                 <ItemThumb it={featured} size="lg" />
