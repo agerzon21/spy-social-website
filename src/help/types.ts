@@ -3,7 +3,7 @@
  * Each language's file loads only on the help page, as its own chunk, so the other pages don't carry it.
  *
  * For translators (as src/i18n/locales/en.ts):
- * - Tags: <b>a button's or screen's name</b>; links <terms>, <privacy>, <rules>, <gnr> (the Game Night rules),
+ * - Tags: <b>a button's or screen's name</b>; links <terms>, <privacy>, <drawchecks> (Privacy's #drawing-checks), <rules>, <gnr> (the Game Night rules),
  *   <delete> (the Delete Account page), <safety> (the Safety page, plain text while it isn't published), <discord>;
  *   <email/> is replaced whole by the support address. Keep every tag, translate the words inside it.
  * - Every section and question keeps its `id` (the page's #anchors) and its place; the same questions in every
@@ -54,8 +54,10 @@ export interface HelpOpts {
   /** The tester thank-you's counted-game condition (LIVE.testerGiftGame; server tester_gift_game_1111). Off: the old one-line answer. */
   testerGiftGame: boolean
   /**
-   * Beta 3's role reveal and Poker Face are on testers' phones (LIVE.helpRoleReveal): #role-reveal and #poker-face.
-   * TRANSLATIONS UNREVIEWED: every language but English is an agent's (help-u61-1113), in the app's own words for them.
+   * Beta 3's role reveal and Poker Face are on for everyone (LIVE.helpRoleReveal): #role-reveal, #poker-face ("Where Are
+   * You Playing?", Online | Same Room) and #voice-chat's line for a call. #talk-out-loud, #drawings-checked and the rest of
+   * #voice-chat show either way. TRANSLATIONS UNREVIEWED: every language but English is an agent's (help-u61-1113,
+   * help-beta3-1116), in the app's own words for them (app int-u62, u62.13).
    */
   roleReveal: boolean
 }

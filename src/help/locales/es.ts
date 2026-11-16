@@ -75,12 +75,34 @@ const es: HelpText = {
           ],
         },
         {
+          id: 'talk-out-loud',
+          q: "¿Qué es Hablar en voz alta?",
+          a: [
+            "Una regla de Spy Talk para grupos en el mismo lugar o en una llamada de voz. El anfitrión la activa en las <b>Reglas</b> de la sala; las salas nuevas empiezan con ella desactivada. Solo en salas privadas y en las Noches de Juegos que la activen.",
+            "Durante las preguntas nadie escribe ni usa el micrófono: quien pregunta lo hace en voz alta y toca <b>Hecho</b>; luego quien responde contesta en voz alta y toca <b>Hecho</b>.",
+            "Como nada queda escrito, las notas no guardan el historial de preguntas.",
+            "Te sugerimos dejarla desactivada, incluso en una misma mesa: toca el micrófono y pregunta en voz alta. Todos te oyen y la app convierte lo que dices en texto que todos los jugadores ven en el historial de preguntas.",
+            "Todos en la sala necesitan la versión más reciente de la app. Si alguien tiene una anterior, aparece desactivada hasta que actualice.",
+          ],
+        },
+        {
           id: 'spy-sketch',
           q: '¿Cómo funciona Spy Sketch?',
           a: [
             'Los jugadores dibujan por turnos en una pizarra compartida. Los locales insinúan la palabra sin dibujarla del todo. Los espías añaden algo vago que pueda encajar.',
             'Cuando todos han tenido su turno, se abren las votaciones y el intento del espía. Las rondas siguen hasta que termina la partida.',
             'Los dibujos de Spy Sketch no se describen en voz alta, así que un lector de pantalla (VoiceOver, TalkBack) no puede seguir el dibujo.',
+          ],
+        },
+        {
+          id: 'drawings-checked',
+          q: "¿Se revisan los dibujos de Spy Sketch?",
+          a: [
+            "Sí, para que los dibujos sean seguros. En las mesas de Jugar en línea y en las Noches de Juegos, los turnos de dibujo terminados pueden revisarse automáticamente con OpenAI para detectar lo que rompa las <rules>normas de la comunidad</rules>.",
+            "La primera vez, la app muestra <b>Revisamos los dibujos</b>. Toca <b>Acepto</b> para jugar Spy Sketch en línea. Mientras no aceptes, Spy Talk sigue disponible.",
+            "En una sala privada, un dibujo se revisa si alguien lo reporta, y también cuando puede verlo un jugador menor de 18 años o uno que no nos ha dicho su edad.",
+            "OpenAI recibe una imagen del turno y la palabra de la ronda, nunca tu nombre ni tus mensajes. Un turno que rompe las normas se quita y puede llevar a una advertencia, una pausa o un baneo. Una persona revisa cada decisión permanente, y puedes apelar.",
+            "Todos los detalles: <drawchecks>Drawing Checks, en la Política de privacidad</drawchecks>.",
           ],
         },
         {
@@ -199,23 +221,38 @@ const es: HelpText = {
               id: 'role-reveal',
               q: "¿Cómo funciona la revelación de roles?",
               a: [
-                "En las partidas en línea, tu carta de rol se voltea y muestra tu rol. Los locales ven el secreto y cuántos espías hay entre ellos.",
-                "En Espía Mafia con más de un espía, los espías se ven en la carta y una etiqueta roja de «Espía» marca las fotos de los demás espías. Los espías tocan <b>Canal de espías</b> para chatear en privado. Los locales no ven nada de esto.",
-                "¿Juegas en una llamada? Activa <b>Mismo sonido para todos los roles</b> en Ajustes, en «Sonido y música», para que tu micrófono no revele nada.",
+                "Las partidas en línea tienen revelación de roles: Jugar en línea, las Noches de Juegos y las salas privadas cuyo anfitrión eligió <b>En línea</b>. Toca tu carta: se apagan las luces y un reflector muestra tu rol.",
+                "Los <b>locales</b> ven el secreto y cuántos espías hay entre ellos: en Spy Talk, el lugar, con su imagen si la tiene; en Spy Sketch, solo la palabra.",
+                "Los <b>espías</b> reciben una carta oscura. En Espía Mafia, los demás espías aparecen a tu lado, con su nombre y una etiqueta roja de «Espía». En Clásico, los espías no se conocen, así que los demás aparecen como <b>Desconocido</b>.",
+                "En Espía Mafia con más de un espía, toca <b>CANAL DE ESPÍAS</b> para chatear en privado con los otros espías: en tu carta antes de empezar, luego en la barra de arriba, o junto al chat en una votación. Basta un toque; un número muestra los mensajes nuevos, y un mensaje de otro espía dice «… intenta contactarte».",
+                "La etiqueta roja sigue en las fotos de los otros espías toda la partida. Los locales nunca ven las etiquetas, el botón ni el chat.",
+                "¿En una llamada de voz? Activa <b>Mismo sonido para todos los roles</b> (Ajustes, Sonido y música) para que tu micrófono no capte el sonido de revelación de un espía. La app te lo ofrece antes de tu primera revelación.",
               ],
             },
             {
               id: 'poker-face',
-              q: "¿Qué es Cara de póker?",
+              q: "En línea o En persona: ¿qué es Cara de póker?",
               a: [
-                "Es para amigos que juegan alrededor de una mesa. Al crear una sala privada, el anfitrión elige <b>En línea</b> (cada quien en su teléfono, donde sea) o <b>En persona</b>, que activa Cara de póker. Se puede cambiar después en Reglas.",
-                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía ni etiquetas rojas de «Espía». Los espías abren su chat manteniendo pulsada su carta.",
-                "Una mirada a tu pantalla no revela nada. Evita descuidos, no trampas.",
-                "Quien entra ve un aviso cuando está activada. Solo en salas privadas y Noches de Juegos: Jugar en línea no la tiene.",
+                "Cuando un anfitrión crea una sala privada, la app pregunta <b>¿Dónde juegan?</b> Elige <b>En línea</b> si cada quien juega en su teléfono, donde sea, también en una llamada: hay revelación completa de roles y chat de espías de un toque. Elige <b>En persona</b> si están alrededor de una mesa: se activa <b>Cara de póker</b>.",
+                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía, sin etiquetas rojas de «Espía», y nada se ilumina cuando llega un mensaje de espías. Los espías abren su chat manteniendo presionada su carta.",
+                "El porqué: en una misma mesa, una mirada al teléfono de al lado podría delatar un rol. Cara de póker evita descuidos, no trampas. La desventaja: cuesta más reconocer a los otros espías y chatear con ellos.",
+                "El anfitrión puede cambiarla entre partidas en las <b>Reglas</b> del lobby, y quien entra ve <b>«Cara de póker» está activada</b>. En las Noches de Juegos, la fija cada noche. Jugar en línea no la tiene.",
               ],
             },
             ]
           : []),
+        {
+          id: 'voice-chat',
+          q: "¿Hay chat de voz? ¿Para qué sirve el micrófono?",
+          a: [
+            "SpySocial no tiene chat de voz: nadie te oye a través de la app. El micrófono convierte lo que dices en texto, para que no tengas que escribir.",
+            "Toca el micrófono, habla y vuelve a tocarlo para terminar. Funciona en los chats y en las preguntas de Spy Talk.",
+            "Lo hace el reconocimiento de voz de tu teléfono (o de tu navegador). Nosotros recibimos solo el texto, nunca el audio. Detalles: <privacy>Política de privacidad</privacy>.",
+            "Para hablar mientras juegan, usen una llamada de voz propia junto a la app, por ejemplo en Discord o por teléfono.",
+            ...(o.roleReveal ? ["En una llamada, el anfitrión elige <b>En línea</b> en <b>¿Dónde juegan?</b>, y cada uno puede activar <b>Mismo sonido para todos los roles</b> (Ajustes, Sonido y música) para que ningún micrófono capte el sonido de revelación de un espía."] : []),
+            "En una sala privada de Spy Talk, <b>Hablar en voz alta</b> permite preguntar y responder de viva voz, sin escribir.",
+          ],
+        },
         {
           id: 'wax-seal',
           q: '¿Qué es el Sello de Cera?',

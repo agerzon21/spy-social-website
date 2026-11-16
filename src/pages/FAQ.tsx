@@ -80,6 +80,7 @@ const PARTS: Parts = {
   b: (c) => <b>{c}</b>,
   terms: (c) => <Link to="/terms">{c}</Link>,
   privacy: (c) => <Link to="/privacy">{c}</Link>,
+  drawchecks: (c) => <Link to="/privacy#drawing-checks">{c}</Link>,
   rules: (c) => <Link to="/rules">{c}</Link>,
   gnr: (c) => (LIVE.gameNightRules ? <Link to="/game-night-rules">{c}</Link> : c),
   delete: (c) => <Link to="/delete-account">{c}</Link>,

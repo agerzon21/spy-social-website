@@ -139,7 +139,8 @@ export const LIVE = {
   /**
    * help-u61-1113: the Help center's answers for Beta 3's role reveal and Poker Face (app repo int/rr-u62; owner picks
    * Nov 13: B Spotlight, the red SPY tag, Same Sound for Every Role; Poker Face entered from "Where Are You Playing?",
-   * Online | Same Room). Turns on Help's #role-reveal and #poker-face (10 languages). Help text only: no legal page reads
+   * Online | Same Room). Turns on Help's #role-reveal and #poker-face and #voice-chat's line for a call (10 languages;
+   * rewritten by help-beta3-1116 against u62.13). Help text only: no legal page reads
    * it, no Last Updated date. Flip on Beta 3 day (Tue Nov 24), the hour the u62 update is on testers' phones and
    * app_config role_reveal_online is 'everyone': node scripts/flip-switch.mjs helpRoleReveal. Off again if the reveal
    * is rolled back (role_reveal_online 'off' or 'owner_testers').

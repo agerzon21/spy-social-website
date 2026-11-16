@@ -75,12 +75,34 @@ const ptBR: HelpText = {
           ],
         },
         {
+          id: 'talk-out-loud',
+          q: "O que é Falar em voz alta?",
+          a: [
+            "Uma regra do Spy Talk para quem joga no mesmo lugar ou numa chamada de voz. O anfitrião ativa em <b>Regras</b>, na sala; salas novas começam com ela desativada. Só em salas privadas e nas Noites de Jogos que a ativarem.",
+            "Durante as perguntas, ninguém digita nem usa o microfone: quem pergunta fala em voz alta e toca em <b>Concluído</b>, depois quem responde fala em voz alta e toca em <b>Concluído</b>.",
+            "Nada fica escrito, então as anotações não guardam o histórico de perguntas.",
+            "Sugerimos deixar desativada, mesmo numa mesa só: toque no microfone e pergunte em voz alta. Todos ouvem você, e o app transforma o que você diz em texto que todos os jogadores veem no histórico de perguntas.",
+            "Todos na sala precisam da versão mais nova do app. Se alguém tiver uma antiga, ela aparece desativada até a pessoa atualizar.",
+          ],
+        },
+        {
           id: 'spy-sketch',
           q: 'Como funciona o Spy Sketch?',
           a: [
             'Os jogadores desenham, um de cada vez, num quadro compartilhado. Os locais dão pistas da palavra sem desenhá-la de vez. Os espiões acrescentam algo vago que possa servir.',
             'Depois que todos jogaram sua vez, abrem as votações e o palpite do espião. As rodadas seguem até o fim da partida.',
             'Os desenhos do Spy Sketch não são descritos em voz alta, então um leitor de tela (VoiceOver, TalkBack) não consegue acompanhar o desenho.',
+          ],
+        },
+        {
+          id: 'drawings-checked',
+          q: "Os desenhos do Spy Sketch são verificados?",
+          a: [
+            "Sim, para manter os desenhos seguros. Nas mesas do Jogar online e nas Noites de Jogos, os turnos de desenho terminados podem ser verificados automaticamente pela OpenAI, em busca de qualquer coisa que quebre as <rules>regras da comunidade</rules>.",
+            "Na primeira vez, o app mostra <b>Os desenhos são verificados</b>. Toque em <b>Concordo</b> para jogar Spy Sketch online. Até concordar, o Spy Talk continua disponível.",
+            "Numa sala privada, um desenho é verificado se alguém o denunciar, e também quando um jogador com menos de 18 anos, ou que não nos informou a idade, pode vê-lo.",
+            "A OpenAI recebe uma imagem do turno e a palavra da rodada, nunca seu nome nem suas mensagens. Um turno que quebra as regras é removido e pode levar a uma advertência, uma pausa ou um banimento. Uma pessoa revisa toda decisão permanente, e você pode recorrer.",
+            "Todos os detalhes: <drawchecks>Drawing Checks, na Política de privacidade</drawchecks>.",
           ],
         },
         {
@@ -199,23 +221,38 @@ const ptBR: HelpText = {
               id: 'role-reveal',
               q: "Como funciona a revelação de papéis?",
               a: [
-                "Nas partidas online, sua carta de papel vira e mostra seu papel. Os locais veem o segredo e quantos espiões estão entre eles.",
-                "Na Máfia com mais de um espião, os espiões se veem na carta, e uma etiqueta vermelha de Espião marca as fotos dos outros espiões. Os espiões tocam em <b>Canal dos espiões</b> para conversar em segredo. Os locais não veem nada disso.",
-                "Está numa chamada de voz? Ative <b>Mesmo som para todos os papéis</b> em Ajustes, na seção Som e música, para o microfone não entregar nada.",
+                "As partidas online têm revelação de papéis: Jogar online, Noites de Jogos e salas privadas em que o anfitrião escolheu <b>Online</b>. Toque na sua carta: as luzes se apagam e um holofote mostra seu papel.",
+                "Os <b>locais</b> veem o segredo e quantos espiões estão entre eles: no Spy Talk, o local, com a imagem quando houver; no Spy Sketch, só a palavra.",
+                "Quem é do time dos <b>espiões</b> recebe uma carta escura. Na Máfia, os outros espiões aparecem ao seu lado, com o nome e uma etiqueta vermelha de Espião. No Clássico, os espiões não se conhecem, então os outros aparecem como <b>Desconhecido</b>.",
+                "Na Máfia com mais de um espião, toque em <b>CANAL DOS ESPIÕES</b> para conversar em particular com os outros espiões: na sua carta antes de começar, depois na barra de cima, ou ao lado do chat numa votação. Basta um toque; um número mostra as mensagens novas, e uma mensagem de outro espião diz “… está tentando falar com você”.",
+                "A etiqueta vermelha fica nas fotos dos outros espiões a partida toda. Os locais nunca veem as etiquetas, o botão nem o chat.",
+                "Numa chamada de voz? Ative <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para o microfone não captar o som de revelação de um espião. O app oferece isso antes da sua primeira revelação.",
               ],
             },
             {
               id: 'poker-face',
-              q: "O que é Cara de paisagem?",
+              q: "Online ou Mesmo lugar: o que é Cara de paisagem?",
               a: [
-                "É para amigos jogando em volta da mesma mesa. Depois de criar uma sala privada, o anfitrião escolhe <b>Online</b> (cada um no seu celular, onde estiver) ou <b>Mesmo lugar</b>, que liga o Cara de paisagem. Dá para mudar depois em Regras.",
-                "Com o Cara de paisagem ligado, todas as cartas de papel ficam iguais: sem carta escura de espião, sem etiquetas vermelhas de Espião. Os espiões abrem o chat segurando a própria carta.",
-                "Uma olhada na sua tela não entrega nada. Evita acidentes, não trapaças.",
-                "Quem entra vê um aviso quando ele está ligado. Só em salas privadas e Noites de Jogos: o Jogar online não tem.",
+                "Quando um anfitrião cria uma sala privada, o app pergunta <b>Onde vocês vão jogar?</b> Escolha <b>Online</b> se cada um estiver no seu celular, de onde for, inclusive numa chamada: revelação completa dos papéis e chat dos espiões a um toque. Escolha <b>Mesmo lugar</b> se estiverem em volta de uma mesa: isso ativa a <b>Cara de paisagem</b>.",
+                "Com a Cara de paisagem, todas as cartas de papel ficam iguais: sem carta escura de espião, sem etiquetas vermelhas de Espião, e nada acende quando chega mensagem dos espiões. Os espiões abrem o chat segurando a própria carta.",
+                "Por quê: numa mesma mesa, uma olhada no celular do vizinho poderia entregar o papel dele. A Cara de paisagem evita descuidos, não trapaças. O porém: fica mais difícil reconhecer os outros espiões e conversar com eles.",
+                "O anfitrião pode mudar entre as partidas em <b>Regras</b>, no lobby, e quem entra vê <b>“Cara de paisagem” está ativada</b>. Nas Noites de Jogos, cada noite define. O Jogar online não tem.",
               ],
             },
             ]
           : []),
+        {
+          id: 'voice-chat',
+          q: "Tem chat de voz? Para que serve o microfone?",
+          a: [
+            "O SpySocial não tem chat de voz: ninguém ouve você pelo app. O microfone transforma o que você diz em texto, para você não precisar digitar.",
+            "Toque no microfone, fale e toque de novo para parar. Funciona nos chats e nas perguntas do Spy Talk.",
+            "Quem faz isso é o reconhecimento de voz do seu celular (ou do seu navegador). Recebemos só o texto, nunca o áudio. Detalhes: <privacy>Política de privacidade</privacy>.",
+            "Para conversar enquanto jogam, façam uma chamada de voz de vocês ao lado do app, no Discord ou pelo telefone, por exemplo.",
+            ...(o.roleReveal ? ["Numa chamada, o anfitrião escolhe <b>Online</b> em <b>Onde vocês vão jogar?</b>, e cada um pode ativar <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para nenhum microfone captar o som de revelação de um espião."] : []),
+            "Numa sala privada de Spy Talk, <b>Falar em voz alta</b> deixa todos perguntarem e responderem falando, sem digitar.",
+          ],
+        },
         {
           id: 'wax-seal',
           q: 'O que é o Selo de Cera?',

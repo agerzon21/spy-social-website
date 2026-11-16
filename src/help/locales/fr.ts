@@ -71,12 +71,34 @@ const sections = (o: HelpOpts): HelpSection[] => [
         ],
       },
       {
+        id: 'talk-out-loud',
+        q: "C'est quoi, Parler à voix haute ?",
+        a: [
+          "Une règle de Spy Talk pour jouer dans la même pièce ou en appel vocal. L'hôte l'active dans les <b>Règles</b> du salon ; les nouveaux salons commencent sans. Seulement dans les salons privés et les soirées jeux qui l'activent.",
+          "Pendant les questions, personne n'écrit ni n'utilise le micro : celui qui interroge pose sa question à voix haute et appuie sur <b>Terminé</b>, puis celui qui répond répond à voix haute et appuie sur <b>Terminé</b>.",
+          "Rien n'est écrit, donc les notes ne gardent pas l'historique des questions.",
+          "On conseille de la laisser désactivée, même autour d'une table : appuie sur le micro et pose ta question à voix haute. Tout le monde t'entend, et l'appli transforme ce que tu dis en texte que tous les joueurs voient dans l'historique des questions.",
+          "Tout le monde dans le salon doit avoir la dernière version de l'appli. Si quelqu'un a une ancienne version, elle reste désactivée jusqu'à sa mise à jour.",
+        ],
+      },
+      {
         id: 'spy-sketch',
         q: 'Comment se joue Spy Sketch ?',
         a: [
           "Les joueurs dessinent à tour de rôle sur un tableau blanc commun. Les locaux suggèrent le mot sans le dessiner franchement. Les espions ajoutent quelque chose de vague qui pourrait coller.",
           "Une fois que chacun a joué son tour, les votes et la tentative de l'espion s'ouvrent. Les manches continuent jusqu'à la fin de la partie.",
             'Les dessins de Spy Sketch ne sont pas décrits à voix haute : un lecteur d’écran (VoiceOver, TalkBack) ne peut donc pas suivre le dessin.',
+        ],
+      },
+      {
+        id: 'drawings-checked',
+        q: "Les dessins de Spy Sketch sont-ils vérifiés ?",
+        a: [
+          "Oui, pour que les dessins restent sûrs. Aux tables de Jouer en ligne et aux soirées jeux, les tours de dessin terminés peuvent être vérifiés automatiquement par OpenAI, à la recherche de tout ce qui enfreint les <rules>règles de la communauté</rules>.",
+          "La première fois, l'appli affiche <b>Les dessins sont vérifiés</b>. Appuie sur <b>J'accepte</b> pour jouer à Spy Sketch en ligne. Tant que tu n'acceptes pas, Spy Talk reste ouvert.",
+          "Dans un salon privé, un dessin est vérifié si quelqu'un le signale, et aussi quand un joueur de moins de 18 ans, ou qui ne nous a pas donné son âge, peut le voir.",
+          "OpenAI reçoit une image du tour et le mot de la manche, jamais ton nom ni tes messages. Un tour qui enfreint les règles est retiré et peut mener à un avertissement, une pause ou un bannissement. Une personne revoit chaque décision définitive, et tu peux faire appel.",
+          "Tous les détails : <drawchecks>Drawing Checks, dans la Politique de confidentialité</drawchecks>.",
         ],
       },
       {
@@ -195,23 +217,38 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'role-reveal',
             q: "Comment marche la révélation des rôles ?",
             a: [
-              "Dans les parties en ligne, ta carte de rôle se retourne et montre ton rôle. Les locaux voient le secret et combien d'espions se cachent parmi eux.",
-              "En mode Mafia avec plus d'un espion, les espions se voient sur la carte, et une étiquette rouge « Espion » marque les photos des autres espions. Les espions touchent <b>Canal des espions</b> pour discuter en privé. Les locaux ne voient rien de tout ça.",
-              "En appel vocal ? Active <b>Même son pour tous les rôles</b> dans les Réglages, rubrique « Son et musique », pour que ton micro ne trahisse rien.",
+              "Les parties en ligne ont une révélation des rôles : Jouer en ligne, les soirées jeux et les salons privés dont l'hôte a choisi <b>En ligne</b>. Appuie sur ta carte : la lumière s'éteint et un projecteur montre ton rôle.",
+              "Les <b>locaux</b> voient le secret et combien d'espions se cachent parmi eux : dans Spy Talk, le lieu, avec son image s'il en a une ; dans Spy Sketch, seulement le mot.",
+              "Les <b>espions</b> reçoivent une carte sombre. En mode Mafia, les autres espions apparaissent à côté de toi, avec leur nom et une étiquette rouge « Espion ». En Classique, les espions ne se connaissent pas, donc les autres apparaissent comme <b>Inconnu</b>.",
+              "En mode Mafia avec plus d'un espion, appuie sur <b>CANAL DES ESPIONS</b> pour discuter en privé avec les autres espions : sur ta carte avant le début, puis dans la barre du haut, ou à côté du chat pendant un vote. Un seul appui suffit ; un chiffre montre les nouveaux messages, et un message d'un autre espion s'annonce par « … essaie de te joindre ».",
+              "L'étiquette rouge reste sur les photos des autres espions toute la partie. Les locaux ne voient ni les étiquettes, ni le bouton, ni le chat.",
+              "En appel vocal ? Active <b>Même son pour tous les rôles</b> (Réglages, Son et musique) pour que ton micro ne capte pas le son de révélation d'un espion. L'appli te le propose avant ta première révélation.",
             ],
           },
           {
             id: 'poker-face',
-            q: "C'est quoi, Poker face ?",
+            q: "En ligne ou Même pièce : c'est quoi, Poker face ?",
             a: [
-              "C'est pour les amis qui jouent autour d'une même table. Après avoir créé un salon privé, l'hôte choisit <b>En ligne</b> (chacun sur son téléphone, où qu'il soit) ou <b>Même pièce</b>, qui active Poker face. On peut le changer ensuite dans les Règles.",
-              "Avec Poker face, toutes les cartes de rôle se ressemblent : pas de carte d'espion sombre, pas d'étiquettes rouges « Espion ». Les espions ouvrent leur chat par un appui long sur leur carte.",
-              "Un coup d'œil à ton écran ne révèle rien. Ça évite les accidents, pas la triche.",
-              "Les joueurs qui rejoignent voient un message quand il est activé. Salons privés et soirées jeux seulement : Jouer en ligne ne l'a pas.",
+              "Quand un hôte crée un salon privé, l'appli demande <b>Où jouez-vous ?</b> Choisis <b>En ligne</b> si chacun est sur son téléphone, où qu'il soit, appel vocal compris : révélation complète des rôles et chat des espions en un geste. Choisis <b>Même pièce</b> autour d'une table : ça active <b>Poker face</b>.",
+              "Avec Poker face, toutes les cartes de rôle se ressemblent : pas de carte d'espion sombre, pas d'étiquette rouge « Espion », et rien ne s'allume quand un message des espions arrive. Les espions ouvrent leur chat par un appui long sur leur carte.",
+              "Pourquoi : autour d'une table, un coup d'œil au téléphone du voisin pourrait trahir son rôle. Poker face évite les accidents, pas la triche. Le revers : les autres espions sont plus durs à repérer et à joindre.",
+              "L'hôte peut le changer entre deux parties dans les <b>Règles</b> du salon, et les joueurs qui arrivent voient <b>« Poker face » est activé</b>. Aux soirées jeux, c'est la soirée qui le fixe. Jouer en ligne ne l'a pas.",
             ],
           },
           ]
         : []),
+      {
+        id: 'voice-chat',
+        q: "Y a-t-il un chat vocal ? À quoi sert le micro ?",
+        a: [
+          "SpySocial n'a pas de chat vocal : personne ne t'entend par l'appli. Le micro transforme ce que tu dis en texte, pour t'éviter de taper.",
+          "Appuie sur le micro, parle, puis appuie de nouveau pour arrêter. Ça marche dans les chats et pendant les questions de Spy Talk.",
+          "C'est la reconnaissance vocale de ton téléphone (ou de ton navigateur) qui s'en charge. Nous recevons seulement le texte, jamais l'audio. Détails : <privacy>Politique de confidentialité</privacy>.",
+          "Pour parler pendant la partie, lancez votre propre appel vocal à côté de l'appli, sur Discord ou par téléphone par exemple.",
+          ...(o.roleReveal ? ["En appel, l'hôte choisit <b>En ligne</b> à <b>Où jouez-vous ?</b>, et chacun peut activer <b>Même son pour tous les rôles</b> (Réglages, Son et musique) pour qu'aucun micro ne capte le son de révélation d'un espion."] : []),
+          "Dans un salon privé de Spy Talk, <b>Parler à voix haute</b> permet de poser les questions et d'y répondre à voix haute, sans rien écrire.",
+        ],
+      },
       {
         id: 'wax-seal',
         q: "C'est quoi, le sceau de cire ?",

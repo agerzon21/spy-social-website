@@ -75,12 +75,34 @@ const id: HelpText = {
           ],
         },
         {
+          id: 'talk-out-loud',
+          q: "Apa itu Tanya jawab lisan?",
+          a: [
+            "Aturan Spy Talk untuk yang main di satu ruangan atau lewat panggilan suara. Host menyalakannya di <b>Aturan</b> room; room baru mulai dengan aturan ini mati. Hanya di room privat dan Malam Permainan yang menyalakannya.",
+            "Selama pertanyaan, tak ada yang mengetik atau memakai mikrofon: penanya bertanya dengan lantang lalu mengetuk <b>Selesai</b>, lalu penjawab menjawab dengan lantang dan mengetuk <b>Selesai</b>.",
+            "Tak ada yang tertulis, jadi catatan tidak menyimpan riwayat pertanyaan.",
+            "Sebaiknya biarkan mati, bahkan di satu meja: ketuk mikrofon lalu bertanyalah dengan lantang. Semua orang mendengarmu, dan aplikasi mengubah ucapanmu menjadi teks yang dilihat semua pemain di riwayat pertanyaan.",
+            "Semua orang di room perlu aplikasi versi terbaru. Kalau ada yang masih versi lama, aturan ini tampil nonaktif sampai ia memperbarui.",
+          ],
+        },
+        {
           id: 'spy-sketch',
           q: 'Bagaimana Spy Sketch dimainkan?',
           a: [
             'Pemain bergiliran menggambar di satu papan tulis bersama. Warga memberi petunjuk tanpa menggambar katanya terang-terangan. Mata-mata menambahkan sesuatu yang samar yang bisa cocok.',
             'Setelah semua dapat giliran, voting dan tebakan mata-mata terbuka. Ronde berlanjut sampai permainan selesai.',
             'Gambar di Spy Sketch tidak dibacakan, jadi pembaca layar (VoiceOver, TalkBack) tidak bisa mengikuti gambarnya.',
+          ],
+        },
+        {
+          id: 'drawings-checked',
+          q: "Apakah gambar Spy Sketch diperiksa?",
+          a: [
+            "Ya, supaya gambar tetap aman. Di meja Main online dan Malam Permainan, giliran menggambar yang selesai bisa diperiksa otomatis oleh OpenAI untuk mencari apa pun yang melanggar <rules>aturan komunitas</rules>.",
+            "Pertama kali, aplikasi menampilkan <b>Gambar diperiksa</b>. Ketuk <b>Setuju</b> untuk main Spy Sketch online. Sebelum setuju, Spy Talk tetap bisa dimainkan.",
+            "Di room privat, gambar diperiksa kalau ada yang melaporkannya, dan juga saat pemain di bawah 18 tahun, atau yang belum memberi tahu umurnya, bisa melihatnya.",
+            "OpenAI menerima gambar giliran itu dan kata ronde, tidak pernah nama atau pesanmu. Giliran yang melanggar aturan dihapus dan bisa berujung peringatan, jeda, atau ban. Setiap keputusan permanen ditinjau oleh manusia, dan kamu bisa mengajukan banding.",
+            "Detail lengkap: <drawchecks>bagian Drawing Checks di Kebijakan Privasi</drawchecks>.",
           ],
         },
         {
@@ -199,23 +221,38 @@ const id: HelpText = {
               id: 'role-reveal',
               q: "Bagaimana cara kerja pengungkapan peran?",
               a: [
-                "Di permainan online, kartu peranmu berbalik dan menunjukkan peranmu. Warga melihat rahasianya dan berapa mata-mata di antara mereka.",
-                "Di Mafia dengan lebih dari satu mata-mata, para mata-mata saling melihat di kartu, dan label merah MATA-MATA menandai foto mata-mata lain. Mata-mata mengetuk <b>Saluran mata-mata</b> untuk chat secara pribadi. Warga tidak melihat semua itu.",
-                "Sedang telepon suara? Nyalakan <b>Suara sama untuk semua peran</b> di Pengaturan, bagian Suara & musik, supaya mikrofonmu tidak membocorkan apa pun.",
+                "Permainan online punya pengungkapan peran: Main online, Malam Permainan, dan room privat yang host-nya memilih <b>Online</b>. Ketuk kartumu: lampu padam dan lampu sorot menunjukkan peranmu.",
+                "<b>Warga</b> melihat rahasianya dan berapa mata-mata di antara mereka: di Spy Talk lokasinya, dengan gambarnya kalau ada; di Spy Sketch hanya katanya.",
+                "<b>Mata-mata</b> mendapat kartu gelap. Di Mafia, mata-mata lain muncul di sampingmu, lengkap dengan nama dan label merah MATA-MATA. Di Klasik, para mata-mata tidak saling kenal, jadi yang lain tampil sebagai <b>Tak dikenal</b>.",
+                "Di Mafia dengan lebih dari satu mata-mata, ketuk <b>SALURAN MATA-MATA</b> untuk chat diam-diam dengan mata-mata lain: di kartumu sebelum permainan mulai, lalu di bilah atas, atau di samping chat saat voting. Cukup sekali ketuk; angka menunjukkan pesan baru, dan pesan dari mata-mata lain muncul dengan “… mencoba menghubungimu”.",
+                "Label merah tetap ada di foto mata-mata lain sepanjang permainan. Warga tidak pernah melihat label, tombol, maupun chat-nya.",
+                "Sedang telepon suara? Nyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya mikrofonmu tidak menangkap suara pengungkapan mata-mata. Aplikasi menawarkannya sebelum pengungkapan pertamamu.",
               ],
             },
             {
               id: 'poker-face',
-              q: "Apa itu Muka datar?",
+              q: "Online atau Satu ruangan: apa itu Muka datar?",
               a: [
-                "Untuk teman yang main mengelilingi satu meja. Setelah membuat room privat, host memilih <b>Online</b> (semua di ponsel masing-masing, di mana pun) atau <b>Satu ruangan</b>, yang menyalakan Muka datar. Bisa diubah nanti di Aturan.",
-                "Dengan Muka datar, semua kartu peran terlihat sama: tanpa kartu mata-mata gelap, tanpa label merah MATA-MATA. Mata-mata membuka chat dengan menahan kartunya.",
-                "Lirikan ke layarmu tidak membocorkan apa pun. Ini mencegah kecelakaan, bukan kecurangan.",
-                "Pemain yang masuk melihat pemberitahuan saat fitur ini aktif. Hanya di room privat dan Malam Permainan: Main online tidak punya fitur ini.",
+                "Saat host membuat room privat, aplikasi bertanya <b>Kalian main di mana?</b> Pilih <b>Online</b> kalau masing-masing di ponselnya, di mana saja, termasuk lewat panggilan suara: pengungkapan peran penuh dan chat mata-mata sekali ketuk. Pilih <b>Satu ruangan</b> kalau duduk di satu meja: ini menyalakan <b>Muka datar</b>.",
+                "Dengan Muka datar, semua kartu peran terlihat sama: tanpa kartu mata-mata yang gelap, tanpa label merah MATA-MATA, dan tak ada yang menyala saat pesan mata-mata masuk. Mata-mata membuka chat dengan menahan kartunya.",
+                "Alasannya: di satu meja, lirikan ke ponsel sebelah bisa membongkar perannya. Muka datar mencegah ketidaksengajaan, bukan kecurangan. Kekurangannya: mata-mata lain lebih sulit dikenali dan diajak chat.",
+                "Host bisa mengubahnya di antara permainan lewat <b>Aturan</b> di lobi, dan pemain yang masuk melihat <b>“Muka datar” aktif</b>. Di Malam Permainan, tiap malam yang menentukan. Main online tidak punya fitur ini.",
               ],
             },
             ]
           : []),
+        {
+          id: 'voice-chat',
+          q: "Apakah ada chat suara? Untuk apa mikrofonnya?",
+          a: [
+            "SpySocial tidak punya chat suara: tak ada yang mendengarmu lewat aplikasi. Mikrofon mengubah ucapanmu menjadi teks, jadi kamu tak perlu mengetik.",
+            "Ketuk mikrofon, bicara, lalu ketuk lagi untuk berhenti. Ini berfungsi di chat dan di pertanyaan Spy Talk.",
+            "Pengenalan suara di ponselmu (atau browsermu) yang mengerjakannya. Kami hanya menerima teksnya, tidak pernah audionya. Detail: <privacy>Kebijakan Privasi</privacy>.",
+            "Untuk mengobrol sambil main, pakai panggilan suara sendiri di samping aplikasi, misalnya di Discord atau telepon.",
+            ...(o.roleReveal ? ["Saat telepon, host memilih <b>Online</b> di <b>Kalian main di mana?</b>, dan semua bisa menyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya tak ada mikrofon yang menangkap suara pengungkapan mata-mata."] : []),
+            "Di room privat Spy Talk, <b>Tanya jawab lisan</b> membuat semua bisa bertanya dan menjawab secara lisan, tanpa mengetik.",
+          ],
+        },
         {
           id: 'wax-seal',
           q: 'Apa itu Segel Lilin?',

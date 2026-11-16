@@ -1,7 +1,10 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). help-live-fix-1116 (2026-11-16, against int-u62 36af0bbcc; app u61 has the same header): #wax-seal's
+ * English: the source (../types.ts). help-beta3-1116 (2026-11-16, against the app's u62.13 line, int-u62 f5a242511): #talk-out-loud
+ * (glossary setting.talk_out_loud, lib/lobbySettings), #drawings-checked (drawing_check_note; links Privacy #drawing-checks: never that id here, the ScrollManager would find this page's first), #voice-chat (no voice
+ * chat; the mic is speech to text; a call of your own), and #role-reveal / #poker-face rewritten for the Spotlight reveal, the lineup,
+ * SPY CHANNEL and "Where Are You Playing?" (still behind LIVE.helpRoleReveal). help-live-fix-1116 (2026-11-16, against int-u62 36af0bbcc; app u61 has the same header): #wax-seal's
  * seal is at the top left with Leave and Info, Chat and Notes on their own buttons, a number on Chat
  * (localization/translations/headerSealLeft1110); #new-page's new room starts on 2 pages (lib/balance RECOMMENDED_SKETCH_PAGES,
  * hooks/useNewRoomDefaults). help-u61-1113 (2026-11-13, against u61.1 0516de145 and int/rr-u62): How to Play's Step 1 Tutorial and Step 2
@@ -87,12 +90,34 @@ const en: HelpText = {
           ],
         },
         {
+          id: 'talk-out-loud',
+          q: "What is Talk Out Loud?",
+          a: [
+            "A Spy Talk rule for groups in one room or on a voice call. The host turns it on in the room’s <b>Rules</b>; new rooms start with it off. Private rooms only, and Game Nights that turn it on.",
+            "During Questions, nobody types or uses the mic: the asker asks out loud and taps <b>Done</b>, then the answerer answers out loud and taps <b>Done</b>.",
+            "Nothing is written down, so the notes keep no question history.",
+            "We suggest leaving it off, even at one table: tap the mic and ask out loud instead. Everyone hears you, and the app turns what you say into text that every player sees in the question history.",
+            "Everyone in the room needs the newest app. If someone has an older one, it shows Off until they update.",
+          ],
+        },
+        {
           id: 'spy-sketch',
           q: 'How does Spy Sketch work?',
           a: [
             'Players take turns drawing on one shared whiteboard. Locals hint at the word without drawing it outright. Spies add something vague that could fit.',
             'Once everyone has had a turn, votes and the spy’s guess open. Rounds go on until the game ends.',
             'Spy Sketch’s drawings aren’t described aloud, so a screen reader (VoiceOver, TalkBack) can’t follow the drawing itself.',
+          ],
+        },
+        {
+          id: 'drawings-checked',
+          q: "Are Spy Sketch drawings checked?",
+          a: [
+            "Yes, to keep drawings safe. At Play Online tables and Game Nights, finished drawing turns may be checked automatically by OpenAI for anything that breaks the <rules>community rules</rules>.",
+            "The first time, the app shows <b>Drawings Are Checked</b>. Tap <b>I Agree</b> to play Spy Sketch online. Until you do, Spy Talk is open to you either way.",
+            "In a private room, a drawing is checked if someone reports it, and also when a player under 18, or one who hasn’t told us their age, can see it.",
+            "OpenAI gets a picture of the turn and the round’s word, never your name or your messages. A turn that breaks the rules is removed and can lead to a warning, a pause or a ban. A person reviews every permanent decision, and you can appeal.",
+            "The full details: <drawchecks>Drawing Checks in the Privacy Policy</drawchecks>.",
           ],
         },
         {
@@ -211,23 +236,38 @@ const en: HelpText = {
               id: 'role-reveal',
               q: "How does the role reveal work?",
               a: [
-                "In games played online, your role card turns over to show your role. Locals see the secret and how many spies are among them.",
-                "In Spy Mafia with more than one spy, spies see each other on the card, and a red SPY tag marks the other spies’ pictures. Spies tap <b>SPY CHANNEL</b> to chat in private. Locals never see any of it.",
-                "On a voice call? Turn on <b>Same Sound for Every Role</b> in Settings, under Sound & Music, so your mic gives nothing away.",
+                "Games played online have a role reveal: Play Online, Game Nights, and private rooms whose host picked <b>Online</b>. Tap your card: the lights go down and a spotlight shows your role.",
+                "<b>Locals</b> see the secret and how many spies are among them: in Spy Talk the location, with its picture when it has one; in Spy Sketch, the word only.",
+                "<b>Spies</b> get a dark card. In Spy Mafia, the other spies step up beside you, named, with a red SPY tag. In Classic, spies don’t know each other, so the others show as <b>Unknown</b>.",
+                "In Spy Mafia with more than one spy, tap <b>SPY CHANNEL</b> to chat in private with the other spies: on your card before the game starts, then in the top bar, or beside Chat in a vote. One tap is enough; a number shows new messages, and a message from another spy says “… is trying to reach you”.",
+                "The red SPY tag stays on the other spies’ pictures all game. Locals never see the tags, the button or the chat.",
+                "On a voice call? Turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so your mic can’t pick up a spy’s reveal sound. The app offers it before your first reveal.",
               ],
             },
             {
               id: 'poker-face',
-              q: "What is Poker Face?",
+              q: "Online or Same Room: what is Poker Face?",
               a: [
-                "For friends playing around one table. After creating a private room, the host picks <b>Online</b> (everyone on their own phone, wherever they are) or <b>Same Room</b>, which turns Poker Face on. It can be changed later under Rules.",
-                "With Poker Face on, every role card looks alike: no dark spy card, no red SPY tags. Spies open their chat by pressing and holding their card.",
-                "A glance at your screen gives nothing away. It stops accidents, not cheaters.",
-                "Players who join see a note when it’s on. Private rooms and Game Nights only: Play Online doesn’t have it.",
+                "When a host creates a private room, the app asks <b>Where Are You Playing?</b> Pick <b>Online</b> when everyone is on their own phone, wherever they are, a voice call included: you get the full role reveal and one-tap spy chat. Pick <b>Same Room</b> around one table: it turns on <b>Poker Face</b>.",
+                "With Poker Face, every role card looks alike: no dark spy card, no red SPY tags, and nothing lights up when a spy message comes in. Spies open their chat by pressing and holding their card.",
+                "Why: at one table, a glance at a neighbour’s phone could give their role away. Poker Face stops accidents, not cheaters. The catch: the other spies are harder to spot and to chat with.",
+                "The host can switch it between games in the lobby’s <b>Rules</b>, and players who join see <b>Poker Face Is On</b>. At Game Nights, each night sets it. Play Online doesn’t have it.",
               ],
             },
             ]
           : []),
+        {
+          id: 'voice-chat',
+          q: "Is there voice chat? What does the mic do?",
+          a: [
+            "SpySocial has no voice chat: nobody hears you through the app. The mic turns what you say into text, so you don’t have to type.",
+            "Tap the mic, speak, then tap it again to stop. It works in the chats and in Spy Talk’s Questions.",
+            "Your phone’s speech recognition (or your browser’s) does this. We get only the text, never the audio. Details: <privacy>Privacy Policy</privacy>.",
+            "To talk while you play, run a voice call of your own next to the app, on Discord or your phone, for example.",
+            ...(o.roleReveal ? ["On a call, the host picks <b>Online</b> for <b>Where Are You Playing?</b>, and everyone can turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so no mic picks up a spy’s reveal sound."] : []),
+            "In a private Spy Talk room, <b>Talk Out Loud</b> lets everyone ask and answer by voice, without typing.",
+          ],
+        },
         {
           id: 'wax-seal',
           q: 'What is the Wax Seal?',
