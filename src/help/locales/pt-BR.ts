@@ -78,11 +78,11 @@ const ptBR: HelpText = {
           id: 'talk-out-loud',
           q: "O que é Falar em voz alta?",
           a: [
-            "Uma regra do Spy Talk para quem joga no mesmo lugar ou numa chamada de voz. O anfitrião ativa em <b>Regras</b>, na sala; salas novas começam com ela desativada. Só em salas privadas e nas Noites de Jogos que a ativarem.",
+            "Uma regra do Spy Talk para quem joga no mesmo lugar ou numa chamada de voz. O anfitrião a ativa nas <b>Regras</b> da sala; salas novas começam com ela desativada. Só em salas privadas e nas Noites de Jogos que a ativarem.",
             "Durante as perguntas, ninguém digita nem usa o microfone: quem pergunta fala em voz alta e toca em <b>Concluído</b>, depois quem responde fala em voz alta e toca em <b>Concluído</b>.",
             "Nada fica escrito, então as anotações não guardam o histórico de perguntas.",
-            "Sugerimos deixar desativada, mesmo numa mesa só: toque no microfone e pergunte em voz alta. Todos ouvem você, e o app transforma o que você diz em texto que todos os jogadores veem no histórico de perguntas.",
-            "Todos na sala precisam da versão mais nova do app. Se alguém tiver uma antiga, ela aparece desativada até a pessoa atualizar.",
+            "Sugerimos deixar desativada, mesmo com todos na mesma mesa: toque no microfone e pergunte em voz alta. Todos ouvem você, e o app transforma o que você diz em texto que todos os jogadores veem no histórico de perguntas.",
+            "Todos na sala precisam da versão mais nova do app. Se alguém tiver uma versão antiga, a regra aparece desativada até a pessoa atualizar o app.",
           ],
         },
         {
@@ -98,7 +98,7 @@ const ptBR: HelpText = {
           id: 'drawings-checked',
           q: "Os desenhos do Spy Sketch são verificados?",
           a: [
-            "Sim, para manter os desenhos seguros. Nas mesas do Jogar online e nas Noites de Jogos, os turnos de desenho terminados podem ser verificados automaticamente pela OpenAI, em busca de qualquer coisa que quebre as <rules>regras da comunidade</rules>.",
+            "Sim, por segurança. Nas mesas do Jogar online e nas Noites de Jogos, os turnos de desenho terminados podem ser verificados automaticamente pela OpenAI, em busca de qualquer coisa que quebre as <rules>regras da comunidade</rules>.",
             "Na primeira vez, o app mostra <b>Os desenhos são verificados</b>. Toque em <b>Concordo</b> para jogar Spy Sketch online. Até concordar, o Spy Talk continua disponível.",
             "Numa sala privada, um desenho é verificado se alguém o denunciar, e também quando um jogador com menos de 18 anos, ou que não nos informou a idade, pode vê-lo.",
             "A OpenAI recebe uma imagem do turno e a palavra da rodada, nunca seu nome nem suas mensagens. Um turno que quebra as regras é removido e pode levar a uma advertência, uma pausa ou um banimento. Uma pessoa revisa toda decisão permanente, e você pode recorrer.",
@@ -233,10 +233,10 @@ const ptBR: HelpText = {
               id: 'poker-face',
               q: "Online ou Mesmo lugar: o que é Cara de paisagem?",
               a: [
-                "Quando um anfitrião cria uma sala privada, o app pergunta <b>Onde vocês vão jogar?</b> Escolha <b>Online</b> se cada um estiver no seu celular, de onde for, inclusive numa chamada: revelação completa dos papéis e chat dos espiões a um toque. Escolha <b>Mesmo lugar</b> se estiverem em volta de uma mesa: isso ativa a <b>Cara de paisagem</b>.",
+                "Quando um anfitrião cria uma sala privada, o app pergunta <b>Onde vocês vão jogar?</b> Escolha <b>Online</b> se cada um estiver no seu celular, esteja onde estiver, inclusive numa chamada: revelação completa dos papéis e chat dos espiões a um toque. Escolha <b>Mesmo lugar</b> se estiverem em volta de uma mesa: isso ativa a <b>Cara de paisagem</b>.",
                 "Com a Cara de paisagem, todas as cartas de papel ficam iguais: sem carta escura de espião, sem etiquetas vermelhas de Espião, e nada acende quando chega mensagem dos espiões. Os espiões abrem o chat segurando a própria carta.",
                 "Por quê: numa mesma mesa, uma olhada no celular do vizinho poderia entregar o papel dele. A Cara de paisagem evita descuidos, não trapaças. O porém: fica mais difícil reconhecer os outros espiões e conversar com eles.",
-                "O anfitrião pode mudar entre as partidas em <b>Regras</b>, no lobby, e quem entra vê <b>“Cara de paisagem” está ativada</b>. Nas Noites de Jogos, cada noite define. O Jogar online não tem.",
+                "O anfitrião pode mudar isso entre uma partida e outra em <b>Regras</b>, no lobby, e quem entra vê <b>“Cara de paisagem” está ativada</b>. Nas Noites de Jogos, isso é definido para cada noite. Ela não existe no Jogar online.",
               ],
             },
             ]
@@ -248,7 +248,7 @@ const ptBR: HelpText = {
             "O SpySocial não tem chat de voz: ninguém ouve você pelo app. O microfone transforma o que você diz em texto, para você não precisar digitar.",
             "Toque no microfone, fale e toque de novo para parar. Funciona nos chats e nas perguntas do Spy Talk.",
             "Quem faz isso é o reconhecimento de voz do seu celular (ou do seu navegador). Recebemos só o texto, nunca o áudio. Detalhes: <privacy>Política de privacidade</privacy>.",
-            "Para conversar enquanto jogam, façam uma chamada de voz de vocês ao lado do app, no Discord ou pelo telefone, por exemplo.",
+            "Para conversar durante a partida, faça uma chamada de voz à parte, no Discord ou pelo telefone, por exemplo.",
             ...(o.roleReveal ? ["Numa chamada, o anfitrião escolhe <b>Online</b> em <b>Onde vocês vão jogar?</b>, e cada um pode ativar <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para nenhum microfone captar o som de revelação de um espião."] : []),
             "Numa sala privada de Spy Talk, <b>Falar em voz alta</b> deixa todos perguntarem e responderem falando, sem digitar.",
           ],
