@@ -636,7 +636,7 @@ const en = {
       {
         tag: "Weekend Update",
         summary:
-          "Two updates to the new SpySocial this weekend, ahead of its launch: easier reading, clearer help for new players and a faster start in the browser.",
+          "Three updates to the new SpySocial this weekend, ahead of its launch: easier reading, clearer help for new players, a faster start in the browser and room links that take you to the room.",
         sections: [
           {
             label: "Improvements",
@@ -646,8 +646,10 @@ const en = {
               { title: "Black Market", text: "New to it? A “How the Black Market works” card shows how to win, sell and buy items." },
               { title: "Tutorial", text: "When the tutorial asks you to tap the suggestion, its tip now sits at the bottom of the screen, so you can still read the question." },
               { title: "Friend Code", text: "The scans left on your code count down as soon as a friend scans it." },
+              { title: "Room links", text: "If a friend sends you their room’s address from the browser, opening it now takes you to the room’s join screen instead of “Lobby Not Available”." },
+              { title: "Small phones", text: "On the narrowest phones, the tag you see while you answer now says that you ask next." },
               { title: "Playing in a browser", text: "The game loads faster. On a phone, turning it sideways during a game shows a “Turn your phone upright” card, and your game keeps going while you turn." },
-              { title: "Languages", text: "Arabic, Hindi, Bengali and Chinese text looks better: no more cut-off words, odd line breaks or words out of order." },
+              { title: "Languages", text: "Arabic, Hindi, Bengali, Chinese and Indonesian text looks better: no more cut-off words, odd line breaks or words out of order. In French and Portuguese, the app now says “membre” and “membro” for membership everywhere, not “subscription”." },
             ],
           },
         ],

@@ -579,7 +579,7 @@ const es: Strings = {
       {
         tag: "Actualización de fin de semana",
         summary:
-          "Dos actualizaciones del nuevo SpySocial este fin de semana, antes del lanzamiento: se lee mejor, los nuevos jugadores tienen una ayuda más clara y en el navegador carga más rápido.",
+          "Tres actualizaciones del nuevo SpySocial este fin de semana, antes del lanzamiento: se lee mejor, los nuevos jugadores tienen una ayuda más clara, en el navegador carga más rápido y los enlaces de una sala te llevan a la sala.",
         sections: [
           {
             label: "Mejoras",
@@ -589,8 +589,10 @@ const es: Strings = {
               { title: "Mercado Negro", text: "Si es tu primera vez, una tarjeta «Cómo funciona el Mercado Negro» explica cómo ganar, vender y comprar objetos." },
               { title: "Tutorial", text: "Cuando el tutorial te pide tocar la sugerencia, el consejo ahora aparece abajo, así la pregunta se sigue leyendo bien." },
               { title: "Código de amigo", text: "Los escaneos que le quedan a tu código bajan en cuanto un amigo lo escanea." },
+              { title: "Enlaces de sala", text: "Si un amigo te manda la dirección de su sala desde el navegador, al abrirla ahora llegas a la pantalla para unirte a la sala, en vez de ver «Sala no disponible»." },
+              { title: "Teléfonos pequeños", text: "En los teléfonos más estrechos, la etiqueta que ves mientras respondes ahora dice que después preguntas tú." },
               { title: "Jugar en el navegador", text: "El juego carga más rápido. En un teléfono, si lo pones de lado durante una partida, aparece la tarjeta «Pon el teléfono en vertical», y tu partida sigue mientras lo giras." },
-              { title: "Idiomas", text: "El texto en árabe, hindi, bengalí y chino se ve mejor: sin palabras cortadas, saltos de línea raros ni palabras fuera de orden." },
+              { title: "Idiomas", text: "El texto en árabe, hindi, bengalí, chino e indonesio se ve mejor: sin palabras cortadas, saltos de línea raros ni palabras fuera de orden. En francés y portugués, la app ahora dice «membre» y «membro» para la membresía en todas partes, no «suscripción»." },
             ],
           },
         ],

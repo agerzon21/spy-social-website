@@ -579,7 +579,7 @@ const ptBR: Strings = {
       {
         tag: "Atualização de fim de semana",
         summary:
-          "Duas atualizações do novo SpySocial neste fim de semana, antes do lançamento: textos mais fáceis de ler, ajuda mais clara para quem está começando e carregamento mais rápido no navegador.",
+          "Três atualizações do novo SpySocial neste fim de semana, antes do lançamento: textos mais fáceis de ler, ajuda mais clara para quem está começando, carregamento mais rápido no navegador e links de sala que levam até a sala.",
         sections: [
           {
             label: "Melhorias",
@@ -589,8 +589,10 @@ const ptBR: Strings = {
               { title: "Mercado Negro", text: "Se é sua primeira vez, um cartão “Como funciona o Mercado Negro” mostra como ganhar, vender e comprar itens." },
               { title: "Tutorial", text: "Quando o tutorial pede para tocar na sugestão, a dica agora fica na parte de baixo da tela, e a pergunta continua fácil de ler." },
               { title: "Código de amigo", text: "As leituras que restam no seu código diminuem assim que um amigo o lê." },
+              { title: "Links de sala", text: "Se um amigo mandar o endereço da sala dele pelo navegador, abrir esse endereço agora leva você à tela para entrar na sala, em vez de “Lobby indisponível”." },
+              { title: "Celulares pequenos", text: "Nos celulares mais estreitos, a etiqueta que aparece enquanto você responde agora diz que depois é você quem pergunta." },
               { title: "Jogar no navegador", text: "O jogo carrega mais rápido. No celular, se você virar o aparelho de lado durante uma partida, aparece o cartão “Coloque o celular na vertical”, e sua partida continua enquanto você gira." },
-              { title: "Idiomas", text: "Textos em árabe, hindi, bengali e chinês aparecem melhor: sem palavras cortadas, quebras de linha estranhas ou palavras fora de ordem." },
+              { title: "Idiomas", text: "Textos em árabe, hindi, bengali, chinês e indonésio aparecem melhor: sem palavras cortadas, quebras de linha estranhas ou palavras fora de ordem. Em português, o app agora diz “membro” em todo lugar, e não mais “assinatura” (em francês, “membre”)." },
             ],
           },
         ],

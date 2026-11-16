@@ -43,7 +43,7 @@ interface Release {
  * what changed for a player, never a library, file or error name.
  */
 const RELEASES: { version: string; date: string; icons: IconType[]; preLaunch?: boolean }[] = [
-  /* The new SpySocial's weekend updates before its launch (whatsnew-1115: app updates 62.10 and 62.11). preLaunch: off
+  /* The new SpySocial's weekend updates before its launch (whatsnew-1115: app updates 62.10, 62.11 and 62.12). preLaunch: off
    * the page once LIVE.launchSite is on, where the 2.2.0 launch entry (below) covers 2.2 as a whole. */
   { version: '2.2.0', date: 'November 15, 2026', icons: [FaWandSparkles], preLaunch: true },
   { version: '2.1.1', date: 'June 13, 2026', icons: [FaRocket, FaWrench] },

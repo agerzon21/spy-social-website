@@ -578,7 +578,7 @@ const fr: Strings = {
       {
         tag: "Mise à jour du week-end",
         summary:
-          "Deux mises à jour du nouveau SpySocial ce week-end, avant son lancement\u00A0: un texte plus lisible, une aide plus claire pour les nouveaux joueurs et un démarrage plus rapide dans le navigateur.",
+          "Trois mises à jour du nouveau SpySocial ce week-end, avant son lancement\u00A0: un texte plus lisible, une aide plus claire pour les nouveaux joueurs, un démarrage plus rapide dans le navigateur et des liens de salon qui mènent au salon.",
         sections: [
           {
             label: "Améliorations",
@@ -588,8 +588,10 @@ const fr: Strings = {
               { title: "Marché noir", text: "Si tu le découvres, une carte «\u00A0Comment marche le Marché noir\u00A0» t’explique comment gagner, vendre et acheter des objets." },
               { title: "Tutoriel", text: "Quand le tutoriel te demande de toucher la suggestion, le conseil s’affiche maintenant en bas de l’écran, pour que la question reste lisible." },
               { title: "Code ami", text: "Le nombre de scans restants baisse dès qu’un ami scanne ton code." },
+              { title: "Liens de salon", text: "Si un ami t’envoie l’adresse de son salon depuis son navigateur, l’ouvrir te mène maintenant à l’écran pour rejoindre le salon, au lieu de «\u00A0Salon indisponible\u00A0»." },
+              { title: "Petits téléphones", text: "Sur les téléphones les plus étroits, l’étiquette affichée pendant que tu réponds indique maintenant que c’est ensuite à toi de poser la question." },
               { title: "Jouer dans le navigateur", text: "Le jeu se charge plus vite. Sur un téléphone, si tu le tournes à l’horizontale pendant une partie, une carte «\u00A0Tiens ton téléphone à la verticale\u00A0» apparaît, et ta partie continue pendant que tu le tournes." },
-              { title: "Langues", text: "Les textes en arabe, hindi, bengali et chinois s’affichent mieux\u00A0: plus de mots coupés, de retours à la ligne bizarres ni de mots dans le désordre." },
+              { title: "Langues", text: "Les textes en arabe, hindi, bengali, chinois et indonésien s’affichent mieux\u00A0: plus de mots coupés, de retours à la ligne bizarres ni de mots dans le désordre. En français, l’appli parle maintenant partout de «\u00A0membre\u00A0» et non plus d’«\u00A0abonnement\u00A0» (et de «\u00A0membro\u00A0» en portugais)." },
             ],
           },
         ],
