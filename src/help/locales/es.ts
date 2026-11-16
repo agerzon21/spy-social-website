@@ -238,7 +238,7 @@ const es: HelpText = {
                 "Los <b>espías</b> reciben una carta oscura. En Espía Mafia, los demás espías aparecen a tu lado, con su nombre y una etiqueta roja de «Espía». En Clásico, los espías no se conocen, así que los demás aparecen como <b>Desconocido</b>.",
                 "En Espía Mafia con más de un espía, toca <b>CANAL DE ESPÍAS</b> para chatear en privado con los otros espías: en tu carta antes de empezar, luego en la barra de arriba, o junto al chat en una votación. Basta un toque; un número muestra los mensajes nuevos, y un mensaje de otro espía dice «… intenta contactarte».",
                 "La etiqueta roja sigue en las fotos de los otros espías toda la partida. Los locales nunca ven las etiquetas, el botón ni el chat.",
-                "¿En una llamada de voz? Activa <b>Mismo sonido para todos los roles</b> (Ajustes, Sonido y música) para que tu micrófono no capte el sonido de revelación de un espía. La app te lo ofrece antes de tu primera revelación.",
+                "¿En una llamada de voz? Activa <b>Mismo sonido para todos los roles</b> (Ajustes, Sonido y música) para que tu micrófono no capte el sonido de revelación de un espía. La app solo te lo pregunta (<b>¿Juegas en una llamada?</b>) en una sala privada <b>En línea</b>.",
               ],
             },
             {
@@ -270,6 +270,7 @@ const es: HelpText = {
           q: '¿Qué es el Sello de Cera?',
           a: [
             'El sello arriba a la izquierda de la pantalla de juego guarda <b>Salir</b> e <b>Info</b>, plegados para que nadie salga sin querer. <b>Chat</b> y <b>Notas</b> tienen su propio botón arriba a la derecha y se abren con un toque. Un número en Chat indica mensajes nuevos.',
+            'El sello está en todas las pantallas de la partida: la votación y sus resultados, el intento del espía y el final de la partida.',
             'Toca la foto de un jugador para preguntarle en el chat. Desliza un mensaje para responderlo.',
             'Mentir y farolear es parte del juego. Decir el secreto directamente, no.',
           ],

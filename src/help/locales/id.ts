@@ -238,7 +238,7 @@ const id: HelpText = {
                 "<b>Mata-mata</b> mendapat kartu gelap. Di Mafia, mata-mata lain muncul di sampingmu, lengkap dengan nama dan label merah MATA-MATA. Di Klasik, para mata-mata tidak saling kenal, jadi yang lain tampil sebagai <b>Tak dikenal</b>.",
                 "Di Mafia dengan lebih dari satu mata-mata, ketuk <b>SALURAN MATA-MATA</b> untuk chat diam-diam dengan mata-mata lain: di kartumu sebelum permainan mulai, lalu di bilah atas, atau di samping chat saat voting. Cukup sekali ketuk; angka menunjukkan pesan baru, dan pesan dari mata-mata lain muncul dengan “… mencoba menghubungimu”.",
                 "Label merah tetap ada di foto mata-mata lain sepanjang permainan. Warga tidak pernah melihat label, tombol, maupun chat-nya.",
-                "Sedang di panggilan suara? Nyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya mikrofonmu tidak menangkap suara pengungkapan mata-mata. Aplikasi menawarkannya sebelum pengungkapan pertamamu.",
+                "Sedang di panggilan suara? Nyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya mikrofonmu tidak menangkap suara pengungkapan mata-mata. Aplikasi hanya menanyakannya (<b>Main sambil teleponan?</b>) di room privat yang memilih <b>Online</b>.",
               ],
             },
             {
@@ -270,6 +270,7 @@ const id: HelpText = {
           q: 'Apa itu Segel Lilin?',
           a: [
             'Segel di kiri atas layar permainan menyimpan <b>Keluar</b> dan <b>Info</b>, terlipat supaya tidak ada yang keluar tanpa sengaja. <b>Chat</b> dan <b>Catatan</b> punya tombol sendiri di kanan atas, cukup sekali ketuk. Angka di Chat berarti ada pesan baru.',
+            'Segel ini ada di setiap layar permainan: voting dan hasilnya, tebakan mata-mata, dan layar akhir.',
             'Ketuk foto pemain untuk bertanya padanya di chat. Geser pesan untuk membalasnya.',
             'Berbohong dan menggertak itu bagian dari permainan. Menyebut rahasianya terang-terangan, bukan.',
           ],

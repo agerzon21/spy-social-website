@@ -234,7 +234,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
               "Les <b>espions</b> reçoivent une carte sombre. En mode Mafia, les autres espions apparaissent à côté de toi, avec leur nom et une étiquette rouge « Espion ». En mode Classique, les espions ne se connaissent pas, donc les autres apparaissent comme <b>Inconnu</b>.",
               "En mode Mafia avec plus d'un espion, appuie sur <b>CANAL DES ESPIONS</b> pour discuter en privé avec les autres espions : sur ta carte avant le début, puis dans la barre du haut, ou à côté du chat pendant un vote. Un seul appui suffit ; un chiffre montre les nouveaux messages, et un message d'un autre espion s'annonce par « … essaie de te joindre ».",
               "L'étiquette rouge reste sur les photos des autres espions toute la partie. Les locaux ne voient ni les étiquettes, ni le bouton, ni le chat.",
-              "En appel vocal ? Active <b>Même son pour tous les rôles</b> (Réglages, Son et musique) pour que ton micro ne capte pas le son de révélation d'un espion. L'appli te le propose avant ta première révélation.",
+              "En appel vocal ? Active <b>Même son pour tous les rôles</b> (Réglages, Son et musique) pour que ton micro ne capte pas le son de révélation d'un espion. L'appli ne te le demande (<b>Tu joues en appel ?</b>) que dans un salon privé <b>En ligne</b>.",
             ],
           },
           {
@@ -266,6 +266,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "C'est quoi, le sceau de cire ?",
         a: [
           "Le sceau en haut à gauche de l'écran de jeu contient <b>Quitter</b> et <b>Infos</b>, repliés pour que personne ne quitte la partie par erreur. <b>Chat</b> et <b>Notes</b> ont leurs propres boutons en haut à droite, qui s'ouvrent d'une seule touche. Un nombre sur Chat signale de nouveaux messages.",
+          "Le sceau est sur tous les écrans de la partie : le vote et ses résultats, la tentative de l'espion et l'écran de fin.",
           "Touche la photo d'un joueur pour l'interpeller dans le chat. Fais glisser un message pour y répondre.",
           "Mentir et bluffer font partie du jeu. Dire le secret tel quel, non.",
         ],

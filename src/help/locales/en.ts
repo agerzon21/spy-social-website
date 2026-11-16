@@ -259,7 +259,7 @@ const en: HelpText = {
                 "<b>Spies</b> get a dark card. In Spy Mafia, the other spies step up beside you, named, with a red SPY tag. In Classic, spies don’t know each other, so the others show as <b>Unknown</b>.",
                 "In Spy Mafia with more than one spy, tap <b>SPY CHANNEL</b> to chat in private with the other spies: on your card before the game starts, then in the top bar, or beside Chat in a vote. One tap is enough; a number shows new messages, and a message from another spy says “… is trying to reach you”.",
                 "The red SPY tag stays on the other spies’ pictures all game. Locals never see the tags, the button or the chat.",
-                "On a voice call? Turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so your mic can’t pick up a spy’s reveal sound. The app offers it before your first reveal.",
+                "On a voice call? Turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so your mic can’t pick up a spy’s reveal sound. The app asks you (<b>Playing Over a Call?</b>) only in a private room set to <b>Online</b>.",
               ],
             },
             {
@@ -291,6 +291,7 @@ const en: HelpText = {
           q: 'What is the Wax Seal?',
           a: [
             'The seal at the top left of the game screen holds <b>Leave</b> and <b>Info</b>, folded away so nobody leaves by accident. <b>Chat</b> and <b>Notes</b> have their own buttons at the top right, one tap each. A number on Chat means new messages.',
+            'You find the seal on every game screen: the vote and its results, the spy’s guess and Game Over.',
             'Tap a player’s picture to ask them in the chat. Swipe a message to reply.',
             'Bluffing is part of the game. Saying the secret outright isn’t.',
           ],

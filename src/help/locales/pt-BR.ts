@@ -238,7 +238,7 @@ const ptBR: HelpText = {
                 "Quem é do time dos <b>espiões</b> recebe uma carta escura. Na Máfia, os outros espiões aparecem ao seu lado, com o nome e uma etiqueta vermelha de Espião. No Clássico, os espiões não se conhecem, então os outros aparecem como <b>Desconhecido</b>.",
                 "Na Máfia com mais de um espião, toque em <b>CANAL DOS ESPIÕES</b> para conversar em particular com os outros espiões: na sua carta antes de começar, depois na barra de cima, ou ao lado do chat numa votação. Basta um toque; um número mostra as mensagens novas, e uma mensagem de outro espião diz “… está tentando falar com você”.",
                 "A etiqueta vermelha fica nas fotos dos outros espiões a partida toda. Os locais nunca veem as etiquetas, o botão nem o chat.",
-                "Numa chamada de voz? Ative <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para o microfone não captar o som de revelação de um espião. O app oferece isso antes da sua primeira revelação.",
+                "Numa chamada de voz? Ative <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para o microfone não captar o som de revelação de um espião. O app só pergunta isso (<b>Jogando em chamada?</b>) numa sala privada <b>Online</b>.",
               ],
             },
             {
@@ -270,6 +270,7 @@ const ptBR: HelpText = {
           q: 'O que é o Selo de Cera?',
           a: [
             'O selo no alto à esquerda da tela do jogo guarda <b>Sair</b> e <b>Info</b>, dobrados para ninguém sair sem querer. <b>Chat</b> e <b>Notas</b> têm botões próprios no alto à direita e abrem com um toque. Um número no Chat indica mensagens novas.',
+            'O selo aparece em todas as telas da partida: a votação e o resultado, o palpite do espião e o fim de jogo.',
             'Toque na foto de um jogador para perguntar a ele no chat. Deslize uma mensagem para responder.',
             'Mentir e blefar faz parte do jogo. Falar o segredo direto, não.',
           ],
