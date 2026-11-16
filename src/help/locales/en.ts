@@ -1,7 +1,9 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). help-beta3-1116 (2026-11-16, against the app's u62.13 line, int-u62 f5a242511): #talk-out-loud
+ * English: the source (../types.ts). help-audit-1116 (2026-11-16, against int-u62 36af0bbcc): #wax-seal's seal is at the top left
+ * with Leave and Info, Chat and Notes on their own buttons, a number on Chat (localization/translations/headerSealLeft1110);
+ * #new-page's new room starts on 2 pages (lib/balance RECOMMENDED_SKETCH_PAGES, hooks/useNewRoomDefaults). help-beta3-1116 (2026-11-16, against the app's u62.13 line, int-u62 f5a242511): #talk-out-loud
  * (glossary setting.talk_out_loud, lib/lobbySettings), #drawings-checked (drawing_check_note; links Privacy #drawing-checks: never that id here, the ScrollManager would find this page's first), #voice-chat (no voice
  * chat; the mic is speech to text; a call of your own), and #role-reveal / #poker-face rewritten for the Spotlight reveal, the lineup,
  * SPY CHANNEL and "Where Are You Playing?" (still behind LIVE.helpRoleReveal). help-live-fix-1116 (2026-11-16, against int-u62 36af0bbcc; app u61 has the same header): #wax-seal's
