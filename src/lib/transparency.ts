@@ -49,8 +49,23 @@ const I2: PublishedIncident = {
   rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 03:00 UTC (published as 01:30 UTC; extended on November 10, 2026, to 10 PM Eastern on November 12): 100,000 Intel, once (published as 50,000; raised to 100,000 on November 10, 2026, when item values went up, and testers already given 50,000 got the other 50,000). The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
 }
 
+/**
+ * I-3, Beta Black Market sales undone (app server market_beta_players_unwind, WP Mon Nov 16; published 2026-11-16 14:00:21
+ * UTC): word for word the economy_incidents row (title, summary, rule_text). Shown always (published).
+ */
+const I3: PublishedIncident = {
+  id: 'I-3',
+  kind: 'reset',
+  title: 'Beta Black Market sales undone',
+  published: 'November 16, 2026',
+  summary:
+    'While SpySocial was being tested, every adult tester could buy and sell on the Black Market, on the understanding that it would all be reset before launch. Every one of those sales was undone: buyers got back everything they paid, sellers gave back what they received, and items went back to their sellers or were wiped with the pre-launch reset. No Intel was earned or lost through them.',
+  rule: 'Per account: the sum of its Black Market Intel rows is reversed, so its wallet stands as if it had never used the market; never below 0. What a wallet could not pay at once is taken after the pre-launch refunds.',
+}
+
 /** Newest first. */
 export const PUBLISHED_INCIDENTS: PublishedIncident[] = [
+  I3,
   ...(LIVE.launchResetIncident ? [I1] : []),
   ...(LIVE.coverage1110 ? [I2] : []),
 ]
