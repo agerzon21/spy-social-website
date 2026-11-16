@@ -90,7 +90,7 @@ const ptBR: HelpText = {
             "Uma pausa no desenho para o jogo por até 20 segundos: estude o desenho, converse e confira suas anotações. Todos que ainda estão no jogo votam em <b>Manter esta</b> ou <b>Página nova</b>. A pausa acaba antes quando todos já votaram.",
             "A página fica só se mais da metade dos jogadores que ainda estão no jogo votar para mantê-la. Empate, ou nenhum voto, significa página em branco. Dá para voltar e ver as páginas anteriores.",
             "<b>Jogar online:</b> no máximo uma página a mais. A pausa vem a cada 2 rodadas numa mesa de 4, e depois de cada rodada numa mesa de 8. Se a mesa mantiver a página, a pausa seguinte vem o mesmo número de rodadas depois.",
-            "<b>Salas privadas e Noites de Jogos:</b> o anfitrião (ou a noite) escolhe <b>Página nova</b> nas regras: Não, 2, 3 ou 4 páginas, ou Sem limite; 3 se ninguém mudar. A pausa vem quando a folha fica cheia.",
+            "<b>Salas privadas e Noites de Jogos:</b> o anfitrião (ou a noite) escolhe <b>Página nova</b> nas regras: Não, 2, 3 ou 4 páginas, ou Sem limite. Uma sala nova começa com 2, como recomendamos. A pausa vem quando a folha fica cheia.",
             "Nenhuma pausa começa nos últimos 45 segundos da partida.",
           ],
         },
@@ -220,7 +220,7 @@ const ptBR: HelpText = {
           id: 'wax-seal',
           q: 'O que é o Selo de Cera?',
           a: [
-            'O selo no alto à direita da tela do jogo. Toque nele quando quiser para abrir o chat completo da partida, suas notas e as informações do jogo. Um ponto vermelho indica mensagens novas.',
+            'O selo no alto à esquerda da tela do jogo guarda <b>Sair</b> e <b>Info</b>, dobrados para ninguém sair sem querer. <b>Chat</b> e <b>Notas</b> têm botões próprios no alto à direita e abrem com um toque. Um número no Chat indica mensagens novas.',
             'Toque na foto de um jogador para perguntar a ele no chat. Deslize uma mensagem para responder.',
             'Mentir e blefar faz parte do jogo. Falar o segredo direto, não.',
           ],

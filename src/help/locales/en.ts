@@ -1,7 +1,10 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). help-u61-1113 (2026-11-13, against u61.1 0516de145 and int/rr-u62): How to Play's Step 1 Tutorial and Step 2
+ * English: the source (../types.ts). help-live-fix-1116 (2026-11-16, against int-u62 36af0bbcc; app u61 has the same header): #wax-seal's
+ * seal is at the top left with Leave and Info, Chat and Notes on their own buttons, a number on Chat
+ * (localization/translations/headerSealLeft1110); #new-page's new room starts on 2 pages (lib/balance RECOMMENDED_SKETCH_PAGES,
+ * hooks/useNewRoomDefaults). help-u61-1113 (2026-11-13, against u61.1 0516de145 and int/rr-u62): How to Play's Step 1 Tutorial and Step 2
  * Practice Games (the Play Online gate is off on the server, so nothing says it's required), Reputation in Settings, the beta-reset note, Rare
  * Finds' lowest offer reaching the price, the Archive's holder line, the @username made from the typed name; #role-reveal and #poker-face wait
  * for LIVE.helpRoleReveal (Beta 3). The game's rules (voting, winning, the spy's guess, leaving, a game that doesn't count) checked on 2026-11-06 (site-rules-1106) against the server and the game-logic audit. Facts checked on 2026-11-05 (help-truth-4: guests asked to save for Friends, Trades and the Black Market; Couldn't Open
@@ -99,7 +102,7 @@ const en: HelpText = {
             "A sketch break stops play for up to 20 seconds: study the drawing, chat and check your notes. Everyone still in votes <b>Keep this page</b> or <b>New page</b>. The break ends sooner once everyone has voted.",
             "The page stays only if more than half of the players still in vote to keep it. A tie, or no vote, means a blank sheet. You can still look back at earlier pages.",
             "<b>Play Online:</b> one extra page at most. The break comes after every 2 rounds at a table of 4, and after every round at a table of 8. If the table keeps the page, the next break comes as many rounds later.",
-            "<b>Private rooms and Game Nights:</b> the host (or the night) sets <b>New page</b> in the rules: Off, 2, 3 or 4 pages, or Unlimited; 3 unless it’s changed. The break comes when the sheet fills up.",
+            "<b>Private rooms and Game Nights:</b> the host (or the night) sets <b>New page</b> in the rules: Off, 2, 3 or 4 pages, or Unlimited. A new room starts on 2, as we recommend. The break comes when the sheet fills up.",
             "No break starts in the game’s last 45 seconds.",
           ],
         },
@@ -229,7 +232,7 @@ const en: HelpText = {
           id: 'wax-seal',
           q: 'What is the Wax Seal?',
           a: [
-            'The seal at the top right of the game screen. Tap it any time for the full game chat, your notes and the game’s info. A red dot means new messages.',
+            'The seal at the top left of the game screen holds <b>Leave</b> and <b>Info</b>, folded away so nobody leaves by accident. <b>Chat</b> and <b>Notes</b> have their own buttons at the top right, one tap each. A number on Chat means new messages.',
             'Tap a player’s picture to ask them in the chat. Swipe a message to reply.',
             'Bluffing is part of the game. Saying the secret outright isn’t.',
           ],

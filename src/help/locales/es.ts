@@ -90,7 +90,7 @@ const es: HelpText = {
             "Una pausa de dibujo detiene el juego hasta 20 segundos: mira el dibujo, chatea y revisa tus notas. Todos los que siguen en juego votan <b>Seguir en esta</b> u <b>Hoja nueva</b>. La pausa termina antes si ya votaron todos.",
             "La hoja se queda solo si más de la mitad de los jugadores que siguen en juego votan por seguir en ella. Un empate, o si nadie vota, significa hoja en blanco. Las hojas anteriores se pueden seguir viendo.",
             "<b>Jugar en línea:</b> una hoja extra como máximo. La pausa llega cada 2 rondas en una mesa de 4, y después de cada ronda en una mesa de 8. Si la mesa se queda con la hoja, la siguiente pausa llega las mismas rondas después.",
-            "<b>Salas privadas y Noches de Juegos:</b> el anfitrión (o la noche) elige <b>Hoja nueva</b> en las reglas: No, 2, 3 o 4 hojas, o Sin límite; 3 si nadie lo cambia. La pausa llega cuando la hoja se llena.",
+            "<b>Salas privadas y Noches de Juegos:</b> el anfitrión (o la noche) elige <b>Hoja nueva</b> en las reglas: No, 2, 3 o 4 hojas, o Sin límite. Una sala nueva empieza con 2, como recomendamos. La pausa llega cuando la hoja se llena.",
             "En los últimos 45 segundos de la partida no empieza ninguna pausa.",
           ],
         },
@@ -220,7 +220,7 @@ const es: HelpText = {
           id: 'wax-seal',
           q: '¿Qué es el Sello de Cera?',
           a: [
-            'El sello arriba a la derecha de la pantalla de juego. Tócalo cuando quieras para abrir el chat completo de la partida, tus notas y la información del juego. Un punto rojo indica mensajes nuevos.',
+            'El sello arriba a la izquierda de la pantalla de juego guarda <b>Salir</b> e <b>Info</b>, plegados para que nadie salga sin querer. <b>Chat</b> y <b>Notas</b> tienen su propio botón arriba a la derecha y se abren con un toque. Un número en Chat indica mensajes nuevos.',
             'Toca la foto de un jugador para preguntarle en el chat. Desliza un mensaje para responderlo.',
             'Mentir y farolear es parte del juego. Decir el secreto directamente, no.',
           ],

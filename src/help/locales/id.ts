@@ -90,7 +90,7 @@ const id: HelpText = {
             "Jeda menggambar menghentikan permainan sampai 20 detik: amati gambarnya, chat, dan cek catatanmu. Semua yang masih bermain memilih <b>Simpan halaman ini</b> atau <b>Halaman baru</b>. Jeda selesai lebih cepat kalau semua sudah memilih.",
             "Halaman tetap dipakai hanya jika lebih dari separuh pemain yang masih bermain memilih menyimpannya. Seri, atau tidak ada yang memilih, berarti halaman kosong. Halaman sebelumnya tetap bisa dilihat.",
             "<b>Main online:</b> paling banyak satu halaman tambahan. Jeda datang setiap 2 ronde di meja 4 pemain, dan setelah setiap ronde di meja 8 pemain. Kalau meja menyimpan halamannya, jeda berikutnya datang setelah jumlah ronde yang sama.",
-            "<b>Room privat dan Malam Permainan:</b> host (atau pengaturan malam itu) memilih <b>Halaman baru</b> di aturan: Mati, 2, 3, atau 4 halaman, atau Tanpa batas; 3 kalau tidak diubah. Jeda datang saat lembar penuh.",
+            "<b>Room privat dan Malam Permainan:</b> host (atau pengaturan malam itu) memilih <b>Halaman baru</b> di aturan: Mati, 2, 3, atau 4 halaman, atau Tanpa batas. Room baru mulai dengan 2, sesuai saran kami. Jeda datang saat lembar penuh.",
             "Tidak ada jeda yang dimulai pada 45 detik terakhir permainan.",
           ],
         },
@@ -220,7 +220,7 @@ const id: HelpText = {
           id: 'wax-seal',
           q: 'Apa itu Segel Lilin?',
           a: [
-            'Segel di kanan atas layar permainan. Ketuk kapan saja untuk membuka chat lengkap, catatanmu, dan info permainan. Titik merah berarti ada pesan baru.',
+            'Segel di kiri atas layar permainan menyimpan <b>Keluar</b> dan <b>Info</b>, terlipat supaya tidak ada yang keluar tanpa sengaja. <b>Chat</b> dan <b>Catatan</b> punya tombol sendiri di kanan atas, cukup sekali ketuk. Angka di Chat berarti ada pesan baru.',
             'Ketuk foto pemain untuk bertanya padanya di chat. Geser pesan untuk membalasnya.',
             'Berbohong dan menggertak itu bagian dari permainan. Menyebut rahasianya terang-terangan, bukan.',
           ],

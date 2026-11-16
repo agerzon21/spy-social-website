@@ -86,7 +86,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Une pause dessin arrête le jeu jusqu’à 20 secondes : étudie le dessin, discute et regarde tes notes. Tous ceux encore en jeu votent <b>Garder la page</b> ou <b>Nouvelle page</b>. La pause finit plus tôt dès que tout le monde a voté.",
           "La page reste seulement si plus de la moitié des joueurs encore en jeu votent pour la garder. Une égalité, ou aucun vote, donne une page blanche. Tu peux toujours revoir les pages d’avant.",
           "<b>Jouer en ligne :</b> une page en plus au maximum. La pause arrive toutes les 2 manches à une table de 4, et après chaque manche à une table de 8. Si la table garde la page, la pause suivante arrive autant de manches plus tard.",
-          "<b>Salons privés et soirées jeux :</b> l’hôte (ou la soirée) règle <b>Nouvelle page</b> dans les règles : Non, 2, 3 ou 4 pages, ou Illimité ; 3 si personne n’y touche. La pause arrive quand la feuille est pleine.",
+          "<b>Salons privés et soirées jeux :</b> l’hôte (ou la soirée) règle <b>Nouvelle page</b> dans les règles : Non, 2, 3 ou 4 pages, ou Illimité. Un nouveau salon commence à 2, comme nous le conseillons. La pause arrive quand la feuille est pleine.",
           "Aucune pause ne commence dans les 45 dernières secondes de la partie.",
         ],
       },
@@ -216,7 +216,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'wax-seal',
         q: "C'est quoi, le sceau de cire ?",
         a: [
-          "Le sceau en haut à droite de l'écran de jeu. Touche-le à tout moment pour le chat complet de la partie, tes notes et les infos de la partie. Un point rouge signale de nouveaux messages.",
+          "Le sceau en haut à gauche de l'écran de jeu contient <b>Quitter</b> et <b>Infos</b>, repliés pour que personne ne quitte la partie par erreur. <b>Chat</b> et <b>Notes</b> ont leurs propres boutons en haut à droite, qui s'ouvrent d'une seule touche. Un nombre sur Chat signale de nouveaux messages.",
           "Touche la photo d'un joueur pour l'interpeller dans le chat. Fais glisser un message pour y répondre.",
           "Mentir et bluffer font partie du jeu. Dire le secret tel quel, non.",
         ],
