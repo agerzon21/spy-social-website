@@ -1056,7 +1056,7 @@ export const LIVE = {
    * LEGAL_LAST_UPDATED (Terms, Rules, Safety); Privacy has no line about it, so PRIVACY_LAST_UPDATED doesn't move.
    * A server fact: set in LIVE, never in PRIVACY_AHEAD.
    */
-  testerMarket: 'open' as false | 'open' | 'closed',
+  testerMarket: 'closed' as false | 'open' | 'closed',
   /**
    * Retention audit 2026-11-03 (app repo .claude/handoff/scratchpad/nov03/retention-1103.md). Off: the pages say what happens today: room exits, unblocks, the
    * coded email and sign-up records, push receipts and sent notices are cleared by a later action, not on a clock, and the note that a trade or market code
