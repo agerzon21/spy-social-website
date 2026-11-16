@@ -146,7 +146,18 @@ const es: HelpText = {
             'Los <b>espías</b> ganan si aciertan, si se acaba el tiempo de la partida o si tras una votación quedan tantos espías como locales.',
             'Salir cuenta como ser eliminado por votación: si sale el último espía, ganan los locales; si salen demasiados locales, ganan los espías. Antes de que terminen las preguntas (en Spy Sketch, en la primera ronda), esa partida muestra «Sin resultado» y no cuenta.',
             '<b>Votación final:</b> si se acaba el tiempo y queda exactamente un espía, todos votan una vez más. Si atrapan al espía, ganan los locales. Está activa en Jugar en línea y es un ajuste en las salas privadas.',
-            '<b>Informante</b> (salas privadas y Noches de Juegos que lo activan): un local sabe quién es un espía. Si atrapan a los espías con una votación o un intento fallido, tienen 30 segundos para nombrar a ese local y robar la victoria.',
+            "<b>Informante</b> (salas privadas y Noches de Juegos que lo activan, con 2 espías o más y 6 jugadores o más): la carta de un local nombra a un espía. Cuando los locales ganan por votación o porque el último espía falla su intento, los espías, también los atrapados, tienen 30 segundos para nombrar al informante y robar la victoria. No pasa tras un fallo con <b>Un solo intento</b> ni si el último espía se va.",
+          ],
+        },
+        {
+          id: 'special-rules',
+          q: "¿Qué reglas especiales puede usar una sala privada o una Noche de Juegos?",
+          a: [
+            "<b>Votaciones por partida:</b> cada jugador puede convocar 1, 2 o 3 votaciones por partida, o sin límite (una sala nueva empieza en 1). Cuando una votación atrapa a un espía, todos los que usaron una la recuperan.",
+            "Si a nadie que siga en juego le quedan votaciones, el reloj de la partida salta a sus últimos 5 segundos. Si quedan tantas votaciones como espías en juego, o menos, hay una última oportunidad de 15 segundos para convocar una.",
+            "<b>Rastro de papel:</b> cuando expulsan a un espía por votación, todos ven cómo votó durante toda la partida. Si los roles no se revelan al expulsar, espera hasta el final de la partida.",
+            "<b>Un solo intento</b> e <b>Informante</b>: están arriba, en el intento del espía y en cómo gana cada equipo.",
+            "<b>Hablar en voz alta</b> tiene su propia respuesta arriba. En la app, <b>Cómo jugar</b> › <b>Funciones y ajustes</b> tiene una demo corta de cada regla.",
           ],
         },
       ],
@@ -234,7 +245,7 @@ const es: HelpText = {
               q: "En línea o En persona: ¿qué es Cara de póker?",
               a: [
                 "Cuando un anfitrión crea una sala privada, la app pregunta <b>¿Dónde juegan?</b> Elige <b>En línea</b> si cada quien juega en su teléfono, donde sea, también en una llamada: hay revelación completa de roles y chat de espías de un toque. Elige <b>En persona</b> si están alrededor de una mesa: se activa <b>Cara de póker</b>.",
-                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía, sin etiquetas rojas de «Espía», y nada se ilumina cuando llega un mensaje de espías. Los espías abren su chat manteniendo presionada su carta.",
+                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía, sin etiquetas rojas de «Espía», y nada se ilumina cuando llega un mensaje de espías. Los espías abren su chat manteniendo presionada su carta. En una votación, mantienen presionado el botón del chat.",
                 "El porqué: en una misma mesa, una mirada al teléfono de al lado podría delatar un rol. Cara de póker evita descuidos, no trampas. La desventaja: cuesta más reconocer a los otros espías y chatear con ellos.",
                 "El anfitrión puede cambiarla entre partidas en las <b>Reglas</b> del lobby, y quien entra ve <b>«Cara de póker» está activada</b>. En las Noches de Juegos, se define para cada noche. No existe en Jugar en línea.",
               ],
@@ -246,7 +257,7 @@ const es: HelpText = {
           q: "¿Hay chat de voz? ¿Para qué sirve el micrófono?",
           a: [
             "SpySocial no tiene chat de voz: nadie te oye a través de la app. El micrófono convierte lo que dices en texto, para que no tengas que escribir.",
-            "Toca el micrófono, habla y vuelve a tocarlo para terminar. Funciona en los chats y en las preguntas de Spy Talk.",
+            "Toca el micrófono, habla y vuelve a tocarlo para terminar. Funciona en los chats de la partida y de la sala de espera, y en las preguntas de Spy Talk.",
             "Lo hace el reconocimiento de voz de tu teléfono (o de tu navegador). Nosotros recibimos solo el texto, nunca el audio. Detalles: <privacy>Política de privacidad</privacy>.",
             "Para hablar mientras juegas, usa una llamada de voz aparte, por ejemplo en Discord o por teléfono.",
             ...(o.roleReveal ? ["En una llamada, el anfitrión elige <b>En línea</b> en <b>¿Dónde juegan?</b>, y cada uno puede activar <b>Mismo sonido para todos los roles</b> (Ajustes, Sonido y música) para que ningún micrófono capte el sonido de revelación de un espía."] : []),
@@ -490,8 +501,8 @@ const es: HelpText = {
           q: '¿Cómo gano intercepciones?',
           a: [
             '<b>Victorias:</b> cada 10 victorias en Jugar en línea te dan 5 intercepciones, una de ellas de nivel Secreto o mejor.',
-            '<b>Diaria:</b> tu primera partida del día en Jugar en línea te da una, y las rachas largas suman más (cada 30.º día seguido, una Enigma).',
-            '<b>Noche de Juegos:</b> los ganadores de la noche reciben una Enigma.',
+            "<b>Diaria:</b> tu primera partida del día en Jugar en línea te da una. Cada 7.º día seguido suma una Secreto o superior, y cada 30.º día, una Enigma.",
+            "<b>Noche de Juegos:</b> gana una partida allí, como local o como espía, y recibes una Enigma, una por noche.",
             `<b>Códigos y regalos:</b> un código de un creador o nuestro funciona una vez por cuenta, y sus intercepciones se desbloquean tras tu primera partida de Jugar en línea que cuente. También regalamos algunas.${o.launch ? " Las intercepciones de un código o de un regalo, lo que sale de ellas y lo que consigas al canjearlas son solo para ti: no se pueden intercambiar, vender ni regalar, por muchas partidas que juegues. Puedes abrirlas, ponerte lo que salga, canjearlas y triturar los repetidos. Triturar un repetido da Intel normal." : ''}`,
             'Las salas privadas no dan intercepciones.',
             ...(o.launch
@@ -597,6 +608,17 @@ const es: HelpText = {
             '+50 % de XP en cada partida y salas solo para miembros en Jugar en línea.',
             'El marco, la etiqueta y el título de tu rango. Puedes liderar un grupo y tener 8 ofertas abiertas en el Mercado Negro en vez de 4.',
             'Nunca cambia cómo juegas ni cómo puntúas. Los paquetes gratis siguen gratis para todos.',
+          ],
+        },
+        {
+          id: 'pack-creator',
+          q: "¿Cómo funciona el creador de paquetes?",
+          a: [
+            "Con membresía (13 años o más), abre <b>Paquetes</b> y luego el creador de paquetes. Un paquete necesita de 30 a 200 entradas para jugarse o enviarse a la <b>Comunidad</b>.",
+            "Tus paquetes se juegan en las salas privadas que organizas mientras seas miembro.",
+            "Envía uno a la <b>Comunidad</b> y lo revisamos en 72 horas: primero una revisión automática lee el texto y luego decide una persona. Muestra <b>En revisión</b>, después <b>En la comunidad</b>, o <b>Necesita cambios</b> con el motivo: cámbialo y vuelve a enviarlo.",
+            "Los paquetes populares pueden salir como <b>Destacado</b>. Otros miembros añaden paquetes de la comunidad a <b>Mis paquetes</b> para jugarlos en sus salas.",
+            "A los jugadores menores de 18 años no les enviamos la respuesta entre las 10 p. m. y las 7 a. m.",
           ],
         },
         {
@@ -774,7 +796,7 @@ const es: HelpText = {
           id: 'report-block',
           q: '¿Cómo reporto o bloqueo a alguien?',
           a: [
-            'Mantén pulsada su tarjeta, en la sala de espera, en la partida o en el final, y elige <b>Reportar</b> o <b>Bloquear</b>.',
+            "En la sala de espera, mantén pulsada su tarjeta. En la partida, mantén pulsada su foto: <b>Reportar</b> y <b>Bloquear</b> están al final de tus notas sobre esa persona. En el final de la partida, toca su tarjeta.",
             'Una persona lee cada reporte, y el jugador no sabe quién lo envió.',
             'Bloquear los mantiene separados: ninguno puede entrar en una sala donde esté el otro. Desbloquea en Ajustes, en <b>Privacidad y seguridad</b>: <b>Jugadores bloqueados</b>.',
             'Mentir y farolear es parte del juego y no se reporta.',

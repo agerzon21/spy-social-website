@@ -1,7 +1,11 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). help-audit-1116 (2026-11-16, against int-u62 36af0bbcc): #wax-seal's seal is at the top left
+ * English: the source (../types.ts). help-audit-1116 b (2026-11-16, coordinator Q6): new #special-rules (Votes per Game, Paper Trail;
+ * server roomVotes / spy_rules) and #pack-creator (20261128000000 custom packs), #winning's Informant conditions (2+ spies, 6+
+ * players; vote or last wrong guess, not a missed One Shot or a leave: _informant_*), #earn-intercepts' 7th-day streak and the
+ * Game Night win, #report-block's three places, #voice-chat's game and lobby chats, #poker-face's vote hold.
+ * help-audit-1116 (2026-11-16, against int-u62 36af0bbcc): #wax-seal's seal is at the top left
  * with Leave and Info, Chat and Notes on their own buttons, a number on Chat (localization/translations/headerSealLeft1110);
  * #new-page's new room starts on 2 pages (lib/balance RECOMMENDED_SKETCH_PAGES, hooks/useNewRoomDefaults). help-beta3-1116 (2026-11-16, against the app's u62.13 line, int-u62 f5a242511): #talk-out-loud
  * (glossary setting.talk_out_loud, lib/lobbySettings), #drawings-checked (drawing_check_note; links Privacy #drawing-checks: never that id here, the ScrollManager would find this page's first), #voice-chat (no voice
@@ -163,7 +167,18 @@ const en: HelpText = {
             '<b>Spies</b> win with a right guess, when the game timer runs out, or when a vote leaves as many spies as Locals.',
             'A leave counts like a vote-out: if the last spy leaves, the Locals win; if too many Locals leave, the Spies win. Before the questions end (in Spy Sketch, in the first round), that game shows No Result and doesn’t count.',
             '<b>Final vote:</b> if time runs out with exactly one spy left, everyone votes once more. Catch the spy and the Locals win. It’s on at Play Online tables and a setting in private rooms.',
-            '<b>Informant</b> (private rooms and Game Nights that turn it on): one Local knows one spy. If the spies are caught by a vote or a wrong guess, they get 30 seconds to name that Local and steal the win.',
+            "<b>Informant</b> (private rooms and Game Nights that turn it on, with 2 or more spies and 6 or more players): one Local’s card names one spy. When the Locals win by a vote or by the last spy’s wrong guess, the spies, caught ones too, get 30 seconds to name the Informant and steal the win. Not after a missed One Shot, or when the last spy leaves.",
+          ],
+        },
+        {
+          id: 'special-rules',
+          q: "What special rules can a private room or Game Night use?",
+          a: [
+            "<b>Votes per Game:</b> each player can call 1, 2 or 3 votes a game, or Unlimited (a new room starts at 1). When a vote catches a spy, everyone who used a call gets one back.",
+            "When nobody still in has a call left, the game clock jumps to its last 5 seconds. When the calls left are no more than the spies still in, there’s a 15-second last chance to call one.",
+            "<b>Paper Trail:</b> when a spy is voted out, everyone sees how that spy voted all game. If roles aren’t revealed on a vote-out, it waits for Game Over.",
+            "<b>One Shot</b> and <b>Informant</b>: see the spy’s guess and how each side wins, above.",
+            "<b>Talk Out Loud</b> has its own answer above. In the app, <b>How to Play</b> › <b>Features & Settings</b> has a short demo of each rule.",
           ],
         },
       ],
@@ -251,7 +266,7 @@ const en: HelpText = {
               q: "Online or Same Room: what is Poker Face?",
               a: [
                 "When a host creates a private room, the app asks <b>Where Are You Playing?</b> Pick <b>Online</b> when everyone is on their own phone, wherever they are, a voice call included: you get the full role reveal and one-tap spy chat. Pick <b>Same Room</b> around one table: it turns on <b>Poker Face</b>.",
-                "With Poker Face, every role card looks alike: no dark spy card, no red SPY tags, and nothing lights up when a spy message comes in. Spies open their chat by pressing and holding their card.",
+                "With Poker Face, every role card looks alike: no dark spy card, no red SPY tags, and nothing lights up when a spy message comes in. Spies open their chat by pressing and holding their card. In a vote, they press and hold the <b>Chat</b> button instead.",
                 "Why: at one table, a glance at a neighbour’s phone could give their role away. Poker Face stops accidents, not cheaters. The catch: the other spies are harder to spot and to chat with.",
                 "The host can switch it between games in the lobby’s <b>Rules</b>, and players who join see <b>Poker Face Is On</b>. At Game Nights, each night sets it. Play Online doesn’t have it.",
               ],
@@ -263,7 +278,7 @@ const en: HelpText = {
           q: "Is there voice chat? What does the mic do?",
           a: [
             "SpySocial has no voice chat: nobody hears you through the app. The mic turns what you say into text, so you don’t have to type.",
-            "Tap the mic, speak, then tap it again to stop. It works in the chats and in Spy Talk’s Questions.",
+            "Tap the mic, speak, then tap it again to stop. It works in the game and lobby chats and in Spy Talk’s Questions.",
             "Your phone’s speech recognition (or your browser’s) does this. We get only the text, never the audio. Details: <privacy>Privacy Policy</privacy>.",
             "To talk while you play, run a voice call of your own next to the app, on Discord or your phone, for example.",
             ...(o.roleReveal ? ["On a call, the host picks <b>Online</b> for <b>Where Are You Playing?</b>, and everyone can turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so no mic picks up a spy’s reveal sound."] : []),
@@ -507,8 +522,8 @@ const en: HelpText = {
           q: 'How do I earn Intercepts?',
           a: [
             '<b>Wins:</b> every 10 Play Online wins give you 5 Intercepts, one of them Secret or better.',
-            '<b>Daily:</b> your first Play Online game of the day gives you one, and long streaks add more (every 30th day in a row, an Enigma).',
-            '<b>Game Night:</b> the night’s winners get an Enigma.',
+            "<b>Daily:</b> your first Play Online game of the day gives you one. Every 7th day in a row adds one Secret or better, and every 30th day an Enigma.",
+            "<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night.",
             `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding a spare gives ordinary Intel." : ''}`,
             'Private rooms don’t give Intercepts.',
             ...(o.launch
@@ -614,6 +629,17 @@ const en: HelpText = {
             '+50% XP on every game, and members-only lobbies in Play Online.',
             'Your rank’s border, tag and title. You can lead a party, and have 8 open Black Market offers instead of 4.',
             'It never changes how you play or score. The free packs stay free for everyone.',
+          ],
+        },
+        {
+          id: 'pack-creator',
+          q: "How does Pack Creator work?",
+          a: [
+            "With a membership (13 or older), open <b>Packs</b>, then <b>Pack Creator</b>. A pack needs 30 to 200 entries to be played or sent to <b>Community</b>.",
+            "Your packs play in private rooms you host while you’re a member.",
+            "Send one to <b>Community</b> and we check it within 72 hours: an automatic check reads the text first, then a person decides. It shows <b>In Review</b>, then <b>In Community</b>, or <b>Needs Changes</b> with the reason: change it and send it again.",
+            "Popular packs can be <b>Featured</b>. Other members add Community packs to <b>My Packs</b> to play in their own rooms.",
+            "Players under 18 don’t get our answer between 10 PM and 7 AM.",
           ],
         },
         {
@@ -791,7 +817,7 @@ const en: HelpText = {
           id: 'report-block',
           q: 'How do I report or block someone?',
           a: [
-            'Press and hold their card, in the lobby, in a game or on Game Over, and choose <b>Report</b> or <b>Block</b>.',
+            "In the lobby, press and hold their card. In a game, press and hold their picture: <b>Report</b> and <b>Block</b> are at the bottom of your notes on them. On Game Over, tap their card.",
             'A person reads every report, and the player isn’t told who sent it.',
             'Blocking keeps you apart: neither of you can join a room the other is in. Unblock in Settings, under <b>Privacy & Safety</b>: <b>Blocked Players</b>.',
             'Lying and bluffing are part of the game and aren’t reportable.',

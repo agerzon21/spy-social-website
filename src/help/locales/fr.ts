@@ -142,7 +142,18 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les <b>espions</b> gagnent avec une bonne réponse, quand le chrono de la partie arrive à zéro, ou quand un vote laisse autant d'espions que de locaux.",
           "Partir compte comme être éliminé par un vote : si le dernier espion part, les locaux gagnent ; si trop de locaux partent, les espions gagnent. Si cela arrive avant la fin des questions (dans Spy Sketch, au premier tour), la partie affiche « Pas de résultat » et ne compte pas.",
           "<b>Vote final :</b> si le temps est écoulé et qu'il reste exactement un espion, tout le monde vote une dernière fois. Démasquez-le et les locaux gagnent. Il est actif dans Jouer en ligne, et c'est un réglage dans les salons privés.",
-          "<b>Informateur</b> (salons privés et soirées jeux qui l'activent) : un local connaît un espion. Si les espions sont pris par un vote ou une mauvaise réponse, ils ont 30 secondes pour nommer ce local et voler la victoire.",
+          "<b>Informateur</b> (salons privés et soirées jeux qui l'activent, avec au moins 2 espions et 6 joueurs) : la carte d'un local désigne un espion. Quand les locaux gagnent par un vote ou par la mauvaise réponse du dernier espion, les espions, même démasqués, ont 30 secondes pour désigner l'informateur et voler la victoire. Pas après un raté avec <b>Une seule tentative</b>, ni quand le dernier espion s'en va.",
+        ],
+      },
+      {
+        id: 'special-rules',
+        q: "Quelles règles spéciales un salon privé ou une soirée jeux peut-il utiliser ?",
+        a: [
+          "<b>Votes par partie :</b> chaque joueur peut lancer 1, 2 ou 3 votes par partie, ou sans limite (un nouveau salon commence à 1). Quand un vote démasque un espion, chaque joueur qui en a lancé un le récupère.",
+          "Quand plus personne encore en jeu n'a de vote à lancer, le chrono de la partie saute à ses 5 dernières secondes. Quand il reste autant de votes que d'espions en jeu, ou moins, une dernière chance de 15 secondes permet d'en lancer un.",
+          "<b>Trace écrite :</b> quand un espion est éliminé par un vote, tout le monde voit comment il a voté pendant toute la partie. Si les rôles ne sont pas révélés à l'élimination, elle attend la fin de la partie.",
+          "<b>Une seule tentative</b> et <b>Informateur</b> : voir plus haut, la réponse de l'espion et comment chaque camp gagne.",
+          "<b>Parler à voix haute</b> a sa propre réponse plus haut. Dans l'appli, <b>Comment jouer</b> › <b>Options et réglages</b> montre une courte démo de chaque règle.",
         ],
       },
     ],
@@ -230,7 +241,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "En ligne ou Même pièce : c'est quoi, Poker face ?",
             a: [
               "Quand un hôte crée un salon privé, l'appli demande <b>Où jouez-vous ?</b> Choisis <b>En ligne</b> si chacun est sur son téléphone, où qu'il soit, appel vocal compris : révélation complète des rôles et chat des espions en un geste. Choisis <b>Même pièce</b> autour d'une table : ça active <b>Poker face</b>.",
-              "Avec Poker face, toutes les cartes de rôle se ressemblent : pas de carte d'espion sombre, pas d'étiquette rouge « Espion », et rien ne s'allume quand un message des espions arrive. Les espions ouvrent leur chat par un appui long sur leur carte.",
+              "Avec Poker face, toutes les cartes de rôle se ressemblent : pas de carte d'espion sombre, pas d'étiquette rouge « Espion », et rien ne s'allume quand un message des espions arrive. Les espions ouvrent leur chat par un appui long sur leur carte. Pendant un vote, ils appuient longuement sur le bouton du chat.",
               "Pourquoi : autour d'une table, un coup d'œil au téléphone du voisin pourrait trahir son rôle. Poker face évite les accidents, pas la triche. Le revers : les autres espions sont plus durs à repérer et à joindre.",
               "L'hôte peut le changer entre deux parties dans les <b>Règles</b> du salon, et les joueurs qui arrivent voient <b>« Poker face » est activé</b>. Aux soirées jeux, il se règle soirée par soirée. Il n'existe pas dans Jouer en ligne.",
             ],
@@ -242,7 +253,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Y a-t-il un chat vocal ? À quoi sert le micro ?",
         a: [
           "SpySocial n'a pas de chat vocal : personne ne t'entend via l'appli. Le micro transforme ce que tu dis en texte, pour t'éviter de taper.",
-          "Appuie sur le micro, parle, puis appuie de nouveau pour arrêter. Ça marche dans les chats et pendant les questions de Spy Talk.",
+          "Appuie sur le micro, parle, puis appuie de nouveau pour arrêter. Ça marche dans les chats de partie et de salon, et dans les questions de Spy Talk.",
           "C'est la reconnaissance vocale de ton téléphone (ou de ton navigateur) qui s'en charge. Nous recevons seulement le texte, jamais l'audio. Détails : <privacy>Politique de confidentialité</privacy>.",
           "Pour parler pendant la partie, lance un appel vocal à part, sur Discord ou par téléphone par exemple.",
           ...(o.roleReveal ? ["En appel, l'hôte répond <b>En ligne</b> à <b>Où jouez-vous ?</b>, et chacun peut activer <b>Même son pour tous les rôles</b> (Réglages, Son et musique) pour qu'aucun micro ne capte le son de révélation d'un espion."] : []),
@@ -486,8 +497,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Comment gagner des interceptions ?',
         a: [
           '<b>Victoires :</b> toutes les 10 victoires à Jouer en ligne, tu reçois 5 interceptions, dont une de niveau Secret ou mieux.',
-          "<b>Chaque jour :</b> ta première partie du jour à Jouer en ligne t'en donne une, et les longues séries en ajoutent (tous les 30 jours d'affilée, une Enigma).",
-          '<b>Soirée jeux :</b> les gagnants de la soirée reçoivent une Enigma.',
+          "<b>Chaque jour :</b> ta première partie du jour à Jouer en ligne t'en donne une. Chaque 7e jour d'affilée en ajoute une Secret ou mieux, et chaque 30e jour, une Enigma.",
+          "<b>Soirée jeux :</b> gagne une partie, en local ou en espion, et tu reçois une Enigma, une par soirée.",
           `<b>Codes et cadeaux :</b> un code d'un créateur ou de nous marche une fois par compte, et ses interceptions se débloquent après ta première partie comptée à Jouer en ligne. Nous en offrons aussi.${o.launch ? " Les interceptions d'un code ou d'un cadeau, ce qu'elles contiennent et ce que tu en tires par Échange sont pour toi seul : ils ne s'échangent, ne se vendent et ne s'offrent pas, quel que soit ton nombre de parties. Tu peux toujours les ouvrir, porter ce qui en sort, les utiliser dans un Échange et déchiqueter les doublons. Déchiqueter un doublon donne de l'Intel ordinaire." : ''}`,
           'Les salons privés ne donnent pas d\'interceptions.',
           ...(o.launch
@@ -593,6 +604,17 @@ const sections = (o: HelpOpts): HelpSection[] => [
           '+50 % d\'XP à chaque partie, et des salons réservés aux membres à Jouer en ligne.',
           "Le cadre, l'étiquette et le titre de ton rang. Tu peux mener un groupe et avoir 8 offres ouvertes au Marché noir au lieu de 4.",
           "Ça ne change jamais ta façon de jouer ni tes points. Les packs gratuits restent gratuits pour tous.",
+        ],
+      },
+      {
+        id: 'pack-creator',
+        q: "Comment marche le créateur de packs ?",
+        a: [
+          "Avec le statut de membre (dès 13 ans), ouvre <b>Packs</b>, puis le créateur de packs. Un pack doit compter de 30 à 200 entrées pour être joué ou envoyé à la <b>Communauté</b>.",
+          "Tes packs se jouent dans les salons privés dont tu es l'hôte, tant que tu es membre.",
+          "Envoie-en un à la <b>Communauté</b> et on le vérifie sous 72 heures : une vérification automatique lit d'abord le texte, puis une personne décide. Il affiche <b>En vérification</b>, puis <b>Dans la communauté</b>, ou <b>À modifier</b> avec la raison : corrige-le et renvoie-le.",
+          "Les packs populaires peuvent passer <b>À la une</b>. Les autres membres ajoutent des packs de la communauté à <b>Mes packs</b> pour y jouer dans leurs salons.",
+          "Les joueurs de moins de 18 ans ne reçoivent pas notre réponse entre 22 h et 7 h.",
         ],
       },
       {
@@ -770,7 +792,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'report-block',
         q: "Comment signaler ou bloquer quelqu'un ?",
         a: [
-          'Appuie longuement sur sa carte, dans le salon, en partie ou sur l\'écran de fin, et choisis <b>Signaler</b> ou <b>Bloquer</b>.',
+          "Dans le salon, appuie longuement sur sa carte. En partie, appuie longuement sur sa photo : <b>Signaler</b> et <b>Bloquer</b> sont en bas de tes notes sur ce joueur. Sur l'écran de fin, touche sa carte.",
           "Une personne lit chaque signalement, et le joueur ne sait pas qui l'a envoyé.",
           "Bloquer vous sépare : aucun de vous ne peut rejoindre un salon où se trouve l'autre. Débloque dans les Réglages, sous <b>Confidentialité et sécurité</b> : <b>Joueurs bloqués</b>.",
           'Mentir et bluffer font partie du jeu et ne se signalent pas.',

@@ -146,7 +146,18 @@ const id: HelpText = {
             '<b>Mata-mata</b> menang dengan tebakan benar, saat waktu permainan habis, atau saat voting menyisakan mata-mata sebanyak warga.',
             'Keluar dihitung seperti tersingkir lewat voting: jika mata-mata terakhir keluar, warga menang; jika terlalu banyak warga keluar, mata-mata menang. Jika itu terjadi sebelum pertanyaan selesai (di Spy Sketch, pada ronde pertama), permainan menampilkan “Tidak ada hasil” dan tidak dihitung.',
             '<b>Voting terakhir:</b> kalau waktu habis dan tersisa tepat satu mata-mata, semua memilih sekali lagi. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat.',
-            '<b>Informan</b> (room privat dan Malam Permainan yang mengaktifkannya): satu warga tahu satu mata-mata. Jika mata-mata tertangkap lewat voting atau tebakan salah, mereka punya 30 detik untuk menyebut warga itu dan mencuri kemenangan.',
+            "<b>Informan</b> (room privat dan Malam Permainan yang mengaktifkannya, dengan minimal 2 mata-mata dan 6 pemain): kartu satu warga menyebut satu mata-mata. Saat warga menang lewat voting atau tebakan salah mata-mata terakhir, para mata-mata, termasuk yang tertangkap, punya 30 detik untuk menyebut informannya dan mencuri kemenangan. Tidak berlaku setelah tebakan meleset dengan <b>Satu Kali Tebak</b>, atau saat mata-mata terakhir keluar.",
+          ],
+        },
+        {
+          id: 'special-rules',
+          q: "Aturan khusus apa saja yang bisa dipakai room privat atau Malam Permainan?",
+          a: [
+            "<b>Jatah voting:</b> tiap pemain bisa memulai 1, 2, atau 3 voting per permainan, atau tanpa batas (room baru mulai di 1). Saat voting menangkap mata-mata, semua yang sudah memakai jatahnya mendapat satu kembali.",
+            "Kalau tak ada pemain tersisa yang masih punya jatah, jam permainan melompat ke 5 detik terakhir. Kalau sisa jatah tidak lebih banyak dari mata-mata yang tersisa, ada kesempatan terakhir 15 detik untuk memulai voting.",
+            "<b>Jejak Kertas:</b> saat mata-mata tersingkir lewat voting, semua melihat pilihan voting-nya sepanjang permainan. Kalau peran tidak dibuka saat tersingkir, jejaknya menunggu sampai permainan selesai.",
+            "<b>Satu Kali Tebak</b> dan <b>Informan</b>: lihat di atas, di tebakan mata-mata dan cara tiap pihak menang.",
+            "<b>Tanya jawab lisan</b> punya jawabannya sendiri di atas. Di aplikasi, <b>Cara bermain</b> › <b>Fitur & Pengaturan</b> punya demo singkat untuk tiap aturan.",
           ],
         },
       ],
@@ -234,7 +245,7 @@ const id: HelpText = {
               q: "Online atau Satu ruangan: apa itu Muka datar?",
               a: [
                 "Saat host membuat room privat, aplikasi bertanya <b>Kalian main di mana?</b> Pilih <b>Online</b> kalau masing-masing di ponselnya, di mana saja, termasuk lewat panggilan suara: pengungkapan peran penuh dan chat mata-mata sekali ketuk. Pilih <b>Satu ruangan</b> kalau duduk di satu meja: ini menyalakan <b>Muka datar</b>.",
-                "Dengan Muka datar, semua kartu peran terlihat sama: tanpa kartu mata-mata yang gelap, tanpa label merah MATA-MATA, dan tak ada yang menyala saat pesan mata-mata masuk. Mata-mata membuka chat dengan menahan kartunya.",
+                "Dengan Muka datar, semua kartu peran terlihat sama: tanpa kartu mata-mata yang gelap, tanpa label merah MATA-MATA, dan tak ada yang menyala saat pesan mata-mata masuk. Mata-mata membuka chat dengan menahan kartunya. Saat voting, mereka menekan lama tombol chat.",
                 "Alasannya: di satu meja, lirikan ke ponsel sebelah bisa membongkar perannya. Muka datar mencegah ketidaksengajaan, bukan kecurangan. Kekurangannya: mata-mata lain lebih sulit dikenali dan diajak chat.",
                 "Host bisa mengubahnya di antara permainan lewat <b>Aturan</b> di lobi, dan pemain yang masuk melihat <b>“Muka datar” aktif</b>. Di Malam Permainan, pengaturannya ditentukan per malam. Main online tidak punya fitur ini.",
               ],
@@ -246,7 +257,7 @@ const id: HelpText = {
           q: "Apakah ada chat suara? Untuk apa mikrofonnya?",
           a: [
             "SpySocial tidak punya chat suara: tak ada yang mendengarmu lewat aplikasi. Mikrofon mengubah ucapanmu menjadi teks, jadi kamu tak perlu mengetik.",
-            "Ketuk mikrofon, bicara, lalu ketuk lagi untuk berhenti. Ini berfungsi di chat dan di pertanyaan Spy Talk.",
+            "Ketuk mikrofon, bicara, lalu ketuk lagi untuk berhenti. Ini berfungsi di chat permainan, chat lobi, dan pertanyaan Spy Talk.",
             "Pengenalan suara di ponselmu (atau browsermu) yang mengerjakannya. Kami hanya menerima teksnya, tidak pernah audionya. Detail: <privacy>Kebijakan Privasi</privacy>.",
             "Untuk mengobrol sambil main, pakai panggilan suara terpisah, misalnya di Discord atau telepon.",
             ...(o.roleReveal ? ["Kalau main lewat panggilan suara, host memilih <b>Online</b> di <b>Kalian main di mana?</b>, dan semua bisa menyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya tak ada mikrofon yang menangkap suara pengungkapan mata-mata."] : []),
@@ -490,8 +501,8 @@ const id: HelpText = {
           q: 'Bagaimana cara mendapat sadapan?',
           a: [
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
-            '<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu, dan rentetan harian yang panjang menambah lagi (tiap hari ke-30 berturut-turut, satu Enigma).',
-            '<b>Malam Permainan:</b> para pemenang malam itu mendapat satu Enigma.',
+            "<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu. Tiap hari ke-7 berturut-turut menambah satu Rahasia atau lebih tinggi, dan tiap hari ke-30, satu Enigma.",
+            "<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam.",
             `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
             'Room privat tidak memberi sadapan.',
             ...(o.launch
@@ -597,6 +608,17 @@ const id: HelpText = {
             '+50% XP di setiap permainan, dan ruangan khusus member di Main online.',
             'Bingkai, label, dan gelar pangkatmu. Kamu bisa memimpin grup dan punya 8 penawaran terbuka di Pasar Gelap, bukan 4.',
             'Keanggotaan tidak pernah mengubah cara kamu bermain atau skormu. Paket gratis tetap gratis untuk semua.',
+          ],
+        },
+        {
+          id: 'pack-creator',
+          q: "Bagaimana cara kerja pembuat paket?",
+          a: [
+            "Dengan keanggotaan (usia 13 tahun ke atas), buka <b>Paket</b>, lalu pembuat paket. Paket butuh 30 sampai 200 entri agar bisa dimainkan atau dikirim ke <b>Komunitas</b>.",
+            "Paketmu bisa dimainkan di room privat yang kamu host selama kamu anggota.",
+            "Kirim satu ke <b>Komunitas</b> dan kami memeriksanya dalam 72 jam: pemeriksaan otomatis membaca teksnya dulu, lalu seseorang memutuskan. Statusnya <b>Sedang ditinjau</b>, lalu <b>Di komunitas</b>, atau <b>Perlu diperbaiki</b> beserta alasannya: ubah dan kirim lagi.",
+            "Paket populer bisa jadi <b>Unggulan</b>. Anggota lain menambahkan paket komunitas ke <b>Paketku</b> untuk dimainkan di room mereka.",
+            "Pemain di bawah 18 tahun tidak menerima jawaban kami antara pukul 22.00 dan 07.00.",
           ],
         },
         {
@@ -774,7 +796,7 @@ const id: HelpText = {
           id: 'report-block',
           q: 'Bagaimana cara melaporkan atau memblokir seseorang?',
           a: [
-            'Tekan lama kartunya, di lobi, di permainan, atau di layar akhir, lalu pilih <b>Laporkan</b> atau <b>Blokir</b>.',
+            "Di lobi, tekan lama kartunya. Di permainan, tekan lama fotonya: <b>Laporkan</b> dan <b>Blokir</b> ada di bagian bawah catatanmu tentang dia. Di layar akhir, ketuk kartunya.",
             'Setiap laporan dibaca oleh manusia, dan pemain itu tidak tahu siapa yang melapor.',
             'Memblokir memisahkan kalian: tidak ada yang bisa masuk ke room tempat yang lain berada. Buka blokir di Pengaturan, di <b>Privasi & keamanan</b>: <b>Pemain diblokir</b>.',
             'Berbohong dan menggertak itu bagian dari permainan dan tidak bisa dilaporkan.',
