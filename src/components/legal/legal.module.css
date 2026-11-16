@@ -134,7 +134,11 @@
 }
 
 /* Links (the theme's Link). */
+/* A link here is often a web address (report.cybertip.org): never hyphenated, which would read as an address with a
+   hyphen in it ("report.cy-bertip.org", Child Safety at 393 px, site-qa-1116). It still wraps where it must. */
 .link {
+  hyphens: manual;
+  -webkit-hyphens: manual;
   cursor: pointer;
   /* Chakra writes outline: none as a transparent outline. */
   outline: 2px solid transparent;

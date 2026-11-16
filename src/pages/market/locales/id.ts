@@ -113,7 +113,7 @@ const id: MarketStrings = {
     noChart: 'Tidak ada transaksi dalam periode ini.',
     noPriceYet: (n: number) => `Belum ada harga: perlu ${n} transaksi`,
     zeroTrades: '0 transaksi',
-    stats: { trades7: 'Transaksi dalam 7 hari', trades30: 'Transaksi dalam 30 hari', value30: 'Intel diperdagangkan dalam 30 hari', trades180: 'Transaksi dalam 180 hari' },
+    stats: { trades7: 'Transaksi dalam 7 hari', trades30: 'Transaksi dalam 30 hari', value30: 'Intel diper\u00ADda\u00ADgang\u00ADkan dalam 30 hari', trades180: 'Transaksi dalam 180 hari' },
     tradeIt: 'Beli atau jual di aplikasi, di Pasar Gelap.',
     back: 'Pasar',
     notFound: 'Item itu tidak ada di Pasar Gelap.',

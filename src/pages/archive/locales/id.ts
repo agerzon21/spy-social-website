@@ -45,7 +45,7 @@ const id: ArchiveStrings = {
     },
     sources: {
       eyebrow: 'Asal-usulnya',
-      title: 'Dua jalan masuk, tanpa cara memalsukannya',
+      title: 'Dua jalan masuk, tanpa cara memal\u00ADsu\u00ADkan\u00ADnya', // soft hyphens: one word wider than a 320 px phone at this size (site-qa-1116)
       intercept: { title: 'Ditemukan di Enigma', text: 'Sadapan Enigma, yang paling langka, berisi Unik dengan peluang 0,5%. Sangat Rahasia dan di bawahnya tidak pernah.' },
       tradeUp: { title: 'Lewat tukar tambah', text: 'Sepuluh salinan Legendaris masuk, satu Unik keluar. Kesepuluhnya dimusnahkan di buku besar.' },
       market: { title: 'Dibeli di Temuan Langka', text: 'Pemain saling menjual Unik di Pasar Gelap, dengan Intel. Setiap penjualan muncul di halaman ini.' },

@@ -29,6 +29,10 @@ code.hashBlock {
   white-space: pre;
   margin-block: 0.5rem;
 }
+.block:focus-visible {
+  outline: 2px solid var(--ss-highlight);
+  outline-offset: 2px;
+}
 .betaBox {
   border-width: 2px;
   border-color: #ed8936;

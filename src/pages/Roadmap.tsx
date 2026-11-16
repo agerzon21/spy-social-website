@@ -120,7 +120,7 @@ const Roadmap = () => {
 
         <div className={s.outro}>
           <p className={s.outroText}>{r.outro}</p>
-          <SocialLinks />
+          <SocialLinks landmark={false} />
         </div>
       </div>
     </div>

@@ -26,20 +26,23 @@ const SOCIAL_ACCOUNTS: SocialAccount[] = [
 interface SocialLinksProps {
   // 'icons': a compact icon row (footer). 'list': a titled section of rows (Support pages).
   variant?: 'icons' | 'list'
+  // false: the icon row is a labelled group, not a second <nav> beside the footer's (axe landmark-unique; Roadmap's outro).
+  landmark?: boolean
 }
 
-const SocialLinks = ({ variant = 'icons' }: SocialLinksProps) => {
+const SocialLinks = ({ variant = 'icons', landmark = true }: SocialLinksProps) => {
   const t = useT()
   const label = (a: SocialAccount) => t.footer.on(a.name)
   if (variant === 'icons') {
+    const Row = landmark ? 'nav' : 'div'
     return (
-      <nav aria-label={t.footer.follow} className={s.icons}>
+      <Row aria-label={t.footer.follow} role={landmark ? undefined : 'group'} className={s.icons}>
         {SOCIAL_ACCOUNTS.map((a) => (
           <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer" aria-label={label(a)} title={label(a)} className={s.icon}>
             <a.icon aria-hidden focusable={false} />
           </a>
         ))}
-      </nav>
+      </Row>
     )
   }
 

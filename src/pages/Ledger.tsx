@@ -54,7 +54,8 @@ const Hash = ({ children, block = false }: { children: string; block?: boolean }
 )
 
 const Block = ({ children }: { children: string }) => (
-  <pre className={s.block}>
+  // tabIndex: a long line scrolls sideways, so a keyboard user can reach and scroll it (axe scrollable-region-focusable).
+  <pre className={s.block} tabIndex={0}>
     <code>{children}</code>
   </pre>
 )
