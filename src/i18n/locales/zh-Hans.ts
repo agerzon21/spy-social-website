@@ -778,6 +778,11 @@ const zhHans: Strings = {
     onPhone: '在手机上打开此链接即可加入房间',
     roomCode: '房间码',
     afterInstall: "安装后，请再次点击邀请链接。",
+    preview: {
+      title: '邀请你加入 SpySocial 房间',
+      description: '打开链接，加入 SpySocial 房间。社交推理派对游戏：和朋友一起玩 Spy Talk 和 Spy Sketch。',
+      imageAlt: 'SpySocial：Spy Talk 和 Spy Sketch，五名特工站成一排等待指认',
+    },
   },
 
   joinEvent: {
@@ -794,6 +799,10 @@ const zhHans: Strings = {
     hostTime: (who: string, when: string) => `${who}的时间：${when}`,
     theHost: '主持人',
     hostedBy: (name: string) => `主持人：${name}`,
+    preview: {
+      title: 'SpySocial 游戏之夜',
+      description: 'SpySocial 游戏之夜：看看按你的当地时间几点开始，然后在应用里加入游戏桌。',
+    },
   },
 
   resetPassword: {

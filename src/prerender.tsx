@@ -10,7 +10,7 @@ import { CacheProvider } from '@emotion/react'
 import { renderToString } from 'react-dom/server'
 import { Helmet, HelmetProvider, type HelmetServerState } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
-import App, { PRERENDER_PAGES, preloadPage } from './App'
+import App, { INVITE_SHELL, PRERENDER_PAGES, preloadPage } from './App'
 import { LANGUAGES, loadStrings, type LangCode } from './i18n'
 import I18nProvider from './i18n/I18nProvider'
 import SiteHead from './components/SiteHead'
@@ -19,7 +19,7 @@ import { LIVE } from './lib/legalRelease'
 import { archiveStrings } from './pages/archive/strings'
 import { marketStrings } from './pages/market/strings'
 
-export { PRERENDER_PAGES }
+export { INVITE_SHELL, PRERENDER_PAGES }
 export const LANGUAGE_CODES = LANGUAGES.map((l) => ({ code: l.code, rtl: l.rtl }))
 
 /** One <style> of Emotion's: its key ('css' or 'css-global'), the rules' names and their CSS. */
@@ -107,5 +107,32 @@ export async function renderHostHead(index: number, lang: LangCode): Promise<Hea
   )
   const helmet = helmetContext.helmet
   if (!helmet) throw new Error(`prerender: ${page.path} in ${lang} set no <head>`)
+  return { title: helmet.title.toString(), meta: helmet.meta.toString(), link: helmet.link.toString() }
+}
+
+/**
+ * The invite links' preview cards in `lang` (join-speed-1116: Discord, iMessage, WhatsApp, X read only the HTML, which
+ * had one English card): a room's (/join, /join/<code>) and a Game Night's (/join/e/<id>). Never a code or a name.
+ */
+export async function invitePreviews(lang: LangCode): Promise<{ room: { title: string; description: string; imageAlt: string }; event: { title: string; description: string } }> {
+  const t = await loadStrings(lang)
+  return { room: t.join.preview, event: t.joinEvent.preview }
+}
+
+/** SiteHead's tags for `path` in `lang` alone (a page whose HTML has no body drawn in: a Game Night's invite). */
+export async function renderSiteHead(path: string, lang: LangCode): Promise<HeadTags> {
+  const strings = await loadStrings(lang)
+  const helmetContext: { helmet?: HelmetServerState } = {}
+  renderToString(
+    <HelmetProvider context={helmetContext}>
+      <StaticRouter location={path}>
+        <I18nProvider lang={lang} strings={strings}>
+          <SiteHead />
+        </I18nProvider>
+      </StaticRouter>
+    </HelmetProvider>,
+  )
+  const helmet = helmetContext.helmet
+  if (!helmet) throw new Error(`prerender: ${path} in ${lang} set no <head>`)
   return { title: helmet.title.toString(), meta: helmet.meta.toString(), link: helmet.link.toString() }
 }

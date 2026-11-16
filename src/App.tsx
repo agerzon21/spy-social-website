@@ -72,9 +72,17 @@ const PRERENDERED: Record<string, { page: { preload: () => Promise<void> } | nul
   '/roadmap': { page: Roadmap, src: 'src/pages/Roadmap.tsx' },
   ...(LIVE.launchSite || LIVE.beta2Off ? {} : { '/beta': { page: Beta, src: 'src/pages/Beta.tsx' } }),
   '/delete-account': { page: DeleteAccount, src: 'src/pages/DeleteAccount.tsx' },
-  // /join alone (no code: the page says to open an invite); a room's /join/<code> stays the plain app.
+  // /join alone (no code: the page says to open an invite).
   '/join': { page: Join, src: 'src/pages/Join.tsx' },
 }
+
+/**
+ * A room's invite, /join/<code> (join-speed-1116: it waited for the app, LCP ~2.6 s on a slow phone): one page drawn
+ * for every code, at a stand-in address ('-' is no code's), written to dist/_pre/join-room/<lang>.html, which
+ * vercel.json serves at every /join/<code>. pages/Join takes the code (and ?p=) from the address once React has it.
+ */
+export const INVITE_SHELL = { path: '/join/-', file: 'join-room', src: 'src/pages/Join.tsx' }
+const INVITE_PATH = /^\/join\/[^/]+$/
 
 /** The addresses the build renders to HTML on www and their pages' source files (scripts/prerender.mjs). */
 export const PRERENDER_PAGES = Object.entries(PRERENDERED).map(([path, { src }]) => ({ path, src }))
@@ -82,7 +90,8 @@ export const PRERENDER_PAGES = Object.entries(PRERENDERED).map(([path, { src }])
 /** Loads the chunk of the page at `path` (nothing to load for an address the build doesn't render, or Home). */
 export function preloadPage(path: string): Promise<void> {
   const at = path.replace(/\/+$/, '') || '/'
-  return (HOST === 'main' && PRERENDERED[at]?.page?.preload()) || Promise.resolve()
+  if (HOST !== 'main') return Promise.resolve()
+  return (PRERENDERED[at] ?? (INVITE_PATH.test(at) ? PRERENDERED['/join'] : undefined))?.page?.preload() || Promise.resolve()
 }
 
 /** `helmetContext`: the build's renderer (src/prerender.tsx) reads each page's <head> from it; the browser passes none. */

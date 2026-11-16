@@ -7,8 +7,8 @@ import { openAppHref, tryAppOnLoad, tryAppOnce } from '../lib/appLink'
 import { keepCodeChars } from '../lib/roomCode'
 import { currentPlatform } from '../lib/platform'
 import { useClientValue } from '../lib/clientValue'
-import { playJoinUrl } from '../lib/playUrl'
-import { STORES_OPEN } from '../lib/legalRelease'
+import { PLAY_URL, playJoinUrl } from '../lib/playUrl'
+import { LIVE, STORES_OPEN } from '../lib/legalRelease'
 import { REMINDER_PAGE } from '../lib/launchDay'
 import { APP_STORE_URL, PLAY_STORE_URL } from '../lib/stores'
 import { LaunchLine } from '../components/ui/LaunchReminder'
@@ -19,7 +19,14 @@ import { useT } from '../i18n'
 const Join = () => {
   const { code: rawCode = '', token = '' } = useParams<{ code: string; token: string }>()
   // A link typed in lowercase or with spaces, or with a code's look-alike letters: the code the app reads (lib/roomCode).
-  const code = keepCodeChars(rawCode)
+  // join-speed-1116: every room's invite (/join/<code>) gets one page the build drew without a code (INVITE_SHELL in
+  // App.tsx, scripts/prerender.mjs): while React takes that HTML over the code is null (still to come; public/lang.js
+  // has already put it on the plate: RoomCodePlate), then the address's at once. A page React draws itself has it
+  // from the start.
+  const linkCode = useClientValue<string | null>(() => keepCodeChars(rawCode), rawCode && !token ? null : '')
+  const pending = linkCode === null
+  const code = linkCode ?? ''
+  const hasCode = pending || !!code
   const [searchParams] = useSearchParams()
   const strings = useT()
   const t = strings.join
@@ -28,13 +35,14 @@ const Join = () => {
   // A private room whose host changed its code carries that code as ?p=.
   // Forward it to the app so the invite still joins in one tap, and show it
   // here because it's the code the player would type.
-  const passcode = keepCodeChars(searchParams.get('p') ?? '')
+  const passcode = pending ? '' : keepCodeChars(searchParams.get('p') ?? '')
   const displayCode = passcode || code
   // The app's own path for this invite, ?p= included (lib/appLink makes it spysocial:// or Android's intent://).
   // A Friend Code's link (/join/f/<token>, shown as a QR in person): the same way in, no room to name.
   const appPath = token ? `join/f/${encodeURIComponent(token)}` : `join/${encodeURIComponent(code)}${passcode ? `?p=${encodeURIComponent(passcode)}` : ''}`
   // A friend on a computer: the same room in the browser version (code and ?p=), once LIVE.browserLinks is on.
-  const webLink = playJoinUrl(code, passcode)
+  // While the code is still to come: the browser version's own address (the same while React takes the HTML over).
+  const webLink = pending ? (LIVE.browserLinks ? PLAY_URL : null) : playJoinUrl(code, passcode)
 
   // iPadOS Safari says "Macintosh" (desktop-class browsing): lib/platform tells it by touch (QA F207).
   // The browser's (a computer until React has taken over the build's HTML of /join: www-speed-1112).
@@ -43,7 +51,7 @@ const Join = () => {
   const isMobile = platform === 'ios' || platform === 'android'
   // Until the launch the stores hold the old 2.1.1. A room code keeps its way there, as the second choice with plain words: a
   // friend on 2.1.1 can only be joined from 2.1.1. A Friend Code (2.2 only) or no code has no use for it: the reminder instead.
-  const storesHere = STORES_OPEN || (!!code && !token)
+  const storesHere = STORES_OPEN || (hasCode && !token)
   const appLink = storesHere ? openAppHref(appPath, platform) : openAppHref(appPath, platform, `${typeof window === 'undefined' ? '' : window.location.origin}${REMINDER_PAGE}`)
   // The store buttons step back (outlined) when something above them is the main way in.
   const storesSecondary = !STORES_OPEN || isMobile || (platform === 'desktop' && !!webLink)
@@ -52,8 +60,8 @@ const Join = () => {
   // and spysocial:// without the app is iOS Safari's "Cannot Open Page". Only an in-app browser on iOS (Instagram,
   // TikTok, Facebook), which never hands a link to the app, tries it once (lib/appLink).
   useEffect(() => {
-    if ((code || token) && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
-  }, [platform, code, token, appPath])
+    if (!pending && (code || token) && tryAppOnLoad(platform, navigator.userAgent || '')) tryAppOnce(appPath)
+  }, [platform, pending, code, token, appPath])
 
   return (
     <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="radial-gradient(70% 320px at 50% 0, var(--ss-glow), transparent 70%)">
@@ -66,7 +74,7 @@ const Join = () => {
             <Text color="ss.muted" fontSize={{ base: '18px', md: '20px' }} lineHeight="1.45">
               {token
                 ? t.friendLink
-                : !code
+                : !hasCode
                 ? t.noCode
                 : platform === 'desktop'
                   ? webLink
@@ -76,7 +84,7 @@ const Join = () => {
             </Text>
           </VStack>
 
-          {code && <RoomCodePlate code={displayCode} label={t.roomCode} />}
+          {hasCode && <RoomCodePlate code={pending ? null : displayCode} label={t.roomCode} />}
 
           <VStack spacing={3} align="stretch">
             {platform === 'desktop' && webLink && (
@@ -85,7 +93,7 @@ const Join = () => {
               </Button>
             )}
 
-            {isMobile && (code || token) && (
+            {isMobile && (hasCode || token) && (
               <Button as="a" href={appLink} size="lg" variant="primary">
                 {c.openInApp}
               </Button>

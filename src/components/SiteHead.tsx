@@ -85,9 +85,14 @@ const SiteHead = () => {
     ? t.meta.description
     : `${t.meta.description.replace(words.storeTail, '')} ${words.launchLine(launchDayText(language.locale))}`
   // ledger-uniques-1111: with LIVE.ledgerUniquesOnly the ledger is described as the record of every Unique
+  // The invites say what they are (join-speed-1116): their link preview's words (en.ts join.preview, joinEvent.preview).
   const description = page === 'ledger' && LIVE.ledgerUniquesOnly
     ? LEDGER_DESCRIPTION_UNIQUES[lang]
-    : page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
+    : page === 'join'
+      ? t.join.preview.description
+      : page === 'joinEvent'
+        ? t.joinEvent.preview.description
+        : page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
   const indexed = !(page && UNLISTED.has(page))
   // The address search engines know it by: www.spysocial.app (the bare spysocial.app redirects there, vercel.json),
   // archive.spysocial.app or market.spysocial.app.

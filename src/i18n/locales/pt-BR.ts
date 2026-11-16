@@ -801,6 +801,11 @@ const ptBR: Strings = {
     onPhone: 'Abra este link no celular para entrar na sala',
     roomCode: 'Código da sala',
     afterInstall: "Depois de instalar, toque no link de convite de novo.",
+    preview: {
+      title: 'Convite para uma sala do SpySocial',
+      description: 'Abra o link para entrar na sala no SpySocial, o jogo de festa da dedução social: Spy Talk e Spy Sketch com os amigos.',
+      imageAlt: 'SpySocial: Spy Talk e Spy Sketch, cinco agentes numa fila de reconhecimento',
+    },
   },
 
   joinEvent: {
@@ -817,6 +822,10 @@ const ptBR: Strings = {
     hostTime: (who: string, when: string) => `Horário de ${who}: ${when}`,
     theHost: 'quem organiza',
     hostedBy: (name: string) => `organizado por ${name}`,
+    preview: {
+      title: 'Noite de Jogos no SpySocial',
+      description: 'Uma Noite de Jogos do SpySocial: veja a que horas começa no seu fuso horário e entre nas mesas pelo app.',
+    },
   },
 
   resetPassword: {

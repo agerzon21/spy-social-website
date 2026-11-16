@@ -872,6 +872,12 @@ const en = {
     roomCode: 'Room Code',
     /** Under the store button on a phone: there is no deferred link, so the invite has to be tapped again. */
     afterInstall: "After installing, tap the invite link again.",
+    /** The invite link's preview card (Discord, iMessage, WhatsApp, X: what a friend sees before tapping; no code or name in it). The picture is the launch card. */
+    preview: {
+      title: "You're Invited to a SpySocial Room",
+      description: 'Open the link to join the room in SpySocial, the party game of social deception: Spy Talk and Spy Sketch with friends.',
+      imageAlt: 'SpySocial: Spy Talk and Spy Sketch, five agents in a police line-up',
+    },
   },
 
   joinEvent: {
@@ -889,6 +895,11 @@ const en = {
     hostTime: (who: string, when: string) => `${who}'s time: ${when}`,
     theHost: 'The host',
     hostedBy: (name: string) => `hosted by ${name}`,
+    /** A Game Night link's preview card (no night or host in it; the picture and its words are join.preview's). */
+    preview: {
+      title: 'Game Night on SpySocial',
+      description: 'A SpySocial Game Night: see when it starts in your own time, and join the tables from the app.',
+    },
   },
 
   resetPassword: {

@@ -13,8 +13,12 @@ const corner = (pos: Record<string, string>, sides: string) => (
   />
 )
 
-/** A room code, shown big on a plate: /join's "Room Code" and the code the player would type. */
-export const RoomCodePlate = ({ code, label }: { code: string; label: string }) => (
+/**
+ * A room code, shown big on a plate: /join's "Room Code" and the code the player would type. `code` null: the page the
+ * build drew for every room's invite (pages/Join, join-speed-1116), whose code public/lang.js put in --ss-join-code
+ * before the first paint; shown from there until React has the address's.
+ */
+export const RoomCodePlate = ({ code, label }: { code: string | null; label: string }) => (
   <Box
     position="relative"
     textAlign="center"
@@ -43,6 +47,7 @@ export const RoomCodePlate = ({ code, label }: { code: string; label: string }) 
       color="ss.text"
       overflowWrap="anywhere"
       dir="ltr"
+      sx={code === null ? { '&::after': { content: 'var(--ss-join-code, "\\00a0")' } } : undefined}
     >
       {code}
     </Text>

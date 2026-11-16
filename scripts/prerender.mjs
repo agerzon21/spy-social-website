@@ -20,7 +20,7 @@
  * Usage: node scripts/prerender.mjs dist
  */
 import { existsSync } from 'node:fs'
-import { mkdir, readdir, readFile, rename, rm, rmdir, writeFile } from 'node:fs/promises'
+import { mkdir, readdir, readFile, rm, rmdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
@@ -29,15 +29,13 @@ process.env.NODE_ENV = 'production'
 const dist = resolve(process.argv[2] ?? 'dist')
 const ssrEntry = resolve('dist-ssr/prerender.js')
 if (!existsSync(ssrEntry)) throw new Error(`prerender: no ${ssrEntry} (run vite build --ssr src/prerender.tsx first)`)
-const { render, renderHostHead, HOST_PAGES, HOSTS_ON, PRERENDER_PAGES, LANGUAGE_CODES } = await import(pathToFileURL(ssrEntry).href)
+const { render, renderHostHead, renderSiteHead, invitePreviews, HOST_PAGES, HOSTS_ON, PRERENDER_PAGES, INVITE_SHELL, LANGUAGE_CODES } = await import(pathToFileURL(ssrEntry).href)
 
 /**
  * Every page vercel.json's language rewrites name: each needs a file per language, rendered or (its route off) the
  * page's own file as it is, so a rewrite never points at a missing file. Keep in step with vercel.json.
  */
 const ROUTED = ['privacy', 'terms', 'rules', 'safety', 'game-night-rules', 'ledger', 'transparency', 'child-safety', 'contact-us', 'support', 'whats-new', 'roadmap', 'beta', 'delete-account', 'join']
-/** Pages whose built file also answers other addresses (dist/join/index.html: every /join/<code>): moved, not dropped. */
-const MOVED = { join: '_page/join.html' }
 /** The pages whose built file is dist/_page/<page>.html (vite.config.ts SHARED_PAGES), not dist/<page>/index.html. */
 const SHARED = new Set(['ledger', 'transparency'])
 
@@ -142,6 +140,28 @@ function compose(template, lang, rtl, html, styles, files, tags) {
   return localHead(out, lang, tags)
 }
 
+/**
+ * An invite's link preview in the page's language (join-speed-1116): the card's title, description and picture's
+ * words (the picture itself, og-launch.jpg, is vite.config.ts INVITE_PREVIEWS'). Nothing from the address: no code,
+ * no night, no name.
+ */
+function invitePreview(out, { title, description, imageAlt }) {
+  const t = escapeAttr(title)
+  const d = escapeAttr(description)
+  const swaps = [
+    [/(<meta property="og:title" content=")[^"]*"/, t],
+    [/(<meta name="twitter:title" content=")[^"]*"/, t],
+    [/(<meta property="og:description" content=")[^"]*"/, d],
+    [/(<meta name="twitter:description" content=")[^"]*"/, d],
+    ...(imageAlt ? [[/(<meta property="og:image:alt" content=")[^"]*"/, escapeAttr(imageAlt)]] : []),
+  ]
+  for (const [re, value] of swaps) {
+    if (!re.test(out)) throw new Error(`prerender: an invite page has no match for ${re}`)
+    out = out.replace(re, (_m, a) => `${a}${value}"`)
+  }
+  return out
+}
+
 const rendered = new Map(PRERENDER_PAGES.map((p) => [p.path === '/' ? 'home' : p.path.slice(1), p]))
 for (const slug of ROUTED) if (!rendered.has(slug) && !existsSync(resolve(dist, fileOf(slug)))) throw new Error(`prerender: no built file for ${slug}`)
 for (const slug of rendered.keys()) if (slug !== 'home' && !ROUTED.includes(slug)) throw new Error(`prerender: ${slug} isn't in ROUTED (and vercel.json)`)
@@ -164,10 +184,48 @@ for (const slug of ['home', ...ROUTED]) {
   for (const { code, rtl } of LANGUAGE_CODES) {
     const { html, styles, head: tags } = await render(page.path, code)
     if (!html.includes('<main')) throw new Error(`prerender: ${page.path} in ${code} rendered no <main>`)
-    const out = compose(template, code, rtl, html, styles, files, tags)
+    let out = compose(template, code, rtl, html, styles, files, tags)
+    if (slug === 'join') out = invitePreview(out, (await invitePreviews(code)).room)
     await writeFile(resolve(dist, '_pre', slug, `${baseOf(code)}.html`), out)
     count++
     bytes += out.length
+  }
+}
+/*
+ * Every room's invite, /join/<code> (join-speed-1116): it was the bare app (_page/join.html), so the page waited for
+ * the app's script (LCP ~2.6 s on a throttled phone) and its card was English only. Now one page per language drawn
+ * at a stand-in address (App.tsx INVITE_SHELL; pages/Join leaves the code out until React has the address, and
+ * public/lang.js puts it on the plate before the first paint): dist/_pre/join-room/<lang>.html, which vercel.json
+ * picks by ?lang= and the browser's first language as for /join. Its preview card in that language.
+ */
+{
+  const template = await readFile(resolve(dist, fileOf('join')), 'utf8')
+  const files = pageFiles(INVITE_SHELL.src)
+  await mkdir(resolve(dist, '_pre', INVITE_SHELL.file), { recursive: true })
+  for (const { code, rtl } of LANGUAGE_CODES) {
+    const { html, styles, head: tags } = await render(INVITE_SHELL.path, code)
+    if (!html.includes('<main')) throw new Error(`prerender: ${INVITE_SHELL.path} in ${code} rendered no <main>`)
+    if (html.includes(INVITE_SHELL.path)) throw new Error(`prerender: ${INVITE_SHELL.path} in ${code} shows its stand-in address`)
+    const out = invitePreview(compose(template, code, rtl, html, styles, files, tags), (await invitePreviews(code)).room)
+    await writeFile(resolve(dist, '_pre', INVITE_SHELL.file, `${baseOf(code)}.html`), out)
+    count++
+    bytes += out.length
+  }
+}
+/*
+ * A Game Night's invite, /join/e/<id> (join-speed-1116): its page loads the night from the server, so only its <head>
+ * is drawn here, in each language (SiteHead's tags and the night's card in that language; the body stays the app's,
+ * as before): dist/_pre/join-event/<lang>.html, picked by vercel.json like the room's.
+ */
+{
+  const template = await readFile(resolve(dist, 'join/e/index.html'), 'utf8')
+  await mkdir(resolve(dist, '_pre', 'join-event'), { recursive: true })
+  for (const { code, rtl } of LANGUAGE_CODES) {
+    const tags = await renderSiteHead('/join/e/-', code)
+    let out = template.replace(/<html lang="[^"]*"/, `<html lang="${code}"${rtl ? ' dir="rtl"' : ''}`)
+    const { room, event } = await invitePreviews(code)
+    out = invitePreview(localHead(out, code, tags, true), { ...event, imageAlt: room.imageAlt })
+    await writeFile(resolve(dist, '_pre', 'join-event', `${baseOf(code)}.html`), out)
   }
 }
 /*
@@ -200,13 +258,12 @@ if (hostCount) console.log(`prerender: ${hostCount} host pages' heads (the Archi
 /*
  * On Vercel a file wins over every rewrite, and /<page> found dist/<page>/index.html before vercel.json's language
  * rewrites could pick _pre/<page>/<lang>.html (www-speed-1112, seen live): the page's own file goes (its English is
- * _pre/<page>/en.html, which vercel.json serves by default). /join's moves to _page/join.html (vercel.json: /join/<code>).
+ * _pre/<page>/en.html, which vercel.json serves by default). /join's too: /join/<code> has its own (join-room, above).
  */
 for (const slug of ROUTED) {
   if (SHARED.has(slug)) continue
   const file = resolve(dist, fileOf(slug))
-  if (MOVED[slug]) await rename(file, resolve(dist, MOVED[slug]))
-  else await rm(file)
+  await rm(file)
   const dir = resolve(dist, slug)
   if (!(await readdir(dir)).length) await rmdir(dir)
 }
@@ -218,4 +275,4 @@ for (const slug of ROUTED) {
 await writeFile(resolve(dist, '404.html'), await readFile(resolve(dist, '_host/www.html'), 'utf8'))
 if (offPages.length) console.log(`prerender: off, answered with the 404: ${offPages.join(', ')}`)
 await rm(resolve(dist, '.vite'), { recursive: true, force: true })
-console.log(`prerender: ${count} pages (${rendered.size} addresses x ${LANGUAGE_CODES.length} languages), ${Math.round(bytes / 1024)} KB of HTML`)
+console.log(`prerender: ${count} pages (${rendered.size + 1} addresses with /join/<code> x ${LANGUAGE_CODES.length} languages), ${Math.round(bytes / 1024)} KB of HTML`)

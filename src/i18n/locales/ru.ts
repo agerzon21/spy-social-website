@@ -802,6 +802,11 @@ const ru: Strings = {
     onPhone: 'Откройте эту ссылку на телефоне, чтобы войти в комнату',
     roomCode: 'Код комнаты',
     afterInstall: "После установки нажмите на ссылку-приглашение ещё раз.",
+    preview: {
+      title: 'Вас приглашают в комнату SpySocial',
+      description: 'Откройте ссылку и заходите в комнату. SpySocial — компанейская игра в обман и дедукцию: Spy Talk и Spy Sketch с друзьями.',
+      imageAlt: 'SpySocial: Spy Talk и Spy Sketch, пятеро агентов на опознании',
+    },
   },
 
   joinEvent: {
@@ -818,6 +823,10 @@ const ru: Strings = {
     hostTime: (who: string, when: string) => `${who}, местное время: ${when}`,
     theHost: 'Ведущий',
     hostedBy: (name: string) => `ведущий: ${name}`,
+    preview: {
+      title: 'Игровой вечер в SpySocial',
+      description: 'Игровой вечер SpySocial: узнайте, во сколько он начнётся по вашему времени, и садитесь за столы прямо в приложении.',
+    },
   },
 
   resetPassword: {

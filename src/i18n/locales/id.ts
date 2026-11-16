@@ -801,6 +801,11 @@ const id: Strings = {
     onPhone: 'Buka link ini di HP-mu untuk gabung ke room',
     roomCode: 'Kode room',
     afterInstall: "Setelah instal, ketuk link undangannya lagi.",
+    preview: {
+      title: 'Kamu diundang ke room SpySocial',
+      description: 'Buka link ini untuk gabung ke room di SpySocial, game pesta tipu-tipuan sosial: Spy Talk dan Spy Sketch bareng teman.',
+      imageAlt: 'SpySocial: Spy Talk dan Spy Sketch, lima agen berjajar di barisan identifikasi',
+    },
   },
 
   joinEvent: {
@@ -817,6 +822,10 @@ const id: Strings = {
     hostTime: (who: string, when: string) => `Waktu ${who}: ${when}`,
     theHost: 'host',
     hostedBy: (name: string) => `dipandu ${name}`,
+    preview: {
+      title: 'Malam Permainan di SpySocial',
+      description: 'Malam Permainan SpySocial: lihat jam mulainya menurut waktumu, lalu gabung ke meja dari aplikasi.',
+    },
   },
 
   resetPassword: {

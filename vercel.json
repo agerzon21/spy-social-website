@@ -319,14 +319,12 @@
       "source": "/hello(/?)",
       "destination": "/hello/index.html"
     },
-    {
-      "source": "/join/e/:id",
-      "destination": "/join/e/index.html"
-    },
-    {
-      "source": "/join/:code",
-      "destination": "/_page/join.html"
-    },
+    { "source": "/join/e/:id", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/join-event/:lang.html" },
+    { "source": "/join/e/:id", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/join-event/:lang.html" },
+    { "source": "/join/e/:id", "destination": "/_pre/join-event/en.html" },
+    { "source": "/join/:code", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/join-room/:lang.html" },
+    { "source": "/join/:code", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/join-room/:lang.html" },
+    { "source": "/join/:code", "destination": "/_pre/join-room/en.html" },
     { "source": "/(reset-password|confirm-success|join/.+|profile/[^/]+|agree/[^/]+){/}?", "destination": "/_host/www.html" }
   ]
 }

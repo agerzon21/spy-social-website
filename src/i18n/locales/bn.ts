@@ -803,6 +803,11 @@ const bn: Strings = {
     onPhone: 'রুমে যোগ দিতে লিংকটি আপনার ফোনে খুলুন',
     roomCode: 'রুম কোড',
     afterInstall: "ইনস্টল করার পর আমন্ত্রণ লিংকে আবার ট্যাপ করুন।",
+    preview: {
+      title: 'SpySocial-এর রুমে আপনার আমন্ত্রণ',
+      description: 'লিংক খুলে SpySocial-এ রুমে যোগ দিন। ছলচাতুরীর পার্টি গেম: বন্ধুদের সঙ্গে Spy Talk আর Spy Sketch।',
+      imageAlt: 'SpySocial: Spy Talk আর Spy Sketch, শনাক্তকরণের সারিতে দাঁড়ানো পাঁচজন এজেন্ট',
+    },
   },
 
   joinEvent: {
@@ -819,6 +824,10 @@ const bn: Strings = {
     hostTime: (who: string, when: string) => `${who} যেখানে আছেন, সেখানকার সময়: ${when}`,
     theHost: 'হোস্ট',
     hostedBy: (name: string) => `হোস্ট: ${name}`,
+    preview: {
+      title: 'SpySocial-এ গেম নাইট',
+      description: 'SpySocial গেম নাইট: আপনার সময়ে কখন শুরু হবে দেখুন, আর অ্যাপ থেকে টেবিলে যোগ দিন।',
+    },
   },
 
   resetPassword: {

@@ -803,6 +803,11 @@ const fr: Strings = {
     onPhone: 'Ouvre ce lien sur ton téléphone pour rejoindre le salon',
     roomCode: 'Code du salon',
     afterInstall: "Après l'installation, appuie à nouveau sur le lien d'invitation.",
+    preview: {
+      title: "On t'invite dans un salon SpySocial",
+      description: "Ouvre le lien pour rejoindre le salon dans SpySocial, le jeu d'ambiance de bluff et de déduction\u00A0: Spy Talk et Spy Sketch entre amis.",
+      imageAlt: 'SpySocial\u00A0: Spy Talk et Spy Sketch, cinq agents alignés pour une identification',
+    },
   },
 
   joinEvent: {
@@ -822,6 +827,10 @@ const fr: Strings = {
     },
     theHost: "L'hôte",
     hostedBy: (name: string) => `organisé par ${name}`,
+    preview: {
+      title: 'Soirée jeux sur SpySocial',
+      description: "Une soirée jeux SpySocial\u00A0: vois à quelle heure elle commence chez toi et rejoins les tables depuis l'appli.",
+    },
   },
 
   resetPassword: {
