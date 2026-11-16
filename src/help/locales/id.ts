@@ -135,6 +135,7 @@ const id: HelpText = {
             'Mata-mata membuka <b>Aksi</b> dan mengetuk <b>Tebak</b>, lalu punya 60 detik untuk memilih rahasianya dari daftar sekitar 30 pilihan.',
             'Tebakan benar membuat semua mata-mata menang. Tebakan salah, atau waktu habis, membuat mata-mata itu gugur. Kalau dia yang terakhir, warga menang.',
             'Semua orang melihat siapa yang menebak, jadi kamu ketahuan.',
+            "Kamu menebak sendiri: chat-mu ditutup sampai kamu mengonfirmasi.",
             'Kalau <b>Satu Kali Tebak</b> aktif (room privat dan Malam Permainan yang mengaktifkannya), tim mata-mata hanya punya satu tebakan: salah sekali, seluruh tim kalah.',
           ],
         },

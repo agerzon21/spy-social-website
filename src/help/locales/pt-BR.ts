@@ -135,6 +135,7 @@ const ptBR: HelpText = {
             'Um espião abre <b>Ações</b> e toca em <b>Adivinhar</b>. Ele tem 60 segundos para escolher o segredo numa lista de uns 30.',
             'Acertou: todos os espiões ganham. Errou, ou o tempo acabou: esse espião sai. Se era o último, os locais ganham.',
             'Todo mundo vê quem está adivinhando, então isso entrega você.',
+            "Você adivinha sem ajuda: seu chat fica fechado até você confirmar.",
             'Com <b>Um só palpite</b> ligado (salas privadas e Noites de Jogos que o ligam), a equipe espiã tem uma única chance: errou, a equipe toda perde.',
           ],
         },

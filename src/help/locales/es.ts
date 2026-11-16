@@ -135,6 +135,7 @@ const es: HelpText = {
             'Un espía abre <b>Acciones</b> y toca <b>Resolver</b>. Tiene 60 segundos para elegir el secreto de una lista de unos 30.',
             'Si acierta, ganan todos los espías. Si falla, o se le acaba el tiempo, ese espía queda fuera. Si era el último, ganan los locales.',
             'Todos ven quién está intentando adivinar, así que te delata.',
+            "Adivinas por tu cuenta: tu chat queda cerrado hasta que confirmes.",
             'Con <b>Un solo intento</b> activado (en salas privadas y Noches de Juegos que lo activan), el equipo espía tiene un único intento: si falla, pierde todo el equipo.',
           ],
         },

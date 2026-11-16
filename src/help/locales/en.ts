@@ -156,6 +156,7 @@ const en: HelpText = {
             'A spy opens <b>Actions</b> and taps <b>Solve</b>, then has 60 seconds to pick the secret from a list of about 30.',
             'A right guess wins for every spy. A wrong guess, or running out of time, puts that spy out. If it was the last spy, the Locals win.',
             'Everyone sees who is guessing, so it gives you away.',
+            "You guess alone: your chat is closed until you confirm your pick.",
             'With <b>One Shot</b> on (private rooms and Game Nights that turn it on), the spy team has a single guess: a miss loses for the whole team.',
           ],
         },

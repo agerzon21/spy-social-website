@@ -131,6 +131,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Un espion ouvre <b>Actions</b> et touche <b>Deviner</b>. Il a 60 secondes pour choisir le secret dans une liste d\'une trentaine de réponses.',
           "Bonne réponse : tous les espions gagnent. Mauvaise réponse, ou temps écoulé : cet espion est éliminé. Si c'était le dernier, les locaux gagnent.",
           'Tout le monde voit qui devine : ça te trahit.',
+          "Tu devines sans aide : ton chat reste fermé jusqu’à ta confirmation.",
           "Avec <b>Une seule tentative</b> (salons privés et soirées jeux qui l'activent), l'équipe des espions n'a qu'un essai : raté, et c'est toute l'équipe qui perd.",
         ],
       },
