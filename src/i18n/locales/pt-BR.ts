@@ -45,7 +45,7 @@ const ptBR: Strings = {
       market: "Quanto vale cada item do SpySocial no Mercado Negro: preços a partir das trocas dos jogadores, o que mais sobe e cai e o mais negociado, sem nomear nenhum jogador.",
       transparency: "Todo mês: quanta Intel foi ganha, gasta e corrigida no SpySocial, cada incidente e cada mudança de regra, sem citar nenhum jogador.",
       gameNightRules: "As regras da Noite de Jogos semanal do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
-      faq: "Ajuda do SpySocial: como jogar Spy Talk e Spy Sketch, Jogar online, salas privadas e Noite de Jogos, amigos, trocas, o Mercado Negro, interceptações, Intel, assinatura, sua conta, segurança e solução de problemas.",
+      faq: "Ajuda do SpySocial: como jogar Spy Talk e Spy Sketch, Jogar online, salas privadas e Noite de Jogos, amigos, trocas, o Mercado Negro, interceptações, Intel, plano de membro, sua conta, segurança e solução de problemas.",
       contact: 'Fale com a equipe do SpySocial: escreva para support@spysocial.app se precisar de ajuda com o app, sua conta ou qualquer outra coisa.',
       rules: 'As regras da comunidade do SpySocial: seja gentil, blefe sem trapacear, mantenha a privacidade e o que acontece quando alguém quebra as regras.',
       safety: 'Segurança no SpySocial para jogadores de 13 a 17 anos e para pais e responsáveis: como sair, bloquear e denunciar, e onde buscar ajuda.',
@@ -281,7 +281,7 @@ const ptBR: Strings = {
       title: 'Sua mesa aguarda',
       text: 'Grátis para jogar, sem anúncios.',
       /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
-      purchases: 'Assinaturas opcionais se você quiser mais lugares e palavras.',
+      purchases: 'Opcional: seja membro se quiser mais lugares e palavras.',
     },
   },
 
@@ -426,10 +426,10 @@ const ptBR: Strings = {
         '<b>Salas públicas</b> com jogadores que seu filho ou sua filha não conhece: as mesas do Jogar online, onde o app distribui os jogadores automaticamente e todos jogam com as mesmas regras padrão, e as noites de jogos que organizamos com hora marcada. Os jogadores não podem criar salas públicas, e nenhum jogador é anfitrião de uma.',
       public: (playOnline: boolean) =>
         `<b>Salas públicas e Noites de Jogos</b> com jogadores que seu filho ou sua filha não conhece${playOnline ? ', inclusive o Jogar online, que coloca os jogadores numa mesa automaticamente' : ''}.`,
-      buy: '<b>Itens para comprar:</b> pacotes e assinaturas, pela App Store ou pelo Google Play.',
+      buy: '<b>Itens para comprar:</b> pacotes e planos de membro, pela App Store ou pelo Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        '<b>Itens para comprar:</b> só assinaturas (o Passe de pacotes, mensal ou anual, e o plano Vitalício), pela App Store ou pelo Google Play. Uma assinatura libera os pacotes que não são grátis; nada mais é vendido.',
+        '<b>Itens para comprar:</b> só planos de membro (o Passe de pacotes, mensal ou anual, e o plano Vitalício), pela App Store ou pelo Google Play. Ser membro libera os pacotes que não são grátis; nada mais é vendido.',
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>Interceptações:</b> recompensas ganhas jogando, cada uma com um item aleatório, como um visual novo para o agente. Não podem ser compradas, nem com dinheiro nem com a moeda ganha no jogo, e o app mostra as chances antes de alguém abrir uma.',
@@ -741,7 +741,7 @@ const ptBR: Strings = {
         },
         {
           title: 'Seu agente e o Cofre',
-          text: "Crie seu próprio avatar de espião e ganhe visuais novos jogando. O Cofre vende só assinaturas: todos os pacotes premium nas salas que você comanda e na sua mesa no Jogar online, o criador de pacotes e liderar um grupo. Tudo opcional, e nada disso muda o jeito de jogar.",
+          text: "Crie seu próprio avatar de espião e ganhe visuais novos jogando. O Cofre vende só planos de membro: todos os pacotes premium nas salas que você comanda e na sua mesa no Jogar online, o criador de pacotes e liderar um grupo. Tudo opcional, e nada disso muda o jeito de jogar.",
         },
         { title: 'Noites de jogos', text: 'Partidas online com hora marcada. Toque em “Me avise” e a gente avisa antes de começar.' },
         {
@@ -888,8 +888,8 @@ const ptBR: Strings = {
     },
     eyebrow: 'Beta 2 · Teste ao vivo',
     title: 'Jogue primeiro',
-    lede: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta e um título para cada testador e, com uma partida terminada antes de 7 de dezembro, outro título, 10 interceptações de cada nível e 1 mês de assinatura.',
-    ledeBefore: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta, dois títulos, 10 interceptações de cada nível e 1 mês de assinatura.',
+    lede: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta e um título para cada testador e, com uma partida terminada antes de 7 de dezembro, outro título, 10 interceptações de cada nível e 1 mês como membro.',
+    ledeBefore: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta, dois títulos, 10 interceptações de cada nível e 1 mês como membro.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Partidas, XP e itens do teste são zerados no lançamento.',
     headsUp: '<b>Atenção:</b> o SpySocial da App Store e do Google Play é uma versão antiga. O beta é uma versão nova e bem diferente; você instala pelo link que mandamos por e-mail.',
@@ -938,9 +938,9 @@ const ptBR: Strings = {
       eyebrow: 'O que você ganha',
       title: 'Recompensas beta que ficam com você depois do lançamento',
       items: ['O <b>Pin beta</b>', 'O título <b>Beta tester</b>'],
-      itemsBefore: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Teste de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> de assinatura'],
+      itemsBefore: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Teste de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
       gameTitle: 'Termine uma partida antes de 7 de dezembro e ganhe também',
-      gameItems: ['O título <b>Teste de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> de assinatura'],
+      gameItems: ['O título <b>Teste de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
       trade: { tradable: 'Depois do lançamento, as interceptações de agradecimento podem ser trocadas como tudo o que você ganha.', bound: 'As interceptações de agradecimento ficam na sua conta.' },
       prizeTitle: 'US$\u00a010 de agradecimento pelo PayPal + um bônus de US$\u00a050',
       prize: 'Um agradecimento de US$ 10 pelo PayPal pelo seu tempo na sessão ao vivo: cada jogador confirmado que participar da hora inteira e enviar a pesquisa de 5 minutos recebe em até 7 dias após a sessão, igual no iPhone e no Android. Só instalar a versão de teste não dá direito a ele. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil da sessão, escolhido pelo desenvolvedor em até uma semana.',
@@ -995,7 +995,7 @@ const ptBR: Strings = {
       { title: "Jogar online", text: "Toque em Buscar partida para uma mesa de 4 ou 8, a qualquer hora. Estranhos veem sua cor de agente, nunca seu nome." },
       { title: "Noite de Jogos", text: "Noites online com hora marcada e títulos que só saem naquela noite. A gente avisa antes de começar." },
       { title: "Mercado Negro", text: "Troque itens com amigos. Adultos também compram e vendem itens no Mercado Negro por Intel, que se ganha jogando. Nunca por dinheiro real." },
-      { title: "Assinaturas", text: "Opcional: o Passe de pacotes (mensal ou anual) ou o Vitalício, pago uma vez e que nunca renova. Todos os pacotes premium nas salas que você comanda e na sua mesa no Jogar online, e o criador de pacotes. Nada mais é vendido." },
+      { title: "Membros", text: "Opcional: o Passe de pacotes (mensal ou anual) ou o Vitalício, pago uma vez e que nunca renova. Todos os pacotes premium nas salas que você comanda e na sua mesa no Jogar online, e o criador de pacotes. Nada mais é vendido." },
     ],
     allNotes: "Tudo o que há de novo na 2.2",
     community: {
@@ -1007,7 +1007,7 @@ const ptBR: Strings = {
     },
     notes: {
       tag: "Lançamento",
-      summary: "Nossa maior atualização: Spy Sketch, Jogar online, a Noite de Jogos, a partida de treino, as trocas, o Mercado Negro e as assinaturas.",
+      summary: "Nossa maior atualização: Spy Sketch, Jogar online, a Noite de Jogos, a partida de treino, as trocas, o Mercado Negro e os planos de membro.",
       items: [
         { title: "Partida de treino", text: "Aprenda Spy Talk e Spy Sketch numa partida de verdade com agentes de IA, como local ou como espião. A gente orienta cada jogada e dá à sua partida uma nota de A a F." },
         { title: "Minhas pistas", text: "Os espiões anotam o que descobrem na página de pistas, montam uma lista curta de lugares ou palavras possíveis e dão o palpite final a partir dela." },

@@ -3,7 +3,7 @@ import type { HelpText } from '../types'
 /** Português (pt-BR): "você", direto e informal como o app; termos do app (Sala privada, Criar sala, Jogar online, Buscar partida, Ações, Adivinhar, Cofre, Mercado Negro, Achados raros, interceptações, Intel, Ajustes). */
 const ptBR: HelpText = {
   title: 'Ajuda e perguntas frequentes',
-  lede: 'Respostas rápidas sobre como jogar SpySocial, sua conta, as recompensas e a assinatura.',
+  lede: 'Respostas rápidas sobre como jogar SpySocial, sua conta, as recompensas e o plano de membro.',
   search: 'Buscar na ajuda',
   searchHint: 'Tente “votar” ou “troca”',
   clear: 'Limpar',
@@ -38,7 +38,7 @@ const ptBR: HelpText = {
           q: 'O SpySocial é grátis?',
           a: [
             'Sim. Os dois jogos, o Jogar online, as salas privadas e a Noite de Jogos são grátis e sem anúncios.',
-            `A assinatura, opcional, libera os pacotes premium e alguns visuais para o seu agente. Nada que você compra ajuda a ganhar.${o.purchases ? '' : ' A assinatura começa a ser vendida com a versão 2.2.'}`,
+            `Ser membro é opcional e libera os pacotes premium e alguns visuais para o seu agente. Nada que você compra ajuda a ganhar.${o.purchases ? '' : ' O plano de membro começa a ser vendido com a versão 2.2.'}`,
           ],
         },
         {
@@ -264,8 +264,8 @@ const ptBR: HelpText = {
           id: 'parties',
           q: 'O que é um grupo?',
           a: [
-            'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso uma assinatura para começar. Se o líder sair, a liderança passa primeiro para alguém com assinatura.',
-            ...(o.partyLeaderLapse ? ['Se a assinatura do líder terminar, o grupo é encerrado para todos; a liderança não passa para ninguém. Uma partida em andamento vai até o fim e, depois, cada um busca sozinho.'] : []),
+            'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso ser membro para começar. Se o líder sair, a liderança passa primeiro para um membro.',
+            ...(o.partyLeaderLapse ? ['Se o líder deixar de ser membro, o grupo é encerrado para todos; a liderança não passa para ninguém. Uma partida em andamento vai até o fim e, depois, cada um busca sozinho.'] : []),
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
             'Numa mesa de 12 lugares da Noite de Jogos, até 6. Membros do grupo que procuram partida sozinhos também contam: juntos, nunca mais que meia mesa.',
             'Para sentar na mesma mesa, busquem pelo grupo: <b>Jogar online</b> sozinho é uma busca individual. Depois de uma partida do Jogar online, <b>Voltar ao seu grupo</b> leva você de volta a ele.',
@@ -301,7 +301,7 @@ const ptBR: HelpText = {
             ...(o.interceptsInTrades ? ['Adultos também podem colocar Interceptações fechadas numa troca: escolha quantas de cada nível. Cada uma conta como um dos 10 itens.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Durante o teste beta, até 7 de dezembro, qualquer Interceptação fechada pode entrar numa troca, não importa como você a conseguiu. De qualquer forma, as Interceptações recomeçam do zero no lançamento.'] : []),
             'O que você coloca numa troca aberta fica reservado para ela: não pode ir para outra troca nem para o Mercado Negro ao mesmo tempo. Se a Intel de uma troca for gasta antes de a troca acontecer, aparece um aviso naquele lado, e a troca não pode acontecer até a quantia ser reduzida.',
-            'O app marca quais itens dá para trocar. A assinatura e o que ela inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.' + (o.launch ? " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você, incluindo uma Escolha do desenvolvedor: fica na sua conta. A Intel nunca fica presa a uma conta, venha de onde vier." : ''),
+            'O app marca quais itens dá para trocar. O plano de membro e o que ele inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.' + (o.launch ? " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você, incluindo uma Escolha do desenvolvedor: fica na sua conta. A Intel nunca fica presa a uma conta, venha de onde vier." : ''),
             'Intel só pode ser trocada entre adultos.',
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, testadores adultos também trocam Intel. Em 7 de dezembro, toda a Intel trocada volta: quem deu recebe de volta, e cada um fica só com a Intel que ganhou.', 'A partir de 7 de dezembro, interceptações de um código ou presente, o que sair delas e o que você conseguir com elas na Troca ficam na sua conta: dá para usar, mas não para trocar nem vender.']),
             'Comprar ou vender itens, Intel ou contas por dinheiro de verdade é contra as regras.',
@@ -435,7 +435,7 @@ const ptBR: HelpText = {
           q: 'O que são interceptações?',
           a: [
             'Recompensas lacradas que você ganha jogando. Cada uma abre num item cosmético aleatório, como um visual para o seu agente ou uma comemoração.',
-            'Nunca são vendidas por dinheiro, e a assinatura não dá mais nem chances melhores.',
+            'Nunca são vendidas por dinheiro, e ser membro não dá mais nem chances melhores.',
             o.launch ? 'Antes de abrir ou comprar uma, o app mostra as chances exatas em <b>Chances</b>.' : 'Antes de abrir uma, o app mostra as chances exatas em <b>Chances</b>.',
           ],
         },
@@ -498,7 +498,7 @@ const ptBR: HelpText = {
             'Ele pode estar reservado por uma oferta aberta no Mercado Negro. Dá para cancelar a oferta quando quiser.',
             'Talvez você o tenha triturado ou usado numa Troca.',
             'Uma troca revertida o devolve ao jogador que o deu.',
-            'Quando uma assinatura termina ou é reembolsada, o que vinha com ela deixa de estar disponível.',
+            'Quando um plano de membro termina ou é reembolsado, o que vinha com ele deixa de estar disponível.',
             ...(o.launch ? [] : ['As interceptações de versões de teste e seus itens são apagados antes de a 2.2 abrir para todos.']),
             'Nada disso? Escreva para <email/> com seu nome de usuário, o nome do item e quando você o viu pela última vez.',
           ],
@@ -513,16 +513,16 @@ const ptBR: HelpText = {
                   ? 'Elas foram adicionadas no lançamento da 2.2 e são suas. Todos da lista de testadores ganharam o <b>Pin beta</b> e o título <b>Beta tester</b>. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
                   : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
                 o.launch
-                  ? 'Quem terminou pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas) também ganhou o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.'
-                  : 'Termine pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas) e você também ganha o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
+                  ? 'Quem terminou pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas) também ganhou o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês como membro.'
+                  : 'Termine pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas) e você também ganha o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês como membro.',
                 o.testerInterceptsTradable
                   ? 'O <b>Pin beta</b>, o título <b>Teste de campo</b> e as interceptações de agradecimento podem ser trocados como tudo o que você ganha.'
                   : 'O <b>Pin beta</b> e o título <b>Teste de campo</b> podem ser trocados como tudo o que você ganha; como outros presentes, as interceptações de agradecimento ficam na sua conta.',
               ]
               : [
                 o.launch
-                  ? 'Elas foram adicionadas no lançamento da 2.2 e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês de assinatura. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
-                  : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
+                  ? 'Elas foram adicionadas no lançamento da 2.2 e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês como membro. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
+                  : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês como membro.',
               ]),
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
@@ -548,13 +548,13 @@ const ptBR: HelpText = {
     },
     {
       id: 'membership',
-      title: 'Assinatura',
+      title: 'Membros',
       items: [
         {
           id: 'membership-includes',
-          q: 'O que a assinatura inclui?',
+          q: 'O que o plano de membro inclui?',
           a: [
-            ...(o.purchases ? [] : ['A assinatura começa a ser vendida com a versão 2.2.']),
+            ...(o.purchases ? [] : ['O plano de membro começa a ser vendido com a versão 2.2.']),
             'Todos os pacotes premium, inclusive os novos. Todo mundo joga com eles nas salas em que você é o anfitrião e na sua mesa de Jogar online.',
             'Crie seus próprios pacotes com o criador e compartilhe na comunidade.',
             '+50% de XP em toda partida e salas só para membros no Jogar online.',
@@ -568,20 +568,20 @@ const ptBR: HelpText = {
           a: [
             '<b>Agente</b> é o passe de pacotes mensal, <b>Elite</b> o anual, e <b>Mestre-espião</b> é o Vitalício: um pagamento só, sem renovação.',
             'Mestre-espião acrescenta as três molduras de metal, o título Cartão ouro, a comemoração Tempestade dourada e itens do Vitalício para o seu agente.',
-            'Vitalício dura enquanto oferecermos o SpySocial, não a sua vida toda. Não há teste grátis, e a assinatura não é compartilhada pelo Compartilhamento Familiar.',
+            'Vitalício dura enquanto oferecermos o SpySocial, não a sua vida toda. Não há teste grátis, e o plano de membro não é compartilhado pelo Compartilhamento Familiar.',
           ],
         },
         ...(o.memberLoyalty
           ? [
             {
               id: 'member-time',
-              q: "O que é “Assinante desde”?",
+              q: "O que é “Membro desde”?",
               a: [
-                "Enquanto você for assinante, a <b>Conta</b> mostra quando a assinatura começou e há quanto tempo você é assinante, e o <b>Cofre</b> mostra seus carimbos: 1, 3 e 6 meses, 1, 2 e 3 anos, e depois a cada ano.",
-                "Conta o tempo em que sua assinatura ficou ativa sem interrupção: um passe, o Vitalício, um presente ou um código. Tempo reembolsado e compras de teste não contam.",
-                "Ele se ganha ficando. No primeiro dia em que sua assinatura não estiver mais ativa (depois do período de carência que a loja dá quando um pagamento falha), seu tempo de assinante e seus carimbos zeram. Se você assinar de novo, “Assinante desde” e seu tempo começam do zero.",
-                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como assinante, incluindo os meses de passe antes dele, e continua crescendo, com cada carimbo que adicionarmos depois.",
-                "Os outros jogadores veem só há quanto tempo, com seu carimbo, na sua ficha de jogador, nunca a data nem o preço. Desative <b>Mostrar meu tempo de assinante</b> nos Ajustes para esconder. O tempo de uma conta de menor de 13 anos nunca aparece para os outros.",
+                "Enquanto você for membro, a <b>Conta</b> mostra desde quando e há quanto tempo você é membro, e o <b>Cofre</b> mostra seus carimbos: 1, 3 e 6 meses, 1, 2 e 3 anos, e depois a cada ano.",
+                "Conta o tempo em que você foi membro sem interrupção: um passe, o Vitalício, um presente ou um código. Tempo reembolsado e compras de teste não contam.",
+                "Ele se ganha ficando. No primeiro dia em que você deixar de ser membro (depois do período de carência que a loja dá quando um pagamento falha), seu tempo de membro e seus carimbos zeram. Se você voltar a ser membro, “Membro desde” e seu tempo começam do zero.",
+                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como membro, incluindo os meses de passe antes dele, e continua crescendo, com cada carimbo que adicionarmos depois.",
+                "Os outros jogadores veem só há quanto tempo, com seu carimbo, na sua ficha de jogador, nunca a data nem o preço. Desative <b>Mostrar meu tempo de membro</b> nos Ajustes para esconder. O tempo de uma conta de menor de 13 anos nunca aparece para os outros.",
                 "Os carimbos só mudam a aparência do seu perfil: não dão XP nem chances melhores, e não podem ser trocados.",
               ],
             },
@@ -589,8 +589,8 @@ const ptBR: HelpText = {
               id: 'membership-price',
               q: "Meu preço vai subir?",
               a: [
-                "Enquanto seu passe renovar sem interrupção, você continua pagando o preço de agora, mesmo que o preço suba para novos assinantes. A loja ainda pode ajustá-lo por impostos locais ou câmbio.",
-                "Se trocar para o outro passe, você paga o preço atual desse plano. Se sua assinatura acabar e você voltar depois, pode pagar o preço da época. O Vitalício é pago uma vez e nunca renova.",
+                "Enquanto seu passe renovar sem interrupção, você continua pagando o preço de agora, mesmo que o preço suba para novos membros. A loja ainda pode ajustá-lo por impostos locais ou câmbio.",
+                "Se trocar para o outro passe, você paga o preço atual desse plano. Se seu plano acabar e você voltar depois, pode pagar o preço da época. O Vitalício é pago uma vez e nunca renova.",
               ],
             },
             ]
@@ -602,13 +602,13 @@ const ptBR: HelpText = {
             'Agente e Elite renovam sozinhos até você cancelar: na App Store, pelo menos 24 horas antes de o período acabar; no Google Play, antes da data de renovação. Você mantém os benefícios até o fim do período pago.',
             '<b>iPhone ou iPad:</b> Ajustes, seu nome, Assinaturas, SpySocial.',
             '<b>Android:</b> o app Google Play Store, sua foto de perfil, Pagamentos e assinaturas, Assinaturas, SpySocial.',
-            '<b>Gerenciar assinatura</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um passe.',
-            ...(o.memberLoyalty ? ["No <b>Cofre</b>, <b>Cancelar assinatura</b> (abaixo de Gerenciar assinatura) mostra antes uma tela com os fatos: se a sua assinatura terminar, seu tempo de assinante e seus carimbos zeram e começam do zero, e seu preço garantido termina. O único botão, <b>Continuar para cancelar</b>, leva direto à loja. <b>Gerenciar assinatura</b> continua abrindo a loja diretamente. Nada muda antes do fim do período pago."] : []),
+            '<b>Gerenciar plano</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um passe.',
+            ...(o.memberLoyalty ? ["No <b>Cofre</b>, <b>Cancelar plano</b> (abaixo de Gerenciar plano) mostra antes uma tela com os fatos: se o seu plano terminar, seu tempo de membro e seus carimbos zeram e começam do zero, e seu preço garantido termina. O único botão, <b>Continuar para cancelar</b>, leva direto à loja. <b>Gerenciar plano</b> continua abrindo a loja diretamente. Nada muda antes do fim do período pago."] : []),
           ],
         },
         {
           id: 'restore-purchases',
-          q: 'Como recupero minha assinatura?',
+          q: 'Como recupero meu plano de membro?',
           a: [
             'Toque em <b>Restaurar compras</b> no app com o celular conectado à conta da App Store ou do Google Play com que você pagou.',
             'Ela passa para a conta do SpySocial que você está usando e sai de qualquer outra conta em que estava, mesmo excluída.',
@@ -633,7 +633,7 @@ const ptBR: HelpText = {
           q: 'Conta de visitante ou salva: qual a diferença?',
           a: [
             'Um <b>visitante</b> joga em salas privadas na hora. Uma conta de visitante fica num celular só, e sair dela apaga a conta para sempre.',
-            `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e sua assinatura em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
+            `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e seu plano de membro em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
             'Você pode salvar uma conta de visitante quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o visitante salve a conta primeiro.',
           ],
         },
@@ -644,7 +644,7 @@ const ptBR: HelpText = {
             'Uma <b>conta salva</b> volta em qualquer celular: abra o SpySocial e entre do mesmo jeito de antes (Apple, Google ou o mesmo e-mail). Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia, e muitas vezes é por isso que o progresso parece ter sumido.',
             'Uma <b>conta de visitante</b> fica num celular só. Se o app foi apagado, o celular foi perdido ou você saiu da conta, ela se foi para sempre e não conseguimos trazê-la de volta.',
             'Se o app mostrar <b>Não foi possível abrir sua conta</b>, sua conta continua salva no celular, só não deu para lê-la naquele momento. Toque em <b>Tentar de novo</b>, ou feche o app e abra de novo.',
-            'A assinatura não se perde: <b>Restaurar compras</b> traz de volta. Não conseguimos juntar contas nem mover itens entre elas.',
+            'O plano de membro não se perde: <b>Restaurar compras</b> traz de volta. Não conseguimos juntar contas nem mover itens entre elas.',
             'Se você tinha uma conta salva, escreva para <email/> com seu nome de usuário e como entrava, e nós verificamos.',
           ],
         },
@@ -716,7 +716,7 @@ const ptBR: HelpText = {
           a: [
             "No app: <b>Conta</b>, <b>Ajustes</b>, <b>Conta e acesso</b>, <b>Excluir conta</b>. Não dá para desfazer. Uma conta de visitante também é excluída ali, ou ao sair da conta.",
             'Você também pode pedir por e-mail: veja <delete>Excluir sua conta</delete>.',
-            'Excluir a conta não cancela um passe de assinatura: cancele também na loja.',
+            'Excluir a conta não cancela seu Passe de pacotes: cancele também na loja.',
           ],
         },
         {

@@ -34,7 +34,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'SpySocial est-il gratuit ?',
         a: [
           'Oui. Les deux jeux, Jouer en ligne, les salons privés et la soirée jeux sont gratuits, sans publicité.',
-          `L'abonnement, facultatif, débloque les packs premium et quelques looks pour ton agent. Rien de ce que tu achètes ne t'aide à gagner.${o.purchases ? '' : " L'abonnement sera en vente avec la version 2.2."}`,
+          `Devenir membre, c'est facultatif : ça débloque les packs premium et quelques looks pour ton agent. Rien de ce que tu achètes ne t'aide à gagner.${o.purchases ? '' : " Le statut de membre sera en vente avec la version 2.2."}`,
         ],
       },
       {
@@ -260,8 +260,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'parties',
         q: "C'est quoi, un groupe ?",
         a: [
-          "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut un abonnement pour en créer un. Si le chef part, la main passe d'abord à quelqu'un qui a un abonnement.",
-          ...(o.partyLeaderLapse ? ["Si l'abonnement du chef prend fin, le groupe est dissous pour tout le monde ; la main ne passe à personne. Une partie en cours va jusqu'au bout, puis chacun cherche de son côté."] : []),
+          "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut être membre pour en créer un. Si le chef part, la main passe d'abord à un membre.",
+          ...(o.partyLeaderLapse ? ["Si le chef n'est plus membre, le groupe est dissous pour tout le monde ; la main ne passe à personne. Une partie en cours va jusqu'au bout, puis chacun cherche de son côté."] : []),
           "Aux tables de Jouer en ligne et aux soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
           "À une table de 12 places d'une soirée jeux, jusqu'à 6. Les membres du groupe qui cherchent seuls comptent aussi : ensemble, jamais plus de la moitié d'une table.",
           "Pour s'asseoir à la même table, cherchez depuis le groupe : <b>Jouer en ligne</b> tout seul, c'est une recherche en solo. Après une partie de Jouer en ligne, <b>Retour à ton groupe</b> t'y ramène.",
@@ -297,7 +297,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.interceptsInTrades ? ['Les adultes peuvent aussi mettre des interceptions non ouvertes dans un échange : choisis combien de chaque niveau. Chacune compte pour un des 10 objets.'] : []),
           ...(o.interceptsInTrades && !o.launch ? ["Pendant la bêta, jusqu'au 7 décembre, n'importe quelle interception non ouverte peut entrer dans un échange, quelle que soit son origine. De toute façon, les interceptions repartent de zéro au lancement."] : []),
           "Ce que tu mets dans un échange ouvert lui est réservé : ça ne peut pas aller dans un autre échange ou sur le Marché noir en même temps. Si l'Intel d'un échange est dépensé avant qu'il se fasse, un avertissement s'affiche de ce côté, et l'échange ne peut pas se faire tant que le montant n'est pas baissé.",
-          "L'appli indique quels objets s'échangent. L'abonnement et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons, Choix du développeur compris : ça reste sur ton compte. L'Intel n'est jamais lié à un compte, d'où qu'il vienne." : ''),
+          "L'appli indique quels objets s'échangent. Le statut de membre et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons, Choix du développeur compris : ça reste sur ton compte. L'Intel n'est jamais lié à un compte, d'où qu'il vienne." : ''),
           "L'Intel ne s'échange qu'entre adultes.",
           ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel. Le 7 décembre, tout l’Intel échangé est rendu : celui qui l’a donné le récupère, et chacun ne garde que l’Intel qu’il a gagné.', 'À partir du 7 décembre, les interceptions reçues par un code ou un cadeau, ce qu’elles contiennent et ce que tu obtiens avec elles par Échange restent sur ton compte : tu peux t’en servir, mais pas les échanger ni les vendre.']),
           "Acheter ou vendre des objets, de l'Intel ou des comptes contre de l'argent réel est interdit.",
@@ -431,7 +431,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "C'est quoi, les interceptions ?",
         a: [
           "Des récompenses scellées que tu gagnes en jouant. Chacune s'ouvre sur un objet cosmétique au hasard, comme un look pour ton agent ou une célébration.",
-          "Elles ne sont jamais vendues contre de l'argent, et l'abonnement n'en donne ni plus ni de meilleures chances.",
+          "Elles ne sont jamais vendues contre de l'argent, et être membre n'en donne ni plus ni de meilleures chances.",
           o.launch ? "Avant d'en ouvrir ou d'en acheter une, l'appli affiche les probabilités exactes dans <b>Probabilités</b>." : "Avant d'en ouvrir une, l'appli affiche les probabilités exactes dans <b>Probabilités</b>.",
         ],
       },
@@ -494,7 +494,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Il est peut-être réservé par une offre ouverte au Marché noir. Tu peux arrêter l'offre à tout moment.",
           "Tu l'as peut-être déchiqueté ou utilisé dans un Échange.",
           "Un échange annulé le renvoie au joueur qui l'a donné.",
-          "Quand un abonnement se termine ou est remboursé, ce qui allait avec n'est plus disponible.",
+          "Quand une formule membre se termine ou est remboursée, ce qui allait avec n'est plus disponible.",
           ...(o.launch ? [] : ['Les interceptions des versions de test et leurs objets sont effacés avant que la 2.2 ouvre à tout le monde.']),
           "Rien de tout ça ? Écris à <email/> avec ton nom d'utilisateur, le nom de l'objet et quand tu l'as vu pour la dernière fois.",
         ],
@@ -509,16 +509,16 @@ const sections = (o: HelpOpts): HelpSection[] => [
                 ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi. Tous les testeurs de la liste ont reçu le <b>Pin bêta</b> et le titre <b>« Équipe bêta »</b>. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
                 : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi. Tous les testeurs de la liste reçoivent le <b>Pin bêta</b> et le titre <b>« Équipe bêta »</b>.",
               o.launch
-                ? "Les testeurs qui ont terminé au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans leurs Stats) ont aussi reçu le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement."
-                : "Termine au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans tes Stats) et tu reçois aussi le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement.",
+                ? "Les testeurs qui ont terminé au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans leurs Stats) ont aussi reçu le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre."
+                : "Termine au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans tes Stats) et tu reçois aussi le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre.",
               o.testerInterceptsTradable
                 ? "Le <b>Pin bêta</b>, le titre <b>« Test de terrain »</b> et les interceptions de remerciement s'échangent comme tout ce que tu gagnes."
                 : "Le <b>Pin bêta</b> et le titre <b>« Test de terrain »</b> s'échangent comme tout ce que tu gagnes ; comme les autres cadeaux, les interceptions de remerciement restent sur ton compte.",
             ]
             : [
               o.launch
-                ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi : le <b>Pin bêta</b>, les titres <b>« Équipe bêta »</b> et <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
-                : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi : le <b>Pin bêta</b>, les titres <b>« Équipe bêta »</b> et <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois d'abonnement.",
+                ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi : le <b>Pin bêta</b>, les titres <b>« Équipe bêta »</b> et <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
+                : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi : le <b>Pin bêta</b>, les titres <b>« Équipe bêta »</b> et <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre.",
             ]),
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
@@ -544,13 +544,13 @@ const sections = (o: HelpOpts): HelpSection[] => [
   },
   {
     id: 'membership',
-    title: 'Abonnement',
+    title: 'Membres',
     items: [
       {
         id: 'membership-includes',
-        q: "Que comprend l'abonnement ?",
+        q: "Que comprend le statut de membre ?",
         a: [
-          ...(o.purchases ? [] : ["L'abonnement sera en vente avec la version 2.2."]),
+          ...(o.purchases ? [] : ["Le statut de membre sera en vente avec la version 2.2."]),
           'Tous les packs premium, nouveaux compris. Tout le monde y joue dans les salons dont tu es l’hôte et à ta table de Jouer en ligne.',
           'Crée tes propres packs avec le créateur et partage-les dans la communauté.',
           '+50 % d\'XP à chaque partie, et des salons réservés aux membres à Jouer en ligne.',
@@ -562,9 +562,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'membership-plans',
         q: "C'est quoi, Agent, Élite et Maître espion ?",
         a: [
-          "<b>Agent</b> est l'abonnement mensuel aux packs, <b>Élite</b> l'annuel, et <b>Maître espion</b> l'accès à vie : un seul paiement, sans renouvellement.",
+          "<b>Agent</b> est le Pass packs mensuel, <b>Élite</b> l'annuel, et <b>Maître espion</b> l'accès à vie : un seul paiement, sans renouvellement.",
           'Maître espion ajoute les trois cadres métalliques, le titre Carte or, la célébration Tempête dorée et des objets pour ton agent réservés à l\'accès à vie.',
-          "L'accès à vie dure tant que nous proposons SpySocial, pas toute ta vie. Pas d'essai gratuit, et l'abonnement ne se partage pas via le Partage familial.",
+          "L'accès à vie dure tant que nous proposons SpySocial, pas toute ta vie. Pas d'essai gratuit, et le statut de membre ne se partage pas via le Partage familial.",
         ],
       },
       ...(o.memberLoyalty
@@ -574,9 +574,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "C'est quoi, « Membre depuis » ?",
             a: [
               "Tant que tu es membre, le <b>Compte</b> indique depuis quand et depuis combien de temps tu l'es, et le <b>Coffre</b> montre tes tampons : 1, 3 et 6 mois, 1, 2 et 3 ans, puis chaque année.",
-              "On compte le temps où ton abonnement a été actif sans interruption : un abonnement mensuel ou annuel, l'accès à vie, un cadeau ou un code. Le temps remboursé et les achats de test ne comptent pas.",
-              "Ça se gagne en restant. Dès le premier jour où ton abonnement n'est plus actif (après le délai de grâce que le store accorde en cas d'échec de paiement), ton ancienneté et tes tampons disparaissent. Si tu redeviens membre, « Membre depuis » et ton ancienneté repartent de zéro.",
-              "L'<b>accès à vie</b> fait exception : ton ancienneté compte depuis ton premier jour de membre, mois d'abonnement d'avant compris, et continue de grandir, avec chaque tampon que nous ajouterons.",
+              "On compte le temps où tu as été membre sans interruption : un Pass packs, l'accès à vie, un cadeau ou un code. Le temps remboursé et les achats de test ne comptent pas.",
+              "Ça se gagne en restant. Dès le premier jour où tu n'es plus membre (après le délai de grâce que le store accorde en cas d'échec de paiement), ton ancienneté et tes tampons disparaissent. Si tu redeviens membre, « Membre depuis » et ton ancienneté repartent de zéro.",
+              "L'<b>accès à vie</b> fait exception : ton ancienneté compte depuis ton premier jour de membre, mois de Pass packs d'avant compris, et continue de grandir, avec chaque tampon que nous ajouterons.",
               "Les autres joueurs voient seulement ton ancienneté, avec ton tampon, sur ta fiche de joueur, jamais la date ni le prix. Désactive <b>Afficher mon ancienneté de membre</b> dans les Réglages pour le cacher. L'ancienneté d'un compte de moins de 13 ans n'est jamais montrée aux autres.",
               "Les tampons changent seulement l'apparence de ton profil : pas d'XP, pas de meilleures chances, et ils ne s'échangent pas.",
             ],
@@ -585,8 +585,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'membership-price',
             q: "Mon prix va-t-il augmenter ?",
             a: [
-              "Tant que ton abonnement se renouvelle sans interruption, tu gardes le prix que tu paies aujourd'hui, même s'il augmente pour les nouveaux membres. Le store peut encore l'ajuster selon les taxes locales ou la devise.",
-              "Si tu passes à l'autre abonnement, tu paies le prix actuel de cette formule. Si ton abonnement prend fin et que tu reviens plus tard, tu paieras peut-être le prix du moment. L'accès à vie se paie une fois et ne se renouvelle jamais.",
+              "Tant que ta formule se renouvelle sans interruption, tu gardes le prix que tu paies aujourd'hui, même s'il augmente pour les nouveaux membres. Le store peut encore l'ajuster selon les taxes locales ou la devise.",
+              "Si tu passes à l'autre Pass packs, tu paies le prix actuel de cette formule. Si ta formule prend fin et que tu reviens plus tard, tu paieras peut-être le prix du moment. L'accès à vie se paie une fois et ne se renouvelle jamais.",
             ],
           },
           ]
@@ -598,16 +598,16 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Agent et Élite se renouvellent automatiquement jusqu'à ce que tu résilies : sur l'App Store, au moins 24 heures avant la fin de la période ; sur Google Play, avant la date de renouvellement. Tu gardes les avantages jusqu'à la fin de la période payée.",
           '<b>iPhone ou iPad :</b> Réglages, ton nom, Abonnements, SpySocial.',
           "<b>Android :</b> l'appli Google Play Store, ta photo de profil, Paiements et abonnements, Abonnements, SpySocial.",
-          "<b>Gérer l'abonnement</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte, ou acheter l'accès à vie, ne résilie pas un abonnement.",
-          ...(o.memberLoyalty ? ["Dans le <b>Coffre</b>, <b>Résilier l’abonnement</b> (sous Gérer l'abonnement) affiche d'abord un seul écran avec les faits : si ton abonnement prend fin, ton ancienneté et tes tampons repartent à zéro, et ton prix bloqué prend fin. Son seul bouton, <b>Continuer la résiliation</b>, mène directement à la boutique. <b>Gérer l'abonnement</b> ouvre toujours directement la boutique. Rien ne change avant la fin de la période payée."] : []),
+          "<b>Gérer ma formule</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte, ou acheter l'accès à vie, ne résilie pas un Pass packs.",
+          ...(o.memberLoyalty ? ["Dans le <b>Coffre</b>, <b>Résilier la formule</b> (sous Gérer ma formule) affiche d'abord un seul écran avec les faits : si ta formule prend fin, ton ancienneté et tes tampons repartent à zéro, et ton prix bloqué prend fin. Son seul bouton, <b>Continuer la résiliation</b>, mène directement à la boutique. <b>Gérer ma formule</b> ouvre toujours directement la boutique. Rien ne change avant la fin de la période payée."] : []),
         ],
       },
       {
         id: 'restore-purchases',
-        q: 'Comment récupérer mon abonnement ?',
+        q: 'Comment récupérer mon statut de membre ?',
         a: [
           "Touche <b>Restaurer les achats</b> dans l'appli, avec ton téléphone connecté au compte App Store ou Google Play qui a payé.",
-          "Ton abonnement passe sur le compte SpySocial que tu utilises, et quitte tout autre compte où il était, même supprimé.",
+          "Ton statut de membre passe sur le compte SpySocial que tu utilises, et quitte tout autre compte où il était, même supprimé.",
         ],
       },
       {
@@ -629,7 +629,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Compte invité ou sauvegardé : quelle différence ?',
         a: [
           "Un <b>invité</b> joue tout de suite dans les salons privés. Un compte invité vit sur un seul téléphone, et se déconnecter le supprime pour de bon.",
-          `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton abonnement sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la soirée jeux et d'ajouter des amis.`,
+          `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton statut de membre sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la soirée jeux et d'ajouter des amis.`,
           "Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre. Amis, Échanges et le Marché noir demandent d'abord à un invité de le sauvegarder.",
         ],
       },
@@ -640,7 +640,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Un <b>compte sauvegardé</b> revient sur n'importe quel téléphone : ouvre SpySocial et connecte-toi comme avant (Apple, Google ou le même e-mail). Un autre e-mail, ou Masquer mon adresse e-mail d'Apple, ouvre un nouveau compte vide : c'est souvent pour ça que la progression semble disparue.",
           "Un <b>compte invité</b> vit sur un seul téléphone. Si l'appli a été supprimée, si le téléphone est perdu ou si tu t'es déconnecté, il est perdu pour de bon et nous ne pouvons pas le récupérer.",
           "Si l'appli affiche <b>Impossible d’ouvrir ton compte</b>, ton compte est toujours enregistré sur le téléphone, mais il n'a pas pu être lu à ce moment-là. Touche <b>Réessayer</b>, ou ferme l'appli et rouvre-la.",
-          'Un abonnement ne se perd pas : <b>Restaurer les achats</b> le ramène. Nous ne pouvons pas fusionner des comptes ni déplacer des objets entre eux.',
+          'Le statut de membre ne se perd pas : <b>Restaurer les achats</b> le ramène. Nous ne pouvons pas fusionner des comptes ni déplacer des objets entre eux.',
           "Si tu avais un compte sauvegardé, écris à <email/> avec ton nom d'utilisateur et ta façon de te connecter, et nous regarderons.",
         ],
       },
@@ -712,7 +712,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Dans l’appli : <b>Compte</b>, <b>Réglages</b>, <b>Compte et connexion</b>, <b>Supprimer le compte</b>. C’est définitif. Un compte invité se supprime au même endroit, ou en se déconnectant.",
           'Tu peux aussi nous le demander par e-mail : voir <delete>Supprimer ton compte</delete>.',
-          "Supprimer ton compte ne résilie pas un abonnement : résilie-le aussi dans le store.",
+          "Supprimer ton compte ne résilie pas ton Pass packs : résilie-le aussi dans le store.",
         ],
       },
       {
@@ -867,7 +867,7 @@ const fix = (list: HelpSection[]): HelpSection[] =>
 
 const fr: HelpText = {
   title: 'Aide et FAQ',
-  lede: nb("Des réponses rapides pour jouer à SpySocial, ton compte, les récompenses et l'abonnement."),
+  lede: nb("Des réponses rapides pour jouer à SpySocial, ton compte, les récompenses et le statut de membre."),
   search: "Rechercher dans l'aide",
   searchHint: nb('Essaie « vote » ou « échange »'),
   clear: 'Effacer',

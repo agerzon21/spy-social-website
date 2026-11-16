@@ -45,7 +45,7 @@ const fr: Strings = {
       market: "Le prix de chaque objet SpySocial au Marché noir\u00A0: des prix tirés des échanges des joueurs, les plus fortes hausses et baisses, les plus échangés, sans nommer aucun joueur.",
       transparency: "Chaque mois\u00A0: combien d’Intel a été gagné, dépensé et corrigé dans SpySocial, chaque incident et chaque changement de règle, sans nommer aucun joueur.",
       gameNightRules: "Les règles de la soirée jeux hebdomadaire de SpySocial\u00A0: quand elle a lieu, qui peut participer, comment obtenir les titres de la soirée et le titre bonus du développeur.",
-      faq: "Aide SpySocial : comment jouer à Spy Talk et Spy Sketch, Jouer en ligne, salons privés et soirée jeux, amis, échanges, Marché noir, interceptions, Intel, abonnement, ton compte, sécurité et dépannage.",
+      faq: "Aide SpySocial : comment jouer à Spy Talk et Spy Sketch, Jouer en ligne, salons privés et soirée jeux, amis, échanges, Marché noir, interceptions, Intel, statut de membre, ton compte, sécurité et dépannage.",
       contact: "Contacte l'équipe SpySocial\u00A0: écris à support@spysocial.app pour de l'aide avec l'appli, ton compte ou autre chose.",
       rules: "Les règles de la communauté SpySocial\u00A0: sois sympa, bluffe sans tricher, garde ta vie privée, et ce qui arrive quand quelqu'un enfreint les règles.",
       safety: "La sécurité sur SpySocial pour les joueurs de 13 à 17\u00A0ans et pour les parents\u00A0: comment quitter, bloquer et signaler, et où trouver de l'aide.",
@@ -280,7 +280,7 @@ const fr: Strings = {
       title: "Ta table t'attend",
       text: 'Gratuit, sans pub.',
       /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
-      purchases: 'Des abonnements en option si tu veux plus de lieux et de mots.',
+      purchases: 'Deviens membre, en option, si tu veux plus de lieux et de mots.',
     },
   },
 
@@ -425,10 +425,10 @@ const fr: Strings = {
         "<b>Salons publics</b> avec des joueurs que ton enfant ne connaît pas\u00A0: les tables de «\u00A0Jouer en ligne\u00A0», où l'appli place les joueurs automatiquement et où tout le monde joue avec les mêmes règles standard, et les soirées jeux que nous organisons à heure fixe. Les joueurs ne peuvent pas créer de salons publics, et aucun joueur n'en est l'hôte.",
       public: (playOnline: boolean) =>
         `<b>Salons publics et soirées jeux</b> avec des joueurs que ton enfant ne connaît pas${playOnline ? ', dont «\u00A0Jouer en ligne\u00A0», qui place automatiquement les joueurs à une table' : ''}.`,
-      buy: "<b>Des achats\u00A0:</b> packs et abonnements, via l'App Store ou Google Play.",
+      buy: "<b>Des achats\u00A0:</b> packs et formules membres, via l'App Store ou Google Play.",
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        "<b>Des achats\u00A0:</b> uniquement des abonnements (l'abonnement aux packs, mensuel ou annuel, et l'Accès à vie), via l'App Store ou Google Play. Un abonnement débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
+        "<b>Des achats\u00A0:</b> uniquement le statut de membre (le Pass packs mensuel ou annuel, et l'Accès à vie), via l'App Store ou Google Play. Être membre débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         "<b>Interceptions\u00A0:</b> des récompenses gagnées en jouant, chacune avec un objet au hasard, comme un nouveau look pour l'agent. Elles ne s'achètent pas, ni avec de l'argent ni avec la monnaie gagnée dans le jeu, et l'appli affiche les chances avant qu'on en ouvre une.",
@@ -479,7 +479,7 @@ const fr: Strings = {
         '<b>Vérification des dessins\u00A0:</b> les tours de dessin dans un salon public peuvent être vérifiés automatiquement, et un tour dont la vérification constate qu’il enfreint les règles est retiré du dessin.',
       buyTitle: 'Achats',
       buyText:
-        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Un abonnement aux packs se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
+        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Un Pass packs se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
       deleteTitle: 'Supprimer un compte',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Ouvre SpySocial.',
@@ -740,7 +740,7 @@ const fr: Strings = {
         },
         {
           title: 'Ton agent et le Coffre',
-          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. Le Coffre ne vend que des abonnements\u00A0: tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, le créateur de packs et le droit de mener un groupe. Tout est facultatif, et rien ne change la façon de jouer.",
+          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. Le Coffre ne vend que le statut de membre\u00A0: tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, le créateur de packs et le droit de mener un groupe. Tout est facultatif, et rien ne change la façon de jouer.",
         },
         {
           title: 'Soirées jeux',
@@ -893,8 +893,8 @@ const fr: Strings = {
     },
     eyebrow: 'Bêta\u00a02 · Test en direct',
     title: 'Joue en premier',
-    lede: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta et un titre pour chaque testeur, et avec une partie terminée avant le 7\u00a0décembre, un second titre, 10\u00a0interceptions de chaque niveau et 1\u00a0mois d’abonnement.',
-    ledeBefore: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta, deux titres, 10\u00a0interceptions de chaque niveau et 1\u00a0mois d’abonnement.',
+    lede: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta et un titre pour chaque testeur, et avec une partie terminée avant le 7\u00a0décembre, un second titre, 10\u00a0interceptions de chaque niveau et 1\u00a0mois en tant que membre.',
+    ledeBefore: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta, deux titres, 10\u00a0interceptions de chaque niveau et 1\u00a0mois en tant que membre.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Les parties, l’XP et les objets du test sont remis à zéro à la sortie.',
     headsUp: '<b>Attention\u00a0:</b> le SpySocial de l’App Store et de Google Play est une ancienne version. La bêta est une nouvelle version très différente\u00a0; tu l’installes depuis le lien qu’on t’envoie par e-mail.',
@@ -943,9 +943,9 @@ const fr: Strings = {
       eyebrow: 'Ce que tu reçois',
       title: 'Récompenses bêta à garder après la sortie',
       items: ['Le <b>Pin bêta</b>', 'Le titre <b>«\u00a0Équipe bêta\u00a0»</b>'],
-      itemsBefore: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Équipe bêta\u00a0»</b> et <b>«\u00a0Test de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
+      itemsBefore: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Équipe bêta\u00a0»</b> et <b>«\u00a0Test de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> en tant que membre'],
       gameTitle: 'Termine une partie avant le 7\u00a0décembre et reçois aussi',
-      gameItems: ['Le titre <b>«\u00a0Test de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
+      gameItems: ['Le titre <b>«\u00a0Test de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> en tant que membre'],
       trade: { tradable: 'Après la sortie, les interceptions de remerciement s’échangent comme tout ce que tu gagnes.', bound: 'Les interceptions de remerciement restent sur ton compte.' },
       prizeTitle: '10\u00a0$ de remerciement par PayPal + un bonus de 50\u00a0$',
       prize: 'Un remerciement de 10\u00a0$ par PayPal pour ton temps pendant la session en direct\u00a0: chaque joueur confirmé qui participe à toute l’heure et envoie le questionnaire de 5\u00a0minutes le reçoit dans les 7\u00a0jours après la session, pareil sur iPhone et Android. Installer la version de test ne suffit pas à l’obtenir. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile de la session, choisi par le développeur sous une semaine.',
@@ -1000,7 +1000,7 @@ const fr: Strings = {
       { title: "Jouer en ligne", text: "Touche « Trouver une partie » pour une table de 4 ou 8, à tout moment. Les inconnus voient ta couleur d'agent, jamais ton nom." },
       { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des titres à gagner ce soir-là seulement. On te prévient avant le début." },
       { title: "Marché noir", text: "Échange des objets avec tes amis. Les adultes peuvent aussi acheter et vendre des objets au Marché noir contre de l'Intel, gagné en jouant. Jamais d'argent réel." },
-      { title: "Abonnements", text: "En option : l'Abonnement aux packs (mensuel ou annuel) ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
+      { title: "Membres", text: "En option : le Pass packs (mensuel ou annuel) ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
     ],
     allNotes: "Toutes les nouveautés de la 2.2",
     community: {
@@ -1012,7 +1012,7 @@ const fr: Strings = {
     },
     notes: {
       tag: "Lancement",
-      summary: "Notre plus grosse mise à jour : Spy Sketch, Jouer en ligne, la soirée jeux, la partie d'entraînement, les échanges, le Marché noir et les abonnements.",
+      summary: "Notre plus grosse mise à jour : Spy Sketch, Jouer en ligne, la soirée jeux, la partie d'entraînement, les échanges, le Marché noir et le statut de membre.",
       items: [
         { title: "Partie d'entraînement", text: "Apprends Spy Talk et Spy Sketch dans une vraie partie contre des agents IA, en local ou en espion. On te guide à chaque coup et on note ta partie de A à F." },
         { title: "Mes déductions", text: "Les espions notent ce qu'ils apprennent sur leur page de déductions, gardent une liste courte des lieux ou mots possibles et tentent leur dernière réponse à partir d'elle." },
