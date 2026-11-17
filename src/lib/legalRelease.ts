@@ -2416,6 +2416,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
+  : LIVE.practiceMembers
+    ? PRACTICE_AI_DAY // Terms 3's membership item (practice games, 5 a day) and Terms 5's Play Online tutorial line (practice-members-1117, row 95)
   : LIVE.sameOdds
     ? SAME_ODDS_DAY // Terms 9's trade-up: every item of the next rarity with the same chance, whatever you own (legal-1116, 999888)
   : LIVE.noPackPass1117
@@ -2536,6 +2538,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? PLAYTEST_TREMENDOUS_DAY // Test Versions: Beta 3's thank-yous through Tremendous; providers' paragraph (legal-1116)
   : LIVE.appU62
     ? APP_U62_DAY // Chat Messages: the spies' chat named "Spy Channel", as update 62 names it (legal-coverage-1116; Beta 3, Nov 24)
+  : LIVE.practiceMembers
+    ? PRACTICE_AI_DAY // Practice Games: members only, the per-UTC-day count, the tutorial as Play Online's step, the AI rating for members (practice-members-1117, row 95)
   : LIVE.drawingCheckWithdraw
     ? DRAWING_CHECK_WITHDRAW_DAY // Drawing Checks: withdrawing the agreement in Settings, and its Data Retention line (privacy-anchors-1115, 999902 + u62.12)
   : LIVE.heavyReads
