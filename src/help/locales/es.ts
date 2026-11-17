@@ -632,7 +632,7 @@ const es: HelpText = {
           id: 'membership-plans',
           q: '¿Qué son Agente, Élite y Mente maestra?',
           a: [
-            '<b>Agente</b> es el pase de paquetes mensual, <b>Élite</b> el anual, y <b>Mente maestra</b> es la membresía de por vida: un solo pago, sin renovación.',
+            '<b>Agente</b> es la membresía mensual, <b>Élite</b> la anual, y <b>Mente maestra</b> es la membresía de por vida: un solo pago, sin renovación.',
             'Mente maestra añade los tres marcos metálicos, el título Tarjeta dorada, la celebración Tormenta dorada y objetos de avatar exclusivos.',
             'La membresía de por vida dura mientras ofrezcamos SpySocial, no toda tu vida. No hay pruebas gratis, y la membresía no se comparte con En familia.',
           ],
@@ -644,9 +644,9 @@ const es: HelpText = {
               q: "¿Qué es «Miembro desde»?",
               a: [
                 "Mientras tengas membresía, <b>Cuenta</b> muestra cuándo empezó y cuánto tiempo llevas como miembro, y la <b>Bóveda</b> muestra tus sellos: 1, 3 y 6 meses, 1, 2 y 3 años, y después cada año.",
-                "Cuenta el tiempo que tu membresía ha estado activa sin interrupción: un pase, la membresía de por vida, un regalo o un código. El tiempo reembolsado y las compras de prueba no cuentan.",
+                "Cuenta el tiempo que tu membresía ha estado activa sin interrupción: una membresía mensual o anual, la membresía de por vida, un regalo o un código. El tiempo reembolsado y las compras de prueba no cuentan.",
                 "Se gana quedándote. El primer día en que tu membresía ya no esté activa (después del periodo de gracia que da la tienda si falla un pago), tu tiempo como miembro y tus sellos desaparecen. Si vuelves a ser miembro, «Miembro desde» y tu tiempo empiezan de cero.",
-                "La membresía <b>de por vida</b> es la excepción: tu tiempo cuenta desde tu primer día como miembro, incluidos los meses con un pase antes, y sigue creciendo, con cada sello que añadamos más adelante.",
+                "La membresía <b>de por vida</b> es la excepción: tu tiempo cuenta desde tu primer día como miembro, incluidos los meses con una membresía mensual o anual antes, y sigue creciendo, con cada sello que añadamos más adelante.",
                 "Los demás jugadores solo ven cuánto tiempo, con tu sello, en tu ficha de jugador; nunca la fecha ni el precio. Desactiva <b>Mostrar mi tiempo como miembro</b> en Ajustes para ocultarlo. El tiempo de una cuenta de menores de 13 años nunca se muestra a otros.",
                 "Los sellos solo cambian el aspecto de tu perfil: no dan XP ni mejores probabilidades, y no se pueden intercambiar.",
               ],
@@ -655,8 +655,8 @@ const es: HelpText = {
               id: 'membership-price',
               q: "¿Me subirán el precio?",
               a: [
-                "Mientras tu pase se renueve sin interrupción, sigues pagando el precio de ahora, aunque suba para los nuevos miembros. La tienda puede ajustarlo por impuestos locales o por la moneda.",
-                "Si cambias al otro pase, pagas el precio actual de ese plan. Si tu membresía termina y vuelves más tarde, puede que pagues el precio de ese momento. La membresía de por vida se paga una vez y nunca se renueva.",
+                "Mientras tu membresía mensual o anual se renueve sin interrupción, sigues pagando el precio de ahora, aunque suba para los nuevos miembros. La tienda puede ajustarlo por impuestos locales o por la moneda.",
+                "Si cambias al otro plan, pagas el precio actual de ese plan. Si tu membresía termina y vuelves más tarde, puede que pagues el precio de ese momento. La membresía de por vida se paga una vez y nunca se renueva.",
               ],
             },
             ]
@@ -668,7 +668,7 @@ const es: HelpText = {
             'Agente y Élite se renuevan solos hasta que canceles: en el App Store, al menos 24 horas antes de que termine el periodo; en Google Play, antes de la fecha de renovación. Mantienes las ventajas hasta el final del periodo que pagaste.',
             '<b>iPhone o iPad:</b> Ajustes, tu nombre, Suscripciones, SpySocial.',
             '<b>Android:</b> la app Google Play Store, tu foto de perfil, Pagos y suscripciones, Suscripciones, SpySocial.',
-            '<b>Gestionar suscripción</b> en la app abre la misma página. Borrar la app o tu cuenta, o comprar la membresía de por vida, no cancela un pase.',
+            '<b>Gestionar suscripción</b> en la app abre la misma página. Borrar la app o tu cuenta, o comprar la membresía de por vida, no cancela una membresía mensual o anual.',
             ...(o.memberLoyalty ? ["En la <b>Bóveda</b>, <b>Cancelar membresía</b> (debajo de Gestionar suscripción) muestra antes una pantalla con los hechos: si tu membresía termina, tu tiempo como miembro y tus sellos se reinician y empiezan desde cero, y tu precio fijado termina. Su único botón, <b>Continuar con la cancelación</b>, te lleva directamente a la tienda. <b>Gestionar suscripción</b> sigue abriendo la tienda directamente. Nada cambia antes del final del periodo que pagaste."] : []),
           ],
         },
@@ -782,7 +782,7 @@ const es: HelpText = {
           a: [
             "En la app: <b>Cuenta</b>, <b>Ajustes</b>, <b>Cuenta e inicio de sesión</b>, <b>Eliminar cuenta</b>. No se puede deshacer. Una cuenta de invitado también se borra ahí, o al cerrar sesión.",
             'También puedes pedírnoslo por correo: consulta <delete>Eliminar tu cuenta</delete>.',
-            'Borrar la cuenta no cancela un pase de membresía: cancélalo también en la tienda.',
+            'Borrar la cuenta no cancela una membresía: cancélalo también en la tienda.',
           ],
         },
         {

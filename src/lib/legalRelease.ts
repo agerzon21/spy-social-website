@@ -541,7 +541,7 @@ export const LIVE = {
    * Player Stats (app fix/player-stats, migrations 20261028000000_game_stats_context and 20261028000100_get_my_stats):
    * the server keeps each game's secret location or word and the kind of room with the game's record, and works out a
    * player's own stats from their game records for the app's Stats screen (games, wins, roles, votes, calls, answers,
-   * guesses, time played, games per week). Members (Pack Pass or Lifetime, 13 and over) also get their most-played
+   * guesses, time played, games per week). Members (Monthly or Yearly Membership, or Lifetime, 13 and over) also get their most-played
    * locations and words and a playstyle label worked out from their stats. Each player's stats go only to that player:
    * never to other players, on player cards or in any list. Flip when the two migrations are applied live (the
    * processing starts then, whatever app_config.player_stats says) and set PRIVACY_LAST_UPDATED to the day it goes up.
@@ -781,8 +781,8 @@ export const LIVE = {
    */
   tournaments: false,
   /**
-   * Money buys only memberships (owner 2026-10-25, top priority for 2.2; final rules the same day): Agent (the monthly
-   * Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime) are the only products for sale; the owner may also
+   * Money buys only memberships (owner 2026-10-25, top priority for 2.2; final rules the same day): Agent (the Monthly
+   * Membership), Elite (the Yearly Membership) and Spymaster (Lifetime) are the only products for sale; the owner may also
    * gift a membership (the Terms say so). The other 19 (the six packs
    * spysocial.pack.*, spysocial.all_packs, the bundles Grand Tour and Night In, the Masquerade Mask and the nine
    * celebrations spysocial.cosmetic.*) are off sale: never live in store_products, removed from sale in App Store
@@ -1139,8 +1139,8 @@ export const LIVE = {
    */
   practiceAi: false,
   /**
-   * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Pack
-   * Pass or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
+   * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Monthly
+   * or Yearly Membership, or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
    * least 30 entries) and plays it in their private rooms, where the room's players see its name and what the game deals
    * and shows from it (the location or word, the spy's list, the hints). Names and entries go through the word filter
    * when saved, and every pack's text through OpenAI's moderation model (check-pack, omni-moderation-latest; only the
@@ -1672,7 +1672,7 @@ export const LIVE = {
    * grace period; a gap of under a day while a renewal goes through isn't a break), the time and the stamps are gone and
    * start again from zero on a return. Lifetime counts from the first day as a member and keeps growing. Cosmetic only.
    * Other players see the time and the stamp on the player sheet (never the date or a price) unless Settings' "Show my
-   * membership time" is off; never an under-13 account's. The price stays while a pass renews without a break.
+   * membership time" is off; never an under-13 account's. The price stays while a monthly or yearly membership renews without a break.
    * Turns on: Terms 3's Member time and price lines, Privacy's membership-period record (Purchases) and Data Sharing
    * line, and the help's member-time, price and cancel answers. Flip the day the server file is live AND the app update
    * that shows it is out; set MEMBER_LOYALTY_DAY to that day. Not a material Terms change (it adds a benefit and states
@@ -2076,6 +2076,18 @@ export const LIVE = {
    * PRIVACY_AHEAD.
    */
   communitySearchShown: false,
+  /**
+   * No Pack Pass, 2026-11-17 (no-pack-pass-1117, after the app's fix/no-pack-pass-1117 c0f1ce3eb): we sell only
+   * memberships, so the old product name "Pack Pass" (and "pass" for the renewing plans) is gone from every page. Terms 3
+   * and the short Terms, Privacy's Purchases item, the Game Night rules, the help and the site's purchase lines say
+   * Agent (the Monthly Membership), Elite (the Yearly Membership) and Spymaster (Lifetime), and "a monthly or yearly
+   * membership" where they meant a pass; fr "formule", pt-BR "plano" ("abonnement" / "assinatura" not used), the other
+   * languages their membership word. A naming change only: no product, price, renewal or cancel rule changes, no duty is
+   * added, so no TERMS_PUBLISHED or terms_version raise. Dates: NO_PACK_PASS_1117_DAY in LEGAL_LAST_UPDATED and
+   * PRIVACY_LAST_UPDATED (re-date to the publish day with node scripts/flip-switch.mjs noPackPass1117 --day "<publish day>").
+   * A website fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  noPackPass1117: true,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -2109,6 +2121,8 @@ export const SAME_ODDS_DAY = 'November 17, 2026'
 export const COVERAGE_1116_DAY = 'November 16, 2026'
 export const HEAVY_READS_DAY = 'November 17, 2026'
 export const COMMUNITY_SEARCH_DAY = 'November 17, 2026'
+/** no-pack-pass-1117: LIVE.noPackPass1117's day (the publish day; set by flip-switch --day). Never earlier than November 17, 2026. */
+export const NO_PACK_PASS_1117_DAY = 'November 17, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
@@ -2393,6 +2407,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
   : LIVE.sameOdds
     ? SAME_ODDS_DAY // Terms 9's trade-up: every item of the next rarity with the same chance, whatever you own (legal-1116, 999888)
+  : LIVE.noPackPass1117
+    ? NO_PACK_PASS_1117_DAY // Terms 3 and the short Terms: Monthly / Yearly Membership instead of the old name Pack Pass (no-pack-pass-1117)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // Terms 9: a reputation that becomes Banned closes your Black Market offers and listings (legal-1115, 999909)
   : LIVE.coverage1116
@@ -2418,7 +2434,7 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   : LIVE.spyChatDisclosed
     ? SPY_CHAT_DISCLOSED_DAY // legal-1113: the spies' chat named on Safety, Child Safety and Terms 22 (UK); Terms 6 "and record". On since Nov 13, above Friday's group (same day)
   : LIVE.memberLoyalty
-    ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a pass renews (member-loyalty-1111)
+    ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a monthly or yearly membership renews (member-loyalty-1111)
   : LIVE.rarefindsOffers
     ? RAREFINDS_OFFERS_DAY // Terms 9's Rare Finds offers: the seller's discount, counters, a Decline's minimum, 24 h ends, the 30-minute take-back, the offer pause (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
@@ -2515,6 +2531,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? HEAVY_READS_DAY // Rate Limits: the heavy reads' per-account count and the one alert a day (legal-coverage-1116, 999875)
   : LIVE.communitySearchShown
     ? COMMUNITY_SEARCH_DAY // Community Packs: search also reads the translated name, description and theme (legal-coverage-1116, 999873)
+  : LIVE.noPackPass1117
+    ? NO_PACK_PASS_1117_DAY // Purchases: Monthly / Yearly Membership instead of the old name Pack Pass (no-pack-pass-1117)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // the Black Market item: a reputation that becomes Banned closes the account's offers and listings (legal-1115, 999909)
   : LIVE.coverage1116

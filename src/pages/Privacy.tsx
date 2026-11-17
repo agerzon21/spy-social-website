@@ -842,7 +842,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.purchases && (
           <Item label="Purchases">
             {PRIVACY.membershipsOnly
-              ? 'When you buy a membership in the app (Agent, the monthly Pack Pass; Elite, the yearly one; or Spymaster, Lifetime: the only things SpySocial sells; guests can buy too), Apple or Google handles the payment; we never see your payment details.'
+              ? 'When you buy a membership in the app (Agent, the Monthly Membership; Elite, the Yearly Membership; or Spymaster, Lifetime: the only things SpySocial sells; guests can buy too), Apple or Google handles the payment; we never see your payment details.'
               : 'When you buy something in the app, such as a pack, an avatar item or a membership (guests can buy too), Apple or Google handles the payment; we never see your payment details.'} To check and restore purchases, the app and our servers use RevenueCat, which
             receives an ID linked to your SpySocial account, what you bought, the store's transaction IDs, prices and
             dates, your device's IP address, platform, model, language settings and store country, and on iPhones the
@@ -853,7 +853,7 @@ const Privacy: React.FC = () => {
             purchases move to that account. The updates RevenueCat sends us about a purchase (such as a renewal or a
             refund) are deleted after 90 days.{' '}
             {PRIVACY.memberLoyalty
-              ? "To show your member time (\"Member since\" and how long you've been a member, see our Terms of Service), we keep a record of each period your membership was active: when it started and ended, how it came (a pass, Lifetime, a gift or a code), and whether it was refunded or a test purchase. We keep it for as long as you have an account and delete it with the account. It doesn't include the price you paid. "
+              ? "To show your member time (\"Member since\" and how long you've been a member, see our Terms of Service), we keep a record of each period your membership was active: when it started and ended, how it came (a monthly or yearly membership, Lifetime, a gift or a code), and whether it was refunded or a test purchase. We keep it for as long as you have an account and delete it with the account. It doesn't include the price you paid. "
               : ''}
             {PRIVACY.revenueCatDeletion
               ? 'RevenueCat keeps its record of your purchases until you delete your account, and deletes it within 30 days after that.'

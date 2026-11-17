@@ -429,7 +429,7 @@ const ptBR: Strings = {
       buy: '<b>Itens para comprar:</b> pacotes e planos de membro, pela App Store ou pelo Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        '<b>Itens para comprar:</b> só planos de membro (o Passe de pacotes, mensal ou anual, e o plano Vitalício), pela App Store ou pelo Google Play. Ser membro libera os pacotes que não são grátis; nada mais é vendido.',
+        '<b>Itens para comprar:</b> só planos de membro (o plano mensal ou anual, e o plano Vitalício), pela App Store ou pelo Google Play. Ser membro libera os pacotes que não são grátis; nada mais é vendido.',
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>Interceptações:</b> recompensas ganhas jogando, cada uma com um item aleatório, como um visual novo para o agente. Não podem ser compradas, nem com dinheiro nem com a moeda ganha no jogo, e o app mostra as chances antes de alguém abrir uma.',
@@ -480,7 +480,7 @@ const ptBR: Strings = {
         '<b>Verificação dos desenhos:</b> cada vez de desenhar numa sala pública pode ser verificada automaticamente, e a vez que quebrar as regras é removida do desenho.',
       buyTitle: 'Compras',
       buyText:
-        'Adolescentes precisam da permissão dos pais ou do responsável legal para comprar qualquer coisa. As compras passam pela App Store ou pelo Google Play, então os controles parentais deles, como o Pedir Compra da Apple e as aprovações de compra do Google Family Link, funcionam normalmente. Um Passe de pacotes é renovado até ser cancelado nos ajustes da loja.',
+        'Adolescentes precisam da permissão dos pais ou do responsável legal para comprar qualquer coisa. As compras passam pela App Store ou pelo Google Play, então os controles parentais deles, como o Pedir Compra da Apple e as aprovações de compra do Google Family Link, funcionam normalmente. Um plano mensal ou anual é renovado até ser cancelado nos ajustes da loja.',
       deleteTitle: 'Excluir uma conta',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Abra o SpySocial.',
@@ -576,6 +576,27 @@ const ptBR: Strings = {
     title: 'Novidades',
     sub: 'Notas de versão do SpySocial. Grandes atualizações, recursos novos e melhorias, conforme lançamos.',
     releases: [
+      {
+        tag: "Atualização de fim de semana",
+        summary:
+          "Três atualizações do novo SpySocial neste fim de semana, antes do lançamento: textos mais fáceis de ler, ajuda mais clara para quem está começando, carregamento mais rápido no navegador e links de sala que levam até a sala.",
+        sections: [
+          {
+            label: "Melhorias",
+            items: [
+              { title: "Votação", text: "O botão “Abster-se” agora tem a mesma altura de “Confirmar”." },
+              { title: "Mais fácil de ler", text: "Os menores textos do app ficaram um pouco maiores." },
+              { title: "Mercado Negro", text: "Se é sua primeira vez, um cartão “Como funciona o Mercado Negro” mostra como ganhar, vender e comprar itens." },
+              { title: "Tutorial", text: "Quando o tutorial pede para tocar na sugestão, a dica agora fica na parte de baixo da tela, e a pergunta continua fácil de ler." },
+              { title: "Código de amigo", text: "As leituras que restam no seu código diminuem assim que um amigo o lê." },
+              { title: "Links de sala", text: "Se um amigo mandar o endereço da sala dele pelo navegador, abrir esse endereço agora leva você à tela para entrar na sala, em vez de “Lobby indisponível”." },
+              { title: "Celulares pequenos", text: "Nos celulares mais estreitos, a etiqueta que aparece enquanto você responde agora diz que depois é você quem pergunta." },
+              { title: "Jogar no navegador", text: "O jogo carrega mais rápido. No celular, se você virar o aparelho de lado durante uma partida, aparece o cartão “Coloque o celular na vertical”, e sua partida continua enquanto você gira." },
+              { title: "Idiomas", text: "Textos em árabe, hindi, bengali, chinês e indonésio aparecem melhor: sem palavras cortadas, quebras de linha estranhas ou palavras fora de ordem. Em português, o app agora diz “membro” em todo lugar, e não mais “assinatura” (em francês, “membre”)." },
+            ],
+          },
+        ],
+      },
       {
         tag: "Lançamento no Android",
         summary:
@@ -995,7 +1016,7 @@ const ptBR: Strings = {
       { title: "Jogar online", text: "Toque em Buscar partida para uma mesa de 4 ou 8, a qualquer hora. Estranhos veem sua cor de agente, nunca seu nome." },
       { title: "Noite de Jogos", text: "Noites online com hora marcada e títulos que só saem naquela noite. A gente avisa antes de começar." },
       { title: "Mercado Negro", text: "Troque itens com amigos. Adultos também compram e vendem itens no Mercado Negro por Intel, que se ganha jogando. Nunca por dinheiro real." },
-      { title: "Membros", text: "Opcional: o Passe de pacotes (mensal ou anual) ou o Vitalício, pago uma vez e que nunca renova. Todos os pacotes premium nas salas que você comanda e na sua mesa no Jogar online, e o criador de pacotes. Nada mais é vendido." },
+      { title: "Membros", text: "Opcional: o plano mensal ou anual, ou o Vitalício, pago uma vez e que nunca renova. Todos os pacotes premium nas salas que você comanda e na sua mesa no Jogar online, e o criador de pacotes. Nada mais é vendido." },
     ],
     allNotes: "Tudo o que há de novo na 2.2",
     community: {

@@ -628,7 +628,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'membership-plans',
         q: "C'est quoi, Agent, Élite et Maître espion ?",
         a: [
-          "<b>Agent</b> est le Pass packs mensuel, <b>Élite</b> l'annuel, et <b>Maître espion</b> l'accès à vie : un seul paiement, sans renouvellement.",
+          "<b>Agent</b> est la formule mensuelle, <b>Élite</b> la formule annuelle, et <b>Maître espion</b> l'accès à vie : un seul paiement, sans renouvellement.",
           'Maître espion ajoute les trois cadres métalliques, le titre Carte or, la célébration Tempête dorée et des objets pour ton agent réservés à l\'accès à vie.',
           "L'accès à vie dure tant que nous proposons SpySocial, pas toute ta vie. Pas d'essai gratuit, et le statut de membre ne se partage pas via le Partage familial.",
         ],
@@ -640,9 +640,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "C'est quoi, « Membre depuis » ?",
             a: [
               "Tant que tu es membre, le <b>Compte</b> indique depuis quand et depuis combien de temps tu l'es, et le <b>Coffre</b> montre tes tampons : 1, 3 et 6 mois, 1, 2 et 3 ans, puis chaque année.",
-              "On compte le temps où tu as été membre sans interruption : un Pass packs, l'accès à vie, un cadeau ou un code. Le temps remboursé et les achats de test ne comptent pas.",
+              "On compte le temps où tu as été membre sans interruption : une formule mensuelle ou annuelle, l'accès à vie, un cadeau ou un code. Le temps remboursé et les achats de test ne comptent pas.",
               "Ça se gagne en restant. Dès le premier jour où tu n'es plus membre (après le délai de grâce que le store accorde en cas d'échec de paiement), ton ancienneté et tes tampons disparaissent. Si tu redeviens membre, « Membre depuis » et ton ancienneté repartent de zéro.",
-              "L'<b>accès à vie</b> fait exception : ton ancienneté compte depuis ton premier jour de membre, mois de Pass packs d'avant compris, et continue de grandir, avec chaque tampon que nous ajouterons.",
+              "L'<b>accès à vie</b> fait exception : ton ancienneté compte depuis ton premier jour de membre, mois de formule mensuelle ou annuelle d'avant compris, et continue de grandir, avec chaque tampon que nous ajouterons.",
               "Les autres joueurs voient seulement ton ancienneté, avec ton tampon, sur ta fiche de joueur, jamais la date ni le prix. Désactive <b>Afficher mon ancienneté de membre</b> dans les Réglages pour le cacher. L'ancienneté d'un compte de moins de 13 ans n'est jamais montrée aux autres.",
               "Les tampons changent seulement l'apparence de ton profil : pas d'XP, pas de meilleures chances, et ils ne s'échangent pas.",
             ],
@@ -652,7 +652,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "Mon prix va-t-il augmenter ?",
             a: [
               "Tant que ta formule se renouvelle sans interruption, tu gardes le prix que tu paies aujourd'hui, même s'il augmente pour les nouveaux membres. Le store peut encore l'ajuster selon les taxes locales ou la devise.",
-              "Si tu passes à l'autre Pass packs, tu paies le prix actuel de cette formule. Si ta formule prend fin et que tu reviens plus tard, tu paieras peut-être le prix du moment. L'accès à vie se paie une fois et ne se renouvelle jamais.",
+              "Si tu passes à l'autre formule, tu paies le prix actuel de cette formule. Si ta formule prend fin et que tu reviens plus tard, tu paieras peut-être le prix du moment. L'accès à vie se paie une fois et ne se renouvelle jamais.",
             ],
           },
           ]
@@ -664,7 +664,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Agent et Élite se renouvellent automatiquement jusqu'à ce que tu résilies : sur l'App Store, au moins 24 heures avant la fin de la période ; sur Google Play, avant la date de renouvellement. Tu gardes les avantages jusqu'à la fin de la période payée.",
           '<b>iPhone ou iPad :</b> Réglages, ton nom, Abonnements, SpySocial.',
           "<b>Android :</b> l'appli Google Play Store, ta photo de profil, Paiements et abonnements, Abonnements, SpySocial.",
-          "<b>Gérer ma formule</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte, ou acheter l'accès à vie, ne résilie pas un Pass packs.",
+          "<b>Gérer ma formule</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte, ou acheter l'accès à vie, ne résilie pas une formule mensuelle ou annuelle.",
           ...(o.memberLoyalty ? ["Dans le <b>Coffre</b>, <b>Résilier la formule</b> (sous Gérer ma formule) affiche d'abord un seul écran avec les faits : si ta formule prend fin, ton ancienneté et tes tampons repartent à zéro, et ton prix bloqué prend fin. Son seul bouton, <b>Continuer la résiliation</b>, mène directement à la boutique. <b>Gérer ma formule</b> ouvre toujours directement la boutique. Rien ne change avant la fin de la période payée."] : []),
         ],
       },
@@ -778,7 +778,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Dans l’appli : <b>Compte</b>, <b>Réglages</b>, <b>Compte et connexion</b>, <b>Supprimer le compte</b>. C’est définitif. Un compte invité se supprime au même endroit, ou en se déconnectant.",
           'Tu peux aussi nous le demander par e-mail : voir <delete>Supprimer ton compte</delete>.',
-          "Supprimer ton compte ne résilie pas ton Pass packs : résilie-le aussi dans le store.",
+          "Supprimer ton compte ne résilie pas ta formule : résilie-la aussi dans le store.",
         ],
       },
       {

@@ -632,7 +632,7 @@ const ptBR: HelpText = {
           id: 'membership-plans',
           q: 'O que são Agente, Elite e Mestre-espião?',
           a: [
-            '<b>Agente</b> é o passe de pacotes mensal, <b>Elite</b> o anual, e <b>Mestre-espião</b> é o Vitalício: um pagamento só, sem renovação.',
+            '<b>Agente</b> é o plano mensal, <b>Elite</b> o plano anual, e <b>Mestre-espião</b> é o Vitalício: um pagamento só, sem renovação.',
             'Mestre-espião acrescenta as três molduras de metal, o título Cartão ouro, a comemoração Tempestade dourada e itens do Vitalício para o seu agente.',
             'Vitalício dura enquanto oferecermos o SpySocial, não a sua vida toda. Não há teste grátis, e o plano de membro não é compartilhado pelo Compartilhamento Familiar.',
           ],
@@ -644,9 +644,9 @@ const ptBR: HelpText = {
               q: "O que é “Membro desde”?",
               a: [
                 "Enquanto você for membro, a <b>Conta</b> mostra desde quando e há quanto tempo você é membro, e o <b>Cofre</b> mostra seus carimbos: 1, 3 e 6 meses, 1, 2 e 3 anos, e depois a cada ano.",
-                "Conta o tempo em que você foi membro sem interrupção: um passe, o Vitalício, um presente ou um código. Tempo reembolsado e compras de teste não contam.",
+                "Conta o tempo em que você foi membro sem interrupção: um plano mensal ou anual, o Vitalício, um presente ou um código. Tempo reembolsado e compras de teste não contam.",
                 "Ele se ganha ficando. No primeiro dia em que você deixar de ser membro (depois do período de carência que a loja dá quando um pagamento falha), seu tempo de membro e seus carimbos zeram. Se você voltar a ser membro, “Membro desde” e seu tempo começam do zero.",
-                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como membro, incluindo os meses de passe antes dele, e continua crescendo, com cada carimbo que adicionarmos depois.",
+                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como membro, incluindo os meses de plano mensal ou anual antes dele, e continua crescendo, com cada carimbo que adicionarmos depois.",
                 "Os outros jogadores veem só há quanto tempo, com seu carimbo, na sua ficha de jogador, nunca a data nem o preço. Desative <b>Mostrar meu tempo de membro</b> nos Ajustes para esconder. O tempo de uma conta de menor de 13 anos nunca aparece para os outros.",
                 "Os carimbos só mudam a aparência do seu perfil: não dão XP nem chances melhores, e não podem ser trocados.",
               ],
@@ -655,8 +655,8 @@ const ptBR: HelpText = {
               id: 'membership-price',
               q: "Meu preço vai subir?",
               a: [
-                "Enquanto seu passe renovar sem interrupção, você continua pagando o preço de agora, mesmo que o preço suba para novos membros. A loja ainda pode ajustá-lo por impostos locais ou câmbio.",
-                "Se trocar para o outro passe, você paga o preço atual desse plano. Se seu plano acabar e você voltar depois, pode pagar o preço da época. O Vitalício é pago uma vez e nunca renova.",
+                "Enquanto seu plano mensal ou anual renovar sem interrupção, você continua pagando o preço de agora, mesmo que o preço suba para novos membros. A loja ainda pode ajustá-lo por impostos locais ou câmbio.",
+                "Se trocar para o outro plano, você paga o preço atual desse plano. Se seu plano acabar e você voltar depois, pode pagar o preço da época. O Vitalício é pago uma vez e nunca renova.",
               ],
             },
             ]
@@ -668,7 +668,7 @@ const ptBR: HelpText = {
             'Agente e Elite renovam sozinhos até você cancelar: na App Store, pelo menos 24 horas antes de o período acabar; no Google Play, antes da data de renovação. Você mantém os benefícios até o fim do período pago.',
             '<b>iPhone ou iPad:</b> Ajustes, seu nome, Assinaturas, SpySocial.',
             '<b>Android:</b> o app Google Play Store, sua foto de perfil, Pagamentos e assinaturas, Assinaturas, SpySocial.',
-            '<b>Gerenciar plano</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um passe.',
+            '<b>Gerenciar plano</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um plano mensal ou anual.',
             ...(o.memberLoyalty ? ["No <b>Cofre</b>, <b>Cancelar plano</b> (abaixo de Gerenciar plano) mostra antes uma tela com os fatos: se o seu plano terminar, seu tempo de membro e seus carimbos zeram e começam do zero, e seu preço garantido termina. O único botão, <b>Continuar para cancelar</b>, leva direto à loja. <b>Gerenciar plano</b> continua abrindo a loja diretamente. Nada muda antes do fim do período pago."] : []),
           ],
         },
@@ -782,7 +782,7 @@ const ptBR: HelpText = {
           a: [
             "No app: <b>Conta</b>, <b>Ajustes</b>, <b>Conta e acesso</b>, <b>Excluir conta</b>. Não dá para desfazer. Uma conta de visitante também é excluída ali, ou ao sair da conta.",
             'Você também pode pedir por e-mail: veja <delete>Excluir sua conta</delete>.',
-            'Excluir a conta não cancela seu Passe de pacotes: cancele também na loja.',
+            'Excluir a conta não cancela seu plano: cancele também na loja.',
           ],
         },
         {

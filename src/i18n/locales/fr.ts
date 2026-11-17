@@ -428,7 +428,7 @@ const fr: Strings = {
       buy: "<b>Des achats\u00A0:</b> packs et formules membres, via l'App Store ou Google Play.",
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        "<b>Des achats\u00A0:</b> uniquement le statut de membre (le Pass packs mensuel ou annuel, et l'Accès à vie), via l'App Store ou Google Play. Être membre débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
+        "<b>Des achats\u00A0:</b> uniquement le statut de membre (la formule mensuelle ou annuelle, et l'Accès à vie), via l'App Store ou Google Play. Être membre débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         "<b>Interceptions\u00A0:</b> des récompenses gagnées en jouant, chacune avec un objet au hasard, comme un nouveau look pour l'agent. Elles ne s'achètent pas, ni avec de l'argent ni avec la monnaie gagnée dans le jeu, et l'appli affiche les chances avant qu'on en ouvre une.",
@@ -479,7 +479,7 @@ const fr: Strings = {
         '<b>Vérification des dessins\u00A0:</b> les tours de dessin dans un salon public peuvent être vérifiés automatiquement, et un tour dont la vérification constate qu’il enfreint les règles est retiré du dessin.',
       buyTitle: 'Achats',
       buyText:
-        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Un Pass packs se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
+        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Une formule mensuelle ou annuelle se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
       deleteTitle: 'Supprimer un compte',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Ouvre SpySocial.',
@@ -575,6 +575,27 @@ const fr: Strings = {
     title: 'Nouveautés',
     sub: 'Les notes de version de SpySocial\u00A0: grandes mises à jour, nouvelles fonctions et améliorations, au fil des sorties.',
     releases: [
+      {
+        tag: "Mise à jour du week-end",
+        summary:
+          "Trois mises à jour du nouveau SpySocial ce week-end, avant son lancement\u00A0: un texte plus lisible, une aide plus claire pour les nouveaux joueurs, un démarrage plus rapide dans le navigateur et des liens de salon qui mènent au salon.",
+        sections: [
+          {
+            label: "Améliorations",
+            items: [
+              { title: "Vote", text: "«\u00A0S’abstenir\u00A0» a maintenant la même hauteur que «\u00A0Valider\u00A0»." },
+              { title: "Plus lisible", text: "Les plus petits textes de l’appli sont un peu plus grands." },
+              { title: "Marché noir", text: "Si tu le découvres, une carte «\u00A0Comment marche le Marché noir\u00A0» t’explique comment gagner, vendre et acheter des objets." },
+              { title: "Tutoriel", text: "Quand le tutoriel te demande de toucher la suggestion, le conseil s’affiche maintenant en bas de l’écran, pour que la question reste lisible." },
+              { title: "Code ami", text: "Le nombre de scans restants baisse dès qu’un ami scanne ton code." },
+              { title: "Liens de salon", text: "Si un ami t’envoie l’adresse de son salon depuis son navigateur, l’ouvrir te mène maintenant à l’écran pour rejoindre le salon, au lieu de «\u00A0Salon indisponible\u00A0»." },
+              { title: "Petits téléphones", text: "Sur les téléphones les plus étroits, l’étiquette affichée pendant que tu réponds indique maintenant que c’est ensuite à toi de poser la question." },
+              { title: "Jouer dans le navigateur", text: "Le jeu se charge plus vite. Sur un téléphone, si tu le tournes à l’horizontale pendant une partie, une carte «\u00A0Tiens ton téléphone à la verticale\u00A0» apparaît, et ta partie continue pendant que tu le tournes." },
+              { title: "Langues", text: "Les textes en arabe, hindi, bengali, chinois et indonésien s’affichent mieux\u00A0: plus de mots coupés, de retours à la ligne bizarres ni de mots dans le désordre. En français, l’appli parle maintenant partout de «\u00A0membre\u00A0» et non plus d’«\u00A0abonnement\u00A0» (et de «\u00A0membro\u00A0» en portugais)." },
+            ],
+          },
+        ],
+      },
       {
         tag: "Lancement Android",
         summary:
@@ -1000,7 +1021,7 @@ const fr: Strings = {
       { title: "Jouer en ligne", text: "Touche « Trouver une partie » pour une table de 4 ou 8, à tout moment. Les inconnus voient ta couleur d'agent, jamais ton nom." },
       { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des titres à gagner ce soir-là seulement. On te prévient avant le début." },
       { title: "Marché noir", text: "Échange des objets avec tes amis. Les adultes peuvent aussi acheter et vendre des objets au Marché noir contre de l'Intel, gagné en jouant. Jamais d'argent réel." },
-      { title: "Membres", text: "En option : le Pass packs (mensuel ou annuel) ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
+      { title: "Membres", text: "En option : la formule mensuelle ou annuelle, ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
     ],
     allNotes: "Toutes les nouveautés de la 2.2",
     community: {

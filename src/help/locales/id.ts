@@ -632,7 +632,7 @@ const id: HelpText = {
           id: 'membership-plans',
           q: 'Apa itu Agen, Elite, dan Dalang?',
           a: [
-            '<b>Agen</b> adalah langganan paket bulanan, <b>Elite</b> yang tahunan, dan <b>Dalang</b> adalah keanggotaan seumur hidup: sekali bayar, tanpa perpanjangan.',
+            '<b>Agen</b> adalah keanggotaan bulanan, <b>Elite</b> keanggotaan tahunan, dan <b>Dalang</b> adalah keanggotaan seumur hidup: sekali bayar, tanpa perpanjangan.',
             'Dalang menambahkan ketiga bingkai logam, gelar Kartu Emas, selebrasi Badai Emas, dan item agen yang hanya ada di keanggotaan seumur hidup.',
             'Seumur hidup berarti selama kami menyediakan SpySocial, bukan seumur hidupmu. Tidak ada uji coba gratis, dan keanggotaan tidak dibagikan lewat Berbagi Keluarga.',
           ],

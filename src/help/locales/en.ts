@@ -656,7 +656,7 @@ const en: HelpText = {
           id: 'membership-plans',
           q: 'What are Agent, Elite and Spymaster?',
           a: [
-            '<b>Agent</b> is the monthly Pack Pass, <b>Elite</b> the yearly one, and <b>Spymaster</b> is Lifetime: one payment, no renewal.',
+            '<b>Agent</b> is the Monthly Membership, <b>Elite</b> the Yearly Membership, and <b>Spymaster</b> is Lifetime: one payment, no renewal.',
             'Spymaster adds all three metal borders, the Gold Card title, the Gold Storm celebration and Lifetime-only items for your agent.',
             'Lifetime lasts as long as we offer SpySocial, not for your lifetime. There are no free trials, and memberships aren’t shared through Family Sharing.',
           ],
@@ -668,9 +668,9 @@ const en: HelpText = {
               q: "What is “Member since”?",
               a: [
                 "While you’re a member, <b>Account</b> shows when your membership started and how long you’ve been a member, and the <b>Vault</b> shows your stamps: 1, 3 and 6 months, 1, 2 and 3 years, then every year.",
-                "It counts the time your membership has been active without a break: a pass, Lifetime, a gift or a code. Refunded time and test purchases don’t count.",
+                "It counts the time your membership has been active without a break: a monthly or yearly membership, Lifetime, a gift or a code. Refunded time and test purchases don’t count.",
                 "It’s earned by staying. On the first day your membership isn’t active any more (after any grace period the store gives for a failed payment), your member time and stamps are gone. If you become a member again, “Member since” and your time start again from zero.",
-                "<b>Lifetime</b> is the exception: your time counts from your first day as a member, months on a pass before it included, and keeps growing, with every stamp we add later.",
+                "<b>Lifetime</b> is the exception: your time counts from your first day as a member, months of a monthly or yearly membership before it included, and keeps growing, with every stamp we add later.",
                 "Other players see only how long, with your stamp, on your player sheet, never the date or the price. Turn off <b>Show my membership time</b> in Settings to hide it. An under-13 account’s time is never shown to others.",
                 "Stamps only change how your profile looks: no XP, no better odds, and they can’t be traded.",
               ],
@@ -679,8 +679,8 @@ const en: HelpText = {
               id: 'membership-price',
               q: "Will my price go up?",
               a: [
-                "While your pass renews without a break, you keep the price you pay now, even if the price goes up for new members. The store may still adjust it for local taxes or currency.",
-                "Switching to the other pass means that plan’s current price. If your membership ends and you come back later, you may pay the price at that time. Lifetime is paid once and never renews.",
+                "While your monthly or yearly membership renews without a break, you keep the price you pay now, even if the price goes up for new members. The store may still adjust it for local taxes or currency.",
+                "Switching to the other plan (monthly or yearly) means that plan’s current price. If your membership ends and you come back later, you may pay the price at that time. Lifetime is paid once and never renews.",
               ],
             },
             ]
@@ -692,7 +692,7 @@ const en: HelpText = {
             'Agent and Elite renew automatically until you cancel: on the App Store, at least 24 hours before the period ends; on Google Play, before the renewal date. You keep the benefits until the end of the period you paid for.',
             '<b>iPhone or iPad:</b> Settings, your name, Subscriptions, SpySocial.',
             '<b>Android:</b> the Google Play Store app, your profile picture, Payments & subscriptions, Subscriptions, SpySocial.',
-            '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a pass.',
+            '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a monthly or yearly membership.',
             ...(o.memberLoyalty ? ["In the <b>Vault</b>, <b>Cancel Membership</b> (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and your locked price ends. Its one button, <b>Continue to Cancel</b>, goes straight on to the store. <b>Manage Subscription</b> itself still opens the store directly. Nothing changes before the end of the period you paid for."] : []),
           ],
         },
@@ -806,7 +806,7 @@ const en: HelpText = {
           a: [
             "In the app: <b>Account</b>, <b>Settings</b>, <b>Account & Sign-In</b>, <b>Delete Account</b>. It can’t be undone. A guest account is deleted there too, or by signing out.",
             'You can also ask us by email: see <delete>Delete your account</delete>.',
-            'Deleting doesn’t cancel a membership pass: cancel it in the store too.',
+            'Deleting doesn’t cancel a membership: cancel it in the store too.',
           ],
         },
         {

@@ -55,6 +55,8 @@ const SWITCHES = {
   coverage1116: { live: [['coverage1116', true]], day: 'COVERAGE_1116_DAY', step: 'publish' },
   heavyReads: { live: [['heavyReads', true]], day: 'HEAVY_READS_DAY', step: 'row 62 (999875)' },
   communitySearchShown: { live: [['communitySearchShown', true]], day: 'COMMUNITY_SEARCH_DAY', step: 'row 63 (999873)' },
+  // no-pack-pass-1117: on (--day re-dates it to the publish day).
+  noPackPass1117: { live: [['noPackPass1117', true]], day: 'NO_PACK_PASS_1117_DAY', step: 'publish' },
 }
 
 const args = process.argv.slice(2)

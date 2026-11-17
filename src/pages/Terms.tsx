@@ -978,8 +978,8 @@ const Terms: React.FC = () => {
             </li>
           )}
           <li>
-            The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the
-            yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple
+            The only things you can buy in SpySocial are three memberships: Agent (the Monthly Membership), Elite (the
+            Yearly Membership) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple
             App Store or Google Play and follow their terms. They handle payment: the price, and how long the membership
             lasts, are shown in the app and on the store's payment sheet before you buy, including any tax where it
             applies, and the payment is charged to your Apple Account or Google Play account when you confirm.
@@ -998,19 +998,19 @@ const Terms: React.FC = () => {
               : ''}
           </li>
           <li>
-            <B>Automatic renewal.</B> The monthly and yearly Pack Pass are subscriptions that renew automatically. At
+            <B>Automatic renewal.</B> The Monthly and Yearly Memberships are subscriptions that renew automatically. At
             the end of each month or year, the store charges your account the price for the next period (within the 24
             hours before the current period ends) unless you cancel first: on the App Store, at least 24 hours before
-            the current period ends; on Google Play, before the renewal date. When you cancel, the pass doesn't renew,
+            the current period ends; on Google Play, before the renewal date. When you cancel, the membership doesn't renew,
             and you keep its benefits until the end of the period you've already paid for. If a renewal payment fails, your
-            membership keeps working during any grace period the store gives, then stops until the payment is fixed or the store ends the pass.
+            membership keeps working during any grace period the store gives, then stops until the payment is fixed or the store ends the membership.
           </li>
           <li>
             <B>How to cancel.</B> On an iPhone or iPad: open Settings, tap your name, then Subscriptions, and choose
             SpySocial. On Android: open the Google Play Store app, tap your profile picture, then Payments &amp;
             subscriptions, then Subscriptions, and choose SpySocial. Manage Subscription in the app opens the same page.
-            You can switch between the monthly and yearly pass there too. Deleting the app, or your SpySocial account,
-            doesn't cancel a subscription, and neither does buying Lifetime: cancel the pass in the store so it isn't
+            You can switch between the monthly and yearly membership there too. Deleting the app, or your SpySocial account,
+            doesn't cancel a subscription, and neither does buying Lifetime: cancel the monthly or yearly membership in the store so it isn't
             charged again.
             {LIVE.memberLoyalty
               ? " In the Vault, Cancel Membership (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and the price you keep while you stay ends. Its one button, Continue to Cancel, goes straight on to the store's page. Manage Subscription itself still opens the store's page directly. Nothing changes before the end of the period you've paid for."
@@ -1031,12 +1031,12 @@ const Terms: React.FC = () => {
               <B>Member time.</B> While you're a member, the app shows when your membership started ("Member since") and
               how long you've been a member, with a stamp at 1, 3 and 6 months, then 1, 2 and 3 years, then every year.
               It counts the time your membership has been active without a break, however it came: a monthly or yearly
-              pass, Lifetime, a gift from us or a code. Refunded time and test purchases don't count. Member time is
+              membership, Lifetime, a gift from us or a code. Refunded time and test purchases don't count. Member time is
               earned by staying: on the first day your membership isn't active any more (after any grace period the
               store gives for a failed payment), your member time and stamps are gone, and if you become a member again,
               "Member since" and your time start again from zero. A gap of less than a day while a renewal goes through
               isn't a break. <B>Lifetime</B> is the exception: a Lifetime member's time counts from their first day as a
-              member, months on a pass before Lifetime included, and keeps growing for as long as we offer SpySocial,
+              member, months of a monthly or yearly membership before Lifetime included, and keeps growing for as long as we offer SpySocial,
               with every stamp we add later. Member time and stamps only change how your profile looks: they give no XP
               or better odds, can't be traded or sold, have no value in real money and aren't collectibles.
             </li>
@@ -1044,18 +1044,18 @@ const Terms: React.FC = () => {
           {LIVE.memberLoyalty ? (
             <li>
               <B>Your price while you stay.</B> We may change membership prices for new members. When we raise the price
-              of a pass, we ask Apple and Google to keep existing members on the price they pay, so your pass keeps
+              of the monthly or yearly membership, we ask Apple and Google to keep existing members on the price they pay, so your membership keeps
               renewing at the price you pay now for as long as it renews without a break. The store may still adjust
               it for local taxes or currency, and tells you before it does; you can cancel before an adjusted price
-              applies. If you switch to the other pass, you pay that plan's current price. If your membership ends and
+              applies. If you switch to the other plan (monthly or yearly), you pay that plan's current price. If your membership ends and
               you come back later, you may pay the price at that time. A price change never affects a Lifetime you've
               already bought.
             </li>
           ) : (
             <li>
-              <B>Price changes.</B> We may change membership prices. A new price applies to a pass only from a renewal
+              <B>Price changes.</B> We may change membership prices. A new price applies to a monthly or yearly membership only from a renewal
               after Apple or Google has told you about it, with the notice they require, and where the store or the law
-              needs your agreement to a higher price, the pass doesn't renew at it without your agreement. You can cancel
+              needs your agreement to a higher price, the membership doesn't renew at it without your agreement. You can cancel
               before a new price applies. A price change never affects a Lifetime you've already bought.
             </li>
           )}
@@ -1083,10 +1083,10 @@ const Terms: React.FC = () => {
             Google Play order history. If a purchase is refunded, we remove what it unlocked.
           </li>
           <li>
-            <B>If you delete your account</B>, the membership on it stops with the account, but a pass keeps renewing
+            <B>If you delete your account</B>, the membership on it stops with the account, but a monthly or yearly membership keeps renewing
             (and being charged) until you cancel it in the store. What you bought can come back on another SpySocial
             account with Restore Purchases. If we ban an account for breaking these Terms, its membership stops working
-            in SpySocial, but a pass keeps renewing (and being charged) until you cancel it in the store; refunds are
+            in SpySocial, but a monthly or yearly membership keeps renewing (and being charged) until you cancel it in the store; refunds are
             still up to Apple or Google.
           </li>
           <li>
@@ -1102,11 +1102,11 @@ const Terms: React.FC = () => {
         ) : (
         <Bullets>
           {LIVE.membershipsOnly ? (
-            <li>The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
+            <li>The only things you can buy in SpySocial are three memberships: Agent (the Monthly Membership), Elite (the Yearly Membership) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
           ) : (
-            <li>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
+            <li>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Monthly or Yearly Membership and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
           )}
-          <li>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</li>
+          <li>The Monthly and Yearly Memberships are subscriptions. Each renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</li>
           <li>Lifetime means for as long as we offer SpySocial, not for your lifetime.</li>
           {LIVE.membershipsOnly && (
             <li>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for as long as we give it, and nothing is charged for it.{LIVE.membershipCodes ? " A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time." : ''}{LIVE.codesNoMembership ? ' A code you enter in the app never gives a membership. An offer code or promo code for a membership is redeemed on the App Store or Google Play and follows their terms.' : ''}</li>
@@ -1241,7 +1241,7 @@ const Terms: React.FC = () => {
           Black Market, and private rooms are closed too unless the app tells you they stay open for you, until it
           recovers or we lift it. A reputation recovers on its own as older notes fade, and nothing older than 90 days
           counts.{LIVE.reputationHoldCap ? " While a fair-play hold is on your account (see section 9), your reputation can't rise and shows at most Good; once the hold ends, it is worked out again as if there had been no hold." : ''} We may also set a reputation by hand, for example after a case; you can ask us to review it at
-          support@spysocial.app. As with a ban, a pass keeps renewing (and being charged) until you cancel it in the store.
+          support@spysocial.app. As with a ban, a monthly or yearly membership keeps renewing (and being charged) until you cancel it in the store.
         </P>
       )}
 
