@@ -247,9 +247,9 @@ const es: Strings = {
       chatTap: 'El chat también: toca «Traducir» en cualquier mensaje para leerlo en el tuyo.',
       trioLabel: 'Una tarjeta de rol en tres idiomas',
       cardAlts: [
-        'Revelación de roles: la tarjeta de un Local muestra la ubicación secreta, Teatro',
-        'Tarjeta de rol en español: Teatro',
-        'Tarjeta de rol en ruso: Театр',
+        'Revelación de roles: la tarjeta de un Local muestra la ubicación secreta, Observatorio',
+        'Tarjeta de rol en español: Observatorio',
+        'Tarjeta de rol en ruso: Обсерватория',
       ],
     },
     safety: {

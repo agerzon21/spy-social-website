@@ -247,9 +247,9 @@ const ptBR: Strings = {
       chatTap: 'O chat também: toque em Traduzir em qualquer mensagem para ler no seu idioma.',
       trioLabel: 'Uma carta de papel em três idiomas',
       cardAlts: [
-        'Revelação do papel: a carta de um local mostra o lugar secreto, Teatro',
-        'Carta de papel em espanhol: Teatro',
-        'Carta de papel em russo: Театр',
+        'Revelação do papel: a carta de um local mostra o lugar secreto, Observatório',
+        'Carta de papel em espanhol: Observatorio',
+        'Carta de papel em russo: Обсерватория',
       ],
     },
     safety: {

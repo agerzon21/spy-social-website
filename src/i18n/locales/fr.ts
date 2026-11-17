@@ -246,9 +246,9 @@ const fr: Strings = {
       chatTap: 'Le chat aussi\u00A0: appuie sur Traduire sous n\'importe quel message pour le lire dans ta langue.',
       trioLabel: 'Une carte de rôle en trois langues',
       cardAlts: [
-        "Révélation des rôles\u00A0: la carte d'un local affiche le lieu secret, Théâtre",
-        'Carte de rôle en espagnol\u00A0: Teatro',
-        'Carte de rôle en russe\u00A0: Театр',
+        "Révélation des rôles\u00A0: la carte d'un local affiche le lieu secret, Observatoire",
+        'Carte de rôle en espagnol\u00A0: Observatorio',
+        'Carte de rôle en russe\u00A0: Обсерватория',
       ],
     },
     safety: {

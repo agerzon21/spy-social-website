@@ -247,9 +247,9 @@ const id: Strings = {
       chatTap: 'Chat juga: ketuk Terjemahkan di pesan mana pun untuk membacanya dalam bahasamu.',
       trioLabel: 'Satu kartu peran dalam tiga bahasa',
       cardAlts: [
-        'Pembagian peran: kartu warga menampilkan lokasi rahasianya, Teater',
-        'Kartu peran dalam bahasa Spanyol: Teatro',
-        'Kartu peran dalam bahasa Rusia: Театр',
+        'Pembagian peran: kartu warga menampilkan lokasi rahasianya, Observatorium',
+        'Kartu peran dalam bahasa Spanyol: Observatorio',
+        'Kartu peran dalam bahasa Rusia: Обсерватория',
       ],
     },
     safety: {

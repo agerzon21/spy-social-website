@@ -288,9 +288,9 @@ const en = {
       chatTap: 'Chat too: tap Translate on any message to read it in yours.',
       trioLabel: 'One role card in three languages',
       cardAlts: [
-        "Role reveal: a Local's card shows the secret location, Theater",
-        'Role card in Spanish: Teatro',
-        'Role card in Russian: Театр',
+        "Role reveal: a Local's card shows the secret location, Observatory",
+        'Role card in Spanish: Observatorio',
+        'Role card in Russian: Обсерватория',
       ],
     },
     safety: {
