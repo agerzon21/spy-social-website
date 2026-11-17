@@ -989,7 +989,7 @@ const Terms: React.FC = () => {
           <li>
             Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts
             {LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}
-            {LIVE.practiceMembers ? ". It also opens practice games (full games against the app's AI agents, with grades and, if you're 16 or older and agree, AI feedback on your lines), up to 5 a day; the tutorials stay free for everyone" : ''}. The free packs stay free for
+            {LIVE.practiceMembers ? ". It also opens practice games (full games against the app's AI agents, with grades and, if you're 16 or older and agree, AI feedback on your lines), up to 5 a day (the tutorials need no membership)" : ''}. The free packs stay free for
             everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a
             membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for
             as long as we give it, and nothing is charged for it.
