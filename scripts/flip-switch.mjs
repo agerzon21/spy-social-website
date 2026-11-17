@@ -22,6 +22,8 @@ const SWITCHES = {
   unconfirmedSignups: { live: [['unconfirmedSignups', true]], day: 'UNCONFIRMED_SIGNUPS_DAY', step: '31S' },
   retentionSweep: { live: [['retentionSweep', true]], day: 'RETENTION_SWEEP_DAY', step: '33S' },
   practiceResults: { live: [['practiceResults', true]], day: 'PRACTICE_RESULTS_DAY', step: '47S' },
+  // practice-members-1117: POLICY FIRST, the day NEXT-BATCH row 95 (999836) is applied, before it; both switches, PRACTICE_AI_DAY = that day.
+  practiceMembers: { live: [['practiceAi', true], ['practiceMembers', true]], day: 'PRACTICE_AI_DAY', step: 'row 95 (999836)' },
   ledgerReasons: { live: [['ledgerReasons', true]], day: null, step: '48S' },
   ledgerUniquesOnly: { live: [['ledgerUniquesOnly', true]], day: 'LEDGER_UNIQUES_DAY', step: '49S' },
   rarefinds: { live: [['rarefindsOffers', true], ['rarefindsOfferPush', true]], day: 'RAREFINDS_OFFERS_DAY', step: '52S' },

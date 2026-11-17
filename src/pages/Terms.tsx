@@ -249,7 +249,9 @@ const Terms: React.FC = () => {
         Anyone who meets the requirements can play in them: a saved account with a confirmed email address
         {LIVE.socialSignIn ? ' (or Apple or Google sign-in)' : ''}, being 13 or older, and agreeing to the Community Rules.
         {LIVE.coverage1110 &&
-          " Play Online may also ask you to pass a game's practice game first (a grade of C or better), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask."}
+          (LIVE.practiceMembers
+            ? " Play Online may also ask you to pass a game's tutorial first (the tutorials are free for everyone), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask."
+            : " Play Online may also ask you to pass a game's practice game first (a grade of C or better), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask.")}
         {/* Play Online's presets all have rules.room_votes_in_game false (live, 2026-10-25), call_room_vote refuses kick and
             end votes in a standard game, and a Play Online table has no lobby; only a hosted event room (events.format
             'room', off while app_config.events_enabled is false) has them. */}
@@ -986,7 +988,8 @@ const Terms: React.FC = () => {
           </li>
           <li>
             Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts
-            {LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for
+            {LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}
+            {LIVE.practiceMembers ? ". It also opens practice games (full games against the app's AI agents, with grades and, if you're 16 or older and agree, AI feedback on your lines), up to 5 a day (the tutorials need no membership)" : ''}. The free packs stay free for
             everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a
             membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for
             as long as we give it, and nothing is charged for it.

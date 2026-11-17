@@ -589,12 +589,15 @@ const Privacy: React.FC = () => {
               (PRIVACY.practiceResults
                 ? "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it, including whether you've already seen the note about the spies' chat) and the result of each practice game you finish: the game, your role (Local or spy), the table size (4 or 8 seats), your grade, your score, whether you won, and when. We use them so your progress and results follow you to your other devices, to show you your best grades, and to award the Practice Ace title (an A in every game, role and table size). If you played a game with 8 or more players before the spies' chat note existed, we marked the note as seen from your game history."
                 : "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it) and your best grade in each game's practice game, so your progress follows you to your other devices.") +
-              " Play Online can use them to open a game once you've passed its practice game (a C or better). We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
+              (PRIVACY.practiceMembers ? " Play Online can use them to open a game once you've passed its tutorial." : " Play Online can use them to open a game once you've passed its practice game (a C or better).") +
+              " We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
             {PRIVACY.practiceNoAi && !PRIVACY.practiceAi &&
               "The other players in a practice game are played by the app itself, on your device, and your moves are rated there too: nothing you type or draw in a practice game is sent to OpenAI or any other AI service. "}
+            {PRIVACY.practiceMembers &&
+              "The tutorials are free for everyone. Practice games (the full games against the app's AI agents, with grades) are for accounts with an active membership, up to 5 a day: when you start one, our servers check your membership and count it, keeping how many practice games each account started each UTC day (deleted after 14 days) and nothing about the game itself. "}
             {PRIVACY.practiceAi && <>
             In a practice game, your device rates every move you make. If you told us you're 16 or older (from the
-            birth year the app asks for), are signed in to an account (not playing as a guest) and chose Try It in the
+            birth year the app asks for), {PRIVACY.practiceMembers ? 'have an active membership (practice games are for members, above)' : 'are signed in to an account (not playing as a guest)'} and chose Try It in the
             app's one-time "Rate with AI?" note that names OpenAI, our servers also ask OpenAI to rate each line you
             type in a Spy Talk practice game, for a sharper score (Spy Sketch practice is rated only on your device). For that, our servers send OpenAI only the line you typed (up to 160 characters),
             whether it's an answer, a question or a follow-up, your role in the practice game (Local or spy), the game's

@@ -1139,6 +1139,18 @@ export const LIVE = {
    */
   practiceAi: false,
   /**
+   * (practice-members-1117, owner Tue Nov 17) Practice Games become MEMBERS ONLY: an active membership (Monthly, Yearly or
+   * Lifetime; a membership we give, testers' included, counts), at most 5 a day (the UTC day), with the AI rating turned
+   * on (app server 20261231999836_practice_members_1117, NEXT-BATCH row 95: start_practice_game counts the practice games
+   * each account starts per UTC day in practice_game_days, deleted after 14 days; practice-rate refuses a non-member's
+   * line, not_member). The tutorials stay free for everyone and still open Play Online. On, it adds to Privacy's Practice
+   * Games item (members only, the per-day count, the tutorial as Play Online's step) and to Terms (the membership list,
+   * Play Online's tutorial line). POLICY FIRST, as practiceAi: flip BOTH (practiceAi + practiceMembers) and deploy the
+   * site the same day row 95 is applied, before it, with PRACTICE_AI_DAY set to that day. A server switch: set in LIVE,
+   * never in PRIVACY_AHEAD.
+   */
+  practiceMembers: false,
+  /**
    * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Monthly
    * or Yearly Membership, or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
    * least 30 entries) and plays it in their private rooms, where the room's players see its name and what the game deals
@@ -2405,6 +2417,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
+  : LIVE.practiceMembers
+    ? PRACTICE_AI_DAY // Terms 3's membership item (practice games, 5 a day) and Terms 5's Play Online tutorial line (practice-members-1117, row 95)
   : LIVE.sameOdds
     ? SAME_ODDS_DAY // Terms 9's trade-up: every item of the next rarity with the same chance, whatever you own (legal-1116, 999888)
   : LIVE.noPackPass1117
@@ -2525,6 +2539,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? PLAYTEST_TREMENDOUS_DAY // Test Versions: Beta 3's thank-yous through Tremendous; providers' paragraph (legal-1116)
   : LIVE.appU62
     ? APP_U62_DAY // Chat Messages: the spies' chat named "Spy Channel", as update 62 names it (legal-coverage-1116; Beta 3, Nov 24)
+  : LIVE.practiceMembers
+    ? PRACTICE_AI_DAY // Practice Games: members only, the per-UTC-day count, the tutorial as Play Online's step, the AI rating for members (practice-members-1117, row 95)
   : LIVE.drawingCheckWithdraw
     ? DRAWING_CHECK_WITHDRAW_DAY // Drawing Checks: withdrawing the agreement in Settings, and its Data Retention line (privacy-anchors-1115, 999902 + u62.12)
   : LIVE.heavyReads
