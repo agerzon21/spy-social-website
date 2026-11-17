@@ -429,7 +429,7 @@ const id: Strings = {
       buy: '<b>Barang yang bisa dibeli:</b> paket dan keanggotaan, lewat App Store atau Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        '<b>Barang yang bisa dibeli:</b> hanya keanggotaan (Langganan paket, bulanan atau tahunan, dan Akses seumur hidup), lewat App Store atau Google Play. Keanggotaan membuka paket yang tidak gratis; selain itu tidak ada yang dijual.',
+        '<b>Barang yang bisa dibeli:</b> hanya keanggotaan (Keanggotaan bulanan atau tahunan, dan Akses seumur hidup), lewat App Store atau Google Play. Keanggotaan membuka paket yang tidak gratis; selain itu tidak ada yang dijual.',
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>Sadapan (Intercepts):</b> hadiah yang didapat dengan bermain, masing-masing berisi satu item acak, seperti tampilan baru untuk agen. Hadiah ini tidak bisa dibeli, baik dengan uang maupun dengan mata uang yang didapat dari bermain, dan aplikasi menunjukkan peluangnya sebelum dibuka.',
@@ -480,7 +480,7 @@ const id: Strings = {
         '<b>Pemeriksaan gambar:</b> giliran menggambar di room publik bisa diperiksa otomatis, dan giliran yang menurut pemeriksaan melanggar aturan dihapus dari gambar.',
       buyTitle: 'Pembelian',
       buyText:
-        'Remaja butuh izin orang tua atau wali untuk membeli apa pun. Pembelian dilakukan lewat App Store atau Google Play, jadi kontrol orang tua di sana, seperti Ask to Buy dari Apple dan persetujuan pembelian di Google Family Link, tetap berfungsi seperti biasa. Langganan paket diperpanjang otomatis sampai dibatalkan di pengaturan toko aplikasi.',
+        'Remaja butuh izin orang tua atau wali untuk membeli apa pun. Pembelian dilakukan lewat App Store atau Google Play, jadi kontrol orang tua di sana, seperti Ask to Buy dari Apple dan persetujuan pembelian di Google Family Link, tetap berfungsi seperti biasa. Keanggotaan bulanan atau tahunan diperpanjang otomatis sampai dibatalkan di pengaturan toko aplikasi.',
       deleteTitle: 'Menghapus akun',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Buka SpySocial.',
@@ -995,7 +995,7 @@ const id: Strings = {
       { title: "Main online", text: "Ketuk “Cari permainan” untuk meja 4 atau 8 orang, kapan saja. Orang asing hanya melihat warna Agen-mu, tidak pernah namamu." },
       { title: "Malam Permainan", text: "Malam online terjadwal, dengan gelar yang hanya didapat malam itu. Kami akan mengingatkanmu sebelum dimulai." },
       { title: "Pasar Gelap", text: "Tukar item dengan teman. Orang dewasa juga bisa membeli dan menjual item di Pasar Gelap dengan Intel yang didapat dari bermain. Tidak pernah dengan uang sungguhan." },
-      { title: "Keanggotaan", text: "Opsional: Langganan paket (bulanan atau tahunan) atau Seumur hidup, sekali bayar dan tidak pernah diperpanjang. Semua paket premium di room yang kamu host dan di mejamu di Main online, plus pembuat paket. Tidak ada lagi yang dijual." },
+      { title: "Keanggotaan", text: "Opsional: Keanggotaan bulanan atau tahunan, atau Seumur hidup, sekali bayar dan tidak pernah diperpanjang. Semua paket premium di room yang kamu host dan di mejamu di Main online, plus pembuat paket. Tidak ada lagi yang dijual." },
     ],
     allNotes: "Semua yang baru di 2.2",
     community: {

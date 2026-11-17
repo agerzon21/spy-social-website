@@ -428,7 +428,7 @@ const fr: Strings = {
       buy: "<b>Des achats\u00A0:</b> packs et formules membres, via l'App Store ou Google Play.",
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        "<b>Des achats\u00A0:</b> uniquement le statut de membre (le Pass packs mensuel ou annuel, et l'Accès à vie), via l'App Store ou Google Play. Être membre débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
+        "<b>Des achats\u00A0:</b> uniquement le statut de membre (la formule mensuelle ou annuelle, et l'Accès à vie), via l'App Store ou Google Play. Être membre débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         "<b>Interceptions\u00A0:</b> des récompenses gagnées en jouant, chacune avec un objet au hasard, comme un nouveau look pour l'agent. Elles ne s'achètent pas, ni avec de l'argent ni avec la monnaie gagnée dans le jeu, et l'appli affiche les chances avant qu'on en ouvre une.",
@@ -479,7 +479,7 @@ const fr: Strings = {
         '<b>Vérification des dessins\u00A0:</b> les tours de dessin dans un salon public peuvent être vérifiés automatiquement, et un tour dont la vérification constate qu’il enfreint les règles est retiré du dessin.',
       buyTitle: 'Achats',
       buyText:
-        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Un Pass packs se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
+        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Une formule mensuelle ou annuelle se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
       deleteTitle: 'Supprimer un compte',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Ouvre SpySocial.',
@@ -1000,7 +1000,7 @@ const fr: Strings = {
       { title: "Jouer en ligne", text: "Touche « Trouver une partie » pour une table de 4 ou 8, à tout moment. Les inconnus voient ta couleur d'agent, jamais ton nom." },
       { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des titres à gagner ce soir-là seulement. On te prévient avant le début." },
       { title: "Marché noir", text: "Échange des objets avec tes amis. Les adultes peuvent aussi acheter et vendre des objets au Marché noir contre de l'Intel, gagné en jouant. Jamais d'argent réel." },
-      { title: "Membres", text: "En option : le Pass packs (mensuel ou annuel) ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
+      { title: "Membres", text: "En option : la formule mensuelle ou annuelle, ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
     ],
     allNotes: "Toutes les nouveautés de la 2.2",
     community: {

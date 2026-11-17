@@ -427,7 +427,7 @@ const zhHans: Strings = {
       buy: '<b>可购买的内容：</b>主题包和会员，通过 App Store 或 Google Play 购买。',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        '<b>可购买的内容：</b>只有会员（主题包通行证，按月或按年，以及终身通行证），通过 App Store 或 Google Play 购买。会员可解锁所有非免费主题包，除此之外不出售任何东西。',
+        '<b>可购买的内容：</b>只有会员（月度或年度会员，以及终身会员），通过 App Store 或 Google Play 购买。会员可解锁所有非免费主题包，除此之外不出售任何东西。',
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>密函（Intercepts）：</b>通过游戏赢得的奖励，每封都装着一件随机物品，比如特工的新造型。它们不能购买，无论是用钱还是用游戏里赚到的货币；打开之前，应用会显示概率。',
@@ -478,7 +478,7 @@ const zhHans: Strings = {
         '<b>画作检查：</b>公开房间中的画作可能会被自动检查，被检查判定违反规则的那一回合所画内容会从画作上撤下。',
       buyTitle: '购买',
       buyText:
-        '青少年购买任何内容都需要获得父母或监护人的许可。购买通过 App Store 或 Google Play 进行，所以它们的家长控制功能，例如 Apple 的“询问后购买”和 Google Family Link 中的购买批准，照常有效。主题包通行证会自动续订，直到在商店设置中取消。',
+        '青少年购买任何内容都需要获得父母或监护人的许可。购买通过 App Store 或 Google Play 进行，所以它们的家长控制功能，例如 Apple 的“询问后购买”和 Google Family Link 中的购买批准，照常有效。月度或年度会员会自动续订，直到在商店设置中取消。',
       deleteTitle: '删除账号',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         '打开 SpySocial。',
@@ -972,7 +972,7 @@ const zhHans: Strings = {
       { title: "在线游戏", text: "点击“开始匹配”，随时加入 4 人或 8 人游戏桌。陌生人只能看到你的特工颜色，看不到你的名字。" },
       { title: "游戏之夜", text: "定时举办的在线游戏之夜，可以赢得只有当晚才能获得的称号。开始前我们会提醒你。" },
       { title: "黑市", text: "和好友交易物品。成年玩家还可以在黑市用玩游戏赚到的情报买卖物品。绝不涉及真钱。" },
-      { title: "会员", text: "可选：月度或年度主题包通行证，或终身通行证（只付一次，不会续订）。你当房主的房间里和你的“在线游戏”游戏桌上可玩全部高级主题包，还能用制作器做主题包。除此之外不卖任何东西。" },
+      { title: "会员", text: "可选：月度或年度会员，或终身会员（只付一次，不会续订）。你当房主的房间里和你的“在线游戏”游戏桌上可玩全部高级主题包，还能用制作器做主题包。除此之外不卖任何东西。" },
     ],
     allNotes: "2.2 的全部新内容",
     community: {

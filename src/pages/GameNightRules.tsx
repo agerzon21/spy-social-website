@@ -53,7 +53,7 @@ const GameNightRules: React.FC = () => (
     <H2>No purchase necessary</H2>
     <P>
       Taking part is free. Nothing you buy in SpySocial
-      {LIVE.membershipsOnly ? ' (a membership: Agent, Elite or Spymaster)' : ' (a pack, a Pack Pass, a membership)'} gives
+      {LIVE.membershipsOnly ? ' (a membership: Agent, Elite or Spymaster)' : ' (a pack or a membership)'} gives
       you a better chance of getting a title{LIVE.intercepts ? ' or an Intercept' : ''}, and you never need to buy
       anything to take part or to get one.
     </P>

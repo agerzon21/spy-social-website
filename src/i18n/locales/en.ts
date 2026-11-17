@@ -475,7 +475,7 @@ const en = {
       buy: '<b>Things to buy:</b> packs and memberships, through the App Store or Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        "<b>Things to buy:</b> only memberships (the Pack Pass, monthly or yearly, and Lifetime), through the App Store or Google Play. A membership unlocks the packs that aren't free; nothing else is sold.",
+        "<b>Things to buy:</b> only memberships (the Monthly or Yearly Membership, and Lifetime), through the App Store or Google Play. A membership unlocks the packs that aren't free; nothing else is sold.",
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         "<b>Intercepts:</b> rewards earned by playing, each holding one random item, such as a new look for the player's agent. They can't be bought, with money or with the currency players earn in the game, and the app shows the odds before one is opened.",
@@ -529,7 +529,7 @@ const en = {
         '<b>Drawing check:</b> drawing turns in a public room may be checked automatically, and a turn the check finds breaks the rules is taken off the drawing.',
       buyTitle: 'Buying',
       buyText:
-        "Teens need a parent's or guardian's permission to buy anything. Purchases go through the App Store or Google Play, so their parental controls, such as Apple's Ask to Buy and purchase approvals in Google Family Link, work as usual. A Pack Pass renews until it's cancelled in the store's settings.",
+        "Teens need a parent's or guardian's permission to buy anything. Purchases go through the App Store or Google Play, so their parental controls, such as Apple's Ask to Buy and purchase approvals in Google Family Link, work as usual. A monthly or yearly membership renews until it's cancelled in the store's settings.",
       deleteTitle: 'Deleting an account',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Open SpySocial.',
@@ -1102,7 +1102,7 @@ const en = {
       { title: "Play Online", text: "Tap Find a Game for a table of 4 or 8, any time. Strangers see your Agent Color, never your name." },
       { title: "Game Night", text: "Scheduled nights online, with titles you can only earn that night. We'll remind you before they start." },
       { title: "Black Market", text: "Trade items with friends. Adults can also buy and sell items on the Black Market for Intel, which you earn by playing. Never for real money." },
-      { title: "Memberships", text: "Optional: a Pack Pass (monthly or yearly), or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
+      { title: "Memberships", text: "Optional: a Monthly or Yearly Membership, or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
     ],
     /** The link to What's New under the cards. */
     allNotes: "Everything new in 2.2",
