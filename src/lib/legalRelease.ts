@@ -1139,6 +1139,18 @@ export const LIVE = {
    */
   practiceAi: false,
   /**
+   * (practice-members-1117, owner Tue Nov 17) Practice Games become MEMBERS ONLY: an active membership (Monthly, Yearly or
+   * Lifetime; a membership we give, testers' included, counts), at most 5 a day (the UTC day), with the AI rating turned
+   * on (app server 20261231999836_practice_members_1117, NEXT-BATCH row 95: start_practice_game counts the practice games
+   * each account starts per UTC day in practice_game_days, deleted after 14 days; practice-rate refuses a non-member's
+   * line, not_member). The tutorials stay free for everyone and still open Play Online. On, it adds to Privacy's Practice
+   * Games item (members only, the per-day count, the tutorial as Play Online's step) and to Terms (the membership list,
+   * Play Online's tutorial line). POLICY FIRST, as practiceAi: flip BOTH (practiceAi + practiceMembers) and deploy the
+   * site the same day row 95 is applied, before it, with PRACTICE_AI_DAY set to that day. A server switch: set in LIVE,
+   * never in PRIVACY_AHEAD.
+   */
+  practiceMembers: false,
+  /**
    * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Monthly
    * or Yearly Membership, or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
    * least 30 entries) and plays it in their private rooms, where the room's players see its name and what the game deals
