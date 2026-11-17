@@ -230,7 +230,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             a: [
               "De l'<b>Intel de soirée jeux</b> pour chaque partie que tu termines : 500 pour une victoire, 200 pour une défaite ou une égalité. L'écran de fin montre ce que tu as gagné.",
               "Pas d'Intel de soirée jeux si tu quittes avant la fin ou ne participes pas, si la partie se termine après la fermeture de la soirée jeux, ou à une table avec des spybots. Une partie qui s'arrête tôt parce que quelqu'un est parti ne rapporte rien à personne.",
-              "Des <b>titres ★</b> à compteur : <b>★ Agent de terrain</b> pour chaque partie de soirée jeux terminée, <b>★ Héros local</b> pour chaque victoire en local, <b>★ Maître espion</b> pour chaque victoire en espion, et <b>★ Agent double</b> pour chaque soirée où tu gagnes des deux côtés. Porte-les avec leur nombre, comme ★ Agent de terrain ×12.",
+              "Des <b>titres ★</b> à compteur : <b>★ Infiltré</b> pour chaque partie de soirée jeux terminée, <b>★ Héros local</b> pour chaque victoire en local, <b>★ Espion émérite</b> pour chaque victoire en espion, et <b>★ Agent double</b> pour chaque soirée où tu gagnes des deux côtés. Porte-les avec leur nombre, comme ★ Infiltré ×12.",
               "L'Intel de soirée jeux et les titres ★ sont à toi seul : ils ne s'échangent pas, et le statut de membre n'y ajoute rien. Dépense l'Intel en interceptions de soirée jeux.",
               ...(o.launch
                 ? []
