@@ -81,9 +81,9 @@ const es: HelpText = {
               id: 'question-rounds',
               q: '¿Qué son las rondas de preguntas?',
               a: [
-                'Algunas mesas de Spy Talk juegan 2 rondas de preguntas en vez de 1: las salas privadas cuyo anfitrión elige 2 en las <b>Reglas</b> de la sala, y las Noches de Juegos que lo tengan. Jugar en línea siempre juega 1.',
+                'Algunas mesas de Spy Talk juegan 2 rondas de preguntas en vez de 1: las salas privadas cuyo anfitrión elige 2 en las <b>Reglas</b> de la sala, y las Noches de Juegos que lo tengan. En Jugar en línea siempre es 1.',
                 'En la ronda 1, cada uno hace una pregunta y responde una. En cuanto llega la última respuesta, empieza la ronda 2, al revés: te pregunta la persona a la que preguntaste. Arriba se ve «Ronda 2».',
-                'Después, la discusión, con su tiempo de siempre. Dos rondas dan a los locales el doble de respuestas para revisar, y al espía el doble de ocasiones para fallar.',
+                'Después, la discusión, con su tiempo de siempre. Dos rondas dan a los locales el doble de respuestas para revisar, y al espía el doble de ocasiones para delatarse.',
               ],
             },
             ]
@@ -261,7 +261,7 @@ const es: HelpText = {
               a: [
                 'Las partidas de práctica son para miembros: hasta 5 al día. El día empieza a medianoche UTC. Después de tus 5, puedes retomar una partida guardada.',
                 ...(o.practiceAi
-                  ? ['Los miembros reciben comentarios de IA sobre cada línea que escriben, mientras juegan, y una nota con letra en cada partida. Los comentarios de IA son para jugadores de 16 años o más que tocan <b>Probar</b> cuando la app lo pregunta; para los demás, puntúa el teléfono. Para dejarlos, desactiva <b>Puntuar mis frases de práctica con IA</b> en Ajustes.']
+                  ? ['Los miembros reciben comentarios de IA sobre cada frase que escriben, mientras juegan, y una nota de la A a la F en cada partida. Los comentarios de IA son para jugadores de 16 años o más que tocan <b>Probar</b> cuando la app lo pregunta; para los demás, puntúa el teléfono. Para dejar de recibirlos, desactiva <b>Puntuar mis frases de práctica con IA</b> en Ajustes.']
                   : []),
                 'Los tutoriales siguen siendo gratis para todos, y superar uno sigue contando para Jugar en línea.',
               ],
@@ -687,7 +687,7 @@ const es: HelpText = {
             'Todos los paquetes premium, incluidos los nuevos. Todos pueden jugarlos en las salas donde eres anfitrión y en tu mesa de Jugar en línea.',
             'Crea tus propios paquetes con el creador y compártelos en la comunidad.',
             '+50 % de XP en cada partida y salas solo para miembros en Jugar en línea.',
-            ...(o.practiceMembers ? ['Partidas de práctica, hasta 5 al día, con notas con letras y comentarios de IA.'] : []),
+            ...(o.practiceMembers ? ['Partidas de práctica, hasta 5 al día, con notas de la A a la F y comentarios de IA.'] : []),
             'El marco, la etiqueta y el título de tu rango. Puedes liderar un grupo y tener 8 ofertas abiertas en el Mercado Negro en vez de 4.',
             'Nunca cambia cómo juegas ni cómo puntúas. Los paquetes gratis siguen gratis para todos.',
           ],

@@ -81,7 +81,7 @@ const ptBR: HelpText = {
               id: 'question-rounds',
               q: 'O que são as rodadas de perguntas?',
               a: [
-                'Algumas mesas de Spy Talk jogam 2 rodadas de perguntas em vez de 1: salas privadas em que o anfitrião escolhe 2 nas <b>Regras</b> da sala, e Noites de Jogos que usam isso. O Jogar online sempre joga 1.',
+                'Algumas mesas de Spy Talk jogam 2 rodadas de perguntas em vez de 1: salas privadas em que o anfitrião escolhe 2 nas <b>Regras</b> da sala, e Noites de Jogos que usam isso. No Jogar online, é sempre 1.',
                 'Na rodada 1, cada um faz uma pergunta e responde uma. Assim que chega a última resposta, começa a rodada 2, ao contrário: a pessoa a quem você perguntou é quem pergunta para você. No topo aparece “Rodada 2”.',
                 'Depois vem a discussão, com o tempo de sempre. Duas rodadas dão aos locais o dobro de respostas para conferir, e ao espião o dobro de chances de vacilar.',
               ],
@@ -233,7 +233,7 @@ const ptBR: HelpText = {
               q: 'O que eu ganho na Noite de Jogos?',
               a: [
                 '<b>Intel da Noite de Jogos</b> por cada partida que você termina: 500 por vitória, 200 por derrota ou empate. O fim de jogo mostra quanto você ganhou.',
-                'Não há Intel da Noite de Jogos se você sair antes do fim ou não participar, se a partida acabar depois do encerramento da Noite de Jogos, ou numa mesa com spybots. Uma partida que acaba antes porque alguém saiu não paga ninguém.',
+                'Não há Intel da Noite de Jogos se você sair antes do fim ou não participar, se a partida acabar depois do encerramento da Noite de Jogos, ou numa mesa com spybots. Uma partida que acaba antes porque alguém saiu não dá nada a ninguém.',
                 '<b>Títulos ★</b> que vão somando: <b>★ Operativo</b> por cada partida da Noite de Jogos que você termina, <b>★ Herói Local</b> por cada vitória como local, <b>★ Mestre Espião</b> por cada vitória como espião e <b>★ Agente Duplo</b> por cada noite em que você ganha dos dois lados. Use o título com a contagem, como ★ Operativo ×12.',
                 'O Intel da Noite de Jogos e os títulos ★ são só seus: não podem ser trocados, e o plano de membro não acrescenta nada a eles. Gaste o Intel em interceptações da Noite de Jogos.',
                 ...(o.launch
@@ -261,7 +261,7 @@ const ptBR: HelpText = {
               a: [
                 'As partidas de treino são para membros: até 5 por dia. O dia começa à meia-noite UTC. Depois das suas 5, uma partida salva ainda pode ser continuada.',
                 ...(o.practiceAi
-                  ? ['Membros recebem comentários da IA sobre cada frase que escrevem, enquanto jogam, e uma nota por letra em toda partida. Os comentários da IA são para quem tem 16 anos ou mais e toca em <b>Experimentar</b> quando o app pergunta; para os outros, quem avalia é o celular. Para parar, desative <b>Avaliar minhas frases de treino com IA</b> nos Ajustes.']
+                  ? ['Membros recebem comentários da IA sobre cada frase que escrevem, enquanto jogam, e uma nota de A a F em toda partida. Os comentários da IA são para quem tem 16 anos ou mais e toca em <b>Experimentar</b> quando o app pergunta; para os outros, quem avalia é o celular. Para parar, desative <b>Avaliar minhas frases de treino com IA</b> nos Ajustes.']
                   : []),
                 'Os tutoriais continuam grátis para todos, e passar em um ainda conta para o Jogar online.',
               ],
@@ -585,7 +585,7 @@ const ptBR: HelpText = {
               q: 'O que são as interceptações da Noite de Jogos?',
               a: [
                 'Interceptações que você pega com Intel da Noite de Jogos, no cartão da Noite de Jogos no <b>Cofre</b>: <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
-                'Elas abrem na coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
+                'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
                 'Uma comprada espera em <b>Para abrir</b>. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
               ],
             },
@@ -687,7 +687,7 @@ const ptBR: HelpText = {
             'Todos os pacotes premium, inclusive os novos. Todo mundo joga com eles nas salas em que você é o anfitrião e na sua mesa de Jogar online.',
             'Crie seus próprios pacotes com o criador e compartilhe na comunidade.',
             '+50% de XP em toda partida e salas só para membros no Jogar online.',
-            ...(o.practiceMembers ? ['Partidas de treino, até 5 por dia, com notas por letra e comentários da IA.'] : []),
+            ...(o.practiceMembers ? ['Partidas de treino, até 5 por dia, com notas de A a F e comentários da IA.'] : []),
             'A moldura, a etiqueta e o título do seu nível. Você pode liderar um grupo e ter 8 ofertas abertas no Mercado Negro em vez de 4.',
             'Nunca muda como você joga ou pontua. Os pacotes grátis continuam grátis para todos.',
           ],
@@ -722,7 +722,7 @@ const ptBR: HelpText = {
                 'Você nunca paga duas vezes. No Google Play, o novo plano começa na hora e o tempo que você já pagou vira tempo no novo plano. Na App Store, a Apple decide quando ele começa, muitas vezes na sua próxima renovação, e credita o tempo que você já pagou.',
                 'Um plano cobrado pela outra loja é mudado nessa loja: comprar outro plano aqui faria você pagar duas vezes.',
                 ...(o.googlePassStop
-                  ? ['Quando você compra o Vitalício, um plano mensal ou anual cobrado pelo Google Play para de renovar sozinho: ele fica com você até a data de término, e nada mais é cobrado. A Apple não permite isso, então cancele você mesmo um plano da App Store.']
+                  ? ['Quando você compra o Vitalício, um plano mensal ou anual cobrado pelo Google Play para de renovar sozinho: ele fica com você até a data de término, e nada mais é cobrado. A Apple não permite isso, então cancele por conta própria um plano da App Store.']
                   : []),
               ],
             },

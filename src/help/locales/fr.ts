@@ -77,8 +77,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'question-rounds',
             q: "C'est quoi, les manches de questions ?",
             a: [
-              "Certaines tables de Spy Talk jouent 2 manches de questions au lieu d'une : les salons privés dont l'hôte choisit 2 dans les <b>Règles</b> du salon, et les soirées jeux qui l'activent. Jouer en ligne joue toujours 1 manche.",
-              "En manche 1, chacun pose une question et répond à une. Dès que la dernière réponse arrive, la manche 2 commence, à l'envers : la personne à qui tu as posé ta question te pose la sienne. En haut de l'écran s'affiche « Manche 2 ».",
+              "Certaines tables de Spy Talk jouent 2 manches de questions au lieu d'une : les salons privés dont l'hôte choisit 2 dans les <b>Règles</b> du salon, et les soirées jeux qui l'activent. Avec Jouer en ligne, c'est toujours 1 manche.",
+              "À la manche 1, chacun pose une question et répond à une. Dès que la dernière réponse arrive, la manche 2 commence, à l'envers : la personne à qui tu as posé ta question te pose la sienne. En haut de l'écran s'affiche « Manche 2 ».",
               "Puis la discussion, avec son temps habituel. Deux manches donnent aux locaux deux fois plus de réponses à vérifier, et à l'espion deux fois plus d'occasions de se trahir.",
             ],
           },
@@ -202,7 +202,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'game-night',
         q: "C'est quoi, la soirée jeux ?",
         a: [
-          "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
+          "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
           o.gnRewards
             ? "Chaque soirée a ses packs et ses réglages : le (i) à côté de la soirée les affiche. <b>Prix</b>, sur la carte, montre ce que tu gagnes : l'Intel de soirée jeux et les titres ★."
             : 'Chaque soirée a ses packs, ses réglages et ses titres. Le (i) à côté de la soirée affiche ses packs et ses réglages, et <b>Prix</b>, sur la carte, ses titres.',
@@ -215,7 +215,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'game-night-weekly',
             q: "C'est quand, la soirée jeux ?",
             a: [
-              "Une fois par semaine : le vendredi, puis la même soirée à nouveau le samedi, en général de 20 h à 22 h, heure de l'Est des États-Unis.",
+              "Une fois par semaine : le vendredi, puis la même soirée à nouveau le samedi, en général de 20 h à 22 h, heure de l'Est des États-Unis.",
               "Viens à l'une des deux, ou joue aux deux.",
               "Nous annonçons chaque soirée dans l'appli, sur la carte de la soirée jeux de l'accueil.",
             ],
@@ -230,11 +230,11 @@ const sections = (o: HelpOpts): HelpSection[] => [
             a: [
               "De l'<b>Intel de soirée jeux</b> pour chaque partie que tu termines : 500 pour une victoire, 200 pour une défaite ou une égalité. L'écran de fin montre ce que tu as gagné.",
               "Pas d'Intel de soirée jeux si tu quittes avant la fin ou ne participes pas, si la partie se termine après la fermeture de la soirée jeux, ou à une table avec des spybots. Une partie qui s'arrête tôt parce que quelqu'un est parti ne rapporte rien à personne.",
-              "Des <b>titres ★</b> qui comptent : <b>★ Agent de terrain</b> pour chaque partie de soirée jeux terminée, <b>★ Héros local</b> pour chaque victoire en local, <b>★ Maître espion</b> pour chaque victoire en espion, et <b>★ Agent double</b> pour chaque soirée où tu gagnes des deux côtés. Porte-les avec leur nombre, comme ★ Agent de terrain ×12.",
+              "Des <b>titres ★</b> à compteur : <b>★ Agent de terrain</b> pour chaque partie de soirée jeux terminée, <b>★ Héros local</b> pour chaque victoire en local, <b>★ Maître espion</b> pour chaque victoire en espion, et <b>★ Agent double</b> pour chaque soirée où tu gagnes des deux côtés. Porte-les avec leur nombre, comme ★ Agent de terrain ×12.",
               "L'Intel de soirée jeux et les titres ★ sont à toi seul : ils ne s'échangent pas, et le statut de membre n'y ajoute rien. Dépense l'Intel en interceptions de soirée jeux.",
               ...(o.launch
                 ? []
-                : ["Les titres des soirées jeux de la bêta sont devenus des nombres sur ces titres. À la remise à zéro avant le lancement, l'Intel de soirée jeux que tu as gagné revient en entier, même si tu l'as dépensé, et tes titres ★ restent. Les interceptions de soirée jeux et leurs objets repartent de zéro comme tout le reste."]),
+                : ["Les titres des soirées jeux de la bêta se sont ajoutés au compteur de ces titres. À la remise à zéro avant le lancement, l'Intel de soirée jeux que tu as gagné revient en entier, même si tu l'as dépensé, et tes titres ★ restent. Les interceptions de soirée jeux et leurs objets repartent de zéro comme tout le reste."]),
             ],
           },
           ]
@@ -580,7 +580,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'game-night-intercepts',
             q: "C'est quoi, les interceptions de soirée jeux ?",
             a: [
-              "Des interceptions que tu obtiens avec l'Intel de soirée jeux, sur la carte de la soirée jeux du <b>Coffre</b> : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
+              "Des interceptions que tu obtiens avec l'Intel de soirée jeux, sur la carte de la soirée jeux du <b>Coffre</b> : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
               "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
               "Une interception achetée attend dans <b>À ouvrir</b>. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
             ],
