@@ -46,6 +46,8 @@ const en = {
       childSafety: 'Child Safety Standards',
       whatsNew: "What's New",
       roadmap: 'Roadmap',
+      /** The press kit (/press, press-page-1116). */
+      press: 'Press kit',
       deleteAccount: 'Delete your account',
       join: 'Join a game',
       joinEvent: 'Public Game Night',
@@ -73,6 +75,7 @@ const en = {
       whatsNew: 'Release notes for SpySocial: new features, fixes and improvements in each version of the app.',
       roadmap:
         "What's coming to SpySocial: everything in version 2.2, from Play Online and Spy Sketch to automatic chat translation, and what's planned next: ranked games, seasons and tournaments.",
+      press: "SpySocial's press kit: what the game is, the fact sheet, the launch date, logos and screenshots to download, and the press contact.",
       deleteAccount: 'How to delete your SpySocial account and its data, in the app or by email, and what stays for a while after.',
     },
   },
@@ -116,6 +119,8 @@ const en = {
     whatsNew: "What's New",
     /** The link to the roadmap page, once it's announced (LIVE.roadmap). */
     roadmap: 'Roadmap',
+    /** The link to the press kit (/press). */
+    press: 'Press',
     rules: 'Rules',
     support: 'Support',
     contact: 'Contact',

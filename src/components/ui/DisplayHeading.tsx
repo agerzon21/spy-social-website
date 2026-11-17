@@ -14,7 +14,7 @@ const DisplayHeading = ({
   className,
   children,
 }: {
-  as?: 'h1' | 'h2' | 'h3'
+  as?: 'h1' | 'h2' | 'h3' | 'h4'
   size?: 1 | 2 | 3 | 4
   id?: string
   className?: string

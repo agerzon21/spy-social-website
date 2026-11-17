@@ -29,6 +29,7 @@ const ptBR: Strings = {
       childSafety: 'Padrões de segurança infantil',
       whatsNew: 'Novidades',
       roadmap: 'Roadmap',
+      press: 'Kit de imprensa',
       deleteAccount: 'Excluir sua conta',
       join: 'Entrar numa partida',
       joinEvent: 'Noite de Jogos pública',
@@ -55,6 +56,7 @@ const ptBR: Strings = {
       whatsNew: 'Notas de versão do SpySocial: novos recursos, correções e melhorias em cada versão do app.',
       roadmap:
         'O que vem aí no SpySocial: tudo da versão 2.2, do Jogar online e do Spy Sketch à tradução automática do chat, e o que está planejado depois: partidas ranqueadas, temporadas e torneios.',
+      press: 'O kit de imprensa do SpySocial: o que é o jogo, a ficha técnica, a data de lançamento, logos e capturas de tela para baixar e o contato para imprensa.',
       deleteAccount: 'Como excluir sua conta do SpySocial e os dados dela, no app ou por e-mail, e o que ainda fica guardado por um tempo.',
     },
   },
@@ -91,6 +93,7 @@ const ptBR: Strings = {
     browser: 'Jogue no navegador',
     whatsNew: 'Novidades',
     roadmap: 'Roadmap',
+    press: 'Imprensa',
     rules: 'Regras',
     support: 'Suporte',
     contact: 'Contato',

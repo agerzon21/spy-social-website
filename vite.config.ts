@@ -121,6 +121,7 @@ const PREVIEW_PAGES: { path: string; key: string }[] = [
   { path: '/child-safety', key: 'childSafety' },
   { path: '/whats-new', key: 'whatsNew' },
   { path: '/roadmap', key: 'roadmap' },
+  { path: '/press', key: 'press' },
   { path: '/delete-account', key: 'deleteAccount' },
   { path: '/transparency', key: 'transparency' },
   { path: '/game-night-rules', key: 'gameNightRules' },

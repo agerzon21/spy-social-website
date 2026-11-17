@@ -65,6 +65,8 @@ const Footer = () => {
     ...(LIVE.gameNightRules ? [{ label: f.gameNightRules, to: '/game-night-rules' }] : []),
     { label: f.support, to: '/support' },
     { label: f.contact, to: '/contact-us' },
+    // The press kit (press-page-1116).
+    { label: f.press, to: '/press' },
     ...(LIVE.merchShop ? [{ label: f.shop, href: SHOP_URL }] : []),
   ]
   const legal: FooterLinkItem[] = [

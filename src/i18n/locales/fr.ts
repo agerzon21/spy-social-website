@@ -29,6 +29,7 @@ const fr: Strings = {
       childSafety: 'Protection des enfants',
       whatsNew: 'Nouveautés',
       roadmap: 'Feuille de route',
+      press: 'Kit presse',
       deleteAccount: 'Supprimer ton compte',
       join: 'Rejoindre une partie',
       joinEvent: 'Soirée jeux publique',
@@ -55,6 +56,7 @@ const fr: Strings = {
       whatsNew: "Les notes de version de SpySocial\u00A0: nouveautés, corrections et améliorations de chaque version de l'appli.",
       roadmap:
         "Ce qui arrive sur SpySocial : tout sur la version 2.2, de « Jouer en ligne » et Spy Sketch à la traduction automatique du chat, et ce qui est prévu ensuite : mode classé, saisons et tournois.",
+      press: "Le kit presse de SpySocial\u00A0: ce qu'est le jeu, la fiche technique, la date de sortie, les logos et captures d'écran à télécharger, et le contact presse.",
       deleteAccount: "Comment supprimer ton compte SpySocial et ses données, dans l'appli ou par e-mail, et ce qui reste conservé un moment.",
     },
   },
@@ -91,6 +93,7 @@ const fr: Strings = {
     browser: 'Jouer dans le navigateur',
     whatsNew: 'Nouveautés',
     roadmap: 'Feuille de route',
+    press: 'Presse',
     rules: 'Règles',
     support: 'Aide',
     contact: 'Contact',

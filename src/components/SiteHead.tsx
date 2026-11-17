@@ -53,6 +53,7 @@ function pageOf(path: string): PageKey | null {
     '/child-safety': 'childSafety',
     '/whats-new': 'whatsNew',
     '/roadmap': 'roadmap',
+    '/press': 'press',
     // The ledger's route exists only with LIVE.mintedCollectibles (App.tsx); without it, the 404 page.
     ...(LIVE.mintedCollectibles ? { '/ledger': 'ledger' as const } : {}),
     '/beta': 'beta',

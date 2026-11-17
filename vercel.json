@@ -192,7 +192,7 @@
       "permanent": false
     },
     {
-      "source": "/(support|contact-us|rules|safety|privacy|terms|child-safety|whats-new|roadmap|delete-account|game-night-rules|beta|hello|help|reset-password|confirm-success|shop|merch|download|app|get|megan|megans-party){/}?",
+      "source": "/(support|contact-us|rules|safety|privacy|terms|child-safety|whats-new|roadmap|press|delete-account|game-night-rules|beta|hello|help|reset-password|confirm-success|shop|merch|download|app|get|megan|megans-party){/}?",
       "has": [
         {
           "type": "host",
@@ -214,7 +214,7 @@
       "permanent": false
     },
     {
-      "source": "/(support|contact-us|rules|safety|privacy|terms|child-safety|whats-new|roadmap|delete-account|transparency|game-night-rules|ledger|beta|hello|help|reset-password|confirm-success|shop|merch|download|app|get|megan|megans-party){/}?",
+      "source": "/(support|contact-us|rules|safety|privacy|terms|child-safety|whats-new|roadmap|press|delete-account|transparency|game-night-rules|ledger|beta|hello|help|reset-password|confirm-success|shop|merch|download|app|get|megan|megans-party){/}?",
       "has": [
         {
           "type": "host",
@@ -340,11 +340,11 @@
     { "source": "/(movers|movers/[^/]+|catalogue/[^/]+|item/[^/]+){/}?", "has": [{ "type": "host", "value": "market.spysocial.app" }], "destination": "/_host/market.html" },
     { "source": "/support{/}?", "has": [{ "type": "query", "key": "q" }], "destination": "/_pre/support/shell.html" },
     { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/home/:lang.html" },
-    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/:page/:lang.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|press|beta|delete-account|join){/}?", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/:page/:lang.html" },
     { "source": "/", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/home/:lang.html" },
-    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/:page/:lang.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|press|beta|delete-account|join){/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/:page/:lang.html" },
     { "source": "/", "destination": "/_pre/home/en.html" },
-    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "destination": "/_pre/:page/en.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|press|beta|delete-account|join){/}?", "destination": "/_pre/:page/en.html" },
     {
       "source": "/hello(/?)",
       "destination": "/hello/index.html"

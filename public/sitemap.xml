@@ -1125,6 +1125,146 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/whats-new"/>
   </url>
   <url>
+    <loc>https://www.spysocial.app/press</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=ru</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=zh-Hans</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=hi</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=ar</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=bn</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=pt-BR</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
+    <loc>https://www.spysocial.app/press?lang=id</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/press"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/press?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.spysocial.app/press?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://www.spysocial.app/press?lang=zh-Hans"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://www.spysocial.app/press?lang=hi"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.spysocial.app/press?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.spysocial.app/press?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="bn" href="https://www.spysocial.app/press?lang=bn"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://www.spysocial.app/press?lang=pt-BR"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://www.spysocial.app/press?lang=id"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.spysocial.app/press"/>
+  </url>
+  <url>
     <loc>https://www.spysocial.app/delete-account</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.spysocial.app/delete-account"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://www.spysocial.app/delete-account?lang=es"/>

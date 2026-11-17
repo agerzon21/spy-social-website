@@ -1,22 +1,13 @@
 import { FaDiscord } from 'react-icons/fa6'
 import { useLang, useT } from '../../i18n'
 import { rich } from '../../i18n/rich'
+import { SHOTS, shot } from '../../lib/shots22'
 import { DISCORD_URL, PRESS_EMAIL } from '../../lib/social'
 import ActionLink from '../ui/ActionLink'
 import DisplayHeading from '../ui/DisplayHeading'
 import Eyebrow from '../ui/Eyebrow'
 import ui from '../ui/ui.module.css'
 import s from './launch.module.css'
-
-/**
- * The 2.2 store screenshots, one set per language (their captions are printed on them): src/assets/shots22/<lang>/
- * <name>-<300|600>.webp, written by scripts/store-shots.mjs from the store-shots tool's output. Only the URLs are
- * bundled; a page loads its own language's files, lazily.
- */
-const FILES = import.meta.glob<string>('../../assets/shots22/*/*.webp', { eager: true, query: '?url', import: 'default' })
-const SHOTS = ['talk', 'sketch', 'online', 'gamenight', 'market', 'friends'] as const
-const shot = (lang: string, name: string, w: 300 | 600): string =>
-  FILES[`../../assets/shots22/${lang}/${name}-${w}.webp`] ?? FILES[`../../assets/shots22/en/${name}-${w}.webp`]
 
 /**
  * The launch version's New in 2.2 section (LIVE.launchSite), just under the hero: the store screenshots in a rail,

@@ -29,6 +29,7 @@ const id: Strings = {
       childSafety: 'Standar Keselamatan Anak',
       whatsNew: 'Yang baru',
       roadmap: 'Roadmap',
+      press: 'Kit pers',
       deleteAccount: 'Hapus akunmu',
       join: 'Gabung ke permainan',
       joinEvent: 'Malam Permainan publik',
@@ -55,6 +56,7 @@ const id: Strings = {
       whatsNew: 'Catatan rilis SpySocial: fitur baru, perbaikan, dan peningkatan di setiap versi aplikasi.',
       roadmap:
         'Yang akan datang di SpySocial: semua isi versi 2.2, dari Main online dan Spy Sketch sampai terjemahan otomatis chat, dan rencana berikutnya: ranked, season, dan turnamen.',
+      press: 'Kit pers SpySocial: tentang game-nya, lembar fakta, tanggal rilis, logo dan screenshot untuk diunduh, serta kontak pers.',
       deleteAccount: 'Cara menghapus akun SpySocial dan datanya, lewat aplikasi atau email, serta apa yang masih disimpan untuk sementara.',
     },
   },
@@ -91,6 +93,7 @@ const id: Strings = {
     browser: 'Main di browser',
     whatsNew: 'Yang baru',
     roadmap: 'Roadmap',
+    press: 'Pers',
     rules: 'Aturan',
     support: 'Bantuan',
     contact: 'Kontak',
