@@ -855,7 +855,7 @@ const en = {
       /** Added to the Game nights card once LIVE.launchGameNights is on (owner to OK the days first). If a day or
        * hour changes, change it in all 10 languages. Owner Nov 17: no night on launch day; Opening Night runs Fri Dec 11
        * and again Sat Dec 12, 8-10 PM ET (Spy Talk, the same night twice); after launch one night a week, Fri + Sat. */
-      launchWeek: 'Opening Night: Friday, December 11, and again Saturday, December 12, from 8 to 10 PM ET. The same Spy Talk night twice, so come to either or play both.',
+      launchWeek: 'Opening Night: Friday, December 11, and again Saturday, December 12, from 8 to 10 PM ET. The same Spy Talk night twice, so come to either or play both. After that, one Game Night a week: on Friday, then the same night again on Saturday.',
     },
     next: {
       /** A stamp: these are plans. */

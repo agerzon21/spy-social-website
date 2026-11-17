@@ -787,7 +787,7 @@ const ptBR: Strings = {
         },
       ],
       more: 'E mais: estatísticas, títulos e molduras para desbloquear, níveis até o 100 com prestígio, XP até nas partidas rápidas, volta ao jogo sem tropeços quando o celular entra em repouso, links de convite que simplesmente funcionam e um visual novo em todas as telas.',
-      launchWeek: 'Noite de Estreia: na sexta, 11 de dezembro, e de novo no sábado, 12 de dezembro, das 20h às 22h no horário do leste dos EUA (ET). A mesma noite de Spy Talk duas vezes: venha a uma ou às duas.',
+      launchWeek: 'Noite de Estreia: na sexta, 11 de dezembro, e de novo no sábado, 12 de dezembro, das 20h às 22h no horário do leste dos EUA (ET). A mesma noite de Spy Talk duas vezes: venha a uma ou às duas. Depois, uma noite por semana: na sexta, e a mesma noite de novo no sábado.',
     },
     next: {
       status: 'Planejado',
