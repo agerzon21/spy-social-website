@@ -2088,6 +2088,21 @@ export const LIVE = {
    * A website fact: set in LIVE, never in PRIVACY_AHEAD.
    */
   noPackPass1117: true,
+  /**
+   * Intel to 0 at launch (intel-zero-1117; the owner's reset answer D1 = zero, Tue Nov 17, 2026): right before 2.2 opens
+   * to everyone, every account's Intel goes to 0, including the Intel earned by playing a test version (games, daily
+   * rewards, streaks); streaks start again from day 0 and streak milestones can be earned again; unclaimed daily rewards
+   * from before then pay no Intel. Game Night Intel is not part of it: each player gets back all the Game Night Intel they
+   * earned (app server: B1 20261201958100_prelaunch_intel_zero at 09:50 ET Dec 8 under its own incident "Launch fresh
+   * start"; GNIR 20261201958400_gamenight_intel_reset v3 at 00:10 ET Dec 7). Terms 9's Intel item gains the sentence;
+   * Terms 9's test-phase item no longer says everyone keeps the Intel they earned. The owner asked for this Terms line
+   * BEFORE Dec 7: flip it any day before then, once economy_reset_decisions holds D1 = zero on live
+   * (RUNBOOK_reset_answers_1117.sql), never after B1 has run. Not a new duty or penalty on any player and it concerns
+   * the test version's balances only, so no TERMS_PUBLISHED or terms_version raise; INTEL_ZERO_1117_DAY in
+   * LEGAL_LAST_UPDATED (re-date to the publish day with node scripts/flip-switch.mjs intelZero1117 --day "<publish day>").
+   * A website fact: set in LIVE, never in PRIVACY_AHEAD. Staged OFF (not pushed; publish on the coordinator's go).
+   */
+  intelZero1117: false,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -2121,6 +2136,9 @@ export const SAME_ODDS_DAY = 'November 17, 2026'
 export const COVERAGE_1116_DAY = 'November 16, 2026'
 export const HEAVY_READS_DAY = 'November 17, 2026'
 export const COMMUNITY_SEARCH_DAY = 'November 17, 2026'
+/** intel-zero-1117: LIVE.intelZero1117's day in LEGAL_LAST_UPDATED (the publish day; set by flip-switch --day). Before December 7, 2026. */
+export const INTEL_ZERO_1117_DAY = 'November 30, 2026'
+
 /** no-pack-pass-1117: LIVE.noPackPass1117's day (the publish day; set by flip-switch --day). Never earlier than November 17, 2026. */
 export const NO_PACK_PASS_1117_DAY = 'November 17, 2026'
 
@@ -2403,6 +2421,8 @@ export const CREATOR_INVITE_DATA_DAY = 'November 14, 2026'
 export const LEGAL_LAST_UPDATED: string = sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.intelZero1117
+    ? INTEL_ZERO_1117_DAY // Terms 9's Intel: every account's Intel to 0 right before launch, Game Night Intel earned given back (intel-zero-1117, D1 zero)
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
   : LIVE.sameOdds
