@@ -4,6 +4,7 @@ import type { HelpOpts, HelpSection, HelpText } from '../types'
  * Français (fr) : français de France, « tu » comme dans l'appli ; les mots de l'appli (salon, local, espion, hôte,
  * « Jouer en ligne », « Trouver une partie », Coffre, Marché noir, Trouvailles rares, interceptions, Intel, Réglages).
  * Written with plain spaces before : ? ! ; and inside « » : `nb` puts the no-break spaces in.
+ * help-new-1117 (2026-11-17, against app int/u62-15-prep): #question-rounds, #game-night-weekly, #game-night-rewards, #game-night-intercepts, #practice-members, #membership-switch, #two-memberships, #sign-up-email; agent translation, unreviewed.
  */
 const nb = (t: string) => t.replace(/ ([:?!;»])/g, '\u00A0$1').replace(/« /g, '«\u00A0').replace(/ %/g, '\u00A0%')
 
@@ -70,6 +71,19 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Pas d'idée ? La carte d'indices en bas de l'écran propose une question. Demander le nom du lieu ou sa première lettre, ce n'est pas du jeu.",
         ],
       },
+      ...(o.questionRounds
+        ? [
+          {
+            id: 'question-rounds',
+            q: "C'est quoi, les manches de questions ?",
+            a: [
+              "Certaines tables de Spy Talk jouent 2 manches de questions au lieu d'une : les salons privés dont l'hôte choisit 2 dans les <b>Règles</b> du salon, et les soirées jeux qui l'activent. Avec Jouer en ligne, c'est toujours 1 manche.",
+              "À la manche 1, chacun pose une question et répond à une. Dès que la dernière réponse arrive, la manche 2 commence, à l'envers : la personne à qui tu as posé ta question te pose la sienne. En haut de l'écran s'affiche « Manche 2 ».",
+              "Puis la discussion, avec son temps habituel. Deux manches donnent aux locaux deux fois plus de réponses à vérifier, et à l'espion deux fois plus d'occasions de se trahir.",
+            ],
+          },
+          ]
+        : []),
       {
         id: 'talk-out-loud',
         q: "C'est quoi, Parler à voix haute ?",
@@ -188,11 +202,43 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'game-night',
         q: "C'est quoi, la soirée jeux ?",
         a: [
-          "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
-          'Chaque soirée a ses packs, ses réglages et ses titres. Le (i) à côté de la soirée affiche ses packs et ses réglages, et <b>Prix</b>, sur la carte, ses titres.',
+          "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
+          o.gnRewards
+            ? "Chaque soirée a ses packs et ses réglages : le (i) à côté de la soirée les affiche. <b>Prix</b>, sur la carte, montre ce que tu gagnes : l'Intel de soirée jeux et les titres ★."
+            : 'Chaque soirée a ses packs, ses réglages et ses titres. Le (i) à côté de la soirée affiche ses packs et ses réglages, et <b>Prix</b>, sur la carte, ses titres.',
           "C'est gratuit, et rien de ce que tu achètes n'améliore tes chances. Le règlement complet : <gnr>règles de la soirée jeux</gnr> (en anglais).",
         ],
       },
+      ...(o.gnWeekly
+        ? [
+          {
+            id: 'game-night-weekly',
+            q: "C'est quand, la soirée jeux ?",
+            a: [
+              "Une fois par semaine : le vendredi, puis la même soirée à nouveau le samedi, en général de 20 h à 22 h, heure de l'Est des États-Unis.",
+              "Viens à l'une des deux, ou joue aux deux.",
+              "Nous annonçons chaque soirée dans l'appli, sur la carte de la soirée jeux de l'accueil.",
+            ],
+          },
+          ]
+        : []),
+      ...(o.gnRewards
+        ? [
+          {
+            id: 'game-night-rewards',
+            q: "Qu'est-ce que je gagne en soirée jeux ?",
+            a: [
+              "De l'<b>Intel de soirée jeux</b> pour chaque partie que tu termines : 500 pour une victoire, 200 pour une défaite ou une égalité. L'écran de fin montre ce que tu as gagné.",
+              "Pas d'Intel de soirée jeux si tu quittes avant la fin ou ne participes pas, si la partie commence après la fermeture de la soirée jeux, ou à une table avec des spybots. Une partie qui s'arrête tôt parce que quelqu'un est parti ne rapporte rien à personne.",
+              "Des <b>titres ★</b> à compteur : <b>★ Infiltré</b> pour chaque partie de soirée jeux terminée, <b>★ Héros local</b> pour chaque victoire en local, <b>★ Espion émérite</b> pour chaque victoire en espion, et <b>★ Agent double</b> pour chaque soirée où tu gagnes des deux côtés. Porte-les avec leur nombre, comme ★ Infiltré ×12.",
+              "L'Intel de soirée jeux et les titres ★ sont à toi seul : ils ne s'échangent pas, et le statut de membre n'y ajoute rien. Dépense l'Intel en interceptions de soirée jeux.",
+              ...(o.launch
+                ? []
+                : ["Les titres des soirées jeux de la bêta se sont ajoutés au compteur de ces titres. À la remise à zéro avant le lancement, l'Intel de soirée jeux que tu as gagné revient en entier, même si tu l'as dépensé, et tes titres ★ restent. Les interceptions de soirée jeux et leurs objets repartent de zéro comme tout le reste."]),
+            ],
+          },
+          ]
+        : []),
       {
         id: 'practice-game',
         q: "C'est quoi, le tutoriel et les parties d'entraînement ?",
@@ -203,6 +249,21 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Aujourd'hui, aucun des deux n'est nécessaire pour jouer en ligne. La soirée jeux ne le demande jamais.",
         ],
       },
+      ...(o.practiceMembers
+        ? [
+          {
+            id: 'practice-members',
+            q: "Qui peut jouer aux parties d'entraînement ?",
+            a: [
+              "Les parties d'entraînement sont réservées aux membres : jusqu'à 5 par jour. La journée commence à minuit UTC. Après tes 5 parties, une partie sauvegardée peut toujours être reprise.",
+              ...(o.practiceAi
+                ? ["Les membres ont les conseils de l'IA sur chaque phrase qu'ils écrivent, pendant la partie, et une note de A à F à chaque partie. Les conseils de l'IA sont pour les joueurs de 16 ans et plus qui touchent <b>Essayer</b> quand l'appli le propose ; pour les autres, c'est le téléphone qui note. Pour arrêter, désactive <b>Noter mes phrases d'entraînement avec l'IA</b> dans les Réglages."]
+                : []),
+              "Les tutoriels restent gratuits pour tous, et en réussir un compte toujours pour Jouer en ligne.",
+            ],
+          },
+          ]
+        : []),
       {
         id: 'languages',
         q: "Puis-je jouer avec des gens qui parlent d'autres langues ?",
@@ -513,6 +574,19 @@ const sections = (o: HelpOpts): HelpSection[] => [
             : ["Avant l'ouverture de la 2.2 à tous, les interceptions repartent de zéro : celles gagnées dans les versions de test sont effacées. Le Pin bêta et ce qui a été acheté dans un store restent."]),
         ],
       },
+      ...(o.gnRewards
+        ? [
+          {
+            id: 'game-night-intercepts',
+            q: "C'est quoi, les interceptions de soirée jeux ?",
+            a: [
+              "Des interceptions que tu obtiens avec l'Intel de soirée jeux, sur la carte de la soirée jeux du <b>Coffre</b> : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
+              "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
+              "Une interception achetée attend dans <b>À ouvrir</b>. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
+            ],
+          },
+          ]
+        : []),
       {
         id: 'duplicates',
         q: 'Que faire des doublons ?',
@@ -609,6 +683,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Tous les packs premium, nouveaux compris. Tout le monde y joue dans les salons dont tu es l’hôte et à ta table de Jouer en ligne.',
           'Crée tes propres packs avec le créateur et partage-les dans la communauté.',
           '+50 % d\'XP à chaque partie, et des salons réservés aux membres à Jouer en ligne.',
+          ...(o.practiceMembers ? ["Les parties d'entraînement, jusqu'à 5 par jour, avec des notes de A à F et les conseils de l'IA."] : []),
           "Le cadre, l'étiquette et le titre de ton rang. Tu peux mener un groupe et avoir 8 offres ouvertes au Marché noir au lieu de 4.",
           "Ça ne change jamais ta façon de jouer ni tes points. Les packs gratuits restent gratuits pour tous.",
         ],
@@ -633,6 +708,32 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "L'accès à vie dure tant que nous proposons SpySocial, pas toute ta vie. Pas d'essai gratuit, et le statut de membre ne se partage pas via le Partage familial.",
         ],
       },
+      ...(o.membershipSwitch
+        ? [
+          {
+            id: 'membership-switch',
+            q: 'Puis-je passer de la formule mensuelle à la formule annuelle, et inversement ?',
+            a: [
+              "Oui, dans l'appli : ouvre le <b>Coffre</b>, puis <b>Membres</b>. Avec la formule mensuelle, touche <b>Passer à Élite</b> (annuelle) ou <b>Passer à Maître espion</b> (accès à vie). Avec la formule annuelle, il y a aussi <b>Passer au mensuel</b> : le cadre, le titre et l'étiquette Élite deviennent ceux d'Agent, et tous les autres avantages restent.",
+              "Tu ne paies jamais deux fois. Sur Google Play, la nouvelle formule commence tout de suite et le temps déjà payé devient du temps sur la nouvelle. Sur l'App Store, Apple décide quand elle commence, souvent à ton prochain renouvellement, et te crédite le temps déjà payé.",
+              "Une formule facturée par l'autre boutique se change dans cette boutique : en acheter une autre ici te ferait payer deux fois.",
+              ...(o.googlePassStop
+                ? ["Quand tu achètes l'accès à vie, une formule mensuelle ou annuelle facturée par Google Play arrête de se renouveler toute seule : tu la gardes jusqu'à sa date de fin, et rien d'autre n'est prélevé. Apple ne le permet pas, donc résilie toi-même une formule de l'App Store."]
+                : []),
+            ],
+          },
+          {
+            id: 'two-memberships',
+            q: "L'appli dit que j'ai deux formules actives",
+            a: [
+              "Tu paies deux formules à la fois : par exemple l'accès à vie et une formule mensuelle, ou une sur chaque boutique. L'appli te dit laquelle garder et laquelle résilier, à l'ouverture et dans l'onglet <b>Membres</b>.",
+              "Touche <b>Gérer ma formule</b> pour résilier celle en trop dans sa boutique. Résilier arrête seulement le prochain prélèvement : tu gardes le temps déjà payé.",
+              ...(o.googlePassStop ? ["Si celle en trop est facturée par Google Play, <b>Arrêter le renouvellement</b> l'arrête directement depuis l'appli."] : []),
+              "Rien n'est bloqué en attendant : <b>Plus tard</b> masque le message jusqu'à ta prochaine ouverture de l'appli.",
+            ],
+          },
+          ]
+        : []),
       ...(o.memberLoyalty
         ? [
           {
@@ -664,7 +765,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Agent et Élite se renouvellent automatiquement jusqu'à ce que tu résilies : sur l'App Store, au moins 24 heures avant la fin de la période ; sur Google Play, avant la date de renouvellement. Tu gardes les avantages jusqu'à la fin de la période payée.",
           '<b>iPhone ou iPad :</b> Réglages, ton nom, Abonnements, SpySocial.',
           "<b>Android :</b> l'appli Google Play Store, ta photo de profil, Paiements et abonnements, Abonnements, SpySocial.",
-          "<b>Gérer ma formule</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte, ou acheter l'accès à vie, ne résilie pas une formule mensuelle ou annuelle.",
+          o.googlePassStop
+            ? "<b>Gérer ma formule</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte ne résilie pas une formule mensuelle ou annuelle. Acheter l'accès à vie arrête tout seul une formule facturée par Google Play, mais pas une formule facturée par l'App Store."
+            : "<b>Gérer ma formule</b> dans l'appli ouvre la même page. Supprimer l'appli ou ton compte, ou acheter l'accès à vie, ne résilie pas une formule mensuelle ou annuelle.",
           ...(o.memberLoyalty ? ["Dans le <b>Coffre</b>, <b>Résilier la formule</b> (sous Gérer ma formule) affiche d'abord un seul écran avec les faits : si ta formule prend fin, ton ancienneté et tes tampons repartent à zéro, et ton prix bloqué prend fin. Son seul bouton, <b>Continuer la résiliation</b>, mène directement à la boutique. <b>Gérer ma formule</b> ouvre toujours directement la boutique. Rien ne change avant la fin de la période payée."] : []),
         ],
       },
@@ -699,6 +802,21 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre. Amis, Échanges et le Marché noir demandent d'abord à un invité de le sauvegarder.",
         ],
       },
+      ...(o.emailCodes22
+        ? [
+          {
+            id: 'sign-up-email',
+            q: "Comment m'inscrire avec mon e-mail ?",
+            a: [
+              "Touche <b>Continuer avec un e-mail</b> et tape ton adresse. On t'envoie un code à 6 chiffres : tape-le dans l'appli, et ton compte est créé. Pas besoin de mot de passe.",
+              "Le code marche pendant 1 heure. Pas reçu ? Regarde dans les spams ou le courrier indésirable, ou touche <b>Renvoyer le code</b> au bout d'une minute.",
+              ...(o.passwordless
+                ? []
+                : ["Les anciennes versions de l'appli demandent un mot de passe. Si l'une d'elles dit que le mot de passe est trop courant ou est apparu dans une fuite de données, choisis-en un autre : aucun compte n'a été créé, aucun e-mail n'est parti, et tu peux réessayer tout de suite."]),
+            ],
+          },
+          ]
+        : []),
       {
         id: 'lost-account',
         q: "J'ai perdu mon compte. Puis-je le récupérer ?",

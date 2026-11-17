@@ -1,6 +1,7 @@
 import type { HelpText } from '../types'
 
 /** Spanish (es): neutral Latin American, «tú» like the app; the app's words (Sala privada, Crear sala, Jugar en línea, Buscar partida, Acciones, Resolver, Bóveda, Mercado Negro, Rarezas, intercepciones, Intel). */
+// help-new-1117 (2026-11-17, against app int/u62-15-prep): #question-rounds, #game-night-weekly, #game-night-rewards, #game-night-intercepts, #practice-members, #membership-switch, #two-memberships, #sign-up-email; agent translation, unreviewed.
 const es: HelpText = {
   title: 'Ayuda y preguntas frecuentes',
   lede: 'Respuestas rápidas sobre cómo jugar SpySocial, tu cuenta, las recompensas y la membresía.',
@@ -74,6 +75,19 @@ const es: HelpText = {
             '¿Sin ideas? La carta de pistas, abajo en la pantalla, tiene una pregunta. Preguntar el nombre del lugar o su primera letra no es juego limpio.',
           ],
         },
+        ...(o.questionRounds
+          ? [
+            {
+              id: 'question-rounds',
+              q: '¿Qué son las rondas de preguntas?',
+              a: [
+                'Algunas mesas de Spy Talk juegan 2 rondas de preguntas en vez de 1: las salas privadas cuyo anfitrión elige 2 en las <b>Reglas</b> de la sala, y las Noches de Juegos que lo tengan. En Jugar en línea siempre es 1.',
+                'En la ronda 1, cada uno hace una pregunta y responde una. En cuanto llega la última respuesta, empieza la ronda 2, al revés: te pregunta la persona a la que preguntaste. Arriba se ve «Ronda 2».',
+                'Después, la discusión, con su tiempo de siempre. Dos rondas dan a los locales el doble de respuestas para revisar, y al espía el doble de ocasiones para delatarse.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'talk-out-loud',
           q: "¿Qué es Hablar en voz alta?",
@@ -193,10 +207,42 @@ const es: HelpText = {
           q: '¿Qué es la Noche de Juegos?',
           a: [
             'Partidas en línea que organizamos, las noches que anunciamos en la app, normalmente de 8 a 10 PM, hora del Este de EE. UU. Toca <b>Jugar ya</b> en la tarjeta de la Noche de Juegos del inicio.',
-            'Cada noche tiene sus propios paquetes, ajustes y títulos. La (i) junto a la noche muestra sus paquetes y ajustes, y <b>Premios</b>, en la tarjeta, sus títulos.',
+            o.gnRewards
+              ? 'Cada noche tiene sus propios paquetes y ajustes: la (i) junto a la noche los muestra. <b>Premios</b>, en la tarjeta, muestra lo que ganas: Intel de Noche de Juegos y los títulos ★.'
+              : 'Cada noche tiene sus propios paquetes, ajustes y títulos. La (i) junto a la noche muestra sus paquetes y ajustes, y <b>Premios</b>, en la tarjeta, sus títulos.',
             'Es gratis, y nada de lo que compres mejora tus posibilidades. Las reglas completas: <gnr>reglas de la Noche de Juegos</gnr> (en inglés).',
           ],
         },
+        ...(o.gnWeekly
+          ? [
+            {
+              id: 'game-night-weekly',
+              q: '¿Cuándo es la Noche de Juegos?',
+              a: [
+                'Una vez por semana: el viernes, y la misma noche otra vez el sábado, normalmente de 8 a 10 PM, hora del Este de EE. UU.',
+                'Ven a cualquiera de las dos noches, o juega en ambas.',
+                'Anunciamos cada noche en la app, en la tarjeta de la Noche de Juegos del inicio.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-rewards',
+              q: '¿Qué gano en la Noche de Juegos?',
+              a: [
+                '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota o un empate. El final de la partida muestra lo que ganaste.',
+                'No hay Intel de Noche de Juegos si sales antes del final o no participas, si la partida empieza después del cierre de la Noche de Juegos, o en una mesa con spybots. Una partida que termina antes porque alguien se fue no le paga a nadie.',
+                '<b>Títulos ★</b> que van sumando: <b>★ Operativo</b> por cada partida de la Noche de Juegos que terminas, <b>★ Héroe Local</b> por cada victoria como local, <b>★ Maestro Espía</b> por cada victoria como espía y <b>★ Agente Doble</b> por cada noche en que ganas en los dos bandos. Llévalos con su número, como ★ Operativo ×12.',
+                'El Intel de Noche de Juegos y los títulos ★ son solo tuyos: no se pueden intercambiar, y la membresía no les suma nada. Gasta el Intel en intercepciones de Noche de Juegos.',
+                ...(o.launch
+                  ? []
+                  : ['Los títulos de las Noches de Juegos de la beta pasaron a sumar en estos títulos. En el reinicio antes del lanzamiento, el Intel de Noche de Juegos que ganaste vuelve completo, aunque lo hayas gastado, y tus títulos ★ se quedan. Las intercepciones de Noche de Juegos y sus objetos se reinician como todo lo demás.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'practice-game',
           q: "¿Qué son el tutorial y las partidas de práctica?",
@@ -207,6 +253,21 @@ const es: HelpText = {
             "Hoy no necesitas ninguno de los dos para jugar en línea. La Noche de Juegos nunca los pide.",
           ],
         },
+        ...(o.practiceMembers
+          ? [
+            {
+              id: 'practice-members',
+              q: '¿Quién puede jugar partidas de práctica?',
+              a: [
+                'Las partidas de práctica son para miembros: hasta 5 al día. El día empieza a medianoche UTC. Después de tus 5, puedes retomar una partida guardada.',
+                ...(o.practiceAi
+                  ? ['Los miembros reciben comentarios de IA sobre cada frase que escriben, mientras juegan, y una nota de la A a la F en cada partida. Los comentarios de IA son para jugadores de 16 años o más que tocan <b>Probar</b> cuando la app lo pregunta; para los demás, puntúa el teléfono. Para dejar de recibirlos, desactiva <b>Puntuar mis frases de práctica con IA</b> en Ajustes.']
+                  : []),
+                'Los tutoriales siguen siendo gratis para todos, y superar uno sigue contando para Jugar en línea.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'languages',
           q: '¿Puedo jugar con gente que habla otros idiomas?',
@@ -517,6 +578,19 @@ const es: HelpText = {
               : ['Antes de que la 2.2 se abra a todos, las intercepciones empiezan de cero: las ganadas en versiones de prueba se borran. El Pin beta y lo que se haya comprado en una tienda se mantienen.']),
           ],
         },
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-intercepts',
+              q: '¿Qué son las intercepciones de Noche de Juegos?',
+              a: [
+                'Intercepciones que consigues con Intel de Noche de Juegos, en la tarjeta de la Noche de Juegos de la <b>Bóveda</b>: <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
+                'Se abren en la colección propia de la Noche de Juegos, <b>After Hours</b>: 14 objetos de sala de cartas para tu agente que ninguna otra intercepción tiene. Como en toda intercepción, la app muestra las probabilidades exactas.',
+                'Una comprada espera en <b>Por abrir</b>. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'duplicates',
           q: '¿Qué hago con los repetidos?',
@@ -613,6 +687,7 @@ const es: HelpText = {
             'Todos los paquetes premium, incluidos los nuevos. Todos pueden jugarlos en las salas donde eres anfitrión y en tu mesa de Jugar en línea.',
             'Crea tus propios paquetes con el creador y compártelos en la comunidad.',
             '+50 % de XP en cada partida y salas solo para miembros en Jugar en línea.',
+            ...(o.practiceMembers ? ['Partidas de práctica, hasta 5 al día, con notas de la A a la F y comentarios de IA.'] : []),
             'El marco, la etiqueta y el título de tu rango. Puedes liderar un grupo y tener 8 ofertas abiertas en el Mercado Negro en vez de 4.',
             'Nunca cambia cómo juegas ni cómo puntúas. Los paquetes gratis siguen gratis para todos.',
           ],
@@ -637,6 +712,32 @@ const es: HelpText = {
             'La membresía de por vida dura mientras ofrezcamos SpySocial, no toda tu vida. No hay pruebas gratis, y la membresía no se comparte con En familia.',
           ],
         },
+        ...(o.membershipSwitch
+          ? [
+            {
+              id: 'membership-switch',
+              q: '¿Puedo cambiar entre la membresía mensual y la anual?',
+              a: [
+                'Sí, en la app: abre la <b>Bóveda</b> y luego <b>Membresía</b>. Con la mensual, toca <b>Mejorar a Élite</b> (anual) o <b>Mejorar a Mente maestra</b> (de por vida). Con la anual también está <b>Cambiar a mensual</b>: el marco, el título y la etiqueta Élite pasan a ser los de Agente, y las demás ventajas siguen.',
+                'Nunca pagas dos veces. En Google Play, el nuevo plan empieza ya y el tiempo que pagaste pasa a ser tiempo del nuevo plan. En el App Store, Apple decide cuándo empieza, a menudo en tu próxima renovación, y te abona el tiempo que pagaste.',
+                'Una membresía que cobra la otra tienda se cambia en esa tienda: comprar otro plan aquí te cobraría dos veces.',
+                ...(o.googlePassStop
+                  ? ['Cuando compras la membresía de por vida, una membresía mensual o anual que cobra Google Play deja de renovarse sola: la conservas hasta su fecha de fin y no se te cobra nada más. Apple no lo permite, así que una del App Store tienes que cancelarla tú.']
+                  : []),
+              ],
+            },
+            {
+              id: 'two-memberships',
+              q: 'La app dice que tengo dos membresías activas',
+              a: [
+                'Estás pagando dos a la vez: por ejemplo, la de por vida y una mensual, o una en cada tienda. La app te dice cuál necesitas y cuál cancelar, al abrirla y en la pestaña <b>Membresía</b>.',
+                'Toca <b>Gestionar suscripción</b> para cancelar la que sobra en su tienda. Cancelar solo detiene el próximo cobro: conservas el tiempo que ya pagaste.',
+                ...(o.googlePassStop ? ['Si la que sobra la cobra Google Play, <b>Detener renovación</b> la detiene desde la misma app.'] : []),
+                'Mientras tanto no se bloquea nada: <b>Más tarde</b> oculta el aviso hasta la próxima vez que abras la app.',
+              ],
+            },
+            ]
+          : []),
         ...(o.memberLoyalty
           ? [
             {
@@ -668,7 +769,9 @@ const es: HelpText = {
             'Agente y Élite se renuevan solos hasta que canceles: en el App Store, al menos 24 horas antes de que termine el periodo; en Google Play, antes de la fecha de renovación. Mantienes las ventajas hasta el final del periodo que pagaste.',
             '<b>iPhone o iPad:</b> Ajustes, tu nombre, Suscripciones, SpySocial.',
             '<b>Android:</b> la app Google Play Store, tu foto de perfil, Pagos y suscripciones, Suscripciones, SpySocial.',
-            '<b>Gestionar suscripción</b> en la app abre la misma página. Borrar la app o tu cuenta, o comprar la membresía de por vida, no cancela una membresía mensual o anual.',
+            o.googlePassStop
+              ? '<b>Gestionar suscripción</b> en la app abre la misma página. Borrar la app o tu cuenta no cancela una membresía mensual o anual. Comprar la membresía de por vida detiene sola una que cobra Google Play, pero no una que cobra el App Store.'
+              : '<b>Gestionar suscripción</b> en la app abre la misma página. Borrar la app o tu cuenta, o comprar la membresía de por vida, no cancela una membresía mensual o anual.',
             ...(o.memberLoyalty ? ["En la <b>Bóveda</b>, <b>Cancelar membresía</b> (debajo de Gestionar suscripción) muestra antes una pantalla con los hechos: si tu membresía termina, tu tiempo como miembro y tus sellos se reinician y empiezan desde cero, y tu precio fijado termina. Su único botón, <b>Continuar con la cancelación</b>, te lleva directamente a la tienda. <b>Gestionar suscripción</b> sigue abriendo la tienda directamente. Nada cambia antes del final del periodo que pagaste."] : []),
           ],
         },
@@ -703,6 +806,21 @@ const es: HelpText = {
             'Puedes guardar una cuenta de invitado cuando quieras desde la página de tu cuenta, sin perder nada. Amigos, Intercambios y el Mercado Negro le piden a un invitado que la guarde primero.',
           ],
         },
+        ...(o.emailCodes22
+          ? [
+            {
+              id: 'sign-up-email',
+              q: '¿Cómo me registro con mi correo?',
+              a: [
+                'Toca <b>Continuar con correo</b> y escribe tu correo. Te enviamos un código de 6 dígitos: escríbelo en la app y tu cuenta queda creada. No hace falta contraseña.',
+                'El código sirve durante 1 hora. ¿No llega? Revisa spam o correo no deseado, o toca <b>Reenviar código</b> pasado un minuto.',
+                ...(o.passwordless
+                  ? []
+                  : ['Las versiones anteriores de la app piden una contraseña. Si una dice que la contraseña es demasiado común o apareció en una filtración de datos, elige otra: no se creó ninguna cuenta ni se envió ningún correo, y puedes volver a intentarlo enseguida.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'lost-account',
           q: 'Perdí mi cuenta. ¿Puedo recuperarla?',
