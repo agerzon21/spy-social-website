@@ -593,7 +593,7 @@ const id: HelpText = {
               q: "Aplikasi bilang semuanya direset sebelum peluncuran. Apa artinya?",
               a: [
                 "SpySocial masih diuji. Sebelum peluncuran tanggal 8 Desember, item, sadapan, Intel, transaksi Pasar Gelap, dan pertukaran direset, dan semua mulai dari nol.",
-                "Akun, teman, dan paketmu tetap ada.",
+                "Akun, teman, dan paketmu tetap ada, begitu juga XP, level, dan pencapaianmu.",
                 "Para penguji akan mendapat hadiah khusus karena sudah membantu.",
                 "Pemberitahuan ini muncul di Brankas, Pasar Gelap, dan layar pertukaran. Ketuk untuk membaca lebih lanjut, atau ketuk X untuk menyembunyikannya di ponsel itu.",
               ],

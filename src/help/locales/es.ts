@@ -593,7 +593,7 @@ const es: HelpText = {
               q: "La app dice que todo se reinicia antes del lanzamiento. ¿Qué significa?",
               a: [
                 "SpySocial todavía está en pruebas. Antes del lanzamiento del 8 de diciembre se reinician los objetos, las intercepciones, el Intel, las operaciones del Mercado Negro y los intercambios, y todos empiezan de cero.",
-                "Tu cuenta, tus amigos y tus paquetes se quedan.",
+                "Tu cuenta, tus amigos y tus paquetes se quedan, y también tu XP, tu nivel y tus logros.",
                 "Los testers recibirán una recompensa especial por ayudar.",
                 "El aviso aparece en la Bóveda, el Mercado Negro y las pantallas de intercambios. Tócalo para leer más, o toca la X para ocultarlo en ese teléfono.",
               ],
