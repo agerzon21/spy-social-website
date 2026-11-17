@@ -667,7 +667,7 @@ const ptBR: HelpText = {
               q: "O app diz que tudo será zerado antes do lançamento. O que isso significa?",
               a: [
                 "O SpySocial ainda está em teste. Antes do lançamento em 8 de dezembro, itens, interceptações, Intel, negociações do Mercado Negro e trocas serão zerados, e todo mundo começa do zero.",
-                "Sua conta, seus amigos e seus pacotes continuam.",
+                "Sua conta, seus amigos e seus pacotes continuam, assim como seu XP, seu nível e suas conquistas.",
                 "Quem testou vai ganhar uma recompensa especial pela ajuda.",
                 "O aviso aparece no Cofre, no Mercado Negro e nas telas de trocas. Toque nele para ler mais, ou no X para escondê-lo naquele celular.",
               ],

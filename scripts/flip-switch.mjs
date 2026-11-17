@@ -65,6 +65,8 @@ const SWITCHES = {
   communitySearchShown: { live: [['communitySearchShown', true]], day: 'COMMUNITY_SEARCH_DAY', step: 'row 63 (999873)' },
   // no-pack-pass-1117: on (--day re-dates it to the publish day).
   noPackPass1117: { live: [['noPackPass1117', true]], day: 'NO_PACK_PASS_1117_DAY', step: 'publish' },
+  // intel-zero-1117: before Dec 7, once economy_reset_decisions holds D1 = zero on live (RUNBOOK_reset_answers_1117.sql), never after B1.
+  intelZero1117: { live: [['intelZero1117', true]], day: 'INTEL_ZERO_1117_DAY', step: 'D1 zero on live, before Dec 7' },
 }
 
 const args = process.argv.slice(2)

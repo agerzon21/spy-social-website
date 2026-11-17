@@ -663,7 +663,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "L'appli dit que tout sera réinitialisé avant le lancement. Ça veut dire quoi ?",
             a: [
               "SpySocial est encore en test. Avant le lancement du 8 décembre, les objets, les interceptions, l'Intel, les transactions du Marché noir et les échanges seront réinitialisés, et tout le monde repartira de zéro.",
-              "Ton compte, tes amis et tes packs restent.",
+              "Ton compte, tes amis et tes packs restent, tout comme ton XP, ton niveau et tes succès.",
               "Les testeurs recevront une récompense spéciale pour leur aide.",
               "Le message s'affiche dans le Coffre, le Marché noir et les écrans d'échanges. Touche-le pour en savoir plus, ou touche X pour le masquer sur ce téléphone.",
             ],

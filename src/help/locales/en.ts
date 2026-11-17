@@ -695,7 +695,7 @@ const en: HelpText = {
               q: "The app says everything resets before launch. What does that mean?",
               a: [
                 "SpySocial is still being tested. Before launch on December 8, items, Intercepts, Intel, Black Market deals and trades are reset, and everyone starts from scratch.",
-                "Your account, friends and packs stay.",
+                "Your account, friends and packs stay, and so do your XP, level and achievements.",
                 "Testers get a special reward for helping.",
                 "The note shows in the Vault, the Black Market and the trading screens. Tap it to read more, or tap X to hide it on that phone.",
               ],
