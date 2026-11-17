@@ -784,7 +784,7 @@ const es: Strings = {
         },
       ],
       more: 'Y además: estadísticas, títulos y marcos para desbloquear, niveles hasta el 100 con prestigio, XP también en las partidas cortas, volver a la partida sin tropiezos aunque el teléfono entre en reposo, enlaces de invitación que simplemente funcionan y un nuevo aspecto en cada pantalla.',
-      launchWeek: 'Semana de lanzamiento: Spy Talk el martes 8 de diciembre, Spy Sketch el viernes 11 de diciembre y Espía Mafia el sábado 12 de diciembre, siempre de 8 a 10 p. m., hora del Este de EE. UU. (ET).',
+      launchWeek: 'Noche de Estreno: el viernes 11 de diciembre y otra vez el sábado 12 de diciembre, de 8 a 10 p. m., hora del Este de EE. UU. (ET). La misma noche de Spy Talk dos veces: ven a una o a las dos.',
     },
     next: {
       status: 'Planeado',
