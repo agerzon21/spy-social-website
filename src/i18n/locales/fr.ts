@@ -583,7 +583,7 @@ const fr: Strings = {
           {
             label: "Améliorations",
             items: [
-              { title: "Vote", text: "«\u00A0S’abstenir\u00A0» a maintenant la même taille que «\u00A0Valider\u00A0»." },
+              { title: "Vote", text: "«\u00A0S’abstenir\u00A0» a maintenant la même hauteur que «\u00A0Valider\u00A0»." },
               { title: "Plus lisible", text: "Les plus petits textes de l’appli sont un peu plus grands." },
               { title: "Marché noir", text: "Si tu le découvres, une carte «\u00A0Comment marche le Marché noir\u00A0» t’explique comment gagner, vendre et acheter des objets." },
               { title: "Tutoriel", text: "Quand le tutoriel te demande de toucher la suggestion, le conseil s’affiche maintenant en bas de l’écran, pour que la question reste lisible." },

@@ -584,7 +584,7 @@ const es: Strings = {
           {
             label: "Mejoras",
             items: [
-              { title: "Votación", text: "«Abstenerse» ahora tiene el mismo tamaño que «Confirmar»." },
+              { title: "Votación", text: "«Abstenerse» ahora tiene la misma altura que «Confirmar»." },
               { title: "Más fácil de leer", text: "El texto más pequeño de la app ahora es un poco más grande." },
               { title: "Mercado Negro", text: "Si es tu primera vez, una tarjeta «Cómo funciona el Mercado Negro» explica cómo ganar, vender y comprar objetos." },
               { title: "Tutorial", text: "Cuando el tutorial te pide tocar la sugerencia, el consejo ahora aparece abajo, así la pregunta se sigue leyendo bien." },

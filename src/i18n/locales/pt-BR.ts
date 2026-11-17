@@ -584,7 +584,7 @@ const ptBR: Strings = {
           {
             label: "Melhorias",
             items: [
-              { title: "Votação", text: "O botão “Abster-se” agora tem o mesmo tamanho de “Confirmar”." },
+              { title: "Votação", text: "O botão “Abster-se” agora tem a mesma altura de “Confirmar”." },
               { title: "Mais fácil de ler", text: "Os menores textos do app ficaram um pouco maiores." },
               { title: "Mercado Negro", text: "Se é sua primeira vez, um cartão “Como funciona o Mercado Negro” mostra como ganhar, vender e comprar itens." },
               { title: "Tutorial", text: "Quando o tutorial pede para tocar na sugestão, a dica agora fica na parte de baixo da tela, e a pergunta continua fácil de ler." },

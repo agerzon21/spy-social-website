@@ -584,7 +584,7 @@ const id: Strings = {
           {
             label: "Peningkatan",
             items: [
-              { title: "Voting", text: "Tombol “Tidak memilih” kini sama besar dengan “Konfirmasi”." },
+              { title: "Voting", text: "Tombol “Tidak memilih” kini sama tinggi dengan “Konfirmasi”." },
               { title: "Lebih mudah dibaca", text: "Teks terkecil di aplikasi kini sedikit lebih besar." },
               { title: "Pasar Gelap", text: "Baru pertama kali ke sana? Kartu “Cara kerja Pasar Gelap” menjelaskan cara memenangkan, menjual, dan membeli item." },
               { title: "Tutorial", text: "Saat tutorial memintamu mengetuk saran, tipsnya kini ada di bagian bawah layar, jadi pertanyaannya tetap mudah dibaca." },

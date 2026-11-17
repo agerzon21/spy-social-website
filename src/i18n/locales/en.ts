@@ -641,7 +641,7 @@ const en = {
           {
             label: "Improvements",
             items: [
-              { title: "Voting", text: "Abstain is now the same size as Confirm Vote." },
+              { title: "Voting", text: "Abstain is now the same height as Confirm Vote." },
               { title: "Easier reading", text: "The smallest text in the app is a little bigger." },
               { title: "Black Market", text: "New to it? A “How the Black Market works” card shows how to win, sell and buy items." },
               { title: "Tutorial", text: "When the tutorial asks you to tap the suggestion, its tip now sits at the bottom of the screen, so you can still read the question." },
