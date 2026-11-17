@@ -233,7 +233,7 @@ const es: HelpText = {
               q: '¿Qué gano en la Noche de Juegos?',
               a: [
                 '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota o un empate. El final de la partida muestra lo que ganaste.',
-                'No hay Intel de Noche de Juegos si sales antes del final o no participas, si la partida termina después del cierre de la Noche de Juegos, o en una mesa con spybots. Una partida que termina antes porque alguien se fue no le paga a nadie.',
+                'No hay Intel de Noche de Juegos si sales antes del final o no participas, si la partida empieza después del cierre de la Noche de Juegos, o en una mesa con spybots. Una partida que termina antes porque alguien se fue no le paga a nadie.',
                 '<b>Títulos ★</b> que van sumando: <b>★ Operativo</b> por cada partida de la Noche de Juegos que terminas, <b>★ Héroe Local</b> por cada victoria como local, <b>★ Maestro Espía</b> por cada victoria como espía y <b>★ Agente Doble</b> por cada noche en que ganas en los dos bandos. Llévalos con su número, como ★ Operativo ×12.',
                 'El Intel de Noche de Juegos y los títulos ★ son solo tuyos: no se pueden intercambiar, y la membresía no les suma nada. Gasta el Intel en intercepciones de Noche de Juegos.',
                 ...(o.launch
