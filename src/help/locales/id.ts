@@ -1,6 +1,7 @@
 import type { HelpText } from '../types'
 
 /** Indonesian (id): everyday "kamu" like the app, sentence case; the app's words (warga, mata-mata, room, host, Main online, Cari permainan, Aksi, Tebak, Brankas, Pasar Gelap, Temuan Langka, sadapan, Intel). */
+// help-new-1117 (2026-11-17, against app int/u62-15-prep): #question-rounds, #game-night-weekly, #game-night-rewards, #game-night-intercepts, #practice-members, #membership-switch, #two-memberships, #sign-up-email; agent translation, unreviewed.
 const id: HelpText = {
   title: 'Bantuan & FAQ',
   lede: 'Jawaban singkat soal cara main SpySocial, akunmu, hadiah, dan keanggotaan.',
@@ -74,6 +75,19 @@ const id: HelpText = {
             'Bingung mau tanya apa? Kartu petunjuk di bawah layar punya satu pertanyaan. Menanyakan nama lokasi atau huruf pertamanya itu curang.',
           ],
         },
+        ...(o.questionRounds
+          ? [
+            {
+              id: 'question-rounds',
+              q: 'Apa itu Ronde Pertanyaan?',
+              a: [
+                'Sebagian meja Spy Talk memainkan 2 ronde pertanyaan, bukan 1: room privat yang host-nya memilih 2 di <b>Aturan</b> room, dan Malam Permainan yang memakainya. Main online selalu 1 ronde.',
+                'Di ronde 1, semua orang mengajukan satu pertanyaan dan menjawab satu. Begitu jawaban terakhir masuk, ronde 2 dimulai, terbalik: kamu ditanya oleh pemain yang tadi kamu tanyai. Di atas layar tertulis “Ronde 2”.',
+                'Lalu diskusi, dengan waktu seperti biasa. Dua ronde memberi warga dua kali lebih banyak jawaban untuk diperiksa, dan mata-mata dua kali lebih banyak peluang untuk keceplosan.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'talk-out-loud',
           q: "Apa itu Tanya jawab lisan?",
@@ -193,10 +207,42 @@ const id: HelpText = {
           q: 'Apa itu Malam Permainan?',
           a: [
             'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
-            'Setiap malam punya paket, pengaturan, dan gelarnya sendiri. Tombol (i) di samping malam itu menampilkan paket dan pengaturannya, dan tombol <b>Hadiah</b> di kartunya menampilkan gelarnya.',
+            o.gnRewards
+              ? 'Setiap malam punya paket dan pengaturannya sendiri: tombol (i) di samping malam itu menampilkannya. Tombol <b>Hadiah</b> di kartunya menampilkan apa yang bisa kamu dapat: Intel Malam Permainan dan gelar ★.'
+              : 'Setiap malam punya paket, pengaturan, dan gelarnya sendiri. Tombol (i) di samping malam itu menampilkan paket dan pengaturannya, dan tombol <b>Hadiah</b> di kartunya menampilkan gelarnya.',
             'Gratis, dan tidak ada yang kamu beli yang memperbesar peluangmu. Aturan lengkapnya: <gnr>aturan Malam Permainan</gnr> (bahasa Inggris).',
           ],
         },
+        ...(o.gnWeekly
+          ? [
+            {
+              id: 'game-night-weekly',
+              q: 'Kapan Malam Permainan diadakan?',
+              a: [
+                'Seminggu sekali: hari Jumat, lalu malam yang sama diulang hari Sabtu, biasanya pukul 20.00–22.00 waktu bagian timur AS.',
+                'Datang di salah satu malam, atau main di keduanya.',
+                'Kami mengumumkan setiap malam di aplikasi, di kartu Malam Permainan di Beranda.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-rewards',
+              q: 'Apa yang kudapat di Malam Permainan?',
+              a: [
+                '<b>Intel Malam Permainan</b> untuk setiap permainan yang kamu selesaikan: 500 untuk menang, 200 untuk kalah atau seri. Layar akhir menampilkan yang kamu dapat.',
+                'Tidak ada Intel Malam Permainan kalau kamu keluar sebelum selesai atau tidak ikut bermain, kalau permainan selesai setelah Malam Permainan ditutup, atau di meja dengan spybot. Permainan yang berakhir lebih awal karena ada yang kabur tidak memberi apa-apa ke siapa pun.',
+                '<b>Gelar ★</b> yang terus bertambah: <b>★ Operatif</b> untuk setiap permainan Malam Permainan yang kamu selesaikan, <b>★ Pahlawan Lokal</b> untuk setiap kemenangan sebagai warga, <b>★ Mata-Mata Ulung</b> untuk setiap kemenangan sebagai mata-mata, dan <b>★ Agen Ganda</b> untuk setiap malam kamu menang di kedua pihak. Pakai gelarnya dengan angkanya, misalnya ★ Operatif ×12.',
+                'Intel Malam Permainan dan gelar ★ hanya milikmu: tidak bisa ditukar, dan keanggotaan tidak menambahkan apa pun. Pakai Intel-nya untuk sadapan Malam Permainan.',
+                ...(o.launch
+                  ? []
+                  : ['Gelar dari Malam Permainan beta sudah diubah jadi hitungan di gelar-gelar ini. Saat reset sebelum peluncuran, Intel Malam Permainan yang kamu dapat kembali utuh, meski sudah kamu pakai, dan gelar ★-mu tetap ada. Sadapan Malam Permainan dan item-nya di-reset seperti yang lain.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'practice-game',
           q: "Apa itu tutorial dan permainan latihan?",
@@ -207,6 +253,21 @@ const id: HelpText = {
             "Saat ini kamu tidak perlu keduanya untuk main online. Malam Permainan tidak pernah memintanya.",
           ],
         },
+        ...(o.practiceMembers
+          ? [
+            {
+              id: 'practice-members',
+              q: 'Siapa yang bisa main permainan latihan?',
+              a: [
+                'Permainan latihan khusus anggota: sampai 5 per hari. Hari baru dimulai tengah malam UTC. Setelah 5 permainanmu, permainan yang tersimpan masih bisa dilanjutkan.',
+                ...(o.practiceAi
+                  ? ['Anggota mendapat masukan AI untuk setiap kalimat yang mereka tulis, saat bermain, dan nilai huruf di setiap permainan. Masukan AI untuk pemain berusia 16 tahun ke atas yang mengetuk <b>Coba</b> saat aplikasi bertanya; untuk yang lain, ponsel yang menilai. Untuk berhenti, matikan <b>Nilai kalimat latihanku dengan AI</b> di Pengaturan.']
+                  : []),
+                'Tutorial tetap gratis untuk semua orang, dan lulus salah satunya tetap dihitung untuk Main online.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'languages',
           q: 'Bisakah main dengan orang yang bicara bahasa lain?',
@@ -517,6 +578,19 @@ const id: HelpText = {
               : ['Sebelum 2.2 terbuka untuk semua orang, sadapan dimulai dari awal: yang didapat di versi uji coba dihapus. Pin Beta dan apa pun yang dibeli di toko tetap ada.']),
           ],
         },
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-intercepts',
+              q: 'Apa itu sadapan Malam Permainan?',
+              a: [
+                'Sadapan yang kamu dapat dengan Intel Malam Permainan, di kartu Malam Permainan di <b>Brankas</b>: <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
+                'Isinya dari koleksi khusus Malam Permainan, <b>After Hours</b>: 14 item ruang kartu untuk agenmu yang tidak ada di sadapan lain. Seperti semua sadapan, aplikasi menampilkan peluang pastinya.',
+                'Sadapan yang dibeli menunggu di <b>Belum Dibuka</b>. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'duplicates',
           q: 'Apa yang bisa kulakukan dengan duplikat?',
@@ -613,6 +687,7 @@ const id: HelpText = {
             'Semua paket premium, termasuk yang baru. Semua orang memainkannya di room yang kamu host dan di mejamu di Main online.',
             'Buat paket sendiri di pembuat paket dan bagikan ke komunitas.',
             '+50% XP di setiap permainan, dan ruangan khusus member di Main online.',
+            ...(o.practiceMembers ? ['Permainan latihan, sampai 5 per hari, dengan nilai huruf dan masukan AI.'] : []),
             'Bingkai, label, dan gelar pangkatmu. Kamu bisa memimpin grup dan punya 8 penawaran terbuka di Pasar Gelap, bukan 4.',
             'Keanggotaan tidak pernah mengubah cara kamu bermain atau skormu. Paket gratis tetap gratis untuk semua.',
           ],
@@ -637,6 +712,32 @@ const id: HelpText = {
             'Seumur hidup berarti selama kami menyediakan SpySocial, bukan seumur hidupmu. Tidak ada uji coba gratis, dan keanggotaan tidak dibagikan lewat Berbagi Keluarga.',
           ],
         },
+        ...(o.membershipSwitch
+          ? [
+            {
+              id: 'membership-switch',
+              q: 'Bisakah aku pindah antara keanggotaan bulanan dan tahunan?',
+              a: [
+                'Bisa, di aplikasi: buka <b>Brankas</b>, lalu <b>Keanggotaan</b>. Di paket bulanan, ketuk <b>Naik ke Elite</b> (tahunan) atau <b>Naik ke Dalang</b> (seumur hidup). Di paket tahunan juga ada <b>Ganti ke bulanan</b>: bingkai, gelar, dan label Elite berganti jadi milik Agen, dan keuntungan lain tetap ada.',
+                'Kamu tidak pernah ditagih dua kali. Di Google Play, paket baru langsung dimulai dan waktu yang sudah kamu bayar jadi waktu di paket baru. Di App Store, Apple yang menentukan kapan paket baru dimulai, sering di perpanjangan berikutnya, dan menghitung waktu yang sudah kamu bayar.',
+                'Keanggotaan yang ditagih lewat toko lain diganti di toko itu: membeli paket lain di sini akan membuatmu ditagih dua kali.',
+                ...(o.googlePassStop
+                  ? ['Saat kamu membeli keanggotaan seumur hidup, keanggotaan bulanan atau tahunan yang ditagih lewat Google Play otomatis berhenti diperpanjang: kamu tetap memilikinya sampai tanggal berakhirnya, dan tidak ada tagihan lagi. Apple tidak mengizinkan ini, jadi batalkan sendiri yang lewat App Store.']
+                  : []),
+              ],
+            },
+            {
+              id: 'two-memberships',
+              q: 'Aplikasi bilang aku punya dua keanggotaan aktif',
+              a: [
+                'Kamu membayar dua sekaligus: misalnya keanggotaan seumur hidup dan bulanan, atau satu di tiap toko. Aplikasi memberi tahu mana yang kamu butuhkan dan mana yang harus dibatalkan, saat kamu membukanya dan di tab <b>Keanggotaan</b>.',
+                'Ketuk <b>Kelola langganan</b> untuk membatalkan yang berlebih di tokonya. Membatalkan hanya menghentikan tagihan berikutnya: waktu yang sudah kamu bayar tetap milikmu.',
+                ...(o.googlePassStop ? ['Kalau yang berlebih ditagih lewat Google Play, <b>Hentikan perpanjangan</b> menghentikannya langsung dari aplikasi.'] : []),
+                'Tidak ada yang diblokir sementara itu: <b>Nanti</b> menyembunyikan pesannya sampai kamu membuka aplikasi lagi.',
+              ],
+            },
+            ]
+          : []),
         ...(o.memberLoyalty
           ? [
             {
@@ -668,7 +769,9 @@ const id: HelpText = {
             'Agen dan Elite diperpanjang otomatis sampai kamu membatalkannya: di App Store, paling lambat 24 jam sebelum periodenya berakhir; di Google Play, sebelum tanggal perpanjangan. Manfaatnya tetap ada sampai akhir periode yang sudah dibayar.',
             '<b>iPhone atau iPad:</b> Pengaturan, namamu, Langganan, SpySocial.',
             '<b>Android:</b> aplikasi Google Play Store, foto profilmu, Pembayaran & langganan, Langganan, SpySocial.',
-            '<b>Kelola langganan</b> di aplikasi membuka halaman yang sama. Menghapus aplikasi atau akun, atau membeli keanggotaan seumur hidup, tidak membatalkan langganan.',
+            o.googlePassStop
+              ? '<b>Kelola langganan</b> di aplikasi membuka halaman yang sama. Menghapus aplikasi atau akun tidak membatalkan langganan. Membeli keanggotaan seumur hidup otomatis menghentikan langganan yang ditagih lewat Google Play, tapi tidak yang lewat App Store.'
+              : '<b>Kelola langganan</b> di aplikasi membuka halaman yang sama. Menghapus aplikasi atau akun, atau membeli keanggotaan seumur hidup, tidak membatalkan langganan.',
             ...(o.memberLoyalty ? ["Di <b>Brankas</b>, <b>Batalkan Keanggotaan</b> (di bawah Kelola langganan) lebih dulu menampilkan satu layar berisi faktanya: kalau keanggotaanmu berakhir, waktu member dan capmu diulang dari nol, dan harga terkuncimu berakhir. Satu-satunya tombolnya, <b>Lanjut Batalkan</b>, langsung menuju toko. <b>Kelola langganan</b> sendiri tetap langsung membuka toko. Tidak ada yang berubah sebelum akhir periode yang sudah dibayar."] : []),
           ],
         },
@@ -703,6 +806,21 @@ const id: HelpText = {
             'Kamu bisa menyimpan akun tamu kapan saja dari halaman Akun, tanpa kehilangan apa pun. Teman, Pertukaran, dan Pasar Gelap meminta tamu menyimpan akunnya dulu.',
           ],
         },
+        ...(o.emailCodes22
+          ? [
+            {
+              id: 'sign-up-email',
+              q: 'Bagaimana cara daftar dengan email?',
+              a: [
+                'Ketuk <b>Lanjut dengan Email</b> dan ketik email-mu. Kami mengirim kode 6 digit: ketik kodenya di aplikasi, dan akunmu sudah jadi. Tanpa kata sandi.',
+                'Kodenya berlaku 1 jam. Belum masuk? Cek folder spam atau sampah, atau ketuk <b>Kirim Ulang Kode</b> setelah satu menit.',
+                ...(o.passwordless
+                  ? []
+                  : ['Versi aplikasi yang lebih lama meminta kata sandi. Kalau muncul pesan bahwa kata sandi terlalu umum atau pernah muncul dalam kebocoran data, pilih yang lain: tidak ada akun yang dibuat, tidak ada email yang dikirim, dan kamu bisa langsung mencoba lagi.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'lost-account',
           q: 'Akunku hilang. Bisa kembali?',

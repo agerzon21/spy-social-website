@@ -147,6 +147,37 @@ export const LIVE = {
    */
   helpRoleReveal: false,
   /**
+   * help-new-1117: Help's Game Night rewards (app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83; client
+   * feat/gn-rewards-client-1117b in app update 62.15; spec gamenight-rewards-1116/FINAL-SPEC.md): #game-night-rewards
+   * (Game Night Intel 500 a win / 200 a loss or tie, 0 for a leave, idle, late, a spybot table or a voided walk-out; the
+   * four ★ counter titles; untradeable; the pre-launch reset line), #game-night-intercepts (Tier 1 / 2 / 3 at 400 / 800 /
+   * 10,000, the After Hours set) and #game-night's PRIZES line. Help text only, no Last Updated date. Flip once row 83 is
+   * applied live AND 62.15 is on phones: node scripts/flip-switch.mjs helpGameNightRewards. Off again if row 83 is rolled back.
+   * Open owner word (FINAL-SPEC 9.1): the Enigma per Game Night win; #earn-intercepts still says it, change it if it ends.
+   */
+  helpGameNightRewards: false,
+  /**
+   * help-new-1117: Help's Monthly <-> Yearly upgrades in the app ("Upgrade to Elite" / "Upgrade to Spymaster", "Switch to
+   * Monthly") and the two-memberships warning (app server 20261231999846_membership_switch_1117, NEXT-BATCH row 85; client
+   * feat/membership-switch-1117 in 62.15): #membership-switch and #two-memberships. Help text only. Flip once row 85 is
+   * applied AND 62.15 is on phones: node scripts/flip-switch.mjs helpMembershipSwitch.
+   */
+  helpMembershipSwitch: false,
+  /**
+   * help-new-1117: Google Play memberships stop renewing by themselves beside a Lifetime (row 85's pass-cancel edge
+   * function deployed AND app_config google_pass_cancel {"enabled": true}; owner Nov 17 "android cancel"). Turns on
+   * #membership-switch's Lifetime line, #two-memberships' Stop Renewal line and #cancel-membership's Lifetime sentence.
+   * Needs helpMembershipSwitch for the first two. Flip the hour the app_config switch goes on: node scripts/flip-switch.mjs
+   * helpGooglePassStop. Off again if google_pass_cancel goes back to false.
+   */
+  helpGooglePassStop: false,
+  /**
+   * help-new-1117: Help's Spy Talk Question Rounds (app server 20261231999861_question_rounds_1116, NEXT-BATCH row 70, owner
+   * pick 19A; client pick/rounds-1116 in 62.15): #question-rounds. Help text only. Flip once row 70 is applied AND 62.15
+   * is on phones: node scripts/flip-switch.mjs helpQuestionRounds.
+   */
+  helpQuestionRounds: false,
+  /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
    * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)

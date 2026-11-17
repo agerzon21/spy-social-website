@@ -37,6 +37,14 @@ const OPTS: HelpOpts = {
   testerInterceptsTradable: LIVE.testerIntercepts === 'tradable',
   testerGiftGame: LIVE.testerGiftGame,
   roleReveal: LIVE.helpRoleReveal,
+  gnRewards: LIVE.helpGameNightRewards,
+  gnWeekly: LIVE.launchGameNights,
+  membershipSwitch: LIVE.helpMembershipSwitch,
+  googlePassStop: LIVE.helpGooglePassStop,
+  practiceMembers: LIVE.practiceMembers,
+  practiceAi: LIVE.practiceAi,
+  questionRounds: LIVE.helpQuestionRounds,
+  emailCodes22: LIVE.emailCodes22,
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).

@@ -60,6 +60,26 @@ export interface HelpOpts {
    * help-beta3-1116), in the app's own words for them (app int-u62, u62.13).
    */
   roleReveal: boolean
+  /**
+   * help-new-1117 (TRANSLATIONS UNREVIEWED: every language but English is an agent's, in the app's own words for each
+   * feature, app int/u62-15-prep). Game Night rewards (LIVE.helpGameNightRewards): #game-night-rewards,
+   * #game-night-intercepts and #game-night's PRIZES line.
+   */
+  gnRewards: boolean
+  /** The weekly Game Night, Friday and again Saturday (LIVE.launchGameNights): #game-night-weekly. */
+  gnWeekly: boolean
+  /** Monthly <-> Yearly upgrades in the app and the two-memberships warning (LIVE.helpMembershipSwitch). */
+  membershipSwitch: boolean
+  /** A Google Play membership stops renewing by itself beside a Lifetime (LIVE.helpGooglePassStop). */
+  googlePassStop: boolean
+  /** Practice Games for members, 5 a day (LIVE.practiceMembers): #practice-members, #membership-includes' line. */
+  practiceMembers: boolean
+  /** The Practice Games' AI rating is on (LIVE.practiceAi): #practice-members' AI line. */
+  practiceAi: boolean
+  /** Spy Talk's Question Rounds (LIVE.helpQuestionRounds): #question-rounds. */
+  questionRounds: boolean
+  /** Version 2.2 signs up and in with an emailed code, older versions with a password (LIVE.emailCodes22): #sign-up-email. */
+  emailCodes22: boolean
 }
 
 export interface HelpItem {

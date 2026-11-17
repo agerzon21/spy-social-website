@@ -32,6 +32,12 @@ const SWITCHES = {
   creatorInviteData: { live: [['creatorInviteData', true]], day: 'CREATOR_INVITE_DATA_DAY', step: 'creator-invite-data-1113' },
   // help-u61-1113: Beta 3 day (Tue Nov 24), once u62 is on testers' phones and role_reveal_online is 'everyone'. Help only, no date.
   helpRoleReveal: { live: [['helpRoleReveal', true]], day: null, step: 'beta3' },
+  // help-new-1117: Help only, no date. Each once its server row is applied AND app update 62.15 is on phones
+  // (helpGooglePassStop: the hour app_config google_pass_cancel goes on).
+  helpGameNightRewards: { live: [['helpGameNightRewards', true]], day: null, step: 'row 83 (999848) + 62.15' },
+  helpMembershipSwitch: { live: [['helpMembershipSwitch', true]], day: null, step: 'row 85 (999846) + 62.15' },
+  helpGooglePassStop: { live: [['helpGooglePassStop', true]], day: null, step: 'google_pass_cancel on' },
+  helpQuestionRounds: { live: [['helpQuestionRounds', true]], day: null, step: 'row 70 (999861) + 62.15' },
   // legal-coverage-1114: each the day its server file is applied (practiceNoAi: the next site publish).
   reputationHoldCap: { live: [['reputationHoldCap', true]], day: 'REPUTATION_HOLD_CAP_DAY', step: 'row 25 (999954)' },
   tradeWatchEvidence: { live: [['tradeWatchEvidence', true]], day: 'TRADE_WATCH_EVIDENCE_DAY', step: 'row 24 TWE' },

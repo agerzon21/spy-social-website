@@ -1,7 +1,12 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). help-u6214-1117 (2026-11-17, against int/u62-14 0c526325f): #voting / #winning's Vote Results
+ * English: the source (../types.ts). help-new-1117 (2026-11-17, against app int/u62-15-prep 05c21a1e3 and NEXT-BATCH rows 70 / 83 / 85 / 95,
+ * gamenight-rewards-1116/FINAL-SPEC.md, signup v42): #question-rounds (glossary setting.question_rounds), #game-night-weekly (owner Nov 17:
+ * one night a week, Friday and again Saturday), #game-night-rewards + #game-night-intercepts (Game Night Intel 500 / 200, 0 for a leave, idle,
+ * late, a spybot table or a voided walk-out; the four ★ counters; tiers 400 / 800 / 10,000; After Hours), #practice-members (5 a day, UTC; the AI
+ * line 16+, Settings' Rate My Practice Lines with AI), #membership-switch + #two-memberships (membershipSwitch.ts), #sign-up-email (emailCode.ts;
+ * the weak-password line signup v42 answers older apps with), each behind its switch (types.ts). help-u6214-1117 (2026-11-17, against int/u62-14 0c526325f): #voting / #winning's Vote Results
  * head (lib/voteHead 'tape': FINAL VOTE + online.vote_head.*, moments.voting.hud.called_by), #wax-seal's Info entries (seal-info-1116) and
  * the Practice Game's seal (practice-seal-info-1116, practice.end_seal), #role-reveal's in-game card (ingame-role-card-1116, online look
  * only) and every live place's picture (places-181-1116). help-audit-1116 b (2026-11-16, coordinator Q6): new #special-rules (Votes per Game, Paper Trail;
@@ -98,6 +103,19 @@ const en: HelpText = {
             'Stuck for a question? The hint card at the bottom of the screen has one. Asking for the location’s name or first letter isn’t fair play.',
           ],
         },
+        ...(o.questionRounds
+          ? [
+            {
+              id: 'question-rounds',
+              q: 'What are Question Rounds?',
+              a: [
+                'Some Spy Talk tables play 2 rounds of questions instead of 1: private rooms whose host picks 2 in the room’s <b>Rules</b>, and Game Nights that set it. Play Online always plays 1.',
+                'In round 1, everyone asks one question and answers one. As soon as the last answer is in, round 2 starts, the other way round: you’re asked by the player you asked. The top of the screen shows “Round 2”.',
+                'Then the discussion, with its usual time. Two rounds give the Locals twice the answers to check, and the spy twice the chances to slip.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'talk-out-loud',
           q: "What is Talk Out Loud?",
@@ -217,10 +235,42 @@ const en: HelpText = {
           q: 'What is Game Night?',
           a: [
             'Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. Tap <b>PLAY NOW</b> on Home’s Game Night card.',
-            'Each night has its own packs, settings and titles. The (i) next to the night shows its packs and settings, and <b>PRIZES</b> on the card shows its titles.',
+            o.gnRewards
+              ? 'Each night has its own packs and settings: the (i) next to the night shows them. <b>PRIZES</b> on the card shows what you earn: Game Night Intel and the ★ titles.'
+              : 'Each night has its own packs, settings and titles. The (i) next to the night shows its packs and settings, and <b>PRIZES</b> on the card shows its titles.',
             'It’s free, and nothing you buy improves your chances. The full rules: <gnr>Game Night rules</gnr>.',
           ],
         },
+        ...(o.gnWeekly
+          ? [
+            {
+              id: 'game-night-weekly',
+              q: 'When is Game Night?',
+              a: [
+                'Once a week: on Friday, then the same night again on Saturday, usually 8 to 10 PM Eastern.',
+                'Come to either night, or play both.',
+                'We announce each night in the app, on Home’s Game Night card.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-rewards',
+              q: 'What do I earn at Game Night?',
+              a: [
+                '<b>Game Night Intel</b> for every game you finish: 500 for a win, 200 for a loss or a tie. Game Over shows what you got.',
+                'No Game Night Intel if you leave before the end or don’t take part, if the game ends after Game Night closes, or at a table with spybots. A game that ends early because someone walked out pays no one.',
+                '<b>★ titles</b> that count up: <b>★ Operative</b> for each Game Night game you finish, <b>★ Local Hero</b> for each win as a Local, <b>★ Master Spy</b> for each win as a spy, and <b>★ Double Agent</b> for each night you win on both sides. Wear one with its count, like ★ Operative ×12.',
+                'Game Night Intel and the ★ titles are yours alone: they can’t be traded, and a membership adds nothing to them. Spend the Intel on Game Night Intercepts.',
+                ...(o.launch
+                  ? []
+                  : ['Titles from the beta Game Nights became counts on these titles. At the reset before launch, the Game Night Intel you earned comes back in full, even if you spent it, and your ★ titles stay. Game Night Intercepts and their items are reset like everything else.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'practice-game',
           q: "What are the Tutorial and the Practice Games?",
@@ -231,6 +281,21 @@ const en: HelpText = {
             "You don’t need either one to play online today. Game Night never asks.",
           ],
         },
+        ...(o.practiceMembers
+          ? [
+            {
+              id: 'practice-members',
+              q: 'Who can play Practice Games?',
+              a: [
+                'Practice Games are for members: up to 5 a day. The day starts at midnight UTC. After your 5, a saved game can still be resumed.',
+                ...(o.practiceAi
+                  ? ['Members get AI feedback on every line they write, as they play, and a letter grade for every game. The AI feedback is for players 16 and older who tap <b>Try It</b> when the app asks; for everyone else, the phone grades. To stop it, turn off <b>Rate My Practice Lines with AI</b> in Settings.']
+                  : []),
+                'The tutorials stay free for everyone, and passing one still counts for Play Online.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'languages',
           q: 'Can I play with people who speak other languages?',
@@ -541,6 +606,19 @@ const en: HelpText = {
               : ['Before 2.2 opens to everyone, Intercepts start fresh: those earned in test versions are wiped. The Beta Pin and anything bought in a store stay.']),
           ],
         },
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-intercepts',
+              q: 'What are Game Night Intercepts?',
+              a: [
+                'Intercepts you get with Game Night Intel, on the Game Night card in the <b>Vault</b>: <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
+                'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
+                'A bought one waits in <b>To Open</b>. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'duplicates',
           q: 'What can I do with duplicates?',
@@ -637,6 +715,7 @@ const en: HelpText = {
             'Every premium pack, new ones included. Everyone plays them in rooms you host and at your Play Online table.',
             'Make your own packs in Pack Creator and share them in Community.',
             '+50% XP on every game, and members-only lobbies in Play Online.',
+            ...(o.practiceMembers ? ['Practice Games, up to 5 a day, with letter grades and AI feedback.'] : []),
             'Your rank’s border, tag and title. You can lead a party, and have 8 open Black Market offers instead of 4.',
             'It never changes how you play or score. The free packs stay free for everyone.',
           ],
@@ -661,6 +740,32 @@ const en: HelpText = {
             'Lifetime lasts as long as we offer SpySocial, not for your lifetime. There are no free trials, and memberships aren’t shared through Family Sharing.',
           ],
         },
+        ...(o.membershipSwitch
+          ? [
+            {
+              id: 'membership-switch',
+              q: 'Can I switch between Monthly and Yearly?',
+              a: [
+                'Yes, in the app: open the <b>Vault</b>, then <b>Membership</b>. On Monthly, tap <b>Upgrade to Elite</b> (Yearly) or <b>Upgrade to Spymaster</b> (Lifetime). On Yearly, <b>Switch to Monthly</b> is there too: Elite’s border, title and tag change to Agent’s, and every other perk stays.',
+                'You’re never charged twice. On Google Play, the new plan starts right away and the time you’ve paid for becomes time on it. On the App Store, Apple decides when it starts, often at your next renewal, and credits the time you’ve paid for.',
+                'A membership billed by the other store is changed in that store: buying another plan here would charge you twice.',
+                ...(o.googlePassStop
+                  ? ['When you buy Lifetime, a Monthly or Yearly membership billed by Google Play stops renewing by itself: you keep it until its end date, and nothing more is charged. Apple doesn’t allow this, so cancel an App Store one yourself.']
+                  : []),
+              ],
+            },
+            {
+              id: 'two-memberships',
+              q: 'The app says I have two memberships active',
+              a: [
+                'You’re paying for two at once: for example Lifetime and a Monthly membership, or one on each store. The app says which one you need and which one to cancel, when you open it and on the <b>Membership</b> tab.',
+                'Tap <b>Manage Subscription</b> to cancel the extra one in its store. Cancelling only stops the next charge: you keep the time you’ve already paid for.',
+                ...(o.googlePassStop ? ['If the extra one is billed by Google Play, <b>Stop Renewal</b> stops it right from the app.'] : []),
+                'Nothing is blocked meanwhile: <b>Later</b> hides the message until you next open the app.',
+              ],
+            },
+            ]
+          : []),
         ...(o.memberLoyalty
           ? [
             {
@@ -692,7 +797,9 @@ const en: HelpText = {
             'Agent and Elite renew automatically until you cancel: on the App Store, at least 24 hours before the period ends; on Google Play, before the renewal date. You keep the benefits until the end of the period you paid for.',
             '<b>iPhone or iPad:</b> Settings, your name, Subscriptions, SpySocial.',
             '<b>Android:</b> the Google Play Store app, your profile picture, Payments & subscriptions, Subscriptions, SpySocial.',
-            '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a monthly or yearly membership.',
+            o.googlePassStop
+              ? '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account doesn’t cancel a monthly or yearly membership. Buying Lifetime stops one billed by Google Play by itself, but not one billed by the App Store.'
+              : '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a monthly or yearly membership.',
             ...(o.memberLoyalty ? ["In the <b>Vault</b>, <b>Cancel Membership</b> (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and your locked price ends. Its one button, <b>Continue to Cancel</b>, goes straight on to the store. <b>Manage Subscription</b> itself still opens the store directly. Nothing changes before the end of the period you paid for."] : []),
           ],
         },
@@ -727,6 +834,21 @@ const en: HelpText = {
             'You can save a guest account at any time from your Account page, without losing anything. Friends, Trades and the Black Market ask a guest to save it first.',
           ],
         },
+        ...(o.emailCodes22
+          ? [
+            {
+              id: 'sign-up-email',
+              q: 'How do I sign up with my email?',
+              a: [
+                'Tap <b>Continue with Email</b> and type your email. We email you a 6-digit code: type it in the app, and your account is made. No password needed.',
+                'The code works for 1 hour. Not there? Check spam or junk, or tap <b>Resend Code</b> after a minute.',
+                ...(o.passwordless
+                  ? []
+                  : ['Older versions of the app ask for a password. If one says the password is too common or has appeared in a data leak, choose a different one: no account was made, no email was sent, and you can try again right away.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'lost-account',
           q: 'I lost my account. Can I get it back?',
