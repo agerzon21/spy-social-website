@@ -789,7 +789,7 @@ const fr: Strings = {
         },
       ],
       more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, de l'XP même pour les parties courtes, un retour en partie sans accroc quand ton téléphone se met en veille, des liens d'invitation qui marchent tout simplement, et un nouveau look sur chaque écran.",
-      launchWeek: "Semaine de lancement : Spy Talk le mardi 8 décembre, Spy Sketch le vendredi 11 décembre et Mafia le samedi 12 décembre, chaque fois de 20 h à 22 h, heure de l'Est américain (ET).",
+      launchWeek: "Soirée de première : le vendredi 11 décembre, puis à nouveau le samedi 12 décembre, de 20 h à 22 h, heure de l'Est américain (ET). La même soirée Spy Talk deux fois : viens à l'une ou aux deux. Ensuite, une soirée par semaine : le vendredi, puis la même soirée à nouveau le samedi.",
     },
     next: {
       status: 'Prévu',

@@ -853,8 +853,9 @@ const en = {
       /** One line under the cards. */
       more: 'Plus Player Stats, titles and borders to unlock, levels up to 100 with prestige, XP for quick games too, smooth rejoining after your phone sleeps, invite links that just work, and a new look on every screen.',
       /** Added to the Game nights card once LIVE.launchGameNights is on (owner to OK the days first). If a day or
-       * hour changes, change it in all 10 languages. */
-      launchWeek: 'Launch week: Spy Talk on Tuesday, December 8, Spy Sketch on Friday, December 11, and Spy Mafia on Saturday, December 12, each from 8 to 10 PM ET.',
+       * hour changes, change it in all 10 languages. Owner Nov 17: no night on launch day; Opening Night runs Fri Dec 11
+       * and again Sat Dec 12, 8-10 PM ET (Spy Talk, the same night twice); after launch one night a week, Fri + Sat. */
+      launchWeek: 'Opening Night: Friday, December 11, and again Saturday, December 12, from 8 to 10 PM ET. The same Spy Talk night twice, so come to either or play both. After that, one Game Night a week: on Friday, then the same night again on Saturday.',
     },
     next: {
       /** A stamp: these are plans. */
