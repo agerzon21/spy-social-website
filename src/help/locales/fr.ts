@@ -122,6 +122,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Une égalité en tête n'élimine personne, et il faut toujours au moins 2 voix.",
           "Aux tables de Jouer en ligne, chaque joueur peut lancer un vote et désigne qui il accuse. Quand un vote démasque un espion, tous ceux qui avaient utilisé le leur le récupèrent.",
           "Aux tables de 8 joueurs, la personne qui a le plus de voix est éliminée, jusqu'à ce qu'il reste 4 joueurs ; ensuite, il faut la majorité absolue. Ne pas voter compte comme une abstention.",
+          "Sur les résultats, une bande noire indique qui a lancé le vote : « Lancé par … ». Un vote final affiche à la place un ruban rouge <b>Vote final</b>.",
         ],
       },
       {
@@ -143,6 +144,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les <b>espions</b> gagnent avec une bonne réponse, quand le chrono de la partie arrive à zéro, ou quand un vote laisse autant d'espions que de locaux.",
           "Partir compte comme être éliminé par un vote : si le dernier espion part, les locaux gagnent ; si trop de locaux partent, les espions gagnent. Si cela arrive avant la fin des questions (dans Spy Sketch, au premier tour), la partie affiche « Pas de résultat » et ne compte pas.",
           "<b>Vote final :</b> si le temps est écoulé et qu'il reste exactement un espion, tout le monde vote une dernière fois. Démasquez-le et les locaux gagnent. Il est actif dans Jouer en ligne, et c'est un réglage dans les salons privés.",
+          "Les résultats d'un vote final s'ouvrent sous un ruban rouge <b>Vote final</b> qui dit pourquoi : « Le chrono a parlé », « Plus aucun vote à lancer » ou « Personne n'a lancé de vote à temps ».",
           "<b>Informateur</b> (salons privés et soirées jeux qui l'activent, avec au moins 2 espions et 6 joueurs) : la carte d'un local désigne un espion. Quand les locaux gagnent par un vote ou par la mauvaise réponse du dernier espion, les espions, même démasqués, ont 30 secondes pour désigner l'informateur et voler la victoire. Pas après un raté avec <b>Une seule tentative</b>, ni quand le dernier espion s'en va.",
         ],
       },
@@ -230,8 +232,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "Comment marche la révélation des rôles ?",
             a: [
               "Les parties en ligne ont une révélation des rôles : Jouer en ligne, les soirées jeux et les salons privés dont l'hôte a choisi <b>En ligne</b>. Appuie sur ta carte : la lumière s'éteint et un projecteur éclaire ton rôle.",
-              "Les <b>locaux</b> voient le secret et combien d'espions se cachent parmi eux : dans Spy Talk, le lieu, avec son image s'il en a une ; dans Spy Sketch, seulement le mot.",
+              "Les <b>locaux</b> voient le secret et combien d'espions se cachent parmi eux : dans Spy Talk, le lieu et son image (chaque lieu de nos packs en a une) ; dans Spy Sketch, seulement le mot.",
               "Les <b>espions</b> reçoivent une carte sombre. En mode Mafia, les autres espions apparaissent à côté de toi, avec leur nom et une étiquette rouge « Espion ». En mode Classique, les espions ne se connaissent pas, donc les autres apparaissent comme <b>Inconnu</b>.",
+              "Ta carte reste en bas de l'écran toute la partie, avec la même face : celle d'un local garde l'image du lieu, et celle d'un espion en mode Mafia donne en rouge le nom des autres espions.",
               "En mode Mafia avec plus d'un espion, appuie sur <b>CANAL DES ESPIONS</b> pour discuter en privé avec les autres espions : sur ta carte avant le début, puis dans la barre du haut, ou à côté du chat pendant un vote. Un seul appui suffit ; un chiffre montre les nouveaux messages, et un message d'un autre espion s'annonce par « … essaie de te joindre ».",
               "L'étiquette rouge reste sur les photos des autres espions toute la partie. Les locaux ne voient ni les étiquettes, ni le bouton, ni le chat.",
               "En appel vocal ? Active <b>Même son pour tous les rôles</b> (Réglages, Son et musique) pour que ton micro ne capte pas le son de révélation d'un espion. L'appli ne te le demande (<b>Tu joues en appel ?</b>) que dans un salon privé <b>En ligne</b>.",
@@ -267,6 +270,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Le sceau en haut à gauche de l'écran de jeu contient <b>Quitter</b> et <b>Infos</b>, repliés pour que personne ne quitte la partie par erreur. <b>Chat</b> et <b>Notes</b> ont leurs propres boutons en haut à droite, qui s'ouvrent d'une seule touche. Un nombre sur Chat signale de nouveaux messages.",
           "Le sceau est sur tous les écrans de la partie : le vote et ses résultats, la tentative de l'espion et l'écran de fin.",
+          "Pendant le vote, la tentative de l'espion et l'écran de fin, <b>Infos</b> explique l'écran où tu es.",
+          "Les parties d'entraînement ont aussi le sceau, avec <b>Terminer</b> et <b>Infos</b> pendant le vote, la tentative et l'écran de fin. La partie attend tant qu'Infos est ouvert.",
           "Touche la photo d'un joueur pour l'interpeller dans le chat. Fais glisser un message pour y répondre.",
           "Mentir et bluffer font partie du jeu. Dire le secret tel quel, non.",
         ],

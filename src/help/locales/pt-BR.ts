@@ -126,6 +126,7 @@ const ptBR: HelpText = {
             'Empate no primeiro lugar não elimina ninguém, e sempre são precisos pelo menos 2 votos.',
             'Nas mesas do Jogar online, cada jogador pode pedir uma votação e diz quem acusa. Quando uma votação pega um espião, todos que usaram a sua a recebem de volta.',
             'Nas mesas de 8 jogadores, sai quem receber mais votos, até restarem 4 jogadores; aí volta a maioria. Não votar conta como se abster.',
+            'No resultado, uma faixa preta mostra quem pediu a votação: “Pedida por …”. Uma votação final mostra no lugar uma fita vermelha de <b>Votação final</b>.',
           ],
         },
         {
@@ -147,6 +148,7 @@ const ptBR: HelpText = {
             'Os <b>espiões</b> ganham acertando o palpite, quando o tempo da partida acaba, ou quando uma votação deixa tantos espiões quanto locais.',
             'Sair conta como ser eliminado na votação: se o último espião sair, os locais vencem; se locais demais saírem, os espiões vencem. Se isso acontecer antes de as perguntas terminarem (no Spy Sketch, na primeira rodada), a partida mostra “Sem resultado” e não conta.',
             '<b>Votação final:</b> se o tempo acabar com exatamente um espião no jogo, todos votam mais uma vez. Peguem o espião e os locais ganham. Ela vale no Jogar online e é um ajuste nas salas privadas.',
+            'O resultado de uma votação final abre sob uma fita vermelha de <b>Votação final</b> que diz o motivo: “O relógio falou”, “Ninguém tem mais votações” ou “Ninguém pediu uma votação a tempo”.',
             "<b>Informante</b> (salas privadas e Noites de Jogos que o ligam, com 2 espiões ou mais e 6 jogadores ou mais): a carta de um local aponta um espião. Quando os locais ganham por votação ou pelo palpite errado do último espião, os espiões, inclusive os pegos, têm 30 segundos para apontar o informante e roubar a vitória. Não vale depois de um erro com <b>Um só palpite</b>, nem quando o último espião sai.",
           ],
         },
@@ -234,8 +236,9 @@ const ptBR: HelpText = {
               q: "Como funciona a revelação de papéis?",
               a: [
                 "As partidas online têm revelação de papéis: Jogar online, Noites de Jogos e salas privadas em que o anfitrião escolheu <b>Online</b>. Toque na sua carta: as luzes se apagam e um holofote mostra seu papel.",
-                "Os <b>locais</b> veem o segredo e quantos espiões estão entre eles: no Spy Talk, o local, com a imagem quando houver; no Spy Sketch, só a palavra.",
+                "Os <b>locais</b> veem o segredo e quantos espiões estão entre eles: no Spy Talk, o local e a imagem dele (todo local dos nossos pacotes tem uma); no Spy Sketch, só a palavra.",
                 "Quem é do time dos <b>espiões</b> recebe uma carta escura. Na Máfia, os outros espiões aparecem ao seu lado, com o nome e uma etiqueta vermelha de Espião. No Clássico, os espiões não se conhecem, então os outros aparecem como <b>Desconhecido</b>.",
+                "Sua carta fica na parte de baixo da tela a partida toda, com a mesma cara: a de um local mantém a imagem do lugar, e a de um espião na Máfia mostra em vermelho o nome dos outros espiões.",
                 "Na Máfia com mais de um espião, toque em <b>CANAL DOS ESPIÕES</b> para conversar em particular com os outros espiões: na sua carta antes de começar, depois na barra de cima, ou ao lado do chat numa votação. Basta um toque; um número mostra as mensagens novas, e uma mensagem de outro espião diz “… está tentando falar com você”.",
                 "A etiqueta vermelha fica nas fotos dos outros espiões a partida toda. Os locais nunca veem as etiquetas, o botão nem o chat.",
                 "Numa chamada de voz? Ative <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para o microfone não captar o som de revelação de um espião. O app só pergunta isso (<b>Jogando em chamada?</b>) numa sala privada <b>Online</b>.",
@@ -271,6 +274,8 @@ const ptBR: HelpText = {
           a: [
             'O selo no alto à esquerda da tela do jogo guarda <b>Sair</b> e <b>Info</b>, dobrados para ninguém sair sem querer. <b>Chat</b> e <b>Notas</b> têm botões próprios no alto à direita e abrem com um toque. Um número no Chat indica mensagens novas.',
             'O selo aparece em todas as telas da partida: a votação e o resultado, o palpite do espião e o fim de jogo.',
+            'Na votação, no palpite do espião e no fim de jogo, <b>Info</b> explica a tela em que você está.',
+            'As partidas de treino também têm o selo, com <b>Encerrar</b> e <b>Info</b> na votação, no palpite e no fim de jogo. A partida espera enquanto o Info estiver aberto.',
             'Toque na foto de um jogador para perguntar a ele no chat. Deslize uma mensagem para responder.',
             'Mentir e blefar faz parte do jogo. Falar o segredo direto, não.',
           ],

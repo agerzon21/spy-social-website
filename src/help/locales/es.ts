@@ -126,6 +126,7 @@ const es: HelpText = {
             'Un empate en el primer puesto no elimina a nadie, y siempre hacen falta al menos 2 votos.',
             'En las mesas de Jugar en línea, cada jugador puede convocar una votación y nombra a quien acusa. Cuando una votación atrapa a un espía, todos los que gastaron la suya la recuperan.',
             'En las mesas de 8 jugadores, sale quien reciba más votos, hasta que queden 4 jugadores; entonces hace falta mayoría. No votar cuenta como abstenerse.',
+            'En los resultados, una franja negra dice quién convocó la votación: «Convocada por …». Una votación final muestra en su lugar una cinta roja de <b>Votación final</b>.',
           ],
         },
         {
@@ -147,6 +148,7 @@ const es: HelpText = {
             'Los <b>espías</b> ganan si aciertan, si se acaba el tiempo de la partida o si tras una votación quedan tantos espías como locales.',
             'Salir cuenta como ser eliminado por votación: si sale el último espía, ganan los locales; si salen demasiados locales, ganan los espías. Antes de que terminen las preguntas (en Spy Sketch, en la primera ronda), esa partida muestra «Sin resultado» y no cuenta.',
             '<b>Votación final:</b> si se acaba el tiempo y queda exactamente un espía, todos votan una vez más. Si atrapan al espía, ganan los locales. Está activa en Jugar en línea y es un ajuste en las salas privadas.',
+            'Los resultados de una votación final se abren bajo una cinta roja de <b>Votación final</b> que dice por qué: «El reloj ha hablado», «No quedan votaciones por convocar» o «Nadie convocó una votación a tiempo».',
             "<b>Informante</b> (salas privadas y Noches de Juegos que lo activan, con 2 espías o más y 6 jugadores o más): la carta de un local nombra a un espía. Cuando los locales ganan por votación o porque el último espía falla su intento, los espías, también los atrapados, tienen 30 segundos para nombrar al informante y robar la victoria. No pasa tras un fallo con <b>Un solo intento</b> ni si el último espía se va.",
           ],
         },
@@ -234,8 +236,9 @@ const es: HelpText = {
               q: "¿Cómo funciona la revelación de roles?",
               a: [
                 "Las partidas en línea tienen revelación de roles: Jugar en línea, las Noches de Juegos y las salas privadas cuyo anfitrión eligió <b>En línea</b>. Toca tu carta: se apagan las luces y un reflector muestra tu rol.",
-                "Los <b>locales</b> ven el secreto y cuántos espías hay entre ellos: en Spy Talk, el lugar, con su imagen si la tiene; en Spy Sketch, solo la palabra.",
+                "Los <b>locales</b> ven el secreto y cuántos espías hay entre ellos: en Spy Talk, el lugar y su imagen (todos los lugares de nuestros paquetes tienen una); en Spy Sketch, solo la palabra.",
                 "Los <b>espías</b> reciben una carta oscura. En Espía Mafia, los demás espías aparecen a tu lado, con su nombre y una etiqueta roja de «Espía». En Clásico, los espías no se conocen, así que los demás aparecen como <b>Desconocido</b>.",
+                "Tu carta se queda abajo en la pantalla toda la partida, con la misma cara: la de un local conserva la imagen del lugar, y la de un espía en Espía Mafia muestra en rojo los nombres de los demás espías.",
                 "En Espía Mafia con más de un espía, toca <b>CANAL DE ESPÍAS</b> para chatear en privado con los otros espías: en tu carta antes de empezar, luego en la barra de arriba, o junto al chat en una votación. Basta un toque; un número muestra los mensajes nuevos, y un mensaje de otro espía dice «… intenta contactarte».",
                 "La etiqueta roja sigue en las fotos de los otros espías toda la partida. Los locales nunca ven las etiquetas, el botón ni el chat.",
                 "¿En una llamada de voz? Activa <b>Mismo sonido para todos los roles</b> (Ajustes, Sonido y música) para que tu micrófono no capte el sonido de revelación de un espía. La app solo te lo pregunta (<b>¿Juegas en una llamada?</b>) en una sala privada <b>En línea</b>.",
@@ -271,6 +274,8 @@ const es: HelpText = {
           a: [
             'El sello arriba a la izquierda de la pantalla de juego guarda <b>Salir</b> e <b>Info</b>, plegados para que nadie salga sin querer. <b>Chat</b> y <b>Notas</b> tienen su propio botón arriba a la derecha y se abren con un toque. Un número en Chat indica mensajes nuevos.',
             'El sello está en todas las pantallas de la partida: la votación y sus resultados, el intento del espía y el final de la partida.',
+            'En la votación, el intento del espía y el final de la partida, <b>Info</b> explica la pantalla en la que estás.',
+            'Las partidas de práctica también tienen el sello, con <b>Terminar</b> e <b>Info</b> en la votación, el intento y el final. La partida espera mientras Info está abierto.',
             'Toca la foto de un jugador para preguntarle en el chat. Desliza un mensaje para responderlo.',
             'Mentir y farolear es parte del juego. Decir el secreto directamente, no.',
           ],

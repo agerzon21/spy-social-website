@@ -126,6 +126,7 @@ const id: HelpText = {
             'Seri di posisi pertama tidak menggugurkan siapa pun, dan selalu butuh minimal 2 suara.',
             'Di meja Main online, setiap pemain bisa memulai satu voting dan menyebut siapa yang dituduh. Kalau voting menangkap mata-mata, semua yang sudah memakai jatahnya mendapatkannya kembali.',
             'Di meja 8 pemain, pemain dengan suara terbanyak gugur, sampai tersisa 4 pemain; lalu kembali ke suara mayoritas. Yang tidak memberi suara dihitung tidak memilih.',
+            'Di hasil voting, pita hitam menunjukkan siapa yang memulai voting: “Dimulai oleh …”. Voting terakhir menampilkan pita merah <b>Voting terakhir</b> sebagai gantinya.',
           ],
         },
         {
@@ -147,6 +148,7 @@ const id: HelpText = {
             '<b>Mata-mata</b> menang dengan tebakan benar, saat waktu permainan habis, atau saat voting menyisakan mata-mata sebanyak warga.',
             'Keluar dihitung seperti tersingkir lewat voting: jika mata-mata terakhir keluar, warga menang; jika terlalu banyak warga keluar, mata-mata menang. Jika itu terjadi sebelum pertanyaan selesai (di Spy Sketch, pada ronde pertama), permainan menampilkan “Tidak ada hasil” dan tidak dihitung.',
             '<b>Voting terakhir:</b> kalau waktu habis dan tersisa tepat satu mata-mata, semua memilih sekali lagi. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat.',
+            'Hasil voting terakhir terbuka di bawah pita merah <b>Voting terakhir</b> beserta alasannya: “Waktu sudah bicara”, “Jatah voting sudah habis”, atau “Tidak ada yang memulai voting tepat waktu”.',
             "<b>Informan</b> (room privat dan Malam Permainan yang mengaktifkannya, dengan minimal 2 mata-mata dan 6 pemain): kartu satu warga menyebut satu mata-mata. Saat warga menang lewat voting atau tebakan salah mata-mata terakhir, para mata-mata, termasuk yang tertangkap, punya 30 detik untuk menyebut informannya dan mencuri kemenangan. Tidak berlaku setelah tebakan meleset dengan <b>Satu Kali Tebak</b>, atau saat mata-mata terakhir keluar.",
           ],
         },
@@ -234,8 +236,9 @@ const id: HelpText = {
               q: "Bagaimana cara kerja pengungkapan peran?",
               a: [
                 "Permainan online punya pengungkapan peran: Main online, Malam Permainan, dan room privat yang host-nya memilih <b>Online</b>. Ketuk kartumu: lampu padam dan lampu sorot menunjukkan peranmu.",
-                "<b>Warga</b> melihat rahasianya dan berapa mata-mata di antara mereka: di Spy Talk lokasinya, dengan gambarnya kalau ada; di Spy Sketch hanya katanya.",
+                "<b>Warga</b> melihat rahasianya dan berapa mata-mata di antara mereka: di Spy Talk lokasinya beserta gambarnya (setiap lokasi di paket kami punya gambar); di Spy Sketch hanya katanya.",
                 "<b>Mata-mata</b> mendapat kartu gelap. Di Mafia, mata-mata lain muncul di sampingmu, lengkap dengan nama dan label merah MATA-MATA. Di Klasik, para mata-mata tidak saling kenal, jadi yang lain tampil sebagai <b>Tak dikenal</b>.",
+                "Kartumu tetap di bawah layar sepanjang permainan dengan tampilan yang sama: kartu warga tetap menampilkan gambar lokasi, dan kartu mata-mata di Mafia menuliskan nama mata-mata lain dengan warna merah.",
                 "Di Mafia dengan lebih dari satu mata-mata, ketuk <b>SALURAN MATA-MATA</b> untuk chat diam-diam dengan mata-mata lain: di kartumu sebelum permainan mulai, lalu di bilah atas, atau di samping chat saat voting. Cukup sekali ketuk; angka menunjukkan pesan baru, dan pesan dari mata-mata lain muncul dengan “… mencoba menghubungimu”.",
                 "Label merah tetap ada di foto mata-mata lain sepanjang permainan. Warga tidak pernah melihat label, tombol, maupun chat-nya.",
                 "Sedang di panggilan suara? Nyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya mikrofonmu tidak menangkap suara pengungkapan mata-mata. Aplikasi hanya menanyakannya (<b>Main sambil teleponan?</b>) di room privat yang memilih <b>Online</b>.",
@@ -271,6 +274,8 @@ const id: HelpText = {
           a: [
             'Segel di kiri atas layar permainan menyimpan <b>Keluar</b> dan <b>Info</b>, terlipat supaya tidak ada yang keluar tanpa sengaja. <b>Chat</b> dan <b>Catatan</b> punya tombol sendiri di kanan atas, cukup sekali ketuk. Angka di Chat berarti ada pesan baru.',
             'Segel ini ada di setiap layar permainan: voting dan hasilnya, tebakan mata-mata, dan layar akhir.',
+            'Di voting, tebakan mata-mata, dan layar akhir, <b>Info</b> menjelaskan layar yang sedang kamu buka.',
+            'Permainan latihan juga punya segel, berisi <b>Akhiri</b> dan <b>Info</b> di voting, tebakan, dan layar akhir. Permainan menunggu selama Info terbuka.',
             'Ketuk foto pemain untuk bertanya padanya di chat. Geser pesan untuk membalasnya.',
             'Berbohong dan menggertak itu bagian dari permainan. Menyebut rahasianya terang-terangan, bukan.',
           ],

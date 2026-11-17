@@ -1,7 +1,10 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). help-audit-1116 b (2026-11-16, coordinator Q6): new #special-rules (Votes per Game, Paper Trail;
+ * English: the source (../types.ts). help-u6214-1117 (2026-11-17, against int/u62-14 0c526325f): #voting / #winning's Vote Results
+ * head (lib/voteHead 'tape': FINAL VOTE + online.vote_head.*, moments.voting.hud.called_by), #wax-seal's Info entries (seal-info-1116) and
+ * the Practice Game's seal (practice-seal-info-1116, practice.end_seal), #role-reveal's in-game card (ingame-role-card-1116, online look
+ * only) and every live place's picture (places-181-1116). help-audit-1116 b (2026-11-16, coordinator Q6): new #special-rules (Votes per Game, Paper Trail;
  * server roomVotes / spy_rules) and #pack-creator (20261128000000 custom packs), #winning's Informant conditions (2+ spies, 6+
  * players; vote or last wrong guess, not a missed One Shot or a leave: _informant_*), #earn-intercepts' 7th-day streak and the
  * Game Night win, #report-block's three places, #voice-chat's game and lobby chats, #poker-face's vote hold.
@@ -147,6 +150,7 @@ const en: HelpText = {
             'A tie for first place puts nobody out, and it always takes at least 2 votes.',
             'At Play Online tables, each player has one vote call and names who they accuse. When a vote catches a spy, everyone who used theirs gets it back.',
             'At 8-player tables the most votes puts a player out, until 4 players are left; then it’s a majority. Not voting counts as abstaining.',
+            'On the results, a black strip says who called the vote: “Called by …”. A final vote shows a red <b>Final Vote</b> tape instead.',
           ],
         },
         {
@@ -168,6 +172,7 @@ const en: HelpText = {
             '<b>Spies</b> win with a right guess, when the game timer runs out, or when a vote leaves as many spies as Locals.',
             'A leave counts like a vote-out: if the last spy leaves, the Locals win; if too many Locals leave, the Spies win. Before the questions end (in Spy Sketch, in the first round), that game shows No Result and doesn’t count.',
             '<b>Final vote:</b> if time runs out with exactly one spy left, everyone votes once more. Catch the spy and the Locals win. It’s on at Play Online tables and a setting in private rooms.',
+            'A final vote’s results open under a red <b>Final Vote</b> tape that says why: “The clock has spoken”, “No vote calls left” or “Nobody called a vote in time”.',
             "<b>Informant</b> (private rooms and Game Nights that turn it on, with 2 or more spies and 6 or more players): one Local’s card names one spy. When the Locals win by a vote or by the last spy’s wrong guess, the spies, caught ones too, get 30 seconds to name the Informant and steal the win. Not after a missed One Shot, or when the last spy leaves.",
           ],
         },
@@ -255,8 +260,9 @@ const en: HelpText = {
               q: "How does the role reveal work?",
               a: [
                 "Games played online have a role reveal: Play Online, Game Nights, and private rooms whose host picked <b>Online</b>. Tap your card: the lights go down and a spotlight shows your role.",
-                "<b>Locals</b> see the secret and how many spies are among them: in Spy Talk the location, with its picture when it has one; in Spy Sketch, the word only.",
+                "<b>Locals</b> see the secret and how many spies are among them: in Spy Talk the location and its picture (every place in our packs has one); in Spy Sketch, the word only.",
                 "<b>Spies</b> get a dark card. In Spy Mafia, the other spies step up beside you, named, with a red SPY tag. In Classic, spies don’t know each other, so the others show as <b>Unknown</b>.",
+                "Your card stays at the bottom of the screen all game with the same face: a Local’s keeps the place’s picture, and a spy’s card in Spy Mafia names the other spies in red.",
                 "In Spy Mafia with more than one spy, tap <b>SPY CHANNEL</b> to chat in private with the other spies: on your card before the game starts, then in the top bar, or beside Chat in a vote. One tap is enough; a number shows new messages, and a message from another spy says “… is trying to reach you”.",
                 "The red SPY tag stays on the other spies’ pictures all game. Locals never see the tags, the button or the chat.",
                 "On a voice call? Turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so your mic can’t pick up a spy’s reveal sound. The app asks you (<b>Playing Over a Call?</b>) only in a private room set to <b>Online</b>.",
@@ -292,6 +298,8 @@ const en: HelpText = {
           a: [
             'The seal at the top left of the game screen holds <b>Leave</b> and <b>Info</b>, folded away so nobody leaves by accident. <b>Chat</b> and <b>Notes</b> have their own buttons at the top right, one tap each. A number on Chat means new messages.',
             'You find the seal on every game screen: the vote and its results, the spy’s guess and Game Over.',
+            'On the vote, the spy’s guess and Game Over, <b>Info</b> explains the screen you’re on.',
+            'Practice Games have the seal too, with <b>End Practice</b> and <b>Info</b> on the vote, the guess and Game Over. The game waits while Info is open.',
             'Tap a player’s picture to ask them in the chat. Swipe a message to reply.',
             'Bluffing is part of the game. Saying the secret outright isn’t.',
           ],
