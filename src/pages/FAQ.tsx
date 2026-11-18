@@ -38,6 +38,7 @@ const OPTS: HelpOpts = {
   testerGiftGame: LIVE.testerGiftGame,
   roleReveal: LIVE.helpRoleReveal,
   gnRewards: LIVE.helpGameNightRewards,
+  gnRewardsRules: LIVE.gnRewardsRules,
   gnWeekly: LIVE.launchGameNights,
   membershipSwitch: LIVE.helpMembershipSwitch,
   googlePassStop: LIVE.helpGooglePassStop,

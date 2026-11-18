@@ -1,7 +1,9 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). help-new-1117 (2026-11-17, against app int/u62-15-prep 05c21a1e3 and NEXT-BATCH rows 70 / 83 / 85 / 95,
+ * English: the source (../types.ts). stale-help-1118 (2026-11-18): behind LIVE.gnRewardsRules (row 83, Fri Nov 20) #who-can-trade's
+ * launch line loses the Developer's Pick, and until gnRewards #game-night's line drops the night's titles and #earn-intercepts the
+ * winner's Enigma (the other languages: the same words cut from their own lines). help-new-1117 (2026-11-17, against app int/u62-15-prep 05c21a1e3 and NEXT-BATCH rows 70 / 83 / 85 / 95,
  * gamenight-rewards-1116/FINAL-SPEC.md, signup v42): #question-rounds (glossary setting.question_rounds), #game-night-weekly (owner Nov 17:
  * one night a week, Friday and again Saturday), #game-night-rewards + #game-night-intercepts (Game Night Intel 500 / 200, 0 for a leave, idle,
  * late, a spybot table or a voided walk-out; the four ★ counters; tiers 400 / 800 / 10,000; After Hours), #practice-members (5 a day, UTC; the AI
@@ -237,7 +239,9 @@ const en: HelpText = {
             'Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. Tap <b>PLAY NOW</b> on Home’s Game Night card.',
             o.gnRewards
               ? 'Each night has its own packs and settings: the (i) next to the night shows them. <b>PRIZES</b> on the card shows what you earn: Game Night Intel and the ★ titles.'
-              : 'Each night has its own packs, settings and titles. The (i) next to the night shows its packs and settings, and <b>PRIZES</b> on the card shows its titles.',
+              : o.gnRewardsRules
+                ? 'Each night has its own packs and settings: the (i) next to the night shows them.'
+                : 'Each night has its own packs, settings and titles. The (i) next to the night shows its packs and settings, and <b>PRIZES</b> on the card shows its titles.',
             'It’s free, and nothing you buy improves your chances. The full rules: <gnr>Game Night rules</gnr>.',
           ],
         },
@@ -445,7 +449,7 @@ const en: HelpText = {
             ...(o.interceptsInTrades ? ['Adults can also put unopened Intercepts in a trade: choose how many of each tier. Each one counts as one of the 10.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['During the beta test, until December 7, every unopened Intercept can go in a trade, however you got it. Intercepts start fresh at launch anyway.'] : []),
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
-            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel is never tied to an account, whatever it came from." : ''),
+            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? (o.gnRewardsRules ? " Neither can anything from a code, or anything we or our staff give you: it stays with your account. Intel is never tied to an account, whatever it came from." : " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel is never tied to an account, whatever it came from.") : ''),
             'Intel can be traded only between adults.',
             ...(o.launch ? [] : ["During the beta test, until December 7, adult testers trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them."]),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
@@ -598,7 +602,7 @@ const en: HelpText = {
           a: [
             '<b>Wins:</b> every 10 Play Online wins give you 5 Intercepts, one of them Secret or better.',
             "<b>Daily:</b> your first Play Online game of the day gives you one. Every 7th day in a row adds one Secret or better, and every 30th day an Enigma.",
-            ...(o.gnRewards ? ["<b>Game Night:</b> your games there earn Game Night Intel, which gets you Game Night Intercepts (below)."] : ["<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night."]),
+            ...(o.gnRewards ? ["<b>Game Night:</b> your games there earn Game Night Intel, which gets you Game Night Intercepts (below)."] : o.gnRewardsRules ? [] : ["<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night."]),
             `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding a spare gives ordinary Intel." : ''}`,
             'Private rooms don’t give Intercepts.',
             ...(o.launch

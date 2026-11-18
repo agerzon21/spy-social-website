@@ -81,6 +81,13 @@ export interface HelpOpts {
    * the owner's reset answer D1 = zero; howto-truth-1117): #who-can-trade's beta Intel line and #beta-reset's streak line.
    */
   intelZero: boolean
+  /**
+   * The Game Night rewards replace the night's titles on the server (LIVE.gnRewardsRules, the day NEXT-BATCH row 83 /
+   * 999848 is applied, with the Rules page and Terms; stale-help-1118): #who-can-trade's launch line loses the
+   * Developer's Pick (no developer's bonus title any more), and until gnRewards (62.15) #game-night's line drops the
+   * night's titles and #earn-intercepts drops the winner's Enigma.
+   */
+  gnRewardsRules: boolean
   /** Spy Talk's Question Rounds (LIVE.helpQuestionRounds): #question-rounds. */
   questionRounds: boolean
   /** Version 2.2 signs up and in with an emailed code, older versions with a password (LIVE.emailCodes22): #sign-up-email. */

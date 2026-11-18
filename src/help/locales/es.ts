@@ -209,7 +209,9 @@ const es: HelpText = {
             'Partidas en línea que organizamos, las noches que anunciamos en la app, normalmente de 8 a 10 PM, hora del Este de EE. UU. Toca <b>Jugar ya</b> en la tarjeta de la Noche de Juegos del inicio.',
             o.gnRewards
               ? 'Cada noche tiene sus propios paquetes y ajustes: la (i) junto a la noche los muestra. <b>Premios</b>, en la tarjeta, muestra lo que ganas: Intel de Noche de Juegos y los títulos ★.'
-              : 'Cada noche tiene sus propios paquetes, ajustes y títulos. La (i) junto a la noche muestra sus paquetes y ajustes, y <b>Premios</b>, en la tarjeta, sus títulos.',
+              : o.gnRewardsRules
+                ? 'Cada noche tiene sus propios paquetes y ajustes: la (i) junto a la noche los muestra.'
+                : 'Cada noche tiene sus propios paquetes, ajustes y títulos. La (i) junto a la noche muestra sus paquetes y ajustes, y <b>Premios</b>, en la tarjeta, sus títulos.',
             'Es gratis, y nada de lo que compres mejora tus posibilidades. Las reglas completas: <gnr>reglas de la Noche de Juegos</gnr> (en inglés).',
           ],
         },
@@ -417,7 +419,7 @@ const es: HelpText = {
             ...(o.interceptsInTrades ? ['Los adultos también pueden poner intercepciones sin abrir en un intercambio: eligen cuántas de cada nivel. Cada una cuenta como uno de los 10.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Durante la beta, hasta el 7 de diciembre, cualquier intercepción sin abrir puede entrar en un intercambio, sea cual sea su origen. De todos modos, las intercepciones empiezan de cero con el lanzamiento.'] : []),
             'Lo que pones en un intercambio abierto queda reservado para él: no puede ir a otro intercambio ni al Mercado Negro al mismo tiempo. Si el Intel de un intercambio se gasta antes de que se haga, aparece un aviso en ese lado y el intercambio no puede hacerse hasta que se baje la cantidad.',
-            'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.' + (o.launch ? " Tampoco lo que venga de un código ni lo que te demos nosotros o nuestro equipo, incluida una Elección del desarrollador: se queda en tu cuenta. El Intel nunca queda ligado a una cuenta, venga de donde venga." : ''),
+            'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.' + (o.launch ? (o.gnRewardsRules ? " Tampoco lo que venga de un código ni lo que te demos nosotros o nuestro equipo: se queda en tu cuenta. El Intel nunca queda ligado a una cuenta, venga de donde venga." : " Tampoco lo que venga de un código ni lo que te demos nosotros o nuestro equipo, incluida una Elección del desarrollador: se queda en tu cuenta. El Intel nunca queda ligado a una cuenta, venga de donde venga.") : ''),
             'El Intel solo se puede intercambiar entre adultos.',
             ...(o.launch ? [] : ["Durante la prueba beta, hasta el 7 de diciembre, los testers adultos también intercambian Intel." + (o.intelZero ? " Justo antes del lanzamiento, el Intel de cada cuenta pasa a 0, incluido el que se ganó en la prueba." : " El 7 de diciembre se devuelve todo el Intel intercambiado: quien lo dio lo recupera y cada uno se queda solo con el Intel que ganó."), "Desde el 7 de diciembre, las intercepciones de un código o un regalo, lo que salga de ellas y lo que consigas con ellas en un Canje se quedan en tu cuenta: puedes usarlas, pero no intercambiarlas ni venderlas."]),
             'Comprar o vender objetos, Intel o cuentas por dinero real va contra las reglas.',
@@ -570,7 +572,7 @@ const es: HelpText = {
           a: [
             '<b>Victorias:</b> cada 10 victorias en Jugar en línea te dan 5 intercepciones, una de ellas de nivel Secreto o mejor.',
             "<b>Diaria:</b> tu primera partida del día en Jugar en línea te da una. Cada 7.º día seguido suma una Secreto o superior, y cada 30.º día, una Enigma.",
-            ...(o.gnRewards ? ["<b>Noche de Juegos:</b> tus partidas allí dan Intel de Noche de Juegos, con el que consigues intercepciones de Noche de Juegos (más abajo)."] : ["<b>Noche de Juegos:</b> gana una partida allí, como local o como espía, y recibes una Enigma, una por noche."]),
+            ...(o.gnRewards ? ["<b>Noche de Juegos:</b> tus partidas allí dan Intel de Noche de Juegos, con el que consigues intercepciones de Noche de Juegos (más abajo)."] : o.gnRewardsRules ? [] : ["<b>Noche de Juegos:</b> gana una partida allí, como local o como espía, y recibes una Enigma, una por noche."]),
             `<b>Códigos y regalos:</b> un código de un creador o nuestro funciona una vez por cuenta, y sus intercepciones se desbloquean tras tu primera partida de Jugar en línea que cuente. También regalamos algunas.${o.launch ? " Las intercepciones de un código o de un regalo, lo que sale de ellas y lo que consigas al canjearlas son solo para ti: no se pueden intercambiar, vender ni regalar, por muchas partidas que juegues. Puedes abrirlas, ponerte lo que salga, canjearlas y triturar los repetidos. Triturar un repetido da Intel normal." : ''}`,
             'Las salas privadas no dan intercepciones.',
             ...(o.launch

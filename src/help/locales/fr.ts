@@ -205,7 +205,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
           o.gnRewards
             ? "Chaque soirée a ses packs et ses réglages : le (i) à côté de la soirée les affiche. <b>Prix</b>, sur la carte, montre ce que tu gagnes : l'Intel de soirée jeux et les titres ★."
-            : 'Chaque soirée a ses packs, ses réglages et ses titres. Le (i) à côté de la soirée affiche ses packs et ses réglages, et <b>Prix</b>, sur la carte, ses titres.',
+            : o.gnRewardsRules
+              ? 'Chaque soirée a ses packs et ses réglages : le (i) à côté de la soirée les affiche.'
+              : 'Chaque soirée a ses packs, ses réglages et ses titres. Le (i) à côté de la soirée affiche ses packs et ses réglages, et <b>Prix</b>, sur la carte, ses titres.',
           "C'est gratuit, et rien de ce que tu achètes n'améliore tes chances. Le règlement complet : <gnr>règles de la soirée jeux</gnr> (en anglais).",
         ],
       },
@@ -413,7 +415,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.interceptsInTrades ? ['Les adultes peuvent aussi mettre des interceptions non ouvertes dans un échange : choisis combien de chaque niveau. Chacune compte pour un des 10 objets.'] : []),
           ...(o.interceptsInTrades && !o.launch ? ["Pendant la bêta, jusqu'au 7 décembre, n'importe quelle interception non ouverte peut entrer dans un échange, quelle que soit son origine. De toute façon, les interceptions repartent de zéro au lancement."] : []),
           "Ce que tu mets dans un échange ouvert lui est réservé : ça ne peut pas aller dans un autre échange ou sur le Marché noir en même temps. Si l'Intel d'un échange est dépensé avant qu'il se fasse, un avertissement s'affiche de ce côté, et l'échange ne peut pas se faire tant que le montant n'est pas baissé.",
-          "L'appli indique quels objets s'échangent. Le statut de membre et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons, Choix du développeur compris : ça reste sur ton compte. L'Intel n'est jamais lié à un compte, d'où qu'il vienne." : ''),
+          "L'appli indique quels objets s'échangent. Le statut de membre et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? (o.gnRewardsRules ? " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons : ça reste sur ton compte. L'Intel n'est jamais lié à un compte, d'où qu'il vienne." : " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons, Choix du développeur compris : ça reste sur ton compte. L'Intel n'est jamais lié à un compte, d'où qu'il vienne.") : ''),
           "L'Intel ne s'échange qu'entre adultes.",
           ...(o.launch ? [] : ["Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel." + (o.intelZero ? " Juste avant le lancement, l’Intel de chaque compte passe à 0, y compris celui gagné pendant le test." : " Le 7 décembre, tout l’Intel échangé est rendu : celui qui l’a donné le récupère, et chacun ne garde que l’Intel qu’il a gagné."), "À partir du 7 décembre, les interceptions reçues par un code ou un cadeau, ce qu’elles contiennent et ce que tu obtiens avec elles par Échange restent sur ton compte : tu peux t’en servir, mais pas les échanger ni les vendre."]),
           "Acheter ou vendre des objets, de l'Intel ou des comptes contre de l'argent réel est interdit.",
@@ -566,7 +568,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           '<b>Victoires :</b> toutes les 10 victoires à Jouer en ligne, tu reçois 5 interceptions, dont une de niveau Secret ou mieux.',
           "<b>Chaque jour :</b> ta première partie du jour à Jouer en ligne t'en donne une. Chaque 7e jour d'affilée en ajoute une Secret ou mieux, et chaque 30e jour, une Enigma.",
-          ...(o.gnRewards ? ["<b>Soirée jeux :</b> tes parties y rapportent de l'Intel de soirée jeux, qui te permet d'obtenir des interceptions de soirée jeux (plus bas)."] : ["<b>Soirée jeux :</b> gagne une partie, en local ou en espion, et tu reçois une Enigma, une par soirée."]),
+          ...(o.gnRewards ? ["<b>Soirée jeux :</b> tes parties y rapportent de l'Intel de soirée jeux, qui te permet d'obtenir des interceptions de soirée jeux (plus bas)."] : o.gnRewardsRules ? [] : ["<b>Soirée jeux :</b> gagne une partie, en local ou en espion, et tu reçois une Enigma, une par soirée."]),
           `<b>Codes et cadeaux :</b> un code d'un créateur ou de nous marche une fois par compte, et ses interceptions se débloquent après ta première partie comptée à Jouer en ligne. Nous en offrons aussi.${o.launch ? " Les interceptions d'un code ou d'un cadeau, ce qu'elles contiennent et ce que tu en tires par Échange sont pour toi seul : ils ne s'échangent, ne se vendent et ne s'offrent pas, quel que soit ton nombre de parties. Tu peux toujours les ouvrir, porter ce qui en sort, les utiliser dans un Échange et déchiqueter les doublons. Déchiqueter un doublon donne de l'Intel ordinaire." : ''}`,
           'Les salons privés ne donnent pas d\'interceptions.',
           ...(o.launch

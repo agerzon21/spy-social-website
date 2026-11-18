@@ -209,7 +209,9 @@ const id: HelpText = {
             'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
             o.gnRewards
               ? 'Setiap malam punya paket dan pengaturannya sendiri: tombol (i) di samping malam itu menampilkannya. Tombol <b>Hadiah</b> di kartunya menampilkan apa yang bisa kamu dapat: Intel Malam Permainan dan gelar ★.'
-              : 'Setiap malam punya paket, pengaturan, dan gelarnya sendiri. Tombol (i) di samping malam itu menampilkan paket dan pengaturannya, dan tombol <b>Hadiah</b> di kartunya menampilkan gelarnya.',
+              : o.gnRewardsRules
+                ? 'Setiap malam punya paket dan pengaturannya sendiri: tombol (i) di samping malam itu menampilkannya.'
+                : 'Setiap malam punya paket, pengaturan, dan gelarnya sendiri. Tombol (i) di samping malam itu menampilkan paket dan pengaturannya, dan tombol <b>Hadiah</b> di kartunya menampilkan gelarnya.',
             'Gratis, dan tidak ada yang kamu beli yang memperbesar peluangmu. Aturan lengkapnya: <gnr>aturan Malam Permainan</gnr> (bahasa Inggris).',
           ],
         },
@@ -417,7 +419,7 @@ const id: HelpText = {
             ...(o.interceptsInTrades ? ['Orang dewasa juga bisa memasukkan sadapan yang belum dibuka ke pertukaran: pilih berapa dari tiap tingkat. Masing-masing dihitung sebagai satu dari 10 item.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai 7 Desember, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
-            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : ''),
+            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? (o.gnRewardsRules ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya.") : ''),
             'Intel hanya bisa ditukar antar orang dewasa.',
             ...(o.launch ? [] : ["Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel." + (o.intelZero ? " Tepat sebelum peluncuran, Intel setiap akun menjadi 0, termasuk Intel yang didapat selama uji coba." : " Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri."), "Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual."]),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
@@ -570,7 +572,7 @@ const id: HelpText = {
           a: [
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
             "<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu. Tiap hari ke-7 berturut-turut menambah satu Rahasia atau lebih tinggi, dan tiap hari ke-30, satu Enigma.",
-            ...(o.gnRewards ? ["<b>Malam Permainan:</b> permainanmu di sana memberi Intel Malam Permainan, yang bisa kamu pakai untuk mendapatkan sadapan Malam Permainan (di bawah)."] : ["<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam."]),
+            ...(o.gnRewards ? ["<b>Malam Permainan:</b> permainanmu di sana memberi Intel Malam Permainan, yang bisa kamu pakai untuk mendapatkan sadapan Malam Permainan (di bawah)."] : o.gnRewardsRules ? [] : ["<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam."]),
             `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
             'Room privat tidak memberi sadapan.',
             ...(o.launch
