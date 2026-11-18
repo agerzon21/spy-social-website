@@ -2044,7 +2044,7 @@ export const LIVE = {
    * no TERMS_PUBLISHED or terms_version. A server switch: set in LIVE, never in PRIVACY_AHEAD. Flip the day row 35 is
    * applied: node scripts/flip-switch.mjs reputationBanMarket --day "<apply day>". Off again if 999909 is rolled back.
    */
-  reputationBanMarket: false,
+  reputationBanMarket: true,
   /**
    * legal-1115: what the website itself keeps in the visitor's browser, true of www today (public/lang.js, public/theme.js,
    * src/i18n wear(), src/theme/mode.ts, src/lib/lazyPage.ts, src/lib/appLink.ts): the language from ?lang=, then the
@@ -2100,7 +2100,7 @@ export const LIVE = {
    * scripts/flip-switch.mjs sameOdds --day "<apply day>". Off again if 999888 is rolled back. A server switch: set in
    * LIVE, never in PRIVACY_AHEAD.
    */
-  sameOdds: false,
+  sameOdds: true,
   /**
    * legal-coverage-1116, ON (true today; app repo .claude/handoff/scratchpad/legal-1116/COVERAGE.md):
    * - Privacy, Reminders and Notifications: the developer's alerts (integrity_alerts, pushed with their body through
@@ -2201,7 +2201,7 @@ export const MOD_GUARD_DAY = 'November 15, 2026'
 export const RESET_ARCHIVE_FORGET_DAY = 'November 15, 2026'
 
 /** legal-1115: LIVE.reputationBanMarket's day (999909's apply day; set by flip-switch --day) and LIVE.siteStorage1115's (the publish day). Never earlier than November 15, 2026. */
-export const REPUTATION_BAN_MARKET_DAY = 'November 15, 2026'
+export const REPUTATION_BAN_MARKET_DAY = 'November 17, 2026'
 export const SITE_STORAGE_1115_DAY = 'November 15, 2026'
 /** LIVE.drawingCheckWithdraw's day in PRIVACY_LAST_UPDATED: the day both its conditions hold and the site goes up with it on (set by flip-switch --day). Never earlier than November 15, 2026. */
 export const DRAWING_CHECK_WITHDRAW_DAY = 'November 15, 2026'
