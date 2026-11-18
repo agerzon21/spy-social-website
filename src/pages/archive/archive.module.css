@@ -366,7 +366,7 @@
 }
 .setName { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
 /* Held by @name: the name a link of its own to the holder's profile, cut short with an ellipsis on a narrow card. */
-.heldBy { display: flex; align-items: baseline; gap: 5px; min-width: 0; }
+.heldBy { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 5px; min-width: 0; } /* type floor: at 14 px a name takes its own line on a narrow card instead of being cut */
 .heldBy > span { flex: none; }
 .holder {
   position: relative;
