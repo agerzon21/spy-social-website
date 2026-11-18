@@ -1465,7 +1465,7 @@ export const LIVE = {
    * Flip it to true in the change that goes up the same hour the server row is applied (node scripts/flip-switch.mjs partyNoMember
    * --day "<that day>"); off again (--undo) if row 107 is rolled back. A server rule for every app version at once: set in LIVE.
    */
-  partyNoMember: false,
+  partyNoMember: true,
   /**
    * Trading's gates (owner 2026-11-02, live on the app server: app_config.trading.min_friend_days 0 and
    * 20261102002603_trade_games_not_level): friends can trade right away (no 3 days as friends; the 7-day protection and
