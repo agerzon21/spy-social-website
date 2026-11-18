@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const hi: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: 'पुलिस लाइन-अप में खड़े पाँच एजेंट, एक पर स्पॉटलाइट।',
     defaultTitle: 'SpySocial — झाँसे और शक का पार्टी गेम',
     description:
       'दोस्तों को जुटाएँ और जासूस को ढूँढें, या सबको झाँसा दें। 3–21 खिलाड़ियों का मुफ़्त रियल-टाइम मल्टीप्लेयर पार्टी गेम। iOS और Google Play पर उपलब्ध।',

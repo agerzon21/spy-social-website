@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const ptBR: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: 'Cinco agentes numa fila de reconhecimento, um sob o holofote.',
     defaultTitle: 'SpySocial — O jogo de festa da dedução social',
     description:
       'Junte os amigos e descubra o espião — ou engane todo mundo. Jogo de festa multijogador grátis em tempo real, de 3 a 21 jogadores. Para iOS e Google Play.',

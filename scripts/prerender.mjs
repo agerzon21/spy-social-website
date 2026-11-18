@@ -37,7 +37,10 @@ if (!existsSync(ssrEntry)) throw new Error(`prerender: no ${ssrEntry} (run vite 
  */
 const bodiesFor = process.argv[3] === '--host-bodies' ? process.argv[4] : null
 if (bodiesFor) globalThis.__ssSsrHost = `${bodiesFor}.spysocial.app`
-const { render, renderHostHead, renderHostBody, SKIN_CSS, HOST_BODIES, HOST_PAGES, HOSTS_ON, PRERENDER_PAGES, PRERENDER_SHELLS, LANGUAGE_CODES } = await import(pathToFileURL(ssrEntry).href)
+const { render, renderHostHead, renderHostBody, SKIN_CSS, HOST_BODIES, HOST_PAGES, HOSTS_ON, PRERENDER_PAGES, PRERENDER_SHELLS, LANGUAGE_CODES, cardAlts } = await import(pathToFileURL(ssrEntry).href)
+// The card's alt text per language (localHead), read one language at a time before any page is drawn.
+const CARD_ALTS = {}
+for (const { code } of LANGUAGE_CODES) CARD_ALTS[code] = await cardAlts(code)
 if (bodiesFor) {
   const out = {}
   for (const page of HOST_BODIES.filter((p) => p.host === bodiesFor)) {
@@ -144,6 +147,10 @@ function localHead(out, lang, head, previews = lang !== 'en') {
     if (/<meta property="og:image" content="[^"]*\/images\/share\//.test(out)) {
       if (!existsSync(resolve(dist, 'images', 'share', `site-${lang}.jpg`))) throw new Error(`prerender: no share card for ${lang}`)
       out = out.replace(card, `$1-${lang}.jpg"`)
+      // Its alt text in this language too (live walk 1118: English in every file): the invite card's or the site's.
+      const alt = escapeAttr(/<meta property="og:image" content="[^"]*\/images\/share\/invite-/.test(out) ? CARD_ALTS[lang].invite : CARD_ALTS[lang].site)
+      out = out.replace(/(<meta property="og:image:alt" content=")[^"]*"/, (_m, a) => `${a}${alt}"`)
+      out = out.replace(/(<meta name="twitter:image:alt" content=")[^"]*"/, (_m, a) => `${a}${alt}"`)
     }
   }
   return out

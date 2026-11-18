@@ -21,6 +21,9 @@ const en = {
   /** The page's <title> and description for search engines and tabs, per page. */
   meta: {
     siteName: 'SpySocial',
+    /** The link-preview card's picture, for a screen reader and where the picture doesn't load (og:image:alt): the line-up
+     * on the card (scripts/share-cards.mjs), after its poster line. scripts/prerender.mjs puts it in each language's file. */
+    cardAlt: 'Five agents in a police line-up, one in the spotlight.',
     defaultTitle: 'SpySocial — The Party Game of Social Deception',
     description:
       'Gather your friends and find the spy — or fool everyone trying. Free real-time multiplayer party game for 3–21 players. Available on iOS and Google Play.',

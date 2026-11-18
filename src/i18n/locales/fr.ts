@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const fr: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: "Cinq agents alignés pour une séance d'identification, l'un sous le projecteur.",
     defaultTitle: "SpySocial — Le jeu d'ambiance de bluff et de déduction",
     description:
       "Réunis tes amis et démasque l'espion, ou bluffe tout le monde. Jeu d'ambiance gratuit en temps réel pour 3 à 21 joueurs, sur iOS et Google Play.",

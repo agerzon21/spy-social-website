@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const ru: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: 'Пять агентов на опознании, один — в свете прожектора.',
     defaultTitle: 'SpySocial — компанейская игра в обман и дедукцию',
     description:
       'Соберите друзей и найдите шпиона — или обманите всех. Бесплатная мультиплеерная игра в реальном времени для 3–21 игрока. В App Store и Google Play.',

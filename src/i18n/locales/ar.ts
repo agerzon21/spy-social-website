@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const ar: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: 'خمسة عملاء في طابور تعرّف، وأحدهم تحت الضوء.',
     defaultTitle: 'SpySocial — لعبة الخداع الاجتماعي للسهرات',
     description:
       'اجمعوا أصدقاءكم واكشفوا الجاسوس، أو اخدعوا الجميع. لعبة سهرات مجانية متعددة اللاعبين في الوقت الفعلي لـ 3–21 لاعبًا. متوفرة على iOS وGoogle Play.',

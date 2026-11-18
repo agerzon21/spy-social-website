@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const zhHans: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: '五名特工站成一排等待指认，其中一人站在聚光灯下。',
     defaultTitle: 'SpySocial — 社交推理派对游戏',
     description:
       '叫上朋友，找出卧底，或者骗过所有人。免费实时多人派对游戏，支持 3–21 名玩家。iOS 和 Google Play 均可下载。',

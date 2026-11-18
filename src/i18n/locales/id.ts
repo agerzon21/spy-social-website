@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const id: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: 'Lima agen berjajar di barisan identifikasi polisi, satu di bawah sorotan lampu.',
     defaultTitle: 'SpySocial — Game Pesta Tipu-Tipuan Sosial',
     description:
       'Kumpulkan temanmu dan temukan mata-matanya, atau kelabui semua orang. Game pesta multipemain real-time gratis untuk 3–21 pemain. Di iOS dan Google Play.',
