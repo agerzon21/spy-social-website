@@ -266,7 +266,7 @@
 .band:nth-child(odd) { background: linear-gradient(180deg, var(--ss-surface-hover), transparent); }
 .band span { position: absolute; left: 4px; bottom: 4px; right: 2px; font: 600 14px/1.1 var(--ss-font-body); color: var(--ss-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; unicode-bidi: plaintext; text-align: left; }
 /* A breed name too long for its band (Russian "Серебристая полосатая") takes a second line instead of an ellipsis (site-qa-1113). */
-.band .bandName { white-space: normal; overflow-wrap: anywhere; hyphens: auto; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.band .bandName { white-space: normal; overflow-wrap: anywhere; hyphens: auto; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; } /* type floor: a third line for the bigger names (ru "Серебристая полосатая" at 1024) */
 /* Too narrow for the breed names (they'd be a row of ellipses): each band shows its digit, as the rows above do. */
 .band .bandDigit { display: none; font: 800 14px/1 var(--ss-font-display); text-align: center; right: 4px; }
 @media (max-width: 899px) { .band .bandName { display: none; } .band .bandDigit { display: block; } }
