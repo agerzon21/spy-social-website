@@ -560,7 +560,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           'Cinq niveaux, du plus bas au plus haut : <b>Restreint</b>, <b>Confidentiel</b>, <b>Secret</b>, <b>Très secret</b> et <b>Enigma</b>.',
           "Le niveau est fixé quand tu la gagnes. Plus il est haut, meilleures sont les chances.",
-          "Un <b>Unique</b> est un exemplaire en un seul exemplaire : une gemme prisme, un cadre en feuille arc-en-ciel, un nom de code et un numéro qu'aucun autre n'a. Chaque exemplaire garde ses propres couleurs à l'intérieur.",
+          "Un <b>Unique</b> est un exemplaire sans pareil : une gemme prisme, un cadre en feuille arc-en-ciel, un nom de code et un numéro qu'aucun autre n'a. Chaque exemplaire garde ses propres couleurs à l'intérieur.",
         ],
       },
       {
