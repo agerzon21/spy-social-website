@@ -61,6 +61,26 @@ function entries(path, langs, origin = ORIGIN) {
         .map((loc) => `  <url>\n    <loc>${loc}</loc>\n${links}\n  </url>\n`)
         .join('');
 }
+/**
+ * The Market's lists and catalogue sections (/movers/<list>, /catalogue/<section>): each is a drawn page in ten
+ * languages with its own canonical and alternates (scripts/prerender.mjs), and was missing from the sitemap (seo-1117).
+ * Read from vercel.json's rewrites that serve them, so the sitemap names exactly the addresses that answer.
+ */
+async function routedHostPaths(root) {
+    const vercel = await readFile(resolve(root, 'vercel.json'), 'utf8');
+    const list = (re, prefix) => {
+        const m = vercel.match(re);
+        if (!m)
+            throw new Error(`routedHostPaths: vercel.json has no rewrite for ${prefix}<name>`);
+        return m[1].split('|').map((name) => `${prefix}${name}`);
+    };
+    return {
+        market: [
+            ...list(/"source": "\/movers\/:list\(([a-z_|]+)\)\{\/\}\?", "has": \[\{ "type": "host", "value": "market\.spysocial\.app" \}\]/, '/movers/'),
+            ...list(/"source": "\/catalogue\/:cat\(([a-z_|]+)\)\{\/\}\?", "has": \[\{ "type": "host", "value": "market\.spysocial\.app" \}\]/, '/catalogue/'),
+        ],
+    };
+}
 /** Adds the switched pages that are on to the built sitemap.xml (public/sitemap.xml, copied into the build as is). */
 function switchedSitemap() {
     let root = process.cwd();
@@ -91,9 +111,10 @@ function switchedSitemap() {
                 throw new Error(`${file} has no </urlset>`);
             // The Archive's and the Market's hosts too: robots.txt (one file, every host) names this sitemap, which lets it
             // list their addresses.
+            const routed = await routedHostPaths(root);
             const added = [
                 ...on.map((page) => entries(page.path, langs)),
-                ...hosts.flatMap((h) => h.paths.map((path) => entries(path, langs, h.origin))),
+                ...hosts.flatMap((h) => [...h.paths, ...(routed[h.host] ?? [])].map((path) => entries(path, langs, h.origin))),
             ].join('');
             await writeFile(file, xml.replace('</urlset>', `${added}</urlset>`));
         },
@@ -157,8 +178,13 @@ async function loadSite(root) {
     const words = legal.LIVE.launchSite === true ? en : { ...en, meta: { ...en.meta, description: prelaunch(en.meta.description) } };
     return { LIVE: legal.LIVE, ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT, en: words, langs: LANGUAGES.map((l) => l.code) };
 }
-/** The app's structured data (schema.org): the publisher, the site and the app on both stores, free. Launch version only. */
+/**
+ * The site's structured data (schema.org): the publisher and the site always (seo-1117: before, none until the launch);
+ * with the launch version (LIVE.launchSite) the game too, a mobile app and a video game on both stores, free. No
+ * rating or review is claimed (Google ignores self-made ones, and the stores' aren't ours to restate).
+ */
 function structuredData(site) {
+    const launched = site.LIVE.launchSite === true;
     const data = {
         '@context': 'https://schema.org',
         '@graph': [
@@ -172,32 +198,41 @@ function structuredData(site) {
                 sameAs: SAME_AS,
             },
             { '@type': 'WebSite', '@id': `${ORIGIN}/#site`, name: 'SpySocial', url: `${ORIGIN}/`, inLanguage: site.langs, publisher: { '@id': `${ORIGIN}/#org` } },
-            {
-                '@type': 'MobileApplication',
-                '@id': `${ORIGIN}/#app`,
-                name: 'SpySocial',
-                description: site.en.meta.description,
-                url: `${ORIGIN}/`,
-                image: `${ORIGIN}/images/og-launch.jpg`,
-                operatingSystem: 'iOS, Android',
-                applicationCategory: 'GameApplication',
-                applicationSubCategory: 'Party game',
-                genre: 'Social deduction',
-                softwareVersion: '2.2',
-                inLanguage: site.langs,
-                installUrl: [APP_STORE_URL, PLAY_STORE_URL],
-                sameAs: [APP_STORE_URL, PLAY_STORE_URL],
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                publisher: { '@id': `${ORIGIN}/#org` },
-            },
+            ...(launched
+                ? [
+                    {
+                        '@type': ['MobileApplication', 'VideoGame'],
+                        '@id': `${ORIGIN}/#app`,
+                        name: 'SpySocial',
+                        description: site.en.meta.description,
+                        url: `${ORIGIN}/`,
+                        image: `${ORIGIN}/images/share/site-en.jpg`,
+                        operatingSystem: 'iOS, Android',
+                        applicationCategory: 'GameApplication',
+                        applicationSubCategory: 'Party game',
+                        genre: ['Party game', 'Social deduction'],
+                        gamePlatform: ['iOS', 'Android'],
+                        playMode: 'MultiPlayer',
+                        numberOfPlayers: { '@type': 'QuantitativeValue', minValue: 3, maxValue: 21 },
+                        softwareVersion: '2.2',
+                        inLanguage: site.langs,
+                        installUrl: [APP_STORE_URL, PLAY_STORE_URL],
+                        sameAs: [APP_STORE_URL, PLAY_STORE_URL],
+                        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                        publisher: { '@id': `${ORIGIN}/#org` },
+                    },
+                ]
+                : []),
         ],
     };
     // Inside <script>: no "</" can close it early.
     return `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 }
 /**
- * The launch version's <head> (LIVE.launchSite): the large link-preview card (public/images/og-launch.jpg, made from
- * Google Play's feature graphic by scripts/store-shots.mjs) on X / Twitter and everywhere else, and the structured data.
+ * The site's <head> before and after the launch (LIVE.launchSite): the description names the stores only once they
+ * hold 2.2, and the structured data (the game on the stores only after). The large link-preview card
+ * (public/images/share/site-<lang>.jpg, scripts/share-cards.mjs) is index.html's own either way (seo-1117: the
+ * pre-launch card was the square app icon, the launch one Google Play's feature graphic stretched to 1200 x 630).
  */
 function launchHead() {
     let root = process.cwd();
@@ -211,22 +246,10 @@ function launchHead() {
             if (!/(^|\/)index\.html$/.test(ctx.filename))
                 return html;
             const site = await loadSite(root);
+            if (!/<meta property="og:image" content="[^"]*\/images\/share\/site-en\.jpg"/.test(html))
+                throw new Error('launchHead: index.html has no site card');
             if (site.LIVE.launchSite !== true)
-                return prelaunch(html);
-            const image = `${ORIGIN}/images/og-launch.jpg`;
-            const swaps = [
-                [/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`],
-                [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'],
-                [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'],
-                [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial: Spy Talk and Spy Sketch, five agents in a police line-up')}"`],
-                [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'],
-                [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`],
-            ];
-            for (const [re, to] of swaps) {
-                if (!re.test(html))
-                    throw new Error(`launchHead: index.html has no match for ${re}`);
-                html = html.replace(re, to);
-            }
+                html = prelaunch(html);
             return html.replace('</head>', `    ${structuredData(site)}\n  </head>`);
         },
     };
@@ -312,7 +335,9 @@ function pagePreviews() {
                 let html = home;
                 const title = attr(invite.title);
                 const description = attr(invite.description);
-                const image = `${ORIGIN}/images/og-launch.jpg`;
+                // The invite card (scripts/share-cards.mjs: "Join a game", the page's title); scripts/prerender.mjs swaps in
+                // each language's for /join/<CODE> (seo-1117: it was Google Play's feature graphic, stretched).
+                const image = `${ORIGIN}/images/share/invite-en.jpg`;
                 const swaps = [
                     [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
                     [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
@@ -322,11 +347,9 @@ function pagePreviews() {
                     [/(<meta name="twitter:title" content=")[^"]*"/, `$1${title}"`],
                     [/(<meta name="twitter:description" content=")[^"]*"/, `$1${description}"`],
                     [/(<meta property="og:image" content=")[^"]*"/, `$1${image}"`],
-                    [/(<meta property="og:image:width" content=")[^"]*"/, '$11200"'],
-                    [/(<meta property="og:image:height" content=")[^"]*"/, '$1630"'],
-                    [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial: Spy Talk and Spy Sketch, five agents in a police line-up')}"`],
-                    [/(<meta name="twitter:card" content=")[^"]*"/, '$1summary_large_image"'],
+                    [/(<meta property="og:image:alt" content=")[^"]*"/, `$1${attr('SpySocial: Join a game. Five agents in a police line-up, one in the spotlight.')}"`],
                     [/(<meta name="twitter:image" content=")[^"]*"/, `$1${image}"`],
+                    [/(<meta name="twitter:image:alt" content=")[^"]*"/, `$1${attr('SpySocial: Join a game. Five agents in a police line-up, one in the spotlight.')}"`],
                 ];
                 for (const [re, to] of swaps) {
                     if (!re.test(html))

@@ -51,13 +51,14 @@ const SocialLinks = ({ variant = 'icons', landmark = true }: SocialLinksProps) =
       <p id="follow-spysocial" className={s.title}>
         {t.footer.follow}
       </p>
+      {/* Each row's name is what it shows ("Instagram @spysocial.game", under "Follow SpySocial"), not "SpySocial on
+          Instagram" (seo-1117, Lighthouse label-content-name-mismatch: WCAG 2.5.3 wants the visible words in the name). */}
       <LinkRows>
         {SOCIAL_ACCOUNTS.map((a) => (
           <LinkRow
             key={a.name}
             href={a.url}
             newTab
-            ariaLabel={label(a)}
             icon={<a.icon aria-hidden focusable={false} />}
             label={a.name}
             note={a.name === 'Discord' ? t.footer.discordHandle : <bdi>{a.handle}</bdi>}
