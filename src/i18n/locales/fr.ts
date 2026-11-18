@@ -72,6 +72,8 @@ const fr: Strings = {
     nav: 'Site',
     join: 'Rejoindre un salon',
     joinShort: 'Entrer',
+    market: 'Marché',
+    archive: 'Archives',
     shop: 'Boutique',
     lightMode: 'Mode clair',
   },
@@ -81,6 +83,7 @@ const fr: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Prix du Marché noir",
+    archive: "Archives",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparence",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

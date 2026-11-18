@@ -72,6 +72,8 @@ const es: Strings = {
     nav: 'Sitio',
     join: 'Unirse a una sala',
     joinShort: 'Unirse',
+    market: 'Mercado',
+    archive: 'Archivo',
     shop: 'Tienda',
     lightMode: 'Modo claro',
   },
@@ -81,6 +83,7 @@ const es: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Precios del Mercado Negro",
+    archive: "Archivo",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparencia",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

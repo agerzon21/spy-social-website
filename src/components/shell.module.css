@@ -51,6 +51,12 @@
   transition: color 0.15s;
 }
 .navLink:hover { color: var(--ss-text); }
+/*
+ * The Market and the Archive (www's pages only) show from 800 px, where the whole row fits in every language with
+ * room to spare (French, the longest, needs about 740 px; measured Nov 18). Narrower, they give way and the footer
+ * carries them, as www's links do on the Archive's and the Market's headers.
+ */
+@media (max-width: 799px) { .roomy { display: none; } }
 /* Join a room's label: the whole one, and on a phone the short one (the whole one stays its name for screen readers). */
 .short { display: none; }
 @media (max-width: 559px) {

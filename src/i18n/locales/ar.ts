@@ -72,6 +72,8 @@ const ar: Strings = {
     nav: 'الموقع',
     join: 'الانضمام إلى غرفة',
     joinShort: 'انضمام',
+    market: 'السوق',
+    archive: 'الأرشيف',
     shop: 'المتجر',
     lightMode: 'الوضع الفاتح',
   },
@@ -81,6 +83,7 @@ const ar: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "أسعار السوق السوداء",
+    archive: "الأرشيف",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "الشفافية",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

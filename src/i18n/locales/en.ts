@@ -98,6 +98,10 @@ const en = {
     join: 'Join a room',
     /** The same link on a phone, where the header has little room: one short word if you can. */
     joinShort: 'Join',
+    /** The Market (market.spysocial.app) and the Archive (archive.spysocial.app), in the words their own headers use (their nav's
+     * first link). www's pages only, and only where the row has room (shell.module.css); the footer carries both everywhere. */
+    market: 'Market',
+    archive: 'Archive',
     shop: 'Shop',
     /** The header's light / dark switch's one name (a switch: on = the light theme, off = dark; its state is read out separately). */
     lightMode: 'Light mode',
@@ -108,6 +112,8 @@ const en = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Black Market Prices",
+    /** The link to the Archive (archive.spysocial.app; LIVE.uniqueArchive), as its own header names it. */
+    archive: "Archive",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparency",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

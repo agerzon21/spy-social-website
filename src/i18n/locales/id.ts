@@ -72,6 +72,8 @@ const id: Strings = {
     nav: 'Situs',
     join: 'Gabung ke room',
     joinShort: 'Gabung',
+    market: 'Pasar',
+    archive: 'Arsip',
     shop: 'Toko',
     lightMode: 'Mode terang',
   },
@@ -81,6 +83,7 @@ const id: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Harga Pasar Gelap",
+    archive: "Arsip",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparansi",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

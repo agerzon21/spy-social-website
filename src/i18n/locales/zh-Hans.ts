@@ -71,6 +71,8 @@ const zhHans: Strings = {
     nav: '网站',
     join: '加入房间',
     joinShort: '加入',
+    market: '市场',
+    archive: '档案馆',
     shop: '商店',
     lightMode: '浅色模式',
   },
@@ -80,6 +82,7 @@ const zhHans: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "黑市价格",
+    archive: "档案馆",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "透明度",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

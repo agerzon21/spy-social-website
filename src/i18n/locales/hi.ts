@@ -72,6 +72,8 @@ const hi: Strings = {
     nav: 'साइट',
     join: 'रूम से जुड़ें',
     joinShort: 'जुड़ें',
+    market: 'बाज़ार',
+    archive: 'आर्काइव',
     shop: 'शॉप',
     lightMode: 'लाइट मोड',
   },
@@ -81,6 +83,7 @@ const hi: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "काले बाज़ार के दाम",
+    archive: "आर्काइव",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "पारदर्शिता",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

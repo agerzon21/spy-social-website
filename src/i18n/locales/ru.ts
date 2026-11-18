@@ -72,6 +72,8 @@ const ru: Strings = {
     nav: 'Сайт',
     join: 'Войти в комнату',
     joinShort: 'Войти',
+    market: 'Рынок',
+    archive: 'Архив',
     shop: 'Мерч',
     lightMode: 'Светлая тема',
   },
@@ -81,6 +83,7 @@ const ru: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Цены Чёрного рынка",
+    archive: "Архив",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Прозрачность",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

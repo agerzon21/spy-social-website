@@ -72,6 +72,8 @@ const ptBR: Strings = {
     nav: 'Site',
     join: 'Entrar numa sala',
     joinShort: 'Entrar',
+    market: 'Mercado',
+    archive: 'Arquivo',
     shop: 'Loja',
     lightMode: 'Modo claro',
   },
@@ -81,6 +83,7 @@ const ptBR: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Preços do Mercado Negro",
+    archive: "Arquivo",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparência",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */

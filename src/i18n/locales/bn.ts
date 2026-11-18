@@ -72,6 +72,8 @@ const bn: Strings = {
     nav: 'সাইট',
     join: 'রুমে যোগ দিন',
     joinShort: 'যোগ দিন',
+    market: 'বাজার',
+    archive: 'আর্কাইভ',
     shop: 'শপ',
     lightMode: 'লাইট মোড',
   },
@@ -81,6 +83,7 @@ const bn: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "কালোবাজারের দাম",
+    archive: "আর্কাইভ",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "স্বচ্ছতা",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
