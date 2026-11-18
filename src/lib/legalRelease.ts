@@ -2218,7 +2218,7 @@ export const INTEL_ZERO_1117_DAY = 'November 30, 2026'
 /** howto-truth-1117: LIVE.gnRewardsRules's day, the Game Night Rules' Last Updated (row 83's apply day; set by flip-switch --day). Never earlier than November 20, 2026. legal-gn-1117: also in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED. */
 export const GN_REWARDS_RULES_DAY = 'November 20, 2026'
 /** legal-gn-1117: LIVE.tutorialGate1117's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED (the publish day; set by flip-switch --day). Never earlier than November 18, 2026. */
-export const TUTORIAL_GATE_1117_DAY = 'November 18, 2026'
+export const TUTORIAL_GATE_1117_DAY = 'November 17, 2026'
 
 /** no-pack-pass-1117: LIVE.noPackPass1117's day (the publish day; set by flip-switch --day). Never earlier than November 17, 2026. */
 export const NO_PACK_PASS_1117_DAY = 'November 17, 2026'
