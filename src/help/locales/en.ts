@@ -594,7 +594,7 @@ const en: HelpText = {
           a: [
             'Five tiers, lowest first: <b>Restricted</b>, <b>Confidential</b>, <b>Secret</b>, <b>Top Secret</b> and <b>Enigma</b>.',
             'The tier is set when you earn it. The higher the tier, the better the odds.',
-            'A <b>Unique</b> is a copy with a colour and a number no other copy has.',
+            "A <b>Unique</b> is a one-of-one copy: a prism gem, a rainbow foil frame, a codename and a number no other copy has. Each copy keeps its own colours inside.",
           ],
         },
         {
@@ -935,7 +935,7 @@ const en: HelpText = {
           a: [
             "In the app: <b>Account</b>, <b>Settings</b>, <b>Account & Sign-In</b>, <b>Delete Account</b>. It can’t be undone. A guest account is deleted there too, or by signing out.",
             'You can also ask us by email: see <delete>Delete your account</delete>.',
-            'Deleting doesn’t cancel a membership: cancel it in the store too.',
+            "Deleting your account doesn’t cancel your membership. Cancel it in the App Store or Google Play first, or you’ll keep being charged.",
           ],
         },
         {

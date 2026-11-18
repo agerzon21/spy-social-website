@@ -564,7 +564,7 @@ const id: HelpText = {
           a: [
             'Lima tingkat, dari yang terendah: <b>Terbatas</b>, <b>Konfidensial</b>, <b>Rahasia</b>, <b>Sangat Rahasia</b>, dan <b>Enigma</b>.',
             'Tingkatnya ditetapkan saat kamu mendapatkannya. Makin tinggi tingkatnya, makin bagus peluangnya.',
-            'Item <b>Unik</b> adalah salinan dengan warna dan nomor yang tidak dimiliki salinan lain.',
+            "Item <b>Unik</b> adalah salinan satu-satunya: permata prisma, bingkai foil pelangi, nama sandi, dan nomor yang tidak dimiliki salinan lain. Setiap salinan menyimpan warnanya sendiri di dalamnya.",
           ],
         },
         {
@@ -905,7 +905,7 @@ const id: HelpText = {
           a: [
             "Di aplikasi: <b>Akun</b>, <b>Pengaturan</b>, <b>Akun & masuk</b>, <b>Hapus akun</b>. Ini tidak bisa dibatalkan. Akun tamu juga dihapus di sana, atau dengan keluar dari akun.",
             'Kamu juga bisa minta lewat email: lihat <delete>Hapus akunmu</delete>.',
-            'Menghapus akun tidak membatalkan langganan: batalkan juga di toko aplikasi.',
+            "Menghapus akunmu tidak membatalkan keanggotaanmu. Batalkan dulu di App Store atau Google Play, atau kamu akan terus ditagih.",
           ],
         },
         {

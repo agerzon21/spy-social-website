@@ -560,7 +560,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           'Cinq niveaux, du plus bas au plus haut : <b>Restreint</b>, <b>Confidentiel</b>, <b>Secret</b>, <b>Très secret</b> et <b>Enigma</b>.',
           "Le niveau est fixé quand tu la gagnes. Plus il est haut, meilleures sont les chances.",
-          "Un <b>Unique</b> est un exemplaire avec une couleur et un numéro qu'aucun autre n'a.",
+          "Un <b>Unique</b> est un exemplaire en un seul exemplaire : une gemme prisme, un cadre en feuille arc-en-ciel, un nom de code et un numéro qu'aucun autre n'a. Chaque exemplaire garde ses propres couleurs à l'intérieur.",
         ],
       },
       {
@@ -901,7 +901,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Dans l’appli : <b>Compte</b>, <b>Réglages</b>, <b>Compte et connexion</b>, <b>Supprimer le compte</b>. C’est définitif. Un compte invité se supprime au même endroit, ou en se déconnectant.",
           'Tu peux aussi nous le demander par e-mail : voir <delete>Supprimer ton compte</delete>.',
-          "Supprimer ton compte ne résilie pas ta formule : résilie-la aussi dans le store.",
+          "Supprimer ton compte ne résilie pas ta formule. Résilie-la d'abord dans l'App Store ou sur Google Play, sinon tu continueras à payer.",
         ],
       },
       {

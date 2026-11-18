@@ -564,7 +564,7 @@ const ptBR: HelpText = {
           a: [
             'Cinco níveis, do mais baixo ao mais alto: <b>Restrito</b>, <b>Confidencial</b>, <b>Secreto</b>, <b>Ultrassecreto</b> e <b>Enigma</b>.',
             'O nível é definido quando você ganha. Quanto mais alto, melhores as chances.',
-            'Um <b>Único</b> é uma cópia com uma cor e um número que nenhuma outra cópia tem.',
+            "Um <b>Único</b> é uma cópia exclusiva: uma gema de prisma, uma moldura de folha arco-íris, um codinome e um número que nenhuma outra cópia tem. Cada cópia mantém suas próprias cores por dentro.",
           ],
         },
         {
@@ -905,7 +905,7 @@ const ptBR: HelpText = {
           a: [
             "No app: <b>Conta</b>, <b>Ajustes</b>, <b>Conta e acesso</b>, <b>Excluir conta</b>. Não dá para desfazer. Uma conta de visitante também é excluída ali, ou ao sair da conta.",
             'Você também pode pedir por e-mail: veja <delete>Excluir sua conta</delete>.',
-            'Excluir a conta não cancela seu plano: cancele também na loja.',
+            "Excluir sua conta não cancela seu plano. Cancele primeiro na App Store ou no Google Play, ou você continuará sendo cobrado.",
           ],
         },
         {

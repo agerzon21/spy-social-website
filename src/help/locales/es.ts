@@ -564,7 +564,7 @@ const es: HelpText = {
           a: [
             'Cinco niveles, de menor a mayor: <b>Restringido</b>, <b>Confidencial</b>, <b>Secreto</b>, <b>Alto secreto</b> y <b>Enigma</b>.',
             'El nivel se fija al ganarla. Cuanto más alto, mejores probabilidades.',
-            'Un <b>Único</b> es una copia con un color y un número que ninguna otra copia tiene.',
+            "Un <b>Único</b> es una copia irrepetible: una gema de prisma, un marco de lámina arcoíris, un nombre en clave y un número que ninguna otra copia tiene. Cada copia conserva sus propios colores por dentro.",
           ],
         },
         {
@@ -905,7 +905,7 @@ const es: HelpText = {
           a: [
             "En la app: <b>Cuenta</b>, <b>Ajustes</b>, <b>Cuenta e inicio de sesión</b>, <b>Eliminar cuenta</b>. No se puede deshacer. Una cuenta de invitado también se borra ahí, o al cerrar sesión.",
             'También puedes pedírnoslo por correo: consulta <delete>Eliminar tu cuenta</delete>.',
-            'Borrar la cuenta no cancela una membresía: cancélalo también en la tienda.',
+            "Eliminar tu cuenta no cancela tu membresía. Cancélala primero en App Store o Google Play, o se te seguirá cobrando.",
           ],
         },
         {
