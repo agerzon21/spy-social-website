@@ -156,7 +156,7 @@ export const LIVE = {
    * The Enigma per Game Night win ends with row 83 (FINAL-SPEC 9.1 default; coordinator Nov 17: no winner Intercept prize):
    * with this on, #earn-intercepts' Game Night line points at Game Night Intel instead (howto-truth-1117).
    */
-  helpGameNightRewards: false,
+  helpGameNightRewards: true,
   /**
    * howto-truth-1117: the Game Night Rules page (/game-night-rules, pages/GameNightRules) for the Game Night rewards that
    * replace the per-night titles (app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83): Game Night Intel
