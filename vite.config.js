@@ -67,19 +67,18 @@ function entries(path, langs, origin = ORIGIN) {
  * Read from vercel.json's rewrites that serve them, so the sitemap names exactly the addresses that answer.
  */
 async function routedHostPaths(root) {
-    const vercel = await readFile(resolve(root, 'vercel.json'), 'utf8');
-    const list = (re, prefix) => {
-        const m = vercel.match(re);
-        if (!m)
-            throw new Error(`routedHostPaths: vercel.json has no rewrite for ${prefix}<name>`);
-        return m[1].split('|').map((name) => `${prefix}${name}`);
+    // JSON, not text: Vercel's build may re-serialize vercel.json, so match rewrites by their fields (seo-1117 deploy fix).
+    const rewrites = (JSON.parse(await readFile(resolve(root, 'vercel.json'), 'utf8')).rewrites ?? []);
+    const list = (path, prefix) => {
+        const re = new RegExp('^/' + path + '/:[a-z]+\\(([a-z_|]+)\\)\\{/\\}\\?$');
+        for (const r of rewrites) {
+            const m = typeof r.source === 'string' ? r.source.match(re) : null;
+            if (m && (r.has ?? []).some((h) => h.type === 'host' && h.value === 'market.spysocial.app'))
+                return m[1].split('|').map((name) => `${prefix}${name}`);
+        }
+        throw new Error(`routedHostPaths: vercel.json has no rewrite for ${prefix}<name>`);
     };
-    return {
-        market: [
-            ...list(/"source": "\/movers\/:list\(([a-z_|]+)\)\{\/\}\?", "has": \[\{ "type": "host", "value": "market\.spysocial\.app" \}\]/, '/movers/'),
-            ...list(/"source": "\/catalogue\/:cat\(([a-z_|]+)\)\{\/\}\?", "has": \[\{ "type": "host", "value": "market\.spysocial\.app" \}\]/, '/catalogue/'),
-        ],
-    };
+    return { market: [...list('movers', '/movers/'), ...list('catalogue', '/catalogue/')] };
 }
 /** Adds the switched pages that are on to the built sitemap.xml (public/sitemap.xml, copied into the build as is). */
 function switchedSitemap() {
