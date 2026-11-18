@@ -75,10 +75,10 @@ function entries(path: string, langs: string[], origin = ORIGIN): string {
  */
 async function routedHostPaths(root: string): Promise<Record<string, string[]>> {
   // JSON, not text: Vercel's build may re-serialize vercel.json, so match rewrites by their fields (seo-1117 deploy fix).
-  const rewrites = (JSON.parse(await readFile(resolve(root, 'vercel.json'), 'utf8')).rewrites ?? []) as any[]
+  const rewrites = (JSON.parse(await readFile(resolve(root, 'vercel.json'), 'utf8')).rewrites ?? []) as { source?: string; has?: { type?: string; value?: string }[] }[]
   const list = (path: string, prefix: string) => {
     const re = new RegExp('^/' + path + '/:[a-z]+\\(([a-z_|]+)\\)\\{/\\}\\?$')
-    for (const r: { source?: string; has?: { type?: string; value?: string }[] } of rewrites) {
+    for (const r of rewrites) {
       const m = typeof r.source === 'string' ? r.source.match(re) : null
       if (m && (r.has ?? []).some((h) => h.type === 'host' && h.value === 'market.spysocial.app')) return m[1].split('|').map((name) => `${prefix}${name}`)
     }
