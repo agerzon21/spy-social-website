@@ -186,7 +186,7 @@ export const LIVE = {
    * feat/membership-switch-1117 in 62.15): #membership-switch and #two-memberships. Help text only. Flip once row 85 is
    * applied AND 62.15 is on phones: node scripts/flip-switch.mjs helpMembershipSwitch.
    */
-  helpMembershipSwitch: false,
+  helpMembershipSwitch: true,
   /**
    * help-new-1117: Google Play memberships stop renewing by themselves beside a Lifetime (row 85's pass-cancel edge
    * function deployed AND app_config google_pass_cancel {"enabled": true}; owner Nov 17 "android cancel"). Turns on
@@ -200,7 +200,7 @@ export const LIVE = {
    * pick 19A; client pick/rounds-1116 in 62.15): #question-rounds. Help text only. Flip once row 70 is applied AND 62.15
    * is on phones: node scripts/flip-switch.mjs helpQuestionRounds.
    */
-  helpQuestionRounds: false,
+  helpQuestionRounds: true,
   /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
