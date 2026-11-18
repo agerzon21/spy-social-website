@@ -378,7 +378,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'parties',
         q: "C'est quoi, un groupe ?",
         a: [
-          "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut être membre pour en créer un. Si le chef part, la main passe d'abord à un membre.",
+          "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut être membre pour en créer un. " + (o.partyNoMember ? "Si le chef part, la main passe à un membre." : "Si le chef part, la main passe d'abord à un membre."),
           ...(o.partyLeaderLapse ? ["Si le chef n'est plus membre, le groupe est dissous pour tout le monde ; la main ne passe à personne. Une partie en cours va jusqu'au bout, puis chacun cherche de son côté."] : []),
           ...(o.partyNoMember ? ["Si le chef part et que plus personne n'est membre, le groupe est dissous pour tout le monde."] : []),
           "Aux tables de Jouer en ligne et aux soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",

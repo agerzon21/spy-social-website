@@ -412,7 +412,7 @@ const en: HelpText = {
           id: 'parties',
           q: 'What is a party?',
           a: [
-            'A leader and friends who play together, up to 21 people in all. It takes a membership to start one. If the leader leaves, the lead goes to someone with a membership first.',
+            'A leader and friends who play together, up to 21 people in all. It takes a membership to start one. ' + (o.partyNoMember ? "If the leader leaves, the lead goes to someone in it with a membership." : "If the leader leaves, the lead goes to someone with a membership first."),
             ...(o.partyLeaderLapse ? ['If the leader’s membership ends, the party closes for everyone; the lead isn’t passed on. A game you’re in goes on to the end, and after it each of you searches on your own.'] : []),
             ...(o.partyNoMember ? ['If the leader leaves and nobody left has a membership, the party closes for everyone.'] : []),
             'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',

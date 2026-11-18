@@ -887,6 +887,10 @@ const Privacy: React.FC = () => {
             for as long as you have an account; if you use Restore Purchases while signed in to another account, your
             purchases move to that account. The updates RevenueCat sends us about a purchase (such as a renewal or a
             refund) are deleted after 90 days.{' '}
+            {/* LIVE.helpMembershipSwitch (membership-switch-1117, server row 85 + app 62.15): the two-memberships warning reads these records. */}
+            {PRIVACY.helpMembershipSwitch
+              ? "We also use these records to tell you in the app when you're paying for two memberships at once (for example Lifetime and a monthly membership, or one on each store), and which one you need. "
+              : ''}
             {PRIVACY.memberLoyalty
               ? "To show your member time (\"Member since\" and how long you've been a member, see our Terms of Service), we keep a record of each period your membership was active: when it started and ended, how it came (a monthly or yearly membership, Lifetime, a gift or a code), and whether it was refunded or a test purchase. We keep it for as long as you have an account and delete it with the account. It doesn't include the price you paid. "
               : ''}

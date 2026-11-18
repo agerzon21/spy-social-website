@@ -225,6 +225,7 @@ export function helloHtml(input: HelloInput): string {
 <meta property="og:image:alt" content="SpySocial: Trust no one. Five agents in a police line-up, one in the spotlight.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="${esc(input.origin)}/images/share/site-en.jpg">
+<meta name="twitter:image:alt" content="SpySocial: Trust no one. Five agents in a police line-up, one in the spotlight.">
 <script src="/theme.js"></script>
 <script src="/lang.js"></script>
 <script src="/hello/hello.js" defer></script>

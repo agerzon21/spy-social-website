@@ -179,7 +179,7 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
             <Badge
               bg="ss.accent"
               color="ss.onAccent"
-              fontSize="12px"
+              fontSize="14px"
               textTransform="uppercase"
               letterSpacing="0.08em"
               px={2}

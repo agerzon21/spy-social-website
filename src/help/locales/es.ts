@@ -382,7 +382,7 @@ const es: HelpText = {
           id: 'parties',
           q: '¿Qué es un grupo?',
           a: [
-            'Un líder y sus amigos que juegan juntos, hasta 21 personas en total. Para empezar hace falta una membresía. Si el líder se va, el puesto pasa primero a alguien con membresía.',
+            'Un líder y sus amigos que juegan juntos, hasta 21 personas en total. Para empezar hace falta una membresía. ' + (o.partyNoMember ? "Si el líder se va, el puesto pasa a alguien del grupo con membresía." : "Si el líder se va, el puesto pasa primero a alguien con membresía."),
             ...(o.partyLeaderLapse ? ['Si la membresía del líder termina, el grupo se cierra para todos; el puesto no pasa a nadie. La partida en curso sigue hasta el final y, después, cada uno busca por su cuenta.'] : []),
             ...(o.partyNoMember ? ['Si el líder se va y nadie de los que quedan tiene membresía, el grupo se cierra para todos.'] : []),
             'En las mesas de Jugar en línea y en la Noche de Juegos, un grupo ocupa como mucho media mesa, y todos lo ven: hasta 2 en una mesa de 4, hasta 4 en una mesa de 8.',

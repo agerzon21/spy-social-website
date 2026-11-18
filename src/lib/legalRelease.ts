@@ -183,8 +183,12 @@ export const LIVE = {
   /**
    * help-new-1117: Help's Monthly <-> Yearly upgrades in the app ("Upgrade to Elite" / "Upgrade to Spymaster", "Switch to
    * Monthly") and the two-memberships warning (app server 20261231999846_membership_switch_1117, NEXT-BATCH row 85; client
-   * feat/membership-switch-1117 in 62.15): #membership-switch and #two-memberships. Help text only. Flip once row 85 is
+   * feat/membership-switch-1117 in 62.15): #membership-switch and #two-memberships. Flip once row 85 is
    * applied AND 62.15 is on phones: node scripts/flip-switch.mjs helpMembershipSwitch.
+   * audit-live-1118: it also turns on Terms 3's "How to cancel" lines on switching plans in the app (never charged twice;
+   * Google Play at once, the App Store at Apple's time) and the two-memberships warning, and one sentence in Privacy's
+   * Purchases item (the purchase records also tell you when you pay for two memberships). Not material (it describes a
+   * switch the stores already allowed, no new duty): MEMBERSHIP_SWITCH_DAY in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED.
    */
   helpMembershipSwitch: true,
   /**
@@ -2065,7 +2069,8 @@ export const LIVE = {
    */
   siteStorage1115: true,
   /**
-   * privacy-anchors-1115, STAGED OFF: withdrawing the drawing check's agreement. ON only once BOTH (1) app server file
+   * privacy-anchors-1115, ON since November 18, 2026 (audit-live-1118: 999902 LIVE Nov 17, row 44; the Settings row is in 62.15, on phones Nov 18;
+   * dated the publish day): withdrawing the drawing check's agreement. ON only once BOTH (1) app server file
    * 20261231999902_sketch_consent_withdraw_1115 is applied on live (it adds withdraw_drawing_check_consent and a
    * withdrawn_at column on drawing_check_consents: a withdrawal marks the account's record withdrawn, and the server then
    * treats the account as not agreed) AND (2) the app update u62.12 with the Settings > Privacy & Safety > Drawing Checks
@@ -2077,7 +2082,7 @@ export const LIVE = {
    * "<the day both hold>" (sets this true and DRAWING_CHECK_WITHDRAW_DAY, which moves PRIVACY_LAST_UPDATED). A server and
    * app fact: set in LIVE, never in PRIVACY_AHEAD. Off again if 999902 is rolled back or u62.12 is pulled.
    */
-  drawingCheckWithdraw: false,
+  drawingCheckWithdraw: true,
   /**
    * legal-1116, ON: Privacy's Test Versions said the PayPal address is deleted "once it's sent", one tester at a time. What
    * happens (app repo .claude/handoff/scratchpad/beta2/WIPE-1119.md): the address is in the survey's Google Form responses,
@@ -2134,7 +2139,7 @@ export const LIVE = {
    */
   coverage1116: true,
   /**
-   * legal-coverage-1116, STAGED OFF: app repo server files 20261231999875_heavy_reads_1116 (NEXT-BATCH row 62) and
+   * legal-coverage-1116, ON since November 18, 2026 (rows 62 and 68 LIVE Nov 18, audit-live-1118): app repo server files 20261231999875_heavy_reads_1116 (NEXT-BATCH row 62) and
    * 20261231999863_heavy_reads_1116b (row 68, after 62 and 24): Home / Locker / pack catalogue / avatar / titles reads and
    * the Black Market's tradables / top movers / Uniques / trade-up previews share one per-account count in rate_hits
    * (bucket heavy_read_m, 60 a minute by default, pruned after 2 days like every rate note); over it the read is refused and
@@ -2143,16 +2148,16 @@ export const LIVE = {
    * applied live: node scripts/flip-switch.mjs heavyReads --day "<apply day>". Off again if 999875 is rolled back. A
    * server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
-  heavyReads: false,
+  heavyReads: true,
   /**
-   * legal-coverage-1116, STAGED OFF: app repo server file 20261231999873_community_search_shown_language_1116 (NEXT-BATCH
+   * legal-coverage-1116, ON since November 18, 2026 (row 63 LIVE Nov 18, audit-live-1118): app repo server file 20261231999873_community_search_shown_language_1116 (NEXT-BATCH
    * row 63): search_community_packs also matches the pack's title, description and theme as translated into the
    * searcher's language (today: the pack's own title and description, and the creator's username). Turns on Privacy's
    * Community Packs search sentence. Privacy only. Flip the day row 63 is applied: node scripts/flip-switch.mjs
    * communitySearchShown --day "<apply day>". Off again if 999873 is rolled back. A server switch: set in LIVE, never in
    * PRIVACY_AHEAD.
    */
-  communitySearchShown: false,
+  communitySearchShown: true,
   /**
    * No Pack Pass, 2026-11-17 (no-pack-pass-1117, after the app's fix/no-pack-pass-1117 c0f1ce3eb): we sell only
    * memberships, so the old product name "Pack Pass" (and "pass" for the renewing plans) is gone from every page. Terms 3
@@ -2214,15 +2219,15 @@ export const RESET_ARCHIVE_FORGET_DAY = 'November 15, 2026'
 export const REPUTATION_BAN_MARKET_DAY = 'November 17, 2026'
 export const SITE_STORAGE_1115_DAY = 'November 15, 2026'
 /** LIVE.drawingCheckWithdraw's day in PRIVACY_LAST_UPDATED: the day both its conditions hold and the site goes up with it on (set by flip-switch --day). Never earlier than November 15, 2026. */
-export const DRAWING_CHECK_WITHDRAW_DAY = 'November 15, 2026'
+export const DRAWING_CHECK_WITHDRAW_DAY = 'November 18, 2026'
 /** legal-1116: LIVE.payPalTiming1116's day (the publish day), LIVE.playtestTremendous's and LIVE.sameOdds's (set by flip-switch --day). Never earlier than November 16, 2026. */
 export const PAYPAL_TIMING_1116_DAY = 'November 16, 2026'
 export const PLAYTEST_TREMENDOUS_DAY = 'November 16, 2026'
 export const SAME_ODDS_DAY = 'November 17, 2026'
 /** legal-coverage-1116: LIVE.coverage1116's day (the publish day), LIVE.heavyReads's and LIVE.communitySearchShown's (their apply days; set by flip-switch --day). Never earlier than November 16, 2026. */
 export const COVERAGE_1116_DAY = 'November 16, 2026'
-export const HEAVY_READS_DAY = 'November 17, 2026'
-export const COMMUNITY_SEARCH_DAY = 'November 17, 2026'
+export const HEAVY_READS_DAY = 'November 18, 2026'
+export const COMMUNITY_SEARCH_DAY = 'November 18, 2026'
 /** intel-zero-1117: LIVE.intelZero1117's day in LEGAL_LAST_UPDATED (the publish day; set by flip-switch --day). Before December 7, 2026. */
 export const INTEL_ZERO_1117_DAY = 'November 30, 2026'
 /** howto-truth-1117: LIVE.gnRewardsRules's day, the Game Night Rules' Last Updated (row 83's apply day; set by flip-switch --day). Never earlier than November 20, 2026. legal-gn-1117: also in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED. */
@@ -2487,6 +2492,8 @@ export const PARTY_LEADER_LAPSE_DAY = 'November 13, 2026'
 
 /** LIVE.partyNoMember's day (Terms' party bullet): the day the site goes up with it on, the same hour server row 107 is applied (set by flip-switch --day). Never earlier than November 18, 2026. */
 export const PARTY_NO_MEMBER_DAY = 'November 18, 2026'
+/** LIVE.helpMembershipSwitch's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED (audit-live-1118): the day Terms 3 and Privacy's Purchases item went up with it (row 85 applied and 62.15 on phones Nov 18). */
+export const MEMBERSHIP_SWITCH_DAY = 'November 18, 2026'
 
 /** LIVE.giftsTradable going false (website U0, owner's gift rules of Nov 6 and Nov 8: Terms 9, Intel corrections): its day in LEGAL_LAST_UPDATED (added by legal-integration-1111: before it, the flip moved no date). Set it to the day the site goes up with giftsTradable false. */
 export const GIFTS_BOUND_DAY = 'December 6, 2026'
@@ -2519,6 +2526,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? INTEL_ZERO_1117_DAY // Terms 9's Intel: every account's Intel to 0 right before launch, Game Night Intel earned given back (intel-zero-1117, D1 zero)
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
+  : LIVE.helpMembershipSwitch
+    ? MEMBERSHIP_SWITCH_DAY // Terms 3's How to cancel: switching plans in the app, the two-memberships warning (audit-live-1118, row 85 + 62.15)
   : LIVE.partyNoMember
     ? PARTY_NO_MEMBER_DAY // Terms' party bullet: a party whose leader goes with no member left closes for everyone (party-no-member-1118, server row 107)
   : LIVE.practiceMembers
@@ -2647,6 +2656,8 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? PLAYTEST_TREMENDOUS_DAY // Test Versions: Beta 3's thank-yous through Tremendous; providers' paragraph (legal-1116)
   : LIVE.appU62
     ? APP_U62_DAY // Chat Messages: the spies' chat named "Spy Channel", as update 62 names it (legal-coverage-1116; Beta 3, Nov 24)
+  : LIVE.helpMembershipSwitch
+    ? MEMBERSHIP_SWITCH_DAY // Purchases: the records also tell you when you pay for two memberships at once (audit-live-1118, row 85 + 62.15)
   : LIVE.practiceMembers
     ? PRACTICE_AI_DAY // Practice Games: members only, the per-UTC-day count, the tutorial as Play Online's step, the AI rating for members (practice-members-1117, row 95)
   : LIVE.gnRewardsRules

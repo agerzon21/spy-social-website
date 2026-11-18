@@ -38,7 +38,7 @@ const PasswordsGone = () => {
           )}
           {STORES_OPEN ? (
             <>
-              <Text fontSize="xs" color="ss.muted">{t.goneNoApp}</Text>
+              <Text fontSize="sm" color="ss.muted">{t.goneNoApp}</Text>
               <StoreBadges center />
             </>
           ) : (
@@ -140,7 +140,7 @@ const ResetPasswordForm = () => {
           ) : success ? (
             <VStack spacing={3} py={4}>
               <Text color="ss.success" fontWeight="500" fontSize="sm">{t.done}</Text>
-              <Text fontSize="xs" color="ss.muted">{t.redirecting}</Text>
+              <Text fontSize="sm" color="ss.muted">{t.redirecting}</Text>
             </VStack>
           ) : (
             <Box as="form" onSubmit={handleResetPassword}>
@@ -148,7 +148,7 @@ const ResetPasswordForm = () => {
                 <FormControl isRequired>
                   <FormLabel fontSize="sm" color="ss.muted">{t.newPassword}</FormLabel>
                   <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={t.newPlaceholder} minLength={6} isDisabled={loading} bg="ss.deep" border="var(--ss-hairline) solid" borderColor="ss.control" borderRadius="var(--ss-radius-control)" color="ss.text" _placeholder={{ color: 'ss.muted' }} _hover={{ borderColor: 'ss.text' }} _focus={{ borderColor: 'ss.focus', boxShadow: '0 0 0 1px var(--ss-focus)' }} />
-                  <FormHelperText fontSize="xs" color="ss.muted">{t.minLength}</FormHelperText>
+                  <FormHelperText fontSize="sm" color="ss.muted">{t.minLength}</FormHelperText>
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel fontSize="sm" color="ss.muted">{t.confirm}</FormLabel>
@@ -167,7 +167,7 @@ const ResetPasswordForm = () => {
 
           {isPreview && (
             <Box mt={4} p={3} bg="ss.warnSurface" borderRadius="var(--ss-radius-control)" borderWidth="1px" borderColor="ss.warnLine">
-              <Text fontSize="xs" color="ss.warn" textAlign="center">
+              <Text fontSize="sm" color="ss.warn" textAlign="center">
                 {rich(t.preview(previewMode ?? ''), { b: (c) => <b>{c}</b> })}
               </Text>
             </Box>

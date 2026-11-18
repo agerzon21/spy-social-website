@@ -1069,7 +1069,11 @@ const Terms: React.FC = () => {
             <B>How to cancel.</B> On an iPhone or iPad: open Settings, tap your name, then Subscriptions, and choose
             SpySocial. On Android: open the Google Play Store app, tap your profile picture, then Payments &amp;
             subscriptions, then Subscriptions, and choose SpySocial. Manage Subscription in the app opens the same page.
-            You can switch between the monthly and yearly membership there too. Deleting the app, or your SpySocial account,
+            {/* LIVE.helpMembershipSwitch (membership-switch-1117, server row 85 + app 62.15): switching plans in the app. */}
+            {LIVE.helpMembershipSwitch
+              ? " You can switch between the monthly and yearly membership there, or in the app (in the Vault, under Membership, for a membership billed by the store your device uses). You aren't charged twice for the same time: on Google Play the new plan starts at once and the time you've paid for becomes time on it; on the App Store, Apple decides when it starts, often at your next renewal, and credits the time you've paid for. If you pay for two memberships at once, the app tells you which one you need and which one to cancel."
+              : ' You can switch between the monthly and yearly membership there too.'}{' '}
+            Deleting the app, or your SpySocial account,
             doesn't cancel a subscription, and neither does buying Lifetime: cancel the monthly or yearly membership in the store so it isn't
             charged again.
             {LIVE.memberLoyalty
