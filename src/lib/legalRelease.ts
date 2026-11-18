@@ -179,7 +179,7 @@ export const LIVE = {
    * and 9 and the Rules already allow), so no TERMS_PUBLISHED or terms_version raise; GN_REWARDS_RULES_DAY moves
    * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED too. A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
-  gnRewardsRules: false,
+  gnRewardsRules: true,
   /**
    * help-new-1117: Help's Monthly <-> Yearly upgrades in the app ("Upgrade to Elite" / "Upgrade to Spymaster", "Switch to
    * Monthly") and the two-memberships warning (app server 20261231999846_membership_switch_1117, NEXT-BATCH row 85; client
@@ -2216,7 +2216,7 @@ export const COMMUNITY_SEARCH_DAY = 'November 17, 2026'
 /** intel-zero-1117: LIVE.intelZero1117's day in LEGAL_LAST_UPDATED (the publish day; set by flip-switch --day). Before December 7, 2026. */
 export const INTEL_ZERO_1117_DAY = 'November 30, 2026'
 /** howto-truth-1117: LIVE.gnRewardsRules's day, the Game Night Rules' Last Updated (row 83's apply day; set by flip-switch --day). Never earlier than November 20, 2026. legal-gn-1117: also in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED. */
-export const GN_REWARDS_RULES_DAY = 'November 20, 2026'
+export const GN_REWARDS_RULES_DAY = 'November 18, 2026'
 /** legal-gn-1117: LIVE.tutorialGate1117's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED (the publish day; set by flip-switch --day). Never earlier than November 18, 2026. */
 export const TUTORIAL_GATE_1117_DAY = 'November 17, 2026'
 
