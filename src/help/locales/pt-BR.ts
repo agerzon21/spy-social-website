@@ -384,6 +384,7 @@ const ptBR: HelpText = {
           a: [
             'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso ser membro para começar. Se o líder sair, a liderança passa primeiro para um membro.',
             ...(o.partyLeaderLapse ? ['Se o líder deixar de ser membro, o grupo é encerrado para todos; a liderança não passa para ninguém. Uma partida em andamento vai até o fim e, depois, cada um busca sozinho.'] : []),
+            ...(o.partyNoMember ? ['Se o líder sair e ninguém que ficou for membro, o grupo é encerrado para todos.'] : []),
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
             'Numa mesa de 12 lugares da Noite de Jogos, até 6. Membros do grupo que procuram partida sozinhos também contam: juntos, nunca mais que meia mesa.',
             'Para sentar na mesma mesa, busquem pelo grupo: <b>Jogar online</b> sozinho é uma busca individual. Depois de uma partida do Jogar online, <b>Voltar ao seu grupo</b> leva você de volta a ele.',

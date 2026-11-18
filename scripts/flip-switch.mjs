@@ -17,6 +17,8 @@ const SWITCHES = {
   drawingMinorRooms: { live: [['drawingMinorRooms', true]], day: 'DRAWING_MINOR_ROOMS_DAY', step: '18S' },
   testerGiftGame: { live: [['testerGiftGame', true]], day: 'TESTER_GIFT_GAME_DAY', step: '19S' },
   partyLeaderLapse: { live: [['partyLeaderLapse', true]], day: 'PARTY_LEADER_LAPSE_DAY', step: '20S' },
+  // party-no-member-1118: the same hour server row 107 (20261231999818_party_no_member_1117) is applied; --day = that day.
+  partyNoMember: { live: [['partyNoMember', true]], day: 'PARTY_NO_MEMBER_DAY', step: 'row 107 (999818)' },
   memberLoyalty: { live: [['memberLoyalty', true]], day: 'MEMBER_LOYALTY_DAY', step: '21S->u61' }, // with appU61, not Friday (friday-allon-read-1112)
   modCoverHold: { live: [['modCoverHold', true]], day: 'MOD_COVER_HOLD_DAY', step: '22S->u61' }, // with appU61, not Friday (friday-allon-read-1112)
   unconfirmedSignups: { live: [['unconfirmedSignups', true]], day: 'UNCONFIRMED_SIGNUPS_DAY', step: '31S' },

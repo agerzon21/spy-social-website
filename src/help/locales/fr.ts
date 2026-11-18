@@ -380,6 +380,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Un chef et ses amis qui jouent ensemble, jusqu'à 21 personnes en tout. Il faut être membre pour en créer un. Si le chef part, la main passe d'abord à un membre.",
           ...(o.partyLeaderLapse ? ["Si le chef n'est plus membre, le groupe est dissous pour tout le monde ; la main ne passe à personne. Une partie en cours va jusqu'au bout, puis chacun cherche de son côté."] : []),
+          ...(o.partyNoMember ? ["Si le chef part et que plus personne n'est membre, le groupe est dissous pour tout le monde."] : []),
           "Aux tables de Jouer en ligne et aux soirées jeux, un groupe occupe au plus la moitié d'une table, signalé à tous : jusqu'à 2 à une table de 4, jusqu'à 4 à une table de 8.",
           "À une table de 12 places d'une soirée jeux, jusqu'à 6. Les membres du groupe qui cherchent seuls comptent aussi : ensemble, jamais plus de la moitié d'une table.",
           "Pour s'asseoir à la même table, cherchez depuis le groupe : <b>Jouer en ligne</b> tout seul, c'est une recherche en solo. Après une partie de Jouer en ligne, <b>Retour à ton groupe</b> t'y ramène.",

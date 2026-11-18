@@ -223,8 +223,12 @@ const Terms: React.FC = () => {
             </li>
             <li>
               A party is a leader and friends who play together, up to 21 people in all. It takes a membership to start a
-              party; if the leader leaves, the lead goes to someone in it with a membership first, or else to whoever has been in
-              it longest. A player who is banned or paused from public rooms leaves the party.
+              party; if the leader leaves, the lead goes to someone in it with a membership
+              {/* LIVE.partyNoMember: server party_no_member_1117 (row 107): no member left, the party closes. */}
+              {LIVE.partyNoMember
+                ? '; if nobody left in it has one, the party closes for everyone.'
+                : ' first, or else to whoever has been in it longest.'}{' '}
+              A player who is banned or paused from public rooms leaves the party.
               {/* LIVE.partyLeaderLapse: server party_leader_lapse_1111 (owner 2026-11-11). */}
               {LIVE.partyLeaderLapse
                 ? " If the leader's membership ends, the party closes for everyone and the lead isn't passed on; a game the party is playing goes on to its end, and after it each player searches on their own."

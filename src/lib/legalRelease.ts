@@ -1459,6 +1459,14 @@ export const LIVE = {
    */
   partyLeaderLapse: true,
   /**
+   * party-no-member-1118 (app server row 107, 20261231999818_party_no_member_1117): a party is members-only, so when its leader goes and
+   * nobody left in it has a membership, the party closes for everyone (the lead no longer goes to a non-member who has been in it
+   * longest). Turns on Terms' party bullet wording and the help center's #parties line (10 languages; non-English agent-written).
+   * Flip it to true in the change that goes up the same hour the server row is applied (node scripts/flip-switch.mjs partyNoMember
+   * --day "<that day>"); off again (--undo) if row 107 is rolled back. A server rule for every app version at once: set in LIVE.
+   */
+  partyNoMember: false,
+  /**
    * Trading's gates (owner 2026-11-02, live on the app server: app_config.trading.min_friend_days 0 and
    * 20261102002603_trade_games_not_level): friends can trade right away (no 3 days as friends; the 7-day protection and
    * reversal stay; under-18s still only with Friend Code friends), an account 7 days old (was 14), 3 counted games
@@ -2475,6 +2483,9 @@ export const PRACTICE_AI_DAY = 'December 6, 2026'
 /** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
 export const PARTY_LEADER_LAPSE_DAY = 'November 13, 2026'
 
+/** LIVE.partyNoMember's day (Terms' party bullet): the day the site goes up with it on, the same hour server row 107 is applied (set by flip-switch --day). Never earlier than November 18, 2026. */
+export const PARTY_NO_MEMBER_DAY = 'November 18, 2026'
+
 /** LIVE.giftsTradable going false (website U0, owner's gift rules of Nov 6 and Nov 8: Terms 9, Intel corrections): its day in LEGAL_LAST_UPDATED (added by legal-integration-1111: before it, the flip moved no date). Set it to the day the site goes up with giftsTradable false. */
 export const GIFTS_BOUND_DAY = 'December 6, 2026'
 
@@ -2506,6 +2517,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? INTEL_ZERO_1117_DAY // Terms 9's Intel: every account's Intel to 0 right before launch, Game Night Intel earned given back (intel-zero-1117, D1 zero)
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
+  : LIVE.partyNoMember
+    ? PARTY_NO_MEMBER_DAY // Terms' party bullet: a party whose leader goes with no member left closes for everyone (party-no-member-1118, server row 107)
   : LIVE.practiceMembers
     ? PRACTICE_AI_DAY // Terms 3's membership item (practice games, 5 a day) and Terms 5's Play Online tutorial line (practice-members-1117, row 95)
   : LIVE.gnRewardsRules

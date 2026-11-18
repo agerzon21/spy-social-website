@@ -33,6 +33,7 @@ const OPTS: HelpOpts = {
   rarefindsOfferPush: LIVE.rarefindsOfferPush,
   appU61: LIVE.appU61,
   partyLeaderLapse: LIVE.partyLeaderLapse,
+  partyNoMember: LIVE.partyNoMember,
   memberLoyalty: LIVE.memberLoyalty,
   testerInterceptsTradable: LIVE.testerIntercepts === 'tradable',
   testerGiftGame: LIVE.testerGiftGame,

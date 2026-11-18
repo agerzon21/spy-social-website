@@ -47,6 +47,8 @@ export interface HelpOpts {
   appU61: boolean
   /** A leader whose membership ends closes the party (LIVE.partyLeaderLapse; server party_leader_lapse_1111). */
   partyLeaderLapse: boolean
+  /** A party whose leader goes with no member left in it closes for everyone (LIVE.partyNoMember; server party_no_member_1117, row 107). */
+  partyNoMember: boolean
   /** Member time and its stamps, reset when a membership ends, and the price kept while a monthly or yearly membership renews (LIVE.memberLoyalty). */
   memberLoyalty: boolean
   /** The testers' thank-you Intercepts trade like anything earned (LIVE.testerIntercepts === 'tradable'); false: they stay with the account. */
