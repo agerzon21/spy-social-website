@@ -71,8 +71,8 @@ const LaunchReminderSection = () => {
           ? " To stop one network from filling the list, we count each hour's sign-ups from it using a one-way code made from its IP address (for IPv6, the address's first half) with a secret key, and delete that count after about two hours; we never keep the IP address itself, and the code is never stored with an email address."
           : ''}{' '}
         Asking for a reminder doesn't create a SpySocial account, and the
-        reminder isn't linked to one even if you have one, so Delete Account and the data export don't reach it: write
-        to support and we remove that address. We don't use it for anything else or share it for marketing.
+        reminder isn't linked to one even if you have one, so Delete Account doesn't remove it and a copy of your data
+        (see A copy of your data, under Your Rights) doesn't include it: write to support and we remove that address. We don't use it for anything else or share it for marketing.
         </span>
       </P>
     </>
