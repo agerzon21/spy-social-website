@@ -13,7 +13,7 @@
 .section { display: grid; gap: 12px; }
 .title {
   margin: 0;
-  font: 600 12px/1.2 var(--ss-font-body);
+  font: 600 14px/1.2 var(--ss-font-body);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ss-highlight);

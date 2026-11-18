@@ -69,7 +69,7 @@
     white-space: nowrap;
   }
   .short { display: inline; }
-  .navLink { padding: 0 7px; font-size: 13px; letter-spacing: 0.08em; }
+  .navLink { padding: 0 7px; font-size: 14px; letter-spacing: 0.08em; }
 }
 @media (max-width: 419px) {
   .home img { height: 30px; padding-block: calc(15px * (1 - var(--wm))); }
@@ -80,12 +80,12 @@
   .controls { margin-inline-start: 0; }
 }
 @media (max-width: 359px) {
-  .navLink { padding: 0 4px; font-size: 12.5px; letter-spacing: 0.03em; }
+  .navLink { padding: 0 4px; font-size: 14px; letter-spacing: 0.03em; }
   .home img { height: 27px; padding-block: calc(13.5px * (1 - var(--wm))); }
 }
 /* Russian and French labels run longest (Cyrillic capitals are wide): a size down on the narrowest phones. */
 @media (max-width: 359px) {
-  :global(html:is([lang='ru'], [lang='fr'])) .navLink { font-size: 12px; letter-spacing: 0; padding: 0 4px; }
+  :global(html:is([lang='ru'], [lang='fr'])) .navLink { font-size: 14px; letter-spacing: 0; padding: 0 4px; }
 }
 /* Scripts with no capitals (and Cyrillic, set wide) need no tracking to read as a label. */
 :global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) .navLink { letter-spacing: 0.02em; }
@@ -151,7 +151,7 @@
   }
   .hostList li:first-child .hostLink { padding-inline-start: 10px; }
   .hostList li:last-child .hostLink { padding-inline-end: 26px; }
-  .hostLink { padding: 0 8px; font-size: 12.5px; letter-spacing: 0.06em; }
+  .hostLink { padding: 0 8px; font-size: 14px; letter-spacing: 0.06em; }
 }
 :global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) .hostLink { letter-spacing: 0.02em; }
 
@@ -175,7 +175,7 @@
 .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .colTitle {
   margin: 0 0 6px;
-  font: 600 12px/1.2 var(--ss-font-body);
+  font: 600 14px/1.2 var(--ss-font-body);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ss-highlight);
@@ -201,7 +201,7 @@
   padding-top: 18px;
   border-top: var(--ss-hairline) solid var(--ss-line);
 }
-.copy { margin: 0; font-size: 13px; color: var(--ss-muted); }
+.copy { margin: 0; font-size: 14px; color: var(--ss-muted); }
 @media (min-width: 760px) {
   .top { grid-template-columns: minmax(0, 1fr) auto; }
   .cols { gap: 80px; grid-template-columns: repeat(2, minmax(150px, auto)); }

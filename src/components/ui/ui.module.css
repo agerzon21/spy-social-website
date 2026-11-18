@@ -14,7 +14,7 @@
   align-items: center;
   gap: 10px;
   margin: 0 0 14px;
-  font: 600 12px/1.2 var(--ss-font-body);
+  font: 600 14px/1.2 var(--ss-font-body);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ss-highlight);

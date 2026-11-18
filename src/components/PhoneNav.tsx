@@ -162,7 +162,7 @@ const PhoneNav = ({ items, current, label }: Props) => {
   const name = useRef<HTMLSpanElement>(null)
   const at = current ? items.indexOf(current) : -1
   const text = current?.label ?? label
-  useFit(name, 25, 17, 12, text)
+  useFit(name, 25, 17, 14, text)
   return (
     <div className={s.root}>
       <button {...d.button} className={s.trigger}>

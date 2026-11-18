@@ -54,7 +54,7 @@
 }
 
 .code {
-  font: 700 11px/1 var(--ss-font-body);
+  font: 700 14px/1 var(--ss-font-body);
   letter-spacing: 0.08em;
 }
 .chevron { width: 8px; height: 5px; color: var(--ss-muted); transition: transform 0.2s; }
@@ -85,7 +85,7 @@
 .title {
   margin: 0;
   padding: 8px 10px 6px;
-  font: 600 11px/1.2 var(--ss-font-body);
+  font: 600 14px/1.2 var(--ss-font-body);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ss-highlight);

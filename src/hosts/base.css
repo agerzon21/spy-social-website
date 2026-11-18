@@ -75,7 +75,7 @@ abbr[title] {
   font-weight: bold;
 }
 small {
-  font-size: 80%;
+  font-size: max(80%, 14px);
 }
 :where(sub, sup) {
   font-size: 75%;
