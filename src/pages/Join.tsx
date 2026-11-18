@@ -26,11 +26,14 @@ const STAND_IN = 'AAAAA'
 const Join = () => {
   const params = useParams<{ code: string; token: string }>()
   const live = useClientValue(() => true, false)
-  const rawCode = live ? params.code ?? '' : params.code !== undefined ? STAND_IN : ''
+  const [searchParams] = useSearchParams()
+  // /join?p=<CODE> with no code in the path (a link cut short, or typed): ?p= is the code the player would type, so it
+  // is the room's code here (live walk 1118: the page said "No room code provided" with the code in the address).
+  const bareP = params.code === undefined && params.token === undefined ? searchParams.get('p') ?? '' : ''
+  const rawCode = live ? params.code ?? bareP : params.code !== undefined ? STAND_IN : ''
   const token = live ? params.token ?? '' : params.token !== undefined ? STAND_IN : ''
   // A link typed in lowercase or with spaces, or with a code's look-alike letters: the code the app reads (lib/roomCode).
   const code = keepCodeChars(rawCode)
-  const [searchParams] = useSearchParams()
   const strings = useT()
   const t = strings.join
   const c = strings.common
@@ -38,7 +41,7 @@ const Join = () => {
   // A private room whose host changed its code carries that code as ?p=.
   // Forward it to the app so the invite still joins in one tap, and show it
   // here because it's the code the player would type.
-  const passcode = live ? keepCodeChars(searchParams.get('p') ?? '') : ''
+  const passcode = live && !bareP ? keepCodeChars(searchParams.get('p') ?? '') : ''
   const displayCode = passcode || code
   // The app's own path for this invite, ?p= included (lib/appLink makes it spysocial:// or Android's intent://).
   // A Friend Code's link (/join/f/<token>, shown as a QR in person): the same way in, no room to name.
