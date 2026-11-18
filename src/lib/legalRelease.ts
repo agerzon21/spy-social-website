@@ -166,9 +166,18 @@ export const LIVE = {
    * page's search description (src/i18n meta.descriptions.gameNightRulesRewards). Off: the per-night titles' rules, true
    * until row 83 runs. The rules state what the server does, so flip it the day row 83 is applied live (not waiting for
    * 62.15, unlike helpGameNightRewards), with GN_REWARDS_RULES_DAY set to that day:
-   * node scripts/flip-switch.mjs gnRewardsRules --day "<day>". Off again if row 83 is rolled back. No Terms text reads it
-   * (Terms 5 / 9 still name the night's titles and the winners' Enigma: report, legal-owned). A server switch: set in
-   * LIVE, never in PRIVACY_AHEAD.
+   * node scripts/flip-switch.mjs gnRewardsRules --day "<day>". Off again if row 83 is rolled back.
+   * legal-gn-1117: the same switch flips the legal lines with the Rules page. Terms 5's Game Night sentence (what it pays,
+   * not its titles); Terms 9: Game Night Intel in the list of virtual items, the Intercepts item (no winner's Enigma; Game
+   * Night Intercepts are the one kind got for something spent, Game Night Intel; the odds shown before buying), a new
+   * item for Game Night Intel and the four ★ titles (earn-only, untradeable, not minted, no cash value; the beta titles
+   * turned into counts; the reset's Game Night lines), the collectibles item (no Game Night titles among the minted
+   * collectibles), Trades' never-tradable list (+ the ★ titles and Game Night Intel) and the U0 gifts line (no
+   * developer's bonus title). Privacy: the Game Night item (Game Night Intel's history, the counts, who sees them), the
+   * Intercepts item (bought with Game Night Intel instead of a Game Night win) and the collectibles item. The Ledger
+   * page's list of minted items. Not a material change (no new duty or penalty: an event's rewards change, which Terms 5
+   * and 9 and the Rules already allow), so no TERMS_PUBLISHED or terms_version raise; GN_REWARDS_RULES_DAY moves
+   * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED too. A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
   gnRewardsRules: false,
   /**
@@ -2161,6 +2170,16 @@ export const LIVE = {
    * A website fact: set in LIVE, never in PRIVACY_AHEAD. Staged OFF (not pushed; publish on the coordinator's go).
    */
   intelZero1117: false,
+  /**
+   * legal-gn-1117: Play Online's gate is passing a game's TUTORIAL (How to Play's Step 1; app update 61 on: Practice is the
+   * only tutorial, the Practice Games aren't needed), never "a grade of C or better" in a practice game: Terms 5's line and
+   * Privacy's Practice Games item said C (the pass line is the app's, D or better since update 61; the server's moves with
+   * 20261231999908_play_gate_pass_d_1115, so the pages name no grade). True today, whatever the gate switch says ("may").
+   * The text is unconditional; this switch only carries TUTORIAL_GATE_1117_DAY in LEGAL_LAST_UPDATED and
+   * PRIVACY_LAST_UPDATED (re-date to the publish day with node scripts/flip-switch.mjs tutorialGate1117 --day "<publish
+   * day>"). A correction, no new duty: no TERMS_PUBLISHED or terms_version raise. A website fact: set in LIVE.
+   */
+  tutorialGate1117: true,
 }
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
@@ -2196,8 +2215,10 @@ export const HEAVY_READS_DAY = 'November 17, 2026'
 export const COMMUNITY_SEARCH_DAY = 'November 17, 2026'
 /** intel-zero-1117: LIVE.intelZero1117's day in LEGAL_LAST_UPDATED (the publish day; set by flip-switch --day). Before December 7, 2026. */
 export const INTEL_ZERO_1117_DAY = 'November 30, 2026'
-/** howto-truth-1117: LIVE.gnRewardsRules's day, the Game Night Rules' Last Updated (row 83's apply day; set by flip-switch --day). Never earlier than November 20, 2026. */
+/** howto-truth-1117: LIVE.gnRewardsRules's day, the Game Night Rules' Last Updated (row 83's apply day; set by flip-switch --day). Never earlier than November 20, 2026. legal-gn-1117: also in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED. */
 export const GN_REWARDS_RULES_DAY = 'November 20, 2026'
+/** legal-gn-1117: LIVE.tutorialGate1117's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED (the publish day; set by flip-switch --day). Never earlier than November 18, 2026. */
+export const TUTORIAL_GATE_1117_DAY = 'November 18, 2026'
 
 /** no-pack-pass-1117: LIVE.noPackPass1117's day (the publish day; set by flip-switch --day). Never earlier than November 17, 2026. */
 export const NO_PACK_PASS_1117_DAY = 'November 17, 2026'
@@ -2487,8 +2508,12 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
   : LIVE.practiceMembers
     ? PRACTICE_AI_DAY // Terms 3's membership item (practice games, 5 a day) and Terms 5's Play Online tutorial line (practice-members-1117, row 95)
+  : LIVE.gnRewardsRules
+    ? GN_REWARDS_RULES_DAY // Terms 5 and 9: Game Night pays Game Night Intel, the ★ titles and Game Night Intercepts; no night's titles, no winner's Enigma (legal-gn-1117, row 83, Fri Nov 20). If row 95 is applied BEFORE row 83, move these two lines above practiceMembers
   : LIVE.sameOdds
     ? SAME_ODDS_DAY // Terms 9's trade-up: every item of the next rarity with the same chance, whatever you own (legal-1116, 999888)
+  : LIVE.tutorialGate1117
+    ? TUTORIAL_GATE_1117_DAY // Terms 5: Play Online may ask you to pass a game's tutorial, not a C in its practice game (legal-gn-1117; on, re-date to the publish day)
   : LIVE.noPackPass1117
     ? NO_PACK_PASS_1117_DAY // Terms 3 and the short Terms: Monthly / Yearly Membership instead of the old name Pack Pass (no-pack-pass-1117)
   : LIVE.reputationBanMarket
@@ -2609,12 +2634,16 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
     ? APP_U62_DAY // Chat Messages: the spies' chat named "Spy Channel", as update 62 names it (legal-coverage-1116; Beta 3, Nov 24)
   : LIVE.practiceMembers
     ? PRACTICE_AI_DAY // Practice Games: members only, the per-UTC-day count, the tutorial as Play Online's step, the AI rating for members (practice-members-1117, row 95)
+  : LIVE.gnRewardsRules
+    ? GN_REWARDS_RULES_DAY // Game Night: Game Night Intel's history, the ★ counts; Intercepts bought with Game Night Intel; no Game Night titles minted (legal-gn-1117, row 83). If row 95 is applied BEFORE row 83, move these two lines above practiceMembers
   : LIVE.drawingCheckWithdraw
     ? DRAWING_CHECK_WITHDRAW_DAY // Drawing Checks: withdrawing the agreement in Settings, and its Data Retention line (privacy-anchors-1115, 999902 + u62.12)
   : LIVE.heavyReads
     ? HEAVY_READS_DAY // Rate Limits: the heavy reads' per-account count and the one alert a day (legal-coverage-1116, 999875)
   : LIVE.communitySearchShown
     ? COMMUNITY_SEARCH_DAY // Community Packs: search also reads the translated name, description and theme (legal-coverage-1116, 999873)
+  : LIVE.tutorialGate1117
+    ? TUTORIAL_GATE_1117_DAY // Practice Games: Play Online opens a game once you've passed its tutorial, not a C in its practice game (legal-gn-1117; on, re-date to the publish day)
   : LIVE.noPackPass1117
     ? NO_PACK_PASS_1117_DAY // Purchases: Monthly / Yearly Membership instead of the old name Pack Pass (no-pack-pass-1117)
   : LIVE.reputationBanMarket

@@ -154,15 +154,20 @@ const Ledger: React.FC = () => {
           This ledger holds <B>Uniques</B> only. Each Unique is <B>minted</B>: it has its own number and a record of how
           it was earned (the Intercept or trade-up it came from), and it can be made only by its rule, inside its window.
           Every Unique, and everything that happens to it later (a trade, a sale, a trade-up, a correction), is a line
-          in this ledger. Other items (Game Night titles, the Beta Pin, Field Tester and the other items from
-          Intercepts) are numbered and recorded by us in the same way, but they aren't on the public ledger. Holders
+          in this ledger. Other items ({/* LIVE.gnRewardsRules (legal-gn-1117, row 83): Game Night titles are no longer minted */}
+          {LIVE.gnRewardsRules
+            ? 'the Beta Pin, Field Tester and the other items from Intercepts, Game Night Intercepts included'
+            : 'Game Night titles, the Beta Pin, Field Tester and the other items from Intercepts'}
+          ) are numbered and recorded by us in the same way, but they aren't on the public ledger. Holders
           appear only as tags (<Code>h:7f3a91c20b5e</Code>), a different one on every copy, so the
           ledger never shows who holds what. See the{' '}
           <PageLink to="/terms">Terms</PageLink> and the <PageLink to="/privacy">Privacy Policy</PageLink>.
         </P>
       ) : (
         <P>
-          Game Night titles, the Beta Pin, Field Tester and every item from an Intercept are <B>minted</B>: each copy
+          {LIVE.gnRewardsRules
+            ? 'The Beta Pin, Field Tester and every item from an Intercept (a Game Night Intercept included)'
+            : 'Game Night titles, the Beta Pin, Field Tester and every item from an Intercept'} are <B>minted</B>: each copy
           has its own number and a record of how it was earned, and it can be made only by its rule, inside its window.
           Once a collectible closes, no more copies are ever made, by anyone, us included. Every copy, and everything
           that happens to it later, is a line in this ledger. Holders appear only as tags (<Code>h:7f3a91c20b5e</Code>), a

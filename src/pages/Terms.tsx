@@ -46,6 +46,14 @@ const Terms: React.FC = () => {
     LIVE.intel ? 'Intel' : null,
   ].filter((item): item is string => item !== null)
   const notSold = `${notSoldItems.slice(0, -1).join(', ')} and ${notSoldItems[notSoldItems.length - 1]}`
+  // Terms 9's minted collectibles: with LIVE.gnRewardsRules (legal-gn-1117, row 83) Game Night titles are no longer minted
+  // (the ★ counter titles never are; the beta's per-night titles became counts).
+  const mintedList = LIVE.gnRewardsRules
+    ? 'The Beta Pin, the Field Tester title and every item that comes from an Intercept (a Game Night Intercept included)'
+    : 'Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept'
+  // Trades' never-tradable list: the ★ Game Night titles and Game Night Intel (LIVE.gnRewardsRules, legal-gn-1117).
+  const gnNeverTradable = LIVE.gnRewardsRules ? (LIVE.giftsTradable ? ', the ★\u00a0Game Night titles, Game Night Intel' : ', the ★\u00a0Game Night titles and Game Night Intel') : ''
+  const mintedRecord = LIVE.gnRewardsRules ? 'the Intercept or trade-up it came from' : 'the Game Night and the game, or the Intercept or trade-up it came from'
 
   return (
     <LegalPage english title="Terms of Service for SpySocial" updated={<>Last Updated: {LEGAL_LAST_UPDATED}</>}>
@@ -248,10 +256,11 @@ const Terms: React.FC = () => {
           : "Public rooms are open to players you don't know."}{' '}
         Anyone who meets the requirements can play in them: a saved account with a confirmed email address
         {LIVE.socialSignIn ? ' (or Apple or Google sign-in)' : ''}, being 13 or older, and agreeing to the Community Rules.
+        {/* legal-gn-1117 (LIVE.tutorialGate1117): the gate is passing the game's tutorial (How to Play's Step 1), never a grade in a practice game. */}
         {LIVE.coverage1110 &&
           (LIVE.practiceMembers
             ? " Play Online may also ask you to pass a game's tutorial first (the tutorials are free for everyone), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask."
-            : " Play Online may also ask you to pass a game's practice game first (a grade of C or better), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask.")}
+            : " Play Online may also ask you to pass a game's tutorial first (in How to Play), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask.")}
         {/* Play Online's presets all have rules.room_votes_in_game false (live, 2026-10-25), call_room_vote refuses kick and
             end votes in a standard game, and a Play Online table has no lobby; only a hosted event room (events.format
             'room', off while app_config.events_enabled is false) has them. */}
@@ -279,8 +288,12 @@ const Terms: React.FC = () => {
         {/* LIVE.gameNightRules: the rules page says it's part of these Terms. */}
         {LIVE.gameNightRules && (
           <>
-            {' '}Game Night, which we host on the nights we announce in the app, is played at Play Online tables; its titles and how to get them are set
-            out in the <PageLink to="/game-night-rules">Game Night Rules</PageLink>, which are part of these Terms.
+            {' '}Game Night, which we host on the nights we announce in the app, is played at Play Online tables;{' '}
+            {/* LIVE.gnRewardsRules (legal-gn-1117, row 83): rewards replace the night's titles. */}
+            {LIVE.gnRewardsRules
+              ? 'what it pays (Game Night Intel, the ★\u00a0titles and the Game Night Intercepts that Game Night Intel buys) and how to earn it are set'
+              : 'its titles and how to get them are set'}
+            {' '}out in the <PageLink to="/game-night-rules">Game Night Rules</PageLink>, which are part of these Terms.
           </>
         )}
       </P>
@@ -579,7 +592,7 @@ const Terms: React.FC = () => {
         SpySocial has virtual items, such as packs of words and locations,
         {avatarsLive(LIVE) ? ' avatar items (hats, glasses, colours and the like, and celebrations),' : ''} XP, levels,
         prestige,
-        achievements, badges{LIVE.intel ? ', Intel' : ''}{LIVE.intercepts ? ', Intercepts' : ''}
+        achievements, badges{LIVE.intel ? ', Intel' : ''}{LIVE.gnRewardsRules ? ', Game Night Intel' : ''}{LIVE.intercepts ? ', Intercepts' : ''}
         {LIVE.ranked ? ', Ranked ratings and ranks' : ''}
         {LIVE.tournaments ? ', Tournament Tokens' : ''} and event rewards. Some are free, some you earn by playing, and some may be given to you, for
         example for playing in events.
@@ -699,16 +712,23 @@ const Terms: React.FC = () => {
             Play Online game of each day earns you a daily Intercept of a random tier (on top of that day's Intel),
             which you claim in the app; rewards you haven't claimed don't expire. On every 7th day in a row of your
             streak you also get an extra Intercept of the Secret tier or better, and on every 30th day in a row an extra
-            Enigma Intercept, both on top of that day's Intercept. Game Night's winners get an Enigma Intercept. A code from a content creator or from us can
+            Enigma Intercept, both on top of that day's Intercept.{' '}
+            {/* LIVE.gnRewardsRules (legal-gn-1117, row 83): no winner's Enigma; Game Night Intercepts are bought with Game Night Intel. */}
+            {LIVE.gnRewardsRules
+              ? 'At Game Night you can also get Game Night Intercepts with the Game Night Intel you earn there (see Game Night Intel below).'
+              : "Game Night's winners get an Enigma Intercept."}{' '}
+            A code from a content creator or from us can
             also give Intercepts, once per account: each code gives what we set for it, and the app tells you what you
             got. Intercepts from a code unlock after your first Play Online game that counts. Codes tied to a purchase
             (such as merch codes) never give Intercepts. We may also give Intercepts, and memberships, as gifts, but
             never the items that come from Intercepts. Each Intercept opens into one random item.{' '}
             {LIVE.interceptsMarket
-              ? `You can't buy an Intercept with money, and we never sell Intercepts. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below)${LIVE.interceptsInTrades ? ', and trade one with a friend (see Trades below)' : ''}; players under 18 can't. Intel can't be bought, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds.`
+              ? `You can't buy an Intercept with money, and we never sell Intercepts${LIVE.gnRewardsRules ? ' (Game Night Intercepts, which you get for Game Night Intel you earned, are the one exception)' : ''}. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below)${LIVE.interceptsInTrades ? ', and trade one with a friend (see Trades below)' : ''}; players under 18 can't. ${LIVE.gnRewardsRules ? 'Neither Intel nor Game Night Intel can be bought' : "Intel can't be bought"}, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds.`
+              : LIVE.gnRewardsRules
+              ? "You can't buy an Intercept with money or with Intel; the one kind you get for something you spend is a Game Night Intercept, for Game Night Intel you earned. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds."
               : "You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a membership doesn't give you more of them or better odds."}{' '}
             {/* The offer sheet's odds (Nov 10 store build, store-compliance-1103) are out by the launch: LIVE.launchSite. */}
-            {LIVE.launchSite && LIVE.interceptsMarket ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds)
+            {(LIVE.launchSite && LIVE.interceptsMarket) || LIVE.gnRewardsRules ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds)
             the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed.{LIVE.sameOdds ? ' Which item of a rarity you get never depends on what you already own.' : ''} If you get an item you already have, you
             keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
@@ -746,15 +766,39 @@ const Terms: React.FC = () => {
               : " We may take back Intercepts or items that were given by mistake or earned by cheating; an item you've opened otherwise stays yours like the other items you've earned."}
           </li>
         )}
+        {/* LIVE.gnRewardsRules (legal-gn-1117; app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83): Game Night
+            Intel (gn_wallets / gn_ledger: earn-only, untradeable, server-only writes), the four ★ counter titles (never pool,
+            never minted, untradeable, kept by the Dec 7 reset), Game Night Intercepts = crate tiers 6 / 7 / 8 bought in the
+            Vault (tradable like any earned one); the old Game Night titles became counts (their beta-chain copies revoked);
+            Dec 7: W1 wipes Game Night Intercepts and their items, row 84 gives back the Game Night Intel earned. */}
+        {LIVE.gnRewardsRules && (
+          <li>
+            Each game you finish at a Game Night table gives you Game Night Intel (for
+            now 500 for a win and 200 for any other game you finish, except the games the{' '}
+            <PageLink to="/game-night-rules">Game Night Rules</PageLink> leave out, such as one you leave before it ends)
+            and counts toward four cosmetic titles, ★&nbsp;Operative, ★&nbsp;Local Hero, ★&nbsp;Master Spy and ★&nbsp;Double Agent, each worn
+            with its count. Game Night Intel is separate from Intel. You earn it only by playing at Game Night, a
+            membership adds nothing to it, and it can't be bought, traded, sold, given or moved to another account; like
+            every virtual item it has no cash value. You can spend it only on Game Night Intercepts in the Vault, and a
+            Game Night Intercept, once you have it, and the item it opens into work like any Intercept you earn (above).
+            The ★&nbsp;titles stay with the account that earned them: they can't be traded, sold or given to anyone, and
+            they aren't minted collectibles. We may change how much Game Night Intel a game gives and what Game Night
+            Intercepts cost; a change counts from then on. If Game Night Intel or a ★&nbsp;title was given by mistake or
+            earned against our rules or the Game Night Rules, we may take it back.
+            {LIVE.launchSite
+              ? " The titles from the beta's Game Nights became counts on the ★\u00a0titles. Before SpySocial 2.2 opened to everyone, Game Night Intercepts and their items were wiped with every other Intercept, each account got back all the Game Night Intel it had earned before then, even Intel it had spent, and the ★\u00a0titles stayed."
+              : " The titles from the beta's Game Nights have become counts on the ★\u00a0titles. Before SpySocial 2.2 opens to everyone, Game Night Intercepts and their items are wiped with every other Intercept (above), each account gets back all the Game Night Intel it earned before then, even Intel it spent, and the ★\u00a0titles stay."}
+          </li>
+        )}
         {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
         {LIVE.mintedCollectibles && (
           <li>
             {/* ledger-uniques-1111 (LIVE.ledgerUniquesOnly): the public ledger carries Uniques only */}
             {LIVE.ledgerUniquesOnly ? (
               <>
-                Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept are
-                minted collectibles. Each copy has its own number and a record of how it was earned (for example the
-                Game Night and the game, or the Intercept or trade-up it came from), and a copy can be made only by its
+                {mintedList} are
+                minted collectibles. Each copy has its own number and a record of how it was earned (for example{' '}
+                {mintedRecord}), and a copy can be made only by its
                 stated rule, inside its window. Once a collectible's window closes, no more copies of it are ever made,
                 by anyone, us included. Every Unique, and what happens to it later (a trade, a sale, a trade-up, a
                 correction), is written to a public ledger at <PageLink to="/ledger">spysocial.app/ledger</PageLink>,
@@ -770,9 +814,9 @@ const Terms: React.FC = () => {
               </>
             ) : (
               <>
-            Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept are
-            minted collectibles. Each copy has its own number and a record of how it was earned (for example the
-            Game Night and the game, or the Intercept or trade-up it came from), and a copy can be made only by its
+            {mintedList} are
+            minted collectibles. Each copy has its own number and a record of how it was earned (for example{' '}
+            {mintedRecord}), and a copy can be made only by its
             stated rule, inside its window. Once a collectible's window closes, no more copies of it are ever made,
             by anyone, us included. Every copy, and what happens to it later (a shred, a trade-up, a correction), is
             written to a public ledger at <PageLink to="/ledger">spysocial.app/ledger</PageLink>, which shows each
@@ -864,14 +908,14 @@ const Terms: React.FC = () => {
             <li>
               Not every item can be traded; the app marks the ones that can.{' '}
               {LIVE.coverage1110
-                ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them)${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable${LIVE.launchSite || !LIVE.giftsTradable ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
-                : `Memberships, what a membership includes, level rewards, items from the arcade games${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable.`}{' '}
+                ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them)${gnNeverTradable}${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable${LIVE.launchSite || !LIVE.giftsTradable ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
+                : `Memberships, what a membership includes, level rewards, items from the arcade games${gnNeverTradable}${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable.`}{' '}
               {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). Off in U0
                   (WG, Dec 7): the owner's rules of Nov 6 and Nov 8 (gift-rules-1108): codes and anything we or staff give, a Developer's
                   Pick included, stay with the account; Intel is never bound; the Beta set trades like anything earned. */}
               {LIVE.giftsTradable
                 ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
-                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn."}
+                : `Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (${LIVE.gnRewardsRules ? 'an Intercept, opened or not, an item or a title' : "an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick"}), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn.`}
               {/* LIVE.testerGiftGame (off until server tester_gift_game_1111 is applied, friday-flips-1111): the sentence below. */}
               {LIVE.testerGiftGame && (
                 <>

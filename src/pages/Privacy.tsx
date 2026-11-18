@@ -208,8 +208,33 @@ const Privacy: React.FC = () => {
             Searches are deleted 30 days after they end, and breaks and the matchmaking log after 90 days.
           </Item>
         )}
-        {/* LIVE.gameNightPrizes: each Game Night's titles and the developer's bonus title (legalRelease). */}
-        {PRIVACY.gameNightPrizes && (
+        {/* LIVE.gnRewardsRules (legal-gn-1117; app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83): Game
+            Night Intel (gn_game_awards: each judged seat's pay and reason; gn_ledger: game / buy / reverse / reset / return;
+            gn_wallets), the ★ counts (gn_counters + gn_counter_rows; get_gamenight_counters answers any signed-in player),
+            all ON DELETE CASCADE; the owner's rewards watch reads them (alerts, never blocks). Replaces the night's titles. */}
+        {PRIVACY.gameNightPrizes && PRIVACY.gnRewardsRules && (
+          <Item label="Game Night">
+            When you play in our Game Night, our servers keep, for each Game Night game you play, whether it gave you
+            Game Night Intel and why (a win, a loss, a game with no winner, or the reason it gave nothing, such as
+            leaving early, not taking your turns or a fair-play flag), and the history of your Game Night Intel: each
+            amount, the game it came from, each Game Night Intercept you got with it and its tier, any correction, and
+            your balance after each one. They also keep your counts on the four ★&nbsp;titles (★&nbsp;Operative, ★&nbsp;Local Hero,
+            ★&nbsp;Master Spy and ★&nbsp;Double Agent), and the game or night behind each one. We use this to give each game's
+            reward once, to show your rewards on Game Over and in the Vault, and to check that they're earned fairly.
+            Game Night seats you through Play Online, so your Game Night search is kept like a Play Online search
+            {PRIVACY.playOnline ? ' (see Play Online above)' : ''}, with the night it was for. Other players can see
+            your ★&nbsp;titles with their counts (for example on your name plate or your profile); your Game Night Intel
+            isn't shown to anyone else. We also keep the record of the titles you got at the beta's Game Nights, which
+            became counts on the ★&nbsp;titles. All of this is kept with your account and deleted with it, and apart from
+            the ★&nbsp;counts it doesn't leave our servers and isn't shared with anyone. The ★&nbsp;titles aren't minted and
+            aren't on the public ledger.
+            {PRIVACY.launchSite
+              ? ' Before version 2.2 opened to everyone, each account\'s Game Night Intel was set back to all the Game Night Intel it had earned before then, as one more line in its history.'
+              : ' Before version 2.2 opens to everyone, each account\'s Game Night Intel is set back to all the Game Night Intel it earned before then, as one more line in its history.'}
+          </Item>
+        )}
+        {/* LIVE.gameNightPrizes: each Game Night's titles and the developer's bonus title (legalRelease). Until LIVE.gnRewardsRules. */}
+        {PRIVACY.gameNightPrizes && !PRIVACY.gnRewardsRules && (
           <Item label="Game Night">
             When you play in our Game Night, our servers keep which week you played, whether each game you
             played there counted toward the night's titles, and, when you get titles (the night's titles, or a bonus
@@ -286,9 +311,11 @@ const Privacy: React.FC = () => {
           <Item label="Intercepts">
             Intercepts are sealed rewards that each open into one random item (such as a look for your agent, a
             celebration or a title). {PRIVACY.interceptsMarket
-              ? `They're earned by playing, or given by us, and never bought with money; an adult can also buy an unopened one from another adult with Intel on the Black Market${PRIVACY.interceptsInTrades ? ', or get one in a trade with a friend' : ''}.`
+              ? `They're earned by playing${PRIVACY.gnRewardsRules ? ' (Game Night Intercepts with the Game Night Intel you earn at Game Night)' : ''}, or given by us, and never bought with money; an adult can also buy an unopened one from another adult with Intel on the Black Market${PRIVACY.interceptsInTrades ? ', or get one in a trade with a friend' : ''}.`
+              : PRIVACY.gnRewardsRules
+              ? "They're earned only by playing (Game Night Intercepts with the Game Night Intel you earn at Game Night), or given by us, never bought with money or with Intel."
               : "They're earned only by playing, or given by us, never bought, with money or with Intel."} Our servers keep each Intercept you get: when, how you got it (the Play Online game that completed a
-            set of 10 wins, your first Play Online game of the day or a streak milestone, a Game Night win, a code you
+            set of 10 wins, your first Play Online game of the day or a streak milestone, {PRIVACY.gnRewardsRules ? 'the Game Night Intel you got a Game Night Intercept with' : 'a Game Night win'}, a code you
             entered, or a gift from us, with its reason{PRIVACY.interceptsMarket ? `, or the Black Market sale${PRIVACY.interceptsInTrades ? ' or trade' : ''} it came from` : ''}) and its tier; whether you've claimed it yet (a daily one) or
             it's waiting for your first Play Online game that counts (one from a code); when you've seen the app's
             notices about your Intercepts (such as Welcome Back); and, once you open it, when, the item and
@@ -331,15 +358,18 @@ const Privacy: React.FC = () => {
         {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
         {PRIVACY.mintedCollectibles && (
           <Item label="Collectibles and the public ledger">
-            Game Night titles, the Beta Pin, the Field Tester title and every item from an Intercept are minted: each
+            {/* LIVE.gnRewardsRules (legal-gn-1117, row 83): no Game Night title is minted any more. */}
+            {PRIVACY.gnRewardsRules
+              ? 'The Beta Pin, the Field Tester title and every item from an Intercept (a Game Night Intercept included) are minted'
+              : 'Game Night titles, the Beta Pin, the Field Tester title and every item from an Intercept are minted'}: each
             copy has its own number. For each copy you get, our servers keep your account, the copy's holder code,
-            when it was earned and when it was minted, how it was earned (the Game Night and game, the Intercept or
+            when it was earned and when it was minted, how it was earned ({PRIVACY.gnRewardsRules ? '' : 'the Game Night and game, '}the Intercept or
             trade-up, or the beta tester list and why you're on it), whether it was traded, sold on the Black Market,
             shredded, traded up or taken back and why, and whether you were under 18, an adult or of unknown age when you got it (from the birth year
             you gave us). We use this to give you your collectibles, to show how each was earned, to check that they
             are earned fairly, and to keep the public ledger.{' '}
             {PRIVACY.ledgerUniquesOnly
-              ? "The public ledger (spysocial.app/ledger) lists only Uniques: every Unique and what happened to it, but never your account, username or name. Your other collectibles (Game Night titles, the Beta Pin, Field Tester and the other items from Intercepts) are kept in our own records as described above and aren't on the public ledger. On the ledger, each Unique's holder appears only as a code made from that copy and a secret kept for your account, so two of your copies never share a code and nobody else can link them to you or to each other. When a Unique is traded or sold, the ledger shows only that it moved from one holder code to another, never who traded or sold it, or the price. On the 1st of each month the ledger also records the fingerprint of a list of every Unique (its number, whether it is held, burned or retired, and its holder code), made from the ledger's own lines, so it can be checked from that month on."
+              ? `The public ledger (spysocial.app/ledger) lists only Uniques: every Unique and what happened to it, but never your account, username or name. Your other collectibles (${PRIVACY.gnRewardsRules ? '' : 'Game Night titles, '}the Beta Pin, Field Tester and the other items from Intercepts) are kept in our own records as described above and aren't on the public ledger. On the ledger, each Unique's holder appears only as a code made from that copy and a secret kept for your account, so two of your copies never share a code and nobody else can link them to you or to each other. When a Unique is traded or sold, the ledger shows only that it moved from one holder code to another, never who traded or sold it, or the price. On the 1st of each month the ledger also records the fingerprint of a list of every Unique (its number, whether it is held, burned or retired, and its holder code), made from the ledger's own lines, so it can be checked from that month on.`
               : "The public ledger (spysocial.app/ledger) lists every copy and what happened to it, but never your account, username or name: each copy's holder appears only as a code made from that copy and a secret kept for your account, so two of your copies never share a code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger shows only that it moved from one holder code to another, never who traded or sold it, or the price."}{' '}
             {PRIVACY.uniqueArchive &&
               (PRIVACY.archiveHolders
@@ -589,7 +619,8 @@ const Privacy: React.FC = () => {
               (PRIVACY.practiceResults
                 ? "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it, including whether you've already seen the note about the spies' chat) and the result of each practice game you finish: the game, your role (Local or spy), the table size (4 or 8 seats), your grade, your score, whether you won, and when. We use them so your progress and results follow you to your other devices, to show you your best grades, and to award the Practice Ace title (an A in every game, role and table size). If you played a game with 8 or more players before the spies' chat note existed, we marked the note as seen from your game history."
                 : "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it) and your best grade in each game's practice game, so your progress follows you to your other devices.") +
-              (PRIVACY.practiceMembers ? " Play Online can use them to open a game once you've passed its tutorial." : " Play Online can use them to open a game once you've passed its practice game (a C or better).") +
+              // legal-gn-1117 (LIVE.tutorialGate1117): Play Online's gate is the game's tutorial, never a grade in a practice game.
+              " Play Online can use them to open a game once you've passed its tutorial." +
               " We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
             {PRIVACY.practiceNoAi && !PRIVACY.practiceAi &&
               "The other players in a practice game are played by the app itself, on your device, and your moves are rated there too: nothing you type or draw in a practice game is sent to OpenAI or any other AI service. "}

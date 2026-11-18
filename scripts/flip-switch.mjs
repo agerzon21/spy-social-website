@@ -38,6 +38,7 @@ const SWITCHES = {
   // (helpGooglePassStop: the hour app_config google_pass_cancel goes on).
   helpGameNightRewards: { live: [['helpGameNightRewards', true]], day: null, step: 'row 83 (999848) + 62.15' },
   // howto-truth-1117: the Game Night Rules for the rewards, the day row 83 is applied live (before 62.15 is fine).
+  // legal-gn-1117: the same flip turns on Terms 5 / 9's, Privacy's and the Ledger page's Game Night lines (GN_REWARDS_RULES_DAY in both Last Updated chains).
   gnRewardsRules: { live: [['gnRewardsRules', true]], day: 'GN_REWARDS_RULES_DAY', step: 'row 83 (999848)' },
   helpMembershipSwitch: { live: [['helpMembershipSwitch', true]], day: null, step: 'row 85 (999846) + 62.15' },
   helpGooglePassStop: { live: [['helpGooglePassStop', true]], day: null, step: 'google_pass_cancel on' },
@@ -69,6 +70,8 @@ const SWITCHES = {
   noPackPass1117: { live: [['noPackPass1117', true]], day: 'NO_PACK_PASS_1117_DAY', step: 'publish' },
   // intel-zero-1117: before Dec 7, once economy_reset_decisions holds D1 = zero on live (RUNBOOK_reset_answers_1117.sql), never after B1.
   intelZero1117: { live: [['intelZero1117', true]], day: 'INTEL_ZERO_1117_DAY', step: 'D1 zero on live, before Dec 7' },
+  // legal-gn-1117: on (--day re-dates it to the publish day). gnRewardsRules (above) now also moves Terms' and Privacy's Last Updated.
+  tutorialGate1117: { live: [['tutorialGate1117', true]], day: 'TUTORIAL_GATE_1117_DAY', step: 'publish' },
 }
 
 const args = process.argv.slice(2)
