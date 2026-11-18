@@ -137,6 +137,15 @@ function localHead(out, lang, head, previews = lang !== 'en') {
       [/(<meta name="twitter:description" content=")[^"]*"/, desc],
     ]) out = out.replace(re, (_m, a) => `${a}${value}"`)
   }
+  // The card in this language (seo-1117, scripts/share-cards.mjs: public/images/share/<site|invite>-<lang>.jpg, the
+  // poster and facts in the page's words); English keeps index.html's.
+  if (lang !== 'en') {
+    const card = /(\/images\/share\/(?:site|invite))-en\.jpg"/g
+    if (/<meta property="og:image" content="[^"]*\/images\/share\//.test(out)) {
+      if (!existsSync(resolve(dist, 'images', 'share', `site-${lang}.jpg`))) throw new Error(`prerender: no share card for ${lang}`)
+      out = out.replace(card, `$1-${lang}.jpg"`)
+    }
+  }
   return out
 }
 

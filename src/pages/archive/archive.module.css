@@ -273,7 +273,8 @@
 .tick { position: absolute; top: -8px; transform: translateX(-50%); font: 700 11px/1 var(--ss-font-body); color: var(--ss-muted); direction: ltr; }
 .tick { top: auto; bottom: -18px; }
 .pin { position: absolute; top: -40px; width: 30px; transform: translateX(-50%); text-decoration: none; }
-.pin img { display: block; width: 30px; height: 30px; border: 2px solid var(--ss-accent); background: var(--ss-deep); }
+/* object-fit (seo-1117, Lighthouse image-aspect-ratio): the copies' pictures are about 3:4, drawn squashed into the square. */
+.pin img { display: block; width: 30px; height: 30px; object-fit: contain; border: 2px solid var(--ss-accent); background: var(--ss-deep); }
 .pinPending { display: block; width: 30px; height: 30px; border: 2px solid var(--ss-accent); background: var(--ss-deep); }
 .pin::after { content: ''; position: absolute; left: 50%; top: 32px; width: 2px; height: 40px; background: var(--ss-accent); transform: translateX(-50%); }
 .scaleNote { margin: 30px 0 0; font-size: 14px; color: var(--ss-muted); }

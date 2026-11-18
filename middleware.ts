@@ -202,6 +202,8 @@ function withPreview(html: string, p: Preview): string {
       put(/<meta property="og:image:alt"[^>]*>/, `<meta property="og:image:alt" content="${attr(p.alt)}" />`)
       put(/<meta name="twitter:card"[^>]*>/, `<meta name="twitter:card" content="${big ? 'summary_large_image' : 'summary'}" />`)
       put(/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${img}" />`)
+      // index.html's card has its own alt for X (seo-1117): the item's, not the site card's.
+      put(/<meta name="twitter:image:alt"[^>]*>/, `<meta name="twitter:image:alt" content="${attr(p.alt)}" />`)
     }
   }
   return `${top}${add.length ? `    ${add.join('\n    ')}\n  ` : ''}${html.slice(head)}`
