@@ -44,7 +44,7 @@ const ptBR: Strings = {
       ledger: "O registro público de cada colecionável do SpySocial: cada cópia e seu número. Qualquer pessoa pode conferir.",
       archive: "Cada Único do SpySocial registrado: imagem, número, atributos, como foi cunhado e cada venda, sem nomear nenhum jogador.",
       market: "Quanto vale cada item do SpySocial no Mercado Negro: preços a partir das trocas dos jogadores, o que mais sobe e cai e o mais negociado, sem nomear nenhum jogador.",
-      transparency: "Todo mês: quanta Intel foi ganha, gasta e corrigida no SpySocial, cada incidente e cada mudança de regra, sem citar nenhum jogador.",
+      transparency: "Todo mês: quanto Intel foi ganho, gasto e corrigido no SpySocial, cada incidente e cada mudança de regra, sem citar nenhum jogador.",
       gameNightRules: "As regras da Noite de Jogos do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
       gameNightRulesRewards: "As regras da Noite de Jogos do SpySocial: quando acontece, quem pode participar e como funcionam o Intel da Noite de Jogos, os títulos ★ e as interceptações da Noite de Jogos.",
       faq: "Ajuda do SpySocial: como jogar Spy Talk e Spy Sketch, Jogar online, salas privadas e Noite de Jogos, amigos, trocas, o Mercado Negro, interceptações, Intel, plano de membro, sua conta, segurança e solução de problemas.",

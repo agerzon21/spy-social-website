@@ -33,7 +33,7 @@ const ptBR: MarketStrings = {
     rises: { title: 'Maiores altas', short: 'Altas', text: 'Os preços que mais subiram.' },
     falls: { title: 'Maiores quedas', short: 'Quedas', text: 'Os preços que mais caíram.' },
     traded: { title: 'Mais vendidos', short: 'Mais vendidos', text: 'Os itens que mais trocaram de mãos.' },
-    valuable: { title: 'Vendas de maior valor', short: 'Maior valor', text: 'Os itens em que mais Intel foi gasta.' },
+    valuable: { title: 'Vendas de maior valor', short: 'Maior valor', text: 'Os itens em que mais Intel foi gasto.' },
   },
   cols: { item: 'Item', price: 'Preço', change: 'Variação', trades: 'Vendas', value: 'Intel em vendas', rank: '#' },
   categories: {
