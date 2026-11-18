@@ -1188,11 +1188,13 @@ export const LIVE = {
    * (legal/coverage-1110) Before flipping it: (1) set PRACTICE_AI_DAY (top of PRIVACY_LAST_UPDATED); (2) the app has no way
    * to take back a TRY IT once given (RateWithAiNote is one-time, nothing in Settings calls set_practice_rate_consent):
    * a consent must be as easy to withdraw as to give, so ship a Settings switch (or an "ask again") first, and name it in
-   * the Practice Games item and the Consent / Objecting lines. Spy Sketch practice never calls OpenAI
+   * the Practice Games item and the Consent / Objecting lines. DONE (s95-practice-1118, Nov 18): app update 62.15 (on phones
+   * Nov 18 13:14 ET) has Settings > Language > Rate My Practice Lines with AI (components/settings/PracticeAiSetting, off =
+   * set_practice_rate_consent(false)); Privacy's Practice Games item, Consent and Objecting lines name it. Spy Sketch practice never calls OpenAI
    * (PracticeHost: sketchGame returns early); the month's cap (app_config practice_rate_monthly_usd_cap, $150 on
    * Nov 10) falls back to the phone's rating.
    */
-  practiceAi: false,
+  practiceAi: true,
   /**
    * (practice-members-1117, owner Tue Nov 17) Practice Games become MEMBERS ONLY: an active membership (Monthly, Yearly or
    * Lifetime; a membership we give, testers' included, counts), at most 5 a day (the UTC day), with the AI rating turned
@@ -1204,7 +1206,7 @@ export const LIVE = {
    * site the same day row 95 is applied, before it, with PRACTICE_AI_DAY set to that day. A server switch: set in LIVE,
    * never in PRIVACY_AHEAD.
    */
-  practiceMembers: false,
+  practiceMembers: true,
   /**
    * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Monthly
    * or Yearly Membership, or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
@@ -1977,7 +1979,7 @@ export const LIVE = {
    * shown only while practiceAi is off. True of every shipped build today: flip at the next site publish with
    * --day "<publish day>". Off again if practiceAi (or any AI call from practice) goes live.
    */
-  practiceNoAi: true,
+  practiceNoAi: false,
   /**
    * dexp-1114 (app repo server file 20261231999943_data_export_policy_1114, LIVE Nov 14 as 20261114185411; _data_export
    * prosrc d6226809; PLAN B16): the data export leaves out whether another player was under 18 or had not told us their
@@ -2478,7 +2480,7 @@ export const CODES_NO_MEMBERSHIP_DAY = 'November 13, 2026'
  * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
  * site goes up with it on, the same day as app_config.practice_rate_enabled goes true (the key is due by December 6).
  */
-export const PRACTICE_AI_DAY = 'December 6, 2026'
+export const PRACTICE_AI_DAY = 'November 18, 2026'
 
 /** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
 export const PARTY_LEADER_LAPSE_DAY = 'November 13, 2026'

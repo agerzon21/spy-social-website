@@ -641,7 +641,8 @@ const Privacy: React.FC = () => {
             for up to 24 hours (see OpenAI below). If you choose Not Now, or you're
             under 16 or playing as a guest, your practice lines are rated only on your device. We keep your answer to
             that note (which version of the note you answered, and when) until you answer it again or your account is
-            deleted. To keep this within its limits, we count how many lines each account had rated each day (deleted
+            deleted. You can change your answer at any time in the app's Settings, under Language, with Rate My Practice
+            Lines with AI: turned off, your next practice lines are rated only on your device. To keep this within its limits, we count how many lines each account had rated each day (deleted
             after 14 days) and keep daily totals for the whole app that don't identify anyone; we don't keep the lines
             themselves. We spend at most a fixed amount on it each month and each day; when that runs out, your device's
             rating is used until it resets.
@@ -1195,7 +1196,7 @@ const Privacy: React.FC = () => {
           {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings
           {PRIVACY.browserLegal ? " (in the browser version, in your browser's settings for the site)" : ''}.
           {PRIVACY.audit1103 ? " Also for sending your messages to OpenAI to be translated, which you can change with the app's own choices." : ''}
-          {PRIVACY.practiceAi ? ' Also for sending your practice lines to OpenAI to be rated (see Practice Games).' : ''}
+          {PRIVACY.practiceAi ? " Also for sending your practice lines to OpenAI to be rated (see Practice Games), which you can turn off in the app's Settings." : ''}
         </Item>
         <Item label="Legal Obligations">
           To comply with the law, for example to answer lawful requests and to report child sexual exploitation.
@@ -1680,7 +1681,8 @@ const Privacy: React.FC = () => {
           Tell us which use you object to. We stop it unless we have compelling legitimate grounds that override your
           interests, such as keeping players safe and preventing fraud and cheating, or we need it to establish,
           exercise or defend legal claims. You can withdraw consent at any time: for your device's permissions in your
-          device's settings, and for translation by OpenAI with the app's own choices.
+          device's settings, and for translation by OpenAI with the app's own choices
+          {PRIVACY.practiceAi ? ", and for rating your practice lines by OpenAI with Rate My Practice Lines with AI in the app's Settings" : ''}.
         </Item>
         <Item label="Guest accounts">
           A guest account has no email address, so we can't confirm by email that a request is yours. A guest can
