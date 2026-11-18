@@ -87,6 +87,9 @@ const SiteHead = () => {
   // ledger-uniques-1111: with LIVE.ledgerUniquesOnly the ledger is described as the record of every Unique
   const description = page === 'ledger' && LIVE.ledgerUniquesOnly
     ? LEDGER_DESCRIPTION_UNIQUES[lang]
+    // howto-truth-1117: with LIVE.gnRewardsRules the Game Night rules describe the rewards, not the night's titles
+    : page === 'gameNightRules' && LIVE.gnRewardsRules
+    ? t.meta.descriptions.gameNightRulesRewards
     : page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
   const indexed = !(page && UNLISTED.has(page))
   // The address search engines know it by: www.spysocial.app (the bare spysocial.app redirects there, vercel.json),

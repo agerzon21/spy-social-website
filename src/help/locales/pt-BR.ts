@@ -48,7 +48,7 @@ const ptBR: HelpText = {
           a: [
             '<b>Com amigos:</b> toque em <b>Sala privada</b> e depois em <b>Criar sala</b>, e compartilhe o código da sala, o QR code ou o link de convite. Precisa de pelo menos 3 jogadores.',
             '<b>Com qualquer pessoa:</b> toque em <b>Jogar online</b> e depois em <b>Buscar partida</b>.',
-            "<b>É novo?</b> <b>Como jogar</b>, no início, tem um tutorial de 3 minutos para cada jogo e depois partidas de treino contra agentes de IA. O glossário também fica lá.",
+            o.practiceMembers ? "<b>É novo?</b> <b>Como jogar</b>, no início, tem um tutorial grátis de 3 minutos para cada jogo e depois, para membros, partidas de treino contra agentes de IA. O glossário também fica lá." : "<b>É novo?</b> <b>Como jogar</b>, no início, tem um tutorial de 3 minutos para cada jogo e depois partidas de treino contra agentes de IA. O glossário também fica lá.",
           ],
         },
       ],
@@ -161,8 +161,8 @@ const ptBR: HelpText = {
             'Os <b>locais</b> ganham eliminando todos os espiões, ou quando o último espião erra o palpite.',
             'Os <b>espiões</b> ganham acertando o palpite, quando o tempo da partida acaba, ou quando uma votação deixa tantos espiões quanto locais.',
             'Sair conta como ser eliminado na votação: se o último espião sair, os locais vencem; se locais demais saírem, os espiões vencem. Se isso acontecer antes de as perguntas terminarem (no Spy Sketch, na primeira rodada), a partida mostra “Sem resultado” e não conta.',
-            '<b>Votação final:</b> se o tempo acabar com exatamente um espião no jogo, todos votam mais uma vez. Peguem o espião e os locais ganham. Ela vale no Jogar online e é um ajuste nas salas privadas.',
-            'O resultado de uma votação final abre sob uma fita vermelha de <b>Votação final</b> que diz o motivo: “O relógio falou”, “Ninguém tem mais votações” ou “Ninguém pediu uma votação a tempo”.',
+            "<b>Votação final:</b> com exatamente um espião no jogo, todos votam mais uma vez quando o tempo acaba, quando ninguém tem mais votações ou quando a última chance de pedir uma acaba. Peguem o espião e os locais ganham. Ela vale no Jogar online e é um ajuste nas salas privadas. Uma mesa do Jogar online ou uma Noite de Jogos também pode jogá-la com dois espiões: peguem qualquer um deles e os locais ganham.",
+            "O resultado de uma votação final abre sob uma fita vermelha de <b>Votação final</b> que diz o motivo: “O relógio falou”, “Ninguém tem mais votações” ou “A última chance acabou”.",
             "<b>Informante</b> (salas privadas e Noites de Jogos que o ligam, com 2 espiões ou mais e 6 jogadores ou mais): a carta de um local aponta um espião. Quando os locais ganham por votação ou pelo palpite errado do último espião, os espiões, inclusive os pegos, têm 30 segundos para apontar o informante e roubar a vitória. Não vale depois de um erro com <b>Um só palpite</b>, nem quando o último espião sai.",
           ],
         },
@@ -171,7 +171,7 @@ const ptBR: HelpText = {
           q: "Que regras especiais uma sala privada ou uma Noite de Jogos pode usar?",
           a: [
             "<b>Votações por partida:</b> cada jogador pode pedir 1, 2 ou 3 votações por partida, ou sem limite (sala nova começa com 1). Quando uma votação pega um espião, todo mundo que usou uma recebe uma de volta.",
-            "Quando ninguém que ainda está no jogo tem votação sobrando, o relógio da partida pula para os últimos 5 segundos. Quando sobram tantas votações quanto espiões no jogo, ou menos, há uma última chance de 15 segundos para pedir uma.",
+            "Quando ninguém que ainda está no jogo tem votação sobrando, o relógio da partida pula para os últimos 5 segundos. Quando sobram tantas votações quanto espiões no jogo, ou menos, há uma última chance de 15 segundos para pedir uma. Se ninguém pedir uma a tempo, vem a votação final, se ela estiver ativa (veja como cada lado ganha, acima); se não, os espiões ganham.",
             "<b>Rastro de papel:</b> quando um espião sai por votação, todos veem como ele votou a partida inteira. Se os papéis não forem revelados na saída, o rastro espera o fim de jogo.",
             "<b>Um só palpite</b> e <b>Informante</b>: veja acima, no palpite do espião e em como cada lado ganha.",
             "<b>Falar em voz alta</b> tem sua própria resposta acima. No app, <b>Como jogar</b> › <b>Recursos e configurações</b> tem uma demo curta de cada regra.",
@@ -233,7 +233,7 @@ const ptBR: HelpText = {
               q: 'O que eu ganho na Noite de Jogos?',
               a: [
                 '<b>Intel da Noite de Jogos</b> por cada partida que você termina: 500 por vitória, 200 por derrota ou empate. O fim de jogo mostra quanto você ganhou.',
-                'Não há Intel da Noite de Jogos se você sair antes do fim ou não participar, se a partida começar depois do encerramento da Noite de Jogos, ou numa mesa com spybots. Uma partida que acaba antes porque alguém saiu não dá nada a ninguém.',
+                "Não há Intel da Noite de Jogos se você sair antes do fim, for removido da mesa ou não participar, se a partida começar depois do encerramento da Noite de Jogos (uma partida que começa a tempo e termina depois ainda paga), se nossas checagens de jogo limpo marcarem a partida, ou numa mesa com spybots. Uma partida que acaba antes porque alguém saiu não dá nada a ninguém.",
                 '<b>Títulos ★</b> que vão somando: <b>★ Operativo</b> por cada partida da Noite de Jogos que você termina, <b>★ Herói Local</b> por cada vitória como local, <b>★ Espião Exímio</b> por cada vitória como espião e <b>★ Agente Duplo</b> por cada noite em que você ganha dos dois lados. Use o título com a contagem, como ★ Operativo ×12.',
                 'O Intel da Noite de Jogos e os títulos ★ são só seus: não podem ser trocados, e o plano de membro não acrescenta nada a eles. Gaste o Intel em interceptações da Noite de Jogos.',
                 ...(o.launch
@@ -248,9 +248,9 @@ const ptBR: HelpText = {
           q: "O que são o tutorial e as partidas de treino?",
           a: [
             "Em <b>Como jogar</b>, escolha Spy Talk ou Spy Sketch. <b>Passo 1, Tutorial:</b> uma partida guiada de 3 minutos contra agentes de IA. Jogue como local ou como espião: concluir qualquer um dos dois vale.",
-            "<b>Passo 2, Partidas de treino:</b> partidas completas de 5 a 9 minutos contra agentes de IA, com nota de A a F. Elas são liberadas quando você conclui o tutorial daquele jogo, e dá para continuar de onde parou.",
+            o.practiceMembers ? "<b>Passo 2, Partidas de treino</b> (para membros): partidas completas de 5 a 9 minutos contra agentes de IA, com nota de A a F. Elas são liberadas quando você conclui o tutorial daquele jogo, e dá para continuar de onde parou." : "<b>Passo 2, Partidas de treino:</b> partidas completas de 5 a 9 minutos contra agentes de IA, com nota de A a F. Elas são liberadas quando você conclui o tutorial daquele jogo, e dá para continuar de onde parou.",
             "Cada jogo tem quatro: como local ou como espião, numa mesa de 4 ou de 8. Tirar A nas oito dá o título <b>Nota dez</b> (só contas salvas).",
-            "Hoje você não precisa de nenhum dos dois para jogar online. A Noite de Jogos nunca pede.",
+            o.launch ? "Concluir o tutorial de um jogo libera o Jogar online para esse jogo (com uma conta salva). As partidas de treino não são necessárias. A Noite de Jogos nunca pede." : "Hoje você não precisa de nenhum dos dois para jogar online. A Noite de Jogos nunca pede.",
           ],
         },
         ...(o.practiceMembers
@@ -419,7 +419,7 @@ const ptBR: HelpText = {
             'O que você coloca numa troca aberta fica reservado para ela: não pode ir para outra troca nem para o Mercado Negro ao mesmo tempo. Se a Intel de uma troca for gasta antes de a troca acontecer, aparece um aviso naquele lado, e a troca não pode acontecer até a quantia ser reduzida.',
             'O app marca quais itens dá para trocar. O plano de membro e o que ele inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.' + (o.launch ? " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você, incluindo uma Escolha do desenvolvedor: fica na sua conta. A Intel nunca fica presa a uma conta, venha de onde vier." : ''),
             'Intel só pode ser trocada entre adultos.',
-            ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, testadores adultos também trocam Intel. Em 7 de dezembro, toda a Intel trocada volta: quem deu recebe de volta, e cada um fica só com a Intel que ganhou.', 'A partir de 7 de dezembro, interceptações de um código ou presente, o que sair delas e o que você conseguir com elas na Troca ficam na sua conta: dá para usar, mas não para trocar nem vender.']),
+            ...(o.launch ? [] : ["Durante o teste beta, até 7 de dezembro, testadores adultos também trocam Intel." + (o.intelZero ? " Logo antes do lançamento, a Intel de toda conta vai a 0, inclusive a ganha no teste." : " Em 7 de dezembro, toda a Intel trocada volta: quem deu recebe de volta, e cada um fica só com a Intel que ganhou."), "A partir de 7 de dezembro, interceptações de um código ou presente, o que sair delas e o que você conseguir com elas na Troca ficam na sua conta: dá para usar, mas não para trocar nem vender."]),
             'Comprar ou vender itens, Intel ou contas por dinheiro de verdade é contra as regras.',
           ],
         },
@@ -570,7 +570,7 @@ const ptBR: HelpText = {
           a: [
             '<b>Vitórias:</b> a cada 10 vitórias no Jogar online, você ganha 5 interceptações, uma delas de nível Secreto ou melhor.',
             "<b>Diária:</b> sua primeira partida do dia no Jogar online dá uma. A cada 7 dias seguidos vem mais uma Secreto ou melhor, e a cada 30 dias, uma Enigma.",
-            "<b>Noite de Jogos:</b> ganhe uma partida lá, como local ou espião, e você recebe uma Enigma, uma por noite.",
+            ...(o.gnRewards ? ["<b>Noite de Jogos:</b> suas partidas lá dão Intel da Noite de Jogos, que você usa para pegar interceptações da Noite de Jogos (abaixo)."] : ["<b>Noite de Jogos:</b> ganhe uma partida lá, como local ou espião, e você recebe uma Enigma, uma por noite."]),
             `<b>Códigos e presentes:</b> um código de um criador ou nosso vale uma vez por conta, e as interceptações dele são liberadas depois da sua primeira partida contada no Jogar online. Também damos algumas de presente.${o.launch ? " Interceptações de código ou de presente, o que sai delas e o que você consegue com elas na Troca são só seus: não podem ser trocados, vendidos nem dados, não importa quantas partidas você jogue. Você ainda pode abri-las, usar o que sair, fazer Trocas e triturar repetidos. Triturar um repetido dá Intel comum." : ''}`,
             'Salas privadas não dão interceptações.',
             ...(o.launch
@@ -642,8 +642,8 @@ const ptBR: HelpText = {
                   ? 'Elas foram adicionadas no lançamento da 2.2 e são suas. Todos da lista de testadores ganharam o <b>Pin beta</b> e o título <b>Beta tester</b>. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
                   : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
                 o.launch
-                  ? 'Quem terminou pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas) também ganhou o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês como membro.'
-                  : 'Termine pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas) e você também ganha o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês como membro.',
+                  ? "Quem terminou pelo menos uma partida com outros jogadores antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas; partidas de treino não contam) também ganhou o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês como membro."
+                  : "Termine pelo menos uma partida com outros jogadores antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas; partidas de treino não contam) e você também ganha o título <b>Teste de campo</b>, 10 interceptações de cada nível e 1 mês como membro.",
                 o.testerInterceptsTradable
                   ? 'O <b>Pin beta</b>, o título <b>Teste de campo</b> e as interceptações de agradecimento podem ser trocados como tudo o que você ganha.'
                   : 'O <b>Pin beta</b> e o título <b>Teste de campo</b> podem ser trocados como tudo o que você ganha; como outros presentes, as interceptações de agradecimento ficam na sua conta.',
@@ -667,7 +667,9 @@ const ptBR: HelpText = {
               q: "O app diz que tudo será zerado antes do lançamento. O que isso significa?",
               a: [
                 "O SpySocial ainda está em teste. Antes do lançamento em 8 de dezembro, itens, interceptações, Intel, negociações do Mercado Negro e trocas serão zerados, e todo mundo começa do zero.",
-                "Sua conta, seus amigos e seus pacotes continuam, assim como seu XP, seu nível e suas conquistas.",
+                "Sua conta, seus amigos e seus pacotes continuam, assim como seu XP, seu nível, suas conquistas, suas estatísticas, suas notas nas partidas de treino, os títulos de códigos e tudo o que você comprou na App Store ou no Google Play.",
+                ...(o.gnRewards ? ["Seus títulos ★ da Noite de Jogos continuam, e você recebe de volta toda a Intel da Noite de Jogos que ganhou, mesmo se gastou."] : []),
+                "Os planos de membro dados para o teste terminam no lançamento." + (o.intelZero ? " Sua sequência recomeça do dia 0." : ''),
                 "Quem testou vai ganhar uma recompensa especial pela ajuda.",
                 "O aviso aparece no Cofre, no Mercado Negro e nas telas de trocas. Toque nele para ler mais, ou no X para escondê-lo naquele celular.",
               ],

@@ -76,7 +76,7 @@ const en: HelpText = {
           a: [
             '<b>With friends:</b> tap <b>Private Room</b>, then <b>Create Room</b>, and share the room code, the QR code or the invite link. You need at least 3 players.',
             '<b>With anyone:</b> tap <b>Play Online</b>, then <b>Find a Game</b>.',
-            "<b>New to it?</b> <b>How to Play</b> on Home has a 3-minute tutorial for each game, then Practice Games against AI agents. The glossary is there too.",
+            o.practiceMembers ? "<b>New to it?</b> <b>How to Play</b> on Home has a free 3-minute tutorial for each game, then, for members, Practice Games against AI agents. The glossary is there too." : "<b>New to it?</b> <b>How to Play</b> on Home has a 3-minute tutorial for each game, then Practice Games against AI agents. The glossary is there too.",
           ],
         },
       ],
@@ -189,8 +189,8 @@ const en: HelpText = {
             '<b>Locals</b> win by voting out every spy, or when the last spy guesses wrong.',
             '<b>Spies</b> win with a right guess, when the game timer runs out, or when a vote leaves as many spies as Locals.',
             'A leave counts like a vote-out: if the last spy leaves, the Locals win; if too many Locals leave, the Spies win. Before the questions end (in Spy Sketch, in the first round), that game shows No Result and doesn’t count.',
-            '<b>Final vote:</b> if time runs out with exactly one spy left, everyone votes once more. Catch the spy and the Locals win. It’s on at Play Online tables and a setting in private rooms.',
-            'A final vote’s results open under a red <b>Final Vote</b> tape that says why: “The clock has spoken”, “No vote calls left” or “Nobody called a vote in time”.',
+            "<b>Final vote:</b> with exactly one spy left, everyone votes once more when time runs out, when nobody has a vote call left, or when the last chance to call one runs out. Catch the spy and the Locals win. It’s on at Play Online tables and a setting in private rooms. A Play Online table or a Game Night can also play it with two spies left: catch either one and the Locals win.",
+            "A final vote’s results open under a red <b>Final Vote</b> tape that says why: “The clock has spoken”, “No vote calls left” or “The last chance ran out”.",
             "<b>Informant</b> (private rooms and Game Nights that turn it on, with 2 or more spies and 6 or more players): one Local’s card names one spy. When the Locals win by a vote or by the last spy’s wrong guess, the spies, caught ones too, get 30 seconds to name the Informant and steal the win. Not after a missed One Shot, or when the last spy leaves.",
           ],
         },
@@ -199,7 +199,7 @@ const en: HelpText = {
           q: "What special rules can a private room or Game Night use?",
           a: [
             "<b>Votes per Game:</b> each player can call 1, 2 or 3 votes a game, or Unlimited (a new room starts at 1). When a vote catches a spy, everyone who used a call gets one back.",
-            "When nobody still in has a call left, the game clock jumps to its last 5 seconds. When the calls left are no more than the spies still in, there’s a 15-second last chance to call one.",
+            "When nobody still in has a call left, the game clock jumps to its last 5 seconds. When the calls left are no more than the spies still in, there’s a 15-second last chance to call one. If nobody calls one in time, a final vote follows if it’s on (see how each side wins, above); otherwise the spies win.",
             "<b>Paper Trail:</b> when a spy is voted out, everyone sees how that spy voted all game. If roles aren’t revealed on a vote-out, it waits for Game Over.",
             "<b>One Shot</b> and <b>Informant</b>: see the spy’s guess and how each side wins, above.",
             "<b>Talk Out Loud</b> has its own answer above. In the app, <b>How to Play</b> › <b>Features & Settings</b> has a short demo of each rule.",
@@ -261,7 +261,7 @@ const en: HelpText = {
               q: 'What do I earn at Game Night?',
               a: [
                 '<b>Game Night Intel</b> for every game you finish: 500 for a win, 200 for a loss or a tie. Game Over shows what you got.',
-                'No Game Night Intel if you leave before the end or don’t take part, if the game starts after Game Night closes, or at a table with spybots. A game that ends early because someone walked out pays no one.',
+                "No Game Night Intel if you leave before the end, are removed or don’t take part, if the game starts after Game Night closes (a game that starts in time and ends later still pays), if our fair-play checks flag the game, or at a table with spybots. A game that ends early because someone walked out pays no one.",
                 '<b>★ titles</b> that count up: <b>★ Operative</b> for each Game Night game you finish, <b>★ Local Hero</b> for each win as a Local, <b>★ Master Spy</b> for each win as a spy, and <b>★ Double Agent</b> for each night you win on both sides. Wear one with its count, like ★ Operative ×12.',
                 'Game Night Intel and the ★ titles are yours alone: they can’t be traded, and a membership adds nothing to them. Spend the Intel on Game Night Intercepts.',
                 ...(o.launch
@@ -276,9 +276,9 @@ const en: HelpText = {
           q: "What are the Tutorial and the Practice Games?",
           a: [
             "In <b>How to Play</b>, pick Spy Talk or Spy Sketch. <b>Step 1, Tutorial:</b> a guided 3-minute game with AI agents. Play it as a Local or as the Spy: passing either one counts.",
-            "<b>Step 2, Practice Games:</b> full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off.",
+            o.practiceMembers ? "<b>Step 2, Practice Games</b> (for members): full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off." : "<b>Step 2, Practice Games:</b> full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off.",
             "Each game has four: as a Local or as the Spy, at a table of 4 or of 8. An A in all eight earns the <b>Straight A’s</b> title (saved accounts only).",
-            "You don’t need either one to play online today. Game Night never asks.",
+            o.launch ? "Passing a game’s tutorial opens Play Online for that game (with a saved account). The Practice Games aren’t needed. Game Night never asks." : "You don’t need either one to play online today. Game Night never asks.",
           ],
         },
         ...(o.practiceMembers
@@ -447,7 +447,7 @@ const en: HelpText = {
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
             'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel is never tied to an account, whatever it came from." : ''),
             'Intel can be traded only between adults.',
-            ...(o.launch ? [] : ['During the beta test, until December 7, adult testers trade Intel too. On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned.', 'From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them.']),
+            ...(o.launch ? [] : ["During the beta test, until December 7, adult testers trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them."]),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
           ],
         },
@@ -598,7 +598,7 @@ const en: HelpText = {
           a: [
             '<b>Wins:</b> every 10 Play Online wins give you 5 Intercepts, one of them Secret or better.',
             "<b>Daily:</b> your first Play Online game of the day gives you one. Every 7th day in a row adds one Secret or better, and every 30th day an Enigma.",
-            "<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night.",
+            ...(o.gnRewards ? ["<b>Game Night:</b> your games there earn Game Night Intel, which gets you Game Night Intercepts (below)."] : ["<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night."]),
             `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding a spare gives ordinary Intel." : ''}`,
             'Private rooms don’t give Intercepts.',
             ...(o.launch
@@ -670,8 +670,8 @@ const en: HelpText = {
                   ? 'They were added at the 2.2 launch and are yours to keep. Everyone on the tester list got the <b>Beta Pin</b> and the <b>Beta Tester</b> title. A thank-you card shows when you first open the app after launch.'
                   : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep. Everyone on the tester list gets the <b>Beta Pin</b> and the <b>Beta Tester</b> title.',
                 o.launch
-                  ? 'Testers who finished at least one game before December 7 (played to the end, in any room, so it shows in their Stats) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.'
-                  : 'Finish at least one game before December 7 (played to the end, in any room, so it shows in your Stats) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.',
+                  ? "Testers who finished at least one game with other players before December 7 (played to the end, in any room, so it shows in their Stats; Practice Games don’t count) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership."
+                  : "Finish at least one game with other players before December 7 (played to the end, in any room, so it shows in your Stats; Practice Games don’t count) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.",
                 o.testerInterceptsTradable
                   ? 'The <b>Beta Pin</b>, the <b>Field Tester</b> title and the thank-you Intercepts trade like anything you earn.'
                   : 'The <b>Beta Pin</b> and the <b>Field Tester</b> title trade like anything you earn; like other gifts, the thank-you Intercepts stay with your account.',
@@ -695,7 +695,9 @@ const en: HelpText = {
               q: "The app says everything resets before launch. What does that mean?",
               a: [
                 "SpySocial is still being tested. Before launch on December 8, items, Intercepts, Intel, Black Market deals and trades are reset, and everyone starts from scratch.",
-                "Your account, friends and packs stay, and so do your XP, level and achievements.",
+                "Your account, friends and packs stay, and so do your XP, level, achievements, stats, Practice Game grades, titles from codes and anything bought in a store.",
+                ...(o.gnRewards ? ["Your ★ Game Night titles stay, and you get back all the Game Night Intel you earned, even if you spent it."] : []),
+                "Memberships given for the test end at launch." + (o.intelZero ? " Your daily streak starts again from day 0." : ''),
                 "Testers get a special reward for helping.",
                 "The note shows in the Vault, the Black Market and the trading screens. Tap it to read more, or tap X to hide it on that phone.",
               ],

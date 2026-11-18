@@ -94,7 +94,7 @@ function launchRelease(strings: Strings, locale: string): Release {
         icon: FaRocket,
         items: [
           ...strings.launch.cards,
-          n.items[N.practice],
+          LIVE.practiceMembers ? n.practiceMembers : n.items[N.practice], // practice-members-1117 (row 95): tutorial free, Practice Games for members
           n.items[N.clues],
           n.items[N.rules],
           n.items[N.friends],

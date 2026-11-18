@@ -153,9 +153,24 @@ export const LIVE = {
    * four ★ counter titles; untradeable; the pre-launch reset line), #game-night-intercepts (Tier 1 / 2 / 3 at 400 / 800 /
    * 10,000, the After Hours set) and #game-night's PRIZES line. Help text only, no Last Updated date. Flip once row 83 is
    * applied live AND 62.15 is on phones: node scripts/flip-switch.mjs helpGameNightRewards. Off again if row 83 is rolled back.
-   * Open owner word (FINAL-SPEC 9.1): the Enigma per Game Night win; #earn-intercepts still says it, change it if it ends.
+   * The Enigma per Game Night win ends with row 83 (FINAL-SPEC 9.1 default; coordinator Nov 17: no winner Intercept prize):
+   * with this on, #earn-intercepts' Game Night line points at Game Night Intel instead (howto-truth-1117).
    */
   helpGameNightRewards: false,
+  /**
+   * howto-truth-1117: the Game Night Rules page (/game-night-rules, pages/GameNightRules) for the Game Night rewards that
+   * replace the per-night titles (app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83): Game Night Intel
+   * (500 a win, 200 any other finished game; 0 for a leave, removal, idle, a game started after the night closed, a
+   * flagged game, a spybot table or a walk-out ending), the four untradeable ★ counter titles, the three Game Night
+   * Intercepts (400 / 800 / 10,000, the After Hours set), no developer's bonus title and no winner's Enigma; and the
+   * page's search description (src/i18n meta.descriptions.gameNightRulesRewards). Off: the per-night titles' rules, true
+   * until row 83 runs. The rules state what the server does, so flip it the day row 83 is applied live (not waiting for
+   * 62.15, unlike helpGameNightRewards), with GN_REWARDS_RULES_DAY set to that day:
+   * node scripts/flip-switch.mjs gnRewardsRules --day "<day>". Off again if row 83 is rolled back. No Terms text reads it
+   * (Terms 5 / 9 still name the night's titles and the winners' Enigma: report, legal-owned). A server switch: set in
+   * LIVE, never in PRIVACY_AHEAD.
+   */
+  gnRewardsRules: false,
   /**
    * help-new-1117: Help's Monthly <-> Yearly upgrades in the app ("Upgrade to Elite" / "Upgrade to Spymaster", "Switch to
    * Monthly") and the two-memberships warning (app server 20261231999846_membership_switch_1117, NEXT-BATCH row 85; client
@@ -2181,6 +2196,8 @@ export const HEAVY_READS_DAY = 'November 17, 2026'
 export const COMMUNITY_SEARCH_DAY = 'November 17, 2026'
 /** intel-zero-1117: LIVE.intelZero1117's day in LEGAL_LAST_UPDATED (the publish day; set by flip-switch --day). Before December 7, 2026. */
 export const INTEL_ZERO_1117_DAY = 'November 30, 2026'
+/** howto-truth-1117: LIVE.gnRewardsRules's day, the Game Night Rules' Last Updated (row 83's apply day; set by flip-switch --day). Never earlier than November 20, 2026. */
+export const GN_REWARDS_RULES_DAY = 'November 20, 2026'
 
 /** no-pack-pass-1117: LIVE.noPackPass1117's day (the publish day; set by flip-switch --day). Never earlier than November 17, 2026. */
 export const NO_PACK_PASS_1117_DAY = 'November 17, 2026'

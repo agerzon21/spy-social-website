@@ -48,7 +48,7 @@ const id: HelpText = {
           a: [
             '<b>Dengan teman:</b> ketuk <b>Room privat</b>, lalu <b>Buat room</b>, dan bagikan kode room, kode QR, atau link undangan. Butuh minimal 3 pemain.',
             '<b>Dengan siapa saja:</b> ketuk <b>Main online</b>, lalu <b>Cari permainan</b>.',
-            "<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda punya tutorial 3 menit untuk tiap game, lalu permainan latihan melawan agen AI. Glosariumnya juga ada di sana.",
+            o.practiceMembers ? "<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda punya tutorial gratis 3 menit untuk tiap game, lalu permainan latihan melawan agen AI untuk anggota. Glosariumnya juga ada di sana." : "<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda punya tutorial 3 menit untuk tiap game, lalu permainan latihan melawan agen AI. Glosariumnya juga ada di sana.",
           ],
         },
       ],
@@ -161,8 +161,8 @@ const id: HelpText = {
             '<b>Warga</b> menang dengan menggugurkan semua mata-mata lewat voting, atau saat mata-mata terakhir salah menebak.',
             '<b>Mata-mata</b> menang dengan tebakan benar, saat waktu permainan habis, atau saat voting menyisakan mata-mata sebanyak warga.',
             'Keluar dihitung seperti tersingkir lewat voting: jika mata-mata terakhir keluar, warga menang; jika terlalu banyak warga keluar, mata-mata menang. Jika itu terjadi sebelum pertanyaan selesai (di Spy Sketch, pada ronde pertama), permainan menampilkan “Tidak ada hasil” dan tidak dihitung.',
-            '<b>Voting terakhir:</b> kalau waktu habis dan tersisa tepat satu mata-mata, semua memilih sekali lagi. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat.',
-            'Hasil voting terakhir terbuka di bawah pita merah <b>Voting terakhir</b> beserta alasannya: “Waktu sudah bicara”, “Jatah voting sudah habis”, atau “Tidak ada yang memulai voting tepat waktu”.',
+            "<b>Voting terakhir:</b> kalau tersisa tepat satu mata-mata, semua memilih sekali lagi saat waktu habis, saat tak ada lagi yang punya jatah voting, atau saat kesempatan terakhir untuk memulai voting sudah lewat. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat. Meja Main online atau Malam Permainan juga bisa memainkannya saat tersisa dua mata-mata: tangkap salah satunya, warga menang.",
+            "Hasil voting terakhir terbuka di bawah pita merah <b>Voting terakhir</b> beserta alasannya: “Waktu sudah bicara”, “Jatah voting sudah habis”, atau “Kesempatan terakhir sudah lewat”.",
             "<b>Informan</b> (room privat dan Malam Permainan yang mengaktifkannya, dengan minimal 2 mata-mata dan 6 pemain): kartu satu warga menyebut satu mata-mata. Saat warga menang lewat voting atau tebakan salah mata-mata terakhir, para mata-mata, termasuk yang tertangkap, punya 30 detik untuk menyebut informannya dan mencuri kemenangan. Tidak berlaku setelah tebakan meleset dengan <b>Satu Kali Tebak</b>, atau saat mata-mata terakhir keluar.",
           ],
         },
@@ -171,7 +171,7 @@ const id: HelpText = {
           q: "Aturan khusus apa saja yang bisa dipakai room privat atau Malam Permainan?",
           a: [
             "<b>Jatah voting:</b> tiap pemain bisa memulai 1, 2, atau 3 voting per permainan, atau tanpa batas (room baru mulai di 1). Saat voting menangkap mata-mata, semua yang sudah memakai jatahnya mendapat satu kembali.",
-            "Kalau tak ada pemain tersisa yang masih punya jatah, jam permainan melompat ke 5 detik terakhir. Kalau sisa jatah tidak lebih banyak dari mata-mata yang tersisa, ada kesempatan terakhir 15 detik untuk memulai voting.",
+            "Kalau tak ada pemain tersisa yang masih punya jatah, jam permainan melompat ke 5 detik terakhir. Kalau sisa jatah tidak lebih banyak dari mata-mata yang tersisa, ada kesempatan terakhir 15 detik untuk memulai voting. Kalau tak ada yang memulai voting tepat waktu, voting terakhir menyusul jika aktif (lihat cara tiap pihak menang, di atas); kalau tidak, mata-mata menang.",
             "<b>Jejak Kertas:</b> saat mata-mata tersingkir lewat voting, semua melihat pilihan voting-nya sepanjang permainan. Kalau peran tidak dibuka saat tersingkir, jejaknya menunggu sampai permainan selesai.",
             "<b>Satu Kali Tebak</b> dan <b>Informan</b>: lihat di atas, di tebakan mata-mata dan cara tiap pihak menang.",
             "<b>Tanya jawab lisan</b> punya jawabannya sendiri di atas. Di aplikasi, <b>Cara bermain</b> › <b>Fitur & Pengaturan</b> punya demo singkat untuk tiap aturan.",
@@ -233,7 +233,7 @@ const id: HelpText = {
               q: 'Apa yang kudapat di Malam Permainan?',
               a: [
                 '<b>Intel Malam Permainan</b> untuk setiap permainan yang kamu selesaikan: 500 untuk menang, 200 untuk kalah atau seri. Layar akhir menampilkan yang kamu dapat.',
-                'Tidak ada Intel Malam Permainan kalau kamu keluar sebelum selesai atau tidak ikut bermain, kalau permainan dimulai setelah Malam Permainan ditutup, atau di meja dengan spybot. Permainan yang berakhir lebih awal karena ada yang kabur tidak memberi apa-apa ke siapa pun.',
+                "Tidak ada Intel Malam Permainan kalau kamu keluar sebelum selesai, dikeluarkan dari meja, atau tidak ikut bermain, kalau permainan dimulai setelah Malam Permainan ditutup (permainan yang dimulai tepat waktu dan selesai setelahnya tetap dibayar), kalau pemeriksaan permainan adil kami menandai permainan itu, atau di meja dengan spybot. Permainan yang berakhir lebih awal karena ada yang kabur tidak memberi apa-apa ke siapa pun.",
                 '<b>Gelar ★</b> yang terus bertambah: <b>★ Operatif</b> untuk setiap permainan Malam Permainan yang kamu selesaikan, <b>★ Pahlawan Lokal</b> untuk setiap kemenangan sebagai warga, <b>★ Mata-Mata Ulung</b> untuk setiap kemenangan sebagai mata-mata, dan <b>★ Agen Ganda</b> untuk setiap malam kamu menang di kedua pihak. Pakai gelarnya dengan angkanya, misalnya ★ Operatif ×12.',
                 'Intel Malam Permainan dan gelar ★ hanya milikmu: tidak bisa ditukar, dan keanggotaan tidak menambahkan apa pun. Pakai Intel-nya untuk sadapan Malam Permainan.',
                 ...(o.launch
@@ -248,9 +248,9 @@ const id: HelpText = {
           q: "Apa itu tutorial dan permainan latihan?",
           a: [
             "Di <b>Cara bermain</b>, pilih Spy Talk atau Spy Sketch. <b>Langkah 1, Tutorial:</b> permainan berpemandu 3 menit melawan agen AI. Mainkan sebagai warga atau mata-mata: lulus salah satunya sudah cukup.",
-            "<b>Langkah 2, Permainan latihan:</b> permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir.",
+            o.practiceMembers ? "<b>Langkah 2, Permainan latihan</b> (khusus anggota): permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir." : "<b>Langkah 2, Permainan latihan:</b> permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir.",
             "Tiap game punya empat: sebagai warga atau mata-mata, di meja 4 atau 8 pemain. Nilai A di kedelapannya memberimu gelar <b>Nilai Sempurna</b> (khusus akun tersimpan).",
-            "Saat ini kamu tidak perlu keduanya untuk main online. Malam Permainan tidak pernah memintanya.",
+            o.launch ? "Lulus tutorial sebuah game membuka Main online untuk game itu (dengan akun tersimpan). Permainan latihan tidak diperlukan. Malam Permainan tidak pernah memintanya." : "Saat ini kamu tidak perlu keduanya untuk main online. Malam Permainan tidak pernah memintanya.",
           ],
         },
         ...(o.practiceMembers
@@ -419,7 +419,7 @@ const id: HelpText = {
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
             'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : ''),
             'Intel hanya bisa ditukar antar orang dewasa.',
-            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel. Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri.', 'Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual.']),
+            ...(o.launch ? [] : ["Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel." + (o.intelZero ? " Tepat sebelum peluncuran, Intel setiap akun menjadi 0, termasuk Intel yang didapat selama uji coba." : " Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri."), "Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual."]),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
           ],
         },
@@ -570,7 +570,7 @@ const id: HelpText = {
           a: [
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
             "<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu. Tiap hari ke-7 berturut-turut menambah satu Rahasia atau lebih tinggi, dan tiap hari ke-30, satu Enigma.",
-            "<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam.",
+            ...(o.gnRewards ? ["<b>Malam Permainan:</b> permainanmu di sana memberi Intel Malam Permainan, yang bisa kamu pakai untuk mendapatkan sadapan Malam Permainan (di bawah)."] : ["<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam."]),
             `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
             'Room privat tidak memberi sadapan.',
             ...(o.launch
@@ -642,8 +642,8 @@ const id: HelpText = {
                   ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
                   : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>.',
                 o.launch
-                  ? 'Penguji yang menyelesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.'
-                  : 'Selesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+                  ? "Penguji yang menyelesaikan setidaknya satu game dengan pemain lain sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka; permainan latihan tidak dihitung) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan."
+                  : "Selesaikan setidaknya satu game dengan pemain lain sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu; permainan latihan tidak dihitung), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.",
                 o.testerInterceptsTradable
                   ? '<b>Pin Beta</b>, gelar <b>Penguji Lapangan</b>, dan sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.'
                   : '<b>Pin Beta</b> dan gelar <b>Penguji Lapangan</b> bisa ditukar seperti apa pun yang kamu dapatkan sendiri; seperti hadiah lain, sadapan terima kasih tetap di akunmu.',
@@ -667,7 +667,9 @@ const id: HelpText = {
               q: "Aplikasi bilang semuanya direset sebelum peluncuran. Apa artinya?",
               a: [
                 "SpySocial masih diuji. Sebelum peluncuran tanggal 8 Desember, item, sadapan, Intel, transaksi Pasar Gelap, dan pertukaran direset, dan semua mulai dari nol.",
-                "Akun, teman, dan paketmu tetap ada, begitu juga XP, level, dan pencapaianmu.",
+                "Akun, teman, dan paketmu tetap ada, begitu juga XP, level, pencapaian, statistik, nilai permainan latihan, gelar dari kode, dan semua yang kamu beli di App Store atau Google Play.",
+                ...(o.gnRewards ? ["Gelar ★ Malam Permainanmu tetap ada, dan semua Intel Malam Permainan yang kamu dapatkan kembali utuh, walau sudah dipakai."] : []),
+                "Keanggotaan yang diberikan untuk uji coba berakhir saat peluncuran." + (o.intelZero ? " Rentetan harianmu mulai lagi dari hari 0." : ''),
                 "Para penguji akan mendapat hadiah khusus karena sudah membantu.",
                 "Pemberitahuan ini muncul di Brankas, Pasar Gelap, dan layar pertukaran. Ketuk untuk membaca lebih lanjut, atau ketuk X untuk menyembunyikannya di ponsel itu.",
               ],

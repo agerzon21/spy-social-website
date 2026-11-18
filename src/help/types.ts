@@ -76,6 +76,11 @@ export interface HelpOpts {
   practiceMembers: boolean
   /** The Practice Games' AI rating is on (LIVE.practiceAi): #practice-members' AI line. */
   practiceAi: boolean
+  /**
+   * Every account's Intel to 0 right before launch, earned Intel included, and the streak back to day 0 (LIVE.intelZero1117,
+   * the owner's reset answer D1 = zero; howto-truth-1117): #who-can-trade's beta Intel line and #beta-reset's streak line.
+   */
+  intelZero: boolean
   /** Spy Talk's Question Rounds (LIVE.helpQuestionRounds): #question-rounds. */
   questionRounds: boolean
   /** Version 2.2 signs up and in with an emailed code, older versions with a password (LIVE.emailCodes22): #sign-up-email. */

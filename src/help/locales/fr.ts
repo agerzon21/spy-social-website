@@ -44,7 +44,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           '<b>Entre amis :</b> touche <b>Salon privé</b>, puis <b>Créer un salon</b>, et partage le code du salon, le QR code ou le lien d\'invitation. Il faut au moins 3 joueurs.',
           '<b>Avec n\'importe qui :</b> touche <b>Jouer en ligne</b>, puis <b>Trouver une partie</b>.',
-          "<b>Tu débutes ?</b> <b>Comment jouer</b>, sur l'accueil, propose un tutoriel de 3 minutes pour chaque jeu, puis des parties d'entraînement contre des agents IA. Le glossaire est là aussi.",
+          o.practiceMembers ? "<b>Tu débutes ?</b> <b>Comment jouer</b>, sur l'accueil, propose un tutoriel gratuit de 3 minutes pour chaque jeu, puis, pour les membres, des parties d'entraînement contre des agents IA. Le glossaire est là aussi." : "<b>Tu débutes ?</b> <b>Comment jouer</b>, sur l'accueil, propose un tutoriel de 3 minutes pour chaque jeu, puis des parties d'entraînement contre des agents IA. Le glossaire est là aussi.",
         ],
       },
     ],
@@ -157,8 +157,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les <b>locaux</b> gagnent en éliminant tous les espions par vote, ou si le dernier espion se trompe.",
           "Les <b>espions</b> gagnent avec une bonne réponse, quand le chrono de la partie arrive à zéro, ou quand un vote laisse autant d'espions que de locaux.",
           "Partir compte comme être éliminé par un vote : si le dernier espion part, les locaux gagnent ; si trop de locaux partent, les espions gagnent. Si cela arrive avant la fin des questions (dans Spy Sketch, au premier tour), la partie affiche « Pas de résultat » et ne compte pas.",
-          "<b>Vote final :</b> si le temps est écoulé et qu'il reste exactement un espion, tout le monde vote une dernière fois. Démasquez-le et les locaux gagnent. Il est actif dans Jouer en ligne, et c'est un réglage dans les salons privés.",
-          "Les résultats d'un vote final s'ouvrent sous un ruban rouge <b>Vote final</b> qui dit pourquoi : « Le chrono a parlé », « Plus aucun vote à lancer » ou « Personne n'a lancé de vote à temps ».",
+          "<b>Vote final :</b> s'il reste exactement un espion, tout le monde vote une dernière fois quand le temps est écoulé, quand plus personne n'a de vote à lancer ou quand la dernière chance d'en lancer un est passée. Si l'espion est démasqué, les locaux gagnent. Il est actif dans Jouer en ligne, et c'est un réglage dans les salons privés. Une table de Jouer en ligne ou une soirée jeux peut aussi le jouer avec deux espions : démasque l'un des deux et les locaux gagnent.",
+          "Les résultats d'un vote final s'ouvrent sous un ruban rouge <b>Vote final</b> qui dit pourquoi : « Le chrono a parlé », « Plus aucun vote à lancer » ou « La dernière chance est passée ».",
           "<b>Informateur</b> (salons privés et soirées jeux qui l'activent, avec au moins 2 espions et 6 joueurs) : la carte d'un local désigne un espion. Quand les locaux gagnent par un vote ou par la mauvaise réponse du dernier espion, les espions, même démasqués, ont 30 secondes pour désigner l'informateur et voler la victoire. Pas après un raté avec <b>Une seule tentative</b>, ni quand le dernier espion s'en va.",
         ],
       },
@@ -167,7 +167,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Quelles règles spéciales un salon privé ou une soirée jeux peut-il utiliser ?",
         a: [
           "<b>Votes par partie :</b> chaque joueur peut lancer 1, 2 ou 3 votes par partie, ou sans limite (un nouveau salon commence à 1). Quand un vote démasque un espion, chaque joueur qui en a lancé un le récupère.",
-          "Quand plus personne encore en jeu n'a de vote à lancer, le chrono de la partie saute à ses 5 dernières secondes. Quand il reste autant de votes que d'espions en jeu, ou moins, une dernière chance de 15 secondes permet d'en lancer un.",
+          "Quand plus personne encore en jeu n'a de vote à lancer, le chrono de la partie saute à ses 5 dernières secondes. Quand il reste autant de votes que d'espions en jeu, ou moins, une dernière chance de 15 secondes permet d'en lancer un. Si personne n'en lance un à temps, un vote final suit s'il est actif (vois comment chaque camp gagne, plus haut) ; sinon, les espions gagnent.",
           "<b>Trace écrite :</b> quand un espion est éliminé par un vote, tout le monde voit comment il a voté pendant toute la partie. Si les rôles ne sont pas révélés à l'élimination, elle attend la fin de la partie.",
           "<b>Une seule tentative</b> et <b>Informateur</b> : voir plus haut, la réponse de l'espion et comment chaque camp gagne.",
           "<b>Parler à voix haute</b> a sa propre réponse plus haut. Dans l'appli, <b>Comment jouer</b> › <b>Options et réglages</b> montre une courte démo de chaque règle.",
@@ -229,7 +229,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "Qu'est-ce que je gagne en soirée jeux ?",
             a: [
               "De l'<b>Intel de soirée jeux</b> pour chaque partie que tu termines : 500 pour une victoire, 200 pour une défaite ou une égalité. L'écran de fin montre ce que tu as gagné.",
-              "Pas d'Intel de soirée jeux si tu quittes avant la fin ou ne participes pas, si la partie commence après la fermeture de la soirée jeux, ou à une table avec des spybots. Une partie qui s'arrête tôt parce que quelqu'un est parti ne rapporte rien à personne.",
+              "Pas d'Intel de soirée jeux si tu quittes avant la fin, si tu es retiré de la table ou ne participes pas, si la partie commence après la fermeture de la soirée jeux (une partie lancée à temps et finie plus tard rapporte quand même), si nos contrôles de fair-play signalent la partie, ou à une table avec des spybots. Une partie qui s'arrête tôt parce que quelqu'un est parti ne rapporte rien à personne.",
               "Des <b>titres ★</b> à compteur : <b>★ Infiltré</b> pour chaque partie de soirée jeux terminée, <b>★ Héros local</b> pour chaque victoire en local, <b>★ Espion émérite</b> pour chaque victoire en espion, et <b>★ Agent double</b> pour chaque soirée où tu gagnes des deux côtés. Porte-les avec leur nombre, comme ★ Infiltré ×12.",
               "L'Intel de soirée jeux et les titres ★ sont à toi seul : ils ne s'échangent pas, et le statut de membre n'y ajoute rien. Dépense l'Intel en interceptions de soirée jeux.",
               ...(o.launch
@@ -244,9 +244,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "C'est quoi, le tutoriel et les parties d'entraînement ?",
         a: [
           "Dans <b>Comment jouer</b>, choisis Spy Talk ou Spy Sketch. <b>Étape 1, Tutoriel :</b> une partie guidée de 3 minutes contre des agents IA. Joue-la côté local ou côté espion : réussir l'un ou l'autre suffit.",
-          "<b>Étape 2, Parties d'entraînement :</b> des parties complètes de 5 à 9 minutes contre des agents IA, notées de A à F. Elles se débloquent quand tu réussis le tutoriel de ce jeu, et tu peux reprendre là où tu t'es arrêté.",
+          o.practiceMembers ? "<b>Étape 2, Parties d'entraînement</b> (pour les membres) : des parties complètes de 5 à 9 minutes contre des agents IA, notées de A à F. Elles se débloquent quand tu réussis le tutoriel de ce jeu, et tu peux reprendre là où tu t'es arrêté." : "<b>Étape 2, Parties d'entraînement :</b> des parties complètes de 5 à 9 minutes contre des agents IA, notées de A à F. Elles se débloquent quand tu réussis le tutoriel de ce jeu, et tu peux reprendre là où tu t'es arrêté.",
           "Chaque jeu en a quatre : côté local ou côté espion, à une table de 4 ou de 8. Un A dans les huit te vaut le titre <b>Sans-faute</b> (comptes sauvegardés seulement).",
-          "Aujourd'hui, aucun des deux n'est nécessaire pour jouer en ligne. La soirée jeux ne le demande jamais.",
+          o.launch ? "Réussir le tutoriel d'un jeu ouvre Jouer en ligne pour ce jeu (avec un compte sauvegardé). Les parties d'entraînement ne sont pas nécessaires. La soirée jeux ne le demande jamais." : "Aujourd'hui, aucun des deux n'est nécessaire pour jouer en ligne. La soirée jeux ne le demande jamais.",
         ],
       },
       ...(o.practiceMembers
@@ -415,7 +415,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Ce que tu mets dans un échange ouvert lui est réservé : ça ne peut pas aller dans un autre échange ou sur le Marché noir en même temps. Si l'Intel d'un échange est dépensé avant qu'il se fasse, un avertissement s'affiche de ce côté, et l'échange ne peut pas se faire tant que le montant n'est pas baissé.",
           "L'appli indique quels objets s'échangent. Le statut de membre et ce qu'il inclut, les récompenses de niveau et les objets des jeux d'arcade, jamais." + (o.launch ? " Ni ce qui vient d'un code, ni ce que nous ou notre équipe te donnons, Choix du développeur compris : ça reste sur ton compte. L'Intel n'est jamais lié à un compte, d'où qu'il vienne." : ''),
           "L'Intel ne s'échange qu'entre adultes.",
-          ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel. Le 7 décembre, tout l’Intel échangé est rendu : celui qui l’a donné le récupère, et chacun ne garde que l’Intel qu’il a gagné.', 'À partir du 7 décembre, les interceptions reçues par un code ou un cadeau, ce qu’elles contiennent et ce que tu obtiens avec elles par Échange restent sur ton compte : tu peux t’en servir, mais pas les échanger ni les vendre.']),
+          ...(o.launch ? [] : ["Pendant le test bêta, jusqu’au 7 décembre, les testeurs adultes échangent aussi de l’Intel." + (o.intelZero ? " Juste avant le lancement, l’Intel de chaque compte passe à 0, y compris celui gagné pendant le test." : " Le 7 décembre, tout l’Intel échangé est rendu : celui qui l’a donné le récupère, et chacun ne garde que l’Intel qu’il a gagné."), "À partir du 7 décembre, les interceptions reçues par un code ou un cadeau, ce qu’elles contiennent et ce que tu obtiens avec elles par Échange restent sur ton compte : tu peux t’en servir, mais pas les échanger ni les vendre."]),
           "Acheter ou vendre des objets, de l'Intel ou des comptes contre de l'argent réel est interdit.",
         ],
       },
@@ -566,7 +566,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           '<b>Victoires :</b> toutes les 10 victoires à Jouer en ligne, tu reçois 5 interceptions, dont une de niveau Secret ou mieux.',
           "<b>Chaque jour :</b> ta première partie du jour à Jouer en ligne t'en donne une. Chaque 7e jour d'affilée en ajoute une Secret ou mieux, et chaque 30e jour, une Enigma.",
-          "<b>Soirée jeux :</b> gagne une partie, en local ou en espion, et tu reçois une Enigma, une par soirée.",
+          ...(o.gnRewards ? ["<b>Soirée jeux :</b> tes parties y rapportent de l'Intel de soirée jeux, qui te permet d'obtenir des interceptions de soirée jeux (plus bas)."] : ["<b>Soirée jeux :</b> gagne une partie, en local ou en espion, et tu reçois une Enigma, une par soirée."]),
           `<b>Codes et cadeaux :</b> un code d'un créateur ou de nous marche une fois par compte, et ses interceptions se débloquent après ta première partie comptée à Jouer en ligne. Nous en offrons aussi.${o.launch ? " Les interceptions d'un code ou d'un cadeau, ce qu'elles contiennent et ce que tu en tires par Échange sont pour toi seul : ils ne s'échangent, ne se vendent et ne s'offrent pas, quel que soit ton nombre de parties. Tu peux toujours les ouvrir, porter ce qui en sort, les utiliser dans un Échange et déchiqueter les doublons. Déchiqueter un doublon donne de l'Intel ordinaire." : ''}`,
           'Les salons privés ne donnent pas d\'interceptions.',
           ...(o.launch
@@ -638,8 +638,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
                 ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi. Tous les testeurs de la liste ont reçu le <b>Pin bêta</b> et le titre <b>« Équipe bêta »</b>. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
                 : "Elles arrivent au lancement de la 2.2, le 8 décembre, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi. Tous les testeurs de la liste reçoivent le <b>Pin bêta</b> et le titre <b>« Équipe bêta »</b>.",
               o.launch
-                ? "Les testeurs qui ont terminé au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans leurs Stats) ont aussi reçu le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre."
-                : "Termine au moins une partie avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans tes Stats) et tu reçois aussi le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre.",
+                ? "Les testeurs qui ont terminé au moins une partie avec d'autres joueurs avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans leurs Stats ; les parties d'entraînement ne comptent pas) ont aussi reçu le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre."
+                : "Termine au moins une partie avec d'autres joueurs avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans tes Stats ; les parties d'entraînement ne comptent pas) et tu reçois aussi le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre.",
               o.testerInterceptsTradable
                 ? "Le <b>Pin bêta</b>, le titre <b>« Test de terrain »</b> et les interceptions de remerciement s'échangent comme tout ce que tu gagnes."
                 : "Le <b>Pin bêta</b> et le titre <b>« Test de terrain »</b> s'échangent comme tout ce que tu gagnes ; comme les autres cadeaux, les interceptions de remerciement restent sur ton compte.",
@@ -663,7 +663,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "L'appli dit que tout sera réinitialisé avant le lancement. Ça veut dire quoi ?",
             a: [
               "SpySocial est encore en test. Avant le lancement du 8 décembre, les objets, les interceptions, l'Intel, les transactions du Marché noir et les échanges seront réinitialisés, et tout le monde repartira de zéro.",
-              "Ton compte, tes amis et tes packs restent, tout comme ton XP, ton niveau et tes succès.",
+              "Ton compte, tes amis et tes packs restent, tout comme ton XP, ton niveau, tes succès, tes stats, tes notes des parties d'entraînement, les titres obtenus par code et tout ce que tu as acheté sur l'App Store ou Google Play.",
+              ...(o.gnRewards ? ["Tes titres ★ de soirée jeux restent, et tu récupères tout l'Intel de soirée jeux que tu as gagné, même si tu l'as dépensé."] : []),
+              "Les statuts de membre offerts pour le test prennent fin au lancement." + (o.intelZero ? " Ta série repart du jour 0." : ''),
               "Les testeurs recevront une récompense spéciale pour leur aide.",
               "Le message s'affiche dans le Coffre, le Marché noir et les écrans d'échanges. Touche-le pour en savoir plus, ou touche X pour le masquer sur ce téléphone.",
             ],

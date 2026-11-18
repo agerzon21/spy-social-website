@@ -37,6 +37,8 @@ const SWITCHES = {
   // help-new-1117: Help only, no date. Each once its server row is applied AND app update 62.15 is on phones
   // (helpGooglePassStop: the hour app_config google_pass_cancel goes on).
   helpGameNightRewards: { live: [['helpGameNightRewards', true]], day: null, step: 'row 83 (999848) + 62.15' },
+  // howto-truth-1117: the Game Night Rules for the rewards, the day row 83 is applied live (before 62.15 is fine).
+  gnRewardsRules: { live: [['gnRewardsRules', true]], day: 'GN_REWARDS_RULES_DAY', step: 'row 83 (999848)' },
   helpMembershipSwitch: { live: [['helpMembershipSwitch', true]], day: null, step: 'row 85 (999846) + 62.15' },
   helpGooglePassStop: { live: [['helpGooglePassStop', true]], day: null, step: 'google_pass_cancel on' },
   helpQuestionRounds: { live: [['helpQuestionRounds', true]], day: null, step: 'row 70 (999861) + 62.15' },

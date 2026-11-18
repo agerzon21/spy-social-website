@@ -62,7 +62,9 @@ const en = {
       archive: "Every SpySocial Unique on the record: its picture, number, attributes, how it was minted and every sale, with no player named.",
       market: "What every SpySocial item sells for on the Black Market: prices from players’ trades, the biggest rises and falls and the most traded items, with no player named.",
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
-      gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
+      gameNightRules: "The rules for SpySocial's Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
+      /** The same page once LIVE.gnRewardsRules is on: Game Night Intel, the ★ titles and Game Night Intercepts replace the night's titles (howto-truth-1117). */
+      gameNightRulesRewards: "The rules for SpySocial's Game Night: when it runs, who can take part, and how Game Night Intel, the ★ titles and Game Night Intercepts work.",
       faq: "SpySocial help: how to play Spy Talk and Spy Sketch, Play Online, private rooms and Game Night, friends, trading, the Black Market, Intercepts, Intel, membership, your account, safety and troubleshooting.",
       contact: 'Contact the SpySocial team: email support@spysocial.app for help with the app, your account or anything else.',
       rules: "SpySocial's community rules: be kind, bluff but don't cheat, keep personal information private, and what happens when someone breaks the rules.",
@@ -1122,7 +1124,7 @@ const en = {
     cards: [
       { title: "Spy Sketch", text: "Draw the secret word on one shared whiteboard, and catch the spy faking it." },
       { title: "Play Online", text: "Tap Find a Game for a table of 4 or 8, any time. Strangers see your Agent Color, never your name." },
-      { title: "Game Night", text: "Scheduled nights online, with titles you can only earn that night. We'll remind you before they start." },
+      { title: "Game Night", text: "Scheduled nights online, with rewards you can only earn there. We'll remind you before they start." },
       { title: "Black Market", text: "Trade items with friends. Adults can also buy and sell items on the Black Market for Intel, which you earn by playing. Never for real money." },
       { title: "Memberships", text: "Optional: a Monthly or Yearly Membership, or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
     ],
@@ -1154,6 +1156,8 @@ const en = {
         { title: "10 languages", text: "English, Spanish and Russian, plus French, Portuguese (Brazil), Chinese (Simplified), Hindi, Arabic, Bengali and Indonesian in beta. Everyone sees the game in their own language." },
         { title: "Notifications", text: "For friends' invites and requests, trades, Black Market offers, and Game Nights you tapped Remind Me on." },
       ],
+      /** items[0] (Practice Game) once LIVE.practiceMembers is on (NEXT-BATCH row 95): the tutorial free, Practice Games for members, 5 a day (howto-truth-1117). */
+      practiceMembers: { title: "Practice Game", text: "Learn Spy Talk and Spy Sketch with AI agents, as a Local or as the Spy: a free guided tutorial for each game, then, for members, full Practice Games, up to 5 a day, graded from A to F." },
       /** The entry's And more line (the Roadmap keeps its own). */
       more: "Plus Player Stats, levels up to 100 with prestige, achievements, titles, borders and celebrations, @mentions, Arcade mini-games, a faster mic, smooth rejoining after your phone sleeps, and a new look on every screen.",
       newLabel: "New in 2.2",

@@ -44,6 +44,7 @@ const OPTS: HelpOpts = {
   practiceMembers: LIVE.practiceMembers,
   practiceAi: LIVE.practiceAi,
   questionRounds: LIVE.helpQuestionRounds,
+  intelZero: LIVE.intelZero1117,
   emailCodes22: LIVE.emailCodes22,
 }
 
