@@ -115,7 +115,7 @@ const ptBR: HelpText = {
             "Sim, por segurança. Nas mesas do Jogar online e nas Noites de Jogos, os turnos de desenho terminados podem ser verificados automaticamente pela OpenAI, em busca de qualquer coisa que quebre as <rules>regras da comunidade</rules>.",
             "Na primeira vez, o app mostra <b>Os desenhos são verificados</b>. Toque em <b>Concordo</b> para jogar Spy Sketch online. Até concordar, o Spy Talk continua disponível.",
             "Numa sala privada, um desenho é verificado se alguém o denunciar. Ele também pode ser verificado automaticamente enquanto puder vê-lo alguém, que não seja quem desenha, com menos de 18 anos ou que não nos informou a idade. O desenho de um jogador que disse ter menos de 18 anos só é verificado se alguém o denunciar.",
-            "A OpenAI recebe uma imagem do turno e a palavra da rodada, nunca seu nome nem suas mensagens. Um turno que quebra as regras é removido e pode levar a uma advertência, uma pausa ou um banimento. Uma pessoa revisa toda decisão permanente, e você pode recorrer.",
+            "A OpenAI recebe uma imagem do turno e a palavra da rodada, nunca seu nome nem suas mensagens. Um turno que quebra as regras pode ser removido e pode levar a uma advertência, uma pausa ou um banimento. Uma pessoa revisa toda decisão permanente, e você pode recorrer.",
             "Todos os detalhes: <drawchecks>Drawing Checks, na Política de privacidade</drawchecks>.",
           ],
         },

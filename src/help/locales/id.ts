@@ -115,7 +115,7 @@ const id: HelpText = {
             "Ya, demi keamanan. Di meja Main online dan Malam Permainan, giliran menggambar yang selesai bisa diperiksa otomatis oleh OpenAI untuk mencari apa pun yang melanggar <rules>aturan komunitas</rules>.",
             "Pertama kali, aplikasi menampilkan <b>Gambar diperiksa</b>. Ketuk <b>Setuju</b> untuk main Spy Sketch online. Sebelum setuju, Spy Talk tetap bisa dimainkan.",
             "Di room privat, gambar diperiksa kalau ada yang melaporkannya. Gambar juga bisa diperiksa otomatis selama ada orang selain si penggambar yang bisa melihatnya dan berusia di bawah 18 tahun atau belum memberi tahu umurnya. Gambar pemain yang mengaku berusia di bawah 18 tahun hanya diperiksa kalau ada yang melaporkannya.",
-            "OpenAI menerima gambar giliran itu dan kata ronde, tidak pernah nama atau pesanmu. Giliran yang melanggar aturan dihapus dan bisa berujung peringatan, jeda, atau blokir. Setiap keputusan permanen ditinjau oleh manusia, dan kamu bisa mengajukan banding.",
+            "OpenAI menerima gambar giliran itu dan kata ronde, tidak pernah nama atau pesanmu. Giliran yang melanggar aturan bisa dihapus dan bisa berujung peringatan, jeda, atau blokir. Setiap keputusan permanen ditinjau oleh manusia, dan kamu bisa mengajukan banding.",
             "Detail lengkap: <drawchecks>bagian Drawing Checks di Kebijakan Privasi</drawchecks>.",
           ],
         },

@@ -115,7 +115,7 @@ const es: HelpText = {
             "Sí, por seguridad. En las mesas de Jugar en línea y en las Noches de Juegos, los turnos de dibujo terminados pueden revisarse automáticamente con OpenAI para detectar lo que rompa las <rules>normas de la comunidad</rules>.",
             "La primera vez, la app muestra <b>Revisamos los dibujos</b>. Toca <b>Acepto</b> para jugar Spy Sketch en línea. Mientras no aceptes, Spy Talk sigue disponible.",
             "En una sala privada, un dibujo se revisa si alguien lo reporta. También puede revisarse automáticamente mientras pueda verlo alguien que no sea quien dibuja y sea menor de 18 años o no nos haya dicho su edad. El dibujo de un jugador que dijo ser menor de 18 años solo se revisa si alguien lo reporta.",
-            "OpenAI recibe una imagen del turno y la palabra de la ronda, nunca tu nombre ni tus mensajes. Un turno que rompe las normas se quita y puede llevar a una advertencia, una pausa o el bloqueo de la cuenta. Una persona revisa cada decisión permanente, y puedes apelar.",
+            "OpenAI recibe una imagen del turno y la palabra de la ronda, nunca tu nombre ni tus mensajes. Un turno que rompe las normas se puede quitar y puede llevar a una advertencia, una pausa o el bloqueo de la cuenta. Una persona revisa cada decisión permanente, y puedes apelar.",
             "Todos los detalles: <drawchecks>Drawing Checks, en la Política de privacidad</drawchecks>.",
           ],
         },

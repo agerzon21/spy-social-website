@@ -145,7 +145,7 @@ const en: HelpText = {
             "Yes, to keep drawings safe. At Play Online tables and Game Nights, finished drawing turns may be checked automatically by OpenAI for anything that breaks the <rules>community rules</rules>.",
             "The first time, the app shows <b>Drawings Are Checked</b>. Tap <b>I Agree</b> to play Spy Sketch online. Until you do, Spy Talk is open to you either way.",
             "In a private room, a drawing is checked if someone reports it. It can also be checked automatically while anyone who can see it, other than the drawer, is under 18 or hasn’t told us their age. A drawing by a player who said they’re under 18 is checked only if someone reports it.",
-            "OpenAI gets a picture of the turn and the round’s word, never your name or your messages. A turn that breaks the rules is removed and can lead to a warning, a pause or a ban. A person reviews every permanent decision, and you can appeal.",
+            "OpenAI gets a picture of the turn and the round’s word, never your name or your messages. A turn that breaks the rules can be removed and can lead to a warning, a pause or a ban. A person reviews every permanent decision, and you can appeal.",
             "The full details: <drawchecks>Drawing Checks in the Privacy Policy</drawchecks>.",
           ],
         },

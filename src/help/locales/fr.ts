@@ -111,7 +111,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Oui, pour la sécurité de tous. Aux tables de Jouer en ligne et aux soirées jeux, les tours de dessin terminés peuvent être vérifiés automatiquement par OpenAI, à la recherche de tout ce qui enfreint les <rules>règles de la communauté</rules>.",
           "La première fois, l'appli affiche <b>Les dessins sont vérifiés</b>. Appuie sur <b>J'accepte</b> pour jouer à Spy Sketch en ligne. Tant que tu n'acceptes pas, Spy Talk reste ouvert.",
           "Dans un salon privé, un dessin est vérifié si quelqu'un le signale. Il peut aussi être vérifié automatiquement tant que peut le voir une personne, autre que le dessinateur, de moins de 18 ans ou qui ne nous a pas donné son âge. Le dessin d'un joueur qui a dit avoir moins de 18 ans n'est vérifié que si quelqu'un le signale.",
-          "OpenAI reçoit une image du tour et le mot de la manche, jamais ton nom ni tes messages. Un tour qui enfreint les règles est retiré et peut mener à un avertissement, une pause ou un bannissement. Une personne examine chaque décision définitive, et tu peux faire appel.",
+          "OpenAI reçoit une image du tour et le mot de la manche, jamais ton nom ni tes messages. Un tour qui enfreint les règles peut être retiré et peut mener à un avertissement, une pause ou un bannissement. Une personne examine chaque décision définitive, et tu peux faire appel.",
           "Tous les détails : <drawchecks>Drawing Checks, dans la Politique de confidentialité</drawchecks>.",
         ],
       },
