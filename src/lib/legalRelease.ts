@@ -219,7 +219,7 @@ export const LIVE = {
    * scene Rain Window), the Membership cards entry, the language-switch loader line and the tablet keyboard entry. Help text
    * only, no Last Updated date. Flip the hour round 5 is on phones: node scripts/flip-switch.mjs helpU6153.
    */
-  helpU6153: false,
+  helpU6153: true,
   /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
