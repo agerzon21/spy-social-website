@@ -281,6 +281,11 @@ const Privacy: React.FC = () => {
               " Each line of your Intel history (your Intel ledger) also records who caused it (a game, you, or us), when, and the app version and platform it came from, so that we can find everyone a bug affected. Lines are only ever added: we never change or delete one."}{' '}
             Other players never see your Intel or your streak, and we look at Intel only as totals across all
             players{PRIVACY.intercepts ? '' : ' (for example to set prices)'}.
+            {/* LIVE.intelZero1117 (owner's reset answer D1 = zero, Nov 17; app server B1 prelaunch_intel_zero, 09:50 ET Dec 8). */}
+            {PRIVACY.intelZero1117 &&
+              (PRIVACY.launchSite
+                ? " Right before version 2.2 opened to everyone, every account's Intel was set to 0 (the Intel earned in test versions included) and every streak started again from day 0, each as a line in the account's Intel ledger under an incident we published on our transparency page; Game Night Intel was not part of this."
+                : " Right before version 2.2 opens to everyone, every account's Intel is set to 0 (the Intel earned in test versions included) and every streak starts again from day 0, each as a line in the account's Intel ledger under an incident we publish on our transparency page; Game Night Intel is not part of this.")}
             {PRIVACY.intelLedger
               ? " Your balance and streak are deleted with your account. The lines of your Intel ledger are kept for good, so that the totals stay right and can be checked: when you delete your account, we remove who they belonged to, and we drop the app version and platform from lines more than 2 years old. None of it leaves our servers."
               : " It's kept with your account and deleted with it, and it doesn't leave our servers."}

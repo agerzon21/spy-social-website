@@ -2204,6 +2204,9 @@ export const LIVE = {
    * the test version's balances only, so no TERMS_PUBLISHED or terms_version raise; INTEL_ZERO_1117_DAY in
    * LEGAL_LAST_UPDATED (re-date to the publish day with node scripts/flip-switch.mjs intelZero1117 --day "<publish day>").
    * A website fact: set in LIVE, never in PRIVACY_AHEAD. Staged OFF (not pushed; publish on the coordinator's go).
+   * legal-coverage-1119: owner answered D1 = zero on Nov 17 (app repo c7ba03113, RUNBOOK_reset_answers_1117, not yet run on
+   * live). The same flip now also turns off Terms 9's I-1 line "so does the Intel you got from games... stay" (it
+   * contradicted this text) and turns on one sentence in Privacy's Intel item; INTEL_ZERO_1117_DAY moves PRIVACY_LAST_UPDATED too.
    */
   intelZero1117: false,
   /**
@@ -2889,7 +2892,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
