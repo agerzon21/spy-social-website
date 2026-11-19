@@ -315,6 +315,7 @@ const en: HelpText = {
                 ]
               : ['In a private room, the host picks the game’s language for the secret and the hints.', ...(o.autoTranslation ? ['Messages in another language are translated into yours automatically. To translate only when you tap, turn off <b>Translate Messages Automatically</b> in Settings.'] : [])]),
             ...(o.autoTranslation ? ['Play Online may offer to add your language to your phone’s own translator. It’s optional, and it keeps English chat lines translated when our translator is busy.'] : []),
+            ...(o.u6153 ? ["When you switch language in <b>Settings</b>, the app shows a loader while it turns to the new language."] : []),
           ],
         },
       ],
@@ -633,6 +634,7 @@ const en: HelpText = {
               a: [
                 'Intercepts you get with Game Night Intel, on the Game Night card in the <b>Vault</b>: <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
                 'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
+                ...(o.u6153 ? ["Game Night’s Legendary background is <b>Blackout</b>, which used to be called The Back Room. Its rest scene is <b>Rain Window</b>."] : []),
                 'A bought one waits in <b>To Open</b>. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
               ],
             },
@@ -752,6 +754,22 @@ const en: HelpText = {
             "Players under 18 don’t get our answer between 10 PM and 7 AM.",
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'membership-cards',
+              q: "What are the Membership cards in the app?",
+              a: [
+                "Wherever members get more, a short card says so. Tap anywhere on it to open <b>Membership</b> in the Vault. It never buys anything by itself.",
+                "<b>Black Market</b>, Your Offers: 8 open offers for members, 4 for everyone else.",
+                "<b>Parties</b>: members lead them.",
+                "The pack picker in a room you host: every premium pack and any Community Pack you add, plus Pack Creator to make your own.",
+                "<b>Locker</b>: members wear their rank’s border and title.",
+                "A Community Pack’s page: members add it to <b>My Packs</b>.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'membership-plans',
           q: 'What are Agent, Elite and Spymaster?',
@@ -1065,6 +1083,19 @@ const en: HelpText = {
             'If you were in a game, the app reconnects you, or tap <b>Rejoin</b> on your room’s card on Home. Your seat is kept.',
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'tablet-keyboard',
+              q: "Does the on-screen keyboard flip the layout on a tablet?",
+              a: [
+                "In a tablet’s browser, the on-screen keyboard no longer turns the game into its sideways layout: the screen keeps its upright shape while you type.",
+                "The page lifts so the field you’re typing in stays above the keys.",
+                "A tablet you turn sideways keeps the app’s tablet layout, not the wide computer one.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'game-not-counted',
           q: 'My game didn’t count',

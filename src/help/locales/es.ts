@@ -285,6 +285,7 @@ const es: HelpText = {
                 ]
               : ['En una sala privada, el anfitrión elige el idioma de la partida para el secreto y las pistas.', ...(o.autoTranslation ? ['Los mensajes en otro idioma se traducen al tuyo automáticamente. Para traducir solo al tocar, desactiva <b>Traducir mensajes automáticamente</b> en Ajustes.'] : [])]),
             ...(o.autoTranslation ? ['Jugar en línea puede ofrecerte añadir tu idioma al traductor propio de tu teléfono. Es opcional, y mantiene traducidas las líneas en inglés del chat cuando nuestro traductor está ocupado.'] : []),
+            ...(o.u6153 ? ["Cuando cambias el idioma en <b>Ajustes</b>, la app muestra un indicador de carga mientras pasa al nuevo idioma."] : []),
           ],
         },
       ],
@@ -603,6 +604,7 @@ const es: HelpText = {
               a: [
                 'Intercepciones que consigues con Intel de Noche de Juegos, en la tarjeta de la Noche de Juegos de la <b>Bóveda</b>: <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
                 'Se abren en la colección propia de la Noche de Juegos, <b>After Hours</b>: 14 objetos de sala de cartas para tu agente que ninguna otra intercepción tiene. Como en toda intercepción, la app muestra las probabilidades exactas.',
+                ...(o.u6153 ? ["El fondo Legendario de la Noche de Juegos es <b>Apagón</b>, que antes se llamaba La Trastienda. Su escena de descanso es <b>Rain Window</b>."] : []),
                 'Una comprada espera en <b>Por abrir</b>. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
               ],
             },
@@ -722,6 +724,22 @@ const es: HelpText = {
             "A los jugadores menores de 18 años no les enviamos la respuesta entre las 10 p. m. y las 7 a. m.",
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'membership-cards',
+              q: "¿Qué son las tarjetas de membresía de la app?",
+              a: [
+                "Donde los miembros tienen más, una tarjeta breve lo dice. Toca en cualquier parte para abrir <b>Membresía</b> en la Bóveda. Nunca compra nada por sí sola.",
+                "<b>Mercado Negro</b>, Tus ofertas: 8 ofertas abiertas para los miembros y 4 para los demás.",
+                "<b>Grupos</b>: los miembros los dirigen.",
+                "El selector de paquetes de una sala que diriges: todos los paquetes premium y cualquier paquete de la comunidad que añadas, más el creador de paquetes para hacer los tuyos.",
+                "<b>Vestidor</b>: los miembros llevan el marco y el título de su rango.",
+                "La página de un paquete de la comunidad: los miembros lo añaden a <b>Mis paquetes</b>.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'membership-plans',
           q: '¿Qué son Agente, Élite y Mente maestra?',
@@ -1035,6 +1053,19 @@ const es: HelpText = {
             'Si estabas en una partida, la app te reconecta, o toca <b>Volver</b> en la tarjeta de tu sala en el inicio. Tu lugar se guarda.',
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'tablet-keyboard',
+              q: "¿El teclado en pantalla cambia el diseño en una tableta?",
+              a: [
+                "En el navegador de una tableta, el teclado en pantalla ya no pasa el juego al diseño horizontal: la pantalla mantiene su forma vertical mientras escribes.",
+                "La página sube para que el campo en el que escribes quede por encima de las teclas.",
+                "Una tableta girada de lado conserva el diseño de tableta de la app, no el ancho de ordenador.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'game-not-counted',
           q: 'Mi partida no contó',

@@ -285,6 +285,7 @@ const ptBR: HelpText = {
                 ]
               : ['Numa sala privada, o anfitrião escolhe o idioma da partida para o segredo e as dicas.', ...(o.autoTranslation ? ['Mensagens em outro idioma são traduzidas para o seu automaticamente. Para traduzir só quando tocar, desligue <b>Traduzir mensagens automaticamente</b> nos Ajustes.'] : [])]),
             ...(o.autoTranslation ? ['O Jogar online pode oferecer adicionar seu idioma ao tradutor do próprio telefone. É opcional, e mantém as linhas em inglês do chat traduzidas quando nosso tradutor está ocupado.'] : []),
+            ...(o.u6153 ? ["Quando você troca o idioma nos <b>Ajustes</b>, o app mostra um indicador de carregamento enquanto passa para o novo idioma."] : []),
           ],
         },
       ],
@@ -603,6 +604,7 @@ const ptBR: HelpText = {
               a: [
                 'Interceptações que você pega com Intel da Noite de Jogos, no cartão da Noite de Jogos no <b>Cofre</b>: <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
                 'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
+                ...(o.u6153 ? ["O fundo Lendário da Noite de Jogos é <b>Apagão</b>, que antes se chamava Sala dos Fundos. A cena de descanso dele é <b>Rain Window</b>."] : []),
                 'Uma comprada espera em <b>Para abrir</b>. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
               ],
             },
@@ -722,6 +724,22 @@ const ptBR: HelpText = {
             "Jogadores com menos de 18 anos não recebem nossa resposta entre 22h e 7h.",
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'membership-cards',
+              q: "O que são os cartões de membro no app?",
+              a: [
+                "Onde membros ganham mais, um cartão curto avisa. Toque em qualquer parte dele para abrir o plano de membro no <b>Cofre</b>. Ele nunca compra nada sozinho.",
+                "<b>Mercado Negro</b>, Suas ofertas: 8 ofertas abertas para membros e 4 para os demais.",
+                "<b>Grupos</b>: membros lideram.",
+                "A escolha de pacotes numa sala que você hospeda: todos os pacotes premium e qualquer pacote da comunidade que você adicionar, mais o criador de pacotes para fazer os seus.",
+                "<b>Armário</b>: membros usam a moldura e o título da sua patente.",
+                "A página de um pacote da comunidade: membros o adicionam a <b>Meus pacotes</b>.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'membership-plans',
           q: 'O que são Agente, Elite e Mestre-espião?',
@@ -1035,6 +1053,19 @@ const ptBR: HelpText = {
             'Se você estava numa partida, o app reconecta, ou toque em <b>Voltar</b> no cartão da sua sala, na tela inicial. Seu lugar fica guardado.',
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'tablet-keyboard',
+              q: "O teclado na tela muda o layout no tablet?",
+              a: [
+                "No navegador de um tablet, o teclado na tela não vira mais o jogo para o layout deitado: a tela mantém a forma em pé enquanto você digita.",
+                "A página sobe para o campo em que você digita ficar acima das teclas.",
+                "Um tablet virado de lado mantém o layout de tablet do app, não o layout largo de computador.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'game-not-counted',
           q: 'Minha partida não contou',

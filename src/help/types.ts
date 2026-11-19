@@ -99,6 +99,14 @@ export interface HelpOpts {
    * item_pages.market_site, home.save_nudge, online.members, codes.see_membership; codenames from the Archive's data).
    */
   u6152: boolean
+  /**
+   * App update 62.15 round 5 is on phones (LIVE.helpU6153, help-u6153-1118): #game-night-intercepts' Blackout line (the Game
+   * Night Legendary, formerly The Back Room; rest scene Rain Window), #languages' loader line, #membership-cards,
+   * #tablet-keyboard. The Russian codename wording is the Archive's, not here. TRANSLATIONS UNREVIEWED: every language but
+   * English is an agent's, in the app's own words (int/u62-15-prep: upsell.*, afterHoursBackdrop names, accountSettings
+   * locker.title, membersPage). Rain Window has no app translation: kept in Latin letters in every language.
+   */
+  u6153: boolean
   /** Version 2.2 signs up and in with an emailed code, older versions with a password (LIVE.emailCodes22): #sign-up-email. */
   emailCodes22: boolean
 }

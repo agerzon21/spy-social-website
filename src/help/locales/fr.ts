@@ -281,6 +281,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
               ]
             : ["Dans un salon privé, l'hôte choisit la langue de la partie pour le secret et les indices.", ...(o.autoTranslation ? ['Les messages dans une autre langue sont traduits automatiquement dans la tienne. Pour traduire seulement quand tu touches, désactive <b>Traduire les messages automatiquement</b> dans les Réglages.'] : [])]),
           ...(o.autoTranslation ? ["Jouer en ligne peut te proposer d'ajouter ta langue au traducteur de ton téléphone. C'est facultatif, et ça garde les lignes en anglais du chat traduites quand notre traducteur est occupé."] : []),
+          ...(o.u6153 ? ["Quand tu changes de langue dans les <b>Réglages</b>, l'appli affiche un indicateur de chargement le temps de passer à la nouvelle langue."] : []),
         ],
       },
     ],
@@ -599,6 +600,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             a: [
               "Des interceptions que tu obtiens avec l'Intel de soirée jeux, sur la carte de la soirée jeux du <b>Coffre</b> : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
               "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
+              ...(o.u6153 ? ["Le fond Légendaire de la soirée jeux est <b>Black-out</b>, qui s'appelait avant L'Arrière-salle. Sa scène de repos est <b>Rain Window</b>."] : []),
               "Une interception achetée attend dans <b>À ouvrir</b>. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
             ],
           },
@@ -718,6 +720,22 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les joueurs de moins de 18 ans ne reçoivent pas notre réponse entre 22 h et 7 h.",
         ],
       },
+      ...(o.u6153
+        ? [
+          {
+            id: 'membership-cards',
+            q: "Que sont les cartes d'abonnement membre dans l'appli ?",
+            a: [
+              "Là où les membres ont plus, une courte carte le dit. Touche-la n'importe où pour ouvrir l'offre membres dans le <b>Coffre</b>. Elle n'achète jamais rien toute seule.",
+              "<b>Marché noir</b>, Tes offres : 8 offres ouvertes pour les membres, 4 pour les autres.",
+              "<b>Groupes</b> : les membres les mènent.",
+              "Le choix des packs dans un salon que tu héberges : tous les packs premium et n'importe quel pack de la communauté que tu ajoutes, plus le créateur de packs pour faire les tiens.",
+              "<b>Vestiaire</b> : les membres portent le cadre et le titre de leur rang.",
+              "La page d'un pack de la communauté : les membres l'ajoutent à <b>Mes packs</b>.",
+            ],
+          },
+        ]
+        : []),
       {
         id: 'membership-plans',
         q: "C'est quoi, Agent, Élite et Maître espion ?",
@@ -1031,6 +1049,19 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Si tu étais en partie, l'appli te reconnecte, ou touche <b>Revenir</b> sur la carte de ton salon, sur l'accueil. Ta place est gardée.",
         ],
       },
+      ...(o.u6153
+        ? [
+          {
+            id: 'tablet-keyboard',
+            q: "Le clavier à l'écran change-t-il la mise en page sur une tablette ?",
+            a: [
+              "Dans le navigateur d'une tablette, le clavier à l'écran ne fait plus passer le jeu en mise en page à l'horizontale : l'écran garde sa forme verticale pendant que tu écris.",
+              "La page remonte pour que le champ où tu écris reste au-dessus des touches.",
+              "Une tablette tournée sur le côté garde la mise en page tablette de l'appli, pas la large mise en page d'ordinateur.",
+            ],
+          },
+        ]
+        : []),
       {
         id: 'game-not-counted',
         q: "Ma partie n'a pas compté",

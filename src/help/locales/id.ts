@@ -285,6 +285,7 @@ const id: HelpText = {
                 ]
               : ['Di room privat, host memilih bahasa permainan untuk rahasia dan petunjuk.', ...(o.autoTranslation ? ['Pesan dalam bahasa lain diterjemahkan ke bahasamu otomatis. Untuk menerjemahkan hanya saat diketuk, matikan <b>Terjemahkan pesan otomatis</b> di Pengaturan.'] : [])]),
             ...(o.autoTranslation ? ['Main online bisa menawarkan untuk menambahkan bahasamu ke penerjemah bawaan ponsel. Ini opsional, dan membuat baris bahasa Inggris di chat tetap diterjemahkan saat penerjemah kami sibuk.'] : []),
+            ...(o.u6153 ? ["Saat kamu mengganti bahasa di <b>Pengaturan</b>, aplikasi menampilkan indikator memuat sampai beralih ke bahasa baru."] : []),
           ],
         },
       ],
@@ -603,6 +604,7 @@ const id: HelpText = {
               a: [
                 'Sadapan yang kamu dapat dengan Intel Malam Permainan, di kartu Malam Permainan di <b>Brankas</b>: <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
                 'Isinya dari koleksi khusus Malam Permainan, <b>After Hours</b>: 14 item ruang kartu untuk agenmu yang tidak ada di sadapan lain. Seperti semua sadapan, aplikasi menampilkan peluang pastinya.',
+                ...(o.u6153 ? ["Latar Legendaris Malam Permainan adalah <b>Mati Lampu</b>, yang dulu bernama Ruang Belakang. Adegan istirahatnya adalah <b>Rain Window</b>."] : []),
                 'Sadapan yang dibeli menunggu di <b>Belum Dibuka</b>. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
               ],
             },
@@ -722,6 +724,22 @@ const id: HelpText = {
             "Pemain di bawah 18 tahun tidak menerima jawaban kami antara pukul 22.00 dan 07.00.",
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'membership-cards',
+              q: "Apa itu kartu Keanggotaan di aplikasi?",
+              a: [
+                "Di tempat anggota mendapat lebih, ada kartu singkat yang menyebutkannya. Ketuk bagian mana saja untuk membuka <b>Keanggotaan</b> di Brankas. Kartu itu tidak pernah membeli apa pun sendiri.",
+                "<b>Pasar Gelap</b>, Penawaranmu: 8 penawaran terbuka untuk anggota, 4 untuk yang lain.",
+                "<b>Grup</b>: anggota yang memimpinnya.",
+                "Pemilih paket di room yang kamu host: semua paket premium dan paket komunitas mana pun yang kamu tambahkan, plus pembuat paket untuk membuat paketmu sendiri.",
+                "<b>Lemari</b>: anggota memakai bingkai dan gelar peringkatnya.",
+                "Halaman paket komunitas: anggota menambahkannya ke <b>Paketku</b>.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'membership-plans',
           q: 'Apa itu Agen, Elite, dan Dalang?',
@@ -1035,6 +1053,19 @@ const id: HelpText = {
             'Kalau kamu sedang bermain, aplikasi menyambungkanmu lagi, atau ketuk <b>Kembali</b> di kartu room-mu di Beranda. Kursimu tetap disimpan.',
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'tablet-keyboard',
+              q: "Apakah keyboard di layar mengubah tata letak di tablet?",
+              a: [
+                "Di browser tablet, keyboard di layar tidak lagi mengubah game ke tata letak menyamping: layar tetap tegak selama kamu mengetik.",
+                "Halaman terangkat agar kolom yang kamu ketik tetap di atas tombol.",
+                "Tablet yang diputar menyamping tetap memakai tata letak tablet aplikasi, bukan tata letak komputer yang lebar.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'game-not-counted',
           q: 'Permainanku tidak dihitung',

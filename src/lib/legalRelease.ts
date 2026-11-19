@@ -215,6 +215,12 @@ export const LIVE = {
    */
   helpU6152: true,
   /**
+   * App update 62.15 round 5 (help-u6153-1118): Help's Blackout line (the Game Night Legendary, formerly The Back Room, rest
+   * scene Rain Window), the Membership cards entry, the language-switch loader line and the tablet keyboard entry. Help text
+   * only, no Last Updated date. Flip the hour round 5 is on phones: node scripts/flip-switch.mjs helpU6153.
+   */
+  helpU6153: false,
+  /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
    * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)
