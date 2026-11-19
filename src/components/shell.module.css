@@ -89,6 +89,8 @@
 }
 /* Scripts with no capitals (and Cyrillic, set wide) need no tracking to read as a label. */
 :global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) .navLink { letter-spacing: 0.02em; }
+/* Arabic letters sit small at the Latin labels' size: a step up so the header reads like the other languages' (sitewalk 1119). */
+:global(html[lang='ar']) .navLink, :global(html[lang='ar']) .hostLink { font-size: 16px; }
 @media (min-width: 1000px) {
   .bar { height: 76px; }
   .home img { height: 42px; padding-block: calc(21px * (1 - var(--wm))); }
