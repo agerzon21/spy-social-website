@@ -10,6 +10,7 @@ import {
   lookOf,
   attributesOf,
   codenameOf,
+  copyNameOf,
   fetchUnique,
   holderOf,
   nameOf,
@@ -67,8 +68,9 @@ const ArchiveItem = () => {
   // The item's own line from the app (its card's description, owner Nov 11), in the reader's language.
   const lines = useItemLines()
   const line = lineOf(lines, { k: u?.item_kind ?? (lines?.d[`avatar:${item}`] ? 'avatar' : 'title'), i: item, t: false })
-  // Its own name leads (owner Nov 15: "exactly what they're called"), the Legendary it was minted from after it.
-  const title = code ? `${code} ${serialText(serial)} · ${name}` : `${name} ${serialText(serial)}`
+  // Its own name leads (owner Nov 15: "exactly what they're called"), the Legendary it was minted from after it with the
+  // number, as the app writes it (codename-1118, app 62.15.2 lib/unique/codename uniqueFullName: "Onyx Dispatch · Paper Plane #37").
+  const title = copyNameOf(data, item, serial)
 
   if (state === 'missing') {
     return (

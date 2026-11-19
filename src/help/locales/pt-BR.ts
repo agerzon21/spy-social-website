@@ -191,6 +191,7 @@ const ptBR: HelpText = {
             'Quem não conhece você vê sua cor de agente, como Agente Turquesa, nunca o seu nome.',
             'Você precisa de uma conta salva (e-mail confirmado, ou login com Apple ou Google) e ter 13 anos ou mais.',
             'Sair de uma partida depois que os papéis são distribuídos dá uma pausa curta no Jogar online.',
+            ...(o.u6152 ? ["Membros podem ativar <b>Só membros</b> para jogar só com outros membros. Menos jogadores buscam assim, então achar uma partida pode demorar um pouco mais. O (i) ao lado explica mais, com <b>Ver plano de membro</b> para quem não é membro."] : []),
           ],
         },
         {
@@ -402,6 +403,18 @@ const ptBR: HelpText = {
             'Adultos podem ter perfil público e seguidores. Menores de 18, não.',
           ],
         },
+        ...(o.u6152
+          ? [
+              {
+                id: 'showcase-items',
+                q: "O que acontece quando toco num item de uma vitrine?",
+                a: [
+                  "Toque em qualquer item da <b>Vitrine</b> de um jogador, a sua ou a de outra pessoa, para abrir a página dele.",
+                  "Na página do item, <b>Ver no Arquivo</b> abre a página de um Único no nosso site, e <b>Ver no Mercado</b> abre os preços de qualquer outro item.",
+                ],
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -565,6 +578,7 @@ const ptBR: HelpText = {
             'Cinco níveis, do mais baixo ao mais alto: <b>Restrito</b>, <b>Confidencial</b>, <b>Secreto</b>, <b>Ultrassecreto</b> e <b>Enigma</b>.',
             'O nível é definido quando você ganha. Quanto mais alto, melhores as chances.',
             "Um <b>Único</b> é uma cópia exclusiva: uma gema de prisma, uma moldura de folha arco-íris, um codinome e um número que nenhuma outra cópia tem. Cada cópia mantém suas próprias cores por dentro.",
+            ...(o.u6152 ? ["O codinome é o nome do Único, como <b>Despacho de Ônix</b>. Embaixo, em letra menor, aparece o Lendário de onde ele veio, com o número: Avião de papel #37."] : []),
           ],
         },
         {
@@ -809,6 +823,7 @@ const ptBR: HelpText = {
             'Um <b>visitante</b> joga em salas privadas na hora. Uma conta de visitante fica num celular só, e sair dela apaga a conta para sempre.',
             `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e seu plano de membro em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
             'Você pode salvar uma conta de visitante quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o visitante salve a conta primeiro.',
+            ...(o.u6152 ? ["Até você salvar, um cartão <b>Salve sua conta</b> aparece no fim de jogo depois de cada partida. Toque no × para ele não aparecer mais nesse celular."] : []),
           ],
         },
         ...(o.emailCodes22

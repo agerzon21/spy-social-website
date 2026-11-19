@@ -1,6 +1,6 @@
 import Link from '../../components/SiteLink'
 import { FaTriangleExclamation } from 'react-icons/fa6'
-import { attributesOf, BETA_UNTIL_TOLD, codenameOf, holderOf, lookOf, nameOf, ownArtOf, serialText, uniquePath, type ArchiveCopy, type ArchiveSet, type ItemLook } from '../../lib/archive'
+import { attributesOf, BETA_UNTIL_TOLD, codenameOf, copyNameOf, holderOf, lookOf, nameOf, ownArtOf, serialText, uniquePath, type ArchiveCopy, type ArchiveSet, type ItemLook } from '../../lib/archive'
 import { LIVE } from '../../lib/legalRelease'
 import { DisplayCase } from './DisplayCase'
 import { fmt, setBadge, useArchive } from './useArchive'
@@ -94,7 +94,7 @@ export function UniqueCard({ c, sets }: { c: ArchiveCopy; sets: ArchiveSet[] }) 
         <div className={s.cardBody}>
           {/* Its own name first, the Legendary it was minted from under it (owner Nov 15: "exactly what they're called"). */}
           <p className={s.cardName}>
-            <Link to={uniquePath(c.item_code, c.serial)} className={s.cardLink} aria-label={`${code ? `${code} · ` : ''}${name} ${serialText(c.serial)}`}>
+            <Link to={uniquePath(c.item_code, c.serial)} className={s.cardLink} aria-label={copyNameOf(data, c.item_code, c.serial)}>
               {code ?? name}
             </Link>
           </p>

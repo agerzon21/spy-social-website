@@ -187,6 +187,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Les joueurs que tu ne connais pas voient ta couleur d\'agent, comme Agent Turquoise, jamais ton nom.',
           'Il te faut un compte sauvegardé (e-mail confirmé, ou connexion Apple ou Google) et avoir 13 ans ou plus.',
           'Quitter une partie après la distribution des rôles entraîne une courte pause sur Jouer en ligne.',
+          ...(o.u6152 ? ["Avec le statut de membre, tu peux activer <b>Membres uniquement</b> pour jouer seulement avec d'autres membres. Moins de joueurs cherchent ainsi, donc trouver une partie peut prendre un peu plus de temps. Le (i) à côté en dit plus, avec <b>Voir l'offre membres</b> si tu n'es pas membre."] : []),
         ],
       },
       {
@@ -398,6 +399,18 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Les adultes peuvent avoir un profil public et des abonnés. Pas les moins de 18 ans.',
         ],
       },
+      ...(o.u6152
+        ? [
+            {
+              id: 'showcase-items',
+              q: "Que se passe-t-il quand je touche un objet d'une vitrine ?",
+              a: [
+                "Touche n'importe quel objet de la <b>Vitrine</b> d'un joueur, la tienne ou celle d'un autre, pour ouvrir sa page.",
+                "Sur la page de l'objet, <b>Voir dans les Archives</b> ouvre la page d'un Unique sur notre site, et <b>Voir sur le Marché</b> les prix de tout autre objet.",
+              ],
+            },
+          ]
+        : []),
     ],
   },
   {
@@ -561,6 +574,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Cinq niveaux, du plus bas au plus haut : <b>Restreint</b>, <b>Confidentiel</b>, <b>Secret</b>, <b>Très secret</b> et <b>Enigma</b>.',
           "Le niveau est fixé quand tu la gagnes. Plus il est haut, meilleures sont les chances.",
           "Un <b>Unique</b> est un exemplaire sans pareil : une gemme prisme, un cadre en feuille arc-en-ciel, un nom de code et un numéro qu'aucun autre n'a. Chaque exemplaire garde ses propres couleurs à l'intérieur.",
+          ...(o.u6152 ? ["Le nom de code est le nom de l'Unique, comme <b>Dépêche d'onyx</b>. En dessous, en plus petit, s'affiche le Légendaire dont il vient, avec son numéro : Avion en papier #37."] : []),
         ],
       },
       {
@@ -805,6 +819,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Un <b>invité</b> joue tout de suite dans les salons privés. Un compte invité vit sur un seul téléphone, et se déconnecter le supprime pour de bon.",
           `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton statut de membre sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la soirée jeux et d'ajouter des amis.`,
           "Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre. Amis, Échanges et le Marché noir demandent d'abord à un invité de le sauvegarder.",
+          ...(o.u6152 ? ["Tant que tu ne l'as pas sauvegardé, une carte <b>Sauvegarde ton compte</b> s'affiche sur l'écran de fin après chaque partie. Touche × pour ne plus la voir sur ce téléphone."] : []),
         ],
       },
       ...(o.emailCodes22

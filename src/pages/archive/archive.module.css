@@ -194,7 +194,8 @@
   border: var(--ss-hairline) solid var(--ss-line-strong);
   background: linear-gradient(180deg, var(--ss-surface-strong), transparent);
 }
-.floatLabel { font: 600 14px/1 var(--ss-font-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ss-highlight); }
+.floatLabel { font: 600 14px/1.35 var(--ss-font-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ss-highlight); }
+.floatBase { display: inline-block; }
 .floatDigits {
   display: flex;
   flex-wrap: wrap;

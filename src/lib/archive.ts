@@ -401,6 +401,17 @@ export function codenameOf(data: ArchiveData | null, item: string, serial: numbe
   return mark ? `${name} ${mark}` : name
 }
 
+/**
+ * The copy's full name on one line, as the app writes it (codename-1118; app 62.15.2 lib/unique/codename uniqueFullName,
+ * owner 2026-11-18): its codename first, then the Legendary it was minted from with its number ("Onyx Dispatch · Paper
+ * Plane #00037"). No codename (an item with no pool): the base name and the number.
+ */
+export function copyNameOf(data: ArchiveData | null, item: string, serial: number): string {
+  const code = codenameOf(data, item, serial)
+  const base = `${nameOf(data, item)} ${serialText(serial)}`
+  return code ? `${code} · ${base}` : base
+}
+
 /** The copy's main colour (its digit-2 colour's swatch), for a glow behind its picture. */
 export function swatchOf(data: ArchiveData | null, item: string, float: string): string | null {
   return attributesOf(data, item, float).find((a) => a.place === 2)?.hex ?? null

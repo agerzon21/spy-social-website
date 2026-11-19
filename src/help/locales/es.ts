@@ -191,6 +191,7 @@ const es: HelpText = {
             'Quienes no te conocen ven el color de tu agente, como Agente Turquesa, nunca tu nombre.',
             'Necesitas una cuenta guardada (con el correo confirmado, o con Apple o Google) y tener 13 años o más.',
             'Salir de una partida después del reparto de roles significa una pausa breve en Jugar en línea.',
+            ...(o.u6152 ? ["Con una membresía puedes activar <b>Solo miembros</b> para jugar solo con otros miembros. Así buscan menos jugadores, por lo que encontrar partida puede tardar un poco más. El (i) de al lado lo explica, con <b>Ver membresía</b> si no tienes una."] : []),
           ],
         },
         {
@@ -402,6 +403,18 @@ const es: HelpText = {
             'Los adultos pueden tener un perfil público y seguidores. Los menores de 18, no.',
           ],
         },
+        ...(o.u6152
+          ? [
+              {
+                id: 'showcase-items',
+                q: "¿Qué pasa si toco un objeto de una vitrina?",
+                a: [
+                  "Toca cualquier objeto de la <b>Vitrina</b> de un jugador, la tuya o la de otro, para abrir su página.",
+                  "En la página del objeto, <b>Ver en el Archivo</b> abre la página propia de un Único en nuestra web, y <b>Ver en el Mercado</b> abre los precios de cualquier otro objeto.",
+                ],
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -565,6 +578,7 @@ const es: HelpText = {
             'Cinco niveles, de menor a mayor: <b>Restringido</b>, <b>Confidencial</b>, <b>Secreto</b>, <b>Alto secreto</b> y <b>Enigma</b>.',
             'El nivel se fija al ganarla. Cuanto más alto, mejores probabilidades.',
             "Un <b>Único</b> es una copia irrepetible: una gema de prisma, un marco de lámina arcoíris, un nombre en clave y un número que ninguna otra copia tiene. Cada copia conserva sus propios colores por dentro.",
+            ...(o.u6152 ? ["El nombre en clave es el nombre del Único, como <b>Despacho de Ónix</b>. Debajo, en letra más pequeña, va el Legendario del que salió, con su número: Avión de papel #37."] : []),
           ],
         },
         {
@@ -809,6 +823,7 @@ const es: HelpText = {
             'Un <b>invitado</b> juega en salas privadas al instante. Una cuenta de invitado vive en un solo teléfono, y cerrar sesión la borra para siempre.',
             `Una cuenta <b>guardada</b> (con Apple, Google o tu correo${o.passwordless ? ', con un código que te enviamos, sin contraseña' : ''}) conserva tu nombre, tu progreso y tu membresía en cualquier teléfono, y te deja jugar en línea, entrar a la Noche de Juegos y añadir amigos.`,
             'Puedes guardar una cuenta de invitado cuando quieras desde la página de tu cuenta, sin perder nada. Amigos, Intercambios y el Mercado Negro le piden a un invitado que la guarde primero.',
+            ...(o.u6152 ? ["Hasta que la guardes, una tarjeta <b>Guarda tu cuenta</b> aparece en el final de cada partida. Toca × para que deje de salir en ese teléfono."] : []),
           ],
         },
         ...(o.emailCodes22

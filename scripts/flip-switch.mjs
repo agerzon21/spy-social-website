@@ -45,6 +45,8 @@ const SWITCHES = {
   helpMembershipSwitch: { live: [['helpMembershipSwitch', true]], day: null, step: 'row 85 (999846) + 62.15' },
   helpGooglePassStop: { live: [['helpGooglePassStop', true]], day: null, step: 'google_pass_cancel on' },
   helpQuestionRounds: { live: [['helpQuestionRounds', true]], day: null, step: 'row 70 (999861) + 62.15' },
+  // codename-1118: Help only, no date. The hour app update 62.15.2 is on phones.
+  helpU6152: { live: [['helpU6152', true]], day: null, step: '62.15.2' },
   // legal-coverage-1114: each the day its server file is applied (practiceNoAi: the next site publish).
   reputationHoldCap: { live: [['reputationHoldCap', true]], day: 'REPUTATION_HOLD_CAP_DAY', step: 'row 25 (999954)' },
   tradeWatchEvidence: { live: [['tradeWatchEvidence', true]], day: 'TRADE_WATCH_EVIDENCE_DAY', step: 'row 24 TWE' },

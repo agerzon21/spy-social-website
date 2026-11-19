@@ -221,6 +221,7 @@ const en: HelpText = {
             'Players you don’t know see your Agent colour, like Agent Teal, never your name.',
             'You need a saved account (a confirmed email, or Apple or Google sign-in) and to be 13 or older.',
             'Leaving a game after the roles are dealt means a short break from Play Online.',
+            ...(o.u6152 ? ["Members can turn on <b>Members only</b> to play only with other members. Fewer players search that way, so finding a game may take a bit longer. The (i) beside it says more, with <b>See Membership</b> for players without one."] : []),
           ],
         },
         {
@@ -432,6 +433,18 @@ const en: HelpText = {
             'Adults can have a public profile and followers. Players under 18 can’t.',
           ],
         },
+        ...(o.u6152
+          ? [
+              {
+                id: 'showcase-items',
+                q: "What happens when I tap an item in a Showcase?",
+                a: [
+                  "Tap any item in a player’s <b>Showcase</b>, yours or someone else’s, to open its item page.",
+                  "On an item page, <b>View in the Archive</b> opens a Unique’s own page on our website, and <b>View on the Market</b> opens any other item’s prices.",
+                ],
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -595,6 +608,7 @@ const en: HelpText = {
             'Five tiers, lowest first: <b>Restricted</b>, <b>Confidential</b>, <b>Secret</b>, <b>Top Secret</b> and <b>Enigma</b>.',
             'The tier is set when you earn it. The higher the tier, the better the odds.',
             "A <b>Unique</b> is a one-of-one copy: a prism gem, a rainbow foil frame, a codename and a number no other copy has. Each copy keeps its own colours inside.",
+            ...(o.u6152 ? ["A Unique’s codename is its name, like <b>Onyx Dispatch</b>. The Legendary it came from shows under it in smaller text, with its number: Paper Plane #37."] : []),
           ],
         },
         {
@@ -839,6 +853,7 @@ const en: HelpText = {
             'A <b>guest</b> plays private rooms right away. A guest account lives on one phone, and signing out deletes it for good.',
             `A <b>saved</b> account (Apple, Google or your email${o.passwordless ? ', with a code we email you, no password' : ''}) keeps your name, progress and membership on any phone, and lets you play online, join Game Night and add friends.`,
             'You can save a guest account at any time from your Account page, without losing anything. Friends, Trades and the Black Market ask a guest to save it first.',
+            ...(o.u6152 ? ["Until you save, a <b>Save Your Account</b> card shows on Game Over after every game. Tap × to stop it showing on that phone."] : []),
           ],
         },
         ...(o.emailCodes22

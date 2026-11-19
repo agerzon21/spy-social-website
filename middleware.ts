@@ -110,12 +110,13 @@ async function uniquePreview(path: string, host: string): Promise<Preview | null
   // Its own name leads, the Legendary it was minted from after it (unique-look-1115, owner Nov 15).
   const head = cn ? `${name} ${what}.` : `${what}.`
   return {
-    title: cn ? `${cn} #${serial} · ${name} · The Archive` : `${name} #${serial} · The Archive`,
+    // The codename first, then the Legendary with the number, as the app writes it (codename-1118, app 62.15.2 uniqueFullName).
+    title: cn ? `${cn} · ${name} #${serial} · The Archive` : `${name} #${serial} · The Archive`,
     description: `${head} ${line ?? 'Its picture, attributes, how it was minted and every sale, on the public record.'}`,
     url: `https://${host}/u/${encodeURIComponent(item)}/${serial}`,
     // Its own card only (never its plain Legendary's): not drawn yet, the host's card.
     image: card('a', `u-${item}-${serial}`),
-    alt: cn ? `${cn} ${number}, a SpySocial Unique minted from ${name}` : `${name} ${number}, a SpySocial Unique`,
+    alt: cn ? `${cn} · ${name} ${number}, a SpySocial Unique` : `${name} ${number}, a SpySocial Unique`,
   }
 }
 

@@ -191,6 +191,7 @@ const id: HelpText = {
             'Pemain yang tidak kamu kenal melihat warna Agen-mu, seperti Agen Toska, bukan namamu.',
             'Kamu butuh akun tersimpan (email terkonfirmasi, atau masuk dengan Apple atau Google) dan berusia minimal 13 tahun.',
             'Keluar dari permainan setelah peran dibagikan berarti jeda singkat dari Main online.',
+            ...(o.u6152 ? ["Anggota bisa menyalakan <b>Khusus anggota</b> untuk main hanya dengan anggota lain. Lebih sedikit pemain yang mencari dengan cara ini, jadi menemukan permainan bisa sedikit lebih lama. Tombol (i) di sebelahnya menjelaskan lebih lanjut, dengan <b>Lihat Keanggotaan</b> untuk yang belum punya keanggotaan."] : []),
           ],
         },
         {
@@ -402,6 +403,18 @@ const id: HelpText = {
             'Orang dewasa bisa punya profil publik dan pengikut. Pemain di bawah 18 tahun tidak.',
           ],
         },
+        ...(o.u6152
+          ? [
+              {
+                id: 'showcase-items',
+                q: "Apa yang terjadi kalau aku mengetuk item di Etalase?",
+                a: [
+                  "Ketuk item mana pun di <b>Etalase</b> pemain, milikmu atau milik orang lain, untuk membuka halaman item itu.",
+                  "Di halaman item, <b>Lihat di Arsip</b> membuka halaman item Unik di situs kami, dan <b>Lihat di Pasar</b> membuka harga item lainnya.",
+                ],
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -565,6 +578,7 @@ const id: HelpText = {
             'Lima tingkat, dari yang terendah: <b>Terbatas</b>, <b>Konfidensial</b>, <b>Rahasia</b>, <b>Sangat Rahasia</b>, dan <b>Enigma</b>.',
             'Tingkatnya ditetapkan saat kamu mendapatkannya. Makin tinggi tingkatnya, makin bagus peluangnya.',
             "Item <b>Unik</b> adalah salinan satu-satunya: permata prisma, bingkai foil pelangi, nama sandi, dan nomor yang tidak dimiliki salinan lain. Setiap salinan menyimpan warnanya sendiri di dalamnya.",
+            ...(o.u6152 ? ["Nama sandi adalah nama item Unik, seperti <b>Kiriman Oniks</b>. Di bawahnya, dengan huruf lebih kecil, ada item Legendaris asalnya beserta nomornya: Pesawat Kertas #37."] : []),
           ],
         },
         {
@@ -809,6 +823,7 @@ const id: HelpText = {
             '<b>Tamu</b> bisa langsung main di room privat. Akun tamu hanya ada di satu ponsel, dan keluar dari akun menghapusnya selamanya.',
             `Akun <b>tersimpan</b> (Apple, Google, atau emailmu${o.passwordless ? ', dengan kode yang kami kirim lewat email, tanpa kata sandi' : ''}) menyimpan nama, progres, dan keanggotaanmu di ponsel mana pun, dan membuka Main online, Malam Permainan, dan fitur teman.`,
             'Kamu bisa menyimpan akun tamu kapan saja dari halaman Akun, tanpa kehilangan apa pun. Teman, Pertukaran, dan Pasar Gelap meminta tamu menyimpan akunnya dulu.',
+            ...(o.u6152 ? ["Sampai akunmu disimpan, kartu <b>Simpan akunmu</b> muncul di layar akhir setiap permainan. Ketuk × agar kartu itu tidak muncul lagi di ponsel itu."] : []),
           ],
         },
         ...(o.emailCodes22

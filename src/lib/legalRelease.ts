@@ -206,6 +206,15 @@ export const LIVE = {
    */
   helpQuestionRounds: true,
   /**
+   * codename-1118: Help's lines for app update 62.15.2 (int/u62-15-prep 363c1445e: showcase-press-1118, words-c-1118,
+   * np-save-gameover-1118, unique-codename-1118): the new #showcase-items (a Showcase item opens its item page; View in
+   * the Archive / View on the Market), #intercept-tiers' codename line (a Unique's codename is its name, its Legendary
+   * and number under it), #guest-or-saved's Save Your Account card on Game Over, and #play-online's Members only line
+   * (its (i) sheet, See Membership). Help text only, no Last Updated date. Flip the hour 62.15.2 is on phones:
+   * node scripts/flip-switch.mjs helpU6152. Off again if 62.15.2 is rolled back.
+   */
+  helpU6152: false,
+  /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
    * hash and the network block). The Supabase Auth "Before User Created" hook (public.integrity_before_user_created)

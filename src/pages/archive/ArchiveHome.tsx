@@ -5,7 +5,7 @@ import ActionLink from '../../components/ui/ActionLink'
 import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import ui from '../../components/ui/ui.module.css'
-import { artKey, artOf, attributesOf, codenameOf, lookOf, nameOf, ownArtOf, uniquePath } from '../../lib/archive'
+import { artKey, artOf, attributesOf, codenameOf, copyNameOf, lookOf, nameOf, ownArtOf, serialText, uniquePath } from '../../lib/archive'
 import { launchDayShort, launchDayWeekday } from '../../lib/launchDay'
 import { LIVE } from '../../lib/legalRelease'
 import { TRADE_UP_TEXT_UNIQUES } from '../../lib/ledgerScope'
@@ -81,6 +81,7 @@ const ArchiveHome = () => {
 
   const example = copies.find((c) => c.item_code === EXAMPLE_ITEM) ?? null
   const exampleFloat = example?.float ?? '0.4808210000000000'
+  const exampleCode = example ? codenameOf(data, EXAMPLE_ITEM, example.serial) : null
   const exampleAttrs = attributesOf(data, EXAMPLE_ITEM, exampleFloat)
   const cats = copies.filter((c) => c.item_code === EXAMPLE_ITEM)
   const breed = data?.items[EXAMPLE_ITEM]?.attrs.find((a) => a.place === 1)
@@ -188,7 +189,10 @@ const ArchiveHome = () => {
 
           <div className={s.floatBox}>
             <div className={s.floatLabel}>
-              {h.float.example}: {nameOf(data, EXAMPLE_ITEM)} {example ? `#${String(example.serial).padStart(5, '0')}` : ''}
+              {/* The copy's codename first, its Legendary and number after it (codename-1118, as the app's uniqueFullName),
+                  the two kept whole so a phone wraps between them, not inside "Spy Cat #00022". */}
+              {h.float.example}: {exampleCode ? <>{exampleCode} · </> : null}
+              <span className={s.floatBase}>{nameOf(data, EXAMPLE_ITEM)}{example ? ` ${serialText(example.serial)}` : ''}</span>
             </div>
             <FloatDigits float={exampleFloat} />
             <div className={s.floatSub}>
@@ -257,9 +261,9 @@ const ArchiveHome = () => {
                     className={s.pin}
                     // Kept inside the bar at its two ends (a pin is 30 px wide, centred on its float).
                     style={{ left: `clamp(15px, ${Math.min(100, Number(c.float) * 100)}%, calc(100% - 15px))` }}
-                    title={`${codenameOf(data, c.item_code, c.serial) ?? nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
+                    title={`${copyNameOf(data, c.item_code, c.serial)} · ${c.float.slice(0, 8)}`}
                     // Its name for a screen reader: the copy and its float, as the tooltip says, not just "#21".
-                    aria-label={`${codenameOf(data, c.item_code, c.serial) ?? nameOf(data, c.item_code)} #${String(c.serial).padStart(5, '0')} · ${c.float.slice(0, 8)}`}
+                    aria-label={`${copyNameOf(data, c.item_code, c.serial)} · ${c.float.slice(0, 8)}`}
                   >
                     {/* The copy's own picture only (unique-look-1115: never its plain Legendary); not drawn yet, its colour. */}
                     {ownArtOf(art, c.item_code, c.serial) ? (

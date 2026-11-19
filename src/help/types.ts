@@ -92,6 +92,13 @@ export interface HelpOpts {
   gnRewardsRules: boolean
   /** Spy Talk's Question Rounds (LIVE.helpQuestionRounds): #question-rounds. */
   questionRounds: boolean
+  /**
+   * App update 62.15.2 is on phones (LIVE.helpU6152, codename-1118): #showcase-items, #intercept-tiers' codename line,
+   * #guest-or-saved's Game Over card line and #play-online's Members only line. TRANSLATIONS UNREVIEWED: every language but
+   * English is an agent's, in the app's own words for each (int/u62-15-prep: socialProfile showcase, trading.library_open,
+   * item_pages.market_site, home.save_nudge, online.members, codes.see_membership; codenames from the Archive's data).
+   */
+  u6152: boolean
   /** Version 2.2 signs up and in with an emailed code, older versions with a password (LIVE.emailCodes22): #sign-up-email. */
   emailCodes22: boolean
 }
