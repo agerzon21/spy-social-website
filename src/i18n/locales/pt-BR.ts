@@ -350,7 +350,7 @@ const ptBR: Strings = {
       drawings: (minorRooms: boolean) =>
         'Os desenhos em salas públicas e Noites de Jogos podem ser verificados automaticamente a qualquer momento, e os desenhos denunciados também são verificados. Se um desenho seu quebrar estas regras, sua conta pode ser pausada ou banida das salas públicas e das Noites de Jogos, não importa há quanto tempo você joga. Numa sala pública, uma vez de desenhar que quebra estas regras é removida do desenho e conta como uma infração: primeiro uma advertência, depois 3, 7 e 30 dias sem salas públicas e Noites de Jogos e, na quinta infração em 90 dias, para sempre. Em qualquer sala, um símbolo de ódio (uma suástica conta, a menos que a palavra da rodada deixe claro um sentido religioso), uma ofensa discriminatória escrita ou ódio contra alguém tira o jogador da partida e das salas públicas e das Noites de Jogos para sempre, e um desenho que sexualiza uma criança encerra a conta e é tratado como diz a seção Segurança infantil acima. Sangue e monstros são permitidos. ' +
         (minorRooms
-          ? 'Numa sala privada em que um jogador com menos de 18 anos, ou que não nos informou a idade, pode ver o desenho, um desenho sexual é removido do quadro na hora e uma pessoa da nossa equipe decide o resto. Nas outras salas privadas, um desenho só gera uma ação automática quando é denunciado e tão grave quanto os casos acima; o resto fica a critério da pessoa que lê a denúncia. '
+          ? 'Numa sala privada em que um jogador com menos de 18 anos, ou que não nos informou a idade, pode ver o desenho, um desenho sexual é removido do quadro na hora e uma pessoa da nossa equipe decide o resto. Nas outras salas privadas, um desenho só gera uma ação automática quando é denunciado e é tão grave quanto os casos acima; o resto fica a critério da pessoa que lê a denúncia. '
           : 'Numa sala privada, um desenho denunciado só gera uma ação automática quando é grave a esse ponto; o resto fica a critério da pessoa que lê a denúncia. ') +
         'Para recorrer, mande para nós por e-mail o código do seu aviso.',
       drawingsTesters:
@@ -788,7 +788,7 @@ const ptBR: Strings = {
         },
         {
           title: 'Segurança',
-          text: 'O SpySocial é para maiores de 13 anos. O chat tem filtro de palavras, você pode denunciar ou bloquear qualquer jogador, e nas salas com alguém menor de 18 anos o chat bloqueia links, números de telefone e redes sociais.',
+          text: 'O SpySocial é para jogadores de 13 anos ou mais. O chat tem filtro de palavras, você pode denunciar ou bloquear qualquer jogador, e nas salas com alguém menor de 18 anos o chat bloqueia links, números de telefone e redes sociais.',
         },
       ],
       more: 'E mais: estatísticas, títulos e molduras para desbloquear, níveis até o 100 com prestígio, XP até nas partidas rápidas, volta ao jogo sem tropeços quando o celular entra em repouso, links de convite que simplesmente funcionam e um visual novo em todas as telas.',
@@ -964,9 +964,9 @@ const ptBR: Strings = {
       eyebrow: 'O que você ganha',
       title: 'Recompensas beta que ficam com você depois do lançamento',
       items: ['O <b>Pin beta</b>', 'O título <b>Beta tester</b>'],
-      itemsBefore: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Teste de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
+      itemsBefore: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Tester de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
       gameTitle: 'Termine uma partida antes de 7 de dezembro e ganhe também',
-      gameItems: ['O título <b>Teste de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
+      gameItems: ['O título <b>Tester de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
       trade: { tradable: 'Depois do lançamento, as interceptações de agradecimento podem ser trocadas como tudo o que você ganha.', bound: 'As interceptações de agradecimento ficam na sua conta.' },
       prizeTitle: 'US$\u00a010 de agradecimento pelo PayPal + um bônus de US$\u00a050',
       prize: 'Um agradecimento de US$ 10 pelo PayPal pelo seu tempo na sessão ao vivo: cada jogador confirmado que participar da hora inteira e enviar a pesquisa de 5 minutos recebe em até 7 dias após a sessão, igual no iPhone e no Android. Só instalar a versão de teste não dá direito a ele. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil da sessão, escolhido pelo desenvolvedor em até uma semana.',
@@ -1014,7 +1014,7 @@ const ptBR: Strings = {
       online: "Jogar online: Mesas de 4 ou 8, a qualquer hora",
       gamenight: "Noite de Jogos: Títulos que só saem naquela noite",
       market: "Mercado Negro: Troque itens com outros agentes",
-      friends: "Amigos: Adicione amigos. Joguem juntos.",
+      friends: "Amigos: Adicione amigos. Jogue com eles.",
     },
     cards: [
       { title: "Spy Sketch", text: "Desenhe a palavra secreta num quadro compartilhado e pegue o espião que está fingindo." },
@@ -1038,7 +1038,7 @@ const ptBR: Strings = {
         { title: "Partida de treino", text: "Aprenda Spy Talk e Spy Sketch numa partida de verdade com agentes de IA, como local ou como espião. A gente orienta cada jogada e dá à sua partida uma nota de A a F." },
         { title: "Minhas pistas", text: "Os espiões anotam o que descobrem na página de pistas, montam uma lista curta de lugares ou palavras possíveis e dão o palpite final a partir dela." },
         { title: "Regras de sala privada", text: "Regras opcionais, como o Informante: um local que conhece um espião em segredo. Em Como jogar > Recursos e configurações tem uma demo curta e jogável de cada uma." },
-        { title: "Amigos e grupos", text: "Adicione amigos com seu código de amigo ou nome de usuário, siga jogadores e procurem mesa juntos, em grupo. Criar um grupo é para membros. No iPhone e no iPad, amigos, grupos e trocas são para maiores de 18." },
+        { title: "Amigos e grupos", text: "Adicione amigos com seu código de amigo ou nome de usuário, siga jogadores e procure mesa com eles, em grupo. Criar um grupo é para membros. No iPhone e no iPad, amigos, grupos e trocas são para maiores de 18." },
         { title: "Interceptações", text: "Arquivos lacrados com um item aleatório para o seu agente, ganhos com vitórias no Jogar online, na sequência diária e na Noite de Jogos. Alguns itens vêm como Únicos: exemplar único, com cor e número de série próprios. As chances aparecem antes de abrir ou comprar. Nunca vendidas por dinheiro." },
         { title: "Intel e trocas", text: "Intel é o dinheiro do próprio jogo: você ganha jogando e gasta no Cofre. Não pode ser comprado e não tem valor em dinheiro. Troque itens com amigos quando sua conta tiver 7 dias, seu e-mail estiver confirmado e você tiver jogado 3 partidas. Cada troca fica protegida por 7 dias." },
         { title: "Pacotes da comunidade", text: "Explore em Comunidade os pacotes feitos pelos jogadores. Membros escrevem os próprios com o criador de pacotes e compartilham." },

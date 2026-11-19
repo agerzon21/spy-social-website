@@ -160,8 +160,8 @@ const es: Strings = {
       title: (creator: string) => `Mira a ${creator} jugar Spy Sketch`,
       credit: (creator: string) => `Video de <link>${creator}</link>`,
       cta: 'Juega gratis en tu navegador',
-      play: (creator: string) => `Reproducir el vídeo de ${creator}`,
-      consent: 'Al darle a reproducir, el vídeo se carga desde YouTube, que puede usar cookies. <link>Política de privacidad</link>',
+      play: (creator: string) => `Reproducir el video de ${creator}`,
+      consent: 'Al darle a reproducir, el video se carga desde YouTube, que puede usar cookies. <link>Política de privacidad</link>',
     },
     lineup: {
       group: 'Una rueda de cinco agentes. Toca uno para acusarlo.',
@@ -785,7 +785,7 @@ const es: Strings = {
         },
         {
           title: 'Seguridad',
-          text: 'SpySocial es para mayores de 13 años. El chat tiene un filtro de palabras, puedes reportar o bloquear a cualquier jugador y, en las salas con algún menor de 18 años, el chat bloquea enlaces, números de teléfono y redes sociales.',
+          text: 'SpySocial es para jugadores de 13 años en adelante. El chat tiene un filtro de palabras, puedes reportar o bloquear a cualquier jugador y, en las salas con algún menor de 18 años, el chat bloquea enlaces, números de teléfono y redes sociales.',
         },
       ],
       more: 'Y además: estadísticas, títulos y marcos para desbloquear, niveles hasta el 100 con prestigio, XP también en las partidas cortas, volver a la partida sin tropiezos aunque el teléfono entre en reposo, enlaces de invitación que simplemente funcionan y un nuevo aspecto en cada pantalla.',
@@ -1011,7 +1011,7 @@ const es: Strings = {
       online: "Jugar en línea: mesas de 4 u 8, cuando quieras",
       gamenight: "Noche de Juegos: títulos que solo se ganan esa noche",
       market: "Mercado Negro: intercambia objetos con otros agentes",
-      friends: "Amigos: agrega amigos. Jueguen juntos.",
+      friends: "Amigos: agrega amigos. Juega con ellos.",
     },
     cards: [
       { title: "Spy Sketch", text: "Dibuja la palabra secreta en una pizarra compartida y atrapa al espía que finge saberla." },
@@ -1035,7 +1035,7 @@ const es: Strings = {
         { title: "Partida de práctica", text: "Aprende Spy Talk y Spy Sketch en una partida real con agentes de IA, como local o como espía. Te guiamos en cada jugada y le ponemos a tu partida una nota de la A a la F." },
         { title: "Mis indicios", text: "Los espías anotan lo que descubren en su página de indicios, arman una lista corta de lugares o palabras posibles y hacen su intento final desde ella." },
         { title: "Reglas de sala privada", text: "Reglas opcionales, como el Informante: un local que conoce en secreto a un espía. En Cómo jugar > Funciones y ajustes hay una demo corta y jugable de cada una." },
-        { title: "Amigos y grupos", text: "Agrega amigos con tu código de amigo o por nombre de usuario, sigue a jugadores y busquen mesa juntos en grupo. Crear un grupo es para miembros. En iPhone y iPad, los amigos, los grupos y los intercambios son para mayores de 18." },
+        { title: "Amigos y grupos", text: "Agrega amigos con tu código de amigo o por nombre de usuario, sigue a jugadores y busca mesa con ellos en grupo. Crear un grupo es para miembros. En iPhone y iPad, los amigos, los grupos y los intercambios son para mayores de 18." },
         { title: "Intercepciones", text: "Archivos sellados con un objeto al azar para tu agente. Se ganan con victorias en Jugar en línea, con tu racha diaria y en la Noche de Juegos. Algunos objetos salen como Únicos: irrepetibles, con su propio color y número de serie. Las probabilidades se ven antes de abrir o comprar una. Nunca se venden por dinero." },
         { title: "Intel e intercambios", text: "Intel es el dinero propio del juego: se gana jugando y se gasta en la Bóveda. No se puede comprar y no tiene valor monetario. Intercambia objetos con tus amigos cuando tu cuenta tenga 7 días, tu correo esté confirmado y hayas jugado 3 partidas. Cada intercambio está protegido 7 días." },
         { title: "Paquetes de la comunidad", text: "Explora en Comunidad los paquetes que hacen los jugadores. Los miembros escriben los suyos con el creador de paquetes y los comparten." },

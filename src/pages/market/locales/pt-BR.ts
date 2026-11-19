@@ -71,7 +71,7 @@ const ptBR: MarketStrings = {
     how: {
       title: 'Como o preço é calculado',
       list: [
-        { title: 'Com vendas reais', text: 'O preço de um item é a mediana (o valor do meio) de Intel paga por ele nos últimos 7 dias, então uma venda fora do comum não o muda; quando ele vende menos, nos últimos 30 ou 90 dias.' },
+        { title: 'Com vendas reais', text: 'O preço de um item é a mediana (o valor do meio) do Intel pago por ele nos últimos 7 dias, então uma venda fora do comum não o muda; quando ele vende menos, nos últimos 30 ou 90 dias.' },
         { title: 'Cinco vendas ou nada', text: 'Nenhum preço aparece antes de pelo menos cinco vendas entre pelo menos três pares diferentes de jogadores, e nada aqui cita um comprador, um vendedor ou uma venda específica.' },
         { title: 'Nunca abaixo do mínimo', text: 'Ninguém pode vender abaixo do que um item rende ao ser triturado. Vendas entre contas vinculadas nunca contam.' },
       ],

@@ -449,7 +449,7 @@ const id: Strings = {
         "<b>Link ke Discord kami:</b> beranda bisa menampilkan link ke server Discord resmi SpySocial, tempat pemain mencari teman bermain. Discord adalah aplikasi terpisah dengan aturan dan batas usianya sendiri. Pemain di bawah 16 tahun tidak pernah melihat link ini, dan pemain 16 dan 17 tahun lebih dulu melihat catatan agar tetap aman di sana. Moderator kami menjaga server itu, tetapi tidak ada seorang pun di SpySocial yang bisa melihat pesan pribadi di Discord.",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
-        `<b>Pembuat paket:</b> member bisa membuat paket lokasi atau kata sendiri untuk room privat mereka.${
+        `<b>Pembuat paket:</b> anggota bisa membuat paket lokasi atau kata sendiri untuk room privat mereka.${
           community ? ' Tim kami membaca setiap paket yang dibagikan ke Paket Komunitas sebelum orang lain bisa melihatnya, dan pemain mana pun bisa melaporkannya.' : ''
         }`,
       hasNotTitle: 'Apa yang tidak ada di SpySocial',
@@ -724,7 +724,7 @@ const id: Strings = {
             items: [
               { title: "", text: "Memperbaiki kekacauan langka saat voting dan akhir permainan terjadi bersamaan." },
               { title: "", text: "Memperbaiki suara yang terhitung dua kali dan voting yang berakhir di saat yang salah." },
-              { title: "", text: "Memperbaiki cara abstain dihitung. Tombol Abstain kini ada bersama tombol voting lainnya." },
+              { title: "", text: "Memperbaiki cara suara tidak memilih dihitung. Tombol “Tidak memilih” kini ada bersama tombol voting lainnya." },
               { title: "", text: "Memperbaiki header yang menutupi hasil tebakan." },
               { title: "", text: "Memperbaiki kedipan saat layar permainan dibuka." },
               { title: "", text: "Memperbaiki masalah saat menyimpan akun tamu malah membuatmu keluar dari akun." },
@@ -958,7 +958,7 @@ const id: Strings = {
       title: 'Main. Bicara. Ceritakan.',
       steps: ['<b>Main</b> selama satu jam.', '<b>Ucapkan dengan suara keras</b> apa pun yang membingungkan.', '<b>Isi survei 5 menit</b> sesudahnya.'],
       wantTitle: 'Yang ingin kami ketahui',
-      want: ['Jelaskah giliran siapa sekarang?', 'Mudahkah memahami voting?', 'Apakah menggambar lancar di ponselmu?'],
+      want: ['Apakah jelas giliran siapa sekarang?', 'Mudahkah memahami voting?', 'Apakah menggambar lancar di ponselmu?'],
     },
     get: {
       eyebrow: 'Yang kamu dapat',
@@ -1038,10 +1038,10 @@ const id: Strings = {
         { title: "Permainan latihan", text: "Pelajari Spy Talk dan Spy Sketch dalam permainan sungguhan bersama agen AI, sebagai warga atau sebagai mata-mata. Kami membimbing setiap langkah dan memberi nilai A sampai F untuk permainanmu." },
         { title: "Temuanku", text: "Mata-mata mencatat apa yang mereka tangkap di halaman temuan, menyusun daftar pendek tempat atau kata yang mungkin, lalu menebak terakhir kali dari daftar itu." },
         { title: "Aturan room privat", text: "Aturan opsional, seperti Informan: seorang warga yang diam-diam tahu satu mata-mata. Di Cara bermain > Fitur & Pengaturan ada demo singkat yang bisa dimainkan untuk tiap aturan." },
-        { title: "Teman dan grup", text: "Tambahkan teman dengan Kode Teman atau nama pengguna, ikuti pemain, dan cari meja bersama sebagai grup. Membuat grup khusus member. Di iPhone dan iPad, teman, grup, dan fitur tukar khusus untuk pemain 18 tahun ke atas." },
+        { title: "Teman dan grup", text: "Tambahkan teman dengan Kode Teman atau nama pengguna, ikuti pemain, dan cari meja bersama sebagai grup. Membuat grup khusus anggota. Di iPhone dan iPad, teman, grup, dan fitur tukar khusus untuk pemain 18 tahun ke atas." },
         { title: "Sadapan", text: "Berkas tersegel berisi item acak untuk agenmu, didapat dengan menang di Main online, dari Rentetan Harian, dan di Malam Permainan. Sebagian item hadir sebagai Unik: satu-satunya, dengan warna dan nomor seri sendiri. Peluangnya terlihat sebelum dibuka atau dibeli. Tidak pernah dijual dengan uang." },
         { title: "Intel dan pertukaran", text: "Intel adalah uang khusus dalam game: didapat dari bermain dan dibelanjakan di Brankas. Tidak bisa dibeli dan tidak punya nilai uang. Tukar item dengan teman setelah akunmu berumur 7 hari, emailmu terkonfirmasi, dan kamu sudah main 3 game. Setiap pertukaran dilindungi 7 hari." },
-        { title: "Paket komunitas", text: "Jelajahi paket buatan pemain di Komunitas. Member menulis paket sendiri di pembuat paket lalu membagikannya." },
+        { title: "Paket komunitas", text: "Jelajahi paket buatan pemain di Komunitas. Anggota menulis paket sendiri di pembuat paket lalu membagikannya." },
         { title: "10 bahasa", text: "Inggris, Spanyol, dan Rusia, ditambah Prancis, Portugis (Brasil), Mandarin (Sederhana), Hindi, Arab, Bengali, dan Indonesia dalam versi beta. Semua orang melihat game dalam bahasanya sendiri." },
         { title: "Notifikasi", text: "Untuk undangan dan permintaan teman, pertukaran, penawaran Pasar Gelap, dan Malam Permainan yang kamu ketuk Ingatkan aku." },
       ],

@@ -44,8 +44,8 @@ const ptBR: ProfileStrings = {
 
 const fr: ProfileStrings = {
   eyebrow: 'Profil du joueur',
-  phone: 'Les profils se trouvent dans l’app SpySocial. Si ce joueur garde son profil public, l’app affiche son agent, son titre et sa vitrine.',
-  desktop: 'Les profils se trouvent dans l’app SpySocial. Ouvre ce lien sur ton téléphone pour le voir.',
+  phone: 'Les profils se trouvent dans l’appli SpySocial. Si ce joueur garde son profil public, l’app affiche son agent, son titre et sa vitrine.',
+  desktop: 'Les profils se trouvent dans l’appli SpySocial. Ouvre ce lien sur ton téléphone pour le voir.',
   bad: 'Ce lien de profil n’est pas valide.',
   badText: 'Vérifie le nom d’utilisateur dans le lien et réessaie.',
   back: 'Retour aux Archives',
@@ -71,7 +71,7 @@ const hi: ProfileStrings = {
 
 const bn: ProfileStrings = {
   eyebrow: 'খেলোয়াড়ের প্রোফাইল',
-  phone: 'প্রোফাইল থাকে SpySocial অ্যাপে। এই খেলোয়াড়ের প্রোফাইল পাবলিক হলে অ্যাপে তার এজেন্ট, টাইটেল আর শোকেস দেখা যায়।',
+  phone: 'প্রোফাইল থাকে SpySocial অ্যাপে। এই খেলোয়াড়ের প্রোফাইল পাবলিক হলে অ্যাপে তার এজেন্ট, খেতাব আর শোকেস দেখা যায়।',
   desktop: 'প্রোফাইল থাকে SpySocial অ্যাপে। দেখতে এই লিংকটি আপনার ফোনে খুলুন।',
   bad: 'এই প্রোফাইল লিংকটি ঠিক নয়।',
   badText: 'লিংকের ইউজারনেমটি দেখে আবার চেষ্টা করুন।',

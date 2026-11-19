@@ -60,7 +60,7 @@ const fr: MarketStrings = {
     lede: 'Ce que vaut chaque objet au Marché noir, calculé d’après les ventes entre joueurs. Cherche un objet, regarde ce qui grimpe et vérifie un prix avant d’acheter ou de vendre.',
     stats: { priced: 'Objets avec un prix', trades1d: 'Ventes aujourd’hui', trades30d: 'Ventes sur 30\u00a0jours', intel30d: 'Intel échangé sur 30\u00a0jours' },
     movers: 'Tendances du marché',
-    moversLede: 'Le haut de chaque liste. Ouvre-en une pour voir son top 100.',
+    moversLede: 'Le haut de chaque liste. Ouvres-en une pour voir son top 100.',
     top100: 'Top 100',
     featured: 'Objet à la une',
     featuredText: 'L’objet le plus vendu cette semaine.',

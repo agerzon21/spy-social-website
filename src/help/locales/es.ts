@@ -134,7 +134,7 @@ const es: HelpText = {
           id: 'voting',
           q: '¿Cómo funcionan las votaciones?',
           a: [
-            'Abre <b>Acciones</b> y toca <b>Votar</b>. Cada uno elige a un jugador o <b>Abstener</b> y confirma. Un voto confirmado no se puede cambiar.',
+            'Abre <b>Acciones</b> y toca <b>Votar</b>. Cada uno elige a un jugador o <b>Abstenerse</b> y confirma. Un voto confirmado no se puede cambiar.',
             '<b>Mayoría:</b> alguien queda eliminado solo si vota en su contra más de la mitad de quienes siguen en juego.',
             '<b>Pluralidad:</b> basta con tener más votos que nadie, siempre que superen a las abstenciones y a quienes no votan.',
             'Un empate en el primer puesto no elimina a nadie, y siempre hacen falta al menos 2 votos.',
@@ -151,7 +151,7 @@ const es: HelpText = {
             'Si acierta, ganan todos los espías. Si falla, o se le acaba el tiempo, ese espía queda fuera. Si era el último, ganan los locales.',
             'Todos ven quién está intentando adivinar, así que te delata.',
             "Adivinas por tu cuenta: tu chat queda cerrado hasta que confirmes.",
-            'Con <b>Un solo intento</b> activado (en salas privadas y Noches de Juegos que lo activan), el equipo espía tiene un único intento: si falla, pierde todo el equipo.',
+            'Con <b>Un solo tiro</b> activado (en salas privadas y Noches de Juegos que lo activan), el equipo espía tiene un único intento: si falla, pierde todo el equipo.',
           ],
         },
         {
@@ -163,7 +163,7 @@ const es: HelpText = {
             'Salir cuenta como ser eliminado por votación: si sale el último espía, ganan los locales; si salen demasiados locales, ganan los espías. Antes de que terminen las preguntas (en Spy Sketch, en la primera ronda), esa partida muestra «Sin resultado» y no cuenta.',
             "<b>Votación final:</b> si queda exactamente un espía, todos votan una vez más cuando se acaba el tiempo, cuando a nadie le quedan votaciones por convocar o cuando se acaba la última oportunidad de convocar una. Si atrapan al espía, ganan los locales. Está activa en Jugar en línea y es un ajuste en las salas privadas. Una mesa de Jugar en línea o una Noche de Juegos también puede jugarla con dos espías: si atrapan a cualquiera de los dos, ganan los locales.",
             "Los resultados de una votación final se abren bajo una cinta roja de <b>Votación final</b> que dice por qué: «El reloj ha hablado», «No quedan votaciones por convocar» o «Se acabó la última oportunidad».",
-            "<b>Informante</b> (salas privadas y Noches de Juegos que lo activan, con 2 espías o más y 6 jugadores o más): la carta de un local nombra a un espía. Cuando los locales ganan por votación o porque el último espía falla su intento, los espías, también los atrapados, tienen 30 segundos para nombrar al informante y robar la victoria. No pasa tras un fallo con <b>Un solo intento</b> ni si el último espía se va.",
+            "<b>Informante</b> (salas privadas y Noches de Juegos que lo activan, con 2 espías o más y 6 jugadores o más): la carta de un local nombra a un espía. Cuando los locales ganan por votación o porque el último espía falla su intento, los espías, también los atrapados, tienen 30 segundos para nombrar al informante y robar la victoria. No pasa tras un fallo con <b>Un solo tiro</b> ni si el último espía se va.",
           ],
         },
         {
@@ -173,7 +173,7 @@ const es: HelpText = {
             "<b>Votaciones por partida:</b> cada jugador puede convocar 1, 2 o 3 votaciones por partida, o sin límite (una sala nueva empieza en 1). Cuando una votación atrapa a un espía, todos los que usaron una la recuperan.",
             "Si a nadie que siga en juego le quedan votaciones, el reloj de la partida salta a sus últimos 5 segundos. Si quedan tantas votaciones como espías en juego, o menos, hay una última oportunidad de 15 segundos para convocar una. Si nadie convoca una a tiempo, sigue una votación final si está activa (mira cómo gana cada bando, arriba); si no, ganan los espías.",
             "<b>Rastro de papel:</b> cuando expulsan a un espía por votación, todos ven cómo votó durante toda la partida. Si los roles no se revelan al expulsar, espera hasta el final de la partida.",
-            "<b>Un solo intento</b> e <b>Informante</b>: están arriba, en el intento del espía y en cómo gana cada equipo.",
+            "<b>Un solo tiro</b> e <b>Informante</b>: están arriba, en el intento del espía y en cómo gana cada equipo.",
             "<b>Hablar en voz alta</b> tiene su propia respuesta arriba. En la app, <b>Cómo jugar</b> › <b>Funciones y ajustes</b> tiene una demo corta de cada regla.",
           ],
         },
@@ -237,7 +237,7 @@ const es: HelpText = {
               a: [
                 '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota o un empate. El final de la partida muestra lo que ganaste.',
                 "No hay Intel de Noche de Juegos si sales antes del final, te sacan de la mesa o no participas, si la partida empieza después del cierre de la Noche de Juegos (una partida que empieza a tiempo y termina más tarde sí paga), si nuestras comprobaciones de juego limpio marcan la partida, o en una mesa con spybots. Una partida que termina antes porque alguien se fue no le paga a nadie.",
-                '<b>Títulos ★</b> que van sumando: <b>★ Operativo</b> por cada partida de la Noche de Juegos que terminas, <b>★ Héroe Local</b> por cada victoria como local, <b>★ Maestro Espía</b> por cada victoria como espía y <b>★ Agente Doble</b> por cada noche en que ganas en los dos bandos. Llévalos con su número, como ★ Operativo ×12.',
+                '<b>Títulos ★</b> que van sumando: <b>★ Operativo</b> por cada partida de la Noche de Juegos que terminas, <b>★ Héroe local</b> por cada victoria como local, <b>★ Maestro espía</b> por cada victoria como espía y <b>★ Agente doble</b> por cada noche en que ganas en los dos bandos. Llévalos con su número, como ★ Operativo ×12.',
                 'El Intel de Noche de Juegos y los títulos ★ son solo tuyos: no se pueden intercambiar, y la membresía no les suma nada. Gasta el Intel en intercepciones de Noche de Juegos.',
                 ...(o.launch
                   ? []

@@ -514,7 +514,7 @@ const id: HelpText = {
           a: [
             'Setiap item yang terjual kena biaya 2% (paling sedikit 1 Intel, paling banyak 5.000 Intel), yang dihapus dari permainan.',
             'Tidak ada tawaran yang boleh di bawah harga minimum item: nilai hancur satu salinannya. Untuk sadapan yang belum dibuka, itu rata-rata tingkatnya.',
-            'Member bisa punya 8 penawaran terbuka sekaligus, yang lain 4. Selama penawaran terbuka, Intel atau itemnya ditahan (item tetap bisa dipakai).',
+            'Anggota bisa punya 8 penawaran terbuka sekaligus, yang lain 4. Selama penawaran terbuka, Intel atau itemnya ditahan (item tetap bisa dipakai).',
             "Harga bisa sampai 1.000.000 Intel per salinan, dan satu penawaran bisa sampai 1.000 salinan.",
             "Di Temuan Langka, kamu bisa memasang sampai 25 item Unik sekaligus dan punya sampai 20 tawaran terbuka di item pemain lain.",
             'Kamu bisa menghentikan penawaran kapan saja dan mengambil sisanya.',
@@ -588,7 +588,7 @@ const id: HelpText = {
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
             "<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu. Tiap hari ke-7 berturut-turut menambah satu Rahasia atau lebih tinggi, dan tiap hari ke-30, satu Enigma.",
             ...(o.gnRewards ? ["<b>Malam Permainan:</b> permainanmu di sana memberi Intel Malam Permainan, yang bisa kamu pakai untuk mendapatkan sadapan Malam Permainan (di bawah)."] : o.gnRewardsRules ? [] : ["<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam."]),
-            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
+            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, memakainya untuk Tukar Tambah, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
             'Room privat tidak memberi sadapan.',
             ...(o.launch
               ? []
@@ -625,7 +625,7 @@ const id: HelpText = {
             'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan rentetan harian, serta dari menghancurkan duplikat.',
             'Rentetan harianmu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
             o.launch ? 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.' : 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa bisa menukarnya dengan orang dewasa lain, dan memakainya di Pasar Gelap mulai peluncuran 2.2 tanggal 8 Desember, atau dalam uji yang penjualannya dibatalkan.',
-            'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya. Lihat milikmu di <b>Riwayat Intel</b>, di dalam «Cara Kerja Intel», pada pembaruan terbaru aplikasi.',
+            'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya. Lihat milikmu di <b>Riwayat Intel</b>, di dalam “Cara Kerja Intel”, pada pembaruan terbaru aplikasi.',
             'Di <b>Brankas</b>, Intel-mu punya ubin sendiri, tumpukan yang tumbuh sesuai jumlahnya. Ketuk untuk melihat yang didapat hari ini, didapat seluruhnya, dan dipakai seluruhnya. Intel yang tertahan di penawaran Pasar Gelap yang masih terbuka dihitung terpakai sampai kembali.',
           ],
         },
@@ -705,7 +705,7 @@ const id: HelpText = {
             ...(o.purchases ? [] : ['Keanggotaan mulai dijual dengan versi 2.2.']),
             'Semua paket premium, termasuk yang baru. Semua orang memainkannya di room yang kamu host dan di mejamu di Main online.',
             'Buat paket sendiri di pembuat paket dan bagikan ke komunitas.',
-            '+50% XP di setiap permainan, dan ruangan khusus member di Main online.',
+            '+50% XP di setiap permainan, dan room khusus anggota di Main online.',
             ...(o.practiceMembers ? ['Permainan latihan, sampai 5 per hari, dengan nilai huruf dan masukan AI.'] : []),
             'Bingkai, label, dan gelar pangkatmu. Kamu bisa memimpin grup dan punya 8 penawaran terbuka di Pasar Gelap, bukan 4.',
             'Keanggotaan tidak pernah mengubah cara kamu bermain atau skormu. Paket gratis tetap gratis untuk semua.',
