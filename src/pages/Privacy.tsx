@@ -739,6 +739,9 @@ const Privacy: React.FC = () => {
                 : ' The rest of your sign-up is deleted after the test.'}
               {PRIVACY.coverage1110 &&
                 " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026" + (PRIVACY.playtestSurvey ? "; Beta 3's by December 1, 2026" : '') + "), even if you delete your account first."}
+              {/* LIVE.testerOnboard (legal-coverage-1119, STAGED OFF): app repo feat/tester-onboarding-1117 (tester-onboard + 20261231999830). */}
+              {PRIVACY.testerOnboard &&
+                " For a test that sets testers up automatically, when you sign up (with the sign-up form, signed in with your Google account, or with our Discord server's /beta-code command) and tell us you're 18 or older, our servers keep your sign-up: your email address, the name and phone platform you gave, the email address of your Google account for Google Play, your Discord name as you typed it, and what we did for you. They then set you up at once: for iPhone, we give Apple your email address and first name, and Apple emails you its TestFlight invite; for Android, we add your Google account's email address to the Google group that is the app's list of testers in Google Play; for the browser version, we put your email address on its list of invited players. We email you how to install it through Resend, with a one-time code: if you type that code in our Discord server, we link your Discord account to your sign-up and give it the tester role. We don't keep a sign-up we turn down (for example from someone under 18). This sign-up is deleted with the rest of that test's sign-ups (Beta 3's by December 1, 2026), and we take you off Apple's, Google's and the browser's lists once the test is over."}
             </>
           )}{' '}
           {PRIVACY.launchTesterMail &&
@@ -891,6 +894,10 @@ const Privacy: React.FC = () => {
             {PRIVACY.helpMembershipSwitch
               ? "We also use these records to tell you in the app when you're paying for two memberships at once (for example Lifetime and a monthly membership, or one on each store), and which one you need. "
               : ''}
+            {/* LIVE.helpGooglePassStop (legal-coverage-1119; app server pass-cancel, public.pass_cancel_requests ON DELETE CASCADE). */}
+            {PRIVACY.helpGooglePassStop
+              ? "When you buy Lifetime, or tap Stop Google Play Renewal on that warning, and a monthly or yearly membership billed by Google Play would still renew beside the one you keep, our servers ask RevenueCat to stop that membership's renewal on Google Play (using the store's order ID, never a refund) and then read your purchases back from RevenueCat, so the app shows the change at once. We keep a record of each of these requests (which purchase, why, when and whether it worked) with your account, and delete it with your account. We never do this for a membership billed by the App Store. "
+              : ''}
             {PRIVACY.memberLoyalty
               ? "To show your member time (\"Member since\" and how long you've been a member, see our Terms of Service), we keep a record of each period your membership was active: when it started and ended, how it came (a monthly or yearly membership, Lifetime, a gift or a code), and whether it was refunded or a test purchase. We keep it for as long as you have an account and delete it with the account. It doesn't include the price you paid. "
               : ''}
@@ -958,7 +965,7 @@ const Privacy: React.FC = () => {
             {PRIVACY.communityPacks &&
               ` If you send a pack to Community Packs, we also use that push address to tell you when we approve or turn it down (with the pack's name and our reason)${PRIVACY.helpTruth1105 ? "; a player under 18 gets it only between 7 AM and 10 PM local time, and not at all while we don't know their time zone" : ''}.`}{' '}
             {PRIVACY.socialFeatures
-              ? "Apart from that and the notifications in Social Notifications above, the only other push notifications we send go to our moderators' phones when a new report comes in, a report is waiting past its time or our safety checks flag something, and to SpySocial's developer's phone when our fair-play, economy or email checks need him."
+              ? "Apart from that and the notifications in Social Notifications above, the only other push notifications we send go to our moderators' phones when a new report comes in, a report is waiting past its time or our safety checks flag something, and to SpySocial's developer's phone when our fair-play, economy or email checks need him. If none of his phones can get these alerts, the same words go to his own email address instead, through Resend."
               : "Apart from that, the only other push notifications we send go to our moderators' phones when a new report comes in."}
             {PRIVACY.modCoverHold
               ? " A community moderator's phone also gets one when a safety report SpySocial's developer hasn't opened for 15 minutes needs a hold; it says only that a safety case needs a hold, with nothing about the report or the case: not which report, its kind or case number, who is in it or what was said."
@@ -1416,7 +1423,7 @@ const Privacy: React.FC = () => {
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
             {PRIVACY.passwordless ? ' sign-in codes' : PRIVACY.emailCodes22 ? ' sign-in codes, sign-up confirmations and password resets' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.launchTesterMail ? ', the email telling the players who tested version 2.2 that it\'s out' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.launchTesterMail ? ', the email telling the players who tested version 2.2 that it\'s out' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}{PRIVACY.testerOnboard ? ', the welcome email with how to install a test version' : ''}, and the developer's own alerts when none of his phones can get them (the same words as the push, see Reminders and Notifications), so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">
@@ -1578,6 +1585,12 @@ const Privacy: React.FC = () => {
         {/* LIVE.communityPacks: an approved pack is public (legalRelease). */}
         {PRIVACY.communityPacks &&
           " A custom pack you submit to Community Packs is shown to every player once we approve it, with your username as its creator (or Anonymous, if you chose that), its ratings and how many players added it (see Custom Packs and Community Packs above); never who rated or added it."}{' '}
+        {/* legal-coverage-1119: Terms 6 already says players can record a room; creators we work with record games for their videos (Levvis and friends on the browser version from Nov 24). */}
+        Other players can take screenshots of what they see in a room or record it, and some content creators we work
+        with record the games they play for their videos (for example on YouTube or TikTok). What the room shows them,
+        such as names as the room shows them, avatars, chat messages and drawings, can then appear in those videos,
+        which the creator publishes under their own platform's terms; we don't control them. If a video shows your
+        personal information, write to support@spysocial.app and we'll ask the creator to remove it.{' '}
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
         {/* LIVE.publicStats: get_public_stats / the public-stats function (legalRelease). */}

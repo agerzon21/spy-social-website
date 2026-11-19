@@ -43,7 +43,10 @@ const SWITCHES = {
   // legal-gn-1117: the same flip turns on Terms 5 / 9's, Privacy's and the Ledger page's Game Night lines (GN_REWARDS_RULES_DAY in both Last Updated chains).
   gnRewardsRules: { live: [['gnRewardsRules', true]], day: 'GN_REWARDS_RULES_DAY', step: 'row 83 (999848)' },
   helpMembershipSwitch: { live: [['helpMembershipSwitch', true]], day: null, step: 'row 85 (999846) + 62.15' },
-  helpGooglePassStop: { live: [['helpGooglePassStop', true]], day: null, step: 'google_pass_cancel on' },
+  // legal-coverage-1119: helpGooglePassStop now also turns on Terms 9's and Privacy's lines, so it carries a day.
+  helpGooglePassStop: { live: [['helpGooglePassStop', true]], day: 'GOOGLE_PASS_STOP_DAY', step: 'google_pass_cancel on' },
+  // legal-coverage-1119: POLICY FIRST, the hour tester-onboard goes live (TESTER_ONBOARD_LIVE=1 + app_config tester_onboard enabled).
+  testerOnboard: { live: [['testerOnboard', true]], day: 'TESTER_ONBOARD_DAY', step: 'tester-onboard live' },
   helpQuestionRounds: { live: [['helpQuestionRounds', true]], day: null, step: 'row 70 (999861) + 62.15' },
   // codename-1118: Help only, no date. The hour app update 62.15.2 is on phones.
   helpU6152: { live: [['helpU6152', true]], day: null, step: '62.15.2' },

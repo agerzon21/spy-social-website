@@ -196,7 +196,13 @@ export const LIVE = {
    * function deployed AND app_config google_pass_cancel {"enabled": true}; owner Nov 17 "android cancel"). Turns on
    * #membership-switch's Lifetime line, #two-memberships' Stop Renewal line and #cancel-membership's Lifetime sentence.
    * Needs helpMembershipSwitch for the first two. Flip the hour the app_config switch goes on: node scripts/flip-switch.mjs
-   * helpGooglePassStop. Off again if google_pass_cancel goes back to false.
+   * helpGooglePassStop --day "<that day>". Off again if google_pass_cancel goes back to false.
+   * legal-coverage-1119: it also turns on Terms 9's How to cancel lines (a Google Play membership stops renewing by
+   * itself when Lifetime is bought, Stop Google Play Renewal on the two-memberships warning; never an App Store one;
+   * nothing refunded) and Privacy's Purchases lines (pass-cancel asks RevenueCat to stop the renewal by the Google order
+   * id, then reads the record back; public.pass_cancel_requests kept with the account, ON DELETE CASCADE). Not material
+   * (we stop a charge the player would have had to stop: no new duty), so no TERMS_PUBLISHED or terms_version raise;
+   * GOOGLE_PASS_STOP_DAY moves both Last Updated dates (latestOf). A server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
   helpGooglePassStop: false,
   /**
@@ -2210,7 +2216,37 @@ export const LIVE = {
    * day>"). A correction, no new duty: no TERMS_PUBLISHED or terms_version raise. A website fact: set in LIVE.
    */
   tutorialGate1117: true,
+  /**
+   * legal-coverage-1119, STAGED OFF: automatic beta-tester onboarding (app repo feat/tester-onboarding-1117: Edge Function
+   * tester-onboard, NOT deployed; its database file 20261231999830_tester_onboard_1117 is live with app_config
+   * tester_onboard {"enabled": false}). A sign-up (the Google Form's verified address, or our Discord's /beta-code) is kept
+   * in tester_signups (email, its inbox key, name, platform, Google Play email, Discord name as typed, the Discord user id
+   * only from a Discord-signed /beta-code with the one-time code we mail, the steps done) until the cohort's delete_after
+   * (Beta 3: December 1, 2026); refused sign-ups (not 18+, no consent, an account under 18) are never stored. iPhone: App
+   * Store Connect POST /v1/betaTesters (email + first name) to the external TestFlight group, Apple mails the invite.
+   * Android: Cloud Identity adds the Google Play email to the Google Group that is the Play testers' list. Browser: the
+   * email on web_beta_access. Discord: the tester role. Mail through Resend. Turns on one passage in Privacy's Test
+   * Versions item. Flip the hour the function goes live (TESTER_ONBOARD_LIVE=1 and app_config tester_onboard enabled):
+   * node scripts/flip-switch.mjs testerOnboard --day "<that day>". POLICY FIRST: publish before the first live sign-up.
+   * A server fact: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
+   */
+  testerOnboard: false,
 }
+
+/**
+ * legal-coverage-1119: unconditional text (Terms 9's membership benefits: more XP, Play Online's Members only, leading a
+ * party, 8 Black Market offers; Terms 9's I-1 line agreeing with LIVE.intelZero1117; Privacy: the developer's alerts by
+ * e-mail when no phone gets them (owner_alert_mail_1117, live Nov 20 batch F18), content creators recording games).
+ * Both Last Updated dates are never earlier than this day: set it to the publish day.
+ */
+export const COVERAGE_1119_DAY = 'November 19, 2026'
+/** LIVE.helpGooglePassStop's day in both Last Updated dates (legal-coverage-1119; set by flip-switch --day). */
+export const GOOGLE_PASS_STOP_DAY = 'November 21, 2026'
+/** LIVE.testerOnboard's day in PRIVACY_LAST_UPDATED (legal-coverage-1119; set by flip-switch --day). */
+export const TESTER_ONBOARD_DAY = 'November 21, 2026'
+/** The latest of several "Month D, YYYY" days (null skipped): a switch's day can then move a date whatever the chain's order. */
+const latestOf = (...days: Array<string | null>): string =>
+  days.reduce<string>((a, b) => (b !== null && Date.parse(b) > Date.parse(a) ? b : a), days[0] as string)
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
 export const PRACTICE_RESULTS_DAY = 'November 13, 2026'
@@ -2534,7 +2570,7 @@ export const CREATOR_INVITES_DAY = 'November 14, 2026'
 /** LIVE.creatorInviteData's day in PRIVACY_LAST_UPDATED: the day 20270101000010_creator_invite_data_1113 is applied live. Never earlier than CREATOR_INVITES_DAY. */
 export const CREATOR_INVITE_DATA_DAY = 'November 14, 2026'
 
-export const LEGAL_LAST_UPDATED: string = sinceLlc(
+export const LEGAL_LAST_UPDATED: string = latestOf(sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
   : LIVE.intelZero1117
@@ -2656,7 +2692,7 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
-)
+), COVERAGE_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -2666,9 +2702,8 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
  */
 /** sentry-1119: the Crash Reports item (and Sentry's line) now also describe release-health sessions, which go with the OTA that carries app commit c328d2ef5. Unconditional text; Last Updated never earlier than this day. */
 export const SENTRY_SESSIONS_1119_DAY = 'November 19, 2026'
-const laterOf = (a: string, b: string): string => (Date.parse(b) > Date.parse(a) ? b : a)
 
-export const PRIVACY_LAST_UPDATED: string = laterOf(sinceLlc(
+export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.playtestTremendous
@@ -2854,7 +2889,7 @@ export const PRIVACY_LAST_UPDATED: string = laterOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), SENTRY_SESSIONS_1119_DAY)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

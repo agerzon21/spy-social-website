@@ -762,8 +762,12 @@ const Terms: React.FC = () => {
             )}
             {LIVE.intelLedger
               ? LIVE.launchSite
-                ? " The items a membership includes stayed, and so did the Intel players got from games, daily claims and streaks. The Intel got by shredding copies from before then was taken back (never below 0), and the items bought with Intel before then were taken back, with the Intel spent on them refunded; we published this as incident I-1 on our transparency page."
-                : " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded; we publish this as incident I-1 on our transparency page."
+                ? LIVE.intelZero1117
+                  ? " The items a membership includes stayed. The Intel got by shredding copies from before then was taken back (never below 0), and the items bought with Intel before then were taken back, with the Intel spent on them refunded, before every account's Intel was set to 0 (see Intel above); we published this as incident I-1 on our transparency page."
+                  : " The items a membership includes stayed, and so did the Intel players got from games, daily claims and streaks. The Intel got by shredding copies from before then was taken back (never below 0), and the items bought with Intel before then were taken back, with the Intel spent on them refunded; we published this as incident I-1 on our transparency page."
+                : LIVE.intelZero1117
+                  ? " The items a membership includes stay. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded, before every account's Intel goes to 0 (see Intel above); we publish this as incident I-1 on our transparency page."
+                  : " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded; we publish this as incident I-1 on our transparency page."
               : ' The items a membership includes, and the Intel you already got, stay.'}
             {LIVE.intelCorrections
               ? " We may take back unopened Intercepts given by mistake. We take back an item you've opened only when an incident we've published shows it was given in error, or a closed fair-play case shows it came from cheating; for a Unique this waits 24 hours, its number stays used and is never given to anyone else, and you can appeal within 30 days (an upheld appeal gives you back the same Unique). While a fair-play case is open, we may freeze a copy: it stays yours but can't be shredded or traded up. We never take an item from you to give it to someone else. Otherwise an item you've opened stays yours like the other items you've earned."
@@ -1046,7 +1050,11 @@ const Terms: React.FC = () => {
           <li>
             Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts
             {LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}
-            {LIVE.practiceMembers ? ". It also opens practice games (full games against the app's AI agents, with grades and, if you're 16 or older and agree, AI feedback on your lines), up to 5 a day (the tutorials need no membership)" : ''}. The free packs stay free for
+            {LIVE.practiceMembers ? ". It also opens practice games (full games against the app's AI agents, with grades and, if you're 16 or older and agree, AI feedback on your lines), up to 5 a day (the tutorials need no membership)" : ''}.
+            {/* legal-coverage-1119: the rest of what the app's Membership entry lists (app lib/glossary entries.ts 'Membership'; the XP multiplier m_member, Play Online's Members only from 62.15.2, the party leader rule, the Black Market's 8 / 4 offers). */}
+            {' '}Members also earn more XP from their games, can choose at Play Online to be matched only with other
+            members, can start and lead a party (see section 4), and can have 8 Black Market offers open at once
+            instead of 4. A membership never gives more Intel, Intercepts or better odds. The free packs stay free for
             everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a
             membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for
             as long as we give it, and nothing is charged for it.
@@ -1073,9 +1081,10 @@ const Terms: React.FC = () => {
             {LIVE.helpMembershipSwitch
               ? " You can switch between the monthly and yearly membership there, or in the app (in the Vault, under Membership, for a membership billed by the store your device uses). You aren't charged twice for the same time: on Google Play the new plan starts at once and the time you've paid for becomes time on it; on the App Store, Apple decides when it starts, often at your next renewal, and credits the time you've paid for. If you pay for two memberships at once, the app tells you which one you need and which one to cancel."
               : ' You can switch between the monthly and yearly membership there too.'}{' '}
-            Deleting the app, or your SpySocial account,
-            doesn't cancel a subscription, and neither does buying Lifetime: cancel the monthly or yearly membership in the store so it isn't
-            charged again.
+            {/* LIVE.helpGooglePassStop (legal-coverage-1119; app server pass-cancel + app_config google_pass_cancel): a Google Play pass beside Lifetime, or the extra of two, stops renewing; never an App Store one, never a refund. */}
+            {LIVE.helpGooglePassStop
+              ? "Deleting the app, or your SpySocial account, doesn't cancel a subscription. When you buy Lifetime, a monthly or yearly membership billed by Google Play stops renewing by itself, whichever device you bought Lifetime on; and when the app tells you that you pay for two memberships, Stop Google Play Renewal stops the extra one's renewal from the app. Stopping a renewal refunds nothing and takes away no time: that membership runs to the end of the period you've paid for, then ends. Apple doesn't let us do this for a membership billed by the App Store: cancel it in the store so it isn't charged again."
+              : "Deleting the app, or your SpySocial account, doesn't cancel a subscription, and neither does buying Lifetime: cancel the monthly or yearly membership in the store so it isn't charged again."}
             {LIVE.memberLoyalty
               ? " In the Vault, Cancel Membership (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and the price you keep while you stay ends. Its one button, Continue to Cancel, goes straight on to the store's page. Manage Subscription itself still opens the store's page directly. Nothing changes before the end of the period you've paid for."
               : ''}
