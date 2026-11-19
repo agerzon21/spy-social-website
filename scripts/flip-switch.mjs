@@ -81,6 +81,8 @@ const SWITCHES = {
   intelZero1117: { live: [['intelZero1117', true]], day: 'INTEL_ZERO_1117_DAY', step: 'D1 zero on live, before Dec 7' },
   // legal-gn-1117: on (--day re-dates it to the publish day). gnRewardsRules (above) now also moves Terms' and Privacy's Last Updated.
   tutorialGate1117: { live: [['tutorialGate1117', true]], day: 'TUTORIAL_GATE_1117_DAY', step: 'publish' },
+  // archive-origins-1119 (B12): the Archive's Origins seal, Dec 6 (website commit A), before the Dec 8 genesis. No legal text, no date.
+  archiveOrigins: { live: [['archiveOrigins', true]], day: null, step: 'B12 Dec 6' },
 }
 
 const args = process.argv.slice(2)

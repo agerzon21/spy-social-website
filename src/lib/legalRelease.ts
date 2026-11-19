@@ -1733,6 +1733,14 @@ export const LIVE = {
    */
   archiveHoldersList: true,
   /**
+   * archive-origins-1119 (readiness R18b / B12; the app's Origins seal, look 43C, app c465682ae): a Season 1 copy (set
+   * s1.intercepts) shows the red wax seal "(S1) ORIGINS" on its Archive card and its own page, in place of the set's
+   * words (pages/archive/origins.ts, OriginsSeal). The set code already comes from mint_unique_public (no server file).
+   * No Terms or Privacy text reads it, no date. Flip on Dec 6 (website commit A), before the Dec 8 genesis makes the
+   * first S1 copy: node scripts/flip-switch.mjs archiveOrigins. Before any S1 copy exists it changes nothing.
+   */
+  archiveOrigins: false,
+  /**
    * ledger-reasons-1111 (owner Nov 11; app repo server file 20261231999988_ledger_reasons_1111): when SpySocial takes a
    * minted copy away for integrity (a bot farm, cheating, a fraud refund, a glitch or duplicate, a correction of ours),
    * the ledger says so plainly: the original lines stay, a new burn line's note reads "burn:<reason> case:<ref>", and the

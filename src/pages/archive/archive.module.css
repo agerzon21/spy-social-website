@@ -366,6 +366,46 @@
   letter-spacing: 0.1em;
 }
 .setName { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+/*
+ * The launch set's seal (archive-origins-1119, the app's look 43C "Seal", components/kit/SetBadge): a red wax seal
+ * holding "S1" (the kit's redFill #d12d3a, its redInk #ad202c rim, a fine cream ring pressed inside the edge), the set's
+ * word beside it in the line's own ink. The app's sizes at the site's 14 px type floor: a card's seal 30 px (the app's
+ * 22 pt with its 10 pt words), a Unique's page 34 px (the app's 26 pt sheet seal). The seal never changes size or
+ * shape; only the word beside it may take a second line (es, fr at a syllable; id), never cut.
+ */
+.origins { display: inline-flex; align-items: center; gap: 8px; min-width: 0; max-width: 100%; vertical-align: middle; }
+.seal {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #d12d3a;
+  border: 2px solid #ad202c;
+  box-sizing: border-box;
+  color: #fefaea;
+  font: 900 14px/1 var(--ss-font-body);
+  letter-spacing: 0;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.seal::before { content: ''; position: absolute; inset: 2px; border-radius: 50%; border: 1px solid rgba(254, 250, 234, 0.45); }
+.originsWord {
+  min-width: 0;
+  color: var(--ss-text);
+  font: 800 14px/1.2 var(--ss-font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.originsPage { gap: 9px; }
+.originsPage .seal { width: 34px; height: 34px; font-size: 15px; }
+.originsPage .seal::before { inset: 2.5px; }
+.originsPage .originsWord { letter-spacing: inherit; }
 /* Held by @name: the name a link of its own to the holder's profile, cut short with an ellipsis on a narrow card. */
 .heldBy { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 5px; min-width: 0; } /* type floor: at 14 px a name takes its own line on a narrow card instead of being cut */
 .heldBy > span { flex: none; }

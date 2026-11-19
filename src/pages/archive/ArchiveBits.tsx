@@ -4,6 +4,7 @@ import { attributesOf, BETA_UNTIL_TOLD, codenameOf, copyNameOf, holderOf, lookOf
 import { LIVE } from '../../lib/legalRelease'
 import { DisplayCase } from './DisplayCase'
 import { fmt, setBadge, useArchive } from './useArchive'
+import { originsWords, showsOrigins } from './origins'
 import s from './archive.module.css'
 
 /** The beta chain's notice (the server's; the page's words for it). Shown from the first paint until the server names another chain (site-qa-1113). */
@@ -44,6 +45,27 @@ export function Piece({ src, alt, unique = true, small = false, eager = false, l
       ) : (
         <span className={s.skeleton} style={{ display: 'block', aspectRatio: '1' }} />
       )}
+    </span>
+  )
+}
+
+/**
+ * The launch set's seal (archive-origins-1119, the app's look 43C): a red wax seal holding "S1", the set's word beside
+ * it ("(S1) ORIGINS"). Drawn for the eye only; readers hear the set's whole name ("Season 1 · Origins"). `page`: a
+ * Unique's own page (the app's sheet size), else a card's.
+ */
+export function OriginsSeal({ page = false }: { page?: boolean }) {
+  const { lang } = useArchive()
+  const o = originsWords(lang)
+  return (
+    <span className={`${s.origins} ${page ? s.originsPage : ''}`} data-testid="origins-seal">
+      <span className={s.seal} aria-hidden>
+        {o.season}
+      </span>
+      <span className={s.originsWord} aria-hidden>
+        {o.word}
+      </span>
+      <span className={s.srOnly}>{o.name}</span>
     </span>
   )
 }
@@ -99,7 +121,12 @@ export function UniqueCard({ c, sets }: { c: ArchiveCopy; sets: ArchiveSet[] }) 
             </Link>
           </p>
           {code ? <p className={s.cardBase}>{name}</p> : null}
-          {sb.mark || sb.name ? (
+          {showsOrigins(c.set) ? (
+            // A Season 1 copy: the seal in place of the set line (LIVE.archiveOrigins; the app's Vault card, 43C).
+            <p className={s.cardSet}>
+              <OriginsSeal />
+            </p>
+          ) : sb.mark || sb.name ? (
             <p className={s.cardSet}>
               {sb.mark ? <span className={s.setMark}>{sb.mark}</span> : null}
               <span className={s.setName}>{sb.name}</span>

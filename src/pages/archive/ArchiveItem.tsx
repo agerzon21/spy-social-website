@@ -21,7 +21,8 @@ import {
   type ArchiveUnique,
   type HistoryEvent,
 } from '../../lib/archive'
-import { ArchiveState, BetaNotice, FloatDigits, Piece } from './ArchiveBits'
+import { ArchiveState, BetaNotice, FloatDigits, OriginsSeal, Piece } from './ArchiveBits'
+import { showsOrigins } from './origins'
 import { dayText, fmt, setText, useArchive } from './useArchive'
 import { howLine } from './serverWords'
 import s from './archive.module.css'
@@ -150,8 +151,15 @@ const ArchiveItem = () => {
           <div>
             <div className={s.kicker}>
               <span className={s.uniqueTag}>{data?.words.unique ?? 'Unique'}</span>
-              {st.set ? <span>{st.set}</span> : null}
-              {st.season && st.season !== st.set ? <span>{st.season}</span> : null}
+              {/* A Season 1 copy: the seal beside its UNIQUE tag, in place of the set's words (LIVE.archiveOrigins; the app's item sheet, 43C). */}
+              {showsOrigins(u?.set?.code) ? (
+                <OriginsSeal page />
+              ) : (
+                <>
+                  {st.set ? <span>{st.set}</span> : null}
+                  {st.season && st.season !== st.set ? <span>{st.season}</span> : null}
+                </>
+              )}
             </div>
             {/* The Unique's own name is the title; the Legendary it was minted from under it (owner Nov 15). Before the
                 words load, a blank title of the same height (no base name flashing in its place). */}
