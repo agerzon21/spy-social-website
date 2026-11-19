@@ -982,14 +982,19 @@ const Privacy: React.FC = () => {
             which isn't linked to your account or to the install code described under Device Information, and which we
             use to count how many installations a problem reached. Reports don't include your name, email
             address, account or messages. A report is also sent when the app freezes (stops responding for a few
-            seconds), with the same details; the app sends nothing to Sentry while everything works. Sentry
-            receives your device's IP address when a report arrives but is set not to store it
+            seconds), with the same details. {from22 ? 'From version 2.2, the' : 'The'} app also sends Sentry a small note
+            each time it opens (and each time you come back to it from the background; in a browser, each time you open
+            the page), so we can work out what share of app starts end without a crash and tell whether an update
+            crashes more than the one before it. The note says when the app started, how long it ran, whether it ended
+            normally, with an error or in a crash, the app's version and the update it runs, and the same random ID as a
+            crash report. It has no name, email address, account, chat messages or drawings, and nothing about what you
+            do in the app. Sentry receives your device's IP address when a report or one of these notes arrives but is set not to store it
             {PRIVACY.crashReportLocation
               ? '. Before it drops the address, Sentry uses it to estimate an approximate location (country, region and city), which it keeps with the report. Sentry deletes reports'
               : ', and deletes reports'}{' '}
-            within 90 days.
+            within 90 days (these notes too).
             {PRIVACY.browserLegal
-              ? ' A report from the browser version names your browser, its version and your operating system instead of the device details, and carries no installation ID.'
+              ? ' A report from the browser version names your browser, its version and your operating system instead of the device details, and carries no installation ID; its notes carry no ID either, and name your browser the way the browser itself does (its user-agent line).'
               : ''}
           </Item>
         )}
@@ -1394,7 +1399,7 @@ const Privacy: React.FC = () => {
           <Item label="RevenueCat">(https://www.revenuecat.com) Checks and restores purchases made through Apple and Google.</Item>
         )}
         {PRIVACY.crashReports && (
-          <Item label="Sentry">(Functional Software, Inc., https://sentry.io) Receives crash and error reports.</Item>
+          <Item label="Sentry">(Functional Software, Inc., https://sentry.io) Receives crash and error reports, and a small note each time the app opens (for our crash-free rate).</Item>
         )}
         <Item label="Apple and Google">
           Speech recognition when you use the microphone (they may receive the recording

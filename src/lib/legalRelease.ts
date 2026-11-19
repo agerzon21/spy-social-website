@@ -2664,7 +2664,11 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
  * goes live can carry its date here (LIVE.<switch> ? its day : the current date), so the one-line flip in LIVE moves
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
-export const PRIVACY_LAST_UPDATED: string = sinceLlc(
+/** sentry-1119: the Crash Reports item (and Sentry's line) now also describe release-health sessions, which go with the OTA that carries app commit c328d2ef5. Unconditional text; Last Updated never earlier than this day. */
+export const SENTRY_SESSIONS_1119_DAY = 'November 19, 2026'
+const laterOf = (a: string, b: string): string => (Date.parse(b) > Date.parse(a) ? b : a)
+
+export const PRIVACY_LAST_UPDATED: string = laterOf(sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.playtestTremendous
@@ -2850,7 +2854,7 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-)
+), SENTRY_SESSIONS_1119_DAY)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
