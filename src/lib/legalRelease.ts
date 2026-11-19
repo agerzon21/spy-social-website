@@ -213,7 +213,7 @@ export const LIVE = {
    * (its (i) sheet, See Membership). Help text only, no Last Updated date. Flip the hour 62.15.2 is on phones:
    * node scripts/flip-switch.mjs helpU6152. Off again if 62.15.2 is rolled back.
    */
-  helpU6152: false,
+  helpU6152: true,
   /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
