@@ -193,7 +193,7 @@ const en: HelpText = {
             'A leave counts like a vote-out: if the last spy leaves, the Locals win; if too many Locals leave, the Spies win. Before the questions end (in Spy Sketch, in the first round), that game shows No Result and doesn’t count.',
             "<b>Final vote:</b> with exactly one spy left, everyone votes once more when time runs out, when nobody has a vote call left, or when the last chance to call one runs out. Catch the spy and the Locals win. It’s on at Play Online tables and a setting in private rooms. A Play Online table or a Game Night can also play it with two spies left: catch either one and the Locals win.",
             "A final vote’s results open under a red <b>Final Vote</b> tape that says why: “The clock has spoken”, “No vote calls left” or “The last chance ran out”.",
-            "<b>Informant</b> (private rooms and Game Nights that turn it on, with 2 or more spies and 6 or more players): one Local’s card names one spy. When the Locals win by a vote or by the last spy’s wrong guess, the spies, caught ones too, get 30 seconds to name the Informant and steal the win. Not after a missed One Shot, or when the last spy leaves.",
+            "<b>Informant</b> (Spy Talk and Spy Sketch, private rooms and Game Nights that turn it on, with 2 or more spies and 6 or more players): one Local’s card says <b>You know: Name is a spy</b>, with one spy named, even when there are more. The other Locals’ cards count the Informant in, like “2 spies · 1 informant”. When the Locals win by a vote or by the last spy’s wrong guess, the spies, caught ones too, get 30 seconds to name the Informant and steal the win. Not after a missed One Shot, or when the last spy leaves.",
           ],
         },
         {
@@ -230,7 +230,7 @@ const en: HelpText = {
           a: [
             'Rooms that players create are private, for people you know. Friends join with the room code, the QR code or the invite link. Guests can join too.',
             'The host sets the rules: game, spies, timers, voting and packs. Max Players goes up to 21, and <b>Lock Room</b> stops new players joining.',
-            'Everyone plays the packs the host has unlocked.',
+            'Free packs are open to everyone. A premium pack plays for everyone in the room when anyone there has a membership.',
           ],
         },
         {
@@ -334,7 +334,7 @@ const en: HelpText = {
                 "<b>Locals</b> see the secret and how many spies are among them: in Spy Talk the location and its picture (every place in our packs has one); in Spy Sketch, the word only.",
                 "<b>Spies</b> get a dark card. In Spy Mafia, the other spies step up beside you, named, with a red SPY tag. In Classic, spies don’t know each other, so the others show as <b>Unknown</b>.",
                 "Your card stays at the bottom of the screen all game with the same face: a Local’s keeps the place’s picture, and a spy’s card in Spy Mafia names the other spies in red.",
-                "In Spy Mafia with more than one spy, tap <b>SPY CHANNEL</b> to chat in private with the other spies: on your card before the game starts, then in the top bar, or beside Chat in a vote. One tap is enough; a number shows new messages, and a message from another spy says “… is trying to reach you”.",
+                "In Spy Mafia with more than one spy, tap <b>SPY CHANNEL</b> to chat in private with the other spies (it closes while a spy is guessing the secret): on your card before the game starts, then in the top bar, or beside Chat in a vote. One tap is enough; a number shows new messages, and a message from another spy says “… is trying to reach you”.",
                 "The red SPY tag stays on the other spies’ pictures all game. Locals never see the tags, the button or the chat.",
                 "On a voice call? Turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so your mic can’t pick up a spy’s reveal sound. The app asks you (<b>Playing Over a Call?</b>) only in a private room set to <b>Online</b>.",
               ],
@@ -344,7 +344,7 @@ const en: HelpText = {
               q: "Online or Same Room: what is Poker Face?",
               a: [
                 "When a host creates a private room, the app asks <b>Where Are You Playing?</b> Pick <b>Online</b> when everyone is on their own phone, wherever they are, a voice call included: you get the full role reveal and one-tap spy chat. Pick <b>Same Room</b> around one table: it turns on <b>Poker Face</b>.",
-                "With Poker Face, every role card looks alike: no dark spy card, no red SPY tags, and nothing lights up when a spy message comes in. Spies open their chat by pressing and holding their card. In a vote, they press and hold the <b>Chat</b> button instead.",
+                "With Poker Face, every role card looks alike: no dark spy card, no red SPY tags, and nothing lights up when a spy message comes in. Spies open their chat by pressing and holding their card (on a computer, right-click it). In a vote, they press and hold the <b>Chat</b> button instead.",
                 "Why: at one table, a glance at a neighbour’s phone could give their role away. Poker Face stops accidents, not cheaters. The catch: the other spies are harder to spot and to chat with.",
                 "The host can switch it between games in the lobby’s <b>Rules</b>, and players who join see <b>Poker Face Is On</b>. At Game Nights, each night sets it. Play Online doesn’t have it.",
               ],
@@ -476,7 +476,7 @@ const en: HelpText = {
           a: [
             'What you get in a trade is protected for 7 days. You can wear an item at once, but you can’t trade it, shred it or trade it up yet, and Intel you get can’t be spent yet.',
             ...(o.interceptsInTrades ? ['An unopened Intercept you get stays sealed for those 7 days: you can’t open it, trade it or list it yet.'] : []),
-            'In those 7 days you can reverse your trades, once every 90 days. It reverses all of your protected trades and pauses your trading for 30 days.',
+            'In those 7 days you can reverse your trades, once every 90 days. It undoes all of your protected trades, both ways, and pauses your trading for 30 days.',
             "Reversing also undoes your Rare Finds buys and sales that are still in their 3 days of protection.",
             'After 7 days a trade is final. We can also reverse a trade for account theft or fraud.',
           ],
@@ -738,7 +738,7 @@ const en: HelpText = {
             'Every premium pack, new ones included. Everyone plays them in rooms you host and at your Play Online table.',
             'Make your own packs in Pack Creator and share them in Community.',
             '+50% XP on every game, and members-only lobbies in Play Online.',
-            ...(o.practiceMembers ? ['Practice Games, up to 5 a day, with letter grades and AI feedback.'] : []),
+            ...(o.practiceMembers ? ['Practice Games, up to 5 a day, with letter grades' + (o.practiceAi ? ' and optional AI feedback (16 and older).' : '.')] : []),
             'Your rank’s border, tag and title. You can lead a party, and have 8 open Black Market offers instead of 4.',
             'It never changes how you play or score. The free packs stay free for everyone.',
           ],
