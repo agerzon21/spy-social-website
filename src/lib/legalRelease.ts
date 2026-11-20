@@ -2263,6 +2263,18 @@ export const LIVE = {
    * node scripts/flip-switch.mjs modDrawingsAdult1120 --undo. A server fact: LIVE, never PRIVACY_AHEAD.
    */
   modDrawingsAdult1120: true,
+  /**
+   * guest-save-before-buy-1120 (owner answer "buy save first", Nov 20; app feat/guest-save-before-buy-1120, round 14): a
+   * guest saves the account (Apple, Google or an email address) before buying a membership, and the purchase goes on once
+   * saved. Terms' "Guests and saved accounts" and Privacy's Purchases item stop saying guests can buy; a membership
+   * bought on a guest account before then stays that account's, and Restore Purchases still brings it back. Not a new
+   * duty on any account or a penalty (it only asks before a purchase), so no TERMS_PUBLISHED or terms_version raise;
+   * GUEST_SAVE_BEFORE_BUY_DAY moves each Last Updated date whose page shows the line (Terms: only once LIVE.purchases;
+   * Privacy: PRIVACY.purchases, ahead). OFF until round 14 is PUBLISHED; the same flip also turns on Help's round 14 lines
+   * (node scripts/flip-switch.mjs guestSaveBeforeBuy --day "<publish day>"). A website fact: set in LIVE,
+   * never in PRIVACY_AHEAD.
+   */
+  guestSaveBeforeBuy: false,
 }
 
 /**
@@ -2286,6 +2298,8 @@ export const GOOGLE_PASS_STOP_DAY = 'November 21, 2026'
 export const DRAWINGS_1120_DAY = 'November 20, 2026'
 /** LIVE.testerOnboard's day in PRIVACY_LAST_UPDATED (legal-coverage-1119; set by flip-switch --day). */
 export const TESTER_ONBOARD_DAY = 'November 21, 2026'
+/** LIVE.guestSaveBeforeBuy's day in both Last Updated dates: the day round 14 (app guest-save-before-buy-1120) is published and the site goes up with it (set by flip-switch --day). */
+export const GUEST_SAVE_BEFORE_BUY_DAY = 'November 22, 2026'
 /** The latest of several "Month D, YYYY" days (null skipped): a switch's day can then move a date whatever the chain's order. */
 const latestOf = (...days: Array<string | null>): string =>
   days.reduce<string>((a, b) => (b !== null && Date.parse(b) > Date.parse(a) ? b : a), days[0] as string)
@@ -2734,7 +2748,7 @@ export const LEGAL_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
-), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null)
+), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && LIVE.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -2931,7 +2945,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

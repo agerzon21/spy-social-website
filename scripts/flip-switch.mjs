@@ -13,6 +13,8 @@ import { readFileSync, writeFileSync } from 'node:fs'
 const SWITCHES = {
   // name: { live: [[LIVE key, value when flipped]], day: the *_DAY constant (null: no date), step: run sheet row }
   codes: { live: [['membershipCodes', false], ['codesNoMembership', true]], day: 'CODES_NO_MEMBERSHIP_DAY', step: '11S' },
+  // guest-save-before-buy-1120: the day round 14 is PUBLISHED (a guest saves before buying a membership); --day = that day.
+  guestSaveBeforeBuy: { live: [['guestSaveBeforeBuy', true]], day: 'GUEST_SAVE_BEFORE_BUY_DAY', step: 'round 14' },
   reputation: { live: [['reputation', true]], day: 'REPUTATION_DAY', step: '13S' },
   drawingMinorRooms: { live: [['drawingMinorRooms', true]], day: 'DRAWING_MINOR_ROOMS_DAY', step: '18S' },
   testerGiftGame: { live: [['testerGiftGame', true]], day: 'TESTER_GIFT_GAME_DAY', step: '19S' },

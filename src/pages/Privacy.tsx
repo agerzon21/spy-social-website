@@ -888,7 +888,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.purchases && (
           <Item label="Purchases">
             {PRIVACY.membershipsOnly
-              ? 'When you buy a membership in the app (Agent, the Monthly Membership; Elite, the Yearly Membership; or Spymaster, Lifetime: the only things SpySocial sells; guests can buy too), Apple or Google handles the payment; we never see your payment details.'
+              ? 'When you buy a membership in the app (Agent, the Monthly Membership; Elite, the Yearly Membership; or Spymaster, Lifetime: the only things SpySocial sells' + (PRIVACY.guestSaveBeforeBuy ? '; a guest saves the account first, with Apple, Google or an email address' : '; guests can buy too') + '), Apple or Google handles the payment; we never see your payment details.'
               : 'When you buy something in the app, such as a pack, an avatar item or a membership (guests can buy too), Apple or Google handles the payment; we never see your payment details.'} To check and restore purchases, the app and our servers use RevenueCat, which
             receives an ID linked to your SpySocial account, what you bought, the store's transaction IDs, prices and
             dates, your device's IP address, platform, model, language settings and store country, and on iPhones the

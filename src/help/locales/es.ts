@@ -106,6 +106,7 @@ const es: HelpText = {
             'Los jugadores dibujan por turnos en una pizarra compartida. Los locales insinúan la palabra sin dibujarla del todo. Los espías añaden algo vago que pueda encajar.',
             'Cuando todos han tenido su turno, se abren las votaciones y el intento del espía. Las rondas siguen hasta que termina la partida.',
             'Los dibujos de Spy Sketch no se describen en voz alta, así que un lector de pantalla (VoiceOver, TalkBack) no puede seguir el dibujo.',
+            ...(o.guestSaveBeforeBuy ? ["El tablero de dibujo sí se puede alcanzar con un lector de pantalla: dice de quién es el turno de dibujar y la página, y en tu turno cómo dibujar (toca dos veces y mantén, luego arrastra)."] : []),
           ],
         },
         {
@@ -193,6 +194,7 @@ const es: HelpText = {
             'Quienes no te conocen ven el color de tu agente, como Agente Turquesa, nunca tu nombre.',
             'Necesitas una cuenta guardada (con el correo confirmado, o con Apple o Google) y tener 13 años o más.',
             'Salir de una partida después del reparto de roles significa una pausa breve en Jugar en línea.',
+            ...(o.guestSaveBeforeBuy ? ["Si se encuentra una partida para ti mientras SpySocial está en segundo plano y no llegas, la primera vez es solo un aviso, sin pausa en Jugar en línea. Mantén la app abierta mientras buscas."] : []),
             ...(o.u6152 ? ["Con una membresía puedes activar <b>Solo miembros</b> para jugar solo con otros miembros. Así buscan menos jugadores, por lo que encontrar partida puede tardar un poco más. El (i) de al lado lo explica, con <b>Ver membresía</b> si no tienes una."] : []),
           ],
         },
@@ -858,6 +860,7 @@ const es: HelpText = {
             'Un <b>invitado</b> puede hacer los tutoriales y jugar en salas privadas al instante. Una cuenta de invitado vive en un solo teléfono, y cerrar sesión la borra para siempre.',
             `Una cuenta <b>guardada</b> (con Apple, Google o tu correo${o.passwordless ? ', con un código que te enviamos, sin contraseña' : ''}) conserva tu nombre, tu progreso y tu membresía en cualquier teléfono, y te deja jugar en línea, entrar a la Noche de Juegos y añadir amigos.`,
             'Puedes guardar una cuenta de invitado cuando quieras desde la página de tu cuenta, sin perder nada. Amigos, Intercambios y el Mercado Negro le piden a un invitado que la guarde primero.',
+            ...(o.guestSaveBeforeBuy ? ["Para comprar una membresía, un invitado guarda primero la cuenta (con Apple, Google o un correo), para no perder nunca la membresía. La compra sigue en cuanto se guarda."] : []),
             ...(o.u6152 ? ["Hasta que la guardes, una tarjeta <b>Guarda tu cuenta</b> aparece en el final de cada partida. Toca × para que deje de salir en ese teléfono."] : []),
           ],
         },

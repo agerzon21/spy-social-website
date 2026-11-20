@@ -51,6 +51,7 @@ const OPTS: HelpOpts = {
   u6153: LIVE.helpU6153,
   intelZero: LIVE.intelZero1117,
   emailCodes22: LIVE.emailCodes22,
+  guestSaveBeforeBuy: LIVE.guestSaveBeforeBuy,
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).

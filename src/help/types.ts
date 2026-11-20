@@ -111,6 +111,13 @@ export interface HelpOpts {
   u6153: boolean
   /** Version 2.2 signs up and in with an emailed code, older versions with a password (LIVE.emailCodes22): #sign-up-email. */
   emailCodes22: boolean
+  /**
+   * App round 14 is published (LIVE.guestSaveBeforeBuy, the same flip as the Terms and Privacy lines; help-r14-1120, TRANSLATIONS UNREVIEWED:
+   * every language but English is an agent's, in the app's own words, app feat/guest-save-before-buy-1120, fix/match-unseen-warn-1120,
+   * fix/a11y-talkback-1120): #guest-or-saved's buy-a-membership line, #play-online's missed-Match-Found warning line (needs server
+   * match_unseen_warn_1120, applied before the OTA) and #spy-sketch's screen-reader board line.
+   */
+  guestSaveBeforeBuy: boolean
 }
 
 export interface HelpItem {

@@ -106,6 +106,7 @@ const id: HelpText = {
             'Pemain bergiliran menggambar di satu papan tulis bersama. Warga memberi petunjuk tanpa menggambar katanya terang-terangan. Mata-mata menambahkan sesuatu yang samar yang bisa cocok.',
             'Setelah semua dapat giliran, voting dan tebakan mata-mata terbuka. Ronde berlanjut sampai permainan selesai.',
             'Gambar di Spy Sketch tidak dibacakan, jadi pembaca layar (VoiceOver, TalkBack) tidak bisa mengikuti gambarnya.',
+            ...(o.guestSaveBeforeBuy ? ["Papan gambarnya sendiri bisa dijangkau dengan pembaca layar: ia menyebut giliran siapa yang menggambar dan halamannya, dan di giliranmu cara menggambar (ketuk dua kali dan tahan, lalu geser)."] : []),
           ],
         },
         {
@@ -193,6 +194,7 @@ const id: HelpText = {
             'Pemain yang tidak kamu kenal melihat warna Agen-mu, seperti Agen Toska, bukan namamu.',
             'Kamu butuh akun tersimpan (email terkonfirmasi, atau masuk dengan Apple atau Google) dan berusia minimal 13 tahun.',
             'Keluar dari permainan setelah peran dibagikan berarti jeda singkat dari Main online.',
+            ...(o.guestSaveBeforeBuy ? ["Kalau permainan ditemukan untukmu saat SpySocial berjalan di latar belakang dan kamu melewatkannya, yang pertama hanya peringatan, tanpa jeda dari Main online. Biarkan aplikasi tetap terbuka saat mencari."] : []),
             ...(o.u6152 ? ["Anggota bisa menyalakan <b>Khusus anggota</b> untuk main hanya dengan anggota lain. Lebih sedikit pemain yang mencari dengan cara ini, jadi menemukan permainan bisa sedikit lebih lama. Tombol (i) di sebelahnya menjelaskan lebih lanjut, dengan <b>Lihat Keanggotaan</b> untuk yang belum punya keanggotaan."] : []),
           ],
         },
@@ -858,6 +860,7 @@ const id: HelpText = {
             '<b>Tamu</b> bisa langsung ikut tutorial dan main di room privat. Akun tamu hanya ada di satu ponsel, dan keluar dari akun menghapusnya selamanya.',
             `Akun <b>tersimpan</b> (Apple, Google, atau emailmu${o.passwordless ? ', dengan kode yang kami kirim lewat email, tanpa kata sandi' : ''}) menyimpan nama, progres, dan keanggotaanmu di ponsel mana pun, dan membuka Main online, Malam Permainan, dan fitur teman.`,
             'Kamu bisa menyimpan akun tamu kapan saja dari halaman Akun, tanpa kehilangan apa pun. Teman, Pertukaran, dan Pasar Gelap meminta tamu menyimpan akunnya dulu.',
+            ...(o.guestSaveBeforeBuy ? ["Untuk membeli keanggotaan, tamu menyimpan akun dulu (dengan Apple, Google, atau email) agar keanggotaan tidak pernah hilang. Pembelian dilanjutkan setelah akun tersimpan."] : []),
             ...(o.u6152 ? ["Sampai akunmu disimpan, kartu <b>Simpan akunmu</b> muncul di layar akhir setiap permainan. Ketuk × agar kartu itu tidak muncul lagi di ponsel itu."] : []),
           ],
         },

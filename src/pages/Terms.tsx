@@ -138,7 +138,9 @@ const Terms: React.FC = () => {
         account with a confirmed email address{LIVE.socialSignIn ? ', or one that signs in with Apple or Google' : ''};
         as a guest you can still play the tutorial and private rooms.
         {LIVE.purchases &&
-          (LIVE.membershipsOnly
+          (LIVE.membershipsOnly && LIVE.guestSaveBeforeBuy
+            ? " To buy a membership, a guest first saves the account (with Apple, Google or an email address), so the membership is never lost. A membership bought earlier on a guest account belongs to that account; if you lose it, Restore Purchases brings it back (see section 9)."
+            : LIVE.membershipsOnly
             ? " Guests can buy a membership too. A guest's membership belongs to the guest account; if you lose it, Restore Purchases brings it back (see section 9)."
             : " Guests can buy packs and memberships too. A guest's purchases belong to the guest account; if you lose it, Restore Purchases brings them back (see section 9).")}
       </P>

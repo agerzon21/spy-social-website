@@ -102,6 +102,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les joueurs dessinent à tour de rôle sur un tableau blanc commun. Les locaux suggèrent le mot sans le dessiner franchement. Les espions ajoutent quelque chose de vague qui pourrait coller.",
           "Une fois que chacun a joué son tour, les votes et la tentative de l'espion s'ouvrent. Les manches continuent jusqu'à la fin de la partie.",
             'Les dessins de Spy Sketch ne sont pas décrits à voix haute : un lecteur d’écran (VoiceOver, TalkBack) ne peut donc pas suivre le dessin.',
+            ...(o.guestSaveBeforeBuy ? ["On peut atteindre le tableau de dessin lui-même avec un lecteur d'écran : il dit à qui c'est de dessiner et la page, et à ton tour comment dessiner (touche deux fois et maintiens, puis fais glisser)."] : []),
         ],
       },
       {
@@ -189,6 +190,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Les joueurs que tu ne connais pas voient ta couleur d\'agent, comme Agent Turquoise, jamais ton nom.',
           'Il te faut un compte sauvegardé (e-mail confirmé, ou connexion Apple ou Google) et avoir 13 ans ou plus.',
           'Quitter une partie après la distribution des rôles entraîne une courte pause sur Jouer en ligne.',
+          ...(o.guestSaveBeforeBuy ? ["Si une partie est trouvée pour toi pendant que SpySocial est en arrière-plan et que tu la rates, la première fois n'est qu'un avertissement, sans pause sur Jouer en ligne. Garde l'appli ouverte pendant ta recherche."] : []),
           ...(o.u6152 ? ["Avec le statut de membre, tu peux activer <b>Membres uniquement</b> pour jouer seulement avec d'autres membres. Moins de joueurs cherchent ainsi, donc trouver une partie peut prendre un peu plus de temps. Le (i) à côté en dit plus, avec <b>Voir l'offre membres</b> si tu n'es pas membre."] : []),
         ],
       },
@@ -854,6 +856,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Un <b>invité</b> peut faire les tutoriels et jouer tout de suite dans les salons privés. Un compte invité vit sur un seul téléphone, et se déconnecter le supprime pour de bon.",
           `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton statut de membre sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la soirée jeux et d'ajouter des amis.`,
           "Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre. Amis, Échanges et le Marché noir demandent d'abord à un invité de le sauvegarder.",
+          ...(o.guestSaveBeforeBuy ? ["Pour acheter un statut de membre, un invité sauvegarde d'abord son compte (avec Apple, Google ou un e-mail), pour ne jamais perdre ce statut. L'achat continue dès que le compte est sauvegardé."] : []),
           ...(o.u6152 ? ["Tant que tu ne l'as pas sauvegardé, une carte <b>Sauvegarde ton compte</b> s'affiche sur l'écran de fin après chaque partie. Touche × pour ne plus la voir sur ce téléphone."] : []),
         ],
       },

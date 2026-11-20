@@ -106,6 +106,7 @@ const ptBR: HelpText = {
             'Os jogadores desenham, um de cada vez, num quadro compartilhado. Os locais dão pistas da palavra sem desenhá-la de vez. Os espiões acrescentam algo vago que possa servir.',
             'Depois que todos jogaram sua vez, abrem as votações e o palpite do espião. As rodadas seguem até o fim da partida.',
             'Os desenhos do Spy Sketch não são descritos em voz alta, então um leitor de tela (VoiceOver, TalkBack) não consegue acompanhar o desenho.',
+            ...(o.guestSaveBeforeBuy ? ["O próprio quadro de desenho pode ser alcançado com um leitor de tela: ele diz de quem é a vez de desenhar e a página, e na sua vez como desenhar (toque duas vezes e segure, depois arraste)."] : []),
           ],
         },
         {
@@ -193,6 +194,7 @@ const ptBR: HelpText = {
             'Quem não conhece você vê sua cor de agente, como Agente Turquesa, nunca o seu nome.',
             'Você precisa de uma conta salva (e-mail confirmado, ou login com Apple ou Google) e ter 13 anos ou mais.',
             'Sair de uma partida depois que os papéis são distribuídos dá uma pausa curta no Jogar online.',
+            ...(o.guestSaveBeforeBuy ? ["Se uma partida for encontrada para você enquanto o SpySocial está em segundo plano e você a perder, a primeira vez é só um aviso, sem pausa no Jogar online. Mantenha o app aberto durante a busca."] : []),
             ...(o.u6152 ? ["Membros podem ativar <b>Só membros</b> para jogar só com outros membros. Menos jogadores buscam assim, então achar uma partida pode demorar um pouco mais. O (i) ao lado explica mais, com <b>Ver plano de membro</b> para quem não é membro."] : []),
           ],
         },
@@ -858,6 +860,7 @@ const ptBR: HelpText = {
             'Um <b>visitante</b> pode fazer os tutoriais e jogar em salas privadas na hora. Uma conta de visitante fica num celular só, e sair dela apaga a conta para sempre.',
             `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e seu plano de membro em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
             'Você pode salvar uma conta de visitante quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o visitante salve a conta primeiro.',
+            ...(o.guestSaveBeforeBuy ? ["Para comprar um plano de membro, o visitante salva a conta primeiro (com Apple, Google ou e-mail), para nunca perder o plano. A compra segue assim que a conta é salva."] : []),
             ...(o.u6152 ? ["Até você salvar, um cartão <b>Salve sua conta</b> aparece no fim de jogo depois de cada partida. Toque no × para ele não aparecer mais nesse celular."] : []),
           ],
         },

@@ -136,6 +136,7 @@ const en: HelpText = {
             'Players take turns drawing on one shared whiteboard. Locals hint at the word without drawing it outright. Spies add something vague that could fit.',
             'Once everyone has had a turn, votes and the spy’s guess open. Rounds go on until the game ends.',
             'Spy Sketch’s drawings aren’t described aloud, so a screen reader (VoiceOver, TalkBack) can’t follow the drawing itself.',
+            ...(o.guestSaveBeforeBuy ? ["The drawing board itself can be reached with a screen reader: it says whose turn it is to draw and the page, and on your turn how to draw (double-tap and hold, then drag)."] : []),
           ],
         },
         {
@@ -223,6 +224,7 @@ const en: HelpText = {
             'Players you don’t know see your Agent colour, like Agent Teal, never your name.',
             'You need a saved account (a confirmed email, or Apple or Google sign-in) and to be 13 or older.',
             'Leaving a game after the roles are dealt means a short break from Play Online.',
+            ...(o.guestSaveBeforeBuy ? ["If a game is found for you while SpySocial is in the background and you miss it, the first miss is only a warning, with no break from Play Online. Keep the app open while you search."] : []),
             ...(o.u6152 ? ["Members can turn on <b>Members only</b> to play only with other members. Fewer players search that way, so finding a game may take a bit longer. The (i) beside it says more, with <b>See Membership</b> for players without one."] : []),
           ],
         },
@@ -888,6 +890,7 @@ const en: HelpText = {
             'A <b>guest</b> can play the tutorials and private rooms right away. A guest account lives on one phone, and signing out deletes it for good.',
             `A <b>saved</b> account (Apple, Google or your email${o.passwordless ? ', with a code we email you, no password' : ''}) keeps your name, progress and membership on any phone, and lets you play online, join Game Night and add friends.`,
             'You can save a guest account at any time from your Account page, without losing anything. Friends, Trades and the Black Market ask a guest to save it first.',
+            ...(o.guestSaveBeforeBuy ? ["To buy a membership, a guest saves the account first (with Apple, Google or an email), so the membership is never lost. The purchase goes on once it’s saved."] : []),
             ...(o.u6152 ? ["Until you save, a <b>Save Your Account</b> card shows on Game Over after every game. Tap × to stop it showing on that phone."] : []),
           ],
         },
