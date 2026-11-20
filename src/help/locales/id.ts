@@ -260,6 +260,7 @@ const id: HelpText = {
                 ...(o.launch
                   ? []
                   : ['Gelar dari Malam Permainan beta sudah diubah jadi hitungan di gelar-gelar ini. Saat reset sebelum peluncuran, Intel Malam Permainan yang kamu dapat kembali utuh, meski sudah kamu pakai, dan gelar ★-mu tetap ada. Sadapan Malam Permainan dan item-nya di-reset seperti yang lain.']),
+                "Di tab <b>Malam Game</b>, <b>Cara Kerja Intel Malam Game</b> menjelaskan cara mendapat dan memakai Intel.",
               ],
             },
             ]
@@ -328,6 +329,7 @@ const id: HelpText = {
                 "Di Mafia dengan lebih dari satu mata-mata, ketuk <b>SALURAN MATA-MATA</b> untuk chat diam-diam dengan mata-mata lain (saluran ini ditutup selama ada mata-mata yang menebak rahasianya): di kartumu sebelum permainan mulai, lalu di bilah atas, atau di samping chat saat voting. Cukup sekali ketuk; angka menunjukkan pesan baru, dan pesan dari mata-mata lain muncul dengan “… mencoba menghubungimu”.",
                 "Label merah tetap ada di foto mata-mata lain sepanjang permainan. Warga tidak pernah melihat label, tombol, maupun chat-nya.",
                 "Sedang di panggilan suara? Nyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya mikrofonmu tidak menangkap suara pengungkapan mata-mata. Aplikasi hanya menanyakannya (<b>Main sambil teleponan?</b>) di room privat yang memilih <b>Online</b>.",
+                "Semua kartu peran yang tertutup punya punggung yang sama: kartu biru tua dan emas. Tidak ada yang menunjukkan perannya.",
               ],
             },
             {
@@ -628,10 +630,18 @@ const id: HelpText = {
                 'Isinya dari koleksi khusus Malam Permainan, <b>After Hours</b>: 14 item ruang kartu untuk agenmu yang tidak ada di sadapan lain. Seperti semua sadapan, aplikasi menampilkan peluang pastinya.',
                 ...(o.u6153 ? ["Latar Legendaris Malam Permainan adalah <b>Mati Lampu</b>, yang dulu bernama Ruang Belakang. Adegan istirahatnya adalah <b>Rain Window</b>."] : []),
                 'Sadapan yang dibeli menunggu di <b>Belum Dibuka</b>. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
+                "Ketuk <b>Isinya</b> pada sebuah tingkat untuk melihat peluang per kelangkaan. Hanya peluang yang ditampilkan, bukan daftar item.",
               ],
             },
             ]
           : []),
+        {
+          id: 'change-your-look',
+          q: "Bagaimana cara mengurutkan dan menyaring di Ubah Penampilan?",
+          a: [
+            "Di <b>Ubah Penampilan</b>, kotak <b>Urutkan & Saring</b> mengatur urutan dan filter kelangkaan. Keduanya tetap saat berpindah kategori, dan penanda menunjukkan filter sedang aktif.",
+          ],
+        },
         {
           id: 'duplicates',
           q: 'Apa yang bisa kulakukan dengan duplikat?',
@@ -744,6 +754,7 @@ const id: HelpText = {
             "Kirim satu ke <b>Komunitas</b> dan kami memeriksanya dalam 72 jam: pemeriksaan otomatis membaca teksnya dulu, lalu seseorang memutuskan. Statusnya <b>Sedang ditinjau</b>, lalu <b>Di komunitas</b>, atau <b>Perlu diperbaiki</b> beserta alasannya: ubah dan kirim lagi.",
             "Paket populer bisa jadi <b>Unggulan</b>. Anggota lain menambahkan paket komunitas ke <b>Paketku</b> untuk dimainkan di room mereka.",
             "Pemain di bawah 18 tahun tidak menerima jawaban kami antara pukul 22.00 dan 07.00.",
+            "Halaman paket menampilkan foto pembuatnya dan <b>oleh nama</b>: ketuk untuk membuka profilnya, atau ketuk <b>Lainnya dari nama</b> untuk paket lain.",
           ],
         },
         ...(o.u6153

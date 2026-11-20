@@ -290,6 +290,7 @@ const en: HelpText = {
                 ...(o.launch
                   ? []
                   : ['Titles from the beta Game Nights became counts on these titles. At the reset before launch, the Game Night Intel you earned comes back in full, even if you spent it, and your ★ titles stay. Game Night Intercepts and their items are reset like everything else.']),
+                "On the <b>Game Night</b> tab, <b>How Game Night Intel Works</b> explains how you earn and spend Intel.",
               ],
             },
             ]
@@ -358,6 +359,7 @@ const en: HelpText = {
                 "In Spy Mafia with more than one spy, tap <b>SPY CHANNEL</b> to chat in private with the other spies (it closes while a spy is guessing the secret): on your card before the game starts, then in the top bar, or beside Chat in a vote. One tap is enough; a number shows new messages, and a message from another spy says “… is trying to reach you”.",
                 "The red SPY tag stays on the other spies’ pictures all game. Locals never see the tags, the button or the chat.",
                 "On a voice call? Turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so your mic can’t pick up a spy’s reveal sound. The app asks you (<b>Playing Over a Call?</b>) only in a private room set to <b>Online</b>.",
+                "Every face-down role card has the same back: a navy-and-gold playing card. Nothing on it shows your role.",
               ],
             },
             {
@@ -658,10 +660,18 @@ const en: HelpText = {
                 'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
                 ...(o.u6153 ? ["Game Night’s Legendary background is <b>Blackout</b>, which used to be called The Back Room. Its rest scene is <b>Rain Window</b>."] : []),
                 'A bought one waits in <b>To Open</b>. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
+                "Tap <b>What’s inside</b> on a tier to see its rarity odds. It shows the odds only, not the list of items.",
               ],
             },
             ]
           : []),
+        {
+          id: 'change-your-look',
+          q: "How do I sort and filter in Change Your Look?",
+          a: [
+            "In <b>Change Your Look</b>, the <b>Sort & Filter</b> box sets the order and a rarity filter. Both stay as you switch between categories, and an indicator shows when a filter is on.",
+          ],
+        },
         {
           id: 'duplicates',
           q: 'What can I do with duplicates?',
@@ -774,6 +784,7 @@ const en: HelpText = {
             "Send one to <b>Community</b> and we check it within 72 hours: an automatic check reads the text first, then a person decides. It shows <b>In Review</b>, then <b>In Community</b>, or <b>Needs Changes</b> with the reason: change it and send it again.",
             "Popular packs can be <b>Featured</b>. Other members add Community packs to <b>My Packs</b> to play in their own rooms.",
             "Players under 18 don’t get our answer between 10 PM and 7 AM.",
+            "A pack’s page shows its author’s picture and <b>by name</b>: tap it to open their profile, or tap <b>More by name</b> for their other packs.",
           ],
         },
         ...(o.u6153
