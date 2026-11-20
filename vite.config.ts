@@ -310,7 +310,12 @@ function pagePreviews(): Plugin {
       const pageSwaps = (page: (typeof PREVIEW_PAGES)[number]): [RegExp, string][] => {
         const title = attr(`${en.meta.titles[page.key]} · ${en.meta.siteName}`)
         const description = attr(
-          page.key === 'ledger' && LIVE.ledgerUniquesOnly === true ? LEDGER_DESCRIPTION_UNIQUES.en : en.meta.descriptions[page.key] ?? en.meta.description,
+          page.key === 'ledger' && LIVE.ledgerUniquesOnly === true
+            ? LEDGER_DESCRIPTION_UNIQUES.en
+            : // As SiteHead: with LIVE.gnRewardsRules the Game Night rules' card names the rewards (no developer's bonus title).
+              page.key === 'gameNightRules' && LIVE.gnRewardsRules === true
+              ? en.meta.descriptions.gameNightRulesRewards
+              : en.meta.descriptions[page.key] ?? en.meta.description,
         )
         return [
           [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
