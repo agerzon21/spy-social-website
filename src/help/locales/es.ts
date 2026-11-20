@@ -260,7 +260,7 @@ const es: HelpText = {
                 ...(o.launch
                   ? []
                   : ['Los títulos de las Noches de Juegos de la beta pasaron a sumar en estos títulos. En el reinicio antes del lanzamiento, el Intel de Noche de Juegos que ganaste vuelve completo, aunque lo hayas gastado, y tus títulos ★ se quedan. Las intercepciones de Noche de Juegos y sus objetos se reinician como todo lo demás.']),
-                "En la pestaña <b>Noche de juegos</b>, <b>Cómo funciona el Intel de la Noche de juegos</b> explica cómo se gana y se gasta el Intel.",
+                "En la pestaña <b>Noche de Juegos</b>, <b>Cómo funciona el Intel de Noche de Juegos</b> explica cómo se gana y se gasta el Intel.",
               ],
             },
             ]
@@ -329,7 +329,7 @@ const es: HelpText = {
                 "En Espía Mafia con más de un espía, toca <b>CANAL DE ESPÍAS</b> para chatear en privado con los otros espías (se cierra mientras un espía intenta adivinar el secreto): en tu carta antes de empezar, luego en la barra de arriba, o junto al chat en una votación. Basta un toque; un número muestra los mensajes nuevos, y un mensaje de otro espía dice «… intenta contactarte».",
                 "La etiqueta roja sigue en las fotos de los otros espías toda la partida. Los locales nunca ven las etiquetas, el botón ni el chat.",
                 "¿En una llamada de voz? Activa <b>Mismo sonido para todos los roles</b> (Ajustes, Sonido y música) para que tu micrófono no capte el sonido de revelación de un espía. La app solo te lo pregunta (<b>¿Juegas en una llamada?</b>) en una sala privada <b>En línea</b>.",
-                "Todas las cartas de rol boca abajo tienen el mismo reverso: una carta azul marino y dorada. Nada en ella muestra tu rol.",
+                "Todas las cartas de rol boca abajo tienen el mismo reverso: una carta azul marino y dorada. Nada en ella revela tu rol.",
               ],
             },
             {
@@ -630,7 +630,7 @@ const es: HelpText = {
                 'Se abren en la colección propia de la Noche de Juegos, <b>After Hours</b>: 14 objetos de sala de cartas para tu agente que ninguna otra intercepción tiene. Como en toda intercepción, la app muestra las probabilidades exactas.',
                 ...(o.u6153 ? ["El fondo Legendario de la Noche de Juegos es <b>Apagón</b>, que antes se llamaba La Trastienda. Su escena de descanso es <b>Rain Window</b>."] : []),
                 'Una comprada espera en <b>Por abrir</b>. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
-                "Toca <b>Qué hay dentro</b> en un nivel para ver las probabilidades por rareza. Solo muestra las probabilidades, no la lista de objetos.",
+                "Toca <b>Qué contiene</b> en un nivel para ver las probabilidades por rareza. Solo muestra las probabilidades, no la lista de objetos.",
               ],
             },
             ]
@@ -754,7 +754,7 @@ const es: HelpText = {
             "Envía uno a la <b>Comunidad</b> y lo revisamos en 72 horas: primero una revisión automática lee el texto y luego decide una persona. Muestra <b>En revisión</b>, después <b>En la comunidad</b>, o <b>Necesita cambios</b> con el motivo: cámbialo y vuelve a enviarlo.",
             "Los paquetes populares pueden salir como <b>Destacado</b>. Otros miembros añaden paquetes de la comunidad a <b>Mis paquetes</b> para jugarlos en sus salas.",
             "A los jugadores menores de 18 años no les enviamos la respuesta entre las 10 p. m. y las 7 a. m.",
-            "La página de un paquete muestra la foto de su autor y <b>por nombre</b>: tócalo para abrir su perfil, o toca <b>Más de nombre</b> para ver sus otros paquetes.",
+            "La página de un paquete muestra la foto de su autor y <b>de nombre</b>: tócalo para abrir su perfil, o toca <b>Más de nombre</b> para ver sus otros paquetes.",
           ],
         },
         ...(o.u6153

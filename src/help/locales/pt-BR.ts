@@ -260,7 +260,7 @@ const ptBR: HelpText = {
                 ...(o.launch
                   ? []
                   : ['Os títulos das Noites de Jogos do beta viraram contagens nesses títulos. No reset antes do lançamento, o Intel da Noite de Jogos que você ganhou volta inteiro, mesmo que tenha gastado, e seus títulos ★ continuam. As interceptações da Noite de Jogos e os itens delas são apagados como todo o resto.']),
-                "Na aba <b>Noite de Jogos</b>, <b>Como funciona o Intel da Noite de Jogos</b> explica como ganhar e gastar Intel.",
+                "Na aba <b>Noite de Jogos</b>, <b>Como o Intel da Noite de Jogos funciona</b> explica como ganhar e gastar Intel.",
               ],
             },
             ]
