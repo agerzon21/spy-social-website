@@ -32,7 +32,7 @@ const id: PressStrings = {
       },
       {
         title: 'Gratis, hanya satu yang dijual',
-        text: 'Tidak ada iklan. Spy Talk, Spy Sketch, Malam Permainan, sadapan, tukar item, dan Pasar Gelap gratis. Satu-satunya yang dijual adalah keanggotaan opsional: langganan paket (bulanan atau tahunan) atau keanggotaan seumur hidup (sekali bayar). Keanggotaan membuka semua paket premium untuk semua orang di room yang di-host anggota itu atau di mejanya di Main online, dan menambahkan pembuat paket, XP 50% lebih banyak, serta meja khusus anggota. Paket satuan atau bundel tidak dijual, dan sadapan serta Intel tidak pernah dijual.',
+        text: 'Tidak ada iklan. Spy Talk, Spy Sketch, Malam Permainan, sadapan, tukar item, dan Pasar Gelap gratis. Satu-satunya yang dijual adalah keanggotaan opsional: keanggotaan bulanan atau tahunan, atau keanggotaan seumur hidup (sekali bayar). Keanggotaan membuka semua paket premium untuk semua orang di room yang di-host anggota itu atau di mejanya di Main online, dan menambahkan pembuat paket, XP 50% lebih banyak, serta meja khusus anggota. Paket satuan atau bundel tidak dijual, dan sadapan serta Intel tidak pernah dijual.',
       },
     ],
   },
@@ -65,7 +65,7 @@ const id: PressStrings = {
         : `Versi 2.2 hadir pada ${day}. SpySocial sudah ada di App Store dan Google Play, dan 2.2 adalah update gratis.`,
     price: 'Gratis diunduh dan dimainkan. Tanpa iklan.',
     membership: (month, year, life) =>
-      `Opsional, dan satu-satunya yang dijual: langganan paket seharga ${month} per bulan atau ${year} per tahun, atau keanggotaan seumur hidup seharga ${life}, sekali bayar. Harga AS; berbeda di tiap negara. Paket satuan atau bundel tidak dijual.`,
+      `Opsional, dan satu-satunya yang dijual: keanggotaan bulanan seharga ${month} per bulan atau tahunan seharga ${year} per tahun (diperpanjang sampai dibatalkan), atau keanggotaan seumur hidup seharga ${life}, sekali bayar. Harga AS; berbeda di tiap negara. Paket satuan atau bundel tidak dijual.`,
     languages:
       'Inggris, Spanyol, Rusia, Prancis, Portugis Brasil, Indonesia, Hindi, Bengali, Arab, Mandarin Sederhana. Semua kecuali tiga yang pertama ditandai Beta di aplikasi.',
     age: '13 tahun ke atas',

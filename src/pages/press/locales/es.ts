@@ -32,7 +32,7 @@ const es: PressStrings = {
       },
       {
         title: 'Gratis, con una sola cosa a la venta',
-        text: 'No hay anuncios. Spy Talk, Spy Sketch, la Noche de Juegos, las intercepciones, los intercambios y el Mercado Negro son gratis. Lo único que se vende es una membresía opcional: el pase de paquetes (mensual o anual) o la membresía de por vida (un solo pago). Desbloquea todos los paquetes premium para todos en las salas que organiza el miembro o en su mesa de Jugar en línea, y añade el creador de paquetes, un 50 % más de XP y mesas solo para miembros. No se venden paquetes sueltos ni lotes, y las intercepciones y la Intel nunca se venden.',
+        text: 'No hay anuncios. Spy Talk, Spy Sketch, la Noche de Juegos, las intercepciones, los intercambios y el Mercado Negro son gratis. Lo único que se vende es una membresía opcional: la membresía mensual o anual, o la de por vida (un solo pago). Desbloquea todos los paquetes premium para todos en las salas que organiza el miembro o en su mesa de Jugar en línea, y añade el creador de paquetes, un 50 % más de XP y mesas solo para miembros. No se venden paquetes sueltos ni lotes, y las intercepciones y la Intel nunca se venden.',
       },
     ],
   },
@@ -65,7 +65,7 @@ const es: PressStrings = {
         : `La versión 2.2 sale el ${day}. SpySocial ya está en App Store y Google Play, y la 2.2 es una actualización gratuita.`,
     price: 'Gratis para descargar y jugar. Sin anuncios.',
     membership: (month, year, life) =>
-      `Opcional, y lo único que se vende: el pase de paquetes a ${month} al mes o ${year} al año, o la membresía de por vida a ${life}, en un solo pago. Precios de EE. UU.; varían según el país. No se venden paquetes sueltos ni lotes.`,
+      `Opcional, y lo único que se vende: la membresía mensual a ${month} al mes o la anual a ${year} al año (se renuevan hasta cancelarlas), o la membresía de por vida a ${life}, en un solo pago. Precios de EE. UU.; varían según el país. No se venden paquetes sueltos ni lotes.`,
     languages:
       'Inglés, español, ruso, francés, portugués de Brasil, indonesio, hindi, bengalí, árabe, chino simplificado. Todos menos los tres primeros aparecen como Beta en la app.',
     age: '13 años o más',

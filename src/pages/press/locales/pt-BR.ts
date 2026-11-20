@@ -32,7 +32,7 @@ const ptBR: PressStrings = {
       },
       {
         title: 'Grátis, com uma única coisa à venda',
-        text: 'Não tem anúncios. Spy Talk, Spy Sketch, a Noite de jogos, as interceptações, as trocas e o Mercado Negro são grátis. A única coisa à venda é um plano de membro opcional: o passe de pacotes (mensal ou anual) ou o Vitalício (pagamento único). Ele libera todos os pacotes premium para todo mundo nas salas em que o membro é anfitrião ou na mesa dele no Jogar online, e inclui o criador de pacotes, 50% a mais de XP e mesas só para membros. Não vendemos pacotes avulsos nem combos, e interceptações e Intel nunca são vendidas.',
+        text: 'Não tem anúncios. Spy Talk, Spy Sketch, a Noite de jogos, as interceptações, as trocas e o Mercado Negro são grátis. A única coisa à venda é um plano de membro opcional: a assinatura mensal ou anual, ou o Vitalício (pagamento único). Ele libera todos os pacotes premium para todo mundo nas salas em que o membro é anfitrião ou na mesa dele no Jogar online, e inclui o criador de pacotes, 50% a mais de XP e mesas só para membros. Não vendemos pacotes avulsos nem combos, e interceptações e Intel nunca são vendidas.',
       },
     ],
   },
@@ -65,7 +65,7 @@ const ptBR: PressStrings = {
         : `A versão 2.2 chega em ${day}. O SpySocial já está na App Store e no Google Play, e a 2.2 é uma atualização gratuita.`,
     price: 'Grátis para baixar e jogar. Sem anúncios.',
     membership: (month, year, life) =>
-      `Opcional, e a única coisa vendida: o passe de pacotes por ${month} ao mês ou ${year} ao ano, ou o Vitalício por ${life}, em pagamento único. Preços dos EUA; variam conforme o país. Não vendemos pacotes avulsos nem combos.`,
+      `Opcional, e a única coisa vendida: a assinatura mensal por ${month} ao mês ou anual por ${year} ao ano (renovam até serem canceladas), ou o Vitalício por ${life}, em pagamento único. Preços dos EUA; variam conforme o país. Não vendemos pacotes avulsos nem combos.`,
     languages:
       'Inglês, espanhol, russo, francês, português do Brasil, indonésio, hindi, bengali, árabe, chinês simplificado. Todos menos os três primeiros aparecem como Beta no app.',
     age: '13 anos ou mais',

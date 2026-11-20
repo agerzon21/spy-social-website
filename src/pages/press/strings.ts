@@ -3,7 +3,7 @@
  * ./locales, each its own chunk (i18n/pageTable). Facts from the press kit draft (Nov 16 refresh, checked against the
  * store text and the live app) and the site's own pages; nothing the owner hasn't settled (no browser play, no role
  * reveal, no founder quote, no store age rating, no pack prices: membership is the only thing sold).
- * The game's own names stay as the app has them (Spy Talk, Spy Sketch, Pack Pass in English); the app's words in each
+ * The game's own names stay as the app has them (Spy Talk, Spy Sketch, membership names in English); the app's words in each
  * language come from src/help/locales.
  */
 import type { LangCode } from '../../i18n'
@@ -45,7 +45,7 @@ const en = {
       },
       {
         title: 'Free, with one thing for sale',
-        text: 'There are no ads. Spy Talk, Spy Sketch, Game Night, Intercepts, trading and the Black Market are free. The only thing for sale is an optional membership: the Pack Pass (monthly or yearly) or Lifetime (paid once). It unlocks every premium pack for everyone in a room the member hosts or at their Play Online table, and adds Pack Creator, 50% more XP and members-only tables. No single packs or bundles are sold, and Intercepts and Intel are never sold.',
+        text: 'There are no ads. Spy Talk, Spy Sketch, Game Night, Intercepts, trading and the Black Market are free. The only thing for sale is an optional membership: a Monthly or Yearly Membership, or Lifetime (paid once). It unlocks every premium pack for everyone in a room the member hosts or at their Play Online table, and adds Pack Creator, 50% more XP and members-only tables. No single packs or bundles are sold, and Intercepts and Intel are never sold.',
       },
     ],
   },
@@ -81,7 +81,7 @@ const en = {
     price: 'Free to download and play. No ads.',
     /** The US prices, formatted in the page's language: a month, a year, Lifetime. */
     membership: (month: string, year: string, life: string) =>
-      `Optional, and the only thing sold: the Pack Pass at ${month} a month or ${year} a year, or Lifetime at ${life}, paid once. US prices; they vary by country. No single packs or bundles are sold.`,
+      `Optional, and the only thing sold: Monthly Membership at ${month} a month or Yearly Membership at ${year} a year (both renew until canceled), or Lifetime at ${life}, paid once. US prices; they vary by country. No single packs or bundles are sold.`,
     languages:
       'English, Spanish, Russian, French, Brazilian Portuguese, Indonesian, Hindi, Bengali, Arabic, Simplified Chinese. All but the first three are marked Beta in the app.',
     age: '13 and up',

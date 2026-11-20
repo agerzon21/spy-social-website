@@ -35,7 +35,7 @@ const fr: PressStrings = {
       },
       {
         title: 'Gratuit, avec une seule chose à vendre',
-        text: "Il n'y a pas de pub. Spy Talk, Spy Sketch, les soirées jeux, les interceptions, les échanges et le Marché noir sont gratuits. La seule chose à vendre est un statut de membre facultatif\u00A0: le Pass packs (mensuel ou annuel) ou l'accès à vie (un seul paiement). Il débloque tous les packs premium pour tout le monde dans les salons dont le membre est l'hôte ou à sa table de Jouer en ligne, et ajoute le créateur de packs, 50\u00A0% d'XP en plus et des tables réservées aux membres. Aucun pack ni lot n'est vendu à l'unité, et les interceptions et l'Intel ne sont jamais vendues.",
+        text: "Il n'y a pas de pub. Spy Talk, Spy Sketch, les soirées jeux, les interceptions, les échanges et le Marché noir sont gratuits. La seule chose à vendre est un statut de membre facultatif\u00A0: l'abonnement mensuel ou annuel, ou l'accès à vie (un seul paiement). Il débloque tous les packs premium pour tout le monde dans les salons dont le membre est l'hôte ou à sa table de Jouer en ligne, et ajoute le créateur de packs, 50\u00A0% d'XP en plus et des tables réservées aux membres. Aucun pack ni lot n'est vendu à l'unité, et les interceptions et l'Intel ne sont jamais vendues.",
       },
     ],
   },
@@ -68,7 +68,7 @@ const fr: PressStrings = {
         : `La version\u00A02.2 sort le ${day}. SpySocial est déjà sur l'App Store et Google Play, et la\u00A02.2 est une mise à jour gratuite.`,
     price: 'Gratuit à télécharger et à jouer. Sans pub.',
     membership: (month, year, life) =>
-      `Facultatif, et la seule chose vendue\u00A0: le Pass packs à ${month} par mois ou ${year} par an, ou l'accès à vie à ${life}, en un seul paiement. Prix américains\u00A0; ils varient selon le pays. Aucun pack ni lot n'est vendu à l'unité.`,
+      `Facultatif, et la seule chose vendue\u00A0: l'abonnement mensuel à ${month} par mois ou annuel à ${year} par an (renouvelés jusqu'à résiliation), ou l'accès à vie à ${life}, en un seul paiement. Prix américains\u00A0; ils varient selon le pays. Aucun pack ni lot n'est vendu à l'unité.`,
     languages:
       'Anglais, espagnol, russe, français, portugais du Brésil, indonésien, hindi, bengali, arabe, chinois simplifié. Toutes sauf les trois premières sont marquées Bêta dans l’appli.',
     age: '13\u00A0ans et plus',
