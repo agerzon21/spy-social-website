@@ -99,7 +99,7 @@ const zh: ArchiveStrings = {
     notFoundText: '它可能还没被铸造，或者链接有误。',
     status: { listed: '出售中', held: '玩家持有', burned: '已注销' },
     listedFor: '标价',
-    buyHow: '在应用中购买：宝库 > 黑市 > 稀有珍品。',
+    buyHow: '在应用中购买：黑市 > 稀有珍品。',
     retiredHow: (what: string) => `已注销：${what}。`,
     burnWhy: { trade_up: '合成升级成了另一件物品', shred: '粉碎换成了情报', other: '已从记录中移除' },
     certificate: '证书',

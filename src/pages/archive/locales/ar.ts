@@ -107,7 +107,7 @@ const ar: ArchiveStrings = {
     notFoundText: 'ربما لم تُصكّ بعد، أو أن الرابط خاطئ.',
     status: { listed: 'للبيع', held: 'لدى لاعب', burned: 'مشطوبة' },
     listedFor: 'معروضة بسعر',
-    buyHow: 'الشراء في التطبيق: الخزنة > السوق السوداء > النوادر.',
+    buyHow: 'الشراء في التطبيق: السوق السوداء > النوادر.',
     retiredHow: (what: string) => `شُطبت: ${what}.`,
     burnWhy: { trade_up: 'استُخدمت في مقايضة بعنصر آخر', shred: 'فُرمت مقابل إنتل', other: 'أُخرجت من السجل' },
     certificate: 'الشهادة',

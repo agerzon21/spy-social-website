@@ -102,7 +102,7 @@ const ptBR: ArchiveStrings = {
     notFoundText: 'Talvez ele ainda não tenha sido cunhado, ou o link está errado.',
     status: { listed: 'À venda', held: 'Com um jogador', burned: 'Retirado' },
     listedFor: 'À venda por',
-    buyHow: 'Compre no app: Cofre > Mercado Negro > Achados raros.',
+    buyHow: 'Compre no app: Mercado Negro > Achados raros.',
     retiredHow: (what: string) => `Retirado: ${what}.`,
     burnWhy: { trade_up: 'fundido em outro item', shred: 'triturado por Intel', other: 'tirado do registro' },
     certificate: 'Certificado',

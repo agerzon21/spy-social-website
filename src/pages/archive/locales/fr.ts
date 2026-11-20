@@ -104,7 +104,7 @@ const fr: ArchiveStrings = {
     notFoundText: 'Il n’est peut-être pas encore frappé, ou le lien est erroné.',
     status: { listed: 'En vente', held: 'Détenu par un joueur', burned: 'Retiré' },
     listedFor: 'En vente à',
-    buyHow: 'Achète-le dans l’appli\u00a0: Coffre > Marché noir > Trouvailles rares.',
+    buyHow: 'Achète-le dans l’appli\u00a0: Marché noir > Trouvailles rares.',
     retiredHow: (what: string) => `Retiré\u00a0: ${what}.`,
     burnWhy: { trade_up: 'fusionné en un autre objet', shred: 'déchiqueté contre de l’Intel', other: 'rayé du registre' },
     certificate: 'Certificat',
