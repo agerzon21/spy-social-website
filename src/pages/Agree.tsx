@@ -9,7 +9,6 @@ import {
   FormLabel,
   Heading,
   Input,
-  ListItem,
   Spinner,
   Text,
   VStack,
@@ -247,7 +246,7 @@ const Agree = () => {
                 Try Again
               </Button>
             )}
-            <Text fontSize="xs" color="ss.muted">
+            <Text fontSize="sm" color="ss.muted">
               Questions? <SupportEmail subject="Agreement link" />
             </Text>
           </VStack>
@@ -256,7 +255,7 @@ const Agree = () => {
         {view && (
           <VStack spacing={5} align="start">
             <Box>
-              <Text fontSize="xs" fontWeight="700" letterSpacing="0.12em" textTransform="uppercase" color="ss.muted" mb={2}>
+              <Text fontSize="sm" fontWeight="700" letterSpacing="0.12em" textTransform="uppercase" color="ss.muted" mb={2}>
                 Agreement from SpySocial
               </Text>
               <Heading as="h1" size="lg" color="ss.text">
@@ -312,7 +311,7 @@ const Agree = () => {
               ) : b.kind === 'bullets' ? (
                 <Bullets key={i}>
                   {b.items.map((it, j) => (
-                    <ListItem key={j}>{inline(it)}</ListItem>
+                    <li key={j}>{inline(it)}</li>
                   ))}
                 </Bullets>
               ) : (
@@ -355,7 +354,7 @@ const Agree = () => {
                       {fieldError(`fields.${f.key}`) ? (
                         <FormErrorMessage>{fieldError(`fields.${f.key}`)}</FormErrorMessage>
                       ) : f.hint ? (
-                        <FormHelperText fontSize="xs" color="ss.muted">
+                        <FormHelperText fontSize="sm" color="ss.muted">
                           {f.hint}
                         </FormHelperText>
                       ) : null}
@@ -370,7 +369,7 @@ const Agree = () => {
                     {fieldError('name') ? (
                       <FormErrorMessage>{fieldError('name')}</FormErrorMessage>
                     ) : (
-                      <FormHelperText fontSize="xs" color="ss.muted">
+                      <FormHelperText fontSize="sm" color="ss.muted">
                         The person signing.
                       </FormHelperText>
                     )}
@@ -393,7 +392,7 @@ const Agree = () => {
                     {fieldError('email') ? (
                       <FormErrorMessage>{fieldError('email')}</FormErrorMessage>
                     ) : (
-                      <FormHelperText fontSize="xs" color="ss.muted">
+                      <FormHelperText fontSize="sm" color="ss.muted">
                         Where the signed PDF goes.
                       </FormHelperText>
                     )}
@@ -468,7 +467,7 @@ const Agree = () => {
               </Box>
             )}
 
-            <Text fontSize="xs" color="ss.muted" pt={4}>
+            <Text fontSize="sm" color="ss.muted" pt={4}>
               Questions about this agreement? <SupportEmail subject={`Agreement: ${view.agreement.title}`} />
             </Text>
           </VStack>

@@ -1,7 +1,32 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). The game's rules (voting, winning, the spy's guess, leaving, a game that doesn't count) checked on 2026-11-06 (site-rules-1106) against the server and the game-logic audit. Facts checked on 2026-11-05 (help-truth-4: guests asked to save for Friends, Trades and the Black Market; Couldn't Open
+ * English: the source (../types.ts). help-np-1120 (2026-11-20, owner-approved Nov 19 changes, against app review/np-combined-1119 + feat/home-compete-1119): guests do the tutorials and private rooms (#guest-or-saved), Game Night needs a saved account, from o.launch (Dec 8) #game-night / #game-night-weekly say Compete > Game Night tab, new #compete (Ranked and Tournaments: Soon, no date), #change-name (setup = @username + one colour, display name made from it; Settings: name, username once per 30 days, 2nd/3rd colours), #earn-intercepts' Welcome Intercept stays with the account. stale-help-1118 (2026-11-18): behind LIVE.gnRewardsRules (row 83, Fri Nov 20) #who-can-trade's
+ * launch line loses the Developer's Pick, and until gnRewards #game-night's line drops the night's titles and #earn-intercepts the
+ * winner's Enigma (the other languages: the same words cut from their own lines). help-new-1117 (2026-11-17, against app int/u62-15-prep 05c21a1e3 and NEXT-BATCH rows 70 / 83 / 85 / 95,
+ * gamenight-rewards-1116/FINAL-SPEC.md, signup v42): #question-rounds (glossary setting.question_rounds), #game-night-weekly (owner Nov 17:
+ * one night a week, Friday and again Saturday), #game-night-rewards + #game-night-intercepts (Game Night Intel 500 / 200, 0 for a leave, idle,
+ * late, a spybot table or a voided walk-out; the four ★ counters; tiers 400 / 800 / 10,000; After Hours), #practice-members (5 a day, UTC; the AI
+ * line 16+, Settings' Rate My Practice Lines with AI), #membership-switch + #two-memberships (membershipSwitch.ts), #sign-up-email (emailCode.ts;
+ * the weak-password line signup v42 answers older apps with), each behind its switch (types.ts). help-u6214-1117 (2026-11-17, against int/u62-14 0c526325f): #voting / #winning's Vote Results
+ * head (lib/voteHead 'tape': FINAL VOTE + online.vote_head.*, moments.voting.hud.called_by), #wax-seal's Info entries (seal-info-1116) and
+ * the Practice Game's seal (practice-seal-info-1116, practice.end_seal), #role-reveal's in-game card (ingame-role-card-1116, online look
+ * only) and every live place's picture (places-181-1116). help-audit-1116 b (2026-11-16, coordinator Q6): new #special-rules (Votes per Game, Paper Trail;
+ * server roomVotes / spy_rules) and #pack-creator (20261128000000 custom packs), #winning's Informant conditions (2+ spies, 6+
+ * players; vote or last wrong guess, not a missed One Shot or a leave: _informant_*), #earn-intercepts' 7th-day streak and the
+ * Game Night win, #report-block's three places, #voice-chat's game and lobby chats, #poker-face's vote hold.
+ * help-audit-1116 (2026-11-16, against int-u62 36af0bbcc): #wax-seal's seal is at the top left
+ * with Leave and Info, Chat and Notes on their own buttons, a number on Chat (localization/translations/headerSealLeft1110);
+ * #new-page's new room starts on 2 pages (lib/balance RECOMMENDED_SKETCH_PAGES, hooks/useNewRoomDefaults). help-beta3-1116 (2026-11-16, against the app's u62.13 line, int-u62 f5a242511): #talk-out-loud
+ * (glossary setting.talk_out_loud, lib/lobbySettings), #drawings-checked (drawing_check_note; links Privacy #drawing-checks: never that id here, the ScrollManager would find this page's first), #voice-chat (no voice
+ * chat; the mic is speech to text; a call of your own), and #role-reveal / #poker-face rewritten for the Spotlight reveal, the lineup,
+ * SPY CHANNEL and "Where Are You Playing?" (still behind LIVE.helpRoleReveal). help-live-fix-1116 (2026-11-16, against int-u62 36af0bbcc; app u61 has the same header): #wax-seal's
+ * seal is at the top left with Leave and Info, Chat and Notes on their own buttons, a number on Chat
+ * (localization/translations/headerSealLeft1110); #new-page's new room starts on 2 pages (lib/balance RECOMMENDED_SKETCH_PAGES,
+ * hooks/useNewRoomDefaults). help-u61-1113 (2026-11-13, against u61.1 0516de145 and int/rr-u62): How to Play's Step 1 Tutorial and Step 2
+ * Practice Games (the Play Online gate is off on the server, so nothing says it's required), Reputation in Settings, the beta-reset note, Rare
+ * Finds' lowest offer reaching the price, the Archive's holder line, the @username made from the typed name; #role-reveal and #poker-face wait
+ * for LIVE.helpRoleReveal (Beta 3). The game's rules (voting, winning, the spy's guess, leaving, a game that doesn't count) checked on 2026-11-06 (site-rules-1106) against the server and the game-logic audit. Facts checked on 2026-11-05 (help-truth-4: guests asked to save for Friends, Trades and the Black Market; Couldn't Open
  * Your Account; You Were Signed Out on This Device; a dead invite before the birth year; names in the app's language; chat resent after a drop;
  * Android's Friends, Party & Trades category and the minors' night hold for pack answers; what's in an open trade is held), 2026-11-04 (help-truth-3: parties, Waiting and Put Back, the Intel tile, the translator offer, no-answer lines, Teaming) and 2026-11-03 (nov03/legal-audit-1103b.md) against the Terms (sections 4, 5, 8, 9), the Privacy
  * Policy's Your Rights, the Game Night rules and the app (integrate/2.2: the How to Play glossary, the Members page,
@@ -53,7 +78,7 @@ const en: HelpText = {
           a: [
             '<b>With friends:</b> tap <b>Private Room</b>, then <b>Create Room</b>, and share the room code, the QR code or the invite link. You need at least 3 players.',
             '<b>With anyone:</b> tap <b>Play Online</b>, then <b>Find a Game</b>.',
-            '<b>New to it?</b> <b>How to Play</b> on Home has a 1-minute intro, walkthroughs, a glossary and a Practice Game.',
+            o.practiceMembers ? "<b>New to it?</b> <b>How to Play</b> on Home has a free 3-minute tutorial for each game, then, for members, Practice Games against AI agents. The glossary is there too." : "<b>New to it?</b> <b>How to Play</b> on Home has a 3-minute tutorial for each game, then Practice Games against AI agents. The glossary is there too.",
           ],
         },
       ],
@@ -80,6 +105,30 @@ const en: HelpText = {
             'Stuck for a question? The hint card at the bottom of the screen has one. Asking for the location’s name or first letter isn’t fair play.',
           ],
         },
+        ...(o.questionRounds
+          ? [
+            {
+              id: 'question-rounds',
+              q: 'What are Question Rounds?',
+              a: [
+                'Some Spy Talk tables play 2 rounds of questions instead of 1: private rooms whose host picks 2 in the room’s <b>Rules</b>, and Game Nights that set it. Play Online always plays 1.',
+                'In round 1, everyone asks one question and answers one. As soon as the last answer is in, round 2 starts, the other way round: you’re asked by the player you asked. The top of the screen shows “Round 2”.',
+                'Then the discussion, with its usual time. Two rounds give the Locals twice the answers to check, and the spy twice the chances to slip.',
+              ],
+            },
+            ]
+          : []),
+        {
+          id: 'talk-out-loud',
+          q: "What is Talk Out Loud?",
+          a: [
+            "A Spy Talk rule for groups in one room or on a voice call. The host turns it on in the room’s <b>Rules</b>; new rooms start with it off. Private rooms only, and Game Nights that turn it on.",
+            "During Questions, nobody types or uses the mic: the asker asks out loud and taps <b>Done</b>, then the answerer answers out loud and taps <b>Done</b>.",
+            "Nothing is written down, so the notes keep no question history.",
+            "We suggest leaving it off, even at one table: tap the mic and ask out loud instead. Everyone hears you, and the app turns what you say into text that every player sees in the question history.",
+            "Everyone in the room needs the newest app. If someone has an older one, it shows Off until they update.",
+          ],
+        },
         {
           id: 'spy-sketch',
           q: 'How does Spy Sketch work?',
@@ -87,6 +136,28 @@ const en: HelpText = {
             'Players take turns drawing on one shared whiteboard. Locals hint at the word without drawing it outright. Spies add something vague that could fit.',
             'Once everyone has had a turn, votes and the spy’s guess open. Rounds go on until the game ends.',
             'Spy Sketch’s drawings aren’t described aloud, so a screen reader (VoiceOver, TalkBack) can’t follow the drawing itself.',
+          ],
+        },
+        {
+          id: 'drawings-checked',
+          q: "Are Spy Sketch drawings checked?",
+          a: [
+            "Yes, to keep drawings safe. At Play Online tables and Game Nights, finished drawing turns may be checked automatically by OpenAI for anything that breaks the <rules>community rules</rules>.",
+            "The first time, the app shows <b>Drawings Are Checked</b>. Tap <b>I Agree</b> to play Spy Sketch online. Until you do, Spy Talk is open to you either way.",
+            "In a private room, a drawing is checked if someone reports it. It can also be checked automatically while anyone who can see it, other than the drawer, is under 18 or hasn’t told us their age. A drawing by a player who said they’re under 18 is checked only if someone reports it.",
+            "OpenAI gets a picture of the turn and the round’s word, never your name or your messages. A turn that breaks the rules can be removed and can lead to a warning, a pause or a ban. A person reviews every permanent decision, and you can appeal.",
+            "The full details: <drawchecks>Drawing Checks in the Privacy Policy</drawchecks>.",
+          ],
+        },
+        {
+          id: 'new-page',
+          q: "What is New Page in Spy Sketch?",
+          a: [
+            "A sketch break stops play for up to 20 seconds: study the drawing, chat and check your notes. Everyone still in votes <b>Keep this page</b> or <b>New page</b>. The break ends sooner once everyone has voted.",
+            "The page stays only if more than half of the players still in vote to keep it. A tie, or no vote, means a blank sheet. You can still look back at earlier pages.",
+            "<b>Play Online:</b> one extra page at most. The break comes after every 2 rounds at a table of 4, and after every round at a table of 8. If the table keeps the page, the next break comes as many rounds later.",
+            "<b>Private rooms and Game Nights:</b> the host (or the night) sets <b>New page</b> in the rules: Off, 2, 3 or 4 pages, or Unlimited. A new room starts on 2, as we recommend. The break comes when the sheet fills up.",
+            "No break starts in the game’s last 45 seconds.",
           ],
         },
         {
@@ -99,6 +170,7 @@ const en: HelpText = {
             'A tie for first place puts nobody out, and it always takes at least 2 votes.',
             'At Play Online tables, each player has one vote call and names who they accuse. When a vote catches a spy, everyone who used theirs gets it back.',
             'At 8-player tables the most votes puts a player out, until 4 players are left; then it’s a majority. Not voting counts as abstaining.',
+            'On the results, a black strip says who called the vote: “Called by …”. A final vote shows a red <b>Final Vote</b> tape instead.',
           ],
         },
         {
@@ -108,6 +180,7 @@ const en: HelpText = {
             'A spy opens <b>Actions</b> and taps <b>Solve</b>, then has 60 seconds to pick the secret from a list of about 30.',
             'A right guess wins for every spy. A wrong guess, or running out of time, puts that spy out. If it was the last spy, the Locals win.',
             'Everyone sees who is guessing, so it gives you away.',
+            "You guess alone: your chat is closed until you confirm your pick.",
             'With <b>One Shot</b> on (private rooms and Game Nights that turn it on), the spy team has a single guess: a miss loses for the whole team.',
           ],
         },
@@ -118,8 +191,20 @@ const en: HelpText = {
             '<b>Locals</b> win by voting out every spy, or when the last spy guesses wrong.',
             '<b>Spies</b> win with a right guess, when the game timer runs out, or when a vote leaves as many spies as Locals.',
             'A leave counts like a vote-out: if the last spy leaves, the Locals win; if too many Locals leave, the Spies win. Before the questions end (in Spy Sketch, in the first round), that game shows No Result and doesn’t count.',
-            '<b>Final vote:</b> if time runs out with exactly one spy left, everyone votes once more. Catch the spy and the Locals win. It’s on at Play Online tables and a setting in private rooms.',
-            '<b>Informant</b> (private rooms and Game Nights that turn it on): one Local knows one spy. If the spies are caught by a vote or a wrong guess, they get 30 seconds to name that Local and steal the win.',
+            "<b>Final vote:</b> with exactly one spy left, everyone votes once more when time runs out, when nobody has a vote call left, or when the last chance to call one runs out. Catch the spy and the Locals win. It’s on at Play Online tables and a setting in private rooms. A Play Online table or a Game Night can also play it with two spies left: catch either one and the Locals win.",
+            "A final vote’s results open under a red <b>Final Vote</b> tape that says why: “The clock has spoken”, “No vote calls left” or “The last chance ran out”.",
+            "<b>Informant</b> (Spy Talk and Spy Sketch, private rooms and Game Nights that turn it on, with 2 or more spies and 6 or more players): one Local’s card says <b>You know: Name is a spy</b>, with one spy named, even when there are more. The other Locals’ cards count the Informant in, like “2 spies · 1 informant”. When the Locals win by a vote or by the last spy’s wrong guess, the spies, caught ones too, get 30 seconds to name the Informant and steal the win. Not after a missed One Shot, or when the last spy leaves.",
+          ],
+        },
+        {
+          id: 'special-rules',
+          q: "What special rules can a private room or Game Night use?",
+          a: [
+            "<b>Votes per Game:</b> each player can call 1, 2 or 3 votes a game, or Unlimited (a new room starts at 1). When a vote catches a spy, everyone who used a call gets one back.",
+            "When nobody still in has a call left, the game clock jumps to its last 5 seconds. When the calls left are no more than the spies still in, there’s a 15-second last chance to call one. If nobody calls one in time, a final vote follows if it’s on (see how each side wins, above); otherwise the spies win.",
+            "<b>Paper Trail:</b> when a spy is voted out, everyone sees how that spy voted all game. If roles aren’t revealed on a vote-out, it waits for Game Over.",
+            "<b>One Shot</b> and <b>Informant</b>: see the spy’s guess and how each side wins, above.",
+            "<b>Talk Out Loud</b> has its own answer above. In the app, <b>How to Play</b> › <b>Features & Settings</b> has a short demo of each rule.",
           ],
         },
       ],
@@ -136,6 +221,7 @@ const en: HelpText = {
             'Players you don’t know see your Agent colour, like Agent Teal, never your name.',
             'You need a saved account (a confirmed email, or Apple or Google sign-in) and to be 13 or older.',
             'Leaving a game after the roles are dealt means a short break from Play Online.',
+            ...(o.u6152 ? ["Members can turn on <b>Members only</b> to play only with other members. Fewer players search that way, so finding a game may take a bit longer. The (i) beside it says more, with <b>See Membership</b> for players without one."] : []),
           ],
         },
         {
@@ -144,26 +230,90 @@ const en: HelpText = {
           a: [
             'Rooms that players create are private, for people you know. Friends join with the room code, the QR code or the invite link. Guests can join too.',
             'The host sets the rules: game, spies, timers, voting and packs. Max Players goes up to 21, and <b>Lock Room</b> stops new players joining.',
-            'Everyone plays the packs the host has unlocked.',
+            'Free packs are open to everyone. A premium pack plays for everyone in the room when anyone there has a membership.',
           ],
         },
         {
           id: 'game-night',
           q: 'What is Game Night?',
           a: [
-            'Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. Tap <b>PLAY NOW</b> on Home’s Game Night card.',
-            'Each night has its own packs, settings and titles. The (i) next to the night shows its packs and settings, and <b>PRIZES</b> on the card shows its titles.',
+            o.launch ? "Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. On Home, open <b>Compete</b>, then the <b>Game Night</b> tab, and tap <b>PLAY NOW</b>." : 'Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. Tap <b>PLAY NOW</b> on Home’s Game Night card.',
+            "Game Night needs a saved account: guests save theirs first.",
+            o.gnRewards
+              ? 'Each night has its own packs and settings: the (i) next to the night shows them. <b>PRIZES</b> on the card shows what you earn: Game Night Intel and the ★ titles.'
+              : o.gnRewardsRules
+                ? 'Each night has its own packs and settings: the (i) next to the night shows them.'
+                : 'Each night has its own packs, settings and titles. The (i) next to the night shows its packs and settings, and <b>PRIZES</b> on the card shows its titles.',
             'It’s free, and nothing you buy improves your chances. The full rules: <gnr>Game Night rules</gnr>.',
           ],
         },
+        ...(o.launch
+          ? [
+            {
+              id: 'compete',
+              q: "What is Compete?",
+              a: [
+                "<b>Compete</b> is a card on Home with three tabs: <b>Game Night</b>, <b>Ranked</b> and <b>Tournaments</b>.",
+                "Only the Game Night tab is in use today. Ranked and Tournaments are coming later, and say “Soon”.",
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnWeekly
+          ? [
+            {
+              id: 'game-night-weekly',
+              q: 'When is Game Night?',
+              a: [
+                'Once a week: on Friday, then the same night again on Saturday, usually 8 to 10 PM Eastern.',
+                'Come to either night, or play both.',
+                o.launch ? "We announce each night in the app, on Home, in Compete, on the Game Night tab." : 'We announce each night in the app, on Home’s Game Night card.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-rewards',
+              q: 'What do I earn at Game Night?',
+              a: [
+                '<b>Game Night Intel</b> for every game you finish: 500 for a win, 200 for a loss or a tie. Game Over shows what you got.',
+                "No Game Night Intel if you leave before the end, are removed or don’t take part, if the game starts after Game Night closes (a game that starts in time and ends later still pays), if our fair-play checks flag the game, or at a table with spybots. A game that ends early because someone walked out pays no one.",
+                '<b>★ titles</b> that count up: <b>★ Operative</b> for each Game Night game you finish, <b>★ Local Hero</b> for each win as a Local, <b>★ Master Spy</b> for each win as a spy, and <b>★ Double Agent</b> for each night you win on both sides. Wear one with its count, like ★ Operative ×12.',
+                'Game Night Intel and the ★ titles are yours alone: they can’t be traded, and a membership adds nothing to them. Spend the Intel on Game Night Intercepts.',
+                ...(o.launch
+                  ? []
+                  : ['Titles from the beta Game Nights became counts on these titles. At the reset before launch, the Game Night Intel you earned comes back in full, even if you spent it, and your ★ titles stay. Game Night Intercepts and their items are reset like everything else.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'practice-game',
-          q: 'What is the Practice Game?',
+          q: "What are the Tutorial and the Practice Games?",
           a: [
-            'A game of 5 to 9 minutes against AI agents, with a coach, in <b>How to Play</b>. You get a grade from A to F, and you can pick up where you left off.',
-            'Before you play Spy Talk or Spy Sketch online, the app may ask you to pass that game’s practice with a C or better. Game Night never asks.',
+            "In <b>How to Play</b>, pick Spy Talk or Spy Sketch. <b>Step 1, Tutorial:</b> a guided 3-minute game with AI agents. Play it as a Local or as the Spy: passing either one counts.",
+            o.practiceMembers ? "<b>Step 2, Practice Games</b> (for members): full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off." : "<b>Step 2, Practice Games:</b> full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off.",
+            "Each game has four: as a Local or as the Spy, at a table of 4 or of 8. An A in all eight earns the <b>Straight A’s</b> title (saved accounts only).",
+            o.launch ? "Passing a game’s tutorial opens Play Online for that game (with a saved account). The Practice Games aren’t needed. Game Night never asks." : "You don’t need either one to play online today. Game Night never asks.",
           ],
         },
+        ...(o.practiceMembers
+          ? [
+            {
+              id: 'practice-members',
+              q: 'Who can play Practice Games?',
+              a: [
+                'Practice Games are for members: up to 5 a day. The day starts at midnight UTC. After your 5, a saved game can still be resumed.',
+                ...(o.practiceAi
+                  ? ['Members get AI feedback on every line they write, as they play, and a letter grade for every game. The AI feedback is for players 16 and older who tap <b>Try It</b> when the app asks; for everyone else, the phone grades. To stop it, turn off <b>Rate My Practice Lines with AI</b> in Settings.']
+                  : []),
+                'The tutorials stay free for everyone, and passing one still counts for Play Online.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'languages',
           q: 'Can I play with people who speak other languages?',
@@ -173,11 +323,12 @@ const en: HelpText = {
               ? [
                   'Everyone sees the game in their own language, the secret and the hints included, so one table can mix languages.',
                   o.autoTranslation
-                    ? 'Messages in another language are translated into yours automatically. To translate only when you tap, turn off <b>Translate messages automatically</b> in Settings.'
+                    ? 'Messages in another language are translated into yours automatically. To translate only when you tap, turn off <b>Translate Messages Automatically</b> in Settings.'
                     : 'Tap <b>Translate</b> on a message to read it in your language.',
                 ]
-              : ['In a private room, the host picks the game’s language for the secret and the hints.']),
+              : ['In a private room, the host picks the game’s language for the secret and the hints.', ...(o.autoTranslation ? ['Messages in another language are translated into yours automatically. To translate only when you tap, turn off <b>Translate Messages Automatically</b> in Settings.'] : [])]),
             ...(o.autoTranslation ? ['Play Online may offer to add your language to your phone’s own translator. It’s optional, and it keeps English chat lines translated when our translator is busy.'] : []),
+            ...(o.u6153 ? ["When you switch language in <b>Settings</b>, the app shows a loader while it turns to the new language."] : []),
           ],
         },
       ],
@@ -186,11 +337,54 @@ const en: HelpText = {
       id: 'in-game',
       title: 'In the game',
       items: [
+        ...(o.roleReveal
+          ? [
+            {
+              id: 'role-reveal',
+              q: "How does the role reveal work?",
+              a: [
+                "Games played online have a role reveal: Play Online, Game Nights, and private rooms whose host picked <b>Online</b>. Tap your card: the lights go down and a spotlight shows your role.",
+                "<b>Locals</b> see the secret and how many spies are among them: in Spy Talk the location and its picture (every place in our packs has one); in Spy Sketch, the word only.",
+                "<b>Spies</b> get a dark card. In Spy Mafia, the other spies step up beside you, named, with a red SPY tag. In Classic, spies don’t know each other, so the others show as <b>Unknown</b>.",
+                "Tap <b>Continue</b> when you’re ready. The game moves on once everyone has tapped Continue, or when the timer runs out.",
+                "Your card stays at the bottom of the screen all game with the same face: a Local’s keeps the place’s picture, and a spy’s card in Spy Mafia names the other spies in red.",
+                "In Spy Mafia with more than one spy, tap <b>SPY CHANNEL</b> to chat in private with the other spies (it closes while a spy is guessing the secret): on your card before the game starts, then in the top bar, or beside Chat in a vote. One tap is enough; a number shows new messages, and a message from another spy says “… is trying to reach you”.",
+                "The red SPY tag stays on the other spies’ pictures all game. Locals never see the tags, the button or the chat.",
+                "On a voice call? Turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so your mic can’t pick up a spy’s reveal sound. The app asks you (<b>Playing Over a Call?</b>) only in a private room set to <b>Online</b>.",
+              ],
+            },
+            {
+              id: 'poker-face',
+              q: "Online or Same Room: what is Poker Face?",
+              a: [
+                "When a host creates a private room, the app asks <b>Where Are You Playing?</b> Pick <b>Online</b> when everyone is on their own phone, wherever they are, a voice call included: you get the full role reveal and one-tap spy chat. Pick <b>Same Room</b> around one table: it turns on <b>Poker Face</b>.",
+                "With Poker Face, every role card looks alike: no dark spy card, no red SPY tags, and nothing lights up when a spy message comes in. Spy Mafia still names the other spies, in small print. Spies open their chat by pressing and holding their card (on a computer, right-click it). In a vote, they press and hold the <b>Chat</b> button instead.",
+                "Why: at one table, a glance at a neighbour’s phone could give their role away. Poker Face stops accidents, not cheaters. The catch: the other spies are harder to spot and to chat with.",
+                "The host can switch it between games in the lobby’s <b>Rules</b>, and players who join see <b>Poker Face Is On</b>. At Game Nights, each night sets it. Play Online doesn’t have it.",
+              ],
+            },
+            ]
+          : []),
+        {
+          id: 'voice-chat',
+          q: "Is there voice chat? What does the mic do?",
+          a: [
+            "SpySocial has no voice chat: nobody hears you through the app. The mic turns what you say into text, so you don’t have to type.",
+            "Tap the mic, speak, then tap it again to stop. It works in the game and lobby chats and in Spy Talk’s Questions.",
+            "Your phone’s speech recognition (or your browser’s) does this. We get only the text, never the audio. Details: <privacy>Privacy Policy</privacy>.",
+            "To talk while you play, run a voice call of your own next to the app, on Discord or your phone, for example.",
+            ...(o.roleReveal ? ["On a call, the host picks <b>Online</b> for <b>Where Are You Playing?</b>, and everyone can turn on <b>Same Sound for Every Role</b> (Settings, Sound & Music) so no mic picks up a spy’s reveal sound."] : []),
+            "In a private Spy Talk room, <b>Talk Out Loud</b> lets everyone ask and answer by voice, without typing.",
+          ],
+        },
         {
           id: 'wax-seal',
           q: 'What is the Wax Seal?',
           a: [
-            'The seal at the top right of the game screen. Tap it any time for the full game chat, your notes and the game’s info. A red dot means new messages.',
+            'The seal at the top left of the game screen holds <b>Leave</b> and <b>Info</b>, folded away so nobody leaves by accident. <b>Chat</b> and <b>Notes</b> have their own buttons at the top right, one tap each. A number on Chat means new messages.',
+            'You find the seal on every game screen: the vote and its results, the spy’s guess and Game Over.',
+            'On the vote, the spy’s guess and Game Over, <b>Info</b> explains the screen you’re on.',
+            'Practice Games have the seal too, with <b>End Practice</b> and <b>Info</b> on the vote, the guess and Game Over. The game waits while Info is open.',
             'Tap a player’s picture to ask them in the chat. Swipe a message to reply.',
             'Bluffing is part of the game. Saying the secret outright isn’t.',
           ],
@@ -224,7 +418,7 @@ const en: HelpText = {
           id: 'add-friends',
           q: 'How do I add friends?',
           a: [
-            '<b>In person:</b> show your <b>Friend Code</b> and let them scan it in SpySocial. It changes often, so a screenshot stops working.',
+            "<b>In person:</b> show your <b>Friend Code</b> and let them scan it in SpySocial. A new code comes every 5 minutes and works for up to 3 scans, so a screenshot soon stops working.",
             '<b>From a private game</b> you played together in the last 24 hours.',
             '<b>Adults only:</b> from a public table, or by exact username, if they allow it.',
             'Friends are two-way. You can remove or block a friend any time; they aren’t told. There are no private messages.',
@@ -234,7 +428,9 @@ const en: HelpText = {
           id: 'parties',
           q: 'What is a party?',
           a: [
-            'A leader and friends who play together, up to 21 people in all. It takes a membership to start one. If the leader leaves, the lead goes to someone with a membership first.',
+            'A leader and friends who play together, up to 21 people in all. It takes a membership to start one. ' + (o.partyNoMember ? "If the leader leaves, the lead goes to someone in it with a membership." : "If the leader leaves, the lead goes to someone with a membership first."),
+            ...(o.partyLeaderLapse ? ['If the leader’s membership ends, the party closes for everyone; the lead isn’t passed on. A game you’re in goes on to the end, and after it each of you searches on your own.'] : []),
+            ...(o.partyNoMember ? ['If the leader leaves and nobody left has a membership, the party closes for everyone.'] : []),
             'At Play Online tables and Game Nights, a party takes at most half a table, marked for everyone: up to 2 at a table of 4, up to 4 at a table of 8.',
             'At a 12-seat Game Night table, up to 6. Party mates searching on their own count too: never more than half a table between them.',
             'To sit at one table, search from the party: <b>Play Online</b> on your own is a solo search. After a Play Online game, <b>Back to Your Party</b> takes you back to it.',
@@ -252,6 +448,18 @@ const en: HelpText = {
             'Adults can have a public profile and followers. Players under 18 can’t.',
           ],
         },
+        ...(o.u6152
+          ? [
+              {
+                id: 'showcase-items',
+                q: "What happens when I tap an item in a Showcase?",
+                a: [
+                  "Tap any item in a player’s <b>Showcase</b>, yours or someone else’s, to open its item page.",
+                  "On an item page, <b>View in the Archive</b> opens a Unique’s own page on our website, and <b>View on the Market</b> opens any other item’s prices.",
+                ],
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -263,14 +471,16 @@ const en: HelpText = {
           q: 'Who can trade, and what?',
           a: [
             'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones).',
+            "The 7 days count from when the account was saved: time as a guest doesn’t count.",
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age, counted-games and new-device rules are off: every tester can trade once their email is confirmed.']),
+            ...(o.launch ? ["Testers who played 3 counted games during the beta test don’t need 3 more."] : ["Testers who play 3 counted games during the beta test won’t need 3 more after launch."]),
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
             ...(o.interceptsInTrades ? ['Adults can also put unopened Intercepts in a trade: choose how many of each tier. Each one counts as one of the 10.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['During the beta test, until December 7, every unopened Intercept can go in a trade, however you got it. Intercepts start fresh at launch anyway.'] : []),
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
-            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel from shredding one of them stays with the account too; other Intel can be traded, whatever it came from." : ''),
+            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? (o.gnRewardsRules ? " Neither can anything from a code, or anything we or our staff give you: it stays with your account. Intel is never tied to an account, whatever it came from." : " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel is never tied to an account, whatever it came from.") : ''),
             'Intel can be traded only between adults.',
-            ...(o.launch ? [] : ['During the beta test, until December 7, adult testers trade Intel too. On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned.', 'From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them.']),
+            ...(o.launch ? [] : ["During the beta test, until December 7, adult testers trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them."]),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
           ],
         },
@@ -280,7 +490,8 @@ const en: HelpText = {
           a: [
             'What you get in a trade is protected for 7 days. You can wear an item at once, but you can’t trade it, shred it or trade it up yet, and Intel you get can’t be spent yet.',
             ...(o.interceptsInTrades ? ['An unopened Intercept you get stays sealed for those 7 days: you can’t open it, trade it or list it yet.'] : []),
-            'In those 7 days you can reverse your trades, once every 90 days. It reverses all of your protected trades and pauses your trading for 30 days.',
+            'In those 7 days you can reverse your trades, once every 90 days. It undoes all of your protected trades, both ways, and pauses your trading for 30 days.',
+            "Reversing also undoes your Rare Finds buys and sales that are still in their 3 days of protection.",
             'After 7 days a trade is final. We can also reverse a trade for account theft or fraud.',
           ],
         },
@@ -310,6 +521,7 @@ const en: HelpText = {
             ...(o.launch ? [] : ['During the beta test, until December 7, a sign-in on a new device or an email or sign-in change doesn’t pause trading.']),
             'It’s there to protect your items if someone else gets into your account.',
             'We can also pause an account’s trading ourselves, to protect it or while we look into fraud.',
+            "A fair-play hold pauses trading and the Black Market while it lasts. With a Banned reputation, trading, gifts and the Black Market stay closed until it recovers: see <b>Reputation</b> in Settings.",
             'Any of these pauses, your own lock included, closes your open Black Market offers and listings at once. A ban, a suspension or a fair-play hold does too. Items come back to you, Intel from a buy offer waits for you to collect, and other players’ offers on your listings go back to them. Nothing reopens when it ends: you list again.',
             'If we sign your account out on every device without pausing trading, your Black Market offers and listings from before that show <b>Waiting</b> and don’t fill. Once your new sign-in can trade, tap <b>Put Back</b> on each one that’s yours, or stop it.',
           ],
@@ -335,6 +547,7 @@ const en: HelpText = {
           q: 'Who can use the Black Market?',
           a: [
             'Adults who can trade: an account at least 7 days old, a confirmed email, 3 counted games and no trading pause.',
+            "The 7 days count from when the account was saved: time as a guest doesn’t count.",
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
             ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 9 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone on November 16: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
@@ -347,9 +560,29 @@ const en: HelpText = {
             'Each item sold costs a 2% fee (at least 1 Intel, at most 5,000 Intel), which is removed from the game.',
             'No offer can go below an item’s minimum price: what one copy shreds for. For an unopened Intercept, it’s the average its tier shreds for.',
             'Members can have 8 offers open at once, others 4. While an offer is open, its Intel or items are held for it (you can still wear the items).',
+            "A price can be up to 1,000,000 Intel each, and one offer can be for up to 1,000 copies.",
+            "On Rare Finds, you can list up to 25 Uniques at once and have up to 20 offers open on other players’ listings.",
             'You can stop an offer any time and collect what’s left.',
           ],
         },
+        ...(o.rarefindsOffers
+          ? [
+              {
+                id: 'rare-finds-offers',
+                q: "How do offers on Rare Finds work?",
+                a: [
+                  ...(o.appU61 ? ["The seller chooses how far below the price you can offer: up to 5%, 10% or 15%, or no offers at all."] : []),
+                  "Your offer’s Intel is held while it waits. If the seller doesn’t answer within 24 hours, the offer ends and the Intel comes back.",
+                  "You can take an offer back once it has waited 30 minutes.",
+                  ...(o.appU61 ? ["The seller can accept, decline or counter with a price between your offer and theirs. A counter holds none of your Intel: buy at it, decline it or counter back."] : []),
+                  "Once a seller declines an offer, nobody can offer that low on that listing again: its lowest offer goes up.",
+                  ...(o.appU61 ? ["The seller sees the new lowest offer. Once declines bring it up to the price, the listing takes no more offers: Buy Now only."] : []),
+                  "If many of your offers are declined and almost none accepted, you can’t make new offers for up to 3 days.",
+                  ...(o.rarefindsOfferPush ? ["With Black Market notifications on, you get one when the seller counters your offer, and when your offer is declined or ends."] : []),
+                ],
+              },
+            ]
+          : []),
         {
           id: 'black-market-protection',
           q: 'Are Black Market sales protected?',
@@ -357,6 +590,15 @@ const en: HelpText = {
             'A sale on Items is final at once.',
             'A Unique bought on Rare Finds is protected for 3 days: it can’t be traded, listed, shredded or traded up, and the seller’s Intel waits. In that time the sale can be reversed, like a trade.',
             'If the buyer or the seller deletes their account in those 3 days, the sale is undone: the buyer gets the Intel back, or the seller gets the Unique back.',
+          ],
+        },
+        {
+          id: 'archive-holder',
+          q: "Can other people see that I hold a Unique?",
+          a: [
+            "Every Unique has its own page on archive.spysocial.app. Its holder today shows as “Held by @username”, with a link to their profile, only if they’re an adult with a public profile.",
+            "For everyone else, players under 18 included, it says “Held privately”.",
+            "To hide your name, make your profile private in <b>Privacy & Friends</b>. It leaves the Archive within about a minute.",
           ],
         },
       ],
@@ -380,7 +622,8 @@ const en: HelpText = {
           a: [
             'Five tiers, lowest first: <b>Restricted</b>, <b>Confidential</b>, <b>Secret</b>, <b>Top Secret</b> and <b>Enigma</b>.',
             'The tier is set when you earn it. The higher the tier, the better the odds.',
-            'A <b>Unique</b> is a copy with a colour and a number no other copy has.',
+            "A <b>Unique</b> is a one-of-one copy: a prism gem, a rainbow foil frame, a codename and a number no other copy has. Each copy keeps its own colours inside.",
+            ...(o.u6152 ? ["A Unique’s codename is its name, like <b>Onyx Dispatch</b>. The Legendary it came from shows under it in smaller text, with its number: Paper Plane #37."] : []),
           ],
         },
         {
@@ -388,15 +631,30 @@ const en: HelpText = {
           q: 'How do I earn Intercepts?',
           a: [
             '<b>Wins:</b> every 10 Play Online wins give you 5 Intercepts, one of them Secret or better.',
-            '<b>Daily:</b> your first Play Online game of the day gives you one, and long streaks add more (every 30th day in a row, an Enigma).',
-            '<b>Game Night:</b> the night’s winners get an Enigma.',
-            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding one of their spares gives Intel that stays with your account too: you can spend it on items sold for Intel in the app, but you can’t trade it, send it or use it on the Black Market." : ''}`,
+            "<b>Daily:</b> your first Play Online game of the day gives you one. Every 7th day in a row adds one Secret or better, and every 30th day an Enigma.",
+            ...(o.gnRewards ? ["<b>Game Night:</b> your games there earn Game Night Intel, which gets you Game Night Intercepts (below)."] : o.gnRewardsRules ? [] : ["<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night."]),
+            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding a spare gives ordinary Intel." : ''}`,
+            ...(o.launch ? ["<b>Welcome:</b> a saved account gets a first Intercept, free. Like Intercepts from a code or a gift, it and what comes out of it stay with your account: they can’t be traded or sold."] : []),
             'Private rooms don’t give Intercepts.',
             ...(o.launch
               ? []
               : ['Before 2.2 opens to everyone, Intercepts start fresh: those earned in test versions are wiped. The Beta Pin and anything bought in a store stay.']),
           ],
         },
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-intercepts',
+              q: 'What are Game Night Intercepts?',
+              a: [
+                'Intercepts you get with Game Night Intel, on the Game Night card in the <b>Vault</b>: <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
+                'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
+                ...(o.u6153 ? ["Game Night’s Legendary background is <b>Blackout</b>, which used to be called The Back Room. Its rest scene is <b>Rain Window</b>."] : []),
+                'A bought one waits in <b>To Open</b>. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'duplicates',
           q: 'What can I do with duplicates?',
@@ -442,21 +700,45 @@ const en: HelpText = {
           id: 'tester-rewards',
           q: 'Where are my beta tester rewards?',
           a: [
-            o.launch
-              ? 'They were added at the 2.2 launch and are yours to keep. Everyone on the tester list got the <b>Beta Pin</b> and the <b>Beta Tester</b> title. A thank-you card shows when you first open the app after launch.'
-              : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep. Everyone on the tester list gets the <b>Beta Pin</b> and the <b>Beta Tester</b> title.',
-            o.launch
-              ? 'Testers who finished at least one game before December 7 (played to the end, in any room, so it shows in their Stats) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.'
-              : 'Finish at least one game before December 7 (played to the end, in any room, so it shows in your Stats) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.',
-            o.testerInterceptsTradable
-              ? 'The <b>Beta Pin</b>, the <b>Field Tester</b> title and the thank-you Intercepts trade like anything you earn.'
-              : 'The <b>Beta Pin</b> and the <b>Field Tester</b> title trade like anything you earn; like other gifts, the thank-you Intercepts stay with your account.',
+            ...(o.testerGiftGame
+              ? [
+                o.launch
+                  ? 'They were added at the 2.2 launch and are yours to keep. Everyone on the tester list got the <b>Beta Pin</b> and the <b>Beta Tester</b> title. A thank-you card shows when you first open the app after launch.'
+                  : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep. Everyone on the tester list gets the <b>Beta Pin</b> and the <b>Beta Tester</b> title.',
+                o.launch
+                  ? "Testers who finished at least one game with other players before December 7 (played to the end, in any room, so it shows in their Stats; Practice Games don’t count) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership."
+                  : "Finish at least one game with other players before December 7 (played to the end, in any room, so it shows in your Stats; Practice Games don’t count) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.",
+                o.testerInterceptsTradable
+                  ? 'The <b>Beta Pin</b>, the <b>Field Tester</b> title and the thank-you Intercepts trade like anything you earn.'
+                  : 'The <b>Beta Pin</b> and the <b>Field Tester</b> title trade like anything you earn; like other gifts, the thank-you Intercepts stay with your account.',
+              ]
+              : [
+                o.launch
+                  ? 'They were added at the 2.2 launch and are yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership. A thank-you card shows when you first open the app after launch.'
+                  : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership.',
+              ]),
             ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
             'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
             'Something missing? Email <email/> with your username and the email you signed in with during the test. A guest account isn’t on the list, so a different account is the usual reason.',
-            ...(o.launch ? [] : ['Beta 2: the $10 thank-you goes by PayPal to every confirmed player who joins the full live hour and sends the survey, within 7 days of the session, the same on iPhone and Android. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week.']),
+            ...(o.launch ? [] : ["Beta 3 is on Tuesday, November 24, 8 to 9 PM Eastern (join from 7:30). If your seat email mentions the $10 thank-you: play at least one game that night and send the survey by Friday, November 27, 11:59 PM Eastern, and the $10 comes by PayPal by December 1. One tester also gets a $50 gift card for the most useful report or idea, chosen by us."]),
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'beta-reset',
+              q: "The app says everything resets before launch. What does that mean?",
+              a: [
+                "SpySocial is still being tested. Before launch on December 8, items, Intercepts, Intel, Black Market deals and trades are reset, and everyone starts from scratch.",
+                "Your account, friends and packs stay, and so do your XP, level, achievements, stats, Practice Game grades, titles from codes and anything bought in a store.",
+                ...(o.gnRewards ? ["Your ★ Game Night titles stay, and you get back all the Game Night Intel you earned, even if you spent it."] : []),
+                "Memberships given for the test end at launch." + (o.intelZero ? " Your daily streak starts again from day 0." : ''),
+                "Testers get a special reward for helping.",
+                "The note shows in the Vault, the Black Market and the trading screens. Tap it to read more, or tap X to hide it on that phone.",
+              ],
+            },
+            ]),
       ],
     },
     {
@@ -471,19 +753,97 @@ const en: HelpText = {
             'Every premium pack, new ones included. Everyone plays them in rooms you host and at your Play Online table.',
             'Make your own packs in Pack Creator and share them in Community.',
             '+50% XP on every game, and members-only lobbies in Play Online.',
+            ...(o.practiceMembers ? ['Practice Games, up to 5 a day, with letter grades' + (o.practiceAi ? ' and optional AI feedback (16 and older).' : '.')] : []),
             'Your rank’s border, tag and title. You can lead a party, and have 8 open Black Market offers instead of 4.',
             'It never changes how you play or score. The free packs stay free for everyone.',
           ],
         },
         {
+          id: 'pack-creator',
+          q: "How does Pack Creator work?",
+          a: [
+            "With a membership (13 or older), open <b>Packs</b>, then <b>Pack Creator</b>. A pack needs 30 to 200 entries to be played or sent to <b>Community</b>.",
+            "Your packs play in private rooms you host while you’re a member.",
+            "Send one to <b>Community</b> and we check it within 72 hours: an automatic check reads the text first, then a person decides. It shows <b>In Review</b>, then <b>In Community</b>, or <b>Needs Changes</b> with the reason: change it and send it again.",
+            "Popular packs can be <b>Featured</b>. Other members add Community packs to <b>My Packs</b> to play in their own rooms.",
+            "Players under 18 don’t get our answer between 10 PM and 7 AM.",
+          ],
+        },
+        ...(o.u6153
+          ? [
+            {
+              id: 'membership-cards',
+              q: "What are the Membership cards in the app?",
+              a: [
+                "Wherever members get more, a short card says so. Tap anywhere on it to open <b>Membership</b> in the Vault. It never buys anything by itself.",
+                "<b>Black Market</b>, Your Offers: 8 open offers for members, 4 for everyone else.",
+                "<b>Parties</b>: members lead them.",
+                "The pack picker in a room you host: every premium pack and any Community Pack you add, plus Pack Creator to make your own.",
+                "<b>Locker</b>: members wear their rank’s border and title.",
+                "A Community Pack’s page: members add it to <b>My Packs</b>.",
+              ],
+            },
+          ]
+          : []),
+        {
           id: 'membership-plans',
           q: 'What are Agent, Elite and Spymaster?',
           a: [
-            '<b>Agent</b> is the monthly Pack Pass, <b>Elite</b> the yearly one, and <b>Spymaster</b> is Lifetime: one payment, no renewal.',
+            '<b>Agent</b> is the Monthly Membership, <b>Elite</b> the Yearly Membership, and <b>Spymaster</b> is Lifetime: one payment, no renewal.',
             'Spymaster adds all three metal borders, the Gold Card title, the Gold Storm celebration and Lifetime-only items for your agent.',
             'Lifetime lasts as long as we offer SpySocial, not for your lifetime. There are no free trials, and memberships aren’t shared through Family Sharing.',
           ],
         },
+        ...(o.membershipSwitch
+          ? [
+            {
+              id: 'membership-switch',
+              q: 'Can I switch between Monthly and Yearly?',
+              a: [
+                'Yes, in the app: open the <b>Vault</b>, then <b>Membership</b>. On Monthly, tap <b>Upgrade to Elite</b> (Yearly) or <b>Upgrade to Spymaster</b> (Lifetime). On Yearly, <b>Switch to Monthly</b> is there too: Elite’s border, title and tag change to Agent’s, and every other perk stays.',
+                'You’re never charged twice. On Google Play, the new plan starts right away and the time you’ve paid for becomes time on it. On the App Store, Apple decides when it starts, often at your next renewal, and credits the time you’ve paid for.',
+                'A membership billed by the other store is changed in that store: buying another plan here would charge you twice.',
+                ...(o.googlePassStop
+                  ? ['When you buy Lifetime, a Monthly or Yearly membership billed by Google Play stops renewing by itself: you keep it until its end date, and nothing more is charged. Apple doesn’t allow this, so cancel an App Store one yourself.']
+                  : []),
+              ],
+            },
+            {
+              id: 'two-memberships',
+              q: 'The app says I have two memberships active',
+              a: [
+                'You’re paying for two at once: for example Lifetime and a Monthly membership, or one on each store. The app says which one you need and which one to cancel, when you open it and on the <b>Membership</b> tab.',
+                'Tap <b>Manage Subscription</b> to cancel the extra one in its store. Cancelling only stops the next charge: you keep the time you’ve already paid for.',
+                ...(o.googlePassStop ? ['If the extra one is billed by Google Play, <b>Stop Renewal</b> stops it right from the app.'] : []),
+                'Nothing is blocked meanwhile: <b>Later</b> hides the message until you next open the app.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "What is “Member since”?",
+              a: [
+                "While you’re a member, <b>Account</b> shows when your membership started and how long you’ve been a member, and the <b>Vault</b> shows your stamps: 1, 3 and 6 months, 1, 2 and 3 years, then every year.",
+                "It counts the time your membership has been active without a break: a monthly or yearly membership, Lifetime, a gift or a code. Refunded time and test purchases don’t count.",
+                "It’s earned by staying. On the first day your membership isn’t active any more (after any grace period the store gives for a failed payment), your member time and stamps are gone. If you become a member again, “Member since” and your time start again from zero.",
+                "<b>Lifetime</b> is the exception: your time counts from your first day as a member, months of a monthly or yearly membership before it included, and keeps growing, with every stamp we add later.",
+                "Other players see only how long, with your stamp, on your player sheet, never the date or the price. Turn off <b>Show my membership time</b> in Settings to hide it. An under-13 account’s time is never shown to others.",
+                "Stamps only change how your profile looks: no XP, no better odds, and they can’t be traded.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "Will my price go up?",
+              a: [
+                "While your monthly or yearly membership renews without a break, you keep the price you pay now, even if the price goes up for new members. The store may still adjust it for local taxes or currency.",
+                "Switching to the other plan (monthly or yearly) means that plan’s current price. If your membership ends and you come back later, you may pay the price at that time. Lifetime is paid once and never renews.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: 'How do auto-renewal and cancelling work?',
@@ -491,7 +851,10 @@ const en: HelpText = {
             'Agent and Elite renew automatically until you cancel: on the App Store, at least 24 hours before the period ends; on Google Play, before the renewal date. You keep the benefits until the end of the period you paid for.',
             '<b>iPhone or iPad:</b> Settings, your name, Subscriptions, SpySocial.',
             '<b>Android:</b> the Google Play Store app, your profile picture, Payments & subscriptions, Subscriptions, SpySocial.',
-            '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a pass.',
+            o.googlePassStop
+              ? '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account doesn’t cancel a monthly or yearly membership. Buying Lifetime stops one billed by Google Play by itself, but not one billed by the App Store.'
+              : '<b>Manage Subscription</b> in the app opens the same page. Deleting the app or your account, or buying Lifetime, doesn’t cancel a monthly or yearly membership.',
+            ...(o.memberLoyalty ? ["In the <b>Vault</b>, <b>Cancel Membership</b> (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and your locked price ends. Its one button, <b>Continue to Cancel</b>, goes straight on to the store. <b>Manage Subscription</b> itself still opens the store directly. Nothing changes before the end of the period you paid for."] : []),
           ],
         },
         {
@@ -520,11 +883,27 @@ const en: HelpText = {
           id: 'guest-or-saved',
           q: 'Guest or saved account: what’s the difference?',
           a: [
-            'A <b>guest</b> plays private rooms right away. A guest account lives on one phone, and signing out deletes it for good.',
+            'A <b>guest</b> can play the tutorials and private rooms right away. A guest account lives on one phone, and signing out deletes it for good.',
             `A <b>saved</b> account (Apple, Google or your email${o.passwordless ? ', with a code we email you, no password' : ''}) keeps your name, progress and membership on any phone, and lets you play online, join Game Night and add friends.`,
             'You can save a guest account at any time from your Account page, without losing anything. Friends, Trades and the Black Market ask a guest to save it first.',
+            ...(o.u6152 ? ["Until you save, a <b>Save Your Account</b> card shows on Game Over after every game. Tap × to stop it showing on that phone."] : []),
           ],
         },
+        ...(o.emailCodes22
+          ? [
+            {
+              id: 'sign-up-email',
+              q: 'How do I sign up with my email?',
+              a: [
+                'Tap <b>Continue with Email</b> and type your email. We email you a 6-digit code: type it in the app, and your account is made. No password needed.',
+                'The code works for 1 hour. Not there? Check spam or junk, or tap <b>Resend Code</b> after a minute.',
+                ...(o.passwordless
+                  ? []
+                  : ['Older versions of the app ask for a password. If one says the password is too common or has appeared in a data leak, choose a different one: no account was made, no email was sent, and you can try again right away.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'lost-account',
           q: 'I lost my account. Can I get it back?',
@@ -583,8 +962,9 @@ const en: HelpText = {
           id: 'change-name',
           q: 'How do I change my name?',
           a: [
-            'Change your display name on your Account page any time, and your username once every 30 days.',
-            'A new account starts with a random display name in your app’s language.',
+            o.launch ? "Change your display name, your username (once every 30 days) and your 2nd and 3rd colors in <b>Settings</b>." : 'Change your display name on your Account page any time, and your username once every 30 days.',
+            ...(o.launch ? [] : ['A new account starts with a random display name in your app’s language.']),
+            o.launch ? "When you set up a new account, you pick a @username and one color, and your display name is made from the username. It never uses the name on your Google or Apple account." : "When you set up a new account, your @username is made from the display name you type and follows it until you type your own or roll the dice. It never uses the name on your Google or Apple account.",
             'At Play Online tables, players you don’t know see your Agent colour instead. Names follow the <rules>community rules</rules>.',
           ],
         },
@@ -601,9 +981,9 @@ const en: HelpText = {
           id: 'delete-account',
           q: 'How do I delete my account?',
           a: [
-            'In the app: <b>Account</b>, <b>Settings</b>, <b>Delete Account</b>. For a guest, signing out deletes it.',
+            "In the app: <b>Account</b>, <b>Settings</b>, <b>Account & Sign-In</b>, <b>Delete Account</b>. It can’t be undone. A guest account is deleted there too, or by signing out.",
             'You can also ask us by email: see <delete>Delete your account</delete>.',
-            'Deleting doesn’t cancel a membership pass: cancel it in the store too.',
+            "Deleting your account doesn’t cancel your membership. Cancel it in the App Store or Google Play first, or you’ll keep being charged.",
           ],
         },
         {
@@ -624,9 +1004,9 @@ const en: HelpText = {
           id: 'report-block',
           q: 'How do I report or block someone?',
           a: [
-            'Press and hold their card, in the lobby, in a game or on Game Over, and choose <b>Report</b> or <b>Block</b>.',
+            "In the lobby, press and hold their card. In a game, press and hold their picture: <b>Report</b> and <b>Block</b> are at the bottom of your notes on them. On Game Over, tap their card.",
             'A person reads every report, and the player isn’t told who sent it.',
-            'Blocking keeps you apart: neither of you can join a room the other is in. Unblock in Settings, under <b>Blocked Players</b>.',
+            'Blocking keeps you apart: neither of you can join a room the other is in. Unblock in Settings, under <b>Privacy & Safety</b>: <b>Blocked Players</b>.',
             'Lying and bluffing are part of the game and aren’t reportable.',
             'At a table with a party, choose <b>Teaming</b> if you think they’re working together outside the game. <b>Report Party</b> covers everyone in their party at that table.',
           ],
@@ -637,6 +1017,17 @@ const en: HelpText = {
           a: [
             'Our team reads every report and decides what happens. Trusted volunteer moderators help, with our permission: at Game Night tables, with reported messages and with Community Packs.',
             'You can appeal any decision by emailing <email/>.',
+          ],
+        },
+        {
+          id: 'reputation',
+          q: "What is my reputation?",
+          a: [
+            "Every account has one. See yours in Settings, under <b>Reputation</b>: Excellent, Good, Poor, At Risk or Banned. New accounts start at Good.",
+            "Your reputation comes from your record: how long you've played, and any reports, warnings, mutes and pauses. The exact score isn't shown. Older notes count less over time and stop counting after 90 days.",
+            "New accounts and players with a lower reputation have more of their drawings checked automatically.",
+            "While it’s Banned, Play Online, public rooms, Game Nights, trading, gifts and the Black Market are closed to you, and private rooms may be too. You can still sign in and keep your items. It recovers over time while you play fair.",
+            "Think it’s wrong? Email <email/> and we’ll review it.",
           ],
         },
         {
@@ -707,6 +1098,19 @@ const en: HelpText = {
             'If you were in a game, the app reconnects you, or tap <b>Rejoin</b> on your room’s card on Home. Your seat is kept.',
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'tablet-keyboard',
+              q: "Does the on-screen keyboard flip the layout on a tablet?",
+              a: [
+                "In a tablet’s browser, the on-screen keyboard no longer turns the game into its sideways layout: the screen keeps its upright shape while you type.",
+                "The page lifts so the field you’re typing in stays above the keys.",
+                "A tablet you turn sideways keeps the app’s tablet layout, not the wide computer one.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'game-not-counted',
           q: 'My game didn’t count',

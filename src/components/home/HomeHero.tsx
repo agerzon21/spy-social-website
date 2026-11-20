@@ -1,8 +1,8 @@
-import { useMemo } from 'react'
 import { useT } from '../../i18n'
 import { rich } from '../../i18n/rich'
 import { LIVE, STORES_OPEN } from '../../lib/legalRelease'
 import { currentPlatform } from '../../lib/platform'
+import { useClientValue } from '../../lib/clientValue'
 import { PLAY_URL } from '../../lib/playUrl'
 import DisplayHeading from '../ui/DisplayHeading'
 import Eyebrow from '../ui/Eyebrow'
@@ -27,7 +27,7 @@ const ArrowIcon = () => (
 /** The first screen: what the game is in one line, the store badges, a way into a room, and the line-up. */
 const HomeHero = () => {
   // The browser version, on a computer once it's live (LIVE.browserLinks); phones get the stores.
-  const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
+  const showBrowser = useClientValue(() => LIVE.browserLinks && currentPlatform() === 'desktop', false)
   const strings = useT()
   const t = strings.home.hero
   // The launch version says 2.2 is out ("SpySocial 2.2 · Out now", the Roadmap's words) and links to New in 2.2.

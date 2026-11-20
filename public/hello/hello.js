@@ -12,6 +12,10 @@
 (function () {
   var root = document.documentElement;
 
+  // 0) The tab's title in the page's language (lang.js chose it; the file's <title> is the English one).
+  var shown = document.querySelector('main[data-l="' + root.getAttribute('lang') + '"]');
+  if (shown && shown.getAttribute('data-title')) document.title = shown.getAttribute('data-title');
+
   var closes = Date.parse(root.getAttribute('data-beta-closes') || '');
   function setBeta(open) {
     var blocks = document.querySelectorAll('[data-beta]');

@@ -1,9 +1,9 @@
 import RouterLink from './SiteLink'
-import { useMemo } from 'react'
 import { useT } from '../i18n'
 import { useClosed } from '../lib/betaSignup'
 import { LIVE, LLC_SINCE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
+import { useClientValue } from '../lib/clientValue'
 import { PLAY_URL } from '../lib/playUrl'
 import { SHOP_URL } from '../lib/shop'
 import SocialLinks from './SocialLinks'
@@ -45,7 +45,7 @@ const FooterColumn = ({ id, title, links }: { id: string; title: string; links: 
 // 44 px row.
 const Footer = () => {
   // The browser version, on a computer once it's live (LIVE.browserLinks); phones keep the app.
-  const showBrowser = useMemo(() => LIVE.browserLinks && currentPlatform() === 'desktop', [])
+  const showBrowser = useClientValue(() => LIVE.browserLinks && currentPlatform() === 'desktop', false)
 
   // The Beta 2 playtest link shows only while sign-ups are open, and never in the launch version (/beta goes home).
   const betaClosed = useClosed()
@@ -55,11 +55,13 @@ const Footer = () => {
   const play: FooterLinkItem[] = [
     ...(showBrowser ? [{ label: f.browser, href: PLAY_URL }] : []),
     { label: f.whatsNew, to: '/whats-new' },
-    ...(betaClosed || LIVE.launchSite ? [] : [{ label: f.beta, to: '/beta' }]),
+    ...(betaClosed || LIVE.launchSite || LIVE.beta2Off ? [] : [{ label: f.beta, to: '/beta' }]),
     // The roadmap, once the owner has approved it (LIVE.roadmap).
     ...(LIVE.roadmap ? [{ label: f.roadmap, to: '/roadmap' }] : []),
     // The Black Market's prices (LIVE.marketSite).
     ...(LIVE.marketSite ? [{ label: f.market, to: '/market' }] : []),
+    // The Archive (archive.spysocial.app; LIVE.mintedCollectibles and LIVE.uniqueArchive, as its routes).
+    ...(LIVE.mintedCollectibles && LIVE.uniqueArchive ? [{ label: f.archive, to: '/archive' }] : []),
     { label: f.rules, to: '/rules' },
     // The Game Night rules, once they're live (LIVE.gameNightRules).
     ...(LIVE.gameNightRules ? [{ label: f.gameNightRules, to: '/game-night-rules' }] : []),

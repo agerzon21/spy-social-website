@@ -4,6 +4,7 @@ import { LANGUAGES, matchLang, useLang, useT, type Strings } from '../i18n'
 import { HELLO_STRINGS } from '../hello/strings'
 import { launchDayText } from '../lib/launchDay'
 import { LIVE, ONLINE_SAFETY_TEXT, STORES_OPEN } from '../lib/legalRelease'
+import { LEDGER_DESCRIPTION_UNIQUES } from '../lib/ledgerScope'
 import { canonicalPath, publicUrl } from '../lib/siteHost'
 
 type PageKey = keyof Strings['meta']['titles']
@@ -24,8 +25,8 @@ const UNLISTED = new Set<PageKey>([
   // The collectibles ledger is a public record to check, not a page to find in search.
   'ledger',
   ...(LIVE.roadmap ? [] : (['roadmap'] as const)),
-  // The Beta 2 page is over at the launch (LIVE.launchSite sends /beta home).
-  ...(LIVE.launchSite ? (['beta'] as const) : []),
+  // The Beta 2 page is over once LIVE.beta2Off or LIVE.launchSite sends /beta home.
+  ...(LIVE.launchSite || LIVE.beta2Off ? (['beta'] as const) : []),
 ])
 
 /** Which page a path is, for its title. The home page takes the site's own title, anything unknown notFound's. */
@@ -83,13 +84,22 @@ const SiteHead = () => {
   const general = STORES_OPEN
     ? t.meta.description
     : `${t.meta.description.replace(words.storeTail, '')} ${words.launchLine(launchDayText(language.locale))}`
-  const description = page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
+  // ledger-uniques-1111: with LIVE.ledgerUniquesOnly the ledger is described as the record of every Unique
+  const description = page === 'ledger' && LIVE.ledgerUniquesOnly
+    ? LEDGER_DESCRIPTION_UNIQUES[lang]
+    // howto-truth-1117: with LIVE.gnRewardsRules the Game Night rules describe the rewards, not the night's titles
+    : page === 'gameNightRules' && LIVE.gnRewardsRules
+    ? t.meta.descriptions.gameNightRulesRewards
+    : page && page in t.meta.descriptions ? t.meta.descriptions[page as DescribedPage] : general
   const indexed = !(page && UNLISTED.has(page))
   // The address search engines know it by: www.spysocial.app (the bare spysocial.app redirects there, vercel.json),
   // archive.spysocial.app or market.spysocial.app.
   const here = publicUrl(path)
   const asked = matchLang(new URLSearchParams(search).get('lang'))
-  const canonical = asked === lang ? `${here}?lang=${lang}` : here
+  // English's address is the bare one (site-audit-1116): the server answers ?lang=en with the bare address's file, whose
+  // canonical is the bare address, so the 'en' alternate names it too (an alternate must be a canonical address).
+  const at = (code: string) => (code === 'en' ? here : `${here}?lang=${code}`)
+  const canonical = asked === lang ? at(lang) : here
 
   return (
     <Helmet htmlAttributes={{ lang, dir: language.rtl ? 'rtl' : 'ltr' }}>
@@ -98,7 +108,7 @@ const SiteHead = () => {
       <meta property="og:locale" content={language.og} />
       {!indexed && <meta name="robots" content="noindex" />}
       {indexed && <link rel="canonical" href={canonical} />}
-      {indexed && LANGUAGES.map((l) => <link key={l.code} rel="alternate" hrefLang={l.code} href={`${here}?lang=${l.code}`} />)}
+      {indexed && LANGUAGES.map((l) => <link key={l.code} rel="alternate" hrefLang={l.code} href={at(l.code)} />)}
       {indexed && <link rel="alternate" hrefLang="x-default" href={here} />}
     </Helmet>
   )

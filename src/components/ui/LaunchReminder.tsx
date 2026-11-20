@@ -51,7 +51,7 @@ export const LaunchReminder = ({ center = false }: { center?: boolean }) => {
       {state === 'done' ? (
         <div ref={doneRef} className={s.done} role="status" tabIndex={-1}>
           <p className={s.doneTitle}>{w.done}</p>
-          <p className={s.doneDetail}>{w.doneDetail(day)}</p>
+          <p className={s.doneDetail} suppressHydrationWarning>{w.doneDetail(day)}</p>
         </div>
       ) : (
         <form className={s.form} onSubmit={submit} noValidate>
@@ -82,7 +82,7 @@ export const LaunchReminder = ({ center = false }: { center?: boolean }) => {
               {message}
             </p>
           )}
-          <button className={`${ui.btn} ${ui.primary} ${s.send}`} type="submit" disabled={state === 'sending'}>
+          <button className={`${ui.btn} ${ui.primary} ${s.send}`} type="submit" disabled={state === 'sending'} suppressHydrationWarning>
             {state === 'sending' ? w.sending : w.button(day)}
           </button>
         </form>
@@ -104,7 +104,7 @@ export const LaunchDate = () => {
   return (
     <div className={s.when}>
       <p className={s.before}>{w.before}</p>
-      <p className={s.day}>{launchDayText(language.locale)}</p>
+      <p className={s.day} suppressHydrationWarning>{launchDayText(language.locale)}</p>
       {w.after && <p className={s.before}>{w.after}</p>}
       <p className={s.stores}>
         {w.stores} <b>{w.wait}</b>
@@ -132,8 +132,8 @@ export const LaunchLine = ({ note }: { note?: boolean }) => {
   return (
     <p className={s.line}>
       {note && <span className={s.lineNote}>{w.joinStores} </span>}
-      <span>{w.launchLine(day)} </span>
-      <a href={REMINDER_PAGE} className={s.lineLink}>
+      <span suppressHydrationWarning>{w.launchLine(day)} </span>
+      <a href={REMINDER_PAGE} className={s.lineLink} suppressHydrationWarning>
         {w.remind.button(day)}
       </a>
     </p>

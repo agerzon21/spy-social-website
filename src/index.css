@@ -1,6 +1,6 @@
 /* The page before the theme's styles arrive (src/theme sets the rest from the active skin). */
 :root {
-  font-family: Barlow, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: Barlow, 'Barlow Fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -17,6 +17,12 @@ body {
 :root[data-theme='light'] body {
   background-color: #f8f6f0;
   color: #0a0a0a;
+}
+
+/* The wordmark in each theme's artwork (components/Wordmark): both are on the page, the theme shows its own. */
+:root:not([data-theme='light']) [data-theme-only='light'],
+:root[data-theme='light'] [data-theme-only='dark'] {
+  display: none !important;
 }
 
 /*
@@ -41,22 +47,41 @@ html.ss-theme-switching *:not([data-theme-toggle], [data-theme-toggle] *) {
 
 /*
  * Letter-spacing pulls apart the joined letters of Arabic, Devanagari and Bengali: none on those pages, except in
- * the parts that stay Latin and left to right (room codes).
+ * the parts that stay Latin and left to right (room codes). The exception counts only a dir inside the body: Hindi's
+ * and Bengali's <html> is dir="ltr" itself, which used to exempt every element on those pages.
  */
-html:is([lang='ar'], [lang='hi'], [lang='bn']) body *:not([dir='ltr'], [dir='ltr'] *) {
+html:is([lang='ar'], [lang='hi'], [lang='bn']) body *:not(body [dir='ltr'], body [dir='ltr'] *) {
   letter-spacing: 0 !important;
 }
 /* Spanish, French and Portuguese hero lines have longer words than English's: the poster face a size down. */
 html:is([lang='es'], [lang='fr'], [lang='pt-BR']) {
   --ss-fit: 0.8;
 }
-/* Running Russian text breaks a long word at a hyphenation point, never anywhere else. */
+/* Running Russian text breaks a long word at a hyphenation point, never anywhere else. Only words of 10 letters or
+   more, with 4 on each side, so the 9-letter brand never splits into "Spy-Social" (site-qa-1113: Help, Roadmap and
+   Delete Account at phone width; browsers without hyphenate-limit-chars hyphenate as before). */
 html[lang='ru'] :is(p, li, td) {
   hyphens: auto;
   -webkit-hyphens: auto;
+  hyphenate-limit-chars: 10 4 4;
 }
 
 #root {
   width: 100%;
   height: 100%;
+}
+
+/*
+ * A tap target of at least 44 x 44 px that looks exactly as before (crawl2-1114, WCAG 2.5.5): a clear layer over the
+ * element, centred on it and never smaller than it, takes the taps around it. Where neighbours sit closer than that,
+ * --hit-w / --hit-h cap it at the space there is, so it never covers the next control.
+ */
+.ss-hit {
+  position: relative;
+}
+.ss-hit::before {
+  content: '';
+  position: absolute;
+  inset-block: min(0px, calc(50% - var(--hit-h, 44px) / 2));
+  inset-inline: min(0px, calc(50% - var(--hit-w, 44px) / 2));
 }

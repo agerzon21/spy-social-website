@@ -64,7 +64,7 @@ export function useThemedToast() {
                 </Text>
               )}
               {opts.description && (
-                <Text fontSize="xs" color="ss.body" lineHeight="1.6">
+                <Text fontSize="sm" color="ss.body" lineHeight="1.6">
                   {opts.description}
                 </Text>
               )}

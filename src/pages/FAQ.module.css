@@ -26,7 +26,7 @@
 /* ---- topics ---- */
 .topicsLabel {
   margin: 32px 0 10px;
-  font: 700 13px/1.3 var(--ss-font-body);
+  font: 700 14px/1.3 var(--ss-font-body);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ss-highlight);
@@ -50,6 +50,8 @@
   color: var(--ss-link);
   text-decoration: none;
 }
+/* Rows sit 38 px apart (36 px links, a 2 px gap): the hit area fills the gap and no more (index.css .ss-hit). */
+.topics a { --hit-h: 38px; }
 .topics a:hover { color: var(--ss-link-hover); text-decoration: underline; }
 .topics a:focus-visible { outline: 3px solid var(--ss-focus); outline-offset: 2px; }
 
@@ -57,7 +59,7 @@
 .section { margin-top: 44px; scroll-margin-top: 88px; }
 .sectionTitle {
   margin: 0 0 10px;
-  font: 700 13px/1.3 var(--ss-font-body);
+  font: 700 14px/1.3 var(--ss-font-body);
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ss-highlight);

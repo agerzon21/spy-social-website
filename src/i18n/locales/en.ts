@@ -21,12 +21,15 @@ const en = {
   /** The page's <title> and description for search engines and tabs, per page. */
   meta: {
     siteName: 'SpySocial',
+    /** The link-preview card's picture, for a screen reader and where the picture doesn't load (og:image:alt): the line-up
+     * on the card (scripts/share-cards.mjs), after its poster line. scripts/prerender.mjs puts it in each language's file. */
+    cardAlt: 'Five agents in a police line-up, one in the spotlight.',
     defaultTitle: 'SpySocial — The Party Game of Social Deception',
     description:
       'Gather your friends and find the spy — or fool everyone trying. Free real-time multiplayer party game for 3–21 players. Available on iOS and Google Play.',
     titles: {
-      /** The Beta 2 playtester page (/beta). */
-      beta: 'Beta 2 playtest: play SpySocial before launch',
+      /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
+      beta: 'Beta 3: the final SpySocial playtest',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Collectibles ledger",
@@ -57,12 +60,14 @@ const en = {
     },
     /** Each page's own description for search results; the home page and the unlisted pages use `description`. */
     descriptions: {
-      beta: 'Join a live 1-hour group playtest of SpySocial, a free social deduction party game, on Thursday, November 12, 2026, 7–8 PM Eastern. Adults 18+, iPhone or Android. Testers keep the Beta Pin and more.',
+      beta: 'Beta 2 is done. Thank you to everyone who played. Beta 3, the final playtest before SpySocial launches, is on Tuesday, November 24. Sign-ups open soon: join our Discord to hear first.',
       ledger: "The public record of every minted SpySocial collectible: each copy and its number. Anyone can check it.",
       archive: "Every SpySocial Unique on the record: its picture, number, attributes, how it was minted and every sale, with no player named.",
       market: "What every SpySocial item sells for on the Black Market: prices from players’ trades, the biggest rises and falls and the most traded items, with no player named.",
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
-      gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
+      gameNightRules: "The rules for SpySocial's Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
+      /** The same page once LIVE.gnRewardsRules is on: Game Night Intel, the ★ titles and Game Night Intercepts replace the night's titles (howto-truth-1117). */
+      gameNightRulesRewards: "The rules for SpySocial's Game Night: when it runs, who can take part, and how Game Night Intel, the ★ titles and Game Night Intercepts work.",
       faq: "SpySocial help: how to play Spy Talk and Spy Sketch, Play Online, private rooms and Game Night, friends, trading, the Black Market, Intercepts, Intel, membership, your account, safety and troubleshooting.",
       contact: 'Contact the SpySocial team: email support@spysocial.app for help with the app, your account or anything else.',
       rules: "SpySocial's community rules: be kind, bluff but don't cheat, keep personal information private, and what happens when someone breaks the rules.",
@@ -86,14 +91,20 @@ const en = {
 
   header: {
     home: 'SpySocial home',
+    /** A keyboard's first stop on every page, shown only while it has focus: jumps past the header to the page. */
+    skip: 'Skip to content',
     nav: 'Site',
     /** The link to the home page's room-code box, on a computer or tablet. */
     join: 'Join a room',
     /** The same link on a phone, where the header has little room: one short word if you can. */
     joinShort: 'Join',
+    /** The Market (market.spysocial.app) and the Archive (archive.spysocial.app), in the words their own headers use (their nav's
+     * first link). www's pages only, and only where the row has room (shell.module.css); the footer carries both everywhere. */
+    market: 'Market',
+    archive: 'Archive',
     shop: 'Shop',
-    toLight: 'Switch to light mode',
-    toDark: 'Switch to dark mode',
+    /** The header's light / dark switch's one name (a switch: on = the light theme, off = dark; its state is read out separately). */
+    lightMode: 'Light mode',
   },
 
   footer: {
@@ -101,6 +112,8 @@ const en = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Black Market Prices",
+    /** The link to the Archive (archive.spysocial.app; LIVE.uniqueArchive), as its own header names it. */
+    archive: "Archive",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparency",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -151,6 +164,10 @@ const en = {
     /** On an Android phone, under Open in SpySocial. */
     noAppAndroid: "Don't have the app? Get it",
     playInBrowser: 'Play in Your Browser',
+    /** lib/lazyPage: a page that wouldn't load after three reloads (components/ReloadNotice). */
+    reloadTitle: 'Please reload',
+    reloadText: 'This page didn\'t finish loading. Reloading usually fixes it.',
+    reload: 'Reload',
   },
 
   /** The store badges: the small line over the store's name, as each store words its badge in the language. */
@@ -282,9 +299,9 @@ const en = {
       chatTap: 'Chat too: tap Translate on any message to read it in yours.',
       trioLabel: 'One role card in three languages',
       cardAlts: [
-        "Role reveal: a Local's card shows the secret location, Theater",
-        'Role card in Spanish: Teatro',
-        'Role card in Russian: Театр',
+        "Role reveal: a Local's card shows the secret location, Observatory",
+        'Role card in Spanish: Observatorio',
+        'Role card in Russian: Обсерватория',
       ],
     },
     safety: {
@@ -380,8 +397,13 @@ const en = {
     breaking: {
       title: 'What happens when someone breaks the rules',
       text: "Usually a warning first. Repeated or serious problems lead to a chat mute (1 hour to 7 days), a pause from public rooms and Game Nights (1 to 30 days), or a ban. Sharing someone's personal information, or anything that sexualizes a child, can mean an immediate ban. Every notice in the app says what is limited, why, and until when, with an ID like S-207.",
-      drawings:
-        "Drawings in public rooms and at Game Nights may be checked automatically at any time, and reported drawings are checked too. If a drawing you made breaks these rules, your account can be paused or banned from public rooms and Game Nights, however long you've played. In a public room, a turn that breaks these rules is taken off the drawing and counts as a strike: a warning first, then 3, 7 and 30 days without public rooms and Game Nights, and at the fifth strike in 90 days, for good. In any room, a hate symbol (a swastika counts, unless the round's word makes a religious meaning clear), a written slur or hate aimed at someone removes the player from the game and from public rooms and Game Nights for good, and a drawing that sexualizes a child ends the account and is handled as Child safety says above. Gore and monsters are fine. In a private room, a reported drawing is acted on automatically only when it's that serious; anything else is up to the person who reads the report. To appeal, email us the code from your notice.",
+      /** minorRooms: LIVE.safetyFacts1114 (legal-cov2-1114): a sexual drawing in a private room a minor can see comes off at once. */
+      drawings: (minorRooms: boolean) =>
+        "Drawings in public rooms and at Game Nights may be checked automatically at any time, and reported drawings are checked too. If a drawing you made breaks these rules, your account can be paused or banned from public rooms and Game Nights, however long you've played. In a public room, a turn that breaks these rules is taken off the drawing and counts as a strike: a warning first, then 3, 7 and 30 days without public rooms and Game Nights, and at the fifth strike in 90 days, for good. In any room, a hate symbol (a swastika counts, unless the round's word makes a religious meaning clear), a written slur or hate aimed at someone removes the player from the game and from public rooms and Game Nights for good, and a drawing that sexualizes a child ends the account and is handled as Child safety says above. Gore and monsters are fine. " +
+        (minorRooms
+          ? "In a private room where a player under 18, or one who hasn't told us their age, can see the drawing, a sexual drawing is taken off the board at once and a person on our team decides the rest. In other private rooms, a drawing is acted on automatically only when it's reported and as serious as the cases above; anything else is up to the person who reads the report. "
+          : "In a private room, a reported drawing is acted on automatically only when it's that serious; anything else is up to the person who reads the report. ") +
+        "To appeal, email us the code from your notice.",
       drawingsTesters:
         'For now, while we test it, the automatic drawing check runs only in games where every player is one of our testers (players trying a test version of the app).',
     },
@@ -464,7 +486,7 @@ const en = {
       buy: '<b>Things to buy:</b> packs and memberships, through the App Store or Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        "<b>Things to buy:</b> only memberships (the Pack Pass, monthly or yearly, and Lifetime), through the App Store or Google Play. A membership unlocks the packs that aren't free; nothing else is sold.",
+        "<b>Things to buy:</b> only memberships (the Monthly or Yearly Membership, and Lifetime), through the App Store or Google Play. A membership unlocks the packs that aren't free; nothing else is sold.",
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         "<b>Intercepts:</b> rewards earned by playing, each holding one random item, such as a new look for the player's agent. They can't be bought, with money or with the currency players earn in the game, and the app shows the odds before one is opened.",
@@ -489,7 +511,7 @@ const en = {
         'No friend or follower lists, no player search, no profiles to browse and no bios, so nobody can look your child up or contact them outside a room.',
       /** Once friends, follows and parties are live (LIVE.socialFeatures): in place of noDms and noFriends. */
       noDmsSocial:
-        "No direct messages: players chat only inside a room, with the players in it, or in a party's chat, with the friends in that party. Every chat is filtered, kept for a while and can be reported.",
+        "No direct messages: players chat only inside a room, with the players in it, or in a party's chat, with the friends in that party. In some games the spies also get a chat only they can read, for that game only. Every chat is filtered, kept for a while and can be reported.",
       noSearch:
         "No player search and no friend suggestions, so a stranger can't look your child up. Players under 18 have no public profile and can't be followed.",
       /** What SpySocial has, once live: social (LIVE.socialFeatures), trading (LIVE.trading with LIVE.blackMarket). */
@@ -509,13 +531,16 @@ const en = {
         "<b>Public rooms</b> need a saved account with a confirmed email address, an age of 13 or older and agreement to our Community Rules. Guests can play only in private rooms, and players with a pause or a ban can't join public rooms.",
       filter:
         "<b>Chat filter:</b> names and chat are checked before anyone sees them. In public rooms, slurs, explicit sexual words and insults are blocked. In private rooms, the most serious words are blocked. In any room or party with a player under 18 or one who hasn't told us their age, links, email addresses, phone numbers, social accounts and other personal details (a home address, where someone lives, a school, a real name) are blocked for everyone. At Play Online tables and game nights they're always blocked.",
+      /** At public tables the mild swears go censored (app server 20261231999920_mild_swear_mask_1111); shown with `filter` while LIVE.chatMildMask. */
+      filterMild:
+        "At Play Online tables and game nights, everyday swear words aren't blocked, but everyone sees them censored: the first letter, then asterisks (s***). Milder words like \"damn\" and \"hell\" show as typed.",
       reports:
         "<b>Reports, blocks and penalties:</b> a person reads every report within 24 hours, and the reported player isn't told who sent it. Reports involving a player under 18 are read first. Penalties go from a warning to a chat mute, a pause from public rooms, or a ban. Our <link>Community Rules</link> list what isn't allowed.",
       drawingCheck:
         '<b>Drawing check:</b> drawing turns in a public room may be checked automatically, and a turn the check finds breaks the rules is taken off the drawing.',
       buyTitle: 'Buying',
       buyText:
-        "Teens need a parent's or guardian's permission to buy anything. Purchases go through the App Store or Google Play, so their parental controls, such as Apple's Ask to Buy and purchase approvals in Google Family Link, work as usual. A Pack Pass renews until it's cancelled in the store's settings.",
+        "Teens need a parent's or guardian's permission to buy anything. Purchases go through the App Store or Google Play, so their parental controls, such as Apple's Ask to Buy and purchase approvals in Google Family Link, work as usual. A monthly or yearly membership renews until it's cancelled in the store's settings.",
       deleteTitle: 'Deleting an account',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Open SpySocial.',
@@ -569,7 +594,9 @@ const en = {
         text: "If you're worried about online sexual abuse, or about the way someone has been talking to a child online, report it to CEOP, part of the National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Young people can report too, and a Child Protection Advisor reads every report.",
       },
       spysocial: {
-        text: 'Report the player in the app and choose <b>Child Safety</b>, and email <email/> with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC and other authorities as the law requires.',
+        text: 'Report the player in the app and choose <b>Child Safety</b>, and email <email/> with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC, as US law requires; NCMEC passes it to the police in the country it concerns.',
+        /** LIVE.ncmecOnly off: the words live before the switch (friday-flips-1111). */
+        textBefore: 'Report the player in the app and choose <b>Child Safety</b>, and email <email/> with "Child safety" in the subject. We remove the content, ban the accounts involved, and report it to NCMEC and other authorities as the law requires.',
       },
     },
     seeAlso: 'See also our <link>Community Rules</link>, <link2>Terms of Service</link2> and <link3>Privacy Policy</link3>.',
@@ -617,6 +644,27 @@ const en = {
     sub: 'Release notes for SpySocial. Major updates, new features, and improvements as we ship them.',
     /** The release notes, newest first, in players' words: what changed for a player, never a library, file or error name. Keep every array's length and order. */
     releases: [
+      {
+        tag: "Weekend Update",
+        summary:
+          "Three updates to the new SpySocial this weekend, ahead of its launch: easier reading, clearer help for new players, a faster start in the browser and room links that take you to the room.",
+        sections: [
+          {
+            label: "Improvements",
+            items: [
+              { title: "Voting", text: "Abstain is now the same height as Confirm Vote." },
+              { title: "Easier reading", text: "The smallest text in the app is a little bigger." },
+              { title: "Black Market", text: "New to it? A “How the Black Market works” card shows how to win, sell and buy items." },
+              { title: "Tutorial", text: "When the tutorial asks you to tap the suggestion, its tip now sits at the bottom of the screen, so you can still read the question." },
+              { title: "Friend Code", text: "The scans left on your code count down as soon as a friend scans it." },
+              { title: "Room links", text: "If a friend sends you their room’s address from the browser, opening it now takes you to the room’s join screen instead of “Lobby Not Available”." },
+              { title: "Small phones", text: "On the narrowest phones, the tag you see while you answer now says that you ask next." },
+              { title: "Playing in a browser", text: "The game loads faster. On a phone, turning it sideways during a game shows a “Turn your phone upright” card, and your game keeps going while you turn." },
+              { title: "Languages", text: "Arabic, Hindi, Bengali, Chinese and Indonesian text looks better: no more cut-off words, odd line breaks or words out of order. In French and Portuguese, the app now says “membre” and “membro” for membership everywhere, not “subscription”." },
+            ],
+          },
+        ],
+      },
       {
         tag: "Android Launch",
         summary:
@@ -816,8 +864,9 @@ const en = {
       /** One line under the cards. */
       more: 'Plus Player Stats, titles and borders to unlock, levels up to 100 with prestige, XP for quick games too, smooth rejoining after your phone sleeps, invite links that just work, and a new look on every screen.',
       /** Added to the Game nights card once LIVE.launchGameNights is on (owner to OK the days first). If a day or
-       * hour changes, change it in all 10 languages. */
-      launchWeek: 'Launch week: Spy Talk on Tuesday, December 8, Spy Sketch on Friday, December 11, and Spy Mafia on Saturday, December 12, each from 8 to 10 PM ET.',
+       * hour changes, change it in all 10 languages. Owner Nov 17: no night on launch day; Opening Night runs Fri Dec 11
+       * and again Sat Dec 12, 8-10 PM ET (Spy Talk, the same night twice); after launch one night a week, Fri + Sat. */
+      launchWeek: 'Opening Night: Friday, December 11, and again Saturday, December 12, from 8 to 10 PM ET. The same Spy Talk night twice, so come to either or play both. After that, one Game Night a week: on Friday, then the same night again on Saturday.',
     },
     next: {
       /** A stamp: these are plans. */
@@ -937,10 +986,22 @@ const en = {
    * US time zones (ET, PT); CET is Central European Time; UK is the time in the United Kingdom.
    */
   beta: {
+    /** site-qa-1113: /beta between Beta 2 and Beta 3's sign-ups (Beta 3: Tue Nov 24, the final playtest; no form yet). The page writes the day. */
+    hold: {
+      eyebrow: 'Playtests',
+      /** The poster line; the page adds home.hero.titleMark after it. */
+      title: 'Beta 2 is done',
+      lede: 'Thank you to everyone who played Beta 2 and sent us bugs and ideas.',
+      label: 'Next: Beta 3',
+      note: 'The final playtest before launch.',
+      soon: 'Sign-ups open soon. Join our Discord to hear first.',
+    },
     eyebrow: 'Beta 2 · Live playtest',
     /** The poster line, set huge: it must fit a 320 px phone. The full stop after it is home.hero.titleMark. */
     title: 'Play it first',
     lede: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin and a title for every tester, and with one finished game before December 7, a second title, 10 Intercepts of each tier and a month of membership.',
+    /** LIVE.testerGiftGame off: the words live before the switch (friday-flips-1111). */
+    ledeBefore: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin, two titles, 10 Intercepts of each tier and a month of membership.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Games, XP and items from the test reset at launch.',
     /** Under the lede: the store app is the old version; the beta comes from the emailed link. */
@@ -955,7 +1016,7 @@ const en = {
       others: (pacific: string, utc: string) => `${pacific} Pacific · ${utc}\u00a0UTC`,
       /** The same hour in the visitor's own time zone, with the zone's name ("Thu, Nov 12, 6:00 – 7:00 PM CST"). */
       yours: (time: string) => `Your time: ${time}`,
-      checkIn: (time: string) => `Check-in opens at ${time} Eastern on Discord voice.`,
+      checkIn: (time: string) => `Check-in opens at ${time} Eastern in #beta-2-ask-hq on Discord (the Beta 2 voice room is open too).`,
     },
     /** The optional second session for Europe (the owner turns it on or off). */
     europe: {
@@ -1003,6 +1064,8 @@ const en = {
       title: 'Beta rewards you keep after launch',
       /** Every tester on the 2.2 list (the app's own names for the pin and the title). */
       items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> title'],
+      /** LIVE.testerGiftGame off: the words live before the switch (friday-flips-1111). */
+      itemsBefore: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> and <b>Field Tester</b> titles', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
       /** The rest needs one counted game (played to the end, any room) before December 7 (owner Nov 11). */
       gameTitle: 'Finish one game before December 7 to also get',
       gameItems: ['The <b>Field Tester</b> title', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
@@ -1024,11 +1087,11 @@ const en = {
       form: '<link>Fill in the sign-up form</link> (about 2 minutes).',
       closes: (day: string, time: string) => `Sign-ups close ${day}, ${time} Eastern.`,
       email: (day: string) => `We email you by ${day} to confirm your seat and send the install link.`,
-      discord: '<link>Join our Discord</link>: check-in happens on its voice channel.',
+      discord: '<link>Join our Discord</link>: check-in happens in #beta-2-ask-hq (the Beta 2 voice room is open too).',
       android: "Android: the form asks for your Play Store's Google email, because Google requires it for test builds. It's deleted after the session.",
       iphone: 'iPhone: you install SpySocial with TestFlight, from the link in your email.',
     },
-    fine: 'Pre-release build. Don\'t share other players\' names or chat. Your sign-up data is deleted after Beta 2. Your PayPal email is deleted once we have sent your thank-you.',
+    fine: 'Pre-release build. Don\'t share other players\' names or chat. Your sign-up data is deleted by November 19, 2026, a week after Beta 2. Your PayPal email is deleted once we have sent your thank-you.',
   },
 
   notFound: {
@@ -1070,9 +1133,9 @@ const en = {
     cards: [
       { title: "Spy Sketch", text: "Draw the secret word on one shared whiteboard, and catch the spy faking it." },
       { title: "Play Online", text: "Tap Find a Game for a table of 4 or 8, any time. Strangers see your Agent Color, never your name." },
-      { title: "Game Night", text: "Scheduled nights online, with titles you can only earn that night. We'll remind you before they start." },
+      { title: "Game Night", text: "Scheduled nights online, with rewards you can only earn there. We'll remind you before they start." },
       { title: "Black Market", text: "Trade items with friends. Adults can also buy and sell items on the Black Market for Intel, which you earn by playing. Never for real money." },
-      { title: "Memberships", text: "Optional: a Pack Pass (monthly or yearly), or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
+      { title: "Memberships", text: "Optional: a Monthly or Yearly Membership, or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
     ],
     /** The link to What's New under the cards. */
     allNotes: "Everything new in 2.2",
@@ -1096,12 +1159,14 @@ const en = {
         { title: "My Clues", text: "Spies note what they pick up on their Clues page, shortlist the possible places or words, and make their final guess from the shortlist." },
         { title: "Private Room rules", text: "Optional rules, like the Informant: a Local who secretly knows a spy. How to Play > Features & Settings has a short playable demo of each." },
         { title: "Friends and parties", text: "Add friends with your Friend Code or by username, follow players and look for a table together as a party. Starting a party is for members. On iPhone and iPad, friends, parties and trading are for players 18 and up." },
-        { title: "Intercepts", text: "Sealed files with a random item for your agent, earned by winning Play Online games, on your daily streak and at Game Night. Some items come as a Unique: one of one, with its own color and serial number. The odds show before you open or buy one. Never sold for money." },
-        { title: "Intel and trading", text: "Intel is the game's own money: earn it by playing and spend it in the Vault. It can't be bought and has no cash value. Trade items with friends once your account is 7 days old, your email is confirmed and you've played 3 games. Every trade is protected for 7 days." },
+        { title: "Intercepts", text: "Sealed files with a random item for your agent, earned by winning Play Online games and on your daily streak. At Game Night you earn Game Night Intel to spend on Game Night Intercepts. Some items come as a Unique: one of one, with its own color and serial number. The odds show before you open or buy one. Never sold for money." },
+        { title: "Intel and trading", text: "Intel is the game's own money: earn it by playing and spend it in the Vault. It can't be bought and has no cash value. Trade items with friends once your account is 7 days old, your email is confirmed and you've finished 3 counted games. Every trade is protected for 7 days." },
         { title: "Community packs", text: "Browse packs made by players in Community. Members write their own in Pack Creator and share them." },
         { title: "10 languages", text: "English, Spanish and Russian, plus French, Portuguese (Brazil), Chinese (Simplified), Hindi, Arabic, Bengali and Indonesian in beta. Everyone sees the game in their own language." },
         { title: "Notifications", text: "For friends' invites and requests, trades, Black Market offers, and Game Nights you tapped Remind Me on." },
       ],
+      /** items[0] (Practice Game) once LIVE.practiceMembers is on (NEXT-BATCH row 95): the tutorial free, Practice Games for members, 5 a day (howto-truth-1117). */
+      practiceMembers: { title: "Practice Game", text: "Learn Spy Talk and Spy Sketch with AI agents, as a Local or as the Spy: a free guided tutorial for each game, then, for members, full Practice Games, up to 5 a day, graded from A to F." },
       /** The entry's And more line (the Roadmap keeps its own). */
       more: "Plus Player Stats, levels up to 100 with prestige, achievements, titles, borders and celebrations, @mentions, Arcade mini-games, a faster mic, smooth rejoining after your phone sleeps, and a new look on every screen.",
       newLabel: "New in 2.2",

@@ -24,7 +24,11 @@
         },
         {
           "key": "Permissions-Policy",
-          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), serial=(), hid=(), bluetooth=(), midi=(), magnetometer=(), display-capture=(), xr-spatial-tracking=(), browsing-topics=()"
+        },
+        {
+          "key": "X-Permitted-Cross-Domain-Policies",
+          "value": "none"
         },
         {
           "key": "Strict-Transport-Security",
@@ -33,6 +37,28 @@
         {
           "key": "Cross-Origin-Opener-Policy",
           "value": "same-origin"
+        }
+      ]
+    },
+    {
+      "source": "/ledger/(.*)\\.ots",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/octet-stream"
+        },
+        {
+          "key": "Content-Disposition",
+          "value": "attachment"
+        }
+      ]
+    },
+    {
+      "source": "/ledger/(.*)\\.ndjson\\.gz",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "attachment"
         }
       ]
     },
@@ -46,7 +72,58 @@
       ]
     },
     {
-      "source": "/(join|reset-password|confirm-success)(.*)",
+      "source": "/archive/:dir(art|item|motion|scene|worn)/index.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/archive/:dir(art|item|motion|scene|worn)/:file((?!index\\.json$).*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, s-maxage=31536000, stale-while-revalidate=2592000"
+        }
+      ]
+    },
+    {
+      "source": "/market-art/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/ledger{/}?",
+      "has": [
+        {
+          "type": "host",
+          "value": "archive.spysocial.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/(join|reset-password|confirm-success|profile)(.*)",
       "headers": [
         {
           "key": "X-Robots-Tag",
@@ -98,7 +175,7 @@
       "statusCode": 301
     },
     {
-      "source": "/archive/:path((?!art/|data/).*)",
+      "source": "/archive/:path((?!art/|data/|item/|worn/|scene/|motion/).*)",
       "destination": "https://archive.spysocial.app/:path",
       "statusCode": 301
     },
@@ -135,7 +212,7 @@
       "permanent": false
     },
     {
-      "source": "/((?:join|agree)(?:/.*)?)",
+      "source": "/((?:join|agree|profile)(?:/.*)?)",
       "has": [
         {
           "type": "host",
@@ -200,6 +277,11 @@
       "permanent": false
     },
     {
+      "source": "/help{/}?",
+      "destination": "/support",
+      "permanent": true
+    },
+    {
       "source": "/download",
       "destination": "/",
       "permanent": false
@@ -215,6 +297,21 @@
       "permanent": false
     },
     {
+      "source": "/beta",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/beta/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/beta/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
       "source": "/megans-party",
       "destination": "/",
       "permanent": false
@@ -226,82 +323,37 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/((?!\\.well-known/|static/|assets/|archive/|_host/).*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "archive.spysocial.app"
-        }
-      ],
-      "destination": "/_host/archive.html"
-    },
-    {
-      "source": "/((?!\\.well-known/|static/|assets/|archive/|_host/).*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "market.spysocial.app"
-        }
-      ],
-      "destination": "/_host/market.html"
-    },
-    {
-      "source": "/support",
-      "destination": "/support/index.html"
-    },
-    {
-      "source": "/contact-us",
-      "destination": "/contact-us/index.html"
-    },
-    {
-      "source": "/rules",
-      "destination": "/rules/index.html"
-    },
-    {
-      "source": "/safety",
-      "destination": "/safety/index.html"
-    },
-    {
-      "source": "/privacy",
-      "destination": "/privacy/index.html"
-    },
-    {
-      "source": "/terms",
-      "destination": "/terms/index.html"
-    },
-    {
-      "source": "/child-safety",
-      "destination": "/child-safety/index.html"
-    },
-    {
-      "source": "/whats-new",
-      "destination": "/whats-new/index.html"
-    },
-    {
-      "source": "/roadmap",
-      "destination": "/roadmap/index.html"
-    },
-    {
-      "source": "/delete-account",
-      "destination": "/delete-account/index.html"
-    },
-    {
-      "source": "/transparency",
-      "destination": "/transparency/index.html"
-    },
-    {
-      "source": "/game-night-rules",
-      "destination": "/game-night-rules/index.html"
-    },
-    {
-      "source": "/ledger",
-      "destination": "/ledger/index.html"
-    },
-    {
-      "source": "/beta",
-      "destination": "/beta/index.html"
-    },
+    { "source": "/ledger{/}?", "has": [{ "type": "host", "value": "archive.spysocial.app" }, { "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_host/pre/archive/ledger/:lang.html" },
+    { "source": "/ledger{/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "host", "value": "archive.spysocial.app" }, { "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_host/pre/archive/ledger/:lang.html" },
+    { "source": "/ledger{/}?", "has": [{ "type": "host", "value": "archive.spysocial.app" }], "destination": "/_host/pre/archive/ledger/en.html" },
+    { "source": "/transparency{/}?", "has": [{ "type": "host", "value": "archive.spysocial.app" }], "destination": "/_host/archive-transparency.html" },
+    { "source": "/", "has": [{ "type": "host", "value": "archive.spysocial.app" }, { "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_host/pre/archive/home/:lang.html" },
+    { "source": "/", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "host", "value": "archive.spysocial.app" }, { "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_host/pre/archive/home/:lang.html" },
+    { "source": "/", "has": [{ "type": "host", "value": "archive.spysocial.app" }], "destination": "/_host/pre/archive/home/en.html" },
+    { "source": "/uniques{/}?", "has": [{ "type": "host", "value": "archive.spysocial.app" }, { "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_host/pre/archive/uniques/:lang.html" },
+    { "source": "/uniques{/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "host", "value": "archive.spysocial.app" }, { "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_host/pre/archive/uniques/:lang.html" },
+    { "source": "/uniques{/}?", "has": [{ "type": "host", "value": "archive.spysocial.app" }], "destination": "/_host/pre/archive/uniques/en.html" },
+    { "source": "/", "has": [{ "type": "host", "value": "market.spysocial.app" }, { "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_host/pre/market/home/:lang.html" },
+    { "source": "/", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "host", "value": "market.spysocial.app" }, { "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_host/pre/market/home/:lang.html" },
+    { "source": "/", "has": [{ "type": "host", "value": "market.spysocial.app" }], "destination": "/_host/pre/market/home/en.html" },
+    { "source": "/movers/:list(rises|falls|traded|valuable){/}?", "has": [{ "type": "host", "value": "market.spysocial.app" }, { "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_host/pre/market/movers/:list/:lang.html" },
+    { "source": "/movers/:list(rises|falls|traded|valuable){/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "host", "value": "market.spysocial.app" }, { "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_host/pre/market/movers/:list/:lang.html" },
+    { "source": "/movers/:list(rises|falls|traded|valuable){/}?", "has": [{ "type": "host", "value": "market.spysocial.app" }], "destination": "/_host/pre/market/movers/:list/en.html" },
+    { "source": "/catalogue{/}?", "has": [{ "type": "host", "value": "market.spysocial.app" }, { "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_host/pre/market/catalogue/:lang.html" },
+    { "source": "/catalogue{/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "host", "value": "market.spysocial.app" }, { "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_host/pre/market/catalogue/:lang.html" },
+    { "source": "/catalogue{/}?", "has": [{ "type": "host", "value": "market.spysocial.app" }], "destination": "/_host/pre/market/catalogue/en.html" },
+    { "source": "/catalogue/:cat(intercepts|outfits|hats|glasses|accessories|hair|facial_hair|borders|backdrops|celebrations|titles){/}?", "has": [{ "type": "host", "value": "market.spysocial.app" }, { "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_host/pre/market/catalogue/:cat/:lang.html" },
+    { "source": "/catalogue/:cat(intercepts|outfits|hats|glasses|accessories|hair|facial_hair|borders|backdrops|celebrations|titles){/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "host", "value": "market.spysocial.app" }, { "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_host/pre/market/catalogue/:cat/:lang.html" },
+    { "source": "/catalogue/:cat(intercepts|outfits|hats|glasses|accessories|hair|facial_hair|borders|backdrops|celebrations|titles){/}?", "has": [{ "type": "host", "value": "market.spysocial.app" }], "destination": "/_host/pre/market/catalogue/:cat/en.html" },
+    { "source": "/u/:item/:serial{/}?", "has": [{ "type": "host", "value": "archive.spysocial.app" }], "destination": "/_host/archive.html" },
+    { "source": "/(movers|movers/[^/]+|catalogue/[^/]+|item/[^/]+){/}?", "has": [{ "type": "host", "value": "market.spysocial.app" }], "destination": "/_host/market.html" },
+    { "source": "/support{/}?", "has": [{ "type": "query", "key": "q" }], "destination": "/_pre/support/shell.html" },
+    { "source": "/", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/home/:lang.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/:page/:lang.html" },
+    { "source": "/", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/home/:lang.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/:page/:lang.html" },
+    { "source": "/", "destination": "/_pre/home/en.html" },
+    { "source": "/:page(privacy|terms|rules|safety|game-night-rules|ledger|transparency|child-safety|contact-us|support|whats-new|roadmap|beta|delete-account|join){/}?", "destination": "/_pre/:page/en.html" },
     {
       "source": "/hello(/?)",
       "destination": "/hello/index.html"
@@ -310,17 +362,12 @@
       "source": "/join/e/:id",
       "destination": "/join/e/index.html"
     },
-    {
-      "source": "/join/:code",
-      "destination": "/join/index.html"
-    },
-    {
-      "source": "/join",
-      "destination": "/join/index.html"
-    },
-    {
-      "source": "/((?!\\.well-known/|static/|assets/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/join/:code", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/join-code/:lang.html" },
+    { "source": "/join/:code", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/join-code/:lang.html" },
+    { "source": "/join/:code", "destination": "/_pre/join-code/en.html" },
+    { "source": "/profile/:username", "has": [{ "type": "query", "key": "lang", "value": "(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:-Hans|-BR)?" }], "destination": "/_pre/profile/:lang.html" },
+    { "source": "/profile/:username", "missing": [{ "type": "query", "key": "lang" }], "has": [{ "type": "header", "key": "accept-language", "value": "^\\s*(?<lang>es|ru|zh|hi|ar|fr|bn|pt|id)(?:[-_;,].*)?$" }], "destination": "/_pre/profile/:lang.html" },
+    { "source": "/profile/:username", "destination": "/_pre/profile/en.html" },
+    { "source": "/(reset-password|confirm-success|join/.+|profile/[^/]+|agree/[^/]+){/}?", "destination": "/_host/www.html" }
   ]
 }

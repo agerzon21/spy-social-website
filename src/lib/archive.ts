@@ -1,16 +1,28 @@
 /**
  * The Archive (archive.spysocial.app, its own host: lib/siteHost; www.spysocial.app/archive sends there): every Unique, read from the app's
  * ledger function without an account (app repo supabase/functions/ledger, ops `uniques` and `unique`: the database's
- * mint_unique_public, 20261225300000). Its answers never carry a player: no name, id or tag; a copy's holders are
- * numbered by their first appearance on its own ledger lines. Cached 60 s at the function; a busy answer is tried again.
+ * mint_unique_public, 20261225300000). Its answers never carry a player's id or tag; a copy's holders are numbered by
+ * their first appearance on its own ledger lines. One Unique's page (op unique) may name its holder today by @username,
+ * only when the server allows it (archive-holder-1110: an adult with a public profile; never a minor, an account with no
+ * birth year, a guest, a banned or paused account or the test fleet): holderOf. Cached 60 s at the function; a busy
+ * answer is tried again.
  *
  * The words and tables come from the app's own code (public/archive/data/<lang>.json, scripts/archive-data/run.sh):
  * a copy's float read digit by digit gives its attributes exactly as the app's certificate lists them, and its serial
  * its codename, so a Unique minted after the export still reads right. The pictures (public/archive/art) are the app's
- * own Unique tiles, drawn from each copy's float (scripts/archive-art/run.sh); a copy drawn after the export shows its
- * plain Legendary until the next run.
+ * own Unique tiles, drawn from each copy's float (scripts/archive-art/run.sh); a copy minted after the last run shows
+ * its own name and colour on a plain card until the next run (ownArtOf), never its plain Legendary.
  */
 import type { LangCode } from '../i18n'
+import { early } from './early'
+import { LIVE } from './legalRelease'
+
+/**
+ * site-qa-1113 (layout shift): until the server says otherwise, the Archive's and the Market's pages are the beta's, so
+ * their beta notice shows from the first paint (it used to arrive with the data and push the page down, CLS 0.58-0.92).
+ * A server answer that isn't the beta's takes it away; the launch build (LIVE.launchSite) starts without it.
+ */
+export const BETA_UNTIL_TOLD: boolean = !LIVE.launchSite
 
 const LEDGER_URL = `${String(import.meta.env.VITE_SUPABASE_URL ?? '').replace(/\/$/, '')}/functions/v1/ledger`
 
@@ -34,6 +46,12 @@ export type ArchiveCopy = {
   last_sale: number | null
   last_sale_at: string | null
   sales: number
+  /**
+   * The holder today on the grid's cards (owner Nov 13: "Held by @name"), the same keys and the same rule as op unique's
+   * (_unique_holder_named). Absent until mint_unique_public's op uniques sends them: the card then says "Held" as before.
+   */
+  holder_handle?: string | null
+  profile_url?: string | null
 }
 
 export type ArchiveSet = {
@@ -59,6 +77,8 @@ export type HistoryEvent = {
   event: 'minted' | 'tradable' | 'sold' | 'sale_undone' | 'traded' | 'moved' | 'burned' | string
   retro: boolean
   burn: 'trade_up' | 'shred' | 'other' | null
+  /** A removal's reason and case (ledger_reasons_1111): {code, ref}; absent before that server file. */
+  removal?: { code: string; ref?: string } | null
   from: number | null
   to: number | null
   price: number | null
@@ -87,12 +107,42 @@ export type ArchiveUnique = {
   evidence_sha256: string
   ledger_seq: number
   set: ArchiveSet | null
-  item: { minted: number; burned: number; held: number; serials: number[] }
+  /** removed / removed_by: copies taken away for integrity, by reason (ledger_reasons_1111; absent before it). */
+  item: { minted: number; burned: number; held: number; serials: number[]; removed?: number; removed_by?: Record<string, number> }
+  /** The copy's removal: {code, ref, at} when it was taken away for integrity (ledger_reasons_1111), else null / absent. */
+  removed?: { code: string; ref?: string; at: string } | null
   status: CopyStatus
   status_at: string | null
   listing: { price: number; listed_at: string } | null
   holders: number
+  /**
+   * The holder today (archive-holder-1110, server 20261231997000_archive_holder_1110): their username when the server
+   * names them, null when it doesn't (private, under 18, unknown age...). Absent from a server before that file.
+   */
+  holder_handle?: string | null
+  /** https://spysocial.app/profile/<username> alongside holder_handle, else null. */
+  profile_url?: string | null
   history: HistoryEvent[]
+}
+
+/** A username as the app allows it (update_profile): the only kind the page shows or links. */
+const HANDLE = /^[A-Za-z0-9_.]{3,30}$/
+const PROFILE_URL = /^https:\/\/spysocial\.app\/profile\/([A-Za-z0-9_.]{3,30})$/
+
+/**
+ * Who holds a Unique, as its page says it: 'unknown' (a server before the holder keys, or a retired copy: the page says
+ * what it said before), 'private' (Held privately) or 'named' with the handle and its profile link. Anything that
+ * doesn't look right reads as private: the page never shows a name the server didn't send in the expected shape.
+ */
+export type HolderView = { kind: 'unknown' } | { kind: 'private' } | { kind: 'named'; handle: string; url: string }
+
+export function holderOf(u: Pick<ArchiveUnique, 'status' | 'holder_handle' | 'profile_url'>): HolderView {
+  if (u.status === 'burned' || !('holder_handle' in u) || u.holder_handle === undefined) return { kind: 'unknown' }
+  const handle = u.holder_handle
+  if (typeof handle !== 'string' || !HANDLE.test(handle)) return { kind: 'private' }
+  const m = typeof u.profile_url === 'string' ? PROFILE_URL.exec(u.profile_url) : null
+  // Linked at www directly: the server's spysocial.app address only redirects there (one hop saved; site-qa-1113).
+  return m && m[1] === handle ? { kind: 'named', handle, url: `https://www.spysocial.app/profile/${handle}` } : { kind: 'private' }
 }
 
 /** The ledger can't be read now (busy, offline, or the Archive's reads aren't on the server yet). */
@@ -108,7 +158,7 @@ export async function ledgerGet<T>(query: string): Promise<T | null> {
   for (let attempt = 0; ; attempt++) {
     let r: Response | null = null
     try {
-      r = await fetch(`${LEDGER_URL}?${query}`)
+      r = await (attempt === 0 ? early(`${LEDGER_URL}?${query}`) : fetch(`${LEDGER_URL}?${query}`))
     } catch {
       r = null
     }
@@ -133,8 +183,16 @@ export function fetchUniques(): Promise<ArchiveList | null> {
   return p
 }
 
+const uniqueCache = new Map<string, { at: number; p: Promise<ArchiveUnique | null> }>()
+/** One Unique's page (kept 30 s in this tab: the host's entry starts the read before the page asks; speed-1111). */
 export function fetchUnique(item: string, serial: number): Promise<ArchiveUnique | null> {
-  return ledgerGet<ArchiveUnique>(`op=unique&item=${encodeURIComponent(item)}&serial=${serial}`)
+  const key = `${item}/${serial}`
+  const kept = uniqueCache.get(key)
+  if (kept && Date.now() - kept.at < 30_000) return kept.p
+  const p = ledgerGet<ArchiveUnique>(`op=unique&item=${encodeURIComponent(item)}&serial=${serial}`)
+  p.catch(() => uniqueCache.delete(key))
+  uniqueCache.set(key, { at: Date.now(), p })
+  return p
 }
 
 // ------------------------------------------------------------------ the app's words and tables
@@ -162,7 +220,7 @@ const dataCache = new Map<string, Promise<ArchiveData | null>>()
 export function loadArchiveData(code: LangCode | string): Promise<ArchiveData | null> {
   let p = dataCache.get(code)
   if (!p) {
-    p = fetch(`/archive/data/${code}.json`)
+    p = early(`/archive/data/${code}.json`)
       .then((r) => (r.ok ? (r.json() as Promise<ArchiveData>) : null))
       .catch(() => null)
       .then((d) => d ?? (code === 'en' ? null : loadArchiveData('en')))
@@ -175,7 +233,7 @@ export function loadArchiveData(code: LangCode | string): Promise<ArchiveData | 
 let artCache: Promise<Set<string>> | null = null
 export function loadArtIndex(): Promise<Set<string>> {
   if (!artCache) {
-    artCache = fetch('/archive/art/index.json')
+    artCache = early('/archive/art/index.json')
       .then((r) => (r.ok ? (r.json() as Promise<string[]>) : []))
       .then((keys) => new Set(keys))
       .catch(() => new Set<string>())
@@ -192,6 +250,97 @@ export function artOf(art: Set<string>, item: string, serial?: number | null, sm
   if (serial != null && art.has(`u-${item}-${serial}`)) return { src: `/archive/art/u-${item}-${serial}${end}`, own: true }
   if (art.has(`l-${item}`)) return { src: `/archive/art/l-${item}${end}`, own: false }
   return null
+}
+
+/**
+ * The item alone and "See it worn" (archive-item-art-1111, owner Nov 11: no agent on a Unique's picture; the
+ * standard agent only when asked): public/archive/item/<key>.webp (a wearable cut out of the app's own drawing,
+ * transparent; a backdrop's scene) and public/archive/worn/<key>-m|f.webp (the standard agents wearing it), made by
+ * scripts/archive-item-art. Celebrations, locals, titles and borders keep their full-frame picture (artOf).
+ */
+/** motion: the moving celebrations' loops (public/archive/motion/index.json: key -> ["*"] one file, or its languages). */
+export type Looks = { item: Set<string>; worn: Set<string>; scene: Set<string>; motion: Record<string, string[]> }
+let lookCache: Promise<Looks> | null = null
+export function loadLookIndex(): Promise<Looks> {
+  if (!lookCache) {
+    const keys = (path: string) =>
+      early(path)
+        .then((r) => (r.ok ? (r.json() as Promise<string[]>) : []))
+        .then((k) => new Set(k))
+        .catch(() => new Set<string>())
+    const motion = early('/archive/motion/index.json')
+      .then((r) => (r.ok ? (r.json() as Promise<Record<string, string[]>>) : {}))
+      .catch(() => ({}))
+    lookCache = Promise.all([keys('/archive/item/index.json'), keys('/archive/worn/index.json'), keys('/archive/scene/index.json'), motion]).then(
+      ([item, worn, scene, motion]) => ({ item, worn, scene, motion }),
+    )
+  }
+  return lookCache
+}
+
+/**
+ * How a Unique's picture shows its item: in the display case (a wearable), framed on its wall (a backdrop), or its
+ * scene filling the picture (a celebration, a local, a border: public/archive/scene, full-bleed, no case).
+ */
+/** The backdrops that move in the app (lib/avatar/legendaryBackdrops LIVE_BACKDROPS). */
+const LIVE_BACKDROP_ITEMS: ReadonlySet<string> = new Set(['background_vault_zero', 'background_panel_break'])
+
+/** A copy's float and pattern (the live backdrops draw its colours from them). */
+export type CopyMark = { float: string; pattern: number | null; serial?: number | null }
+
+/**
+ * `live`: a moving Legendary backdrop (Vault Zero, Panel Break), drawn and moved on the page by the app's own code
+ * (pages/archive/LiveBackdrop), full frame like a scene (owner Nov 11: no case, no frame on the wall); `alone` its
+ * still picture (the small pins).
+ */
+export type ItemLook = {
+  kind: 'case' | 'wall' | 'scene' | 'live'
+  alone: string
+  worn: { m: string; f: string } | null
+  big?: boolean
+  item?: string
+  copy?: CopyMark | null
+  /** A celebration's moving loop (pages/archive/SceneMotion): its key and the languages it has ("*": one for all). */
+  motion?: { key: string; langs: string[] } | null
+}
+
+/** The copy's own look, else its item's plain Legendary's, else null (not drawn this way yet: the tile as it is). */
+export function lookOf(looks: Looks, item: string, serial?: number | null, small = false, copy: CopyMark | null = null): ItemLook | null {
+  // The two moving Legendary backdrops: always live, a copy in its colours, else the designed Legendary.
+  if (LIVE_BACKDROP_ITEMS.has(item)) {
+    const own = serial != null && looks.item.has(`u-${item}-${serial}`)
+    // The copy's colours come from its float through the app's own engine (pages/archive/LiveBackdrop), drawn or not.
+    return { kind: 'live', alone: own ? `/archive/item/u-${item}-${serial}.webp` : '', worn: null, item, copy: serial != null ? copy : null }
+  }
+  // A copy: its own pictures only (unique-look-1115: never its plain Legendary's in its ring; none drawn this way, its
+  // own tile as it is). The plain Legendary (no serial: the Market's) its own.
+  const pick = (set: Set<string>) => (serial != null ? (set.has(`u-${item}-${serial}`) ? `u-${item}-${serial}` : null) : set.has(`l-${item}`) ? `l-${item}` : null)
+  // An item alone first (a wearable, a backdrop, the border lifted off its scene), else a scene filling the frame.
+  const key = pick(looks.item)
+  if (!key) {
+    // A celebration or a local: its loop where one is made (its still a frame of it, in the reader's language where it
+    // has words: SceneMotion picks), else its scene picture.
+    const mk = pick(new Set(Object.keys(looks.motion)))
+    if (mk) {
+      const langs = looks.motion[mk]
+      return { kind: 'scene', alone: `/archive/motion/${mk}${langs.includes('*') ? '' : '.en'}.poster.webp`, worn: null, motion: { key: mk, langs } }
+    }
+    const sc = pick(looks.scene)
+    return sc ? { kind: 'scene', alone: `/archive/scene/${sc}${small ? '-s' : ''}.webp`, worn: null } : null
+  }
+  const worn = looks.worn.has(`${key}-m`) && looks.worn.has(`${key}-f`) ? { m: `/archive/worn/${key}-m.webp`, f: `/archive/worn/${key}-f.webp` } : null
+  // A border is a frame round nothing: shown larger in the case so it reads like the other items (owner Nov 11).
+  return { kind: 'case', alone: `/archive/item/${key}.webp`, worn, big: item.startsWith('frame_') }
+}
+
+/**
+ * A copy's own picture, or null while it isn't drawn yet (unique-look-1115, owner Nov 15: "every unique is different ...
+ * Legendaries are for market.spysocial.app"): a Unique's card and page never stand its plain Legendary in for it; they
+ * show the copy's own name and colour on a plain card until scripts/archive-art draws it.
+ */
+export function ownArtOf(art: Set<string>, item: string, serial: number, small = false): { src: string; own: true } | null {
+  const a = artOf(art, item, serial, small)
+  return a?.own ? { src: a.src, own: true } : null
 }
 
 /** A picture by its key (the float page's examples: x-cat-d1-3). */
@@ -235,6 +384,20 @@ function roundMark(round: number): string {
   return round <= 1 ? '' : out
 }
 
+/** A ru mood word's form by its noun's gender ("m|f|n|p"). */
+const GENDER_FORM: Readonly<Record<string, number>> = { m: 0, f: 1, n: 2, p: 3 }
+
+/**
+ * The mood word in the noun's gender, as the app's lib/unique/codename agreeMod (app ru-codenames-1118): ru mood words
+ * are their four forms "m|f|n|p" and ru nouns carry :m / :f / :n / :p («Полуночные усы», «Бархатная лапа»); a plain
+ * mood word is used as it is.
+ */
+export function agreeMod(mod: string, gender: string | undefined): string {
+  if (!mod.includes('|')) return mod
+  const forms = mod.split('|')
+  return forms[GENDER_FORM[gender ?? 'm'] ?? 0] ?? forms[0]
+}
+
 /** The copy's codename ("Midnight Whiskers"), the app's shuffle of its item's 128 names (lib/unique/codename). */
 export function codenameOf(data: ArchiveData | null, item: string, serial: number): string | null {
   const it = data?.items[item]
@@ -247,9 +410,20 @@ export function codenameOf(data: ArchiveData | null, item: string, serial: numbe
   const n = (it.offset + k * 53) % 128
   const [noun, gender] = (nouns[Math.floor(n / 16)] ?? '').split(':')
   const of = gender === 'f' ? 'की' : gender === 'p' ? 'के' : 'का'
-  const name = data.codenames.template.replace('{{mod}}', data.codenames.mods[n % 16] ?? '').replace('{{noun}}', noun).replace('{{of}}', of)
+  const name = data.codenames.template.replace('{{mod}}', agreeMod(data.codenames.mods[n % 16] ?? '', gender)).replace('{{noun}}', noun).replace('{{of}}', of)
   const mark = roundMark(round)
   return mark ? `${name} ${mark}` : name
+}
+
+/**
+ * The copy's full name on one line, as the app writes it (codename-1118; app 62.15.2 lib/unique/codename uniqueFullName,
+ * owner 2026-11-18): its codename first, then the Legendary it was minted from with its number ("Onyx Dispatch · Paper
+ * Plane #00037"). No codename (an item with no pool): the base name and the number.
+ */
+export function copyNameOf(data: ArchiveData | null, item: string, serial: number): string {
+  const code = codenameOf(data, item, serial)
+  const base = `${nameOf(data, item)} ${serialText(serial)}`
+  return code ? `${code} · ${base}` : base
 }
 
 /** The copy's main colour (its digit-2 colour's swatch), for a glow behind its picture. */

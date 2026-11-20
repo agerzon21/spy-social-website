@@ -2,6 +2,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState, type RefObject } f
 import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
 import SiteLink from './SiteLink'
+import { useClientValue } from '../lib/clientValue'
 import s from './phoneNav.module.css'
 
 /**
@@ -31,9 +32,30 @@ const Chevron = () => (
 
 const no = (i: number) => String(i + 1).padStart(2, '0')
 
+/** How many lines a box's text takes: distinct line tops among its text's boxes (scrollHeight can't say, since glyphs
+ * at line-height 0.95 overflow their line box by an engine- and face-dependent amount). */
+function lineCount(el: HTMLElement) {
+  const range = document.createRange()
+  range.selectNodeContents(el)
+  const tops: number[] = []
+  for (const r of range.getClientRects()) {
+    if (r.width < 1) continue
+    if (!tops.some((t) => Math.abs(t - r.top) < 4)) tops.push(r.top)
+  }
+  return tops.length
+}
+
 /**
  * Fits a label in display type to its box: one line from `max` down to `oneLine` px; when it still doesn't fit (long
  * Russian names), two lines from `oneLine` down to `twoLines`.
+ *
+ * The result depends only on the box's width and the face that draws the text, so it fits again whenever either
+ * changes (fit-title-1114; on a phone the Archive's title came out 12 or 25 px from load to load): when the box or the
+ * header row around it resizes (ResizeObserver), and when a face finishes loading. A face that arrives after the
+ * first fit changes the text's width but not the box's size, so the observer alone misses it, and
+ * `document.fonts.ready` can already be settled before the face is even requested; so the fit also asks for its own
+ * face (`document.fonts.load` with this text, which picks the face by unicode-range: Oswald for Cyrillic) and listens
+ * for every `loadingdone`.
  */
 function useFit(ref: RefObject<HTMLElement | null>, max: number, oneLine: number, twoLines: number, key: string) {
   useLayoutEffect(() => {
@@ -41,21 +63,41 @@ function useFit(ref: RefObject<HTMLElement | null>, max: number, oneLine: number
     if (!el) return
     const set = (px: number) => (el.style.fontSize = `${px}px`)
     const wide = () => el.scrollWidth > el.clientWidth + 0.5
-    const tall = () => el.scrollHeight > el.clientHeight + 1
+    const tall = () => lineCount(el) > 2
     const fit = () => {
+      // Hidden (the computer's row is showing): nothing to measure; the observer fits it once it shows.
+      if (!el.clientWidth) return
       delete el.dataset.wrap
       let size = max
       set(size)
       while (size > oneLine && wide()) set(--size)
       if (!wide()) return
+      // One long word can't take two lines: it shrinks further on its one line (then ellipsis), never breaks mid-word.
+      if (!/\s/.test((el.textContent ?? '').trim())) {
+        while (size > twoLines && wide()) set(--size)
+        return
+      }
       el.dataset.wrap = ''
       while (size > twoLines && (wide() || tall())) set(--size)
     }
+    let live = true
+    const refit = () => live && fit()
     fit()
-    const ro = new ResizeObserver(fit)
+    const ro = new ResizeObserver(refit)
     ro.observe(el)
-    document.fonts?.ready.then(fit).catch(() => {})
-    return () => ro.disconnect()
+    if (el.parentElement) ro.observe(el.parentElement)
+    const fonts = document.fonts
+    if (fonts) {
+      const cs = getComputedStyle(el)
+      fonts.load(`${cs.fontStyle} ${cs.fontWeight} ${max}px ${cs.fontFamily}`, el.textContent || undefined).then(refit, () => {})
+      fonts.ready.then(refit, () => {})
+      fonts.addEventListener('loadingdone', refit)
+    }
+    return () => {
+      live = false
+      ro.disconnect()
+      fonts?.removeEventListener('loadingdone', refit)
+    }
   }, [ref, max, oneLine, twoLines, key])
 }
 
@@ -112,14 +154,15 @@ function useDisclosure() {
 
 /** Dims the page under the open grid (under the header, which stays lit). Taps on it close the grid. */
 const Scrim = ({ open }: { open: boolean }) =>
-  createPortal(<div className={s.scrim} data-open={open || undefined} aria-hidden="true" />, document.body)
+  // Not in the build's HTML (www-speed-1112): there's no document to portal into there.
+  useClientValue(() => true, false) ? createPortal(<div className={s.scrim} data-open={open || undefined} aria-hidden="true" />, document.body) : null
 
 const PhoneNav = ({ items, current, label }: Props) => {
   const d = useDisclosure()
   const name = useRef<HTMLSpanElement>(null)
   const at = current ? items.indexOf(current) : -1
   const text = current?.label ?? label
-  useFit(name, 25, 17, 12, text)
+  useFit(name, 25, 17, 14, text)
   return (
     <div className={s.root}>
       <button {...d.button} className={s.trigger}>

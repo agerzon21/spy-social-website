@@ -1,4 +1,4 @@
-import { Text, Link as ChakraLink, ListItem } from '@chakra-ui/react'
+import { Text, Link as ChakraLink } from '@chakra-ui/react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { AfterDeletionLaw, AfterDeletionList } from '../components/legal/AfterDeletion'
@@ -25,13 +25,14 @@ import { B, Bullets, H2, P } from '../components/legal/LegalText'
 // This page reads PRIVACY, which can run ahead of the Terms (PRIVACY_AHEAD there).
 
 /** A list item that starts with a bold label. */
-const Item = ({ label, children }: { label: string; children: ReactNode }) => (
-  <ListItem>
+/** `id`: a stable anchor (e.g. #drawing-checks, which the app links to); it stops just under the sticky header, as H2s do. */
+const Item = ({ label, id, children }: { label: string; id?: string; children: ReactNode }) => (
+  <li id={id} style={id ? { scrollMarginTop: '84px' } : undefined}>
     <Text as="span" fontWeight="600" color="ss.text">
       {label}:
     </Text>{' '}
     {children}
-  </ListItem>
+  </li>
 )
 
 const SupportEmail = () => (
@@ -70,8 +71,8 @@ const LaunchReminderSection = () => {
           ? " To stop one network from filling the list, we count each hour's sign-ups from it using a one-way code made from its IP address (for IPv6, the address's first half) with a secret key, and delete that count after about two hours; we never keep the IP address itself, and the code is never stored with an email address."
           : ''}{' '}
         Asking for a reminder doesn't create a SpySocial account, and the
-        reminder isn't linked to one even if you have one, so Delete Account and the data export don't reach it: write
-        to support and we remove that address. We don't use it for anything else or share it for marketing.
+        reminder isn't linked to one even if you have one, so Delete Account doesn't remove it and a copy of your data
+        (see A copy of your data, under Your Rights) doesn't include it: write to support and we remove that address. We don't use it for anything else or share it for marketing.
         </span>
       </P>
     </>
@@ -132,7 +133,7 @@ const Privacy: React.FC = () => {
   return (
     <LegalPage english title="Privacy Policy for SpySocial" updated={<>Last Updated: {PRIVACY_LAST_UPDATED}</>}>
 
-      <H2>Introduction</H2>
+      <H2 id="introduction">Introduction</H2>
       <P>
         Welcome to SpySocial ("we," "our," or "us"). We respect your privacy and are committed to protecting your
         personal data. This privacy policy explains how we handle your personal information when you use our app
@@ -151,7 +152,7 @@ const Privacy: React.FC = () => {
         </P>
       )}
 
-      <H2>Information We Collect</H2>
+      <H2 id="information-we-collect">Information We Collect</H2>
       <P>When you use SpySocial, we collect the following information:</P>
       <Bullets>
         <Item label="Account Information">
@@ -167,11 +168,12 @@ const Privacy: React.FC = () => {
               : from22
                 ? ' Avatars are new in version 2.2; versions before 2.2 let you add a profile photo instead.'
                 : ' Versions of the app before 2.2 also let you add a profile photo.')}
+          {' '}When you set up your account you choose a username and one color; your display name is made from your username, and in Settings you can change your display name, your username and your 2nd and 3rd colors.
           {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
           {PRIVACY.usernameLimit &&
             " When you change your username, we keep a record of your past usernames and when you changed them, so we can apply the limit of one change every 30 days (a new account's first changes don't count); it's deleted with your account."}
           {PRIVACY.socialSignIn &&
-            ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, and collect a device identifier and usage information for Google\'s own analytics, under Google\'s privacy policy.'}
+            ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (your display name is still made from the username you choose, not from that name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, and collect a device identifier and usage information for Google\'s own analytics, under Google\'s privacy policy.'}
         </Item>
         <Item label="Profile Preferences">
           Your interface language (one of the ten languages the app offers), your colors (a 1st, 2nd and 3rd choice: each room gives you the first one that's free) and similar settings, so the app
@@ -207,8 +209,33 @@ const Privacy: React.FC = () => {
             Searches are deleted 30 days after they end, and breaks and the matchmaking log after 90 days.
           </Item>
         )}
-        {/* LIVE.gameNightPrizes: each Game Night's titles and the developer's bonus title (legalRelease). */}
-        {PRIVACY.gameNightPrizes && (
+        {/* LIVE.gnRewardsRules (legal-gn-1117; app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83): Game
+            Night Intel (gn_game_awards: each judged seat's pay and reason; gn_ledger: game / buy / reverse / reset / return;
+            gn_wallets), the ★ counts (gn_counters + gn_counter_rows; get_gamenight_counters answers any signed-in player),
+            all ON DELETE CASCADE; the owner's rewards watch reads them (alerts, never blocks). Replaces the night's titles. */}
+        {PRIVACY.gameNightPrizes && PRIVACY.gnRewardsRules && (
+          <Item label="Game Night">
+            When you play in our Game Night, our servers keep, for each Game Night game you play, whether it gave you
+            Game Night Intel and why (a win, a loss, a game with no winner, or the reason it gave nothing, such as
+            leaving early, not taking your turns or a fair-play flag), and the history of your Game Night Intel: each
+            amount, the game it came from, each Game Night Intercept you got with it and its tier, any correction, and
+            your balance after each one. They also keep your counts on the four ★&nbsp;titles (★&nbsp;Operative, ★&nbsp;Local Hero,
+            ★&nbsp;Master Spy and ★&nbsp;Double Agent), and the game or night behind each one. We use this to give each game's
+            reward once, to show your rewards on Game Over and in the Vault, and to check that they're earned fairly.
+            Game Night seats you through Play Online, so your Game Night search is kept like a Play Online search
+            {PRIVACY.playOnline ? ' (see Play Online above)' : ''}, with the night it was for. Other players can see
+            your ★&nbsp;titles with their counts (for example on your name plate or your profile); your Game Night Intel
+            isn't shown to anyone else. We also keep the record of the titles you got at the beta's Game Nights, which
+            became counts on the ★&nbsp;titles. All of this is kept with your account and deleted with it, and apart from
+            the ★&nbsp;counts it doesn't leave our servers and isn't shared with anyone. The ★&nbsp;titles aren't minted and
+            aren't on the public ledger.
+            {PRIVACY.launchSite
+              ? ' Before version 2.2 opened to everyone, each account\'s Game Night Intel was set back to all the Game Night Intel it had earned before then, as one more line in its history.'
+              : ' Before version 2.2 opens to everyone, each account\'s Game Night Intel is set back to all the Game Night Intel it earned before then, as one more line in its history.'}
+          </Item>
+        )}
+        {/* LIVE.gameNightPrizes: each Game Night's titles and the developer's bonus title (legalRelease). Until LIVE.gnRewardsRules. */}
+        {PRIVACY.gameNightPrizes && !PRIVACY.gnRewardsRules && (
           <Item label="Game Night">
             When you play in our Game Night, our servers keep which week you played, whether each game you
             played there counted toward the night's titles, and, when you get titles (the night's titles, or a bonus
@@ -220,7 +247,9 @@ const Privacy: React.FC = () => {
             shows. The titles are cosmetic and kept with your account, and this information is deleted with it. Apart
             from that chat line, it doesn't leave our servers and isn't shared with anyone
             {PRIVACY.mintedCollectibles
-              ? ", except that each title is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
+              ? PRIVACY.ledgerUniquesOnly
+                ? '. Each title is a numbered minted copy; titles aren\'t on the public ledger (see Collectibles and the public ledger).'
+                : ", except that each title is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
               : '.'}
           </Item>
         )}
@@ -255,6 +284,11 @@ const Privacy: React.FC = () => {
               " Each line of your Intel history (your Intel ledger) also records who caused it (a game, you, or us), when, and the app version and platform it came from, so that we can find everyone a bug affected. Lines are only ever added: we never change or delete one."}{' '}
             Other players never see your Intel or your streak, and we look at Intel only as totals across all
             players{PRIVACY.intercepts ? '' : ' (for example to set prices)'}.
+            {/* LIVE.intelZero1117 (owner's reset answer D1 = zero, Nov 17; app server B1 prelaunch_intel_zero, 09:50 ET Dec 8). */}
+            {PRIVACY.intelZero1117 &&
+              (PRIVACY.launchSite
+                ? " Right before version 2.2 opened to everyone, every account's Intel was set to 0 (the Intel earned in test versions included) and every streak started again from day 0, each as a line in the account's Intel ledger under an incident we published on our transparency page; Game Night Intel was not part of this."
+                : " Right before version 2.2 opens to everyone, every account's Intel is set to 0 (the Intel earned in test versions included) and every streak starts again from day 0, each as a line in the account's Intel ledger under an incident we publish on our transparency page; Game Night Intel is not part of this.")}
             {PRIVACY.intelLedger
               ? " Your balance and streak are deleted with your account. The lines of your Intel ledger are kept for good, so that the totals stay right and can be checked: when you delete your account, we remove who they belonged to, and we drop the app version and platform from lines more than 2 years old. None of it leaves our servers."
               : " It's kept with your account and deleted with it, and it doesn't leave our servers."}
@@ -285,9 +319,11 @@ const Privacy: React.FC = () => {
           <Item label="Intercepts">
             Intercepts are sealed rewards that each open into one random item (such as a look for your agent, a
             celebration or a title). {PRIVACY.interceptsMarket
-              ? `They're earned by playing, or given by us, and never bought with money; an adult can also buy an unopened one from another adult with Intel on the Black Market${PRIVACY.interceptsInTrades ? ', or get one in a trade with a friend' : ''}.`
+              ? `They're earned by playing${PRIVACY.gnRewardsRules ? ' (Game Night Intercepts with the Game Night Intel you earn at Game Night)' : ''}, or given by us, and never bought with money; an adult can also buy an unopened one from another adult with Intel on the Black Market${PRIVACY.interceptsInTrades ? ', or get one in a trade with a friend' : ''}.`
+              : PRIVACY.gnRewardsRules
+              ? "They're earned only by playing (Game Night Intercepts with the Game Night Intel you earn at Game Night), or given by us, never bought with money or with Intel."
               : "They're earned only by playing, or given by us, never bought, with money or with Intel."} Our servers keep each Intercept you get: when, how you got it (the Play Online game that completed a
-            set of 10 wins, your first Play Online game of the day or a streak milestone, a Game Night win, a code you
+            set of 10 wins, your first Play Online game of the day or a streak milestone, {PRIVACY.gnRewardsRules ? 'the Game Night Intel you got a Game Night Intercept with' : 'a Game Night win'}, a code you
             entered, or a gift from us, with its reason{PRIVACY.interceptsMarket ? `, or the Black Market sale${PRIVACY.interceptsInTrades ? ' or trade' : ''} it came from` : ''}) and its tier; whether you've claimed it yet (a daily one) or
             it's waiting for your first Play Online game that counts (one from a code); when you've seen the app's
             notices about your Intercepts (such as Welcome Back); and, once you open it, when, the item and
@@ -313,29 +349,47 @@ const Privacy: React.FC = () => {
             as totals across all players (and at a player's own Intercepts only to answer a question or check a
             problem). It's kept with your account and deleted with it, and it doesn't leave our servers
             {PRIVACY.mintedCollectibles
-              ? ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
+              ? PRIVACY.ledgerUniquesOnly
+                ? PRIVACY.archiveHolders
+                  ? (PRIVACY.archiveHoldersList
+                    ? ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and the Archive shows your username while you hold it, on the Unique's page and in the Archive's list of all Uniques, if your profile is public (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger."
+                    : ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and its page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger.")
+                  : ", except that each Unique an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger). Other items from Intercepts are numbered too but aren't on the public ledger."
+                : PRIVACY.archiveHolders
+                ? (PRIVACY.archiveHoldersList
+                    ? ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and the Archive shows your username while you hold a Unique, on its page and in the Archive's list of all Uniques, if your profile is public (see Collectibles and the public ledger)."
+                    : ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name, and a Unique's page on the Archive shows your username while you hold it if your profile is public (see Collectibles and the public ledger).")
+                : ", except that each item an Intercept gives is a minted copy on the public ledger, under a holder code and never your name (see Collectibles and the public ledger)."
               : '.'}
           </Item>
         )}
         {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
         {PRIVACY.mintedCollectibles && (
           <Item label="Collectibles and the public ledger">
-            Game Night titles, the Beta Pin, the Field Tester title and every item from an Intercept are minted: each
+            {/* LIVE.gnRewardsRules (legal-gn-1117, row 83): no Game Night title is minted any more. */}
+            {PRIVACY.gnRewardsRules
+              ? 'The Beta Pin, the Field Tester title and every item from an Intercept (a Game Night Intercept included) are minted'
+              : 'Game Night titles, the Beta Pin, the Field Tester title and every item from an Intercept are minted'}: each
             copy has its own number. For each copy you get, our servers keep your account, the copy's holder code,
-            when it was earned and when it was minted, how it was earned (the Game Night and game, the Intercept or
+            when it was earned and when it was minted, how it was earned ({PRIVACY.gnRewardsRules ? '' : 'the Game Night and game, '}the Intercept or
             trade-up, or the beta tester list and why you're on it), whether it was traded, sold on the Black Market,
             shredded, traded up or taken back and why, and whether you were under 18, an adult or of unknown age when you got it (from the birth year
             you gave us). We use this to give you your collectibles, to show how each was earned, to check that they
-            are earned fairly, and to keep the public ledger. The public ledger (spysocial.app/ledger) lists every
-            copy and what happened to it, but never your account, username or name: each copy's holder appears only
-            as a code made from that copy and a secret kept for your account, so two of your copies never share a
-            code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger
-            shows only that it moved from one holder code to another, never who traded or sold it, or the price.{' '}
+            are earned fairly, and to keep the public ledger.{' '}
+            {PRIVACY.ledgerUniquesOnly
+              ? `The public ledger (spysocial.app/ledger) lists only Uniques: every Unique and what happened to it, but never your account, username or name. Your other collectibles (${PRIVACY.gnRewardsRules ? '' : 'Game Night titles, '}the Beta Pin, Field Tester and the other items from Intercepts) are kept in our own records as described above and aren't on the public ledger. On the ledger, each Unique's holder appears only as a code made from that copy and a secret kept for your account, so two of your copies never share a code and nobody else can link them to you or to each other. When a Unique is traded or sold, the ledger shows only that it moved from one holder code to another, never who traded or sold it, or the price. On the 1st of each month the ledger also records the fingerprint of a list of every Unique (its number, whether it is held, burned or retired, and its holder code), made from the ledger's own lines, so it can be checked from that month on.`
+              : "The public ledger (spysocial.app/ledger) lists every copy and what happened to it, but never your account, username or name: each copy's holder appears only as a code made from that copy and a secret kept for your account, so two of your copies never share a code and nobody else can link them to you or to each other. When a copy is traded or sold, the ledger shows only that it moved from one holder code to another, never who traded or sold it, or the price."}{' '}
             {PRIVACY.uniqueArchive &&
-              "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. "}
+              (PRIVACY.archiveHolders
+                ? (PRIVACY.archiveHoldersList
+                    ? "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its past holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. Its holder today is shown by username, with a link to their profile, on that page and on the Archive's list of all Uniques (archive.spysocial.app/uniques), only if they are an adult whose profile is public (see Follows and Profiles); for anyone else (a player under 18, a player whose age we don't know, or anyone who made their profile private in Privacy & Friends) both say Held privately. Make your profile private and your username leaves the Archive's pages and its list within about a minute. "
+                    : "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its past holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. Its holder today is shown by username, with a link to their profile, only if they are an adult whose profile is public (see Follows and Profiles); for anyone else (a player under 18, a player whose age we don't know, or anyone who made their profile private in Privacy & Friends) the page says Held privately. Make your profile private and your username leaves those pages within about a minute. ")
+                : "The Archive (archive.spysocial.app) gives each Unique its own page: its picture, number and attributes, how and when it was minted, whether it is for sale and at what price, and the date and price in Intel of each of its Black Market sales, as Rare Finds shows them in the app. Its holders appear only as numbers in the order they first held it (Holder 1, Holder 2), never as an account, username, name or holder code. ")}
             Each
-            day only a fingerprint of the ledger is sent to GitHub and the Internet Archive, with no personal data in
-            it.{' '}
+            day that day's ledger lines, with holder codes only and never your account, username or name, are published
+            in this website's public GitHub repository and offered for download on the ledger page; only their
+            fingerprint is sent to the Internet Archive and to OpenTimestamps, which records it in the Bitcoin
+            blockchain.{' '}
             {/* LIVE.launchSite: the beta test chain is over (site-launch-walk). */}
             {PRIVACY.launchSite
               ? "Before the launch, the ledger was a beta test chain: every copy, number, trade and day's fingerprint on it was for testing and was wiped, and the real ledger started again from its first entry."
@@ -364,7 +418,7 @@ const Privacy: React.FC = () => {
             with a pack keep its name and the entries they dealt. You can change or delete your drafts, and the packs
             you haven't published, at any time.
             {PRIVACY.communityPacks &&
-              ` If you send a pack to Community Packs (a copy of your draft), you agree to our Terms and Community Rules again, and a person on our team reviews it before anyone else can see it (we aim to within 72 hours). Before that, an AI model (OpenAI's) reads the copy's name, theme, description and entries (only the pack's text, never your account, name or age) and notes for our team anything that may break our Terms or Community Rules, with a suggestion to approve it or send it back; it never decides: a person on our team does. Its notes are kept with the review and only our team sees them. Before approving a pack, our team may hide a mild swear in it (as the app already does), remove an entry or change its theme; the approval notice then tells you what we changed, and your draft stays as you made it. We keep a record of the review (who reviewed it, when, what we decided and why, with a copy of the pack as it was). We may approve it, turn it down, hold it (for example after reports) or take it out. When we approve or turn down a pack you sent, the app tells you (with our reason, if we turned it down), and if you allow notifications we also send you a push notification; we keep these notices with your account. While it's still in review, you can cancel it (the copy you sent is deleted, and our moderation log keeps a copy of it); it's published only once we approve it and it's live in Community Packs. Once we approve it, every SpySocial player, players under 18 included, can see it: its name, description, cover, game, language and entries, your username as its creator (never your display name; Anonymous instead, if you chose that), when it was added, its average rating and number of ratings, how many players have added it (its downloads) and how many games it was played in. Players can search Community Packs (by a pack's name, description or its creator's username), browse our collections, add a pack to their packs, rate it from 1 to 5 stars and copy it into a draft of their own to make their own version. When you add or rate a pack, we keep which pack, your rating and when, with your account; other players and the pack's creator see only the totals, never who added or rated it. You can report a Community Pack: the report keeps a snapshot of the pack as it was, your reason and anything you write, and we handle it like any other report (see Safety Information). A published pack can't be changed or deleted by its creator, because it's shared under the license in our Terms (section 6); a new version is a separate pack. You can choose Post Anonymously when you send a pack, and switch a pack that's in review or published between Anonymous and Show My Name, once every 24 hours: while it's anonymous, it shows Anonymous as its creator, drops off your profile and titles, and your username isn't linked to it anywhere public (our team can still see who made it). We log every switch (which pack, which account and when), and every time our team puts a name back. Creators get the Pack Maker title, which counts their approved packs that show their name and shows like any title.`}
+              ` If you send a pack to Community Packs (a copy of your draft), you agree to our Terms and Community Rules again, and a person on our team reviews it before anyone else can see it (we aim to within 72 hours). Before that, an AI model (OpenAI's) reads the copy's name, theme, description and entries (only the pack's text, never your account, name or age) and notes for our team anything that may break our Terms or Community Rules, with a suggestion to approve it or send it back; it never decides: a person on our team does. Its notes are kept with the review and only our team sees them. Before approving a pack, our team may hide a mild swear in it (as the app already does), remove an entry or change its theme; the approval notice then tells you what we changed, and your draft stays as you made it. We keep a record of the review (who reviewed it, when, what we decided and why, with a copy of the pack as it was). We may approve it, turn it down, hold it (for example after reports) or take it out. When we approve or turn down a pack you sent, the app tells you (with our reason, if we turned it down), and if you allow notifications we also send you a push notification; we keep these notices with your account. While it's still in review, you can cancel it (the copy you sent is deleted, and our moderation log keeps a copy of it); it's published only once we approve it and it's live in Community Packs. Once we approve it, every SpySocial player, players under 18 included, can see it: its name, description, cover, game, language and entries, your username as its creator (never your display name; Anonymous instead, if you chose that), when it was added, its average rating and number of ratings, how many players have added it (its downloads) and how many games it was played in. Players can search Community Packs (${PRIVACY.communitySearchShown ? "by a pack's name or description, as its creator wrote them or as translated into the searcher's app language, by its theme in that language, or by its creator's username" : "by a pack's name, description or its creator's username"}), browse our collections, add a pack to their packs, rate it from 1 to 5 stars and copy it into a draft of their own to make their own version. When you add or rate a pack, we keep which pack, your rating and when, with your account; other players and the pack's creator see only the totals, never who added or rated it. You can report a Community Pack: the report keeps a snapshot of the pack as it was, your reason and anything you write, and we handle it like any other report (see Safety Information). A published pack can't be changed or deleted by its creator, because it's shared under the license in our Terms (section 6); a new version is a separate pack. You can choose Post Anonymously when you send a pack, and switch a pack that's in review or published between Anonymous and Show My Name, once every 24 hours: while it's anonymous, it shows Anonymous as its creator, drops off your profile and titles, and your username isn't linked to it anywhere public (our team can still see who made it). We log every switch (which pack, which account and when), and every time our team puts a name back. Creators get the Pack Maker title, which counts their approved packs that show their name and shows like any title.`}
             {PRIVACY.featuredPacks &&
               ` We may feature a Community Pack: then it's also played at Play Online tables and Game Nights, where the players see its name and creator as Community Packs shows them${PRIVACY.packAutoTranslate ? ', each in their own language.' : `, and our translation service translates its name, description and entries into the languages the app offers. For that, it sends only the pack's text and the languages to ${packTranslator}, never your account, name or age, and we keep the translations with the pack.`} If we feature your pack, you get the Featured Creator title and border, which count your featured packs and show like any title and border.`}{' '}
             Your drafts and packs{PRIVACY.communityPacks ? ', ratings and the packs you added' : ''} are kept with your
@@ -402,7 +456,7 @@ const Privacy: React.FC = () => {
           </Item>
         )}
         <Item label="Chat Messages">
-          Messages you send in a room's chats (the lobby chat, the game chat, the spy chat, the chat for players
+          Messages you send in a room's chats (the lobby chat, the game chat, {PRIVACY.appU62 ? "the spies' chat (Spy Channel)" : 'the spy chat'}, the chat for players
           who are out, and the game's chat on Game Over, which stays open to the players of that game for a few
           minutes after it ends) are stored on our servers so the other players in the room can read them.{' '}
           {chatRetention('Messages')} Copies made to deliver messages live are deleted within 4 days.
@@ -434,7 +488,9 @@ const Privacy: React.FC = () => {
             who allows follows; the people you follow, and the new packs and showcase changes of the people you follow,
             make up your Following feed. On your followers list you see by name only the followers whose own profiles
             are public; the rest are a number{PRIVACY.audit1103 ? ', and you can search those names' : ''}. Adults are told once, the first time their profile is public, and can
-            make it private at any time in Privacy &amp; Friends. Players under 18 have no public profile, can't be
+            make it private at any time in Privacy &amp; Friends.{PRIVACY.mintedCollectibles && PRIVACY.uniqueArchive && PRIVACY.archiveHolders ? (PRIVACY.archiveHoldersList
+                    ? " While your profile is public, your username also shows on the Archive, on the page of each Unique you hold and in its list of all Uniques, for anyone to see (see Collectibles and the public ledger)."
+                    : " While your profile is public, your username also shows on the Archive's page of each Unique you hold, for anyone to see (see Collectibles and the public ledger).") : ''} Players under 18 have no public profile, can't be
             followed and aren't named on anyone's followers list, and a private profile, or any player under 18, makes
             their Community Packs anonymous.
           </Item>
@@ -456,8 +512,10 @@ const Privacy: React.FC = () => {
             pause on your account (after a reversal, a change to your email or sign-in method, a sign-in on a new
             device, a lock you set{PRIVACY.audit1103 ? ", or a pause we set on an account that may have been taken or that we're looking into for fraud or farming" : ''}). For a big trade we email you a code; we keep only a coded (hashed) copy of it,
             and the code is removed from our mail queue once it's sent{PRIVACY.retentionSweep ? '; the note that we sent one (no address, no code) is deleted after 30 days' : '; the note that we sent one (no address, no code) stays until your account is deleted'}. Trades carry no message. Only you and the
-            other player see a trade{PRIVACY.mintedCollectibles ? ' (the public ledger shows only that a traded collectible moved from one holder code to another, never who traded it; see Collectibles and the public ledger)' : ''}.
+            other player see a trade{PRIVACY.mintedCollectibles ? (PRIVACY.ledgerUniquesOnly ? ' (the public ledger shows only that a traded Unique moved from one holder code to another, never who traded it; other items aren\'t on it; see Collectibles and the public ledger)' : ' (the public ledger shows only that a traded collectible moved from one holder code to another, never who traded it; see Collectibles and the public ledger)') : ''}.
             Trades are kept with your Intel and item history.
+            {PRIVACY.tradeWatchEvidence &&
+              " When our checks flag a trade for a case, or flag a trade between an adult and a player under 18, we also keep a restricted copy of it (the flag, who traded, what moved and the trade's steps) on our servers for at least 1 year, or for 1 year after we report it to NCMEC if we do, even if the trade or an account in it is deleted in the meantime (this includes the wipe of trades from testing on December 7, 2026). It's never shown to any player; only SpySocial's developer can read it, and only for a case or a legal request."}
             {PRIVACY.tradeGatesNov2 && PRIVACY.gameDeviceChecks
               ? " Whether you can trade is decided from your account's age, whether its email is confirmed and how many counted games you've played (finished games with at least 2 other saved accounts on other phones, that count toward your stats and that our fair-play checks don't flag). To check that the players in a counted game are different people, we keep, for each game you play, the coded install code of the device you played it from (see Device Information). We don't compare networks for this, so people who share a home or Wi-Fi aren't affected. The device notes are kept for 90 days and deleted with your account."
               : PRIVACY.tradeGatesNov2
@@ -476,10 +534,10 @@ const Privacy: React.FC = () => {
             on Items, by placing offers to buy or sell at a price, and on Rare Finds, by listing a Unique at a price or
             making an offer on one. Players under 18 can look but can't use it. We keep each offer and listing you make
             (the item, the quantity, your price, the copies or Intel it holds, and when you placed, changed, stopped or
-            collected it), each offer you make or get on a listing, each sale and fill (who bought and sold which copies,
+            collected it), each offer you make or get on a listing{PRIVACY.rarefindsOffers ? " (with when it ends and how it ended: accepted, declined, countered, taken back or expired), each counter-offer you send or get (its price, when it was made and how it ended), the lowest offer a Decline set on your listing" : ''}, each sale and fill (who bought and sold which copies,
             at what price and fee, and when), the protection and any reversal of a Rare Finds sale, and the matching
-            lines in your Intel ledger. The Black Market emails no codes.
-            {PRIVACY.audit1103 ? " When a lock lands on an account, whatever the reason (a pause we set because it may have been taken or while we look into fraud or farming, your own lock, the pause after a reversal, a ban, a suspension, a fair-play hold, and from December 7, 2026 a new device or a change of sign-in), or when we change its email address or correct its birth year to under 18, its open offers and listings close, and we keep that as we keep a stopped offer." : ''}{' '}
+            lines in your Intel ledger. The Black Market emails no codes.{PRIVACY.rarefindsOffers ? " We count how many of your recent offers on Rare Finds were declined and how many accepted, to pause offers from an account that keeps making offers that get declined (for up to 3 days); the count is worked out from the offers above and kept nowhere else." : ''}
+            {PRIVACY.audit1103 ? ` When a lock lands on an account, whatever the reason (a pause we set because it may have been taken or while we look into fraud or farming, your own lock, the pause after a reversal, a ban, a suspension, a fair-play hold, ${PRIVACY.reputationBanMarket ? 'a reputation that becomes Banned, ' : ''}and from December 7, 2026 a new device or a change of sign-in), or when we change its email address or correct its birth year to under 18, its open offers and listings close, and we keep that as we keep a stopped offer.` : ''}{' '}
             {PRIVACY.launchSite
               ? "Sales made while SpySocial was being tested were undone before the launch, with matching lines in the Intel ledger of everyone they touched, and we keep the record of each undo like the sale. "
               : "Before version 2.2 opens to everyone, only test accounts use the market, except in Beta 2's test from November 9 to 16, 2026, when adults who can trade buy and sell for real. Those sales are undone on November 16, and any later test sales before the launch, with matching lines in the Intel ledger of everyone they touch, and we keep the record of each undo like the sale. "}
@@ -493,7 +551,7 @@ const Privacy: React.FC = () => {
           <Item label="Social Notifications">
             If you allow notifications, we send a push for a friend request, an accepted request, a room or party
             invite, an Ask to Join and a new pack from a creator you follow (at most one a day for each creator), each
-            with its own switch in Privacy &amp; Friends.{PRIVACY.audit1103 ? " We also send a push when a friend offers, changes or completes a trade or it's your turn in one, when your Black Market offer fills, your Rare Finds item sells or gets an offer, or your offer on one is accepted, and when a trade or sale of yours is undone; Trades and Black Market each have their own switch there. These never show an item, a price or an Intel amount, and the market's never name the other player." : ''} The push shows the sender's display name. We keep your
+            with its own switch in Privacy &amp; Friends.{PRIVACY.audit1103 ? ` We also send a push when a friend offers, changes or completes a trade or it's your turn in one, when your Black Market offer fills, your Rare Finds item sells or gets an offer, or your offer on one is accepted${PRIVACY.rarefindsOfferPush ? ', countered by the seller, declined or ends' : ''}, and when a trade or sale of yours is undone; Trades and Black Market each have their own switch there. These never show an item, a price or an Intel amount, and the market's never name the other player.` : ''} The push shows the sender's display name. We keep your
             device's time zone so that a player under 18 gets none between 10 PM and 7 AM local time{PRIVACY.audit1103 ? `, and none at all while we don't know it; on iPhone${PRIVACY.membershipWords1105 ? ' and iPad' : ''}, players under 18 get none of these for now` : ''}. A notice waiting
             to be sent is kept for about a day, and a sent one for about 7 days{PRIVACY.retentionSweep ? '' : ' (cleared the next time we send a notice)'}.
           </Item>
@@ -563,11 +621,22 @@ const Privacy: React.FC = () => {
             LIVE.practiceReportLog: the last practice game sent with Report a Problem when the player leaves it ticked. */}
         {(PRIVACY.practiceAi || PRIVACY.practiceReportLog || PRIVACY.coverage1110) && (
           <Item label="Practice Games">
+            {/* LIVE.practiceResults: each finished practice game's result kept on the server, the Practice Ace title,
+                the spies' chat note seen (app server practice_results_1111, run sheet step 47; spy_chat_intro_backfill_1112). */}
             {PRIVACY.coverage1110 &&
-              "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it) and your best grade in each game's practice game, so your progress follows you to your other devices. Play Online can use them to open a game once you've passed its practice game (a C or better). We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
+              (PRIVACY.practiceResults
+                ? "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it, including whether you've already seen the note about the spies' chat) and the result of each practice game you finish: the game, your role (Local or spy), the table size (4 or 8 seats), your grade, your score, whether you won, and when. We use them so your progress and results follow you to your other devices, to show you your best grades, and to award the Practice Ace title (an A in every game, role and table size). If you played a game with 8 or more players before the spies' chat note existed, we marked the note as seen from your game history."
+                : "Our servers keep how far you've got in How to Play for each game (Spy Talk and Spy Sketch: each part, its last step, and when you finished or skipped it) and your best grade in each game's practice game, so your progress follows you to your other devices.") +
+              // legal-gn-1117 (LIVE.tutorialGate1117): Play Online's gate is the game's tutorial, never a grade in a practice game.
+              " Play Online can use them to open a game once you've passed its tutorial." +
+              " We can also mark a game's practice as done for an account (for example, for a tester who has trouble with it), and we record who did it and when. This is kept with your account and deleted with it. "}
+            {PRIVACY.practiceNoAi && !PRIVACY.practiceAi &&
+              "The other players in a practice game are played by the app itself, on your device, and your moves are rated there too: nothing you type or draw in a practice game is sent to OpenAI or any other AI service. "}
+            {PRIVACY.practiceMembers &&
+              "The tutorials are free for everyone. Practice games (the full games against the app's AI agents, with grades) are for accounts with an active membership, up to 5 a day: when you start one, our servers check your membership and count it, keeping how many practice games each account started each UTC day (deleted after 14 days) and nothing about the game itself. "}
             {PRIVACY.practiceAi && <>
             In a practice game, your device rates every move you make. If you told us you're 16 or older (from the
-            birth year the app asks for), are signed in to an account (not playing as a guest) and chose Try It in the
+            birth year the app asks for), {PRIVACY.practiceMembers ? 'have an active membership (practice games are for members, above)' : 'are signed in to an account (not playing as a guest)'} and chose Try It in the
             app's one-time "Rate with AI?" note that names OpenAI, our servers also ask OpenAI to rate each line you
             type in a Spy Talk practice game, for a sharper score (Spy Sketch practice is rated only on your device). For that, our servers send OpenAI only the line you typed (up to 160 characters),
             whether it's an answer, a question or a follow-up, your role in the practice game (Local or spy), the game's
@@ -580,7 +649,8 @@ const Privacy: React.FC = () => {
             for up to 24 hours (see OpenAI below). If you choose Not Now, or you're
             under 16 or playing as a guest, your practice lines are rated only on your device. We keep your answer to
             that note (which version of the note you answered, and when) until you answer it again or your account is
-            deleted. To keep this within its limits, we count how many lines each account had rated each day (deleted
+            deleted. You can change your answer at any time in the app's Settings, under Language, with Rate My Practice
+            Lines with AI: turned off, your next practice lines are rated only on your device. To keep this within its limits, we count how many lines each account had rated each day (deleted
             after 14 days) and keep daily totals for the whole app that don't identify anyone; we don't keep the lines
             themselves. We spend at most a fixed amount on it each month and each day; when that runs out, your device's
             rating is used until it resets.
@@ -636,25 +706,62 @@ const Privacy: React.FC = () => {
           {PRIVACY.playtestPayPal && (
             <>
               {' '}
-              If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form,
-              including, if you get the session thank-you, the email address of your PayPal account. We use that address only
-              to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete
-              it once it's sent. The form is a Google Form, which Google handles for us. To choose seats, we also use the email
+              {PRIVACY.playtestSurvey ? (
+                <>
+                  If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form.
+                  After a session, we send its players a short survey (a sign-up form may ask some of this too): to get the
+                  session thank-you, you give us there your SpySocial username and{' '}
+                  {PRIVACY.playtestTremendous
+                    ? 'an email address for it (the survey calls it your PayPal email).'
+                    : 'the email address of your PayPal account.'}{' '}
+                  {/* legal-1116: LIVE.playtestTremendous (STAGED OFF, owner undecided) and LIVE.payPalTiming1116 (on). */}
+                  {PRIVACY.playtestTremendous
+                    ? "We use that address only for your thank-you: we give Tremendous (Tremendous, Inc.), which sends our playtest thank-yous for us, your name as you gave it to us (or your username), that address and the amount. Tremendous emails you a link there to choose how you receive it (such as PayPal, a local wallet like GCash, or a gift card) and handles that choice, and what you give it to receive it, under its own terms and privacy policy. We delete the address once that test's thank-yous have been sent, with the rest of your survey (see below); Tremendous and the service you choose keep their own record of the payment. Beta 2's thank-yous went through PayPal, which handled them under its own terms and privacy policy."
+                    : PRIVACY.payPalTiming1116
+                      ? "We use that address only to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete it once that test's thank-yous have been sent, with the rest of your survey (see below)."
+                      : "We use that address only to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete it once it's sent."}{' '}
+                  Both forms are Google Forms, which Google handles for us.
+                  To confirm a seat, you may also post your SpySocial username in our Discord server's sign-up channel,
+                  where its members can see it, or reply to our email with it. We keep your survey answers about the app,
+                  without your name, email address, PayPal address or username, to improve SpySocial.
+                </>
+              ) : (
+                <>
+                  If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form,
+                  including, if you get the session thank-you, the email address of your PayPal account. We use that address only
+                  to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete
+                  it once it's sent. The form is a Google Form, which Google handles for us.
+                </>
+              )}{' '}
+              To choose seats, we also use the email
               address you sign up with to look up a SpySocial account that has it (its age, when it was made, whether you
               tested before, and the app versions it used), and we email you about your seat through Resend. If your bug report
-              or idea wins the one bonus for the session (a gift card), we send it to your email address. The rest of your sign-up is deleted after the test.
+              or idea wins the one bonus for the session (a gift card), we send it to your email address{PRIVACY.playtestTremendous ? ', through Tremendous in the same way' : ''}.
+              {PRIVACY.playtestRetention
+                ? " If you agree in the sign-up form, our gameplay videos may use short clips of games you played in the test; they can show your in-game name and your drawings, never your voice. If you say no or don't answer, they won't."
+                : ''}
+              {PRIVACY.playtestRetention
+                ? " The rest of your sign-up, and of your survey, is deleted within a week after the test (Beta 2's by November 19, 2026; Beta 3's by December 1, 2026); before that, we may email you once to invite you to our next test. We don't keep a sign-up for a later test: when a later test gives earlier testers seats first, we tell from what you answer in its own sign-up form, the Beta Pin or tester title on your SpySocial account, or your tester role in our Discord server. If you tell us you don't want to hear about future tests, we keep your address only on a list of people we never email about them. To have your sign-up deleted sooner, reply to any of our emails about the test or write to support@spysocial.app; you then give up your seat."
+                : PRIVACY.playtestSurvey
+                ? " The rest of your sign-up, and of your survey, is deleted after the test; before that, we may email you once to invite you to our next test. If you tell us you don't want to hear about future tests, we keep your address only on a list of people we never email about them."
+                : ' The rest of your sign-up is deleted after the test.'}
               {PRIVACY.coverage1110 &&
-                " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026), even if you delete your account first."}
+                " If you get a seat, our servers also keep you on that test's list of testers: your seat, the name and Discord name you gave, your phone's platform, a coded (hashed) copy of each email address you gave us (in the form, for Google Play and for PayPal; never the addresses themselves) and, if we link it by hand, your account. Only our developer sees the list, in our console, with each tester's progress (such as their practice grades, Play Online games, app version and when they were last active), to help testers and run the test. The list is deleted within a week after the test (Beta 2's on November 19, 2026" + (PRIVACY.playtestSurvey ? "; Beta 3's by December 1, 2026" : '') + "), even if you delete your account first."}
+              {/* LIVE.testerOnboard (legal-coverage-1119, STAGED OFF): app repo feat/tester-onboarding-1117 (tester-onboard + 20261231999830). */}
+              {PRIVACY.testerOnboard &&
+                " For a test that sets testers up automatically, when you sign up (with the sign-up form, signed in with your Google account, or with our Discord server's /beta-code command) and tell us you're 18 or older, our servers keep your sign-up: your email address, the name and phone platform you gave, the email address of your Google account for Google Play, your Discord name as you typed it, and what we did for you. They then set you up at once: for iPhone, we give Apple your email address and first name, and Apple emails you its TestFlight invite; for Android, we add your Google account's email address to the Google group that is the app's list of testers in Google Play; for the browser version, we put your email address on its list of invited players. We email you how to install it through Resend, with a one-time code: if you type that code in our Discord server, we link your Discord account to your sign-up and give it the tester role. We don't keep a sign-up we turn down (for example from someone under 18). This sign-up is deleted with the rest of that test's sign-ups (Beta 3's by December 1, 2026), and we take you off Apple's, Google's and the browser's lists once the test is over."}
             </>
           )}{' '}
+          {PRIVACY.launchTesterMail &&
+            "On the day version 2.2 comes out, we send one email, through Resend, to the email address of each saved account that tested it before the launch (only accounts whose birth year makes them an adult, and none under a ban), to say it's out and what the account received for testing. Reply \"stop\" to it, or to any later email like it, and we won't send you news like this again; we keep the address of everyone who asked us to stop, only so that we never send them such news again. "}
           Otherwise, a test version is the same app, and this policy applies to it.
         </Item>
         <Item label="Rate Limits">
           To stop floods, guessing at room codes and other abuse, our servers note when an account does certain things
-          (such as sending a message, joining or trying to join a room, poking a player, or saving its avatar or title),
-          without what was said. Notes about joining rooms are deleted after 24 hours and the others after 2 days, even if
+          (such as sending a message, joining or trying to join a room, poking a player, or saving its avatar or title{PRIVACY.heavyReads ? ", or asking our servers for Home, the Locker, the pack lists or the Black Market's lists many times a minute" : ''}),
+          without what was said.{PRIVACY.heavyReads ? " When an account is turned away for asking for those lists too often, SpySocial's developer gets one alert that day naming the first account turned away, so he can check it; nothing else happens to the account by itself." : ''} Notes about joining rooms are deleted after 24 hours and the others after 2 days, even if
           the account is deleted first. To limit account emails, when you sign up, save a guest account,
-          {PRIVACY.passwordless ? ' ask for a sign-in code' : ' ask for a new confirmation link, reset your password'} or
+          {PRIVACY.passwordless ? ' ask for a sign-in code' : PRIVACY.emailCodes22 ? ' ask for a new confirmation link or reset your password in a version of the app before 2.2,' : ' ask for a new confirmation link, reset your password'} or
           change your email address, our servers keep a record of each email
           they send: a coded form of the email address and of your network (your IP address, or for IPv6 its first
           half), made with a secret key, the kind of email and when, never the address or the IP address itself. Under
@@ -664,7 +771,9 @@ const Privacy: React.FC = () => {
             ' To stop rapid-fire follows and friend requests, our servers also use the times in the social safety log (see Safety Information) to slow an account down for a few seconds, and when an account reaches the daily limit for follows or for friend requests, they count how many times that day it was turned away (the account, which limit, the day and the count), for our team to spot spam. These counts aren\'t shown to any player, don\'t change anything on their own, and are deleted after 90 days.'}
           {PRIVACY.passwordless
             ? ' Sign-in codes are made and checked by our sign-in service (Supabase Auth): a code has 6 digits, works only once and for 1 hour, and a new one can be asked for after a minute; the service keeps only a coded form of the code, never the code itself.'
-            : ''}
+            : PRIVACY.emailCodes22
+              ? " From version 2.2, the app signs you in, saves a guest account and checks it's you before Delete Account with a one-time code we email you, instead of a password (older versions still use a password). These codes are made, sent (through Resend) and checked by our sign-in service (Supabase Auth): a code has 6 digits, works only once and for 1 hour, and a new one can be asked for after a minute; the service keeps only a coded form of the code, never the code itself."
+              : ''}
         </Item>
         <Item label="Safety Information">
           Reports you make or that are made about you, players you block (and when you unblock someone, which counts for 24 hours so a player can't be blocked and unblocked over and over{PRIVACY.retentionSweep ? ' and is then deleted' : ', and is deleted the next time you unblock someone or with your account'}), removals from rooms, and any warnings,
@@ -690,28 +799,37 @@ const Privacy: React.FC = () => {
           keep reports. For each player who reports, our moderators can see how many of their reports led to action
           and how many were dismissed. We work this out from the reports we already keep, use it only to review
           reports and to find players who might help us moderate, and never show it to other players.
+          {/* PRIVACY.appU61: the Settings row and the moderators' view of the tier are in update 61 of the app (reputation-1110). */}
+          {PRIVACY.reputation &&
+            ` We also work out a reputation for each account (Excellent, Good, Poor, At Risk or Banned) from what we already keep: how old the account is, its level and games played, and its moderation record (warnings, mutes, pauses and bans; reports about it and whether they led to action; drawing check results; messages our chat filter stopped; and Play Online penalties such as leaving games)${PRIVACY.reputationHoldCap ? ', and whether a fair-play hold is on the account (see below)' : ''}${PRIVACY.safetyFacts1114 ? ", and whether a community moderator's safety hold is on it" : ''}. It isn't a profile of you and uses nothing else; buying a membership or anything else never changes it. ${PRIVACY.reputationHoldCap ? "While a fair-play hold is on your account, your reputation can't rise and shows at most Good, and your drawings are checked as often as those of a lower tier. Nothing is taken off for the hold itself, and once the hold ends your reputation is worked out again as if there had been no hold. " : ''}${PRIVACY.safetyFacts1114 ? "A community moderator's 24-hour safety hold (see Data Sharing) takes nothing off your reputation unless SpySocial's developer upholds the report, but while it runs, every drawing turn of yours that's checked gets the more detailed check. " : ''}${PRIVACY.appU61 ? 'You see your tier in Settings; the score itself is seen only by our team, and moderators see the tier and the main reasons behind it when they review a report about you.' : 'The score itself is seen only by our team.'} We use it to decide how often your drawings are checked automatically (more often for new accounts and lower tiers) and, at Banned, to stop online play, trading and the Black Market (see our Terms). Older notes count less and stop counting after 90 days. We keep your current tier and the reasons behind it with your account, and a short history of tier changes for as long as we keep reports; both are deleted with your account. When our chat filter stops a message you send, we keep a count for that day of how many it stopped and what kind (blocked words, a link, a zero-tolerance word), never the message itself; these counts are deleted after 90 days.`}
           {PRIVACY.groomingFlag &&
             ` We automatically flag possible grooming language in rooms with minors for human review: ${PRIVACY.groomingScope ? "in any room or game where anyone else, watchers included, is under 18 or hasn't told us their age, our servers check the messages written there by adults and by players who haven't told us their age (such as guests)" : "in any room or game where anyone, watchers included, is under 18 or hasn't told us their age, our servers check the messages adults write there"} for phrases that can be part of grooming (for example asking a younger player's age or school, asking them to keep secrets, to talk somewhere else, to meet up or to send photos, or offering gifts), and a message that has one is flagged for one of our team to review.${PRIVACY.groomingScope ? " So that this still works after a younger player leaves, our servers also note which messages were sent while someone else there was under 18 or hadn't told us their age: only the message's ID, kept on our servers and never shown to any player, for as long as we keep the message itself." : ''} A flag doesn't block, hide or change the message, isn't shown to any player and isn't a report to anyone; we decide what to do, as with a report.${PRIVACY.childSafetyHolds ? " We do the same for party chat when someone else in the party is under 18 or hasn't told us their age. Explicit sexual talk is refused at public tables and in any room or party with a player under 18 or one who hasn't told us their age. With such a player there, lines that could be sexual but may be innocent are refused too, and those are never flagged. When an adult or a player who hasn't told us their age writes an explicit line with such a player there, the refused words are flagged too, though nobody else ever saw them. A flag keeps which message it was, what kind of phrase it had, and a copy of the message and the chat just before it, in a child-safety case or with a report from that room, for as long as we keep reports, so that a person can still read it after the chat schedule (see Chat Messages above) has deleted the message itself." : " A flag keeps only which message it was and what kind of phrase it had, with the player's report case, for as long as we keep reports. The message itself is still deleted on the chat schedule (see Chat Messages above)."}`}
           {PRIVACY.socialFeatures &&
             " For friends and parties, our servers keep a social safety log (who sent or accepted a friend request and how it was made, follows, blocks, invites and changes to your Privacy & Friends choices) and check it for patterns that can be part of grooming: an adult adding several players under 16 with Friend Codes, an adult whose private games keep producing new friendships with players under 18, or many invites from an adult to players under 18. A match is flagged for one of our team to review, as with a report; it isn't shown to any player and doesn't change anything on its own. To keep public tables fair, we also look at the games parties play (when games end, when spies guess, and reports of teaming up) for signs of cheating together, and keep what we find with the case. A report about a friend, a request, a profile, an invite or a party includes our servers' own record of it (for a party, every member and the games it played)."}
           {PRIVACY.trading &&
-            " We also check trades for signs of real-money trading, account theft and grooming (for example a lopsided trade between an adult and a player under 18, or many gifts to one account). A flagged trade is reviewed by one of our team; the flag isn't shown to any player and doesn't change anything on its own."}
+            " We also check trades for signs of real-money trading, account theft and grooming (for example a lopsided trade between an adult and a player under 18, or many gifts to one account). A flagged trade is reviewed by one of our team; the flag isn't shown to any player and doesn't change anything on its own." + (PRIVACY.tradeMinorSafety ? " A trade between an adult and a player under 18 that is lopsided either way, or a third trade between the same two within 30 days, is handled as a child-safety case: SpySocial's developer is alerted and reviews it first." : '')}
           {PRIVACY.blackMarket &&
             " We check the Black Market in the same way, for example for sales between accounts that use the same phone or network, items sold back to their seller, prices far from an item's usual price, and offers placed and stopped over and over; what the checks flag is reviewed by one of our team, isn't shown to any player and doesn't change anything on its own. If the market's own records don't add up, it pauses by itself until we've checked them."}
           {PRIVACY.intercepts &&
             " To keep rewards fair, our servers also look for signs of farming, bots and scripted play, games thrown on purpose and several accounts run by one person, using records we already keep (games and their results, rewards, trades and sales, reports, and the coded device and network notes described under Device Information and IP Address)." + (PRIVACY.integrityProbes ? " Our servers also note when an account sends them a request that our app never makes, which can be a sign of a modified app or a script: which account, what kind of request, the day and how many times, nothing else." : '') + " Some signs add to a score for the account that only our team sees; others only alert our team and change nothing for the account. From December 8, 2026, while one of our team checks a strong sign, the app may hold an account's new rewards for up to 72 hours (an Intercept shows \"Verifying\" and stays sealed), and longer only while a case about it is open; you can ask for a review there. A hold never becomes a penalty by itself: a person decides. If signs like these point to a group of accounts, SpySocial's developer may pause trading on all of them together for up to 30 days, after reading who is in the group. Nothing does this by itself, we record it for each account as we keep moderation records, and it can be undone account by account. If a reward's odds or an item's count ever look broken, that reward pauses for everyone until we've checked it."}
         </Item>
         {PRIVACY.drawingCheck && (
-          <Item label="Drawing Checks">
+          <Item label="Drawing Checks" id="drawing-checks">
             In public rooms (Play Online tables and Game Nights), drawing turns in a Spy Sketch game go through an
             automated check by OpenAI for content that breaks our Community Rules, and some are also checked by a
-            second, more detailed OpenAI model. In any room, a drawing is checked by both when someone reports it. If
+            second, more detailed OpenAI model.
+            {PRIVACY.drawingMinorRooms &&
+              ` The same checks also run on a player's drawing in a private room when anyone else who can see it there (members, players in the game and watchers) is under 18 or hasn't told us their age, unless that player has told us they're under 18 (a player who hasn't told us their age is checked too)${PRIVACY.safetyFacts1114 ? '; this includes turns drawn before such a player joined or started watching, which are checked when they arrive' : ''}. A drawing by a player who's told us they're under 18 is never sent from a private room this way${PRIVACY.safetyFacts1114 ? ', and their lines are left out of the earlier drawing in light grey that the second check gets' : ''}. These checks have their own share of each day's drawing-check budget; once it's used up, drawings in those rooms still get our free basic automated check, but the more detailed OpenAI check stops for the rest of that day (UTC); a report still sends one to a person. There, the app doesn't wait for you to agree before you draw. ${PRIVACY.safetyFacts1114 ? "In such a room, a drawing found to be sexual, by these checks or after a report, is taken off the board for everyone at once. It, and any other drawing found against our rules there, goes to one of our team, who decides what happens next; only the most serious (as in any room) is acted on by itself. When a turn was drawn over lines by a player under 18, which the check doesn't see, one of our team looks at it if the check finds anything wrong, and may look at it even if the check finds nothing." : 'A drawing these checks find against our rules in a private room goes to one of our team; only the most serious (as in any room) is acted on by itself.'}`}{' '}
+            In any room, a drawing is checked by both when someone reports it. If
             the checks can't run at that moment and still can't after a few more tries, that turn goes unchecked; a
             report of it still goes to a person, as every report does. The
             app tells you once, before your drawings can be checked, that they're sent to OpenAI, and in a room where
             turns are checked you draw only after you agree.
             {PRIVACY.sketchConsentRecord &&
-              " When you agree, the app also tells our servers, and we keep with your account that it agreed, to which version of the note and when, so that your answer counts on every device you use. It counts only for the account that agreed, never for another account signed in on the same device. Not Now isn't recorded. Our servers can use this record to seat only players who have agreed at public Spy Sketch tables (Play Online and Game Nights, alone or in a party); when they do, and someone in a party hasn't agreed yet, the app tells the party's leader which member it is."}{' '}
+              " When you agree, the app also tells our servers, and we keep with your account that it agreed, to which version of the note and when, so that your answer counts on every device you use. It counts only for the account that agreed, never for another account signed in on the same device. Not Now isn't recorded. Our servers can use this record to seat only players who have agreed at public Spy Sketch tables (Play Online and Game Nights, alone or in a party); when they do, and someone in a party hasn't agreed yet, the app tells the party's leader which member it is."}
+            {PRIVACY.sketchConsentRecord &&
+              PRIVACY.drawingCheckWithdraw &&
+              " You can withdraw your agreement at any time in the app's Settings, under Privacy & Safety, Drawing Checks. Our servers then count your account as not agreed, and the app asks you again before you draw in a public room (Play Online or a Game Night). Until you agree again, you can still play Spy Talk, and Spy Sketch in private rooms (where, as described here, a drawing can still be checked without asking). Withdrawing doesn't undo checks already made."}{' '}
             For the first check, our servers send OpenAI's
             moderation service a picture of the turn's own lines (and any lines the player drew and then undid), with
             nothing else. The second check gets a picture of the turn (the earlier drawing in light grey) with the
@@ -723,7 +841,7 @@ const Privacy: React.FC = () => {
             old it is, whether it's saved, and any strikes or upheld reports). We don't use this for anything else or
             show it to other players. If the second check can't give an answer, the first check's answer is used. Our
             servers never send your name, username, email address, chat or your
-            device's IP address.{PRIVACY.audit1103 ? " These checks run the same way at every age, players under 16 included (unlike translation, see Translations): they're how we keep drawings safe, and OpenAI never receives your age." : ''} According to OpenAI, it doesn't use what it receives to train
+            device's IP address.{PRIVACY.audit1103 ? ` These checks run the same way at every age${PRIVACY.drawingMinorRooms ? ' in public rooms and for reported drawings' : ''}, players under 16 included (unlike translation, see Translations): they're how we keep drawings safe, and OpenAI never receives your age.` : ''} According to OpenAI, it doesn't use what it receives to train
             its models, and keeps it for up to 30 days to watch for misuse, unless the law requires it to keep it
             longer. The check acts by itself: it can take a turn off the drawing for everyone in the game, give a
             strike (which can lead to a pause or a ban from public rooms and Game Nights), or remove a player from the game
@@ -745,11 +863,14 @@ const Privacy: React.FC = () => {
           We use your age only to apply age limits
           {PRIVACY.openAiTranslation ? (msOff ? ', to decide whether your messages may be sent to OpenAI to be translated (see Translations)' : ', to choose which service translates your messages (see Translations)') : ''}
           {PRIVACY.practiceAi ? ', to decide whether OpenAI may rate your practice lines (see Practice Games)' : ''}
-          {PRIVACY.safetyAnswers1106 ? ', to decide whether what you write may get the chat safety check (see Chat Safety Checks)' : ''} and
+          {PRIVACY.safetyAnswers1106 ? ', to decide whether what you write may get the chat safety check (see Chat Safety Checks)' : ''}
+          {PRIVACY.drawingMinorRooms ? ', to decide whether drawings in a private room are checked (see Drawing Checks)' : ''} and
           to protect players under 18.
           In any room{PRIVACY.safetyAnswers1106 ? ', game or party' : ' or game'} where anyone, watchers included, is under 18 or hasn't told us their age, its chats and
           typed questions and answers block links, email addresses, websites, phone numbers and social media accounts
           and handles{PRIVACY.safetyAnswers1106 ? ", and other personal details (a home address, asking or saying where someone lives, their school or their real name)" : ''}, for everyone there{PRIVACY.safetyAnswers1106 ? ", so a player under 18 can't share them or be asked for them. Public tables block them for everyone, whatever their age" : ''}.
+          {PRIVACY.safetyFacts1114 &&
+            " Messages sent in a room before such a player arrived that would be refused now (such as sexual talk, personal details or contact details) show as hidden to everyone there while that player is there; we keep them for reports, on the usual chat schedule."}
           {PRIVACY.groomingFlag &&
             (PRIVACY.groomingScope
               ? " Messages there that may be grooming, from adults or from players who haven't told us their age, are flagged automatically for one of our team to review (see Safety Information)."
@@ -767,7 +888,7 @@ const Privacy: React.FC = () => {
         {PRIVACY.purchases && (
           <Item label="Purchases">
             {PRIVACY.membershipsOnly
-              ? 'When you buy a membership in the app (Agent, the monthly Pack Pass; Elite, the yearly one; or Spymaster, Lifetime: the only things SpySocial sells; guests can buy too), Apple or Google handles the payment; we never see your payment details.'
+              ? 'When you buy a membership in the app (Agent, the Monthly Membership; Elite, the Yearly Membership; or Spymaster, Lifetime: the only things SpySocial sells; guests can buy too), Apple or Google handles the payment; we never see your payment details.'
               : 'When you buy something in the app, such as a pack, an avatar item or a membership (guests can buy too), Apple or Google handles the payment; we never see your payment details.'} To check and restore purchases, the app and our servers use RevenueCat, which
             receives an ID linked to your SpySocial account, what you bought, the store's transaction IDs, prices and
             dates, your device's IP address, platform, model, language settings and store country, and on iPhones the
@@ -777,6 +898,17 @@ const Privacy: React.FC = () => {
             for as long as you have an account; if you use Restore Purchases while signed in to another account, your
             purchases move to that account. The updates RevenueCat sends us about a purchase (such as a renewal or a
             refund) are deleted after 90 days.{' '}
+            {/* LIVE.helpMembershipSwitch (membership-switch-1117, server row 85 + app 62.15): the two-memberships warning reads these records. */}
+            {PRIVACY.helpMembershipSwitch
+              ? "We also use these records to tell you in the app when you're paying for two memberships at once (for example Lifetime and a monthly membership, or one on each store), and which one you need. "
+              : ''}
+            {/* LIVE.helpGooglePassStop (legal-coverage-1119; app server pass-cancel, public.pass_cancel_requests ON DELETE CASCADE). */}
+            {PRIVACY.helpGooglePassStop
+              ? "When you buy Lifetime, or tap Stop Google Play Renewal on that warning, and a monthly or yearly membership billed by Google Play would still renew beside the one you keep, our servers ask RevenueCat to stop that membership's renewal on Google Play (using the store's order ID, never a refund) and then read your purchases back from RevenueCat, so the app shows the change at once. We keep a record of each of these requests (which purchase, why, when and whether it worked) with your account, and delete it with your account. We never do this for a membership billed by the App Store. "
+              : ''}
+            {PRIVACY.memberLoyalty
+              ? "To show your member time (\"Member since\" and how long you've been a member, see our Terms of Service), we keep a record of each period your membership was active: when it started and ended, how it came (a monthly or yearly membership, Lifetime, a gift or a code), and whether it was refunded or a test purchase. We keep it for as long as you have an account and delete it with the account. It doesn't include the price you paid. "
+              : ''}
             {PRIVACY.revenueCatDeletion
               ? 'RevenueCat keeps its record of your purchases until you delete your account, and deletes it within 30 days after that.'
               : 'RevenueCat keeps its own record of your purchases until we ask it to delete it (see When you delete your account below).'}
@@ -801,6 +933,27 @@ const Privacy: React.FC = () => {
             badge on your profile and player card (see Data Sharing); your own purchases never count toward your share.
           </Item>
         )}
+        {PRIVACY.creatorInvites && (
+          <Item label="Accounts We Set Up for Creators">
+            When we work with a content creator, they (or someone acting for them, such as their manager) may give us
+            their email address and those of the people they play with, so that their SpySocial accounts are ready the
+            first time they sign in. We don't keep these addresses. For each one we keep a coded (hashed) copy, a hint of
+            it (its first two letters and its domain, such as "lm***@gmail.com"), the username and display name agreed
+            with them, and what the account should get (for example a membership, playing in the browser version, a
+            title or the creator's code). While an invite is open, no other player can take its username, a username
+            that looks like it, or its display name. When someone first signs up with that address through Apple or
+            Google, or confirms it with the code we email when they sign up, our servers set the account up at once{PRIVACY.safetyFacts1114 ? " if its birth year shows an adult; until the account gives its birth year, the invite waits and sets it up the moment the birth year shows an adult, and an account under 18 is never set up from an invite" : ''}. If
+            the address turns up on an account any other way (for example a guest account saved with it, an email
+            address changed to it, or an Apple or Google sign-in added later), nothing happens by itself: our developer
+            checks with the creator first and then sets it up by hand. We record each step in our moderation records:
+            what was set up, the account's username and display name before it, and, when we wait, how many sign-in
+            sessions the account had, whether it had a password and whether it began as a guest. Only our developer sees
+            these records.{' '}
+            {PRIVACY.creatorInviteData
+              ? 'An invite nobody has used expires 60 days after we make or last change it, and the names it held are free again. We delete a removed or expired invite 90 days after it ends. Once an invite is used, we delete its coded email address and its hint 90 days later; what it set up stays with the account and is deleted with it. Our moderation records of each step are kept as long as we keep reports.'
+              : 'We keep each invite and its records as long as we keep reports, as a record of what we gave and why.'}
+          </Item>
+        )}
         {PRIVACY.notifications && (
           <Item label="Reminders and Notifications">
             When you tap Remind Me on a game night, we record it so the reminder reaches every device you play on;
@@ -820,10 +973,16 @@ const Privacy: React.FC = () => {
             {PRIVACY.communityPacks &&
               ` If you send a pack to Community Packs, we also use that push address to tell you when we approve or turn it down (with the pack's name and our reason)${PRIVACY.helpTruth1105 ? "; a player under 18 gets it only between 7 AM and 10 PM local time, and not at all while we don't know their time zone" : ''}.`}{' '}
             {PRIVACY.socialFeatures
-              ? "Apart from that and the notifications in Social Notifications above, the only other push notifications we send go to our moderators' phones when a new report comes in, a report is waiting past its time or our safety checks flag something, and to SpySocial's developer's phone when our fair-play, economy or email checks need him."
-              : "Apart from that, the only other push notifications we send go to our moderators' phones when a new report comes in."} They pass through Expo's push service and Apple's or Google's, and say
-            only what kind of report it is and its case number, never a player's name or what was said. The developer's own alerts say what kind
-            of alert it is and its counts, and one about trades can name the account it's about.
+              ? "Apart from that and the notifications in Social Notifications above, the only other push notifications we send go to our moderators' phones when a new report comes in, a report is waiting past its time or our safety checks flag something, and to SpySocial's developer's phone when our fair-play, economy or email checks need him. If none of his phones can get these alerts, the same words go to his own email address instead, through Resend."
+              : "Apart from that, the only other push notifications we send go to our moderators' phones when a new report comes in."}
+            {PRIVACY.modCoverHold
+              ? " A community moderator's phone also gets one when a safety report SpySocial's developer hasn't opened for 15 minutes needs a hold; it says only that a safety case needs a hold, with nothing about the report or the case: not which report, its kind or case number, who is in it or what was said."
+              : ''}{' '}
+            {/* legal-flips-check-1114: with modCoverHold on, the next sentence says it covers the other report notifications, so it can't be read as contradicting the hold notification above. */}
+            {PRIVACY.modCoverHold
+              ? "All of these pass through Expo's push service and Apple's or Google's. Every other report notification says only what kind of report it is and its case number, never a player's name or what was said."
+              : "They pass through Expo's push service and Apple's or Google's, and say only what kind of report it is and its case number, never a player's name or what was said."} The developer's own alerts say what kind
+            of alert it is and its counts{PRIVACY.coverage1116 ? ", and some can name the accounts or the room they're about (by username, or the start of an account's or a room's ID), for example a trade our checks flagged, an account whose rewards our fair-play checks are holding, or the account that used most of a day's drawing checks, so that he can look at it." : ", and one about trades can name the account it's about."}
             {PRIVACY.fcmAutoInit
               ? `${from22 ? ' From version 2.2, on' : ' On'} Android, when the app starts, it registers with Google's Firebase Cloud Messaging (the service that delivers push notifications on Android). Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device, and gives the app a push address. We receive that address only when you allow notifications, as described above.`
               : " On Android, the push address comes from Google's Firebase Cloud Messaging (the service that delivers push notifications on Android), which the app contacts only to get one. Google then receives a random ID for the app's installation, which isn't linked to your account, and technical details about the app and your device."}
@@ -838,14 +997,19 @@ const Privacy: React.FC = () => {
             which isn't linked to your account or to the install code described under Device Information, and which we
             use to count how many installations a problem reached. Reports don't include your name, email
             address, account or messages. A report is also sent when the app freezes (stops responding for a few
-            seconds), with the same details; the app sends nothing to Sentry while everything works. Sentry
-            receives your device's IP address when a report arrives but is set not to store it
+            seconds), with the same details. {from22 ? 'From version 2.2, the' : 'The'} app also sends Sentry a small note
+            each time it opens (and each time you come back to it from the background; in a browser, each time you open
+            the page), so we can work out what share of app starts end without a crash and tell whether an update
+            crashes more than the one before it. The note says when the app started, how long it ran, whether it ended
+            normally, with an error or in a crash, the app's version and the update it runs, and the same random ID as a
+            crash report. It has no name, email address, account, chat messages or drawings, and nothing about what you
+            do in the app. Sentry receives your device's IP address when a report or one of these notes arrives but is set not to store it
             {PRIVACY.crashReportLocation
               ? '. Before it drops the address, Sentry uses it to estimate an approximate location (country, region and city), which it keeps with the report. Sentry deletes reports'
               : ', and deletes reports'}{' '}
-            within 90 days.
+            within 90 days (these notes too).
             {PRIVACY.browserLegal
-              ? ' A report from the browser version names your browser, its version and your operating system instead of the device details, and carries no installation ID.'
+              ? ' A report from the browser version names your browser, its version and your operating system instead of the device details, and carries no installation ID; its notes carry no ID either, and name your browser the way the browser itself does (its user-agent line).'
               : ''}
           </Item>
         )}
@@ -893,11 +1057,13 @@ const Privacy: React.FC = () => {
             The browser version keeps your sign-in and your choices on that computer (such as your language and the
             tips you've seen) in your browser's storage, and while you're signed in, some game data so it loads
             quickly (such as recent room codes and, once you play, other players' avatars). Signing out removes your sign-in and that
-            game data from the browser; your choices stay until you clear the browser's data. It uses no cookies, and
+            game data from the browser; your choices stay until you clear the browser's data. {PRIVACY.coverage1116 ? "The game itself uses no cookies (Vercel's security check can set one, see Vercel below)" : 'It uses no cookies'}, and
             we don't use your browser's storage for advertising or tracking. While playing in the browser version is
             invite-only, we keep a list of the players we've invited to play in it (the email address or account we
             invited, with a short note), use it only to let them play there, and delete it once playing in a browser
             opens to everyone.
+            {PRIVACY.siteStorage1115 &&
+              " Our website (spysocial.app, with its Archive and Market pages) shows itself in the language named in the link you opened, the language you picked on it before, or else the first of your browser's preferred languages that it offers. It keeps the language and the light or dark look you pick in your browser's storage, and, for that visit only, short technical notes (such as whether a page already tried to open the app, or to reload after it failed to load). They stay on your device: the website doesn't send them to us, and we don't use them for advertising or tracking."}
           </Item>
         )}
         <Item label="IP Address">
@@ -957,57 +1123,61 @@ const Privacy: React.FC = () => {
       {/* LIVE.launchReminder: the reminder form on /hello (src/hello/strings.ts has this text in each language). */}
       {PRIVACY.launchReminder && <LaunchReminderSection />}
 
-      <H2>How We Use Your Information</H2>
+      <H2 id="how-we-use-your-information">How We Use Your Information</H2>
       <P>We use your information to:</P>
       <Bullets>
-        <ListItem>Create and manage your account</ListItem>
-        {PRIVACY.launchReminder && <ListItem>Send the one launch email you asked for</ListItem>}
-        <ListItem>Enable multiplayer game functionality, chat and translation</ListItem>
-        {PRIVACY.purchases && <ListItem>Provide and restore what you buy</ListItem>}
+        <li>Create and manage your account</li>
+        {PRIVACY.launchReminder && <li>Send the one launch email you asked for</li>}
+        {PRIVACY.launchTesterMail && <li>Tell the players who tested version 2.2 by email that it's out and what they received for testing</li>}
+        <li>Enable multiplayer game functionality, chat and translation</li>
+        {PRIVACY.purchases && <li>Provide and restore what you buy</li>}
         {PRIVACY.creatorCodes && (
-          <ListItem>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</ListItem>
+          <li>Give you the rewards of the codes you enter, and credit and pay the content creators whose codes players enter</li>
+        )}
+        {PRIVACY.creatorInvites && (
+          <li>Set up the accounts of content creators we work with, and of the people they play with, before they first sign in</li>
         )}
         {PRIVACY.intel && (
-          <ListItem>
+          <li>
             {PRIVACY.intercepts ? 'Give you Intel and your daily streak' : 'Give you Intel, your daily streak and the items you unlock with Intel'}
-          </ListItem>
+          </li>
         )}
-        {PRIVACY.intercepts && <ListItem>Give you Intercepts and the items in them</ListItem>}
+        {PRIVACY.intercepts && <li>Give you Intercepts and the items in them</li>}
         {PRIVACY.customPacks && (
-          <ListItem>
+          <li>
             Keep your custom packs and check their text{PRIVACY.packAutoTranslate ? ', translate them into the languages the app offers' : ''}{PRIVACY.communityPacks ? ', review Community Packs (with an AI model\'s notes for our team first) and show them, count their ratings and adds, and give creators their titles' : ''}
             {PRIVACY.featuredPacks ? (PRIVACY.packAutoTranslate ? ', and play the packs we feature' : ', and translate and play the packs we feature') : ''}
-          </ListItem>
+          </li>
         )}
         {(PRIVACY.ranked || PRIVACY.tournaments) && (
-          <ListItem>
+          <li>
             Run {PRIVACY.ranked ? 'Ranked and its leaderboards' : ''}
             {PRIVACY.ranked && PRIVACY.tournaments ? ', and ' : ''}
             {PRIVACY.tournaments ? 'tournaments, their standings and Tournament Tokens' : ''}
-          </ListItem>
+          </li>
         )}
         {PRIVACY.notifications && (
-          <ListItem>Remind you of the game nights you asked about, tell you when a Play Online match is found, and send the other notifications you allow</ListItem>
+          <li>Remind you of the game nights you asked about, tell you when a Play Online match is found, and send the other notifications you allow</li>
         )}
         {PRIVACY.socialFeatures && (
-          <ListItem>Run friends, follows, profiles, parties and party chat, and send the social notifications you allow</ListItem>
+          <li>Run friends, follows, profiles, parties and party chat, and send the social notifications you allow</li>
         )}
-        {PRIVACY.trading && <ListItem>Run trades between friends: their limits, protection and reversals, and the codes we email for big trades</ListItem>}
-        {PRIVACY.blackMarket && <ListItem>Run the Black Market: offers, listings, sales, their fees and protection</ListItem>}
-        <ListItem>Improve and optimize the app experience</ListItem>
-        {PRIVACY.practiceAi && <ListItem>Rate the lines you type in practice games (with OpenAI, if you agree)</ListItem>}
-        {PRIVACY.spybots && <ListItem>Test the game with the AI players our developer plays with, and improve them</ListItem>}
-        <ListItem>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</ListItem>
-        <ListItem>Analyze usage patterns to enhance game design and user experience</ListItem>
-        <ListItem>Protect against fraudulent or unauthorized activity</ListItem>
-        {PRIVACY.audit1103 && <ListItem>Help you when you write to us about your account, for example a lost email address or a stolen account</ListItem>}
-        <ListItem>
+        {PRIVACY.trading && <li>Run trades between friends: their limits, protection and reversals, and the codes we email for big trades</li>}
+        {PRIVACY.blackMarket && <li>Run the Black Market: offers, listings, sales, their fees and protection</li>}
+        <li>Improve and optimize the app experience</li>
+        {PRIVACY.practiceAi && <li>Rate the lines you type in practice games (with OpenAI, if you agree)</li>}
+        {PRIVACY.spybots && <li>Test the game with the AI players our developer plays with, and improve them</li>}
+        <li>Troubleshoot issues{PRIVACY.crashReports ? ', fix crashes' : ''} and provide support</li>
+        <li>Analyze usage patterns to enhance game design and user experience</li>
+        <li>Protect against fraudulent or unauthorized activity</li>
+        {PRIVACY.audit1103 && <li>Help you when you write to us about your account, for example a lost email address or a stolen account</li>}
+        <li>
           Keep players safe: review reports{PRIVACY.drawingCheck ? ', check drawings' : ''}, apply age limits, protect
           players under 18, and enforce our Terms of Service and Community Rules
-        </ListItem>
+        </li>
       </Bullets>
 
-      <H2>Legal Basis for Processing</H2>
+      <H2 id="legal-basis">Legal Basis for Processing</H2>
       <P>Where the law asks for one (for example in the European Economic Area and the UK), we rely on:</P>
       <Bullets>
         <Item label="Performance of Contract">
@@ -1039,7 +1209,8 @@ const Privacy: React.FC = () => {
           {PRIVACY.banTombstone ? ', keeping banned, paused and muted players from coming back on a new account' : ''}, age
           limits and the protections for players under 18), protect accounts and prevent abuse
           (security logs{PRIVACY.ipVault ? ', and the encrypted IP addresses of new accounts and sign-ins, for safety, fraud and legal requests' : ''}), keep the app working{PRIVACY.crashReports ? ' (crash reports)' : ''}, and improve it (usage
-          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}.
+          events{PRIVACY.spybots ? ', and testing the game with our AI players' : ''}){PRIVACY.creatorCodes ? ', and credit and pay the content creators whose codes players enter (creator codes)' : ''}{PRIVACY.creatorInvites ? ', and set up the accounts of content creators we work with, and of the people they play with, when they ask us to (creator invites)' : ''}
+          {PRIVACY.launchTesterMail ? ', and tell the adults who tested version 2.2 that it\'s out (you can reply "stop")' : ''}.
           You can object to this processing at any time by emailing <SupportEmail />.
         </Item>
         <Item label="Consent">
@@ -1049,14 +1220,14 @@ const Privacy: React.FC = () => {
           {PRIVACY.qrScanner ? ', the camera' : ''}). You can withdraw it at any time in your device's settings
           {PRIVACY.browserLegal ? " (in the browser version, in your browser's settings for the site)" : ''}.
           {PRIVACY.audit1103 ? " Also for sending your messages to OpenAI to be translated, which you can change with the app's own choices." : ''}
-          {PRIVACY.practiceAi ? ' Also for sending your practice lines to OpenAI to be rated (see Practice Games).' : ''}
+          {PRIVACY.practiceAi ? " Also for sending your practice lines to OpenAI to be rated (see Practice Games), which you can turn off in the app's Settings." : ''}
         </Item>
         <Item label="Legal Obligations">
           To comply with the law, for example to answer lawful requests and to report child sexual exploitation.
         </Item>
       </Bullets>
 
-      <H2>Data Retention</H2>
+      <H2 id="data-retention">Data Retention</H2>
       <P>
         We keep your account information for as long as you have an account. Records of games (moves, votes, roles and
         results) have no end date: we don't delete them on a schedule, and they stay after an account is deleted (see below).
@@ -1071,23 +1242,28 @@ const Privacy: React.FC = () => {
           ? ' Play Online searches are kept for 30 days after they end, and Play Online breaks and its matchmaking log for 90 days.'
           : ''}
         {PRIVACY.drawingCheck
-          ? ' The results of drawing checks are kept for 90 days. A drawing taken off or reported is kept as evidence for 90 days, or longer while its report is still open. A drawing we must report as child sexual exploitation is kept for 1 year after we report it to NCMEC, as US law requires, in restricted storage, and shared with no one except the authorities.'
+          ? ' The results of drawing checks are kept for 90 days. A drawing taken off or reported is kept as evidence for 90 days, or longer while its report is still open. A drawing we must report as child sexual exploitation is kept for 1 year after we report it to NCMEC, as US law requires, in restricted storage, and shared with no one except the authorities.' + (PRIVACY.safetyFacts1114 ? ' A drawing that is part of a child-safety case is kept for at least 1 year from when the case opened, even once the case is closed.' : '')
           : ''}
         {PRIVACY.drawingCheck && PRIVACY.sketchConsentRecord
-          ? " The record that an account agreed to the drawing check's note is kept until the account is deleted."
+          ? PRIVACY.drawingCheckWithdraw
+            ? " The record that an account agreed to the drawing check's note (which version, and when), and when it withdrew that agreement if it did, is kept until the account is deleted."
+            : " The record that an account agreed to the drawing check's note is kept until the account is deleted."
           : ''}{' '}
         When we report child sexual exploitation to NCMEC, we keep what we reported (such as the messages, drawings or
         packs involved and the account details in the report) for at least 1 year after the report, as US law requires,
         in restricted storage, shared with no one except the authorities, even if the account is deleted.{' '}
+        {PRIVACY.tradeWatchEvidence &&
+          "A copy of a trade flagged for a case, or between an adult and a player under 18, is kept for at least 1 year (see Trades); after that we keep it only while a case, a report or a legal request still needs it, and then delete it. "}
         {PRIVACY.childSafetyHolds &&
           "If an account that is part of a child-safety case is deleted before we've finished with the case, we first keep a restricted copy of the case, the account's email address, names, sign-in dates and the IP addresses in our sign-in log, its messages still on our servers and its encrypted IP addresses, for 1 year, or longer if the authorities ask us to. "}
         Usage events are kept
         for 180 days
         {PRIVACY.scheduledRetention
-          ? `, and security logs (such as sign-ups, sign-ins, ${PRIVACY.passwordless ? 'sign-in codes sent' : 'password resets'} and email changes, which can include your email address and IP address) for 180 days.`
+          ? `, and security logs (such as sign-ups, sign-ins, ${PRIVACY.passwordless ? 'sign-in codes sent' : PRIVACY.emailCodes22 ? 'sign-in codes sent, password resets' : 'password resets'} and email changes, which can include your email address and IP address) for 180 days.`
           : '.'}{' '}
         Rate-limit notes are deleted after 2 days, notes about joining rooms after 24 hours, and the coded records of
         account emails and sign-up requests {PRIVACY.retentionSweep ? 'after a day' : 'after a day of no use, the next time a request clears them'}.
+        {PRIVACY.unconfirmedSignups ? ' An email sign-up that is never confirmed is deleted about 24 hours after the last confirmation email we sent for it.' : ''}
         {PRIVACY.socialLimits ? ' Counts of daily limits reached for follows and friend requests are deleted after 90 days.' : ''}
         {PRIVACY.intel
           ? PRIVACY.intelLedger
@@ -1096,7 +1272,7 @@ const Privacy: React.FC = () => {
           : ''}
         {PRIVACY.intercepts ? ' Your Intercepts and what they gave you are kept for as long as you have an account.' : ''}
         {PRIVACY.mintedCollectibles
-          ? ' The public ledger\'s entries are kept for good, so that it can always be checked; when you delete your account we delete its secret and remove your account from your copies\' records, so the holder codes on them no longer point at anyone.'
+          ? (PRIVACY.ledgerUniquesOnly ? ' The public ledger\'s entries (Uniques only) are kept for good, so that it can always be checked; when you delete your account we delete its secret and remove your account from your copies\' records, so the holder codes on them no longer point at anyone.' : ' The public ledger\'s entries are kept for good, so that it can always be checked; when you delete your account we delete its secret and remove your account from your copies\' records, so the holder codes on them no longer point at anyone.')
           : ''}
         {PRIVACY.customPacks
           ? ` Your custom packs${PRIVACY.communityPacks ? ', your ratings and the Community Packs you added' : ''} are kept until you delete them or your account.${PRIVACY.communityPacks ? ' The record of a pack\'s review, and reports about a pack (with the pack as it was), are kept as long as we keep reports.' : ''}`
@@ -1106,6 +1282,11 @@ const Privacy: React.FC = () => {
         {PRIVACY.creatorCodes
           ? " The codes you entered stay with your account for as long as you have it. The purchases credited to a content creator are kept for as long as we need them to pay the creator and keep our accounting records (up to 7 years after the creator's agreement ends)."
           : ''}
+        {PRIVACY.creatorInviteData
+          ? ' Creator invites: an unused invite expires after 60 days; a removed or expired one is deleted 90 days after it ends; a used one keeps its coded email address and hint for 90 days, and the rest is deleted with the account.'
+          : PRIVACY.creatorInvites
+            ? ' Creator invites (the coded copy of an email address, its hint and what the invite set up) are kept as long as we keep reports.'
+            : ''}
         {PRIVACY.trading
           ? " Trades and their steps are kept for good, like the Intel ledger, with no link to you once you delete your account; a code we email for a big trade stops working after 10 minutes."
           : ''}
@@ -1124,6 +1305,9 @@ const Privacy: React.FC = () => {
         {PRIVACY.audit1103
           ? ' Emails waiting in our account mail queue are kept for 30 days (the address and any code are removed once sent), coded copies of ban-notice codes stop working after 30 minutes and are deleted 2 days later, and push receipt numbers are deleted after about 2 days' + (PRIVACY.retentionSweep ? '' : ', the next time we send a push') + '. The record of what we did for you in Account Support is kept as long as we keep reports.'
           : ''}
+        {PRIVACY.retentionSweep
+          ? " When these short-lived records are deleted (notes about leaving rooms and unblocking, the coded email and sign-up records, room-creation notes, push receipts, notices waiting or sent, daily Practice rating counts and the notes that we sent a trade code), we keep only a count of how many there were each day, which doesn't identify anyone."
+          : ''}
         {PRIVACY.banTombstone
           ? ' Records of sanctions on deleted accounts: 12 months after the sanction would have ended (or after its 90-day warning period); for a permanent ban, 12 months after the account was deleted (3 years for a ban for child safety), and again from each later attempt to sign up with one of its sign-ins.'
           : ''}
@@ -1141,8 +1325,8 @@ const Privacy: React.FC = () => {
       </P>
       <Text textStyle="body" color="ss.text" fontWeight="500">When you delete your account</Text>
       <P>
-        You can delete your account in the app at any time (Account, then Settings, then Delete Account; signing out of a guest
-        account deletes it), or ask us to delete it (see{' '}
+        You can delete your account in the app at any time (Account, then Settings, then Delete Account; a guest
+        deletes their account the same way, with Settings &gt; Delete Account), or ask us to delete it (see{' '}
         <ChakraLink as={Link} to="/delete-account">Delete Your Account</ChakraLink>).
         We then delete your account and the personal data linked to it: {deletedSummary()}.{deletedAlso()} Some
         information stays for a while:
@@ -1150,7 +1334,7 @@ const Privacy: React.FC = () => {
       <AfterDeletionList />
       <AfterDeletionLaw />
 
-      <H2>Third-Party Service Providers</H2>
+      <H2 id="third-party-service-providers">Third-Party Service Providers</H2>
       <P>We use the following service providers to help deliver our services:</P>
       <Bullets>
         <Item label="Supabase">
@@ -1230,7 +1414,7 @@ const Privacy: React.FC = () => {
           <Item label="RevenueCat">(https://www.revenuecat.com) Checks and restores purchases made through Apple and Google.</Item>
         )}
         {PRIVACY.crashReports && (
-          <Item label="Sentry">(Functional Software, Inc., https://sentry.io) Receives crash and error reports.</Item>
+          <Item label="Sentry">(Functional Software, Inc., https://sentry.io) Receives crash and error reports, and a small note each time the app opens (for our crash-free rate).</Item>
         )}
         <Item label="Apple and Google">
           Speech recognition when you use the microphone (they may receive the recording
@@ -1246,15 +1430,17 @@ const Privacy: React.FC = () => {
         {PRIVACY.resendAccountEmail && (
           <Item label="Resend">
             (Plus Five Five, Inc., https://resend.com) Sends our account emails, such as
-            {PRIVACY.passwordless ? ' sign-in codes' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
-            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', and the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}, so it receives the email addresses and the emails it delivers.
+            {PRIVACY.passwordless ? ' sign-in codes' : PRIVACY.emailCodes22 ? ' sign-in codes, sign-up confirmations and password resets' : ' sign-up confirmations and password resets'}, and the emails for agreements signed on our website (the signed agreement and its audit
+            trail){PRIVACY.trading ? `, the codes we email you for big trades` : ''}{PRIVACY.playtestPayPal ? `, the emails about a live playtest's seats` : ''}{PRIVACY.launchReminder ? ', the one launch reminder email' : ''}{PRIVACY.launchTesterMail ? ', the email telling the players who tested version 2.2 that it\'s out' : ''}{PRIVACY.accountNotices ? `, the notice when an account is banned (its reference, reason and, unless the decision is final, how to appeal, in the account's language) with any code you ask for to read it in the app, and the note to an account's old address when we change its email at your request (that address and any code are removed from our records once sent)` : ''}{PRIVACY.intelCorrections ? ', the copy of each Intel correction sent to our own support inbox (the username of the account it affects, the amounts and the record\'s fingerprint)' : ''}{PRIVACY.testerOnboard ? ', the welcome email with how to install a test version' : ''}, and the developer's own alerts when none of his phones can get them (the same words as the push, see Reminders and Notifications), so it receives the email addresses and the emails it delivers.
           </Item>
         )}
         <Item label="Vercel">
-          (https://vercel.com) Hosts our website, spysocial.app,
+          (https://vercel.com) Hosts our website, spysocial.app{PRIVACY.coverage1116 ? ' (with its Archive and Market pages)' : ''},
           {PRIVACY.browserLegal
             ? ' and the browser version of the game, play.spysocial.app, and receives the IP address of their visitors.'
             : ' and receives the IP address of its visitors.'}
+          {PRIVACY.coverage1116 &&
+            " Its firewall checks the requests that reach these sites, to protect them from attacks and automated traffic. It can ask a browser to pass a short automatic check before a page opens; a browser that passes gets a short-lived cookie from Vercel that only shows it passed. We don't use Vercel's analytics."}
         </Item>
         {PRIVACY.merchShop && (
           <Item label="Fourthwall">
@@ -1288,12 +1474,12 @@ const Privacy: React.FC = () => {
         {PRIVACY.crashReports ? ', Sentry' : ''}
         {PRIVACY.resendAccountEmail ? ', Resend' : ''} and Vercel process it for us under contracts that bind them to protect it
         at least as well as this policy does. Apple, Google{usesMyMemory ? ', Translated (MyMemory)' : ''}, ImprovMX and
-        testing services such as BetaTesting{PRIVACY.playtestPayPal ? ', and PayPal (for playtest payments),' : ''} handle what they receive under their own terms and privacy policies.
+        testing services such as BetaTesting{PRIVACY.playtestPayPal ? (PRIVACY.playtestTremendous ? ', and PayPal and Tremendous (for playtest thank-yous),' : ', and PayPal (for playtest payments),') : ''} handle what they receive under their own terms and privacy policies.
       </P>
 
       {PRIVACY.merchShop && (
         <>
-          <H2>Merch Shop</H2>
+          <H2 id="merch-shop">Merch Shop</H2>
           <P>
             SpySocial merch is sold and fulfilled by Fourthwall (Fourthwall, Inc.), which runs our shop at{' '}
             <ShopLink /> for us. To take and ship your order, Fourthwall processes your order data: your name,
@@ -1320,14 +1506,14 @@ const Privacy: React.FC = () => {
         </>
       )}
 
-      <H2>Data Storage and Security</H2>
+      <H2 id="data-storage-and-security">Data Storage and Security</H2>
       <P>
         Your data is stored in our Supabase database with appropriate security measures in place. We implement
         reasonable security practices including encryption, access controls, and regular security reviews to protect
         your information from unauthorized access or disclosure.
       </P>
 
-      <H2>International Transfers</H2>
+      <H2 id="international-transfers">International Transfers</H2>
       <P>
         Your information is stored and processed in the United States, where our servers and most of our service
         providers are, and may be processed in other countries where our providers work. When we transfer personal
@@ -1337,7 +1523,7 @@ const Privacy: React.FC = () => {
         and Swiss extensions where the provider is certified under them.
       </P>
 
-      <H2>Data Sharing</H2>
+      <H2 id="data-sharing">Data Sharing</H2>
       <P>
         We do not sell your personal information or share it for targeted advertising. At Play Online tables and game
         nights (public play), other players see you as an agent named after your color (for example, "Agent Blue"),
@@ -1352,6 +1538,8 @@ const Privacy: React.FC = () => {
         membership (for example, the Spymaster title and its gold border) unless you choose another title and border,
         or None; a title or border that shows a membership is shown only to players who share a room with you or played
         a game with you in the last 24 hours, and with a room you host in the room list.
+        {PRIVACY.memberLoyalty &&
+          " While you're a member, how long you've been a member and its stamp are shown on your player sheet to the same players (in private rooms and at public tables), never the date it started or what you pay. This is on by default: other players see your membership length unless you turn off Show my membership time in Settings. An under-13 account's member time is never shown to other players."}
         {PRIVACY.creatorCodes &&
           " A content creator in our creator program shows a CONTENT CREATOR badge on their profile and player card to the players who share a private room with them or played a game in one with them in the last 24 hours; it isn't shown in public play. A title a creator code or a reward code gave you shows like any other title. We tell a content creator only totals for their code, never who entered it or what anyone bought."}
         {/* Agent Colours phase 2: get_my_game_view and get_watch_view send a pre-2.2 photo only to its owner at public tables. */}
@@ -1388,9 +1576,11 @@ const Privacy: React.FC = () => {
           ` A game night run by a stand-in host (a player who took over from the host who scheduled it) is listed, and named on its page, under that player's agent name${photosShown(PRIVACY) ? ', with no profile photo' : ''}.`}
         {PRIVACY.playOnline && ' Play Online shows only how many players are searching and playing, never who.'}
         {PRIVACY.blackMarket &&
-          " The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling."}
+          ` The Black Market shows every player who opens it an item's prices and quantities on offer and its past sales, and a listed Unique's number, colour and price, never who is buying or selling${PRIVACY.archiveHolders && PRIVACY.uniqueArchive ? (PRIVACY.archiveHoldersList
+                    ? " (the Archive does name a Unique's holder today, on its page and in its list of all Uniques, when their profile is public: see Collectibles and the public ledger)"
+                    : " (a Unique's page on the Archive does name its holder today when their profile is public: see Collectibles and the public ledger)") : ''}.`}
         {PRIVACY.marketSite &&
-          " Our website's Market (market.spysocial.app) shows anyone, without an account, totals worked out from Black Market trades: each item's price (an average of its recent trades), how it changed, how many times it was traded and how much Intel was spent on it, each day and over periods of up to 180 days. It shows a price only when at least five trades make it, and never a player, an offer or a single trade."}
+          ` Our website's Market (market.spysocial.app) shows anyone, without an account, totals worked out from Black Market trades: each item's price (${PRIVACY.marketMedian ? 'the middle, or median, of its recent trades' : 'an average of its recent trades'}), how it changed, how many times it was traded and how much Intel was spent on it, each day and over periods of up to 180 days. It shows a price only when at least five trades${PRIVACY.marketMedian ? ' between at least three different pairs of players' : ''} make it, and never a player, an offer or a single trade.`}
         {/* LIVE.socialFeatures (legalRelease). */}
         {PRIVACY.socialFeatures &&
           " Your friends see your display name, your agent and, if you allow it, whether you're online now. An adult's public profile (see Follows and Profiles above) can be opened by any player; a private profile, and the profile of any player under 18, can't be opened by other players. A party is marked at the table for everyone there, and its members see each other by display name."}
@@ -1403,6 +1593,12 @@ const Privacy: React.FC = () => {
         {/* LIVE.communityPacks: an approved pack is public (legalRelease). */}
         {PRIVACY.communityPacks &&
           " A custom pack you submit to Community Packs is shown to every player once we approve it, with your username as its creator (or Anonymous, if you chose that), its ratings and how many players added it (see Custom Packs and Community Packs above); never who rated or added it."}{' '}
+        {/* legal-coverage-1119: Terms 6 already says players can record a room; creators we work with record games for their videos (Levvis and friends on the browser version from Nov 24). */}
+        Other players can take screenshots of what they see in a room or record it, and some content creators we work
+        with record the games they play for their videos (for example on YouTube or TikTok). What the room shows them,
+        such as names as the room shows them, avatars, chat messages and drawings, can then appear in those videos,
+        which the creator publishes under their own platform's terms; we don't control them. If a video shows your
+        personal information, write to support@spysocial.app and we'll ask the creator to remove it.{' '}
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
         {/* LIVE.publicStats: get_public_stats / the public-stats function (legalRelease). */}
@@ -1419,12 +1615,19 @@ const Privacy: React.FC = () => {
           moderating. A community moderator sees only what a case they're handling needs: the report and what's
           attached to it (for example, the messages, questions, answers or drawings reported, and the chat of the game
           it came from), the usernames and public names of the players involved, how long their accounts have existed,
-          the player's earlier warnings and penalties, how many of the reporter's reports led to action, whether a
-          player under 18 is involved and, for fair-play cases, the game patterns behind the case.{PRIVACY.moderatorRoomActions ? ' With our permission, a community moderator may also watch a Game Night table while it plays (seeing what a watcher sees: the agents, chat and drawings at that table), and read the Community Packs waiting for review with their creator\'s username.' : ''} They never see your
+          the player's earlier warnings and penalties,{PRIVACY.coverage1116 && PRIVACY.reputation && PRIVACY.appU61 ? ' their reputation tier and the main reasons behind it,' : ''} how many of the reporter's reports led to action, whether a
+          player under 18 is involved and, for fair-play cases, the game patterns behind the case.{PRIVACY.coverage1116 && PRIVACY.modTranslate1106 ? ' For a report in another language, they also see a machine translation of what they may read in it (see Translations).' : ''}{PRIVACY.moderatorRoomActions ? ' With our permission, a community moderator may also watch a Game Night table while it plays (seeing what a watcher sees: the agents, chat and drawings at that table), and read the Community Packs waiting for review with their creator\'s username.' : ''} They never see your
           email address, sign-in details, IP address, payment details or your age. Cases involving a child's safety, self-harm
-          or threats{PRIVACY.safetyAnswers1106 ? ', and reports of personal info shared by or with a player under 18,' : ''} go to SpySocial's developer only, never to community moderators. We keep a record of every case a
+          or threats{PRIVACY.safetyAnswers1106 ? ', and reports of personal info shared by or with a player under 18,' : ''}{' '}
+          {PRIVACY.modCoverHold
+            ? "are decided by SpySocial's developer only. If he hasn't opened one about a child's safety, grooming, sexual content with a player under 18 involved, or self-harm within 15 minutes, community moderators see a limited view of it so they can protect players until he does: why it was reported, whether it happened at a public table (with its code), in a private room or in a party, and, only if their birth year shows the reported player is an adult, that player's username, public name and own messages as text (otherwise just how many messages). They never see who reported it, a reporter's note, a private room's code, any details about a player under 18, or any drawing. They can only pause the reported player from public rooms and mute their chat for 24 hours (never on a self-harm report), remove them from that room or party, or hide their messages; we record each step (who, what, when and why), SpySocial's developer reviews and can undo each one, and only he decides the case or reports it to the authorities."
+            : "go to SpySocial's developer only, never to community moderators."}{' '}
+          We keep a record of every case a
           community moderator opens and every action they take (what they did, to whom, when and why), for as long as
-          we keep reports, and we can see and undo each one. We also keep, for each community moderator, that they are
+          we keep reports, and we can see and undo each one.
+          {PRIVACY.modGuard &&
+            " We also log each time a community moderator opens a case, a player's record, a safety hold's card or the list of packs waiting for review (who, what and when), and delete each entry after 1 year. If a community moderator takes an unusual number of actions in a short time, they can't take more until SpySocial's developer has checked, and he can undo them all at once. A community moderator never reviews a pack made by a friend or by another moderator."}{' '}
+          We also keep, for each community moderator, that they are
           one, what they may do, when they accepted the agreement and which version, and when their role started and
           ended.
         </P>
@@ -1437,7 +1640,7 @@ const Privacy: React.FC = () => {
 
       {PRIVACY.homeDiscord && (
         <>
-          <H2>Links to Other Services</H2>
+          <H2 id="links-to-other-services">Links to Other Services</H2>
           <P>
             The app and this website link to services we don't run, such as SpySocial's official Discord server (the app
             can show a link to it on Home, but never to players under 16) and our social media pages. Opening a link
@@ -1448,7 +1651,7 @@ const Privacy: React.FC = () => {
         </>
       )}
 
-      <H2>If SpySocial Changes Hands</H2>
+      <H2 id="if-spysocial-changes-hands">If SpySocial Changes Hands</H2>
       <P>
         {LLC_SINCE
           ? `On ${LLC_SINCE}, SpySocial moved to ${OPERATOR.name}, a company its owner controls, and your information moved with it under this privacy policy. SpySocial may move again to someone else who takes over SpySocial, such as a buyer.`
@@ -1459,15 +1662,15 @@ const Privacy: React.FC = () => {
         before or after a change.
       </P>
 
-      <H2>Your Rights</H2>
+      <H2 id="your-rights">Your Rights</H2>
       <P>Depending on your location, you may have the right to:</P>
       <Bullets>
-        <ListItem>Access the personal information we have about you</ListItem>
-        <ListItem>Correct inaccurate information</ListItem>
-        <ListItem>Delete your personal information</ListItem>
-        <ListItem>Object to or restrict certain processing of your data</ListItem>
-        <ListItem>Data portability (receiving your data in a usable format)</ListItem>
-        <ListItem>Withdraw consent where processing is based on consent</ListItem>
+        <li>Access the personal information we have about you</li>
+        <li>Correct inaccurate information</li>
+        <li>Delete your personal information</li>
+        <li>Object to or restrict certain processing of your data</li>
+        <li>Data portability (receiving your data in a usable format)</li>
+        <li>Withdraw consent where processing is based on consent</li>
       </Bullets>
       <P>
         To exercise these rights, please contact us at <SupportEmail />. So we know a request is really yours, please
@@ -1480,9 +1683,13 @@ const Privacy: React.FC = () => {
           {PRIVACY.dataRights
             ? `We email a copy of the personal data linked to your account, in a machine-readable file (JSON), to the email address on your account: your account and sign-in details, profile, settings and the answers you gave the app, your games, stats and rewards, the chat messages we still keep, purchases, trades, friends, follows${PRIVACY.exportTesters ? ", the problem reports you sent us (with any practice game you included), your entry on a beta tester list if you're on one" : ''} and the other records we keep about your account. Other players appear in it only as "another player". `
             : 'We send a copy of the personal data linked to your account, in a machine-readable file, to the email address on your account. Other players appear in it only as "another player". '}
+          {PRIVACY.reputationExport &&
+            "Your reputation is in it: your tier, why it is at that tier, when it changed and the chat filter's daily counts. Its exact score and the points behind it aren't, so that nobody can work out how to game our safety checks. Whether there are open reports about you and our team's notes are left out too. "}
           To protect other people and keep SpySocial safe, it doesn't include reports others made about you or who made
           them, who blocked you, the records and score of our fair-play and safety checks, the encrypted IP addresses
-          described above{PRIVACY.exportTesters ? ', one-time codes, or the coded copies (hashes) of the email addresses you gave us to join a beta test' : ', or one-time codes'}; the copy lists what it leaves out and why.
+          described above{PRIVACY.exportOthersAge ? ", one-time codes, the coded copies (hashes) of the email addresses you gave us to join a beta test, whether another player in a trade, a party chat or a report you sent was under 18 or hadn't told us their age, or the server-only copies of test-phase records we'll keep from the December 7, 2026 reset (they hold many players' records together, so ask us and we'll send you what they hold about your account)" : PRIVACY.exportTesters ? ', one-time codes, or the coded copies (hashes) of the email addresses you gave us to join a beta test' : ', or one-time codes'}; the copy lists what it leaves out and why.
+          {PRIVACY.creatorInviteData &&
+            ' If a creator invite was set up on your account, matched to it, or made for an email address you proved, the copy includes it (the names it gives, the hint of its email address, what it gives and when), but not the coded copy of the address.'}
         </Item>
         <Item label="Correcting your data">
           You can change your display name in the app at any time
@@ -1504,11 +1711,12 @@ const Privacy: React.FC = () => {
           Tell us which use you object to. We stop it unless we have compelling legitimate grounds that override your
           interests, such as keeping players safe and preventing fraud and cheating, or we need it to establish,
           exercise or defend legal claims. You can withdraw consent at any time: for your device's permissions in your
-          device's settings, and for translation by OpenAI with the app's own choices.
+          device's settings, and for translation by OpenAI with the app's own choices
+          {PRIVACY.practiceAi ? ", and for rating your practice lines by OpenAI with Rate My Practice Lines with AI in the app's Settings" : ''}.
         </Item>
         <Item label="Guest accounts">
           A guest account has no email address, so we can't confirm by email that a request is yours. A guest can
-          delete their account at any time by signing out; to get a copy or a correction, first save the account with
+          delete their account at any time with Settings &gt; Delete Account in the app; to get a copy or a correction, first save the account with
           an email address in the app.
         </Item>
         <Item label="Checking that it's you">
@@ -1526,7 +1734,7 @@ const Privacy: React.FC = () => {
         )}
       </Bullets>
 
-      <H2>California Privacy Rights</H2>
+      <H2 id="california-privacy-rights">California Privacy Rights</H2>
       <P>
         If you are a California resident, the California Consumer Privacy Act (CCPA), as amended by the California
         Privacy Rights Act, gives you the right to know what personal information we collect, use and disclose (this
@@ -1544,14 +1752,14 @@ const Privacy: React.FC = () => {
         keep it secure, never to infer anything about you.
       </P>
 
-      <H2>European Economic Area (EEA) and UK Users</H2>
+      <H2 id="eea-and-uk-users">European Economic Area (EEA) and UK Users</H2>
       <P>
         If you are in the EEA or the UK, you have rights under the General Data Protection Regulation (GDPR) or the UK
         GDPR. In addition to the rights listed above, you have the right to lodge a complaint with your local data
         protection authority.
       </P>
 
-      <H2>Children's Privacy</H2>
+      <H2 id="childrens-privacy">Children's Privacy</H2>
       <P>
         SpySocial is for players 13 and older.{' '}
         {PRIVACY.ageGateEveryone &&
@@ -1572,7 +1780,7 @@ const Privacy: React.FC = () => {
         If you're the parent or guardian of a player under 18, you can ask us to delete your child's account, to
         correct its birth year, or for a copy of its data (see Your Rights). Email <SupportEmail /> with your child's
         username. So that we never act on a stranger's request, we confirm it with the email address on the account
-        (or, for a guest account, which has none, we explain how to delete it in the app by signing out), and for a
+        (or, for a guest account, which has none, we explain how to delete it in the app with Settings &gt; Delete Account), and for a
         copy of the data we may also ask you to show that you're the child's parent or guardian. We reply within one
         month. A request to delete the account of a child under 13 is always granted. A copy never includes other
         players' data.
@@ -1595,21 +1803,21 @@ const Privacy: React.FC = () => {
         and the game never picks one by itself while a player under 18 is in the room or game.{PRIVACY.homeDiscord ? " Players under 16 never see the app's link to our Discord server, and players 16 and 17 see a note on staying safe before it opens (on iPhone" + (PRIVACY.membershipWords1105 ? ' and iPad' : '') + ", no player under 18 sees it for now)." : ''}
       </P>
 
-      <H2>Do Not Track Signals</H2>
+      <H2 id="do-not-track">Do Not Track Signals</H2>
       <P>
         Some browsers have a "Do Not Track" feature that signals websites not to track your online activity. We
         currently do not respond to Do Not Track signals, as there is not yet a common understanding of how to
         interpret these signals.
       </P>
 
-      <H2>Changes to This Privacy Policy</H2>
+      <H2 id="changes">Changes to This Privacy Policy</H2>
       <P>
         We may update this privacy policy from time to time. We will notify you of any changes by posting the new
         privacy policy on this page and updating the "Last Updated" date. For significant changes, we may also provide
         additional notice, such as an in-app notification.
       </P>
 
-      <H2>Contact Us</H2>
+      <H2 id="contact-us">Contact Us</H2>
       <P>
         If you have any questions about this privacy policy or our data practices, please contact us at <SupportEmail />
         {OPERATOR.name && OPERATOR.address ? `, or write to ${OPERATOR.name}, ${OPERATOR.address}` : ''}

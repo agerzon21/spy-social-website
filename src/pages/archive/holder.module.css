@@ -1,0 +1,31 @@
+/*
+ * A Unique's holder today in its status box (archive-holder-1110): "Held by @name" (a link to the profile) or
+ * "Held privately". Its own file so the Archive's shared sheet (archive.module.css) stays as it is.
+ */
+.line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  margin: 2px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--ss-line);
+  font: 600 16px/1.35 var(--ss-font-body);
+  color: var(--ss-body);
+}
+.label { color: var(--ss-muted); }
+.handle {
+  font-weight: 800;
+  color: var(--ss-link);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  overflow-wrap: anywhere;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.handle:hover { color: var(--ss-text); }
+.handle:focus-visible { outline: 2px solid var(--ss-focus); outline-offset: 3px; border-bottom-color: transparent; }
+.private { color: var(--ss-muted); font-style: italic; }
+/* Held: the pill's "Held by" and the handle on one line (they wrap under each other on a narrow phone). */
+.top { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; min-width: 0; }
+.big { font-size: 20px; line-height: 1.1; }

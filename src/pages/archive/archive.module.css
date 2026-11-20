@@ -6,6 +6,9 @@
 
 .page {
   flex: 1;
+  /* The footer starts below the fold (site-qa-1113): a page that grows when its data arrives never pulls it into view
+     and pushes it out again (most of the layout shift on a Market item page). */
+  min-height: 100vh;
   padding-bottom: 72px;
   background:
     radial-gradient(80% 520px at 50% -60px, var(--ss-glow), transparent 70%),
@@ -40,8 +43,24 @@
 
 /* ---- the hero ---- */
 .hero { position: relative; padding-block: 34px 10px; overflow: clip; }
-.heroGrid { display: grid; gap: 28px; align-items: center; }
+.heroGrid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: center; } /* one column on a phone, never wider than the page (a long Russian title word widened it at 360; archive-empty-1115) */
 .heroTitle { margin: 0; font-size: clamp(56px, 15vw, 132px) !important; }
+/* Russian's long title word (УНИКАЛЬНЫЙ) fits a 360 phone whole, a size down there (archive-empty-1115). */
+:global(html[lang='ru']) .heroTitle { font-size: clamp(46px, 13.8vw, 132px) !important; }
+/* The two-column hero (900 px and up): its column is 0.535 x (page - 72 px) wide, 600 px at most. A language whose
+   longest title word (dot included) is wider than about 3 x the font size gets a size that keeps that word whole
+   (--hero-word: the word's width over the font size, measured live). Before, at 132 px, Russian broke "УНИКАЛЬ / НЫЙ"
+   at 900-1920, and Spanish / Portuguese "REGISTRA / DO.", French "CONSIGNÉ.", Indonesian "TERCATAT." at 900-1024
+   (site-qa-1115). English and the rest stay at 132 px. The Archive's hero only, not the Market's. */
+:global(html[lang='ru']) .hero { --hero-word: 6.35; }
+:global(html:is([lang='es'], [lang='pt-BR'])) .hero { --hero-word: 4.9; }
+:global(html[lang='fr']) .hero { --hero-word: 4.1; }
+:global(html[lang='id']) .hero { --hero-word: 3.75; }
+@media (min-width: 900px) {
+  .hero .heroGrid .heroTitle {
+    font-size: min(132px, calc((53.5vw - 38.5px) / var(--hero-word, 3)), calc(600px / var(--hero-word, 3))) !important;
+  }
+}
 .mark { color: var(--ss-accent-text); }
 .lede { margin: 18px 0 0; max-width: 34em; font-size: clamp(17px, 4.4vw, 20px); line-height: 1.55; color: var(--ss-muted); }
 .ctaRow { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
@@ -117,6 +136,16 @@
 }
 .piece img { display: block; width: 100%; height: auto; aspect-ratio: 1; background: var(--ss-deep); }
 .piecePlain { background: linear-gradient(135deg, #f7d670, #8a5e12 45%, #f7d670 70%, #8a5e12); animation: none; }
+/* A copy not drawn yet (unique-look-1115): its own colour on a plain card in its foil rim, never its plain Legendary. */
+.pending {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  padding: 12%;
+  background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--copy, #8e99ae) 58%, transparent), transparent 68%), var(--ss-deep);
+  text-align: center;
+}
+.pendingText { font: 700 14px/1.3 var(--ss-font-body); letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 255, 255, 0.82); text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7); }
 
 /* ---- stats ---- */
 .stats {
@@ -131,7 +160,9 @@
 .stat:nth-child(3) { border-inline-start: 0; border-top: var(--ss-hairline) solid var(--ss-line); }
 .stat:nth-child(4) { border-top: var(--ss-hairline) solid var(--ss-line); }
 .statValue { margin: 0; font: 900 clamp(40px, 11vw, 64px)/0.9 var(--ss-font-display); color: var(--ss-text); font-variant-numeric: tabular-nums; }
-.statLabel { margin-top: 8px; font: 600 12px/1.3 var(--ss-font-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ss-muted); }
+.statLabel { margin-top: 8px; font: 600 14px/1.3 var(--ss-font-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ss-muted); overflow-wrap: normal; hyphens: auto; }
+/* Long words (Russian) on a phone: a little less tracking so a word breaks at a hyphen, never mid-letter. */
+@media (max-width: 420px) { .statLabel { letter-spacing: 0.06em; } }
 @media (min-width: 760px) {
   .stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .stat:nth-child(3), .stat:nth-child(4) { border-top: 0; }
@@ -163,18 +194,21 @@
   border: var(--ss-hairline) solid var(--ss-line-strong);
   background: linear-gradient(180deg, var(--ss-surface-strong), transparent);
 }
-.floatLabel { font: 600 12px/1 var(--ss-font-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ss-highlight); }
+.floatLabel { font: 600 14px/1.35 var(--ss-font-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ss-highlight); }
+.floatBase { display: inline-block; }
 .floatDigits {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
   gap: 2px;
   margin-top: 12px;
-  font: 800 clamp(30px, 8.6vw, 60px)/1 var(--ss-font-display);
+  font: 800 clamp(20px, 6.6vw, 60px)/1 var(--ss-font-display);
   font-variant-numeric: tabular-nums;
   color: var(--ss-subtle);
   direction: ltr;
 }
+/* The digits stay on one line (they read as one number); the readout is sized to fit a 320 px phone. */
+.floatDigits { flex-wrap: nowrap; }
 .floatDigits .lead { color: var(--ss-muted); margin-inline-end: 2px; }
 .d { position: relative; display: inline-block; min-width: 0.55em; text-align: center; color: var(--ss-muted); }
 .d1, .d2, .d3, .d4 { color: var(--ss-text); }
@@ -184,7 +218,7 @@
   left: 50%;
   bottom: -18px;
   transform: translateX(-50%);
-  font: 700 11px/1 var(--ss-font-body);
+  font: 700 14px/1 var(--ss-font-body);
   letter-spacing: 0.06em;
   color: var(--ss-on-accent);
   background: var(--ss-accent);
@@ -201,7 +235,7 @@
 .digitCard:nth-child(2) { border-color: var(--ss-highlight); }
 .digitCard:nth-child(3) { border-color: var(--ss-text); }
 .digitCard:nth-child(4) { border-color: var(--ss-line-strong); }
-.digitN { font: 700 12px/1 var(--ss-font-body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ss-muted); }
+.digitN { font: 700 14px/1 var(--ss-font-body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ss-muted); }
 .digitWhat { margin: 8px 0 6px; font: 900 28px/0.95 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); }
 .digitCard p { margin: 0; font-size: 15px; line-height: 1.5; color: var(--ss-body); }
 
@@ -211,7 +245,7 @@
 .tenRow {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(112px, 1fr);
+  grid-auto-columns: minmax(96px, 1fr);
   gap: 10px;
   overflow-x: auto;
   padding-bottom: 8px;
@@ -220,22 +254,31 @@
 }
 .tenCell { scroll-snap-align: start; min-width: 0; }
 .tenCell img { display: block; width: 100%; aspect-ratio: 1; border: var(--ss-hairline) solid var(--ss-line-strong); }
-.tenDigit { display: flex; align-items: center; gap: 6px; margin-top: 8px; font: 700 13px/1.2 var(--ss-font-body); color: var(--ss-text); }
+.tenDigit { display: flex; align-items: center; gap: 6px; margin-top: 8px; font: 700 14px/1.2 var(--ss-font-body); color: var(--ss-text); }
 .tenDigit b { display: inline-grid; place-items: center; min-width: 22px; height: 22px; background: var(--ss-accent); color: var(--ss-on-accent); font: 800 14px/1 var(--ss-font-display); }
 .tenDigit .sw { width: 14px; height: 14px; flex: none; border: 1px solid rgba(255, 255, 255, 0.4); }
+/* A long colour or breed name wraps inside its own tile (hyphenated where the language allows), never into the next one (site-qa-1113). */
+.tenDigit span:not(.sw) { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
 
 /* The float scale: 0 to 1 in ten bands, the real copies as marks. */
 .scale { margin-top: 38px; }
-.scaleBar { position: relative; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); height: 64px; margin-top: 46px; border: var(--ss-hairline) solid var(--ss-line-strong); }
+.scaleBar { direction: ltr; position: relative; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); height: 64px; margin-top: 46px; border: var(--ss-hairline) solid var(--ss-line-strong); }
 .band { position: relative; border-inline-end: 1px solid var(--ss-line); background: linear-gradient(180deg, var(--ss-surface-strong), transparent); }
 .band:nth-child(odd) { background: linear-gradient(180deg, var(--ss-surface-hover), transparent); }
-.band span { position: absolute; left: 4px; bottom: 4px; right: 2px; font: 600 10px/1.1 var(--ss-font-body); color: var(--ss-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.tick { position: absolute; top: -8px; transform: translateX(-50%); font: 700 11px/1 var(--ss-font-body); color: var(--ss-muted); direction: ltr; }
-.tick { top: auto; bottom: -18px; }
+.band span { position: absolute; left: 4px; bottom: 4px; right: 2px; font: 600 14px/1.1 var(--ss-font-body); color: var(--ss-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; unicode-bidi: plaintext; text-align: left; }
+/* A breed name too long for its band (Russian "Серебристая полосатая") takes a second line instead of an ellipsis (site-qa-1113). */
+.band .bandName { white-space: normal; overflow-wrap: anywhere; hyphens: auto; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; } /* type floor: a third line for the bigger names (ru "Серебристая полосатая" at 1024) */
+/* Too narrow for the breed names (they'd be a row of ellipses): each band shows its digit, as the rows above do. */
+.band .bandDigit { display: none; font: 800 14px/1 var(--ss-font-display); text-align: center; right: 4px; }
+@media (max-width: 899px) { .band .bandName { display: none; } .band .bandDigit { display: block; } }
+.tick { position: absolute; top: -8px; transform: translateX(-50%); font: 700 14px/1 var(--ss-font-body); color: var(--ss-muted); direction: ltr; }
+.tick { top: auto; bottom: -24px; } /* type floor: room under the bar for the bigger numbers */
 .pin { position: absolute; top: -40px; width: 30px; transform: translateX(-50%); text-decoration: none; }
-.pin img { display: block; width: 30px; height: 30px; border: 2px solid var(--ss-accent); background: var(--ss-deep); }
+/* object-fit (seo-1117, Lighthouse image-aspect-ratio): the copies' pictures are about 3:4, drawn squashed into the square. */
+.pin img { display: block; width: 30px; height: 30px; object-fit: contain; border: 2px solid var(--ss-accent); background: var(--ss-deep); }
+.pinPending { display: block; width: 30px; height: 30px; border: 2px solid var(--ss-accent); background: var(--ss-deep); }
 .pin::after { content: ''; position: absolute; left: 50%; top: 32px; width: 2px; height: 40px; background: var(--ss-accent); transform: translateX(-50%); }
-.scaleNote { margin: 30px 0 0; font-size: 14px; color: var(--ss-muted); }
+.scaleNote { margin: 38px 0 0; font-size: 14px; color: var(--ss-muted); }
 
 /* ---- sources ---- */
 .sources { display: grid; gap: 14px; margin-top: 28px; }
@@ -245,13 +288,15 @@
 .source p { margin: 0; color: var(--ss-body); line-height: 1.55; }
 .odds { display: flex; height: 14px; margin: 18px 0 8px; border: 1px solid var(--ss-line-strong); }
 .odds i { display: block; height: 100%; }
-.oddsKey { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ss-muted); }
+.oddsKey { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; color: var(--ss-muted); }
 .oddsKey span { display: inline-flex; align-items: center; gap: 6px; }
 .oddsKey i { display: inline-block; width: 10px; height: 10px; }
 .tradeUp { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
 .tradeGrid { display: grid; grid-template-columns: repeat(5, 18px); gap: 3px; }
 .tradeGrid i { width: 18px; height: 18px; background: linear-gradient(135deg, #f7d670, #8a5e12); border: 1px solid #000; }
 .tradeArrow { font: 900 26px/1 var(--ss-font-display); color: var(--ss-accent-text); }
+/* Right to left (Arabic) the ten Legendaries sit on the right, so the arrow points left to the Unique (site-qa-1113). */
+:global([dir='rtl']) .tradeArrow { display: inline-block; transform: scaleX(-1); }
 .tradeOne { width: 46px; height: 46px; padding: 2px; background: var(--foil); animation: foilTurn 9s linear infinite; }
 .tradeOne i { display: block; width: 100%; height: 100%; background: var(--ss-deep); }
 
@@ -266,9 +311,13 @@
 .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 22px 0 0; padding: 0; list-style: none; }
 @media (min-width: 640px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; } }
 @media (min-width: 1000px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.card { position: relative; display: flex; flex-direction: column; min-width: 0; color: inherit; text-decoration: none; background: var(--ss-deep); border: var(--ss-hairline) solid var(--ss-line); transition: transform 0.2s ease, border-color 0.2s ease; }
+.card { position: relative; display: flex; flex-direction: column; height: 100%; min-width: 0; color: inherit; text-decoration: none; background: var(--ss-deep); border: var(--ss-hairline) solid var(--ss-line); transition: transform 0.2s ease, border-color 0.2s ease; }
 .card:hover { transform: translateY(-3px); border-color: var(--ss-line-strong); }
-.card:focus-visible { outline: 2px solid var(--ss-focus); outline-offset: 3px; }
+/* The card is one link (its name's, stretched over the whole card); the holder's @name sits above it (z-index). */
+.cardLink { color: inherit; text-decoration: none; }
+.cardLink::after { content: ''; position: absolute; inset: 0; z-index: 1; }
+.cardLink:focus-visible { outline: none; }
+.cardLink:focus-visible::after { outline: 2px solid var(--ss-focus); outline-offset: 3px; }
 .cardArt { position: relative; }
 .cardSerial {
   position: absolute;
@@ -283,22 +332,119 @@
   direction: ltr;
 }
 .cardBody { display: flex; flex-direction: column; gap: 3px; padding: 11px 12px 12px; min-width: 0; flex: 1; }
-.cardName { margin: 0; font: 800 22px/1 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); overflow-wrap: anywhere; }
-.cardCode { margin: 0; font-size: 14px; color: var(--ss-highlight); font-style: italic; overflow-wrap: anywhere; }
-.cardSet { margin: 0; font-size: 12px; color: var(--ss-muted); letter-spacing: 0.04em; }
-.cardFoot { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--ss-line); font-size: 13px; color: var(--ss-muted); }
+/* Codenames break between words only (archive-codename-wrap-1119): never at any letter; Russian hyphenates at a syllable;
+   a single word that still cannot fit breaks only as the last resort (the font is never shrunk). */
+.cardName { margin: 0; font: 800 22px/1 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); overflow-wrap: break-word; word-break: normal; }
+/* The site's Russian paragraph rule (index.css) hyphenates only words of 10+ letters so the brand never splits; a codename
+   word is often 8-9 (ОНИКСОВАЯ), so the card name asks for 6 with 3 on each side. */
+:global(html[lang='ru']) .cardName { hyphens: auto; -webkit-hyphens: auto; hyphenate-limit-chars: 6 3 3; }
+/* The Legendary a Unique was minted from, under its own name (unique-look-1115). */
+.cardBase { margin: 0; font-size: 14px; color: var(--ss-highlight); overflow-wrap: anywhere; }
+.cardSet { margin: 0; font-size: 14px; color: var(--ss-muted); letter-spacing: 0.04em; }
+.cardFoot { display: flex; align-items: baseline; justify-content: space-between; gap: 6px; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--ss-line); font-size: 14px; color: var(--ss-muted); }
 .cardFoot b { font: 800 20px/1 var(--ss-font-display); color: var(--ss-text); font-variant-numeric: tabular-nums; }
 .forSale b { color: var(--ss-accent-text); }
-.swDot { display: inline-block; width: 10px; height: 10px; margin-inline-end: 6px; border: 1px solid rgba(255, 255, 255, 0.35); vertical-align: -1px; }
+/*
+ * The copy's colour (its digit-2 swatch), bottom-right on its picture: the number's partner across the corner. Physical
+ * right in every language: the number (direction ltr) and the gem stay on the left in Arabic too.
+ */
+.cardColour {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 23px;
+  height: 23px;
+  border: 1.5px solid #0a0a0a;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.4);
+}
+/*
+ * The set line: the season's mark (BETA, S1) as a small stamp, then the set. A set name too long for the rest of the line
+ * goes under the stamp, whole (site-qa-1116: «Перехваты», «Intercepciones» ended in "…" on 320 px phones).
+ */
+.cardSet { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 7px; min-width: 0; }
+.setMark {
+  flex: none;
+  padding: 2px 5px 1px;
+  border: 1px solid currentColor;
+  color: var(--ss-highlight);
+  font: 800 14px/1.1 var(--ss-font-display);
+  letter-spacing: 0.1em;
+}
+.setName { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+/*
+ * The launch set's seal (archive-origins-1119, the app's look 43C "Seal", components/kit/SetBadge): a red wax seal
+ * holding "S1" (the kit's redFill #d12d3a, its redInk #ad202c rim, a fine cream ring pressed inside the edge), the set's
+ * word beside it in the line's own ink. The app's sizes at the site's 14 px type floor: a card's seal 30 px (the app's
+ * 22 pt with its 10 pt words), a Unique's page 34 px (the app's 26 pt sheet seal). The seal never changes size or
+ * shape; only the word beside it may take a second line (es, fr at a syllable; id), never cut.
+ */
+.origins { display: inline-flex; align-items: center; gap: 8px; min-width: 0; max-width: 100%; vertical-align: middle; }
+.seal {
+  position: relative;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #d12d3a;
+  border: 2px solid #ad202c;
+  box-sizing: border-box;
+  color: #fefaea;
+  font: 900 14px/1 var(--ss-font-body);
+  letter-spacing: 0;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.seal::before { content: ''; position: absolute; inset: 2px; border-radius: 50%; border: 1px solid rgba(254, 250, 234, 0.45); }
+.originsWord {
+  min-width: 0;
+  color: var(--ss-text);
+  font: 800 14px/1.2 var(--ss-font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.originsPage { gap: 9px; }
+.originsPage .seal { width: 34px; height: 34px; font-size: 15px; }
+.originsPage .seal::before { inset: 2.5px; }
+.originsPage .originsWord { letter-spacing: inherit; }
+/* Held by @name: the name a link of its own to the holder's profile, cut short with an ellipsis on a narrow card. */
+.heldBy { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 5px; min-width: 0; } /* type floor: at 14 px a name takes its own line on a narrow card instead of being cut */
+.heldBy > span { flex: none; }
+.holder {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--ss-link);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+.holder:hover { color: var(--ss-text); }
+.holder:focus-visible { outline: 2px solid var(--ss-focus); outline-offset: 3px; border-bottom-color: transparent; }
+.heldPrivately { font-style: italic; }
 
 .headRow { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 20px; }
 .seeAll { font: 700 14px/1 var(--ss-font-body); color: var(--ss-link); text-decoration: none; border-bottom: 1px solid currentColor; }
+/* "Back" points the way the page reads: right in Arabic (site-qa-1113). */
+.backArrow { display: inline-block; }
+:global([dir='rtl']) .backArrow { transform: scaleX(-1); }
 
 /* ---- trust ---- */
 .trust { display: grid; gap: 18px; margin-top: 76px; padding: 26px 20px; border: var(--ss-hairline) solid var(--ss-line-strong); background: radial-gradient(70% 140% at 0 0, var(--ss-glow), transparent 70%); }
 @media (min-width: 800px) { .trust { grid-template-columns: 1.4fr 1fr; align-items: center; padding: 34px; } }
 .trust p { margin: 0; color: var(--ss-body); line-height: 1.6; }
 .trustLinks { display: flex; flex-wrap: wrap; gap: 10px; }
+/* On a phone the two buttons take the full width, one under the other, so a long label never wraps inside one. */
+@media (max-width: 559px) { .trustLinks > * { flex: 1 1 100%; } }
 
 /* ---- browse: the controls ---- */
 .controls { display: grid; gap: 12px; margin-top: 22px; }
@@ -333,7 +479,7 @@
 .filters { display: grid; gap: 12px; padding: 16px; border: var(--ss-hairline) solid var(--ss-line); background: var(--ss-surface); }
 @media (min-width: 760px) { .filters { grid-template-columns: repeat(4, minmax(0, 1fr)); align-items: end; } }
 .field { display: grid; gap: 6px; min-width: 0; }
-.fieldLabel { font: 700 12px/1 var(--ss-font-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ss-muted); }
+.fieldLabel { font: 700 14px/1 var(--ss-font-body); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ss-muted); }
 .priceRow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .countRow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin-top: 18px; font-size: 14px; color: var(--ss-muted); }
 .linkBtn { min-height: 36px; padding: 0; border: 0; background: none; color: var(--ss-link); font: 700 14px/1 var(--ss-font-body); text-decoration: underline; cursor: pointer; }
@@ -343,7 +489,7 @@
 .empty { margin-top: 30px; padding: 30px 16px; text-align: center; border: 1px dashed var(--ss-line-strong); color: var(--ss-muted); }
 
 /* ---- the item page ---- */
-.crumbs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 22px 0 0; list-style: none; font-size: 13px; color: var(--ss-muted); }
+.crumbs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 22px 0 0; list-style: none; font-size: 14px; color: var(--ss-muted); }
 .crumbs a { color: var(--ss-muted); text-decoration: none; border-bottom: 1px solid var(--ss-line); }
 .crumbs li + li::before { content: '/'; margin-inline-end: 6px; color: var(--ss-subtle); }
 .itemGrid { display: grid; gap: 28px; margin-top: 20px; }
@@ -360,12 +506,18 @@
 .stagePiece { position: relative; width: min(100%, 460px); margin-inline: auto; }
 .stagePiece .piece { padding: 5px; }
 .plinth { position: relative; margin: 14px auto 0; width: min(80%, 360px); height: 18px; background: radial-gradient(closest-side, rgba(0, 0, 0, 0.75), transparent); }
-.drawnLater { margin: 10px auto 0; max-width: 460px; text-align: center; font-size: 13px; color: var(--ss-muted); }
+.drawnLater { margin: 10px auto 0; max-width: 460px; text-align: center; font-size: 14px; color: var(--ss-muted); }
 
-.kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font: 700 12px/1.3 var(--ss-font-body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ss-highlight); }
+.kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font: 700 14px/1.3 var(--ss-font-body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ss-highlight); }
 .uniqueTag { padding: 4px 8px 3px; background: var(--foil); color: #0a0a0a; font-weight: 800; animation: foilTurn 9s linear infinite; }
-.itemTitle { margin: 12px 0 0; font: 900 clamp(54px, 15vw, 104px)/0.86 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); overflow-wrap: anywhere; }
-.codename { margin: 10px 0 0; font: italic 600 clamp(20px, 5vw, 26px)/1.2 var(--ss-font-body); color: var(--ss-highlight); }
+.itemTitle { margin: 12px 0 0; font: 900 clamp(54px, 15vw, 104px)/0.86 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); overflow-wrap: break-word; word-break: normal; }
+/* The title in the other scripts (site-qa-1113): Russian a size its longest word fits at phone width, hyphenated rather
+   than cut mid-word, with room for Д's and Щ's descenders; Devanagari, Bengali and Arabic the taller lines their marks
+   need, Chinese a little more than Latin capitals (the same leading as ui.module.css's .display for those scripts). */
+:global(html[lang='ru']) .itemTitle { font-size: clamp(40px, 11vw, 92px); line-height: 1.04; hyphens: auto; }
+:global(html:is([lang='hi'], [lang='bn'], [lang='ar'])) .itemTitle { line-height: 1.28; }
+:global(html[lang='zh-Hans']) .itemTitle { line-height: 1.12; }
+.baseName { margin: 10px 0 0; font: 600 clamp(20px, 5vw, 26px)/1.2 var(--ss-font-body); color: var(--ss-highlight); }
 .bigSerial { display: inline-block; margin-top: 16px; padding: 6px 12px 5px; background: #ffd166; color: #0a0a0a; border: 2px solid #0a0a0a; box-shadow: 4px 4px 0 #0a0a0a; font: 900 clamp(34px, 9vw, 46px)/1 var(--ss-font-display); letter-spacing: 0.06em; direction: ltr; }
 
 .statusBox { display: grid; gap: 8px; margin-top: 24px; padding: 16px; border: var(--ss-hairline) solid var(--ss-line-strong); background: var(--ss-surface); }
@@ -379,16 +531,16 @@
 .statusBox p { margin: 0; font-size: 14px; color: var(--ss-muted); }
 
 .cert { margin-top: 26px; border: var(--ss-hairline) solid var(--ss-line-strong); background: linear-gradient(180deg, var(--ss-surface-strong), transparent 60%); }
-.certHead { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--ss-line); font: 700 12px/1 var(--ss-font-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ss-highlight); }
+.certHead { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--ss-line); font: 700 14px/1 var(--ss-font-body); letter-spacing: 0.2em; text-transform: uppercase; color: var(--ss-highlight); }
 .certFloat { padding: 16px 16px 26px; border-bottom: 1px solid var(--ss-line); }
 .certFloat .floatDigits { font-size: clamp(24px, 6.6vw, 38px); margin-top: 6px; }
 .attrs { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .attr { padding: 12px 16px; border-bottom: 1px solid var(--ss-line); min-width: 0; }
 .attr:nth-child(odd) { border-inline-end: 1px solid var(--ss-line); }
-.attr dt { font: 700 11px/1.2 var(--ss-font-body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ss-muted); }
+.attr dt { font: 700 14px/1.2 var(--ss-font-body); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ss-muted); }
 .attr dd { display: flex; align-items: center; gap: 8px; margin: 6px 0 0; font: 800 21px/1.05 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); overflow-wrap: anywhere; }
 .attr dd .sw { width: 16px; height: 16px; flex: none; border: 1px solid rgba(255, 255, 255, 0.45); }
-.attrDigit { margin-inline-start: auto; font: 700 11px/1 var(--ss-font-body); color: var(--ss-muted); }
+.attrDigit { margin-inline-start: auto; font: 700 14px/1 var(--ss-font-body); color: var(--ss-muted); }
 .wide { grid-column: 1 / -1; border-inline-end: 0 !important; }
 .supply { padding: 14px 16px; font-size: 14px; color: var(--ss-muted); }
 .serials { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
@@ -401,7 +553,7 @@
 @media (min-width: 700px) { .summary { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 .summary div { padding: 14px; border-inline-end: 1px solid var(--ss-line); border-bottom: 1px solid var(--ss-line); }
 .summary b { display: block; font: 900 30px/1 var(--ss-font-display); color: var(--ss-text); font-variant-numeric: tabular-nums; }
-.summary span { display: block; margin-top: 6px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ss-muted); }
+.summary span { display: block; margin-top: 6px; font-size: 14px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ss-muted); }
 .timeline { position: relative; margin: 26px 0 0; padding: 0; list-style: none; }
 .timeline::before { content: ''; position: absolute; inset-inline-start: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--ss-accent), var(--ss-line-strong)); }
 .event { position: relative; display: grid; gap: 4px; padding: 0 0 22px 34px; }
@@ -415,14 +567,14 @@
 .evName { font: 800 22px/1 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); }
 .evPrice { font: 900 22px/1 var(--ss-font-display); color: var(--ss-accent-text); font-variant-numeric: tabular-nums; }
 .evPrice s { color: var(--ss-muted); }
-.evMeta { font-size: 13px; color: var(--ss-muted); }
-.evWho { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ss-body); }
+.evMeta { font-size: 14px; color: var(--ss-muted); }
+.evWho { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ss-body); }
 .historyNote { margin: 8px 0 0; font-size: 14px; color: var(--ss-muted); }
 
 .verify { margin-top: 40px; padding: 18px; border: 1px dashed var(--ss-line-strong); }
 .verify h3 { margin: 0 0 6px; font: 800 24px/1 var(--ss-font-display); text-transform: uppercase; color: var(--ss-text); }
 .verify p { margin: 0 0 8px; font-size: 14px; color: var(--ss-muted); }
-.hash { display: block; padding: 8px 10px; background: var(--ss-deep); font: 500 13px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ss-body); overflow-wrap: anywhere; direction: ltr; }
+.hash { display: block; padding: 8px 10px; background: var(--ss-deep); font: 500 14px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ss-body); overflow-wrap: anywhere; direction: ltr; }
 
 .loading { display: grid; place-items: center; min-height: 40vh; color: var(--ss-muted); }
 .skeleton { background: linear-gradient(90deg, var(--ss-surface), var(--ss-surface-hover), var(--ss-surface)); background-size: 200% 100%; animation: shimmer 1.4s ease infinite; }
@@ -435,3 +587,42 @@
   .card, .fanCard { transition: none; }
   .skeleton { animation: none; }
 }
+
+/* Read by screen readers, never shown (the float's digits, a search's count). */
+.srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+/* The item's line under its name (the app's description on its card; market-art-1111, owner Nov 11). */
+.itemLine { margin: 10px 0 0; max-width: 46ch; font-size: 17px; line-height: 1.5; color: var(--ss-text); opacity: 0.88; }
+
+/* ---- the empty Archive, before the first mint (pick 10A, archive-empty-1115) ---- */
+/* Three real Legendaries, dimmed, under a "First mint" stamp set low on the middle card, clear of the faces. */
+.mintFigure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.mintFan .fanCard { filter: saturate(0.3) brightness(0.55); }
+.mintFan .piece { animation: none; }
+.mintStamp {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 76%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 92%;
+  padding: 10px 22px 12px;
+  border: 3px double var(--ss-accent-text);
+  color: var(--ss-accent-text);
+  background: color-mix(in srgb, var(--ss-page) 78%, transparent);
+  text-transform: uppercase;
+  text-align: center;
+  pointer-events: none;
+}
+.mintStampTop { font: 700 14px/1.15 var(--ss-font-body); letter-spacing: 0.28em; }
+.mintStampDay { margin-top: 6px; font: 900 clamp(44px, 12vw, 64px)/0.95 var(--ss-font-display); letter-spacing: 0.02em; white-space: nowrap; }
+.mintCaption { max-width: 30em; margin-top: 4px; text-align: center; font-size: 15px; line-height: 1.5; color: var(--ss-muted); }
+.mintCaption b { color: var(--ss-text); white-space: nowrap; }
+/* Scripts whose letters join or stack sit taller: the day a size down, room for the marks above and below. */
+:global(html:is([lang='ar'], [lang='hi'], [lang='bn'], [lang='zh-Hans'])) .mintStampTop { font-size: 15px; line-height: 1.3; }
+:global(html:is([lang='ar'], [lang='hi'], [lang='bn'], [lang='zh-Hans'])) .mintStampDay { font-size: clamp(36px, 10vw, 52px); line-height: 1.2; }
+/* The launch day as the first stat: one line; Arabic's month is a long word, so its day sits a size down. */
+.statDay { white-space: nowrap; }
+:global(html:is([lang='ar'], [lang='hi'], [lang='bn'])) .statDay { font-size: clamp(30px, 8.5vw, 52px); line-height: 1.15; }

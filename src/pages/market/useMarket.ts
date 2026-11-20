@@ -1,24 +1,32 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useLang, type LangCode } from '../../i18n'
-import { fetchMarket, fetchMarketItem, marketSoon, type MarketItemPage, type MarketList } from '../../lib/market'
-import { loadArtIndex } from '../../lib/archive'
+import { fetchMarket, fetchMarketItem, marketSoon, withDemo, type MarketItemPage, type MarketList } from '../../lib/market'
+import { loadArtIndex, loadLookIndex, type Looks } from '../../lib/archive'
+import { useItemLines } from '../../lib/marketArt'
 import { marketStrings, type MarketStrings } from './strings'
+
+const NO_LOOKS: Looks = { item: new Set(), worn: new Set(), scene: new Set(), motion: {} }
 
 export type LoadState = 'loading' | 'ok' | 'busy' | 'soon'
 
 /** The page's words, the reader's language and the pictures the Archive has drawn (a Legendary's plain picture). */
-export function useMarketWords(): { w: MarketStrings; lang: LangCode; locale: string; art: Set<string> } {
+export function useMarketWords(): { w: MarketStrings; lang: LangCode; locale: string; art: Set<string>; looks: Looks } {
   const { lang, language } = useLang()
   const [art, setArt] = useState<Set<string>>(new Set())
+  const [looks, setLooks] = useState<Looks>(NO_LOOKS)
   useEffect(() => {
     let live = true
     loadArtIndex().then((a) => live && setArt(a))
+    loadLookIndex().then((l) => live && setLooks(l))
     return () => {
       live = false
     }
   }, [])
-  return { w: marketStrings(lang), lang, locale: language.locale, art }
+  return { w: marketStrings(lang), lang, locale: language.locale, art, looks }
 }
+
+/** The item lines (descriptions) in the reader's language (lib/marketArt: the Archive's Unique pages read them too). */
+export const useMarketLines = useItemLines
 
 /** Every item on the books (op=market): 'soon' while the server's Market reads aren't on yet (the function answers 400). */
 export function useMarketList() {
@@ -29,7 +37,7 @@ export function useMarketList() {
     setState('loading')
     fetchMarket(lang)
       .then((l) => {
-        setList(l)
+        setList(l ? withDemo(l) : l)
         setState(l ? 'ok' : 'busy')
       })
       .catch((e) => setState(marketSoon(e) ? 'soon' : 'busy'))
@@ -47,7 +55,7 @@ export function useMarketItem(code: string) {
     setState('loading')
     fetchMarketItem(code, lang)
       .then((p) => {
-        setPage(p)
+        setPage(p ? withDemo(p) : p)
         setState('ok')
       })
       .catch((e) => setState(marketSoon(e) ? 'soon' : 'busy'))
@@ -67,8 +75,11 @@ export function compact(n: number, locale: string): string {
 export function pctText(f: number, locale: string): string {
   const p = f * 100
   const abs = Math.abs(p)
-  const txt = new Intl.NumberFormat(locale, { maximumFractionDigits: abs < 10 ? 1 : 0 }).format(abs)
-  return `${p > 0 ? '+' : p < 0 ? '−' : ''}${txt}%`
+  const digits = abs < 10 ? 1 : 0
+  const txt = new Intl.NumberFormat(locale, { maximumFractionDigits: digits }).format(abs)
+  // No sign on a change that rounds to 0 ("0%", not "+0%"; market-acc-1115).
+  const zero = Math.round(abs * 10 ** digits) === 0
+  return `${zero ? '' : p > 0 ? '+' : p < 0 ? '−' : ''}${txt}%`
 }
 
 export const dayText = (iso: string, locale: string, withYear = false) =>

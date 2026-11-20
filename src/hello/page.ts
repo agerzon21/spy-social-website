@@ -22,6 +22,8 @@ export interface HelloLanguage {
   code: string
   native: string
   rtl: boolean
+  /** The tab's title in this language (qa-fixes2-1116), or null for English, whose is the page's own <title>. */
+  docTitle: string | null
   title: string
   mark: string
   eyebrow: string
@@ -173,7 +175,7 @@ function pageFor(l: HelloLanguage, input: HelloInput): string {
   const beta = input.closesAt
     ? `<section class="beta" data-beta hidden><p class="eyebrow">${esc(l.betaEyebrow)}</p><p class="facts">${l.betaFacts.map((fact) => `<span>${esc(fact)}</span>`).join('')}</p><p class="closes">${esc(l.betaCloses)}</p><a class="btn secondary" href="/beta">${esc(l.betaSignUp)}${icon('arrow', 'arrow')}</a></section>`
     : ''
-  return `<main data-l="${esc(l.code)}" lang="${esc(l.code)}" dir="${l.rtl ? 'rtl' : 'ltr'}">
+  return `<main data-l="${esc(l.code)}"${l.docTitle ? ` data-title="${esc(l.docTitle)}"` : ''} lang="${esc(l.code)}" dir="${l.rtl ? 'rtl' : 'ltr'}">
 ${icon('head', 'head')}
 <h1>${esc(l.title)}<span>${esc(l.mark)}</span></h1>
 <p class="eyebrow">${esc(l.eyebrow)}</p>
@@ -210,12 +212,20 @@ export function helloHtml(input: HelloInput): string {
 <meta name="theme-color" content="#0a111c">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SpySocial">
 <meta property="og:url" content="${esc(input.origin)}/hello">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
-<meta property="og:image" content="${esc(input.origin)}/images/og-image.jpg">
+<meta property="og:image" content="${esc(input.origin)}/images/share/site-en.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="SpySocial: Trust no one. Five agents in a police line-up, one in the spotlight.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${esc(input.origin)}/images/share/site-en.jpg">
+<meta name="twitter:image:alt" content="SpySocial: Trust no one. Five agents in a police line-up, one in the spotlight.">
 <script src="/theme.js"></script>
 <script src="/lang.js"></script>
 <script src="/hello/hello.js" defer></script>

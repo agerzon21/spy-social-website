@@ -51,6 +51,12 @@
   transition: color 0.15s;
 }
 .navLink:hover { color: var(--ss-text); }
+/*
+ * The Market and the Archive (www's pages only) show from 800 px, where the whole row fits in every language with
+ * room to spare (French, the longest, needs about 740 px; measured Nov 18). Narrower, they give way and the footer
+ * carries them, as www's links do on the Archive's and the Market's headers.
+ */
+@media (max-width: 799px) { .roomy { display: none; } }
 /* Join a room's label: the whole one, and on a phone the short one (the whole one stays its name for screen readers). */
 .short { display: none; }
 @media (max-width: 559px) {
@@ -63,7 +69,7 @@
     white-space: nowrap;
   }
   .short { display: inline; }
-  .navLink { padding: 0 7px; font-size: 13px; letter-spacing: 0.08em; }
+  .navLink { padding: 0 7px; font-size: 14px; letter-spacing: 0.08em; }
 }
 @media (max-width: 419px) {
   .home img { height: 30px; padding-block: calc(15px * (1 - var(--wm))); }
@@ -74,15 +80,17 @@
   .controls { margin-inline-start: 0; }
 }
 @media (max-width: 359px) {
-  .navLink { padding: 0 4px; font-size: 12.5px; letter-spacing: 0.03em; }
+  .navLink { padding: 0 4px; font-size: 14px; letter-spacing: 0.03em; }
   .home img { height: 27px; padding-block: calc(13.5px * (1 - var(--wm))); }
 }
 /* Russian and French labels run longest (Cyrillic capitals are wide): a size down on the narrowest phones. */
 @media (max-width: 359px) {
-  :global(html:is([lang='ru'], [lang='fr'])) .navLink { font-size: 12px; letter-spacing: 0; padding: 0 4px; }
+  :global(html:is([lang='ru'], [lang='fr'])) .navLink { font-size: 14px; letter-spacing: 0; padding: 0 4px; }
 }
 /* Scripts with no capitals (and Cyrillic, set wide) need no tracking to read as a label. */
 :global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) .navLink { letter-spacing: 0.02em; }
+/* Arabic letters sit small at the Latin labels' size: a step up so the header reads like the other languages' (sitewalk 1119). */
+:global(html[lang='ar']) .navLink, :global(html[lang='ar']) .hostLink { font-size: 16px; }
 @media (min-width: 1000px) {
   .bar { height: 76px; }
   .home img { height: 42px; padding-block: calc(21px * (1 - var(--wm))); }
@@ -145,7 +153,7 @@
   }
   .hostList li:first-child .hostLink { padding-inline-start: 10px; }
   .hostList li:last-child .hostLink { padding-inline-end: 26px; }
-  .hostLink { padding: 0 8px; font-size: 12.5px; letter-spacing: 0.06em; }
+  .hostLink { padding: 0 8px; font-size: 14px; letter-spacing: 0.06em; }
 }
 :global(html:not([lang='en']):not([lang='es']):not([lang='fr']):not([lang='pt-BR']):not([lang='id'])) .hostLink { letter-spacing: 0.02em; }
 
@@ -169,7 +177,7 @@
 .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .colTitle {
   margin: 0 0 6px;
-  font: 600 12px/1.2 var(--ss-font-body);
+  font: 600 14px/1.2 var(--ss-font-body);
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ss-highlight);
@@ -195,9 +203,27 @@
   padding-top: 18px;
   border-top: var(--ss-hairline) solid var(--ss-line);
 }
-.copy { margin: 0; font-size: 13px; color: var(--ss-muted); }
+.copy { margin: 0; font-size: 14px; color: var(--ss-muted); }
 @media (min-width: 760px) {
   .top { grid-template-columns: minmax(0, 1fr) auto; }
   .cols { gap: 80px; grid-template-columns: repeat(2, minmax(150px, auto)); }
   .bottom { flex-direction: row; justify-content: space-between; align-items: center; }
 }
+
+/* The skip link (components/Layout): off screen until a keyboard reaches it, then over the header's start. */
+.skip {
+  position: fixed;
+  inset-inline-start: 12px;
+  top: 8px;
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: 4px;
+  background: var(--ss-accent);
+  color: var(--ss-on-accent);
+  font: 700 15px/1.2 var(--ss-font-body);
+  text-decoration: none;
+  transform: translateY(calc(-100% - 16px));
+}
+.skip:focus { transform: none; }
+/* The page takes focus from the skip link without a ring round all of it. */
+.main:focus { outline: none; }

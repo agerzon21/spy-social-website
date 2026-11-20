@@ -2,7 +2,7 @@ import { Heading } from '@chakra-ui/react'
 import { Fragment, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
-import { useLang, type LangCode } from '../i18n'
+import { addTableLoader, useLang, type LangCode } from '../i18n'
 import { rich, type Parts } from '../i18n/rich'
 import { LIVE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { DISCORD_URL } from '../lib/social'
@@ -29,26 +29,56 @@ const OPTS: HelpOpts = {
   storeAgeSignals: LIVE.storeAgeSignals,
   testerMarket: LIVE.testerMarket === 'open',
   interceptsInTrades: LIVE.interceptsInTrades,
+  rarefindsOffers: LIVE.rarefindsOffers,
+  rarefindsOfferPush: LIVE.rarefindsOfferPush,
+  appU61: LIVE.appU61,
+  partyLeaderLapse: LIVE.partyLeaderLapse,
+  partyNoMember: LIVE.partyNoMember,
+  memberLoyalty: LIVE.memberLoyalty,
   testerInterceptsTradable: LIVE.testerIntercepts === 'tradable',
+  testerGiftGame: LIVE.testerGiftGame,
+  roleReveal: LIVE.helpRoleReveal,
+  gnRewards: LIVE.helpGameNightRewards,
+  gnRewardsRules: LIVE.gnRewardsRules,
+  gnWeekly: LIVE.launchGameNights,
+  membershipSwitch: LIVE.helpMembershipSwitch,
+  googlePassStop: LIVE.helpGooglePassStop,
+  practiceMembers: LIVE.practiceMembers,
+  practiceAi: LIVE.practiceAi,
+  questionRounds: LIVE.helpQuestionRounds,
+  u6152: LIVE.helpU6152,
+  u6153: LIVE.helpU6153,
+  intelZero: LIVE.intelZero1117,
+  emailCodes22: LIVE.emailCodes22,
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).
 const loaders = import.meta.glob<{ default: HelpText }>(['../help/locales/*.ts', '!../help/locales/en.ts'])
 const cache = new Map<LangCode, HelpText>([['en', en]])
 
+/** The help text in `lang`, fetched once; English if its chunk can't load. */
+const loadHelp = (lang: LangCode): Promise<void> => {
+  if (cache.has(lang)) return Promise.resolve()
+  const load = loaders[`../help/locales/${lang}.ts`]
+  return (load ? load().then((m) => m.default) : Promise.resolve(en))
+    .catch(() => en)
+    .then((text) => {
+      cache.set(lang, text)
+    })
+}
+// The page's language loads with the site's words (i18n loadStrings waits for it), so the page is drawn in it from
+// the start: in the build's HTML (www-speed-1112) and when main.tsx hydrates it, which must match.
+addTableLoader(loadHelp)
+
 function useHelp(lang: LangCode): HelpText | null {
   const [, setTick] = useState(0)
   const ready = cache.get(lang) ?? null
   useEffect(() => {
     if (cache.has(lang)) return
-    const load = loaders[`../help/locales/${lang}.ts`]
     let live = true
-    ;(load ? load().then((m) => m.default) : Promise.resolve(en))
-      .catch(() => en)
-      .then((text) => {
-        cache.set(lang, text)
-        if (live) setTick((n) => n + 1)
-      })
+    loadHelp(lang).then(() => {
+      if (live) setTick((n) => n + 1)
+    })
     return () => {
       live = false
     }
@@ -63,6 +93,7 @@ const PARTS: Parts = {
   b: (c) => <b>{c}</b>,
   terms: (c) => <Link to="/terms">{c}</Link>,
   privacy: (c) => <Link to="/privacy">{c}</Link>,
+  drawchecks: (c) => <Link to="/privacy#drawing-checks">{c}</Link>,
   rules: (c) => <Link to="/rules">{c}</Link>,
   gnr: (c) => (LIVE.gameNightRules ? <Link to="/game-night-rules">{c}</Link> : c),
   delete: (c) => <Link to="/delete-account">{c}</Link>,
@@ -87,6 +118,10 @@ const plain = (line: string) =>
 const fold = (text: string) => text.toLocaleLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ё/g, 'е')
 
 const lines = (item: HelpItem) => item.a.filter(keep)
+
+/** AU22: the beta rewards answer is off the site from Nov 15 until the launch version's words bring it back. */
+const BETA_ANSWER_OFF = LIVE.beta2Off && !LIVE.launchSite
+const onSite = (item: HelpItem) => !(BETA_ANSWER_OFF && item.id === 'tester-rewards')
 
 function matches(item: HelpItem, section: HelpSection, words: string[]): boolean {
   const hay = fold([item.q, section.title, ...lines(item)].map(plain).join(' '))
@@ -114,9 +149,13 @@ const Answer = ({ item }: { item: HelpItem }): ReactNode => {
 const FAQ = () => {
   const { lang } = useLang()
   const help = useHelp(lang)
-  const sections = useMemo(() => (help ? help.sections(OPTS) : []), [help])
+  const sections = useMemo(
+    () => (help ? help.sections(OPTS).map((sec) => ({ ...sec, items: sec.items.filter(onSite) })) : []),
+    [help],
+  )
   // /support?q=refund opens the page on that search (a link support can send).
-  const [query, setQuery] = useState(() => new URLSearchParams(window.location.search).get('q')?.slice(0, 80) ?? '')
+  // (The build's HTML has no search: vercel.json serves a search link the plain app.)
+  const [query, setQuery] = useState(() => (typeof window === 'undefined' ? '' : new URLSearchParams(window.location.search).get('q')?.slice(0, 80) ?? ''))
 
   const words = useMemo(() => fold(query).split(/\s+/).filter(Boolean), [query])
   const shown = useMemo(
@@ -182,7 +221,7 @@ const FAQ = () => {
             <ul className={s.topics}>
               {sections.map((sec) => (
                 <li key={sec.id}>
-                  <a href={`#${sec.id}`}>{sec.title}</a>
+                  <a href={`#${sec.id}`} className="ss-hit">{sec.title}</a>
                 </li>
               ))}
             </ul>

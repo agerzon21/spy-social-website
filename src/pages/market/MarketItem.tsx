@@ -1,24 +1,46 @@
-import { useMemo, useState } from 'react'
+import { Suspense, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams } from 'react-router-dom'
+import { FaFlask } from 'react-icons/fa6'
 import Link from '../../components/SiteLink'
-import { categoryOf, changeOf, type MarketItem as Item } from '../../lib/market'
+import { categoryOf, changeOf, type MarketDay, type MarketItem as Item } from '../../lib/market'
 import { Change, ItemMeta, ItemThumb, MarketPage, MarketState, Price } from './MarketBits'
-import { ItemCharts } from './MarketCharts'
-import { compact, fmt, useMarketItem, useMarketWords } from './useMarket'
+import { lazyPage } from '../../lib/lazyPage'
+import { compact, fmt, useMarketItem, useMarketLines, useMarketWords } from './useMarket'
+import { lineOf } from '../../lib/marketArt'
 import a from '../archive/archive.module.css'
 import s from './market.module.css'
 
 const RANGES = ['30', '90', '180'] as const
+
+// The charts are their own chunk (speed-1111): the picture and the price paint first; the charts follow, in a box their
+// own height so nothing below them moves when they arrive. A chunk lost to a deploy reloads the page (lib/lazyPage).
+const ItemCharts = lazyPage(() => import('./MarketCharts'))
+
+/**
+ * The window's every day, oldest first, ending on the server's today (page.at, UTC): the server's day where it has one,
+ * else a day with no trade and no price (a quiet day is a real zero, never a made-up number).
+ */
+function windowDays(days: MarketDay[], count: number, at: string): MarketDay[] {
+  const by = new Map(days.map((d) => [d.d.slice(0, 10), d]))
+  const end = Date.parse(`${at.slice(0, 10)}T00:00:00Z`)
+  const out: MarketDay[] = []
+  for (let i = count - 1; i >= 0; i--) {
+    const d = new Date(end - i * 86_400_000).toISOString().slice(0, 10)
+    out.push(by.get(d) ?? { d, n: 0, a: null, p: null })
+  }
+  return out
+}
 
 /** One item: its price, its changes (today, 1, 3, 6 months), the graph with a 1 / 3 / 6-month switch and its trades. */
 const MarketItem = () => {
   const { w, locale } = useMarketWords()
   const { code = '' } = useParams()
   const { page, state, retry } = useMarketItem(code)
+  const lines = useMarketLines()
   const [range, setRange] = useState<(typeof RANGES)[number]>('90')
   const it: Item | null = page?.item ?? null
-  const days = useMemo(() => (page ? page.days.slice(-Number(range)) : []), [page, range])
+  const days = useMemo(() => (page ? windowDays(page.days, Number(range), page.at) : []), [page, range])
 
   return (
     <MarketPage head={page}>
@@ -34,9 +56,24 @@ const MarketItem = () => {
       </ol>
       {state === 'loading' ? <div className={a.loading} aria-busy="true" /> : null}
       {state === 'soon' || state === 'busy' ? <MarketState kind={state} onRetry={retry} /> : null}
-      {state === 'ok' && !it ? <p className={a.empty}>{w.item.notFound}</p> : null}
+      {state === 'ok' && !it ? (
+        <div className={a.empty}>
+          {/* No such item: answered with 200 like every route, so kept out of search (site sweep Nov 12). */}
+          <Helmet>
+            <meta name="robots" content="noindex" />
+          </Helmet>
+          <p style={{ margin: 0 }}>{w.item.notFound}</p>
+          <Link to="/market/catalogue" className={`${a.linkBtn} ${s.notFoundLink}`}>{w.item.notFoundLink}</Link>
+        </div>
+      ) : null}
       {it ? (
         <>
+          {it.demo ? (
+            <p className={`${a.notice} ${s.sample}`} role="note">
+              <FaFlask aria-hidden focusable={false} />
+              <span>{w.demoNote}</span>
+            </p>
+          ) : null}
           <header className={s.itemHead}>
             <div className={s.itemStage}>
               <ItemThumb it={it} size="lg" />
@@ -44,6 +81,7 @@ const MarketItem = () => {
             <div className={s.itemInfo}>
               <ItemMeta it={it} />
               <h1 className={s.itemTitle}>{it.nm}</h1>
+              {lineOf(lines, it) ? <p className={s.itemLine}>{lineOf(lines, it)}</p> : null}
               <div className={s.priceBox}>
                 <span className={s.priceLabel}>{w.item.price}</span>
                 <Price n={it.p} big />
@@ -53,13 +91,13 @@ const MarketItem = () => {
                 {it.g != null ? (
                   <div>
                     <dt>{w.item.guide}</dt>
-                    <dd>{fmt(it.g, locale)}</dd>
+                    <dd>{fmt(it.g, locale)} <small className={s.factUnit}>{w.intel}</small></dd>
                   </div>
                 ) : null}
                 {it.s != null ? (
                   <div>
                     <dt>{w.item.floor}</dt>
-                    <dd>{fmt(it.s, locale)}</dd>
+                    <dd>{fmt(it.s, locale)} <small className={s.factUnit}>{w.intel}</small></dd>
                   </div>
                 ) : null}
               </dl>
@@ -96,24 +134,26 @@ const MarketItem = () => {
             </dl>
           ) : null}
 
-          {page && page.days.length ? (
+          {page ? (
             <section className={s.chartSection} aria-labelledby="item-chart">
-              <div className={s.chartHead}>
-                <h2 id="item-chart" className={s.chartTitleBig}>{w.item.chart}</h2>
-                <div className={s.chips} role="group" aria-label={w.item.chart}>
-                  {RANGES.map((r) => (
-                    <button key={r} type="button" className={a.chip} aria-pressed={range === r} onClick={() => setRange(r)}>
-                      {w.item.chartRanges[r]}
-                    </button>
-                  ))}
-                </div>
+              <h2 id="item-chart" className={s.chartTitleBig}>{w.item.chart}</h2>
+              {/* The time switch above both charts, as the Grand Exchange's: 1 month, 3 months, 6 months. */}
+              <div className={s.rangeTabs} role="group" aria-label={w.item.chart}>
+                {RANGES.map((r) => (
+                  <button key={r} type="button" aria-pressed={range === r} onClick={() => setRange(r)}>
+                    {w.item.chartRanges[r]}
+                  </button>
+                ))}
               </div>
-              <ItemCharts days={days} />
+              <Suspense fallback={<div className={s.chartWait} aria-busy="true" />}>
+                <ItemCharts days={days} minTrades={page.min_trades} />
+              </Suspense>
             </section>
           ) : null}
 
           {it.v ? (
-            <dl className={`${a.summary} ${s.itemStats}`}>
+            // A grid of figures, as on the Archive's item page (a <dl> may not hold <b> / <span> directly: axe definition-list).
+            <div className={`${a.summary} ${s.itemStats}`}>
               {(
                 [
                   [it.v[1], w.item.stats.trades7],
@@ -127,7 +167,7 @@ const MarketItem = () => {
                   <span>{label}</span>
                 </div>
               ))}
-            </dl>
+            </div>
           ) : null}
         </>
       ) : null}

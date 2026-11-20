@@ -4,12 +4,13 @@ import type { Strings } from './en'
 const fr: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: "Cinq agents alignés pour une séance d'identification, l'un sous le projecteur.",
     defaultTitle: "SpySocial — Le jeu d'ambiance de bluff et de déduction",
     description:
       "Réunis tes amis et démasque l'espion, ou bluffe tout le monde. Jeu d'ambiance gratuit en temps réel pour 3 à 21 joueurs, sur iOS et Google Play.",
     titles: {
-      /** The Beta 2 playtester page (/beta). */
-      beta: 'Bêta\u00a02\u00a0: joue à SpySocial avant sa sortie',
+      /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
+      beta: 'Bêta\u00a03\u00a0: le dernier test de jeu de SpySocial',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Registre des objets de collection",
@@ -39,13 +40,14 @@ const fr: Strings = {
       notFound: 'Page introuvable',
     },
     descriptions: {
-      beta: 'Rejoins un test de jeu collectif en direct d’une heure de SpySocial, un jeu gratuit de déduction sociale pour soirées, le jeudi 12\u00a0novembre 2026, de 19\u00a0h à 20\u00a0h, heure de l’Est des États-Unis. Réservé aux 18\u00a0ans et plus, sur iPhone ou Android. Les testeurs gardent le Pin bêta et plus encore.',
-      ledger: "Le registre public de chaque objet de collection SpySocial : chaque exemplaire et son numéro. Chacun peut le vérifier.",
-      archive: "Chaque Unique de SpySocial consigné : son image, son numéro, ses attributs, sa frappe et chaque vente, sans nommer aucun joueur.",
-      market: "Le prix de chaque objet SpySocial au Marché noir : des prix tirés des échanges des joueurs, les plus fortes hausses et baisses, les plus échangés, sans nommer aucun joueur.",
-      transparency: "Chaque mois : combien d’Intel a été gagné, dépensé et corrigé dans SpySocial, chaque incident et chaque changement de règle, sans nommer aucun joueur.",
-      gameNightRules: "Les règles de la soirée jeux hebdomadaire de SpySocial : quand elle a lieu, qui peut participer, comment obtenir les titres de la soirée et le titre bonus du développeur.",
-      faq: "Aide SpySocial : comment jouer à Spy Talk et Spy Sketch, Jouer en ligne, salons privés et Soirée jeux, amis, échanges, Marché noir, interceptions, Intel, abonnement, ton compte, sécurité et dépannage.",
+      beta: 'La bêta\u00a02 est terminée. Merci à tous ceux qui ont joué\u00a0! La bêta\u00a03, le dernier test de jeu avant la sortie de SpySocial, a lieu le mardi 24\u00a0novembre. Les inscriptions ouvrent bientôt\u00a0: rejoins notre Discord pour l’apprendre en premier.',
+      ledger: "Le registre public de chaque objet de collection SpySocial\u00A0: chaque exemplaire et son numéro. Chacun peut le vérifier.",
+      archive: "Chaque Unique de SpySocial consigné\u00A0: son image, son numéro, ses attributs, sa frappe et chaque vente, sans nommer aucun joueur.",
+      market: "Le prix de chaque objet SpySocial au Marché noir\u00A0: des prix tirés des échanges des joueurs, les plus fortes hausses et baisses, les plus échangés, sans nommer aucun joueur.",
+      transparency: "Chaque mois\u00A0: combien d’Intel a été gagné, dépensé et corrigé dans SpySocial, chaque incident et chaque changement de règle, sans nommer aucun joueur.",
+      gameNightRules: "Les règles de la soirée jeux de SpySocial\u00A0: quand elle a lieu, qui peut participer, comment obtenir les titres de la soirée et le titre bonus du développeur.",
+      gameNightRulesRewards: "Les règles de la soirée jeux de SpySocial : quand elle a lieu, qui peut participer, et comment fonctionnent l'Intel de soirée jeux, les titres ★ et les interceptions de soirée jeux.",
+      faq: "Aide SpySocial : comment jouer à Spy Talk et Spy Sketch, Jouer en ligne, salons privés et soirée jeux, amis, échanges, Marché noir, interceptions, Intel, statut de membre, ton compte, sécurité et dépannage.",
       contact: "Contacte l'équipe SpySocial\u00A0: écris à support@spysocial.app pour de l'aide avec l'appli, ton compte ou autre chose.",
       rules: "Les règles de la communauté SpySocial\u00A0: sois sympa, bluffe sans tricher, garde ta vie privée, et ce qui arrive quand quelqu'un enfreint les règles.",
       safety: "La sécurité sur SpySocial pour les joueurs de 13 à 17\u00A0ans et pour les parents\u00A0: comment quitter, bloquer et signaler, et où trouver de l'aide.",
@@ -66,12 +68,14 @@ const fr: Strings = {
 
   header: {
     home: 'Accueil SpySocial',
+    skip: 'Aller au contenu',
     nav: 'Site',
     join: 'Rejoindre un salon',
     joinShort: 'Entrer',
+    market: 'Marché',
+    archive: 'Archives',
     shop: 'Boutique',
-    toLight: 'Passer en mode clair',
-    toDark: 'Passer en mode sombre',
+    lightMode: 'Mode clair',
   },
 
   footer: {
@@ -79,6 +83,7 @@ const fr: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Prix du Marché noir",
+    archive: "Archives",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparence",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -123,6 +128,9 @@ const fr: Strings = {
     noAppIos: "Pas encore l'appli\u00A0? Télécharge-la",
     noAppAndroid: "Pas encore l'appli\u00A0? Installe-la",
     playInBrowser: 'Jouer dans le navigateur',
+    reloadTitle: 'Recharge la page',
+    reloadText: 'La page ne s’est pas chargée entièrement. La recharger règle généralement le problème.',
+    reload: 'Recharger',
   },
 
   badges: {
@@ -148,7 +156,7 @@ const fr: Strings = {
     },
     creatorShort: {
       eyebrow: 'Créateur à l’affiche',
-      title: (creator: string) => `Regardez ${creator} jouer à Spy Sketch`,
+      title: (creator: string) => `Regarde ${creator} jouer à Spy Sketch`,
       credit: (creator: string) => `Vidéo de <link>${creator}</link>`,
       cta: 'Jouer gratuitement dans le navigateur',
       play: (creator: string) => `Lire la vidéo de ${creator}`,
@@ -243,9 +251,9 @@ const fr: Strings = {
       chatTap: 'Le chat aussi\u00A0: appuie sur Traduire sous n\'importe quel message pour le lire dans ta langue.',
       trioLabel: 'Une carte de rôle en trois langues',
       cardAlts: [
-        "Révélation des rôles\u00A0: la carte d'un local affiche le lieu secret, Théâtre",
-        'Carte de rôle en espagnol\u00A0: Teatro',
-        'Carte de rôle en russe\u00A0: Театр',
+        "Révélation des rôles\u00A0: la carte d'un local affiche le lieu secret, Observatoire",
+        'Carte de rôle en espagnol\u00A0: Observatorio',
+        'Carte de rôle en russe\u00A0: Обсерватория',
       ],
     },
     safety: {
@@ -259,7 +267,7 @@ const fr: Strings = {
               : o.drawings
                 ? ', et signale un dessin'
                 : ''
-        }. Dans les salons où joue un joueur de moins de 18 ans, les liens, adresses e-mail, numéros de téléphone et comptes de réseaux sociaux sont bloqués pour tout le monde, et les signalements qui concernent un joueur de moins de 18 ans sont lus en priorité.`,
+        }. Dans les salons où se trouve un joueur de moins de 18 ans, les liens, adresses e-mail, numéros de téléphone et comptes de réseaux sociaux sont bloqués pour tout le monde, et les signalements qui concernent un joueur de moins de 18 ans sont lus en priorité.`,
       rules: 'Règles de la communauté',
       childSafety: 'Protection des enfants',
       safety: 'Sécurité',
@@ -277,7 +285,7 @@ const fr: Strings = {
       title: "Ta table t'attend",
       text: 'Gratuit, sans pub.',
       /** Shown once the released app sells memberships (LIVE.purchases). The only things sold are memberships. */
-      purchases: 'Des abonnements en option si tu veux plus de lieux et de mots.',
+      purchases: 'Deviens membre, en option, si tu veux plus de lieux et de mots.',
     },
   },
 
@@ -320,14 +328,14 @@ const fr: Strings = {
       title: '5. Packs personnalisés',
       intro: 'Les packs que créent les membres suivent aussi ces règles\u00A0: le nom, la description et chaque entrée.',
       rules: [
-        "Rien de ce que ces règles interdisent ailleurs\u00A0: pas de haine, de contenu sexuel ni de menaces, et rien qui ne convienne pas aux joueurs de 13\u00A0ans et plus.",
+        "Rien de ce que ces règles interdisent ailleurs\u00A0: pas de haine, de contenu sexuel ni de menaces, et rien d'inadapté aux joueurs de 13\u00A0ans et plus.",
         "Pas d'informations personnelles ni de vraies personnes que tu connais\u00A0: pas de camarades de classe, de profs ni de voisins, ni d'adresses, de numéros de téléphone, d'écoles ou de pseudos de réseaux sociaux.",
         'Pas de pub, de liens ni de spam, et uniquement ton propre travail.',
       ],
       community:
         "Packs de la communauté\u00A0: une personne de notre équipe lit chaque pack avant que quiconque puisse le voir. Si un pack enfreint ces règles, nous pouvons le refuser, le retirer des Packs de la communauté ou empêcher ce compte de partager des packs. Tout joueur peut signaler un pack de la communauté, et une personne lit chaque signalement sous 24\u00A0heures.",
       swearing:
-        "Gros mots\u00A0: permis dans les packs que tu joues dans tes propres salons privés, jamais dans les Packs de la communauté, car des joueurs de moins de 18\u00A0ans les utilisent. Si un titre en contient un (celui d'un film, par exemple), les Packs de la communauté l'affichent censuré\u00A0: sa première lettre, puis des astérisques (S***). Les gros mots les plus grossiers n'y sont pas permis du tout.",
+        "Gros mots\u00A0: permis dans les packs que tu joues dans tes propres salons privés, jamais dans les Packs de la communauté, car des joueurs de moins de 18\u00A0ans les utilisent. Si un titre en contient un (celui d'un film, par exemple), les Packs de la communauté l'affichent censuré\u00A0: sa première lettre, puis des astérisques (S***). Les pires gros mots n'y sont jamais permis.",
     },
     child: {
       title: 'Protection des enfants',
@@ -336,9 +344,14 @@ const fr: Strings = {
     },
     breaking: {
       title: "Ce qui se passe quand quelqu'un enfreint les règles",
-      text: "En général, d'abord un avertissement. Les problèmes répétés ou graves entraînent un blocage du chat (de 1 heure à 7 jours), une pause des salons publics et des Soirées jeux (de 1 à 30 jours), ou un bannissement. Partager les informations personnelles de quelqu'un, ou quoi que ce soit qui sexualise un enfant, peut entraîner un bannissement immédiat. Chaque notification dans l'appli indique ce qui est limité, pourquoi et jusqu'à quand, avec un identifiant comme S-207.",
-      drawings:
-        "Les dessins des salons publics et des Soirées jeux peuvent être vérifiés automatiquement à tout moment, et les dessins signalés sont vérifiés aussi. Si un dessin que tu as fait enfreint ces règles, ton compte peut être suspendu ou banni des salons publics et des Soirées jeux, quelle que soit ton ancienneté. Dans un salon public, un tour qui enfreint ces règles est retiré du dessin et compte comme une sanction\u00A0: d'abord un avertissement, puis 3, 7 et 30 jours sans salons publics ni Soirées jeux, et à la cinquième sanction en 90 jours, pour de bon. Dans tous les salons, un symbole de haine (une croix gammée en est un, sauf si le mot de la manche lui donne clairement un sens religieux), une injure écrite ou un message de haine visant quelqu'un exclut le joueur de la partie, et des salons publics et des Soirées jeux pour de bon, et un dessin qui sexualise un enfant entraîne la suppression du compte et est traité comme l'indique la section Protection des enfants ci-dessus. Le gore et les monstres sont autorisés. Dans un salon privé, un dessin signalé n'entraîne une mesure automatique que s'il est aussi grave\u00A0; pour tout le reste, c'est la personne qui lit le signalement qui décide. Pour faire appel, envoie-nous par e-mail le code de ta notification.",
+      text: "En général, d'abord un avertissement. Les problèmes répétés ou graves entraînent un blocage du chat (de 1 heure à 7 jours), une pause des salons publics et des soirées jeux (de 1 à 30 jours), ou un bannissement. Partager les informations personnelles de quelqu'un, ou quoi que ce soit qui sexualise un enfant, peut entraîner un bannissement immédiat. Chaque notification dans l'appli indique ce qui est limité, pourquoi et jusqu'à quand, avec un identifiant comme S-207.",
+      /** minorRooms: LIVE.safetyFacts1114 (legal-cov2-1114): a sexual drawing in a private room a minor can see comes off at once. */
+      drawings: (minorRooms: boolean) =>
+        "Les dessins des salons publics et des soirées jeux peuvent être vérifiés automatiquement à tout moment, et les dessins signalés sont vérifiés aussi. Si un dessin que tu as fait enfreint ces règles, ton compte peut être suspendu ou banni des salons publics et des soirées jeux, quelle que soit ton ancienneté. Dans un salon public, un tour qui enfreint ces règles est retiré du dessin et compte comme une sanction\u00A0: d'abord un avertissement, puis 3, 7 et 30 jours sans salons publics ni soirées jeux, et à la cinquième sanction en 90 jours, pour de bon. Dans tous les salons, un symbole de haine (une croix gammée en est un, sauf si le mot de la manche lui donne clairement un sens religieux), une injure écrite ou un message de haine visant quelqu'un exclut le joueur de la partie, et des salons publics et des soirées jeux pour de bon, et un dessin qui sexualise un enfant entraîne la suppression du compte et est traité comme l'indique la section Protection des enfants ci-dessus. Le gore et les monstres sont autorisés. " +
+        (minorRooms
+          ? "Dans un salon privé où un joueur de moins de 18\u00A0ans, ou un joueur qui ne nous a pas indiqué son âge, peut voir le dessin, un dessin à caractère sexuel est retiré du tableau aussitôt et une personne de notre équipe décide de la suite. Dans les autres salons privés, un dessin n'entraîne une mesure automatique que s'il est signalé et aussi grave que les cas ci-dessus\u00A0; pour tout le reste, c'est la personne qui lit le signalement qui décide. "
+          : "Dans un salon privé, un dessin signalé n'entraîne une mesure automatique que s'il est aussi grave\u00A0; pour tout le reste, c'est la personne qui lit le signalement qui décide. ") +
+        "Pour faire appel, envoie-nous par e-mail le code de ta notification.",
       drawingsTesters:
         "Pour l'instant, la vérification automatique des dessins est en test\u00A0: elle ne fonctionne que dans les parties où tous les joueurs sont nos testeurs (des joueurs qui essaient une version de test de l'appli).",
     },
@@ -416,11 +429,11 @@ const fr: Strings = {
       publicOnePool:
         "<b>Salons publics</b> avec des joueurs que ton enfant ne connaît pas\u00A0: les tables de «\u00A0Jouer en ligne\u00A0», où l'appli place les joueurs automatiquement et où tout le monde joue avec les mêmes règles standard, et les soirées jeux que nous organisons à heure fixe. Les joueurs ne peuvent pas créer de salons publics, et aucun joueur n'en est l'hôte.",
       public: (playOnline: boolean) =>
-        `<b>Salons publics et Soirées jeux</b> avec des joueurs que ton enfant ne connaît pas${playOnline ? ', dont «\u00A0Jouer en ligne\u00A0», qui place automatiquement les joueurs à une table' : ''}.`,
-      buy: "<b>Des achats\u00A0:</b> packs et abonnements, via l'App Store ou Google Play.",
+        `<b>Salons publics et soirées jeux</b> avec des joueurs que ton enfant ne connaît pas${playOnline ? ', dont «\u00A0Jouer en ligne\u00A0», qui place automatiquement les joueurs à une table' : ''}.`,
+      buy: "<b>Des achats\u00A0:</b> packs et formules membres, via l'App Store ou Google Play.",
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        "<b>Des achats\u00A0:</b> uniquement des abonnements (l'abonnement aux packs, mensuel ou annuel, et l'Accès à vie), via l'App Store ou Google Play. Un abonnement débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
+        "<b>Des achats\u00A0:</b> uniquement le statut de membre (la formule mensuelle ou annuelle, et l'Accès à vie), via l'App Store ou Google Play. Être membre débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         "<b>Interceptions\u00A0:</b> des récompenses gagnées en jouant, chacune avec un objet au hasard, comme un nouveau look pour l'agent. Elles ne s'achètent pas, ni avec de l'argent ni avec la monnaie gagnée dans le jeu, et l'appli affiche les chances avant qu'on en ouvre une.",
@@ -444,7 +457,7 @@ const fr: Strings = {
       noFriends:
         "Pas de listes d'amis ni d'abonnés, pas de recherche de joueurs, pas de profils à parcourir ni de bios\u00A0: personne ne peut chercher ton enfant ni le contacter en dehors d'un salon.",
       noDmsSocial:
-        "Pas de messages privés : les joueurs ne discutent que dans un salon, avec les joueurs qui s'y trouvent, ou dans le chat d'un groupe, avec les amis qui en font partie. Tous les chats sont filtrés, conservés un temps et signalables.",
+        "Pas de messages privés : les joueurs ne discutent que dans un salon, avec les joueurs qui s'y trouvent, ou dans le chat d'un groupe, avec les amis qui en font partie. Dans certaines parties, les espions ont aussi un chat qu'eux seuls peuvent lire, et seulement pendant cette partie. Tous les chats sont filtrés, conservés un temps et signalables.",
       noSearch:
         "Pas de recherche de joueurs ni de suggestions d'amis : un inconnu ne peut pas chercher ton enfant. Les moins de 18 ans n'ont pas de profil public et personne ne peut les suivre.",
       social:
@@ -460,16 +473,18 @@ const fr: Strings = {
           o.gate ? ` Avant la première partie, l'appli demande l'année de naissance${o.under13Deletion ? ', et une réponse de moins de 13 ans supprime le compte' : ''}.` : ''
         }${o.storeSignals ? " Si Apple ou Google indique à l'appli que son utilisateur a moins de 13 ans, l'appli ne le laisse pas jouer." : ''} Nous ne vérifions pas l'âge\u00A0: si tu découvres qu'un enfant de moins de 13 ans a un compte, écris-nous et nous le supprimerons.`,
       publicRooms:
-        "<b>Les salons publics</b> demandent un compte enregistré avec une adresse e-mail confirmée, un âge de 13 ans ou plus et l'acceptation de nos règles de la communauté. Les invités ne peuvent jouer que dans des salons privés, et les joueurs suspendus ou bannis ne peuvent pas rejoindre les salons publics.",
+        "<b>Les salons publics</b> demandent un compte sauvegardé avec une adresse e-mail confirmée, un âge de 13 ans ou plus et l'acceptation de nos règles de la communauté. Les invités ne peuvent jouer que dans des salons privés, et les joueurs suspendus ou bannis ne peuvent pas rejoindre les salons publics.",
       filter:
         "<b>Filtre du chat\u00A0:</b> les noms et le chat sont vérifiés avant que quiconque les voie. Dans les salons publics, les injures, les mots sexuels explicites et les insultes sont bloqués. Dans les salons privés, les mots les plus graves sont bloqués. Dans tout salon ou groupe où se trouve un joueur de moins de 18 ans ou qui ne nous a pas donné son âge, les liens, adresses e-mail, numéros de téléphone, comptes de réseaux sociaux et autres informations personnelles (adresse du domicile, lieu de vie, école, vrai nom) sont bloqués pour tout le monde. Aux tables de «\u00A0Jouer en ligne\u00A0» et aux soirées jeux, ils sont toujours bloqués.",
+      filterMild:
+        "Aux tables de «\u00A0Jouer en ligne\u00A0» et aux soirées jeux, les gros mots courants ne sont pas bloqués, mais tout le monde les voit censurés\u00A0: la première lettre, puis des astérisques (m****). Les mots plus légers s'affichent tels quels.",
       reports:
         "<b>Signalements, blocages et sanctions\u00A0:</b> une personne lit chaque signalement sous 24 heures, et le joueur signalé ne sait pas qui l'a signalé. Les signalements qui concernent un joueur de moins de 18 ans sont lus en priorité. Les sanctions vont de l'avertissement au blocage du chat, à une suspension des salons publics ou au bannissement. Nos <link>règles de la communauté</link> listent ce qui est interdit.",
       drawingCheck:
         '<b>Vérification des dessins\u00A0:</b> les tours de dessin dans un salon public peuvent être vérifiés automatiquement, et un tour dont la vérification constate qu’il enfreint les règles est retiré du dessin.',
       buyTitle: 'Achats',
       buyText:
-        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Un abonnement aux packs se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
+        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Une formule mensuelle ou annuelle se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
       deleteTitle: 'Supprimer un compte',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Ouvre SpySocial.',
@@ -484,7 +499,7 @@ const fr: Strings = {
         "Ou écris à <email/> depuis l'adresse du compte, avec l'objet «\u00A0Delete my SpySocial account\u00A0». Si tu ne peux pas écrire depuis cette adresse, écris-nous quand même avec le nom d'utilisateur et nous t'aiderons. Notre page <link>Supprimer le compte</link> indique ce qui est supprimé et ce que nous conservons.",
       deleteSubject: 'Delete my SpySocial account',
       dataRequests:
-        "<b>Les données de ton enfant :</b> en tant que parent ou tuteur, tu peux nous demander une copie des données de son compte, la correction de son année de naissance ou la suppression du compte. Notre <link>Politique de confidentialité</link> (Confidentialité des enfants) explique comment nous vérifions la demande et ce qu'elle couvre.",
+        "<b>Les données de ton enfant :</b> en tant que parent ou tuteur, tu peux nous demander une copie des données de son compte, la correction de son année de naissance ou la suppression du compte. Notre <link>politique de confidentialité</link> (Confidentialité des enfants) explique comment nous vérifions la demande et ce qu'elle couvre.",
       contactTitle: 'Nous contacter',
       contact: (section: number) =>
         `Écris à <email/> pour tout ce qui concerne cette page. Pour tout ce qui touche à la sécurité d'un enfant, mets «\u00A0Child safety\u00A0» en objet et nous le traiterons en priorité. Pour contester une décision ou déposer une réclamation, y compris sur la façon dont nous respectons l'Online Safety Act du Royaume-Uni, consulte la section ${section} de nos <link>conditions d'utilisation</link>.`,
@@ -521,7 +536,8 @@ const fr: Strings = {
         text: "Si tu t'inquiètes d'abus sexuels en ligne, ou de la façon dont quelqu'un parle à un enfant en ligne, signale-le au CEOP, qui fait partie de la National Crime Agency\u00A0: <link>ceop.police.uk/Safety-Centre</link>. Les jeunes peuvent aussi faire un signalement, et un conseiller en protection de l'enfance lit chaque signalement.",
       },
       spysocial: {
-        text: "Signale le joueur dans l'appli en choisissant <b>Sécurité des enfants</b>, et écris à <email/> avec «\u00A0Child safety\u00A0» en objet. Nous supprimons le contenu, bannissons les comptes concernés et le signalons au NCMEC et aux autres autorités, comme la loi l'exige.",
+        text: "Signale le joueur dans l'appli en choisissant <b>Sécurité des enfants</b>, et écris à <email/> avec «\u00A0Child safety\u00A0» en objet. Nous supprimons le contenu, bannissons les comptes concernés et le signalons au NCMEC, comme la loi américaine l'exige ; le NCMEC le transmet à la police du pays concerné.",
+        textBefore: "Signale le joueur dans l'appli en choisissant <b>Sécurité des enfants</b>, et écris à <email/> avec «\u00A0Child safety\u00A0» en objet. Nous supprimons le contenu, bannissons les comptes concernés et le signalons au NCMEC et aux autres autorités, comme la loi l'exige.",
       },
     },
     seeAlso: "Consulte aussi nos <link>règles de la communauté</link>, nos <link2>conditions d'utilisation</link2> et notre <link3>politique de confidentialité</link3>.",
@@ -564,6 +580,27 @@ const fr: Strings = {
     title: 'Nouveautés',
     sub: 'Les notes de version de SpySocial\u00A0: grandes mises à jour, nouvelles fonctions et améliorations, au fil des sorties.',
     releases: [
+      {
+        tag: "Mise à jour du week-end",
+        summary:
+          "Trois mises à jour du nouveau SpySocial ce week-end, avant son lancement\u00A0: un texte plus lisible, une aide plus claire pour les nouveaux joueurs, un démarrage plus rapide dans le navigateur et des liens de salon qui mènent au salon.",
+        sections: [
+          {
+            label: "Améliorations",
+            items: [
+              { title: "Vote", text: "«\u00A0S’abstenir\u00A0» a maintenant la même hauteur que «\u00A0Valider\u00A0»." },
+              { title: "Plus lisible", text: "Les plus petits textes de l’appli sont un peu plus grands." },
+              { title: "Marché noir", text: "Si tu le découvres, une carte «\u00A0Comment marche le Marché noir\u00A0» t’explique comment gagner, vendre et acheter des objets." },
+              { title: "Tutoriel", text: "Quand le tutoriel te demande de toucher la suggestion, le conseil s’affiche maintenant en bas de l’écran, pour que la question reste lisible." },
+              { title: "Code ami", text: "Le nombre de scans restants baisse dès qu’un ami scanne ton code." },
+              { title: "Liens de salon", text: "Si un ami t’envoie l’adresse de son salon depuis son navigateur, l’ouvrir te mène maintenant à l’écran pour rejoindre le salon, au lieu de «\u00A0Salon indisponible\u00A0»." },
+              { title: "Petits téléphones", text: "Sur les téléphones les plus étroits, l’étiquette affichée pendant que tu réponds indique maintenant que c’est ensuite à toi de poser la question." },
+              { title: "Jouer dans le navigateur", text: "Le jeu se charge plus vite. Sur un téléphone, si tu le tournes à l’horizontale pendant une partie, une carte «\u00A0Tiens ton téléphone à la verticale\u00A0» apparaît, et ta partie continue pendant que tu le tournes." },
+              { title: "Langues", text: "Les textes en arabe, hindi, bengali, chinois et indonésien s’affichent mieux\u00A0: plus de mots coupés, de retours à la ligne bizarres ni de mots dans le désordre. En français, l’appli parle maintenant partout de «\u00A0membre\u00A0» et non plus d’«\u00A0abonnement\u00A0» (et de «\u00A0membro\u00A0» en portugais)." },
+            ],
+          },
+        ],
+      },
       {
         tag: "Lancement Android",
         summary:
@@ -608,7 +645,7 @@ const fr: Strings = {
             label: "Refonte visuelle",
             items: [
               { title: "Fin de partie", text: "De nouvelles cartes joueur, un trophée pour les gagnants, le lieu avec une épingle sur la carte et un bouton clair pour revenir au salon." },
-              { title: "Compte", text: "Une seule liste bien rangée, des sections claires et la Zone de danger tout en bas." },
+              { title: "Compte", text: "Une seule liste bien rangée, des sections claires et la Zone dangereuse tout en bas." },
               { title: "iPad", text: "Le grand écran mieux utilisé\u00A0: six cartes joueur par rangée dans le salon, des vignettes de joueur plus grandes en partie, et plus rien de coupé." },
             ],
           },
@@ -729,7 +766,7 @@ const fr: Strings = {
         },
         {
           title: 'Ton agent et le Coffre',
-          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. Le Coffre ne vend que des abonnements\u00A0: tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, le créateur de packs et mener un groupe. Tout est facultatif, et rien ne change la façon de jouer.",
+          text: "Crée ton propre avatar d'espion et gagne de nouveaux looks en jouant. Le Coffre ne vend que le statut de membre\u00A0: tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, le créateur de packs et le droit de mener un groupe. Tout est facultatif, et rien ne change la façon de jouer.",
         },
         {
           title: 'Soirées jeux',
@@ -757,7 +794,7 @@ const fr: Strings = {
         },
       ],
       more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, de l'XP même pour les parties courtes, un retour en partie sans accroc quand ton téléphone se met en veille, des liens d'invitation qui marchent tout simplement, et un nouveau look sur chaque écran.",
-      launchWeek: "Semaine de lancement : Spy Talk le mardi 8 décembre, Spy Sketch le vendredi 11 décembre et Mafia le samedi 12 décembre, chaque fois de 20 h à 22 h, heure de l'Est américain (ET).",
+      launchWeek: "Soirée de première : le vendredi 11 décembre, puis à nouveau le samedi 12 décembre, de 20 h à 22 h, heure de l'Est américain (ET). La même soirée Spy Talk deux fois : viens à l'une ou aux deux. Ensuite, une soirée par semaine : le vendredi, puis la même soirée à nouveau le samedi.",
     },
     next: {
       status: 'Prévu',
@@ -796,7 +833,7 @@ const fr: Strings = {
 
   joinEvent: {
     label: 'Soirée jeux publique',
-    broken: 'Ce lien de Soirée jeux ne fonctionne pas',
+    broken: 'Ce lien de soirée jeux ne fonctionne pas',
     brokenHelp: 'Vérifie-le, ou ouvre SpySocial et parcours les salons.',
     live: 'En direct',
     cancelled: 'Annulée',
@@ -833,9 +870,9 @@ const fr: Strings = {
     cancel: 'Annuler',
     // passwordless (legalRelease LIVE.passwordless): the page that replaces the reset form.
     goneTitle: "Fini les mots de passe",
-    goneBody: "Connectez-vous avec un code à usage unique dans l'app.",
+    goneBody: "Connecte-toi avec un code à usage unique dans l'appli.",
     goneOpen: "Ouvrir SpySocial",
-    goneNoApp: "Vous n'avez pas l'app ?",
+    goneNoApp: "Tu n'as pas l'appli ?",
     preview: (mode: string) => `Mode aperçu\u00A0: <b>${mode}</b>. L'envoi ne contacte pas Supabase.`,
   },
 
@@ -870,9 +907,20 @@ const fr: Strings = {
   },
 
   beta: {
+    /** site-qa-1113: /beta between Beta 2 and Beta 3's sign-ups (Beta 3: Tue Nov 24, the final playtest; no form yet). The page writes the day. */
+    hold: {
+      eyebrow: 'Tests de jeu',
+      /** The poster line; the page adds home.hero.titleMark after it. */
+      title: 'Bêta\u00a02 terminée',
+      lede: 'Merci à tous ceux qui ont joué à la bêta\u00a02 et nous ont envoyé bugs et idées.',
+      label: 'Prochaine\u00a0: bêta\u00a03',
+      note: 'Le dernier test de jeu avant la sortie.',
+      soon: 'Les inscriptions ouvrent bientôt. Rejoins notre Discord pour l’apprendre en premier.',
+    },
     eyebrow: 'Bêta\u00a02 · Test en direct',
     title: 'Joue en premier',
-    lede: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta et un titre pour chaque testeur, et avec une partie terminée avant le 7\u00a0décembre, un second titre, 10\u00a0interceptions de chaque niveau et 1\u00a0mois d’abonnement.',
+    lede: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta et un titre pour chaque testeur, et avec une partie terminée avant le 7\u00a0décembre, un second titre, 10\u00a0interceptions de chaque niveau et 1\u00a0mois en tant que membre.',
+    ledeBefore: '<b>10\u00a0$ par PayPal en remerciement</b> pour chaque joueur confirmé qui participe à toute l’heure de cette session de test de jeu collectif en direct de SpySocial, le jeu gratuit de déduction sociale pour soirées, et envoie le questionnaire de 5\u00a0minutes, pareil sur iPhone et Android, plus un bonus de 50\u00a0$ pour le rapport de bug ou l’idée la plus utile de la session. En plus, des récompenses bêta à garder après la sortie\u00a0: le Pin bêta, deux titres, 10\u00a0interceptions de chaque niveau et 1\u00a0mois en tant que membre.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Les parties, l’XP et les objets du test sont remis à zéro à la sortie.',
     headsUp: '<b>Attention\u00a0:</b> le SpySocial de l’App Store et de Google Play est une ancienne version. La bêta est une nouvelle version très différente\u00a0; tu l’installes depuis le lien qu’on t’envoie par e-mail.',
@@ -882,7 +930,7 @@ const fr: Strings = {
       et: (time: string) => `${time}, heure de l’Est (ET)`,
       others: (pacific: string, utc: string) => `${pacific}, heure du Pacifique · ${utc}\u00a0UTC`,
       yours: (time: string) => `Chez toi\u00a0: ${time}`,
-      checkIn: (time: string) => `L’accueil ouvre à ${time} (heure de l’Est) sur le salon vocal Discord.`,
+      checkIn: (time: string) => `L’accueil ouvre à ${time} (heure de l’Est) dans #beta-2-ask-hq sur Discord (le salon vocal Beta 2 est ouvert aussi).`,
     },
     europe: {
       label: 'Europe · Seconde session facultative',
@@ -920,9 +968,10 @@ const fr: Strings = {
     get: {
       eyebrow: 'Ce que tu reçois',
       title: 'Récompenses bêta à garder après la sortie',
-      items: ['Le <b>Pin bêta</b>', 'Le titre <b>«\u00a0Bêta-testeur\u00a0»</b>'],
+      items: ['Le <b>Pin bêta</b>', 'Le titre <b>«\u00a0Équipe bêta\u00a0»</b>'],
+      itemsBefore: ['Le <b>Pin bêta</b>', 'Les titres <b>«\u00a0Équipe bêta\u00a0»</b> et <b>«\u00a0Test de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> en tant que membre'],
       gameTitle: 'Termine une partie avant le 7\u00a0décembre et reçois aussi',
-      gameItems: ['Le titre <b>«\u00a0Testeur de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> d’abonnement'],
+      gameItems: ['Le titre <b>«\u00a0Test de terrain\u00a0»</b>', '<b>10\u00a0interceptions</b> de chaque niveau', '<b>1\u00a0mois</b> en tant que membre'],
       trade: { tradable: 'Après la sortie, les interceptions de remerciement s’échangent comme tout ce que tu gagnes.', bound: 'Les interceptions de remerciement restent sur ton compte.' },
       prizeTitle: '10\u00a0$ de remerciement par PayPal + un bonus de 50\u00a0$',
       prize: 'Un remerciement de 10\u00a0$ par PayPal pour ton temps pendant la session en direct\u00a0: chaque joueur confirmé qui participe à toute l’heure et envoie le questionnaire de 5\u00a0minutes le reçoit dans les 7\u00a0jours après la session, pareil sur iPhone et Android. Installer la version de test ne suffit pas à l’obtenir. En plus, un bonus de 50\u00a0$ (carte cadeau) pour le rapport de bug ou l’idée la plus utile de la session, choisi par le développeur sous une semaine.',
@@ -939,11 +988,11 @@ const fr: Strings = {
       form: '<link>Remplis le formulaire d’inscription</link> (environ 2\u00a0minutes).',
       closes: (day: string, time: string) => `Inscriptions jusqu’au ${day}, ${time} (heure de l’Est).`,
       email: (day: string) => `On t’écrit au plus tard le ${day} pour confirmer ta place et t’envoyer le lien d’installation.`,
-      discord: '<link>Rejoins notre Discord</link>\u00a0: l’accueil se fait sur son salon vocal.',
+      discord: '<link>Rejoins notre Discord</link>\u00a0: l’accueil se fait dans #beta-2-ask-hq (le salon vocal Beta 2 est ouvert aussi).',
       android: 'Android\u00a0: le formulaire demande l’adresse Google de ton Play Store, car Google l’exige pour les versions de test. Elle est supprimée après la session.',
       iphone: 'iPhone\u00a0: tu installes SpySocial avec TestFlight, via le lien de l’e-mail.',
     },
-    fine: 'Version de pré-lancement. Ne partage pas les noms ni le chat des autres joueurs. Tes données d’inscription sont supprimées après la Bêta\u00a02. Ton adresse PayPal est supprimée une fois ton remerciement envoyé.',
+    fine: 'Version de pré-lancement. Ne partage pas les noms ni le chat des autres joueurs. Tes données d’inscription sont supprimées au plus tard le 19\u00a0novembre 2026, une semaine après la Bêta\u00a02. Ton adresse PayPal est supprimée une fois ton remerciement envoyé.',
   },
 
   notFound: {
@@ -965,19 +1014,19 @@ const fr: Strings = {
   launch: {
     railLabel: "Écrans de SpySocial 2.2",
     shots: {
-      talk: "Spy Talk : Des questions malignes. Démasque l'espion.",
-      sketch: "Spy Sketch : Dessine le mot secret. Démasque l'imposteur.",
-      online: "Jouer en ligne : Une table de 4 ou 8, à tout moment",
-      gamenight: "Soirée jeux : Des titres à gagner ce soir-là seulement",
-      market: "Marché noir : Échange des objets avec d'autres agents",
-      friends: "Amis : Ajoute tes amis. Jouez ensemble.",
+      talk: "Spy Talk : des questions malignes. Démasque l'espion.",
+      sketch: "Spy Sketch : dessine le mot secret. Démasque l'imposteur.",
+      online: "Jouer en ligne : une table de 4 ou 8, à tout moment",
+      gamenight: "Soirée jeux : des titres à gagner ce soir-là seulement",
+      market: "Marché noir : échange des objets avec d'autres agents",
+      friends: "Amis : ajoute tes amis. Jouez ensemble.",
     },
     cards: [
       { title: "Spy Sketch", text: "Dessine le mot secret sur un tableau partagé et démasque l'espion qui fait semblant." },
       { title: "Jouer en ligne", text: "Touche « Trouver une partie » pour une table de 4 ou 8, à tout moment. Les inconnus voient ta couleur d'agent, jamais ton nom." },
-      { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des titres à gagner ce soir-là seulement. On te prévient avant le début." },
+      { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des récompenses à gagner seulement là. On te prévient avant le début." },
       { title: "Marché noir", text: "Échange des objets avec tes amis. Les adultes peuvent aussi acheter et vendre des objets au Marché noir contre de l'Intel, gagné en jouant. Jamais d'argent réel." },
-      { title: "Abonnements", text: "En option : l'Abonnement aux packs (mensuel ou annuel) ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
+      { title: "Membres", text: "En option : la formule mensuelle ou annuelle, ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
     ],
     allNotes: "Toutes les nouveautés de la 2.2",
     community: {
@@ -989,18 +1038,19 @@ const fr: Strings = {
     },
     notes: {
       tag: "Lancement",
-      summary: "Notre plus grosse mise à jour : Spy Sketch, Jouer en ligne, la Soirée jeux, la partie d'entraînement, les échanges, le Marché noir et les abonnements.",
+      summary: "Notre plus grosse mise à jour : Spy Sketch, Jouer en ligne, la soirée jeux, la partie d'entraînement, les échanges, le Marché noir et le statut de membre.",
       items: [
         { title: "Partie d'entraînement", text: "Apprends Spy Talk et Spy Sketch dans une vraie partie contre des agents IA, en local ou en espion. On te guide à chaque coup et on note ta partie de A à F." },
         { title: "Mes déductions", text: "Les espions notent ce qu'ils apprennent sur leur page de déductions, gardent une liste courte des lieux ou mots possibles et tentent leur dernière réponse à partir d'elle." },
         { title: "Règles des salons privés", text: "Des règles optionnelles, comme l'Informateur : un local qui connaît un espion en secret. Dans Comment jouer > Options et réglages, chacune a une courte démo jouable." },
         { title: "Amis et groupes", text: "Ajoute des amis avec ton code ami ou par nom d'utilisateur, suis des joueurs et cherchez une table ensemble, en groupe. Créer un groupe est réservé aux membres. Sur iPhone et iPad, les amis, les groupes et les échanges sont réservés aux 18 ans et plus." },
-        { title: "Interceptions", text: "Des dossiers scellés avec un objet au hasard pour ton agent, gagnés en remportant des parties dans Jouer en ligne, avec ta série quotidienne et à la Soirée jeux. Certains objets sont des Uniques : un seul exemplaire, avec sa couleur et son numéro de série. Les chances s'affichent avant l'ouverture ou l'achat. Jamais vendues contre de l'argent." },
-        { title: "Intel et échanges", text: "L'Intel est l'argent du jeu : tu le gagnes en jouant et tu le dépenses dans le Coffre. Il ne s'achète pas et n'a aucune valeur monétaire. Échange des objets avec tes amis dès que ton compte a 7 jours, que ton e-mail est confirmé et que tu as joué 3 parties. Chaque échange est protégé 7 jours." },
+        { title: "Interceptions", text: "Des dossiers scellés avec un objet au hasard pour ton agent, gagnés en remportant des parties dans Jouer en ligne et avec ta série quotidienne ; à la soirée jeux, tu gagnes de l'Intel de Soirée jeux à dépenser en interceptions de Soirée jeux. Certains objets sont des Uniques : un seul exemplaire, avec sa couleur et son numéro de série. Les chances s'affichent avant l'ouverture ou l'achat. Jamais vendues contre de l'argent." },
+        { title: "Intel et échanges", text: "L'Intel est l'argent du jeu : tu le gagnes en jouant et tu le dépenses dans le Coffre. Il ne s'achète pas et n'a aucune valeur monétaire. Échange des objets avec tes amis dès que ton compte a 7 jours, que ton e-mail est confirmé et que tu as terminé 3 parties comptées. Chaque échange est protégé 7 jours." },
         { title: "Packs de la communauté", text: "Parcours dans Communauté les packs créés par les joueurs. Les membres écrivent les leurs avec le créateur de packs et les partagent." },
         { title: "10 langues", text: "Anglais, espagnol et russe, plus le français, le portugais (Brésil), le chinois (simplifié), l'hindi, l'arabe, le bengali et l'indonésien en bêta. Chacun voit le jeu dans sa langue." },
-        { title: "Notifications", text: "Pour les invitations et demandes d'amis, les échanges, les offres du Marché noir et les Soirées jeux où tu as touché « Me le rappeler »." },
+        { title: "Notifications", text: "Pour les invitations et demandes d'amis, les échanges, les offres du Marché noir et les soirées jeux où tu as touché « Me le rappeler »." },
       ],
+      practiceMembers: { title: "Partie d'entraînement", text: "Apprends Spy Talk et Spy Sketch avec des agents IA, en local ou en espion : un tutoriel guidé gratuit pour chaque jeu, puis, pour les membres, des parties d'entraînement complètes, jusqu'à 5 par jour, notées de A à F." },
       more: "Et aussi : statistiques, niveaux jusqu'à 100 avec prestige, succès, titres, cadres et célébrations, mentions avec @, mini-jeux dans l'Arcade, un micro plus rapide, un retour en partie sans accroc après la mise en veille du téléphone, et un nouveau look sur chaque écran.",
       newLabel: "Nouveau dans la 2.2",
       moreLabel: "Et plus encore",

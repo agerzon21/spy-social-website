@@ -1,0 +1,255 @@
+diff --git a/components/celebrations/CelebrationPreview.tsx b/components/celebrations/CelebrationPreview.tsx
+index 8ae7c5e24..325a62a19 100644
+--- a/components/celebrations/CelebrationPreview.tsx
++++ b/components/celebrations/CelebrationPreview.tsx
+@@ -178,7 +178,7 @@ function useSteadyOwner(owner: CelebrationOwner): CelebrationOwner {
+ }
+ 
+ /** A sample spy for a local celebration's preview (you are the caller). */
+-const SAMPLE_SPY: CelebrationOwner = { userId: null, name: 'Casey', color: '#ffa500', config: null };
++const SAMPLE_SPY: CelebrationOwner = ((globalThis as unknown as { __archiveSubject?: CelebrationOwner }).__archiveSubject) ?? { userId: null, name: 'Casey', color: '#ffa500', config: null };
+ 
+ /**
+  * The scene a preview plays (CelebrationPreview's, and the loop's audit in tests and the harness): a spy's win or catch
+@@ -340,7 +340,11 @@ export function CelebrationPreview({
+   const looping = active && !still;
+   // A held frame tells its celebration so (SceneContext.held: Ink Burst / Ink Check draw a close-up for it).
+   const scene = useMemo(
+-    () => previewScene({ code, local, width, height, moment, owner, still, t, treatment, layout, held: !looping }),
++    () => {
++      const sc = previewScene({ code, local, width, height, moment, owner, still, t, treatment, layout, held: !looping });
++      // archive-item-art-1111 (scratch, not committed): the website's pictures draw no name plate (it read as a blank card).
++      return (globalThis as unknown as { __archiveNoPlate?: boolean }).__archiveNoPlate ? { ...sc, pieces: sc.pieces.filter((p) => !(p.look && (p.look as { kind?: string }).kind === 'plate')) } : sc;
++    },
+     [code, local, width, height, layout, owner, still, t, moment, treatment, looping],
+   );
+   // (Its motion's moment; Reduce Motion's still version has its own timing.)
+diff --git a/qa/overflow/archiveArt.mjs b/qa/overflow/archiveArt.mjs
+index 043241f26..935598fd1 100644
+--- a/qa/overflow/archiveArt.mjs
++++ b/qa/overflow/archiveArt.mjs
+@@ -46,9 +46,13 @@ try {
+   const page = await browser.newPage({ deviceScaleFactor: dpr, viewport: { width: 1400, height: 1000 } });
+   const errs = [];
+   page.on('pageerror', (e) => errs.push(String(e).slice(0, 300)));
+-  await page.addInitScript((c) => {
++  // archive-item-art-1111 (scratch, not committed): the caught spy in a local celebration is the standard Her.
++  const her = { userId: null, name: 'Agent', color: '#8e99ae', config: { v: 1, skin: 'skin_sand', hair: 'hair_long', hair_color: 'hair_color_brown', face: 'face_smile', outfit: 'outfit_trench', outfit_color: 'outfit_color_khaki' } };
++  await page.addInitScript(([c, h]) => {
+     globalThis.__archiveCells = c;
+-  }, cells);
++    globalThis.__archiveSubject = h;
++    globalThis.__archiveNoPlate = true;
++  }, [cells, her]);
+   await page.goto(`http://localhost:${port}/ovf.html?scene=archive_art&lang=en&fs=1&device=desk&motion=0&size=${size}`, { waitUntil: 'load', timeout: 180000 });
+   await page.waitForFunction(() => window.__mounted, null, { timeout: 180000, polling: 100 });
+   await page.waitForTimeout(3000);
+diff --git a/qa/overflow/harness/scenes/archiveArt.tsx b/qa/overflow/harness/scenes/archiveArt.tsx
+index f0efee192..d876e86fc 100644
+--- a/qa/overflow/harness/scenes/archiveArt.tsx
++++ b/qa/overflow/harness/scenes/archiveArt.tsx
+@@ -10,7 +10,26 @@
+  */
+ import React from 'react';
+ import { ScrollView, StyleSheet, View } from 'react-native';
++import { SvgAst } from 'react-native-svg';
++import { agentAvatarAst } from '@/components/kit/AgentAvatar';
++import { BorderFrame } from '@/components/kit/BorderFrame';
++import { devicePx, colors } from '@/constants/kit';
++import { NEUTRAL_AVATAR } from '@/lib/avatar/config';
++import { cropForSize, sceneForSize, spotlightColor } from '@/lib/avatar';
+ import { ItemArt, type ItemOwner } from '@/components/intercepts/ItemBits';
++import { InterceptFile } from '@/components/intercepts/InterceptArt';
++import { PlayerTitlePill } from '@/components/kit/PlayerTitlePill';
++import { setDynamicTitles, type DynamicTitle } from '@/lib/dynamicTitles';
++
++import i18n from '@/localization/i18n';
++import { LANGUAGE_CODES } from '@/localization/languages';
++
++const DYN = (globalThis as unknown as { __dynTitles?: DynamicTitle[] }).__dynTitles;
++if (DYN) setDynamicTitles(DYN);
++/** As lib/codesRpc does when the names arrive: each language's locker.titles.<code> (after i18n has started). */
++function nameDynamicTitles() {
++  if (DYN) for (const d of DYN) for (const l of LANGUAGE_CODES) i18n.addResource(l, 'translation', `locker.titles.${d.code}`, d.names[l] ?? d.name);
++}
+ import { RarityTile } from '@/components/rarity';
+ import { tileRarity } from '@/lib/crates/inventory';
+ import { parseShowcasePick } from '@/lib/profileRpc';
+@@ -18,17 +37,57 @@ import { showcaseEntry } from '@/lib/profileShowcase';
+ import { param } from '../flags';
+ import type { SceneDef } from '../scene';
+ 
+-type ArtCell = { key: string; kind: 'avatar' | 'title'; code: string; serial?: number; float?: string; pattern?: number };
++type ArtCell = { key: string; kind: 'avatar' | 'title' | 'intercept'; tier?: number; plate?: boolean; stage?: string; code: string; serial?: number; float?: string; pattern?: number; empty?: boolean; bare?: boolean };
+ 
+-/** The agent who wears every item: one look for the whole Archive (nobody's own). */
++/** The standard agent (Him: the app's NEUTRAL_AVATAR) on the standard spotlight, as "See it worn" (archive-item-art-1111). */
++const SPOT = '#8e99ae';
+ const OWNER: ItemOwner = {
+   userId: 'archive-agent',
+-  config: { v: 1, skin: 'skin_honey', hair: 'hair_quiff', hair_color: 'hair_color_black', face: 'face_smirk', outfit: 'outfit_trench', outfit_color: 'outfit_color_slate' } as never,
+-  color: '#ff9500',
++  config: ((globalThis as unknown as { __archiveOwner?: unknown }).__archiveOwner ?? { ...NEUTRAL_AVATAR }) as never,
++  color: SPOT,
+   name: 'Agent',
+ };
+ 
++/** A border around an empty spotlight (no agent): AgentAvatar's own face box and frame metrics, the bust's backdrop layer only. */
++function EmptyBorder({ code, size, mark, stage }: { code: string; size: number; mark: { seed: number; pattern: number; serial: number; item: string } | null; stage?: string }) {
++  const box = Math.max(12, Math.round(size));
++  const line = devicePx(box < 32 ? 1.5 : box < 48 ? 2 : box < 60 ? 2.5 : 3);
++  const frame = box < 32 ? 2 : box < 40 ? 2.5 : box < 60 ? 3 : box < 80 ? 4 : 5;
++  const radius = Math.round(box * 0.22);
++  const inner = box - line * 2;
++  const ast = agentAvatarAst({ config: NEUTRAL_AVATAR as never, userId: null, spotlight: SPOT, crop: cropForSize(box), scene: sceneForSize(box), unique: null, layer: 'backdrop' });
++  return (
++    <BorderFrame border={code} radius={radius} thickness={frame} unique={mark as never}>
++      <View style={{ width: box, height: box, borderRadius: radius, borderWidth: line, borderColor: colors.ink, overflow: 'hidden', alignItems: 'center', justifyContent: 'center', backgroundColor: stage ?? spotlightColor(SPOT) }}>
++        <View style={{ width: inner, height: inner }}>{stage ? null : ast ? <SvgAst ast={ast} override={{ width: '100%', height: '100%' }} /> : null}</View>
++      </View>
++    </BorderFrame>
++  );
++}
++
+ function Cell({ c, size }: { c: ArtCell; size: number }) {
++  // market-art-1111 (scratch): a sealed Intercept, a title's plate alone, a border round an empty dark stage.
++  if (c.kind === 'intercept') {
++    return (
++      <View testID={`aa-${c.key}`} style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
++        <InterceptFile tier={c.tier ?? 1} width={Math.round(size * 0.86)} alive={false} />
++      </View>
++    );
++  }
++  if (c.kind === 'title' && c.plate) {
++    return (
++      <View testID={`aa-${c.key}`} style={{ width: size * 2, height: size * 0.7, alignItems: 'center', justifyContent: 'center' }}>
++        <PlayerTitlePill code={c.code} size="md" scale={3} room={size * 2 - 8} lines={2} align="center" decorative unique={null} />
++      </View>
++    );
++  }
++  if (c.stage) {
++    return (
++      <View testID={`aa-${c.key}`} style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
++        <EmptyBorder code={c.code} size={Math.round(size * 0.74)} mark={null} stage={c.stage} />
++      </View>
++    );
++  }
+   const pick = parseShowcasePick({
+     kind: 'copy',
+     copy_id: 1,
+@@ -44,6 +103,35 @@ function Cell({ c, size }: { c: ArtCell; size: number }) {
+   const entry = pick ? showcaseEntry(pick) : null;
+   if (!entry) return <View testID={`aa-${c.key}`} style={{ width: size, height: size, backgroundColor: '#300' }} />;
+   const art = Math.round(size * 0.82);
++  if (c.bare) {
++    // Full-bleed, no foil (the Display Case's full-frame view): the scene (or the border on its empty spotlight) fills the square.
++    const u = entry.unique;
++    const mark = u ? { seed: u.seed, pattern: u.pattern, serial: u.serial, item: c.code } : null;
++    return (
++      <View testID={`aa-${c.key}`} style={{ width: size, height: size, overflow: 'hidden' }}>
++        {c.empty ? (
++          <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center', backgroundColor: spotlightColor(SPOT) }}>
++            <EmptyBorder code={c.code} size={Math.round(size * 0.72)} mark={mark} />
++          </View>
++        ) : (
++          <ItemArt item={entry.item} owner={OWNER} width={size} height={size} unique={entry.unique} />
++        )}
++      </View>
++    );
++  }
++  if (c.empty) {
++    const u = entry.unique;
++    const mark = u ? { seed: u.seed, pattern: u.pattern, serial: u.serial, item: c.code } : null;
++    return (
++      <View testID={`aa-${c.key}`} style={{ width: size, height: size }}>
++        <RarityTile rarity={tileRarity(entry)} unique={entry.unique} size={size} inset={Math.round((size - art) / 2)} animated={false}>
++          <View style={{ width: art, height: art, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', backgroundColor: spotlightColor(SPOT) }}>
++            <EmptyBorder code={c.code} size={Math.round(art * 0.74)} mark={mark} />
++          </View>
++        </RarityTile>
++      </View>
++    );
++  }
+   return (
+     <View testID={`aa-${c.key}`} style={{ width: size, height: size }}>
+       <RarityTile rarity={tileRarity(entry)} unique={entry.unique} size={size} inset={Math.round((size - art) / 2)} animated={false}>
+@@ -54,10 +142,11 @@ function Cell({ c, size }: { c: ArtCell; size: number }) {
+ }
+ 
+ function ArchiveArt() {
++  nameDynamicTitles();
+   const size = Number(param('size') ?? 320) || 320;
+   const cells = ((globalThis as unknown as { __archiveCells?: ArtCell[] }).__archiveCells ?? []) as ArtCell[];
+   return (
+-    <ScrollView style={styles.scroll} contentContainerStyle={styles.page}>
++    <ScrollView style={[styles.scroll, { backgroundColor: (globalThis as unknown as { __bg?: string }).__bg ?? '#0a111c' }]} contentContainerStyle={styles.page}>
+       {cells.map((c) => (
+         <Cell key={c.key} c={c} size={size} />
+       ))}
+diff --git a/qa/overflow/marketArt.mjs b/qa/overflow/marketArt.mjs
+new file mode 100644
+index 000000000..d07fd93f0
+--- /dev/null
++++ b/qa/overflow/marketArt.mjs
+@@ -0,0 +1,61 @@
++// market-art-1111 (scratch, not committed): archiveArt.mjs over several languages and backgrounds in one Metro.
++//   node qa/overflow/marketArt.mjs <cells.json> <outdir> --langs en,ru --bgs k=#000000,w=#ffffff [--port 8441] [--size 320] [--dpr 2]
++// Writes <outdir>/<key>.<lang>.<bg>.png
++import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
++import { join } from 'node:path';
++import { TREE, serving, startMetro, stopMetro, syncTree, warmBundle } from './lib/tree.mjs';
++import { launch, loadPlaywright } from './lib/browser.mjs';
++const args = process.argv.slice(2);
++const opt = (n, d) => { const i = args.indexOf(`--${n}`); return i >= 0 ? args[i + 1] : d; };
++const [cellsFile, out] = args;
++const port = Number(opt('port', '8441'));
++const size = Number(opt('size', '320'));
++const dpr = Number(opt('dpr', '2'));
++const langs = opt('langs', 'en').split(',');
++const bgs = opt('bgs', 'k=#000000').split(',').map((x) => x.split('='));
++const keep = opt('keep', '') === '1';
++const dyn = process.env.DYN_TITLES ? JSON.parse(readFileSync(process.env.DYN_TITLES, 'utf8')) : null;
++const cells = JSON.parse(readFileSync(cellsFile, 'utf8'));
++mkdirSync(out, { recursive: true });
++let metro = null;
++if (!(await serving(port))) {
++  syncTree();
++  const idx = join(TREE, 'ovf/scenes/index.ts');
++  let s = readFileSync(idx, 'utf8');
++  if (!s.includes("id: 'archive_art'")) {
++    s = s.replace('export const SCENES: SceneEntry[] = [', "export const SCENES: SceneEntry[] = [\n  { id: 'archive_art', group: 'Archive', title: 'The website Archive pictures', langs: ['en'], load: () => require('./archiveArt').scenes },");
++    writeFileSync(idx, s);
++  }
++  metro = await startMetro(port);
++  console.log('metro', metro.child.pid, metro.log);
++  const w = await warmBundle(port);
++  console.log('bundle', w.bytes, w.ms, 'ms');
++}
++try {
++  const { chromium } = loadPlaywright();
++  const browser = await launch(chromium);
++  const her = { userId: null, name: 'Agent', color: '#8e99ae', config: { v: 1, skin: 'skin_sand', hair: 'hair_long', hair_color: 'hair_color_brown', face: 'face_smile', outfit: 'outfit_trench', outfit_color: 'outfit_color_khaki' } };
++  for (const lang of langs) for (const [bn, bg] of bgs) {
++    const page = await browser.newPage({ deviceScaleFactor: dpr, viewport: { width: 1400, height: 1000 } });
++    const errs = [];
++    page.on('pageerror', (e) => errs.push(String(e).slice(0, 300)));
++    await page.addInitScript(([c, h, b, d]) => { globalThis.__archiveCells = c; globalThis.__archiveSubject = h; globalThis.__archiveNoPlate = true; globalThis.__bg = b; if (d) globalThis.__dynTitles = d; }, [cells, her, bg, dyn]);
++    await page.goto(`http://localhost:${port}/ovf.html?scene=archive_art&lang=${lang}&fs=1&device=desk&motion=0&size=${size}`, { waitUntil: 'load', timeout: 180000 });
++    await page.waitForFunction(() => window.__mounted, null, { timeout: 180000, polling: 100 });
++    await page.waitForTimeout(3000);
++    let n = 0;
++    for (const c of cells) {
++      const el = await page.$(`[data-testid="aa-${c.key}"]`);
++      if (!el) { console.log('missing', c.key); continue; }
++      await el.scrollIntoViewIfNeeded();
++      await page.waitForTimeout(100);
++      await el.screenshot({ path: join(out, `${c.key}.${lang}.${bn}.png`) });
++      n++;
++    }
++    console.log(lang, bn, 'shots', n, 'of', cells.length, errs.length ? `page errors: ${errs.slice(0, 3).join(' | ')}` : '');
++    await page.close();
++  }
++  await browser.close();
++} finally {
++  if (metro && !keep) stopMetro(metro);
++}

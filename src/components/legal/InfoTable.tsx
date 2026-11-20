@@ -1,10 +1,11 @@
-import { Box, Table, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
-import type { ReactNode } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
+import s from './legal.module.css'
 
 // A two- or three-column table for the legal and safety pages: the first
 // column names the thing (bold, with an optional note under it), the others
 // say what applies to it. Text wraps in every cell, so the table fits a phone
-// screen; it scrolls sideways only if a cell can't wrap.
+// screen; it scrolls sideways only if a cell can't wrap. Plain CSS
+// (legal.module.css, speed2-1111).
 
 export type InfoRow = {
   /** What the row is about, shown in bold. */
@@ -23,53 +24,38 @@ export const InfoTable = ({
   head: string[]
   rows: InfoRow[]
   firstWidth?: string | { base: string; md: string }
-}) => (
-  <Box w="100%" overflowX="auto" border="var(--ss-card-border) solid" borderColor="ss.lineStrong" borderRadius="var(--ss-radius-card)" boxShadow="var(--ss-shadow-card)">
-    {/* Long names in the narrow first column break at a hyphen, not mid-word. */}
-    <Table size="sm" variant="unstyled" sx={{ tableLayout: 'fixed', hyphens: 'auto', WebkitHyphens: 'auto' }}>
-      <Thead bg="ss.surfaceStrong">
-        <Tr>
-          {head.map((h, i) => (
-            <Th
-              key={h}
-              w={i === 0 ? firstWidth : undefined}
-              color="ss.highlight"
-              fontFamily="body"
-              fontSize="14px"
-              textTransform="none"
-              letterSpacing="0.02em"
-              fontWeight="700"
-              py={3}
-              px={3}
-              borderBottom="var(--ss-hairline) solid"
-              borderColor="ss.lineStrong"
-            >
-              {h}
-            </Th>
-          ))}
-        </Tr>
-      </Thead>
-      <Tbody>
-        {rows.map((row, r) => (
-          <Tr key={r} borderTop={r === 0 ? 0 : 'var(--ss-hairline) solid'} borderColor="ss.line">
-            <Td verticalAlign="top" whiteSpace="normal" py={3} px={3} fontSize={{ base: '15px', md: '16px' }} lineHeight="1.6">
-              <Text as="span" fontWeight="700" color="ss.text">
-                {row.label}
-              </Text>
-              {row.note && (
-                <Text textStyle="small" color="ss.muted" mt={1}>
-                  {row.note}
-                </Text>
-              )}
-            </Td>
-            {row.cells.map((cell, c) => (
-              <Td key={c} verticalAlign="top" whiteSpace="normal" py={3} px={3} fontSize={{ base: '15px', md: '16px' }} lineHeight="1.6">
-                {cell}
-              </Td>
+}) => {
+  const widths = typeof firstWidth === 'string' ? { base: firstWidth, md: firstWidth } : firstWidth
+  const vars = { '--first-w-base': widths.base, '--first-w-md': widths.md } as CSSProperties
+  return (
+    <div className={s.tableBox}>
+      {/* Long names in the narrow first column break at a hyphen, not mid-word. */}
+      <table className={s.table} style={vars}>
+        <thead className={s.thead}>
+          <tr>
+            {head.map((h) => (
+              <th key={h} className={s.th}>
+                {h}
+              </th>
             ))}
-          </Tr>
-        ))}
-      </Tbody>
-    </Table>
-  </Box>
-)
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, r) => (
+            <tr key={r} className={s.row}>
+              <td className={s.td}>
+                <span className={s.bold}>{row.label}</span>
+                {row.note && <p className={`${s.small} ${s.cellNote} ${s.mt1}`}>{row.note}</p>}
+              </td>
+              {row.cells.map((cell, c) => (
+                <td key={c} className={s.td}>
+                  {cell}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}

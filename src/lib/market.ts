@@ -4,12 +4,14 @@
  * market_public, 20261231990000_market_public_1110). Aggregates only: the server sends no player, order or single trade,
  * and an item has a price only when at least `min_trades` counted trades make it. Its days are UTC dates.
  *
- * An item's PRICE on a day is the average of its trades in the 7 days to that day (30, then 90 days while there are
- * fewer than min_trades); GUIDE is the app's own guide price. Cached 60 s at the function; a busy answer is tried again.
+ * An item's PRICE on a day is the median of its trades in the 7 days to that day, a pair of accounts counted once a day
+ * (30, then 90 days while there are fewer than min_trades trades or 3 pairs; server 20261231999984_market_public_median_1111,
+ * one wash sale can't set it); GUIDE is the app's own guide price. Cached 60 s at the function; a busy answer is tried again.
  * The Uniques are the Archive's (src/lib/archive.ts); this page leaves them out.
  */
 import type { LangCode } from '../i18n'
 import { ArchiveBusy, ledgerGet } from './archive'
+import { loadMarketLines, nameFix } from './marketArt'
 
 /** The windows the server counts in: today, 7, 30, 90, 180 days (the order of `b`, `v` and `x`). */
 export const WINDOWS = ['1d', '7d', '30d', '90d', '180d'] as const
@@ -45,6 +47,8 @@ export type MarketItem = {
   v?: number[]
   /** Intel traded in the same windows (null: fewer than min_trades there). */
   x?: (number | null)[]
+  /** (market-demo-1111) set here, not by the server: the item's history is the server's SAMPLE (head.demo). */
+  demo?: boolean
 }
 
 export type MarketHead = {
@@ -57,6 +61,8 @@ export type MarketHead = {
   /** The market is paused (the owner's switch or its own safety pause). */
   halted: boolean
   notice?: string
+  /** (market-demo-1111) items whose history is a SAMPLE (example data, not trades; beta only): labelled, never in the movers. */
+  demo?: string[]
 }
 
 export type MarketList = MarketHead & {
@@ -70,7 +76,7 @@ export type MarketDay = {
   d: string
   /** Trades that day. */
   n: number
-  /** That day's average, only with at least min_trades trades that day. */
+  /** That day's median (a pair of accounts once), only with at least min_trades trades and 3 pairs that day. */
   a: number | null
   /** The day's price (the 7-day rule). */
   p: number | null
@@ -90,15 +96,31 @@ export function fetchMarket(lang: LangCode): Promise<MarketList | null> {
   if (kept && Date.now() - kept.at < 60_000) return kept.p
   const p = sampleOn()
     ? import('../pages/market/sample').then((m) => m.sampleMarket())
-    : ledgerGet<MarketList>(`op=market&lang=${encodeURIComponent(lang)}`)
+    : Promise.all([ledgerGet<MarketList>(`op=market&lang=${encodeURIComponent(lang)}`), loadMarketLines(lang)]).then(([l, lines]) =>
+        l ? { ...l, items: l.items.map((it) => nameFix(lines, it)) } : l,
+      )
   p.catch(() => listCache.delete(key))
   listCache.set(key, { at: Date.now(), p })
   return p
 }
 
+const itemCache = new Map<string, { at: number; p: Promise<MarketItemPage | null> }>()
+/** One item's page (kept 30 s in this tab: the host's entry starts the read before the page asks; speed-1111). */
 export function fetchMarketItem(code: string, lang: LangCode): Promise<MarketItemPage | null> {
   if (sampleOn()) return import('../pages/market/sample').then((m) => m.sampleItem(code))
-  return ledgerGet<MarketItemPage>(`op=market_item&code=${encodeURIComponent(code)}&lang=${encodeURIComponent(lang)}`)
+  const key = `${lang}:${code}`
+  const kept = itemCache.get(key)
+  if (kept && Date.now() - kept.at < 30_000) return kept.p
+  const p = readMarketItem(code, lang)
+  p.catch(() => itemCache.delete(key))
+  itemCache.set(key, { at: Date.now(), p })
+  return p
+}
+
+function readMarketItem(code: string, lang: LangCode): Promise<MarketItemPage | null> {
+  return Promise.all([ledgerGet<MarketItemPage>(`op=market_item&code=${encodeURIComponent(code)}&lang=${encodeURIComponent(lang)}`), loadMarketLines(lang)]).then(
+    ([page, lines]) => (page?.item ? { ...page, item: nameFix(lines, page.item) } : page),
+  )
 }
 
 /** The server's Market reads aren't on yet (the ledger function answers 400 for an op it doesn't know). */
@@ -144,10 +166,17 @@ export const itemChange = (it: MarketItem, w: Win) => changeOf(it.p, it.b?.[winI
 export type MoverList = 'rises' | 'falls' | 'traded' | 'valuable'
 export const MOVER_LISTS: MoverList[] = ['rises', 'falls', 'traded', 'valuable']
 
-/** A list of Market Movers over a window, at most `limit` items (never every item). */
-export function movers(items: MarketItem[], list: MoverList, w: Win, limit: number): MarketItem[] {
+/** Whether the lists show the server's sample items too (speed-1111): in the beta only, tagged Sample, after every real item. */
+export const samplesShown = (head: MarketHead | null | undefined): boolean => head?.phase === 'beta' && (head.demo?.length ?? 0) > 0
+
+/**
+ * A list of Market Movers over a window, at most `limit` items (never every item). With `samples` (the beta,
+ * samplesShown) the sample items join it, each after every real item, so the lists aren't bare while few real trades
+ * make a price; without (always from the launch, when the server's list of samples is gone) they never count.
+ */
+export function movers(items: MarketItem[], list: MoverList, w: Win, limit: number, samples = false): MarketItem[] {
   const i = winIndex(w)
-  const priced = items.filter((it) => it.p != null)
+  const priced = items.filter((it) => it.p != null && (samples || !it.demo))
   let out: { it: MarketItem; key: number }[]
   switch (list) {
     case 'rises':
@@ -165,7 +194,7 @@ export function movers(items: MarketItem[], list: MoverList, w: Win, limit: numb
       break
   }
   return out
-    .sort((a, b) => a.key - b.key || (b.it.v?.[i] ?? 0) - (a.it.v?.[i] ?? 0) || a.it.nm.localeCompare(b.it.nm))
+    .sort((a, b) => Number(!!a.it.demo) - Number(!!b.it.demo) || a.key - b.key || (b.it.v?.[i] ?? 0) - (a.it.v?.[i] ?? 0) || a.it.nm.localeCompare(b.it.nm))
     .slice(0, limit)
     .map((x) => x.it)
 }
@@ -173,7 +202,7 @@ export function movers(items: MarketItem[], list: MoverList, w: Win, limit: numb
 /** The featured item: the server's pick (the owner's), else the most traded priced item of the week. */
 export function featuredOf(list: MarketList | null): MarketItem | null {
   if (!list) return null
-  return list.items.find((it) => it.c === list.featured) ?? movers(list.items, 'traded', '7d', 1)[0] ?? null
+  return list.items.find((it) => it.c === list.featured && !it.demo) ?? movers(list.items, 'traded', '7d', 1)[0] ?? null
 }
 
 /** Search the names (and codes) a reader types: starts-with first, then contains; at most `limit`. */
@@ -203,4 +232,12 @@ export const RARITY_COLOUR: Record<string, { dark: string; light: string }> = {
   mythic: { dark: '#FF7FB0', light: '#C2185B' },
   legendary: { dark: '#F2B64D', light: '#B26B00' },
   intercept: { dark: '#ffd166', light: '#8a5e12' },
+}
+
+/** (market-demo-1111) marks the items the server names under head.demo (a sample history), on a list or an item page. */
+export function withDemo<T extends MarketList | MarketItemPage>(page: T): T {
+  const demo = new Set(page.demo ?? [])
+  if (!demo.size) return page
+  if ('item' in page) return demo.has(page.item.c) ? { ...page, item: { ...page.item, demo: true } } : page
+  return { ...page, items: page.items.map((it) => (demo.has(it.c) ? { ...it, demo: true } : it)) }
 }

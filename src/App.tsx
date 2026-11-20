@@ -6,31 +6,20 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import { Layout } from './components'
 import ScrollManager from './components/ScrollManager'
 import OffHost from './components/OffHost'
-import { HOST, onThisHost, sharedHere, sitePath } from './lib/siteHost'
+import { HOST, sharedHere } from './lib/siteHost'
 import Home from './pages/Home'
-import { lazy, Suspense, useMemo } from 'react'
+import { Suspense, useMemo } from 'react'
+import { lazyPage } from './lib/lazyPage'
 import { LIVE, ONLINE_SAFETY_TEXT } from './lib/legalRelease'
 import { SKIN_CSS, theme } from './theme'
 import { colorModeManager } from './theme/mode'
+import ChakraModeBridge from './theme/ChakraModeBridge'
+import ToastRegionLabels from './theme/ToastRegionLabels'
+import { archiveRoutes, marketRoutes } from './routes/hostRoutes'
 import { useLang } from './i18n'
 
-// A page opened before a deploy asks for chunks the new deploy no longer has: reload once to fetch the new ones,
-// instead of leaving a blank screen. The flag stops a reload loop if the chunk is really missing.
-const page = <T,>(load: () => Promise<T>) =>
-  lazy(() =>
-    load()
-      .then((mod) => {
-        try { sessionStorage.removeItem('ss-chunk-reload') } catch { /* no storage: nothing to clear */ }
-        return mod
-      })
-      .catch((err) => {
-        let again = false
-        try { again = sessionStorage.getItem('ss-chunk-reload') === '1'; sessionStorage.setItem('ss-chunk-reload', '1') } catch { again = true }
-        if (again) throw err
-        window.location.reload()
-        return new Promise<T>(() => {})
-      }) as Promise<{ default: React.ComponentType<object> }>
-  )
+// A chunk lost to a deploy reloads the page instead of leaving a blank screen (lib/lazyPage).
+const page = lazyPage
 
 // Every page but Home in its own chunk (Lighthouse 2026-11-02: the legal pages' text was most of the first load's
 // unused JavaScript). The first visit to one of them loads its chunk; `page` handles a chunk lost to a new deploy.
@@ -45,6 +34,8 @@ const Support = page(() => import('./pages/Support'))
 const FAQ = page(() => import('./pages/FAQ'))
 const Join = page(() => import('./pages/Join'))
 const JoinEvent = page(() => import('./pages/JoinEvent'))
+// A Unique's holder on the Archive links here (archive-holder-1110): the way into the app's profile. Nothing from the server.
+const Profile = page(() => import('./pages/Profile'))
 const WhatsNew = page(() => import('./pages/WhatsNew'))
 const DeleteAccount = page(() => import('./pages/DeleteAccount'))
 const ConfirmSuccess = page(() => import('./pages/ConfirmSuccess'))
@@ -56,31 +47,68 @@ const GameNightRules = page(() => import('./pages/GameNightRules'))
 // The minted-collectibles ledger: the route exists only while LIVE.mintedCollectibles is on (from genesis).
 const Ledger = page(() => import('./pages/Ledger'))
 const Transparency = page(() => import('./pages/Transparency'))
-// The Archive (rarefinds-page-1110): every Unique, its own page per copy; with the ledger (LIVE.mintedCollectibles).
-const ArchiveHome = page(() => import('./pages/archive/ArchiveHome'))
-const ArchiveBrowse = page(() => import('./pages/archive/ArchiveBrowse'))
-const ArchiveItem = page(() => import('./pages/archive/ArchiveItem'))
-// The Market (market-site-1110): the Black Market's prices, read from the ledger function (LIVE.marketSite).
-const MarketHome = page(() => import('./pages/market/MarketHome'))
-const MarketMovers = page(() => import('./pages/market/MarketMovers'))
-const MarketCatalogue = page(() => import('./pages/market/MarketCatalogue'))
-const MarketItem = page(() => import('./pages/market/MarketItem'))
 // The Beta 2 playtester page (linked from Reddit and Discord), its own chunk.
 const Beta = page(() => import('./pages/Beta'))
 
-// The Archive's routes, on the host it lives on (lib/siteHost: archive.spysocial.app; www's /archive goes there).
-const archiveOn = LIVE.mintedCollectibles && LIVE.uniqueArchive && onThisHost('/archive')
-// The Market's, likewise (market.spysocial.app; www's /market goes there).
-const marketOn = LIVE.marketSite && onThisHost('/market')
+/**
+ * www's pages the build renders to HTML (scripts/prerender.mjs, www-speed-1112), by address, each with its source file
+ * (the build's manifest names the page's chunk and CSS by it): main.tsx loads the page's chunk before it hydrates that
+ * HTML, and the prerender loads it before rendering. Home is in the app's own chunk. Pages whose route is off (their
+ * switch) aren't rendered: their address keeps the plain app.
+ */
+const PRERENDERED: Record<string, { page: { preload: () => Promise<void> } | null; src: string }> = {
+  '/': { page: null, src: 'src/pages/Home.tsx' },
+  '/privacy': { page: Privacy, src: 'src/pages/Privacy.tsx' },
+  '/terms': { page: Terms, src: 'src/pages/Terms.tsx' },
+  '/rules': { page: Rules, src: 'src/pages/Rules.tsx' },
+  ...(ONLINE_SAFETY_TEXT ? { '/safety': { page: Safety, src: 'src/pages/Safety.tsx' } } : {}),
+  ...(LIVE.gameNightRules ? { '/game-night-rules': { page: GameNightRules, src: 'src/pages/GameNightRules.tsx' } } : {}),
+  ...(LIVE.mintedCollectibles ? { '/ledger': { page: Ledger, src: 'src/pages/Ledger.tsx' } } : {}),
+  ...(LIVE.transparencyPage ? { '/transparency': { page: Transparency, src: 'src/pages/Transparency.tsx' } } : {}),
+  '/child-safety': { page: ChildSafety, src: 'src/pages/ChildSafety.tsx' },
+  '/contact-us': { page: Support, src: 'src/pages/Support.tsx' },
+  '/support': { page: FAQ, src: 'src/pages/FAQ.tsx' },
+  '/whats-new': { page: WhatsNew, src: 'src/pages/WhatsNew.tsx' },
+  '/roadmap': { page: Roadmap, src: 'src/pages/Roadmap.tsx' },
+  ...(LIVE.launchSite || LIVE.beta2Off ? {} : { '/beta': { page: Beta, src: 'src/pages/Beta.tsx' } }),
+  '/delete-account': { page: DeleteAccount, src: 'src/pages/DeleteAccount.tsx' },
+  // /join alone (no code: the page says to open an invite); a room's /join/<code> stays the plain app.
+  '/join': { page: Join, src: 'src/pages/Join.tsx' },
+}
 
-function App() {
+/** The addresses the build renders to HTML on www and their pages' source files (scripts/prerender.mjs). */
+export const PRERENDER_PAGES = Object.entries(PRERENDERED).map(([path, { src }]) => ({ path, src }))
+
+/**
+ * Pages whose address carries a value (a room's code, a username), drawn once per language for every such address
+ * (archive-speed-1116): `path` is the address the build draws, `match` the addresses its file answers (vercel.json:
+ * /join/<code> and /profile/<name> -> dist/_pre/<slug>/<lang>.html). The page draws nothing from the address until
+ * React has taken the HTML over (Join, Profile: lib/clientValue), so the HTML is the same for every address.
+ */
+const SHELLS: { slug: string; path: string; match: RegExp; page: { preload: () => Promise<void> }; src: string }[] = [
+  { slug: 'join-code', path: '/join/QZQZQ', match: /^\/join\/(?!e$|f$)[^/]+$/, page: Join, src: 'src/pages/Join.tsx' },
+  { slug: 'profile', path: '/profile/zz_standin_zz', match: /^\/profile\/[^/]+$/, page: Profile, src: 'src/pages/Profile.tsx' },
+]
+export const PRERENDER_SHELLS = SHELLS.map(({ slug, path, src }) => ({ slug, path, src }))
+
+/** Loads the chunk of the page at `path` (nothing to load for an address the build doesn't render, or Home). */
+export function preloadPage(path: string): Promise<void> {
+  const at = path.replace(/\/+$/, '') || '/'
+  if (HOST !== 'main') return Promise.resolve()
+  return PRERENDERED[at]?.page?.preload() || SHELLS.find((s) => s.match.test(at))?.page.preload() || Promise.resolve()
+}
+
+/** `helmetContext`: the build's renderer (src/prerender.tsx) reads each page's <head> from it; the browser passes none. */
+function App({ helmetContext }: { helmetContext?: object } = {}) {
   // Arabic lays Chakra's own components out right to left too.
   const rtl = useLang().language.rtl
   const themed = useMemo(() => (rtl ? extendTheme({ direction: 'rtl' }, theme) : theme), [rtl])
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       {/* Chakra's colour mode reads the page's theme (public/theme.js, the header's switch) and stores nothing itself. */}
       <ChakraProvider theme={themed} colorModeManager={colorModeManager}>
+        <ChakraModeBridge />
+        <ToastRegionLabels />
         <Global styles={SKIN_CSS} />
         {/* Framer animations (What's New) stop under Reduce Motion, like the CSS ones (src/theme). */}
         <MotionConfig reducedMotion="user">
@@ -96,18 +124,10 @@ function App() {
           <ScrollManager />
           <Suspense fallback={<Box flex="1" bg="ss.page" />}>
             <Routes>
-              {/* The Archive on archive.spysocial.app ('/', '/uniques', '/u/<item>/<serial>'; lib/siteHost), at /archive on
-                  a preview build. */}
-              {archiveOn && <Route path={sitePath('/archive')} element={<Layout><ArchiveHome /></Layout>} />}
-              {archiveOn && <Route path={sitePath('/archive/uniques')} element={<Layout><ArchiveBrowse /></Layout>} />}
-              {archiveOn && <Route path={sitePath('/archive/u/:item/:serial')} element={<Layout><ArchiveItem /></Layout>} />}
-              {/* The Market on market.spysocial.app ('/', '/movers/<list>', '/catalogue[/<shelf>]', '/item/<code>'). */}
-              {marketOn && <Route path={sitePath('/market')} element={<Layout><MarketHome /></Layout>} />}
-              {marketOn && <Route path={sitePath('/market/movers/:list')} element={<Layout><MarketMovers /></Layout>} />}
-              {marketOn && <Route path={sitePath('/market/movers')} element={<Navigate to={sitePath('/market/movers/rises')} replace />} />}
-              {marketOn && <Route path={sitePath('/market/catalogue')} element={<Layout><MarketCatalogue /></Layout>} />}
-              {marketOn && <Route path={sitePath('/market/catalogue/:cat')} element={<Layout><MarketCatalogue /></Layout>} />}
-              {marketOn && <Route path={sitePath('/market/item/:code')} element={<Layout><MarketItem /></Layout>} />}
+              {/* The Archive's and the Market's pages (routes/hostRoutes): on their own hosts in production their own lean
+                  app serves them (src/hosts); here on a preview build (one host) and the dev server. */}
+              {archiveRoutes}
+              {marketRoutes}
               {/* www's pages a subdomain serves too, with its header nav (lib/siteHost SHARED: the Archive's Ledger and
                   Transparency); their canonical address stays www's. */}
               {HOST !== 'main' && LIVE.mintedCollectibles && sharedHere('/ledger') && <Route path="/ledger" element={<Layout><Ledger /></Layout>} />}
@@ -131,8 +151,8 @@ function App() {
               <Route path="/help" element={<Navigate to="/support" replace />} />
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
-              {/* After Beta 2, the launch version sends the old playtest link home (LIVE.launchSite). */}
-              <Route path="/beta" element={LIVE.launchSite ? <Navigate to="/" replace /> : <Layout><Beta /></Layout>} />
+              {/* After Beta 2, the old playtest link goes home (LIVE.beta2Off from Nov 15, then LIVE.launchSite). */}
+              <Route path="/beta" element={LIVE.launchSite || LIVE.beta2Off ? <Navigate to="/" replace /> : <Layout><Beta /></Layout>} />
               {/* The plain reminder page answers /hello until the launch; from the launch flip its file is this app's, which goes home. */}
               <Route path="/hello" element={<Navigate to="/" replace />} />
               <Route path="/delete-account" element={<Layout><DeleteAccount /></Layout>} />
@@ -140,6 +160,7 @@ function App() {
               <Route path="/join/f/:token" element={<Layout><Join /></Layout>} />
               <Route path="/join/:code" element={<Layout><Join /></Layout>} />
               <Route path="/join" element={<Layout><Join /></Layout>} />
+              <Route path="/profile/:username" element={<Layout><Profile /></Layout>} />
               <Route path="/agree/:token" element={<Layout><Agree /></Layout>} />
               </>)}
               {/* A page on another host goes there (OffHost); anything else is the 404 page. */}

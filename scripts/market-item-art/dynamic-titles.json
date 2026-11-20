@@ -1,0 +1,83 @@
+[
+ {
+  "code": "gn_beta_game_nigh_1029",
+  "name": "Beta Game Night",
+  "names": {
+   "ar": "ليلة الألعاب التجريبية",
+   "bn": "বেটা গেম নাইট",
+   "es": "Noche de Juegos Beta",
+   "fr": "Soirée jeux bêta",
+   "hi": "बीटा गेम नाइट",
+   "id": "Malam Permainan Beta",
+   "ru": "Бета-вечер",
+   "pt-BR": "Noite de Jogos Beta",
+   "zh-Hans": "测试版游戏之夜"
+  },
+  "descs": {
+   "en": "Played at the beta testers’ Game Night, before the launch.",
+   "ar": "لعب في ليلة ألعاب المختبرين قبل الإطلاق.",
+   "bn": "লঞ্চের আগে বেটা টেস্টারদের গেম নাইটে খেলেছেন।",
+   "es": "Jugó en la Noche de Juegos de los beta testers, antes del lanzamiento.",
+   "fr": "Présent à la soirée jeux des bêta-testeurs, avant le lancement.",
+   "hi": "लॉन्च से पहले बीटा टेस्टरों की गेम नाइट में खेले।",
+   "id": "Ikut bermain di Malam Permainan para penguji beta, sebelum peluncuran.",
+   "ru": "Участник Игрового вечера бета-тестеров, ещё до запуска.",
+   "pt-BR": "Jogou na Noite de Jogos dos beta testers, antes do lançamento.",
+   "zh-Hans": "参加过上线前的测试玩家游戏之夜。"
+  }
+ },
+ {
+  "code": "gn_beta_game_nigh_1029_local",
+  "name": "Beta Game Night: Local Hero",
+  "names": {
+   "ar": "ليلة الألعاب التجريبية: بطل محلي",
+   "bn": "বেটা গেম নাইট: স্থানীয় নায়ক",
+   "es": "Noche Beta: Héroe Local",
+   "fr": "Soirée bêta : héros local",
+   "hi": "बीटा गेम नाइट: लोकल हीरो",
+   "id": "Malam Beta: Pahlawan Lokal",
+   "ru": "Бета-вечер: гроза шпионов",
+   "pt-BR": "Noite Beta: Herói Local",
+   "zh-Hans": "测试版游戏之夜：本地英雄"
+  },
+  "descs": {
+   "en": "A local’s honour from the beta testers’ Game Night.",
+   "ar": "وسام المحلي من ليلة ألعاب المختبرين.",
+   "bn": "বেটা টেস্টারদের গেম নাইটের স্থানীয় সম্মান।",
+   "es": "Un honor de local de la Noche de Juegos de los beta testers.",
+   "fr": "Un honneur de local de la soirée jeux des bêta-testeurs.",
+   "hi": "बीटा टेस्टरों की गेम नाइट का स्थानीय सम्मान।",
+   "id": "Penghargaan warga dari Malam Permainan para penguji beta.",
+   "ru": "Награда местного с Игрового вечера бета-тестеров.",
+   "pt-BR": "Uma honra de local da Noite de Jogos dos beta testers.",
+   "zh-Hans": "测试玩家游戏之夜的平民荣誉。"
+  }
+ },
+ {
+  "code": "gn_beta_game_nigh_1029_spy",
+  "name": "Beta Game Night: Master Spy",
+  "names": {
+   "ar": "ليلة الألعاب التجريبية: سيد الجواسيس",
+   "bn": "বেটা গেম নাইট: মাস্টার গুপ্তচর",
+   "es": "Noche Beta: Maestro Espía",
+   "fr": "Soirée bêta : maître espion",
+   "hi": "बीटा गेम नाइट: मास्टर जासूस",
+   "id": "Malam Beta: Mata-Mata Ulung",
+   "ru": "Бета-вечер: мастер шпионажа",
+   "pt-BR": "Noite Beta: Mestre Espião",
+   "zh-Hans": "测试版游戏之夜：间谍大师"
+  },
+  "descs": {
+   "en": "A spy’s honour from the beta testers’ Game Night.",
+   "ar": "وسام الجاسوس من ليلة ألعاب المختبرين.",
+   "bn": "বেটা টেস্টারদের গেম নাইটের গুপ্তচর সম্মান।",
+   "es": "Un honor de espía de la Noche de Juegos de los beta testers.",
+   "fr": "Un honneur d’espion de la soirée jeux des bêta-testeurs.",
+   "hi": "बीटा टेस्टरों की गेम नाइट का जासूसी सम्मान।",
+   "id": "Penghargaan mata-mata dari Malam Permainan para penguji beta.",
+   "ru": "Награда шпиона с Игрового вечера бета-тестеров.",
+   "pt-BR": "Uma honra de espião da Noite de Jogos dos beta testers.",
+   "zh-Hans": "测试玩家游戏之夜的卧底荣誉。"
+  }
+ }
+]

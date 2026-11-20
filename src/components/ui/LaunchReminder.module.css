@@ -48,7 +48,7 @@
 }
 .send { width: 100%; padding-inline: 12px; font-size: clamp(19px, 6vw, 24px); }
 .send:disabled { opacity: 0.72; }
-.note { margin: 8px 0 0; font-size: 13px; line-height: 1.35; color: var(--ss-body); }
+.note { margin: 8px 0 0; font-size: 14px; line-height: 1.35; color: var(--ss-body); }
 .noteLink { padding: 12px 6px; margin: -12px -6px; color: var(--ss-body); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 
 .done { padding: 14px 12px; border: var(--ss-hairline) solid var(--ss-accent); outline: none; }

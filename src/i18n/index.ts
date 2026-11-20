@@ -31,8 +31,8 @@ function over<T>(base: T, top: unknown): T {
   return (typeof top === typeof base ? top : base) as T
 }
 
-/** The table for `code`, fetched once. Falls back to English if its chunk can't load. */
-export async function loadStrings(code: LangCode): Promise<Strings> {
+/** The site table for `code`, fetched once. Falls back to English if its chunk can't load. */
+async function siteStrings(code: LangCode): Promise<Strings> {
   const cached = loaded.get(code)
   if (cached) return cached
   const load = loaders[`./locales/${code}.ts`]
@@ -44,6 +44,42 @@ export async function loadStrings(code: LangCode): Promise<Strings> {
   } catch {
     return en
   }
+}
+
+/*
+ * A page's own tables (the Archive's, the Market's: i18n/pageTable.ts) load per language too (speed-1111): each
+ * registers its loader here, and loadStrings waits for them, so the first paint and a language switch never show a
+ * page in English for a moment. A table that registers later (its page's chunk loaded after the first paint) loads
+ * the page's language at once and the provider re-renders when it's in (onTablesLoaded).
+ */
+type TableLoader = (code: LangCode) => Promise<unknown>
+const tableLoaders: TableLoader[] = []
+const tableListeners = new Set<() => void>()
+let current: LangCode | null = null
+
+export function addTableLoader(load: TableLoader) {
+  tableLoaders.push(load)
+  if (current) {
+    const code = current
+    load(code).then(() => {
+      if (current === code) for (const listener of tableListeners) listener()
+    }, () => {})
+  }
+}
+
+/** Calls `listener` whenever a late page table has loaded the page's language; returns the unsubscribe. */
+export function onTablesLoaded(listener: () => void): () => void {
+  tableListeners.add(listener)
+  return () => {
+    tableListeners.delete(listener)
+  }
+}
+
+/** The table for `code` (and every registered page table's), fetched once. Falls back to English if its chunk can't load. */
+export async function loadStrings(code: LangCode): Promise<Strings> {
+  current = code
+  const [strings] = await Promise.all([siteStrings(code), ...tableLoaders.map((load) => load(code).catch(() => {}))])
+  return strings
 }
 
 /** Puts <html> in the language (Helmet keeps it there too) and remembers the choice like public/lang.js reads it. */

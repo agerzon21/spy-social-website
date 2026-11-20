@@ -36,6 +36,8 @@ const I1: PublishedIncident = {
  * The row's rule says "50,000 Intel, once" and can't change (published incidents are frozen); the testers' amount was raised
  * to 100,000 by 20261225220000_test_phase_grant_100k (live 20261111040944, Nov 11 04:09 UTC = Nov 10 ET), so the rule here
  * says 100,000 and when it was raised (every tester already given 50,000 got the other 50,000 under the same incident).
+ * The grant window was extended from 01:30 to 03:00 UTC by 20261229800000_beta2_window_10pm (live 20261110185621, Nov 10 18:56 UTC),
+ * so the rule here says 03:00 UTC and when it was extended.
  */
 const I2: PublishedIncident = {
   id: 'I-2',
@@ -44,11 +46,26 @@ const I2: PublishedIncident = {
   published: 'November 9, 2026',
   summary:
     'While SpySocial is being tested, Intel is given to the developer\'s accounts and to every tester who signs in to a test version before November 13, so the Black Market and trades can be tried for real. All of it is taken back at launch, on December 7: nobody keeps any of it, and nothing it paid for stays.',
-  rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 01:30 UTC: 100,000 Intel, once (published as 50,000; raised to 100,000 on November 10, 2026, when item values went up, and testers already given 50,000 got the other 50,000). The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
+  rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 03:00 UTC (published as 01:30 UTC; extended on November 10, 2026, to 10 PM Eastern on November 12): 100,000 Intel, once (published as 50,000; raised to 100,000 on November 10, 2026, when item values went up, and testers already given 50,000 got the other 50,000). The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
+}
+
+/**
+ * I-3, Beta Black Market sales undone (app server market_beta_players_unwind, WP Mon Nov 16; published 2026-11-16 14:00:21
+ * UTC): word for word the economy_incidents row (title, summary, rule_text). Shown always (published).
+ */
+const I3: PublishedIncident = {
+  id: 'I-3',
+  kind: 'reset',
+  title: 'Beta Black Market sales undone',
+  published: 'November 16, 2026',
+  summary:
+    'While SpySocial was being tested, every adult tester could buy and sell on the Black Market, on the understanding that it would all be reset before launch. Every one of those sales was undone: buyers got back everything they paid, sellers gave back what they received, and items went back to their sellers or were wiped with the pre-launch reset. No Intel was earned or lost through them.',
+  rule: 'Per account: the sum of its Black Market Intel rows is reversed, so its wallet stands as if it had never used the market; never below 0. What a wallet could not pay at once is taken after the pre-launch refunds.',
 }
 
 /** Newest first. */
 export const PUBLISHED_INCIDENTS: PublishedIncident[] = [
+  I3,
   ...(LIVE.launchResetIncident ? [I1] : []),
   ...(LIVE.coverage1110 ? [I2] : []),
 ]
@@ -83,7 +100,10 @@ const GIFTS_TRADABLE: { day: string; what: string; from: string; to: string }[] 
  * no row. Shown once LIVE.giftsTradable is off, with the line above kept as history.
  */
 const GIFTS_BOUND_DEC7: { day: string; what: string; from: string; to: string }[] = [
-  { day: 'December 7, 2026', what: "when items we or our staff give (a Developer's Pick included) and items from a code can be traded (with what a trade-up makes from them)", from: 'at once', to: 'never: they stay with the account' },
+  // stale-help-1118: no Developer's Pick once LIVE.gnRewardsRules is on (row 83 ends the developer's bonus title).
+  { day: 'December 7, 2026', what: `when items we or our staff give${LIVE.gnRewardsRules ? '' : " (a Developer's Pick included)"} and items from a code can be traded (opened or not, with what comes out of them and what a trade-up makes from them)`, from: 'at once', to: 'never: they stay with the account' },
+  // gift-intel-lock-1111 (owner 2026-11-11): a gift's value stays with the account too (app server WR as amended)
+  { day: 'December 7, 2026', what: 'when Intel from shredding a spare of an item from a code or a gift can be traded', from: 'like any other Intel', to: 'never: it is held on the account (it can still be spent in the app)' },
   { day: 'December 7, 2026', what: 'when Intel we add ourselves (a bug refund to one player, an outage make-good) can be traded', from: 'never: it was locked', to: 'like any other Intel' },
   // gift-intel-lock-1111 (owner 2026-11-11): a gift's value stays with the account too (app server WR as amended)
   { day: 'December 7, 2026', what: 'when Intel from shredding a spare of an item from a code or a gift can be traded', from: 'like any other Intel', to: 'never: it is held on the account (it can still be spent in the app)' },

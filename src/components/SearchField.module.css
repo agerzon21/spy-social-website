@@ -25,6 +25,8 @@
 }
 .withClear { padding-inline-end: 84px; }
 .input::placeholder { color: var(--ss-muted); opacity: 1; }
+/* A hint longer than the box on a phone ends in an ellipsis, not mid-word ("…codename or numb"; site-qa-1115). */
+.input { text-overflow: ellipsis; }
 .input:focus-visible { outline: 3px solid var(--ss-focus); outline-offset: 1px; }
 .input::-webkit-search-cancel-button { display: none; }
 .clear {

@@ -1,9 +1,10 @@
 import type { HelpText } from '../types'
 
 /** Português (pt-BR): "você", direto e informal como o app; termos do app (Sala privada, Criar sala, Jogar online, Buscar partida, Ações, Adivinhar, Cofre, Mercado Negro, Achados raros, interceptações, Intel, Ajustes). */
+// help-new-1117 (2026-11-17, against app int/u62-15-prep): #question-rounds, #game-night-weekly, #game-night-rewards, #game-night-intercepts, #practice-members, #membership-switch, #two-memberships, #sign-up-email; agent translation, unreviewed.
 const ptBR: HelpText = {
   title: 'Ajuda e perguntas frequentes',
-  lede: 'Respostas rápidas sobre como jogar SpySocial, sua conta, as recompensas e a assinatura.',
+  lede: 'Respostas rápidas sobre como jogar SpySocial, sua conta, as recompensas e o plano de membro.',
   search: 'Buscar na ajuda',
   searchHint: 'Tente “votar” ou “troca”',
   clear: 'Limpar',
@@ -26,7 +27,7 @@ const ptBR: HelpText = {
         },
         {
           id: 'how-many-players',
-          q: 'Quantos jogadores precisa?',
+          q: 'De quantos jogadores eu preciso?',
           a: [
             'Uma sala privada joga com 3 a 21 jogadores.',
             '<b>Jogar online</b> coloca você numa mesa de 4 ou 8.',
@@ -38,7 +39,7 @@ const ptBR: HelpText = {
           q: 'O SpySocial é grátis?',
           a: [
             'Sim. Os dois jogos, o Jogar online, as salas privadas e a Noite de Jogos são grátis e sem anúncios.',
-            `A assinatura, opcional, libera os pacotes premium e alguns visuais para o seu agente. Nada que você compra ajuda a ganhar.${o.purchases ? '' : ' A assinatura começa a ser vendida com a versão 2.2.'}`,
+            `Ser membro é opcional e libera os pacotes premium e alguns visuais para o seu agente. Nada que você compra ajuda a ganhar.${o.purchases ? '' : ' O plano de membro começa a ser vendido com a versão 2.2.'}`,
           ],
         },
         {
@@ -47,7 +48,7 @@ const ptBR: HelpText = {
           a: [
             '<b>Com amigos:</b> toque em <b>Sala privada</b> e depois em <b>Criar sala</b>, e compartilhe o código da sala, o QR code ou o link de convite. Precisa de pelo menos 3 jogadores.',
             '<b>Com qualquer pessoa:</b> toque em <b>Jogar online</b> e depois em <b>Buscar partida</b>.',
-            '<b>É novo?</b> <b>Como jogar</b>, no início, tem uma introdução de 1 minuto, tutoriais, um glossário e uma partida de treino.',
+            o.practiceMembers ? "<b>É novo?</b> <b>Como jogar</b>, no início, tem um tutorial grátis de 3 minutos para cada jogo e depois, para membros, partidas de treino contra agentes de IA. O glossário também fica lá." : "<b>É novo?</b> <b>Como jogar</b>, no início, tem um tutorial de 3 minutos para cada jogo e depois partidas de treino contra agentes de IA. O glossário também fica lá.",
           ],
         },
       ],
@@ -74,6 +75,30 @@ const ptBR: HelpText = {
             'Sem ideia? A carta de dicas, embaixo na tela, tem uma pergunta. Perguntar o nome do local ou a primeira letra não vale.',
           ],
         },
+        ...(o.questionRounds
+          ? [
+            {
+              id: 'question-rounds',
+              q: 'O que são as rodadas de perguntas?',
+              a: [
+                'Algumas mesas de Spy Talk jogam 2 rodadas de perguntas em vez de 1: salas privadas em que o anfitrião escolhe 2 nas <b>Regras</b> da sala, e Noites de Jogos que usam isso. No Jogar online, é sempre 1.',
+                'Na rodada 1, cada um faz uma pergunta e responde uma. Assim que chega a última resposta, começa a rodada 2, ao contrário: a pessoa a quem você perguntou é quem pergunta para você. No topo aparece “Rodada 2”.',
+                'Depois vem a discussão, com o tempo de sempre. Duas rodadas dão aos locais o dobro de respostas para conferir, e ao espião o dobro de chances de vacilar.',
+              ],
+            },
+            ]
+          : []),
+        {
+          id: 'talk-out-loud',
+          q: "O que é Falar em voz alta?",
+          a: [
+            "Uma regra do Spy Talk para quem joga no mesmo lugar ou numa chamada de voz. O anfitrião a ativa nas <b>Regras</b> da sala; salas novas começam com ela desativada. Só em salas privadas e nas Noites de Jogos que a ativarem.",
+            "Durante as perguntas, ninguém digita nem usa o microfone: quem pergunta fala em voz alta e toca em <b>Concluído</b>, depois quem responde fala em voz alta e toca em <b>Concluído</b>.",
+            "Nada fica escrito, então as anotações não guardam o histórico de perguntas.",
+            "Sugerimos deixar desativada, mesmo com todos na mesma mesa: toque no microfone e pergunte em voz alta. Todos ouvem você, e o app transforma o que você diz em texto que todos os jogadores veem no histórico de perguntas.",
+            "Todos na sala precisam da versão mais nova do app. Se alguém tiver uma versão antiga, a regra aparece desativada até a pessoa atualizar o app.",
+          ],
+        },
         {
           id: 'spy-sketch',
           q: 'Como funciona o Spy Sketch?',
@@ -81,6 +106,28 @@ const ptBR: HelpText = {
             'Os jogadores desenham, um de cada vez, num quadro compartilhado. Os locais dão pistas da palavra sem desenhá-la de vez. Os espiões acrescentam algo vago que possa servir.',
             'Depois que todos jogaram sua vez, abrem as votações e o palpite do espião. As rodadas seguem até o fim da partida.',
             'Os desenhos do Spy Sketch não são descritos em voz alta, então um leitor de tela (VoiceOver, TalkBack) não consegue acompanhar o desenho.',
+          ],
+        },
+        {
+          id: 'drawings-checked',
+          q: "Os desenhos do Spy Sketch são verificados?",
+          a: [
+            "Sim, por segurança. Nas mesas do Jogar online e nas Noites de Jogos, os turnos de desenho terminados podem ser verificados automaticamente pela OpenAI, em busca de qualquer coisa que quebre as <rules>regras da comunidade</rules>.",
+            "Na primeira vez, o app mostra <b>Os desenhos são verificados</b>. Toque em <b>Concordo</b> para jogar Spy Sketch online. Até concordar, o Spy Talk continua disponível.",
+            "Numa sala privada, um desenho é verificado se alguém o denunciar. Ele também pode ser verificado automaticamente enquanto puder vê-lo alguém, que não seja quem desenha, com menos de 18 anos ou que não nos informou a idade. O desenho de um jogador que disse ter menos de 18 anos só é verificado se alguém o denunciar.",
+            "A OpenAI recebe uma imagem do turno e a palavra da rodada, nunca seu nome nem suas mensagens. Um turno que quebra as regras pode ser removido e pode levar a uma advertência, uma pausa ou um banimento. Uma pessoa revisa toda decisão permanente, e você pode recorrer.",
+            "Todos os detalhes: <drawchecks>Drawing Checks, na Política de privacidade</drawchecks>.",
+          ],
+        },
+        {
+          id: 'new-page',
+          q: "O que é Página nova no Spy Sketch?",
+          a: [
+            "Uma pausa no desenho para o jogo por até 20 segundos: estude o desenho, converse e confira suas anotações. Todos que ainda estão no jogo votam em <b>Manter esta</b> ou <b>Página nova</b>. A pausa acaba antes quando todos já votaram.",
+            "A página fica só se mais da metade dos jogadores que ainda estão no jogo votar para mantê-la. Empate, ou nenhum voto, significa página em branco. Dá para voltar e ver as páginas anteriores.",
+            "<b>Jogar online:</b> no máximo uma página a mais. A pausa vem a cada 2 rodadas numa mesa de 4, e depois de cada rodada numa mesa de 8. Se a mesa mantiver a página, a pausa seguinte vem o mesmo número de rodadas depois.",
+            "<b>Salas privadas e Noites de Jogos:</b> o anfitrião (ou a noite) escolhe <b>Página nova</b> nas regras: Não, 2, 3 ou 4 páginas, ou Sem limite. Uma sala nova começa com 2, como recomendamos. A pausa vem quando a folha fica cheia.",
+            "Nenhuma pausa começa nos últimos 45 segundos da partida.",
           ],
         },
         {
@@ -93,6 +140,7 @@ const ptBR: HelpText = {
             'Empate no primeiro lugar não elimina ninguém, e sempre são precisos pelo menos 2 votos.',
             'Nas mesas do Jogar online, cada jogador pode pedir uma votação e diz quem acusa. Quando uma votação pega um espião, todos que usaram a sua a recebem de volta.',
             'Nas mesas de 8 jogadores, sai quem receber mais votos, até restarem 4 jogadores; aí volta a maioria. Não votar conta como se abster.',
+            'No resultado, uma faixa preta mostra quem pediu a votação: “Pedida por …”. Uma votação final mostra no lugar uma fita vermelha de <b>Votação final</b>.',
           ],
         },
         {
@@ -102,7 +150,8 @@ const ptBR: HelpText = {
             'Um espião abre <b>Ações</b> e toca em <b>Adivinhar</b>. Ele tem 60 segundos para escolher o segredo numa lista de uns 30.',
             'Acertou: todos os espiões ganham. Errou, ou o tempo acabou: esse espião sai. Se era o último, os locais ganham.',
             'Todo mundo vê quem está adivinhando, então isso entrega você.',
-            'Com <b>Um só palpite</b> ligado (salas privadas e Noites de Jogos que o ligam), a equipe espiã tem uma única chance: errou, a equipe toda perde.',
+            "Você adivinha sem ajuda: seu chat fica fechado até você confirmar.",
+            'Com <b>Um só tiro</b> ligado (salas privadas e Noites de Jogos que o ligam), a equipe espiã tem uma única chance: errou, a equipe toda perde.',
           ],
         },
         {
@@ -112,8 +161,20 @@ const ptBR: HelpText = {
             'Os <b>locais</b> ganham eliminando todos os espiões, ou quando o último espião erra o palpite.',
             'Os <b>espiões</b> ganham acertando o palpite, quando o tempo da partida acaba, ou quando uma votação deixa tantos espiões quanto locais.',
             'Sair conta como ser eliminado na votação: se o último espião sair, os locais vencem; se locais demais saírem, os espiões vencem. Se isso acontecer antes de as perguntas terminarem (no Spy Sketch, na primeira rodada), a partida mostra “Sem resultado” e não conta.',
-            '<b>Votação final:</b> se o tempo acabar com exatamente um espião no jogo, todos votam mais uma vez. Peguem o espião e os locais ganham. Ela vale no Jogar online e é um ajuste nas salas privadas.',
-            '<b>Informante</b> (salas privadas e Noites de Jogos que o ligam): um local sabe quem é um espião. Se os espiões forem pegos por uma votação ou um palpite errado, têm 30 segundos para apontar esse local e roubar a vitória.',
+            "<b>Votação final:</b> com exatamente um espião no jogo, todos votam mais uma vez quando o tempo acaba, quando ninguém tem mais votações ou quando a última chance de pedir uma acaba. Peguem o espião e os locais ganham. Ela vale no Jogar online e é um ajuste nas salas privadas. Uma mesa do Jogar online ou uma Noite de Jogos também pode jogá-la com dois espiões: peguem qualquer um deles e os locais ganham.",
+            "O resultado de uma votação final abre sob uma fita vermelha de <b>Votação final</b> que diz o motivo: “O relógio falou”, “Ninguém tem mais votações” ou “A última chance acabou”.",
+            "<b>Informante</b> (Spy Talk e Spy Sketch, salas privadas e Noites de Jogos que o ligam, com 2 espiões ou mais e 6 jogadores ou mais): a carta de um local diz <b>Você sabe: Nome é do time dos espiões</b>, com um só espião nomeado, mesmo quando há mais. As cartas dos outros locais contam o informante, como “2 espiões · 1 informante”. Quando os locais ganham por votação ou pelo palpite errado do último espião, os espiões, inclusive os pegos, têm 30 segundos para apontar o informante e roubar a vitória. Não vale depois de um erro com <b>Um só tiro</b>, nem quando o último espião sai.",
+          ],
+        },
+        {
+          id: 'special-rules',
+          q: "Que regras especiais uma sala privada ou uma Noite de Jogos pode usar?",
+          a: [
+            "<b>Votações por partida:</b> cada jogador pode pedir 1, 2 ou 3 votações por partida, ou sem limite (sala nova começa com 1). Quando uma votação pega um espião, todo mundo que usou uma recebe uma de volta.",
+            "Quando ninguém que ainda está no jogo tem votação sobrando, o relógio da partida pula para os últimos 5 segundos. Quando sobram tantas votações quanto espiões no jogo, ou menos, há uma última chance de 15 segundos para pedir uma. Se ninguém pedir uma a tempo, vem a votação final, se ela estiver ativa (veja como cada lado ganha, acima); se não, os espiões ganham.",
+            "<b>Rastro de papel:</b> quando um espião sai por votação, todos veem como ele votou a partida inteira. Se os papéis não forem revelados na saída, o rastro espera o fim de jogo.",
+            "<b>Um só tiro</b> e <b>Informante</b>: veja acima, no palpite do espião e em como cada lado ganha.",
+            "<b>Falar em voz alta</b> tem sua própria resposta acima. No app, <b>Como jogar</b> › <b>Recursos e configurações</b> tem uma demo curta de cada regra.",
           ],
         },
       ],
@@ -130,34 +191,99 @@ const ptBR: HelpText = {
             'Quem não conhece você vê sua cor de agente, como Agente Turquesa, nunca o seu nome.',
             'Você precisa de uma conta salva (e-mail confirmado, ou login com Apple ou Google) e ter 13 anos ou mais.',
             'Sair de uma partida depois que os papéis são distribuídos dá uma pausa curta no Jogar online.',
+            ...(o.u6152 ? ["Membros podem ativar <b>Só membros</b> para jogar só com outros membros. Menos jogadores buscam assim, então achar uma partida pode demorar um pouco mais. O (i) ao lado explica mais, com <b>Ver plano de membro</b> para quem não é membro."] : []),
           ],
         },
         {
           id: 'private-rooms',
           q: 'Como funcionam as salas privadas?',
           a: [
-            'As salas que os jogadores criam são privadas, para quem você conhece. Os amigos entram com o código da sala, o QR code ou o link de convite. Convidados sem conta também entram.',
+            'As salas que os jogadores criam são privadas, para quem você conhece. Os amigos entram com o código da sala, o QR code ou o link de convite. Visitantes sem conta também entram.',
             'O anfitrião define as regras: jogo, espiões, tempos, votação e pacotes. O máximo vai até 21 jogadores, e <b>Trancar sala</b> impede que gente nova entre.',
-            'Todos jogam com os pacotes que o anfitrião liberou.',
+            'Os pacotes grátis ficam abertos para todos. Se alguém na sala for membro, todos os pacotes premium ficam liberados para todo mundo.',
           ],
         },
         {
           id: 'game-night',
           q: 'O que é a Noite de Jogos?',
           a: [
-            'Partidas online que organizamos, nas noites que anunciamos no app, normalmente das 20h às 22h no horário do leste dos EUA. Toque em <b>Jogar agora</b> no cartão da Noite de Jogos no início.',
-            'Cada noite tem seus pacotes, ajustes e títulos. O (i) ao lado da noite mostra os pacotes e ajustes, e <b>Prêmios</b>, no cartão, mostra os títulos.',
+            o.launch ? "Partidas online que organizamos, nas noites que anunciamos no app, normalmente das 20h às 22h no horário do leste dos EUA. No início, abra <b>Competir</b>, depois a aba <b>Noite de Jogos</b> e toque em <b>Jogar agora</b>." : 'Partidas online que organizamos, nas noites que anunciamos no app, normalmente das 20h às 22h no horário do leste dos EUA. Toque em <b>Jogar agora</b> no cartão da Noite de Jogos no início.',
+            "A Noite de Jogos pede uma conta salva: o visitante salva a dele primeiro.",
+            o.gnRewards
+              ? 'Cada noite tem seus pacotes e ajustes: o (i) ao lado da noite mostra tudo. <b>Prêmios</b>, no cartão, mostra o que você ganha: Intel da Noite de Jogos e os títulos ★.'
+              : o.gnRewardsRules
+                ? 'Cada noite tem seus pacotes e ajustes: o (i) ao lado da noite mostra tudo.'
+                : 'Cada noite tem seus pacotes, ajustes e títulos. O (i) ao lado da noite mostra os pacotes e ajustes, e <b>Prêmios</b>, no cartão, mostra os títulos.',
             'É grátis, e nada que você compra melhora suas chances. As regras completas: <gnr>regras da Noite de Jogos</gnr> (em inglês).',
           ],
         },
+        ...(o.launch
+          ? [
+            {
+              id: 'compete',
+              q: "O que é o Competir?",
+              a: [
+                "<b>Competir</b> é um cartão no início com três abas: <b>Noite de Jogos</b>, <b>Ranqueada</b> e <b>Torneios</b>.",
+                "Hoje só a aba Noite de Jogos está em uso. Ranqueada e Torneios chegam mais tarde e mostram “Em breve”.",
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnWeekly
+          ? [
+            {
+              id: 'game-night-weekly',
+              q: 'Quando é a Noite de Jogos?',
+              a: [
+                'Uma vez por semana: na sexta, e a mesma noite de novo no sábado, normalmente das 20h às 22h no horário do leste dos EUA.',
+                'Venha em qualquer uma das noites, ou jogue nas duas.',
+                o.launch ? "Anunciamos cada noite no app, no início, em Competir, na aba Noite de Jogos." : 'Anunciamos cada noite no app, no cartão da Noite de Jogos no início.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-rewards',
+              q: 'O que eu ganho na Noite de Jogos?',
+              a: [
+                '<b>Intel da Noite de Jogos</b> por cada partida que você termina: 500 por vitória, 200 por derrota ou empate. O fim de jogo mostra quanto você ganhou.',
+                "Não há Intel da Noite de Jogos se você sair antes do fim, for removido da mesa ou não participar, se a partida começar depois do encerramento da Noite de Jogos (uma partida que começa a tempo e termina depois ainda paga), se nossas checagens de jogo limpo marcarem a partida, ou numa mesa com spybots. Uma partida que acaba antes porque alguém saiu não dá nada a ninguém.",
+                '<b>Títulos ★</b> que vão somando: <b>★ Operativo</b> por cada partida da Noite de Jogos que você termina, <b>★ Herói local</b> por cada vitória como local, <b>★ Espião exímio</b> por cada vitória como espião e <b>★ Agente duplo</b> por cada noite em que você ganha dos dois lados. Use o título com a contagem, como ★ Operativo ×12.',
+                'O Intel da Noite de Jogos e os títulos ★ são só seus: não podem ser trocados, e o plano de membro não acrescenta nada a eles. Gaste o Intel em interceptações da Noite de Jogos.',
+                ...(o.launch
+                  ? []
+                  : ['Os títulos das Noites de Jogos do beta viraram contagens nesses títulos. No reset antes do lançamento, o Intel da Noite de Jogos que você ganhou volta inteiro, mesmo que tenha gastado, e seus títulos ★ continuam. As interceptações da Noite de Jogos e os itens delas são apagados como todo o resto.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'practice-game',
-          q: 'O que é a partida de treino?',
+          q: "O que são o tutorial e as partidas de treino?",
           a: [
-            'Uma partida de 5 a 9 minutos contra agentes de IA, com um treinador, em <b>Como jogar</b>. Você ganha uma nota de A a F e pode continuar de onde parou.',
-            'Antes de você jogar Spy Talk ou Spy Sketch online, o app pode pedir que passe no treino desse jogo com C ou melhor. A Noite de Jogos nunca pede.',
+            "Em <b>Como jogar</b>, escolha Spy Talk ou Spy Sketch. <b>Passo 1, Tutorial:</b> uma partida guiada de 3 minutos contra agentes de IA. Jogue como local ou como espião: concluir qualquer um dos dois vale.",
+            o.practiceMembers ? "<b>Passo 2, Partidas de treino</b> (para membros): partidas completas de 5 a 9 minutos contra agentes de IA, com nota de A a F. Elas são liberadas quando você conclui o tutorial daquele jogo, e dá para continuar de onde parou." : "<b>Passo 2, Partidas de treino:</b> partidas completas de 5 a 9 minutos contra agentes de IA, com nota de A a F. Elas são liberadas quando você conclui o tutorial daquele jogo, e dá para continuar de onde parou.",
+            "Cada jogo tem quatro: como local ou como espião, numa mesa de 4 ou de 8. Tirar A nas oito dá o título <b>Nota dez</b> (só contas salvas).",
+            o.launch ? "Concluir o tutorial de um jogo libera o Jogar online para esse jogo (com uma conta salva). As partidas de treino não são necessárias. A Noite de Jogos nunca pede." : "Hoje você não precisa de nenhum dos dois para jogar online. A Noite de Jogos nunca pede.",
           ],
         },
+        ...(o.practiceMembers
+          ? [
+            {
+              id: 'practice-members',
+              q: 'Quem pode jogar as partidas de treino?',
+              a: [
+                'As partidas de treino são para membros: até 5 por dia. O dia começa à meia-noite UTC. Depois das suas 5, uma partida salva ainda pode ser continuada.',
+                ...(o.practiceAi
+                  ? ['Membros recebem comentários da IA sobre cada frase que escrevem, enquanto jogam, e uma nota de A a F em toda partida. Os comentários da IA são para quem tem 16 anos ou mais e toca em <b>Experimentar</b> quando o app pergunta; para os outros, quem avalia é o celular. Para parar, desative <b>Avaliar minhas frases de treino com IA</b> nos Ajustes.']
+                  : []),
+                'Os tutoriais continuam grátis para todos, e passar em um ainda conta para o Jogar online.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'languages',
           q: 'Dá para jogar com quem fala outros idiomas?',
@@ -170,8 +296,9 @@ const ptBR: HelpText = {
                     ? 'Mensagens em outro idioma são traduzidas para o seu automaticamente. Para traduzir só quando tocar, desligue <b>Traduzir mensagens automaticamente</b> nos Ajustes.'
                     : 'Toque em <b>Traduzir</b> numa mensagem para ler no seu idioma.',
                 ]
-              : ['Numa sala privada, o anfitrião escolhe o idioma da partida para o segredo e as dicas.']),
+              : ['Numa sala privada, o anfitrião escolhe o idioma da partida para o segredo e as dicas.', ...(o.autoTranslation ? ['Mensagens em outro idioma são traduzidas para o seu automaticamente. Para traduzir só quando tocar, desligue <b>Traduzir mensagens automaticamente</b> nos Ajustes.'] : [])]),
             ...(o.autoTranslation ? ['O Jogar online pode oferecer adicionar seu idioma ao tradutor do próprio telefone. É opcional, e mantém as linhas em inglês do chat traduzidas quando nosso tradutor está ocupado.'] : []),
+            ...(o.u6153 ? ["Quando você troca o idioma nos <b>Ajustes</b>, o app mostra um indicador de carregamento enquanto passa para o novo idioma."] : []),
           ],
         },
       ],
@@ -180,11 +307,54 @@ const ptBR: HelpText = {
       id: 'in-game',
       title: 'Durante a partida',
       items: [
+        ...(o.roleReveal
+          ? [
+            {
+              id: 'role-reveal',
+              q: "Como funciona a revelação de papéis?",
+              a: [
+                "As partidas online têm revelação de papéis: Jogar online, Noites de Jogos e salas privadas em que o anfitrião escolheu <b>Online</b>. Toque na sua carta: as luzes se apagam e um holofote mostra seu papel.",
+                "Os <b>locais</b> veem o segredo e quantos espiões estão entre eles: no Spy Talk, o local e a imagem dele (todo local dos nossos pacotes tem uma); no Spy Sketch, só a palavra.",
+                "Quem é do time dos <b>espiões</b> recebe uma carta escura. Na Máfia, os outros espiões aparecem ao seu lado, com o nome e uma etiqueta vermelha de Espião. No Clássico, os espiões não se conhecem, então os outros aparecem como <b>Desconhecido</b>.",
+                "Toque em <b>Continuar</b> quando terminar. A partida avança quando todos tocarem em “Continuar” ou quando o tempo acabar.",
+                "Sua carta fica na parte de baixo da tela a partida toda, com a mesma cara: a de um local mantém a imagem do lugar, e a de um espião na Máfia mostra em vermelho o nome dos outros espiões.",
+                "Na Máfia com mais de um espião, toque em <b>CANAL DOS ESPIÕES</b> para conversar em particular com os outros espiões (o canal fecha enquanto um espião tenta adivinhar o segredo): na sua carta antes de começar, depois na barra de cima, ou ao lado do chat numa votação. Basta um toque; um número mostra as mensagens novas, e uma mensagem de outro espião diz “… está tentando falar com você”.",
+                "A etiqueta vermelha fica nas fotos dos outros espiões a partida toda. Os locais nunca veem as etiquetas, o botão nem o chat.",
+                "Numa chamada de voz? Ative <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para o microfone não captar o som de revelação de um espião. O app só pergunta isso (<b>Jogando em chamada?</b>) numa sala privada <b>Online</b>.",
+              ],
+            },
+            {
+              id: 'poker-face',
+              q: "Online ou Mesmo lugar: o que é Cara de paisagem?",
+              a: [
+                "Quando um anfitrião cria uma sala privada, o app pergunta <b>Onde vocês vão jogar?</b> Escolha <b>Online</b> se cada um estiver no seu celular, esteja onde estiver, inclusive numa chamada: revelação completa dos papéis e chat dos espiões a um toque. Escolha <b>Mesmo lugar</b> se estiverem em volta de uma mesa: isso ativa a <b>Cara de paisagem</b>.",
+                "Com a Cara de paisagem, todas as cartas de papel ficam iguais: sem carta escura de espião, sem etiquetas vermelhas de Espião, e nada acende quando chega mensagem dos espiões. A Máfia ainda mostra os outros espiões, em letras pequenas. Os espiões abrem o chat segurando a própria carta (no computador, com o botão direito). Numa votação, eles seguram o botão do chat.",
+                "Por quê: numa mesma mesa, uma olhada no celular do vizinho poderia entregar o papel dele. A Cara de paisagem evita descuidos, não trapaças. O porém: fica mais difícil reconhecer os outros espiões e conversar com eles.",
+                "O anfitrião pode mudar isso entre uma partida e outra em <b>Regras</b>, no lobby, e quem entra vê <b>“Cara de paisagem” está ativada</b>. Nas Noites de Jogos, isso é definido para cada noite. Ela não existe no Jogar online.",
+              ],
+            },
+            ]
+          : []),
+        {
+          id: 'voice-chat',
+          q: "Tem chat de voz? Para que serve o microfone?",
+          a: [
+            "O SpySocial não tem chat de voz: ninguém ouve você pelo app. O microfone transforma o que você diz em texto, para você não precisar digitar.",
+            "Toque no microfone, fale e toque de novo para parar. Funciona nos chats da partida e do lobby e nas perguntas do Spy Talk.",
+            "Quem faz isso é o reconhecimento de voz do seu celular (ou do seu navegador). Recebemos só o texto, nunca o áudio. Detalhes: <privacy>Política de privacidade</privacy>.",
+            "Para conversar durante a partida, faça uma chamada de voz à parte, no Discord ou pelo telefone, por exemplo.",
+            ...(o.roleReveal ? ["Numa chamada, o anfitrião escolhe <b>Online</b> em <b>Onde vocês vão jogar?</b>, e cada um pode ativar <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para nenhum microfone captar o som de revelação de um espião."] : []),
+            "Numa sala privada de Spy Talk, <b>Falar em voz alta</b> deixa todos perguntarem e responderem falando, sem digitar.",
+          ],
+        },
         {
           id: 'wax-seal',
           q: 'O que é o Selo de Cera?',
           a: [
-            'O selo no alto à direita da tela do jogo. Toque nele quando quiser para abrir o chat completo da partida, suas notas e as informações do jogo. Um ponto vermelho indica mensagens novas.',
+            'O selo no alto à esquerda da tela do jogo guarda <b>Sair</b> e <b>Info</b>, dobrados para ninguém sair sem querer. <b>Chat</b> e <b>Notas</b> têm botões próprios no alto à direita e abrem com um toque. Um número no Chat indica mensagens novas.',
+            'O selo aparece em todas as telas da partida: a votação e o resultado, o palpite do espião e o fim de jogo.',
+            'Na votação, no palpite do espião e no fim de jogo, <b>Info</b> explica a tela em que você está.',
+            'As partidas de treino também têm o selo, com <b>Encerrar</b> e <b>Info</b> na votação, no palpite e no fim de jogo. A partida espera enquanto o Info estiver aberto.',
             'Toque na foto de um jogador para perguntar a ele no chat. Deslize uma mensagem para responder.',
             'Mentir e blefar faz parte do jogo. Falar o segredo direto, não.',
           ],
@@ -218,7 +388,7 @@ const ptBR: HelpText = {
           id: 'add-friends',
           q: 'Como adiciono amigos?',
           a: [
-            '<b>Pessoalmente:</b> mostre seu <b>código de amigo</b> e deixe a pessoa escanear no SpySocial. Ele muda com frequência, então um print para de funcionar.',
+            "<b>Pessoalmente:</b> mostre seu <b>código de amigo</b> e deixe a pessoa escanear no SpySocial. Um código novo aparece a cada 5 minutos e vale para no máximo 3 leituras, então um print logo para de funcionar.",
             '<b>De uma partida privada</b> que vocês jogaram juntos nas últimas 24 horas.',
             '<b>Só adultos:</b> de uma mesa pública, ou pelo nome de usuário exato, se a pessoa permitir.',
             'A amizade é dos dois lados. Você pode remover ou bloquear um amigo quando quiser, e ele não fica sabendo. Não existem mensagens privadas.',
@@ -228,7 +398,9 @@ const ptBR: HelpText = {
           id: 'parties',
           q: 'O que é um grupo?',
           a: [
-            'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso uma assinatura para começar. Se o líder sair, a liderança passa primeiro para alguém com assinatura.',
+            'Um líder e amigos que jogam juntos, até 21 pessoas no total. É preciso ser membro para começar. ' + (o.partyNoMember ? "Se o líder sair, a liderança passa para um membro." : "Se o líder sair, a liderança passa primeiro para um membro."),
+            ...(o.partyLeaderLapse ? ['Se o líder deixar de ser membro, o grupo é encerrado para todos; a liderança não passa para ninguém. Uma partida em andamento vai até o fim e, depois, cada um busca sozinho.'] : []),
+            ...(o.partyNoMember ? ['Se o líder sair e ninguém que ficou for membro, o grupo é encerrado para todos.'] : []),
             'Nas mesas do Jogar online e nas Noites de Jogos, o grupo ocupa no máximo meia mesa, marcado para todos: até 2 numa mesa de 4, até 4 numa mesa de 8.',
             'Numa mesa de 12 lugares da Noite de Jogos, até 6. Membros do grupo que procuram partida sozinhos também contam: juntos, nunca mais que meia mesa.',
             'Para sentar na mesma mesa, busquem pelo grupo: <b>Jogar online</b> sozinho é uma busca individual. Depois de uma partida do Jogar online, <b>Voltar ao seu grupo</b> leva você de volta a ele.',
@@ -246,6 +418,18 @@ const ptBR: HelpText = {
             'Adultos podem ter perfil público e seguidores. Menores de 18, não.',
           ],
         },
+        ...(o.u6152
+          ? [
+              {
+                id: 'showcase-items',
+                q: "O que acontece quando toco num item de uma vitrine?",
+                a: [
+                  "Toque em qualquer item da <b>Vitrine</b> de um jogador, a sua ou a de outra pessoa, para abrir a página dele.",
+                  "Na página do item, <b>Ver no Arquivo</b> abre a página de um Único no nosso site, e <b>Ver no Mercado</b> abre os preços de qualquer outro item.",
+                ],
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -257,14 +441,16 @@ const ptBR: HelpText = {
           q: 'Quem pode trocar, e o quê?',
           a: [
             'Você troca com amigos, dentro do app. Precisa de uma conta com pelo menos 7 dias, e-mail confirmado e 3 partidas contadas (partidas terminadas que entram nas suas estatísticas, com pelo menos outras 2 contas salvas em outros celulares).',
+            "Os 7 dias contam a partir de quando a conta foi salva: o tempo como visitante não conta.",
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta, partidas contadas e novo aparelho estão desligadas: qualquer testador pode trocar assim que confirmar o e-mail.']),
+            ...(o.launch ? ["Testadores que jogaram 3 partidas contadas durante o teste beta não precisam de mais 3."] : ["Testadores que jogarem 3 partidas contadas durante o teste beta não vão precisar de mais 3 depois do lançamento."]),
             'Cada lado oferece até 10 itens, e os dois confirmam antes da troca. Trocas grandes pedem um código que mandamos por e-mail.',
             ...(o.interceptsInTrades ? ['Adultos também podem colocar Interceptações fechadas numa troca: escolha quantas de cada nível. Cada uma conta como um dos 10 itens.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Durante o teste beta, até 7 de dezembro, qualquer Interceptação fechada pode entrar numa troca, não importa como você a conseguiu. De qualquer forma, as Interceptações recomeçam do zero no lançamento.'] : []),
-            'O que você coloca numa troca aberta fica reservado para ela: não pode ir para outra troca nem para o Mercado Negro ao mesmo tempo. Se a Intel de uma troca for gasta antes de a troca acontecer, aparece um aviso naquele lado, e a troca não pode acontecer até a quantia ser reduzida.',
-            'O app marca quais itens dá para trocar. A assinatura e o que ela inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.' + (o.launch ? " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você, incluindo uma Escolha do desenvolvedor: fica na sua conta. A Intel de triturar um deles também fica na conta; o resto da Intel pode ser trocado, venha de onde vier." : ''),
-            'Intel só pode ser trocada entre adultos.',
-            ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, testadores adultos também trocam Intel. Em 7 de dezembro, toda a Intel trocada volta: quem deu recebe de volta, e cada um fica só com a Intel que ganhou.', 'A partir de 7 de dezembro, interceptações de um código ou presente, o que sair delas e o que você conseguir com elas na Troca ficam na sua conta: dá para usar, mas não para trocar nem vender.']),
+            'O que você coloca numa troca aberta fica reservado para ela: não pode ir para outra troca nem para o Mercado Negro ao mesmo tempo. Se o Intel de uma troca for gasto antes de a troca acontecer, aparece um aviso naquele lado, e a troca não pode acontecer até a quantia ser reduzida.',
+            'O app marca quais itens dá para trocar. O plano de membro e o que ele inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.' + (o.launch ? (o.gnRewardsRules ? " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você: fica na sua conta. O Intel nunca fica preso a uma conta, venha de onde vier." : " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você, incluindo uma Escolha do desenvolvedor: fica na sua conta. O Intel nunca fica preso a uma conta, venha de onde vier.") : ''),
+            'Intel só pode ser trocado entre adultos.',
+            ...(o.launch ? [] : ["Durante o teste beta, até 7 de dezembro, testadores adultos também trocam Intel." + (o.intelZero ? " Logo antes do lançamento, o Intel de toda conta vai a 0, inclusive o ganho no teste." : " Em 7 de dezembro, todo o Intel trocado volta: quem deu recebe de volta, e cada um fica só com o Intel que ganhou."), "A partir de 7 de dezembro, interceptações de um código ou presente, o que sair delas e o que você conseguir com elas na Fusão ficam na sua conta: dá para usar, mas não para trocar nem vender."]),
             'Comprar ou vender itens, Intel ou contas por dinheiro de verdade é contra as regras.',
           ],
         },
@@ -272,9 +458,10 @@ const ptBR: HelpText = {
           id: 'trade-protection',
           q: 'O que é a proteção de 7 dias? Posso desfazer uma troca?',
           a: [
-            'O que você recebe numa troca fica protegido por 7 dias. Dá para usar um item na hora, mas ainda não dá para trocá-lo, triturá-lo nem usá-lo numa Troca, e a Intel recebida ainda não pode ser gasta.',
+            'O que você recebe numa troca fica protegido por 7 dias. Dá para usar um item na hora, mas ainda não dá para trocá-lo, triturá-lo nem usá-lo numa Fusão, e o Intel recebido ainda não pode ser gasto.',
             ...(o.interceptsInTrades ? ['Uma Interceptação fechada que você recebe fica lacrada nesses 7 dias: ainda não dá para abrir, trocar nem anunciar.'] : []),
-            'Nesses 7 dias, você pode reverter suas trocas, uma vez a cada 90 dias. Isso reverte todas as suas trocas protegidas e pausa suas trocas por 30 dias.',
+            'Nesses 7 dias, você pode reverter suas trocas, uma vez a cada 90 dias. Isso desfaz todas as suas trocas protegidas, nos dois sentidos, e pausa suas trocas por 30 dias.',
+            "Reverter também desfaz suas compras e vendas nos Achados raros que ainda estão nos 3 dias de proteção.",
             'Depois de 7 dias, a troca é definitiva. Também podemos reverter uma troca por roubo de conta ou fraude.',
           ],
         },
@@ -304,7 +491,8 @@ const ptBR: HelpText = {
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, entrar em um novo aparelho ou mudar o e-mail ou a forma de entrar não pausa as trocas.']),
             'Isso protege seus itens se outra pessoa entrar na sua conta.',
             'Também podemos pausar nós mesmos as trocas de uma conta, para protegê-la ou enquanto verificamos uma fraude.',
-            'Qualquer uma dessas pausas, inclusive o seu próprio bloqueio, fecha na hora suas ofertas e anúncios abertos no Mercado Negro. O mesmo acontece com um banimento, uma suspensão ou uma verificação de jogo limpo. Os itens voltam para você, a Intel de uma oferta de compra espera você coletar, e as ofertas de outros jogadores nos seus anúncios voltam para eles. Nada reabre quando termina: é preciso anunciar de novo.',
+            "Uma verificação de jogo limpo pausa as trocas e o Mercado Negro enquanto durar. Com a reputação Banida, trocas, presentes e o Mercado Negro ficam fechados até ela se recuperar: veja <b>Reputação</b> em Ajustes.",
+            'Qualquer uma dessas pausas, inclusive o seu próprio bloqueio, fecha na hora suas ofertas e anúncios abertos no Mercado Negro. O mesmo acontece com um banimento, uma suspensão ou uma verificação de jogo limpo. Os itens voltam para você, o Intel de uma oferta de compra espera você coletar, e as ofertas de outros jogadores nos seus anúncios voltam para eles. Nada reabre quando termina: é preciso anunciar de novo.',
             'Se desconectarmos sua conta em todos os aparelhos sem pausar as trocas, suas ofertas e anúncios do Mercado Negro feitos antes disso mostram <b>Em espera</b> e não são executados. Quando seu novo login puder trocar, toque em <b>Colocar de volta</b> em cada um que for seu, ou pare-o.',
           ],
         },
@@ -329,9 +517,10 @@ const ptBR: HelpText = {
           q: 'Quem pode usar o Mercado Negro?',
           a: [
             'Adultos que podem trocar: conta com pelo menos 7 dias, e-mail confirmado, 3 partidas contadas e trocas sem pausa.',
+            "Os 7 dias contam a partir de quando a conta foi salva: o tempo como visitante não conta.",
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta e de partidas contadas também estão desligadas aqui.']),
             'Menores de 18 podem olhar, mas não podem comprar, vender nem fazer ofertas.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: de 9 a 16 de novembro, adultos que podem trocar compram e vendem aqui de verdade. Toda venda feita durante o teste é desfeita em 16 de novembro: quem comprou recebe de volta a Intel que pagou, e quem vendeu devolve o que recebeu.' : 'A Intel começa a circular lá no lançamento da 2.2, em 8 de dezembro. Até lá, dá para dar uma olhada.']),
+            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: de 9 a 16 de novembro, adultos que podem trocar compram e vendem aqui de verdade. Toda venda feita durante o teste é desfeita em 16 de novembro: quem comprou recebe de volta o Intel que pagou, e quem vendeu devolve o que recebeu.' : 'O Intel começa a circular lá no lançamento da 2.2, em 8 de dezembro. Até lá, dá para dar uma olhada.']),
           ],
         },
         {
@@ -340,17 +529,46 @@ const ptBR: HelpText = {
           a: [
             'Cada item vendido paga uma taxa de 2% (no mínimo 1 e no máximo 5.000 de Intel), que sai do jogo.',
             'Nenhuma oferta pode ficar abaixo do preço mínimo de um item: o que uma cópia rende ao ser triturada. Para uma interceptação fechada, é a média do seu nível.',
-            'Membros podem ter 8 ofertas abertas ao mesmo tempo; os outros, 4. Enquanto uma oferta está aberta, a Intel ou os itens dela ficam reservados (você ainda pode usar os itens).',
+            'Membros podem ter 8 ofertas abertas ao mesmo tempo; os outros, 4. Enquanto uma oferta está aberta, o Intel ou os itens dela ficam reservados (você ainda pode usar os itens).',
+            "Um preço pode chegar a 1.000.000 de Intel por cópia, e uma oferta pode ser de até 1.000 cópias.",
+            "Nos Achados raros, você pode anunciar até 25 itens Únicos ao mesmo tempo e ter até 20 ofertas abertas em anúncios de outros jogadores.",
             'Dá para cancelar uma oferta quando quiser e pegar o que sobrou.',
           ],
         },
+        ...(o.rarefindsOffers
+          ? [
+              {
+                id: 'rare-finds-offers',
+                q: "Como funcionam as ofertas nos Achados raros?",
+                a: [
+                  ...(o.appU61 ? ["O vendedor escolhe quanto abaixo do preço dá para oferecer: até 5%, 10% ou 15%, ou nenhuma oferta."] : []),
+                  "O Intel da sua oferta fica reservado enquanto ela espera. Se o vendedor não responder em 24 horas, a oferta termina e o Intel volta.",
+                  "Você pode retirar uma oferta depois que ela esperar 30 minutos.",
+                  ...(o.appU61 ? ["O vendedor pode aceitar, recusar ou fazer uma contraoferta, com um preço entre a sua oferta e o dele. A contraoferta não reserva o seu Intel: compre por ele, recuse ou faça outra contraoferta."] : []),
+                  "Quando um vendedor recusa uma oferta, ninguém mais pode oferecer tão pouco naquele anúncio: a oferta mínima sobe.",
+                  ...(o.appU61 ? ["O vendedor vê a nova oferta mínima. Se as recusas a levarem até o preço, o anúncio não aceita mais ofertas: só Comprar já."] : []),
+                  "Se muitas das suas ofertas forem recusadas e quase nenhuma aceita, você fica sem poder fazer ofertas novas por até 3 dias.",
+                  ...(o.rarefindsOfferPush ? ["Com as notificações do Mercado Negro ligadas, você recebe uma quando o vendedor faz uma contraoferta e quando sua oferta é recusada ou termina."] : []),
+                ],
+              },
+            ]
+          : []),
         {
           id: 'black-market-protection',
           q: 'As vendas do Mercado Negro são protegidas?',
           a: [
             'Uma venda em Itens é definitiva na hora.',
-            'Um Único comprado nos Achados raros fica protegido por 3 dias: não pode ser trocado, anunciado, triturado nem usado numa Troca, e a Intel de quem vendeu espera. Nesse tempo a venda pode ser revertida, como uma troca.',
-            'Se quem compra ou quem vende excluir a conta nesses 3 dias, a venda é desfeita: o comprador recebe a Intel de volta, ou o vendedor recebe o Único de volta.',
+            'Um Único comprado nos Achados raros fica protegido por 3 dias: não pode ser trocado, anunciado, triturado nem usado numa Fusão, e o Intel de quem vendeu espera. Nesse tempo a venda pode ser revertida, como uma troca.',
+            'Se quem compra ou quem vende excluir a conta nesses 3 dias, a venda é desfeita: o comprador recebe o Intel de volta, ou o vendedor recebe o Único de volta.',
+          ],
+        },
+        {
+          id: 'archive-holder',
+          q: "Os outros podem ver que tenho um Único?",
+          a: [
+            "Cada Único tem sua própria página em archive.spysocial.app. Quem o tem hoje aparece como “Nas mãos de @usuário”, com link para o perfil, só se for adulto com perfil público.",
+            "Para todos os outros, inclusive menores de 18, aparece “Dono não divulgado”.",
+            "Para esconder seu nome, deixe seu perfil privado em <b>Privacidade e amigos</b>. Ele sai do Arquivo em cerca de um minuto.",
           ],
         },
       ],
@@ -364,7 +582,7 @@ const ptBR: HelpText = {
           q: 'O que são interceptações?',
           a: [
             'Recompensas lacradas que você ganha jogando. Cada uma abre num item cosmético aleatório, como um visual para o seu agente ou uma comemoração.',
-            'Nunca são vendidas por dinheiro, e a assinatura não dá mais nem chances melhores.',
+            'Nunca são vendidas por dinheiro, e ser membro não dá mais nem chances melhores.',
             o.launch ? 'Antes de abrir ou comprar uma, o app mostra as chances exatas em <b>Chances</b>.' : 'Antes de abrir uma, o app mostra as chances exatas em <b>Chances</b>.',
           ],
         },
@@ -374,7 +592,8 @@ const ptBR: HelpText = {
           a: [
             'Cinco níveis, do mais baixo ao mais alto: <b>Restrito</b>, <b>Confidencial</b>, <b>Secreto</b>, <b>Ultrassecreto</b> e <b>Enigma</b>.',
             'O nível é definido quando você ganha. Quanto mais alto, melhores as chances.',
-            'Um <b>Único</b> é uma cópia com uma cor e um número que nenhuma outra cópia tem.',
+            "Um <b>Único</b> é uma cópia exclusiva: uma gema de prisma, uma moldura de folha arco-íris, um codinome e um número que nenhuma outra cópia tem. Cada cópia mantém suas próprias cores por dentro.",
+            ...(o.u6152 ? ["O codinome é o nome do Único, como <b>Despacho de Ônix</b>. Embaixo, em letra menor, aparece o Lendário de onde ele veio, com o número: Avião de papel #37."] : []),
           ],
         },
         {
@@ -382,34 +601,49 @@ const ptBR: HelpText = {
           q: 'Como ganho interceptações?',
           a: [
             '<b>Vitórias:</b> a cada 10 vitórias no Jogar online, você ganha 5 interceptações, uma delas de nível Secreto ou melhor.',
-            '<b>Diária:</b> sua primeira partida do dia no Jogar online dá uma, e sequências longas dão mais (a cada 30 dias seguidos, uma Enigma).',
-            '<b>Noite de Jogos:</b> os vencedores da noite ganham uma Enigma.',
-            `<b>Códigos e presentes:</b> um código de um criador ou nosso vale uma vez por conta, e as interceptações dele são liberadas depois da sua primeira partida contada no Jogar online. Também damos algumas de presente.${o.launch ? " Interceptações de código ou de presente, o que sai delas e o que você consegue com elas na Troca são só seus: não podem ser trocados, vendidos nem dados, não importa quantas partidas você jogue. Você ainda pode abri-las, usar o que sair, fazer Trocas e triturar repetidos. Triturar um repetido delas dá Intel que também fica na sua conta: você pode gastá-la em itens vendidos por Intel no app, mas não pode trocá-la, enviá-la nem usá-la no Mercado Negro." : ''}`,
+            "<b>Diária:</b> sua primeira partida do dia no Jogar online dá uma. A cada 7 dias seguidos vem mais uma Secreto ou melhor, e a cada 30 dias, uma Enigma.",
+            ...(o.gnRewards ? ["<b>Noite de Jogos:</b> suas partidas lá dão Intel da Noite de Jogos, que você usa para pegar interceptações da Noite de Jogos (abaixo)."] : o.gnRewardsRules ? [] : ["<b>Noite de Jogos:</b> ganhe uma partida lá, como local ou espião, e você recebe uma Enigma, uma por noite."]),
+            `<b>Códigos e presentes:</b> um código de um criador ou nosso vale uma vez por conta, e as interceptações dele são liberadas depois da sua primeira partida contada no Jogar online. Também damos algumas de presente.${o.launch ? " Interceptações de código ou de presente, o que sai delas e o que você consegue com elas na Fusão são só seus: não podem ser trocados, vendidos nem dados, não importa quantas partidas você jogue. Você ainda pode abri-las, usar o que sair, fundir e triturar repetidos. Triturar um repetido dá Intel comum." : ''}`,
+            ...(o.launch ? ["<b>Boas-vindas:</b> uma conta salva ganha uma primeira interceptação de graça. Como as de código ou de presente, ela e o que sai dela ficam na sua conta: não podem ser trocadas nem vendidas."] : []),
             'Salas privadas não dão interceptações.',
             ...(o.launch
               ? []
               : ['Antes de a 2.2 abrir para todos, as interceptações recomeçam do zero: as ganhas em versões de teste são apagadas. O Pin beta e o que foi comprado numa loja continuam.']),
           ],
         },
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-intercepts',
+              q: 'O que são as interceptações da Noite de Jogos?',
+              a: [
+                'Interceptações que você pega com Intel da Noite de Jogos, no cartão da Noite de Jogos no <b>Cofre</b>: <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
+                'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
+                ...(o.u6153 ? ["O fundo Lendário da Noite de Jogos é <b>Apagão</b>, que antes se chamava Sala dos Fundos. A cena de descanso dele é <b>Rain Window</b>."] : []),
+                'Uma comprada espera em <b>Para abrir</b>. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'duplicates',
           q: 'O que faço com os repetidos?',
           a: [
             '<b>Triture</b> uma cópia repetida por Intel, no valor que o app mostra.',
-            '<b>Troca:</b> 5 cópias repetidas de uma raridade dão 1 item aleatório da raridade seguinte, e 10 cópias Lendárias repetidas dão um Único.' + (o.launch ? " Se houver um presente entre elas, o que você receber também será só seu." : ''),
+            '<b>Fusão:</b> 5 cópias repetidas de uma raridade dão 1 item aleatório da raridade seguinte, e 10 cópias Lendárias repetidas dão um Único.' + (o.launch ? " Se houver um presente entre elas, o que você receber também será só seu." : ''),
             'Só contam os repetidos, nunca sua primeira cópia nem um Único.',
             'Uma cópia que você comprou ou recebeu numa troca conta como repetida se você tem outra cópia desse item. Sua única cópia sempre fica.',
           ],
         },
         {
           id: 'intel',
-          q: 'O que é a Intel?',
+          q: 'O que é o Intel?',
           a: [
             'A moeda que você ganha jogando: com suas partidas, sua primeira partida do dia e sua sequência diária, e triturando cópias repetidas.',
             'Sua sequência: uma partida de Jogar online por dia a mantém. Uma partida que você começa antes do novo dia também a mantém, mesmo se terminar depois.',
-            o.launch ? 'A Intel nunca é vendida e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-la com outros adultos.' : 'A Intel nunca é vendida e não vale dinheiro. Adultos podem trocá-la com outros adultos e gastá-la no Mercado Negro a partir do lançamento da 2.2, em 8 de dezembro, ou em um teste cujas vendas são desfeitas.',
-            'Cada mudança na sua Intel é uma linha no seu registro de Intel, com o motivo. Veja o seu em <b>Histórico de Intel</b>, em «Como o Intel funciona», na atualização mais recente do app.',
-            'No <b>Cofre</b>, seu Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. Intel preso numa oferta aberta do Mercado Negro conta como gasto até voltar.',
+            o.launch ? 'O Intel nunca é vendido e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-lo com outros adultos.' : 'O Intel nunca é vendido e não vale dinheiro. Adultos podem trocá-lo com outros adultos e gastá-lo no Mercado Negro a partir do lançamento da 2.2, em 8 de dezembro, ou em um teste cujas vendas são desfeitas.',
+            'Cada mudança no seu Intel é uma linha no seu registro de Intel, com o motivo. Veja o seu em <b>Histórico de Intel</b>, em “Como o Intel funciona”, na atualização mais recente do app.',
+            'No <b>Cofre</b>, seu Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. O Intel preso numa oferta aberta do Mercado Negro conta como gasto até voltar.',
           ],
         },
         {
@@ -425,9 +659,9 @@ const ptBR: HelpText = {
           q: 'Sumiu um item ou uma interceptação',
           a: [
             'Ele pode estar reservado por uma oferta aberta no Mercado Negro. Dá para cancelar a oferta quando quiser.',
-            'Talvez você o tenha triturado ou usado numa Troca.',
+            'Talvez você o tenha triturado ou usado numa Fusão.',
             'Uma troca revertida o devolve ao jogador que o deu.',
-            'Quando uma assinatura termina ou é reembolsada, o que vinha com ela deixa de estar disponível.',
+            'Quando um plano de membro termina ou é reembolsado, o que vinha com ele deixa de estar disponível.',
             ...(o.launch ? [] : ['As interceptações de versões de teste e seus itens são apagados antes de a 2.2 abrir para todos.']),
             'Nada disso? Escreva para <email/> com seu nome de usuário, o nome do item e quando você o viu pela última vez.',
           ],
@@ -436,48 +670,150 @@ const ptBR: HelpText = {
           id: 'tester-rewards',
           q: 'Onde estão minhas recompensas do beta?',
           a: [
-            o.launch
-              ? 'Elas foram adicionadas no lançamento da 2.2 e são suas. Todos da lista de testadores ganharam o <b>Pin beta</b> e o título <b>Beta tester</b>. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
-              : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
-            o.launch
-              ? 'Quem terminou pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas) também ganhou o título <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.'
-              : 'Termine pelo menos uma partida antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas) e você também ganha o título <b>Testador de Campo</b>, 10 interceptações de cada nível e 1 mês de assinatura.',
-            o.testerInterceptsTradable
-              ? 'O <b>Pin beta</b>, o título <b>Testador de Campo</b> e as interceptações de agradecimento podem ser trocados como tudo o que você ganha.'
-              : 'O <b>Pin beta</b> e o título <b>Testador de Campo</b> podem ser trocados como tudo o que você ganha; como outros presentes, as interceptações de agradecimento ficam na sua conta.',
+            ...(o.testerGiftGame
+              ? [
+                o.launch
+                  ? 'Elas foram adicionadas no lançamento da 2.2 e são suas. Todos da lista de testadores ganharam o <b>Pin beta</b> e o título <b>Beta tester</b>. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
+                  : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
+                o.launch
+                  ? "Quem terminou pelo menos uma partida com outros jogadores antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas; partidas de treino não contam) também ganhou o título <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro."
+                  : "Termine pelo menos uma partida com outros jogadores antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas; partidas de treino não contam) e você também ganha o título <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro.",
+                o.testerInterceptsTradable
+                  ? 'O <b>Pin beta</b>, o título <b>Tester de campo</b> e as interceptações de agradecimento podem ser trocados como tudo o que você ganha.'
+                  : 'O <b>Pin beta</b> e o título <b>Tester de campo</b> podem ser trocados como tudo o que você ganha; como outros presentes, as interceptações de agradecimento ficam na sua conta.',
+              ]
+              : [
+                o.launch
+                  ? 'Elas foram adicionadas no lançamento da 2.2 e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
+                  : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro.',
+              ]),
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
-            'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de convidado não está na lista, então o mais comum é ser outra conta.',
-            ...(o.launch ? [] : ['Beta 2: o agradecimento de US$ 10 vai por PayPal para cada jogador confirmado que participa da hora inteira ao vivo e envia a pesquisa, em até 7 dias após a sessão, igual no iPhone e no Android. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil da sessão, escolhido pelo desenvolvedor em até uma semana.']),
+            'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de visitante não está na lista, então o mais comum é ser outra conta.',
+            ...(o.launch ? [] : ["O Beta 3 é na terça-feira, 24 de novembro, das 20h às 21h no horário do leste dos EUA (dá para entrar a partir das 19h30). Se o e-mail da sua vaga fala do agradecimento de US$ 10: jogue pelo menos uma partida naquela noite e envie a pesquisa até sexta-feira, 27 de novembro, às 23h59 no horário do leste, e os US$ 10 chegam por PayPal até 1º de dezembro. Um testador também ganha um vale-presente de US$ 50 pelo relato ou pela ideia mais útil, escolhido por nós."]),
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'beta-reset',
+              q: "O app diz que tudo será zerado antes do lançamento. O que isso significa?",
+              a: [
+                "O SpySocial ainda está em teste. Antes do lançamento em 8 de dezembro, itens, interceptações, Intel, negociações do Mercado Negro e trocas serão zerados, e todo mundo começa do zero.",
+                "Sua conta, seus amigos e seus pacotes continuam, assim como seu XP, seu nível, suas conquistas, suas estatísticas, suas notas nas partidas de treino, os títulos de códigos e tudo o que você comprou na App Store ou no Google Play.",
+                ...(o.gnRewards ? ["Seus títulos ★ da Noite de Jogos continuam, e você recebe de volta todo o Intel da Noite de Jogos que ganhou, mesmo se gastou."] : []),
+                "Os planos de membro dados para o teste terminam no lançamento." + (o.intelZero ? " Sua sequência recomeça do dia 0." : ''),
+                "Quem testou vai ganhar uma recompensa especial pela ajuda.",
+                "O aviso aparece no Cofre, no Mercado Negro e nas telas de trocas. Toque nele para ler mais, ou no X para escondê-lo naquele celular.",
+              ],
+            },
+            ]),
       ],
     },
     {
       id: 'membership',
-      title: 'Assinatura',
+      title: 'Membros',
       items: [
         {
           id: 'membership-includes',
-          q: 'O que a assinatura inclui?',
+          q: 'O que o plano de membro inclui?',
           a: [
-            ...(o.purchases ? [] : ['A assinatura começa a ser vendida com a versão 2.2.']),
+            ...(o.purchases ? [] : ['O plano de membro começa a ser vendido com a versão 2.2.']),
             'Todos os pacotes premium, inclusive os novos. Todo mundo joga com eles nas salas em que você é o anfitrião e na sua mesa de Jogar online.',
             'Crie seus próprios pacotes com o criador e compartilhe na comunidade.',
             '+50% de XP em toda partida e salas só para membros no Jogar online.',
+            ...(o.practiceMembers ? ['Partidas de treino, até 5 por dia, com notas de A a F' + (o.practiceAi ? ' e comentários opcionais da IA (16+).' : '.')] : []),
             'A moldura, a etiqueta e o título do seu nível. Você pode liderar um grupo e ter 8 ofertas abertas no Mercado Negro em vez de 4.',
             'Nunca muda como você joga ou pontua. Os pacotes grátis continuam grátis para todos.',
           ],
         },
         {
+          id: 'pack-creator',
+          q: "Como funciona o criador de pacotes?",
+          a: [
+            "Sendo membro (a partir de 13 anos), abra <b>Pacotes</b> e depois o criador de pacotes. Um pacote precisa de 30 a 200 itens para ser jogado ou enviado à <b>Comunidade</b>.",
+            "Seus pacotes valem nas salas privadas que você comanda enquanto for membro.",
+            "Envie um para a <b>Comunidade</b> e nós o analisamos em até 72 horas: primeiro uma verificação automática lê o texto, depois uma pessoa decide. Ele mostra <b>Em análise</b>, depois <b>Na comunidade</b>, ou <b>Precisa de ajustes</b> com o motivo: ajuste e envie de novo.",
+            "Pacotes populares podem ficar <b>Em destaque</b>. Outros membros adicionam pacotes da comunidade a <b>Meus pacotes</b> para jogar nas próprias salas.",
+            "Jogadores com menos de 18 anos não recebem nossa resposta entre 22h e 7h.",
+          ],
+        },
+        ...(o.u6153
+          ? [
+            {
+              id: 'membership-cards',
+              q: "O que são os cartões de membro no app?",
+              a: [
+                "Onde membros ganham mais, um cartão curto avisa. Toque em qualquer parte dele para abrir o plano de membro no <b>Cofre</b>. Ele nunca compra nada sozinho.",
+                "<b>Mercado Negro</b>, Suas ofertas: 8 ofertas abertas para membros e 4 para os demais.",
+                "<b>Grupos</b>: membros lideram.",
+                "A escolha de pacotes numa sala que você hospeda: todos os pacotes premium e qualquer pacote da comunidade que você adicionar, mais o criador de pacotes para fazer os seus.",
+                "<b>Armário</b>: membros usam a moldura e o título da sua patente.",
+                "A página de um pacote da comunidade: membros o adicionam a <b>Meus pacotes</b>.",
+              ],
+            },
+          ]
+          : []),
+        {
           id: 'membership-plans',
           q: 'O que são Agente, Elite e Mestre-espião?',
           a: [
-            '<b>Agente</b> é o passe de pacotes mensal, <b>Elite</b> o anual, e <b>Mestre-espião</b> é o Vitalício: um pagamento só, sem renovação.',
+            '<b>Agente</b> é o plano mensal, <b>Elite</b> o plano anual, e <b>Mestre-espião</b> é o Vitalício: um pagamento só, sem renovação.',
             'Mestre-espião acrescenta as três molduras de metal, o título Cartão ouro, a comemoração Tempestade dourada e itens do Vitalício para o seu agente.',
-            'Vitalício dura enquanto oferecermos o SpySocial, não a sua vida toda. Não há teste grátis, e a assinatura não é compartilhada pelo Compartilhamento Familiar.',
+            'Vitalício dura enquanto oferecermos o SpySocial, não a sua vida toda. Não há teste grátis, e o plano de membro não é compartilhado pelo Compartilhamento Familiar.',
           ],
         },
+        ...(o.membershipSwitch
+          ? [
+            {
+              id: 'membership-switch',
+              q: 'Posso mudar entre o plano mensal e o anual?',
+              a: [
+                'Sim, no app: abra o <b>Cofre</b> e depois <b>Membros</b>. No mensal, toque em <b>Subir para Elite</b> (anual) ou <b>Subir para Mestre-espião</b> (Vitalício). No anual também aparece <b>Mudar para o mensal</b>: a moldura, o título e a etiqueta Elite viram os de Agente, e as outras vantagens continuam.',
+                'Você nunca paga duas vezes. No Google Play, o novo plano começa na hora e o tempo que você já pagou vira tempo no novo plano. Na App Store, a Apple decide quando ele começa, muitas vezes na sua próxima renovação, e credita o tempo que você já pagou.',
+                'Um plano cobrado pela outra loja é mudado nessa loja: comprar outro plano aqui faria você pagar duas vezes.',
+                ...(o.googlePassStop
+                  ? ['Quando você compra o Vitalício, um plano mensal ou anual cobrado pelo Google Play para de renovar sozinho: ele fica com você até a data de término, e nada mais é cobrado. A Apple não permite isso, então cancele por conta própria um plano da App Store.']
+                  : []),
+              ],
+            },
+            {
+              id: 'two-memberships',
+              q: 'O app diz que tenho dois planos ativos',
+              a: [
+                'Você está pagando dois ao mesmo tempo: por exemplo, o Vitalício e um plano mensal, ou um em cada loja. O app diz de qual você precisa e qual cancelar, quando você o abre e na aba <b>Membros</b>.',
+                'Toque em <b>Gerenciar plano</b> para cancelar o que sobra na loja dele. Cancelar só interrompe a próxima cobrança: o tempo que você já pagou continua seu.',
+                ...(o.googlePassStop ? ['Se o que sobra é cobrado pelo Google Play, <b>Parar renovação</b> faz isso direto no app.'] : []),
+                'Nada fica bloqueado enquanto isso: <b>Depois</b> esconde o aviso até a próxima vez que você abrir o app.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "O que é “Membro desde”?",
+              a: [
+                "Enquanto você for membro, a <b>Conta</b> mostra desde quando e há quanto tempo você é membro, e o <b>Cofre</b> mostra seus carimbos: 1, 3 e 6 meses, 1, 2 e 3 anos, e depois a cada ano.",
+                "Conta o tempo em que você foi membro sem interrupção: um plano mensal ou anual, o Vitalício, um presente ou um código. Tempo reembolsado e compras de teste não contam.",
+                "Ele se ganha ficando. No primeiro dia em que você deixar de ser membro (depois do período de carência que a loja dá quando um pagamento falha), seu tempo de membro e seus carimbos zeram. Se você voltar a ser membro, “Membro desde” e seu tempo começam do zero.",
+                "O <b>Vitalício</b> é a exceção: seu tempo conta desde o seu primeiro dia como membro, incluindo os meses de plano mensal ou anual antes dele, e continua crescendo, com cada carimbo que adicionarmos depois.",
+                "Os outros jogadores veem só há quanto tempo, com seu carimbo, na sua ficha de jogador, nunca a data nem o preço. Desative <b>Mostrar meu tempo de membro</b> nos Ajustes para esconder. O tempo de uma conta de menor de 13 anos nunca aparece para os outros.",
+                "Os carimbos só mudam a aparência do seu perfil: não dão XP nem chances melhores, e não podem ser trocados.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "Meu preço vai subir?",
+              a: [
+                "Enquanto seu plano mensal ou anual renovar sem interrupção, você continua pagando o preço de agora, mesmo que o preço suba para novos membros. A loja ainda pode ajustá-lo por impostos locais ou câmbio.",
+                "Se trocar para o outro plano, você paga o preço atual desse plano. Se seu plano acabar e você voltar depois, pode pagar o preço da época. O Vitalício é pago uma vez e nunca renova.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: 'Como funcionam a renovação automática e o cancelamento?',
@@ -485,15 +821,18 @@ const ptBR: HelpText = {
             'Agente e Elite renovam sozinhos até você cancelar: na App Store, pelo menos 24 horas antes de o período acabar; no Google Play, antes da data de renovação. Você mantém os benefícios até o fim do período pago.',
             '<b>iPhone ou iPad:</b> Ajustes, seu nome, Assinaturas, SpySocial.',
             '<b>Android:</b> o app Google Play Store, sua foto de perfil, Pagamentos e assinaturas, Assinaturas, SpySocial.',
-            '<b>Gerenciar assinatura</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um passe.',
+            o.googlePassStop
+              ? '<b>Gerenciar plano</b> no app abre a mesma página. Apagar o app ou a conta não cancela um plano mensal ou anual. Comprar o Vitalício para sozinho um plano cobrado pelo Google Play, mas não um cobrado pela App Store.'
+              : '<b>Gerenciar plano</b> no app abre a mesma página. Apagar o app ou a conta, ou comprar o Vitalício, não cancela um plano mensal ou anual.',
+            ...(o.memberLoyalty ? ["No <b>Cofre</b>, <b>Cancelar plano</b> (abaixo de Gerenciar plano) mostra antes uma tela com os fatos: se o seu plano terminar, seu tempo de membro e seus carimbos zeram e começam do zero, e seu preço garantido termina. O único botão, <b>Continuar para cancelar</b>, leva direto à loja. <b>Gerenciar plano</b> continua abrindo a loja diretamente. Nada muda antes do fim do período pago."] : []),
           ],
         },
         {
           id: 'restore-purchases',
-          q: 'Como recupero minha assinatura?',
+          q: 'Como recupero meu plano de membro?',
           a: [
             'Toque em <b>Restaurar compras</b> no app com o celular conectado à conta da App Store ou do Google Play com que você pagou.',
-            'Ela passa para a conta do SpySocial que você está usando e sai de qualquer outra conta em que estava, mesmo excluída.',
+            'Seu plano passa para a conta do SpySocial que você está usando e sai de qualquer outra conta em que estava, mesmo excluída.',
           ],
         },
         {
@@ -512,21 +851,37 @@ const ptBR: HelpText = {
       items: [
         {
           id: 'guest-or-saved',
-          q: 'Conta de convidado ou salva: qual a diferença?',
+          q: 'Conta de visitante ou salva: qual a diferença?',
           a: [
-            'Um <b>convidado</b> joga em salas privadas na hora. Uma conta de convidado fica num celular só, e sair dela apaga a conta para sempre.',
-            `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e sua assinatura em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
-            'Você pode salvar uma conta de convidado quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o convidado salve a conta primeiro.',
+            'Um <b>visitante</b> pode fazer os tutoriais e jogar em salas privadas na hora. Uma conta de visitante fica num celular só, e sair dela apaga a conta para sempre.',
+            `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e seu plano de membro em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
+            'Você pode salvar uma conta de visitante quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o visitante salve a conta primeiro.',
+            ...(o.u6152 ? ["Até você salvar, um cartão <b>Salve sua conta</b> aparece no fim de jogo depois de cada partida. Toque no × para ele não aparecer mais nesse celular."] : []),
           ],
         },
+        ...(o.emailCodes22
+          ? [
+            {
+              id: 'sign-up-email',
+              q: 'Como crio uma conta com meu e-mail?',
+              a: [
+                'Toque em <b>Continuar com e-mail</b> e digite seu e-mail. Mandamos um código de 6 dígitos: digite no app e sua conta está criada. Não precisa de senha.',
+                'O código vale por 1 hora. Não chegou? Veja o spam ou lixo eletrônico, ou toque em <b>Reenviar código</b> depois de um minuto.',
+                ...(o.passwordless
+                  ? []
+                  : ['Versões mais antigas do app pedem uma senha. Se uma disser que a senha é comum demais ou apareceu em um vazamento de dados, escolha outra: nenhuma conta foi criada, nenhum e-mail foi enviado, e você pode tentar de novo na hora.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'lost-account',
           q: 'Perdi minha conta. Dá para recuperar?',
           a: [
             'Uma <b>conta salva</b> volta em qualquer celular: abra o SpySocial e entre do mesmo jeito de antes (Apple, Google ou o mesmo e-mail). Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia, e muitas vezes é por isso que o progresso parece ter sumido.',
-            'Uma <b>conta de convidado</b> fica num celular só. Se o app foi apagado, o celular foi perdido ou você saiu da conta, ela se foi para sempre e não conseguimos trazê-la de volta.',
+            'Uma <b>conta de visitante</b> fica num celular só. Se o app foi apagado, o celular foi perdido ou você saiu da conta, ela se foi para sempre e não conseguimos trazê-la de volta.',
             'Se o app mostrar <b>Não foi possível abrir sua conta</b>, sua conta continua salva no celular, só não deu para lê-la naquele momento. Toque em <b>Tentar de novo</b>, ou feche o app e abra de novo.',
-            'A assinatura não se perde: <b>Restaurar compras</b> traz de volta. Não conseguimos juntar contas nem mover itens entre elas.',
+            'O plano de membro não se perde: <b>Restaurar compras</b> traz de volta. Não conseguimos juntar contas nem mover itens entre elas.',
             'Se você tinha uma conta salva, escreva para <email/> com seu nome de usuário e como entrava, e nós verificamos.',
           ],
         },
@@ -536,7 +891,7 @@ const ptBR: HelpText = {
           a: [
             ...(o.passwordless ? ['Você pode entrar com Apple, com Google ou com um código de 6 dígitos que mandamos por e-mail. Não há mais senhas: se o app ainda pedir uma, atualize-o na App Store ou no Google Play.'] : []),
             'Entre do mesmo jeito de antes. Outro e-mail, ou o Ocultar Meu E-mail da Apple, abre uma conta nova e vazia no lugar da sua.',
-            'Se o app abrir na tela de login com <b>Sua sessão neste dispositivo foi encerrada</b>, encerramos seu login ali do nosso lado, geralmente porque a conta foi desconectada de todos os aparelhos. Entre de novo do mesmo jeito: seu progresso está salvo. Uma conta de convidado não consegue entrar de novo.',
+            'Se o app abrir na tela de login com <b>Sua sessão neste dispositivo foi encerrada</b>, encerramos seu login ali do nosso lado, geralmente porque a conta foi desconectada de todos os aparelhos. Entre de novo do mesmo jeito: seu progresso está salvo. Uma conta de visitante não consegue entrar de novo.',
             'Se o app disser “Esta conta não pode entrar”, escreva para <email/> pelo e-mail da conta, e nós verificamos.',
             'Se a conta foi banida, nosso e-mail para esse endereço informa a referência, o motivo e como recorrer.',
           ],
@@ -577,8 +932,9 @@ const ptBR: HelpText = {
           id: 'change-name',
           q: 'Como mudo meu nome?',
           a: [
-            'Mude seu nome de exibição quando quiser na página da sua conta, e seu nome de usuário uma vez a cada 30 dias.',
-            'Uma conta nova começa com um nome de exibição aleatório no idioma do seu app.',
+            o.launch ? "Mude seu nome de exibição, seu nome de usuário (uma vez a cada 30 dias) e sua 2ª e 3ª cor em <b>Ajustes</b>." : 'Mude seu nome de exibição quando quiser na página da sua conta, e seu nome de usuário uma vez a cada 30 dias.',
+            ...(o.launch ? [] : ['Uma conta nova começa com um nome de exibição aleatório no idioma do seu app.']),
+            o.launch ? "Ao criar uma conta, você escolhe seu @usuário e uma cor, e seu nome de exibição é feito a partir do nome de usuário. Ele nunca usa o nome da sua conta Google ou Apple." : "Ao criar uma conta nova, seu @usuário é feito a partir do nome de exibição que você digita e acompanha esse nome até você digitar um seu ou jogar o dado. Ele nunca usa o nome da sua conta Google ou Apple.",
             'Nas mesas do Jogar online, quem não conhece você vê sua cor de agente no lugar. Os nomes seguem as <rules>regras da comunidade</rules>.',
           ],
         },
@@ -595,9 +951,9 @@ const ptBR: HelpText = {
           id: 'delete-account',
           q: 'Como excluo minha conta?',
           a: [
-            'No app: <b>Conta</b>, <b>Ajustes</b>, <b>Excluir conta</b>. Para um convidado, sair da conta já a exclui.',
+            "No app: <b>Conta</b>, <b>Ajustes</b>, <b>Conta e acesso</b>, <b>Excluir conta</b>. Não dá para desfazer. Uma conta de visitante também é excluída ali, ou ao sair da conta.",
             'Você também pode pedir por e-mail: veja <delete>Excluir sua conta</delete>.',
-            'Excluir a conta não cancela um passe de assinatura: cancele também na loja.',
+            "Excluir sua conta não cancela seu plano. Cancele primeiro na App Store ou no Google Play, ou você continuará sendo cobrado.",
           ],
         },
         {
@@ -605,7 +961,7 @@ const ptBR: HelpText = {
           q: 'Posso receber uma cópia dos meus dados?',
           a: [
             'Sim. Escreva para <email/> do e-mail da sua conta. Mandamos uma cópia num arquivo legível por máquina (JSON) em até um mês.',
-            'Uma conta de convidado não tem e-mail, então salve com um e-mail antes. Detalhes: <privacy>Política de Privacidade</privacy>.',
+            'Uma conta de visitante não tem e-mail, então salve com um e-mail antes. Detalhes: <privacy>Política de privacidade</privacy>.',
           ],
         },
       ],
@@ -618,9 +974,9 @@ const ptBR: HelpText = {
           id: 'report-block',
           q: 'Como denuncio ou bloqueio alguém?',
           a: [
-            'Toque e segure o cartão da pessoa, no lobby, na partida ou no fim de jogo, e escolha <b>Denunciar</b> ou <b>Bloquear</b>.',
+            "No lobby, toque e segure o cartão da pessoa. Na partida, toque e segure a foto dela: <b>Denunciar</b> e <b>Bloquear</b> ficam no fim das suas anotações sobre ela. No fim de jogo, toque no cartão dela.",
             'Uma pessoa lê cada denúncia, e o jogador não fica sabendo quem enviou.',
-            'Bloquear mantém vocês separados: nenhum dos dois entra numa sala onde o outro está. Desbloqueie nos Ajustes, em <b>Jogadores bloqueados</b>.',
+            'Bloquear mantém vocês separados: nenhum dos dois entra numa sala onde o outro está. Desbloqueie nos Ajustes, em <b>Privacidade e segurança</b>: <b>Jogadores bloqueados</b>.',
             'Mentir e blefar faz parte do jogo e não é motivo de denúncia.',
             'Numa mesa com um grupo, escolha <b>Conluio</b> se achar que eles se ajudam fora do jogo. <b>Denunciar o grupo</b> cobre todos do grupo deles naquela mesa.',
           ],
@@ -631,6 +987,17 @@ const ptBR: HelpText = {
           a: [
             'Nossa equipe lê cada denúncia e decide o que fazer. Moderadores voluntários de confiança ajudam, com nossa permissão: nas mesas da Noite de Jogos, com mensagens denunciadas e com os pacotes da comunidade.',
             'Você pode recorrer de qualquer decisão escrevendo para <email/>.',
+          ],
+        },
+        {
+          id: 'reputation',
+          q: "O que é a minha reputação?",
+          a: [
+            "Toda conta tem uma. Veja a sua em Ajustes, em <b>Reputação</b>: Excelente, Boa, Baixa, Em risco ou Banida. Contas novas começam em Boa.",
+            "Sua reputação vem do seu histórico: há quanto tempo você joga e se houve denúncias, advertências, silenciamentos ou pausas. A pontuação exata não aparece. Registros antigos contam menos com o tempo e deixam de contar após 90 dias.",
+            "Contas novas e jogadores com reputação mais baixa têm mais desenhos verificados automaticamente.",
+            "Enquanto ela estiver Banida, Jogar online, salas públicas, Noites de Jogos, trocas, presentes e o Mercado Negro ficam fechados para você, e talvez as salas privadas também. Você ainda pode entrar e continua com seus itens. Ela se recupera com o tempo se você jogar limpo.",
+            "Acha que está errado? Escreva para <email/> e a gente revisa.",
           ],
         },
         {
@@ -701,6 +1068,19 @@ const ptBR: HelpText = {
             'Se você estava numa partida, o app reconecta, ou toque em <b>Voltar</b> no cartão da sua sala, na tela inicial. Seu lugar fica guardado.',
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'tablet-keyboard',
+              q: "O teclado na tela muda o layout no tablet?",
+              a: [
+                "No navegador de um tablet, o teclado na tela não vira mais o jogo para o layout deitado: a tela mantém a forma em pé enquanto você digita.",
+                "A página sobe para o campo em que você digita ficar acima das teclas.",
+                "Um tablet virado de lado mantém o layout de tablet do app, não o layout largo de computador.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'game-not-counted',
           q: 'Minha partida não contou',
@@ -720,7 +1100,7 @@ const ptBR: HelpText = {
             'Permita as notificações do SpySocial nos ajustes do celular.',
             'No app, <b>Privacidade e amigos</b> tem chaves para pedidos de amizade, convites, pacotes novos, trocas e o Mercado Negro.',
             'No Android, as notificações de amigos, grupo, trocas e Mercado Negro ficam numa só categoria nos ajustes do celular, <b>Amigos, grupo e trocas</b>: desligá-la ali desliga todas.',
-            'Os avisos de partida chegam quando você busca no Jogar online, e os lembretes da Noite de Jogos quando você toca em <b>Me avise</b>. Convidados não recebem.',
+            'Os avisos de partida chegam quando você busca no Jogar online, e os lembretes da Noite de Jogos quando você toca em <b>Me avise</b>. Visitantes não recebem.',
             'Menores de 18 não recebem notificações sociais, nem nossa resposta sobre um pacote que enviaram para a Comunidade, entre 22h e 7h.',
           ],
         },

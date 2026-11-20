@@ -1,6 +1,7 @@
 import type { HelpText } from '../types'
 
 /** Indonesian (id): everyday "kamu" like the app, sentence case; the app's words (warga, mata-mata, room, host, Main online, Cari permainan, Aksi, Tebak, Brankas, Pasar Gelap, Temuan Langka, sadapan, Intel). */
+// help-new-1117 (2026-11-17, against app int/u62-15-prep): #question-rounds, #game-night-weekly, #game-night-rewards, #game-night-intercepts, #practice-members, #membership-switch, #two-memberships, #sign-up-email; agent translation, unreviewed.
 const id: HelpText = {
   title: 'Bantuan & FAQ',
   lede: 'Jawaban singkat soal cara main SpySocial, akunmu, hadiah, dan keanggotaan.',
@@ -47,7 +48,7 @@ const id: HelpText = {
           a: [
             '<b>Dengan teman:</b> ketuk <b>Room privat</b>, lalu <b>Buat room</b>, dan bagikan kode room, kode QR, atau link undangan. Butuh minimal 3 pemain.',
             '<b>Dengan siapa saja:</b> ketuk <b>Main online</b>, lalu <b>Cari permainan</b>.',
-            '<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda punya intro 1 menit, panduan, glosarium, dan permainan latihan.',
+            o.practiceMembers ? "<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda punya tutorial gratis 3 menit untuk tiap game, lalu permainan latihan melawan agen AI untuk anggota. Glosariumnya juga ada di sana." : "<b>Baru pertama kali?</b> <b>Cara bermain</b> di Beranda punya tutorial 3 menit untuk tiap game, lalu permainan latihan melawan agen AI. Glosariumnya juga ada di sana.",
           ],
         },
       ],
@@ -74,6 +75,30 @@ const id: HelpText = {
             'Bingung mau tanya apa? Kartu petunjuk di bawah layar punya satu pertanyaan. Menanyakan nama lokasi atau huruf pertamanya itu curang.',
           ],
         },
+        ...(o.questionRounds
+          ? [
+            {
+              id: 'question-rounds',
+              q: 'Apa itu Ronde Pertanyaan?',
+              a: [
+                'Sebagian meja Spy Talk memainkan 2 ronde pertanyaan, bukan 1: room privat yang host-nya memilih 2 di <b>Aturan</b> room, dan Malam Permainan yang memakainya. Main online selalu 1 ronde.',
+                'Di ronde 1, semua orang mengajukan satu pertanyaan dan menjawab satu. Begitu jawaban terakhir masuk, ronde 2 dimulai, terbalik: kamu ditanya oleh pemain yang tadi kamu tanyai. Di atas layar tertulis “Ronde 2”.',
+                'Lalu diskusi, dengan waktu seperti biasa. Dua ronde memberi warga dua kali lebih banyak jawaban untuk diperiksa, dan mata-mata dua kali lebih banyak peluang untuk keceplosan.',
+              ],
+            },
+            ]
+          : []),
+        {
+          id: 'talk-out-loud',
+          q: "Apa itu Tanya jawab lisan?",
+          a: [
+            "Aturan Spy Talk untuk yang main di satu ruangan atau lewat panggilan suara. Host menyalakannya di <b>Aturan</b> room; room baru mulai dengan aturan ini mati. Hanya di room privat dan Malam Permainan yang menyalakannya.",
+            "Selama fase Pertanyaan, tak ada yang mengetik atau memakai mikrofon: penanya mengucapkan pertanyaannya lalu mengetuk <b>Selesai</b>, kemudian penjawab mengucapkan jawabannya dan mengetuk <b>Selesai</b>.",
+            "Tak ada yang tertulis, jadi catatan tidak menyimpan riwayat pertanyaan.",
+            "Sebaiknya biarkan mati, bahkan di satu meja: ketuk mikrofon lalu bertanyalah dengan lantang. Semua orang mendengarmu, dan aplikasi mengubah ucapanmu menjadi teks yang dilihat semua pemain di riwayat pertanyaan.",
+            "Semua orang di room perlu aplikasi versi terbaru. Kalau ada yang masih versi lama, aturan ini tampil nonaktif sampai orang itu memperbarui aplikasinya.",
+          ],
+        },
         {
           id: 'spy-sketch',
           q: 'Bagaimana Spy Sketch dimainkan?',
@@ -81,6 +106,28 @@ const id: HelpText = {
             'Pemain bergiliran menggambar di satu papan tulis bersama. Warga memberi petunjuk tanpa menggambar katanya terang-terangan. Mata-mata menambahkan sesuatu yang samar yang bisa cocok.',
             'Setelah semua dapat giliran, voting dan tebakan mata-mata terbuka. Ronde berlanjut sampai permainan selesai.',
             'Gambar di Spy Sketch tidak dibacakan, jadi pembaca layar (VoiceOver, TalkBack) tidak bisa mengikuti gambarnya.',
+          ],
+        },
+        {
+          id: 'drawings-checked',
+          q: "Apakah gambar Spy Sketch diperiksa?",
+          a: [
+            "Ya, demi keamanan. Di meja Main online dan Malam Permainan, giliran menggambar yang selesai bisa diperiksa otomatis oleh OpenAI untuk mencari apa pun yang melanggar <rules>aturan komunitas</rules>.",
+            "Pertama kali, aplikasi menampilkan <b>Gambar diperiksa</b>. Ketuk <b>Setuju</b> untuk main Spy Sketch online. Sebelum setuju, Spy Talk tetap bisa dimainkan.",
+            "Di room privat, gambar diperiksa kalau ada yang melaporkannya. Gambar juga bisa diperiksa otomatis selama ada orang selain si penggambar yang bisa melihatnya dan berusia di bawah 18 tahun atau belum memberi tahu umurnya. Gambar pemain yang mengaku berusia di bawah 18 tahun hanya diperiksa kalau ada yang melaporkannya.",
+            "OpenAI menerima gambar giliran itu dan kata ronde, tidak pernah nama atau pesanmu. Giliran yang melanggar aturan bisa dihapus dan bisa berujung peringatan, jeda, atau blokir. Setiap keputusan permanen ditinjau oleh manusia, dan kamu bisa mengajukan banding.",
+            "Detail lengkap: <drawchecks>bagian Drawing Checks di Kebijakan Privasi</drawchecks>.",
+          ],
+        },
+        {
+          id: 'new-page',
+          q: "Apa itu Halaman baru di Spy Sketch?",
+          a: [
+            "Jeda menggambar menghentikan permainan sampai 20 detik: amati gambarnya, chat, dan cek catatanmu. Semua yang masih bermain memilih <b>Simpan halaman ini</b> atau <b>Halaman baru</b>. Jeda selesai lebih cepat kalau semua sudah memilih.",
+            "Halaman tetap dipakai hanya jika lebih dari separuh pemain yang masih bermain memilih menyimpannya. Seri, atau tidak ada yang memilih, berarti halaman kosong. Halaman sebelumnya tetap bisa dilihat.",
+            "<b>Main online:</b> paling banyak satu halaman tambahan. Jeda datang setiap 2 ronde di meja 4 pemain, dan setelah setiap ronde di meja 8 pemain. Kalau meja menyimpan halamannya, jeda berikutnya datang setelah jumlah ronde yang sama.",
+            "<b>Room privat dan Malam Permainan:</b> host (atau pengaturan malam itu) memilih <b>Halaman baru</b> di aturan: Mati, 2, 3, atau 4 halaman, atau Tanpa batas. Room baru mulai dengan 2, sesuai saran kami. Jeda datang saat lembar penuh.",
+            "Tidak ada jeda yang dimulai pada 45 detik terakhir permainan.",
           ],
         },
         {
@@ -93,6 +140,7 @@ const id: HelpText = {
             'Seri di posisi pertama tidak menggugurkan siapa pun, dan selalu butuh minimal 2 suara.',
             'Di meja Main online, setiap pemain bisa memulai satu voting dan menyebut siapa yang dituduh. Kalau voting menangkap mata-mata, semua yang sudah memakai jatahnya mendapatkannya kembali.',
             'Di meja 8 pemain, pemain dengan suara terbanyak gugur, sampai tersisa 4 pemain; lalu kembali ke suara mayoritas. Yang tidak memberi suara dihitung tidak memilih.',
+            'Di hasil voting, pita hitam menunjukkan siapa yang memulai voting: “Dimulai oleh …”. Voting terakhir menampilkan pita merah <b>Voting terakhir</b> sebagai gantinya.',
           ],
         },
         {
@@ -102,6 +150,7 @@ const id: HelpText = {
             'Mata-mata membuka <b>Aksi</b> dan mengetuk <b>Tebak</b>, lalu punya 60 detik untuk memilih rahasianya dari daftar sekitar 30 pilihan.',
             'Tebakan benar membuat semua mata-mata menang. Tebakan salah, atau waktu habis, membuat mata-mata itu gugur. Kalau dia yang terakhir, warga menang.',
             'Semua orang melihat siapa yang menebak, jadi kamu ketahuan.',
+            "Kamu menebak sendiri: chat-mu ditutup sampai kamu mengonfirmasi.",
             'Kalau <b>Satu Kali Tebak</b> aktif (room privat dan Malam Permainan yang mengaktifkannya), tim mata-mata hanya punya satu tebakan: salah sekali, seluruh tim kalah.',
           ],
         },
@@ -112,8 +161,20 @@ const id: HelpText = {
             '<b>Warga</b> menang dengan menggugurkan semua mata-mata lewat voting, atau saat mata-mata terakhir salah menebak.',
             '<b>Mata-mata</b> menang dengan tebakan benar, saat waktu permainan habis, atau saat voting menyisakan mata-mata sebanyak warga.',
             'Keluar dihitung seperti tersingkir lewat voting: jika mata-mata terakhir keluar, warga menang; jika terlalu banyak warga keluar, mata-mata menang. Jika itu terjadi sebelum pertanyaan selesai (di Spy Sketch, pada ronde pertama), permainan menampilkan “Tidak ada hasil” dan tidak dihitung.',
-            '<b>Voting terakhir:</b> kalau waktu habis dan tersisa tepat satu mata-mata, semua memilih sekali lagi. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat.',
-            '<b>Informan</b> (room privat dan Malam Permainan yang mengaktifkannya): satu warga tahu satu mata-mata. Jika mata-mata tertangkap lewat voting atau tebakan salah, mereka punya 30 detik untuk menyebut warga itu dan mencuri kemenangan.',
+            "<b>Voting terakhir:</b> kalau tersisa tepat satu mata-mata, semua memilih sekali lagi saat waktu habis, saat tak ada lagi yang punya jatah voting, atau saat kesempatan terakhir untuk memulai voting sudah lewat. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat. Meja Main online atau Malam Permainan juga bisa memainkannya saat tersisa dua mata-mata: tangkap salah satunya, warga menang.",
+            "Hasil voting terakhir terbuka di bawah pita merah <b>Voting terakhir</b> beserta alasannya: “Waktu sudah bicara”, “Jatah voting sudah habis”, atau “Kesempatan terakhir sudah lewat”.",
+            "<b>Informan</b> (Spy Talk dan Spy Sketch, room privat dan Malam Permainan yang mengaktifkannya, dengan minimal 2 mata-mata dan 6 pemain): kartu satu warga bertuliskan <b>Kamu tahu: Nama adalah mata-mata</b>, dengan satu mata-mata disebut, meski jumlahnya lebih. Kartu warga lain ikut menghitung informan, seperti “2 mata-mata · 1 informan”. Saat warga menang lewat voting atau tebakan salah mata-mata terakhir, para mata-mata, termasuk yang tertangkap, punya 30 detik untuk menyebut informannya dan mencuri kemenangan. Tidak berlaku setelah tebakan meleset dengan <b>Satu Kali Tebak</b>, atau saat mata-mata terakhir keluar.",
+          ],
+        },
+        {
+          id: 'special-rules',
+          q: "Aturan khusus apa saja yang bisa dipakai room privat atau Malam Permainan?",
+          a: [
+            "<b>Jatah voting:</b> tiap pemain bisa memulai 1, 2, atau 3 voting per permainan, atau tanpa batas (room baru mulai di 1). Saat voting menangkap mata-mata, semua yang sudah memakai jatahnya mendapat satu kembali.",
+            "Kalau tak ada pemain tersisa yang masih punya jatah, jam permainan melompat ke 5 detik terakhir. Kalau sisa jatah tidak lebih banyak dari mata-mata yang tersisa, ada kesempatan terakhir 15 detik untuk memulai voting. Kalau tak ada yang memulai voting tepat waktu, voting terakhir menyusul jika aktif (lihat cara tiap pihak menang, di atas); kalau tidak, mata-mata menang.",
+            "<b>Jejak Kertas:</b> saat mata-mata tersingkir lewat voting, semua melihat pilihan voting-nya sepanjang permainan. Kalau peran tidak dibuka saat tersingkir, jejaknya menunggu sampai permainan selesai.",
+            "<b>Satu Kali Tebak</b> dan <b>Informan</b>: lihat di atas, di tebakan mata-mata dan cara tiap pihak menang.",
+            "<b>Tanya jawab lisan</b> punya jawabannya sendiri di atas. Di aplikasi, <b>Cara bermain</b> › <b>Fitur & Pengaturan</b> punya demo singkat untuk tiap aturan.",
           ],
         },
       ],
@@ -130,6 +191,7 @@ const id: HelpText = {
             'Pemain yang tidak kamu kenal melihat warna Agen-mu, seperti Agen Toska, bukan namamu.',
             'Kamu butuh akun tersimpan (email terkonfirmasi, atau masuk dengan Apple atau Google) dan berusia minimal 13 tahun.',
             'Keluar dari permainan setelah peran dibagikan berarti jeda singkat dari Main online.',
+            ...(o.u6152 ? ["Anggota bisa menyalakan <b>Khusus anggota</b> untuk main hanya dengan anggota lain. Lebih sedikit pemain yang mencari dengan cara ini, jadi menemukan permainan bisa sedikit lebih lama. Tombol (i) di sebelahnya menjelaskan lebih lanjut, dengan <b>Lihat Keanggotaan</b> untuk yang belum punya keanggotaan."] : []),
           ],
         },
         {
@@ -138,26 +200,90 @@ const id: HelpText = {
           a: [
             'Room yang dibuat pemain bersifat privat, untuk orang yang kamu kenal. Teman masuk dengan kode room, kode QR, atau link undangan. Tamu tanpa akun juga bisa masuk.',
             'Host mengatur aturannya: game, mata-mata, waktu, voting, dan paket. Pemain maksimal sampai 21, dan <b>Kunci room</b> mencegah pemain baru masuk.',
-            'Semua memainkan paket yang sudah dibuka host.',
+            'Paket gratis terbuka untuk semua orang. Kalau ada satu orang di room yang punya keanggotaan, semua paket premium terbuka untuk semua orang di room.',
           ],
         },
         {
           id: 'game-night',
           q: 'Apa itu Malam Permainan?',
           a: [
-            'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
-            'Setiap malam punya paket, pengaturan, dan gelarnya sendiri. Tombol (i) di samping malam itu menampilkan paket dan pengaturannya, dan tombol <b>Hadiah</b> di kartunya menampilkan gelarnya.',
+            o.launch ? "Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Di Beranda, buka <b>Kompetisi</b>, lalu tab <b>Malam Permainan</b>, dan ketuk <b>Main Sekarang</b>." : 'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
+            "Malam Permainan butuh akun tersimpan: tamu menyimpan akunnya dulu.",
+            o.gnRewards
+              ? 'Setiap malam punya paket dan pengaturannya sendiri: tombol (i) di samping malam itu menampilkannya. Tombol <b>Hadiah</b> di kartunya menampilkan apa yang bisa kamu dapat: Intel Malam Permainan dan gelar ★.'
+              : o.gnRewardsRules
+                ? 'Setiap malam punya paket dan pengaturannya sendiri: tombol (i) di samping malam itu menampilkannya.'
+                : 'Setiap malam punya paket, pengaturan, dan gelarnya sendiri. Tombol (i) di samping malam itu menampilkan paket dan pengaturannya, dan tombol <b>Hadiah</b> di kartunya menampilkan gelarnya.',
             'Gratis, dan tidak ada yang kamu beli yang memperbesar peluangmu. Aturan lengkapnya: <gnr>aturan Malam Permainan</gnr> (bahasa Inggris).',
           ],
         },
+        ...(o.launch
+          ? [
+            {
+              id: 'compete',
+              q: "Apa itu Kompetisi?",
+              a: [
+                "<b>Kompetisi</b> adalah kartu di Beranda dengan tiga tab: <b>Malam Permainan</b>, <b>Ranked</b>, dan <b>Turnamen</b>.",
+                "Saat ini hanya tab Malam Permainan yang dipakai. Ranked dan Turnamen hadir nanti dan bertanda “Segera”.",
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnWeekly
+          ? [
+            {
+              id: 'game-night-weekly',
+              q: 'Kapan Malam Permainan diadakan?',
+              a: [
+                'Seminggu sekali: hari Jumat, lalu malam yang sama diulang hari Sabtu, biasanya pukul 20.00–22.00 waktu bagian timur AS.',
+                'Datang di salah satu malam, atau main di keduanya.',
+                o.launch ? "Kami mengumumkan setiap malam di aplikasi, di Beranda, di Kompetisi, tab Malam Permainan." : 'Kami mengumumkan setiap malam di aplikasi, di kartu Malam Permainan di Beranda.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-rewards',
+              q: 'Apa yang kudapat di Malam Permainan?',
+              a: [
+                '<b>Intel Malam Permainan</b> untuk setiap permainan yang kamu selesaikan: 500 untuk menang, 200 untuk kalah atau seri. Layar akhir menampilkan yang kamu dapat.',
+                "Tidak ada Intel Malam Permainan kalau kamu keluar sebelum selesai, dikeluarkan dari meja, atau tidak ikut bermain, kalau permainan dimulai setelah Malam Permainan ditutup (permainan yang dimulai tepat waktu dan selesai setelahnya tetap dibayar), kalau pemeriksaan permainan adil kami menandai permainan itu, atau di meja dengan spybot. Permainan yang berakhir lebih awal karena ada yang kabur tidak memberi apa-apa ke siapa pun.",
+                '<b>Gelar ★</b> yang terus bertambah: <b>★ Operatif</b> untuk setiap permainan Malam Permainan yang kamu selesaikan, <b>★ Pahlawan Lokal</b> untuk setiap kemenangan sebagai warga, <b>★ Mata-Mata Ulung</b> untuk setiap kemenangan sebagai mata-mata, dan <b>★ Agen Ganda</b> untuk setiap malam kamu menang di kedua pihak. Pakai gelarnya dengan angkanya, misalnya ★ Operatif ×12.',
+                'Intel Malam Permainan dan gelar ★ hanya milikmu: tidak bisa ditukar, dan keanggotaan tidak menambahkan apa pun. Pakai Intel-nya untuk sadapan Malam Permainan.',
+                ...(o.launch
+                  ? []
+                  : ['Gelar dari Malam Permainan beta sudah diubah jadi hitungan di gelar-gelar ini. Saat reset sebelum peluncuran, Intel Malam Permainan yang kamu dapat kembali utuh, meski sudah kamu pakai, dan gelar ★-mu tetap ada. Sadapan Malam Permainan dan item-nya di-reset seperti yang lain.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'practice-game',
-          q: 'Apa itu permainan latihan?',
+          q: "Apa itu tutorial dan permainan latihan?",
           a: [
-            'Permainan 5 sampai 9 menit melawan agen AI, dengan pelatih, di <b>Cara bermain</b>. Kamu mendapat nilai A sampai F, dan bisa melanjutkan dari tempat terakhir.',
-            'Sebelum kamu main Spy Talk atau Spy Sketch online, aplikasi mungkin memintamu lulus latihan game itu dengan nilai C atau lebih. Malam Permainan tidak pernah memintanya.',
+            "Di <b>Cara bermain</b>, pilih Spy Talk atau Spy Sketch. <b>Langkah 1, Tutorial:</b> permainan berpemandu 3 menit melawan agen AI. Mainkan sebagai warga atau mata-mata: lulus salah satunya sudah cukup.",
+            o.practiceMembers ? "<b>Langkah 2, Permainan latihan</b> (khusus anggota): permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir." : "<b>Langkah 2, Permainan latihan:</b> permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir.",
+            "Tiap game punya empat: sebagai warga atau mata-mata, di meja 4 atau 8 pemain. Nilai A di kedelapannya memberimu gelar <b>Nilai Sempurna</b> (khusus akun tersimpan).",
+            o.launch ? "Lulus tutorial sebuah game membuka Main online untuk game itu (dengan akun tersimpan). Permainan latihan tidak diperlukan. Malam Permainan tidak pernah memintanya." : "Saat ini kamu tidak perlu keduanya untuk main online. Malam Permainan tidak pernah memintanya.",
           ],
         },
+        ...(o.practiceMembers
+          ? [
+            {
+              id: 'practice-members',
+              q: 'Siapa yang bisa main permainan latihan?',
+              a: [
+                'Permainan latihan khusus anggota: sampai 5 per hari. Hari baru dimulai tengah malam UTC. Setelah 5 permainanmu, permainan yang tersimpan masih bisa dilanjutkan.',
+                ...(o.practiceAi
+                  ? ['Anggota mendapat masukan AI untuk setiap kalimat yang mereka tulis, saat bermain, dan nilai huruf di setiap permainan. Masukan AI untuk pemain berusia 16 tahun ke atas yang mengetuk <b>Coba</b> saat aplikasi bertanya; untuk yang lain, ponsel yang menilai. Untuk berhenti, matikan <b>Nilai kalimat latihanku dengan AI</b> di Pengaturan.']
+                  : []),
+                'Tutorial tetap gratis untuk semua orang, dan lulus salah satunya tetap dihitung untuk Main online.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'languages',
           q: 'Bisakah main dengan orang yang bicara bahasa lain?',
@@ -170,8 +296,9 @@ const id: HelpText = {
                     ? 'Pesan dalam bahasa lain diterjemahkan ke bahasamu otomatis. Untuk menerjemahkan hanya saat diketuk, matikan <b>Terjemahkan pesan otomatis</b> di Pengaturan.'
                     : 'Ketuk <b>Terjemahkan</b> pada pesan untuk membacanya dalam bahasamu.',
                 ]
-              : ['Di room privat, host memilih bahasa permainan untuk rahasia dan petunjuk.']),
+              : ['Di room privat, host memilih bahasa permainan untuk rahasia dan petunjuk.', ...(o.autoTranslation ? ['Pesan dalam bahasa lain diterjemahkan ke bahasamu otomatis. Untuk menerjemahkan hanya saat diketuk, matikan <b>Terjemahkan pesan otomatis</b> di Pengaturan.'] : [])]),
             ...(o.autoTranslation ? ['Main online bisa menawarkan untuk menambahkan bahasamu ke penerjemah bawaan ponsel. Ini opsional, dan membuat baris bahasa Inggris di chat tetap diterjemahkan saat penerjemah kami sibuk.'] : []),
+            ...(o.u6153 ? ["Saat kamu mengganti bahasa di <b>Pengaturan</b>, aplikasi menampilkan indikator memuat sampai beralih ke bahasa baru."] : []),
           ],
         },
       ],
@@ -180,11 +307,54 @@ const id: HelpText = {
       id: 'in-game',
       title: 'Saat bermain',
       items: [
+        ...(o.roleReveal
+          ? [
+            {
+              id: 'role-reveal',
+              q: "Bagaimana cara kerja pengungkapan peran?",
+              a: [
+                "Permainan online punya pengungkapan peran: Main online, Malam Permainan, dan room privat yang host-nya memilih <b>Online</b>. Ketuk kartumu: lampu padam dan lampu sorot menunjukkan peranmu.",
+                "<b>Warga</b> melihat rahasianya dan berapa mata-mata di antara mereka: di Spy Talk lokasinya beserta gambarnya (setiap lokasi di paket kami punya gambar); di Spy Sketch hanya katanya.",
+                "<b>Mata-mata</b> mendapat kartu gelap. Di Mafia, mata-mata lain muncul di sampingmu, lengkap dengan nama dan label merah MATA-MATA. Di Klasik, para mata-mata tidak saling kenal, jadi yang lain tampil sebagai <b>Tak dikenal</b>.",
+                "Ketuk <b>Lanjutkan</b> kalau sudah siap. Permainan berlanjut setelah semua orang mengetuk “Lanjutkan”, atau saat waktunya habis.",
+                "Kartumu tetap di bawah layar sepanjang permainan dengan tampilan yang sama: kartu warga tetap menampilkan gambar lokasi, dan kartu mata-mata di Mafia menuliskan nama mata-mata lain dengan warna merah.",
+                "Di Mafia dengan lebih dari satu mata-mata, ketuk <b>SALURAN MATA-MATA</b> untuk chat diam-diam dengan mata-mata lain (saluran ini ditutup selama ada mata-mata yang menebak rahasianya): di kartumu sebelum permainan mulai, lalu di bilah atas, atau di samping chat saat voting. Cukup sekali ketuk; angka menunjukkan pesan baru, dan pesan dari mata-mata lain muncul dengan “… mencoba menghubungimu”.",
+                "Label merah tetap ada di foto mata-mata lain sepanjang permainan. Warga tidak pernah melihat label, tombol, maupun chat-nya.",
+                "Sedang di panggilan suara? Nyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya mikrofonmu tidak menangkap suara pengungkapan mata-mata. Aplikasi hanya menanyakannya (<b>Main sambil teleponan?</b>) di room privat yang memilih <b>Online</b>.",
+              ],
+            },
+            {
+              id: 'poker-face',
+              q: "Online atau Satu ruangan: apa itu Muka datar?",
+              a: [
+                "Saat host membuat room privat, aplikasi bertanya <b>Kalian main di mana?</b> Pilih <b>Online</b> kalau masing-masing di ponselnya, di mana saja, termasuk lewat panggilan suara: pengungkapan peran penuh dan chat mata-mata sekali ketuk. Pilih <b>Satu ruangan</b> kalau duduk di satu meja: ini menyalakan <b>Muka datar</b>.",
+                "Dengan Muka datar, semua kartu peran terlihat sama: tanpa kartu mata-mata yang gelap, tanpa label merah MATA-MATA, dan tak ada yang menyala saat pesan mata-mata masuk. Mode Mafia tetap menulis nama mata-mata lain, dengan tulisan kecil. Mata-mata membuka chat dengan menahan kartunya (di komputer, dengan klik kanan). Saat voting, mereka menekan lama tombol chat.",
+                "Alasannya: di satu meja, lirikan ke ponsel sebelah bisa membongkar perannya. Muka datar mencegah ketidaksengajaan, bukan kecurangan. Kekurangannya: mata-mata lain lebih sulit dikenali dan diajak chat.",
+                "Host bisa mengubahnya di antara permainan lewat <b>Aturan</b> di lobi, dan pemain yang masuk melihat <b>“Muka datar” aktif</b>. Di Malam Permainan, pengaturannya ditentukan per malam. Main online tidak punya fitur ini.",
+              ],
+            },
+            ]
+          : []),
+        {
+          id: 'voice-chat',
+          q: "Apakah ada chat suara? Untuk apa mikrofonnya?",
+          a: [
+            "SpySocial tidak punya chat suara: tak ada yang mendengarmu lewat aplikasi. Mikrofon mengubah ucapanmu menjadi teks, jadi kamu tak perlu mengetik.",
+            "Ketuk mikrofon, bicara, lalu ketuk lagi untuk berhenti. Ini berfungsi di chat permainan, chat lobi, dan pertanyaan Spy Talk.",
+            "Pengenalan suara di ponselmu (atau browsermu) yang mengerjakannya. Kami hanya menerima teksnya, tidak pernah audionya. Detail: <privacy>Kebijakan Privasi</privacy>.",
+            "Untuk mengobrol sambil main, pakai panggilan suara terpisah, misalnya di Discord atau telepon.",
+            ...(o.roleReveal ? ["Kalau main lewat panggilan suara, host memilih <b>Online</b> di <b>Kalian main di mana?</b>, dan semua bisa menyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya tak ada mikrofon yang menangkap suara pengungkapan mata-mata."] : []),
+            "Di room privat Spy Talk, <b>Tanya jawab lisan</b> membuat semua bisa bertanya dan menjawab secara lisan, tanpa mengetik.",
+          ],
+        },
         {
           id: 'wax-seal',
           q: 'Apa itu Segel Lilin?',
           a: [
-            'Segel di kanan atas layar permainan. Ketuk kapan saja untuk membuka chat lengkap, catatanmu, dan info permainan. Titik merah berarti ada pesan baru.',
+            'Segel di kiri atas layar permainan menyimpan <b>Keluar</b> dan <b>Info</b>, terlipat supaya tidak ada yang keluar tanpa sengaja. <b>Chat</b> dan <b>Catatan</b> punya tombol sendiri di kanan atas, cukup sekali ketuk. Angka di Chat berarti ada pesan baru.',
+            'Segel ini ada di setiap layar permainan: voting dan hasilnya, tebakan mata-mata, dan layar akhir.',
+            'Di voting, tebakan mata-mata, dan layar akhir, <b>Info</b> menjelaskan layar yang sedang kamu buka.',
+            'Permainan latihan juga punya segel, berisi <b>Akhiri</b> dan <b>Info</b> di voting, tebakan, dan layar akhir. Permainan menunggu selama Info terbuka.',
             'Ketuk foto pemain untuk bertanya padanya di chat. Geser pesan untuk membalasnya.',
             'Berbohong dan menggertak itu bagian dari permainan. Menyebut rahasianya terang-terangan, bukan.',
           ],
@@ -218,7 +388,7 @@ const id: HelpText = {
           id: 'add-friends',
           q: 'Bagaimana cara menambah teman?',
           a: [
-            '<b>Langsung:</b> tunjukkan <b>Kode Teman</b>-mu dan biarkan dia memindainya di SpySocial. Kodenya sering berganti, jadi tangkapan layar cepat tidak berlaku.',
+            "<b>Langsung:</b> tunjukkan <b>Kode Teman</b>-mu dan biarkan dia memindainya di SpySocial. Kode baru muncul tiap 5 menit dan hanya bisa dipindai sampai 3 kali, jadi tangkapan layar cepat tidak berlaku.",
             '<b>Dari permainan privat</b> yang kalian mainkan bersama dalam 24 jam terakhir.',
             '<b>Khusus dewasa:</b> dari meja publik, atau lewat username yang persis, kalau dia mengizinkan.',
             'Pertemanan berlaku dua arah. Kamu bisa menghapus atau memblokir teman kapan saja, dan dia tidak diberi tahu. Tidak ada pesan pribadi.',
@@ -228,7 +398,9 @@ const id: HelpText = {
           id: 'parties',
           q: 'Apa itu grup?',
           a: [
-            'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Perlu keanggotaan untuk memulainya. Jika ketua pergi, peran ketua lebih dulu pindah ke orang yang punya keanggotaan.',
+            'Seorang ketua dan teman-teman yang main bersama, sampai 21 orang. Perlu keanggotaan untuk memulainya. ' + (o.partyNoMember ? "Jika ketua pergi, peran ketua pindah ke orang yang punya keanggotaan." : "Jika ketua pergi, peran ketua lebih dulu pindah ke orang yang punya keanggotaan."),
+            ...(o.partyLeaderLapse ? ['Jika keanggotaan ketua berakhir, grup dibubarkan untuk semua; peran ketua tidak pindah ke siapa pun. Permainan yang sedang berjalan tetap sampai selesai, lalu masing-masing mencari sendiri.'] : []),
+            ...(o.partyNoMember ? ['Jika ketua pergi dan tidak ada yang tersisa yang punya keanggotaan, grup dibubarkan untuk semua.'] : []),
             'Di meja Main online dan Malam Permainan, grup mengisi paling banyak setengah meja, ditandai untuk semua: sampai 2 orang di meja berisi 4, sampai 4 orang di meja berisi 8.',
             'Di meja 12 kursi Malam Permainan, sampai 6 orang. Anggota grup yang mencari sendiri juga dihitung: bersama-sama tak pernah lebih dari setengah meja.',
             'Agar duduk di satu meja, cari dari grup: <b>Main online</b> sendirian adalah pencarian sendiri. Setelah permainan Main online, <b>Kembali ke Grup</b> membawamu kembali ke grup.',
@@ -246,6 +418,18 @@ const id: HelpText = {
             'Orang dewasa bisa punya profil publik dan pengikut. Pemain di bawah 18 tahun tidak.',
           ],
         },
+        ...(o.u6152
+          ? [
+              {
+                id: 'showcase-items',
+                q: "Apa yang terjadi kalau aku mengetuk item di Etalase?",
+                a: [
+                  "Ketuk item mana pun di <b>Etalase</b> pemain, milikmu atau milik orang lain, untuk membuka halaman item itu.",
+                  "Di halaman item, <b>Lihat di Arsip</b> membuka halaman item Unik di situs kami, dan <b>Lihat di Pasar</b> membuka harga item lainnya.",
+                ],
+              },
+            ]
+          : []),
       ],
     },
     {
@@ -257,14 +441,16 @@ const id: HelpText = {
           q: 'Siapa yang bisa tukar, dan apa saja?',
           a: [
             'Kamu bertukar dengan teman, di dalam aplikasi. Kamu butuh akun berusia minimal 7 hari, email terkonfirmasi, dan 3 permainan yang dihitung (permainan selesai yang masuk ke statistikmu, dengan minimal 2 akun tersimpan lain di ponsel lain).',
+            "7 hari itu dihitung sejak akun disimpan: waktu sebagai tamu tidak dihitung.",
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun, permainan yang dihitung, dan perangkat baru tidak berlaku: setiap penguji bisa bertukar begitu email-nya dikonfirmasi.']),
+            ...(o.launch ? ["Penguji yang memainkan 3 permainan yang dihitung selama uji beta tidak perlu 3 lagi."] : ["Penguji yang memainkan 3 permainan yang dihitung selama uji beta tidak perlu 3 lagi setelah peluncuran."]),
             'Tiap pihak menawarkan sampai 10 item, dan keduanya mengonfirmasi sebelum pertukaran terjadi. Pertukaran besar meminta kode yang kami kirim lewat email.',
             ...(o.interceptsInTrades ? ['Orang dewasa juga bisa memasukkan sadapan yang belum dibuka ke pertukaran: pilih berapa dari tiap tingkat. Masing-masing dihitung sebagai satu dari 10 item.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai 7 Desember, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
-            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel dari menghancurkannya juga tetap di akun; Intel lainnya bisa ditukar, dari mana pun asalnya." : ''),
+            'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? (o.gnRewardsRules ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya.") : ''),
             'Intel hanya bisa ditukar antar orang dewasa.',
-            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel. Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri.', 'Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual.']),
+            ...(o.launch ? [] : ["Selama uji beta, sampai 7 Desember, penguji dewasa juga bisa menukar Intel." + (o.intelZero ? " Tepat sebelum peluncuran, Intel setiap akun menjadi 0, termasuk Intel yang didapat selama uji coba." : " Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri."), "Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual."]),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
           ],
         },
@@ -274,7 +460,8 @@ const id: HelpText = {
           a: [
             'Yang kamu dapat dari pertukaran dilindungi selama 7 hari. Item bisa langsung dipakai, tapi belum bisa ditukar, dihancurkan, atau dipakai untuk Tukar Tambah, dan Intel yang diterima belum bisa dipakai.',
             ...(o.interceptsInTrades ? ['Sadapan belum dibuka yang kamu dapat tetap tersegel selama 7 hari itu: belum bisa dibuka, ditukar, atau dijual.'] : []),
-            'Dalam 7 hari itu kamu bisa membatalkan pertukaranmu, sekali tiap 90 hari. Semua pertukaranmu yang masih dilindungi dibatalkan, dan pertukaranmu dijeda 30 hari.',
+            'Dalam 7 hari itu kamu bisa membatalkan pertukaranmu, sekali tiap 90 hari. Semua pertukaranmu yang masih dilindungi dibatalkan di kedua arah, dan pertukaranmu dijeda 30 hari.',
+            "Pembatalan itu juga membatalkan pembelian dan penjualanmu di Temuan Langka yang masih dalam 3 hari perlindungannya.",
             'Setelah 7 hari, pertukaran bersifat final. Kami juga bisa membatalkan pertukaran karena pencurian akun atau penipuan.',
           ],
         },
@@ -304,6 +491,7 @@ const id: HelpText = {
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, masuk di perangkat baru atau mengganti email atau cara masuk tidak menjeda pertukaran.']),
             'Ini melindungi itemmu kalau ada orang lain yang masuk ke akunmu.',
             'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan.',
+            "Pemeriksaan permainan adil menjeda pertukaran dan Pasar Gelap selama berlangsung. Selama reputasimu Diblokir, tukar item, hadiah, dan Pasar Gelap tetap tertutup sampai reputasi pulih: lihat <b>Reputasi</b> di Pengaturan.",
             'Jeda apa pun ini, termasuk kuncianmu sendiri, langsung menutup penawaran dan item yang kamu pasang di Pasar Gelap. Begitu juga blokir, penangguhan, atau pemeriksaan permainan adil. Item kembali kepadamu, Intel dari penawaran beli menunggu untuk kamu ambil, dan penawaran pemain lain pada itemmu kembali kepada mereka. Tidak ada yang dibuka lagi saat berakhir: kamu perlu memasangnya lagi.',
             'Jika kami mengeluarkan akunmu dari semua perangkat tanpa menjeda pertukaran, penawaran dan item yang kamu pasang di Pasar Gelap sebelum itu bertanda <b>Menunggu</b> dan tidak terpenuhi. Setelah login barumu bisa bertukar, ketuk <b>Kembalikan</b> pada tiap yang milikmu, atau hentikan.',
           ],
@@ -329,6 +517,7 @@ const id: HelpText = {
           q: 'Siapa yang bisa memakai Pasar Gelap?',
           a: [
             'Orang dewasa yang bisa bertukar: akun minimal 7 hari, email terkonfirmasi, 3 permainan yang dihitung, dan pertukaran tidak sedang dijeda.',
+            "7 hari itu dihitung sejak akun disimpan: waktu sebagai tamu tidak dihitung.",
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun dan permainan yang dihitung juga tidak berlaku di sini.']),
             'Pemain di bawah 18 tahun bisa melihat, tapi tidak bisa membeli, menjual, atau menawar.',
             ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: dari 9 sampai 16 November, orang dewasa yang bisa bertukar benar-benar membeli dan menjual di sini. Semua penjualan selama pengujian dibatalkan pada 16 November: pembeli mendapatkan kembali Intel yang dibayarnya, dan penjual mengembalikan apa yang diterimanya.' : 'Intel mulai berpindah di sana saat peluncuran 2.2, tanggal 8 Desember. Sampai saat itu, kamu bisa melihat-lihat.']),
@@ -341,9 +530,29 @@ const id: HelpText = {
             'Setiap item yang terjual kena biaya 2% (paling sedikit 1 Intel, paling banyak 5.000 Intel), yang dihapus dari permainan.',
             'Tidak ada tawaran yang boleh di bawah harga minimum item: nilai hancur satu salinannya. Untuk sadapan yang belum dibuka, itu rata-rata tingkatnya.',
             'Anggota bisa punya 8 penawaran terbuka sekaligus, yang lain 4. Selama penawaran terbuka, Intel atau itemnya ditahan (item tetap bisa dipakai).',
+            "Harga bisa sampai 1.000.000 Intel per salinan, dan satu penawaran bisa sampai 1.000 salinan.",
+            "Di Temuan Langka, kamu bisa memasang sampai 25 item Unik sekaligus dan punya sampai 20 tawaran terbuka di item pemain lain.",
             'Kamu bisa menghentikan penawaran kapan saja dan mengambil sisanya.',
           ],
         },
+        ...(o.rarefindsOffers
+          ? [
+              {
+                id: 'rare-finds-offers',
+                q: "Bagaimana cara kerja penawaran di Temuan Langka?",
+                a: [
+                  ...(o.appU61 ? ["Penjual memilih seberapa jauh di bawah harga kamu boleh menawar: sampai 5%, 10%, atau 15%, atau tanpa penawaran."] : []),
+                  "Intel penawaranmu ditahan selama menunggu. Kalau penjual tidak menjawab dalam 24 jam, penawaran berakhir dan Intel kembali.",
+                  "Kamu bisa menarik penawaran setelah menunggu 30 menit.",
+                  ...(o.appU61 ? ["Penjual bisa menerima, menolak, atau mengajukan harga balik di antara penawaranmu dan harganya. Harga balik tidak menahan Intel-mu: beli dengan harga itu, tolak, atau ajukan harga balik lagi."] : []),
+                  "Setelah penjual menolak sebuah penawaran, tidak ada yang bisa menawar serendah itu lagi di listing tersebut: penawaran terendah naik.",
+                  ...(o.appU61 ? ["Penjual melihat tawaran terendah yang baru. Kalau penolakan membuatnya naik sampai ke harga, listing itu tidak menerima tawaran lagi: hanya Beli Sekarang."] : []),
+                  "Kalau banyak penawaranmu ditolak dan hampir tidak ada yang diterima, kamu tidak bisa membuat penawaran baru sampai 3 hari.",
+                  ...(o.rarefindsOfferPush ? ["Dengan notifikasi Pasar Gelap aktif, kamu mendapat notifikasi saat penjual mengajukan harga balik, dan saat penawaranmu ditolak atau berakhir."] : []),
+                ],
+              },
+            ]
+          : []),
         {
           id: 'black-market-protection',
           q: 'Apakah penjualan di Pasar Gelap dilindungi?',
@@ -351,6 +560,15 @@ const id: HelpText = {
             'Penjualan di Item langsung final.',
             'Item Unik yang dibeli di Temuan Langka dilindungi 3 hari: tidak bisa ditukar, dipasang, dihancurkan, atau dipakai Tukar Tambah, dan Intel penjual menunggu. Dalam waktu itu penjualan bisa dibatalkan, seperti pertukaran.',
             'Kalau pembeli atau penjual menghapus akunnya dalam 3 hari itu, penjualan dibatalkan: pembeli mendapat Intel-nya kembali, atau penjual mendapat item Unik-nya kembali.',
+          ],
+        },
+        {
+          id: 'archive-holder',
+          q: "Bisakah orang lain melihat bahwa aku memegang item Unik?",
+          a: [
+            "Setiap Unik punya halaman sendiri di archive.spysocial.app. Pemiliknya saat ini tampil sebagai “Dimiliki oleh @username”, dengan link ke profilnya, hanya kalau dia dewasa dengan profil publik.",
+            "Untuk yang lain, termasuk pemain di bawah 18 tahun, tertulis “Pemilik disembunyikan”.",
+            "Untuk menyembunyikan namamu, jadikan profilmu privat di <b>Privasi & Teman</b>. Namamu hilang dari Arsip dalam sekitar satu menit.",
           ],
         },
       ],
@@ -363,7 +581,7 @@ const id: HelpText = {
           id: 'intercepts',
           q: 'Apa itu sadapan?',
           a: [
-            'Hadiah tersegel yang kamu dapat dengan bermain. Masing-masing berisi satu item kosmetik acak, seperti tampilan untuk agenmu atau perayaan.',
+            'Hadiah tersegel yang kamu dapat dengan bermain. Masing-masing berisi satu item kosmetik acak, seperti tampilan untuk agenmu atau selebrasi.',
             'Sadapan tidak pernah dijual dengan uang, dan keanggotaan tidak memberi lebih banyak atau peluang lebih baik.',
             o.launch ? 'Sebelum kamu membuka atau membelinya, aplikasi menampilkan peluang pastinya di <b>Peluang</b>.' : 'Sebelum kamu membukanya, aplikasi menampilkan peluang pastinya di <b>Peluang</b>.',
           ],
@@ -374,7 +592,8 @@ const id: HelpText = {
           a: [
             'Lima tingkat, dari yang terendah: <b>Terbatas</b>, <b>Konfidensial</b>, <b>Rahasia</b>, <b>Sangat Rahasia</b>, dan <b>Enigma</b>.',
             'Tingkatnya ditetapkan saat kamu mendapatkannya. Makin tinggi tingkatnya, makin bagus peluangnya.',
-            'Item <b>Unik</b> adalah salinan dengan warna dan nomor yang tidak dimiliki salinan lain.',
+            "Item <b>Unik</b> adalah salinan satu-satunya: permata prisma, bingkai foil pelangi, nama sandi, dan nomor yang tidak dimiliki salinan lain. Setiap salinan menyimpan warnanya sendiri di dalamnya.",
+            ...(o.u6152 ? ["Nama sandi adalah nama item Unik, seperti <b>Kiriman Oniks</b>. Di bawahnya, dengan huruf lebih kecil, ada item Legendaris asalnya beserta nomornya: Pesawat Kertas #37."] : []),
           ],
         },
         {
@@ -382,15 +601,30 @@ const id: HelpText = {
           q: 'Bagaimana cara mendapat sadapan?',
           a: [
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
-            '<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu, dan streak panjang menambah lagi (tiap hari ke-30 berturut-turut, satu Enigma).',
-            '<b>Malam Permainan:</b> para pemenang malam itu mendapat satu Enigma.',
-            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, menukar tambahkannya, dan menghancurkan duplikat. Menghancurkan duplikatnya memberi Intel yang juga tetap di akunmu: kamu bisa membelanjakannya untuk item yang dijual dengan Intel di aplikasi, tapi tidak bisa menukarnya, mengirimnya, atau memakainya di Pasar Gelap." : ''}`,
+            "<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu. Tiap hari ke-7 berturut-turut menambah satu Rahasia atau lebih tinggi, dan tiap hari ke-30, satu Enigma.",
+            ...(o.gnRewards ? ["<b>Malam Permainan:</b> permainanmu di sana memberi Intel Malam Permainan, yang bisa kamu pakai untuk mendapatkan sadapan Malam Permainan (di bawah)."] : o.gnRewardsRules ? [] : ["<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam."]),
+            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, memakainya untuk Tukar Tambah, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
+            ...(o.launch ? ["<b>Sambutan:</b> akun tersimpan mendapat sadapan pertama gratis. Seperti sadapan dari kode atau hadiah, sadapan itu dan isinya tetap di akunmu: tidak bisa ditukar atau dijual."] : []),
             'Room privat tidak memberi sadapan.',
             ...(o.launch
               ? []
               : ['Sebelum 2.2 terbuka untuk semua orang, sadapan dimulai dari awal: yang didapat di versi uji coba dihapus. Pin Beta dan apa pun yang dibeli di toko tetap ada.']),
           ],
         },
+        ...(o.gnRewards
+          ? [
+            {
+              id: 'game-night-intercepts',
+              q: 'Apa itu sadapan Malam Permainan?',
+              a: [
+                'Sadapan yang kamu dapat dengan Intel Malam Permainan, di kartu Malam Permainan di <b>Brankas</b>: <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
+                'Isinya dari koleksi khusus Malam Permainan, <b>After Hours</b>: 14 item ruang kartu untuk agenmu yang tidak ada di sadapan lain. Seperti semua sadapan, aplikasi menampilkan peluang pastinya.',
+                ...(o.u6153 ? ["Latar Legendaris Malam Permainan adalah <b>Mati Lampu</b>, yang dulu bernama Ruang Belakang. Adegan istirahatnya adalah <b>Rain Window</b>."] : []),
+                'Sadapan yang dibeli menunggu di <b>Belum Dibuka</b>. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
+              ],
+            },
+            ]
+          : []),
         {
           id: 'duplicates',
           q: 'Apa yang bisa kulakukan dengan duplikat?',
@@ -405,10 +639,10 @@ const id: HelpText = {
           id: 'intel',
           q: 'Apa itu Intel?',
           a: [
-            'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan streak harian, serta dari menghancurkan duplikat.',
-            'Streak-mu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
+            'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan rentetan harian, serta dari menghancurkan duplikat.',
+            'Rentetan harianmu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
             o.launch ? 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.' : 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa bisa menukarnya dengan orang dewasa lain, dan memakainya di Pasar Gelap mulai peluncuran 2.2 tanggal 8 Desember, atau dalam uji yang penjualannya dibatalkan.',
-            'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya. Lihat milikmu di <b>Riwayat Intel</b>, di dalam «Cara Kerja Intel», pada pembaruan terbaru aplikasi.',
+            'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya. Lihat milikmu di <b>Riwayat Intel</b>, di dalam “Cara Kerja Intel”, pada pembaruan terbaru aplikasi.',
             'Di <b>Brankas</b>, Intel-mu punya ubin sendiri, tumpukan yang tumbuh sesuai jumlahnya. Ketuk untuk melihat yang didapat hari ini, didapat seluruhnya, dan dipakai seluruhnya. Intel yang tertahan di penawaran Pasar Gelap yang masih terbuka dihitung terpakai sampai kembali.',
           ],
         },
@@ -436,21 +670,45 @@ const id: HelpText = {
           id: 'tester-rewards',
           q: 'Di mana hadiah penguji betaku?',
           a: [
-            o.launch
-              ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
-              : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>.',
-            o.launch
-              ? 'Penguji yang menyelesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.'
-              : 'Selesaikan setidaknya satu game sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
-            o.testerInterceptsTradable
-              ? '<b>Pin Beta</b>, gelar <b>Penguji Lapangan</b>, dan sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.'
-              : '<b>Pin Beta</b> dan gelar <b>Penguji Lapangan</b> bisa ditukar seperti apa pun yang kamu dapatkan sendiri; seperti hadiah lain, sadapan terima kasih tetap di akunmu.',
+            ...(o.testerGiftGame
+              ? [
+                o.launch
+                  ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
+                  : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>.',
+                o.launch
+                  ? "Penguji yang menyelesaikan setidaknya satu game dengan pemain lain sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka; permainan latihan tidak dihitung) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan."
+                  : "Selesaikan setidaknya satu game dengan pemain lain sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu; permainan latihan tidak dihitung), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.",
+                o.testerInterceptsTradable
+                  ? '<b>Pin Beta</b>, gelar <b>Penguji Lapangan</b>, dan sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.'
+                  : '<b>Pin Beta</b> dan gelar <b>Penguji Lapangan</b> bisa ditukar seperti apa pun yang kamu dapatkan sendiri; seperti hadiah lain, sadapan terima kasih tetap di akunmu.',
+              ]
+              : [
+                o.launch
+                  ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
+                  : 'Hadiahnya datang saat peluncuran 2.2 pada 8 Desember, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+              ]),
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
             'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',
-            ...(o.launch ? [] : ['Beta 2: ucapan terima kasih $10 dikirim lewat PayPal ke setiap pemain terkonfirmasi yang ikut sesi live satu jam penuh dan mengirim survei, dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu.']),
+            ...(o.launch ? [] : ["Beta 3 diadakan Selasa, 24 November, pukul 20.00–21.00 waktu bagian timur AS (bisa masuk mulai 19.30). Jika email kursimu menyebut ucapan terima kasih $10: mainkan setidaknya satu permainan malam itu dan kirim survei sebelum Jumat, 27 November, pukul 23.59 waktu bagian timur, lalu $10 dikirim lewat PayPal paling lambat 1 Desember. Satu penguji juga mendapat kartu hadiah $50 untuk laporan atau ide paling berguna, kami yang memilih."]),
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'beta-reset',
+              q: "Aplikasi bilang semuanya direset sebelum peluncuran. Apa artinya?",
+              a: [
+                "SpySocial masih diuji. Sebelum peluncuran tanggal 8 Desember, item, sadapan, Intel, transaksi Pasar Gelap, dan pertukaran direset, dan semua mulai dari nol.",
+                "Akun, teman, dan paketmu tetap ada, begitu juga XP, level, pencapaian, statistik, nilai permainan latihan, gelar dari kode, dan semua yang kamu beli di App Store atau Google Play.",
+                ...(o.gnRewards ? ["Gelar ★ Malam Permainanmu tetap ada, dan semua Intel Malam Permainan yang kamu dapatkan kembali utuh, walau sudah dipakai."] : []),
+                "Keanggotaan yang diberikan untuk uji coba berakhir saat peluncuran." + (o.intelZero ? " Rentetan harianmu mulai lagi dari hari 0." : ''),
+                "Para penguji akan mendapat hadiah khusus karena sudah membantu.",
+                "Pemberitahuan ini muncul di Brankas, Pasar Gelap, dan layar pertukaran. Ketuk untuk membaca lebih lanjut, atau ketuk X untuk menyembunyikannya di ponsel itu.",
+              ],
+            },
+            ]),
       ],
     },
     {
@@ -464,20 +722,98 @@ const id: HelpText = {
             ...(o.purchases ? [] : ['Keanggotaan mulai dijual dengan versi 2.2.']),
             'Semua paket premium, termasuk yang baru. Semua orang memainkannya di room yang kamu host dan di mejamu di Main online.',
             'Buat paket sendiri di pembuat paket dan bagikan ke komunitas.',
-            '+50% XP di setiap permainan, dan ruangan khusus member di Main online.',
+            '+50% XP di setiap permainan, dan room khusus anggota di Main online.',
+            ...(o.practiceMembers ? ['Permainan latihan, sampai 5 per hari, dengan nilai huruf' + (o.practiceAi ? ' dan masukan AI opsional (16+).' : '.')] : []),
             'Bingkai, label, dan gelar pangkatmu. Kamu bisa memimpin grup dan punya 8 penawaran terbuka di Pasar Gelap, bukan 4.',
             'Keanggotaan tidak pernah mengubah cara kamu bermain atau skormu. Paket gratis tetap gratis untuk semua.',
           ],
         },
         {
+          id: 'pack-creator',
+          q: "Bagaimana cara kerja pembuat paket?",
+          a: [
+            "Dengan keanggotaan (usia 13 tahun ke atas), buka <b>Paket</b>, lalu pembuat paket. Paket butuh 30 sampai 200 entri agar bisa dimainkan atau dikirim ke <b>Komunitas</b>.",
+            "Paketmu bisa dimainkan di room privat yang kamu host selama kamu anggota.",
+            "Kirim satu ke <b>Komunitas</b> dan kami memeriksanya dalam 72 jam: pemeriksaan otomatis membaca teksnya dulu, lalu seseorang memutuskan. Statusnya <b>Sedang ditinjau</b>, lalu <b>Di komunitas</b>, atau <b>Perlu diperbaiki</b> beserta alasannya: ubah dan kirim lagi.",
+            "Paket populer bisa jadi <b>Unggulan</b>. Anggota lain menambahkan paket komunitas ke <b>Paketku</b> untuk dimainkan di room mereka.",
+            "Pemain di bawah 18 tahun tidak menerima jawaban kami antara pukul 22.00 dan 07.00.",
+          ],
+        },
+        ...(o.u6153
+          ? [
+            {
+              id: 'membership-cards',
+              q: "Apa itu kartu Keanggotaan di aplikasi?",
+              a: [
+                "Di tempat anggota mendapat lebih, ada kartu singkat yang menyebutkannya. Ketuk bagian mana saja untuk membuka <b>Keanggotaan</b> di Brankas. Kartu itu tidak pernah membeli apa pun sendiri.",
+                "<b>Pasar Gelap</b>, Penawaranmu: 8 penawaran terbuka untuk anggota, 4 untuk yang lain.",
+                "<b>Grup</b>: anggota yang memimpinnya.",
+                "Pemilih paket di room yang kamu host: semua paket premium dan paket komunitas mana pun yang kamu tambahkan, plus pembuat paket untuk membuat paketmu sendiri.",
+                "<b>Lemari</b>: anggota memakai bingkai dan gelar peringkatnya.",
+                "Halaman paket komunitas: anggota menambahkannya ke <b>Paketku</b>.",
+              ],
+            },
+          ]
+          : []),
+        {
           id: 'membership-plans',
           q: 'Apa itu Agen, Elite, dan Dalang?',
           a: [
-            '<b>Agen</b> adalah langganan paket bulanan, <b>Elite</b> yang tahunan, dan <b>Dalang</b> adalah keanggotaan seumur hidup: sekali bayar, tanpa perpanjangan.',
-            'Dalang menambahkan ketiga bingkai logam, gelar Kartu Emas, perayaan Badai Emas, dan item agen yang hanya ada di keanggotaan seumur hidup.',
+            '<b>Agen</b> adalah keanggotaan bulanan, <b>Elite</b> keanggotaan tahunan, dan <b>Dalang</b> adalah keanggotaan seumur hidup: sekali bayar, tanpa perpanjangan.',
+            'Dalang menambahkan ketiga bingkai logam, gelar Kartu Emas, selebrasi Badai Emas, dan item agen yang hanya ada di keanggotaan seumur hidup.',
             'Seumur hidup berarti selama kami menyediakan SpySocial, bukan seumur hidupmu. Tidak ada uji coba gratis, dan keanggotaan tidak dibagikan lewat Berbagi Keluarga.',
           ],
         },
+        ...(o.membershipSwitch
+          ? [
+            {
+              id: 'membership-switch',
+              q: 'Bisakah aku pindah antara keanggotaan bulanan dan tahunan?',
+              a: [
+                'Bisa, di aplikasi: buka <b>Brankas</b>, lalu <b>Keanggotaan</b>. Di paket bulanan, ketuk <b>Naik ke Elite</b> (tahunan) atau <b>Naik ke Dalang</b> (seumur hidup). Di paket tahunan juga ada <b>Ganti ke bulanan</b>: bingkai, gelar, dan label Elite berganti jadi milik Agen, dan keuntungan lain tetap ada.',
+                'Kamu tidak pernah ditagih dua kali. Di Google Play, paket baru langsung dimulai dan waktu yang sudah kamu bayar jadi waktu di paket baru. Di App Store, Apple yang menentukan kapan paket baru dimulai, sering di perpanjangan berikutnya, dan menghitung waktu yang sudah kamu bayar.',
+                'Keanggotaan yang ditagih lewat toko lain diganti di toko itu: membeli paket lain di sini akan membuatmu ditagih dua kali.',
+                ...(o.googlePassStop
+                  ? ['Saat kamu membeli keanggotaan seumur hidup, keanggotaan bulanan atau tahunan yang ditagih lewat Google Play otomatis berhenti diperpanjang: kamu tetap memilikinya sampai tanggal berakhirnya, dan tidak ada tagihan lagi. Apple tidak mengizinkan ini, jadi batalkan sendiri yang lewat App Store.']
+                  : []),
+              ],
+            },
+            {
+              id: 'two-memberships',
+              q: 'Aplikasi bilang aku punya dua keanggotaan aktif',
+              a: [
+                'Kamu membayar dua sekaligus: misalnya keanggotaan seumur hidup dan bulanan, atau satu di tiap toko. Aplikasi memberi tahu mana yang kamu butuhkan dan mana yang harus dibatalkan, saat kamu membukanya dan di tab <b>Keanggotaan</b>.',
+                'Ketuk <b>Kelola langganan</b> untuk membatalkan yang berlebih di tokonya. Membatalkan hanya menghentikan tagihan berikutnya: waktu yang sudah kamu bayar tetap milikmu.',
+                ...(o.googlePassStop ? ['Kalau yang berlebih ditagih lewat Google Play, <b>Hentikan perpanjangan</b> menghentikannya langsung dari aplikasi.'] : []),
+                'Tidak ada yang diblokir sementara itu: <b>Nanti</b> menyembunyikan pesannya sampai kamu membuka aplikasi lagi.',
+              ],
+            },
+            ]
+          : []),
+        ...(o.memberLoyalty
+          ? [
+            {
+              id: 'member-time',
+              q: "Apa itu “Member sejak”?",
+              a: [
+                "Selama kamu member, <b>Akun</b> menunjukkan kapan keanggotaanmu dimulai dan sudah berapa lama kamu menjadi member, dan <b>Brankas</b> menunjukkan capmu: 1, 3, dan 6 bulan, 1, 2, dan 3 tahun, lalu setiap tahun.",
+                "Yang dihitung adalah waktu keanggotaanmu aktif tanpa jeda: langganan, keanggotaan seumur hidup, hadiah, atau kode. Waktu yang dananya dikembalikan dan pembelian uji coba tidak dihitung.",
+                "Waktu ini didapat dengan bertahan. Pada hari pertama keanggotaanmu tidak aktif lagi (setelah masa tenggang yang diberikan toko saat pembayaran gagal), waktu member dan capmu hilang. Kalau kamu menjadi member lagi, “Member sejak” dan waktumu mulai dari nol.",
+                "Keanggotaan <b>seumur hidup</b> adalah pengecualian: waktumu dihitung sejak hari pertamamu sebagai member, termasuk bulan-bulan langganan sebelumnya, dan terus bertambah, dengan setiap cap yang kami tambahkan nanti.",
+                "Pemain lain hanya melihat sudah berapa lama, beserta capmu, di lembar pemainmu, tidak pernah tanggal atau harganya. Matikan <b>Tampilkan waktu memberku</b> di Pengaturan untuk menyembunyikannya. Waktu akun di bawah 13 tahun tidak pernah ditampilkan ke orang lain.",
+                "Cap hanya mengubah tampilan profilmu: tanpa XP, tanpa peluang lebih baik, dan tidak bisa diperdagangkan.",
+              ],
+            },
+            {
+              id: 'membership-price',
+              q: "Apakah hargaku akan naik?",
+              a: [
+                "Selama langgananmu diperpanjang tanpa jeda, kamu tetap membayar harga yang sekarang, meski harganya naik untuk member baru. Toko masih bisa menyesuaikannya karena pajak setempat atau mata uang.",
+                "Kalau kamu pindah ke langganan yang lain, kamu membayar harga paket itu saat ini. Kalau keanggotaanmu berakhir dan kamu kembali nanti, kamu mungkin membayar harga saat itu. Keanggotaan seumur hidup dibayar sekali dan tidak pernah diperpanjang.",
+              ],
+            },
+            ]
+          : []),
         {
           id: 'cancel-membership',
           q: 'Bagaimana perpanjangan otomatis dan pembatalan?',
@@ -485,7 +821,10 @@ const id: HelpText = {
             'Agen dan Elite diperpanjang otomatis sampai kamu membatalkannya: di App Store, paling lambat 24 jam sebelum periodenya berakhir; di Google Play, sebelum tanggal perpanjangan. Manfaatnya tetap ada sampai akhir periode yang sudah dibayar.',
             '<b>iPhone atau iPad:</b> Pengaturan, namamu, Langganan, SpySocial.',
             '<b>Android:</b> aplikasi Google Play Store, foto profilmu, Pembayaran & langganan, Langganan, SpySocial.',
-            '<b>Kelola langganan</b> di aplikasi membuka halaman yang sama. Menghapus aplikasi atau akun, atau membeli keanggotaan seumur hidup, tidak membatalkan langganan.',
+            o.googlePassStop
+              ? '<b>Kelola langganan</b> di aplikasi membuka halaman yang sama. Menghapus aplikasi atau akun tidak membatalkan langganan. Membeli keanggotaan seumur hidup otomatis menghentikan langganan yang ditagih lewat Google Play, tapi tidak yang lewat App Store.'
+              : '<b>Kelola langganan</b> di aplikasi membuka halaman yang sama. Menghapus aplikasi atau akun, atau membeli keanggotaan seumur hidup, tidak membatalkan langganan.',
+            ...(o.memberLoyalty ? ["Di <b>Brankas</b>, <b>Batalkan Keanggotaan</b> (di bawah Kelola langganan) lebih dulu menampilkan satu layar berisi faktanya: kalau keanggotaanmu berakhir, waktu member dan capmu diulang dari nol, dan harga terkuncimu berakhir. Satu-satunya tombolnya, <b>Lanjut Batalkan</b>, langsung menuju toko. <b>Kelola langganan</b> sendiri tetap langsung membuka toko. Tidak ada yang berubah sebelum akhir periode yang sudah dibayar."] : []),
           ],
         },
         {
@@ -514,11 +853,27 @@ const id: HelpText = {
           id: 'guest-or-saved',
           q: 'Akun tamu atau tersimpan: apa bedanya?',
           a: [
-            '<b>Tamu</b> bisa langsung main di room privat. Akun tamu hanya ada di satu ponsel, dan keluar dari akun menghapusnya selamanya.',
+            '<b>Tamu</b> bisa langsung ikut tutorial dan main di room privat. Akun tamu hanya ada di satu ponsel, dan keluar dari akun menghapusnya selamanya.',
             `Akun <b>tersimpan</b> (Apple, Google, atau emailmu${o.passwordless ? ', dengan kode yang kami kirim lewat email, tanpa kata sandi' : ''}) menyimpan nama, progres, dan keanggotaanmu di ponsel mana pun, dan membuka Main online, Malam Permainan, dan fitur teman.`,
             'Kamu bisa menyimpan akun tamu kapan saja dari halaman Akun, tanpa kehilangan apa pun. Teman, Pertukaran, dan Pasar Gelap meminta tamu menyimpan akunnya dulu.',
+            ...(o.u6152 ? ["Sampai akunmu disimpan, kartu <b>Simpan akunmu</b> muncul di layar akhir setiap permainan. Ketuk × agar kartu itu tidak muncul lagi di ponsel itu."] : []),
           ],
         },
+        ...(o.emailCodes22
+          ? [
+            {
+              id: 'sign-up-email',
+              q: 'Bagaimana cara daftar dengan email?',
+              a: [
+                'Ketuk <b>Lanjut dengan Email</b> dan ketik email-mu. Kami mengirim kode 6 digit: ketik kodenya di aplikasi, dan akunmu sudah jadi. Tanpa kata sandi.',
+                'Kodenya berlaku 1 jam. Belum masuk? Cek folder spam atau sampah, atau ketuk <b>Kirim Ulang Kode</b> setelah satu menit.',
+                ...(o.passwordless
+                  ? []
+                  : ['Versi aplikasi yang lebih lama meminta kata sandi. Kalau muncul pesan bahwa kata sandi terlalu umum atau pernah muncul dalam kebocoran data, pilih yang lain: tidak ada akun yang dibuat, tidak ada email yang dikirim, dan kamu bisa langsung mencoba lagi.']),
+              ],
+            },
+            ]
+          : []),
         {
           id: 'lost-account',
           q: 'Akunku hilang. Bisa kembali?',
@@ -577,8 +932,9 @@ const id: HelpText = {
           id: 'change-name',
           q: 'Bagaimana cara mengganti nama?',
           a: [
-            'Ganti nama tampilanmu kapan saja di halaman Akun, dan username sekali tiap 30 hari.',
-            'Akun baru dimulai dengan nama tampilan acak dalam bahasa aplikasimu.',
+            o.launch ? "Ganti nama tampilan, username (sekali tiap 30 hari), serta warna ke-2 dan ke-3 di <b>Pengaturan</b>." : 'Ganti nama tampilanmu kapan saja di halaman Akun, dan username sekali tiap 30 hari.',
+            ...(o.launch ? [] : ['Akun baru dimulai dengan nama tampilan acak dalam bahasa aplikasimu.']),
+            o.launch ? "Saat membuat akun baru, kamu memilih @username dan satu warna, dan nama tampilanmu dibuat dari username itu. Nama itu tidak pernah memakai nama dari akun Google atau Apple-mu." : "Saat kamu membuat akun baru, @username-mu dibuat dari nama tampilan yang kamu ketik dan mengikutinya sampai kamu mengetik sendiri atau melempar dadu. Username tidak pernah memakai nama dari akun Google atau Apple-mu.",
             'Di meja Main online, pemain yang tidak kamu kenal melihat warna Agen-mu. Nama harus mengikuti <rules>aturan komunitas</rules>.',
           ],
         },
@@ -595,9 +951,9 @@ const id: HelpText = {
           id: 'delete-account',
           q: 'Bagaimana cara menghapus akunku?',
           a: [
-            'Di aplikasi: <b>Akun</b>, <b>Pengaturan</b>, <b>Hapus akun</b>. Untuk tamu, keluar dari akun sudah menghapusnya.',
+            "Di aplikasi: <b>Akun</b>, <b>Pengaturan</b>, <b>Akun & masuk</b>, <b>Hapus akun</b>. Ini tidak bisa dibatalkan. Akun tamu juga dihapus di sana, atau dengan keluar dari akun.",
             'Kamu juga bisa minta lewat email: lihat <delete>Hapus akunmu</delete>.',
-            'Menghapus akun tidak membatalkan langganan: batalkan juga di toko aplikasi.',
+            "Menghapus akunmu tidak membatalkan keanggotaanmu. Batalkan dulu di App Store atau Google Play, atau kamu akan terus ditagih.",
           ],
         },
         {
@@ -618,9 +974,9 @@ const id: HelpText = {
           id: 'report-block',
           q: 'Bagaimana cara melaporkan atau memblokir seseorang?',
           a: [
-            'Tekan lama kartunya, di lobi, di permainan, atau di layar akhir, lalu pilih <b>Laporkan</b> atau <b>Blokir</b>.',
+            "Di lobi, tekan lama kartunya. Di permainan, tekan lama fotonya: <b>Laporkan</b> dan <b>Blokir</b> ada di bagian bawah catatanmu tentang dia. Di layar akhir, ketuk kartunya.",
             'Setiap laporan dibaca oleh manusia, dan pemain itu tidak tahu siapa yang melapor.',
-            'Memblokir memisahkan kalian: tidak ada yang bisa masuk ke room tempat yang lain berada. Buka blokir di Pengaturan, di <b>Pemain diblokir</b>.',
+            'Memblokir memisahkan kalian: tidak ada yang bisa masuk ke room tempat yang lain berada. Buka blokir di Pengaturan, di <b>Privasi & keamanan</b>: <b>Pemain diblokir</b>.',
             'Berbohong dan menggertak itu bagian dari permainan dan tidak bisa dilaporkan.',
             'Di meja dengan grup, pilih <b>Main sekongkol</b> jika kamu kira mereka bekerja sama di luar permainan. <b>Laporkan Grup</b> mencakup semua anggota grup mereka di meja itu.',
           ],
@@ -631,6 +987,17 @@ const id: HelpText = {
           a: [
             'Tim kami membaca setiap laporan dan memutuskan tindakannya. Moderator sukarelawan tepercaya membantu, dengan izin kami: di meja Malam Permainan, untuk pesan yang dilaporkan, dan untuk paket komunitas.',
             'Kamu bisa mengajukan banding atas keputusan apa pun lewat email ke <email/>.',
+          ],
+        },
+        {
+          id: 'reputation',
+          q: "Apa itu reputasiku?",
+          a: [
+            "Setiap akun punya reputasi. Lihat milikmu di Pengaturan, di <b>Reputasi</b>: Sangat Baik, Baik, Buruk, Berisiko, atau Diblokir. Akun baru mulai dari Baik.",
+            "Reputasimu berasal dari catatanmu: sudah berapa lama kamu main, dan ada tidaknya laporan, peringatan, chat dibisukan, atau jeda. Skor pastinya tidak ditampilkan. Catatan lama makin kecil bobotnya dan tidak dihitung lagi setelah 90 hari.",
+            "Akun baru dan pemain dengan reputasi lebih rendah lebih banyak gambarnya dicek otomatis.",
+            "Selama reputasimu Diblokir, Main online, room publik, Malam Permainan, tukar item, hadiah, dan Pasar Gelap tertutup untukmu, dan room privat mungkin juga. Kamu tetap bisa masuk dan itemmu tetap milikmu. Reputasi pulih seiring waktu selama kamu main jujur.",
+            "Merasa ini salah? Kirim email ke <email/> dan kami akan memeriksanya.",
           ],
         },
         {
@@ -687,7 +1054,7 @@ const id: HelpText = {
             'Aplikasi tersambung lagi sendiri saat koneksimu kembali.',
             'Pesan chat yang tidak terkirim menampilkan <b>Tidak terkirim</b>. Jika koneksimu kembali dalam 2 menit, pesan itu terkirim lagi sendiri; setelah itu, ketuk pesannya untuk mengirim.',
             'Kalau kamu sampai di Beranda, ketuk <b>Kembali</b> di kartu room-mu. Kursimu tetap disimpan.',
-            'Jika aplikasi bilang tidak mendapat jawaban setelah vote, tebakan, pembelian, penghancuran, atau pertukaran, mungkin itu tetap berhasil. Periksa dulu, lalu coba lagi jika belum: tidak ada yang dibayar atau ditukar dua kali.',
+            'Jika aplikasi bilang tidak mendapat jawaban setelah voting, tebakan, pembelian, penghancuran, atau pertukaran, mungkin itu tetap berhasil. Periksa dulu, lalu coba lagi jika belum: tidak ada yang dibayar atau ditukar dua kali.',
           ],
         },
         {
@@ -701,6 +1068,19 @@ const id: HelpText = {
             'Kalau kamu sedang bermain, aplikasi menyambungkanmu lagi, atau ketuk <b>Kembali</b> di kartu room-mu di Beranda. Kursimu tetap disimpan.',
           ],
         },
+        ...(o.u6153
+          ? [
+            {
+              id: 'tablet-keyboard',
+              q: "Apakah keyboard di layar mengubah tata letak di tablet?",
+              a: [
+                "Di browser tablet, keyboard di layar tidak lagi mengubah game ke tata letak menyamping: layar tetap tegak selama kamu mengetik.",
+                "Halaman terangkat agar kolom yang kamu ketik tetap di atas tombol.",
+                "Tablet yang diputar menyamping tetap memakai tata letak tablet aplikasi, bukan tata letak komputer yang lebar.",
+              ],
+            },
+          ]
+          : []),
         {
           id: 'game-not-counted',
           q: 'Permainanku tidak dihitung',

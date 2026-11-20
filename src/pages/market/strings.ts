@@ -1,9 +1,9 @@
 /**
- * The Market's own words (market.spysocial.app). English and Russian; the other eight languages read the English
- * for now, as the Archive does (the item names are the app's own in all ten: the server sends them). Never "Grand
+ * The Market's own words (market.spysocial.app). All ten languages (English and Russian here, the other eight in ./locales; sites-polish-1111), as the Archive does (the item names are the app's own in all ten: the server sends them). Never "Grand
  * Exchange" or any other game's words: it is the Black Market, as in the app. Numbers and dates arrive formatted.
  */
 import type { LangCode } from '../../i18n'
+import { pageTable } from '../../i18n/pageTable'
 import type { Category, MoverList, Win } from '../../lib/market'
 
 const en = {
@@ -11,6 +11,11 @@ const en = {
   name: 'Black Market',
   beta: 'Beta test market: these prices come from testers’ trades and are wiped on December 7. The real market opens December 8.',
   sample: 'SAMPLE DATA: made up for this design preview. No real trade is shown.',
+  /** (market-demo-1111) the server's sample history on a few items (beta only): their item page and their price in a list. */
+  demoNote: 'Sample history: example data to show how the charts work, not real trades. Wiped at launch.',
+  sampleTag: 'Sample',
+  /** (speed-1111) the beta notice's second line while Market Movers shows the sample items too (beta only). */
+  demoMovers: 'Until launch, Market Movers also lists a few items tagged Sample: example history to show how the lists work, not real trades. Real trades always rank first, and the samples are gone at launch.',
   halted: 'The Black Market is paused right now. Prices stay as they were when it stopped.',
   busy: 'The Market can’t reach the prices right now. Try again in a minute.',
   soon: { title: 'Market opens December 8', text: 'Prices appear here once players trade. Until then, everything on the Black Market is a test.' },
@@ -18,7 +23,7 @@ const en = {
   intel: 'Intel',
   noPrice: 'Not enough trades yet',
   noPriceLong: (n: number) => `Fewer than ${n} trades in 90 days, so no price yet. We only show a price that at least ${n} trades make.`,
-  search: { label: 'Search the Black Market', hint: 'Type an item’s name', clear: 'Clear', start: 'Start typing to find an item.', none: 'Nothing on the Black Market by that name.', results: (n: number) => (n === 1 ? '1 item' : `${n} items`), more: 'Showing the first 50. Keep typing to narrow it down.' },
+  search: { label: 'Search the Black Market', hint: 'Type an item’s name', clear: 'Clear', start: 'Start typing to find an item.', none: 'Nothing on the Black Market by that name.', results: (n: number) => (n === 1 ? '1 item' : `${n} items`), more: (n: number) => `Showing the first ${n}. Keep typing to narrow it down.` },
   windows: { '1d': 'Today', '7d': '7 days', '30d': '30 days', '90d': '90 days', '180d': '180 days' } as Record<Win, string>,
   lists: {
     rises: { title: 'Price rises', short: 'Rises', text: 'The biggest climbs in price.' },
@@ -54,11 +59,12 @@ const en = {
     catalogue: 'Catalogue',
     catalogueLede: 'Every item on the Black Market, shelf by shelf.',
     items: (n: number) => (n === 1 ? '1 item' : `${n} items`),
+    empty: { title: 'No prices yet', text: (n: number) => `An item gets a price once ${n} trades make it, and none has reached ${n} yet. These lists fill in as players trade.` },
     how: {
       title: 'How a price is worked out',
       list: [
-        { title: 'From real trades', text: 'An item’s price is the average Intel paid for it in the last 7 days; when it trades less, the last 30 or 90 days.' },
-        { title: 'Five trades or none', text: 'No price shows until at least five trades make it, and nothing here ever names a buyer, a seller or a single trade.' },
+        { title: 'From real trades', text: 'An item’s price is the middle (median) Intel paid for it in the last 7 days, so one odd sale can’t move it; when it trades less, the last 30 or 90 days.' },
+        { title: 'Five trades or none', text: 'No price shows until at least five trades between at least three different pairs of players make it, and nothing here ever names a buyer, a seller or a single trade.' },
         { title: 'Never under its floor', text: 'Nobody can sell below an item’s shred value, the Intel it shreds for. Trades between linked accounts never count.' },
       ],
     },
@@ -73,7 +79,7 @@ const en = {
   catalogue: {
     title: 'Catalogue',
     lede: 'Pick a shelf. Each one lists up to 100 items, the most traded first; search finds the rest.',
-    shelf: (n: number, priced: number) => `${n} items · ${priced} with a price`,
+    shelf: (n: number, priced: number) => `${n === 1 ? '1 item' : `${n} items`} · ${priced} with a price`,
     showing: (n: number, of: number) => `Showing ${n} of ${of}. Search to find any other.`,
     filter: 'Rarity',
     all: 'All',
@@ -82,20 +88,23 @@ const en = {
   },
   item: {
     price: 'Price',
-    priceNote: 'Average of the last 7 days’ trades',
+    priceNote: 'Middle price of the last 7 days’ trades (30 or 90 days when there are few)',
     guide: 'Guide price in the app',
     floor: 'Shred value (lowest price)',
     changes: { today: 'Today', m1: '1 month', m3: '3 months', m6: '6 months' },
     chart: 'Price',
     chartRanges: { '30': '1 month', '90': '3 months', '180': '6 months' } as Record<string, string>,
-    chartAvg: 'Day’s average',
+    chartAvg: 'Day’s middle price',
     chartLine: 'Price',
     volume: 'Trades per day',
     noChart: 'No trades in this time.',
+    noPriceYet: (n: number) => `No price yet: needs ${n} trades`,
+    zeroTrades: '0 trades',
     stats: { trades7: 'Trades in 7 days', trades30: 'Trades in 30 days', value30: 'Intel traded in 30 days', trades180: 'Trades in 180 days' },
     tradeIt: 'Buy or sell it in the app, on the Black Market.',
     back: 'Market',
     notFound: 'That item isn’t on the Black Market.',
+    notFoundLink: 'See the whole catalogue',
     table: 'Show the numbers',
     tableHide: 'Hide the numbers',
     day: 'Day',
@@ -104,19 +113,32 @@ const en = {
 
 export type MarketStrings = typeof en
 
+/** Russian's three plural forms: 1 предмет, 2 предмета, 5 предметов. */
+export function ruPlural(n: number, one: string, few: string, many: string): string {
+  const t = n % 100
+  const u = n % 10
+  if (t >= 11 && t <= 14) return many
+  if (u === 1) return one
+  if (u >= 2 && u <= 4) return few
+  return many
+}
+
 const ru: MarketStrings = {
   nav: { market: 'Рынок', movers: 'Взлёты и падения', catalogue: 'Каталог', archive: 'Уникальные', label: 'Цены Чёрного рынка' },
   name: 'Чёрный рынок',
   beta: 'Тестовый рынок: эти цены сложились из сделок тестировщиков и будут стёрты 7 декабря. Настоящий рынок откроется 8 декабря.',
-  sample: 'ПРИМЕР ДАННЫХ: придуман для показа дизайна. Ни одной настоящей сделки здесь нет.',
+  sample: 'ДЕМОДАННЫЕ: придуманы для показа дизайна. Настоящих сделок здесь нет.',
+  demoNote: 'Пример истории: условные данные, а не настоящие сделки; они только показывают, как работают графики. К запуску их сотрут.',
+  sampleTag: 'Пример',
+  demoMovers: 'До запуска во «Взлётах и падениях» есть и несколько предметов с пометкой «Пример»: их история условная и только показывает, как работают списки. Настоящие сделки всегда идут первыми, а к запуску примеры исчезнут.',
   halted: 'Чёрный рынок сейчас приостановлен. Цены остаются такими, какими были в момент остановки.',
   busy: 'Рынок сейчас не может получить цены. Попробуйте через минуту.',
-  soon: { title: 'Рынок откроется 8 декабря', text: 'Цены появятся здесь, когда игроки начнут торговать. До тех пор всё на Чёрном рынке — тест.' },
+  soon: { title: 'Рынок откроется 8 декабря', text: 'Цены появятся здесь, когда игроки начнут торговать. До тех пор Чёрный рынок работает в тестовом режиме.' },
   retry: 'Повторить',
   intel: 'разведданных',
   noPrice: 'Пока мало сделок',
-  noPriceLong: (n: number) => `Меньше ${n} сделок за 90 дней, поэтому цены пока нет. Мы показываем цену, только когда её дают не меньше ${n} сделок.`,
-  search: { label: 'Поиск по Чёрному рынку', hint: 'Введите название предмета', clear: 'Очистить', start: 'Начните вводить, чтобы найти предмет.', none: 'На Чёрном рынке нет предмета с таким названием.', results: (n: number) => `Найдено: ${n}`, more: 'Показаны первые 50. Уточните запрос.' },
+  noPriceLong: (n: number) => `Меньше ${n} сделок за 90 дней, поэтому цены пока нет. Мы показываем цену, только если она рассчитана минимум по ${n} сделкам.`,
+  search: { label: 'Поиск по Чёрному рынку', hint: 'Введите название предмета', clear: 'Очистить', start: 'Начните вводить, чтобы найти предмет.', none: 'На Чёрном рынке нет предмета с таким названием.', results: (n: number) => `Найдено: ${n}`, more: (n: number) => `Показаны первые ${n}. Уточните запрос.` },
   windows: { '1d': 'Сегодня', '7d': '7 дней', '30d': '30 дней', '90d': '90 дней', '180d': '180 дней' },
   lists: {
     rises: { title: 'Рост цен', short: 'Рост', text: 'Самый большой рост цены.' },
@@ -138,25 +160,26 @@ const ru: MarketStrings = {
     celebrations: 'Празднования',
     titles: 'Титулы',
   },
-  rarity: { common: 'Обычный', uncommon: 'Необычный', rare: 'Редкий', epic: 'Эпический', mythic: 'Мифический', legendary: 'Легендарный', intercept: 'Нераскрытый' },
+  rarity: { common: 'Обычный', uncommon: 'Необычный', rare: 'Редкий', epic: 'Эпический', mythic: 'Мифический', legendary: 'Легендарный', intercept: 'Невскрытый' },
   home: {
     eyebrow: 'Чёрный рынок',
     title: 'Цены',
     lede: 'За сколько продаётся каждый предмет на Чёрном рынке — по сделкам игроков. Найдите предмет, посмотрите, что дорожает, и проверьте цену перед сделкой.',
-    stats: { priced: 'Предметов с ценой', trades1d: 'Сделок сегодня', trades30d: 'Сделок за 30 дней', intel30d: 'Разведданных за 30 дней' },
+    stats: { priced: 'Предметов с ценой', trades1d: 'Сделок сегодня', trades30d: 'Сделок за 30\u00a0дней', intel30d: 'Разведданных за 30\u00a0дней' },
     movers: 'Взлёты и падения',
-    moversLede: 'Начало каждого списка. Откройте список, чтобы увидеть топ-100.',
+    moversLede: 'Лидеры каждого списка. Откройте список, чтобы увидеть топ-100.',
     top100: 'Топ-100',
     featured: 'Предмет недели',
     featuredText: 'Самый ходовой предмет этой недели.',
     catalogue: 'Каталог',
     catalogueLede: 'Все предметы Чёрного рынка по разделам.',
-    items: (n: number) => `Предметов: ${n}`,
+    items: (n: number) => `${n} ${ruPlural(n, 'предмет', 'предмета', 'предметов')}`,
+    empty: { title: 'Цен пока нет', text: (n: number) => `Цена у предмета появляется после ${n} ${ruPlural(n, 'сделки', 'сделок', 'сделок')}, а столько пока не набрал ни один. Списки заполнятся, когда игроки начнут торговать.` },
     how: {
       title: 'Как считается цена',
       list: [
-        { title: 'По настоящим сделкам', text: 'Цена предмета — средняя сумма разведданных, уплаченная за него за последние 7 дней; если сделок мало — за 30 или 90 дней.' },
-        { title: 'Пять сделок или ничего', text: 'Цена появляется только после пяти сделок, и здесь никогда не называются покупатель, продавец или отдельная сделка.' },
+        { title: 'По настоящим сделкам', text: 'Цена предмета — медиана (середина) сумм разведданных, уплаченных за него за последние 7 дней, поэтому одна необычная сделка её не сдвинет; если сделок мало — за 30 или 90 дней.' },
+        { title: 'Пять сделок или ничего', text: 'Цена появляется не раньше, чем наберётся пять сделок минимум между тремя разными парами игроков; здесь никогда не называются ни покупатель, ни продавец, ни отдельная сделка.' },
         { title: 'Не ниже минимума', text: 'Никто не может продать дешевле стоимости разбора предмета. Сделки между связанными аккаунтами не учитываются.' },
       ],
     },
@@ -164,14 +187,14 @@ const ru: MarketStrings = {
   },
   movers: {
     title: (list: string) => list,
-    lede: 'Топ-100 за выбранный срок. Чтобы вырасти или упасть, у предмета должна быть цена в начале и в конце срока.',
+    lede: 'Топ-100 за выбранный срок. Рост или падение засчитывается, только если у предмета есть цена и в начале, и в конце срока.',
     none: 'Пока ни у одного предмета не хватает сделок для этого списка.',
     window: 'За',
   },
   catalogue: {
     title: 'Каталог',
     lede: 'Выберите раздел. В каждом — до 100 предметов, сначала самые ходовые; остальные найдёт поиск.',
-    shelf: (n: number, priced: number) => `Предметов: ${n} · с ценой: ${priced}`,
+    shelf: (n: number, priced: number) => `${n} ${ruPlural(n, 'предмет', 'предмета', 'предметов')} · с ценой: ${priced}`,
     showing: (n: number, of: number) => `Показано ${n} из ${of}. Остальные — через поиск.`,
     filter: 'Редкость',
     all: 'Все',
@@ -180,28 +203,56 @@ const ru: MarketStrings = {
   },
   item: {
     price: 'Цена',
-    priceNote: 'Среднее по сделкам за 7 дней',
+    priceNote: 'Медиана сделок за 7 дней (за 30 или 90, если сделок мало)',
     guide: 'Ориентир цены в приложении',
     floor: 'Стоимость разбора (минимум)',
     changes: { today: 'Сегодня', m1: '1 месяц', m3: '3 месяца', m6: '6 месяцев' },
     chart: 'Цена',
     chartRanges: { '30': '1 месяц', '90': '3 месяца', '180': '6 месяцев' },
-    chartAvg: 'Среднее за день',
+    chartAvg: 'Медиана за день',
     chartLine: 'Цена',
     volume: 'Сделок в день',
     noChart: 'За это время сделок не было.',
-    stats: { trades7: 'Сделок за 7 дней', trades30: 'Сделок за 30 дней', value30: 'Разведданных за 30 дней', trades180: 'Сделок за 180 дней' },
+    noPriceYet: (n: number) => `Цены пока нет. Нужно сделок: ${n}`,
+    zeroTrades: 'Сделок: 0',
+    stats: { trades7: 'Сделок за 7\u00a0дней', trades30: 'Сделок за 30\u00a0дней', value30: 'Развед\u00ADдан\u00ADных за 30\u00a0дней', trades180: 'Сделок за 180\u00a0дней' },
     tradeIt: 'Купить или продать его можно в приложении, на Чёрном рынке.',
     back: 'Рынок',
     notFound: 'Этого предмета нет на Чёрном рынке.',
+    notFoundLink: 'Весь каталог',
     table: 'Показать числа',
     tableHide: 'Скрыть числа',
     day: 'День',
   },
 }
 
-const BY_LANG: Partial<Record<LangCode, MarketStrings>> = { en, ru }
+// English and Russian are here; each other language is its own chunk, loaded before the page paints in it (speed-1111).
+const table = pageTable<MarketStrings>({ en, ru }, import.meta.glob<{ default: MarketStrings }>('./locales/*.ts'))
+
+/** A number and the word after it ("7 days", "dalam 7 hari", "3 месяца") never split over two lines (qa-fixes2-1116). */
+const glue = <T extends Record<string, string>>(labels: T): T =>
+  Object.fromEntries(Object.entries(labels).map(([k, v]) => [k, v.replace(/(\d) (?=\p{L})/gu, '$1\u00a0')])) as T
+
+/**
+ * The short labels set in small capitals in narrow cells (the window chips, the home and item figures, the item's
+ * changes), each language's own words with its numbers glued to their units: at 320-393 px they wrapped as
+ * «TRANSAKSI DALAM 7 / HARI», «СДЕЛОК ЗА 7 / ДНЕЙ». Once per table.
+ */
+const glued = new WeakMap<MarketStrings, MarketStrings>()
+function withGlue(t: MarketStrings): MarketStrings {
+  let g = glued.get(t)
+  if (!g) {
+    g = {
+      ...t,
+      windows: glue(t.windows),
+      home: { ...t.home, stats: glue(t.home.stats) },
+      item: { ...t.item, stats: glue(t.item.stats), changes: glue(t.item.changes), chartRanges: glue(t.item.chartRanges) },
+    }
+    glued.set(t, g)
+  }
+  return g
+}
 
 export function marketStrings(lang: LangCode): MarketStrings {
-  return BY_LANG[lang] ?? en
+  return withGlue(table(lang))
 }

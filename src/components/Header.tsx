@@ -1,4 +1,5 @@
-import { lazy, Suspense } from 'react'
+import { Suspense } from 'react'
+import { HostNav } from './hostNavChunk'
 import { useLocation } from 'react-router-dom'
 import Link from './SiteLink'
 import { useT } from '../i18n'
@@ -12,13 +13,12 @@ import ui from './ui/ui.module.css'
 import s from './shell.module.css'
 
 /**
- * The wordmark (home), Join a room (the home page's room-code box), once LIVE.merchShop is on the Shop (same tab),
- * then the language menu and the light / dark switch at the far end. Sticky on every page. On a phone the room
+ * The wordmark (home), Join a room (the home page's room-code box), the Market and the Archive (market. and
+ * archive.spysocial.app, same tab; only where the row has room, the footer carries them everywhere), once
+ * LIVE.merchShop is on the Shop (same tab), then the language menu and the light / dark switch at the far end. Sticky on every page. On a phone the room
  * link takes its short label, so the two controls keep their room in every language. On archive.spysocial.app and
  * market.spysocial.app the site's own places follow the wordmark (components/HostNav).
  */
-// The Archive's and the Market's own nav (archive. / market.spysocial.app): its own chunk, never loaded on www.
-const HostNav = lazy(() => import('./HostNav'))
 
 const Header = ({ isHome = false }: { isHome?: boolean }) => {
   const t = useT()
@@ -40,12 +40,24 @@ const Header = ({ isHome = false }: { isHome?: boolean }) => {
         )}
         <div className={s.tools}>
           <nav className={s.nav} aria-label={t.header.nav}>
-            <Link to="/#join" className={s.navLink}>
+            <Link to="/#join" className={`${s.navLink} ss-hit`}>
               <span className={s.long}>{t.header.join}</span>
               <span className={s.short} aria-hidden="true">
                 {t.header.joinShort}
               </span>
             </Link>
+            {/* The Market and the Archive (their own subdomains, same tab): on www's pages, where the row has room
+                (s.roomy); on their own hosts HostNav names their places instead. */}
+            {!section && LIVE.marketSite && (
+              <Link to="/market" className={`${s.navLink} ${s.roomy}`}>
+                {t.header.market}
+              </Link>
+            )}
+            {!section && LIVE.mintedCollectibles && LIVE.uniqueArchive && (
+              <Link to="/archive" className={`${s.navLink} ${s.roomy}`}>
+                {t.header.archive}
+              </Link>
+            )}
             {LIVE.merchShop && (
               <a href={SHOP_URL} className={s.navLink}>
                 {t.header.shop}

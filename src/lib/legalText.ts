@@ -17,7 +17,7 @@ const namesAndPicture = (): string => {
 /** What a deletion removes, as one sentence. */
 export const deletedSummary = (): string =>
   [
-    PRIVACY.passwordless ? 'your email address' : 'your email address and password',
+    PRIVACY.passwordless ? 'your email address' : PRIVACY.emailCodes22 ? 'your email address and any password' : 'your email address and password',
     PRIVACY.socialSignIn ? 'the Apple or Google sign-in linked to your account' : null,
     namesAndPicture(),
     PRIVACY.coverage1110

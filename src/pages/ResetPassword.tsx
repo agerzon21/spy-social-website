@@ -38,7 +38,7 @@ const PasswordsGone = () => {
           )}
           {STORES_OPEN ? (
             <>
-              <Text fontSize="xs" color="ss.muted">{t.goneNoApp}</Text>
+              <Text fontSize="sm" color="ss.muted">{t.goneNoApp}</Text>
               <StoreBadges center />
             </>
           ) : (
@@ -67,29 +67,30 @@ const ResetPasswordForm = () => {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(previewMode === 'success')
-  const [token, setToken] = useState<string | null>(null)
   // Which message, not its words: it shows in the page's language even after a switch.
   const [error, setError] = useState<'invalid' | 'failed' | null>(previewMode === 'error' ? 'invalid' : null)
   const toast = useThemedToast()
   const navigate = useNavigate()
 
+  // The recovery link signs this browser in by itself: the client (implicit flow, src/lib/supabase.ts and the
+  // signup function's reset email alike) reads #access_token from the URL while it initializes, and getSession waits
+  // for that. A ?code= link would need a PKCE verifier this browser never stored, so it ends up as no session too, as
+  // does an expired link (#error=...). No session means the link is invalid.
   useEffect(() => {
     if (isPreview) return
-    const hash = window.location.hash
-    const tokenMatch = hash.match(/#access_token=([^&]+)/)
-    if (tokenMatch && tokenMatch[1]) {
-      setToken(tokenMatch[1])
-    } else {
-      const checkSession = async () => {
-        try {
-          const { data } = await supabase.auth.getSession()
-          if (!data?.session) setError('invalid')
-        } catch {
-          setError('failed')
-        }
+    let cancelled = false
+    const checkSession = async () => {
+      try {
+        const { data, error: sessionError } = await supabase.auth.getSession()
+        if (cancelled) return
+        if (sessionError) setError('failed')
+        else if (!data?.session) setError('invalid')
+      } catch {
+        if (!cancelled) setError('failed')
       }
-      checkSession()
     }
+    checkSession()
+    return () => { cancelled = true }
   }, [isPreview])
 
   const handleResetPassword = async (e: React.FormEvent) => {
@@ -105,14 +106,18 @@ const ResetPasswordForm = () => {
     }
     setLoading(true)
     try {
-      if (token) {
-        try { await supabase.auth.setSession({ access_token: token, refresh_token: '' }) } catch { /* continue */ }
-      }
       const updateResult = await supabase.auth.updateUser({ password })
       if (updateResult.error) throw new Error(updateResult.error.message)
       setSuccess(true)
       toast({ title: t.success, status: 'success', duration: 5000, isClosable: true })
-      try { await supabase.auth.signOut() } catch { /* continue */ }
+      // Default (global) scope as before: the new password ends every session. If that request fails (offline,
+      // 5xx), supabase-js keeps the session, so at least sign this browser out; other devices are left as they are.
+      try {
+        const { error: signOutError } = await supabase.auth.signOut()
+        if (signOutError) await supabase.auth.signOut({ scope: 'local' })
+      } catch {
+        try { await supabase.auth.signOut({ scope: 'local' }) } catch { /* continue */ }
+      }
       setTimeout(() => navigate('/'), 2000)
     } catch (err) {
       toast({ title: t.error, description: err instanceof Error ? err.message : t.unexpected, status: 'error', duration: 5000, isClosable: true })
@@ -135,7 +140,7 @@ const ResetPasswordForm = () => {
           ) : success ? (
             <VStack spacing={3} py={4}>
               <Text color="ss.success" fontWeight="500" fontSize="sm">{t.done}</Text>
-              <Text fontSize="xs" color="ss.muted">{t.redirecting}</Text>
+              <Text fontSize="sm" color="ss.muted">{t.redirecting}</Text>
             </VStack>
           ) : (
             <Box as="form" onSubmit={handleResetPassword}>
@@ -143,7 +148,7 @@ const ResetPasswordForm = () => {
                 <FormControl isRequired>
                   <FormLabel fontSize="sm" color="ss.muted">{t.newPassword}</FormLabel>
                   <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder={t.newPlaceholder} minLength={6} isDisabled={loading} bg="ss.deep" border="var(--ss-hairline) solid" borderColor="ss.control" borderRadius="var(--ss-radius-control)" color="ss.text" _placeholder={{ color: 'ss.muted' }} _hover={{ borderColor: 'ss.text' }} _focus={{ borderColor: 'ss.focus', boxShadow: '0 0 0 1px var(--ss-focus)' }} />
-                  <FormHelperText fontSize="xs" color="ss.muted">{t.minLength}</FormHelperText>
+                  <FormHelperText fontSize="sm" color="ss.muted">{t.minLength}</FormHelperText>
                 </FormControl>
                 <FormControl isRequired>
                   <FormLabel fontSize="sm" color="ss.muted">{t.confirm}</FormLabel>
@@ -162,7 +167,7 @@ const ResetPasswordForm = () => {
 
           {isPreview && (
             <Box mt={4} p={3} bg="ss.warnSurface" borderRadius="var(--ss-radius-control)" borderWidth="1px" borderColor="ss.warnLine">
-              <Text fontSize="xs" color="ss.warn" textAlign="center">
+              <Text fontSize="sm" color="ss.warn" textAlign="center">
                 {rich(t.preview(previewMode ?? ''), { b: (c) => <b>{c}</b> })}
               </Text>
             </Box>

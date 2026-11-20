@@ -7,20 +7,29 @@ import DisplayHeading from '../../components/ui/DisplayHeading'
 import ui from '../../components/ui/ui.module.css'
 import {
   ArchiveBusy,
-  artOf,
+  lookOf,
   attributesOf,
   codenameOf,
+  copyNameOf,
   fetchUnique,
+  holderOf,
   nameOf,
+  ownArtOf,
   serialText,
   swatchOf,
   uniquePath,
   type ArchiveUnique,
   type HistoryEvent,
 } from '../../lib/archive'
-import { ArchiveState, BetaNotice, FloatDigits, Piece } from './ArchiveBits'
+import { ArchiveState, BetaNotice, FloatDigits, OriginsSeal, Piece } from './ArchiveBits'
+import { showsOrigins } from './origins'
 import { dayText, fmt, setText, useArchive } from './useArchive'
+import { howLine } from './serverWords'
 import s from './archive.module.css'
+import hs from './holder.module.css'
+import { LIVE } from '../../lib/legalRelease'
+import { asRemoval, removalWords } from '../../lib/ledgerReasons'
+import { lineOf, useItemLines } from '../../lib/marketArt'
 
 const ITEM = /^[a-z0-9][a-z0-9_.]{0,127}$/
 const SERIAL = /^[1-9]\d{0,8}$/
@@ -31,11 +40,12 @@ const EVENT_CLASS: Record<string, string | undefined> = { minted: s.evMinted, so
  * One Unique's own page (archive.spysocial.app/u/<item>/<serial>, which the app's "View in the Archive" button
  * opens): its picture, number, codename, set and season, its
  * certificate (the float and what each digit picks), how it was minted, whether it's for sale, and its ledger history
- * with sale prices in Intel. Never a player: holders are numbered, nothing more.
+ * with sale prices in Intel. Past holders are numbered, nothing more; the holder today is named by @username, linked to
+ * their profile, only when the server names them (LIVE.archiveHolders, lib/archive holderOf), else "Held privately".
  */
 const ArchiveItem = () => {
   const { item = '', serial: serialParam = '' } = useParams()
-  const { w, data, art, lang, locale } = useArchive()
+  const { w, data, art, looks, lang, locale } = useArchive()
   const t = w.item
   const valid = ITEM.test(item) && SERIAL.test(serialParam)
   const serial = Number(serialParam)
@@ -56,11 +66,20 @@ const ArchiveItem = () => {
 
   const name = nameOf(data, item)
   const code = codenameOf(data, item, serial)
-  const title = `${name} ${serialText(serial)}`
+  // The item's own line from the app (its card's description, owner Nov 11), in the reader's language.
+  const lines = useItemLines()
+  const line = lineOf(lines, { k: u?.item_kind ?? (lines?.d[`avatar:${item}`] ? 'avatar' : 'title'), i: item, t: false })
+  // Its own name leads (owner Nov 15: "exactly what they're called"), the Legendary it was minted from after it with the
+  // number, as the app writes it (codename-1118, app 62.15.2 lib/unique/codename uniqueFullName: "Onyx Dispatch · Paper Plane #37").
+  const title = copyNameOf(data, item, serial)
 
   if (state === 'missing') {
     return (
       <div className={`${s.page} ${s.foil}`}>
+        {/* No such copy: answered with 200 like every route, so kept out of search (site sweep Nov 12). */}
+        <Helmet>
+          <meta name="robots" content="noindex" />
+        </Helmet>
         <div className={ui.wrap}>
           <div className={s.state}>
             <DisplayHeading as="h1" size={3}>
@@ -74,9 +93,12 @@ const ArchiveItem = () => {
     )
   }
 
-  const pic = artOf(art, item, serial)
+  // Its own picture only (owner Nov 15: never its plain Legendary's); not drawn yet: its colour on a plain card.
+  const pic = ownArtOf(art, item, serial)
+  const look = pic ? lookOf(looks, item, serial, false, u ? { float: u.float, pattern: u.pattern, serial } : null) : null
   const attrs = u ? attributesOf(data, item, u.float) : []
   const glow = u ? swatchOf(data, item, u.float) : null
+  const pending = !pic && art.size > 0 && u ? { colour: glow, text: t.drawing } : null
   const st = setText(u?.set, lang)
   const sales = (u?.history ?? []).filter((e) => e.event === 'sold' && e.price != null && e.sale_state !== 'undone')
   const high = sales.reduce<number | null>((m, e) => (m == null || (e.price ?? 0) > m ? e.price : m), null)
@@ -88,12 +110,25 @@ const ArchiveItem = () => {
       : u.source === 'trade_up' && u.inputs
         ? t.fromTradeUp(fmt(u.inputs, locale))
         : t.fromOther
-  const rule = u?.how ? u.how[lang] ?? u.how.en ?? '' : ''
+  // The rule's line in the reader's language: the server's where it has it (all ten once archive_words_1111 is applied;
+  // English and Russian before it), else the same line on the site's side (serverWords), never another language's.
+  const rule = u ? howLine(u.how, u.set, lang) : ''
+  // The holder today (archive-holder-1110): only with the switch on and a server that sends the holder keys.
+  const holder = u && LIVE.archiveHolders ? holderOf(u) : ({ kind: 'unknown' } as const)
+  const namesHolders = !!u && LIVE.archiveHolders && u.holder_handle !== undefined
+  // Taken away for integrity (ledger-reasons-1111): the reason in plain words, its date and case, and the supply as
+  // minted / removed / in circulation. Only with the switch on and a server that sends the removal keys.
+  const rw = removalWords(lang)
+  const removal = u && LIVE.ledgerReasons && u.status === 'burned' ? asRemoval(u.removed) : null
+  const removedAt = removal && u?.removed?.at ? u.removed.at : u?.status_at ?? null
+  const supplyParts = u && LIVE.ledgerReasons && typeof u.item.removed === 'number'
+    ? rw.supply(fmt(u.item.minted, locale), fmt(u.item.removed, locale), fmt(u.item.held, locale))
+    : null
 
   return (
     <div className={`${s.page} ${s.foil}`}>
       <Helmet>
-        <title>{`${title} · Archive · SpySocial`}</title>
+        <title>{`${title} · ${t.crumbs} · SpySocial`}</title>
       </Helmet>
       <div className={ui.wrap}>
         <ol className={s.crumbs}>
@@ -108,7 +143,7 @@ const ArchiveItem = () => {
         <div className={s.itemGrid}>
           <div className={s.stage} style={glow ? ({ '--glow': `${glow}66` } as React.CSSProperties) : undefined}>
             <div className={s.stagePiece}>
-              <Piece src={pic?.src ?? null} alt={`${title}${code ? ` · ${code}` : ''}`} eager />
+              <Piece src={pic?.src ?? null} alt={title} eager look={look} wear pending={pending} />
             </div>
             <div className={s.plinth} aria-hidden />
           </div>
@@ -116,20 +151,45 @@ const ArchiveItem = () => {
           <div>
             <div className={s.kicker}>
               <span className={s.uniqueTag}>{data?.words.unique ?? 'Unique'}</span>
-              {st.set ? <span>{st.set}</span> : null}
-              {st.season && st.season !== st.set ? <span>{st.season}</span> : null}
+              {/* A Season 1 copy: the seal beside its UNIQUE tag, in place of the set's words (LIVE.archiveOrigins; the app's item sheet, 43C). */}
+              {showsOrigins(u?.set?.code) ? (
+                <OriginsSeal page />
+              ) : (
+                <>
+                  {st.set ? <span>{st.set}</span> : null}
+                  {st.season && st.season !== st.set ? <span>{st.season}</span> : null}
+                </>
+              )}
             </div>
-            <h1 className={s.itemTitle}>{name}</h1>
-            {code ? <p className={s.codename}>“{code}”</p> : null}
+            {/* The Unique's own name is the title; the Legendary it was minted from under it (owner Nov 15). Before the
+                words load, a blank title of the same height (no base name flashing in its place). */}
+            <h1 className={s.itemTitle}>{code ?? (data ? name : '\u00a0')}</h1>
+            {code || !data ? <p className={s.baseName}>{data ? name : '\u00a0'}</p> : null}
+            {/* Two lines kept for the item's line while its words load (every Unique's runs about two lines), so the
+                serial, the status and the certificate don't jump down when it arrives (archive-qa-1114: CLS up to 0.12 at 1440). */}
+            {line ? <p className={s.itemLine}>{line}</p> : lines ? null : <p className={s.itemLine} style={{ minHeight: '3em' }} aria-hidden />}
             <span className={s.bigSerial}>{serialText(serial)}</span>
 
             {u ? (
               <div className={s.statusBox}>
                 <div className={s.statusTop}>
-                  <span className={`${s.statusPill} ${u.status === 'listed' ? s.listed : u.status === 'burned' ? s.burned : ''}`}>
-                    <i aria-hidden />
-                    {t.status[u.status]}
-                  </span>
+                  {/* Held, with the holder known (archive-holder-1110): "Held by @name" or "Held privately" is the status itself. */}
+                  {u.status === 'held' && holder.kind === 'named' ? (
+                    <span className={hs.top}>
+                      <span className={s.statusPill}>
+                        <i aria-hidden />
+                        {t.heldBy}
+                      </span>
+                      <a className={`${hs.handle} ${hs.big}`} href={holder.url} rel="nofollow" aria-label={t.profileOf(`@${holder.handle}`)}>
+                        @{holder.handle}
+                      </a>
+                    </span>
+                  ) : (
+                    <span className={`${s.statusPill} ${u.status === 'listed' ? s.listed : u.status === 'burned' ? s.burned : ''}`}>
+                      <i aria-hidden />
+                      {removal ? rw.removed : u.status === 'held' && holder.kind === 'private' ? t.heldPrivately : t.status[u.status]}
+                    </span>
+                  )}
                   {u.status === 'listed' && u.listing ? (
                     <span className={s.price}>
                       {fmt(u.listing.price, locale)}
@@ -138,7 +198,26 @@ const ArchiveItem = () => {
                   ) : null}
                 </div>
                 {u.status === 'listed' ? <p>{t.buyHow}</p> : null}
-                {u.status === 'burned' ? (
+                {/* For sale: who is selling it, under the price. */}
+                {u.status === 'listed' && holder.kind === 'named' ? (
+                  <div className={hs.line}>
+                    <span className={hs.label}>{t.heldBy}</span>
+                    <a className={hs.handle} href={holder.url} rel="nofollow" aria-label={t.profileOf(`@${holder.handle}`)}>
+                      @{holder.handle}
+                    </a>
+                  </div>
+                ) : u.status === 'listed' && holder.kind === 'private' ? (
+                  <div className={`${hs.line} ${hs.private}`}>{t.heldPrivately}</div>
+                ) : null}
+                {removal ? (
+                  <div data-testid="archive-removed">
+                    <p>
+                      <strong>{rw.line(rw.why[removal.code], removedAt ? dayText(removedAt, locale) : '—')}</strong>
+                      {removal.ref ? <> · <span>{rw.case(removal.ref)}</span></> : null}
+                    </p>
+                    <p className={s.historyNote}>{rw.note}</p>
+                  </div>
+                ) : u.status === 'burned' ? (
                   <p>{t.retiredHow(t.burnWhy[(u.history.find((e) => e.event === 'burned')?.burn ?? 'other') as 'trade_up' | 'shred' | 'other'])}</p>
                 ) : null}
               </div>
@@ -191,13 +270,17 @@ const ArchiveItem = () => {
                   </div>
                   <div className={`${s.attr} ${s.wide}`}>
                     <dt>{t.how}</dt>
-                    <dd style={{ textTransform: 'none', fontFamily: 'var(--ss-font-body)', fontSize: 17, fontWeight: 700 }}>{how}</dd>
-                    {rule ? <p className={s.historyNote} style={{ marginTop: 6 }}>{rule}</p> : null}
-                    {u.history[0]?.retro ? <p className={s.historyNote} style={{ marginTop: 4 }}>{t.recordedLater}</p> : null}
+                    {/* The notes sit inside the <dd> (a <dl>'s groups hold only <dt> and <dd>), set back to the page's own text. */}
+                    <dd style={{ display: 'block', textTransform: 'none', fontFamily: 'var(--ss-font-body)', fontSize: 17, fontWeight: 700 }}>
+                      {how}
+                      {rule ? <p className={s.historyNote} style={{ marginTop: 6, fontWeight: 500, lineHeight: 1.6 }}>{rule}</p> : null}
+                      {u.history[0]?.retro ? <p className={s.historyNote} style={{ marginTop: 4, fontWeight: 500, lineHeight: 1.6 }}>{t.recordedLater}</p> : null}
+                    </dd>
                   </div>
                 </dl>
                 <div className={s.supply}>
-                  {t.supply(name, fmt(u.item.minted, locale))}
+                  {t.supply(name, fmt(u.item.minted, locale), u.item.minted)}
+                  {supplyParts ? <div data-testid="archive-supply">{supplyParts.join(' · ')}</div> : null}
                   {u.item.serials.length > 1 ? (
                     <div className={s.serials} aria-label={t.others}>
                       {u.item.serials.map((n) =>
@@ -213,6 +296,9 @@ const ArchiveItem = () => {
                   ) : null}
                 </div>
               </section>
+            ) : state === 'loading' ? (
+              // The certificate's room while the copy loads (archive-qa-1114: the back link below jumped away on arrival).
+              <div className={`${s.cert} ${s.skeleton}`} style={{ height: 600 }} aria-hidden />
             ) : null}
           </div>
         </div>
@@ -222,7 +308,7 @@ const ArchiveItem = () => {
             <DisplayHeading id="history-title" size={3}>
               {t.history}
             </DisplayHeading>
-            <p className={s.historyNote}>{t.historyNote}</p>
+            <p className={s.historyNote}>{namesHolders ? t.historyNoteNamed : t.historyNote}</p>
             <div className={s.summary}>
               <div><b>{fmt(u.holders, locale)}</b><span>{t.holders}</span></div>
               <div><b>{fmt(sales.length, locale)}</b><span>{t.sales}</span></div>
@@ -250,7 +336,7 @@ const ArchiveItem = () => {
 
         <p style={{ marginTop: 40 }}>
           <Link to="/archive/uniques" className={s.seeAll}>
-            ← {t.back}
+            <span className={s.backArrow} aria-hidden>←</span> {t.back}
           </Link>
         </p>
       </div>
@@ -259,12 +345,15 @@ const ArchiveItem = () => {
 }
 
 function HistoryLine({ e }: { e: HistoryEvent }) {
-  const { w, locale } = useArchive()
+  const { w, locale, lang } = useArchive()
   const t = w.item
-  const label = (t.events as Record<string, string>)[e.event] ?? e.event
+  // A removal's line says why, with its case (ledger-reasons-1111).
+  const removal = LIVE.ledgerReasons && e.event === 'burned' ? asRemoval(e.removal) : null
+  const rw = removalWords(lang)
+  const label = removal ? rw.removed : (t.events as Record<string, string>)[e.event] ?? e.event
   const who =
     e.from != null && e.to != null
-      ? `${t.holder(fmt(e.from, locale))} → ${t.holder(fmt(e.to, locale))}`
+      ? `${t.holder(fmt(e.from, locale))} ${lang === 'ar' ? '←' : '→'} ${t.holder(fmt(e.to, locale))}`
       : e.to != null && e.event === 'minted'
         ? t.holder(fmt(e.to, locale))
         : null
@@ -281,6 +370,7 @@ function HistoryLine({ e }: { e: HistoryEvent }) {
       <div className={s.evMeta}>
         {dayText(e.at, locale)}
         {e.sale_state === 'undone' ? ` · ${t.undone}` : ''}
+        {removal ? ` · ${rw.why[removal.code]}${removal.ref ? ` · ${rw.case(removal.ref)}` : ''}` : ''}
       </div>
       {who ? <span className={s.evWho}>{who}</span> : null}
     </li>

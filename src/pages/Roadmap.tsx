@@ -27,7 +27,7 @@ import s from './Roadmap.module.css'
 
 /** The icons of the 2.2 cards and of the plans, by position (src/i18n: roadmap.now.features, roadmap.next.plans). */
 const FEATURE_ICONS: IconType[] = [FaGlobe, FaPencil, FaLanguage, FaUserSecret, FaMoon, FaPalette, FaTicket, FaMusic, FaStopwatch, FaShieldHalved]
-/** The Game nights card's position: it names the launch-week nights once LIVE.launchGameNights is on (roadmap.now.launchWeek). */
+/** The Game nights card's position: it names the launch Game Nights (Opening Night, Fri Dec 11 + Sat Dec 12) once LIVE.launchGameNights is on (roadmap.now.launchWeek). */
 const GAME_NIGHTS_CARD = 4
 const PLAN_ICONS: IconType[] = [FaRankingStar, FaMedal, FaTrophy]
 
@@ -56,7 +56,7 @@ const Roadmap = () => {
               {r.title}
               <span className={s.mark}>{t.home.hero.titleMark}</span>
             </DisplayHeading>
-            <p className={s.lede}>{out ? r.ledeOut : r.lede(day)}</p>
+            <p className={s.lede} suppressHydrationWarning>{out ? r.ledeOut : r.lede(day)}</p>
           </div>
           {/* Decoration (a computer's width only): the agent in the fedora from the home line-up, in the spotlight. */}
           <div className={s.heroArt} aria-hidden="true">
@@ -69,7 +69,7 @@ const Roadmap = () => {
         <ol className={s.timeline}>
           <li className={`${s.stage} ${s.now}`}>
             <section aria-labelledby="roadmap-now">
-              <p className={s.when}>{out ? r.now.out : r.now.coming(day)}</p>
+              <p className={s.when} suppressHydrationWarning>{out ? r.now.out : r.now.coming(day)}</p>
               <DisplayHeading id="roadmap-now">{r.now.title}</DisplayHeading>
               <p className={s.sub}>{r.now.sub}</p>
               <ul className={s.features}>
@@ -120,7 +120,7 @@ const Roadmap = () => {
 
         <div className={s.outro}>
           <p className={s.outroText}>{r.outro}</p>
-          <SocialLinks />
+          <SocialLinks landmark={false} />
         </div>
       </div>
     </div>

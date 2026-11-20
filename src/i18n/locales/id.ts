@@ -4,12 +4,13 @@ import type { Strings } from './en'
 const id: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: 'Lima agen berjajar di barisan identifikasi polisi, satu di bawah sorotan lampu.',
     defaultTitle: 'SpySocial — Game Pesta Tipu-Tipuan Sosial',
     description:
       'Kumpulkan temanmu dan temukan mata-matanya, atau kelabui semua orang. Game pesta multipemain real-time gratis untuk 3–21 pemain. Di iOS dan Google Play.',
     titles: {
-      /** The Beta 2 playtester page (/beta). */
-      beta: 'Beta 2: main SpySocial sebelum peluncuran',
+      /** /beta: the playtest page (now the holding page between Beta 2 and Beta 3). */
+      beta: 'Beta 3: playtest terakhir SpySocial',
       /** The transparency page (/transparency), live with LIVE.transparencyPage. */
       /** The collectibles ledger (/ledger), live with LIVE.mintedCollectibles. */
       ledger: "Buku besar koleksi",
@@ -39,12 +40,13 @@ const id: Strings = {
       notFound: 'Halaman tidak ditemukan',
     },
     descriptions: {
-      beta: 'Ikut playtest grup live selama 1 jam untuk SpySocial, game pesta deduksi sosial gratis, pada Kamis, 12 November 2026, pukul 19.00–20.00 waktu Timur AS. Khusus 18+, di iPhone atau Android. Penguji mendapat Pin Beta dan lainnya.',
+      beta: 'Beta 2 sudah selesai. Terima kasih untuk semua yang sudah bermain. Beta 3, playtest terakhir sebelum SpySocial diluncurkan, berlangsung pada Selasa, 24 November. Pendaftaran segera dibuka: gabung ke Discord kami agar jadi yang pertama tahu.',
       ledger: "Catatan publik setiap item koleksi SpySocial: setiap salinan dan nomornya. Siapa saja bisa memeriksanya.",
       archive: "Setiap Unik SpySocial tercatat: gambarnya, nomornya, atributnya, cara dicetak, dan setiap penjualan, tanpa menyebut pemain.",
       market: "Harga setiap item SpySocial di Pasar Gelap: harga dari transaksi pemain, yang paling naik dan turun, dan yang paling banyak diperdagangkan, tanpa menyebut pemain.",
       transparency: "Setiap bulan: berapa Intel yang didapat, dibelanjakan, dan dikoreksi di SpySocial, setiap insiden, dan setiap perubahan aturan, tanpa menyebut nama pemain.",
-      gameNightRules: "Aturan Malam Permainan mingguan SpySocial: kapan diadakan, siapa yang bisa ikut, cara mendapatkan gelar malam itu, dan gelar bonus dari pengembang.",
+      gameNightRules: "Aturan Malam Permainan SpySocial: kapan diadakan, siapa yang bisa ikut, cara mendapatkan gelar malam itu, dan gelar bonus dari pengembang.",
+      gameNightRulesRewards: "Aturan Malam Permainan SpySocial: kapan diadakan, siapa yang bisa ikut, dan cara kerja Intel Malam Permainan, gelar ★, dan sadapan Malam Permainan.",
       faq: "Bantuan SpySocial: cara main Spy Talk dan Spy Sketch, Main online, room privat dan Malam Permainan, teman, tukar item, Pasar Gelap, sadapan, Intel, keanggotaan, akunmu, keamanan, dan cara mengatasi masalah.",
       contact: 'Hubungi tim SpySocial: kirim email ke support@spysocial.app kalau kamu butuh bantuan soal aplikasi, akunmu, atau hal lainnya.',
       rules: 'Aturan komunitas SpySocial: bersikap baik, menggertak boleh tapi curang jangan, jaga privasi, dan apa yang terjadi kalau ada yang melanggar aturan.',
@@ -66,12 +68,14 @@ const id: Strings = {
 
   header: {
     home: 'Beranda SpySocial',
+    skip: 'Langsung ke konten',
     nav: 'Situs',
     join: 'Gabung ke room',
     joinShort: 'Gabung',
+    market: 'Pasar',
+    archive: 'Arsip',
     shop: 'Toko',
-    toLight: 'Ganti ke mode terang',
-    toDark: 'Ganti ke mode gelap',
+    lightMode: 'Mode terang',
   },
 
   footer: {
@@ -79,6 +83,7 @@ const id: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Harga Pasar Gelap",
+    archive: "Arsip",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparansi",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -124,6 +129,9 @@ const id: Strings = {
     noAppIos: 'Belum punya aplikasinya? Download',
     noAppAndroid: 'Belum punya aplikasinya? Unduh',
     playInBrowser: 'Main di browser',
+    reloadTitle: 'Muat ulang halaman',
+    reloadText: 'Halaman ini belum selesai dimuat. Memuat ulang biasanya bisa mengatasinya.',
+    reload: 'Muat ulang',
   },
 
   badges: {
@@ -244,9 +252,9 @@ const id: Strings = {
       chatTap: 'Chat juga: ketuk Terjemahkan di pesan mana pun untuk membacanya dalam bahasamu.',
       trioLabel: 'Satu kartu peran dalam tiga bahasa',
       cardAlts: [
-        'Pembagian peran: kartu warga menampilkan lokasi rahasianya, Teater',
-        'Kartu peran dalam bahasa Spanyol: Teatro',
-        'Kartu peran dalam bahasa Rusia: Театр',
+        'Pembagian peran: kartu warga menampilkan lokasi rahasianya, Observatorium',
+        'Kartu peran dalam bahasa Spanyol: Observatorio',
+        'Kartu peran dalam bahasa Rusia: Обсерватория',
       ],
     },
     safety: {
@@ -338,8 +346,13 @@ const id: Strings = {
     breaking: {
       title: 'Kalau ada yang melanggar aturan',
       text: 'Biasanya peringatan dulu. Masalah yang berulang atau serius bisa berujung pada chat dibisukan (1 jam sampai 7 hari), jeda dari room publik dan Malam Permainan (1 sampai 30 hari), atau pemblokiran akun. Membagikan informasi pribadi orang lain, atau apa pun yang menyeksualisasi anak, bisa langsung berujung pemblokiran akun. Setiap pemberitahuan di aplikasi menyebutkan apa yang dibatasi, alasannya, dan sampai kapan, dengan ID seperti S-207.',
-      drawings:
-        'Gambar di room publik dan Malam Permainan bisa diperiksa otomatis kapan saja, dan gambar yang dilaporkan juga diperiksa. Kalau gambar buatanmu melanggar aturan ini, akunmu bisa dijeda atau diblokir dari room publik dan Malam Permainan, tak peduli sudah berapa lama kamu bermain. Di room publik, giliran yang melanggar aturan ini dihapus dari gambar dan dihitung sebagai pelanggaran: pertama peringatan, lalu 3, 7, dan 30 hari tanpa room publik dan Malam Permainan, dan pada pelanggaran kelima dalam 90 hari, untuk selamanya. Di room mana pun, simbol kebencian (termasuk swastika, kecuali kata di ronde itu jelas menunjukkan makna keagamaan), cercaan tertulis, atau kebencian yang ditujukan ke seseorang membuat pemainnya dikeluarkan dari permainan serta dari room publik dan Malam Permainan untuk selamanya, dan gambar yang menyeksualisasi anak mengakhiri akunnya dan ditangani seperti yang dijelaskan di bagian Keselamatan anak di atas. Darah dan monster boleh saja. Di room privat, gambar yang dilaporkan hanya ditindak otomatis kalau seserius itu; selebihnya diputuskan oleh orang yang membaca laporannya. Untuk mengajukan banding, kirimkan kode dari pemberitahuanmu ke email kami.',
+      /** minorRooms: LIVE.safetyFacts1114 (legal-cov2-1114): a sexual drawing in a private room a minor can see comes off at once. */
+      drawings: (minorRooms: boolean) =>
+        'Gambar di room publik dan Malam Permainan bisa diperiksa otomatis kapan saja, dan gambar yang dilaporkan juga diperiksa. Kalau gambar buatanmu melanggar aturan ini, akunmu bisa dijeda atau diblokir dari room publik dan Malam Permainan, tak peduli sudah berapa lama kamu bermain. Di room publik, giliran yang melanggar aturan ini dihapus dari gambar dan dihitung sebagai pelanggaran: pertama peringatan, lalu 3, 7, dan 30 hari tanpa room publik dan Malam Permainan, dan pada pelanggaran kelima dalam 90 hari, untuk selamanya. Di room mana pun, simbol kebencian (termasuk swastika, kecuali kata di ronde itu jelas menunjukkan makna keagamaan), cercaan tertulis, atau kebencian yang ditujukan ke seseorang membuat pemainnya dikeluarkan dari permainan serta dari room publik dan Malam Permainan untuk selamanya, dan gambar yang menyeksualisasi anak mengakhiri akunnya dan ditangani seperti yang dijelaskan di bagian Keselamatan anak di atas. Darah dan monster boleh saja. ' +
+        (minorRooms
+          ? 'Di room privat yang gambarnya bisa dilihat pemain di bawah 18 tahun, atau pemain yang belum memberi tahu kami umurnya, gambar seksual langsung dihapus dari papan dan selebihnya diputuskan oleh seseorang dari tim kami. Di room privat lainnya, gambar hanya ditindak otomatis kalau dilaporkan dan seserius kasus-kasus di atas; selebihnya diputuskan oleh orang yang membaca laporannya. '
+          : 'Di room privat, gambar yang dilaporkan hanya ditindak otomatis kalau seserius itu; selebihnya diputuskan oleh orang yang membaca laporannya. ') +
+        'Untuk mengajukan banding, kirimkan kode dari pemberitahuanmu ke email kami.',
       drawingsTesters:
         'Untuk sekarang, pemeriksaan gambar otomatis masih diuji dan hanya berjalan di permainan yang semua pemainnya adalah penguji kami (pemain yang mencoba versi uji aplikasi).',
     },
@@ -421,7 +434,7 @@ const id: Strings = {
       buy: '<b>Barang yang bisa dibeli:</b> paket dan keanggotaan, lewat App Store atau Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        '<b>Barang yang bisa dibeli:</b> hanya keanggotaan (Langganan paket, bulanan atau tahunan, dan Akses seumur hidup), lewat App Store atau Google Play. Keanggotaan membuka paket yang tidak gratis; selain itu tidak ada yang dijual.',
+        '<b>Barang yang bisa dibeli:</b> hanya keanggotaan (Keanggotaan bulanan atau tahunan, dan Akses seumur hidup), lewat App Store atau Google Play. Keanggotaan membuka paket yang tidak gratis; selain itu tidak ada yang dijual.',
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>Sadapan (Intercepts):</b> hadiah yang didapat dengan bermain, masing-masing berisi satu item acak, seperti tampilan baru untuk agen. Hadiah ini tidak bisa dibeli, baik dengan uang maupun dengan mata uang yang didapat dari bermain, dan aplikasi menunjukkan peluangnya sebelum dibuka.',
@@ -433,7 +446,7 @@ const id: Strings = {
         "Orang dewasa juga bisa menukar sadapan yang belum dibuka dengan teman.",
       /** Home's Discord pill (LIVE.homeDiscord; under 16 never, 16-17 a safety note first). */
       discord:
-        "<b>Tautan ke Discord kami:</b> beranda bisa menampilkan tautan ke server Discord resmi SpySocial, tempat pemain mencari teman bermain. Discord adalah aplikasi terpisah dengan aturan dan batas usianya sendiri. Pemain di bawah 16 tahun tidak pernah melihat tautan ini, dan pemain 16 dan 17 tahun lebih dulu melihat catatan agar tetap aman di sana. Moderator kami menjaga server itu, tetapi tidak ada seorang pun di SpySocial yang bisa melihat pesan pribadi di Discord.",
+        "<b>Link ke Discord kami:</b> beranda bisa menampilkan link ke server Discord resmi SpySocial, tempat pemain mencari teman bermain. Discord adalah aplikasi terpisah dengan aturan dan batas usianya sendiri. Pemain di bawah 16 tahun tidak pernah melihat link ini, dan pemain 16 dan 17 tahun lebih dulu melihat catatan agar tetap aman di sana. Moderator kami menjaga server itu, tetapi tidak ada seorang pun di SpySocial yang bisa melihat pesan pribadi di Discord.",
       /** Once members can make packs (LIVE.customPacks); `community`: LIVE.communityPacks. */
       customPacks: (community: boolean) =>
         `<b>Pembuat paket:</b> anggota bisa membuat paket lokasi atau kata sendiri untuk room privat mereka.${
@@ -445,7 +458,7 @@ const id: Strings = {
       noFriends:
         'Tidak ada daftar teman atau pengikut, tidak ada pencarian pemain, tidak ada profil untuk dijelajahi, dan tidak ada bio, jadi tidak ada yang bisa mencari anak Anda atau menghubunginya di luar room.',
       noDmsSocial:
-        "Tidak ada pesan langsung: pemain hanya chat di dalam room, dengan pemain yang ada di room itu, atau di chat grup, dengan teman-teman di grup itu. Semua chat difilter, disimpan untuk sementara, dan bisa dilaporkan.",
+        "Tidak ada pesan langsung: pemain hanya chat di dalam room, dengan pemain yang ada di room itu, atau di chat grup, dengan teman-teman di grup itu. Di beberapa permainan, para mata-mata juga punya chat yang hanya bisa dibaca oleh mereka, khusus untuk permainan itu saja. Semua chat difilter, disimpan untuk sementara, dan bisa dilaporkan.",
       noSearch:
         "Tidak ada pencarian pemain dan tidak ada saran teman, jadi orang asing tidak bisa mencari anak Anda. Pemain di bawah 18 tahun tidak punya profil publik dan tidak bisa diikuti.",
       social:
@@ -464,13 +477,15 @@ const id: Strings = {
         '<b>Room publik</b> membutuhkan akun tersimpan dengan alamat email yang sudah dikonfirmasi, usia 13 tahun ke atas, dan persetujuan terhadap Aturan Komunitas kami. Tamu hanya bisa bermain di room privat, dan pemain yang sedang dijeda atau diblokir tidak bisa masuk ke room publik.',
       filter:
         '<b>Filter chat:</b> nama dan chat diperiksa sebelum dilihat siapa pun. Di room publik, cercaan, kata-kata seksual yang vulgar, dan hinaan diblokir. Di room privat, kata-kata yang paling parah diblokir. Di room atau grup mana pun yang ada pemain di bawah 18 tahun atau pemain yang belum memberi tahu usianya, link, alamat email, nomor telepon, akun media sosial, dan info pribadi lain (alamat rumah, tempat tinggal seseorang, sekolah, nama asli) diblokir untuk semua orang. Di meja “Main online” dan Malam Permainan, semuanya selalu diblokir.',
+      filterMild:
+        'Di meja “Main online” dan Malam Permainan, kata kasar yang umum tidak diblokir, tetapi semua orang melihatnya tersensor: huruf pertamanya, lalu tanda bintang (S***). Kata yang lebih ringan tampil apa adanya.',
       reports:
         '<b>Laporan, blokir, dan sanksi:</b> manusia membaca setiap laporan dalam 24 jam, dan pemain yang dilaporkan tidak diberi tahu siapa pelapornya. Laporan yang melibatkan pemain di bawah 18 tahun dibaca lebih dulu. Sanksinya mulai dari peringatan, chat dibisukan, jeda dari room publik, hingga pemblokiran akun. <link>Aturan Komunitas</link> kami mencantumkan apa saja yang tidak diperbolehkan.',
       drawingCheck:
         '<b>Pemeriksaan gambar:</b> giliran menggambar di room publik bisa diperiksa otomatis, dan giliran yang menurut pemeriksaan melanggar aturan dihapus dari gambar.',
       buyTitle: 'Pembelian',
       buyText:
-        'Remaja butuh izin orang tua atau wali untuk membeli apa pun. Pembelian dilakukan lewat App Store atau Google Play, jadi kontrol orang tua di sana, seperti Ask to Buy dari Apple dan persetujuan pembelian di Google Family Link, tetap berfungsi seperti biasa. Langganan paket diperpanjang otomatis sampai dibatalkan di pengaturan toko aplikasi.',
+        'Remaja butuh izin orang tua atau wali untuk membeli apa pun. Pembelian dilakukan lewat App Store atau Google Play, jadi kontrol orang tua di sana, seperti Ask to Buy dari Apple dan persetujuan pembelian di Google Family Link, tetap berfungsi seperti biasa. Keanggotaan bulanan atau tahunan diperpanjang otomatis sampai dibatalkan di pengaturan toko aplikasi.',
       deleteTitle: 'Menghapus akun',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Buka SpySocial.',
@@ -522,7 +537,8 @@ const id: Strings = {
         text: 'Kalau kamu khawatir tentang pelecehan seksual online, atau tentang cara seseorang berbicara dengan anak secara online, laporkan ke CEOP, bagian dari National Crime Agency: <link>ceop.police.uk/Safety-Centre</link>. Anak muda juga bisa melapor, dan setiap laporan dibaca oleh Child Protection Advisor.',
       },
       spysocial: {
-        text: 'Laporkan pemainnya di aplikasi dan pilih <b>Keselamatan anak</b>, lalu kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke NCMEC dan otoritas lain sesuai ketentuan hukum.',
+        text: 'Laporkan pemainnya di aplikasi dan pilih <b>Keselamatan anak</b>, lalu kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke NCMEC sesuai ketentuan hukum AS; NCMEC meneruskannya ke polisi di negara yang bersangkutan.',
+        textBefore: 'Laporkan pemainnya di aplikasi dan pilih <b>Keselamatan anak</b>, lalu kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke NCMEC dan otoritas lain sesuai ketentuan hukum.',
       },
     },
     seeAlso: 'Lihat juga <link>Aturan Komunitas</link>, <link2>Ketentuan Layanan</link2>, dan <link3>Kebijakan Privasi</link3> kami.',
@@ -566,6 +582,27 @@ const id: Strings = {
     sub: 'Catatan rilis SpySocial. Pembaruan besar, fitur baru, dan perbaikan, langsung saat kami merilisnya.',
     releases: [
       {
+        tag: "Pembaruan akhir pekan",
+        summary:
+          "Tiga pembaruan untuk SpySocial yang baru akhir pekan ini, menjelang peluncuran: teks lebih mudah dibaca, panduan lebih jelas untuk pemain baru, lebih cepat dimuat di browser, dan tautan room yang langsung membawamu ke room.",
+        sections: [
+          {
+            label: "Peningkatan",
+            items: [
+              { title: "Voting", text: "Tombol “Tidak memilih” kini sama tinggi dengan “Konfirmasi”." },
+              { title: "Lebih mudah dibaca", text: "Teks terkecil di aplikasi kini sedikit lebih besar." },
+              { title: "Pasar Gelap", text: "Baru pertama kali ke sana? Kartu “Cara kerja Pasar Gelap” menjelaskan cara memenangkan, menjual, dan membeli item." },
+              { title: "Tutorial", text: "Saat tutorial memintamu mengetuk saran, tipsnya kini ada di bagian bawah layar, jadi pertanyaannya tetap mudah dibaca." },
+              { title: "Kode Teman", text: "Sisa jatah pindai kodemu langsung berkurang begitu teman memindainya." },
+              { title: "Tautan room", text: "Kalau teman mengirim alamat room-nya dari browser, membukanya kini membawamu ke layar untuk bergabung ke room, bukan ke pesan “Lobi tidak tersedia”." },
+              { title: "Ponsel kecil", text: "Di ponsel yang paling sempit, label yang muncul saat kamu menjawab kini menunjukkan bahwa kamu yang bertanya berikutnya." },
+              { title: "Bermain di browser", text: "Game dimuat lebih cepat. Di ponsel, kalau kamu memiringkan ponsel saat bermain, muncul kartu “Putar ponselmu ke posisi tegak”, dan permainanmu tetap berjalan selagi kamu memutarnya." },
+              { title: "Bahasa", text: "Teks bahasa Arab, Hindi, Bengali, Mandarin, dan Indonesia tampil lebih rapi: tidak ada lagi kata terpotong, pindah baris yang aneh, atau urutan kata yang tertukar. Di aplikasi berbahasa Prancis dan Portugis, keanggotaan kini disebut “membre” dan “membro” di mana pun, bukan lagi “langganan”." },
+            ],
+          },
+        ],
+      },
+      {
         tag: "Rilis Android",
         summary:
           "SpySocial kini ada di Google Play, plus sederet perbaikan dari pengujian di ponsel Android sungguhan.",
@@ -594,14 +631,14 @@ const id: Strings = {
         ],
       },
       {
-        tag: "Pembaruan poles",
+        tag: "Pembaruan penyempurnaan",
         summary:
-          "Pembaruan poles: layar Selamat datang baru, layar Permainan selesai dan Akun yang lebih segar, tata letak iPad yang lebih baik, dan sederet perbaikan.",
+          "Pembaruan penyempurnaan: layar Selamat datang baru, layar Permainan selesai dan Akun yang lebih segar, tata letak iPad yang lebih baik, dan sederet perbaikan.",
         sections: [
           {
             label: "Fitur baru",
             items: [
-              { title: "Layar Selamat datang baru", text: "Tampilan baru, tombol masuk dan daftar yang jelas, serta tautan sederhana untuk lanjut sebagai tamu." },
+              { title: "Layar Selamat datang baru", text: "Tampilan baru, tombol masuk dan daftar yang jelas, serta link sederhana untuk lanjut sebagai tamu." },
               { title: "Menyimpan akun tamu", text: "Sambil menunggu email konfirmasi, layar Akun menunjukkan kamu sudah di langkah mana, lengkap dengan Kirim ulang, Batal, dan Muat ulang." },
             ],
           },
@@ -646,7 +683,7 @@ const id: Strings = {
               { title: "Terjemahan petunjuk", text: "Kalau permainan memakai bahasa lain, ketuk petunjuk untuk membacanya dalam bahasamu. Semua pemain di meja tetap mendapat petunjuk yang sama." },
               { title: "Colekan", text: "Ketuk kartu pemain di lobi untuk mencoleknya." },
               { title: "Kode QR", text: "Bagikan room lewat menu berbagi di ponselmu, lengkap dengan kode QR untuk dipindai." },
-              { title: "Tautan room", text: "Tautan room membuka aplikasi dan langsung membawamu ke room, meski aplikasi sedang tertutup." },
+              { title: "Link room", text: "Link room membuka aplikasi dan langsung membawamu ke room, meski aplikasi sedang tertutup." },
               { title: "Kode room lebih pendek", text: "Cuma 5 karakter, lebih gampang diucapkan. Kode lama 6 karakter tetap berfungsi." },
               { title: "Siapa yang memulai voting", text: "Pengaturan lobi yang menunjukkan siapa yang memulai setiap voting." },
               { title: "Akhiri permainan", text: "Host bisa mengakhiri permainan lebih awal." },
@@ -687,10 +724,10 @@ const id: Strings = {
             items: [
               { title: "", text: "Memperbaiki kekacauan langka saat voting dan akhir permainan terjadi bersamaan." },
               { title: "", text: "Memperbaiki suara yang terhitung dua kali dan voting yang berakhir di saat yang salah." },
-              { title: "", text: "Memperbaiki cara abstain dihitung. Tombol Abstain kini ada bersama tombol voting lainnya." },
+              { title: "", text: "Memperbaiki cara suara tidak memilih dihitung. Tombol “Tidak memilih” kini ada bersama tombol voting lainnya." },
               { title: "", text: "Memperbaiki header yang menutupi hasil tebakan." },
               { title: "", text: "Memperbaiki kedipan saat layar permainan dibuka." },
-              { title: "", text: "Memperbaiki menyimpan akun tamu yang malah membuatmu keluar dari akun." },
+              { title: "", text: "Memperbaiki masalah saat menyimpan akun tamu malah membuatmu keluar dari akun." },
               { title: "", text: "Memperbaiki kolom email di layar Akun." },
               { title: "", text: "Memperbaiki teks terpotong di kartu beranda dan di header bahasa Spanyol." },
             ],
@@ -751,11 +788,11 @@ const id: Strings = {
         },
         {
           title: 'Keamanan',
-          text: 'SpySocial untuk usia 13 tahun ke atas. Chat punya filter kata, kamu bisa melaporkan atau memblokir pemain mana pun, dan room yang ada pemain di bawah 18 tahun memblokir tautan, nomor telepon, dan akun media sosial di chat.',
+          text: 'SpySocial untuk usia 13 tahun ke atas. Chat punya filter kata, kamu bisa melaporkan atau memblokir pemain mana pun, dan room yang ada pemain di bawah 18 tahun memblokir link, nomor telepon, dan akun media sosial di chat.',
         },
       ],
-      more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, tautan undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
-      launchWeek: 'Minggu peluncuran: Spy Talk hari Selasa, 8 Desember, Spy Sketch hari Jumat, 11 Desember, dan Mafia hari Sabtu, 12 Desember, masing-masing pukul 20.00–22.00 waktu bagian timur AS (ET).',
+      more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, link undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
+      launchWeek: 'Malam Pembukaan: hari Jumat, 11 Desember, dan sekali lagi hari Sabtu, 12 Desember, pukul 20.00–22.00 waktu bagian timur AS (ET). Malam Spy Talk yang sama dua kali, jadi pilih salah satu atau main di keduanya. Setelah itu, seminggu sekali: hari Jumat, lalu malam yang sama diulang hari Sabtu.',
     },
     next: {
       status: 'Direncanakan',
@@ -865,9 +902,20 @@ const id: Strings = {
   },
 
   beta: {
+    /** site-qa-1113: /beta between Beta 2 and Beta 3's sign-ups (Beta 3: Tue Nov 24, the final playtest; no form yet). The page writes the day. */
+    hold: {
+      eyebrow: 'Playtest',
+      /** The poster line; the page adds home.hero.titleMark after it. */
+      title: 'Beta 2 sudah selesai',
+      lede: 'Terima kasih untuk semua yang sudah memainkan Beta 2 dan mengirimi kami bug serta ide.',
+      label: 'Berikutnya: Beta 3',
+      note: 'Playtest terakhir sebelum peluncuran.',
+      soon: 'Pendaftaran segera dibuka. Gabung ke Discord kami agar jadi yang pertama tahu.',
+    },
     eyebrow: 'Beta 2 · Playtest live',
     title: 'Main duluan',
     lede: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta dan satu gelar untuk setiap penguji, dan dengan satu game yang selesai sebelum 7 Desember, gelar kedua, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+    ledeBefore: '<b>$10 lewat PayPal sebagai ucapan terima kasih</b> untuk setiap pemain terkonfirmasi yang ikut penuh 1 jam di sesi playtest grup live SpySocial ini, game pesta deduksi sosial yang gratis, dan mengirim survei 5 menit, sama untuk iPhone dan Android, ditambah satu bonus $50 untuk laporan bug atau ide paling berguna dari sesi. Plus hadiah beta yang tetap jadi milikmu setelah peluncuran: Pin Beta, dua gelar, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Game, XP, dan item dari tes ini direset saat peluncuran.',
     headsUp: '<b>Perhatian:</b> SpySocial di App Store dan Google Play adalah versi lama. Beta ini build baru yang sangat berbeda; kamu menginstalnya dari link yang kami kirim lewat email.',
@@ -877,7 +925,7 @@ const id: Strings = {
       et: (time: string) => `${time} waktu Timur AS (ET)`,
       others: (pacific: string, utc: string) => `${pacific} waktu Pasifik · ${utc}\u00a0UTC`,
       yours: (time: string) => `Waktumu: ${time}`,
-      checkIn: (time: string) => `Check-in dibuka pukul ${time} waktu Timur AS di saluran suara Discord.`,
+      checkIn: (time: string) => `Check-in dibuka pukul ${time} waktu Timur AS di #beta-2-ask-hq di Discord (ruang suara Beta 2 juga dibuka).`,
     },
     europe: {
       label: 'Eropa · Sesi kedua opsional',
@@ -910,12 +958,13 @@ const id: Strings = {
       title: 'Main. Bicara. Ceritakan.',
       steps: ['<b>Main</b> selama satu jam.', '<b>Ucapkan dengan suara keras</b> apa pun yang membingungkan.', '<b>Isi survei 5 menit</b> sesudahnya.'],
       wantTitle: 'Yang ingin kami ketahui',
-      want: ['Jelaskah giliran siapa sekarang?', 'Mudahkah memahami voting?', 'Apakah menggambar lancar di ponselmu?'],
+      want: ['Apakah jelas giliran siapa sekarang?', 'Mudahkah memahami voting?', 'Apakah menggambar lancar di ponselmu?'],
     },
     get: {
       eyebrow: 'Yang kamu dapat',
       title: 'Hadiah beta yang tetap jadi milikmu setelah peluncuran',
       items: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b>'],
+      itemsBefore: ['<b>Pin Beta</b>', 'Gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
       gameTitle: 'Selesaikan satu game sebelum 7 Desember untuk juga dapat',
       gameItems: ['Gelar <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
       trade: { tradable: 'Setelah peluncuran, sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.', bound: 'Sadapan terima kasih tetap di akunmu.' },
@@ -934,11 +983,11 @@ const id: Strings = {
       form: '<link>Isi formulir pendaftaran</link> (sekitar 2 menit).',
       closes: (day: string, time: string) => `Pendaftaran ditutup ${day}, pukul ${time} waktu Timur AS.`,
       email: (day: string) => `Kami kirim email paling lambat ${day} untuk mengonfirmasi tempatmu dan mengirim link instalasi.`,
-      discord: '<link>Gabung Discord kami</link>: check-in di saluran suaranya.',
+      discord: '<link>Gabung Discord kami</link>: check-in di #beta-2-ask-hq (ruang suara Beta 2 juga dibuka).',
       android: 'Android: formulir meminta email Google yang dipakai di Play Store-mu, karena Google mewajibkannya untuk build uji. Email itu dihapus setelah sesi.',
       iphone: 'iPhone: kamu memasang SpySocial lewat TestFlight, dari link di email.',
     },
-    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus setelah Beta 2. Email PayPal-mu dihapus setelah ucapan terima kasihmu kami kirim.',
+    fine: 'Build pra-rilis. Jangan bagikan nama atau chat pemain lain. Data pendaftaranmu dihapus paling lambat 19 November 2026, seminggu setelah Beta 2. Email PayPal-mu dihapus setelah ucapan terima kasihmu kami kirim.',
   },
 
   notFound: {
@@ -962,7 +1011,7 @@ const id: Strings = {
     shots: {
       talk: "Spy Talk: Tanya dengan cerdik. Temukan mata-matanya.",
       sketch: "Spy Sketch: Gambar kata rahasia. Tangkap si peniru.",
-      online: "Main Online: Meja 4 atau 8 orang, kapan saja",
+      online: "Main online: Meja 4 atau 8 orang, kapan saja",
       gamenight: "Malam Permainan: Gelar yang hanya didapat malam itu",
       market: "Pasar Gelap: Tukar item dengan agen lain",
       friends: "Teman: Tambah teman. Main bareng.",
@@ -970,9 +1019,9 @@ const id: Strings = {
     cards: [
       { title: "Spy Sketch", text: "Gambar kata rahasia di satu papan tulis bersama, lalu tangkap mata-mata yang pura-pura tahu." },
       { title: "Main online", text: "Ketuk “Cari permainan” untuk meja 4 atau 8 orang, kapan saja. Orang asing hanya melihat warna Agen-mu, tidak pernah namamu." },
-      { title: "Malam Permainan", text: "Malam online terjadwal, dengan gelar yang hanya didapat malam itu. Kami akan mengingatkanmu sebelum dimulai." },
+      { title: "Malam Permainan", text: "Malam online terjadwal, dengan hadiah yang hanya didapat di sana. Kami akan mengingatkanmu sebelum dimulai." },
       { title: "Pasar Gelap", text: "Tukar item dengan teman. Orang dewasa juga bisa membeli dan menjual item di Pasar Gelap dengan Intel yang didapat dari bermain. Tidak pernah dengan uang sungguhan." },
-      { title: "Keanggotaan", text: "Opsional: Langganan paket (bulanan atau tahunan) atau Seumur hidup, sekali bayar dan tidak pernah diperpanjang. Semua paket premium di room yang kamu host dan di mejamu di Main online, plus pembuat paket. Tidak ada lagi yang dijual." },
+      { title: "Keanggotaan", text: "Opsional: Keanggotaan bulanan atau tahunan, atau Seumur hidup, sekali bayar dan tidak pernah diperpanjang. Semua paket premium di room yang kamu host dan di mejamu di Main online, plus pembuat paket. Tidak ada lagi yang dijual." },
     ],
     allNotes: "Semua yang baru di 2.2",
     community: {
@@ -989,13 +1038,14 @@ const id: Strings = {
         { title: "Permainan latihan", text: "Pelajari Spy Talk dan Spy Sketch dalam permainan sungguhan bersama agen AI, sebagai warga atau sebagai mata-mata. Kami membimbing setiap langkah dan memberi nilai A sampai F untuk permainanmu." },
         { title: "Temuanku", text: "Mata-mata mencatat apa yang mereka tangkap di halaman temuan, menyusun daftar pendek tempat atau kata yang mungkin, lalu menebak terakhir kali dari daftar itu." },
         { title: "Aturan room privat", text: "Aturan opsional, seperti Informan: seorang warga yang diam-diam tahu satu mata-mata. Di Cara bermain > Fitur & Pengaturan ada demo singkat yang bisa dimainkan untuk tiap aturan." },
-        { title: "Teman dan grup", text: "Tambahkan teman dengan Kode Teman atau nama pengguna, ikuti pemain, dan cari meja bersama sebagai grup. Membuat grup khusus member. Di iPhone dan iPad, teman, grup, dan fitur tukar khusus untuk pemain 18 tahun ke atas." },
-        { title: "Sadapan", text: "Berkas tersegel berisi item acak untuk agenmu, didapat dengan menang di Main online, dari Rentetan Harian, dan di Malam Permainan. Sebagian item hadir sebagai Unik: satu-satunya, dengan warna dan nomor seri sendiri. Peluangnya terlihat sebelum dibuka atau dibeli. Tidak pernah dijual dengan uang." },
-        { title: "Intel dan pertukaran", text: "Intel adalah uang khusus dalam game: didapat dari bermain dan dibelanjakan di Brankas. Tidak bisa dibeli dan tidak punya nilai uang. Tukar item dengan teman setelah akunmu berumur 7 hari, emailmu terkonfirmasi, dan kamu sudah main 3 game. Setiap pertukaran dilindungi 7 hari." },
-        { title: "Paket komunitas", text: "Jelajahi paket buatan pemain di Komunitas. Member menulis paket sendiri di pembuat paket lalu membagikannya." },
+        { title: "Teman dan grup", text: "Tambahkan teman dengan Kode Teman atau nama pengguna, ikuti pemain, dan cari meja bersama sebagai grup. Membuat grup khusus anggota. Di iPhone dan iPad, teman, grup, dan fitur tukar khusus untuk pemain 18 tahun ke atas." },
+        { title: "Sadapan", text: "Berkas tersegel berisi item acak untuk agenmu, didapat dengan menang di Main online dan dari Rentetan Harian. Di Malam Permainan, kamu mendapat Intel Malam Permainan untuk dibelanjakan pada Sadapan Malam Permainan. Sebagian item hadir sebagai Unik: satu-satunya, dengan warna dan nomor seri sendiri. Peluangnya terlihat sebelum dibuka atau dibeli. Tidak pernah dijual dengan uang." },
+        { title: "Intel dan pertukaran", text: "Intel adalah uang khusus dalam game: didapat dari bermain dan dibelanjakan di Brankas. Tidak bisa dibeli dan tidak punya nilai uang. Tukar item dengan teman setelah akunmu berumur 7 hari, emailmu terkonfirmasi, dan kamu sudah menyelesaikan 3 permainan yang dihitung. Setiap pertukaran dilindungi 7 hari." },
+        { title: "Paket komunitas", text: "Jelajahi paket buatan pemain di Komunitas. Anggota menulis paket sendiri di pembuat paket lalu membagikannya." },
         { title: "10 bahasa", text: "Inggris, Spanyol, dan Rusia, ditambah Prancis, Portugis (Brasil), Mandarin (Sederhana), Hindi, Arab, Bengali, dan Indonesia dalam versi beta. Semua orang melihat game dalam bahasanya sendiri." },
         { title: "Notifikasi", text: "Untuk undangan dan permintaan teman, pertukaran, penawaran Pasar Gelap, dan Malam Permainan yang kamu ketuk Ingatkan aku." },
       ],
+      practiceMembers: { title: "Permainan latihan", text: "Pelajari Spy Talk dan Spy Sketch bersama agen AI, sebagai warga atau sebagai mata-mata: tutorial terpandu gratis untuk tiap game, lalu untuk anggota, permainan latihan penuh, sampai 5 per hari, dengan nilai A sampai F." },
       more: "Plus statistik, level hingga 100 dengan prestise, pencapaian, gelar, bingkai, dan selebrasi, mention dengan @, mini-game di Arkade, mikrofon yang lebih cepat, kembali ke game dengan mulus setelah ponsel tidur, dan tampilan baru di setiap layar.",
       newLabel: "Baru di 2.2",
       moreLabel: "Dan lainnya",
