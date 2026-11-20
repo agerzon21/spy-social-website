@@ -134,8 +134,9 @@ const Terms: React.FC = () => {
           : LIVE.emailCodes22
             ? ' (from version 2.2, we email you a one-time code each time you sign in; older versions of the app use a password)'
             : ' and a password'}
-        {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Public rooms and events need a saved
-        account with a confirmed email address{LIVE.socialSignIn ? ', or one that signs in with Apple or Google' : ''}.
+        {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Play Online and Game Night need a saved
+        account with a confirmed email address{LIVE.socialSignIn ? ', or one that signs in with Apple or Google' : ''};
+        as a guest you can still play the tutorial and private rooms.
         {LIVE.purchases &&
           (LIVE.membershipsOnly
             ? " Guests can buy a membership too. A guest's membership belongs to the guest account; if you lose it, Restore Purchases brings it back (see section 9)."
@@ -161,7 +162,7 @@ const Terms: React.FC = () => {
       <Bullets>
         <li>Your account is for you alone. Don't share, sell or give it to anyone, and don't use someone else's.</li>
         <li>Give true information, including your birth year. A birth year can't be changed in the app. If you entered one that made you under 18 and you're an adult, email us: we change it only with proof of age.</li>
-        <li>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? ` You can change your username once every 30 days${LIVE.audit1103 ? " (a new account's first changes don't count)" : ''}; a username you stop using stays reserved for 14 days.` : ''}</li>
+        <li>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't. When you set up your account you choose a username, and your display name is made from it; you can change your display name in Settings at any time.{LIVE.usernameLimit ? ` You can change your username once every 30 days${LIVE.audit1103 ? " (a new account's first changes don't count)" : ''}; a username you stop using stays reserved for 14 days.` : ''}</li>
         <li>Don't create another account to get around a limit, a penalty or someone's block.</li>
       </Bullets>
 
@@ -725,7 +726,8 @@ const Terms: React.FC = () => {
             also give Intercepts, once per account: each code gives what we set for it, and the app tells you what you
             got. Intercepts from a code unlock after your first Play Online game that counts. Codes tied to a purchase
             (such as merch codes) never give Intercepts. We may also give Intercepts, and memberships, as gifts, but
-            never the items that come from Intercepts. Each Intercept opens into one random item.{' '}
+            never the items that come from Intercepts. From December 8, 2026, each saved account gets one free Intercept,
+            once, as a gift from us. Each Intercept opens into one random item.{' '}
             {LIVE.interceptsMarket
               ? `You can't buy an Intercept with money, and we never sell Intercepts${LIVE.gnRewardsRules ? ' (Game Night Intercepts, which you get for Game Night Intel you earned, are the one exception)' : ''}. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below)${LIVE.interceptsInTrades ? ', and trade one with a friend (see Trades below)' : ''}; players under 18 can't. ${LIVE.gnRewardsRules ? 'Neither Intel nor Game Night Intel can be bought' : "Intel can't be bought"}, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds.`
               : LIVE.gnRewardsRules
@@ -922,8 +924,8 @@ const Terms: React.FC = () => {
                   (WG, Dec 7): the owner's rules of Nov 6 and Nov 8 (gift-rules-1108): codes and anything we or staff give, a Developer's
                   Pick included, stay with the account; Intel is never bound; the Beta set trades like anything earned. */}
               {LIVE.giftsTradable
-                ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
-                : `Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (${LIVE.gnRewardsRules ? 'an Intercept, opened or not, an item or a title' : "an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick"}), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn.`}
+                ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, everything we give away stays with your account: items and Intercepts from a code (such as a creator, promo or beta code) or a gift from us or our team, the free Intercept a saved account gets, everything that comes out of them, and anything you make in a trade-up with one of them among its inputs. You can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
+                : `Items from a code or a gift stay with your account. That means anything you redeem with a code (such as a creator, promo or beta code), anything we or our staff give you (${LIVE.gnRewardsRules ? 'an Intercept, opened or not, an item or a title' : "an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick"}), the free Intercept a saved account gets, everything that comes out of an Intercept like these, and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Their value stays with your account too: Intel you get by shredding a spare of one of them is held on your account. You can spend it on items sold for Intel in the app, but you can't trade it, send it or use it on the Black Market. Other Intel, including Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn.`}
               {/* LIVE.testerGiftGame (off until server tester_gift_game_1111 is applied, friday-flips-1111): the sentence below. */}
               {LIVE.testerGiftGame && (
                 <>

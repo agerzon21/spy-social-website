@@ -2251,6 +2251,14 @@ export const LIVE = {
  * Both Last Updated dates are never earlier than this day: set it to the publish day.
  */
 export const COVERAGE_1119_DAY = 'November 19, 2026'
+/**
+ * legal-np-1119 (owner's New Player Review, Nov 19): Terms 3 (Play Online and Game Night need a saved account, guests keep
+ * the tutorial and private rooms; the display name made from the username at setup), Terms 9 (the welcome Intercept from
+ * Dec 8; every giveaway and what comes out of it stays with the account; held shred Intel ported from U0 6bc271f behind
+ * !giftsTradable), Privacy Account Information (setup: username + one color, what Settings changes; Apple's name is not the
+ * display name). Both Last Updated dates are never earlier than this day.
+ */
+export const NP_1119_DAY = 'November 19, 2026'
 /** LIVE.helpGooglePassStop's day in both Last Updated dates (legal-coverage-1119; set by flip-switch --day). */
 export const GOOGLE_PASS_STOP_DAY = 'November 21, 2026'
 /** LIVE.testerOnboard's day in PRIVACY_LAST_UPDATED (legal-coverage-1119; set by flip-switch --day). */
@@ -2703,7 +2711,7 @@ export const LEGAL_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
-), COVERAGE_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null)
+), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -2900,7 +2908,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

@@ -168,11 +168,12 @@ const Privacy: React.FC = () => {
               : from22
                 ? ' Avatars are new in version 2.2; versions before 2.2 let you add a profile photo instead.'
                 : ' Versions of the app before 2.2 also let you add a profile photo.')}
+          {' '}When you set up your account you choose a username and one color; your display name is made from your username, and in Settings you can change your display name, your username and your 2nd and 3rd colors.
           {' '}You can also play as a guest without giving an email address; a guest account can be saved later.
           {PRIVACY.usernameLimit &&
             " When you change your username, we keep a record of your past usernames and when you changed them, so we can apply the limit of one change every 30 days (a new account's first changes don't count); it's deleted with your account."}
           {PRIVACY.socialSignIn &&
-            ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (a new account takes its first name as its display name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, and collect a device identifier and usage information for Google\'s own analytics, under Google\'s privacy policy.'}
+            ' If you sign in with Apple or Google, we receive the email address they share with us (with Apple, this can be a relay address that forwards to you), an ID for your Apple or Google account and, the first time you sign in with Apple, the name you choose to share (your display name is still made from the username you choose, not from that name). With Google, we also receive the name on your Google account and a link to its profile picture; our sign-in service keeps them with your account, and the app doesn\'t use them. On iPhone and iPad, Google\'s sign-in may also use your device\'s IP address to estimate a general location, and collect a device identifier and usage information for Google\'s own analytics, under Google\'s privacy policy.'}
         </Item>
         <Item label="Profile Preferences">
           Your interface language (one of the ten languages the app offers), your colors (a 1st, 2nd and 3rd choice: each room gives you the first one that's free) and similar settings, so the app
@@ -274,7 +275,9 @@ const Privacy: React.FC = () => {
             {PRIVACY.intercepts ? ' and your streak' : ', your streak and the items you choose'}, to show them to you in the app, and to check that Intel is earned
             fairly.
             {PRIVACY.intercepts &&
-              (PRIVACY.intelLedger
+              (PRIVACY.intelLedger && !PRIVACY.giftsTradable
+                ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is held on your account (Intel that can never be traded: Intel from shredding a spare of an item from a code or a gift, or test Intel on our own test accounts).'
+                : PRIVACY.intelLedger
                 ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel that will never be tradable: Intel we give everyone an announced outage affected, a bug refund we give one player, or test Intel on our own test accounts).'
                 : ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).')}
             {PRIVACY.intelLedger &&
