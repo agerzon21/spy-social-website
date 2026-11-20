@@ -287,6 +287,8 @@ const es: HelpText = {
                   ? ['Los miembros reciben comentarios de IA sobre cada frase que escriben, mientras juegan, y una nota de la A a la F en cada partida. Los comentarios de IA son para jugadores de 16 años o más que tocan <b>Probar</b> cuando la app lo pregunta; para los demás, puntúa el teléfono. Para dejar de recibirlos, desactiva <b>Puntuar mis frases de práctica con IA</b> en Ajustes. Una línea que solo devuelve la pregunta (“¿Y tú qué opinas?”) no es una respuesta, así que puntúa bajo.']
                   : []),
                 'Los tutoriales siguen siendo gratis para todos, y superar uno sigue contando para Jugar en línea.',
+                'Sin membresía, <b>Partida de práctica</b> en la última tarjeta del tutorial aparece en gris y dice «Las partidas de práctica son para miembros». El tutorial sigue contando.',
+                'La nota del propio teléfono, cuando la opinión de la IA está desactivada, trata igual una línea que solo devuelve la pregunta.',
               ],
             },
             ]
@@ -383,6 +385,7 @@ const es: HelpText = {
             'En la votación, el intento del espía y el final de la partida, <b>Info</b> explica la pantalla en la que estás.',
             'Las partidas de práctica también tienen el sello, con <b>Terminar</b> e <b>Info</b> en la votación, el intento y el final. La partida espera mientras Info está abierto.',
             'Toca la foto de un jugador para preguntarle en el chat. Desliza un mensaje para responderlo.',
+            'En un ordenador, pasa el cursor sobre un mensaje y haz clic en la flecha que aparece a su lado. El tutorial funciona igual.',
             'Mentir y farolear es parte del juego. Decir el secreto directamente, no.',
           ],
         },
@@ -599,6 +602,14 @@ const es: HelpText = {
           ],
         },
         {
+          id: 'price-guide-few',
+          q: "¿Por qué la guía de precios de un objeto no muestra línea?",
+          a: [
+            "Si hay muy pocas ventas en el periodo elegido (24 horas, 7 días o 30 días), la tarjeta dice que hay pocas ventas para mostrar un cambio y no dibuja línea.",
+            "La línea y el cambio aparecen cuando hay suficientes ventas.",
+          ],
+        },
+        {
           id: 'archive-holder',
           q: "¿Pueden otros ver que tengo un Único?",
           a: [
@@ -667,6 +678,14 @@ const es: HelpText = {
           q: "¿Cómo ordeno y filtro en Cambiar tu look?",
           a: [
             "En <b>Cambiar tu look</b>, el cuadro <b>Ordenar y filtrar</b> fija el orden y un filtro de rareza. Ambos se mantienen al cambiar de categoría, y un indicador muestra cuándo hay un filtro activo.",
+          ],
+        },
+        {
+          id: 'vault-filter-empty',
+          q: '¿Por qué mi Bóveda dice «Nada encontrado» si tengo objetos?',
+          a: [
+            'Los oculta un filtro de <b>Ordenar y filtrar</b> o la búsqueda. Toca <b>Quitar filtros</b> en esa misma pantalla para verlos todos otra vez.',
+            'El número de arriba coincide con la lista que ves, filtros incluidos.',
           ],
         },
         {

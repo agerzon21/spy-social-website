@@ -287,6 +287,8 @@ const ptBR: HelpText = {
                   ? ['Membros recebem comentários da IA sobre cada frase que escrevem, enquanto jogam, e uma nota de A a F em toda partida. Os comentários da IA são para quem tem 16 anos ou mais e toca em <b>Experimentar</b> quando o app pergunta; para os outros, quem avalia é o celular. Para parar, desative <b>Avaliar minhas frases de treino com IA</b> nos Ajustes. Uma linha que só devolve a pergunta (“E você, o que acha?”) não é uma resposta e recebe nota baixa.']
                   : []),
                 'Os tutoriais continuam grátis para todos, e passar em um ainda conta para o Jogar online.',
+                'Sem assinatura, <b>Partida de treino</b> no último cartão do tutorial fica cinza e diz «As partidas de treino são para membros». O tutorial continua valendo.',
+                'A nota do próprio celular, usada quando o feedback da IA está desligado, trata do mesmo jeito uma fala que só devolve a pergunta.',
               ],
             },
             ]
@@ -383,6 +385,7 @@ const ptBR: HelpText = {
             'Na votação, no palpite do espião e no fim de jogo, <b>Info</b> explica a tela em que você está.',
             'As partidas de treino também têm o selo, com <b>Encerrar</b> e <b>Info</b> na votação, no palpite e no fim de jogo. A partida espera enquanto o Info estiver aberto.',
             'Toque na foto de um jogador para perguntar a ele no chat. Deslize uma mensagem para responder.',
+            'No computador, passe o cursor sobre uma mensagem e clique na seta que aparece ao lado. O tutorial funciona do mesmo jeito.',
             'Mentir e blefar faz parte do jogo. Falar o segredo direto, não.',
           ],
         },
@@ -599,6 +602,14 @@ const ptBR: HelpText = {
           ],
         },
         {
+          id: 'price-guide-few',
+          q: "Por que o guia de preços de um item não mostra linha?",
+          a: [
+            "Com poucas vendas no período escolhido (24 horas, 7 dias ou 30 dias), o cartão diz que há poucas vendas para mostrar uma variação e não desenha a linha.",
+            "A linha e a variação aparecem quando há vendas suficientes.",
+          ],
+        },
+        {
           id: 'archive-holder',
           q: "Os outros podem ver que tenho um Único?",
           a: [
@@ -667,6 +678,14 @@ const ptBR: HelpText = {
           q: "Como ordeno e filtro em Mudar o visual?",
           a: [
             "Em <b>Mudar o visual</b>, a caixa <b>Ordenar e filtrar</b> define a ordem e um filtro de raridade. Os dois continuam ao trocar de categoria, e um indicador mostra quando há filtro ligado.",
+          ],
+        },
+        {
+          id: 'vault-filter-empty',
+          q: 'Por que meu Cofre diz «Nada encontrado» se tenho itens?',
+          a: [
+            'Um filtro de <b>Ordenar e filtrar</b> ou a busca está escondendo os itens. Toque em <b>Limpar filtros</b> nessa mesma tela para ver tudo de novo.',
+            'O número no topo bate com a lista que você vê, filtros incluídos.',
           ],
         },
         {

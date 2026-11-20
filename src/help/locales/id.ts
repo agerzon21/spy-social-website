@@ -287,6 +287,8 @@ const id: HelpText = {
                   ? ['Anggota mendapat masukan AI untuk setiap kalimat yang mereka tulis, saat bermain, dan nilai huruf di setiap permainan. Masukan AI untuk pemain berusia 16 tahun ke atas yang mengetuk <b>Coba</b> saat aplikasi bertanya; untuk yang lain, ponsel yang menilai. Untuk berhenti, matikan <b>Nilai kalimat latihanku dengan AI</b> di Pengaturan. Baris yang hanya membalikkan pertanyaan (“Kamu sendiri bagaimana?”) bukan jawaban, jadi nilainya rendah.']
                   : []),
                 'Tutorial tetap gratis untuk semua orang, dan lulus salah satunya tetap dihitung untuk Main online.',
+                'Tanpa keanggotaan, <b>Permainan latihan</b> di kartu terakhir tutorial berwarna abu-abu dan bertuliskan «Permainan latihan khusus anggota». Tutorial tetap dihitung.',
+                'Nilai dari ponsel sendiri, saat umpan balik AI mati, memperlakukan kalimat yang hanya membalikkan pertanyaan dengan cara yang sama.',
               ],
             },
             ]
@@ -383,6 +385,7 @@ const id: HelpText = {
             'Di voting, tebakan mata-mata, dan layar akhir, <b>Info</b> menjelaskan layar yang sedang kamu buka.',
             'Permainan latihan juga punya segel, berisi <b>Akhiri</b> dan <b>Info</b> di voting, tebakan, dan layar akhir. Permainan menunggu selama Info terbuka.',
             'Ketuk foto pemain untuk bertanya padanya di chat. Geser pesan untuk membalasnya.',
+            'Di komputer, arahkan kursor ke pesan lalu klik panah yang muncul di sampingnya. Tutorial bekerja sama.',
             'Berbohong dan menggertak itu bagian dari permainan. Menyebut rahasianya terang-terangan, bukan.',
           ],
         },
@@ -599,6 +602,14 @@ const id: HelpText = {
           ],
         },
         {
+          id: 'price-guide-few',
+          q: "Mengapa panduan harga sebuah item tidak menampilkan garis?",
+          a: [
+            "Jika penjualan terlalu sedikit pada periode yang dipilih (24 jam, 7 hari, atau 30 hari), kartu menyebut penjualan terlalu sedikit untuk menunjukkan perubahan dan tidak menggambar garis.",
+            "Garis dan perubahan muncul setelah penjualan cukup.",
+          ],
+        },
+        {
           id: 'archive-holder',
           q: "Bisakah orang lain melihat bahwa aku memegang item Unik?",
           a: [
@@ -667,6 +678,14 @@ const id: HelpText = {
           q: "Bagaimana cara mengurutkan dan memfilter di Ubah Penampilan?",
           a: [
             "Di <b>Ubah Penampilan</b>, kotak <b>Urutkan & filter</b> mengatur urutan dan filter kelangkaan. Keduanya tetap saat berpindah kategori, dan penanda menunjukkan filter sedang aktif.",
+          ],
+        },
+        {
+          id: 'vault-filter-empty',
+          q: 'Mengapa Vault saya bertuliskan «Tidak ada yang ditemukan» padahal saya punya item?',
+          a: [
+            'Pilihan di <b>Urutkan & Filter</b> atau pencarian menyembunyikannya. Ketuk <b>Hapus filter</b> langsung di layar itu untuk melihat semuanya lagi.',
+            'Angka di atas sama dengan daftar yang terlihat, termasuk filter.',
           ],
         },
         {

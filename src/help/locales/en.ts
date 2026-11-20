@@ -317,6 +317,8 @@ const en: HelpText = {
                   ? ['Members get AI feedback on every line they write, as they play, and a letter grade for every game. The AI feedback is for players 16 and older who tap <b>Try It</b> when the app asks; for everyone else, the phone grades. To stop it, turn off <b>Rate My Practice Lines with AI</b> in Settings. A line that only turns the question back (“What do you think?”) isn’t an answer, so it scores low.']
                   : []),
                 'The tutorials stay free for everyone, and passing one still counts for Play Online.',
+                'Without a membership, <b>Practice Game</b> on the tutorial’s last card is greyed out and says “Practice Games are for members”. The tutorial still counts.',
+                'The phone’s own grade, used when AI feedback is off, treats a line that only turns the question back the same way.',
               ],
             },
             ]
@@ -413,6 +415,7 @@ const en: HelpText = {
             'On the vote, the spy’s guess and Game Over, <b>Info</b> explains the screen you’re on.',
             'Practice Games have the seal too, with <b>End Practice</b> and <b>Info</b> on the vote, the guess and Game Over. The game waits while Info is open.',
             'Tap a player’s picture to ask them in the chat. Swipe a message to reply.',
+            'On a computer, point at a message and click the arrow that appears beside it. The tutorial works the same way.',
             'Bluffing is part of the game. Saying the secret outright isn’t.',
           ],
         },
@@ -629,6 +632,14 @@ const en: HelpText = {
           ],
         },
         {
+          id: 'price-guide-few',
+          q: "Why does an item’s price guide show no line?",
+          a: [
+            "With too few sales in the time you picked (24 hours, 7 days or 30 days), the card says there are too few sales to show a change, and draws no line.",
+            "The line and the change come once there are enough sales.",
+          ],
+        },
+        {
           id: 'archive-holder',
           q: "Can other people see that I hold a Unique?",
           a: [
@@ -697,6 +708,14 @@ const en: HelpText = {
           q: "How do I sort and filter in Change Your Look?",
           a: [
             "In <b>Change Your Look</b>, the <b>Sort & Filter</b> box sets the order and a rarity filter. Both stay as you switch between categories, and an indicator shows when a filter is on.",
+          ],
+        },
+        {
+          id: 'vault-filter-empty',
+          q: 'Why does my Vault say “Nothing found” with items I own?',
+          a: [
+            'A <b>Sort & Filter</b> choice or the search is hiding them. Tap <b>Clear Filters</b> right on that screen to see everything again.',
+            'The count at the top matches the list you see, filters included.',
           ],
         },
         {

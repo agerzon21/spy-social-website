@@ -283,6 +283,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
                 ? ["Les membres ont les conseils de l'IA sur chaque phrase qu'ils écrivent, pendant la partie, et une note de A à F à chaque partie. Les conseils de l'IA sont pour les joueurs de 16 ans et plus qui touchent <b>Essayer</b> quand l'appli le propose ; pour les autres, c'est le téléphone qui note. Pour arrêter, désactive <b>Noter mes phrases d'entraînement avec l'IA</b> dans les Réglages. Une ligne qui ne fait que renvoyer la question (« Et toi, t'en penses quoi ? ») n'est pas une réponse : elle a une note basse."]
                 : []),
               "Les tutoriels restent gratuits pour tous, et en réussir un compte toujours pour Jouer en ligne.",
+              "Sans abonnement, <b>Partie d'entraînement</b> sur la dernière carte du tutoriel est grisé et indique « L'entraînement est réservé aux membres ». Le tutoriel compte quand même.",
+              "La note du téléphone lui-même, quand l'avis de l'IA est désactivé, traite de la même façon une ligne qui ne fait que renvoyer la question.",
             ],
           },
           ]
@@ -379,6 +381,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Pendant le vote, la tentative de l'espion et l'écran de fin, <b>Infos</b> explique l'écran où tu es.",
           "Les parties d'entraînement ont aussi le sceau, avec <b>Terminer</b> et <b>Infos</b> pendant le vote, la tentative et l'écran de fin. La partie attend tant qu'Infos est ouvert.",
           "Touche la photo d'un joueur pour l'interpeller dans le chat. Fais glisser un message pour y répondre.",
+          "Sur un ordinateur, place le curseur sur un message et clique sur la flèche qui apparaît à côté. Le tutoriel fonctionne pareil.",
           "Mentir et bluffer font partie du jeu. Dire le secret tel quel, non.",
         ],
       },
@@ -595,6 +598,14 @@ const sections = (o: HelpOpts): HelpSection[] => [
         ],
       },
       {
+        id: 'price-guide-few',
+        q: "Pourquoi le guide des prix d'un objet n'affiche-t-il pas de courbe ?",
+        a: [
+          "Quand il y a trop peu de ventes sur la période choisie (24 heures, 7 jours ou 30 jours), la carte indique qu'il y en a trop peu pour montrer une évolution, et ne trace pas de courbe.",
+          "La courbe et l'évolution apparaissent dès qu'il y a assez de ventes.",
+        ],
+      },
+      {
         id: 'archive-holder',
         q: "Les autres peuvent-ils voir que je détiens un Unique ?",
         a: [
@@ -663,6 +674,14 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Comment trier et filtrer dans Changer de look ?",
         a: [
           "Dans <b>Changer de look</b>, la boîte <b>Trier et filtrer</b> règle l’ordre et un filtre de rareté. Les deux restent quand tu changes de catégorie, et un indicateur montre qu’un filtre est actif.",
+        ],
+      },
+      {
+        id: 'vault-filter-empty',
+        q: 'Pourquoi mon Coffre indique-t-il « Rien trouvé » alors que j\'ai des objets ?',
+        a: [
+          'Un choix de <b>Trier et filtrer</b> ou la recherche les masque. Touche <b>Effacer les filtres</b> sur cet écran pour tout revoir.',
+          'Le nombre en haut correspond à la liste affichée, filtres compris.',
         ],
       },
       {
