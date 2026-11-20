@@ -446,7 +446,7 @@ const ptBR: HelpText = {
           a: [
             'Você troca com amigos, dentro do app. Precisa de uma conta com pelo menos 7 dias, e-mail confirmado e 3 partidas contadas (partidas terminadas que entram nas suas estatísticas, com pelo menos outras 2 contas salvas em outros celulares).',
             "Os 7 dias contam a partir de quando a conta foi salva: o tempo como visitante não conta.",
-            ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta, partidas contadas e novo aparelho estão desligadas: qualquer testador pode trocar assim que confirmar o e-mail.']),
+            ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta, partidas contadas e novo aparelho estão desligadas: qualquer adulto pode trocar assim que confirmar o e-mail.']),
             ...(o.launch ? ["Testadores que jogaram 3 partidas contadas durante o teste beta não precisam de mais 3."] : ["Testadores que jogarem 3 partidas contadas durante o teste beta não vão precisar de mais 3 depois do lançamento."]),
             'Cada lado oferece até 10 itens, e os dois confirmam antes da troca. Trocas grandes pedem um código que mandamos por e-mail.',
             ...(o.interceptsInTrades ? ['Adultos também podem colocar Interceptações fechadas numa troca: escolha quantas de cada nível. Cada uma conta como um dos 10 itens.'] : []),
@@ -454,7 +454,7 @@ const ptBR: HelpText = {
             'O que você coloca numa troca aberta fica reservado para ela: não pode ir para outra troca nem para o Mercado Negro ao mesmo tempo. Se o Intel de uma troca for gasto antes de a troca acontecer, aparece um aviso naquele lado, e a troca não pode acontecer até a quantia ser reduzida.',
             'O app marca quais itens dá para trocar. O plano de membro e o que ele inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.' + (o.launch ? (o.gnRewardsRules ? " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você: fica na sua conta. O Intel nunca fica preso a uma conta, venha de onde vier." : " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você, incluindo uma Escolha do desenvolvedor: fica na sua conta. O Intel nunca fica preso a uma conta, venha de onde vier.") : ''),
             'Intel só pode ser trocado entre adultos.',
-            ...(o.launch ? [] : ["Durante o teste beta, até 7 de dezembro, testadores adultos também trocam Intel." + (o.intelZero ? " Logo antes do lançamento, o Intel de toda conta vai a 0, inclusive o ganho no teste." : " Em 7 de dezembro, todo o Intel trocado volta: quem deu recebe de volta, e cada um fica só com o Intel que ganhou."), "A partir de 7 de dezembro, interceptações de um código ou presente, o que sair delas e o que você conseguir com elas na Fusão ficam na sua conta: dá para usar, mas não para trocar nem vender."]),
+            ...(o.launch ? [] : ["Durante o teste beta, até 7 de dezembro, todos os adultos também podem trocar Intel." + (o.intelZero ? " Logo antes do lançamento, o Intel de toda conta vai a 0, inclusive o ganho no teste." : " Em 7 de dezembro, todo o Intel trocado volta: quem deu recebe de volta, e cada um fica só com o Intel que ganhou."), "A partir de 7 de dezembro, interceptações de um código ou presente, o que sair delas e o que você conseguir com elas na Fusão ficam na sua conta: dá para usar, mas não para trocar nem vender."]),
             'Comprar ou vender itens, Intel ou contas por dinheiro de verdade é contra as regras.',
           ],
         },

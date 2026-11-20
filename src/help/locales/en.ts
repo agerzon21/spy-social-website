@@ -476,7 +476,7 @@ const en: HelpText = {
           a: [
             'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones).',
             "The 7 days count from when the account was saved: time as a guest doesn’t count.",
-            ...(o.launch ? [] : ['During the beta test, until December 7, the account-age, counted-games and new-device rules are off: every tester can trade once their email is confirmed.']),
+            ...(o.launch ? [] : ['During the beta test, until December 7, the account-age, counted-games and new-device rules are off: every adult player can trade once their email is confirmed.']),
             ...(o.launch ? ["Testers who played 3 counted games during the beta test don’t need 3 more."] : ["Testers who play 3 counted games during the beta test won’t need 3 more after launch."]),
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
             ...(o.interceptsInTrades ? ['Adults can also put unopened Intercepts in a trade: choose how many of each tier. Each one counts as one of the 10.'] : []),
@@ -484,7 +484,7 @@ const en: HelpText = {
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
             'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? (o.gnRewardsRules ? " Neither can anything from a code, or anything we or our staff give you: it stays with your account. Intel is never tied to an account, whatever it came from." : " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel is never tied to an account, whatever it came from.") : ''),
             'Intel can be traded only between adults.',
-            ...(o.launch ? [] : ["During the beta test, until December 7, adult testers trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them."]),
+            ...(o.launch ? [] : ["During the beta test, until December 7, every adult player can trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " On December 7 every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "From December 7, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them."]),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
           ],
         },
