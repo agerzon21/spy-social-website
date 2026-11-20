@@ -291,6 +291,24 @@ const id: HelpText = {
             ]
           : []),
         {
+          id: 'browser-play',
+          q: "Bisakah saya main SpySocial di komputer?",
+          a: [
+            "Bisa: buka play.spysocial.app di peramban. Permainan dan akunnya sama dengan di ponselmu: masuk, atau mulai sebagai tamu.",
+            o.browserPlay ? "Ruangan, Main Online, dan Malam Permainan juga berjalan di peramban." : "Untuk sekarang, bermain di peramban hanya terbuka untuk penguji yang kami undang. Pemain lain bisa masuk dan memakai sisi akun (Akun, agenmu, pengaturan, Cara Bermain), dan melihat <b>Browser Play Coming Soon</b> di tempat permainan akan dimulai. Kami akan mengumumkannya saat bermain di peramban dibuka untuk semua orang.",
+          ],
+        },
+        ...(o.autoTranslation ? [
+          {
+            id: 'report-translation',
+            q: "Terjemahannya salah. Bagaimana melaporkannya?",
+            a: [
+              "Di bawah pesan yang diterjemahkan, ketuk <b>Lihat aslinya</b> untuk membaca tulisan pemain. Terjemahan otomatis dan bisa salah pada slang atau candaan.",
+              "Tidak ada tombol lapor untuk terjemahan: <b>Laporkan</b> untuk pelanggaran aturan. Untuk memberi tahu kami soal terjemahan yang buruk, kirim email ke <email/> dengan tangkapan layar pesannya dan kedua bahasanya.",
+            ],
+          },
+        ] : []),
+        {
           id: 'languages',
           q: 'Bisakah main dengan orang yang bicara bahasa lain?',
           a: [
@@ -700,6 +718,17 @@ const id: HelpText = {
             ...(o.launch ? [] : ["Beta 3 diadakan Selasa, 24 November, pukul 20.00–21.00 waktu bagian timur AS (bisa masuk mulai 19.30). Jika email kursimu menyebut ucapan terima kasih $10: mainkan setidaknya satu permainan malam itu dan kirim survei sebelum Jumat, 27 November, pukul 23.59 waktu bagian timur, lalu $10 dikirim lewat PayPal paling lambat 1 Desember. Satu penguji juga mendapat kartu hadiah $50 untuk laporan atau ide paling berguna, kami yang memilih."]),
           ],
         },
+        ...(o.launch ? [
+          {
+            id: 'after-launch-reset',
+            q: "Ke mana Intel dan item beta saya?",
+            a: [
+              "Sebelum peluncuran, pada 7 Desember, semua dari versi uji coba direset: Intel, Intercept, item, kesepakatan Pasar Gelap, perdagangan, dan keanggotaan uji coba. Semua orang memulai peluncuran dari nol.",
+              "Akun, teman, pak, XP, level, pencapaian, statistik, gelar dari kode, dan apa pun yang kamu beli di toko tetap ada. Para penguji tetap memegang <b>Beta Pin</b> dan menerima hadiah terima kasih (lihat pertanyaan tentang terima kasih untuk penguji).",
+              "Merasa ada yang salah? Kirim email ke <email/> dengan nama penggunamu.",
+            ],
+          },
+        ] : []),
         ...(o.launch
           ? []
           : [
@@ -840,6 +869,15 @@ const id: HelpText = {
           a: [
             'Ketuk <b>Pulihkan pembelian</b> di aplikasi saat ponselmu masuk ke akun App Store atau Google Play yang dipakai untuk membayar.',
             'Keanggotaanmu pindah ke akun SpySocial yang sedang kamu pakai, dan lepas dari akun lain tempatnya dulu, termasuk akun yang sudah dihapus.',
+          ],
+        },
+        {
+          id: 'charged-no-membership',
+          q: "Saya ditagih tapi tidak punya keanggotaan, atau ditagih dua kali.",
+          a: [
+            "Pertama, ketuk <b>Pulihkan pembelian</b> di aplikasi saat ponselmu masuk ke akun App Store atau Google Play yang dipakai untuk membayar. Keanggotaan akan dipindahkan ke akun SpySocial yang sedang kamu pakai.",
+            "Ditagih dua kali, atau ingin uangmu kembali? Apple dan Google yang mengurus pengembalian dana: ajukan ke Apple di reportaproblem.apple.com, atau ke Google lewat riwayat pesanan Google Play.",
+            "Masih buntu? Kirim email ke <email/> dengan nama penggunamu dan ID pesanan dari tanda terima Apple atau Google. Jangan pernah mengirim nomor kartu.",
           ],
         },
         {
@@ -987,6 +1025,14 @@ const id: HelpText = {
             'Memblokir memisahkan kalian: tidak ada yang bisa masuk ke room tempat yang lain berada. Buka blokir di Pengaturan, di <b>Privasi & keamanan</b>: <b>Pemain diblokir</b>.',
             'Berbohong dan menggertak itu bagian dari permainan dan tidak bisa dilaporkan.',
             'Di meja dengan grup, pilih <b>Main sekongkol</b> jika kamu kira mereka bekerja sama di luar permainan. <b>Laporkan Grup</b> mencakup semua anggota grup mereka di meja itu.',
+          ],
+        },
+        {
+          id: 'child-safety-urgent',
+          q: "Seseorang membahayakan anak. Apa yang harus saya lakukan?",
+          a: [
+            "Jika anak dalam bahaya langsung, hubungi nomor darurat setempat lebih dulu: 999 di Inggris, 911 di AS, 112 di UE.",
+            "Lalu laporkan pemainnya di aplikasi (tekan lama kartunya, lalu <b>Laporkan</b>, dan pilih <b>Keselamatan anak</b>) dan kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke National Center for Missing & Exploited Children (NCMEC) sesuai ketentuan hukum AS. <safety>Halaman keselamatan</safety> kami menjelaskan lebih lanjut.",
           ],
         },
         {

@@ -17,6 +17,8 @@
 export interface HelpOpts {
   /** Under-18 players' drawings in private rooms get the free check next to another under-18 or no-age player (LIVE.drawingMinorPeer1120). */
   drawingMinorPeer: boolean
+  /** Playing games in the browser (play.spysocial.app) is open to everyone (LIVE.browserLinks, flipped when the server's web_beta gate goes off); off: invited testers only. */
+  browserPlay: boolean
   /** The 2.2 launch has happened (LIVE.launchSite): Intel moves between players, gift Intercepts stay with you, odds before buying an Intercept. */
   launch: boolean
   /** Memberships are on sale in the released app (LIVE.purchases). */

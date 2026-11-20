@@ -321,6 +321,24 @@ const en: HelpText = {
             ]
           : []),
         {
+          id: 'browser-play',
+          q: "Can I play SpySocial on a computer?",
+          a: [
+            "Yes: open play.spysocial.app in a browser. It is the same game and the same account as on your phone: sign in, or start as a guest.",
+            o.browserPlay ? "Rooms, Play Online and Game Night work in the browser too." : "For now, playing games in the browser is open only to testers we invite. Everyone else can sign in and use the account side (Account, your agent, settings, How to Play), and sees <b>Browser Play Coming Soon</b> where a game would start. We will announce it when browser play opens to everyone.",
+          ],
+        },
+        ...(o.autoTranslation ? [
+          {
+            id: 'report-translation',
+            q: "A translation is wrong. How do I report it?",
+            a: [
+              "Under a translated message, tap <b>Show original</b> to read what the player wrote. Translations are automatic and can miss slang or jokes.",
+              "There is no report button for translations: <b>Report</b> is for rule-breaking. To tell us about a bad translation, email <email/> with a screenshot of the message and the two languages.",
+            ],
+          },
+        ] : []),
+        {
           id: 'languages',
           q: 'Can I play with people who speak other languages?',
           a: [
@@ -730,6 +748,17 @@ const en: HelpText = {
             ...(o.launch ? [] : ["Beta 3 is on Tuesday, November 24, 8 to 9 PM Eastern (join from 7:30). If your seat email mentions the $10 thank-you: play at least one game that night and send the survey by Friday, November 27, 11:59 PM Eastern, and the $10 comes by PayPal by December 1. One tester also gets a $50 gift card for the most useful report or idea, chosen by us."]),
           ],
         },
+        ...(o.launch ? [
+          {
+            id: 'after-launch-reset',
+            q: "Where did my beta Intel and items go?",
+            a: [
+              "Before launch, on December 7, everything from the test versions was reset: Intel, Intercepts, items, Black Market deals, trades and test memberships. Everyone started launch from scratch.",
+              "Your account, friends, packs, XP, level, achievements, stats, titles from codes and anything you bought in a store stayed. Testers kept the <b>Beta Pin</b> and got their thank-you rewards (see the tester thank-you question).",
+              "Think something is wrong? Email <email/> with your username.",
+            ],
+          },
+        ] : []),
         ...(o.launch
           ? []
           : [
@@ -870,6 +899,15 @@ const en: HelpText = {
           a: [
             'Tap <b>Restore Purchases</b> in the app while your phone is signed in to the App Store or Google Play account you paid with.',
             'It moves your membership to the SpySocial account you’re using, away from any other account it was on, a deleted one included.',
+          ],
+        },
+        {
+          id: 'charged-no-membership',
+          q: "I was charged but have no membership, or I was charged twice.",
+          a: [
+            "First tap <b>Restore Purchases</b> in the app while your phone is signed in to the App Store or Google Play account you paid with. It puts the membership on the SpySocial account you are using.",
+            "Charged twice, or want your money back? Apple and Google handle refunds: ask Apple at reportaproblem.apple.com, or Google through your Google Play order history.",
+            "Still stuck? Email <email/> with your username and the order ID from the Apple or Google receipt. Never send a card number.",
           ],
         },
         {
@@ -1017,6 +1055,14 @@ const en: HelpText = {
             'Blocking keeps you apart: neither of you can join a room the other is in. Unblock in Settings, under <b>Privacy & Safety</b>: <b>Blocked Players</b>.',
             'Lying and bluffing are part of the game and aren’t reportable.',
             'At a table with a party, choose <b>Teaming</b> if you think they’re working together outside the game. <b>Report Party</b> covers everyone in their party at that table.',
+          ],
+        },
+        {
+          id: 'child-safety-urgent',
+          q: "Someone is putting a child at risk. What do I do?",
+          a: [
+            "If a child is in immediate danger, call your local emergency number first: 999 in the UK, 911 in the US, 112 in the EU.",
+            "Then report the player in the app (press and hold their card, then <b>Report</b>, and choose <b>Child Safety</b>) and email <email/> with “Child safety” in the subject. We remove the content, ban the accounts involved and report it to the National Center for Missing & Exploited Children (NCMEC), as US law requires. Our <safety>Safety page</safety> says more.",
           ],
         },
         {

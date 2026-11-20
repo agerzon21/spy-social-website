@@ -287,6 +287,24 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ]
         : []),
       {
+        id: 'browser-play',
+        q: "Puis-je jouer à SpySocial sur ordinateur ?",
+        a: [
+          "Oui : ouvre play.spysocial.app dans un navigateur. C'est le même jeu et le même compte que sur ton téléphone : connecte-toi ou commence en invité.",
+          o.browserPlay ? "Les salons, Jouer en ligne et la Soirée de jeu fonctionnent aussi dans le navigateur." : "Pour l'instant, jouer dans le navigateur n'est ouvert qu'aux testeurs que nous invitons. Les autres peuvent se connecter et utiliser la partie compte (Compte, ton agent, réglages, Comment jouer), et voient <b>Browser Play Coming Soon</b> là où une partie commencerait. Nous l'annoncerons quand le jeu dans le navigateur s'ouvrira à tous.",
+        ],
+      },
+      ...(o.autoTranslation ? [
+        {
+          id: 'report-translation',
+          q: "Une traduction est fausse. Comment la signaler ?",
+          a: [
+            "Sous un message traduit, touche <b>Voir l’original</b> pour lire ce que le joueur a écrit. Les traductions sont automatiques et peuvent rater l'argot ou les blagues.",
+            "Il n'y a pas de bouton pour signaler une traduction : <b>Signaler</b> sert aux infractions aux règles. Pour nous parler d'une mauvaise traduction, écris à <email/> avec une capture du message et les deux langues.",
+          ],
+        },
+      ] : []),
+      {
         id: 'languages',
         q: "Puis-je jouer avec des gens qui parlent d'autres langues ?",
         a: [
@@ -696,6 +714,17 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.launch ? [] : ["La Bêta 3 a lieu le mardi 24 novembre, de 20 h à 21 h, heure de l’Est des États-Unis (on peut rejoindre dès 19 h 30). Si l’e-mail de ta place parle du remerciement de 10 $ : joue au moins une partie ce soir-là et envoie le questionnaire avant le vendredi 27 novembre, 23 h 59 heure de l’Est, et les 10 $ arrivent par PayPal avant le 1er décembre. Un testeur reçoit aussi une carte cadeau de 50 $ pour le rapport ou l’idée la plus utile, choisi par nous."]),
         ],
       },
+      ...(o.launch ? [
+        {
+          id: 'after-launch-reset',
+          q: "Où sont passés mes Intel et objets de la bêta ?",
+          a: [
+            "Avant le lancement, le 7 décembre, tout ce qui venait des versions de test a été réinitialisé : Intel, Intercepts, objets, offres du Marché noir, échanges et abonnements de test. Tout le monde est reparti de zéro au lancement.",
+            "Sont restés ton compte, tes amis, tes packs, ton XP, ton niveau, tes succès, tes stats, les titres obtenus par code et ce que tu as acheté en boutique. Les testeurs ont gardé le <b>Beta Pin</b> et reçu leurs récompenses de remerciement (voir la question sur le remerciement des testeurs).",
+            "Un problème ? Écris à <email/> avec ton nom d'utilisateur.",
+          ],
+        },
+      ] : []),
       ...(o.launch
         ? []
         : [
@@ -836,6 +865,15 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Touche <b>Restaurer les achats</b> dans l'appli, avec ton téléphone connecté au compte App Store ou Google Play qui a payé.",
           "Ton statut de membre passe sur le compte SpySocial que tu utilises, et quitte tout autre compte où il était, même supprimé.",
+        ],
+      },
+      {
+        id: 'charged-no-membership',
+        q: "J'ai été débité mais je n'ai pas d'abonnement, ou débité deux fois.",
+        a: [
+          "Touche d'abord <b>Restaurer les achats</b> dans l'appli, avec ton téléphone connecté au compte App Store ou Google Play qui a payé. L'abonnement passe sur le compte SpySocial que tu utilises.",
+          "Débité deux fois, ou tu veux un remboursement ? Apple et Google gèrent les remboursements : demande à Apple sur reportaproblem.apple.com, ou à Google via l'historique de tes commandes Google Play.",
+          "Toujours bloqué ? Écris à <email/> avec ton nom d'utilisateur et le numéro de commande du reçu Apple ou Google. N'envoie jamais de numéro de carte.",
         ],
       },
       {
@@ -983,6 +1021,14 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Bloquer vous sépare : aucun de vous ne peut rejoindre un salon où se trouve l'autre. Débloque dans les Réglages, sous <b>Confidentialité et sécurité</b> : <b>Joueurs bloqués</b>.",
           'Mentir et bluffer font partie du jeu et ne se signalent pas.',
           "À une table avec un groupe, choisis <b>Entente</b> si tu penses qu'ils s'aident en dehors du jeu. <b>Signaler le groupe</b> couvre tous les membres de leur groupe à cette table.",
+        ],
+      },
+      {
+        id: 'child-safety-urgent',
+        q: "Quelqu'un met un enfant en danger. Que faire ?",
+        a: [
+          "Si un enfant est en danger immédiat, appelle d'abord le numéro d'urgence de ton pays : 999 au Royaume-Uni, 911 aux États-Unis, 112 dans l'UE.",
+          "Signale ensuite le joueur dans l'appli (appui long sur sa carte, puis <b>Signaler</b>, et choisis <b>Sécurité des enfants</b>) et écris à <email/> avec « Child safety » en objet. Nous supprimons le contenu, bannissons les comptes concernés et le signalons au National Center for Missing & Exploited Children (NCMEC), comme la loi américaine l'exige. Notre <safety>page Sécurité</safety> en dit plus.",
         ],
       },
       {

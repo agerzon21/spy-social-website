@@ -291,6 +291,24 @@ const es: HelpText = {
             ]
           : []),
         {
+          id: 'browser-play',
+          q: "¿Puedo jugar a SpySocial en un ordenador?",
+          a: [
+            "Sí: abre play.spysocial.app en un navegador. Es el mismo juego y la misma cuenta que en el teléfono: inicia sesión o empieza como invitado.",
+            o.browserPlay ? "Las salas, Jugar en línea y la Noche de juego también funcionan en el navegador." : "Por ahora, jugar en el navegador solo está abierto a los probadores que invitamos. El resto puede iniciar sesión y usar la parte de la cuenta (Cuenta, tu agente, ajustes, Cómo jugar), y ve <b>Browser Play Coming Soon</b> donde empezaría una partida. Avisaremos cuando el juego en el navegador se abra a todos.",
+          ],
+        },
+        ...(o.autoTranslation ? [
+          {
+            id: 'report-translation',
+            q: "Una traducción es incorrecta. ¿Cómo la reporto?",
+            a: [
+              "Bajo un mensaje traducido, toca <b>Ver original</b> para leer lo que escribió el jugador. Las traducciones son automáticas y pueden fallar con jerga o bromas.",
+              "No hay botón para reportar traducciones: <b>Reportar</b> es para infracciones de las normas. Para avisarnos de una mala traducción, escribe a <email/> con una captura del mensaje y los dos idiomas.",
+            ],
+          },
+        ] : []),
+        {
           id: 'languages',
           q: '¿Puedo jugar con gente que habla otros idiomas?',
           a: [
@@ -700,6 +718,17 @@ const es: HelpText = {
             ...(o.launch ? [] : ["La Beta 3 es el martes 24 de noviembre, de 8 a 9 PM, hora del Este de EE. UU. (se entra desde las 7:30). Si el correo de tu lugar menciona el agradecimiento de 10 USD: juega al menos una partida esa noche y envía la encuesta antes del viernes 27 de noviembre a las 11:59 PM, hora del Este, y los 10 USD llegan por PayPal antes del 1 de diciembre. Además, un tester recibe una tarjeta regalo de 50 USD por el reporte o la idea más útil, elegido por nosotros."]),
           ],
         },
+        ...(o.launch ? [
+          {
+            id: 'after-launch-reset',
+            q: "¿Adónde fueron mi Intel y mis objetos de la beta?",
+            a: [
+              "Antes del lanzamiento, el 7 de diciembre, se restableció todo lo de las versiones de prueba: Intel, Intercepts, objetos, tratos del Mercado Negro, intercambios y membresías de prueba. Todos empezaron el lanzamiento de cero.",
+              "Se quedaron tu cuenta, amigos, packs, XP, nivel, logros, estadísticas, títulos de códigos y lo que compraste en una tienda. Los probadores conservaron el <b>Beta Pin</b> y recibieron sus recompensas de agradecimiento (mira la pregunta del agradecimiento a probadores).",
+              "¿Crees que algo falla? Escribe a <email/> con tu nombre de usuario.",
+            ],
+          },
+        ] : []),
         ...(o.launch
           ? []
           : [
@@ -840,6 +869,15 @@ const es: HelpText = {
           a: [
             'Toca <b>Restaurar compras</b> en la app con el teléfono conectado a la cuenta del App Store o de Google Play con la que pagaste.',
             'Pasa tu membresía a la cuenta de SpySocial que estás usando, y la quita de cualquier otra en la que estuviera, aunque esté borrada.',
+          ],
+        },
+        {
+          id: 'charged-no-membership',
+          q: "Me cobraron pero no tengo membresía, o me cobraron dos veces.",
+          a: [
+            "Primero toca <b>Restaurar compras</b> en la app con el teléfono conectado a la cuenta del App Store o de Google Play con la que pagaste. Pone la membresía en la cuenta de SpySocial que estás usando.",
+            "¿Cobro doble o quieres que te devuelvan el dinero? Apple y Google gestionan los reembolsos: pídeselo a Apple en reportaproblem.apple.com, o a Google desde tu historial de pedidos de Google Play.",
+            "¿Sigue sin resolverse? Escribe a <email/> con tu nombre de usuario y el ID del pedido del recibo de Apple o Google. Nunca envíes el número de una tarjeta.",
           ],
         },
         {
@@ -987,6 +1025,14 @@ const es: HelpText = {
             'Bloquear los mantiene separados: ninguno puede entrar en una sala donde esté el otro. Desbloquea en Ajustes, en <b>Privacidad y seguridad</b>: <b>Jugadores bloqueados</b>.',
             'Mentir y farolear es parte del juego y no se reporta.',
             'En una mesa con un grupo, elige <b>Juego en equipo</b> si crees que se ayudan fuera del juego. <b>Reportar al grupo</b> cubre a todos los de su grupo en esa mesa.',
+          ],
+        },
+        {
+          id: 'child-safety-urgent',
+          q: "Alguien pone en riesgo a un menor. ¿Qué hago?",
+          a: [
+            "Si un menor está en peligro inmediato, llama primero a tu número de emergencias: 999 en el Reino Unido, 911 en EE. UU., 112 en la UE.",
+            "Después reporta al jugador en la app (mantén pulsada su tarjeta, luego <b>Reportar</b>, y elige <b>Seguridad infantil</b>) y escribe a <email/> con «Child safety» en el asunto. Eliminamos el contenido, bloqueamos las cuentas involucradas y lo reportamos al National Center for Missing & Exploited Children (NCMEC), como exige la ley de EE. UU. Nuestra <safety>página de seguridad</safety> dice más.",
           ],
         },
         {

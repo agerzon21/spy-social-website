@@ -22,6 +22,7 @@ const EMAIL = 'support@spysocial.app'
 
 const OPTS: HelpOpts = {
   launch: LIVE.launchSite,
+  browserPlay: LIVE.browserLinks,
   purchases: LIVE.purchases,
   passwordless: LIVE.passwordless,
   onePool: LIVE.onePool,
