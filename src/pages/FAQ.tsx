@@ -43,6 +43,7 @@ const OPTS: HelpOpts = {
   gnWeekly: LIVE.launchGameNights,
   membershipSwitch: LIVE.helpMembershipSwitch,
   googlePassStop: LIVE.helpGooglePassStop,
+  drawingMinorPeer: LIVE.drawingMinorPeer1120,
   practiceMembers: LIVE.practiceMembers,
   practiceAi: LIVE.practiceAi,
   questionRounds: LIVE.helpQuestionRounds,
