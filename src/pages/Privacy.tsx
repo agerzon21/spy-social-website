@@ -1256,6 +1256,8 @@ const Privacy: React.FC = () => {
           "A copy of a trade flagged for a case, or between an adult and a player under 18, is kept for at least 1 year (see Trades); after that we keep it only while a case, a report or a legal request still needs it, and then delete it. "}
         {PRIVACY.childSafetyHolds &&
           "If an account that is part of a child-safety case is deleted before we've finished with the case, we first keep a restricted copy of the case, the account's email address, names, sign-in dates and the IP addresses in our sign-in log, its messages still on our servers and its encrypted IP addresses, for 1 year, or longer if the authorities ask us to. "}
+        {PRIVACY.childSafetyHolds && PRIVACY.csAutoPreserve &&
+          "When a player is reported for child safety, we also keep that restricted copy at once (the case, the reported account's messages still on our servers, its sign-in dates and encrypted IP addresses), for 1 year, or longer if the authorities ask us to. "}
         Usage events are kept
         for 180 days
         {PRIVACY.scheduledRetention

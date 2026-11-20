@@ -2275,6 +2275,14 @@ export const LIVE = {
    * never in PRIVACY_AHEAD.
    */
   guestSaveBeforeBuy: false,
+  /**
+   * safety-g6g8-1120 (G-8; server row 20261231999727 cs_auto_preserve_1120): a child-safety report now keeps the
+   * case's restricted copy at once, when the report arrives (same data, same 1-year hold as the deletion hold).
+   * Privacy's Data Retention adds one sentence; no Terms text. OFF until the row is applied LIVE (coordinator's
+   * ship notes); then node scripts/flip-switch.mjs csAutoPreserve --day "<apply day>". A server fact: LIVE, never
+   * PRIVACY_AHEAD. If the row is rolled back: --undo.
+   */
+  csAutoPreserve: false,
 }
 
 /**
@@ -2300,6 +2308,8 @@ export const DRAWINGS_1120_DAY = 'November 20, 2026'
 export const TESTER_ONBOARD_DAY = 'November 21, 2026'
 /** LIVE.guestSaveBeforeBuy's day in both Last Updated dates: the day round 14 (app guest-save-before-buy-1120) is published and the site goes up with it (set by flip-switch --day). */
 export const GUEST_SAVE_BEFORE_BUY_DAY = 'November 22, 2026'
+/** LIVE.csAutoPreserve's day in PRIVACY_LAST_UPDATED only: the day 20261231999727 is applied and the site goes up with it (set by flip-switch --day). */
+export const CS_AUTO_PRESERVE_DAY = 'November 20, 2026'
 /** The latest of several "Month D, YYYY" days (null skipped): a switch's day can then move a date whatever the chain's order. */
 const latestOf = (...days: Array<string | null>): string =>
   days.reduce<string>((a, b) => (b !== null && Date.parse(b) > Date.parse(a) ? b : a), days[0] as string)
@@ -2945,7 +2955,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
