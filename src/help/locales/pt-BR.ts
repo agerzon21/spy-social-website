@@ -260,6 +260,7 @@ const ptBR: HelpText = {
                 ...(o.launch
                   ? []
                   : ['Os títulos das Noites de Jogos do beta viraram contagens nesses títulos. No reset antes do lançamento, o Intel da Noite de Jogos que você ganhou volta inteiro, mesmo que tenha gastado, e seus títulos ★ continuam. As interceptações da Noite de Jogos e os itens delas são apagados como todo o resto.']),
+                "Na aba <b>Noite de Jogos</b>, <b>Como o Intel da Noite de Jogos funciona</b> explica como ganhar e gastar Intel.",
               ],
             },
             ]
@@ -346,6 +347,7 @@ const ptBR: HelpText = {
                 "Na Máfia com mais de um espião, toque em <b>CANAL DOS ESPIÕES</b> para conversar em particular com os outros espiões (o canal fecha enquanto um espião tenta adivinhar o segredo): na sua carta antes de começar, depois na barra de cima, ou ao lado do chat numa votação. Basta um toque; um número mostra as mensagens novas, e uma mensagem de outro espião diz “… está tentando falar com você”.",
                 "A etiqueta vermelha fica nas fotos dos outros espiões a partida toda. Os locais nunca veem as etiquetas, o botão nem o chat.",
                 "Numa chamada de voz? Ative <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para o microfone não captar o som de revelação de um espião. O app só pergunta isso (<b>Jogando em chamada?</b>) numa sala privada <b>Online</b>.",
+                "Toda carta de papel virada para baixo tem o mesmo verso: uma carta azul-marinho e dourada. Nada nela mostra o seu papel.",
               ],
             },
             {
@@ -646,10 +648,18 @@ const ptBR: HelpText = {
                 'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
                 ...(o.u6153 ? ["O fundo Lendário da Noite de Jogos é <b>Apagão</b>, que antes se chamava Sala dos Fundos. A cena de descanso dele é <b>Rain Window</b>."] : []),
                 'Uma comprada espera em <b>Para abrir</b>. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
+                "Toque em <b>O que tem dentro</b> em um nível para ver as chances por raridade. Mostra só as chances, não a lista de itens.",
               ],
             },
             ]
           : []),
+        {
+          id: 'change-your-look',
+          q: "Como ordeno e filtro em Mudar o visual?",
+          a: [
+            "Em <b>Mudar o visual</b>, a caixa <b>Ordenar e filtrar</b> define a ordem e um filtro de raridade. Os dois continuam ao trocar de categoria, e um indicador mostra quando há filtro ligado.",
+          ],
+        },
         {
           id: 'duplicates',
           q: 'O que faço com os repetidos?',
@@ -773,6 +783,7 @@ const ptBR: HelpText = {
             "Envie um para a <b>Comunidade</b> e nós o analisamos em até 72 horas: primeiro uma verificação automática lê o texto, depois uma pessoa decide. Ele mostra <b>Em análise</b>, depois <b>Na comunidade</b>, ou <b>Precisa de ajustes</b> com o motivo: ajuste e envie de novo.",
             "Pacotes populares podem ficar <b>Em destaque</b>. Outros membros adicionam pacotes da comunidade a <b>Meus pacotes</b> para jogar nas próprias salas.",
             "Jogadores com menos de 18 anos não recebem nossa resposta entre 22h e 7h.",
+            "A página de um pacote mostra a foto do autor e <b>por nome</b>: toque para abrir o perfil, ou toque em <b>Mais de nome</b> para ver os outros pacotes.",
           ],
         },
         ...(o.u6153

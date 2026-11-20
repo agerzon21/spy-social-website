@@ -256,6 +256,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
               ...(o.launch
                 ? []
                 : ["Les titres des soirées jeux de la bêta se sont ajoutés au compteur de ces titres. À la remise à zéro avant le lancement, l'Intel de soirée jeux que tu as gagné revient en entier, même si tu l'as dépensé, et tes titres ★ restent. Les interceptions de soirée jeux et leurs objets repartent de zéro comme tout le reste."]),
+              "Dans l’onglet <b>Soirée jeux</b>, <b>Comment fonctionne l’Intel de Soirée jeux</b> explique comment gagner et dépenser l’Intel.",
             ],
           },
           ]
@@ -342,6 +343,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
               "En mode Mafia avec plus d'un espion, appuie sur <b>CANAL DES ESPIONS</b> pour discuter en privé avec les autres espions (le canal est fermé pendant qu'un espion devine le secret) : sur ta carte avant le début, puis dans la barre du haut, ou à côté du chat pendant un vote. Un seul appui suffit ; un chiffre montre les nouveaux messages, et un message d'un autre espion s'annonce par « … essaie de te joindre ».",
               "L'étiquette rouge reste sur les photos des autres espions toute la partie. Les locaux ne voient ni les étiquettes, ni le bouton, ni le chat.",
               "En appel vocal ? Active <b>Même son pour tous les rôles</b> (Réglages, Son et musique) pour que ton micro ne capte pas le son de révélation d'un espion. L'appli ne te le demande (<b>Tu joues en appel ?</b>) que dans un salon privé <b>En ligne</b>.",
+              "Toutes les cartes de rôle face cachée ont le même dos : une carte bleu marine et or. Rien dessus ne révèle ton rôle.",
             ],
           },
           {
@@ -642,10 +644,18 @@ const sections = (o: HelpOpts): HelpSection[] => [
               "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
               ...(o.u6153 ? ["Le fond Légendaire de la soirée jeux est <b>Black-out</b>, qui s'appelait avant L'Arrière-salle. Sa scène de repos est <b>Rain Window</b>."] : []),
               "Une interception achetée attend dans <b>À ouvrir</b>. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
+              "Touche <b>Contenu</b> sur un palier pour voir les probabilités par rareté. Seules les probabilités sont affichées, pas la liste des objets.",
             ],
           },
           ]
         : []),
+      {
+        id: 'change-your-look',
+        q: "Comment trier et filtrer dans Changer de look ?",
+        a: [
+          "Dans <b>Changer de look</b>, la boîte <b>Trier et filtrer</b> règle l’ordre et un filtre de rareté. Les deux restent quand tu changes de catégorie, et un indicateur montre qu’un filtre est actif.",
+        ],
+      },
       {
         id: 'duplicates',
         q: 'Que faire des doublons ?',
@@ -769,6 +779,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Envoie-en un à la <b>Communauté</b> et on le vérifie sous 72 heures : une vérification automatique lit d'abord le texte, puis une personne décide. Il affiche <b>En vérification</b>, puis <b>Dans la communauté</b>, ou <b>À modifier</b> avec la raison : corrige-le et renvoie-le.",
           "Les packs populaires peuvent passer <b>À la une</b>. Les autres membres ajoutent des packs de la communauté à <b>Mes packs</b> pour y jouer dans leurs salons.",
           "Les joueurs de moins de 18 ans ne reçoivent pas notre réponse entre 22 h et 7 h.",
+          "La page d’un pack affiche la photo de son auteur et <b>par nom</b> : touche-le pour ouvrir son profil, ou touche <b>Autres packs : nom</b>.",
         ],
       },
       ...(o.u6153
