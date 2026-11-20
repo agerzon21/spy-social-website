@@ -295,7 +295,7 @@ const es: HelpText = {
           q: "¿Puedo jugar a SpySocial en un ordenador?",
           a: [
             "Sí: abre play.spysocial.app en un navegador. Es el mismo juego y la misma cuenta que en el teléfono: inicia sesión o empieza como invitado.",
-            o.browserPlay ? "Las salas, Jugar en línea y la Noche de juego también funcionan en el navegador." : "Por ahora, jugar en el navegador solo está abierto a los probadores que invitamos. El resto puede iniciar sesión y usar la parte de la cuenta (Cuenta, tu agente, ajustes, Cómo jugar), y ve <b>Browser Play Coming Soon</b> donde empezaría una partida. Avisaremos cuando el juego en el navegador se abra a todos.",
+            o.browserPlay ? "Las salas, Jugar en línea y la Noche de juego también funcionan en el navegador." : "Por ahora, jugar en el navegador solo está abierto a los probadores que invitamos. Los demás pueden iniciar sesión y usar la parte de la cuenta (Cuenta, tu agente, ajustes, Cómo jugar), y ven <b>Jugar en el navegador, muy pronto</b> donde empezaría una partida. Avisaremos cuando el juego en el navegador se abra a todos.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -303,7 +303,7 @@ const es: HelpText = {
             id: 'report-translation',
             q: "Una traducción es incorrecta. ¿Cómo la reporto?",
             a: [
-              "Bajo un mensaje traducido, toca <b>Ver original</b> para leer lo que escribió el jugador. Las traducciones son automáticas y pueden fallar con jerga o bromas.",
+              "Debajo de un mensaje traducido, toca <b>Ver original</b> para leer lo que escribió el jugador. Las traducciones son automáticas y pueden fallar con jerga o bromas.",
               "No hay botón para reportar traducciones: <b>Reportar</b> es para infracciones de las normas. Para avisarnos de una mala traducción, escribe a <email/> con una captura del mensaje y los dos idiomas.",
             ],
           },
@@ -723,8 +723,8 @@ const es: HelpText = {
             id: 'after-launch-reset',
             q: "¿Adónde fueron mi Intel y mis objetos de la beta?",
             a: [
-              "Antes del lanzamiento, el 7 de diciembre, se restableció todo lo de las versiones de prueba: Intel, Intercepts, objetos, tratos del Mercado Negro, intercambios y membresías de prueba. Todos empezaron el lanzamiento de cero.",
-              "Se quedaron tu cuenta, amigos, packs, XP, nivel, logros, estadísticas, títulos de códigos y lo que compraste en una tienda. Los probadores conservaron el <b>Beta Pin</b> y recibieron sus recompensas de agradecimiento (mira la pregunta del agradecimiento a probadores).",
+              "Antes del lanzamiento, el 7 de diciembre, se restableció todo lo de las versiones de prueba: Intel, intercepciones, objetos, ofertas del Mercado Negro, intercambios y membresías de prueba. Todos empezaron de cero en el lanzamiento.",
+              "Se conservan tu cuenta, tus amigos, tus paquetes, tu XP, tu nivel, tus logros, tus estadísticas, los títulos que ganaste con códigos y lo que compraste en la tienda. Los probadores conservaron el <b>Beta Pin</b> y recibieron sus recompensas de agradecimiento (mira «¿Dónde están mis recompensas de la beta?»).",
               "¿Crees que algo falla? Escribe a <email/> con tu nombre de usuario.",
             ],
           },
@@ -1032,7 +1032,7 @@ const es: HelpText = {
           q: "Alguien pone en riesgo a un menor. ¿Qué hago?",
           a: [
             "Si un menor está en peligro inmediato, llama primero a tu número de emergencias: 999 en el Reino Unido, 911 en EE. UU., 112 en la UE.",
-            "Después reporta al jugador en la app (mantén pulsada su tarjeta, luego <b>Reportar</b>, y elige <b>Seguridad infantil</b>) y escribe a <email/> con «Child safety» en el asunto. Eliminamos el contenido, bloqueamos las cuentas involucradas y lo reportamos al National Center for Missing & Exploited Children (NCMEC), como exige la ley de EE. UU. Nuestra <safety>página de seguridad</safety> dice más.",
+            "Después reporta al jugador en la app (mantén pulsada su tarjeta, luego <b>Reportar</b>, y elige <b>Seguridad infantil</b>) y escribe a <email/> con «Child safety» en el asunto. Eliminamos el contenido, bloqueamos las cuentas involucradas y lo reportamos al National Center for Missing & Exploited Children (NCMEC), como exige la ley de EE. UU. Nuestra <safety>página de seguridad</safety> da más detalles.",
           ],
         },
         {

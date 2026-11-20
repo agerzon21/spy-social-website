@@ -295,7 +295,7 @@ const ptBR: HelpText = {
           q: "Posso jogar SpySocial no computador?",
           a: [
             "Sim: abra play.spysocial.app em um navegador. É o mesmo jogo e a mesma conta do celular: entre ou comece como convidado.",
-            o.browserPlay ? "Salas, Jogar online e a Noite de jogo também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores que convidamos. Os demais podem entrar e usar a parte da conta (Conta, seu agente, configurações, Como jogar), e veem <b>Browser Play Coming Soon</b> onde uma partida começaria. Avisaremos quando o jogo no navegador abrir para todos.",
+            o.browserPlay ? "Salas, Jogar online e a Noite de jogo também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores que convidamos. Os demais podem entrar e usar a parte da conta (Conta, seu agente, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. Avisaremos quando o jogo no navegador abrir para todos.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -303,8 +303,8 @@ const ptBR: HelpText = {
             id: 'report-translation',
             q: "Uma tradução está errada. Como denuncio?",
             a: [
-              "Sob uma mensagem traduzida, toque em <b>Ver original</b> para ler o que a pessoa escreveu. As traduções são automáticas e podem errar gírias ou piadas.",
-              "Não há botão para denunciar tradução: <b>Denunciar</b> é para quebra de regras. Para nos contar de uma tradução ruim, escreva para <email/> com uma captura da mensagem e os dois idiomas.",
+              "Abaixo de uma mensagem traduzida, toque em <b>Ver original</b> para ler o que a pessoa escreveu. As traduções são automáticas e podem errar gírias ou piadas.",
+              "Não há botão para denunciar traduções: <b>Denunciar</b> é para quebras de regras. Para nos avisar sobre uma tradução ruim, escreva para <email/> com uma captura da mensagem e os dois idiomas.",
             ],
           },
         ] : []),
@@ -721,10 +721,10 @@ const ptBR: HelpText = {
         ...(o.launch ? [
           {
             id: 'after-launch-reset',
-            q: "Para onde foram meu Intel e itens da beta?",
+            q: "Para onde foram meu Intel e meus itens da beta?",
             a: [
-              "Antes do lançamento, em 7 de dezembro, tudo das versões de teste foi zerado: Intel, Intercepts, itens, negócios do Mercado Negro, trocas e assinaturas de teste. Todos começaram o lançamento do zero.",
-              "Ficaram sua conta, amigos, packs, XP, nível, conquistas, estatísticas, títulos de códigos e o que você comprou em uma loja. Os testadores mantiveram o <b>Beta Pin</b> e receberam as recompensas de agradecimento (veja a pergunta sobre o agradecimento aos testadores).",
+              "Antes do lançamento, em 7 de dezembro, tudo das versões de teste foi zerado: Intel, interceptações, itens, ofertas do Mercado Negro, trocas e assinaturas de teste. Todo mundo começou do zero no lançamento.",
+              "Continuam com você sua conta, seus amigos, seus pacotes, XP, nível, conquistas, estatísticas, títulos ganhos com códigos e o que você comprou na loja. Os testadores mantiveram o <b>Beta Pin</b> e receberam as recompensas de agradecimento (veja «Onde estão minhas recompensas do beta?»).",
               "Acha que algo está errado? Escreva para <email/> com seu nome de usuário.",
             ],
           },
@@ -873,7 +873,7 @@ const ptBR: HelpText = {
         },
         {
           id: 'charged-no-membership',
-          q: "Fui cobrado mas não tenho assinatura, ou fui cobrado duas vezes.",
+          q: "Me cobraram, mas não tenho assinatura, ou me cobraram duas vezes.",
           a: [
             "Primeiro toque em <b>Restaurar compras</b> no app com o celular conectado à conta da App Store ou do Google Play com que você pagou. Ele coloca a assinatura na conta do SpySocial que você está usando.",
             "Cobrança em dobro, ou quer o dinheiro de volta? A Apple e o Google cuidam dos reembolsos: peça à Apple em reportaproblem.apple.com, ou ao Google pelo histórico de pedidos do Google Play.",
@@ -1032,7 +1032,7 @@ const ptBR: HelpText = {
           q: "Alguém está colocando uma criança em risco. O que faço?",
           a: [
             "Se uma criança está em perigo imediato, ligue primeiro para o número de emergência do seu país: 999 no Reino Unido, 911 nos EUA, 112 na UE.",
-            "Depois denuncie o jogador no app (toque e segure o cartão dele, depois <b>Denunciar</b>, e escolha <b>Segurança infantil</b>) e escreva para <email/> com “Child safety” no assunto. Removemos o conteúdo, banimos as contas envolvidas e denunciamos ao National Center for Missing & Exploited Children (NCMEC), como a lei dos EUA exige. Nossa <safety>página de segurança</safety> diz mais.",
+            "Depois denuncie o jogador no app (toque e segure o cartão do jogador, depois <b>Denunciar</b>, e escolha <b>Segurança infantil</b>) e escreva para <email/> com “Child safety” no assunto. Removemos o conteúdo, banimos as contas envolvidas e denunciamos ao National Center for Missing & Exploited Children (NCMEC), como a lei dos EUA exige. Nossa <safety>página de segurança</safety> dá mais detalhes.",
           ],
         },
         {

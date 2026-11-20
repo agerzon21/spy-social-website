@@ -294,8 +294,8 @@ const id: HelpText = {
           id: 'browser-play',
           q: "Bisakah saya main SpySocial di komputer?",
           a: [
-            "Bisa: buka play.spysocial.app di peramban. Permainan dan akunnya sama dengan di ponselmu: masuk, atau mulai sebagai tamu.",
-            o.browserPlay ? "Ruangan, Main Online, dan Malam Permainan juga berjalan di peramban." : "Untuk sekarang, bermain di peramban hanya terbuka untuk penguji yang kami undang. Pemain lain bisa masuk dan memakai sisi akun (Akun, agenmu, pengaturan, Cara Bermain), dan melihat <b>Browser Play Coming Soon</b> di tempat permainan akan dimulai. Kami akan mengumumkannya saat bermain di peramban dibuka untuk semua orang.",
+            "Bisa: buka play.spysocial.app di browser. Permainan dan akunnya sama dengan di ponselmu: masuk, atau mulai sebagai tamu.",
+            o.browserPlay ? "Ruangan, Main Online, dan Malam Permainan juga berjalan di browser." : "Untuk sekarang, bermain di browser hanya terbuka untuk penguji yang kami undang. Pemain lain bisa masuk dan memakai sisi akun (Akun, agenmu, pengaturan, Cara Bermain), dan melihat <b>Main di browser segera hadir</b> di tempat permainan akan dimulai. Kami akan mengumumkannya saat bermain di browser dibuka untuk semua orang.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -304,7 +304,7 @@ const id: HelpText = {
             q: "Terjemahannya salah. Bagaimana melaporkannya?",
             a: [
               "Di bawah pesan yang diterjemahkan, ketuk <b>Lihat aslinya</b> untuk membaca tulisan pemain. Terjemahan otomatis dan bisa salah pada slang atau candaan.",
-              "Tidak ada tombol lapor untuk terjemahan: <b>Laporkan</b> untuk pelanggaran aturan. Untuk memberi tahu kami soal terjemahan yang buruk, kirim email ke <email/> dengan tangkapan layar pesannya dan kedua bahasanya.",
+              "Tidak ada tombol lapor untuk terjemahan: <b>Laporkan</b> dipakai untuk pelanggaran aturan. Untuk memberi tahu kami soal terjemahan yang buruk, kirim email ke <email/> dengan tangkapan layar pesannya dan kedua bahasanya.",
             ],
           },
         ] : []),
@@ -723,8 +723,8 @@ const id: HelpText = {
             id: 'after-launch-reset',
             q: "Ke mana Intel dan item beta saya?",
             a: [
-              "Sebelum peluncuran, pada 7 Desember, semua dari versi uji coba direset: Intel, Intercept, item, kesepakatan Pasar Gelap, perdagangan, dan keanggotaan uji coba. Semua orang memulai peluncuran dari nol.",
-              "Akun, teman, pak, XP, level, pencapaian, statistik, gelar dari kode, dan apa pun yang kamu beli di toko tetap ada. Para penguji tetap memegang <b>Beta Pin</b> dan menerima hadiah terima kasih (lihat pertanyaan tentang terima kasih untuk penguji).",
+              "Sebelum peluncuran, pada 7 Desember, semua dari versi uji coba direset: Intel, sadapan, item, penawaran Pasar Gelap, pertukaran, dan keanggotaan uji coba. Semua orang memulai peluncuran dari nol.",
+              "Akun, teman, paket, XP, level, pencapaian, statistik, gelar dari kode, dan apa pun yang kamu beli di toko tetap ada. Para penguji tetap memiliki <b>Beta Pin</b> dan menerima hadiah terima kasih (lihat «Di mana hadiah penguji betaku?»).",
               "Merasa ada yang salah? Kirim email ke <email/> dengan nama penggunamu.",
             ],
           },
@@ -1031,7 +1031,7 @@ const id: HelpText = {
           id: 'child-safety-urgent',
           q: "Seseorang membahayakan anak. Apa yang harus saya lakukan?",
           a: [
-            "Jika anak dalam bahaya langsung, hubungi nomor darurat setempat lebih dulu: 999 di Inggris, 911 di AS, 112 di UE.",
+            "Jika anak dalam bahaya mendesak, hubungi nomor darurat setempat lebih dulu: 999 di Inggris, 911 di AS, 112 di UE.",
             "Lalu laporkan pemainnya di aplikasi (tekan lama kartunya, lalu <b>Laporkan</b>, dan pilih <b>Keselamatan anak</b>) dan kirim email ke <email/> dengan subjek “Child safety”. Kami menghapus kontennya, memblokir akun yang terlibat, dan melaporkannya ke National Center for Missing & Exploited Children (NCMEC) sesuai ketentuan hukum AS. <safety>Halaman keselamatan</safety> kami menjelaskan lebih lanjut.",
           ],
         },
