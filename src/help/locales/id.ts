@@ -154,7 +154,7 @@ const id: HelpText = {
             'Tebakan benar membuat semua mata-mata menang. Tebakan salah, atau waktu habis, membuat mata-mata itu gugur. Kalau dia yang terakhir, warga menang.',
             'Semua orang melihat siapa yang menebak, jadi kamu ketahuan.',
             "Kamu menebak sendiri: chat-mu ditutup sampai kamu mengonfirmasi.",
-            'Kalau <b>Satu Kali Tebak</b> aktif (room privat dan Malam Permainan yang mengaktifkannya), tim mata-mata hanya punya satu tebakan: salah sekali, seluruh tim kalah.',
+            'Kalau <b>Satu Tembakan</b> aktif (room privat dan Malam Permainan yang mengaktifkannya), tim mata-mata hanya punya satu tebakan: salah sekali, seluruh tim kalah.',
           ],
         },
         {
@@ -166,7 +166,7 @@ const id: HelpText = {
             'Keluar dihitung seperti tersingkir lewat voting: jika mata-mata terakhir keluar, warga menang; jika terlalu banyak warga keluar, mata-mata menang. Jika itu terjadi sebelum pertanyaan selesai (di Spy Sketch, pada ronde pertama), permainan menampilkan “Tidak ada hasil” dan tidak dihitung.',
             "<b>Voting terakhir:</b> kalau tersisa tepat satu mata-mata, semua memilih sekali lagi saat waktu habis, saat tak ada lagi yang punya jatah voting, atau saat kesempatan terakhir untuk memulai voting sudah lewat. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat. Meja Main online atau Malam Permainan juga bisa memainkannya saat tersisa dua mata-mata: tangkap salah satunya, warga menang.",
             "Hasil voting terakhir terbuka di bawah pita merah <b>Voting terakhir</b> beserta alasannya: “Waktu sudah bicara”, “Jatah voting sudah habis”, atau “Kesempatan terakhir sudah lewat”.",
-            "<b>Informan</b> (Spy Talk dan Spy Sketch, room privat dan Malam Permainan yang mengaktifkannya, dengan minimal 2 mata-mata dan 6 pemain): kartu satu warga bertuliskan <b>Kamu tahu: Nama adalah mata-mata</b>, dengan satu mata-mata disebut, meski jumlahnya lebih. Kartu warga lain ikut menghitung informan, seperti “2 mata-mata · 1 informan”. Saat warga menang lewat voting atau tebakan salah mata-mata terakhir, para mata-mata, termasuk yang tertangkap, punya 30 detik untuk menyebut informannya dan mencuri kemenangan. Tidak berlaku setelah tebakan meleset dengan <b>Satu Kali Tebak</b>, atau saat mata-mata terakhir keluar.",
+            "<b>Informan</b> (Spy Talk dan Spy Sketch, room privat dan Malam Permainan yang mengaktifkannya, dengan minimal 2 mata-mata dan 6 pemain): kartu satu warga bertuliskan <b>Kamu tahu: Nama adalah mata-mata</b>, dengan satu mata-mata disebut, meski jumlahnya lebih. Kartu warga lain ikut menghitung informan, seperti “2 mata-mata · 1 informan”. Saat warga menang lewat voting atau tebakan salah mata-mata terakhir, para mata-mata, termasuk yang tertangkap, punya 30 detik untuk menyebut informannya dan mencuri kemenangan. Tidak berlaku setelah tebakan meleset dengan <b>Satu Tembakan</b>, atau saat mata-mata terakhir keluar.",
           ],
         },
         {
@@ -176,7 +176,7 @@ const id: HelpText = {
             "<b>Jatah voting:</b> tiap pemain bisa memulai 1, 2, atau 3 voting per permainan, atau tanpa batas (room baru mulai di 1). Saat voting menangkap mata-mata, semua yang sudah memakai jatahnya mendapat satu kembali.",
             "Kalau tak ada pemain tersisa yang masih punya jatah, jam permainan melompat ke 5 detik terakhir. Kalau sisa jatah tidak lebih banyak dari mata-mata yang tersisa, ada kesempatan terakhir 15 detik untuk memulai voting. Kalau tak ada yang memulai voting tepat waktu, voting terakhir menyusul jika aktif (lihat cara tiap pihak menang, di atas); kalau tidak, mata-mata menang.",
             "<b>Jejak Kertas:</b> saat mata-mata tersingkir lewat voting, semua melihat pilihan voting-nya sepanjang permainan. Kalau peran tidak dibuka saat tersingkir, jejaknya menunggu sampai permainan selesai.",
-            "<b>Satu Kali Tebak</b> dan <b>Informan</b>: lihat di atas, di tebakan mata-mata dan cara tiap pihak menang.",
+            "<b>Satu Tembakan</b> dan <b>Informan</b>: lihat di atas, di tebakan mata-mata dan cara tiap pihak menang.",
             "<b>Tanya jawab lisan</b> punya jawabannya sendiri di atas. Di aplikasi, <b>Cara bermain</b> › <b>Fitur & Pengaturan</b> punya demo singkat untuk tiap aturan.",
           ],
         },

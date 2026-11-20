@@ -150,7 +150,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Bonne réponse : tous les espions gagnent. Mauvaise réponse, ou temps écoulé : cet espion est éliminé. Si c'était le dernier, les locaux gagnent.",
           'Tout le monde voit qui devine : ça te trahit.',
           "Tu devines sans aide : ton chat reste fermé jusqu’à ta confirmation.",
-          "Avec <b>Une seule tentative</b> (salons privés et soirées jeux qui l'activent), l'équipe des espions n'a qu'un essai : raté, et c'est toute l'équipe qui perd.",
+          "Avec <b>Une seule balle</b> (salons privés et soirées jeux qui l'activent), l'équipe des espions n'a qu'un essai : raté, et c'est toute l'équipe qui perd.",
         ],
       },
       {
@@ -162,7 +162,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Partir compte comme être éliminé par un vote : si le dernier espion part, les locaux gagnent ; si trop de locaux partent, les espions gagnent. Si cela arrive avant la fin des questions (dans Spy Sketch, au premier tour), la partie affiche « Pas de résultat » et ne compte pas.",
           "<b>Vote final :</b> s'il reste exactement un espion, tout le monde vote une dernière fois quand le temps est écoulé, quand plus personne n'a de vote à lancer ou quand la dernière chance d'en lancer un est passée. Si l'espion est démasqué, les locaux gagnent. Il est actif dans Jouer en ligne, et c'est un réglage dans les salons privés. Une table de Jouer en ligne ou une soirée jeux peut aussi le jouer avec deux espions : démasque l'un des deux et les locaux gagnent.",
           "Les résultats d'un vote final s'ouvrent sous un ruban rouge <b>Vote final</b> qui dit pourquoi : « Le chrono a parlé », « Plus aucun vote à lancer » ou « La dernière chance est passée ».",
-          "<b>Informateur</b> (Spy Talk et Spy Sketch, salons privés et soirées jeux qui l'activent, avec au moins 2 espions et 6 joueurs) : la carte d'un local dit <b>Tu sais : Nom fait partie des espions</b>, avec un seul espion nommé, même s'il y en a plus. Les cartes des autres locaux comptent l'informateur, comme « 2 espions · 1 informateur ». Quand les locaux gagnent par un vote ou par la mauvaise réponse du dernier espion, les espions, même démasqués, ont 30 secondes pour désigner l'informateur et voler la victoire. Pas après un raté avec <b>Une seule tentative</b>, ni quand le dernier espion s'en va.",
+          "<b>Informateur</b> (Spy Talk et Spy Sketch, salons privés et soirées jeux qui l'activent, avec au moins 2 espions et 6 joueurs) : la carte d'un local dit <b>Tu sais : Nom fait partie des espions</b>, avec un seul espion nommé, même s'il y en a plus. Les cartes des autres locaux comptent l'informateur, comme « 2 espions · 1 informateur ». Quand les locaux gagnent par un vote ou par la mauvaise réponse du dernier espion, les espions, même démasqués, ont 30 secondes pour désigner l'informateur et voler la victoire. Pas après un raté avec <b>Une seule balle</b>, ni quand le dernier espion s'en va.",
         ],
       },
       {
@@ -172,7 +172,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "<b>Votes par partie :</b> chaque joueur peut lancer 1, 2 ou 3 votes par partie, ou sans limite (un nouveau salon commence à 1). Quand un vote démasque un espion, chaque joueur qui en a lancé un le récupère.",
           "Quand plus personne encore en jeu n'a de vote à lancer, le chrono de la partie saute à ses 5 dernières secondes. Quand il reste autant de votes que d'espions en jeu, ou moins, une dernière chance de 15 secondes permet d'en lancer un. Si personne n'en lance un à temps, un vote final suit s'il est actif (vois comment chaque camp gagne, plus haut) ; sinon, les espions gagnent.",
           "<b>Trace écrite :</b> quand un espion est éliminé par un vote, tout le monde voit comment il a voté pendant toute la partie. Si les rôles ne sont pas révélés à l'élimination, elle attend la fin de la partie.",
-          "<b>Une seule tentative</b> et <b>Informateur</b> : voir plus haut, la réponse de l'espion et comment chaque camp gagne.",
+          "<b>Une seule balle</b> et <b>Informateur</b> : voir plus haut, la réponse de l'espion et comment chaque camp gagne.",
           "<b>Parler à voix haute</b> a sa propre réponse plus haut. Dans l'appli, <b>Comment jouer</b> › <b>Options et réglages</b> montre une courte démo de chaque règle.",
         ],
       },

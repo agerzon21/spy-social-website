@@ -87,7 +87,7 @@ const es: PressStrings = {
     eyebrow: 'Para familias y plataformas',
     title: 'Seguridad',
     points: [
-      'SpySocial es para mayores de 13 años.',
+      'SpySocial es para personas de 13 años en adelante.',
       'Los jugadores solo chatean dentro de una sala o un grupo, con las personas que están en él. No hay mensajes directos.',
       'Los filtros del chat bloquean insultos y amenazas. En cualquier sala con un jugador menor de 18 años, los enlaces, los correos, los números de teléfono y las redes sociales se bloquean para todos.',
       'En las mesas de Jugar en línea, los desconocidos ven un color de agente, no un nombre.',

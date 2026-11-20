@@ -11,7 +11,7 @@ const ptBR: PressStrings = {
     eyebrow: 'Em um parágrafo',
     title: 'Sobre o SpySocial',
     short: (day, out) =>
-      `SpySocial é um jogo de festa gratuito de blefe e dedução para 3 a 21 jogadores, cada um no seu celular ou tablet. Todo mundo sabe o segredo, menos os espiões. No Spy Talk o segredo é um local, e os jogadores se revezam fazendo e respondendo perguntas. No Spy Sketch é uma palavra, e os jogadores se revezam desenhando-a num mesmo quadro enquanto os espiões disfarçam. Depois, a mesa vota. A versão 2.2 ${out ? 'chegou' : 'chega'} ao iPhone, iPad e Android em ${day}, com Spy Sketch, mesas do Jogar online, um tutorial guiado, Noites de jogos, amigos, trocas e 10 idiomas. Não tem anúncios, e a única coisa à venda é um plano de membro opcional.`,
+      `SpySocial é um jogo de festa gratuito de blefe e dedução para 3 a 21 jogadores, cada um no seu celular ou tablet. Todo mundo sabe o segredo, menos os espiões. No Spy Talk o segredo é um local, e os jogadores se revezam fazendo e respondendo perguntas. No Spy Sketch é uma palavra, e os jogadores se revezam desenhando-a num mesmo quadro enquanto os espiões disfarçam. Depois, a mesa vota. A versão 2.2 ${out ? 'chegou' : 'chega'} ao iPhone, iPad e Android em ${day}, com Spy Sketch, mesas do Jogar online, um tutorial guiado, Noites de Jogos, amigos, trocas e 10 idiomas. Não tem anúncios, e a única coisa à venda é um plano de membro opcional.`,
     moreTitle: 'A versão completa',
     sections: [
       {
@@ -20,7 +20,7 @@ const ptBR: PressStrings = {
       },
       {
         title: 'Jeitos de jogar',
-        text: 'As salas privadas recebem até 21 pessoas, com regras e pacotes próprios, e os amigos entram por QR code, link de convite ou código da sala. O Jogar online coloca você numa mesa de 4 ou 8, onde estranhos se veem como cores de agente, como Agente Turquesa, e não pelo nome. A Noite de jogos é um evento online com data marcada e títulos que só dá para ganhar naquela noite. Quem é novo começa com um tutorial guiado de uns três minutos e depois joga partidas de treino contra agentes de IA, com nota de A a F.',
+        text: 'As salas privadas recebem até 21 pessoas, com regras e pacotes próprios, e os amigos entram por QR code, link de convite ou código da sala. O Jogar online coloca você numa mesa de 4 ou 8, onde estranhos se veem como cores de agente, como Agente Turquesa, e não pelo nome. A Noite de Jogos é um evento online com data marcada e títulos que só dá para ganhar naquela noite. Quem é novo começa com um tutorial guiado de uns três minutos e depois joga partidas de treino contra agentes de IA, com nota de A a F.',
       },
       {
         title: '10 idiomas',
@@ -32,7 +32,7 @@ const ptBR: PressStrings = {
       },
       {
         title: 'Grátis, com uma única coisa à venda',
-        text: 'Não tem anúncios. Spy Talk, Spy Sketch, a Noite de jogos, as interceptações, as trocas e o Mercado Negro são grátis. A única coisa à venda é um plano de membro opcional: a assinatura mensal ou anual, ou o Vitalício (pagamento único). Ele libera todos os pacotes premium para todo mundo nas salas em que o membro é anfitrião ou na mesa dele no Jogar online, e inclui o criador de pacotes, 50% a mais de XP e mesas só para membros. Não vendemos pacotes avulsos nem combos, e interceptações e Intel nunca são vendidas.',
+        text: 'Não tem anúncios. Spy Talk, Spy Sketch, a Noite de Jogos, as interceptações, as trocas e o Mercado Negro são grátis. A única coisa à venda é um plano de membro opcional: a assinatura mensal ou anual, ou o Vitalício (pagamento único). Ele libera todos os pacotes premium para todo mundo nas salas em que o membro é anfitrião ou na mesa dele no Jogar online, e inclui o criador de pacotes, 50% a mais de XP e mesas só para membros. Não vendemos pacotes avulsos nem combos, e interceptações e Intel nunca são vendidas.',
       },
     ],
   },
@@ -87,7 +87,7 @@ const ptBR: PressStrings = {
     eyebrow: 'Para pais e plataformas',
     title: 'Segurança',
     points: [
-      'O SpySocial é para maiores de 13 anos.',
+      'O SpySocial é para quem tem 13 anos ou mais.',
       'Os jogadores só conversam dentro de uma sala ou de um grupo, com quem está nele. Não existem mensagens diretas.',
       'Os filtros do chat bloqueiam ofensas e ameaças. Em qualquer sala com um jogador menor de 18 anos, links, e-mails, números de telefone e redes sociais ficam bloqueados para todos.',
       'Nas mesas do Jogar online, estranhos veem uma cor de agente, não um nome.',
