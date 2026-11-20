@@ -248,7 +248,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'game-night-rewards',
             q: "Qu'est-ce que je gagne en soirée jeux ?",
             a: [
-              "De l'<b>Intel de soirée jeux</b> pour chaque partie que tu termines : 500 pour une victoire, 200 pour une défaite. L'écran de fin montre ce que tu as gagné.",
+              "De l'<b>Intel de soirée jeux</b> pour chaque partie que tu termines : 500 pour une victoire, 200 pour une défaite, 0 si la partie se termine sans gagnant. L'écran de fin montre ce que tu as gagné.",
               "Pas d'Intel de soirée jeux si tu quittes avant la fin, si tu es retiré de la table ou ne participes pas, si la partie commence après la fermeture de la soirée jeux (une partie lancée à temps et finie plus tard rapporte quand même), si nos contrôles de fair-play signalent la partie, ou à une table avec des spybots. Une partie qui s'arrête tôt parce que quelqu'un est parti ne rapporte rien à personne.",
               "Des <b>titres ★</b> à compteur : <b>★ Infiltré</b> pour chaque partie de soirée jeux terminée, <b>★ Héros local</b> pour chaque victoire en local, <b>★ Espion émérite</b> pour chaque victoire en espion, et <b>★ Agent double</b> pour chaque soirée où tu gagnes des deux côtés. Porte-les avec leur nombre, comme ★ Infiltré ×12.",
               "L'Intel de soirée jeux et les titres ★ sont à toi seul : ils ne s'échangent pas, et le statut de membre n'y ajoute rien. Dépense l'Intel en interceptions de soirée jeux.",
@@ -265,6 +265,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Dans <b>Comment jouer</b>, choisis Spy Talk ou Spy Sketch. <b>Étape 1, Tutoriel :</b> une partie guidée de 3 minutes contre des agents IA. Joue-la côté local ou côté espion : réussir l'un ou l'autre suffit.",
           o.practiceMembers ? "<b>Étape 2, Parties d'entraînement</b> (pour les membres) : des parties complètes de 5 à 9 minutes contre des agents IA, notées de A à F. Elles se débloquent quand tu réussis le tutoriel de ce jeu, et tu peux reprendre là où tu t'es arrêté." : "<b>Étape 2, Parties d'entraînement :</b> des parties complètes de 5 à 9 minutes contre des agents IA, notées de A à F. Elles se débloquent quand tu réussis le tutoriel de ce jeu, et tu peux reprendre là où tu t'es arrêté.",
+          "Chaque étape d'un tutoriel ou d'une partie d'entraînement a une carte de coach qui explique quoi faire. Une fois son bouton principal touché, la commande à utiliser reste éclairée jusqu'à ce qu'elle serve, et on peut quitter depuis n'importe quelle carte.",
           "Chaque jeu en a quatre : côté local ou côté espion, à une table de 4 ou de 8. Un A dans les huit te vaut le titre <b>Sans-faute</b> (comptes sauvegardés seulement).",
           o.launch ? "Réussir le tutoriel d'un jeu ouvre Jouer en ligne pour ce jeu (avec un compte sauvegardé). Les parties d'entraînement ne sont pas nécessaires. La soirée jeux ne le demande jamais." : "Aujourd'hui, aucun des deux n'est nécessaire pour jouer en ligne. La soirée jeux ne le demande jamais.",
         ],
@@ -1111,6 +1112,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Écris à <email/>. Pour ton compte, écris depuis son adresse e-mail. Une personne lit chaque message.",
           'Pour les nouvelles, les soirées jeux et les joueurs qui cherchent une partie, rejoins notre <discord>Discord</discord>.',
+          "Sur l'accueil, le bouton Discord ouvre notre serveur. Il est réservé aux joueurs de 16 ans et plus, et ceux de 16 et 17 ans voient d'abord une courte note de sécurité.",
         ],
       },
     ],

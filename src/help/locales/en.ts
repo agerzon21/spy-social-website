@@ -282,7 +282,7 @@ const en: HelpText = {
               id: 'game-night-rewards',
               q: 'What do I earn at Game Night?',
               a: [
-                '<b>Game Night Intel</b> for every game you finish: 500 for a win, 200 for a loss. Game Over shows what you got.',
+                '<b>Game Night Intel</b> for every game you finish: 500 for a win, 200 for a loss, 0 if the game has no winner. Game Over shows what you got.',
                 "No Game Night Intel if you leave before the end, are removed or don’t take part, if the game starts after Game Night closes (a game that starts in time and ends later still pays), if our fair-play checks flag the game, or at a table with spybots. A game that ends early because someone walked out pays no one.",
                 '<b>★ titles</b> that count up: <b>★ Operative</b> for each Game Night game you finish, <b>★ Local Hero</b> for each win as a Local, <b>★ Master Spy</b> for each win as a spy, and <b>★ Double Agent</b> for each night you win on both sides. Wear one with its count, like ★ Operative ×12.',
                 'Game Night Intel and the ★ titles are yours alone: they can’t be traded, and a membership adds nothing to them. Spend the Intel on Game Night Intercepts.',
@@ -299,6 +299,7 @@ const en: HelpText = {
           a: [
             "In <b>How to Play</b>, pick Spy Talk or Spy Sketch. <b>Step 1, Tutorial:</b> a guided 3-minute game with AI agents. Play it as a Local or as the Spy: passing either one counts.",
             o.practiceMembers ? "<b>Step 2, Practice Games</b> (for members): full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off." : "<b>Step 2, Practice Games:</b> full games of 5 to 9 minutes against AI agents, graded A to F. They unlock when you pass that game’s tutorial, and you can pick up where you left off.",
+            'Each step of a tutorial or Practice Game has a coach card that says what to do. Tap its main button and the control to use stays lit until you do it, and you can leave from any card.',
             "Each game has four: as a Local or as the Spy, at a table of 4 or of 8. An A in all eight earns the <b>Straight A’s</b> title (saved accounts only).",
             o.launch ? "Passing a game’s tutorial opens Play Online for that game (with a saved account). The Practice Games aren’t needed. Game Night never asks." : "You don’t need either one to play online today. Game Night never asks.",
           ],
@@ -1145,6 +1146,7 @@ const en: HelpText = {
           a: [
             'Email <email/>. For anything about your account, write from its email address. A person reads every message.',
             'For news, Game Nights and players looking for a game, join our <discord>Discord</discord>.',
+            'On Home, the Discord button opens our server. It is for players 16 and older, and players 16 and 17 see a short safety note first.',
           ],
         },
       ],

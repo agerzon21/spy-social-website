@@ -252,7 +252,7 @@ const ptBR: HelpText = {
               id: 'game-night-rewards',
               q: 'O que eu ganho na Noite de Jogos?',
               a: [
-                '<b>Intel da Noite de Jogos</b> por cada partida que você termina: 500 por vitória, 200 por derrota. O fim de jogo mostra quanto você ganhou.',
+                '<b>Intel da Noite de Jogos</b> por cada partida que você termina: 500 por vitória, 200 por derrota, 0 se a partida terminar sem vencedor. O fim de jogo mostra quanto você ganhou.',
                 "Não há Intel da Noite de Jogos se você sair antes do fim, for removido da mesa ou não participar, se a partida começar depois do encerramento da Noite de Jogos (uma partida que começa a tempo e termina depois ainda paga), se nossas checagens de jogo limpo marcarem a partida, ou numa mesa com spybots. Uma partida que acaba antes porque alguém saiu não dá nada a ninguém.",
                 '<b>Títulos ★</b> que vão somando: <b>★ Operativo</b> por cada partida da Noite de Jogos que você termina, <b>★ Herói local</b> por cada vitória como local, <b>★ Espião exímio</b> por cada vitória como espião e <b>★ Agente duplo</b> por cada noite em que você ganha dos dois lados. Use o título com a contagem, como ★ Operativo ×12.',
                 'O Intel da Noite de Jogos e os títulos ★ são só seus: não podem ser trocados, e o plano de membro não acrescenta nada a eles. Gaste o Intel em interceptações da Noite de Jogos.',
@@ -269,6 +269,7 @@ const ptBR: HelpText = {
           a: [
             "Em <b>Como jogar</b>, escolha Spy Talk ou Spy Sketch. <b>Passo 1, Tutorial:</b> uma partida guiada de 3 minutos contra agentes de IA. Jogue como local ou como espião: concluir qualquer um dos dois vale.",
             o.practiceMembers ? "<b>Passo 2, Partidas de treino</b> (para membros): partidas completas de 5 a 9 minutos contra agentes de IA, com nota de A a F. Elas são liberadas quando você conclui o tutorial daquele jogo, e dá para continuar de onde parou." : "<b>Passo 2, Partidas de treino:</b> partidas completas de 5 a 9 minutos contra agentes de IA, com nota de A a F. Elas são liberadas quando você conclui o tutorial daquele jogo, e dá para continuar de onde parou.",
+            'Cada passo de um tutorial ou de uma partida de treino tem um cartão de guia que diz o que fazer. Depois de tocar no botão principal dele, o controle a usar continua iluminado até ser usado, e dá para sair de qualquer cartão.',
             "Cada jogo tem quatro: como local ou como espião, numa mesa de 4 ou de 8. Tirar A nas oito dá o título <b>Nota dez</b> (só contas salvas).",
             o.launch ? "Concluir o tutorial de um jogo libera o Jogar online para esse jogo (com uma conta salva). As partidas de treino não são necessárias. A Noite de Jogos nunca pede." : "Hoje você não precisa de nenhum dos dois para jogar online. A Noite de Jogos nunca pede.",
           ],
@@ -1115,6 +1116,7 @@ const ptBR: HelpText = {
           a: [
             'Escreva para <email/>. Para assuntos da sua conta, use o e-mail dela. Uma pessoa lê cada mensagem.',
             'Para novidades, Noites de Jogos e jogadores procurando partida, entre no nosso <discord>Discord</discord>.',
+            'No início, o botão do Discord abre o nosso servidor. Ele é para jogadores de 16 anos ou mais, e quem tem 16 ou 17 anos vê antes uma breve nota de segurança.',
           ],
         },
       ],

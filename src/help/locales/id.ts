@@ -252,7 +252,7 @@ const id: HelpText = {
               id: 'game-night-rewards',
               q: 'Apa yang kudapat di Malam Permainan?',
               a: [
-                '<b>Intel Malam Permainan</b> untuk setiap permainan yang kamu selesaikan: 500 untuk menang, 200 untuk kalah. Layar akhir menampilkan yang kamu dapat.',
+                '<b>Intel Malam Permainan</b> untuk setiap permainan yang kamu selesaikan: 500 untuk menang, 200 untuk kalah, 0 jika permainan berakhir tanpa pemenang. Layar akhir menampilkan yang kamu dapat.',
                 "Tidak ada Intel Malam Permainan kalau kamu keluar sebelum selesai, dikeluarkan dari meja, atau tidak ikut bermain, kalau permainan dimulai setelah Malam Permainan ditutup (permainan yang dimulai tepat waktu dan selesai setelahnya tetap dibayar), kalau pemeriksaan permainan adil kami menandai permainan itu, atau di meja dengan spybot. Permainan yang berakhir lebih awal karena ada yang kabur tidak memberi apa-apa ke siapa pun.",
                 '<b>Gelar ★</b> yang terus bertambah: <b>★ Operatif</b> untuk setiap permainan Malam Permainan yang kamu selesaikan, <b>★ Pahlawan Lokal</b> untuk setiap kemenangan sebagai warga, <b>★ Mata-Mata Ulung</b> untuk setiap kemenangan sebagai mata-mata, dan <b>★ Agen Ganda</b> untuk setiap malam kamu menang di kedua pihak. Pakai gelarnya dengan angkanya, misalnya ★ Operatif ×12.',
                 'Intel Malam Permainan dan gelar ★ hanya milikmu: tidak bisa ditukar, dan keanggotaan tidak menambahkan apa pun. Pakai Intel-nya untuk sadapan Malam Permainan.',
@@ -269,6 +269,7 @@ const id: HelpText = {
           a: [
             "Di <b>Cara bermain</b>, pilih Spy Talk atau Spy Sketch. <b>Langkah 1, Tutorial:</b> permainan berpemandu 3 menit melawan agen AI. Mainkan sebagai warga atau mata-mata: lulus salah satunya sudah cukup.",
             o.practiceMembers ? "<b>Langkah 2, Permainan latihan</b> (khusus anggota): permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir." : "<b>Langkah 2, Permainan latihan:</b> permainan penuh 5 sampai 9 menit melawan agen AI, dinilai A sampai F. Terbuka setelah kamu lulus tutorial game itu, dan kamu bisa melanjutkan dari tempat terakhir.",
+            'Setiap langkah tutorial atau permainan latihan punya kartu pelatih yang menjelaskan apa yang harus dilakukan. Setelah tombol utamanya diketuk, kontrol yang perlu dipakai tetap menyala sampai dipakai, dan kamu bisa keluar dari kartu mana pun.',
             "Tiap game punya empat: sebagai warga atau mata-mata, di meja 4 atau 8 pemain. Nilai A di kedelapannya memberimu gelar <b>Nilai Sempurna</b> (khusus akun tersimpan).",
             o.launch ? "Lulus tutorial sebuah game membuka Main online untuk game itu (dengan akun tersimpan). Permainan latihan tidak diperlukan. Malam Permainan tidak pernah memintanya." : "Saat ini kamu tidak perlu keduanya untuk main online. Malam Permainan tidak pernah memintanya.",
           ],
@@ -1115,6 +1116,7 @@ const id: HelpText = {
           a: [
             'Email ke <email/>. Untuk urusan akun, kirim dari alamat email akun itu. Setiap pesan dibaca oleh manusia.',
             'Untuk kabar terbaru, Malam Permainan, dan pemain yang mencari teman main, gabung ke <discord>Discord</discord> kami.',
+            'Di Beranda, tombol Discord membuka server kami. Tombol ini untuk pemain berusia 16 tahun ke atas, dan pemain 16 atau 17 tahun melihat catatan keamanan singkat lebih dulu.',
           ],
         },
       ],

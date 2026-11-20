@@ -252,7 +252,7 @@ const es: HelpText = {
               id: 'game-night-rewards',
               q: '¿Qué gano en la Noche de Juegos?',
               a: [
-                '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota. El final de la partida muestra lo que ganaste.',
+                '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota, 0 si la partida termina sin ganador. El final de la partida muestra lo que ganaste.',
                 "No hay Intel de Noche de Juegos si sales antes del final, te sacan de la mesa o no participas, si la partida empieza después del cierre de la Noche de Juegos (una partida que empieza a tiempo y termina más tarde sí paga), si nuestras comprobaciones de juego limpio marcan la partida, o en una mesa con spybots. Una partida que termina antes porque alguien se fue no le paga a nadie.",
                 '<b>Títulos ★</b> que van sumando: <b>★ Operativo</b> por cada partida de la Noche de Juegos que terminas, <b>★ Héroe local</b> por cada victoria como local, <b>★ Maestro espía</b> por cada victoria como espía y <b>★ Agente doble</b> por cada noche en que ganas en los dos bandos. Llévalos con su número, como ★ Operativo ×12.',
                 'El Intel de Noche de Juegos y los títulos ★ son solo tuyos: no se pueden intercambiar, y la membresía no les suma nada. Gasta el Intel en intercepciones de Noche de Juegos.',
@@ -269,6 +269,7 @@ const es: HelpText = {
           a: [
             "En <b>Cómo jugar</b>, elige Spy Talk o Spy Sketch. <b>Paso 1, Tutorial:</b> una partida guiada de 3 minutos contra agentes de IA. Juégala como local o como espía: superar cualquiera de las dos cuenta.",
             o.practiceMembers ? "<b>Paso 2, Partidas de práctica</b> (para miembros): partidas completas de 5 a 9 minutos contra agentes de IA, con nota de la A a la F. Se desbloquean al superar el tutorial de ese juego, y puedes seguir donde la dejaste." : "<b>Paso 2, Partidas de práctica:</b> partidas completas de 5 a 9 minutos contra agentes de IA, con nota de la A a la F. Se desbloquean al superar el tutorial de ese juego, y puedes seguir donde la dejaste.",
+            'Cada paso de un tutorial o de una partida de práctica tiene una tarjeta de guía que dice qué hacer. Al tocar su botón principal, el control que hay que usar sigue iluminado hasta que se use, y se puede salir desde cualquier tarjeta.',
             "Cada juego tiene cuatro: como local o como espía, en una mesa de 4 o de 8. Una A en las ocho te da el título <b>Puras A</b> (solo cuentas guardadas).",
             o.launch ? "Superar el tutorial de un juego abre Jugar en línea para ese juego (con una cuenta guardada). Las partidas de práctica no hacen falta. La Noche de Juegos nunca lo pide." : "Hoy no necesitas ninguno de los dos para jugar en línea. La Noche de Juegos nunca los pide.",
           ],
@@ -1115,6 +1116,7 @@ const es: HelpText = {
           a: [
             'Escribe a <email/>. Para cualquier tema de tu cuenta, hazlo desde su correo. Una persona lee cada mensaje.',
             'Para novedades, Noches de Juegos y jugadores que buscan partida, únete a nuestro <discord>Discord</discord>.',
+            'En el inicio, el botón de Discord abre nuestro servidor. Es para jugadores de 16 años o más, y a quienes tienen 16 o 17 les aparece antes una breve nota de seguridad.',
           ],
         },
       ],
