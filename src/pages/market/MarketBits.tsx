@@ -1,6 +1,6 @@
 import { useMemo, type ReactNode } from 'react'
 import Link from '../../components/SiteLink'
-import { FaCaretDown, FaCaretUp, FaFlask, FaTriangleExclamation } from 'react-icons/fa6'
+import { FaCaretDown, FaCaretUp, FaCircleInfo, FaFlask, FaTriangleExclamation } from 'react-icons/fa6'
 import ui from '../../components/ui/ui.module.css'
 import { SearchField } from '../../components/SearchField'
 import {
@@ -55,6 +55,10 @@ export function MarketPage({ head, children, movers = false }: { head?: MarketHe
             </span>
           </p>
         ) : null}
+        <p className={a.notice} role="note" data-testid="market-no-cash">
+          <FaCircleInfo aria-hidden focusable={false} />
+          <span>{w.noCash}</span>
+        </p>
         {head?.halted ? (
           <p className={a.notice} role="status">
             <FaTriangleExclamation aria-hidden focusable={false} />

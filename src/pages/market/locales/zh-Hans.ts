@@ -5,6 +5,8 @@ const zh: MarketStrings = {
   nav: { market: '市场', movers: '市场动向', catalogue: '目录', archive: '唯一物品', label: '黑市价格' },
   name: '黑市',
   beta: '测试版市场：这些价格来自测试期间玩家的交易，将在 12 月 7 日清空。正式市场 12 月 8 日开放。',
+  /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
+  noCash: '价格以情报计，情报是游戏自己的货币。情报没有现金价值，无法购买或兑现，这里也没有任何东西用真钱出售。',
   sample: '示例数据：为设计预览而编造，不含任何真实交易。',
   demoNote: '示例历史：用来展示图表效果的示例数据，并非真实交易。正式上线时清除。',
   sampleTag: '示例',

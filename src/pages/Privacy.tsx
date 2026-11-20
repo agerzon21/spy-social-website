@@ -1374,7 +1374,7 @@ const Privacy: React.FC = () => {
           </Item>
         )}
         {usesOpenAi && (
-          <Item label="OpenAI">
+          <Item label="OpenAI" id="openai">
             (https://openai.com){' '}
             {PRIVACY.drawingCheck &&
               'Checks drawings for content that breaks our Community Rules: drawing turns in public rooms get an automated check, some also get a second, more detailed check, and so do drawings players report. '}

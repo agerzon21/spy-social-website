@@ -7,6 +7,8 @@ const es: MarketStrings = {
   nav: { market: 'Mercado', movers: 'Movimientos', catalogue: 'Catálogo', archive: 'Únicos', label: 'Precios del Mercado Negro' },
   name: 'Mercado Negro',
   beta: 'Mercado de la beta: estos precios salen de las ventas de los jugadores durante la beta y se borran el 7 de diciembre. El mercado de verdad abre el 8 de diciembre.',
+  /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
+  noCash: 'Los precios son en Intel, la moneda propia del juego. El Intel no vale dinero, no se puede comprar ni canjear por dinero, y aquí nada se vende por dinero real.',
   sample: 'DATOS DE EJEMPLO: inventados para esta vista previa del diseño. No se muestra ninguna venta real.',
   demoNote: 'Historial de ejemplo: datos de muestra para enseñar cómo funcionan los gráficos, no ventas reales. Se borra en el lanzamiento.',
   sampleTag: 'Ejemplo',

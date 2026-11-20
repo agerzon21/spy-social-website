@@ -207,7 +207,7 @@ const Terms: React.FC = () => {
         {/* LIVE.coverage1116 with LIVE.spybots: Terms 7 forbids players' bots; say whose computer-controlled players exist (Privacy's AI Players item). */}
         {LIVE.coverage1116 &&
           LIVE.spybots &&
-          ' The only computer-controlled players in SpySocial are ours: the other agents in a practice game, and AI players that SpySocial\'s developer sometimes brings to a table where he plays himself, only while everyone else there is an adult he knows or one of our test accounts. They always show an "AI" tag next to their name.'}
+          ' The only computer-controlled players in SpySocial are ours: the other agents in a practice game, and AI players that SpySocial\'s developer sometimes brings to a table where he plays himself, only while everyone else there is an adult he knows or one of our test accounts. They always show an "AI" tag next to their name. They use OpenAI, an outside AI service, to decide their moves (see the OpenAI part of our Privacy Policy).'}
       </P>
       {/* LIVE.socialFeatures: Social Phase 1 for everyone (legalRelease). */}
       {LIVE.socialFeatures && (
