@@ -163,7 +163,7 @@ const es: HelpText = {
             'Salir cuenta como ser eliminado por votación: si sale el último espía, ganan los locales; si salen demasiados locales, ganan los espías. Antes de que terminen las preguntas (en Spy Sketch, en la primera ronda), esa partida muestra «Sin resultado» y no cuenta.',
             "<b>Votación final:</b> si queda exactamente un espía, todos votan una vez más cuando se acaba el tiempo, cuando a nadie le quedan votaciones por convocar o cuando se acaba la última oportunidad de convocar una. Si atrapan al espía, ganan los locales. Está activa en Jugar en línea y es un ajuste en las salas privadas. Una mesa de Jugar en línea o una Noche de Juegos también puede jugarla con dos espías: si atrapan a cualquiera de los dos, ganan los locales.",
             "Los resultados de una votación final se abren bajo una cinta roja de <b>Votación final</b> que dice por qué: «El reloj ha hablado», «No quedan votaciones por convocar» o «Se acabó la última oportunidad».",
-            "<b>Informante</b> (salas privadas y Noches de Juegos que lo activan, con 2 espías o más y 6 jugadores o más): la carta de un local nombra a un espía. Cuando los locales ganan por votación o porque el último espía falla su intento, los espías, también los atrapados, tienen 30 segundos para nombrar al informante y robar la victoria. No pasa tras un fallo con <b>Un solo tiro</b> ni si el último espía se va.",
+            "<b>Informante</b> (Spy Talk y Spy Sketch, salas privadas y Noches de Juegos que lo activan, con 2 espías o más y 6 jugadores o más): la carta de un local dice <b>Sabes: Nombre es espía</b>, con un solo espía nombrado, aunque haya más. Las cartas de los demás locales cuentan al informante, como «2 espías · 1 informante». Cuando los locales ganan por votación o porque el último espía falla su intento, los espías, también los atrapados, tienen 30 segundos para nombrar al informante y robar la victoria. No pasa tras un fallo con <b>Un solo tiro</b> ni si el último espía se va.",
           ],
         },
         {
@@ -200,7 +200,7 @@ const es: HelpText = {
           a: [
             'Las salas que crean los jugadores son privadas, para gente que conoces. Tus amigos entran con el código de la sala, el código QR o el enlace de invitación. Los invitados sin cuenta también pueden entrar.',
             'El anfitrión pone las reglas: juego, espías, tiempos, votación y paquetes. El máximo de jugadores llega a 21, y <b>Cerrar con llave</b> impide que entre gente nueva.',
-            'Todos juegan los paquetes que tiene desbloqueados el anfitrión.',
+            'Los paquetes gratis están abiertos para todos. Si alguien en la sala tiene membresía, los paquetes premium se juegan para todos.',
           ],
         },
         {
@@ -303,8 +303,9 @@ const es: HelpText = {
                 "Las partidas en línea tienen revelación de roles: Jugar en línea, las Noches de Juegos y las salas privadas cuyo anfitrión eligió <b>En línea</b>. Toca tu carta: se apagan las luces y un reflector muestra tu rol.",
                 "Los <b>locales</b> ven el secreto y cuántos espías hay entre ellos: en Spy Talk, el lugar y su imagen (todos los lugares de nuestros paquetes tienen una); en Spy Sketch, solo la palabra.",
                 "Los <b>espías</b> reciben una carta oscura. En Espía Mafia, los demás espías aparecen a tu lado, con su nombre y una etiqueta roja de «Espía». En Clásico, los espías no se conocen, así que los demás aparecen como <b>Desconocido</b>.",
+                "Toca <b>Continuar</b> cuando termines. La partida sigue cuando todos tocaron «Continuar» o cuando se acaba el tiempo.",
                 "Tu carta se queda abajo en la pantalla toda la partida, con la misma cara: la de un local conserva la imagen del lugar, y la de un espía en Espía Mafia muestra en rojo los nombres de los demás espías.",
-                "En Espía Mafia con más de un espía, toca <b>CANAL DE ESPÍAS</b> para chatear en privado con los otros espías: en tu carta antes de empezar, luego en la barra de arriba, o junto al chat en una votación. Basta un toque; un número muestra los mensajes nuevos, y un mensaje de otro espía dice «… intenta contactarte».",
+                "En Espía Mafia con más de un espía, toca <b>CANAL DE ESPÍAS</b> para chatear en privado con los otros espías (se cierra mientras un espía intenta adivinar el secreto): en tu carta antes de empezar, luego en la barra de arriba, o junto al chat en una votación. Basta un toque; un número muestra los mensajes nuevos, y un mensaje de otro espía dice «… intenta contactarte».",
                 "La etiqueta roja sigue en las fotos de los otros espías toda la partida. Los locales nunca ven las etiquetas, el botón ni el chat.",
                 "¿En una llamada de voz? Activa <b>Mismo sonido para todos los roles</b> (Ajustes, Sonido y música) para que tu micrófono no capte el sonido de revelación de un espía. La app solo te lo pregunta (<b>¿Juegas en una llamada?</b>) en una sala privada <b>En línea</b>.",
               ],
@@ -314,7 +315,7 @@ const es: HelpText = {
               q: "En línea o En persona: ¿qué es Cara de póker?",
               a: [
                 "Cuando un anfitrión crea una sala privada, la app pregunta <b>¿Dónde juegan?</b> Elige <b>En línea</b> si cada quien juega en su teléfono, donde sea, también en una llamada: hay revelación completa de roles y chat de espías de un toque. Elige <b>En persona</b> si están alrededor de una mesa: se activa <b>Cara de póker</b>.",
-                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía, sin etiquetas rojas de «Espía», y nada se ilumina cuando llega un mensaje de espías. Los espías abren su chat manteniendo presionada su carta. En una votación, mantienen presionado el botón del chat.",
+                "Con Cara de póker, todas las cartas de rol se ven igual: sin carta oscura de espía, sin etiquetas rojas de «Espía», y nada se ilumina cuando llega un mensaje de espías. Espía Mafia igual nombra a los otros espías, en letra pequeña. Los espías abren su chat manteniendo presionada su carta (en una computadora, con clic derecho). En una votación, mantienen presionado el botón del chat.",
                 "El porqué: en una misma mesa, una mirada al teléfono de al lado podría delatar un rol. Cara de póker evita descuidos, no trampas. La desventaja: cuesta más reconocer a los otros espías y chatear con ellos.",
                 "El anfitrión puede cambiarla entre partidas en las <b>Reglas</b> del lobby, y quien entra ve <b>«Cara de póker» está activada</b>. En las Noches de Juegos, se define para cada noche. No existe en Jugar en línea.",
               ],
@@ -446,7 +447,7 @@ const es: HelpText = {
           a: [
             'Lo que recibes en un intercambio queda protegido 7 días. Puedes usar un objeto enseguida, pero aún no puedes intercambiarlo, triturarlo ni canjearlo, y el Intel recibido aún no se puede gastar.',
             ...(o.interceptsInTrades ? ['Una intercepción sin abrir que recibes sigue sellada esos 7 días: aún no puedes abrirla, intercambiarla ni ponerla a la venta.'] : []),
-            'En esos 7 días puedes revertir tus intercambios, una vez cada 90 días. Se revierten todos tus intercambios protegidos y tus intercambios se pausan 30 días.',
+            'En esos 7 días puedes revertir tus intercambios, una vez cada 90 días. Se deshacen todos tus intercambios protegidos, en los dos sentidos, y tus intercambios se pausan 30 días.',
             "La reversión también deshace tus compras y ventas en Rarezas que siguen en sus 3 días de protección.",
             'Pasados 7 días, el intercambio es definitivo. También podemos revertirlo por robo de cuenta o fraude.',
           ],
@@ -708,7 +709,7 @@ const es: HelpText = {
             'Todos los paquetes premium, incluidos los nuevos. Todos pueden jugarlos en las salas donde eres anfitrión y en tu mesa de Jugar en línea.',
             'Crea tus propios paquetes con el creador y compártelos en la comunidad.',
             '+50 % de XP en cada partida y salas solo para miembros en Jugar en línea.',
-            ...(o.practiceMembers ? ['Partidas de práctica, hasta 5 al día, con notas de la A a la F y comentarios de IA.'] : []),
+            ...(o.practiceMembers ? ['Partidas de práctica, hasta 5 al día, con notas de la A a la F' + (o.practiceAi ? ' y comentarios opcionales de IA (16+).' : '.')] : []),
             'El marco, la etiqueta y el título de tu rango. Puedes liderar un grupo y tener 8 ofertas abiertas en el Mercado Negro en vez de 4.',
             'Nunca cambia cómo juegas ni cómo puntúas. Los paquetes gratis siguen gratis para todos.',
           ],

@@ -163,7 +163,7 @@ const id: HelpText = {
             'Keluar dihitung seperti tersingkir lewat voting: jika mata-mata terakhir keluar, warga menang; jika terlalu banyak warga keluar, mata-mata menang. Jika itu terjadi sebelum pertanyaan selesai (di Spy Sketch, pada ronde pertama), permainan menampilkan “Tidak ada hasil” dan tidak dihitung.',
             "<b>Voting terakhir:</b> kalau tersisa tepat satu mata-mata, semua memilih sekali lagi saat waktu habis, saat tak ada lagi yang punya jatah voting, atau saat kesempatan terakhir untuk memulai voting sudah lewat. Tangkap mata-matanya, warga menang. Ini aktif di Main online dan jadi pengaturan di room privat. Meja Main online atau Malam Permainan juga bisa memainkannya saat tersisa dua mata-mata: tangkap salah satunya, warga menang.",
             "Hasil voting terakhir terbuka di bawah pita merah <b>Voting terakhir</b> beserta alasannya: “Waktu sudah bicara”, “Jatah voting sudah habis”, atau “Kesempatan terakhir sudah lewat”.",
-            "<b>Informan</b> (room privat dan Malam Permainan yang mengaktifkannya, dengan minimal 2 mata-mata dan 6 pemain): kartu satu warga menyebut satu mata-mata. Saat warga menang lewat voting atau tebakan salah mata-mata terakhir, para mata-mata, termasuk yang tertangkap, punya 30 detik untuk menyebut informannya dan mencuri kemenangan. Tidak berlaku setelah tebakan meleset dengan <b>Satu Kali Tebak</b>, atau saat mata-mata terakhir keluar.",
+            "<b>Informan</b> (Spy Talk dan Spy Sketch, room privat dan Malam Permainan yang mengaktifkannya, dengan minimal 2 mata-mata dan 6 pemain): kartu satu warga bertuliskan <b>Kamu tahu: Nama adalah mata-mata</b>, dengan satu mata-mata disebut, meski jumlahnya lebih. Kartu warga lain ikut menghitung informan, seperti “2 mata-mata · 1 informan”. Saat warga menang lewat voting atau tebakan salah mata-mata terakhir, para mata-mata, termasuk yang tertangkap, punya 30 detik untuk menyebut informannya dan mencuri kemenangan. Tidak berlaku setelah tebakan meleset dengan <b>Satu Kali Tebak</b>, atau saat mata-mata terakhir keluar.",
           ],
         },
         {
@@ -200,7 +200,7 @@ const id: HelpText = {
           a: [
             'Room yang dibuat pemain bersifat privat, untuk orang yang kamu kenal. Teman masuk dengan kode room, kode QR, atau link undangan. Tamu tanpa akun juga bisa masuk.',
             'Host mengatur aturannya: game, mata-mata, waktu, voting, dan paket. Pemain maksimal sampai 21, dan <b>Kunci room</b> mencegah pemain baru masuk.',
-            'Semua memainkan paket yang sudah dibuka host.',
+            'Paket gratis terbuka untuk semua orang. Kalau ada satu orang di room yang punya keanggotaan, semua paket premium terbuka untuk semua orang di room.',
           ],
         },
         {
@@ -303,8 +303,9 @@ const id: HelpText = {
                 "Permainan online punya pengungkapan peran: Main online, Malam Permainan, dan room privat yang host-nya memilih <b>Online</b>. Ketuk kartumu: lampu padam dan lampu sorot menunjukkan peranmu.",
                 "<b>Warga</b> melihat rahasianya dan berapa mata-mata di antara mereka: di Spy Talk lokasinya beserta gambarnya (setiap lokasi di paket kami punya gambar); di Spy Sketch hanya katanya.",
                 "<b>Mata-mata</b> mendapat kartu gelap. Di Mafia, mata-mata lain muncul di sampingmu, lengkap dengan nama dan label merah MATA-MATA. Di Klasik, para mata-mata tidak saling kenal, jadi yang lain tampil sebagai <b>Tak dikenal</b>.",
+                "Ketuk <b>Lanjutkan</b> kalau sudah siap. Permainan berlanjut setelah semua orang mengetuk “Lanjutkan”, atau saat waktunya habis.",
                 "Kartumu tetap di bawah layar sepanjang permainan dengan tampilan yang sama: kartu warga tetap menampilkan gambar lokasi, dan kartu mata-mata di Mafia menuliskan nama mata-mata lain dengan warna merah.",
-                "Di Mafia dengan lebih dari satu mata-mata, ketuk <b>SALURAN MATA-MATA</b> untuk chat diam-diam dengan mata-mata lain: di kartumu sebelum permainan mulai, lalu di bilah atas, atau di samping chat saat voting. Cukup sekali ketuk; angka menunjukkan pesan baru, dan pesan dari mata-mata lain muncul dengan “… mencoba menghubungimu”.",
+                "Di Mafia dengan lebih dari satu mata-mata, ketuk <b>SALURAN MATA-MATA</b> untuk chat diam-diam dengan mata-mata lain (saluran ini ditutup selama ada mata-mata yang menebak rahasianya): di kartumu sebelum permainan mulai, lalu di bilah atas, atau di samping chat saat voting. Cukup sekali ketuk; angka menunjukkan pesan baru, dan pesan dari mata-mata lain muncul dengan “… mencoba menghubungimu”.",
                 "Label merah tetap ada di foto mata-mata lain sepanjang permainan. Warga tidak pernah melihat label, tombol, maupun chat-nya.",
                 "Sedang di panggilan suara? Nyalakan <b>Suara sama untuk semua peran</b> (Pengaturan, Suara & musik) supaya mikrofonmu tidak menangkap suara pengungkapan mata-mata. Aplikasi hanya menanyakannya (<b>Main sambil teleponan?</b>) di room privat yang memilih <b>Online</b>.",
               ],
@@ -314,7 +315,7 @@ const id: HelpText = {
               q: "Online atau Satu ruangan: apa itu Muka datar?",
               a: [
                 "Saat host membuat room privat, aplikasi bertanya <b>Kalian main di mana?</b> Pilih <b>Online</b> kalau masing-masing di ponselnya, di mana saja, termasuk lewat panggilan suara: pengungkapan peran penuh dan chat mata-mata sekali ketuk. Pilih <b>Satu ruangan</b> kalau duduk di satu meja: ini menyalakan <b>Muka datar</b>.",
-                "Dengan Muka datar, semua kartu peran terlihat sama: tanpa kartu mata-mata yang gelap, tanpa label merah MATA-MATA, dan tak ada yang menyala saat pesan mata-mata masuk. Mata-mata membuka chat dengan menahan kartunya. Saat voting, mereka menekan lama tombol chat.",
+                "Dengan Muka datar, semua kartu peran terlihat sama: tanpa kartu mata-mata yang gelap, tanpa label merah MATA-MATA, dan tak ada yang menyala saat pesan mata-mata masuk. Mode Mafia tetap menulis nama mata-mata lain, dengan tulisan kecil. Mata-mata membuka chat dengan menahan kartunya (di komputer, dengan klik kanan). Saat voting, mereka menekan lama tombol chat.",
                 "Alasannya: di satu meja, lirikan ke ponsel sebelah bisa membongkar perannya. Muka datar mencegah ketidaksengajaan, bukan kecurangan. Kekurangannya: mata-mata lain lebih sulit dikenali dan diajak chat.",
                 "Host bisa mengubahnya di antara permainan lewat <b>Aturan</b> di lobi, dan pemain yang masuk melihat <b>“Muka datar” aktif</b>. Di Malam Permainan, pengaturannya ditentukan per malam. Main online tidak punya fitur ini.",
               ],
@@ -446,7 +447,7 @@ const id: HelpText = {
           a: [
             'Yang kamu dapat dari pertukaran dilindungi selama 7 hari. Item bisa langsung dipakai, tapi belum bisa ditukar, dihancurkan, atau dipakai untuk Tukar Tambah, dan Intel yang diterima belum bisa dipakai.',
             ...(o.interceptsInTrades ? ['Sadapan belum dibuka yang kamu dapat tetap tersegel selama 7 hari itu: belum bisa dibuka, ditukar, atau dijual.'] : []),
-            'Dalam 7 hari itu kamu bisa membatalkan pertukaranmu, sekali tiap 90 hari. Semua pertukaranmu yang masih dilindungi dibatalkan, dan pertukaranmu dijeda 30 hari.',
+            'Dalam 7 hari itu kamu bisa membatalkan pertukaranmu, sekali tiap 90 hari. Semua pertukaranmu yang masih dilindungi dibatalkan di kedua arah, dan pertukaranmu dijeda 30 hari.',
             "Pembatalan itu juga membatalkan pembelian dan penjualanmu di Temuan Langka yang masih dalam 3 hari perlindungannya.",
             'Setelah 7 hari, pertukaran bersifat final. Kami juga bisa membatalkan pertukaran karena pencurian akun atau penipuan.',
           ],
@@ -708,7 +709,7 @@ const id: HelpText = {
             'Semua paket premium, termasuk yang baru. Semua orang memainkannya di room yang kamu host dan di mejamu di Main online.',
             'Buat paket sendiri di pembuat paket dan bagikan ke komunitas.',
             '+50% XP di setiap permainan, dan room khusus anggota di Main online.',
-            ...(o.practiceMembers ? ['Permainan latihan, sampai 5 per hari, dengan nilai huruf dan masukan AI.'] : []),
+            ...(o.practiceMembers ? ['Permainan latihan, sampai 5 per hari, dengan nilai huruf' + (o.practiceAi ? ' dan masukan AI opsional (16+).' : '.')] : []),
             'Bingkai, label, dan gelar pangkatmu. Kamu bisa memimpin grup dan punya 8 penawaran terbuka di Pasar Gelap, bukan 4.',
             'Keanggotaan tidak pernah mengubah cara kamu bermain atau skormu. Paket gratis tetap gratis untuk semua.',
           ],

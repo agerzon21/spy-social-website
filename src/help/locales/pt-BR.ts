@@ -163,7 +163,7 @@ const ptBR: HelpText = {
             'Sair conta como ser eliminado na votação: se o último espião sair, os locais vencem; se locais demais saírem, os espiões vencem. Se isso acontecer antes de as perguntas terminarem (no Spy Sketch, na primeira rodada), a partida mostra “Sem resultado” e não conta.',
             "<b>Votação final:</b> com exatamente um espião no jogo, todos votam mais uma vez quando o tempo acaba, quando ninguém tem mais votações ou quando a última chance de pedir uma acaba. Peguem o espião e os locais ganham. Ela vale no Jogar online e é um ajuste nas salas privadas. Uma mesa do Jogar online ou uma Noite de Jogos também pode jogá-la com dois espiões: peguem qualquer um deles e os locais ganham.",
             "O resultado de uma votação final abre sob uma fita vermelha de <b>Votação final</b> que diz o motivo: “O relógio falou”, “Ninguém tem mais votações” ou “A última chance acabou”.",
-            "<b>Informante</b> (salas privadas e Noites de Jogos que o ligam, com 2 espiões ou mais e 6 jogadores ou mais): a carta de um local aponta um espião. Quando os locais ganham por votação ou pelo palpite errado do último espião, os espiões, inclusive os pegos, têm 30 segundos para apontar o informante e roubar a vitória. Não vale depois de um erro com <b>Um só tiro</b>, nem quando o último espião sai.",
+            "<b>Informante</b> (Spy Talk e Spy Sketch, salas privadas e Noites de Jogos que o ligam, com 2 espiões ou mais e 6 jogadores ou mais): a carta de um local diz <b>Você sabe: Nome é do time dos espiões</b>, com um só espião nomeado, mesmo quando há mais. As cartas dos outros locais contam o informante, como “2 espiões · 1 informante”. Quando os locais ganham por votação ou pelo palpite errado do último espião, os espiões, inclusive os pegos, têm 30 segundos para apontar o informante e roubar a vitória. Não vale depois de um erro com <b>Um só tiro</b>, nem quando o último espião sai.",
           ],
         },
         {
@@ -200,7 +200,7 @@ const ptBR: HelpText = {
           a: [
             'As salas que os jogadores criam são privadas, para quem você conhece. Os amigos entram com o código da sala, o QR code ou o link de convite. Visitantes sem conta também entram.',
             'O anfitrião define as regras: jogo, espiões, tempos, votação e pacotes. O máximo vai até 21 jogadores, e <b>Trancar sala</b> impede que gente nova entre.',
-            'Todos jogam com os pacotes que o anfitrião liberou.',
+            'Os pacotes grátis ficam abertos para todos. Se alguém na sala for membro, todos os pacotes premium ficam liberados para todo mundo.',
           ],
         },
         {
@@ -303,8 +303,9 @@ const ptBR: HelpText = {
                 "As partidas online têm revelação de papéis: Jogar online, Noites de Jogos e salas privadas em que o anfitrião escolheu <b>Online</b>. Toque na sua carta: as luzes se apagam e um holofote mostra seu papel.",
                 "Os <b>locais</b> veem o segredo e quantos espiões estão entre eles: no Spy Talk, o local e a imagem dele (todo local dos nossos pacotes tem uma); no Spy Sketch, só a palavra.",
                 "Quem é do time dos <b>espiões</b> recebe uma carta escura. Na Máfia, os outros espiões aparecem ao seu lado, com o nome e uma etiqueta vermelha de Espião. No Clássico, os espiões não se conhecem, então os outros aparecem como <b>Desconhecido</b>.",
+                "Toque em <b>Continuar</b> quando terminar. A partida avança quando todos tocarem em “Continuar” ou quando o tempo acabar.",
                 "Sua carta fica na parte de baixo da tela a partida toda, com a mesma cara: a de um local mantém a imagem do lugar, e a de um espião na Máfia mostra em vermelho o nome dos outros espiões.",
-                "Na Máfia com mais de um espião, toque em <b>CANAL DOS ESPIÕES</b> para conversar em particular com os outros espiões: na sua carta antes de começar, depois na barra de cima, ou ao lado do chat numa votação. Basta um toque; um número mostra as mensagens novas, e uma mensagem de outro espião diz “… está tentando falar com você”.",
+                "Na Máfia com mais de um espião, toque em <b>CANAL DOS ESPIÕES</b> para conversar em particular com os outros espiões (o canal fecha enquanto um espião tenta adivinhar o segredo): na sua carta antes de começar, depois na barra de cima, ou ao lado do chat numa votação. Basta um toque; um número mostra as mensagens novas, e uma mensagem de outro espião diz “… está tentando falar com você”.",
                 "A etiqueta vermelha fica nas fotos dos outros espiões a partida toda. Os locais nunca veem as etiquetas, o botão nem o chat.",
                 "Numa chamada de voz? Ative <b>Mesmo som para todos os papéis</b> (Ajustes, Som e música) para o microfone não captar o som de revelação de um espião. O app só pergunta isso (<b>Jogando em chamada?</b>) numa sala privada <b>Online</b>.",
               ],
@@ -314,7 +315,7 @@ const ptBR: HelpText = {
               q: "Online ou Mesmo lugar: o que é Cara de paisagem?",
               a: [
                 "Quando um anfitrião cria uma sala privada, o app pergunta <b>Onde vocês vão jogar?</b> Escolha <b>Online</b> se cada um estiver no seu celular, esteja onde estiver, inclusive numa chamada: revelação completa dos papéis e chat dos espiões a um toque. Escolha <b>Mesmo lugar</b> se estiverem em volta de uma mesa: isso ativa a <b>Cara de paisagem</b>.",
-                "Com a Cara de paisagem, todas as cartas de papel ficam iguais: sem carta escura de espião, sem etiquetas vermelhas de Espião, e nada acende quando chega mensagem dos espiões. Os espiões abrem o chat segurando a própria carta. Numa votação, eles seguram o botão do chat.",
+                "Com a Cara de paisagem, todas as cartas de papel ficam iguais: sem carta escura de espião, sem etiquetas vermelhas de Espião, e nada acende quando chega mensagem dos espiões. A Máfia ainda mostra os outros espiões, em letras pequenas. Os espiões abrem o chat segurando a própria carta (no computador, com o botão direito). Numa votação, eles seguram o botão do chat.",
                 "Por quê: numa mesma mesa, uma olhada no celular do vizinho poderia entregar o papel dele. A Cara de paisagem evita descuidos, não trapaças. O porém: fica mais difícil reconhecer os outros espiões e conversar com eles.",
                 "O anfitrião pode mudar isso entre uma partida e outra em <b>Regras</b>, no lobby, e quem entra vê <b>“Cara de paisagem” está ativada</b>. Nas Noites de Jogos, isso é definido para cada noite. Ela não existe no Jogar online.",
               ],
@@ -446,7 +447,7 @@ const ptBR: HelpText = {
           a: [
             'O que você recebe numa troca fica protegido por 7 dias. Dá para usar um item na hora, mas ainda não dá para trocá-lo, triturá-lo nem usá-lo numa Fusão, e o Intel recebido ainda não pode ser gasto.',
             ...(o.interceptsInTrades ? ['Uma Interceptação fechada que você recebe fica lacrada nesses 7 dias: ainda não dá para abrir, trocar nem anunciar.'] : []),
-            'Nesses 7 dias, você pode reverter suas trocas, uma vez a cada 90 dias. Isso reverte todas as suas trocas protegidas e pausa suas trocas por 30 dias.',
+            'Nesses 7 dias, você pode reverter suas trocas, uma vez a cada 90 dias. Isso desfaz todas as suas trocas protegidas, nos dois sentidos, e pausa suas trocas por 30 dias.',
             "Reverter também desfaz suas compras e vendas nos Achados raros que ainda estão nos 3 dias de proteção.",
             'Depois de 7 dias, a troca é definitiva. Também podemos reverter uma troca por roubo de conta ou fraude.',
           ],
@@ -708,7 +709,7 @@ const ptBR: HelpText = {
             'Todos os pacotes premium, inclusive os novos. Todo mundo joga com eles nas salas em que você é o anfitrião e na sua mesa de Jogar online.',
             'Crie seus próprios pacotes com o criador e compartilhe na comunidade.',
             '+50% de XP em toda partida e salas só para membros no Jogar online.',
-            ...(o.practiceMembers ? ['Partidas de treino, até 5 por dia, com notas de A a F e comentários da IA.'] : []),
+            ...(o.practiceMembers ? ['Partidas de treino, até 5 por dia, com notas de A a F' + (o.practiceAi ? ' e comentários opcionais da IA (16+).' : '.')] : []),
             'A moldura, a etiqueta e o título do seu nível. Você pode liderar um grupo e ter 8 ofertas abertas no Mercado Negro em vez de 4.',
             'Nunca muda como você joga ou pontua. Os pacotes grátis continuam grátis para todos.',
           ],

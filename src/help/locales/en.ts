@@ -333,6 +333,7 @@ const en: HelpText = {
                 "Games played online have a role reveal: Play Online, Game Nights, and private rooms whose host picked <b>Online</b>. Tap your card: the lights go down and a spotlight shows your role.",
                 "<b>Locals</b> see the secret and how many spies are among them: in Spy Talk the location and its picture (every place in our packs has one); in Spy Sketch, the word only.",
                 "<b>Spies</b> get a dark card. In Spy Mafia, the other spies step up beside you, named, with a red SPY tag. In Classic, spies don’t know each other, so the others show as <b>Unknown</b>.",
+                "Tap <b>Continue</b> when you’re ready. The game moves on once everyone has tapped Continue, or when the timer runs out.",
                 "Your card stays at the bottom of the screen all game with the same face: a Local’s keeps the place’s picture, and a spy’s card in Spy Mafia names the other spies in red.",
                 "In Spy Mafia with more than one spy, tap <b>SPY CHANNEL</b> to chat in private with the other spies (it closes while a spy is guessing the secret): on your card before the game starts, then in the top bar, or beside Chat in a vote. One tap is enough; a number shows new messages, and a message from another spy says “… is trying to reach you”.",
                 "The red SPY tag stays on the other spies’ pictures all game. Locals never see the tags, the button or the chat.",
@@ -344,7 +345,7 @@ const en: HelpText = {
               q: "Online or Same Room: what is Poker Face?",
               a: [
                 "When a host creates a private room, the app asks <b>Where Are You Playing?</b> Pick <b>Online</b> when everyone is on their own phone, wherever they are, a voice call included: you get the full role reveal and one-tap spy chat. Pick <b>Same Room</b> around one table: it turns on <b>Poker Face</b>.",
-                "With Poker Face, every role card looks alike: no dark spy card, no red SPY tags, and nothing lights up when a spy message comes in. Spies open their chat by pressing and holding their card (on a computer, right-click it). In a vote, they press and hold the <b>Chat</b> button instead.",
+                "With Poker Face, every role card looks alike: no dark spy card, no red SPY tags, and nothing lights up when a spy message comes in. Spy Mafia still names the other spies, in small print. Spies open their chat by pressing and holding their card (on a computer, right-click it). In a vote, they press and hold the <b>Chat</b> button instead.",
                 "Why: at one table, a glance at a neighbour’s phone could give their role away. Poker Face stops accidents, not cheaters. The catch: the other spies are harder to spot and to chat with.",
                 "The host can switch it between games in the lobby’s <b>Rules</b>, and players who join see <b>Poker Face Is On</b>. At Game Nights, each night sets it. Play Online doesn’t have it.",
               ],

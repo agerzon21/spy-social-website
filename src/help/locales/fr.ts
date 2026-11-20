@@ -159,7 +159,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Partir compte comme être éliminé par un vote : si le dernier espion part, les locaux gagnent ; si trop de locaux partent, les espions gagnent. Si cela arrive avant la fin des questions (dans Spy Sketch, au premier tour), la partie affiche « Pas de résultat » et ne compte pas.",
           "<b>Vote final :</b> s'il reste exactement un espion, tout le monde vote une dernière fois quand le temps est écoulé, quand plus personne n'a de vote à lancer ou quand la dernière chance d'en lancer un est passée. Si l'espion est démasqué, les locaux gagnent. Il est actif dans Jouer en ligne, et c'est un réglage dans les salons privés. Une table de Jouer en ligne ou une soirée jeux peut aussi le jouer avec deux espions : démasque l'un des deux et les locaux gagnent.",
           "Les résultats d'un vote final s'ouvrent sous un ruban rouge <b>Vote final</b> qui dit pourquoi : « Le chrono a parlé », « Plus aucun vote à lancer » ou « La dernière chance est passée ».",
-          "<b>Informateur</b> (salons privés et soirées jeux qui l'activent, avec au moins 2 espions et 6 joueurs) : la carte d'un local désigne un espion. Quand les locaux gagnent par un vote ou par la mauvaise réponse du dernier espion, les espions, même démasqués, ont 30 secondes pour désigner l'informateur et voler la victoire. Pas après un raté avec <b>Une seule tentative</b>, ni quand le dernier espion s'en va.",
+          "<b>Informateur</b> (Spy Talk et Spy Sketch, salons privés et soirées jeux qui l'activent, avec au moins 2 espions et 6 joueurs) : la carte d'un local dit <b>Tu sais : Nom fait partie des espions</b>, avec un seul espion nommé, même s'il y en a plus. Les cartes des autres locaux comptent l'informateur, comme « 2 espions · 1 informateur ». Quand les locaux gagnent par un vote ou par la mauvaise réponse du dernier espion, les espions, même démasqués, ont 30 secondes pour désigner l'informateur et voler la victoire. Pas après un raté avec <b>Une seule tentative</b>, ni quand le dernier espion s'en va.",
         ],
       },
       {
@@ -196,7 +196,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Les salons créés par les joueurs sont privés, pour les gens que tu connais. Tes amis entrent avec le code du salon, le QR code ou le lien d'invitation. Les invités sans compte aussi.",
           "L'hôte fixe les règles : jeu, espions, chronos, vote et packs. Le nombre de joueurs monte jusqu'à 21, et <b>Verrouiller le salon</b> bloque les nouveaux venus.",
-          "Tout le monde joue avec les packs que l'hôte a débloqués.",
+          "Les packs gratuits sont ouverts à tous. Si quelqu'un dans le salon est membre, tous les packs premium sont débloqués pour tout le monde.",
         ],
       },
       {
@@ -299,8 +299,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
               "Les parties en ligne ont une révélation des rôles : Jouer en ligne, les soirées jeux et les salons privés dont l'hôte a choisi <b>En ligne</b>. Appuie sur ta carte : la lumière s'éteint et un projecteur éclaire ton rôle.",
               "Les <b>locaux</b> voient le secret et combien d'espions se cachent parmi eux : dans Spy Talk, le lieu et son image (chaque lieu de nos packs en a une) ; dans Spy Sketch, seulement le mot.",
               "Les <b>espions</b> reçoivent une carte sombre. En mode Mafia, les autres espions apparaissent à côté de toi, avec leur nom et une étiquette rouge « Espion ». En mode Classique, les espions ne se connaissent pas, donc les autres apparaissent comme <b>Inconnu</b>.",
+              "Appuie sur <b>Continuer</b> dès que c'est bon pour toi. La partie avance quand tout le monde a appuyé sur « Continuer », ou quand le chrono arrive à zéro.",
               "Ta carte reste en bas de l'écran toute la partie, avec la même face : celle d'un local garde l'image du lieu, et celle d'un espion en mode Mafia donne en rouge le nom des autres espions.",
-              "En mode Mafia avec plus d'un espion, appuie sur <b>CANAL DES ESPIONS</b> pour discuter en privé avec les autres espions : sur ta carte avant le début, puis dans la barre du haut, ou à côté du chat pendant un vote. Un seul appui suffit ; un chiffre montre les nouveaux messages, et un message d'un autre espion s'annonce par « … essaie de te joindre ».",
+              "En mode Mafia avec plus d'un espion, appuie sur <b>CANAL DES ESPIONS</b> pour discuter en privé avec les autres espions (le canal est fermé pendant qu'un espion devine le secret) : sur ta carte avant le début, puis dans la barre du haut, ou à côté du chat pendant un vote. Un seul appui suffit ; un chiffre montre les nouveaux messages, et un message d'un autre espion s'annonce par « … essaie de te joindre ».",
               "L'étiquette rouge reste sur les photos des autres espions toute la partie. Les locaux ne voient ni les étiquettes, ni le bouton, ni le chat.",
               "En appel vocal ? Active <b>Même son pour tous les rôles</b> (Réglages, Son et musique) pour que ton micro ne capte pas le son de révélation d'un espion. L'appli ne te le demande (<b>Tu joues en appel ?</b>) que dans un salon privé <b>En ligne</b>.",
             ],
@@ -310,7 +311,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "En ligne ou Même pièce : c'est quoi, Poker face ?",
             a: [
               "Quand un hôte crée un salon privé, l'appli demande <b>Où jouez-vous ?</b> Choisis <b>En ligne</b> si chacun est sur son téléphone, où qu'il soit, appel vocal compris : révélation complète des rôles et chat des espions en un geste. Choisis <b>Même pièce</b> autour d'une table : ça active <b>Poker face</b>.",
-              "Avec Poker face, toutes les cartes de rôle se ressemblent : pas de carte d'espion sombre, pas d'étiquette rouge « Espion », et rien ne s'allume quand un message des espions arrive. Les espions ouvrent leur chat par un appui long sur leur carte. Pendant un vote, ils appuient longuement sur le bouton du chat.",
+              "Avec Poker face, toutes les cartes de rôle se ressemblent : pas de carte d'espion sombre, pas d'étiquette rouge « Espion », et rien ne s'allume quand un message des espions arrive. Le mode Mafia affiche quand même en petit le nom des autres espions. Les espions ouvrent leur chat par un appui long sur leur carte (sur ordinateur, par un clic droit). Pendant un vote, ils appuient longuement sur le bouton du chat.",
               "Pourquoi : autour d'une table, un coup d'œil au téléphone du voisin pourrait trahir son rôle. Poker face évite les accidents, pas la triche. Le revers : les autres espions sont plus durs à repérer et à joindre.",
               "L'hôte peut le changer entre deux parties dans les <b>Règles</b> du salon, et les joueurs qui arrivent voient <b>« Poker face » est activé</b>. Aux soirées jeux, il se règle soirée par soirée. Il n'existe pas dans Jouer en ligne.",
             ],
@@ -442,7 +443,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Ce que tu reçois dans un échange est protégé pendant 7 jours. Tu peux porter un objet tout de suite, mais pas encore l'échanger, le déchiqueter ni l'utiliser dans un Échange, et l'Intel reçu ne se dépense pas encore.",
           ...(o.interceptsInTrades ? ["Une interception non ouverte que tu reçois reste scellée pendant ces 7 jours : tu ne peux pas encore l'ouvrir, l'échanger ni la mettre en vente."] : []),
-          'Pendant ces 7 jours, tu peux annuler tes échanges, une fois tous les 90 jours. Ça annule tous tes échanges protégés et met tes échanges en pause pendant 30 jours.',
+          'Pendant ces 7 jours, tu peux annuler tes échanges, une fois tous les 90 jours. Ça défait tous tes échanges protégés, dans les deux sens, et met tes échanges en pause pendant 30 jours.',
           "L’annulation défait aussi tes achats et ventes sur les Trouvailles rares encore dans leurs 3 jours de protection.",
           "Après 7 jours, l'échange est définitif. Nous pouvons aussi annuler un échange en cas de vol de compte ou de fraude.",
         ],
@@ -704,7 +705,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           'Tous les packs premium, nouveaux compris. Tout le monde y joue dans les salons dont tu es l’hôte et à ta table de Jouer en ligne.',
           'Crée tes propres packs avec le créateur et partage-les dans la communauté.',
           '+50 % d\'XP à chaque partie, et des salons réservés aux membres à Jouer en ligne.',
-          ...(o.practiceMembers ? ["Les parties d'entraînement, jusqu'à 5 par jour, avec des notes de A à F et les conseils de l'IA."] : []),
+          ...(o.practiceMembers ? ["Les parties d'entraînement, jusqu'à 5 par jour, avec des notes de A à F" + (o.practiceAi ? " et les conseils de l'IA en option (16+)." : ".")] : []),
           "Le cadre, l'étiquette et le titre de ton rang. Tu peux mener un groupe et avoir 8 offres ouvertes au Marché noir au lieu de 4.",
           "Ça ne change jamais ta façon de jouer ni tes points. Les packs gratuits restent gratuits pour tous.",
         ],
