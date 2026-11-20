@@ -106,6 +106,7 @@ const id: HelpText = {
             'Pemain bergiliran menggambar di satu papan tulis bersama. Warga memberi petunjuk tanpa menggambar katanya terang-terangan. Mata-mata menambahkan sesuatu yang samar yang bisa cocok.',
             'Setelah semua dapat giliran, voting dan tebakan mata-mata terbuka. Ronde berlanjut sampai permainan selesai.',
             'Gambar di Spy Sketch tidak dibacakan, jadi pembaca layar (VoiceOver, TalkBack) tidak bisa mengikuti gambarnya.',
+            "Garismu dimulai tepat di bawah jarimu. Kalau ingin melihat dulu di mana garis akan dimulai, aktifkan <b>Mode presisi</b> di <b>Pengaturan</b>, di bagian Menggambar, atau di papan: sebuah pensil muncul di atas jarimu, arahkan lalu gambar dari ujungnya (<b>Tahan diam</b> atau <b>Angkat lalu sentuh</b>).",
             ...(o.guestSaveBeforeBuy ? ["Papan gambarnya sendiri bisa dijangkau dengan pembaca layar: ia menyebut giliran siapa yang menggambar dan halamannya, dan di giliranmu cara menggambar (ketuk dua kali dan tahan, lalu geser)."] : []),
           ],
         },
@@ -303,6 +304,7 @@ const id: HelpText = {
                 ]
               : ['Di room privat, host memilih bahasa permainan untuk rahasia dan petunjuk.', ...(o.autoTranslation ? ['Pesan dalam bahasa lain diterjemahkan ke bahasamu otomatis. Untuk menerjemahkan hanya saat diketuk, matikan <b>Terjemahkan pesan otomatis</b> di Pengaturan.'] : [])]),
             ...(o.autoTranslation ? ['Main online bisa menawarkan untuk menambahkan bahasamu ke penerjemah bawaan ponsel. Ini opsional, dan membuat baris bahasa Inggris di chat tetap diterjemahkan saat penerjemah kami sibuk.'] : []),
+            ...(o.autoTranslation ? ["Di bawah pesan yang diterjemahkan, ketuk <b>Lihat aslinya</b> untuk membacanya seperti aslinya."] : []),
             ...(o.u6153 ? ["Saat kamu mengganti bahasa di <b>Pengaturan</b>, aplikasi menampilkan indikator memuat sampai beralih ke bahasa baru."] : []),
           ],
         },

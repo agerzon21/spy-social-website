@@ -136,6 +136,7 @@ const en: HelpText = {
             'Players take turns drawing on one shared whiteboard. Locals hint at the word without drawing it outright. Spies add something vague that could fit.',
             'Once everyone has had a turn, votes and the spy’s guess open. Rounds go on until the game ends.',
             'Spy Sketch’s drawings aren’t described aloud, so a screen reader (VoiceOver, TalkBack) can’t follow the drawing itself.',
+            "Your line starts under your finger. If you’d rather see where it will start, turn on <b>Precision Mode</b> in <b>Settings</b>, under Drawing, or on the board: a pencil sits above your finger, and you aim it, then draw from its point (<b>Hold Still</b> or <b>Lift and Touch Again</b>).",
             ...(o.guestSaveBeforeBuy ? ["The drawing board itself can be reached with a screen reader: it says whose turn it is to draw and the page, and on your turn how to draw (double-tap and hold, then drag)."] : []),
           ],
         },
@@ -333,6 +334,7 @@ const en: HelpText = {
                 ]
               : ['In a private room, the host picks the game’s language for the secret and the hints.', ...(o.autoTranslation ? ['Messages in another language are translated into yours automatically. To translate only when you tap, turn off <b>Translate Messages Automatically</b> in Settings.'] : [])]),
             ...(o.autoTranslation ? ['Play Online may offer to add your language to your phone’s own translator. It’s optional, and it keeps English chat lines translated when our translator is busy.'] : []),
+            ...(o.autoTranslation ? ["Under a translated message, tap <b>Show original</b> to read it as it was written."] : []),
             ...(o.u6153 ? ["When you switch language in <b>Settings</b>, the app shows a loader while it turns to the new language."] : []),
           ],
         },

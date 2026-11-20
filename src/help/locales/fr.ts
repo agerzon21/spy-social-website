@@ -102,6 +102,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les joueurs dessinent à tour de rôle sur un tableau blanc commun. Les locaux suggèrent le mot sans le dessiner franchement. Les espions ajoutent quelque chose de vague qui pourrait coller.",
           "Une fois que chacun a joué son tour, les votes et la tentative de l'espion s'ouvrent. Les manches continuent jusqu'à la fin de la partie.",
             'Les dessins de Spy Sketch ne sont pas décrits à voix haute : un lecteur d’écran (VoiceOver, TalkBack) ne peut donc pas suivre le dessin.',
+            "Ton trait commence sous ton doigt. Pour voir d’abord où il commencera, active le <b>Mode précision</b> dans les <b>Réglages</b>, sous Dessin, ou sur le tableau : un crayon apparaît au-dessus de ton doigt, tu le places puis tu dessines depuis sa pointe (<b>Rester immobile</b> ou <b>Lever puis toucher</b>).",
             ...(o.guestSaveBeforeBuy ? ["On peut atteindre le tableau de dessin lui-même avec un lecteur d'écran : il dit à qui c'est de dessiner et la page, et à ton tour comment dessiner (touche deux fois et maintiens, puis fais glisser)."] : []),
         ],
       },
@@ -299,6 +300,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
               ]
             : ["Dans un salon privé, l'hôte choisit la langue de la partie pour le secret et les indices.", ...(o.autoTranslation ? ['Les messages dans une autre langue sont traduits automatiquement dans la tienne. Pour traduire seulement quand tu touches, désactive <b>Traduire les messages automatiquement</b> dans les Réglages.'] : [])]),
           ...(o.autoTranslation ? ["Jouer en ligne peut te proposer d'ajouter ta langue au traducteur de ton téléphone. C'est facultatif, et ça garde les lignes en anglais du chat traduites quand notre traducteur est occupé."] : []),
+          ...(o.autoTranslation ? ["Sous un message traduit, touche <b>Voir l’original</b> pour le lire tel qu’il a été écrit."] : []),
           ...(o.u6153 ? ["Quand tu changes de langue dans les <b>Réglages</b>, l'appli affiche un indicateur de chargement le temps de passer à la nouvelle langue."] : []),
         ],
       },

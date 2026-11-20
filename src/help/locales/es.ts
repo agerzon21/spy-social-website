@@ -106,6 +106,7 @@ const es: HelpText = {
             'Los jugadores dibujan por turnos en una pizarra compartida. Los locales insinúan la palabra sin dibujarla del todo. Los espías añaden algo vago que pueda encajar.',
             'Cuando todos han tenido su turno, se abren las votaciones y el intento del espía. Las rondas siguen hasta que termina la partida.',
             'Los dibujos de Spy Sketch no se describen en voz alta, así que un lector de pantalla (VoiceOver, TalkBack) no puede seguir el dibujo.',
+            "Tu línea empieza bajo tu dedo. Si prefieres ver dónde empezará, activa el <b>Modo de precisión</b> en <b>Ajustes</b>, en Dibujo, o en el tablero: un lápiz queda sobre tu dedo, apuntas con él y dibujas desde su punta (<b>Mantener quieto</b> o <b>Levantar y tocar</b>).",
             ...(o.guestSaveBeforeBuy ? ["El tablero de dibujo sí se puede alcanzar con un lector de pantalla: dice de quién es el turno de dibujar y la página, y en tu turno cómo dibujar (toca dos veces y mantén, luego arrastra)."] : []),
           ],
         },
@@ -303,6 +304,7 @@ const es: HelpText = {
                 ]
               : ['En una sala privada, el anfitrión elige el idioma de la partida para el secreto y las pistas.', ...(o.autoTranslation ? ['Los mensajes en otro idioma se traducen al tuyo automáticamente. Para traducir solo al tocar, desactiva <b>Traducir mensajes automáticamente</b> en Ajustes.'] : [])]),
             ...(o.autoTranslation ? ['Jugar en línea puede ofrecerte añadir tu idioma al traductor propio de tu teléfono. Es opcional, y mantiene traducidas las líneas en inglés del chat cuando nuestro traductor está ocupado.'] : []),
+            ...(o.autoTranslation ? ["Debajo de un mensaje traducido, toca <b>Ver original</b> para leerlo como se escribió."] : []),
             ...(o.u6153 ? ["Cuando cambias el idioma en <b>Ajustes</b>, la app muestra un indicador de carga mientras pasa al nuevo idioma."] : []),
           ],
         },
