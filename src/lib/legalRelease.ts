@@ -2014,6 +2014,14 @@ export const LIVE = {
    */
   practiceNoAi: false,
   /**
+   * legal-practice-1120: each Practice Game a member starts leaves one short-lived row (app server
+   * 20261119123927_practice_start_id_1119, live Nov 19: practice_starts = game, role, seats, start time, whether a result
+   * used it), cleared after 15 days; a finished game's result carries that start's id. Privacy's Practice Games item said
+   * "nothing about the game itself" kept at start; this makes it true. Not a new duty (no in-app notice): only
+   * PRIVACY_LAST_UPDATED moves (PRACTICE_START_DAY). Off if practice_starts is dropped.
+   */
+  practiceStarts1120: true,
+  /**
    * dexp-1114 (app repo server file 20261231999943_data_export_policy_1114, LIVE Nov 14 as 20261114185411; _data_export
    * prosrc d6226809; PLAN B16): the data export leaves out whether another player was under 18 or had not told us their
    * age (trades.minor_rules and the settle step's copy, party_messages.minor_present, a sent report's urgency fields) and
@@ -2604,6 +2612,9 @@ export const CODES_NO_MEMBERSHIP_DAY = 'November 13, 2026'
  */
 export const PRACTICE_AI_DAY = 'November 18, 2026'
 
+/** LIVE.practiceStarts1120's day in PRIVACY_LAST_UPDATED: the day the site goes up with the practice_starts line (legal-practice-1120). */
+export const PRACTICE_START_DAY = 'November 20, 2026'
+
 /** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
 export const PARTY_LEADER_LAPSE_DAY = 'November 13, 2026'
 
@@ -2772,6 +2783,8 @@ export const SENTRY_SESSIONS_1119_DAY = 'November 19, 2026'
 export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.practiceStarts1120
+    ? PRACTICE_START_DAY // Practice Games: each started game's row (game, role, seats, time), kept 15 days (legal-practice-1120)
   : LIVE.playtestTremendous
     ? PLAYTEST_TREMENDOUS_DAY // Test Versions: Beta 3's thank-yous through Tremendous; providers' paragraph (legal-1116)
   : LIVE.appU62

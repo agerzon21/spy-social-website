@@ -633,7 +633,10 @@ const Privacy: React.FC = () => {
             {PRIVACY.practiceNoAi && !PRIVACY.practiceAi &&
               "The other players in a practice game are played by the app itself, on your device, and your moves are rated there too: nothing you type or draw in a practice game is sent to OpenAI or any other AI service. "}
             {PRIVACY.practiceMembers &&
-              "The tutorials are free for everyone. Practice games (the full games against the app's AI agents, with grades) are for accounts with an active membership, up to 5 a day: when you start one, our servers check your membership and count it, keeping how many practice games each account started each UTC day (deleted after 14 days) and nothing about the game itself. "}
+              "The tutorials are free for everyone. Practice games (the full games against the app's AI agents, with grades) are for accounts with an active membership, up to 5 a day: when you start one, our servers check your membership and count it, keeping how many practice games each account started each UTC day (deleted after 14 days)"}
+            {PRIVACY.practiceMembers && (PRIVACY.practiceStarts1120
+              ? " and, for each game started, one short note of which game it was, your role in it (Local or spy), how many seats, when it started and whether a result was recorded for it (deleted after 15 days; a finished game's result keeps that note's ID, so a result can only be recorded for a game that was really started). Nothing you type or draw is in it. "
+              : " and nothing about the game itself. ")}
             {PRIVACY.practiceAi && <>
             In a practice game, your device rates every move you make. If you told us you're 16 or older (from the
             birth year the app asks for), {PRIVACY.practiceMembers ? 'have an active membership (practice games are for members, above)' : 'are signed in to an account (not playing as a guest)'} and chose Try It in the
