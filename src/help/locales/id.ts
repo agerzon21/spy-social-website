@@ -590,6 +590,15 @@ const id: HelpText = {
           ],
         },
         {
+          id: 'item-paused',
+          q: 'Kenapa item bertuliskan “Dijeda untuk ditinjau”?',
+          a: [
+            'Kami bisa menjeda satu item di Pasar Gelap untuk semua orang selagi kami memeriksanya, misalnya kalau peluang atau jumlahnya terlihat salah.',
+            'Selama dijeda, tidak ada yang bisa membuat penawaran, daftar jual, atau penjualan baru untuk item itu. Hal lain tetap jalan dan itemmu tetap milikmu.',
+            'Item itu dibuka lagi setelah kami selesai memeriksanya.',
+          ],
+        },
+        {
           id: 'archive-holder',
           q: "Bisakah orang lain melihat bahwa aku memegang item Unik?",
           a: [
@@ -681,6 +690,18 @@ const id: HelpText = {
             'Di <b>Brankas</b>, Intel-mu punya ubin sendiri, tumpukan yang tumbuh sesuai jumlahnya. Ketuk untuk melihat yang didapat hari ini, didapat seluruhnya, dan dipakai seluruhnya. Intel yang tertahan di penawaran Pasar Gelap yang masih terbuka dihitung terpakai sampai kembali.',
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'shops-closed',
+              q: 'Kenapa toko tutup?',
+              a: [
+                'Tepat sebelum peluncuran, toko Intel dan toko Malam Permainan tutup, mulai Senin, 7 Desember. Aplikasi menulis <b>Toko dibuka kembali saat peluncuran</b>, lengkap dengan tanggalnya.',
+                'Toko dibuka lagi saat peluncuran, pada Selasa, 8 Desember.',
+              ],
+            },
+            ]),
         {
           id: 'verifying',
           q: 'Kenapa hadiah bertuliskan “Memverifikasi”?',

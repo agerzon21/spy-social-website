@@ -590,6 +590,15 @@ const es: HelpText = {
           ],
         },
         {
+          id: 'item-paused',
+          q: '¿Por qué un objeto dice “En pausa para revisión”?',
+          a: [
+            'Podemos pausar un objeto en el Mercado Negro para todos mientras lo revisamos, por ejemplo si sus probabilidades o su cantidad parecen estar mal.',
+            'Mientras está en pausa, nadie puede hacer ofertas, publicaciones ni ventas nuevas de ese objeto. Todo lo demás funciona y tu objeto sigue siendo tuyo.',
+            'Vuelve a abrirse cuando lo hayamos revisado.',
+          ],
+        },
+        {
           id: 'archive-holder',
           q: "¿Pueden otros ver que tengo un Único?",
           a: [
@@ -681,6 +690,18 @@ const es: HelpText = {
             'En la <b>Bóveda</b>, tu Intel tiene su propia ficha, una pila que crece con la cantidad. Tócala para ver lo ganado hoy, lo ganado en total y lo gastado en total. El Intel retenido en una oferta abierta del Mercado Negro cuenta como gastado hasta que vuelve.',
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'shops-closed',
+              q: '¿Por qué están cerradas las tiendas?',
+              a: [
+                'Justo antes del lanzamiento se cierran la tienda de Intel y la tienda de la Noche de Juegos, desde el lunes 7 de diciembre. La app dice <b>Las tiendas reabren con el lanzamiento</b>, con la fecha.',
+                'Vuelven a abrir con el lanzamiento, el martes 8 de diciembre.',
+              ],
+            },
+            ]),
         {
           id: 'verifying',
           q: '¿Por qué una recompensa dice «Verificando»?',

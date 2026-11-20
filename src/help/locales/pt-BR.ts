@@ -590,6 +590,15 @@ const ptBR: HelpText = {
           ],
         },
         {
+          id: 'item-paused',
+          q: 'Por que um item diz “Pausado para revisão”?',
+          a: [
+            'Podemos pausar um item no Mercado Negro para todos enquanto o verificamos, por exemplo se suas chances ou sua quantidade parecerem erradas.',
+            'Enquanto está pausado, ninguém pode fazer novas ofertas, anúncios ou vendas desse item. O resto funciona normalmente e você continua com o item.',
+            'Ele volta a abrir assim que o verificarmos.',
+          ],
+        },
+        {
           id: 'archive-holder',
           q: "Os outros podem ver que tenho um Único?",
           a: [
@@ -681,6 +690,18 @@ const ptBR: HelpText = {
             'No <b>Cofre</b>, seu Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. O Intel preso numa oferta aberta do Mercado Negro conta como gasto até voltar.',
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'shops-closed',
+              q: 'Por que as lojas estão fechadas?',
+              a: [
+                'Pouco antes do lançamento, a loja de Intel e a loja da Noite de Jogos fecham, a partir de segunda-feira, 7 de dezembro. O app mostra <b>As lojas reabrem no lançamento</b>, com a data.',
+                'Elas reabrem no lançamento, na terça-feira, 8 de dezembro.',
+              ],
+            },
+            ]),
         {
           id: 'verifying',
           q: 'Por que uma recompensa diz “Verificando”?',

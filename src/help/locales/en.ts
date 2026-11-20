@@ -620,6 +620,15 @@ const en: HelpText = {
           ],
         },
         {
+          id: 'item-paused',
+          q: 'Why does an item say “Paused for review”?',
+          a: [
+            'We can pause one item on the Black Market for everyone while we check it, for example if its odds or its count look broken.',
+            'While it is paused, nobody can make a new offer, listing or sale for that item. Everything else works, and you keep the item.',
+            'It opens again once we have checked it.',
+          ],
+        },
+        {
           id: 'archive-holder',
           q: "Can other people see that I hold a Unique?",
           a: [
@@ -711,6 +720,18 @@ const en: HelpText = {
             'In the <b>Vault</b>, your Intel has its own tile, a stack that grows with the amount. Tap it for what you earned today, earned in all and spent in all. Intel held in an open Black Market offer counts as spent until it comes back.',
           ],
         },
+        ...(o.launch
+          ? []
+          : [
+            {
+              id: 'shops-closed',
+              q: 'Why are the shops closed?',
+              a: [
+                'Just before launch, the Intel shop and the Game Night shop close, from Monday, December 7. The app says <b>Shops reopen at launch</b>, with the date.',
+                'They open again at launch, on Tuesday, December 8.',
+              ],
+            },
+            ]),
         {
           id: 'verifying',
           q: 'Why does a reward say “Verifying”?',

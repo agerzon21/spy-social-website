@@ -586,6 +586,15 @@ const sections = (o: HelpOpts): HelpSection[] => [
         ],
       },
       {
+        id: 'item-paused',
+        q: 'Pourquoi un objet indique-t-il « En pause pour vérification » ?',
+        a: [
+          "Nous pouvons mettre un objet en pause sur le Marché noir pour tout le monde, le temps de le vérifier, par exemple si ses chances ou son nombre d'exemplaires semblent faussés.",
+          'Pendant la pause, personne ne peut faire de nouvelle offre, mise en vente ou vente de cet objet. Tout le reste fonctionne et tu gardes ton objet.',
+          "Il rouvre dès que nous l'avons vérifié.",
+        ],
+      },
+      {
         id: 'archive-holder',
         q: "Les autres peuvent-ils voir que je détiens un Unique ?",
         a: [
@@ -677,6 +686,18 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Dans le <b>Coffre</b>, ton Intel a sa propre tuile, une pile qui grandit avec le montant. Touche-la pour voir ce que tu as gagné aujourd'hui, gagné en tout et dépensé en tout. L'Intel bloqué dans une offre ouverte du Marché noir compte comme dépensé jusqu'à son retour.",
         ],
       },
+      ...(o.launch
+        ? []
+        : [
+          {
+            id: 'shops-closed',
+            q: 'Pourquoi les boutiques sont-elles fermées ?',
+            a: [
+              "Juste avant le lancement, la boutique Intel et la boutique Soirée jeux ferment, à partir du lundi 7 décembre. L'appli affiche <b>Les boutiques rouvrent au lancement</b>, avec la date.",
+              'Elles rouvrent au lancement, le mardi 8 décembre.',
+            ],
+          },
+          ]),
       {
         id: 'verifying',
         q: 'Pourquoi une récompense affiche-t-elle « Vérification » ?',
