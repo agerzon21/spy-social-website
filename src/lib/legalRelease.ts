@@ -2242,6 +2242,27 @@ export const LIVE = {
    * A server fact: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
    */
   testerOnboard: false,
+  /**
+   * A drawer under 18 next to another (owner Nov 20 "safety 1 check"; app server 20261231999743_drawing_minor_peer_check_1120,
+   * srv/drawing-minor-peer-check-1120, STAGED for the rig): in a private room, a drawing by a player who told us they're
+   * under 18 now gets the free first check (OpenAI moderation; the second check only if that flags it) whenever anyone
+   * else who can see it is under 18 or hasn't told us their age; the second check's grey context keeps the drawer's own
+   * earlier lines and still leaves out other minors'. Privacy's Drawing Checks, Terms 8's drawing check line, Child
+   * Safety. POLICY FIRST: published Nov 20 before the row is applied (it only adds a check). If the row is dropped:
+   * node scripts/flip-switch.mjs drawingMinorPeer1120 --undo. A server fact: LIVE, never PRIVACY_AHEAD.
+   */
+  drawingMinorPeer1120: true,
+  /**
+   * Moderators and drawings (owner Nov 20 "draw adult"; app server 20261231999742_mod_drawings_adult_1120,
+   * srv/mod-drawings-adult-1120, STAGED for the rig; app fix/mod-drawings-adult-1120): a drawing report goes to a
+   * community moderator only when everyone in that game, its reporters and its room's members are adults by the birth
+   * year they gave (the careful count; no birth year is not an adult), and the moderator then sees the reported turn as
+   * the server kept it (earlier lines in grey, the lines drawn and undone), each view logged; any other drawing report is
+   * the developer's only. Privacy's Data Sharing (community moderators), Terms 8's Community moderators, Child Safety.
+   * POLICY FIRST: published Nov 20 before the row is applied. If the row is dropped:
+   * node scripts/flip-switch.mjs modDrawingsAdult1120 --undo. A server fact: LIVE, never PRIVACY_AHEAD.
+   */
+  modDrawingsAdult1120: true,
 }
 
 /**
@@ -2261,6 +2282,8 @@ export const COVERAGE_1119_DAY = 'November 19, 2026'
 export const NP_1119_DAY = 'November 19, 2026'
 /** LIVE.helpGooglePassStop's day in both Last Updated dates (legal-coverage-1119; set by flip-switch --day). */
 export const GOOGLE_PASS_STOP_DAY = 'November 21, 2026'
+/** LIVE.drawingMinorPeer1120's and LIVE.modDrawingsAdult1120's day in both Last Updated dates (set by flip-switch --day). */
+export const DRAWINGS_1120_DAY = 'November 20, 2026'
 /** LIVE.testerOnboard's day in PRIVACY_LAST_UPDATED (legal-coverage-1119; set by flip-switch --day). */
 export const TESTER_ONBOARD_DAY = 'November 21, 2026'
 /** The latest of several "Month D, YYYY" days (null skipped): a switch's day can then move a date whatever the chain's order. */
@@ -2711,7 +2734,7 @@ export const LEGAL_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
-), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null)
+), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -2908,7 +2931,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

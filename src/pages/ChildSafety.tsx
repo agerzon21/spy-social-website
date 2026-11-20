@@ -195,7 +195,9 @@ const ChildSafety: React.FC = () => {
             <B>Drawing check:</B> Spy Sketch drawing turns in a public room are checked automatically as they're
             played, and so is a drawing reported in a private room.
             {LIVE.drawingMinorRooms && LIVE.safetyFacts1114 &&
-              " In a private room, drawing turns are checked too whenever a player under 18 or one who hasn't told us their age can see them (turns drawn before they arrived included), except the turns of a player who told us they're under 18, and their lines are never sent to the check from there. A sexual drawing in such a room is taken off the board at once and goes to a person."}{' '}
+              (LIVE.drawingMinorPeer1120
+                ? " In a private room, drawing turns are checked too whenever a player under 18 or one who hasn't told us their age can see them (turns drawn before they arrived included). The turns of a player who told us they're under 18 get the basic check there, and only next to another such player; the lines of other players under 18 are never sent with them. A sexual drawing in such a room is taken off the board at once and goes to a person."
+                : " In a private room, drawing turns are checked too whenever a player under 18 or one who hasn't told us their age can see them (turns drawn before they arrived included), except the turns of a player who told us they're under 18, and their lines are never sent to the check from there. A sexual drawing in such a room is taken off the board at once and goes to a person.")}{' '}
             When the check finds a drawing that sexualizes a
             child, in any room, the drawing is taken off the board, the account is banned with no appeal, and the drawing is reported to NCMEC. A turn can
             go unchecked if the check can't run at that moment; a report of it still goes to a person.
@@ -248,7 +250,8 @@ const ChildSafety: React.FC = () => {
           under 18, are marked urgent and read first.
           {LIVE.safetyAnswers1106 &&
             (LIVE.modCoverHold
-              ? " Reports about a child's safety are decided by SpySocial's developer only. If he hasn't opened one within 15 minutes, volunteer moderators see a limited view of it (never who reported it, never details or messages of a player under 18, never a private room's code, never a drawing) and can pause the reported player from public rooms and mute their chat for 24 hours, remove them from the room or party, or hide their messages until he does; he reviews and can undo each step, and only he reports to the authorities. Reports of personal info shared by or with a player under 18 are read by SpySocial's developer only."
+              ? " Reports about a child's safety are decided by SpySocial's developer only. If he hasn't opened one within 15 minutes, volunteer moderators see a limited view of it (never who reported it, never details or messages of a player under 18, never a private room's code, never a drawing) and can pause the reported player from public rooms and mute their chat for 24 hours, remove them from the room or party, or hide their messages until he does; he reviews and can undo each step, and only he reports to the authorities.  Reports of personal info shared by or with a player under 18 are read by SpySocial's developer only." +
+                (LIVE.modDrawingsAdult1120 ? " A report about a drawing is read by a volunteer moderator only when everyone in that game and room is an adult by the birth year they gave us; every other drawing report, including any game with a player under 18, is read by SpySocial's developer only." : '')
               : " Reports about a child's safety, and reports of personal info shared by or with a player under 18, are read by SpySocial's developer only, never by volunteer moderators.")}
         </li>
         <li>We take the content down: the message, the drawing or the name.</li>

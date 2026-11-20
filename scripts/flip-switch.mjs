@@ -47,6 +47,9 @@ const SWITCHES = {
   helpGooglePassStop: { live: [['helpGooglePassStop', true]], day: 'GOOGLE_PASS_STOP_DAY', step: 'google_pass_cancel on' },
   // legal-coverage-1119: POLICY FIRST, the hour tester-onboard goes live (TESTER_ONBOARD_LIVE=1 + app_config tester_onboard enabled).
   testerOnboard: { live: [['testerOnboard', true]], day: 'TESTER_ONBOARD_DAY', step: 'tester-onboard live' },
+  // drawings-1120: published policy-first Nov 20; --undo only if app server row 999743 / 999742 is dropped.
+  drawingMinorPeer1120: { live: [['drawingMinorPeer1120', true]], day: 'DRAWINGS_1120_DAY', step: 'row 999743' },
+  modDrawingsAdult1120: { live: [['modDrawingsAdult1120', true]], day: 'DRAWINGS_1120_DAY', step: 'row 999742' },
   helpQuestionRounds: { live: [['helpQuestionRounds', true]], day: null, step: 'row 70 (999861) + 62.15' },
   // codename-1118: Help only, no date. The hour app update 62.15.2 is on phones.
   helpU6152: { live: [['helpU6152', true]], day: null, step: '62.15.2' },

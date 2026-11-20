@@ -498,7 +498,9 @@ const Terms: React.FC = () => {
             {LIVE.onePool ? 'Play Online tables and events' : 'including Play Online tables and events'}),
             {/* LIVE.drawingMinorRooms: app server drawing_minor_rooms_1111 (friday-allon-read-1112: Terms matched to Privacy's Drawing Checks). */}
             {LIVE.drawingMinorRooms
-              ? " at a player's turns in a private room where anyone else who can see the drawing is under 18 or hasn't told us their age (never the turns of a player who has told us they're under 18),"
+              ? LIVE.drawingMinorPeer1120
+                ? " at a player's turns in a private room where anyone else who can see the drawing is under 18 or hasn't told us their age (for a player who has told us they're under 18, a basic check only),"
+                : " at a player's turns in a private room where anyone else who can see the drawing is under 18 or hasn't told us their age (never the turns of a player who has told us they're under 18),"
               : ''}{' '}
             and at drawings people report. A turn can go unchecked if the check can't run at that moment, and the check can
             miss things, so reports still matter: a person reads every report.
@@ -561,7 +563,7 @@ const Terms: React.FC = () => {
               : ''}{' '}They can
             propose a ban, but only SpySocial can ban an account, permanently or otherwise. We record every action a
             moderator takes and why, we can undo any of them, and you can appeal them like any other decision (see
-            Appeals below). Anything involving a child's safety, self-harm or threats{LIVE.safetyAnswers1106 ? ', and any report of personal information shared by or with a player under 18,' : ''} is handled by SpySocial only
+            Appeals below).{LIVE.modDrawingsAdult1120 ? " A community moderator sees and decides a reported drawing only when everyone in that game, everyone who reported it and the room's members are adults by the birth year they gave us; any other drawing report is handled by SpySocial only." : ''} Anything involving a child's safety, self-harm or threats{LIVE.safetyAnswers1106 ? ', and any report of personal information shared by or with a player under 18,' : ''} is handled by SpySocial only
             {LIVE.modCoverHold
               ? ": if we haven't opened a report about a child's safety (grooming, or sexual content with a player under 18 involved) or self-harm within 15 minutes, a community moderator may pause the reported player from public rooms and mute their chat for 24 hours (never on a self-harm report), remove them from the room or party, or hide their messages until we do, and we review each of these steps. Only SpySocial decides the report."
               : '.'}
