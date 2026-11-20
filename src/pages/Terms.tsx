@@ -738,8 +738,8 @@ const Terms: React.FC = () => {
               ? "You can't buy an Intercept with money or with Intel; the one kind you get for something you spend is a Game Night Intercept, for Game Night Intel you earned. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds."
               : "You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a membership doesn't give you more of them or better odds."}{' '}
             {/* The offer sheet's odds (Nov 10 store build, store-compliance-1103) are out by the launch: LIVE.launchSite. */}
-            {(LIVE.launchSite && LIVE.interceptsMarket) || LIVE.gnRewardsRules ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds)
-            the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
+            {(LIVE.launchSite && LIVE.interceptsMarket) || LIVE.gnRewardsRules ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds, or What's inside)
+            the chance of each tier and rarity and any guarantee. It shows rarity odds only, not a list of the items an Intercept can open into, and that includes Game Night Intercepts. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed.{LIVE.sameOdds ? ' Which item of a rarity you get never depends on what you already own.' : ''} If you get an item you already have, you
             keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
             one rarity give you 1 random item of the next rarity{/* LIVE.sameOdds: server 999888 no_repeat_drop_1115 (legal-1116) */}{LIVE.sameOdds ? ', whatever you already own' : " (one you don't have yet, while there is one)"}, and{' '}

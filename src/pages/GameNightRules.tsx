@@ -107,7 +107,7 @@ const GameNightRules: React.FC = () => (
           In the <B>Vault</B>, Game Night Intel buys Game Night Intercepts: <B>Tier 1</B> for 400, <B>Tier 2</B> for 800
           and <B>Tier 3</B> for 10,000. Each one opens into one item of Game Night's own set, After Hours: Tier 1 any
           rarity, Tier 2 Uncommon or better, Tier 3 Epic or better with a chance of a Unique. The app shows the exact
-          odds before you buy or open one. Once bought, a Game Night Intercept and the item it opens into work like any
+          rarity odds (under What's inside) before you buy or open one; it shows the odds only, not a list of the items. Once bought, a Game Night Intercept and the item it opens into work like any
           Intercept you earn, as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe. Game Night
           tables are Play Online tables, so a win there also counts toward your Intercepts like any Play Online win, and
           your first game of the day there gives your daily Intercept.
