@@ -554,7 +554,7 @@ const en: HelpText = {
             "The 7 days count from when the account was saved: time as a guest doesn’t count.",
             ...(o.launch ? [] : ['During the beta test, until December 7, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: from November 9 to November 16, adults who can trade buy and sell here for real. Every sale made while SpySocial is being tested is undone on November 16: buyers get back the Intel they paid, and sellers give back what they received.' : 'Intel starts moving there at the 2.2 launch on December 8. Until then, you can look around.']),
+            ...(o.launch ? [] : ["During the beta, every adult player can buy and sell here. Every sale made while SpySocial is being tested is undone before the launch: buyers get back the Intel they paid, and sellers give back what they received."]),
           ],
         },
         {
@@ -675,7 +675,7 @@ const en: HelpText = {
           a: [
             'The currency you earn by playing: from your games, your first game of the day and your daily streak, and from shredding spare copies.',
             'Your streak: one Play Online game a day keeps it. A game you start before the new day keeps it too, even if it ends after.',
-            o.launch ? 'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.' : 'Intel is never sold and has no cash value. Adults can trade it with other adults, and spend it on the Black Market from the 2.2 launch on December 8, or in a test whose sales are undone.',
+            o.launch ? 'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.' : "Intel is never sold and has no cash value. Adults can trade it with other adults and spend it on the Black Market. During the beta, every deal is undone before the launch on December 8.",
             'Every change to your Intel is a line in your Intel ledger, with its reason. Read yours under <b>Intel History</b> in How Intel Works, on the app’s newest update.',
             'In the <b>Vault</b>, your Intel has its own tile, a stack that grows with the amount. Tap it for what you earned today, earned in all and spent in all. Intel held in an open Black Market offer counts as spent until it comes back.',
           ],
@@ -1121,7 +1121,7 @@ const en: HelpText = {
           q: 'My game didn’t count',
           a: [
             'A game counts on your record when it ended and you had a seat, whether you played to the end, left early (a loss) or were away.',
-            'These don’t count: a game the host ended, a game that was too short or had too few players, a cancelled deal, an abandoned game, being removed from the room, a seat you never came to, or watching. A game with no winner is neither a win nor a loss.',
+            'These don’t count: a game the host ended, a game with too few players, a cancelled deal, an abandoned game, being removed from the room, a seat you never came to, or watching. A game with no winner is neither a win nor a loss.',
             'Your stats show Play Online and private rooms apart, so check the switch at the top.',
             'Private rooms never give Intel or Intercepts, and Play Online games give them only if they earned XP.',
             'For trading, you need 3 finished games that count and that our fair-play checks didn’t flag, each with at least 2 other saved accounts on other phones. Two phones on one Wi-Fi are fine; another account on your own phone isn’t one of the 2.',

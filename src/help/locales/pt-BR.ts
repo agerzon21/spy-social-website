@@ -524,7 +524,7 @@ const ptBR: HelpText = {
             "Os 7 dias contam a partir de quando a conta foi salva: o tempo como visitante não conta.",
             ...(o.launch ? [] : ['Durante o teste beta, até 7 de dezembro, as regras de idade da conta e de partidas contadas também estão desligadas aqui.']),
             'Menores de 18 podem olhar, mas não podem comprar, vender nem fazer ofertas.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: de 9 a 16 de novembro, adultos que podem trocar compram e vendem aqui de verdade. Toda venda feita durante o teste é desfeita em 16 de novembro: quem comprou recebe de volta o Intel que pagou, e quem vendeu devolve o que recebeu.' : 'O Intel começa a circular lá no lançamento da 2.2, em 8 de dezembro. Até lá, dá para dar uma olhada.']),
+            ...(o.launch ? [] : ["Durante o beta, todos os adultos podem comprar e vender aqui. Toda venda feita durante o teste é desfeita antes do lançamento: quem comprou recebe de volta o Intel que pagou, e quem vendeu devolve o que recebeu."]),
           ],
         },
         {
@@ -645,7 +645,7 @@ const ptBR: HelpText = {
           a: [
             'A moeda que você ganha jogando: com suas partidas, sua primeira partida do dia e sua sequência diária, e triturando cópias repetidas.',
             'Sua sequência: uma partida de Jogar online por dia a mantém. Uma partida que você começa antes do novo dia também a mantém, mesmo se terminar depois.',
-            o.launch ? 'O Intel nunca é vendido e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-lo com outros adultos.' : 'O Intel nunca é vendido e não vale dinheiro. Adultos podem trocá-lo com outros adultos e gastá-lo no Mercado Negro a partir do lançamento da 2.2, em 8 de dezembro, ou em um teste cujas vendas são desfeitas.',
+            o.launch ? 'O Intel nunca é vendido e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-lo com outros adultos.' : "O Intel nunca é vendido e não vale dinheiro. Adultos podem trocá-lo com outros adultos e gastá-lo no Mercado Negro. Durante o beta, todos os negócios são desfeitos antes do lançamento de 8 de dezembro.",
             'Cada mudança no seu Intel é uma linha no seu registro de Intel, com o motivo. Veja o seu em <b>Histórico de Intel</b>, em “Como o Intel funciona”, na atualização mais recente do app.',
             'No <b>Cofre</b>, seu Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. O Intel preso numa oferta aberta do Mercado Negro conta como gasto até voltar.',
           ],
@@ -1091,7 +1091,7 @@ const ptBR: HelpText = {
           q: 'Minha partida não contou',
           a: [
             'Uma partida conta no seu histórico quando terminou e você tinha um lugar, seja jogando até o fim, saindo antes (uma derrota) ou estando ausente.',
-            'Não contam: partida encerrada pelo anfitrião, partida curta demais ou com poucos jogadores demais, distribuição cancelada, partida abandonada, ser removido da sala, um lugar a que você nunca chegou, ou assistir. Partida sem vencedor não é vitória nem derrota.',
+            'Não contam: partida encerrada pelo anfitrião, partida com poucos jogadores demais, distribuição cancelada, partida abandonada, ser removido da sala, um lugar a que você nunca chegou, ou assistir. Partida sem vencedor não é vitória nem derrota.',
             'Suas estatísticas mostram o Jogar online e as salas privadas separados, então veja o seletor no topo.',
             'Salas privadas nunca dão Intel nem interceptações, e partidas do Jogar online só dão se renderam XP.',
             'Para trocar, você precisa de 3 partidas terminadas que contem e que nossas verificações de jogo limpo não tenham marcado, cada uma com pelo menos outras 2 contas salvas em outros celulares. Dois celulares no mesmo Wi-Fi valem; outra conta no seu próprio celular não é uma dessas 2.',

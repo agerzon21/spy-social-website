@@ -524,7 +524,7 @@ const id: HelpText = {
             "7 hari itu dihitung sejak akun disimpan: waktu sebagai tamu tidak dihitung.",
             ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun dan permainan yang dihitung juga tidak berlaku di sini.']),
             'Pemain di bawah 18 tahun bisa melihat, tapi tidak bisa membeli, menjual, atau menawar.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: dari 9 sampai 16 November, orang dewasa yang bisa bertukar benar-benar membeli dan menjual di sini. Semua penjualan selama pengujian dibatalkan pada 16 November: pembeli mendapatkan kembali Intel yang dibayarnya, dan penjual mengembalikan apa yang diterimanya.' : 'Intel mulai berpindah di sana saat peluncuran 2.2, tanggal 8 Desember. Sampai saat itu, kamu bisa melihat-lihat.']),
+            ...(o.launch ? [] : ["Selama beta, semua pemain dewasa bisa membeli dan menjual di sini. Semua penjualan selama pengujian dibatalkan sebelum peluncuran: pembeli mendapatkan kembali Intel yang dibayarnya, dan penjual mengembalikan apa yang diterimanya."]),
           ],
         },
         {
@@ -645,7 +645,7 @@ const id: HelpText = {
           a: [
             'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan rentetan harian, serta dari menghancurkan duplikat.',
             'Rentetan harianmu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
-            o.launch ? 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.' : 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa bisa menukarnya dengan orang dewasa lain, dan memakainya di Pasar Gelap mulai peluncuran 2.2 tanggal 8 Desember, atau dalam uji yang penjualannya dibatalkan.',
+            o.launch ? 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.' : "Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa bisa menukarnya dengan orang dewasa lain dan memakainya di Pasar Gelap. Selama beta, semua transaksi dibatalkan sebelum peluncuran 8 Desember.",
             'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya. Lihat milikmu di <b>Riwayat Intel</b>, di dalam “Cara Kerja Intel”, pada pembaruan terbaru aplikasi.',
             'Di <b>Brankas</b>, Intel-mu punya ubin sendiri, tumpukan yang tumbuh sesuai jumlahnya. Ketuk untuk melihat yang didapat hari ini, didapat seluruhnya, dan dipakai seluruhnya. Intel yang tertahan di penawaran Pasar Gelap yang masih terbuka dihitung terpakai sampai kembali.',
           ],
@@ -1091,7 +1091,7 @@ const id: HelpText = {
           q: 'Permainanku tidak dihitung',
           a: [
             'Permainan masuk rekam jejakmu kalau sudah berakhir dan kamu punya kursi, baik kamu main sampai selesai, keluar lebih awal (kalah), atau sedang pergi.',
-            'Yang tidak dihitung: permainan yang diakhiri host, permainan yang terlalu singkat atau pemainnya terlalu sedikit, pembagian yang dibatalkan, permainan yang ditinggalkan, dikeluarkan dari room, kursi yang tidak pernah kamu datangi, atau menonton. Permainan tanpa pemenang bukan menang dan bukan kalah.',
+            'Yang tidak dihitung: permainan yang diakhiri host, permainan dengan pemain yang terlalu sedikit, pembagian yang dibatalkan, permainan yang ditinggalkan, dikeluarkan dari room, kursi yang tidak pernah kamu datangi, atau menonton. Permainan tanpa pemenang bukan menang dan bukan kalah.',
             'Statistikmu memisahkan Main online dan room privat, jadi cek pengalih di bagian atas.',
             'Room privat tidak pernah memberi Intel atau sadapan, dan permainan Main online hanya memberinya kalau menghasilkan XP.',
             'Untuk bertukar, kamu butuh 3 permainan selesai yang dihitung dan tidak ditandai oleh pemeriksaan permainan adil kami, masing-masing dengan minimal 2 akun tersimpan lain di ponsel lain. Dua ponsel di satu Wi-Fi tidak masalah; akun lain di ponselmu sendiri tidak termasuk 2 akun itu.',

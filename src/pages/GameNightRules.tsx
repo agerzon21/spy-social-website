@@ -70,7 +70,7 @@ const GameNightRules: React.FC = () => (
         <P>
           For each game you finish at a Game Night table that <B>starts</B> during the night's hours, you get Game Night
           Intel: <B>500</B> for a win (the Locals win and you're a Local, or the spies win and you're a spy) and{' '}
-          <B>200</B> for any other finished game, a loss or a game with no winner. A game that starts before the end and
+          <B>200</B> for a finished loss. A game with no winner gives <B>0</B>. A game that starts before the end and
           finishes after it still counts. Game Over shows what you got.
         </P>
         <P>For Game Night Intel and the ★ titles:</P>

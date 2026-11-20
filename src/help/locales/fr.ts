@@ -520,7 +520,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "Les 7 jours comptent à partir de la sauvegarde du compte : le temps passé en invité ne compte pas.",
             ...(o.launch ? [] : ['Pendant le test bêta, jusqu’au 7 décembre, les règles d’ancienneté du compte et de parties comptées sont levées ici aussi.']),
           "Les moins de 18 ans peuvent regarder, mais ni acheter, ni vendre, ni faire d'offres.",
-          ...(o.launch ? [] : [o.testerMarket ? "Bêta 2 : du 9 au 16 novembre, les adultes qui peuvent échanger achètent et vendent ici pour de vrai. Toutes les ventes faites pendant le test sont annulées le 16 novembre : l'acheteur récupère l'Intel payé et le vendeur rend ce qu'il a reçu." : "L'Intel y circulera à partir du lancement de la 2.2, le 8 décembre. D'ici là, tu peux faire un tour."]),
+          ...(o.launch ? [] : ["Pendant la bêta, tous les adultes peuvent acheter et vendre ici. Toutes les ventes faites pendant le test sont annulées avant le lancement : l'acheteur récupère l'Intel payé et le vendeur rend ce qu'il a reçu."]),
         ],
       },
       {
@@ -641,7 +641,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           'La monnaie que tu gagnes en jouant : avec tes parties, ta première partie du jour et ta série quotidienne, et en déchiquetant des doublons.',
           'Ta série : une partie de Jouer en ligne par jour la garde. Une partie lancée avant le nouveau jour la garde aussi, même si elle finit après.',
-          o.launch ? "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes." : 'L’Intel n’est jamais vendu et n’a aucune valeur en argent. Les adultes peuvent l’échanger avec d’autres adultes, et le dépenser au Marché noir à partir du lancement de la 2.2, le 8 décembre, ou pendant un test dont les ventes sont annulées.',
+          o.launch ? "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes." : "L’Intel n’est jamais vendu et n’a aucune valeur en argent. Les adultes peuvent l’échanger avec d’autres adultes et le dépenser au Marché noir. Pendant la bêta, tous les échanges sont annulés avant le lancement du 8 décembre.",
           "Chaque changement de ton Intel est une ligne de ton registre Intel, avec son motif. Consulte le tien dans <b>Historique d'Intel</b>, depuis « Comment fonctionne l'Intel », sur la dernière mise à jour de l'appli.",
           "Dans le <b>Coffre</b>, ton Intel a sa propre tuile, une pile qui grandit avec le montant. Touche-la pour voir ce que tu as gagné aujourd'hui, gagné en tout et dépensé en tout. L'Intel bloqué dans une offre ouverte du Marché noir compte comme dépensé jusqu'à son retour.",
         ],
@@ -1087,7 +1087,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Ma partie n'a pas compté",
         a: [
           "Une partie compte dans ton palmarès quand elle s'est terminée et que tu avais une place, que tu aies joué jusqu'au bout, quitté avant la fin (une défaite) ou été absent.",
-          "Ne comptent pas : une partie arrêtée par l'hôte, une partie trop courte ou avec trop peu de joueurs, une distribution annulée, une partie abandonnée, être retiré du salon, une place où tu n'es jamais venu, ou regarder. Une partie sans gagnant n'est ni une victoire ni une défaite.",
+          "Ne comptent pas : une partie arrêtée par l'hôte, une partie avec trop peu de joueurs, une distribution annulée, une partie abandonnée, être retiré du salon, une place où tu n'es jamais venu, ou regarder. Une partie sans gagnant n'est ni une victoire ni une défaite.",
           'Tes stats séparent Jouer en ligne et les salons privés : regarde le sélecteur en haut.',
           "Les salons privés ne donnent jamais d'Intel ni d'interceptions, et les parties de Jouer en ligne n'en donnent que si elles ont rapporté de l'XP.",
           "Pour échanger, il te faut 3 parties terminées qui comptent et que nos vérifications de fair-play n'ont pas signalées, chacune avec au moins 2 autres comptes sauvegardés sur d'autres téléphones. Deux téléphones sur le même Wi-Fi, ça passe ; un autre compte sur ton propre téléphone ne fait pas partie de ces 2.",

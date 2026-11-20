@@ -524,7 +524,7 @@ const es: HelpText = {
             "Los 7 días cuentan desde que se guardó la cuenta: el tiempo como invitado no cuenta.",
             ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, aquí tampoco se aplican las reglas de antigüedad de la cuenta ni de partidas contadas.']),
             'Los menores de 18 pueden mirar, pero no comprar, vender ni hacer ofertas.',
-            ...(o.launch ? [] : [o.testerMarket ? 'Beta 2: del 9 al 16 de noviembre, los adultos que pueden intercambiar compran y venden aquí de verdad. Todas las ventas hechas durante la prueba se deshacen el 16 de noviembre: quien compró recupera el Intel que pagó y quien vendió devuelve lo que recibió.' : 'El Intel empieza a moverse ahí con el lanzamiento de la 2.2, el 8 de diciembre. Hasta entonces, puedes mirar.']),
+            ...(o.launch ? [] : ["Durante la beta, todos los jugadores adultos pueden comprar y vender aquí. Todas las ventas hechas durante la prueba se deshacen antes del lanzamiento: quien compró recupera el Intel que pagó y quien vendió devuelve lo que recibió."]),
           ],
         },
         {
@@ -645,7 +645,7 @@ const es: HelpText = {
           a: [
             'La moneda que ganas jugando: con tus partidas, tu primera partida del día y tu racha diaria, y al triturar copias repetidas.',
             'Tu racha: una partida de Jugar en línea al día la mantiene. Una partida que empiezas antes del nuevo día también la mantiene, aunque termine después.',
-            o.launch ? 'El Intel nunca se vende y no vale dinero. Los adultos lo gastan en el Mercado Negro y pueden intercambiarlo con otros adultos.' : 'El Intel nunca se vende y no vale dinero. Los adultos pueden intercambiarlo con otros adultos y gastarlo en el Mercado Negro desde el lanzamiento de la 2.2, el 8 de diciembre, o en una prueba cuyas ventas se deshacen.',
+            o.launch ? 'El Intel nunca se vende y no vale dinero. Los adultos lo gastan en el Mercado Negro y pueden intercambiarlo con otros adultos.' : "El Intel nunca se vende y no vale dinero. Los adultos pueden intercambiarlo con otros adultos y gastarlo en el Mercado Negro. Durante la beta, todos los tratos se deshacen antes del lanzamiento del 8 de diciembre.",
             'Cada cambio en tu Intel es una línea en tu registro de Intel, con su motivo. Consulta el tuyo en <b>Historial de Intel</b>, dentro de «Cómo funciona Intel», en la actualización más reciente de la app.',
             'En la <b>Bóveda</b>, tu Intel tiene su propia ficha, una pila que crece con la cantidad. Tócala para ver lo ganado hoy, lo ganado en total y lo gastado en total. El Intel retenido en una oferta abierta del Mercado Negro cuenta como gastado hasta que vuelve.',
           ],
@@ -1091,7 +1091,7 @@ const es: HelpText = {
           q: 'Mi partida no contó',
           a: [
             'Una partida cuenta en tu historial cuando terminó y tenías un lugar, tanto si jugaste hasta el final como si saliste antes (una derrota) o estabas ausente.',
-            'No cuentan: una partida que terminó el anfitrión, una partida demasiado corta o con muy pocos jugadores, un reparto cancelado, una partida abandonada, que te saquen de la sala, un lugar al que nunca llegaste, ni mirar. Una partida sin ganador no es victoria ni derrota.',
+            'No cuentan: una partida que terminó el anfitrión, una partida con muy pocos jugadores, un reparto cancelado, una partida abandonada, que te saquen de la sala, un lugar al que nunca llegaste, ni mirar. Una partida sin ganador no es victoria ni derrota.',
             'Tus estadísticas muestran Jugar en línea y las salas privadas por separado, así que mira el selector de arriba.',
             'Las salas privadas nunca dan Intel ni intercepciones, y las partidas de Jugar en línea solo los dan si ganaron XP.',
             'Para intercambiar necesitas 3 partidas terminadas que cuenten y que nuestras comprobaciones de juego limpio no hayan marcado, cada una con al menos otras 2 cuentas guardadas en otros teléfonos. Dos teléfonos en el mismo Wi-Fi sí valen; otra cuenta en tu propio teléfono no es una de esas 2.',

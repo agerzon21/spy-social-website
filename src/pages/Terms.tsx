@@ -788,7 +788,7 @@ const Terms: React.FC = () => {
         {LIVE.gnRewardsRules && (
           <li>
             Each game you finish at a Game Night table gives you Game Night Intel (for
-            now 500 for a win and 200 for any other game you finish, except the games the{' '}
+            now 500 for a win and 200 for a loss, and nothing for a game with no winner or for the games the{' '}
             <PageLink to="/game-night-rules">Game Night Rules</PageLink> leave out, such as one you leave before it ends)
             and counts toward four cosmetic titles, ★&nbsp;Operative, ★&nbsp;Local Hero, ★&nbsp;Master Spy and ★&nbsp;Double Agent, each worn
             with its count. Game Night Intel is separate from Intel. You earn it only by playing at Game Night, a
@@ -857,7 +857,7 @@ const Terms: React.FC = () => {
                 {' '}Until the launch the ledger is a beta test chain: its copies, numbers, trades and fingerprints
             are for testing and are wiped before the launch, when the real ledger starts again from its first entry.
             {/* Beta 2's open market (owner `open`, Nov 3; app repo nov03/beta2-market-open.md): Nov 3 through accountNotices. */}
-            {' '}Black Market sales made while SpySocial is being tested are undone before the launch (Beta 2's on November 16, 2026): buyers get back
+            {' '}Black Market sales made while SpySocial is being tested are undone before the launch: buyers get back
             the Intel they paid, and sellers give back what they received.
               </>
             )}
@@ -995,7 +995,7 @@ const Terms: React.FC = () => {
               {/* LIVE.launchSite: Intel moves on it from the launch, so the condition goes (site-launch-walk). LIVE.testerMarket: Beta 2's open market from Nov 9 (server opened it Nov 9, 12:23 UTC) (its sales undone before the launch, Collectibles bullet above). */}
               {LIVE.launchSite
                 ? '.'
-                : ", and Intel moves on it only once SpySocial 2.2 opens to everyone, except in Beta 2's test from November 9 to 16, 2026 (its sales are undone on November 16, as described above)."}{' '}
+                : ", and during the beta it is open to every adult player (its sales are undone before the launch, as described above)."}{' '}
               Players under 18 can look but can't buy, sell or make offers. No emailed code is needed on the Black Market;
               instead no offer can be priced below an item's minimum price, what one copy of it shreds for{LIVE.interceptsMarket ? " (for an unopened Intercept, what the items its tier gives shred for on average, by its odds)" : ''}.
             </li>
