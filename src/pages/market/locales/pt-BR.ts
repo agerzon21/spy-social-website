@@ -6,7 +6,7 @@ const pl = (n: number, one: string, many: string) => (n === 1 ? one : many)
 const ptBR: MarketStrings = {
   nav: { market: 'Mercado', movers: 'Movimentos', catalogue: 'Catálogo', archive: 'Únicos', label: 'Preços do Mercado Negro' },
   name: 'Mercado Negro',
-  beta: 'Mercado de teste da beta: estes preços vêm das vendas dos testadores e serão zerados em 7 de dezembro. O mercado de verdade abre em 8 de dezembro.',
+  beta: 'Mercado da beta: estes preços vêm das vendas dos jogadores durante a beta e serão zerados em 7 de dezembro. O mercado de verdade abre em 8 de dezembro.',
   sample: 'DADOS DE EXEMPLO: inventados para esta prévia do design. Nenhuma venda real aparece aqui.',
   demoNote: 'Histórico de exemplo: dados fictícios para mostrar como os gráficos funcionam, não vendas reais. Será apagado no lançamento.',
   sampleTag: 'Exemplo',

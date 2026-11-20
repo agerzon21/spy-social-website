@@ -8,7 +8,7 @@ import type { MarketStrings } from '../strings'
 const id: MarketStrings = {
   nav: { market: 'Pasar', movers: 'Pergerakan', catalogue: 'Katalog', archive: 'Unik', label: 'Harga Pasar Gelap' },
   name: 'Pasar Gelap',
-  beta: 'Pasar uji coba: harga ini berasal dari transaksi para penguji dan akan dihapus pada 7 Desember. Pasar sungguhan dibuka 8 Desember.',
+  beta: 'Pasar beta: harga ini berasal dari transaksi para pemain selama beta dan akan dihapus pada 7 Desember. Pasar sungguhan dibuka 8 Desember.',
   sample: 'DATA CONTOH: dibuat untuk pratinjau desain ini. Tidak ada transaksi sungguhan yang ditampilkan.',
   demoNote: 'Riwayat contoh: data contoh untuk menunjukkan cara kerja grafik, bukan transaksi sungguhan. Dihapus saat peluncuran.',
   sampleTag: 'Contoh',

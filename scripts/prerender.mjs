@@ -272,12 +272,14 @@ for (const [i, page] of HOST_PAGES.entries()) {
   for (const { code, rtl } of LANGUAGE_CODES) {
     const tags = await renderHostHead(i, code)
     const here = (tags.link.match(/rel="canonical" href="([^"]*)"/) ?? [])[1]
-    if (!here) throw new Error(`prerender: ${page.path} in ${code} has no canonical`)
+    if (!here && !(page.host === 'market' && page.file === 'item')) throw new Error(`prerender: ${page.path} in ${code} has no canonical`)
     let out = template.replace(/<html lang="[^"]*"/, `<html lang="${code}"${rtl ? ' dir="rtl"' : ''}`)
     if (!/<meta property="og:url" content="[^"]*"/.test(out)) throw new Error(`prerender: _host/${page.host}.html has no og:url`)
     out = out.replace(/(<meta property="og:url" content=")[^"]*"/, (_m, a) => `${a}${here}"`)
     // The title and description in every language's preview tags (English included: a page's own title).
     out = localHead(out, code, tags, true)
+    // The item shell names no item: no canonical, og:url or alternates of its own (an item's page keeps the host's head until its app runs).
+    if (page.host === 'market' && page.file === 'item') out = out.replace(/\s*<link\b[^>]*\brel="(?:canonical|alternate)"[^>]*>/g, '').replace(/\s*<meta property="og:url"[^>]*>/, '')
     out = withBody(out, page.host, page.file, code)
     await writeFile(resolve(dir, `${baseOf(code)}.html`), out)
     hostCount++

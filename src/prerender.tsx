@@ -95,6 +95,8 @@ export const HOST_PAGES: { host: 'archive' | 'market'; file: string; path: strin
   { host: 'market', file: 'home', path: '/market' },
   ...MOVER_LISTS.map((list: MoverList) => ({ host: 'market' as const, file: `movers/${list}`, path: `/market/movers/${list}`, title: (l: LangCode) => { const w = marketStrings(l); return `${w.lists[list].title} · ${w.name} · SpySocial` } })),
   { host: 'market', file: 'catalogue', path: '/market/catalogue', title: (l) => { const w = marketStrings(l); return `${w.catalogue.title} · ${w.name} · SpySocial` } },
+  // An item's page shell (the beta notice and the loading state at first paint): an item's own head still comes from the app; scripts/prerender.mjs drops this shell's canonical, og:url and alternates (they'd name a made-up item).
+  { host: 'market', file: 'item', path: '/market/item/shell', title: (l) => { const w = marketStrings(l); return `${w.name} · SpySocial` } },
   ...CATEGORIES.map((cat: Category) => ({ host: 'market' as const, file: `catalogue/${cat}`, path: `/market/catalogue/${cat}`, title: (l: LangCode) => { const w = marketStrings(l); return `${w.categories[cat]} · ${w.name} · SpySocial` } })),
 ]
 
