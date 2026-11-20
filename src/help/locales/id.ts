@@ -207,7 +207,8 @@ const id: HelpText = {
           id: 'game-night',
           q: 'Apa itu Malam Permainan?',
           a: [
-            'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
+            o.launch ? "Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Di Beranda, buka <b>Kompetisi</b>, lalu tab <b>Malam Permainan</b>, dan ketuk <b>Main Sekarang</b>." : 'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
+            "Malam Permainan butuh akun tersimpan: tamu menyimpan akunnya dulu.",
             o.gnRewards
               ? 'Setiap malam punya paket dan pengaturannya sendiri: tombol (i) di samping malam itu menampilkannya. Tombol <b>Hadiah</b> di kartunya menampilkan apa yang bisa kamu dapat: Intel Malam Permainan dan gelar ★.'
               : o.gnRewardsRules
@@ -216,6 +217,18 @@ const id: HelpText = {
             'Gratis, dan tidak ada yang kamu beli yang memperbesar peluangmu. Aturan lengkapnya: <gnr>aturan Malam Permainan</gnr> (bahasa Inggris).',
           ],
         },
+        ...(o.launch
+          ? [
+            {
+              id: 'compete',
+              q: "Apa itu Kompetisi?",
+              a: [
+                "<b>Kompetisi</b> adalah kartu di Beranda dengan tiga tab: <b>Malam Permainan</b>, <b>Ranked</b>, dan <b>Turnamen</b>.",
+                "Saat ini hanya tab Malam Permainan yang dipakai. Ranked dan Turnamen hadir nanti dan bertanda “Segera”.",
+              ],
+            },
+            ]
+          : []),
         ...(o.gnWeekly
           ? [
             {
@@ -224,7 +237,7 @@ const id: HelpText = {
               a: [
                 'Seminggu sekali: hari Jumat, lalu malam yang sama diulang hari Sabtu, biasanya pukul 20.00–22.00 waktu bagian timur AS.',
                 'Datang di salah satu malam, atau main di keduanya.',
-                'Kami mengumumkan setiap malam di aplikasi, di kartu Malam Permainan di Beranda.',
+                o.launch ? "Kami mengumumkan setiap malam di aplikasi, di Beranda, di Kompetisi, tab Malam Permainan." : 'Kami mengumumkan setiap malam di aplikasi, di kartu Malam Permainan di Beranda.',
               ],
             },
             ]
@@ -591,6 +604,7 @@ const id: HelpText = {
             "<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu. Tiap hari ke-7 berturut-turut menambah satu Rahasia atau lebih tinggi, dan tiap hari ke-30, satu Enigma.",
             ...(o.gnRewards ? ["<b>Malam Permainan:</b> permainanmu di sana memberi Intel Malam Permainan, yang bisa kamu pakai untuk mendapatkan sadapan Malam Permainan (di bawah)."] : o.gnRewardsRules ? [] : ["<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam."]),
             `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah.${o.launch ? " Sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah darinya hanya untukmu: tidak bisa ditukar, dijual, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya, memakai isinya, memakainya untuk Tukar Tambah, dan menghancurkan duplikat. Menghancurkan duplikat memberi Intel biasa." : ''}`,
+            ...(o.launch ? ["<b>Sambutan:</b> akun tersimpan mendapat sadapan pertama gratis. Seperti sadapan dari kode atau hadiah, sadapan itu dan isinya tetap di akunmu: tidak bisa ditukar atau dijual."] : []),
             'Room privat tidak memberi sadapan.',
             ...(o.launch
               ? []
@@ -839,7 +853,7 @@ const id: HelpText = {
           id: 'guest-or-saved',
           q: 'Akun tamu atau tersimpan: apa bedanya?',
           a: [
-            '<b>Tamu</b> bisa langsung main di room privat. Akun tamu hanya ada di satu ponsel, dan keluar dari akun menghapusnya selamanya.',
+            '<b>Tamu</b> bisa langsung ikut tutorial dan main di room privat. Akun tamu hanya ada di satu ponsel, dan keluar dari akun menghapusnya selamanya.',
             `Akun <b>tersimpan</b> (Apple, Google, atau emailmu${o.passwordless ? ', dengan kode yang kami kirim lewat email, tanpa kata sandi' : ''}) menyimpan nama, progres, dan keanggotaanmu di ponsel mana pun, dan membuka Main online, Malam Permainan, dan fitur teman.`,
             'Kamu bisa menyimpan akun tamu kapan saja dari halaman Akun, tanpa kehilangan apa pun. Teman, Pertukaran, dan Pasar Gelap meminta tamu menyimpan akunnya dulu.',
             ...(o.u6152 ? ["Sampai akunmu disimpan, kartu <b>Simpan akunmu</b> muncul di layar akhir setiap permainan. Ketuk × agar kartu itu tidak muncul lagi di ponsel itu."] : []),
@@ -918,9 +932,9 @@ const id: HelpText = {
           id: 'change-name',
           q: 'Bagaimana cara mengganti nama?',
           a: [
-            'Ganti nama tampilanmu kapan saja di halaman Akun, dan username sekali tiap 30 hari.',
-            'Akun baru dimulai dengan nama tampilan acak dalam bahasa aplikasimu.',
-            "Saat kamu membuat akun baru, @username-mu dibuat dari nama tampilan yang kamu ketik dan mengikutinya sampai kamu mengetik sendiri atau melempar dadu. Username tidak pernah memakai nama dari akun Google atau Apple-mu.",
+            o.launch ? "Ganti nama tampilan, username (sekali tiap 30 hari), serta warna ke-2 dan ke-3 di <b>Pengaturan</b>." : 'Ganti nama tampilanmu kapan saja di halaman Akun, dan username sekali tiap 30 hari.',
+            ...(o.launch ? [] : ['Akun baru dimulai dengan nama tampilan acak dalam bahasa aplikasimu.']),
+            o.launch ? "Saat membuat akun baru, kamu memilih @username dan satu warna, dan nama tampilanmu dibuat dari username itu. Nama itu tidak pernah memakai nama dari akun Google atau Apple-mu." : "Saat kamu membuat akun baru, @username-mu dibuat dari nama tampilan yang kamu ketik dan mengikutinya sampai kamu mengetik sendiri atau melempar dadu. Username tidak pernah memakai nama dari akun Google atau Apple-mu.",
             'Di meja Main online, pemain yang tidak kamu kenal melihat warna Agen-mu. Nama harus mengikuti <rules>aturan komunitas</rules>.',
           ],
         },

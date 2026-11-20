@@ -207,7 +207,8 @@ const ptBR: HelpText = {
           id: 'game-night',
           q: 'O que é a Noite de Jogos?',
           a: [
-            'Partidas online que organizamos, nas noites que anunciamos no app, normalmente das 20h às 22h no horário do leste dos EUA. Toque em <b>Jogar agora</b> no cartão da Noite de Jogos no início.',
+            o.launch ? "Partidas online que organizamos, nas noites que anunciamos no app, normalmente das 20h às 22h no horário do leste dos EUA. No início, abra <b>Competir</b>, depois a aba <b>Noite de Jogos</b> e toque em <b>Jogar agora</b>." : 'Partidas online que organizamos, nas noites que anunciamos no app, normalmente das 20h às 22h no horário do leste dos EUA. Toque em <b>Jogar agora</b> no cartão da Noite de Jogos no início.',
+            "A Noite de Jogos pede uma conta salva: o visitante salva a dele primeiro.",
             o.gnRewards
               ? 'Cada noite tem seus pacotes e ajustes: o (i) ao lado da noite mostra tudo. <b>Prêmios</b>, no cartão, mostra o que você ganha: Intel da Noite de Jogos e os títulos ★.'
               : o.gnRewardsRules
@@ -216,6 +217,18 @@ const ptBR: HelpText = {
             'É grátis, e nada que você compra melhora suas chances. As regras completas: <gnr>regras da Noite de Jogos</gnr> (em inglês).',
           ],
         },
+        ...(o.launch
+          ? [
+            {
+              id: 'compete',
+              q: "O que é o Competir?",
+              a: [
+                "<b>Competir</b> é um cartão no início com três abas: <b>Noite de Jogos</b>, <b>Ranqueada</b> e <b>Torneios</b>.",
+                "Hoje só a aba Noite de Jogos está em uso. Ranqueada e Torneios chegam mais tarde e mostram “Em breve”.",
+              ],
+            },
+            ]
+          : []),
         ...(o.gnWeekly
           ? [
             {
@@ -224,7 +237,7 @@ const ptBR: HelpText = {
               a: [
                 'Uma vez por semana: na sexta, e a mesma noite de novo no sábado, normalmente das 20h às 22h no horário do leste dos EUA.',
                 'Venha em qualquer uma das noites, ou jogue nas duas.',
-                'Anunciamos cada noite no app, no cartão da Noite de Jogos no início.',
+                o.launch ? "Anunciamos cada noite no app, no início, em Competir, na aba Noite de Jogos." : 'Anunciamos cada noite no app, no cartão da Noite de Jogos no início.',
               ],
             },
             ]
@@ -591,6 +604,7 @@ const ptBR: HelpText = {
             "<b>Diária:</b> sua primeira partida do dia no Jogar online dá uma. A cada 7 dias seguidos vem mais uma Secreto ou melhor, e a cada 30 dias, uma Enigma.",
             ...(o.gnRewards ? ["<b>Noite de Jogos:</b> suas partidas lá dão Intel da Noite de Jogos, que você usa para pegar interceptações da Noite de Jogos (abaixo)."] : o.gnRewardsRules ? [] : ["<b>Noite de Jogos:</b> ganhe uma partida lá, como local ou espião, e você recebe uma Enigma, uma por noite."]),
             `<b>Códigos e presentes:</b> um código de um criador ou nosso vale uma vez por conta, e as interceptações dele são liberadas depois da sua primeira partida contada no Jogar online. Também damos algumas de presente.${o.launch ? " Interceptações de código ou de presente, o que sai delas e o que você consegue com elas na Fusão são só seus: não podem ser trocados, vendidos nem dados, não importa quantas partidas você jogue. Você ainda pode abri-las, usar o que sair, fundir e triturar repetidos. Triturar um repetido dá Intel comum." : ''}`,
+            ...(o.launch ? ["<b>Boas-vindas:</b> uma conta salva ganha uma primeira interceptação de graça. Como as de código ou de presente, ela e o que sai dela ficam na sua conta: não podem ser trocadas nem vendidas."] : []),
             'Salas privadas não dão interceptações.',
             ...(o.launch
               ? []
@@ -839,7 +853,7 @@ const ptBR: HelpText = {
           id: 'guest-or-saved',
           q: 'Conta de visitante ou salva: qual a diferença?',
           a: [
-            'Um <b>visitante</b> joga em salas privadas na hora. Uma conta de visitante fica num celular só, e sair dela apaga a conta para sempre.',
+            'Um <b>visitante</b> pode fazer os tutoriais e jogar em salas privadas na hora. Uma conta de visitante fica num celular só, e sair dela apaga a conta para sempre.',
             `Uma conta <b>salva</b> (Apple, Google ou seu e-mail${o.passwordless ? ', com um código que mandamos, sem senha' : ''}) guarda seu nome, seu progresso e seu plano de membro em qualquer celular, e libera o Jogar online, a Noite de Jogos e os amigos.`,
             'Você pode salvar uma conta de visitante quando quiser na página da sua conta, sem perder nada. Amigos, Trocas e o Mercado Negro pedem que o visitante salve a conta primeiro.',
             ...(o.u6152 ? ["Até você salvar, um cartão <b>Salve sua conta</b> aparece no fim de jogo depois de cada partida. Toque no × para ele não aparecer mais nesse celular."] : []),
@@ -918,9 +932,9 @@ const ptBR: HelpText = {
           id: 'change-name',
           q: 'Como mudo meu nome?',
           a: [
-            'Mude seu nome de exibição quando quiser na página da sua conta, e seu nome de usuário uma vez a cada 30 dias.',
-            'Uma conta nova começa com um nome de exibição aleatório no idioma do seu app.',
-            "Ao criar uma conta nova, seu @usuário é feito a partir do nome de exibição que você digita e acompanha esse nome até você digitar um seu ou jogar o dado. Ele nunca usa o nome da sua conta Google ou Apple.",
+            o.launch ? "Mude seu nome de exibição, seu nome de usuário (uma vez a cada 30 dias) e sua 2ª e 3ª cor em <b>Ajustes</b>." : 'Mude seu nome de exibição quando quiser na página da sua conta, e seu nome de usuário uma vez a cada 30 dias.',
+            ...(o.launch ? [] : ['Uma conta nova começa com um nome de exibição aleatório no idioma do seu app.']),
+            o.launch ? "Ao criar uma conta, você escolhe seu @usuário e uma cor, e seu nome de exibição é feito a partir do nome de usuário. Ele nunca usa o nome da sua conta Google ou Apple." : "Ao criar uma conta nova, seu @usuário é feito a partir do nome de exibição que você digita e acompanha esse nome até você digitar um seu ou jogar o dado. Ele nunca usa o nome da sua conta Google ou Apple.",
             'Nas mesas do Jogar online, quem não conhece você vê sua cor de agente no lugar. Os nomes seguem as <rules>regras da comunidade</rules>.',
           ],
         },

@@ -1,7 +1,7 @@
 import type { HelpText } from '../types'
 
 /**
- * English: the source (../types.ts). stale-help-1118 (2026-11-18): behind LIVE.gnRewardsRules (row 83, Fri Nov 20) #who-can-trade's
+ * English: the source (../types.ts). help-np-1120 (2026-11-20, owner-approved Nov 19 changes, against app review/np-combined-1119 + feat/home-compete-1119): guests do the tutorials and private rooms (#guest-or-saved), Game Night needs a saved account, from o.launch (Dec 8) #game-night / #game-night-weekly say Compete > Game Night tab, new #compete (Ranked and Tournaments: Soon, no date), #change-name (setup = @username + one colour, display name made from it; Settings: name, username once per 30 days, 2nd/3rd colours), #earn-intercepts' Welcome Intercept stays with the account. stale-help-1118 (2026-11-18): behind LIVE.gnRewardsRules (row 83, Fri Nov 20) #who-can-trade's
  * launch line loses the Developer's Pick, and until gnRewards #game-night's line drops the night's titles and #earn-intercepts the
  * winner's Enigma (the other languages: the same words cut from their own lines). help-new-1117 (2026-11-17, against app int/u62-15-prep 05c21a1e3 and NEXT-BATCH rows 70 / 83 / 85 / 95,
  * gamenight-rewards-1116/FINAL-SPEC.md, signup v42): #question-rounds (glossary setting.question_rounds), #game-night-weekly (owner Nov 17:
@@ -237,7 +237,8 @@ const en: HelpText = {
           id: 'game-night',
           q: 'What is Game Night?',
           a: [
-            'Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. Tap <b>PLAY NOW</b> on Home’s Game Night card.',
+            o.launch ? "Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. On Home, open <b>Compete</b>, then the <b>Game Night</b> tab, and tap <b>PLAY NOW</b>." : 'Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. Tap <b>PLAY NOW</b> on Home’s Game Night card.',
+            "Game Night needs a saved account: guests save theirs first.",
             o.gnRewards
               ? 'Each night has its own packs and settings: the (i) next to the night shows them. <b>PRIZES</b> on the card shows what you earn: Game Night Intel and the ★ titles.'
               : o.gnRewardsRules
@@ -246,6 +247,18 @@ const en: HelpText = {
             'It’s free, and nothing you buy improves your chances. The full rules: <gnr>Game Night rules</gnr>.',
           ],
         },
+        ...(o.launch
+          ? [
+            {
+              id: 'compete',
+              q: "What is Compete?",
+              a: [
+                "<b>Compete</b> is a card on Home with three tabs: <b>Game Night</b>, <b>Ranked</b> and <b>Tournaments</b>.",
+                "Only the Game Night tab is in use today. Ranked and Tournaments are coming later, and say “Soon”.",
+              ],
+            },
+            ]
+          : []),
         ...(o.gnWeekly
           ? [
             {
@@ -254,7 +267,7 @@ const en: HelpText = {
               a: [
                 'Once a week: on Friday, then the same night again on Saturday, usually 8 to 10 PM Eastern.',
                 'Come to either night, or play both.',
-                'We announce each night in the app, on Home’s Game Night card.',
+                o.launch ? "We announce each night in the app, on Home, in Compete, on the Game Night tab." : 'We announce each night in the app, on Home’s Game Night card.',
               ],
             },
             ]
@@ -621,6 +634,7 @@ const en: HelpText = {
             "<b>Daily:</b> your first Play Online game of the day gives you one. Every 7th day in a row adds one Secret or better, and every 30th day an Enigma.",
             ...(o.gnRewards ? ["<b>Game Night:</b> your games there earn Game Night Intel, which gets you Game Night Intercepts (below)."] : o.gnRewardsRules ? [] : ["<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night."]),
             `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding a spare gives ordinary Intel." : ''}`,
+            ...(o.launch ? ["<b>Welcome:</b> a saved account gets a first Intercept, free. Like Intercepts from a code or a gift, it and what comes out of it stay with your account: they can’t be traded or sold."] : []),
             'Private rooms don’t give Intercepts.',
             ...(o.launch
               ? []
@@ -869,7 +883,7 @@ const en: HelpText = {
           id: 'guest-or-saved',
           q: 'Guest or saved account: what’s the difference?',
           a: [
-            'A <b>guest</b> plays private rooms right away. A guest account lives on one phone, and signing out deletes it for good.',
+            'A <b>guest</b> can play the tutorials and private rooms right away. A guest account lives on one phone, and signing out deletes it for good.',
             `A <b>saved</b> account (Apple, Google or your email${o.passwordless ? ', with a code we email you, no password' : ''}) keeps your name, progress and membership on any phone, and lets you play online, join Game Night and add friends.`,
             'You can save a guest account at any time from your Account page, without losing anything. Friends, Trades and the Black Market ask a guest to save it first.',
             ...(o.u6152 ? ["Until you save, a <b>Save Your Account</b> card shows on Game Over after every game. Tap × to stop it showing on that phone."] : []),
@@ -948,9 +962,9 @@ const en: HelpText = {
           id: 'change-name',
           q: 'How do I change my name?',
           a: [
-            'Change your display name on your Account page any time, and your username once every 30 days.',
-            'A new account starts with a random display name in your app’s language.',
-            "When you set up a new account, your @username is made from the display name you type and follows it until you type your own or roll the dice. It never uses the name on your Google or Apple account.",
+            o.launch ? "Change your display name, your username (once every 30 days) and your 2nd and 3rd colors in <b>Settings</b>." : 'Change your display name on your Account page any time, and your username once every 30 days.',
+            ...(o.launch ? [] : ['A new account starts with a random display name in your app’s language.']),
+            o.launch ? "When you set up a new account, you pick a @username and one color, and your display name is made from the username. It never uses the name on your Google or Apple account." : "When you set up a new account, your @username is made from the display name you type and follows it until you type your own or roll the dice. It never uses the name on your Google or Apple account.",
             'At Play Online tables, players you don’t know see your Agent colour instead. Names follow the <rules>community rules</rules>.',
           ],
         },

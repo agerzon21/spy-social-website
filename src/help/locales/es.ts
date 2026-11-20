@@ -207,7 +207,8 @@ const es: HelpText = {
           id: 'game-night',
           q: '¿Qué es la Noche de Juegos?',
           a: [
-            'Partidas en línea que organizamos, las noches que anunciamos en la app, normalmente de 8 a 10 PM, hora del Este de EE. UU. Toca <b>Jugar ya</b> en la tarjeta de la Noche de Juegos del inicio.',
+            o.launch ? "Partidas en línea que organizamos, las noches que anunciamos en la app, normalmente de 8 a 10 PM, hora del Este de EE. UU. En el inicio, abre <b>Competir</b>, luego la pestaña <b>Noche de Juegos</b> y toca <b>Jugar ya</b>." : 'Partidas en línea que organizamos, las noches que anunciamos en la app, normalmente de 8 a 10 PM, hora del Este de EE. UU. Toca <b>Jugar ya</b> en la tarjeta de la Noche de Juegos del inicio.',
+            "La Noche de Juegos pide una cuenta guardada: un invitado guarda la suya primero.",
             o.gnRewards
               ? 'Cada noche tiene sus propios paquetes y ajustes: la (i) junto a la noche los muestra. <b>Premios</b>, en la tarjeta, muestra lo que ganas: Intel de Noche de Juegos y los títulos ★.'
               : o.gnRewardsRules
@@ -216,6 +217,18 @@ const es: HelpText = {
             'Es gratis, y nada de lo que compres mejora tus posibilidades. Las reglas completas: <gnr>reglas de la Noche de Juegos</gnr> (en inglés).',
           ],
         },
+        ...(o.launch
+          ? [
+            {
+              id: 'compete',
+              q: "¿Qué es Competir?",
+              a: [
+                "<b>Competir</b> es una tarjeta del inicio con tres pestañas: <b>Noche de Juegos</b>, <b>Clasificatoria</b> y <b>Torneos</b>.",
+                "Hoy solo se usa la pestaña Noche de Juegos. La clasificatoria y los torneos llegarán más adelante y dicen «Pronto».",
+              ],
+            },
+            ]
+          : []),
         ...(o.gnWeekly
           ? [
             {
@@ -224,7 +237,7 @@ const es: HelpText = {
               a: [
                 'Una vez por semana: el viernes, y la misma noche otra vez el sábado, normalmente de 8 a 10 PM, hora del Este de EE. UU.',
                 'Ven a cualquiera de las dos noches, o juega en ambas.',
-                'Anunciamos cada noche en la app, en la tarjeta de la Noche de Juegos del inicio.',
+                o.launch ? "Anunciamos cada noche en la app, en el inicio, en Competir, en la pestaña Noche de Juegos." : 'Anunciamos cada noche en la app, en la tarjeta de la Noche de Juegos del inicio.',
               ],
             },
             ]
@@ -591,6 +604,7 @@ const es: HelpText = {
             "<b>Diaria:</b> tu primera partida del día en Jugar en línea te da una. Cada 7.º día seguido suma una Secreto o superior, y cada 30.º día, una Enigma.",
             ...(o.gnRewards ? ["<b>Noche de Juegos:</b> tus partidas allí dan Intel de Noche de Juegos, con el que consigues intercepciones de Noche de Juegos (más abajo)."] : o.gnRewardsRules ? [] : ["<b>Noche de Juegos:</b> gana una partida allí, como local o como espía, y recibes una Enigma, una por noche."]),
             `<b>Códigos y regalos:</b> un código de un creador o nuestro funciona una vez por cuenta, y sus intercepciones se desbloquean tras tu primera partida de Jugar en línea que cuente. También regalamos algunas.${o.launch ? " Las intercepciones de un código o de un regalo, lo que sale de ellas y lo que consigas al canjearlas son solo para ti: no se pueden intercambiar, vender ni regalar, por muchas partidas que juegues. Puedes abrirlas, ponerte lo que salga, canjearlas y triturar los repetidos. Triturar un repetido da Intel normal." : ''}`,
+            ...(o.launch ? ["<b>Bienvenida:</b> una cuenta guardada recibe una primera intercepción gratis. Igual que las de un código o un regalo, ella y lo que salga de ella se quedan en tu cuenta: no se pueden intercambiar ni vender."] : []),
             'Las salas privadas no dan intercepciones.',
             ...(o.launch
               ? []
@@ -839,7 +853,7 @@ const es: HelpText = {
           id: 'guest-or-saved',
           q: 'Cuenta de invitado o guardada: ¿qué diferencia hay?',
           a: [
-            'Un <b>invitado</b> juega en salas privadas al instante. Una cuenta de invitado vive en un solo teléfono, y cerrar sesión la borra para siempre.',
+            'Un <b>invitado</b> puede hacer los tutoriales y jugar en salas privadas al instante. Una cuenta de invitado vive en un solo teléfono, y cerrar sesión la borra para siempre.',
             `Una cuenta <b>guardada</b> (con Apple, Google o tu correo${o.passwordless ? ', con un código que te enviamos, sin contraseña' : ''}) conserva tu nombre, tu progreso y tu membresía en cualquier teléfono, y te deja jugar en línea, entrar a la Noche de Juegos y añadir amigos.`,
             'Puedes guardar una cuenta de invitado cuando quieras desde la página de tu cuenta, sin perder nada. Amigos, Intercambios y el Mercado Negro le piden a un invitado que la guarde primero.',
             ...(o.u6152 ? ["Hasta que la guardes, una tarjeta <b>Guarda tu cuenta</b> aparece en el final de cada partida. Toca × para que deje de salir en ese teléfono."] : []),
@@ -918,9 +932,9 @@ const es: HelpText = {
           id: 'change-name',
           q: '¿Cómo cambio mi nombre?',
           a: [
-            'Cambia tu nombre visible cuando quieras en la página de tu cuenta, y tu nombre de usuario una vez cada 30 días.',
-            'Una cuenta nueva empieza con un nombre visible al azar en el idioma de tu app.',
-            "Al crear una cuenta nueva, tu @usuario se forma a partir del nombre visible que escribes y lo sigue hasta que pongas uno propio o tires el dado. Nunca usa el nombre de tu cuenta de Google o Apple.",
+            o.launch ? "Cambia tu nombre visible, tu nombre de usuario (una vez cada 30 días) y tu 2.º y 3.er color en <b>Ajustes</b>." : 'Cambia tu nombre visible cuando quieras en la página de tu cuenta, y tu nombre de usuario una vez cada 30 días.',
+            ...(o.launch ? [] : ['Una cuenta nueva empieza con un nombre visible al azar en el idioma de tu app.']),
+            o.launch ? "Al crear una cuenta nueva, eliges tu @usuario y un color, y tu nombre visible se forma a partir del usuario. Nunca usa el nombre de tu cuenta de Google o Apple." : "Al crear una cuenta nueva, tu @usuario se forma a partir del nombre visible que escribes y lo sigue hasta que pongas uno propio o tires el dado. Nunca usa el nombre de tu cuenta de Google o Apple.",
             'En las mesas de Jugar en línea, quienes no te conocen ven el color de tu agente. Los nombres siguen las <rules>normas de la comunidad</rules>.',
           ],
         },

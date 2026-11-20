@@ -203,7 +203,8 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'game-night',
         q: "C'est quoi, la soirée jeux ?",
         a: [
-          "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
+          o.launch ? "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Sur l’accueil, ouvre <b>Compétition</b>, puis l’onglet <b>Soirée jeux</b> et touche <b>Jouer</b>." : "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
+          "La soirée jeux demande un compte sauvegardé : un invité sauvegarde d’abord le sien.",
           o.gnRewards
             ? "Chaque soirée a ses packs et ses réglages : le (i) à côté de la soirée les affiche. <b>Prix</b>, sur la carte, montre ce que tu gagnes : l'Intel de soirée jeux et les titres ★."
             : o.gnRewardsRules
@@ -212,6 +213,18 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "C'est gratuit, et rien de ce que tu achètes n'améliore tes chances. Le règlement complet : <gnr>règles de la soirée jeux</gnr> (en anglais).",
         ],
       },
+      ...(o.launch
+        ? [
+          {
+            id: 'compete',
+            q: "C’est quoi, Compétition ?",
+            a: [
+              "<b>Compétition</b> est une carte de l’accueil avec trois onglets : <b>Soirée jeux</b>, <b>Classé</b> et <b>Tournois</b>.",
+              "Aujourd’hui, seul l’onglet Soirée jeux sert. Classé et Tournois arriveront plus tard et affichent « Bientôt ».",
+            ],
+          },
+          ]
+        : []),
       ...(o.gnWeekly
         ? [
           {
@@ -220,7 +233,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             a: [
               "Une fois par semaine : le vendredi, puis la même soirée à nouveau le samedi, en général de 20 h à 22 h, heure de l'Est des États-Unis.",
               "Viens à l'une des deux, ou joue aux deux.",
-              "Nous annonçons chaque soirée dans l'appli, sur la carte de la soirée jeux de l'accueil.",
+              o.launch ? "Nous annonçons chaque soirée dans l’appli, sur l’accueil, dans Compétition, sur l’onglet Soirée jeux." : "Nous annonçons chaque soirée dans l'appli, sur la carte de la soirée jeux de l'accueil.",
             ],
           },
           ]
@@ -587,6 +600,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "<b>Chaque jour :</b> ta première partie du jour à Jouer en ligne t'en donne une. Chaque 7e jour d'affilée en ajoute une Secret ou mieux, et chaque 30e jour, une Enigma.",
           ...(o.gnRewards ? ["<b>Soirée jeux :</b> tes parties y rapportent de l'Intel de soirée jeux, qui te permet d'obtenir des interceptions de soirée jeux (plus bas)."] : o.gnRewardsRules ? [] : ["<b>Soirée jeux :</b> gagne une partie, en local ou en espion, et tu reçois une Enigma, une par soirée."]),
           `<b>Codes et cadeaux :</b> un code d'un créateur ou de nous marche une fois par compte, et ses interceptions se débloquent après ta première partie comptée à Jouer en ligne. Nous en offrons aussi.${o.launch ? " Les interceptions d'un code ou d'un cadeau, ce qu'elles contiennent et ce que tu en tires par Échange sont pour toi seul : ils ne s'échangent, ne se vendent et ne s'offrent pas, quel que soit ton nombre de parties. Tu peux toujours les ouvrir, porter ce qui en sort, les utiliser dans un Échange et déchiqueter les doublons. Déchiqueter un doublon donne de l'Intel ordinaire." : ''}`,
+          ...(o.launch ? ["<b>Bienvenue :</b> un compte sauvegardé reçoit une première interception gratuite. Comme celles d’un code ou d’un cadeau, elle et ce qu’elle contient restent sur ton compte : ils ne s’échangent pas et ne se vendent pas."] : []),
           'Les salons privés ne donnent pas d\'interceptions.',
           ...(o.launch
             ? []
@@ -835,7 +849,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'guest-or-saved',
         q: 'Compte invité ou sauvegardé : quelle différence ?',
         a: [
-          "Un <b>invité</b> joue tout de suite dans les salons privés. Un compte invité vit sur un seul téléphone, et se déconnecter le supprime pour de bon.",
+          "Un <b>invité</b> peut faire les tutoriels et jouer tout de suite dans les salons privés. Un compte invité vit sur un seul téléphone, et se déconnecter le supprime pour de bon.",
           `Un compte <b>sauvegardé</b> (Apple, Google ou ton e-mail${o.passwordless ? ', avec un code envoyé par e-mail, sans mot de passe' : ''}) garde ton nom, ta progression et ton statut de membre sur n'importe quel téléphone, et te permet de jouer en ligne, de rejoindre la soirée jeux et d'ajouter des amis.`,
           "Tu peux sauvegarder un compte invité à tout moment depuis la page de ton compte, sans rien perdre. Amis, Échanges et le Marché noir demandent d'abord à un invité de le sauvegarder.",
           ...(o.u6152 ? ["Tant que tu ne l'as pas sauvegardé, une carte <b>Sauvegarde ton compte</b> s'affiche sur l'écran de fin après chaque partie. Touche × pour ne plus la voir sur ce téléphone."] : []),
@@ -914,9 +928,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'change-name',
         q: 'Comment changer mon nom ?',
         a: [
-          "Change ton nom affiché quand tu veux sur la page de ton compte, et ton nom d'utilisateur une fois tous les 30 jours.",
-          "Un nouveau compte commence avec un nom d'affichage au hasard, dans la langue de ton appli.",
-          "Quand tu crées un compte, ton @nom d'utilisateur est formé à partir du nom affiché que tu tapes et le suit jusqu'à ce que tu en tapes un toi-même ou que tu lances le dé. Il ne reprend jamais le nom de ton compte Google ou Apple.",
+          o.launch ? "Change ton nom affiché, ton nom d’utilisateur (une fois tous les 30 jours) et tes 2e et 3e couleurs dans <b>Réglages</b>." : "Change ton nom affiché quand tu veux sur la page de ton compte, et ton nom d'utilisateur une fois tous les 30 jours.",
+          ...(o.launch ? [] : ["Un nouveau compte commence avec un nom d'affichage au hasard, dans la langue de ton appli."]),
+          o.launch ? "Quand tu crées un compte, tu choisis ton @nom d’utilisateur et une couleur, et ton nom affiché est formé à partir du nom d’utilisateur. Il ne reprend jamais le nom de ton compte Google ou Apple." : "Quand tu crées un compte, ton @nom d'utilisateur est formé à partir du nom affiché que tu tapes et le suit jusqu'à ce que tu en tapes un toi-même ou que tu lances le dé. Il ne reprend jamais le nom de ton compte Google ou Apple.",
           "Aux tables de Jouer en ligne, les joueurs que tu ne connais pas voient ta couleur d'agent à la place. Les noms suivent les <rules>règles de la communauté</rules>.",
         ],
       },
