@@ -2274,7 +2274,7 @@ export const LIVE = {
    * (node scripts/flip-switch.mjs guestSaveBeforeBuy --day "<publish day>"). A website fact: set in LIVE,
    * never in PRIVACY_AHEAD.
    */
-  guestSaveBeforeBuy: false,
+  guestSaveBeforeBuy: true,
   /**
    * safety-g6g8-1120 (G-8; server row 20261231999727 cs_auto_preserve_1120): a child-safety report now keeps the
    * case's restricted copy at once, when the report arrives (same data, same 1-year hold as the deletion hold).
@@ -2307,7 +2307,7 @@ export const DRAWINGS_1120_DAY = 'November 20, 2026'
 /** LIVE.testerOnboard's day in PRIVACY_LAST_UPDATED (legal-coverage-1119; set by flip-switch --day). */
 export const TESTER_ONBOARD_DAY = 'November 21, 2026'
 /** LIVE.guestSaveBeforeBuy's day in both Last Updated dates: the day round 14 (app guest-save-before-buy-1120) is published and the site goes up with it (set by flip-switch --day). */
-export const GUEST_SAVE_BEFORE_BUY_DAY = 'November 22, 2026'
+export const GUEST_SAVE_BEFORE_BUY_DAY = 'November 20, 2026'
 /** LIVE.csAutoPreserve's day in PRIVACY_LAST_UPDATED only: the day 20261231999727 is applied and the site goes up with it (set by flip-switch --day). */
 export const CS_AUTO_PRESERVE_DAY = 'November 20, 2026'
 /** The latest of several "Month D, YYYY" days (null skipped): a switch's day can then move a date whatever the chain's order. */
