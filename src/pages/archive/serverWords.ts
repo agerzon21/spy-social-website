@@ -23,8 +23,8 @@ const LINES: Record<LangCode, Lines> = {
     gnBonus: (p) => `Picked by the developer at a table of ${p}`,
   },
   ru: {
-    icUnique: (p) => `Уникальный, из перехвата или обмена: ${p}`,
-    ic: (p) => `Из перехвата или обмена: ${p}`,
+    icUnique: (p) => `Уникальный экземпляр из перехвата или «Улучшения»: ${p}`,
+    ic: (p) => `Из перехвата или «Улучшения»: ${p}`,
     gnPlayed: (p) => `Засчитанная игра: ${p}`,
     gnLocal: (p) => `Победа за местных: ${p}`,
     gnSpy: (p) => `Победа за шпионов: ${p}`,
@@ -115,7 +115,7 @@ const BETA_TEST_LINE: Record<LangCode, string> = {
   en: 'Tested SpySocial 2.2 before launch', ru: 'Тестирование SpySocial 2.2 до запуска',
   es: 'Probó SpySocial 2.2 antes del lanzamiento', fr: 'A testé SpySocial 2.2 avant le lancement',
   'pt-BR': 'Testou o SpySocial 2.2 antes do lançamento', id: 'Menguji SpySocial 2.2 sebelum peluncuran',
-  'zh-Hans': '在上线前测试了 SpySocial 2.2', ar: 'اختبر SpySocial 2.2 قبل الإطلاق',
+  'zh-Hans': '在上线前测试了 SpySocial 2.2', ar: 'اختبار SpySocial 2.2 قبل الإطلاق',
   hi: 'लॉन्च से पहले SpySocial 2.2 टेस्ट किया', bn: 'লঞ্চের আগে SpySocial 2.2 টেস্ট করেছেন',
 }
 
