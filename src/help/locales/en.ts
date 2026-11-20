@@ -314,7 +314,7 @@ const en: HelpText = {
               a: [
                 'Practice Games are for members: up to 5 a day. The day starts at midnight UTC. After your 5, a saved game can still be resumed.',
                 ...(o.practiceAi
-                  ? ['Members get AI feedback on every line they write, as they play, and a letter grade for every game. The AI feedback is for players 16 and older who tap <b>Try It</b> when the app asks; for everyone else, the phone grades. To stop it, turn off <b>Rate My Practice Lines with AI</b> in Settings.']
+                  ? ['Members get AI feedback on every line they write, as they play, and a letter grade for every game. The AI feedback is for players 16 and older who tap <b>Try It</b> when the app asks; for everyone else, the phone grades. To stop it, turn off <b>Rate My Practice Lines with AI</b> in Settings. A line that only turns the question back (“What do you think?”) isn’t an answer, so it scores low.']
                   : []),
                 'The tutorials stay free for everyone, and passing one still counts for Play Online.',
               ],
