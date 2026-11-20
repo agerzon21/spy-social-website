@@ -384,6 +384,20 @@ function roundMark(round: number): string {
   return round <= 1 ? '' : out
 }
 
+/** A ru mood word's form by its noun's gender ("m|f|n|p"). */
+const GENDER_FORM: Readonly<Record<string, number>> = { m: 0, f: 1, n: 2, p: 3 }
+
+/**
+ * The mood word in the noun's gender, as the app's lib/unique/codename agreeMod (app ru-codenames-1118): ru mood words
+ * are their four forms "m|f|n|p" and ru nouns carry :m / :f / :n / :p («Полуночные усы», «Бархатная лапа»); a plain
+ * mood word is used as it is.
+ */
+export function agreeMod(mod: string, gender: string | undefined): string {
+  if (!mod.includes('|')) return mod
+  const forms = mod.split('|')
+  return forms[GENDER_FORM[gender ?? 'm'] ?? 0] ?? forms[0]
+}
+
 /** The copy's codename ("Midnight Whiskers"), the app's shuffle of its item's 128 names (lib/unique/codename). */
 export function codenameOf(data: ArchiveData | null, item: string, serial: number): string | null {
   const it = data?.items[item]
@@ -396,9 +410,20 @@ export function codenameOf(data: ArchiveData | null, item: string, serial: numbe
   const n = (it.offset + k * 53) % 128
   const [noun, gender] = (nouns[Math.floor(n / 16)] ?? '').split(':')
   const of = gender === 'f' ? 'की' : gender === 'p' ? 'के' : 'का'
-  const name = data.codenames.template.replace('{{mod}}', data.codenames.mods[n % 16] ?? '').replace('{{noun}}', noun).replace('{{of}}', of)
+  const name = data.codenames.template.replace('{{mod}}', agreeMod(data.codenames.mods[n % 16] ?? '', gender)).replace('{{noun}}', noun).replace('{{of}}', of)
   const mark = roundMark(round)
   return mark ? `${name} ${mark}` : name
+}
+
+/**
+ * The copy's full name on one line, as the app writes it (codename-1118; app 62.15.2 lib/unique/codename uniqueFullName,
+ * owner 2026-11-18): its codename first, then the Legendary it was minted from with its number ("Onyx Dispatch · Paper
+ * Plane #00037"). No codename (an item with no pool): the base name and the number.
+ */
+export function copyNameOf(data: ArchiveData | null, item: string, serial: number): string {
+  const code = codenameOf(data, item, serial)
+  const base = `${nameOf(data, item)} ${serialText(serial)}`
+  return code ? `${code} · ${base}` : base
 }
 
 /** The copy's main colour (its digit-2 colour's swatch), for a glow behind its picture. */

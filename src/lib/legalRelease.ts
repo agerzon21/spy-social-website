@@ -139,12 +139,93 @@ export const LIVE = {
   /**
    * help-u61-1113: the Help center's answers for Beta 3's role reveal and Poker Face (app repo int/rr-u62; owner picks
    * Nov 13: B Spotlight, the red SPY tag, Same Sound for Every Role; Poker Face entered from "Where Are You Playing?",
-   * Online | Same Room). Turns on Help's #role-reveal and #poker-face (10 languages). Help text only: no legal page reads
+   * Online | Same Room). Turns on Help's #role-reveal and #poker-face and #voice-chat's line for a call (10 languages;
+   * rewritten by help-beta3-1116 against u62.13). Help text only: no legal page reads
    * it, no Last Updated date. Flip on Beta 3 day (Tue Nov 24), the hour the u62 update is on testers' phones and
    * app_config role_reveal_online is 'everyone': node scripts/flip-switch.mjs helpRoleReveal. Off again if the reveal
    * is rolled back (role_reveal_online 'off' or 'owner_testers').
    */
   helpRoleReveal: false,
+  /**
+   * help-new-1117: Help's Game Night rewards (app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83; client
+   * feat/gn-rewards-client-1117b in app update 62.15; spec gamenight-rewards-1116/FINAL-SPEC.md): #game-night-rewards
+   * (Game Night Intel 500 a win / 200 a loss or tie, 0 for a leave, idle, late, a spybot table or a voided walk-out; the
+   * four ★ counter titles; untradeable; the pre-launch reset line), #game-night-intercepts (Tier 1 / 2 / 3 at 400 / 800 /
+   * 10,000, the After Hours set) and #game-night's PRIZES line. Help text only, no Last Updated date. Flip once row 83 is
+   * applied live AND 62.15 is on phones: node scripts/flip-switch.mjs helpGameNightRewards. Off again if row 83 is rolled back.
+   * The Enigma per Game Night win ends with row 83 (FINAL-SPEC 9.1 default; coordinator Nov 17: no winner Intercept prize):
+   * with this on, #earn-intercepts' Game Night line points at Game Night Intel instead (howto-truth-1117).
+   */
+  helpGameNightRewards: true,
+  /**
+   * howto-truth-1117: the Game Night Rules page (/game-night-rules, pages/GameNightRules) for the Game Night rewards that
+   * replace the per-night titles (app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83): Game Night Intel
+   * (500 a win, 200 any other finished game; 0 for a leave, removal, idle, a game started after the night closed, a
+   * flagged game, a spybot table or a walk-out ending), the four untradeable ★ counter titles, the three Game Night
+   * Intercepts (400 / 800 / 10,000, the After Hours set), no developer's bonus title and no winner's Enigma; and the
+   * page's search description (src/i18n meta.descriptions.gameNightRulesRewards). Off: the per-night titles' rules, true
+   * until row 83 runs. The rules state what the server does, so flip it the day row 83 is applied live (not waiting for
+   * 62.15, unlike helpGameNightRewards), with GN_REWARDS_RULES_DAY set to that day:
+   * node scripts/flip-switch.mjs gnRewardsRules --day "<day>". Off again if row 83 is rolled back.
+   * legal-gn-1117: the same switch flips the legal lines with the Rules page. Terms 5's Game Night sentence (what it pays,
+   * not its titles); Terms 9: Game Night Intel in the list of virtual items, the Intercepts item (no winner's Enigma; Game
+   * Night Intercepts are the one kind got for something spent, Game Night Intel; the odds shown before buying), a new
+   * item for Game Night Intel and the four ★ titles (earn-only, untradeable, not minted, no cash value; the beta titles
+   * turned into counts; the reset's Game Night lines), the collectibles item (no Game Night titles among the minted
+   * collectibles), Trades' never-tradable list (+ the ★ titles and Game Night Intel) and the U0 gifts line (no
+   * developer's bonus title). Privacy: the Game Night item (Game Night Intel's history, the counts, who sees them), the
+   * Intercepts item (bought with Game Night Intel instead of a Game Night win) and the collectibles item. The Ledger
+   * page's list of minted items. Not a material change (no new duty or penalty: an event's rewards change, which Terms 5
+   * and 9 and the Rules already allow), so no TERMS_PUBLISHED or terms_version raise; GN_REWARDS_RULES_DAY moves
+   * LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED too. A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  gnRewardsRules: true,
+  /**
+   * help-new-1117: Help's Monthly <-> Yearly upgrades in the app ("Upgrade to Elite" / "Upgrade to Spymaster", "Switch to
+   * Monthly") and the two-memberships warning (app server 20261231999846_membership_switch_1117, NEXT-BATCH row 85; client
+   * feat/membership-switch-1117 in 62.15): #membership-switch and #two-memberships. Flip once row 85 is
+   * applied AND 62.15 is on phones: node scripts/flip-switch.mjs helpMembershipSwitch.
+   * audit-live-1118: it also turns on Terms 3's "How to cancel" lines on switching plans in the app (never charged twice;
+   * Google Play at once, the App Store at Apple's time) and the two-memberships warning, and one sentence in Privacy's
+   * Purchases item (the purchase records also tell you when you pay for two memberships). Not material (it describes a
+   * switch the stores already allowed, no new duty): MEMBERSHIP_SWITCH_DAY in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED.
+   */
+  helpMembershipSwitch: true,
+  /**
+   * help-new-1117: Google Play memberships stop renewing by themselves beside a Lifetime (row 85's pass-cancel edge
+   * function deployed AND app_config google_pass_cancel {"enabled": true}; owner Nov 17 "android cancel"). Turns on
+   * #membership-switch's Lifetime line, #two-memberships' Stop Renewal line and #cancel-membership's Lifetime sentence.
+   * Needs helpMembershipSwitch for the first two. Flip the hour the app_config switch goes on: node scripts/flip-switch.mjs
+   * helpGooglePassStop --day "<that day>". Off again if google_pass_cancel goes back to false.
+   * legal-coverage-1119: it also turns on Terms 9's How to cancel lines (a Google Play membership stops renewing by
+   * itself when Lifetime is bought, Stop Google Play Renewal on the two-memberships warning; never an App Store one;
+   * nothing refunded) and Privacy's Purchases lines (pass-cancel asks RevenueCat to stop the renewal by the Google order
+   * id, then reads the record back; public.pass_cancel_requests kept with the account, ON DELETE CASCADE). Not material
+   * (we stop a charge the player would have had to stop: no new duty), so no TERMS_PUBLISHED or terms_version raise;
+   * GOOGLE_PASS_STOP_DAY moves both Last Updated dates (latestOf). A server switch: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  helpGooglePassStop: false,
+  /**
+   * help-new-1117: Help's Spy Talk Question Rounds (app server 20261231999861_question_rounds_1116, NEXT-BATCH row 70, owner
+   * pick 19A; client pick/rounds-1116 in 62.15): #question-rounds. Help text only. Flip once row 70 is applied AND 62.15
+   * is on phones: node scripts/flip-switch.mjs helpQuestionRounds.
+   */
+  helpQuestionRounds: true,
+  /**
+   * codename-1118: Help's lines for app update 62.15.2 (int/u62-15-prep 363c1445e: showcase-press-1118, words-c-1118,
+   * np-save-gameover-1118, unique-codename-1118): the new #showcase-items (a Showcase item opens its item page; View in
+   * the Archive / View on the Market), #intercept-tiers' codename line (a Unique's codename is its name, its Legendary
+   * and number under it), #guest-or-saved's Save Your Account card on Game Over, and #play-online's Members only line
+   * (its (i) sheet, See Membership). Help text only, no Last Updated date. Flip the hour 62.15.2 is on phones:
+   * node scripts/flip-switch.mjs helpU6152. Off again if 62.15.2 is rolled back.
+   */
+  helpU6152: true,
+  /**
+   * App update 62.15 round 5 (help-u6153-1118): Help's Blackout line (the Game Night Legendary, formerly The Back Room, rest
+   * scene Rain Window), the Membership cards entry, the language-switch loader line and the tablet keyboard entry. Help text
+   * only, no Last Updated date. Flip the hour round 5 is on phones: node scripts/flip-switch.mjs helpU6153.
+   */
+  helpU6153: true,
   /**
    * Integrity's sign-up network code (app repo feat/integrity, server files 20261031060528_integrity_core_20261203600000
    * and 20261031060529_integrity_console_20261203610000, live 2026-10-31 06:05 UTC; owner Oct 31: the salted network
@@ -540,7 +621,7 @@ export const LIVE = {
    * Player Stats (app fix/player-stats, migrations 20261028000000_game_stats_context and 20261028000100_get_my_stats):
    * the server keeps each game's secret location or word and the kind of room with the game's record, and works out a
    * player's own stats from their game records for the app's Stats screen (games, wins, roles, votes, calls, answers,
-   * guesses, time played, games per week). Members (Pack Pass or Lifetime, 13 and over) also get their most-played
+   * guesses, time played, games per week). Members (Monthly or Yearly Membership, or Lifetime, 13 and over) also get their most-played
    * locations and words and a playstyle label worked out from their stats. Each player's stats go only to that player:
    * never to other players, on player cards or in any list. Flip when the two migrations are applied live (the
    * processing starts then, whatever app_config.player_stats says) and set PRIVACY_LAST_UPDATED to the day it goes up.
@@ -597,9 +678,9 @@ export const LIVE = {
    */
   roadmap: true,
   /**
-   * The launch-week game nights' days and hours (owner Console Events > Launch Week Game Nights, app
-   * feat/launch-console): Spy Talk on Tuesday, December 8, Spy Sketch on Friday, December 11 and Spy Mafia on
-   * Saturday, December 12, 2026, each 8 to 10 PM ET. On, the Roadmap's Game nights card and What's New's 2.2 Game
+   * The launch Game Nights' days and hours (owner Nov 17: no Game Night on launch day Tue Dec 8; Opening Night, Spy
+   * Talk, runs Friday, December 11 and again Saturday, December 12, 2026, the same night twice, each 8 to 10 PM ET;
+   * after launch one Game Night a week, played Friday and repeated Saturday; Owner Console > Game Night). On, the Roadmap's Game nights card and What's New's 2.2 Game
    * nights line name them (src/i18n: roadmap.now.launchWeek; What's New has no launchWeek line yet). Off until the owner OKs the
    * schedule and the nights are published (app_config.events_enabled on); if a day or hour changes, change those
    * lines in all 10 languages first. No legal text reads it. A website fact: set in LIVE, never in PRIVACY_AHEAD.
@@ -680,7 +761,7 @@ export const LIVE = {
    * Turns on Privacy's Game Night item (after Play Online). The developer's watch at these tables is developerWatch's
    * text (20261106130000): flip both in the same deploy. POLICY FIRST: deploy the site with it on before the server
    * files are applied (QA 110 step 3), even though app_config gamenight.enabled stays false until the owner turns the
-   * launch-week nights on (from Tue Dec 8, 2026, 7:55 PM ET); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
+   * launch Game Nights on (owner Nov 17: no night on launch day; Opening Night Fri Dec 11 + Sat Dec 12, 8 PM ET); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
    * that date to the deploy day. Off only if the Game Night v2 files are rolled back. A server switch for every app
    * version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
@@ -780,8 +861,8 @@ export const LIVE = {
    */
   tournaments: false,
   /**
-   * Money buys only memberships (owner 2026-10-25, top priority for 2.2; final rules the same day): Agent (the monthly
-   * Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime) are the only products for sale; the owner may also
+   * Money buys only memberships (owner 2026-10-25, top priority for 2.2; final rules the same day): Agent (the Monthly
+   * Membership), Elite (the Yearly Membership) and Spymaster (Lifetime) are the only products for sale; the owner may also
    * gift a membership (the Terms say so). The other 19 (the six packs
    * spysocial.pack.*, spysocial.all_packs, the bundles Grand Tour and Night In, the Masquerade Mask and the nine
    * celebrations spysocial.cosmetic.*) are off sale: never live in store_products, removed from sale in App Store
@@ -1132,14 +1213,28 @@ export const LIVE = {
    * (legal/coverage-1110) Before flipping it: (1) set PRACTICE_AI_DAY (top of PRIVACY_LAST_UPDATED); (2) the app has no way
    * to take back a TRY IT once given (RateWithAiNote is one-time, nothing in Settings calls set_practice_rate_consent):
    * a consent must be as easy to withdraw as to give, so ship a Settings switch (or an "ask again") first, and name it in
-   * the Practice Games item and the Consent / Objecting lines. Spy Sketch practice never calls OpenAI
+   * the Practice Games item and the Consent / Objecting lines. DONE (s95-practice-1118, Nov 18): app update 62.15 (on phones
+   * Nov 18 13:14 ET) has Settings > Language > Rate My Practice Lines with AI (components/settings/PracticeAiSetting, off =
+   * set_practice_rate_consent(false)); Privacy's Practice Games item, Consent and Objecting lines name it. Spy Sketch practice never calls OpenAI
    * (PracticeHost: sketchGame returns early); the month's cap (app_config practice_rate_monthly_usd_cap, $150 on
    * Nov 10) falls back to the phone's rating.
    */
-  practiceAi: false,
+  practiceAi: true,
   /**
-   * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Pack
-   * Pass or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
+   * (practice-members-1117, owner Tue Nov 17) Practice Games become MEMBERS ONLY: an active membership (Monthly, Yearly or
+   * Lifetime; a membership we give, testers' included, counts), at most 5 a day (the UTC day), with the AI rating turned
+   * on (app server 20261231999836_practice_members_1117, NEXT-BATCH row 95: start_practice_game counts the practice games
+   * each account starts per UTC day in practice_game_days, deleted after 14 days; practice-rate refuses a non-member's
+   * line, not_member). The tutorials stay free for everyone and still open Play Online. On, it adds to Privacy's Practice
+   * Games item (members only, the per-day count, the tutorial as Play Online's step) and to Terms (the membership list,
+   * Play Online's tutorial line). POLICY FIRST, as practiceAi: flip BOTH (practiceAi + practiceMembers) and deploy the
+   * site the same day row 95 is applied, before it, with PRACTICE_AI_DAY set to that day. A server switch: set in LIVE,
+   * never in PRIVACY_AHEAD.
+   */
+  practiceMembers: true,
+  /**
+   * Custom Packs (app repo feat/custom-packs-server and feat/custom-packs-client; owner 2026-10-25): a member (Monthly
+   * or Yearly Membership, or Lifetime: Agent, Elite, Spymaster) makes their own pack (a name, Spy Talk or Spy Sketch, its language, an optional description and at
    * least 30 entries) and plays it in their private rooms, where the room's players see its name and what the game deals
    * and shows from it (the location or word, the spy's list, the hints). Names and entries go through the word filter
    * when saved, and every pack's text through OpenAI's moderation model (check-pack, omni-moderation-latest; only the
@@ -1391,6 +1486,14 @@ export const LIVE = {
    */
   partyLeaderLapse: true,
   /**
+   * party-no-member-1118 (app server row 107, 20261231999818_party_no_member_1117): a party is members-only, so when its leader goes and
+   * nobody left in it has a membership, the party closes for everyone (the lead no longer goes to a non-member who has been in it
+   * longest). Turns on Terms' party bullet wording and the help center's #parties line (10 languages; non-English agent-written).
+   * Flip it to true in the change that goes up the same hour the server row is applied (node scripts/flip-switch.mjs partyNoMember
+   * --day "<that day>"); off again (--undo) if row 107 is rolled back. A server rule for every app version at once: set in LIVE.
+   */
+  partyNoMember: true,
+  /**
    * Trading's gates (owner 2026-11-02, live on the app server: app_config.trading.min_friend_days 0 and
    * 20261102002603_trade_games_not_level): friends can trade right away (no 3 days as friends; the 7-day protection and
    * reversal stay; under-18s still only with Friend Code friends), an account 7 days old (was 14), 3 counted games
@@ -1630,6 +1733,14 @@ export const LIVE = {
    */
   archiveHoldersList: true,
   /**
+   * archive-origins-1119 (readiness R18b / B12; the app's Origins seal, look 43C, app c465682ae): a Season 1 copy (set
+   * s1.intercepts) shows the red wax seal "(S1) ORIGINS" on its Archive card and its own page, in place of the set's
+   * words (pages/archive/origins.ts, OriginsSeal). The set code already comes from mint_unique_public (no server file).
+   * No Terms or Privacy text reads it, no date. Flip on Dec 6 (website commit A), before the Dec 8 genesis makes the
+   * first S1 copy: node scripts/flip-switch.mjs archiveOrigins. Before any S1 copy exists it changes nothing.
+   */
+  archiveOrigins: false,
+  /**
    * ledger-reasons-1111 (owner Nov 11; app repo server file 20261231999988_ledger_reasons_1111): when SpySocial takes a
    * minted copy away for integrity (a bot farm, cheating, a fraud refund, a glitch or duplicate, a correction of ours),
    * the ledger says so plainly: the original lines stay, a new burn line's note reads "burn:<reason> case:<ref>", and the
@@ -1671,7 +1782,7 @@ export const LIVE = {
    * grace period; a gap of under a day while a renewal goes through isn't a break), the time and the stamps are gone and
    * start again from zero on a return. Lifetime counts from the first day as a member and keeps growing. Cosmetic only.
    * Other players see the time and the stamp on the player sheet (never the date or a price) unless Settings' "Show my
-   * membership time" is off; never an under-13 account's. The price stays while a pass renews without a break.
+   * membership time" is off; never an under-13 account's. The price stays while a monthly or yearly membership renews without a break.
    * Turns on: Terms 3's Member time and price lines, Privacy's membership-period record (Purchases) and Data Sharing
    * line, and the help's member-time, price and cancel answers. Flip the day the server file is live AND the app update
    * that shows it is out; set MEMBER_LOYALTY_DAY to that day. Not a material Terms change (it adds a benefit and states
@@ -1901,7 +2012,7 @@ export const LIVE = {
    * shown only while practiceAi is off. True of every shipped build today: flip at the next site publish with
    * --day "<publish day>". Off again if practiceAi (or any AI call from practice) goes live.
    */
-  practiceNoAi: true,
+  practiceNoAi: false,
   /**
    * dexp-1114 (app repo server file 20261231999943_data_export_policy_1114, LIVE Nov 14 as 20261114185411; _data_export
    * prosrc d6226809; PLAN B16): the data export leaves out whether another player was under 18 or had not told us their
@@ -1976,7 +2087,7 @@ export const LIVE = {
    * no TERMS_PUBLISHED or terms_version. A server switch: set in LIVE, never in PRIVACY_AHEAD. Flip the day row 35 is
    * applied: node scripts/flip-switch.mjs reputationBanMarket --day "<apply day>". Off again if 999909 is rolled back.
    */
-  reputationBanMarket: false,
+  reputationBanMarket: true,
   /**
    * legal-1115: what the website itself keeps in the visitor's browser, true of www today (public/lang.js, public/theme.js,
    * src/i18n wear(), src/theme/mode.ts, src/lib/lazyPage.ts, src/lib/appLink.ts): the language from ?lang=, then the
@@ -1987,7 +2098,8 @@ export const LIVE = {
    */
   siteStorage1115: true,
   /**
-   * privacy-anchors-1115, STAGED OFF: withdrawing the drawing check's agreement. ON only once BOTH (1) app server file
+   * privacy-anchors-1115, ON since November 18, 2026 (audit-live-1118: 999902 LIVE Nov 17, row 44; the Settings row is in 62.15, on phones Nov 18;
+   * dated the publish day): withdrawing the drawing check's agreement. ON only once BOTH (1) app server file
    * 20261231999902_sketch_consent_withdraw_1115 is applied on live (it adds withdraw_drawing_check_consent and a
    * withdrawn_at column on drawing_check_consents: a withdrawal marks the account's record withdrawn, and the server then
    * treats the account as not agreed) AND (2) the app update u62.12 with the Settings > Privacy & Safety > Drawing Checks
@@ -1999,7 +2111,7 @@ export const LIVE = {
    * "<the day both hold>" (sets this true and DRAWING_CHECK_WITHDRAW_DAY, which moves PRIVACY_LAST_UPDATED). A server and
    * app fact: set in LIVE, never in PRIVACY_AHEAD. Off again if 999902 is rolled back or u62.12 is pulled.
    */
-  drawingCheckWithdraw: false,
+  drawingCheckWithdraw: true,
   /**
    * legal-1116, ON: Privacy's Test Versions said the PayPal address is deleted "once it's sent", one tester at a time. What
    * happens (app repo .claude/handoff/scratchpad/beta2/WIPE-1119.md): the address is in the survey's Google Form responses,
@@ -2032,7 +2144,7 @@ export const LIVE = {
    * scripts/flip-switch.mjs sameOdds --day "<apply day>". Off again if 999888 is rolled back. A server switch: set in
    * LIVE, never in PRIVACY_AHEAD.
    */
-  sameOdds: false,
+  sameOdds: true,
   /**
    * legal-coverage-1116, ON (true today; app repo .claude/handoff/scratchpad/legal-1116/COVERAGE.md):
    * - Privacy, Reminders and Notifications: the developer's alerts (integrity_alerts, pushed with their body through
@@ -2056,7 +2168,7 @@ export const LIVE = {
    */
   coverage1116: true,
   /**
-   * legal-coverage-1116, STAGED OFF: app repo server files 20261231999875_heavy_reads_1116 (NEXT-BATCH row 62) and
+   * legal-coverage-1116, ON since November 18, 2026 (rows 62 and 68 LIVE Nov 18, audit-live-1118): app repo server files 20261231999875_heavy_reads_1116 (NEXT-BATCH row 62) and
    * 20261231999863_heavy_reads_1116b (row 68, after 62 and 24): Home / Locker / pack catalogue / avatar / titles reads and
    * the Black Market's tradables / top movers / Uniques / trade-up previews share one per-account count in rate_hits
    * (bucket heavy_read_m, 60 a minute by default, pruned after 2 days like every rate note); over it the read is refused and
@@ -2065,17 +2177,95 @@ export const LIVE = {
    * applied live: node scripts/flip-switch.mjs heavyReads --day "<apply day>". Off again if 999875 is rolled back. A
    * server switch: set in LIVE, never in PRIVACY_AHEAD.
    */
-  heavyReads: false,
+  heavyReads: true,
   /**
-   * legal-coverage-1116, STAGED OFF: app repo server file 20261231999873_community_search_shown_language_1116 (NEXT-BATCH
+   * legal-coverage-1116, ON since November 18, 2026 (row 63 LIVE Nov 18, audit-live-1118): app repo server file 20261231999873_community_search_shown_language_1116 (NEXT-BATCH
    * row 63): search_community_packs also matches the pack's title, description and theme as translated into the
    * searcher's language (today: the pack's own title and description, and the creator's username). Turns on Privacy's
    * Community Packs search sentence. Privacy only. Flip the day row 63 is applied: node scripts/flip-switch.mjs
    * communitySearchShown --day "<apply day>". Off again if 999873 is rolled back. A server switch: set in LIVE, never in
    * PRIVACY_AHEAD.
    */
-  communitySearchShown: false,
+  communitySearchShown: true,
+  /**
+   * No Pack Pass, 2026-11-17 (no-pack-pass-1117, after the app's fix/no-pack-pass-1117 c0f1ce3eb): we sell only
+   * memberships, so the old product name "Pack Pass" (and "pass" for the renewing plans) is gone from every page. Terms 3
+   * and the short Terms, Privacy's Purchases item, the Game Night rules, the help and the site's purchase lines say
+   * Agent (the Monthly Membership), Elite (the Yearly Membership) and Spymaster (Lifetime), and "a monthly or yearly
+   * membership" where they meant a pass; fr "formule", pt-BR "plano" ("abonnement" / "assinatura" not used), the other
+   * languages their membership word. A naming change only: no product, price, renewal or cancel rule changes, no duty is
+   * added, so no TERMS_PUBLISHED or terms_version raise. Dates: NO_PACK_PASS_1117_DAY in LEGAL_LAST_UPDATED and
+   * PRIVACY_LAST_UPDATED (re-date to the publish day with node scripts/flip-switch.mjs noPackPass1117 --day "<publish day>").
+   * A website fact: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  noPackPass1117: true,
+  /**
+   * Intel to 0 at launch (intel-zero-1117; the owner's reset answer D1 = zero, Tue Nov 17, 2026): right before 2.2 opens
+   * to everyone, every account's Intel goes to 0, including the Intel earned by playing a test version (games, daily
+   * rewards, streaks); streaks start again from day 0 and streak milestones can be earned again; unclaimed daily rewards
+   * from before then pay no Intel. Game Night Intel is not part of it: each player gets back all the Game Night Intel they
+   * earned (app server: B1 20261201958100_prelaunch_intel_zero at 09:50 ET Dec 8 under its own incident "Launch fresh
+   * start"; GNIR 20261201958400_gamenight_intel_reset v3 at 00:10 ET Dec 7). Terms 9's Intel item gains the sentence;
+   * Terms 9's test-phase item no longer says everyone keeps the Intel they earned. The owner asked for this Terms line
+   * BEFORE Dec 7: flip it any day before then, once economy_reset_decisions holds D1 = zero on live
+   * (RUNBOOK_reset_answers_1117.sql), never after B1 has run. Not a new duty or penalty on any player and it concerns
+   * the test version's balances only, so no TERMS_PUBLISHED or terms_version raise; INTEL_ZERO_1117_DAY in
+   * LEGAL_LAST_UPDATED (re-date to the publish day with node scripts/flip-switch.mjs intelZero1117 --day "<publish day>").
+   * A website fact: set in LIVE, never in PRIVACY_AHEAD. Staged OFF (not pushed; publish on the coordinator's go).
+   * legal-coverage-1119: owner answered D1 = zero on Nov 17 (app repo c7ba03113, RUNBOOK_reset_answers_1117, not yet run on
+   * live). The same flip now also turns off Terms 9's I-1 line "so does the Intel you got from games... stay" (it
+   * contradicted this text) and turns on one sentence in Privacy's Intel item; INTEL_ZERO_1117_DAY moves PRIVACY_LAST_UPDATED too.
+   */
+  intelZero1117: false,
+  /**
+   * legal-gn-1117: Play Online's gate is passing a game's TUTORIAL (How to Play's Step 1; app update 61 on: Practice is the
+   * only tutorial, the Practice Games aren't needed), never "a grade of C or better" in a practice game: Terms 5's line and
+   * Privacy's Practice Games item said C (the pass line is the app's, D or better since update 61; the server's moves with
+   * 20261231999908_play_gate_pass_d_1115, so the pages name no grade). True today, whatever the gate switch says ("may").
+   * The text is unconditional; this switch only carries TUTORIAL_GATE_1117_DAY in LEGAL_LAST_UPDATED and
+   * PRIVACY_LAST_UPDATED (re-date to the publish day with node scripts/flip-switch.mjs tutorialGate1117 --day "<publish
+   * day>"). A correction, no new duty: no TERMS_PUBLISHED or terms_version raise. A website fact: set in LIVE.
+   */
+  tutorialGate1117: true,
+  /**
+   * legal-coverage-1119, STAGED OFF: automatic beta-tester onboarding (app repo feat/tester-onboarding-1117: Edge Function
+   * tester-onboard, NOT deployed; its database file 20261231999830_tester_onboard_1117 is live with app_config
+   * tester_onboard {"enabled": false}). A sign-up (the Google Form's verified address, or our Discord's /beta-code) is kept
+   * in tester_signups (email, its inbox key, name, platform, Google Play email, Discord name as typed, the Discord user id
+   * only from a Discord-signed /beta-code with the one-time code we mail, the steps done) until the cohort's delete_after
+   * (Beta 3: December 1, 2026); refused sign-ups (not 18+, no consent, an account under 18) are never stored. iPhone: App
+   * Store Connect POST /v1/betaTesters (email + first name) to the external TestFlight group, Apple mails the invite.
+   * Android: Cloud Identity adds the Google Play email to the Google Group that is the Play testers' list. Browser: the
+   * email on web_beta_access. Discord: the tester role. Mail through Resend. Turns on one passage in Privacy's Test
+   * Versions item. Flip the hour the function goes live (TESTER_ONBOARD_LIVE=1 and app_config tester_onboard enabled):
+   * node scripts/flip-switch.mjs testerOnboard --day "<that day>". POLICY FIRST: publish before the first live sign-up.
+   * A server fact: set in LIVE, never in PRIVACY_AHEAD. No Terms or Rules text reads it.
+   */
+  testerOnboard: false,
 }
+
+/**
+ * legal-coverage-1119: unconditional text (Terms 9's membership benefits: more XP, Play Online's Members only, leading a
+ * party, 8 Black Market offers; Terms 9's I-1 line agreeing with LIVE.intelZero1117; Privacy: the developer's alerts by
+ * e-mail when no phone gets them (owner_alert_mail_1117, live Nov 20 batch F18), content creators recording games).
+ * Both Last Updated dates are never earlier than this day: set it to the publish day.
+ */
+export const COVERAGE_1119_DAY = 'November 19, 2026'
+/**
+ * legal-np-1119 (owner's New Player Review, Nov 19): Terms 3 (Play Online and Game Night need a saved account, guests keep
+ * the tutorial and private rooms; the display name made from the username at setup), Terms 9 (the welcome Intercept from
+ * Dec 8; every giveaway and what comes out of it stays with the account; held shred Intel ported from U0 6bc271f behind
+ * !giftsTradable), Privacy Account Information (setup: username + one color, what Settings changes; Apple's name is not the
+ * display name). Both Last Updated dates are never earlier than this day.
+ */
+export const NP_1119_DAY = 'November 19, 2026'
+/** LIVE.helpGooglePassStop's day in both Last Updated dates (legal-coverage-1119; set by flip-switch --day). */
+export const GOOGLE_PASS_STOP_DAY = 'November 21, 2026'
+/** LIVE.testerOnboard's day in PRIVACY_LAST_UPDATED (legal-coverage-1119; set by flip-switch --day). */
+export const TESTER_ONBOARD_DAY = 'November 21, 2026'
+/** The latest of several "Month D, YYYY" days (null skipped): a switch's day can then move a date whatever the chain's order. */
+const latestOf = (...days: Array<string | null>): string =>
+  days.reduce<string>((a, b) => (b !== null && Date.parse(b) > Date.parse(a) ? b : a), days[0] as string)
 
 /** LIVE.practiceResults's day in PRIVACY_LAST_UPDATED: the day practice_results_1111 (run sheet step 47) is applied and the site goes up with it on. Never earlier than November 13, 2026. */
 export const PRACTICE_RESULTS_DAY = 'November 13, 2026'
@@ -2096,18 +2286,27 @@ export const MOD_GUARD_DAY = 'November 15, 2026'
 export const RESET_ARCHIVE_FORGET_DAY = 'November 15, 2026'
 
 /** legal-1115: LIVE.reputationBanMarket's day (999909's apply day; set by flip-switch --day) and LIVE.siteStorage1115's (the publish day). Never earlier than November 15, 2026. */
-export const REPUTATION_BAN_MARKET_DAY = 'November 15, 2026'
+export const REPUTATION_BAN_MARKET_DAY = 'November 17, 2026'
 export const SITE_STORAGE_1115_DAY = 'November 15, 2026'
 /** LIVE.drawingCheckWithdraw's day in PRIVACY_LAST_UPDATED: the day both its conditions hold and the site goes up with it on (set by flip-switch --day). Never earlier than November 15, 2026. */
-export const DRAWING_CHECK_WITHDRAW_DAY = 'November 15, 2026'
+export const DRAWING_CHECK_WITHDRAW_DAY = 'November 18, 2026'
 /** legal-1116: LIVE.payPalTiming1116's day (the publish day), LIVE.playtestTremendous's and LIVE.sameOdds's (set by flip-switch --day). Never earlier than November 16, 2026. */
 export const PAYPAL_TIMING_1116_DAY = 'November 16, 2026'
 export const PLAYTEST_TREMENDOUS_DAY = 'November 16, 2026'
 export const SAME_ODDS_DAY = 'November 17, 2026'
 /** legal-coverage-1116: LIVE.coverage1116's day (the publish day), LIVE.heavyReads's and LIVE.communitySearchShown's (their apply days; set by flip-switch --day). Never earlier than November 16, 2026. */
 export const COVERAGE_1116_DAY = 'November 16, 2026'
-export const HEAVY_READS_DAY = 'November 17, 2026'
-export const COMMUNITY_SEARCH_DAY = 'November 17, 2026'
+export const HEAVY_READS_DAY = 'November 18, 2026'
+export const COMMUNITY_SEARCH_DAY = 'November 18, 2026'
+/** intel-zero-1117: LIVE.intelZero1117's day in LEGAL_LAST_UPDATED (the publish day; set by flip-switch --day). Before December 7, 2026. */
+export const INTEL_ZERO_1117_DAY = 'November 30, 2026'
+/** howto-truth-1117: LIVE.gnRewardsRules's day, the Game Night Rules' Last Updated (row 83's apply day; set by flip-switch --day). Never earlier than November 20, 2026. legal-gn-1117: also in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED. */
+export const GN_REWARDS_RULES_DAY = 'November 18, 2026'
+/** legal-gn-1117: LIVE.tutorialGate1117's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED (the publish day; set by flip-switch --day). Never earlier than November 18, 2026. */
+export const TUTORIAL_GATE_1117_DAY = 'November 17, 2026'
+
+/** no-pack-pass-1117: LIVE.noPackPass1117's day (the publish day; set by flip-switch --day). Never earlier than November 17, 2026. */
+export const NO_PACK_PASS_1117_DAY = 'November 17, 2026'
 
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
@@ -2356,10 +2555,15 @@ export const CODES_NO_MEMBERSHIP_DAY = 'November 13, 2026'
  * LIVE.practiceAi's day in PRIVACY_LAST_UPDATED (it sits at the top of the chain so its flip moves the date): the day the
  * site goes up with it on, the same day as app_config.practice_rate_enabled goes true (the key is due by December 6).
  */
-export const PRACTICE_AI_DAY = 'December 6, 2026'
+export const PRACTICE_AI_DAY = 'November 18, 2026'
 
 /** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
 export const PARTY_LEADER_LAPSE_DAY = 'November 13, 2026'
+
+/** LIVE.partyNoMember's day (Terms' party bullet): the day the site goes up with it on, the same hour server row 107 is applied (set by flip-switch --day). Never earlier than November 18, 2026. */
+export const PARTY_NO_MEMBER_DAY = 'November 18, 2026'
+/** LIVE.helpMembershipSwitch's day in LEGAL_LAST_UPDATED and PRIVACY_LAST_UPDATED (audit-live-1118): the day Terms 3 and Privacy's Purchases item went up with it (row 85 applied and 62.15 on phones Nov 18). */
+export const MEMBERSHIP_SWITCH_DAY = 'November 18, 2026'
 
 /** LIVE.giftsTradable going false (website U0, owner's gift rules of Nov 6 and Nov 8: Terms 9, Intel corrections): its day in LEGAL_LAST_UPDATED (added by legal-integration-1111: before it, the flip moved no date). Set it to the day the site goes up with giftsTradable false. */
 export const GIFTS_BOUND_DAY = 'December 6, 2026'
@@ -2385,13 +2589,27 @@ export const CREATOR_INVITES_DAY = 'November 14, 2026'
 /** LIVE.creatorInviteData's day in PRIVACY_LAST_UPDATED: the day 20270101000010_creator_invite_data_1113 is applied live. Never earlier than CREATOR_INVITES_DAY. */
 export const CREATOR_INVITE_DATA_DAY = 'November 14, 2026'
 
-export const LEGAL_LAST_UPDATED: string = sinceLlc(
+export const LEGAL_LAST_UPDATED: string = latestOf(sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
+  : LIVE.intelZero1117
+    ? INTEL_ZERO_1117_DAY // Terms 9's Intel: every account's Intel to 0 right before launch, Game Night Intel earned given back (intel-zero-1117, D1 zero)
   : LIVE.appU62
     ? APP_U62_DAY // Terms 4's Flashing light notice: the role reveal on for everyone (photosens-u62)
+  : LIVE.helpMembershipSwitch
+    ? MEMBERSHIP_SWITCH_DAY // Terms 3's How to cancel: switching plans in the app, the two-memberships warning (audit-live-1118, row 85 + 62.15)
+  : LIVE.partyNoMember
+    ? PARTY_NO_MEMBER_DAY // Terms' party bullet: a party whose leader goes with no member left closes for everyone (party-no-member-1118, server row 107)
+  : LIVE.practiceMembers
+    ? PRACTICE_AI_DAY // Terms 3's membership item (practice games, 5 a day) and Terms 5's Play Online tutorial line (practice-members-1117, row 95)
+  : LIVE.gnRewardsRules
+    ? GN_REWARDS_RULES_DAY // Terms 5 and 9: Game Night pays Game Night Intel, the ★ titles and Game Night Intercepts; no night's titles, no winner's Enigma (legal-gn-1117, row 83, Fri Nov 20). If row 95 is applied BEFORE row 83, move these two lines above practiceMembers
   : LIVE.sameOdds
     ? SAME_ODDS_DAY // Terms 9's trade-up: every item of the next rarity with the same chance, whatever you own (legal-1116, 999888)
+  : LIVE.tutorialGate1117
+    ? TUTORIAL_GATE_1117_DAY // Terms 5: Play Online may ask you to pass a game's tutorial, not a C in its practice game (legal-gn-1117; on, re-date to the publish day)
+  : LIVE.noPackPass1117
+    ? NO_PACK_PASS_1117_DAY // Terms 3 and the short Terms: Monthly / Yearly Membership instead of the old name Pack Pass (no-pack-pass-1117)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // Terms 9: a reputation that becomes Banned closes your Black Market offers and listings (legal-1115, 999909)
   : LIVE.coverage1116
@@ -2417,7 +2635,7 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
   : LIVE.spyChatDisclosed
     ? SPY_CHAT_DISCLOSED_DAY // legal-1113: the spies' chat named on Safety, Child Safety and Terms 22 (UK); Terms 6 "and record". On since Nov 13, above Friday's group (same day)
   : LIVE.memberLoyalty
-    ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a pass renews (member-loyalty-1111)
+    ? MEMBER_LOYALTY_DAY // Terms 3: member time and its stamps (reset when a membership ends, Lifetime the exception) and the price kept while a monthly or yearly membership renews (member-loyalty-1111)
   : LIVE.rarefindsOffers
     ? RAREFINDS_OFFERS_DAY // Terms 9's Rare Finds offers: the seller's discount, counters, a Decline's minimum, 24 h ends, the 30-minute take-back, the offer pause (rarefinds-offers-1111)
   : LIVE.ledgerUniquesOnly
@@ -2493,7 +2711,7 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
-)
+), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -2501,19 +2719,32 @@ export const LEGAL_LAST_UPDATED: string = sinceLlc(
  * goes live can carry its date here (LIVE.<switch> ? its day : the current date), so the one-line flip in LIVE moves
  * the date too; once the switch is on for good, fold this back to a plain string.
  */
-export const PRIVACY_LAST_UPDATED: string = sinceLlc(
+/** sentry-1119: the Crash Reports item (and Sentry's line) now also describe release-health sessions, which go with the OTA that carries app commit c328d2ef5. Unconditional text; Last Updated never earlier than this day. */
+export const SENTRY_SESSIONS_1119_DAY = 'November 19, 2026'
+
+export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
   : LIVE.playtestTremendous
     ? PLAYTEST_TREMENDOUS_DAY // Test Versions: Beta 3's thank-yous through Tremendous; providers' paragraph (legal-1116)
   : LIVE.appU62
     ? APP_U62_DAY // Chat Messages: the spies' chat named "Spy Channel", as update 62 names it (legal-coverage-1116; Beta 3, Nov 24)
+  : LIVE.helpMembershipSwitch
+    ? MEMBERSHIP_SWITCH_DAY // Purchases: the records also tell you when you pay for two memberships at once (audit-live-1118, row 85 + 62.15)
+  : LIVE.practiceMembers
+    ? PRACTICE_AI_DAY // Practice Games: members only, the per-UTC-day count, the tutorial as Play Online's step, the AI rating for members (practice-members-1117, row 95)
+  : LIVE.gnRewardsRules
+    ? GN_REWARDS_RULES_DAY // Game Night: Game Night Intel's history, the ★ counts; Intercepts bought with Game Night Intel; no Game Night titles minted (legal-gn-1117, row 83). If row 95 is applied BEFORE row 83, move these two lines above practiceMembers
   : LIVE.drawingCheckWithdraw
     ? DRAWING_CHECK_WITHDRAW_DAY // Drawing Checks: withdrawing the agreement in Settings, and its Data Retention line (privacy-anchors-1115, 999902 + u62.12)
   : LIVE.heavyReads
     ? HEAVY_READS_DAY // Rate Limits: the heavy reads' per-account count and the one alert a day (legal-coverage-1116, 999875)
   : LIVE.communitySearchShown
     ? COMMUNITY_SEARCH_DAY // Community Packs: search also reads the translated name, description and theme (legal-coverage-1116, 999873)
+  : LIVE.tutorialGate1117
+    ? TUTORIAL_GATE_1117_DAY // Practice Games: Play Online opens a game once you've passed its tutorial, not a C in its practice game (legal-gn-1117; on, re-date to the publish day)
+  : LIVE.noPackPass1117
+    ? NO_PACK_PASS_1117_DAY // Purchases: Monthly / Yearly Membership instead of the old name Pack Pass (no-pack-pass-1117)
   : LIVE.reputationBanMarket
     ? REPUTATION_BAN_MARKET_DAY // the Black Market item: a reputation that becomes Banned closes the account's offers and listings (legal-1115, 999909)
   : LIVE.coverage1116
@@ -2677,7 +2908,7 @@ export const PRIVACY_LAST_UPDATED: string = sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,

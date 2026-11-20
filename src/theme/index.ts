@@ -71,7 +71,7 @@ export const theme = extendTheme({
     // "Last updated", dates.
     meta: { fontSize: '14px', lineHeight: 1.5, color: 'ss.muted', letterSpacing: '0.02em' },
     // Small caps-style labels above a group (the FAQ's sections, "Quick links").
-    label: { fontSize: '13px', lineHeight: 1.3, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'ss.highlight' },
+    label: { fontSize: '14px', lineHeight: 1.3, fontWeight: 700, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'ss.highlight' },
   },
   components: {
     Heading: {

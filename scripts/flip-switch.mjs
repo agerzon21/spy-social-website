@@ -17,11 +17,15 @@ const SWITCHES = {
   drawingMinorRooms: { live: [['drawingMinorRooms', true]], day: 'DRAWING_MINOR_ROOMS_DAY', step: '18S' },
   testerGiftGame: { live: [['testerGiftGame', true]], day: 'TESTER_GIFT_GAME_DAY', step: '19S' },
   partyLeaderLapse: { live: [['partyLeaderLapse', true]], day: 'PARTY_LEADER_LAPSE_DAY', step: '20S' },
+  // party-no-member-1118: the same hour server row 107 (20261231999818_party_no_member_1117) is applied; --day = that day.
+  partyNoMember: { live: [['partyNoMember', true]], day: 'PARTY_NO_MEMBER_DAY', step: 'row 107 (999818)' },
   memberLoyalty: { live: [['memberLoyalty', true]], day: 'MEMBER_LOYALTY_DAY', step: '21S->u61' }, // with appU61, not Friday (friday-allon-read-1112)
   modCoverHold: { live: [['modCoverHold', true]], day: 'MOD_COVER_HOLD_DAY', step: '22S->u61' }, // with appU61, not Friday (friday-allon-read-1112)
   unconfirmedSignups: { live: [['unconfirmedSignups', true]], day: 'UNCONFIRMED_SIGNUPS_DAY', step: '31S' },
   retentionSweep: { live: [['retentionSweep', true]], day: 'RETENTION_SWEEP_DAY', step: '33S' },
   practiceResults: { live: [['practiceResults', true]], day: 'PRACTICE_RESULTS_DAY', step: '47S' },
+  // practice-members-1117: POLICY FIRST, the day NEXT-BATCH row 95 (999836) is applied, before it; both switches, PRACTICE_AI_DAY = that day.
+  practiceMembers: { live: [['practiceAi', true], ['practiceMembers', true]], day: 'PRACTICE_AI_DAY', step: 'row 95 (999836)' },
   ledgerReasons: { live: [['ledgerReasons', true]], day: null, step: '48S' },
   ledgerUniquesOnly: { live: [['ledgerUniquesOnly', true]], day: 'LEDGER_UNIQUES_DAY', step: '49S' },
   rarefinds: { live: [['rarefindsOffers', true], ['rarefindsOfferPush', true]], day: 'RAREFINDS_OFFERS_DAY', step: '52S' },
@@ -32,6 +36,22 @@ const SWITCHES = {
   creatorInviteData: { live: [['creatorInviteData', true]], day: 'CREATOR_INVITE_DATA_DAY', step: 'creator-invite-data-1113' },
   // help-u61-1113: Beta 3 day (Tue Nov 24), once u62 is on testers' phones and role_reveal_online is 'everyone'. Help only, no date.
   helpRoleReveal: { live: [['helpRoleReveal', true]], day: null, step: 'beta3' },
+  // help-new-1117: Help only, no date. Each once its server row is applied AND app update 62.15 is on phones
+  // (helpGooglePassStop: the hour app_config google_pass_cancel goes on).
+  helpGameNightRewards: { live: [['helpGameNightRewards', true]], day: null, step: 'row 83 (999848) + 62.15' },
+  // howto-truth-1117: the Game Night Rules for the rewards, the day row 83 is applied live (before 62.15 is fine).
+  // legal-gn-1117: the same flip turns on Terms 5 / 9's, Privacy's and the Ledger page's Game Night lines (GN_REWARDS_RULES_DAY in both Last Updated chains).
+  gnRewardsRules: { live: [['gnRewardsRules', true]], day: 'GN_REWARDS_RULES_DAY', step: 'row 83 (999848)' },
+  helpMembershipSwitch: { live: [['helpMembershipSwitch', true]], day: null, step: 'row 85 (999846) + 62.15' },
+  // legal-coverage-1119: helpGooglePassStop now also turns on Terms 9's and Privacy's lines, so it carries a day.
+  helpGooglePassStop: { live: [['helpGooglePassStop', true]], day: 'GOOGLE_PASS_STOP_DAY', step: 'google_pass_cancel on' },
+  // legal-coverage-1119: POLICY FIRST, the hour tester-onboard goes live (TESTER_ONBOARD_LIVE=1 + app_config tester_onboard enabled).
+  testerOnboard: { live: [['testerOnboard', true]], day: 'TESTER_ONBOARD_DAY', step: 'tester-onboard live' },
+  helpQuestionRounds: { live: [['helpQuestionRounds', true]], day: null, step: 'row 70 (999861) + 62.15' },
+  // codename-1118: Help only, no date. The hour app update 62.15.2 is on phones.
+  helpU6152: { live: [['helpU6152', true]], day: null, step: '62.15.2' },
+  // help-u6153-1118: Help only, no date. The hour 62.15 round 5 is on phones.
+  helpU6153: { live: [['helpU6153', true]], day: null, step: '62.15 round 5' },
   // legal-coverage-1114: each the day its server file is applied (practiceNoAi: the next site publish).
   reputationHoldCap: { live: [['reputationHoldCap', true]], day: 'REPUTATION_HOLD_CAP_DAY', step: 'row 25 (999954)' },
   tradeWatchEvidence: { live: [['tradeWatchEvidence', true]], day: 'TRADE_WATCH_EVIDENCE_DAY', step: 'row 24 TWE' },
@@ -55,6 +75,14 @@ const SWITCHES = {
   coverage1116: { live: [['coverage1116', true]], day: 'COVERAGE_1116_DAY', step: 'publish' },
   heavyReads: { live: [['heavyReads', true]], day: 'HEAVY_READS_DAY', step: 'row 62 (999875)' },
   communitySearchShown: { live: [['communitySearchShown', true]], day: 'COMMUNITY_SEARCH_DAY', step: 'row 63 (999873)' },
+  // no-pack-pass-1117: on (--day re-dates it to the publish day).
+  noPackPass1117: { live: [['noPackPass1117', true]], day: 'NO_PACK_PASS_1117_DAY', step: 'publish' },
+  // intel-zero-1117: before Dec 7, once economy_reset_decisions holds D1 = zero on live (RUNBOOK_reset_answers_1117.sql), never after B1.
+  intelZero1117: { live: [['intelZero1117', true]], day: 'INTEL_ZERO_1117_DAY', step: 'D1 zero on live, before Dec 7' },
+  // legal-gn-1117: on (--day re-dates it to the publish day). gnRewardsRules (above) now also moves Terms' and Privacy's Last Updated.
+  tutorialGate1117: { live: [['tutorialGate1117', true]], day: 'TUTORIAL_GATE_1117_DAY', step: 'publish' },
+  // archive-origins-1119 (B12): the Archive's Origins seal, Dec 6 (website commit A), before the Dec 8 genesis. No legal text, no date.
+  archiveOrigins: { live: [['archiveOrigins', true]], day: null, step: 'B12 Dec 6' },
 }
 
 const args = process.argv.slice(2)

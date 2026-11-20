@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const fr: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: "Cinq agents alignés pour une séance d'identification, l'un sous le projecteur.",
     defaultTitle: "SpySocial — Le jeu d'ambiance de bluff et de déduction",
     description:
       "Réunis tes amis et démasque l'espion, ou bluffe tout le monde. Jeu d'ambiance gratuit en temps réel pour 3 à 21 joueurs, sur iOS et Google Play.",
@@ -45,7 +46,8 @@ const fr: Strings = {
       archive: "Chaque Unique de SpySocial consigné\u00A0: son image, son numéro, ses attributs, sa frappe et chaque vente, sans nommer aucun joueur.",
       market: "Le prix de chaque objet SpySocial au Marché noir\u00A0: des prix tirés des échanges des joueurs, les plus fortes hausses et baisses, les plus échangés, sans nommer aucun joueur.",
       transparency: "Chaque mois\u00A0: combien d’Intel a été gagné, dépensé et corrigé dans SpySocial, chaque incident et chaque changement de règle, sans nommer aucun joueur.",
-      gameNightRules: "Les règles de la soirée jeux hebdomadaire de SpySocial\u00A0: quand elle a lieu, qui peut participer, comment obtenir les titres de la soirée et le titre bonus du développeur.",
+      gameNightRules: "Les règles de la soirée jeux de SpySocial\u00A0: quand elle a lieu, qui peut participer, comment obtenir les titres de la soirée et le titre bonus du développeur.",
+      gameNightRulesRewards: "Les règles de la soirée jeux de SpySocial : quand elle a lieu, qui peut participer, et comment fonctionnent l'Intel de soirée jeux, les titres ★ et les interceptions de soirée jeux.",
       faq: "Aide SpySocial : comment jouer à Spy Talk et Spy Sketch, Jouer en ligne, salons privés et soirée jeux, amis, échanges, Marché noir, interceptions, Intel, statut de membre, ton compte, sécurité et dépannage.",
       contact: "Contacte l'équipe SpySocial\u00A0: écris à support@spysocial.app pour de l'aide avec l'appli, ton compte ou autre chose.",
       rules: "Les règles de la communauté SpySocial\u00A0: sois sympa, bluffe sans tricher, garde ta vie privée, et ce qui arrive quand quelqu'un enfreint les règles.",
@@ -72,6 +74,8 @@ const fr: Strings = {
     nav: 'Site',
     join: 'Rejoindre un salon',
     joinShort: 'Entrer',
+    market: 'Marché',
+    archive: 'Archives',
     shop: 'Boutique',
     lightMode: 'Mode clair',
   },
@@ -81,6 +85,7 @@ const fr: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Prix du Marché noir",
+    archive: "Archives",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparence",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -249,9 +254,9 @@ const fr: Strings = {
       chatTap: 'Le chat aussi\u00A0: appuie sur Traduire sous n\'importe quel message pour le lire dans ta langue.',
       trioLabel: 'Une carte de rôle en trois langues',
       cardAlts: [
-        "Révélation des rôles\u00A0: la carte d'un local affiche le lieu secret, Théâtre",
-        'Carte de rôle en espagnol\u00A0: Teatro',
-        'Carte de rôle en russe\u00A0: Театр',
+        "Révélation des rôles\u00A0: la carte d'un local affiche le lieu secret, Observatoire",
+        'Carte de rôle en espagnol\u00A0: Observatorio',
+        'Carte de rôle en russe\u00A0: Обсерватория',
       ],
     },
     safety: {
@@ -431,7 +436,7 @@ const fr: Strings = {
       buy: "<b>Des achats\u00A0:</b> packs et formules membres, via l'App Store ou Google Play.",
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        "<b>Des achats\u00A0:</b> uniquement le statut de membre (le Pass packs mensuel ou annuel, et l'Accès à vie), via l'App Store ou Google Play. Être membre débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
+        "<b>Des achats\u00A0:</b> uniquement le statut de membre (la formule mensuelle ou annuelle, et l'Accès à vie), via l'App Store ou Google Play. Être membre débloque les packs qui ne sont pas gratuits\u00A0; rien d'autre n'est vendu.",
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         "<b>Interceptions\u00A0:</b> des récompenses gagnées en jouant, chacune avec un objet au hasard, comme un nouveau look pour l'agent. Elles ne s'achètent pas, ni avec de l'argent ni avec la monnaie gagnée dans le jeu, et l'appli affiche les chances avant qu'on en ouvre une.",
@@ -482,7 +487,7 @@ const fr: Strings = {
         '<b>Vérification des dessins\u00A0:</b> les tours de dessin dans un salon public peuvent être vérifiés automatiquement, et un tour dont la vérification constate qu’il enfreint les règles est retiré du dessin.',
       buyTitle: 'Achats',
       buyText:
-        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Un Pass packs se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
+        "Les ados ont besoin de l'autorisation d'un parent ou d'un tuteur pour acheter quoi que ce soit. Les achats passent par l'App Store ou Google Play, donc leurs contrôles parentaux, comme «\u00A0Autorisation d'achat\u00A0» chez Apple et l'approbation des achats dans Google Family Link, fonctionnent normalement. Une formule mensuelle ou annuelle se renouvelle jusqu'à sa résiliation dans les réglages de la boutique.",
       deleteTitle: 'Supprimer un compte',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Ouvre SpySocial.',
@@ -578,6 +583,27 @@ const fr: Strings = {
     title: 'Nouveautés',
     sub: 'Les notes de version de SpySocial\u00A0: grandes mises à jour, nouvelles fonctions et améliorations, au fil des sorties.',
     releases: [
+      {
+        tag: "Mise à jour du week-end",
+        summary:
+          "Trois mises à jour du nouveau SpySocial ce week-end, avant son lancement\u00A0: un texte plus lisible, une aide plus claire pour les nouveaux joueurs, un démarrage plus rapide dans le navigateur et des liens de salon qui mènent au salon.",
+        sections: [
+          {
+            label: "Améliorations",
+            items: [
+              { title: "Vote", text: "«\u00A0S’abstenir\u00A0» a maintenant la même hauteur que «\u00A0Valider\u00A0»." },
+              { title: "Plus lisible", text: "Les plus petits textes de l’appli sont un peu plus grands." },
+              { title: "Marché noir", text: "Si tu le découvres, une carte «\u00A0Comment marche le Marché noir\u00A0» t’explique comment gagner, vendre et acheter des objets." },
+              { title: "Tutoriel", text: "Quand le tutoriel te demande de toucher la suggestion, le conseil s’affiche maintenant en bas de l’écran, pour que la question reste lisible." },
+              { title: "Code ami", text: "Le nombre de scans restants baisse dès qu’un ami scanne ton code." },
+              { title: "Liens de salon", text: "Si un ami t’envoie l’adresse de son salon depuis son navigateur, l’ouvrir te mène maintenant à l’écran pour rejoindre le salon, au lieu de «\u00A0Salon indisponible\u00A0»." },
+              { title: "Petits téléphones", text: "Sur les téléphones les plus étroits, l’étiquette affichée pendant que tu réponds indique maintenant que c’est ensuite à toi de poser la question." },
+              { title: "Jouer dans le navigateur", text: "Le jeu se charge plus vite. Sur un téléphone, si tu le tournes à l’horizontale pendant une partie, une carte «\u00A0Tiens ton téléphone à la verticale\u00A0» apparaît, et ta partie continue pendant que tu le tournes." },
+              { title: "Langues", text: "Les textes en arabe, hindi, bengali, chinois et indonésien s’affichent mieux\u00A0: plus de mots coupés, de retours à la ligne bizarres ni de mots dans le désordre. En français, l’appli parle maintenant partout de «\u00A0membre\u00A0» et non plus d’«\u00A0abonnement\u00A0» (et de «\u00A0membro\u00A0» en portugais)." },
+            ],
+          },
+        ],
+      },
       {
         tag: "Lancement Android",
         summary:
@@ -771,7 +797,7 @@ const fr: Strings = {
         },
       ],
       more: "Et aussi : les statistiques, des titres et des cadres à débloquer, des niveaux jusqu'à 100 avec le prestige, de l'XP même pour les parties courtes, un retour en partie sans accroc quand ton téléphone se met en veille, des liens d'invitation qui marchent tout simplement, et un nouveau look sur chaque écran.",
-      launchWeek: "Semaine de lancement : Spy Talk le mardi 8 décembre, Spy Sketch le vendredi 11 décembre et Mafia le samedi 12 décembre, chaque fois de 20 h à 22 h, heure de l'Est américain (ET).",
+      launchWeek: "Soirée de première : le vendredi 11 décembre, puis à nouveau le samedi 12 décembre, de 20 h à 22 h, heure de l'Est américain (ET). La même soirée Spy Talk deux fois : viens à l'une ou aux deux. Ensuite, une soirée par semaine : le vendredi, puis la même soirée à nouveau le samedi.",
     },
     next: {
       status: 'Prévu',
@@ -1001,9 +1027,9 @@ const fr: Strings = {
     cards: [
       { title: "Spy Sketch", text: "Dessine le mot secret sur un tableau partagé et démasque l'espion qui fait semblant." },
       { title: "Jouer en ligne", text: "Touche « Trouver une partie » pour une table de 4 ou 8, à tout moment. Les inconnus voient ta couleur d'agent, jamais ton nom." },
-      { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des titres à gagner ce soir-là seulement. On te prévient avant le début." },
+      { title: "Soirée jeux", text: "Des soirées en ligne programmées, avec des récompenses à gagner seulement là. On te prévient avant le début." },
       { title: "Marché noir", text: "Échange des objets avec tes amis. Les adultes peuvent aussi acheter et vendre des objets au Marché noir contre de l'Intel, gagné en jouant. Jamais d'argent réel." },
-      { title: "Membres", text: "En option : le Pass packs (mensuel ou annuel) ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
+      { title: "Membres", text: "En option : la formule mensuelle ou annuelle, ou l'Accès à vie, payé une fois et jamais renouvelé. Tous les packs premium dans les salons dont tu es l'hôte et à ta table de Jouer en ligne, et le créateur de packs. Rien d'autre n'est vendu." },
     ],
     allNotes: "Toutes les nouveautés de la 2.2",
     community: {
@@ -1021,12 +1047,13 @@ const fr: Strings = {
         { title: "Mes déductions", text: "Les espions notent ce qu'ils apprennent sur leur page de déductions, gardent une liste courte des lieux ou mots possibles et tentent leur dernière réponse à partir d'elle." },
         { title: "Règles des salons privés", text: "Des règles optionnelles, comme l'Informateur : un local qui connaît un espion en secret. Dans Comment jouer > Options et réglages, chacune a une courte démo jouable." },
         { title: "Amis et groupes", text: "Ajoute des amis avec ton code ami ou par nom d'utilisateur, suis des joueurs et cherchez une table ensemble, en groupe. Créer un groupe est réservé aux membres. Sur iPhone et iPad, les amis, les groupes et les échanges sont réservés aux 18 ans et plus." },
-        { title: "Interceptions", text: "Des dossiers scellés avec un objet au hasard pour ton agent, gagnés en remportant des parties dans Jouer en ligne, avec ta série quotidienne et à la soirée jeux. Certains objets sont des Uniques : un seul exemplaire, avec sa couleur et son numéro de série. Les chances s'affichent avant l'ouverture ou l'achat. Jamais vendues contre de l'argent." },
-        { title: "Intel et échanges", text: "L'Intel est l'argent du jeu : tu le gagnes en jouant et tu le dépenses dans le Coffre. Il ne s'achète pas et n'a aucune valeur monétaire. Échange des objets avec tes amis dès que ton compte a 7 jours, que ton e-mail est confirmé et que tu as joué 3 parties. Chaque échange est protégé 7 jours." },
+        { title: "Interceptions", text: "Des dossiers scellés avec un objet au hasard pour ton agent, gagnés en remportant des parties dans Jouer en ligne et avec ta série quotidienne ; à la soirée jeux, tu gagnes de l'Intel de Soirée jeux à dépenser en interceptions de Soirée jeux. Certains objets sont des Uniques : un seul exemplaire, avec sa couleur et son numéro de série. Les chances s'affichent avant l'ouverture ou l'achat. Jamais vendues contre de l'argent." },
+        { title: "Intel et échanges", text: "L'Intel est l'argent du jeu : tu le gagnes en jouant et tu le dépenses dans le Coffre. Il ne s'achète pas et n'a aucune valeur monétaire. Échange des objets avec tes amis dès que ton compte a 7 jours, que ton e-mail est confirmé et que tu as terminé 3 parties comptées. Chaque échange est protégé 7 jours." },
         { title: "Packs de la communauté", text: "Parcours dans Communauté les packs créés par les joueurs. Les membres écrivent les leurs avec le créateur de packs et les partagent." },
         { title: "10 langues", text: "Anglais, espagnol et russe, plus le français, le portugais (Brésil), le chinois (simplifié), l'hindi, l'arabe, le bengali et l'indonésien en bêta. Chacun voit le jeu dans sa langue." },
         { title: "Notifications", text: "Pour les invitations et demandes d'amis, les échanges, les offres du Marché noir et les soirées jeux où tu as touché « Me le rappeler »." },
       ],
+      practiceMembers: { title: "Partie d'entraînement", text: "Apprends Spy Talk et Spy Sketch avec des agents IA, en local ou en espion : un tutoriel guidé gratuit pour chaque jeu, puis, pour les membres, des parties d'entraînement complètes, jusqu'à 5 par jour, notées de A à F." },
       more: "Et aussi : statistiques, niveaux jusqu'à 100 avec prestige, succès, titres, cadres et célébrations, mentions avec @, mini-jeux dans l'Arcade, un micro plus rapide, un retour en partie sans accroc après la mise en veille du téléphone, et un nouveau look sur chaque écran.",
       newLabel: "Nouveau dans la 2.2",
       moreLabel: "Et plus encore",

@@ -36,7 +36,7 @@
 }
 .ticket p { margin: 0; }
 .ticketLabel {
-  font: 700 12px/1.2 var(--ss-font-body);
+  font: 700 14px/1.2 var(--ss-font-body);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ss-highlight);
@@ -147,7 +147,7 @@
 }
 .subhead {
   margin: 26px 0 10px !important;
-  font: 700 13px/1.2 var(--ss-font-body);
+  font: 700 14px/1.2 var(--ss-font-body);
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ss-highlight);

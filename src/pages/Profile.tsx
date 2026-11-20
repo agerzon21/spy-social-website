@@ -67,7 +67,7 @@ const Profile = () => {
           <VStack spacing={4} textAlign="center">
             {ok ? (
               <>
-                <Text fontSize="13px" fontWeight="700" letterSpacing="0.2em" textTransform="uppercase" color="ss.muted">
+                <Text fontSize="14px" fontWeight="700" letterSpacing="0.2em" textTransform="uppercase" color="ss.muted">
                   {t.eyebrow}
                 </Text>
                 <Heading as="h1" size="xl" style={{ overflowWrap: 'anywhere', direction: 'ltr', textTransform: 'none' }}>

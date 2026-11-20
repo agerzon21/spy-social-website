@@ -104,7 +104,7 @@ const id: ArchiveStrings = {
     notFoundText: 'Mungkin belum dicetak, atau link-nya salah.',
     status: { listed: 'Dijual', held: 'Dimiliki pemain', burned: 'Dimusnahkan' },
     listedFor: 'Dijual seharga',
-    buyHow: 'Beli di aplikasi: Brankas > Pasar Gelap > Temuan Langka.',
+    buyHow: 'Beli di aplikasi: Pasar Gelap > Temuan Langka.',
     retiredHow: (what: string) => `Dimusnahkan: ${what}.`,
     burnWhy: { trade_up: 'ditukar tambah menjadi item lain', shred: 'dihancurkan menjadi Intel', other: 'dihapus dari catatan' },
     certificate: 'Sertifikat',

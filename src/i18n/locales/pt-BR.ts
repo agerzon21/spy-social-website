@@ -4,6 +4,7 @@ import type { Strings } from './en'
 const ptBR: Strings = {
   meta: {
     siteName: 'SpySocial',
+    cardAlt: 'Cinco agentes numa fila de reconhecimento, um sob o holofote.',
     defaultTitle: 'SpySocial — O jogo de festa da dedução social',
     description:
       'Junte os amigos e descubra o espião — ou engane todo mundo. Jogo de festa multijogador grátis em tempo real, de 3 a 21 jogadores. Para iOS e Google Play.',
@@ -44,8 +45,9 @@ const ptBR: Strings = {
       ledger: "O registro público de cada colecionável do SpySocial: cada cópia e seu número. Qualquer pessoa pode conferir.",
       archive: "Cada Único do SpySocial registrado: imagem, número, atributos, como foi cunhado e cada venda, sem nomear nenhum jogador.",
       market: "Quanto vale cada item do SpySocial no Mercado Negro: preços a partir das trocas dos jogadores, o que mais sobe e cai e o mais negociado, sem nomear nenhum jogador.",
-      transparency: "Todo mês: quanta Intel foi ganha, gasta e corrigida no SpySocial, cada incidente e cada mudança de regra, sem citar nenhum jogador.",
-      gameNightRules: "As regras da Noite de Jogos semanal do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
+      transparency: "Todo mês: quanto Intel foi ganho, gasto e corrigido no SpySocial, cada incidente e cada mudança de regra, sem citar nenhum jogador.",
+      gameNightRules: "As regras da Noite de Jogos do SpySocial: quando acontece, quem pode participar, como ganhar os títulos da noite e o título bônus do desenvolvedor.",
+      gameNightRulesRewards: "As regras da Noite de Jogos do SpySocial: quando acontece, quem pode participar e como funcionam o Intel da Noite de Jogos, os títulos ★ e as interceptações da Noite de Jogos.",
       faq: "Ajuda do SpySocial: como jogar Spy Talk e Spy Sketch, Jogar online, salas privadas e Noite de Jogos, amigos, trocas, o Mercado Negro, interceptações, Intel, plano de membro, sua conta, segurança e solução de problemas.",
       contact: 'Fale com a equipe do SpySocial: escreva para support@spysocial.app se precisar de ajuda com o app, sua conta ou qualquer outra coisa.',
       rules: 'As regras da comunidade do SpySocial: seja gentil, blefe sem trapacear, mantenha a privacidade e o que acontece quando alguém quebra as regras.',
@@ -72,6 +74,8 @@ const ptBR: Strings = {
     nav: 'Site',
     join: 'Entrar numa sala',
     joinShort: 'Entrar',
+    market: 'Mercado',
+    archive: 'Arquivo',
     shop: 'Loja',
     lightMode: 'Modo claro',
   },
@@ -81,6 +85,7 @@ const ptBR: Strings = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Preços do Mercado Negro",
+    archive: "Arquivo",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparência",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -250,9 +255,9 @@ const ptBR: Strings = {
       chatTap: 'O chat também: toque em Traduzir em qualquer mensagem para ler no seu idioma.',
       trioLabel: 'Uma carta de papel em três idiomas',
       cardAlts: [
-        'Revelação do papel: a carta de um local mostra o lugar secreto, Teatro',
-        'Carta de papel em espanhol: Teatro',
-        'Carta de papel em russo: Театр',
+        'Revelação do papel: a carta de um local mostra o lugar secreto, Observatório',
+        'Carta de papel em espanhol: Observatorio',
+        'Carta de papel em russo: Обсерватория',
       ],
     },
     safety: {
@@ -348,7 +353,7 @@ const ptBR: Strings = {
       drawings: (minorRooms: boolean) =>
         'Os desenhos em salas públicas e Noites de Jogos podem ser verificados automaticamente a qualquer momento, e os desenhos denunciados também são verificados. Se um desenho seu quebrar estas regras, sua conta pode ser pausada ou banida das salas públicas e das Noites de Jogos, não importa há quanto tempo você joga. Numa sala pública, uma vez de desenhar que quebra estas regras é removida do desenho e conta como uma infração: primeiro uma advertência, depois 3, 7 e 30 dias sem salas públicas e Noites de Jogos e, na quinta infração em 90 dias, para sempre. Em qualquer sala, um símbolo de ódio (uma suástica conta, a menos que a palavra da rodada deixe claro um sentido religioso), uma ofensa discriminatória escrita ou ódio contra alguém tira o jogador da partida e das salas públicas e das Noites de Jogos para sempre, e um desenho que sexualiza uma criança encerra a conta e é tratado como diz a seção Segurança infantil acima. Sangue e monstros são permitidos. ' +
         (minorRooms
-          ? 'Numa sala privada em que um jogador com menos de 18 anos, ou que não nos informou a idade, pode ver o desenho, um desenho sexual é removido do quadro na hora e uma pessoa da nossa equipe decide o resto. Nas outras salas privadas, um desenho só gera uma ação automática quando é denunciado e tão grave quanto os casos acima; o resto fica a critério da pessoa que lê a denúncia. '
+          ? 'Numa sala privada em que um jogador com menos de 18 anos, ou que não nos informou a idade, pode ver o desenho, um desenho sexual é removido do quadro na hora e uma pessoa da nossa equipe decide o resto. Nas outras salas privadas, um desenho só gera uma ação automática quando é denunciado e é tão grave quanto os casos acima; o resto fica a critério da pessoa que lê a denúncia. '
           : 'Numa sala privada, um desenho denunciado só gera uma ação automática quando é grave a esse ponto; o resto fica a critério da pessoa que lê a denúncia. ') +
         'Para recorrer, mande para nós por e-mail o código do seu aviso.',
       drawingsTesters:
@@ -432,7 +437,7 @@ const ptBR: Strings = {
       buy: '<b>Itens para comprar:</b> pacotes e planos de membro, pela App Store ou pelo Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        '<b>Itens para comprar:</b> só planos de membro (o Passe de pacotes, mensal ou anual, e o plano Vitalício), pela App Store ou pelo Google Play. Ser membro libera os pacotes que não são grátis; nada mais é vendido.',
+        '<b>Itens para comprar:</b> só planos de membro (o plano mensal ou anual, e o plano Vitalício), pela App Store ou pelo Google Play. Ser membro libera os pacotes que não são grátis; nada mais é vendido.',
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         '<b>Interceptações:</b> recompensas ganhas jogando, cada uma com um item aleatório, como um visual novo para o agente. Não podem ser compradas, nem com dinheiro nem com a moeda ganha no jogo, e o app mostra as chances antes de alguém abrir uma.',
@@ -483,7 +488,7 @@ const ptBR: Strings = {
         '<b>Verificação dos desenhos:</b> cada vez de desenhar numa sala pública pode ser verificada automaticamente, e a vez que quebrar as regras é removida do desenho.',
       buyTitle: 'Compras',
       buyText:
-        'Adolescentes precisam da permissão dos pais ou do responsável legal para comprar qualquer coisa. As compras passam pela App Store ou pelo Google Play, então os controles parentais deles, como o Pedir Compra da Apple e as aprovações de compra do Google Family Link, funcionam normalmente. Um Passe de pacotes é renovado até ser cancelado nos ajustes da loja.',
+        'Adolescentes precisam da permissão dos pais ou do responsável legal para comprar qualquer coisa. As compras passam pela App Store ou pelo Google Play, então os controles parentais deles, como o Pedir Compra da Apple e as aprovações de compra do Google Family Link, funcionam normalmente. Um plano mensal ou anual é renovado até ser cancelado nos ajustes da loja.',
       deleteTitle: 'Excluir uma conta',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Abra o SpySocial.',
@@ -579,6 +584,27 @@ const ptBR: Strings = {
     title: 'Novidades',
     sub: 'Notas de versão do SpySocial. Grandes atualizações, recursos novos e melhorias, conforme lançamos.',
     releases: [
+      {
+        tag: "Atualização de fim de semana",
+        summary:
+          "Três atualizações do novo SpySocial neste fim de semana, antes do lançamento: textos mais fáceis de ler, ajuda mais clara para quem está começando, carregamento mais rápido no navegador e links de sala que levam até a sala.",
+        sections: [
+          {
+            label: "Melhorias",
+            items: [
+              { title: "Votação", text: "O botão “Abster-se” agora tem a mesma altura de “Confirmar”." },
+              { title: "Mais fácil de ler", text: "Os menores textos do app ficaram um pouco maiores." },
+              { title: "Mercado Negro", text: "Se é sua primeira vez, um cartão “Como funciona o Mercado Negro” mostra como ganhar, vender e comprar itens." },
+              { title: "Tutorial", text: "Quando o tutorial pede para tocar na sugestão, a dica agora fica na parte de baixo da tela, e a pergunta continua fácil de ler." },
+              { title: "Código de amigo", text: "As leituras que restam no seu código diminuem assim que um amigo o lê." },
+              { title: "Links de sala", text: "Se um amigo mandar o endereço da sala dele pelo navegador, abrir esse endereço agora leva você à tela para entrar na sala, em vez de “Lobby indisponível”." },
+              { title: "Celulares pequenos", text: "Nos celulares mais estreitos, a etiqueta que aparece enquanto você responde agora diz que depois é você quem pergunta." },
+              { title: "Jogar no navegador", text: "O jogo carrega mais rápido. No celular, se você virar o aparelho de lado durante uma partida, aparece o cartão “Coloque o celular na vertical”, e sua partida continua enquanto você gira." },
+              { title: "Idiomas", text: "Textos em árabe, hindi, bengali, chinês e indonésio aparecem melhor: sem palavras cortadas, quebras de linha estranhas ou palavras fora de ordem. Em português, o app agora diz “membro” em todo lugar, e não mais “assinatura” (em francês, “membre”)." },
+            ],
+          },
+        ],
+      },
       {
         tag: "Lançamento no Android",
         summary:
@@ -765,11 +791,11 @@ const ptBR: Strings = {
         },
         {
           title: 'Segurança',
-          text: 'O SpySocial é para maiores de 13 anos. O chat tem filtro de palavras, você pode denunciar ou bloquear qualquer jogador, e nas salas com alguém menor de 18 anos o chat bloqueia links, números de telefone e redes sociais.',
+          text: 'O SpySocial é para jogadores de 13 anos ou mais. O chat tem filtro de palavras, você pode denunciar ou bloquear qualquer jogador, e nas salas com alguém menor de 18 anos o chat bloqueia links, números de telefone e redes sociais.',
         },
       ],
       more: 'E mais: estatísticas, títulos e molduras para desbloquear, níveis até o 100 com prestígio, XP até nas partidas rápidas, volta ao jogo sem tropeços quando o celular entra em repouso, links de convite que simplesmente funcionam e um visual novo em todas as telas.',
-      launchWeek: 'Semana de lançamento: Spy Talk na terça, 8 de dezembro, Spy Sketch na sexta, 11 de dezembro, e Máfia no sábado, 12 de dezembro, sempre das 20h às 22h no horário do leste dos EUA (ET).',
+      launchWeek: 'Noite de Estreia: na sexta, 11 de dezembro, e de novo no sábado, 12 de dezembro, das 20h às 22h no horário do leste dos EUA (ET). A mesma noite de Spy Talk duas vezes: venha a uma ou às duas. Depois, uma noite por semana: na sexta, e a mesma noite de novo no sábado.',
     },
     next: {
       status: 'Planejado',
@@ -941,9 +967,9 @@ const ptBR: Strings = {
       eyebrow: 'O que você ganha',
       title: 'Recompensas beta que ficam com você depois do lançamento',
       items: ['O <b>Pin beta</b>', 'O título <b>Beta tester</b>'],
-      itemsBefore: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Teste de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
+      itemsBefore: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Tester de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
       gameTitle: 'Termine uma partida antes de 7 de dezembro e ganhe também',
-      gameItems: ['O título <b>Teste de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
+      gameItems: ['O título <b>Tester de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
       trade: { tradable: 'Depois do lançamento, as interceptações de agradecimento podem ser trocadas como tudo o que você ganha.', bound: 'As interceptações de agradecimento ficam na sua conta.' },
       prizeTitle: 'US$\u00a010 de agradecimento pelo PayPal + um bônus de US$\u00a050',
       prize: 'Um agradecimento de US$ 10 pelo PayPal pelo seu tempo na sessão ao vivo: cada jogador confirmado que participar da hora inteira e enviar a pesquisa de 5 minutos recebe em até 7 dias após a sessão, igual no iPhone e no Android. Só instalar a versão de teste não dá direito a ele. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil da sessão, escolhido pelo desenvolvedor em até uma semana.',
@@ -991,14 +1017,14 @@ const ptBR: Strings = {
       online: "Jogar online: Mesas de 4 ou 8, a qualquer hora",
       gamenight: "Noite de Jogos: Títulos que só saem naquela noite",
       market: "Mercado Negro: Troque itens com outros agentes",
-      friends: "Amigos: Adicione amigos. Joguem juntos.",
+      friends: "Amigos: Adicione amigos. Jogue com eles.",
     },
     cards: [
       { title: "Spy Sketch", text: "Desenhe a palavra secreta num quadro compartilhado e pegue o espião que está fingindo." },
       { title: "Jogar online", text: "Toque em Buscar partida para uma mesa de 4 ou 8, a qualquer hora. Estranhos veem sua cor de agente, nunca seu nome." },
-      { title: "Noite de Jogos", text: "Noites online com hora marcada e títulos que só saem naquela noite. A gente avisa antes de começar." },
+      { title: "Noite de Jogos", text: "Noites online com hora marcada e recompensas que só saem lá. A gente avisa antes de começar." },
       { title: "Mercado Negro", text: "Troque itens com amigos. Adultos também compram e vendem itens no Mercado Negro por Intel, que se ganha jogando. Nunca por dinheiro real." },
-      { title: "Membros", text: "Opcional: o Passe de pacotes (mensal ou anual) ou o Vitalício, pago uma vez e que nunca renova. Todos os pacotes premium nas salas que você comanda e na sua mesa no Jogar online, e o criador de pacotes. Nada mais é vendido." },
+      { title: "Membros", text: "Opcional: o plano mensal ou anual, ou o Vitalício, pago uma vez e que nunca renova. Todos os pacotes premium nas salas que você comanda e na sua mesa no Jogar online, e o criador de pacotes. Nada mais é vendido." },
     ],
     allNotes: "Tudo o que há de novo na 2.2",
     community: {
@@ -1015,13 +1041,14 @@ const ptBR: Strings = {
         { title: "Partida de treino", text: "Aprenda Spy Talk e Spy Sketch numa partida de verdade com agentes de IA, como local ou como espião. A gente orienta cada jogada e dá à sua partida uma nota de A a F." },
         { title: "Minhas pistas", text: "Os espiões anotam o que descobrem na página de pistas, montam uma lista curta de lugares ou palavras possíveis e dão o palpite final a partir dela." },
         { title: "Regras de sala privada", text: "Regras opcionais, como o Informante: um local que conhece um espião em segredo. Em Como jogar > Recursos e configurações tem uma demo curta e jogável de cada uma." },
-        { title: "Amigos e grupos", text: "Adicione amigos com seu código de amigo ou nome de usuário, siga jogadores e procurem mesa juntos, em grupo. Criar um grupo é para membros. No iPhone e no iPad, amigos, grupos e trocas são para maiores de 18." },
-        { title: "Interceptações", text: "Arquivos lacrados com um item aleatório para o seu agente, ganhos com vitórias no Jogar online, na sequência diária e na Noite de Jogos. Alguns itens vêm como Únicos: exemplar único, com cor e número de série próprios. As chances aparecem antes de abrir ou comprar. Nunca vendidas por dinheiro." },
-        { title: "Intel e trocas", text: "Intel é o dinheiro do próprio jogo: você ganha jogando e gasta no Cofre. Não pode ser comprado e não tem valor em dinheiro. Troque itens com amigos quando sua conta tiver 7 dias, seu e-mail estiver confirmado e você tiver jogado 3 partidas. Cada troca fica protegida por 7 dias." },
+        { title: "Amigos e grupos", text: "Adicione amigos com seu código de amigo ou nome de usuário, siga jogadores e procure mesa com eles, em grupo. Criar um grupo é para membros. No iPhone e no iPad, amigos, grupos e trocas são para maiores de 18." },
+        { title: "Interceptações", text: "Arquivos lacrados com um item aleatório para o seu agente, ganhos com vitórias no Jogar online e na sequência diária; na Noite de Jogos, você ganha Intel da Noite de Jogos para gastar em interceptações da Noite de Jogos. Alguns itens vêm como Únicos: exemplar único, com cor e número de série próprios. As chances aparecem antes de abrir ou comprar. Nunca vendidas por dinheiro." },
+        { title: "Intel e trocas", text: "Intel é o dinheiro do próprio jogo: você ganha jogando e gasta no Cofre. Não pode ser comprado e não tem valor em dinheiro. Troque itens com amigos quando sua conta tiver 7 dias, seu e-mail estiver confirmado e você tiver terminado 3 partidas contadas. Cada troca fica protegida por 7 dias." },
         { title: "Pacotes da comunidade", text: "Explore em Comunidade os pacotes feitos pelos jogadores. Membros escrevem os próprios com o criador de pacotes e compartilham." },
         { title: "10 idiomas", text: "Inglês, espanhol e russo, além de francês, português (Brasil), chinês (simplificado), hindi, árabe, bengali e indonésio em beta. Cada um vê o jogo no próprio idioma." },
         { title: "Notificações", text: "Para convites e pedidos de amigos, trocas, ofertas do Mercado Negro e as Noites de Jogos em que você tocou em Me avise." },
       ],
+      practiceMembers: { title: "Partida de treino", text: "Aprenda Spy Talk e Spy Sketch com agentes de IA, como local ou como espião: um tutorial guiado grátis para cada jogo e depois, para membros, partidas de treino completas, até 5 por dia, com nota de A a F." },
       more: "E mais: estatísticas, níveis até 100 com prestígio, conquistas, títulos, molduras e comemorações, menções com @, minijogos no Arcade, um microfone mais rápido, volta ao jogo sem tropeço depois que o celular dorme e um visual novo em todas as telas.",
       newLabel: "Novidades da 2.2",
       moreLabel: "E mais",

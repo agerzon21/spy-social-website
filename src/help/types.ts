@@ -3,7 +3,7 @@
  * Each language's file loads only on the help page, as its own chunk, so the other pages don't carry it.
  *
  * For translators (as src/i18n/locales/en.ts):
- * - Tags: <b>a button's or screen's name</b>; links <terms>, <privacy>, <rules>, <gnr> (the Game Night rules),
+ * - Tags: <b>a button's or screen's name</b>; links <terms>, <privacy>, <drawchecks> (Privacy's #drawing-checks), <rules>, <gnr> (the Game Night rules),
  *   <delete> (the Delete Account page), <safety> (the Safety page, plain text while it isn't published), <discord>;
  *   <email/> is replaced whole by the support address. Keep every tag, translate the words inside it.
  * - Every section and question keeps its `id` (the page's #anchors) and its place; the same questions in every
@@ -47,17 +47,68 @@ export interface HelpOpts {
   appU61: boolean
   /** A leader whose membership ends closes the party (LIVE.partyLeaderLapse; server party_leader_lapse_1111). */
   partyLeaderLapse: boolean
-  /** Member time and its stamps, reset when a membership ends, and the price kept while a pass renews (LIVE.memberLoyalty). */
+  /** A party whose leader goes with no member left in it closes for everyone (LIVE.partyNoMember; server party_no_member_1117, row 107). */
+  partyNoMember: boolean
+  /** Member time and its stamps, reset when a membership ends, and the price kept while a monthly or yearly membership renews (LIVE.memberLoyalty). */
   memberLoyalty: boolean
   /** The testers' thank-you Intercepts trade like anything earned (LIVE.testerIntercepts === 'tradable'); false: they stay with the account. */
   testerInterceptsTradable: boolean
   /** The tester thank-you's counted-game condition (LIVE.testerGiftGame; server tester_gift_game_1111). Off: the old one-line answer. */
   testerGiftGame: boolean
   /**
-   * Beta 3's role reveal and Poker Face are on testers' phones (LIVE.helpRoleReveal): #role-reveal and #poker-face.
-   * TRANSLATIONS UNREVIEWED: every language but English is an agent's (help-u61-1113), in the app's own words for them.
+   * Beta 3's role reveal and Poker Face are on for everyone (LIVE.helpRoleReveal): #role-reveal, #poker-face ("Where Are
+   * You Playing?", Online | Same Room) and #voice-chat's line for a call. #talk-out-loud, #drawings-checked and the rest of
+   * #voice-chat show either way. TRANSLATIONS UNREVIEWED: every language but English is an agent's (help-u61-1113,
+   * help-beta3-1116), in the app's own words for them (app int-u62, u62.13).
    */
   roleReveal: boolean
+  /**
+   * help-new-1117 (TRANSLATIONS UNREVIEWED: every language but English is an agent's, in the app's own words for each
+   * feature, app int/u62-15-prep). Game Night rewards (LIVE.helpGameNightRewards): #game-night-rewards,
+   * #game-night-intercepts and #game-night's PRIZES line.
+   */
+  gnRewards: boolean
+  /** The weekly Game Night, Friday and again Saturday (LIVE.launchGameNights): #game-night-weekly. */
+  gnWeekly: boolean
+  /** Monthly <-> Yearly upgrades in the app and the two-memberships warning (LIVE.helpMembershipSwitch). */
+  membershipSwitch: boolean
+  /** A Google Play membership stops renewing by itself beside a Lifetime (LIVE.helpGooglePassStop). */
+  googlePassStop: boolean
+  /** Practice Games for members, 5 a day (LIVE.practiceMembers): #practice-members, #membership-includes' line. */
+  practiceMembers: boolean
+  /** The Practice Games' AI rating is on (LIVE.practiceAi): #practice-members' AI line. */
+  practiceAi: boolean
+  /**
+   * Every account's Intel to 0 right before launch, earned Intel included, and the streak back to day 0 (LIVE.intelZero1117,
+   * the owner's reset answer D1 = zero; howto-truth-1117): #who-can-trade's beta Intel line and #beta-reset's streak line.
+   */
+  intelZero: boolean
+  /**
+   * The Game Night rewards replace the night's titles on the server (LIVE.gnRewardsRules, the day NEXT-BATCH row 83 /
+   * 999848 is applied, with the Rules page and Terms; stale-help-1118): #who-can-trade's launch line loses the
+   * Developer's Pick (no developer's bonus title any more), and until gnRewards (62.15) #game-night's line drops the
+   * night's titles and #earn-intercepts drops the winner's Enigma.
+   */
+  gnRewardsRules: boolean
+  /** Spy Talk's Question Rounds (LIVE.helpQuestionRounds): #question-rounds. */
+  questionRounds: boolean
+  /**
+   * App update 62.15.2 is on phones (LIVE.helpU6152, codename-1118): #showcase-items, #intercept-tiers' codename line,
+   * #guest-or-saved's Game Over card line and #play-online's Members only line. TRANSLATIONS UNREVIEWED: every language but
+   * English is an agent's, in the app's own words for each (int/u62-15-prep: socialProfile showcase, trading.library_open,
+   * item_pages.market_site, home.save_nudge, online.members, codes.see_membership; codenames from the Archive's data).
+   */
+  u6152: boolean
+  /**
+   * App update 62.15 round 5 is on phones (LIVE.helpU6153, help-u6153-1118): #game-night-intercepts' Blackout line (the Game
+   * Night Legendary, formerly The Back Room; rest scene Rain Window), #languages' loader line, #membership-cards,
+   * #tablet-keyboard. The Russian codename wording is the Archive's, not here. TRANSLATIONS UNREVIEWED: every language but
+   * English is an agent's, in the app's own words (int/u62-15-prep: upsell.*, afterHoursBackdrop names, accountSettings
+   * locker.title, membersPage). Rain Window has no app translation: kept in Latin letters in every language.
+   */
+  u6153: boolean
+  /** Version 2.2 signs up and in with an emailed code, older versions with a password (LIVE.emailCodes22): #sign-up-email. */
+  emailCodes22: boolean
 }
 
 export interface HelpItem {

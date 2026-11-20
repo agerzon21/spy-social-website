@@ -212,14 +212,20 @@ export function helloHtml(input: HelloInput): string {
 <meta name="theme-color" content="#0a111c">
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SpySocial">
 <meta property="og:url" content="${esc(input.origin)}/hello">
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${description}">
-<meta property="og:image" content="${esc(input.origin)}/images/og-image.jpg">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="${esc(input.origin)}/images/og-image.jpg">
+<meta property="og:image" content="${esc(input.origin)}/images/share/site-en.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta property="og:image:alt" content="SpySocial: Trust no one. Five agents in a police line-up, one in the spotlight.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${esc(input.origin)}/images/share/site-en.jpg">
+<meta name="twitter:image:alt" content="SpySocial: Trust no one. Five agents in a police line-up, one in the spotlight.">
 <script src="/theme.js"></script>
 <script src="/lang.js"></script>
 <script src="/hello/hello.js" defer></script>

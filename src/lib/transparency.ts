@@ -100,7 +100,10 @@ const GIFTS_TRADABLE: { day: string; what: string; from: string; to: string }[] 
  * no row. Shown once LIVE.giftsTradable is off, with the line above kept as history.
  */
 const GIFTS_BOUND_DEC7: { day: string; what: string; from: string; to: string }[] = [
-  { day: 'December 7, 2026', what: "when items we or our staff give (a Developer's Pick included) and items from a code can be traded (with what a trade-up makes from them)", from: 'at once', to: 'never: they stay with the account' },
+  // stale-help-1118: no Developer's Pick once LIVE.gnRewardsRules is on (row 83 ends the developer's bonus title).
+  { day: 'December 7, 2026', what: `when items we or our staff give${LIVE.gnRewardsRules ? '' : " (a Developer's Pick included)"} and items from a code can be traded (opened or not, with what comes out of them and what a trade-up makes from them)`, from: 'at once', to: 'never: they stay with the account' },
+  // gift-intel-lock-1111 (owner 2026-11-11): a gift's value stays with the account too (app server WR as amended)
+  { day: 'December 7, 2026', what: 'when Intel from shredding a spare of an item from a code or a gift can be traded', from: 'like any other Intel', to: 'never: it is held on the account (it can still be spent in the app)' },
   { day: 'December 7, 2026', what: 'when Intel we add ourselves (a bug refund to one player, an outage make-good) can be traded', from: 'never: it was locked', to: 'like any other Intel' },
 ]
 

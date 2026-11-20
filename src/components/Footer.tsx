@@ -60,6 +60,8 @@ const Footer = () => {
     ...(LIVE.roadmap ? [{ label: f.roadmap, to: '/roadmap' }] : []),
     // The Black Market's prices (LIVE.marketSite).
     ...(LIVE.marketSite ? [{ label: f.market, to: '/market' }] : []),
+    // The Archive (archive.spysocial.app; LIVE.mintedCollectibles and LIVE.uniqueArchive, as its routes).
+    ...(LIVE.mintedCollectibles && LIVE.uniqueArchive ? [{ label: f.archive, to: '/archive' }] : []),
     { label: f.rules, to: '/rules' },
     // The Game Night rules, once they're live (LIVE.gameNightRules).
     ...(LIVE.gameNightRules ? [{ label: f.gameNightRules, to: '/game-night-rules' }] : []),

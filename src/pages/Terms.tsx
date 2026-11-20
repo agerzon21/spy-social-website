@@ -46,6 +46,14 @@ const Terms: React.FC = () => {
     LIVE.intel ? 'Intel' : null,
   ].filter((item): item is string => item !== null)
   const notSold = `${notSoldItems.slice(0, -1).join(', ')} and ${notSoldItems[notSoldItems.length - 1]}`
+  // Terms 9's minted collectibles: with LIVE.gnRewardsRules (legal-gn-1117, row 83) Game Night titles are no longer minted
+  // (the ★ counter titles never are; the beta's per-night titles became counts).
+  const mintedList = LIVE.gnRewardsRules
+    ? 'The Beta Pin, the Field Tester title and every item that comes from an Intercept (a Game Night Intercept included)'
+    : 'Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept'
+  // Trades' never-tradable list: the ★ Game Night titles and Game Night Intel (LIVE.gnRewardsRules, legal-gn-1117).
+  const gnNeverTradable = LIVE.gnRewardsRules ? (LIVE.giftsTradable ? ', the ★\u00a0Game Night titles, Game Night Intel' : ', the ★\u00a0Game Night titles and Game Night Intel') : ''
+  const mintedRecord = LIVE.gnRewardsRules ? 'the Intercept or trade-up it came from' : 'the Game Night and the game, or the Intercept or trade-up it came from'
 
   return (
     <LegalPage english title="Terms of Service for SpySocial" updated={<>Last Updated: {LEGAL_LAST_UPDATED}</>}>
@@ -126,8 +134,9 @@ const Terms: React.FC = () => {
           : LIVE.emailCodes22
             ? ' (from version 2.2, we email you a one-time code each time you sign in; older versions of the app use a password)'
             : ' and a password'}
-        {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Public rooms and events need a saved
-        account with a confirmed email address{LIVE.socialSignIn ? ', or one that signs in with Apple or Google' : ''}.
+        {LIVE.socialSignIn ? ', or with Sign in with Apple or Google' : ''}. Play Online and Game Night need a saved
+        account with a confirmed email address{LIVE.socialSignIn ? ', or one that signs in with Apple or Google' : ''};
+        as a guest you can still play the tutorial and private rooms.
         {LIVE.purchases &&
           (LIVE.membershipsOnly
             ? " Guests can buy a membership too. A guest's membership belongs to the guest account; if you lose it, Restore Purchases brings it back (see section 9)."
@@ -153,7 +162,7 @@ const Terms: React.FC = () => {
       <Bullets>
         <li>Your account is for you alone. Don't share, sell or give it to anyone, and don't use someone else's.</li>
         <li>Give true information, including your birth year. A birth year can't be changed in the app. If you entered one that made you under 18 and you're an adult, email us: we change it only with proof of age.</li>
-        <li>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't.{LIVE.usernameLimit ? ` You can change your username once every 30 days${LIVE.audit1103 ? " (a new account's first changes don't count)" : ''}; a username you stop using stays reserved for 14 days.` : ''}</li>
+        <li>Your display name and username must follow the Community Rules. We may change or remove a name that doesn't. When you set up your account you choose a username, and your display name is made from it; you can change your display name in Settings at any time.{LIVE.usernameLimit ? ` You can change your username once every 30 days${LIVE.audit1103 ? " (a new account's first changes don't count)" : ''}; a username you stop using stays reserved for 14 days.` : ''}</li>
         <li>Don't create another account to get around a limit, a penalty or someone's block.</li>
       </Bullets>
 
@@ -215,8 +224,12 @@ const Terms: React.FC = () => {
             </li>
             <li>
               A party is a leader and friends who play together, up to 21 people in all. It takes a membership to start a
-              party; if the leader leaves, the lead goes to someone in it with a membership first, or else to whoever has been in
-              it longest. A player who is banned or paused from public rooms leaves the party.
+              party; if the leader leaves, the lead goes to someone in it with a membership
+              {/* LIVE.partyNoMember: server party_no_member_1117 (row 107): no member left, the party closes. */}
+              {LIVE.partyNoMember
+                ? '; if nobody left in it has one, the party closes for everyone.'
+                : ' first, or else to whoever has been in it longest.'}{' '}
+              A player who is banned or paused from public rooms leaves the party.
               {/* LIVE.partyLeaderLapse: server party_leader_lapse_1111 (owner 2026-11-11). */}
               {LIVE.partyLeaderLapse
                 ? " If the leader's membership ends, the party closes for everyone and the lead isn't passed on; a game the party is playing goes on to its end, and after it each player searches on their own."
@@ -248,8 +261,11 @@ const Terms: React.FC = () => {
           : "Public rooms are open to players you don't know."}{' '}
         Anyone who meets the requirements can play in them: a saved account with a confirmed email address
         {LIVE.socialSignIn ? ' (or Apple or Google sign-in)' : ''}, being 13 or older, and agreeing to the Community Rules.
+        {/* legal-gn-1117 (LIVE.tutorialGate1117): the gate is passing the game's tutorial (How to Play's Step 1), never a grade in a practice game. */}
         {LIVE.coverage1110 &&
-          " Play Online may also ask you to pass a game's practice game first (a grade of C or better), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask."}
+          (LIVE.practiceMembers
+            ? " Play Online may also ask you to pass a game's tutorial first (the tutorials are free for everyone), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask."
+            : " Play Online may also ask you to pass a game's tutorial first (in How to Play), unless you've already finished a few Play Online games of that game; private rooms and Game Night's Play Now don't ask.")}
         {/* Play Online's presets all have rules.room_votes_in_game false (live, 2026-10-25), call_room_vote refuses kick and
             end votes in a standard game, and a Play Online table has no lobby; only a hosted event room (events.format
             'room', off while app_config.events_enabled is false) has them. */}
@@ -277,8 +293,12 @@ const Terms: React.FC = () => {
         {/* LIVE.gameNightRules: the rules page says it's part of these Terms. */}
         {LIVE.gameNightRules && (
           <>
-            {' '}Game Night, which we host on the nights we announce in the app, is played at Play Online tables; its titles and how to get them are set
-            out in the <PageLink to="/game-night-rules">Game Night Rules</PageLink>, which are part of these Terms.
+            {' '}Game Night, which we host on the nights we announce in the app, is played at Play Online tables;{' '}
+            {/* LIVE.gnRewardsRules (legal-gn-1117, row 83): rewards replace the night's titles. */}
+            {LIVE.gnRewardsRules
+              ? 'what it pays (Game Night Intel, the ★\u00a0titles and the Game Night Intercepts that Game Night Intel buys) and how to earn it are set'
+              : 'its titles and how to get them are set'}
+            {' '}out in the <PageLink to="/game-night-rules">Game Night Rules</PageLink>, which are part of these Terms.
           </>
         )}
       </P>
@@ -577,7 +597,7 @@ const Terms: React.FC = () => {
         SpySocial has virtual items, such as packs of words and locations,
         {avatarsLive(LIVE) ? ' avatar items (hats, glasses, colours and the like, and celebrations),' : ''} XP, levels,
         prestige,
-        achievements, badges{LIVE.intel ? ', Intel' : ''}{LIVE.intercepts ? ', Intercepts' : ''}
+        achievements, badges{LIVE.intel ? ', Intel' : ''}{LIVE.gnRewardsRules ? ', Game Night Intel' : ''}{LIVE.intercepts ? ', Intercepts' : ''}
         {LIVE.ranked ? ', Ranked ratings and ranks' : ''}
         {LIVE.tournaments ? ', Tournament Tokens' : ''} and event rewards. Some are free, some you earn by playing, and some may be given to you, for
         example for playing in events.
@@ -618,6 +638,11 @@ const Terms: React.FC = () => {
                   (LIVE.launchSite
                     ? ' While SpySocial was being tested, we also gave test Intel to testers and to our own accounts (incident I-2 on our transparency page); all of it was taken back on December 7, 2026.'
                     : " While SpySocial is being tested, we also give test Intel: 50,000 once to each tester who signs in to a test version before November 13, 2026, and what we choose to our own accounts (incident I-2 on our transparency page). It can be spent and traded like earned Intel, and all of it is taken back on December 7, 2026, never below 0; nothing it paid for stays.")}
+                {/* LIVE.intelZero1117: the owner's reset answer D1 = zero (app server B1 prelaunch_intel_zero, 09:50 ET Dec 8; Game Night Intel back by GNIR v3). */}
+                {LIVE.intelZero1117 &&
+                  (LIVE.launchSite
+                    ? ' Right before SpySocial 2.2 opened to everyone, Intel started fresh too: every account\'s Intel was set to 0, including the Intel earned by playing a test version (games, daily rewards and streaks), streaks started again from day 0 and streak milestones can be earned again. Game Night Intel was not part of this: each player got back all the Game Night Intel they had earned. We published this as an incident on our transparency page.'
+                    : ' Right before SpySocial 2.2 opens to everyone, Intel starts fresh too: every account\'s Intel goes to 0, including the Intel earned by playing a test version (games, daily rewards and streaks), streaks start again from day 0 and streak milestones can be earned again. Game Night Intel is not part of this: each player gets back all the Game Night Intel they earned. We publish this as an incident on our transparency page.')}
                 {LIVE.intelLedger ? (
                   <>
                     {' '}We may change how much Intel games, streaks and shredding give; a change counts from then on,
@@ -692,16 +717,24 @@ const Terms: React.FC = () => {
             Play Online game of each day earns you a daily Intercept of a random tier (on top of that day's Intel),
             which you claim in the app; rewards you haven't claimed don't expire. On every 7th day in a row of your
             streak you also get an extra Intercept of the Secret tier or better, and on every 30th day in a row an extra
-            Enigma Intercept, both on top of that day's Intercept. Game Night's winners get an Enigma Intercept. A code from a content creator or from us can
+            Enigma Intercept, both on top of that day's Intercept.{' '}
+            {/* LIVE.gnRewardsRules (legal-gn-1117, row 83): no winner's Enigma; Game Night Intercepts are bought with Game Night Intel. */}
+            {LIVE.gnRewardsRules
+              ? 'At Game Night you can also get Game Night Intercepts with the Game Night Intel you earn there (see Game Night Intel below).'
+              : "Game Night's winners get an Enigma Intercept."}{' '}
+            A code from a content creator or from us can
             also give Intercepts, once per account: each code gives what we set for it, and the app tells you what you
             got. Intercepts from a code unlock after your first Play Online game that counts. Codes tied to a purchase
             (such as merch codes) never give Intercepts. We may also give Intercepts, and memberships, as gifts, but
-            never the items that come from Intercepts. Each Intercept opens into one random item.{' '}
+            never the items that come from Intercepts. From December 8, 2026, each saved account gets one free Intercept,
+            once, as a gift from us. Each Intercept opens into one random item.{' '}
             {LIVE.interceptsMarket
-              ? `You can't buy an Intercept with money, and we never sell Intercepts. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below)${LIVE.interceptsInTrades ? ', and trade one with a friend (see Trades below)' : ''}; players under 18 can't. Intel can't be bought, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds.`
+              ? `You can't buy an Intercept with money, and we never sell Intercepts${LIVE.gnRewardsRules ? ' (Game Night Intercepts, which you get for Game Night Intel you earned, are the one exception)' : ''}. Adults can buy an unopened Intercept from another adult, or sell one, for Intel on the Black Market (see Black Market below)${LIVE.interceptsInTrades ? ', and trade one with a friend (see Trades below)' : ''}; players under 18 can't. ${LIVE.gnRewardsRules ? 'Neither Intel nor Game Night Intel can be bought' : "Intel can't be bought"}, so no Intercept is ever paid for with money. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds.`
+              : LIVE.gnRewardsRules
+              ? "You can't buy an Intercept with money or with Intel; the one kind you get for something you spend is a Game Night Intercept, for Game Night Intel you earned. You can't open an Intercept sooner or with a better chance in any way, and a membership doesn't give you more of them or better odds."
               : "You can't buy an Intercept, or open one sooner or with a better chance, with money, with Intel or in any other way, and a membership doesn't give you more of them or better odds."}{' '}
             {/* The offer sheet's odds (Nov 10 store build, store-compliance-1103) are out by the launch: LIVE.launchSite. */}
-            {LIVE.launchSite && LIVE.interceptsMarket ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds)
+            {(LIVE.launchSite && LIVE.interceptsMarket) || LIVE.gnRewardsRules ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds)
             the chance of each tier and rarity and any guarantee. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed.{LIVE.sameOdds ? ' Which item of a rarity you get never depends on what you already own.' : ''} If you get an item you already have, you
             keep the extra copy and can shred it for Intel, at the amount the app shows, or trade up: 5 spare copies of
@@ -731,12 +764,40 @@ const Terms: React.FC = () => {
             )}
             {LIVE.intelLedger
               ? LIVE.launchSite
-                ? " The items a membership includes stayed, and so did the Intel players got from games, daily claims and streaks. The Intel got by shredding copies from before then was taken back (never below 0), and the items bought with Intel before then were taken back, with the Intel spent on them refunded; we published this as incident I-1 on our transparency page."
-                : " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded; we publish this as incident I-1 on our transparency page."
+                ? LIVE.intelZero1117
+                  ? " The items a membership includes stayed. The Intel got by shredding copies from before then was taken back (never below 0), and the items bought with Intel before then were taken back, with the Intel spent on them refunded, before every account's Intel was set to 0 (see Intel above); we published this as incident I-1 on our transparency page."
+                  : " The items a membership includes stayed, and so did the Intel players got from games, daily claims and streaks. The Intel got by shredding copies from before then was taken back (never below 0), and the items bought with Intel before then were taken back, with the Intel spent on them refunded; we published this as incident I-1 on our transparency page."
+                : LIVE.intelZero1117
+                  ? " The items a membership includes stay. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded, before every account's Intel goes to 0 (see Intel above); we publish this as incident I-1 on our transparency page."
+                  : " The items a membership includes stay, and so does the Intel you got from games, daily claims and streaks. The Intel you got by shredding copies from before then is taken back (never below 0), and the items you bought with Intel before then are taken back with the Intel you spent on them refunded; we publish this as incident I-1 on our transparency page."
               : ' The items a membership includes, and the Intel you already got, stay.'}
             {LIVE.intelCorrections
               ? " We may take back unopened Intercepts given by mistake. We take back an item you've opened only when an incident we've published shows it was given in error, or a closed fair-play case shows it came from cheating; for a Unique this waits 24 hours, its number stays used and is never given to anyone else, and you can appeal within 30 days (an upheld appeal gives you back the same Unique). While a fair-play case is open, we may freeze a copy: it stays yours but can't be shredded or traded up. We never take an item from you to give it to someone else. Otherwise an item you've opened stays yours like the other items you've earned."
               : " We may take back Intercepts or items that were given by mistake or earned by cheating; an item you've opened otherwise stays yours like the other items you've earned."}
+          </li>
+        )}
+        {/* LIVE.gnRewardsRules (legal-gn-1117; app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83): Game Night
+            Intel (gn_wallets / gn_ledger: earn-only, untradeable, server-only writes), the four ★ counter titles (never pool,
+            never minted, untradeable, kept by the Dec 7 reset), Game Night Intercepts = crate tiers 6 / 7 / 8 bought in the
+            Vault (tradable like any earned one); the old Game Night titles became counts (their beta-chain copies revoked);
+            Dec 7: W1 wipes Game Night Intercepts and their items, row 84 gives back the Game Night Intel earned. */}
+        {LIVE.gnRewardsRules && (
+          <li>
+            Each game you finish at a Game Night table gives you Game Night Intel (for
+            now 500 for a win and 200 for any other game you finish, except the games the{' '}
+            <PageLink to="/game-night-rules">Game Night Rules</PageLink> leave out, such as one you leave before it ends)
+            and counts toward four cosmetic titles, ★&nbsp;Operative, ★&nbsp;Local Hero, ★&nbsp;Master Spy and ★&nbsp;Double Agent, each worn
+            with its count. Game Night Intel is separate from Intel. You earn it only by playing at Game Night, a
+            membership adds nothing to it, and it can't be bought, traded, sold, given or moved to another account; like
+            every virtual item it has no cash value. You can spend it only on Game Night Intercepts in the Vault, and a
+            Game Night Intercept, once you have it, and the item it opens into work like any Intercept you earn (above).
+            The ★&nbsp;titles stay with the account that earned them: they can't be traded, sold or given to anyone, and
+            they aren't minted collectibles. We may change how much Game Night Intel a game gives and what Game Night
+            Intercepts cost; a change counts from then on. If Game Night Intel or a ★&nbsp;title was given by mistake or
+            earned against our rules or the Game Night Rules, we may take it back.
+            {LIVE.launchSite
+              ? " The titles from the beta's Game Nights became counts on the ★\u00a0titles. Before SpySocial 2.2 opened to everyone, Game Night Intercepts and their items were wiped with every other Intercept, each account got back all the Game Night Intel it had earned before then, even Intel it had spent, and the ★\u00a0titles stayed."
+              : " The titles from the beta's Game Nights have become counts on the ★\u00a0titles. Before SpySocial 2.2 opens to everyone, Game Night Intercepts and their items are wiped with every other Intercept (above), each account gets back all the Game Night Intel it earned before then, even Intel it spent, and the ★\u00a0titles stay."}
           </li>
         )}
         {/* LIVE.mintedCollectibles: minted collectibles and the public ledger (legalRelease). */}
@@ -745,9 +806,9 @@ const Terms: React.FC = () => {
             {/* ledger-uniques-1111 (LIVE.ledgerUniquesOnly): the public ledger carries Uniques only */}
             {LIVE.ledgerUniquesOnly ? (
               <>
-                Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept are
-                minted collectibles. Each copy has its own number and a record of how it was earned (for example the
-                Game Night and the game, or the Intercept or trade-up it came from), and a copy can be made only by its
+                {mintedList} are
+                minted collectibles. Each copy has its own number and a record of how it was earned (for example{' '}
+                {mintedRecord}), and a copy can be made only by its
                 stated rule, inside its window. Once a collectible's window closes, no more copies of it are ever made,
                 by anyone, us included. Every Unique, and what happens to it later (a trade, a sale, a trade-up, a
                 correction), is written to a public ledger at <PageLink to="/ledger">spysocial.app/ledger</PageLink>,
@@ -763,9 +824,9 @@ const Terms: React.FC = () => {
               </>
             ) : (
               <>
-            Game Night titles, the Beta Pin, the Field Tester title and every item that comes from an Intercept are
-            minted collectibles. Each copy has its own number and a record of how it was earned (for example the
-            Game Night and the game, or the Intercept or trade-up it came from), and a copy can be made only by its
+            {mintedList} are
+            minted collectibles. Each copy has its own number and a record of how it was earned (for example{' '}
+            {mintedRecord}), and a copy can be made only by its
             stated rule, inside its window. Once a collectible's window closes, no more copies of it are ever made,
             by anyone, us included. Every copy, and what happens to it later (a shred, a trade-up, a correction), is
             written to a public ledger at <PageLink to="/ledger">spysocial.app/ledger</PageLink>, which shows each
@@ -847,20 +908,24 @@ const Terms: React.FC = () => {
             {/* The test phase (app server trade_test_phase, trade_intel_test_phase, Window W's WT and WQ): ends by itself on December 7, 2026. */}
             <li>
               {LIVE.launchSite
-                ? "While SpySocial was being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in were off for trades and the Black Market, and adults could trade Intel. On that day every amount of Intel traded went back: whoever gave it got it back, and everyone kept only the Intel they earned, never below 0. We published this as an incident on our transparency page."
-                : "While SpySocial is being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in are off for trades and the Black Market, and adults can trade Intel. A confirmed email, trading only with friends, the 7-day protection and every rule for players under 18 still apply. On December 7 every amount of Intel traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned, never below 0, even if it was already spent. We publish this as an incident on our transparency page."}
+                ? LIVE.intelZero1117
+                  ? "While SpySocial was being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in were off for trades and the Black Market, and adults could trade Intel. On that day every amount of Intel traded went back: whoever gave it got it back, never below 0, and right before launch every account's Intel was set to 0 (see Intel above). We published both as incidents on our transparency page."
+                  : "While SpySocial was being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in were off for trades and the Black Market, and adults could trade Intel. On that day every amount of Intel traded went back: whoever gave it got it back, and everyone kept only the Intel they earned, never below 0. We published this as an incident on our transparency page."
+                : LIVE.intelZero1117
+                  ? "While SpySocial is being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in are off for trades and the Black Market, and adults can trade Intel. A confirmed email, trading only with friends, the 7-day protection and every rule for players under 18 still apply. On December 7 every amount of Intel traded goes back: whoever gave it gets it back, never below 0, even if it was already spent; then, right before launch, every account's Intel goes to 0 (see Intel above). We publish both as incidents on our transparency page."
+                  : "While SpySocial is being tested, until December 7, 2026, the rules on account age, counted games, a new device and a change of sign-in are off for trades and the Black Market, and adults can trade Intel. A confirmed email, trading only with friends, the 7-day protection and every rule for players under 18 still apply. On December 7 every amount of Intel traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned, never below 0, even if it was already spent. We publish this as an incident on our transparency page."}
             </li>
             <li>
               Not every item can be traded; the app marks the ones that can.{' '}
               {LIVE.coverage1110
-                ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them)${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable${LIVE.launchSite || !LIVE.giftsTradable ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
-                : `Memberships, what a membership includes, level rewards, items from the arcade games${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable.`}{' '}
+                ? `Memberships, what a membership includes, level and achievement rewards (the Arcade's secret titles and controllers among them)${gnNeverTradable}${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable${LIVE.launchSite || !LIVE.giftsTradable ? '' : ' (except the test Intel in Intel above, until December 7, 2026)'}: they stay with your account.`
+                : `Memberships, what a membership includes, level rewards, items from the arcade games${gnNeverTradable}${LIVE.giftsTradable ? ' and Intel we add ourselves' : ''} are never tradable.`}{' '}
               {/* LIVE.giftsTradable: gifted and code copies tradable at once (app_config.economy.gift_copies_tradable, Nov 1, 2026). Off in U0
                   (WG, Dec 7): the owner's rules of Nov 6 and Nov 8 (gift-rules-1108): codes and anything we or staff give, a Developer's
                   Pick included, stay with the account; Intel is never bound; the Beta set trades like anything earned. */}
               {LIVE.giftsTradable
-                ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, Intercepts from a code or a gift, opened or not, and anything you make in a trade-up with one of them among its inputs, stay with your account: you can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
-                : "Items from a code or a gift stay with your account. That means anything you redeem with a code, anything we or our staff give you (an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick), and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Intel is never tied to your account: Intel you get by shredding a spare, and Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn."}
+                ? "While SpySocial is being tested, until December 7, 2026, items we give you as a gift, items from a code and the Beta set can be traded at once. From that day, everything we give away stays with your account: items and Intercepts from a code (such as a creator, promo or beta code) or a gift from us or our team, the free Intercept a saved account gets, everything that comes out of them, and anything you make in a trade-up with one of them among its inputs. You can use them, but you can't trade them, sell them or give them to anyone. The app marks which items can be traded."
+                : `Items from a code or a gift stay with your account. That means anything you redeem with a code (such as a creator, promo or beta code), anything we or our staff give you (${LIVE.gnRewardsRules ? 'an Intercept, opened or not, an item or a title' : "an Intercept, opened or not, an item, a title, or the developer's bonus title at a game night, such as a Developer's Pick"}), the free Intercept a saved account gets, everything that comes out of an Intercept like these, and anything you make in a trade-up with one of them among its inputs, even if the other inputs were earned. You can open them, wear them, trade them up and shred spares, but you can't trade them, sell them or give them to anyone, however many games you play. Their value stays with your account too: Intel you get by shredding a spare of one of them is held on your account. You can spend it on items sold for Intel in the app, but you can't trade it, send it or use it on the Black Market. Other Intel, including Intel we give you, is ordinary Intel, like the Intel you earn. The Beta set (the Beta Pin and the Field Tester title) can be traded like anything you earn.`}
               {/* LIVE.testerGiftGame (off until server tester_gift_game_1111 is applied, friday-flips-1111): the sentence below. */}
               {LIVE.testerGiftGame && (
                 <>
@@ -978,15 +1043,20 @@ const Terms: React.FC = () => {
             </li>
           )}
           <li>
-            The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the
-            yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple
+            The only things you can buy in SpySocial are three memberships: Agent (the Monthly Membership), Elite (the
+            Yearly Membership) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple
             App Store or Google Play and follow their terms. They handle payment: the price, and how long the membership
             lasts, are shown in the app and on the store's payment sheet before you buy, including any tax where it
             applies, and the payment is charged to your Apple Account or Google Play account when you confirm.
           </li>
           <li>
             Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts
-            {LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for
+            {LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}
+            {LIVE.practiceMembers ? ". It also opens practice games (full games against the app's AI agents, with grades and, if you're 16 or older and agree, AI feedback on your lines), up to 5 a day (the tutorials need no membership)" : ''}.
+            {/* legal-coverage-1119: the rest of what the app's Membership entry lists (app lib/glossary entries.ts 'Membership'; the XP multiplier m_member, Play Online's Members only from 62.15.2, the party leader rule, the Black Market's 8 / 4 offers). */}
+            {' '}Members also earn more XP from their games, can choose at Play Online to be matched only with other
+            members, can start and lead a party (see section 4), and can have 8 Black Market offers open at once
+            instead of 4. A membership never gives more Intel, Intercepts or better odds. The free packs stay free for
             everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a
             membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for
             as long as we give it, and nothing is charged for it.
@@ -998,20 +1068,25 @@ const Terms: React.FC = () => {
               : ''}
           </li>
           <li>
-            <B>Automatic renewal.</B> The monthly and yearly Pack Pass are subscriptions that renew automatically. At
+            <B>Automatic renewal.</B> The Monthly and Yearly Memberships are subscriptions that renew automatically. At
             the end of each month or year, the store charges your account the price for the next period (within the 24
             hours before the current period ends) unless you cancel first: on the App Store, at least 24 hours before
-            the current period ends; on Google Play, before the renewal date. When you cancel, the pass doesn't renew,
+            the current period ends; on Google Play, before the renewal date. When you cancel, the membership doesn't renew,
             and you keep its benefits until the end of the period you've already paid for. If a renewal payment fails, your
-            membership keeps working during any grace period the store gives, then stops until the payment is fixed or the store ends the pass.
+            membership keeps working during any grace period the store gives, then stops until the payment is fixed or the store ends the membership.
           </li>
           <li>
             <B>How to cancel.</B> On an iPhone or iPad: open Settings, tap your name, then Subscriptions, and choose
             SpySocial. On Android: open the Google Play Store app, tap your profile picture, then Payments &amp;
             subscriptions, then Subscriptions, and choose SpySocial. Manage Subscription in the app opens the same page.
-            You can switch between the monthly and yearly pass there too. Deleting the app, or your SpySocial account,
-            doesn't cancel a subscription, and neither does buying Lifetime: cancel the pass in the store so it isn't
-            charged again.
+            {/* LIVE.helpMembershipSwitch (membership-switch-1117, server row 85 + app 62.15): switching plans in the app. */}
+            {LIVE.helpMembershipSwitch
+              ? " You can switch between the monthly and yearly membership there, or in the app (in the Vault, under Membership, for a membership billed by the store your device uses). You aren't charged twice for the same time: on Google Play the new plan starts at once and the time you've paid for becomes time on it; on the App Store, Apple decides when it starts, often at your next renewal, and credits the time you've paid for. If you pay for two memberships at once, the app tells you which one you need and which one to cancel."
+              : ' You can switch between the monthly and yearly membership there too.'}{' '}
+            {/* LIVE.helpGooglePassStop (legal-coverage-1119; app server pass-cancel + app_config google_pass_cancel): a Google Play pass beside Lifetime, or the extra of two, stops renewing; never an App Store one, never a refund. */}
+            {LIVE.helpGooglePassStop
+              ? "Deleting the app, or your SpySocial account, doesn't cancel a subscription. When you buy Lifetime, a monthly or yearly membership billed by Google Play stops renewing by itself, whichever device you bought Lifetime on; and when the app tells you that you pay for two memberships, Stop Google Play Renewal stops the extra one's renewal from the app. Stopping a renewal refunds nothing and takes away no time: that membership runs to the end of the period you've paid for, then ends. Apple doesn't let us do this for a membership billed by the App Store: cancel it in the store so it isn't charged again."
+              : "Deleting the app, or your SpySocial account, doesn't cancel a subscription, and neither does buying Lifetime: cancel the monthly or yearly membership in the store so it isn't charged again."}
             {LIVE.memberLoyalty
               ? " In the Vault, Cancel Membership (under Manage Subscription) first shows one screen with the facts: if your membership ends, your member time and stamps reset and start again from zero, and the price you keep while you stay ends. Its one button, Continue to Cancel, goes straight on to the store's page. Manage Subscription itself still opens the store's page directly. Nothing changes before the end of the period you've paid for."
               : ''}
@@ -1031,12 +1106,12 @@ const Terms: React.FC = () => {
               <B>Member time.</B> While you're a member, the app shows when your membership started ("Member since") and
               how long you've been a member, with a stamp at 1, 3 and 6 months, then 1, 2 and 3 years, then every year.
               It counts the time your membership has been active without a break, however it came: a monthly or yearly
-              pass, Lifetime, a gift from us or a code. Refunded time and test purchases don't count. Member time is
+              membership, Lifetime, a gift from us or a code. Refunded time and test purchases don't count. Member time is
               earned by staying: on the first day your membership isn't active any more (after any grace period the
               store gives for a failed payment), your member time and stamps are gone, and if you become a member again,
               "Member since" and your time start again from zero. A gap of less than a day while a renewal goes through
               isn't a break. <B>Lifetime</B> is the exception: a Lifetime member's time counts from their first day as a
-              member, months on a pass before Lifetime included, and keeps growing for as long as we offer SpySocial,
+              member, months of a monthly or yearly membership before Lifetime included, and keeps growing for as long as we offer SpySocial,
               with every stamp we add later. Member time and stamps only change how your profile looks: they give no XP
               or better odds, can't be traded or sold, have no value in real money and aren't collectibles.
             </li>
@@ -1044,18 +1119,18 @@ const Terms: React.FC = () => {
           {LIVE.memberLoyalty ? (
             <li>
               <B>Your price while you stay.</B> We may change membership prices for new members. When we raise the price
-              of a pass, we ask Apple and Google to keep existing members on the price they pay, so your pass keeps
+              of the monthly or yearly membership, we ask Apple and Google to keep existing members on the price they pay, so your membership keeps
               renewing at the price you pay now for as long as it renews without a break. The store may still adjust
               it for local taxes or currency, and tells you before it does; you can cancel before an adjusted price
-              applies. If you switch to the other pass, you pay that plan's current price. If your membership ends and
+              applies. If you switch to the other plan (monthly or yearly), you pay that plan's current price. If your membership ends and
               you come back later, you may pay the price at that time. A price change never affects a Lifetime you've
               already bought.
             </li>
           ) : (
             <li>
-              <B>Price changes.</B> We may change membership prices. A new price applies to a pass only from a renewal
+              <B>Price changes.</B> We may change membership prices. A new price applies to a monthly or yearly membership only from a renewal
               after Apple or Google has told you about it, with the notice they require, and where the store or the law
-              needs your agreement to a higher price, the pass doesn't renew at it without your agreement. You can cancel
+              needs your agreement to a higher price, the membership doesn't renew at it without your agreement. You can cancel
               before a new price applies. A price change never affects a Lifetime you've already bought.
             </li>
           )}
@@ -1083,10 +1158,10 @@ const Terms: React.FC = () => {
             Google Play order history. If a purchase is refunded, we remove what it unlocked.
           </li>
           <li>
-            <B>If you delete your account</B>, the membership on it stops with the account, but a pass keeps renewing
+            <B>If you delete your account</B>, the membership on it stops with the account, but a monthly or yearly membership keeps renewing
             (and being charged) until you cancel it in the store. What you bought can come back on another SpySocial
             account with Restore Purchases. If we ban an account for breaking these Terms, its membership stops working
-            in SpySocial, but a pass keeps renewing (and being charged) until you cancel it in the store; refunds are
+            in SpySocial, but a monthly or yearly membership keeps renewing (and being charged) until you cancel it in the store; refunds are
             still up to Apple or Google.
           </li>
           <li>
@@ -1102,11 +1177,11 @@ const Terms: React.FC = () => {
         ) : (
         <Bullets>
           {LIVE.membershipsOnly ? (
-            <li>The only things you can buy in SpySocial are three memberships: Agent (the monthly Pack Pass), Elite (the yearly Pack Pass) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
+            <li>The only things you can buy in SpySocial are three memberships: Agent (the Monthly Membership), Elite (the Yearly Membership) and Spymaster (Lifetime). {notSold} aren't sold. Memberships are bought through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
           ) : (
-            <li>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Pack Pass (monthly or yearly) and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
+            <li>You can buy premium packs, avatar items{avatarsLive(LIVE) ? ' (celebrations included)' : ''}, and memberships: the Monthly or Yearly Membership and Lifetime. Purchases are made through the Apple App Store or Google Play and follow their terms. They handle payment, and prices are shown before you buy, including any tax where it applies.</li>
           )}
-          <li>The Pack Pass is a subscription. It renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</li>
+          <li>The Monthly and Yearly Memberships are subscriptions. Each renews automatically at the end of each month or year, and the store charges you within 24 hours before the new period starts, unless you cancel at least 24 hours before the current period ends. You can cancel at any time in your App Store or Google Play account settings, and you keep your benefits until the end of the period you've paid for. Deleting the app, or your SpySocial account, doesn't cancel a subscription.</li>
           <li>Lifetime means for as long as we offer SpySocial, not for your lifetime.</li>
           {LIVE.membershipsOnly && (
             <li>Any membership unlocks every pack that isn't free, new ones included, for as long as it lasts{LIVE.customPacks ? ', and lets you make custom packs (see section 6)' : ''}. The free packs stay free for everyone. Lifetime also includes the items the app says it includes, and only those. We may also give a membership as a gift{LIVE.membershipCodes ? ', for example with a code' : ''}; it works like a bought one for as long as we give it, and nothing is charged for it.{LIVE.membershipCodes ? " A month or a year given this way adds to the membership time you already have and never renews; once you have Lifetime, such a gift adds no more time." : ''}{LIVE.codesNoMembership ? ' A code you enter in the app never gives a membership. An offer code or promo code for a membership is redeemed on the App Store or Google Play and follows their terms.' : ''}</li>
@@ -1241,7 +1316,7 @@ const Terms: React.FC = () => {
           Black Market, and private rooms are closed too unless the app tells you they stay open for you, until it
           recovers or we lift it. A reputation recovers on its own as older notes fade, and nothing older than 90 days
           counts.{LIVE.reputationHoldCap ? " While a fair-play hold is on your account (see section 9), your reputation can't rise and shows at most Good; once the hold ends, it is worked out again as if there had been no hold." : ''} We may also set a reputation by hand, for example after a case; you can ask us to review it at
-          support@spysocial.app. As with a ban, a pass keeps renewing (and being charged) until you cancel it in the store.
+          support@spysocial.app. As with a ban, a monthly or yearly membership keeps renewing (and being charged) until you cancel it in the store.
         </P>
       )}
 

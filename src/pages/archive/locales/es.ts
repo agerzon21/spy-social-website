@@ -102,7 +102,7 @@ const es: ArchiveStrings = {
     notFoundText: 'Puede que aún no se haya acuñado o que el enlace esté mal.',
     status: { listed: 'A la venta', held: 'En manos de un jugador', burned: 'Retirado' },
     listedFor: 'A la venta por',
-    buyHow: 'Cómpralo en la app: Bóveda > Mercado Negro > Rarezas.',
+    buyHow: 'Cómpralo en la app: Mercado Negro > Rarezas.',
     retiredHow: (what: string) => `Retirado: ${what}.`,
     burnWhy: { trade_up: 'canjeado por otro objeto', shred: 'triturado por Intel', other: 'retirado del registro' },
     certificate: 'Certificado',

@@ -27,6 +27,19 @@ export { PRERENDER_PAGES, PRERENDER_SHELLS }
 export { SKIN_CSS } from './theme/skinCss'
 export const LANGUAGE_CODES = LANGUAGES.map((l) => ({ code: l.code, rtl: l.rtl }))
 
+/**
+ * The link-preview card's alt text in `lang` (og:image:alt, twitter:image:alt), as index.html's English one reads: the
+ * card's poster line, then the line-up (meta.cardAlt). `site`: the site's card (home.hero.title); `invite`: an invite's
+ * (meta.titles.join), as scripts/share-cards.mjs draws them. Live walk 1118: every language's file said it in English.
+ */
+export async function cardAlts(lang: LangCode): Promise<{ site: string; invite: string }> {
+  const t = await loadStrings(lang)
+  const mark = t.home.hero.titleMark
+  const gap = lang === 'zh-Hans' ? '' : ' '
+  const alt = (poster: string) => `${t.meta.siteName}: ${poster}${mark}${gap}${t.meta.cardAlt}`
+  return { site: alt(t.home.hero.title), invite: alt(t.meta.titles.join) }
+}
+
 /** One <style> of Emotion's: its key ('css' or 'css-global'), the rules' names and their CSS. */
 export type StyleChunk = { key: string; ids: string[]; css: string }
 

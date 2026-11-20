@@ -21,6 +21,9 @@ const en = {
   /** The page's <title> and description for search engines and tabs, per page. */
   meta: {
     siteName: 'SpySocial',
+    /** The link-preview card's picture, for a screen reader and where the picture doesn't load (og:image:alt): the line-up
+     * on the card (scripts/share-cards.mjs), after its poster line. scripts/prerender.mjs puts it in each language's file. */
+    cardAlt: 'Five agents in a police line-up, one in the spotlight.',
     defaultTitle: 'SpySocial — The Party Game of Social Deception',
     description:
       'Gather your friends and find the spy — or fool everyone trying. Free real-time multiplayer party game for 3–21 players. Available on iOS and Google Play.',
@@ -64,7 +67,9 @@ const en = {
       archive: "Every SpySocial Unique on the record: its picture, number, attributes, how it was minted and every sale, with no player named.",
       market: "What every SpySocial item sells for on the Black Market: prices from players’ trades, the biggest rises and falls and the most traded items, with no player named.",
       transparency: "Each month, how much Intel was made, spent and corrected in SpySocial, every incident and every rule change, with no player named.",
-      gameNightRules: "The rules for SpySocial's weekly Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
+      gameNightRules: "The rules for SpySocial's Game Night: when it runs, who can take part, how to get the night's titles, and the developer's bonus title.",
+      /** The same page once LIVE.gnRewardsRules is on: Game Night Intel, the ★ titles and Game Night Intercepts replace the night's titles (howto-truth-1117). */
+      gameNightRulesRewards: "The rules for SpySocial's Game Night: when it runs, who can take part, and how Game Night Intel, the ★ titles and Game Night Intercepts work.",
       faq: "SpySocial help: how to play Spy Talk and Spy Sketch, Play Online, private rooms and Game Night, friends, trading, the Black Market, Intercepts, Intel, membership, your account, safety and troubleshooting.",
       contact: 'Contact the SpySocial team: email support@spysocial.app for help with the app, your account or anything else.',
       rules: "SpySocial's community rules: be kind, bluff but don't cheat, keep personal information private, and what happens when someone breaks the rules.",
@@ -96,6 +101,10 @@ const en = {
     join: 'Join a room',
     /** The same link on a phone, where the header has little room: one short word if you can. */
     joinShort: 'Join',
+    /** The Market (market.spysocial.app) and the Archive (archive.spysocial.app), in the words their own headers use (their nav's
+     * first link). www's pages only, and only where the row has room (shell.module.css); the footer carries both everywhere. */
+    market: 'Market',
+    archive: 'Archive',
     shop: 'Shop',
     /** The header's light / dark switch's one name (a switch: on = the light theme, off = dark; its state is read out separately). */
     lightMode: 'Light mode',
@@ -106,6 +115,8 @@ const en = {
     /** The link to the Market (LIVE.marketSite). */
 
     market: "Black Market Prices",
+    /** The link to the Archive (archive.spysocial.app; LIVE.uniqueArchive), as its own header names it. */
+    archive: "Archive",
     /** The link to the transparency page (LIVE.transparencyPage). */
     transparency: "Transparency",
     /** The link to the Game Night rules, once they're live (LIVE.gameNightRules). */
@@ -293,9 +304,9 @@ const en = {
       chatTap: 'Chat too: tap Translate on any message to read it in yours.',
       trioLabel: 'One role card in three languages',
       cardAlts: [
-        "Role reveal: a Local's card shows the secret location, Theater",
-        'Role card in Spanish: Teatro',
-        'Role card in Russian: Театр',
+        "Role reveal: a Local's card shows the secret location, Observatory",
+        'Role card in Spanish: Observatorio',
+        'Role card in Russian: Обсерватория',
       ],
     },
     safety: {
@@ -480,7 +491,7 @@ const en = {
       buy: '<b>Things to buy:</b> packs and memberships, through the App Store or Google Play.',
       /** `buy` once only memberships are sold (LIVE.membershipsOnly). */
       buyMembers:
-        "<b>Things to buy:</b> only memberships (the Pack Pass, monthly or yearly, and Lifetime), through the App Store or Google Play. A membership unlocks the packs that aren't free; nothing else is sold.",
+        "<b>Things to buy:</b> only memberships (the Monthly or Yearly Membership, and Lifetime), through the App Store or Google Play. A membership unlocks the packs that aren't free; nothing else is sold.",
       /** Once Intercepts are live (LIVE.intercepts). Use the app's own word for Intercepts. */
       intercepts:
         "<b>Intercepts:</b> rewards earned by playing, each holding one random item, such as a new look for the player's agent. They can't be bought, with money or with the currency players earn in the game, and the app shows the odds before one is opened.",
@@ -534,7 +545,7 @@ const en = {
         '<b>Drawing check:</b> drawing turns in a public room may be checked automatically, and a turn the check finds breaks the rules is taken off the drawing.',
       buyTitle: 'Buying',
       buyText:
-        "Teens need a parent's or guardian's permission to buy anything. Purchases go through the App Store or Google Play, so their parental controls, such as Apple's Ask to Buy and purchase approvals in Google Family Link, work as usual. A Pack Pass renews until it's cancelled in the store's settings.",
+        "Teens need a parent's or guardian's permission to buy anything. Purchases go through the App Store or Google Play, so their parental controls, such as Apple's Ask to Buy and purchase approvals in Google Family Link, work as usual. A monthly or yearly membership renews until it's cancelled in the store's settings.",
       deleteTitle: 'Deleting an account',
       deleteSteps: (o: { avatars: boolean; oldApps: boolean }) => [
         'Open SpySocial.',
@@ -638,6 +649,27 @@ const en = {
     sub: 'Release notes for SpySocial. Major updates, new features, and improvements as we ship them.',
     /** The release notes, newest first, in players' words: what changed for a player, never a library, file or error name. Keep every array's length and order. */
     releases: [
+      {
+        tag: "Weekend Update",
+        summary:
+          "Three updates to the new SpySocial this weekend, ahead of its launch: easier reading, clearer help for new players, a faster start in the browser and room links that take you to the room.",
+        sections: [
+          {
+            label: "Improvements",
+            items: [
+              { title: "Voting", text: "Abstain is now the same height as Confirm Vote." },
+              { title: "Easier reading", text: "The smallest text in the app is a little bigger." },
+              { title: "Black Market", text: "New to it? A “How the Black Market works” card shows how to win, sell and buy items." },
+              { title: "Tutorial", text: "When the tutorial asks you to tap the suggestion, its tip now sits at the bottom of the screen, so you can still read the question." },
+              { title: "Friend Code", text: "The scans left on your code count down as soon as a friend scans it." },
+              { title: "Room links", text: "If a friend sends you their room’s address from the browser, opening it now takes you to the room’s join screen instead of “Lobby Not Available”." },
+              { title: "Small phones", text: "On the narrowest phones, the tag you see while you answer now says that you ask next." },
+              { title: "Playing in a browser", text: "The game loads faster. On a phone, turning it sideways during a game shows a “Turn your phone upright” card, and your game keeps going while you turn." },
+              { title: "Languages", text: "Arabic, Hindi, Bengali, Chinese and Indonesian text looks better: no more cut-off words, odd line breaks or words out of order. In French and Portuguese, the app now says “membre” and “membro” for membership everywhere, not “subscription”." },
+            ],
+          },
+        ],
+      },
       {
         tag: "Android Launch",
         summary:
@@ -837,8 +869,9 @@ const en = {
       /** One line under the cards. */
       more: 'Plus Player Stats, titles and borders to unlock, levels up to 100 with prestige, XP for quick games too, smooth rejoining after your phone sleeps, invite links that just work, and a new look on every screen.',
       /** Added to the Game nights card once LIVE.launchGameNights is on (owner to OK the days first). If a day or
-       * hour changes, change it in all 10 languages. */
-      launchWeek: 'Launch week: Spy Talk on Tuesday, December 8, Spy Sketch on Friday, December 11, and Spy Mafia on Saturday, December 12, each from 8 to 10 PM ET.',
+       * hour changes, change it in all 10 languages. Owner Nov 17: no night on launch day; Opening Night runs Fri Dec 11
+       * and again Sat Dec 12, 8-10 PM ET (Spy Talk, the same night twice); after launch one night a week, Fri + Sat. */
+      launchWeek: 'Opening Night: Friday, December 11, and again Saturday, December 12, from 8 to 10 PM ET. The same Spy Talk night twice, so come to either or play both. After that, one Game Night a week: on Friday, then the same night again on Saturday.',
     },
     next: {
       /** A stamp: these are plans. */
@@ -1105,9 +1138,9 @@ const en = {
     cards: [
       { title: "Spy Sketch", text: "Draw the secret word on one shared whiteboard, and catch the spy faking it." },
       { title: "Play Online", text: "Tap Find a Game for a table of 4 or 8, any time. Strangers see your Agent Color, never your name." },
-      { title: "Game Night", text: "Scheduled nights online, with titles you can only earn that night. We'll remind you before they start." },
+      { title: "Game Night", text: "Scheduled nights online, with rewards you can only earn there. We'll remind you before they start." },
       { title: "Black Market", text: "Trade items with friends. Adults can also buy and sell items on the Black Market for Intel, which you earn by playing. Never for real money." },
-      { title: "Memberships", text: "Optional: a Pack Pass (monthly or yearly), or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
+      { title: "Memberships", text: "Optional: a Monthly or Yearly Membership, or Lifetime: pay once, it never renews. Every premium pack in rooms you host and at your Play Online table, and Pack Creator. Nothing else is sold." },
     ],
     /** The link to What's New under the cards. */
     allNotes: "Everything new in 2.2",
@@ -1131,12 +1164,14 @@ const en = {
         { title: "My Clues", text: "Spies note what they pick up on their Clues page, shortlist the possible places or words, and make their final guess from the shortlist." },
         { title: "Private Room rules", text: "Optional rules, like the Informant: a Local who secretly knows a spy. How to Play > Features & Settings has a short playable demo of each." },
         { title: "Friends and parties", text: "Add friends with your Friend Code or by username, follow players and look for a table together as a party. Starting a party is for members. On iPhone and iPad, friends, parties and trading are for players 18 and up." },
-        { title: "Intercepts", text: "Sealed files with a random item for your agent, earned by winning Play Online games, on your daily streak and at Game Night. Some items come as a Unique: one of one, with its own color and serial number. The odds show before you open or buy one. Never sold for money." },
-        { title: "Intel and trading", text: "Intel is the game's own money: earn it by playing and spend it in the Vault. It can't be bought and has no cash value. Trade items with friends once your account is 7 days old, your email is confirmed and you've played 3 games. Every trade is protected for 7 days." },
+        { title: "Intercepts", text: "Sealed files with a random item for your agent, earned by winning Play Online games and on your daily streak. At Game Night you earn Game Night Intel to spend on Game Night Intercepts. Some items come as a Unique: one of one, with its own color and serial number. The odds show before you open or buy one. Never sold for money." },
+        { title: "Intel and trading", text: "Intel is the game's own money: earn it by playing and spend it in the Vault. It can't be bought and has no cash value. Trade items with friends once your account is 7 days old, your email is confirmed and you've finished 3 counted games. Every trade is protected for 7 days." },
         { title: "Community packs", text: "Browse packs made by players in Community. Members write their own in Pack Creator and share them." },
         { title: "10 languages", text: "English, Spanish and Russian, plus French, Portuguese (Brazil), Chinese (Simplified), Hindi, Arabic, Bengali and Indonesian in beta. Everyone sees the game in their own language." },
         { title: "Notifications", text: "For friends' invites and requests, trades, Black Market offers, and Game Nights you tapped Remind Me on." },
       ],
+      /** items[0] (Practice Game) once LIVE.practiceMembers is on (NEXT-BATCH row 95): the tutorial free, Practice Games for members, 5 a day (howto-truth-1117). */
+      practiceMembers: { title: "Practice Game", text: "Learn Spy Talk and Spy Sketch with AI agents, as a Local or as the Spy: a free guided tutorial for each game, then, for members, full Practice Games, up to 5 a day, graded from A to F." },
       /** The entry's And more line (the Roadmap keeps its own). */
       more: "Plus Player Stats, levels up to 100 with prestige, achievements, titles, borders and celebrations, @mentions, Arcade mini-games, a faster mic, smooth rejoining after your phone sleeps, and a new look on every screen.",
       newLabel: "New in 2.2",

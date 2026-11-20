@@ -42,15 +42,18 @@ interface Release {
  * section's icon. Their words are the page's language's (src/i18n: whatsNew.releases, same order), in players' words:
  * what changed for a player, never a library, file or error name.
  */
-const RELEASES: { version: string; date: string; icons: IconType[] }[] = [
+const RELEASES: { version: string; date: string; icons: IconType[]; preLaunch?: boolean }[] = [
+  /* The new SpySocial's weekend updates before its launch (whatsnew-1115: app updates 62.10, 62.11 and 62.12). preLaunch: off
+   * the page once LIVE.launchSite is on, where the 2.2.0 launch entry (below) covers 2.2 as a whole. */
+  { version: '2.2.0', date: 'November 15, 2026', icons: [FaWandSparkles], preLaunch: true },
   { version: '2.1.1', date: 'June 13, 2026', icons: [FaRocket, FaWrench] },
   { version: '2.1.0', date: 'May 15, 2026', icons: [FaWandSparkles, FaPalette, FaAndroid, FaWrench] },
   { version: '2.0.0', date: 'April 30, 2026', icons: [FaWandSparkles, FaPalette, FaWrench, FaBug] },
   { version: '1.0.1', date: 'May 16, 2025', icons: [] },
 ]
 
-function releasesIn(words: Strings['whatsNew']['releases'], locale: string): Release[] {
-  return RELEASES.map((r, i) => ({
+function releasesIn(words: Strings['whatsNew']['releases'], locale: string, launched: boolean): Release[] {
+  return RELEASES.flatMap((r, i) => (r.preLaunch && launched ? [] : [{
     version: r.version,
     date: formatDate(r.date, locale),
     tag: words[i].tag,
@@ -60,7 +63,7 @@ function releasesIn(words: Strings['whatsNew']['releases'], locale: string): Rel
       icon: r.icons[j] ?? FaWrench,
       items: section.items.map((item) => ({ title: item.title || undefined, text: item.text })),
     })),
-  }))
+  }]))
 }
 
 /**
@@ -91,7 +94,7 @@ function launchRelease(strings: Strings, locale: string): Release {
         icon: FaRocket,
         items: [
           ...strings.launch.cards,
-          n.items[N.practice],
+          LIVE.practiceMembers ? n.practiceMembers : n.items[N.practice], // practice-members-1117 (row 95): tutorial free, Practice Games for members
           n.items[N.clues],
           n.items[N.rules],
           n.items[N.friends],
@@ -176,7 +179,7 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
             <Badge
               bg="ss.accent"
               color="ss.onAccent"
-              fontSize="12px"
+              fontSize="14px"
               textTransform="uppercase"
               letterSpacing="0.08em"
               px={2}
@@ -213,7 +216,7 @@ const WhatsNew = () => {
   const { language } = useLang()
   const releases = [
     ...(LIVE.launchSite ? [launchRelease(strings, language.locale)] : []),
-    ...releasesIn(t.releases, language.locale),
+    ...releasesIn(t.releases, language.locale, LIVE.launchSite),
   ]
   return (
     <Box flex="1" pt={{ base: 10, md: 16 }} pb={{ base: 16, md: 24 }} bgImage="linear-gradient(180deg, var(--ss-band) 0, var(--ss-page) 360px)">

@@ -10,6 +10,7 @@ import {
   lookOf,
   attributesOf,
   codenameOf,
+  copyNameOf,
   fetchUnique,
   holderOf,
   nameOf,
@@ -20,7 +21,8 @@ import {
   type ArchiveUnique,
   type HistoryEvent,
 } from '../../lib/archive'
-import { ArchiveState, BetaNotice, FloatDigits, Piece } from './ArchiveBits'
+import { ArchiveState, BetaNotice, FloatDigits, OriginsSeal, Piece } from './ArchiveBits'
+import { showsOrigins } from './origins'
 import { dayText, fmt, setText, useArchive } from './useArchive'
 import { howLine } from './serverWords'
 import s from './archive.module.css'
@@ -67,8 +69,9 @@ const ArchiveItem = () => {
   // The item's own line from the app (its card's description, owner Nov 11), in the reader's language.
   const lines = useItemLines()
   const line = lineOf(lines, { k: u?.item_kind ?? (lines?.d[`avatar:${item}`] ? 'avatar' : 'title'), i: item, t: false })
-  // Its own name leads (owner Nov 15: "exactly what they're called"), the Legendary it was minted from after it.
-  const title = code ? `${code} ${serialText(serial)} · ${name}` : `${name} ${serialText(serial)}`
+  // Its own name leads (owner Nov 15: "exactly what they're called"), the Legendary it was minted from after it with the
+  // number, as the app writes it (codename-1118, app 62.15.2 lib/unique/codename uniqueFullName: "Onyx Dispatch · Paper Plane #37").
+  const title = copyNameOf(data, item, serial)
 
   if (state === 'missing') {
     return (
@@ -148,8 +151,15 @@ const ArchiveItem = () => {
           <div>
             <div className={s.kicker}>
               <span className={s.uniqueTag}>{data?.words.unique ?? 'Unique'}</span>
-              {st.set ? <span>{st.set}</span> : null}
-              {st.season && st.season !== st.set ? <span>{st.season}</span> : null}
+              {/* A Season 1 copy: the seal beside its UNIQUE tag, in place of the set's words (LIVE.archiveOrigins; the app's item sheet, 43C). */}
+              {showsOrigins(u?.set?.code) ? (
+                <OriginsSeal page />
+              ) : (
+                <>
+                  {st.set ? <span>{st.set}</span> : null}
+                  {st.season && st.season !== st.set ? <span>{st.season}</span> : null}
+                </>
+              )}
             </div>
             {/* The Unique's own name is the title; the Legendary it was minted from under it (owner Nov 15). Before the
                 words load, a blank title of the same height (no base name flashing in its place). */}
