@@ -2282,7 +2282,7 @@ export const LIVE = {
    * ship notes); then node scripts/flip-switch.mjs csAutoPreserve --day "<apply day>". A server fact: LIVE, never
    * PRIVACY_AHEAD. If the row is rolled back: --undo.
    */
-  csAutoPreserve: false,
+  csAutoPreserve: true,
 }
 
 /**
