@@ -149,7 +149,7 @@ export const LIVE = {
   /**
    * help-new-1117: Help's Game Night rewards (app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83; client
    * feat/gn-rewards-client-1117b in app update 62.15; spec gamenight-rewards-1116/FINAL-SPEC.md): #game-night-rewards
-   * (Game Night Intel 500 a win / 200 a loss or tie, 0 for a leave, idle, late, a spybot table or a voided walk-out; the
+   * (Game Night Intel 500 a win / 200 a loss, 0 for a leave, idle, late, a spybot table or a voided walk-out; the
    * four ★ counter titles; untradeable; the pre-launch reset line), #game-night-intercepts (Tier 1 / 2 / 3 at 400 / 800 /
    * 10,000, the After Hours set) and #game-night's PRIZES line. Help text only, no Last Updated date. Flip once row 83 is
    * applied live AND 62.15 is on phones: node scripts/flip-switch.mjs helpGameNightRewards. Off again if row 83 is rolled back.

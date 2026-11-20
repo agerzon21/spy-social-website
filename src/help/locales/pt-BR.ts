@@ -248,7 +248,7 @@ const ptBR: HelpText = {
               id: 'game-night-rewards',
               q: 'O que eu ganho na Noite de Jogos?',
               a: [
-                '<b>Intel da Noite de Jogos</b> por cada partida que você termina: 500 por vitória, 200 por derrota ou empate. O fim de jogo mostra quanto você ganhou.',
+                '<b>Intel da Noite de Jogos</b> por cada partida que você termina: 500 por vitória, 200 por derrota. O fim de jogo mostra quanto você ganhou.',
                 "Não há Intel da Noite de Jogos se você sair antes do fim, for removido da mesa ou não participar, se a partida começar depois do encerramento da Noite de Jogos (uma partida que começa a tempo e termina depois ainda paga), se nossas checagens de jogo limpo marcarem a partida, ou numa mesa com spybots. Uma partida que acaba antes porque alguém saiu não dá nada a ninguém.",
                 '<b>Títulos ★</b> que vão somando: <b>★ Operativo</b> por cada partida da Noite de Jogos que você termina, <b>★ Herói local</b> por cada vitória como local, <b>★ Espião exímio</b> por cada vitória como espião e <b>★ Agente duplo</b> por cada noite em que você ganha dos dois lados. Use o título com a contagem, como ★ Operativo ×12.',
                 'O Intel da Noite de Jogos e os títulos ★ são só seus: não podem ser trocados, e o plano de membro não acrescenta nada a eles. Gaste o Intel em interceptações da Noite de Jogos.',

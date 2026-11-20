@@ -248,7 +248,7 @@ const es: HelpText = {
               id: 'game-night-rewards',
               q: '¿Qué gano en la Noche de Juegos?',
               a: [
-                '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota o un empate. El final de la partida muestra lo que ganaste.',
+                '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota. El final de la partida muestra lo que ganaste.',
                 "No hay Intel de Noche de Juegos si sales antes del final, te sacan de la mesa o no participas, si la partida empieza después del cierre de la Noche de Juegos (una partida que empieza a tiempo y termina más tarde sí paga), si nuestras comprobaciones de juego limpio marcan la partida, o en una mesa con spybots. Una partida que termina antes porque alguien se fue no le paga a nadie.",
                 '<b>Títulos ★</b> que van sumando: <b>★ Operativo</b> por cada partida de la Noche de Juegos que terminas, <b>★ Héroe local</b> por cada victoria como local, <b>★ Maestro espía</b> por cada victoria como espía y <b>★ Agente doble</b> por cada noche en que ganas en los dos bandos. Llévalos con su número, como ★ Operativo ×12.',
                 'El Intel de Noche de Juegos y los títulos ★ son solo tuyos: no se pueden intercambiar, y la membresía no les suma nada. Gasta el Intel en intercepciones de Noche de Juegos.',

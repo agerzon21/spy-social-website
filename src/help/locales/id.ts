@@ -248,7 +248,7 @@ const id: HelpText = {
               id: 'game-night-rewards',
               q: 'Apa yang kudapat di Malam Permainan?',
               a: [
-                '<b>Intel Malam Permainan</b> untuk setiap permainan yang kamu selesaikan: 500 untuk menang, 200 untuk kalah atau seri. Layar akhir menampilkan yang kamu dapat.',
+                '<b>Intel Malam Permainan</b> untuk setiap permainan yang kamu selesaikan: 500 untuk menang, 200 untuk kalah. Layar akhir menampilkan yang kamu dapat.',
                 "Tidak ada Intel Malam Permainan kalau kamu keluar sebelum selesai, dikeluarkan dari meja, atau tidak ikut bermain, kalau permainan dimulai setelah Malam Permainan ditutup (permainan yang dimulai tepat waktu dan selesai setelahnya tetap dibayar), kalau pemeriksaan permainan adil kami menandai permainan itu, atau di meja dengan spybot. Permainan yang berakhir lebih awal karena ada yang kabur tidak memberi apa-apa ke siapa pun.",
                 '<b>Gelar ★</b> yang terus bertambah: <b>★ Operatif</b> untuk setiap permainan Malam Permainan yang kamu selesaikan, <b>★ Pahlawan Lokal</b> untuk setiap kemenangan sebagai warga, <b>★ Mata-Mata Ulung</b> untuk setiap kemenangan sebagai mata-mata, dan <b>★ Agen Ganda</b> untuk setiap malam kamu menang di kedua pihak. Pakai gelarnya dengan angkanya, misalnya ★ Operatif ×12.',
                 'Intel Malam Permainan dan gelar ★ hanya milikmu: tidak bisa ditukar, dan keanggotaan tidak menambahkan apa pun. Pakai Intel-nya untuk sadapan Malam Permainan.',
