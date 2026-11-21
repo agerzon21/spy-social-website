@@ -226,7 +226,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             a: [
               "<b>Compétition</b> est une carte de l’accueil avec trois onglets : <b>Soirée jeux</b>, <b>Classé</b> et <b>Tournois</b>.",
               "Aujourd’hui, seul l’onglet Soirée jeux sert. Classé et Tournois arriveront plus tard et affichent « Bientôt ».",
-              "Sur l'accueil, la carte <b>Pendant ce temps, à la soirée jeux</b> est un seul bouton : touche-la pour ouvrir l'onglet Soirée jeux.",
+              "Dans <b>Compétition</b>, les onglets <b>Classé</b> et <b>Tournois</b> affichent la carte <b>En attendant, la Soirée jeux</b>. Toute la carte est un seul bouton : touche-la pour ouvrir l'onglet Soirée jeux.",
             ],
           },
           ]
@@ -285,7 +285,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
                 ? ["Les membres ont les conseils de l'IA sur chaque phrase qu'ils écrivent, pendant la partie, et une note de A à F à chaque partie. Les conseils de l'IA sont pour les joueurs de 16 ans et plus qui touchent <b>Essayer</b> quand l'appli le propose ; pour les autres, c'est le téléphone qui note. Pour arrêter, désactive <b>Noter mes phrases d'entraînement avec l'IA</b> dans les Réglages. Une ligne qui ne fait que renvoyer la question (« Et toi, t'en penses quoi ? ») n'est pas une réponse : elle a une note basse."]
                 : []),
               "Les tutoriels restent gratuits pour tous, et en réussir un compte toujours pour Jouer en ligne.",
-              "Sans abonnement, <b>Partie d'entraînement</b> sur la dernière carte du tutoriel est grisé et indique « L'entraînement est réservé aux membres ». Le tutoriel compte quand même.",
+              "Sans abonnement, <b>Partie d'entraînement</b> sur la dernière carte du tutoriel est grisé et indique « L'entraînement est réservé aux membres ». Le tutoriel compte quand même. La ligne en dessous est un lien vers <b>Membres</b>.",
               "La note du téléphone lui-même, quand l'avis de l'IA est désactivé, traite de la même façon une ligne qui ne fait que renvoyer la question.",
             ],
           },
@@ -681,7 +681,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
       },
       {
         id: 'vault-filter-empty',
-        q: 'Pourquoi mon Coffre indique-t-il « Rien trouvé » alors que j\'ai des objets ?',
+        q: 'Pourquoi mon Coffre indique-t-il « Aucun résultat » alors que j\'ai des objets ?',
         a: [
           'Un choix de <b>Trier et filtrer</b> ou la recherche les masque. Touche <b>Effacer les filtres</b> sur cet écran pour tout revoir.',
           'Le nombre en haut correspond à la liste affichée, filtres compris.',

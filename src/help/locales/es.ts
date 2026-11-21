@@ -230,7 +230,7 @@ const es: HelpText = {
               a: [
                 "<b>Competir</b> es una tarjeta del inicio con tres pestañas: <b>Noche de Juegos</b>, <b>Clasificatoria</b> y <b>Torneos</b>.",
                 "Hoy solo se usa la pestaña Noche de Juegos. La clasificatoria y los torneos llegarán más adelante y dicen «Pronto».",
-                "En el inicio, la tarjeta <b>Mientras tanto en la Noche de Juegos</b> es un solo botón: tócala para abrir la pestaña Noche de Juegos.",
+                "En <b>Competir</b>, las pestañas <b>Clasificatoria</b> y <b>Torneos</b> muestran la tarjeta <b>Mientras tanto, en la Noche de Juegos</b>. Toda la tarjeta es un solo botón: tócala para abrir la pestaña Noche de Juegos.",
               ],
             },
             ]
@@ -289,7 +289,7 @@ const es: HelpText = {
                   ? ['Los miembros reciben comentarios de IA sobre cada frase que escriben, mientras juegan, y una nota de la A a la F en cada partida. Los comentarios de IA son para jugadores de 16 años o más que tocan <b>Probar</b> cuando la app lo pregunta; para los demás, puntúa el teléfono. Para dejar de recibirlos, desactiva <b>Puntuar mis frases de práctica con IA</b> en Ajustes. Una línea que solo devuelve la pregunta (“¿Y tú qué opinas?”) no es una respuesta, así que puntúa bajo.']
                   : []),
                 'Los tutoriales siguen siendo gratis para todos, y superar uno sigue contando para Jugar en línea.',
-                'Sin membresía, <b>Partida de práctica</b> en la última tarjeta del tutorial aparece en gris y dice «Las partidas de práctica son para miembros». El tutorial sigue contando.',
+                'Sin membresía, <b>Partida de práctica</b> en la última tarjeta del tutorial aparece en gris y dice «Las partidas de práctica son para miembros». El tutorial sigue contando. La línea de debajo es un enlace a <b>Membresía</b>.',
                 'La nota del propio teléfono, cuando la opinión de la IA está desactivada, trata igual una línea que solo devuelve la pregunta.',
               ],
             },
@@ -685,7 +685,7 @@ const es: HelpText = {
         },
         {
           id: 'vault-filter-empty',
-          q: '¿Por qué mi Bóveda dice «Nada encontrado» si tengo objetos?',
+          q: '¿Por qué mi Bóveda dice «No hay coincidencias» si tengo objetos?',
           a: [
             'Los oculta un filtro de <b>Ordenar y filtrar</b> o la búsqueda. Toca <b>Quitar filtros</b> en esa misma pantalla para verlos todos otra vez.',
             'El número de arriba coincide con la lista que ves, filtros incluidos.',

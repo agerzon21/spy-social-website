@@ -230,7 +230,7 @@ const ptBR: HelpText = {
               a: [
                 "<b>Competir</b> é um cartão no início com três abas: <b>Noite de Jogos</b>, <b>Ranqueada</b> e <b>Torneios</b>.",
                 "Hoje só a aba Noite de Jogos está em uso. Ranqueada e Torneios chegam mais tarde e mostram “Em breve”.",
-                "No início, o cartão <b>Enquanto isso na Noite de Jogos</b> é um botão só: toque nele para abrir a aba Noite de Jogos.",
+                "Em <b>Competir</b>, as abas <b>Ranqueada</b> e <b>Torneios</b> mostram o cartão <b>Enquanto isso, a Noite de Jogos</b>. O cartão inteiro é um botão só: toque nele para abrir a aba Noite de Jogos.",
               ],
             },
             ]
@@ -289,7 +289,7 @@ const ptBR: HelpText = {
                   ? ['Membros recebem comentários da IA sobre cada frase que escrevem, enquanto jogam, e uma nota de A a F em toda partida. Os comentários da IA são para quem tem 16 anos ou mais e toca em <b>Experimentar</b> quando o app pergunta; para os outros, quem avalia é o celular. Para parar, desative <b>Avaliar minhas frases de treino com IA</b> nos Ajustes. Uma linha que só devolve a pergunta (“E você, o que acha?”) não é uma resposta e recebe nota baixa.']
                   : []),
                 'Os tutoriais continuam grátis para todos, e passar em um ainda conta para o Jogar online.',
-                'Sem assinatura, <b>Partida de treino</b> no último cartão do tutorial fica cinza e diz «As partidas de treino são para membros». O tutorial continua valendo.',
+                'Sem assinatura, <b>Partida de treino</b> no último cartão do tutorial fica cinza e diz «As partidas de treino são para membros». O tutorial continua valendo. A linha embaixo é um link para <b>Membros</b>.',
                 'A nota do próprio celular, usada quando o feedback da IA está desligado, trata do mesmo jeito uma fala que só devolve a pergunta.',
               ],
             },
@@ -678,9 +678,9 @@ const ptBR: HelpText = {
           : []),
         {
           id: 'change-your-look',
-          q: "Como ordeno e filtro em Seu visual?",
+          q: "Como ordeno e filtro em Visual?",
           a: [
-            "No início, toque em <b>Seu visual</b>. Lá, a caixa <b>Ordenar e filtrar</b> define a ordem e um filtro de raridade. Os dois continuam ao trocar de categoria, e um indicador mostra quando há filtro ligado.",
+            "No início, toque em <b>Visual</b>. Lá, a caixa <b>Ordenar e filtrar</b> define a ordem e um filtro de raridade. Os dois continuam ao trocar de categoria, e um indicador mostra quando há filtro ligado.",
           ],
         },
         {
