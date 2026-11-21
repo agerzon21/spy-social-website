@@ -287,6 +287,7 @@ const en: HelpText = {
                 o.gnTiers4 ? `<b>Game Night Intel</b> for every game you win: 500, but only if you took at least half of your own turns. A loss, or a game with no winner, gives 0. Game Over shows what you got.` : '<b>Game Night Intel</b> for every game you finish: 500 for a win, 200 for a loss, 0 if the game has no winner. Game Over shows what you got.',
                 "No Game Night Intel if you leave before the end, are removed or don’t take part, if the game starts after Game Night closes (a game that starts in time and ends later still pays), if our fair-play checks flag the game, or at a table with spybots. A game that ends early because someone walked out pays no one.",
                 '<b>★ titles</b> that count up: <b>★ Operative</b> for each Game Night game you finish, <b>★ Local Hero</b> for each win as a Local, <b>★ Master Spy</b> for each win as a spy, and <b>★ Double Agent</b> for each night you win on both sides. Wear one with its count, like ★ Operative ×12.',
+                ...(o.gnTiers4 ? [`A game counts toward the ★ titles only if you took at least half of your own turns in it. ★ Operative still counts a loss or a tie you played.`] : []),
                 'Game Night Intel and the ★ titles are yours alone: they can’t be traded, and a membership adds nothing to them. Spend the Intel on Game Night Intercepts.',
                 ...(o.launch
                   ? []

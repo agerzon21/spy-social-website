@@ -788,9 +788,9 @@ const Terms: React.FC = () => {
         {LIVE.gnRewardsRules && (
           <li>
             Each game you finish at a Game Night table can give you Game Night Intel (for
-            {LIVE.gnTiers4_1120 ? 'now 500 for a win in which you took at least half of your own turns, and nothing for a loss, for a game with no winner' : 'now 500 for a win and 200 for a loss, and nothing for a game with no winner'} or for the games the{' '}
+            {LIVE.gnTiers4_1120 ? 'now 500 for a win in which you took at least half of your own turns, and nothing for a loss or for a game with no winner' : 'now 500 for a win and 200 for a loss, and nothing for a game with no winner'} or for the games the{' '}
             <PageLink to="/game-night-rules">Game Night Rules</PageLink> leave out, such as one you leave before it ends)
-            and counts toward four cosmetic titles, ★&nbsp;Operative, ★&nbsp;Local Hero, ★&nbsp;Master Spy and ★&nbsp;Double Agent, each worn
+            and counts toward four cosmetic titles{LIVE.gnTiers4_1120 ? ' (a game counts only if you took at least half of your own turns in it; ★\u00a0Operative also counts a loss or a tie)' : ''}, ★&nbsp;Operative, ★&nbsp;Local Hero, ★&nbsp;Master Spy and ★&nbsp;Double Agent, each worn
             with its count. Game Night Intel is separate from Intel. You earn it only by playing at Game Night{LIVE.gnTiers4_1120 ? ' and by shredding a spare After Hours item, however you got it (the app shows the amount)' : ''}, a
             membership adds nothing to it, and it can't be bought, traded, sold, given or moved to another account; like
             every virtual item it has no cash value. You can spend it only on Game Night Intercepts in the Vault{LIVE.gnTiers4_1120 ? ' (four tiers, for now 400, 800, 1,600 and 3,200)' : ''}, and a

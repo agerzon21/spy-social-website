@@ -99,8 +99,8 @@ const GameNightRules: React.FC = () => (
           </li>
           {LIVE.gnTiers4_1120 && (
             <li>
-              A win counts only if you took at least half of your own turns in that game. A win you sat out gives no Game
-              Night Intel, and the ★ titles follow the same check.
+              A game pays, and counts toward the ★ titles, only if you took at least half of your own turns in it. A win you
+              sat out gives no Game Night Intel and no title count. ★ Operative still counts a loss or a tie you played.
             </li>
           )}
         </Bullets>
@@ -114,7 +114,7 @@ const GameNightRules: React.FC = () => (
 
         <H2>The ★ titles</H2>
         <P>
-          Four cosmetic titles count what you do at Game Night: <B>★ Operative</B> for each Game Night game you finish,{' '}
+          Four cosmetic titles count what you do at Game Night: <B>★ Operative</B> for each Game Night game you finish{LIVE.gnTiers4_1120 ? ' (a loss or a tie counts too)' : ''},{' '}
           <B>★ Local Hero</B> for each win as a Local, <B>★ Master Spy</B> for each win as a spy, and{' '}
           <B>★ Double Agent</B> for each night you win at least once on each side. You wear one with its count, like
           ★ Operative ×12. They stay with the account that earned them: they can't be traded, sold or given to anyone.
