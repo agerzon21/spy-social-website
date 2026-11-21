@@ -260,6 +260,7 @@ const en: HelpText = {
               a: [
                 "<b>Compete</b> is a card on Home with three tabs: <b>Game Night</b>, <b>Ranked</b> and <b>Tournaments</b>.",
                 "Only the Game Night tab is in use today. Ranked and Tournaments are coming later, and say “Soon”.",
+                "On Home, the <b>Meanwhile at Game Night</b> card is one button: tap it to open the Game Night tab.",
               ],
             },
             ]
@@ -694,10 +695,10 @@ const en: HelpText = {
               id: 'game-night-intercepts',
               q: 'What are Game Night Intercepts?',
               a: [
-                'Intercepts you get with Game Night Intel, on the Game Night card in the <b>Vault</b>: <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
+                'Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
                 'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
                 ...(o.u6153 ? ["Game Night’s Legendary background is <b>Blackout</b>, which used to be called The Back Room. Its rest scene is <b>Rain Window</b>."] : []),
-                'A bought one waits in <b>To Open</b>. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
+                'A bought one waits in <b>To Open</b> in the <b>Vault</b>, and one you already own still opens from there. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
                 "Tap <b>What’s inside</b> on a tier to see its rarity odds. It shows the odds only, not the list of items.",
               ],
             },
@@ -705,9 +706,9 @@ const en: HelpText = {
           : []),
         {
           id: 'change-your-look',
-          q: "How do I sort and filter in Change Your Look?",
+          q: "How do I sort and filter in Your Look?",
           a: [
-            "In <b>Change Your Look</b>, the <b>Sort & Filter</b> box sets the order and a rarity filter. Both stay as you switch between categories, and an indicator shows when a filter is on.",
+            "On Home, tap <b>Your Look</b>. There, the <b>Sort & Filter</b> box sets the order and a rarity filter. Both stay as you switch between categories, and an indicator shows when a filter is on.",
           ],
         },
         {
@@ -1245,7 +1246,7 @@ const en: HelpText = {
           a: [
             'Email <email/>. For anything about your account, write from its email address. A person reads every message.',
             'For news, Game Nights and players looking for a game, join our <discord>Discord</discord>.',
-            'On Home, the Discord button opens our server. It is for players 16 and older, and players 16 and 17 see a short safety note first.',
+            'On Home, the <b>Find Players</b> part of the top card opens our Discord server. It is for players 16 and older, and players 16 and 17 see a short safety note first.',
           ],
         },
       ],

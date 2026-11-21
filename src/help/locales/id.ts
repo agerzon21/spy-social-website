@@ -230,6 +230,7 @@ const id: HelpText = {
               a: [
                 "<b>Kompetisi</b> adalah kartu di Beranda dengan tiga tab: <b>Malam Permainan</b>, <b>Ranked</b>, dan <b>Turnamen</b>.",
                 "Saat ini hanya tab Malam Permainan yang dipakai. Ranked dan Turnamen hadir nanti dan bertanda “Segera”.",
+                "Di Beranda, kartu <b>Sementara itu di Malam Permainan</b> adalah satu tombol: ketuk untuk membuka tab Malam Permainan.",
               ],
             },
             ]
@@ -664,10 +665,10 @@ const id: HelpText = {
               id: 'game-night-intercepts',
               q: 'Apa itu sadapan Malam Permainan?',
               a: [
-                'Sadapan yang kamu dapat dengan Intel Malam Permainan, di kartu Malam Permainan di <b>Brankas</b>: <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
+                'Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b> (Brankas tidak lagi menampilkannya): <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
                 'Isinya dari koleksi khusus Malam Permainan, <b>After Hours</b>: 14 item ruang kartu untuk agenmu yang tidak ada di sadapan lain. Seperti semua sadapan, aplikasi menampilkan peluang pastinya.',
                 ...(o.u6153 ? ["Latar Legendaris Malam Permainan adalah <b>Mati Lampu</b>, yang dulu bernama Ruang Belakang. Adegan istirahatnya adalah <b>Rain Window</b>."] : []),
-                'Sadapan yang dibeli menunggu di <b>Belum Dibuka</b>. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
+                'Sadapan yang dibeli menunggu di <b>Belum Dibuka</b> di <b>Brankas</b>, dan yang sudah kamu punya tetap dibuka dari sana. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
                 "Ketuk <b>Isinya</b> pada sebuah tingkat untuk melihat peluang per kelangkaan. Hanya peluang yang ditampilkan, bukan daftar item.",
               ],
             },
@@ -675,9 +676,9 @@ const id: HelpText = {
           : []),
         {
           id: 'change-your-look',
-          q: "Bagaimana cara mengurutkan dan memfilter di Ubah Penampilan?",
+          q: "Bagaimana cara mengurutkan dan memfilter di Penampilanmu?",
           a: [
-            "Di <b>Ubah Penampilan</b>, kotak <b>Urutkan & filter</b> mengatur urutan dan filter kelangkaan. Keduanya tetap saat berpindah kategori, dan penanda menunjukkan filter sedang aktif.",
+            "Di Beranda, ketuk <b>Penampilanmu</b>. Di sana, kotak <b>Urutkan & filter</b> mengatur urutan dan filter kelangkaan. Keduanya tetap saat berpindah kategori, dan penanda menunjukkan filter sedang aktif.",
           ],
         },
         {
@@ -1215,7 +1216,7 @@ const id: HelpText = {
           a: [
             'Email ke <email/>. Untuk urusan akun, kirim dari alamat email akun itu. Setiap pesan dibaca oleh manusia.',
             'Untuk kabar terbaru, Malam Permainan, dan pemain yang mencari teman main, gabung ke <discord>Discord</discord> kami.',
-            'Di Beranda, tombol Discord membuka server kami. Tombol ini untuk pemain berusia 16 tahun ke atas, dan pemain 16 atau 17 tahun melihat catatan keamanan singkat lebih dulu.',
+            'Di Beranda, bagian <b>Cari Pemain</b> di kartu atas membuka server Discord kami. Tombol ini untuk pemain berusia 16 tahun ke atas, dan pemain 16 atau 17 tahun melihat catatan keamanan singkat lebih dulu.',
           ],
         },
       ],

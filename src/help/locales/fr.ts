@@ -226,6 +226,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             a: [
               "<b>Compétition</b> est une carte de l’accueil avec trois onglets : <b>Soirée jeux</b>, <b>Classé</b> et <b>Tournois</b>.",
               "Aujourd’hui, seul l’onglet Soirée jeux sert. Classé et Tournois arriveront plus tard et affichent « Bientôt ».",
+              "Sur l'accueil, la carte <b>Pendant ce temps, à la soirée jeux</b> est un seul bouton : touche-la pour ouvrir l'onglet Soirée jeux.",
             ],
           },
           ]
@@ -660,10 +661,10 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'game-night-intercepts',
             q: "C'est quoi, les interceptions de soirée jeux ?",
             a: [
-              "Des interceptions que tu obtiens avec l'Intel de soirée jeux, sur la carte de la soirée jeux du <b>Coffre</b> : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
+              "Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
               "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
               ...(o.u6153 ? ["Le fond Légendaire de la soirée jeux est <b>Black-out</b>, qui s'appelait avant L'Arrière-salle. Sa scène de repos est <b>Rain Window</b>."] : []),
-              "Une interception achetée attend dans <b>À ouvrir</b>. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
+              "Une interception achetée attend dans <b>À ouvrir</b>, dans le <b>Coffre</b>, et celles que tu as déjà s'y ouvrent toujours. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
               "Touche <b>Contenu</b> sur un palier pour voir les probabilités par rareté. Seules les probabilités sont affichées, pas la liste des objets.",
             ],
           },
@@ -671,9 +672,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
         : []),
       {
         id: 'change-your-look',
-        q: "Comment trier et filtrer dans Changer de look ?",
+        q: "Comment trier et filtrer dans Ton look ?",
         a: [
-          "Dans <b>Changer de look</b>, la boîte <b>Trier et filtrer</b> règle l’ordre et un filtre de rareté. Les deux restent quand tu changes de catégorie, et un indicateur montre qu’un filtre est actif.",
+          "Sur l'accueil, touche <b>Ton look</b>. Là, la boîte <b>Trier et filtrer</b> règle l’ordre et un filtre de rareté. Les deux restent quand tu changes de catégorie, et un indicateur montre qu’un filtre est actif.",
         ],
       },
       {
@@ -1211,7 +1212,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Écris à <email/>. Pour ton compte, écris depuis son adresse e-mail. Une personne lit chaque message.",
           'Pour les nouvelles, les soirées jeux et les joueurs qui cherchent une partie, rejoins notre <discord>Discord</discord>.',
-          "Sur l'accueil, le bouton Discord ouvre notre serveur. Il est réservé aux joueurs de 16 ans et plus, et ceux de 16 et 17 ans voient d'abord une courte note de sécurité.",
+          "Sur l'accueil, la partie <b>Trouver des joueurs</b> de la carte du haut ouvre notre serveur Discord. Il est réservé aux joueurs de 16 ans et plus, et ceux de 16 et 17 ans voient d'abord une courte note de sécurité.",
         ],
       },
     ],

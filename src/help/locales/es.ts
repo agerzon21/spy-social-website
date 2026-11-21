@@ -230,6 +230,7 @@ const es: HelpText = {
               a: [
                 "<b>Competir</b> es una tarjeta del inicio con tres pestañas: <b>Noche de Juegos</b>, <b>Clasificatoria</b> y <b>Torneos</b>.",
                 "Hoy solo se usa la pestaña Noche de Juegos. La clasificatoria y los torneos llegarán más adelante y dicen «Pronto».",
+                "En el inicio, la tarjeta <b>Mientras tanto en la Noche de Juegos</b> es un solo botón: tócala para abrir la pestaña Noche de Juegos.",
               ],
             },
             ]
@@ -664,10 +665,10 @@ const es: HelpText = {
               id: 'game-night-intercepts',
               q: '¿Qué son las intercepciones de Noche de Juegos?',
               a: [
-                'Intercepciones que consigues con Intel de Noche de Juegos, en la tarjeta de la Noche de Juegos de la <b>Bóveda</b>: <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
+                'Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
                 'Se abren en la colección propia de la Noche de Juegos, <b>After Hours</b>: 14 objetos de sala de cartas para tu agente que ninguna otra intercepción tiene. Como en toda intercepción, la app muestra las probabilidades exactas.',
                 ...(o.u6153 ? ["El fondo Legendario de la Noche de Juegos es <b>Apagón</b>, que antes se llamaba La Trastienda. Su escena de descanso es <b>Rain Window</b>."] : []),
-                'Una comprada espera en <b>Por abrir</b>. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
+                'Una comprada espera en <b>Por abrir</b>, en la <b>Bóveda</b>, y las que ya tienes se siguen abriendo desde ahí. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
                 "Toca <b>Qué contiene</b> en un nivel para ver las probabilidades por rareza. Solo muestra las probabilidades, no la lista de objetos.",
               ],
             },
@@ -675,9 +676,9 @@ const es: HelpText = {
           : []),
         {
           id: 'change-your-look',
-          q: "¿Cómo ordeno y filtro en Cambiar tu look?",
+          q: "¿Cómo ordeno y filtro en Tu look?",
           a: [
-            "En <b>Cambiar tu look</b>, el cuadro <b>Ordenar y filtrar</b> fija el orden y un filtro de rareza. Ambos se mantienen al cambiar de categoría, y un indicador muestra cuándo hay un filtro activo.",
+            "En el inicio, toca <b>Tu look</b>. Ahí, el cuadro <b>Ordenar y filtrar</b> fija el orden y un filtro de rareza. Ambos se mantienen al cambiar de categoría, y un indicador muestra cuándo hay un filtro activo.",
           ],
         },
         {
@@ -1215,7 +1216,7 @@ const es: HelpText = {
           a: [
             'Escribe a <email/>. Para cualquier tema de tu cuenta, hazlo desde su correo. Una persona lee cada mensaje.',
             'Para novedades, Noches de Juegos y jugadores que buscan partida, únete a nuestro <discord>Discord</discord>.',
-            'En el inicio, el botón de Discord abre nuestro servidor. Es para jugadores de 16 años o más, y a quienes tienen 16 o 17 les aparece antes una breve nota de seguridad.',
+            'En el inicio, la parte <b>Buscar jugadores</b> de la tarjeta superior abre nuestro servidor de Discord. Es para jugadores de 16 años o más, y a quienes tienen 16 o 17 les aparece antes una breve nota de seguridad.',
           ],
         },
       ],

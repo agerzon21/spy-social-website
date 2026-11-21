@@ -230,6 +230,7 @@ const ptBR: HelpText = {
               a: [
                 "<b>Competir</b> é um cartão no início com três abas: <b>Noite de Jogos</b>, <b>Ranqueada</b> e <b>Torneios</b>.",
                 "Hoje só a aba Noite de Jogos está em uso. Ranqueada e Torneios chegam mais tarde e mostram “Em breve”.",
+                "No início, o cartão <b>Enquanto isso na Noite de Jogos</b> é um botão só: toque nele para abrir a aba Noite de Jogos.",
               ],
             },
             ]
@@ -664,10 +665,10 @@ const ptBR: HelpText = {
               id: 'game-night-intercepts',
               q: 'O que são as interceptações da Noite de Jogos?',
               a: [
-                'Interceptações que você pega com Intel da Noite de Jogos, no cartão da Noite de Jogos no <b>Cofre</b>: <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
+                'Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
                 'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
                 ...(o.u6153 ? ["O fundo Lendário da Noite de Jogos é <b>Apagão</b>, que antes se chamava Sala dos Fundos. A cena de descanso dele é <b>Rain Window</b>."] : []),
-                'Uma comprada espera em <b>Para abrir</b>. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
+                'Uma comprada espera em <b>Para abrir</b>, no <b>Cofre</b>, e as que você já tem continuam abrindo dali. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
                 "Toque em <b>O que tem dentro</b> em um nível para ver as chances por raridade. Mostra só as chances, não a lista de itens.",
               ],
             },
@@ -675,9 +676,9 @@ const ptBR: HelpText = {
           : []),
         {
           id: 'change-your-look',
-          q: "Como ordeno e filtro em Mudar o visual?",
+          q: "Como ordeno e filtro em Seu visual?",
           a: [
-            "Em <b>Mudar o visual</b>, a caixa <b>Ordenar e filtrar</b> define a ordem e um filtro de raridade. Os dois continuam ao trocar de categoria, e um indicador mostra quando há filtro ligado.",
+            "No início, toque em <b>Seu visual</b>. Lá, a caixa <b>Ordenar e filtrar</b> define a ordem e um filtro de raridade. Os dois continuam ao trocar de categoria, e um indicador mostra quando há filtro ligado.",
           ],
         },
         {
@@ -1215,7 +1216,7 @@ const ptBR: HelpText = {
           a: [
             'Escreva para <email/>. Para assuntos da sua conta, use o e-mail dela. Uma pessoa lê cada mensagem.',
             'Para novidades, Noites de Jogos e jogadores procurando partida, entre no nosso <discord>Discord</discord>.',
-            'No início, o botão do Discord abre o nosso servidor. Ele é para jogadores de 16 anos ou mais, e quem tem 16 ou 17 anos vê antes uma breve nota de segurança.',
+            'No início, a parte <b>Achar jogadores</b> do cartão de cima abre o nosso servidor do Discord. Ele é para jogadores de 16 anos ou mais, e quem tem 16 ou 17 anos vê antes uma breve nota de segurança.',
           ],
         },
       ],
