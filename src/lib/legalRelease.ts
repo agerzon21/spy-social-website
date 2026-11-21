@@ -2307,6 +2307,14 @@ export const LIVE = {
    * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
   gnTiers4_1120: false,
+  /**
+   * legal-1120 (legal audit Nov 20, scratchpad legal-audit-1120/REPORT.md): the Game Night Rules publish the exact Game Night
+   * Intercept odds (each tier's rarities; the Unique Blackout's details and the Eclipse's ~1 in 100), and Terms 9 says a
+   * Unique's look is drawn at random by one rule nothing changes. Facts already true (the app shows the same odds); no
+   * terms_version raise (it adds no duty and takes no right). Publish with or after gnTiers4_1120 (its odds follow that
+   * switch): node scripts/flip-switch.mjs oddsPublic1120 --day "<publish day>". A site-only fact: LIVE.
+   */
+  oddsPublic1120: false,
 }
 
 /**
@@ -2339,6 +2347,11 @@ export const CS_AUTO_PRESERVE_DAY = 'November 20, 2026'
  * day the row is applied and the site goes up with it). The placeholder is refused at build time while the switch is on.
  */
 export const GN_TIERS4_1120_DAY = '__SET_ON_APPLY_DAY__'
+/** LIVE.oddsPublic1120's day in LEGAL_LAST_UPDATED and the Game Night Rules' date (set by flip-switch --day). */
+export const ODDS_PUBLIC_1120_DAY = '__SET_ON_PUBLISH_DAY__'
+if (LIVE.oddsPublic1120 && !Number.isFinite(Date.parse(ODDS_PUBLIC_1120_DAY))) {
+  throw new Error('LIVE.oddsPublic1120 is on but ODDS_PUBLIC_1120_DAY is not a date: node scripts/flip-switch.mjs oddsPublic1120 --day "<publish day>"')
+}
 if (LIVE.gnTiers4_1120 && !Number.isFinite(Date.parse(GN_TIERS4_1120_DAY))) {
   throw new Error('LIVE.gnTiers4_1120 is on but GN_TIERS4_1120_DAY is not a date: node scripts/flip-switch.mjs gnTiers4_1120 --day "<apply day>"')
 }
@@ -2793,7 +2806,7 @@ export const LEGAL_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
-), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && LIVE.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null)
+), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && LIVE.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null, LIVE.oddsPublic1120 ? ODDS_PUBLIC_1120_DAY : null)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the

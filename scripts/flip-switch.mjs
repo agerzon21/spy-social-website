@@ -18,6 +18,7 @@ const SWITCHES = {
   csAutoPreserve: { live: [['csAutoPreserve', true]], day: 'CS_AUTO_PRESERVE_DAY', step: 'row 999727' },
   // gn-tiers4-1120: the day server row 20261231999719 (4 Game Night tiers, shred for Game Night Intel) is applied live, after the client OTA; --day = that day.
   gnTiers4_1120: { live: [['gnTiers4_1120', true]], day: 'GN_TIERS4_1120_DAY', step: 'row 999719 (gn-tiers4-1120)' },
+  oddsPublic1120: { live: [['oddsPublic1120', true]], day: 'ODDS_PUBLIC_1120_DAY', step: 'with or after gnTiers4_1120 (legal-1120)' },
   guestSaveBeforeBuy: { live: [['guestSaveBeforeBuy', true]], day: 'GUEST_SAVE_BEFORE_BUY_DAY', step: 'round 14' },
   reputation: { live: [['reputation', true]], day: 'REPUTATION_DAY', step: '13S' },
   drawingMinorRooms: { live: [['drawingMinorRooms', true]], day: 'DRAWING_MINOR_ROOMS_DAY', step: '18S' },

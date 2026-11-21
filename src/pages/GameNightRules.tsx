@@ -1,6 +1,6 @@
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/LegalText'
-import { GN_REWARDS_RULES_DAY, GN_TIERS4_1120_DAY, LIVE } from '../lib/legalRelease'
+import { GN_REWARDS_RULES_DAY, GN_TIERS4_1120_DAY, LIVE, ODDS_PUBLIC_1120_DAY } from '../lib/legalRelease'
 
 // The Game Night rules (www.spysocial.app/game-night-rules): the Game Night's official rules, in English
 // like the other legal pages. The route, the footer's link and the sitemap entry exist only while
@@ -19,7 +19,9 @@ import { GN_REWARDS_RULES_DAY, GN_TIERS4_1120_DAY, LIVE } from '../lib/legalRele
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
-const UPDATED = LIVE.gnRewardsRules && LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : LIVE.gnRewardsRules ? GN_REWARDS_RULES_DAY : LIVE.giftsTradable ? 'November 7, 2026' : 'December 7, 2026' // December 7 (U0, giftsTradable off): the developer's bonus title is a gift that stays with its account (gift-rules-1108); before it, titles trade and sell as Terms 9 says, Intercepts earned or given (site-full-1106); before it, November 5, 2026: the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
+const UPDATED_BEFORE_ODDS = LIVE.gnRewardsRules && LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : LIVE.gnRewardsRules ? GN_REWARDS_RULES_DAY : LIVE.giftsTradable ? 'November 7, 2026' : 'December 7, 2026' // December 7 (U0, giftsTradable off): the developer's bonus title is a gift that stays with its account (gift-rules-1108); before it, titles trade and sell as Terms 9 says, Intercepts earned or given (site-full-1106); before it, November 5, 2026: the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
+// legal-1120: the odds section's day, when later.
+const UPDATED = LIVE.gnRewardsRules && LIVE.oddsPublic1120 && Date.parse(ODDS_PUBLIC_1120_DAY) > Date.parse(UPDATED_BEFORE_ODDS) ? ODDS_PUBLIC_1120_DAY : UPDATED_BEFORE_ODDS
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -145,6 +147,36 @@ const GameNightRules: React.FC = () => (
           tables are Play Online tables, so a win there also counts toward your Intercepts like any Play Online win, and
           your first game of the day there gives your daily Intercept.
         </P>
+
+        {LIVE.oddsPublic1120 && (
+        <>
+        {/* legal-1120: the exact Game Night odds published here too, not only in the app (server crate tiers 6-8, and 9 with
+            LIVE.gnTiers4_1120 = row 20261231999719). Change these with the server's odds, the same day. */}
+        <H2>Game Night Intercept odds</H2>
+        <P>The chance of each rarity when you open a Game Night Intercept:</P>
+        <Bullets>
+          <li><B>Tier 1</B>: Common 63%, Uncommon 25%, Rare 9%, Epic 2.2%, Mythic 0.7%, Legendary 0.1%.</li>
+          <li><B>Tier 2</B>: Uncommon 62%, Rare 31%, Epic 5%, Mythic 1.7%, Legendary 0.3%.</li>
+          {LIVE.gnTiers4_1120 ? (
+            <>
+              <li><B>Tier 3</B>: Rare 55%, Epic 31%, Mythic 11.5%, Legendary 2.5%. No Unique.</li>
+              <li><B>Tier 4</B>: Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%.</li>
+            </>
+          ) : (
+            <li><B>Tier 3</B>: Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%.</li>
+          )}
+        </Bullets>
+        <P>
+          Which item of a rarity you get is random, and every item of that rarity in After Hours is equally likely. After
+          Hours has one Legendary, Blackout, so a Unique from a Game Night Intercept is always a Unique Blackout. Its four
+          details (its light, colour, eyes and exit) each come from a number drawn at random when it's made: each is one
+          of ten, all equally likely, and about 1 Unique Blackout in 100 is the Eclipse (its light, eyes and exit match).
+          No membership, purchase or anything else changes these odds. The app always shows the odds in use, with the
+          date they last changed; if we change them, we update this page the same day and list the change on our{' '}
+          <PageLink to="/transparency">Transparency</PageLink> page.
+        </P>
+        </>
+        )}
       </>
     ) : (
       <>
