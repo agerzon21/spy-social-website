@@ -682,7 +682,7 @@ const id: HelpText = {
         },
         {
           id: 'vault-filter-empty',
-          q: 'Mengapa Vault saya bertuliskan «Tidak ada yang ditemukan» padahal saya punya item?',
+          q: 'Mengapa Vault saya bertuliskan «Tidak ada yang cocok» padahal saya punya item?',
           a: [
             'Pilihan di <b>Urutkan & Filter</b> atau pencarian menyembunyikannya. Ketuk <b>Hapus filter</b> langsung di layar itu untuk melihat semuanya lagi.',
             'Angka di atas sama dengan daftar yang terlihat, termasuk filter.',

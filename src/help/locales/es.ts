@@ -682,7 +682,7 @@ const es: HelpText = {
         },
         {
           id: 'vault-filter-empty',
-          q: '¿Por qué mi Bóveda dice «Nada encontrado» si tengo objetos?',
+          q: '¿Por qué mi Bóveda dice «No hay coincidencias» si tengo objetos?',
           a: [
             'Los oculta un filtro de <b>Ordenar y filtrar</b> o la búsqueda. Toca <b>Quitar filtros</b> en esa misma pantalla para verlos todos otra vez.',
             'El número de arriba coincide con la lista que ves, filtros incluidos.',

@@ -712,7 +712,7 @@ const en: HelpText = {
         },
         {
           id: 'vault-filter-empty',
-          q: 'Why does my Vault say “Nothing found” with items I own?',
+          q: 'Why does my Vault say “Nothing matches” with items I own?',
           a: [
             'A <b>Sort & Filter</b> choice or the search is hiding them. Tap <b>Clear Filters</b> right on that screen to see everything again.',
             'The count at the top matches the list you see, filters included.',

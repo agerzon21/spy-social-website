@@ -678,7 +678,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
       },
       {
         id: 'vault-filter-empty',
-        q: 'Pourquoi mon Coffre indique-t-il « Rien trouvé » alors que j\'ai des objets ?',
+        q: 'Pourquoi mon Coffre indique-t-il « Aucun résultat » alors que j\'ai des objets ?',
         a: [
           'Un choix de <b>Trier et filtrer</b> ou la recherche les masque. Touche <b>Effacer les filtres</b> sur cet écran pour tout revoir.',
           'Le nombre en haut correspond à la liste affichée, filtres compris.',
