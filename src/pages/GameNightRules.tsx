@@ -159,8 +159,8 @@ const GameNightRules: React.FC = () => (
           <li><B>Tier 2</B>: Uncommon 62%, Rare 31%, Epic 5%, Mythic 1.7%, Legendary 0.3%.</li>
           {LIVE.gnTiers4_1120 ? (
             <>
-              <li><B>Tier 3</B>: Rare 55%, Epic 31%, Mythic 11.5%, Legendary 2.5%. No Unique.</li>
-              <li><B>Tier 4</B>: Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%.</li>
+              <li><B>Tier 3</B>: Rare 45%, Epic 33%, Mythic 17.7%, Legendary 4.3%. No Unique.</li>
+              <li><B>Tier 4</B>: Epic 58.8%, Mythic 32%, Legendary 7.5%, Unique 1.7%. The Unique is only in Tier 4.</li>
             </>
           ) : (
             <li><B>Tier 3</B>: Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%.</li>
