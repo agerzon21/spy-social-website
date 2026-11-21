@@ -291,7 +291,12 @@ function pagePreviews() {
             const { LEDGER_DESCRIPTION_UNIQUES } = (await siteModule(root, 'src/lib/ledgerScope.ts'));
             const pageSwaps = (page) => {
                 const title = attr(`${en.meta.titles[page.key]} · ${en.meta.siteName}`);
-                const description = attr(page.key === 'ledger' && LIVE.ledgerUniquesOnly === true ? LEDGER_DESCRIPTION_UNIQUES.en : en.meta.descriptions[page.key] ?? en.meta.description);
+                const description = attr(page.key === 'ledger' && LIVE.ledgerUniquesOnly === true
+                    ? LEDGER_DESCRIPTION_UNIQUES.en
+                    : // As SiteHead: with LIVE.gnRewardsRules the Game Night rules' card names the rewards (no developer's bonus title).
+                        page.key === 'gameNightRules' && LIVE.gnRewardsRules === true
+                            ? en.meta.descriptions.gameNightRulesRewards
+                            : en.meta.descriptions[page.key] ?? en.meta.description);
                 return [
                     [/<title>[^<]*<\/title>/, `<title>${title}</title>`],
                     [/(<meta name="description"[^>]*content=")[^"]*"/, `$1${description}"`],
@@ -753,6 +758,10 @@ function wwwHtmlLast() {
             outDir = resolve(config.root, config.build.outDir);
         },
         async closeBundle() {
+            // Rollup also calls closeBundle when the build already failed: with no dist/index.html there is nothing to move, and
+            // a rename error here would hide the real one (a switch guard, a missing preview).
+            if (!existsSync(resolve(outDir, 'index.html')))
+                return;
             await mkdir(resolve(outDir, '_host'), { recursive: true });
             await rename(resolve(outDir, 'index.html'), resolve(outDir, '_host', 'www.html'));
         },

@@ -785,6 +785,9 @@ function wwwHtmlLast(): Plugin {
       outDir = resolve(config.root, config.build.outDir)
     },
     async closeBundle() {
+      // Rollup also calls closeBundle when the build already failed: with no dist/index.html there is nothing to move, and
+      // a rename error here would hide the real one (a switch guard, a missing preview).
+      if (!existsSync(resolve(outDir, 'index.html'))) return
       await mkdir(resolve(outDir, '_host'), { recursive: true })
       await rename(resolve(outDir, 'index.html'), resolve(outDir, '_host', 'www.html'))
     },
