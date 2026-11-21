@@ -665,8 +665,9 @@ const es: HelpText = {
               id: 'game-night-intercepts',
               q: '¿Qué son las intercepciones de Noche de Juegos?',
               a: [
-                'Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
+                o.gnTiers4 ? `Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor), <b>Nivel 3</b> por 4.000 (Raro o mejor) y <b>Nivel 4</b> por 8.000 (Épico o mejor, con opción de un Único).` : 'Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
                 'Se abren en la colección propia de la Noche de Juegos, <b>After Hours</b>: 14 objetos de sala de cartas para tu agente que ninguna otra intercepción tiene. Como en toda intercepción, la app muestra las probabilidades exactas.',
+                ...(o.gnTiers4 ? [`Una copia repetida de un objeto de <b>After Hours</b> que abriste tú mismo de una intercepción de la Noche de Juegos se tritura por <b>Intel de Noche de Juegos</b>, no por Intel, por la cantidad que muestra la app (nunca tu primera copia). Una que recibiste en un intercambio se tritura por Intel.`] : []),
                 ...(o.u6153 ? ["El fondo Legendario de la Noche de Juegos es <b>Apagón</b>, que antes se llamaba La Trastienda. Su escena de descanso es <b>Rain Window</b>."] : []),
                 'Una comprada espera en <b>Por abrir</b>, en la <b>Bóveda</b>, y las que ya tienes se siguen abriendo desde ahí. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
                 "Toca <b>Qué contiene</b> en un nivel para ver las probabilidades por rareza. Solo muestra las probabilidades, no la lista de objetos.",
@@ -694,6 +695,7 @@ const es: HelpText = {
           q: '¿Qué hago con los repetidos?',
           a: [
             '<b>Tritura</b> una copia repetida para obtener Intel, por la cantidad que muestra la app.',
+            ...(o.gnTiers4 ? [`Una copia repetida de un objeto de <b>After Hours</b> que abriste tú mismo de una intercepción de la Noche de Juegos se tritura por Intel de Noche de Juegos.`] : []),
             '<b>Canje:</b> 5 copias repetidas de una rareza te dan 1 objeto al azar de la rareza siguiente, y 10 copias Legendarias repetidas te dan un Único.' + (o.launch ? " Si hay un regalo entre ellas, lo que consigas también será solo para ti." : ''),
             'Solo cuentan los repetidos, nunca tu primera copia ni un Único.',
             'Una copia que compraste o recibiste en un intercambio cuenta como repetida si tienes otra copia de ese objeto. Tu única copia siempre se queda.',
@@ -789,7 +791,7 @@ const es: HelpText = {
               a: [
                 "SpySocial todavía está en pruebas. Antes del lanzamiento del 8 de diciembre se reinician los objetos, las intercepciones, el Intel, las operaciones del Mercado Negro y los intercambios, y todos empiezan de cero.",
                 "Tu cuenta, tus amigos y tus paquetes se quedan, y también tu XP, tu nivel, tus logros, tus estadísticas, tus notas de las partidas de práctica, los títulos de códigos y todo lo que compraste en la App Store o Google Play.",
-                ...(o.gnRewards ? ["Tus títulos ★ de Noche de Juegos se quedan, y recuperas todo el Intel de Noche de Juegos que ganaste, aunque lo hayas gastado."] : []),
+                ...(o.gnRewards ? [o.gnTiers4 ? `Tus títulos ★ de Noche de Juegos se quedan, y recuperas todo el Intel de Noche de Juegos que ganaste jugando, aunque lo hayas gastado. El que conseguiste triturando no se devuelve.` : "Tus títulos ★ de Noche de Juegos se quedan, y recuperas todo el Intel de Noche de Juegos que ganaste, aunque lo hayas gastado."] : []),
                 "Las membresías dadas para la prueba terminan en el lanzamiento." + (o.intelZero ? " Tu racha vuelve a empezar desde el día 0." : ''),
                 "Los testers recibirán una recompensa especial por ayudar.",
                 "El aviso aparece en la Bóveda, el Mercado Negro y las pantallas de intercambios. Tócalo para leer más, o toca la X para ocultarlo en ese teléfono.",

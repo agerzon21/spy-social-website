@@ -3,7 +3,7 @@
 // database's row once it's published there, and never changes after (the database refuses to). Add a new one the day
 // it's published in the Owner Console.
 
-import { ECONOMY_VALUES_L_DAY, INTERCEPTS_IN_TRADES_DAY, LIVE } from './legalRelease'
+import { ECONOMY_VALUES_L_DAY, GN_TIERS4_1120_DAY, INTERCEPTS_IN_TRADES_DAY, LIVE } from './legalRelease'
 
 export type PublishedIncident = {
   id: string
@@ -186,8 +186,20 @@ const ECONOMY_VALUES_L: { day: string; what: string; from: string; to: string }[
   { day: ECONOMY_VALUES_L_DAY, what: 'the lowest Black Market price of an unopened Intercept, from the lowest tier to the highest (what its items shred for, on average)', from: '8, 15, 50, 113 and 168 Intel', to: '63, 107, 340, 799 and 1,248 Intel' },
 ]
 
+/**
+ * Game Night's four tiers (gn-tiers4-1120; app server 20261231999719_gn_tiers4_1120): shown once LIVE.gnTiers4_1120 is on, dated
+ * its apply day. Rarity odds are the server's (crate_rarities, the app shows the same).
+ */
+const GN_TIERS4: { day: string; what: string; from: string; to: string }[] = [
+  { day: GN_TIERS4_1120_DAY, what: 'the price of a Game Night Tier 3 Intercept', from: '10,000 Game Night Intel', to: '4,000 Game Night Intel' },
+  { day: GN_TIERS4_1120_DAY, what: "a Game Night Tier 3 Intercept's chances (Rare, Epic, Mythic, Legendary, Unique)", from: 'Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%', to: 'Rare 55%, Epic 31%, Mythic 11.5%, Legendary 2.5%, no Unique' },
+  { day: GN_TIERS4_1120_DAY, what: 'a Game Night Tier 4 Intercept (the old Tier 3 contents)', from: 'none', to: '8,000 Game Night Intel: Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%' },
+  { day: GN_TIERS4_1120_DAY, what: 'what a spare After Hours item you opened yourself from a Game Night Intercept shreds for (Common, Uncommon, Rare, Epic, Mythic, Legendary; a Unique never)', from: 'Intel: 40, 100, 250, 650, 1,800 and 5,000', to: 'Game Night Intel: the same 40, 100, 250, 650, 1,800 and 5,000 (a copy got in a trade still shreds for Intel)' },
+]
+
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */
 export const RULE_CHANGES: { day: string; what: string; from: string; to: string }[] = [
+  ...(LIVE.gnTiers4_1120 ? GN_TIERS4 : []),
   ...(LIVE.giftsTradable ? [] : GIFTS_BOUND_DEC7),
   ...(LIVE.economyValuesL ? ECONOMY_VALUES_L : []),
   ...(LIVE.interceptsInTrades ? INTERCEPTS_IN_TRADES : []),

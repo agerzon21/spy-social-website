@@ -53,6 +53,7 @@ const OPTS: HelpOpts = {
   intelZero: LIVE.intelZero1117,
   emailCodes22: LIVE.emailCodes22,
   guestSaveBeforeBuy: LIVE.guestSaveBeforeBuy,
+  gnTiers4: LIVE.gnTiers4_1120 && LIVE.helpGameNightRewards,
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).

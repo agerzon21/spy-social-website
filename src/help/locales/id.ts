@@ -665,8 +665,9 @@ const id: HelpText = {
               id: 'game-night-intercepts',
               q: 'Apa itu sadapan Malam Permainan?',
               a: [
-                'Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b> (Brankas tidak lagi menampilkannya): <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
+                o.gnTiers4 ? `Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b> (Brankas tidak lagi menampilkannya): <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), <b>Tingkat 3</b> seharga 4.000 (Langka atau lebih baik), dan <b>Tingkat 4</b> seharga 8.000 (Epik atau lebih baik, dengan peluang Unik).` : 'Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b> (Brankas tidak lagi menampilkannya): <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
                 'Isinya dari koleksi khusus Malam Permainan, <b>After Hours</b>: 14 item ruang kartu untuk agenmu yang tidak ada di sadapan lain. Seperti semua sadapan, aplikasi menampilkan peluang pastinya.',
+                ...(o.gnTiers4 ? [`Salinan duplikat item <b>After Hours</b> yang kamu buka sendiri dari sadapan Malam Permainan dihancurkan menjadi <b>Intel Malam Permainan</b>, bukan Intel, sebanyak yang ditampilkan aplikasi (tidak pernah salinan pertamamu). Salinan yang kamu dapat lewat pertukaran dihancurkan menjadi Intel.`] : []),
                 ...(o.u6153 ? ["Latar Legendaris Malam Permainan adalah <b>Mati Lampu</b>, yang dulu bernama Ruang Belakang. Adegan istirahatnya adalah <b>Rain Window</b>."] : []),
                 'Sadapan yang dibeli menunggu di <b>Belum Dibuka</b> di <b>Brankas</b>, dan yang sudah kamu punya tetap dibuka dari sana. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
                 "Ketuk <b>Isinya</b> pada sebuah tingkat untuk melihat peluang per kelangkaan. Hanya peluang yang ditampilkan, bukan daftar item.",
@@ -694,6 +695,7 @@ const id: HelpText = {
           q: 'Apa yang bisa kulakukan dengan duplikat?',
           a: [
             '<b>Hancurkan</b> salinan duplikat untuk mendapat Intel, sebanyak yang ditampilkan aplikasi.',
+            ...(o.gnTiers4 ? [`Salinan duplikat item <b>After Hours</b> yang kamu buka sendiri dari sadapan Malam Permainan dihancurkan menjadi Intel Malam Permainan.`] : []),
             '<b>Tukar Tambah:</b> 5 duplikat dari satu kelangkaan memberimu 1 item acak dari kelangkaan berikutnya, dan 10 duplikat Legendaris memberimu satu item Unik.' + (o.launch ? " Jika ada hadiah di antaranya, hasilnya juga hanya untukmu." : ''),
             'Hanya duplikat yang dihitung, bukan salinan pertamamu atau item Unik.',
             'Salinan yang kamu beli atau dapat dari pertukaran dihitung sebagai duplikat jika kamu punya salinan lain dari item itu. Satu-satunya salinanmu selalu tetap ada.',
@@ -789,7 +791,7 @@ const id: HelpText = {
               a: [
                 "SpySocial masih diuji. Sebelum peluncuran tanggal 8 Desember, item, sadapan, Intel, transaksi Pasar Gelap, dan pertukaran direset, dan semua mulai dari nol.",
                 "Akun, teman, dan paketmu tetap ada, begitu juga XP, level, pencapaian, statistik, nilai permainan latihan, gelar dari kode, dan semua yang kamu beli di App Store atau Google Play.",
-                ...(o.gnRewards ? ["Gelar ★ Malam Permainanmu tetap ada, dan semua Intel Malam Permainan yang kamu dapatkan kembali utuh, walau sudah dipakai."] : []),
+                ...(o.gnRewards ? [o.gnTiers4 ? `Gelar ★ Malam Permainanmu tetap ada, dan semua Intel Malam Permainan yang kamu dapat dari bermain kembali utuh, walau sudah dipakai. Yang didapat dari menghancurkan salinan tidak kembali.` : "Gelar ★ Malam Permainanmu tetap ada, dan semua Intel Malam Permainan yang kamu dapatkan kembali utuh, walau sudah dipakai."] : []),
                 "Keanggotaan yang diberikan untuk uji coba berakhir saat peluncuran." + (o.intelZero ? " Rentetan harianmu mulai lagi dari hari 0." : ''),
                 "Para penguji akan mendapat hadiah khusus karena sudah membantu.",
                 "Pemberitahuan ini muncul di Brankas, Pasar Gelap, dan layar pertukaran. Ketuk untuk membaca lebih lanjut, atau ketuk X untuk menyembunyikannya di ponsel itu.",

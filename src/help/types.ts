@@ -120,6 +120,12 @@ export interface HelpOpts {
    * match_unseen_warn_1120, applied before the OTA) and #spy-sketch's screen-reader board line.
    */
   guestSaveBeforeBuy: boolean
+  /**
+   * Game Night's four tiers and the shred for Game Night Intel are live (LIVE.gnTiers4_1120 with helpGameNightRewards, gn-tiers4-1120,
+   * TRANSLATIONS UNREVIEWED: every language but English is an agent's): #game-night-intercepts' tiers (400 / 800 / 4,000 / 8,000)
+   * and its shred line, #duplicates' After Hours line, and the reset line (Game Night Intel from games comes back, not from shredding).
+   */
+  gnTiers4: boolean
 }
 
 export interface HelpItem {

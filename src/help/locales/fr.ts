@@ -661,8 +661,9 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'game-night-intercepts',
             q: "C'est quoi, les interceptions de soirée jeux ?",
             a: [
-              "Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
+              o.gnTiers4 ? `Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux), <b>Niveau 3</b> pour 4 000 (Rare ou mieux) et <b>Niveau 4</b> pour 8 000 (Épique ou mieux, avec une chance d'Unique).` : "Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
               "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
+              ...(o.gnTiers4 ? [`Un doublon d'objet <b>After Hours</b> que tu as ouvert toi-même dans une interception de soirée jeux se déchiquette contre de l'<b>Intel de soirée jeux</b>, pas de l'Intel, au montant affiché par l'appli (jamais ta première copie). Un doublon reçu dans un échange se déchiquette contre de l'Intel.`] : []),
               ...(o.u6153 ? ["Le fond Légendaire de la soirée jeux est <b>Black-out</b>, qui s'appelait avant L'Arrière-salle. Sa scène de repos est <b>Rain Window</b>."] : []),
               "Une interception achetée attend dans <b>À ouvrir</b>, dans le <b>Coffre</b>, et celles que tu as déjà s'y ouvrent toujours. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
               "Touche <b>Contenu</b> sur un palier pour voir les probabilités par rareté. Seules les probabilités sont affichées, pas la liste des objets.",
@@ -690,6 +691,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: 'Que faire des doublons ?',
         a: [
           "<b>Déchiquette</b> un doublon contre de l'Intel, au montant affiché par l'appli.",
+          ...(o.gnTiers4 ? [`Un doublon d'objet <b>After Hours</b> que tu as ouvert toi-même dans une interception de soirée jeux se déchiquette plutôt contre de l'Intel de soirée jeux.`] : []),
           "<b>Échange :</b> 5 doublons d'une rareté te donnent 1 objet au hasard de la rareté suivante, et 10 doublons Légendaires te donnent un Unique." + (o.launch ? " S'il y a un cadeau parmi eux, ce que tu obtiens est pour toi seul aussi." : ''),
           'Seuls les doublons comptent, jamais ton premier exemplaire ni un Unique.',
           'Un exemplaire acheté ou reçu dans un échange compte comme doublon si tu as un autre exemplaire de cet objet. Ton seul exemplaire reste toujours.',
@@ -785,7 +787,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             a: [
               "SpySocial est encore en test. Avant le lancement du 8 décembre, les objets, les interceptions, l'Intel, les transactions du Marché noir et les échanges seront réinitialisés, et tout le monde repartira de zéro.",
               "Ton compte, tes amis et tes packs restent, tout comme ton XP, ton niveau, tes succès, tes stats, tes notes des parties d'entraînement, les titres obtenus par code et tout ce que tu as acheté sur l'App Store ou Google Play.",
-              ...(o.gnRewards ? ["Tes titres ★ de soirée jeux restent, et tu récupères tout l'Intel de soirée jeux que tu as gagné, même si tu l'as dépensé."] : []),
+              ...(o.gnRewards ? [o.gnTiers4 ? `Tes titres ★ de soirée jeux restent, et tu récupères tout l'Intel de soirée jeux que tu as gagné en jouant, même si tu l'as dépensé. Celui obtenu en déchiquetant n'est pas rendu.` : "Tes titres ★ de soirée jeux restent, et tu récupères tout l'Intel de soirée jeux que tu as gagné, même si tu l'as dépensé."] : []),
               "Les statuts de membre offerts pour le test prennent fin au lancement." + (o.intelZero ? " Ta série repart du jour 0." : ''),
               "Les testeurs recevront une récompense spéciale pour leur aide.",
               "Le message s'affiche dans le Coffre, le Marché noir et les écrans d'échanges. Touche-le pour en savoir plus, ou touche X pour le masquer sur ce téléphone.",

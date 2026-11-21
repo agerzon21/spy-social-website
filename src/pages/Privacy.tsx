@@ -218,7 +218,7 @@ const Privacy: React.FC = () => {
             When you play in our Game Night, our servers keep, for each Game Night game you play, whether it gave you
             Game Night Intel and why (a win, a loss, a game with no winner, or the reason it gave nothing, such as
             leaving early, not taking your turns or a fair-play flag), and the history of your Game Night Intel: each
-            amount, the game it came from, each Game Night Intercept you got with it and its tier, any correction, and
+            amount, the game it came from, each Game Night Intercept you got with it and its tier,{PRIVACY.gnTiers4_1120 ? ' each spare After Hours item you shredded for it (the copy and the amount),' : ''} any correction, and
             your balance after each one. They also keep your counts on the four ★&nbsp;titles (★&nbsp;Operative, ★&nbsp;Local Hero,
             ★&nbsp;Master Spy and ★&nbsp;Double Agent), and the game or night behind each one. We use this to give each game's
             reward once, to show your rewards on Game Over and in the Vault, and to check that they're earned fairly.
@@ -280,6 +280,9 @@ const Privacy: React.FC = () => {
                 : PRIVACY.intelLedger
                 ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel that will never be tradable: Intel we give everyone an announced outage affected, a bug refund we give one player, or test Intel on our own test accounts).'
                 : ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).')}
+            {/* PRIVACY.gnTiers4_1120 (gn-tiers4-1120, app server row 20261231999719): an After Hours copy you opened shreds for Game Night Intel, kept in its history. */}
+            {PRIVACY.gnTiers4_1120 && PRIVACY.gameNightPrizes && PRIVACY.gnRewardsRules &&
+              ' A spare After Hours item you opened yourself from a Game Night Intercept shreds for Game Night Intel instead, and is recorded in your Game Night Intel history (see Game Night below), not here.'}
             {PRIVACY.intelLedger &&
               " Each line of your Intel history (your Intel ledger) also records who caused it (a game, you, or us), when, and the app version and platform it came from, so that we can find everyone a bug affected. Lines are only ever added: we never change or delete one."}{' '}
             Other players never see your Intel or your streak, and we look at Intel only as totals across all
@@ -328,7 +331,7 @@ const Privacy: React.FC = () => {
             it's waiting for your first Play Online game that counts (one from a code); when you've seen the app's
             notices about your Intercepts (such as Welcome Back); and, once you open it, when, the item and
             its rarity, whether you already had that item, and for a Unique, its number and colour. We keep every copy
-            you get, the Intel you get when you shred a spare one, and each trade-up (the spare copies it used, the odds
+            you get, the Intel{PRIVACY.gnTiers4_1120 && PRIVACY.gnRewardsRules ? ' (or Game Night Intel, for an After Hours item you opened yourself)' : ''} you get when you shred a spare one, and each trade-up (the spare copies it used, the odds
             it used and the item it gave). They also keep your progress toward your next
             Intercepts and the counts behind any guarantee the app shows. All of this comes from the games you play and
             the codes you enter: private-room games, and games that give no Intel (for example a game you left or one

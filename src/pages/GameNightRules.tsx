@@ -1,6 +1,6 @@
 import { LegalPage } from '../components/legal/LegalPage'
 import { B, Bullets, H2, P, PageLink, SupportEmail } from '../components/legal/LegalText'
-import { GN_REWARDS_RULES_DAY, LIVE } from '../lib/legalRelease'
+import { GN_REWARDS_RULES_DAY, GN_TIERS4_1120_DAY, LIVE } from '../lib/legalRelease'
 
 // The Game Night rules (www.spysocial.app/game-night-rules): the Game Night's official rules, in English
 // like the other legal pages. The route, the footer's link and the sitemap entry exist only while
@@ -19,7 +19,7 @@ import { GN_REWARDS_RULES_DAY, LIVE } from '../lib/legalRelease'
  * October 25, 2026: the tables' safety tools corrected (Play Online tables have no vote to remove a player; the
  * developer's actions).
  */
-const UPDATED = LIVE.gnRewardsRules ? GN_REWARDS_RULES_DAY : LIVE.giftsTradable ? 'November 7, 2026' : 'December 7, 2026' // December 7 (U0, giftsTradable off): the developer's bonus title is a gift that stays with its account (gift-rules-1108); before it, titles trade and sell as Terms 9 says, Intercepts earned or given (site-full-1106); before it, November 5, 2026: the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
+const UPDATED = LIVE.gnRewardsRules && LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : LIVE.gnRewardsRules ? GN_REWARDS_RULES_DAY : LIVE.giftsTradable ? 'November 7, 2026' : 'December 7, 2026' // December 7 (U0, giftsTradable off): the developer's bonus title is a gift that stays with its account (gift-rules-1108); before it, titles trade and sell as Terms 9 says, Intercepts earned or given (site-full-1106); before it, November 5, 2026: the card's titles button is PRIZES (was "the trophy button"; gamenight-fixes-1105); "online play SpySocial hosts", not "online event" (help-truth-4: Game Night, never event); before it, November 2, 2026: the night's packs and settings (Community Packs in the picker, the (i) sheet; 20261207850000 live) and volunteer moderators at Game Night tables; before it, October 30, 2026: the no-purchase line (memberships only, LIVE.membershipsOnly), joining (PLAY NOW on Home's Game Night card, titles under its trophy button) and the schedule (the nights we announce)
 
 const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
@@ -86,11 +86,11 @@ const GameNightRules: React.FC = () => (
           </li>
         </Bullets>
         <P>
-          Game Night Intel is earned only by playing at Game Night. It can't be bought, traded, sold or given to anyone,
+          Game Night Intel is earned only by playing at Game Night{LIVE.gnTiers4_1120 ? ' and by shredding a spare After Hours item you opened yourself (see Game Night Intercepts below)' : ''}. It can't be bought, traded, sold or given to anyone,
           a membership adds nothing to it, and it has <B>no cash value</B>. It's spent only on Game Night Intercepts.
           {LIVE.launchSite
             ? ''
-            : ' Before SpySocial 2.2 opens to everyone on December 8, 2026, Game Night Intercepts and their items are reset with everything else, and each account gets back all the Game Night Intel it earned before the reset, even Intel it spent.'}
+            : ' Before SpySocial 2.2 opens to everyone on December 8, 2026, Game Night Intercepts and their items are reset with everything else, and each account gets back all the Game Night Intel it earned from games before the reset, even Intel it spent.'}
         </P>
 
         <H2>The ★ titles</H2>
@@ -104,11 +104,27 @@ const GameNightRules: React.FC = () => (
 
         <H2>Game Night Intercepts</H2>
         <P>
-          In the <B>Vault</B>, Game Night Intel buys Game Night Intercepts: <B>Tier 1</B> for 400, <B>Tier 2</B> for 800
-          and <B>Tier 3</B> for 10,000. Each one opens into one item of Game Night's own set, After Hours: Tier 1 any
-          rarity, Tier 2 Uncommon or better, Tier 3 Epic or better with a chance of a Unique. The app shows the exact
-          rarity odds (under What's inside) before you buy or open one; it shows the odds only, not a list of the items. Once bought, a Game Night Intercept and the item it opens into work like any
-          Intercept you earn, as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe. Game Night
+          {LIVE.gnTiers4_1120 ? (
+            <>
+              In the <B>Vault</B>, Game Night Intel buys Game Night Intercepts: <B>Tier 1</B> for 400, <B>Tier 2</B> for
+              800, <B>Tier 3</B> for 4,000 and <B>Tier 4</B> for 8,000. Each one opens into one item of Game Night's own
+              set, After Hours: Tier 1 any rarity, Tier 2 Uncommon or better, Tier 3 Rare or better, Tier 4 Epic or
+              better with a chance of a Unique. The app shows the exact rarity odds (under What's inside) before you buy or
+              open one; it shows the odds only, not a list of the items. Once bought, a Game Night Intercept and the item it
+              opens into work like any Intercept you earn, as our <PageLink to="/terms">Terms of Service</PageLink> (section
+              9) describe. A spare copy of an After Hours item that you opened yourself from a Game Night Intercept shreds
+              for Game Night Intel instead of Intel, at the amount the app shows (never your first copy of an item). A copy
+              you got in a trade shreds for Intel, as any other item does. Game Night
+            </>
+          ) : (
+            <>
+              In the <B>Vault</B>, Game Night Intel buys Game Night Intercepts: <B>Tier 1</B> for 400, <B>Tier 2</B> for 800
+              and <B>Tier 3</B> for 10,000. Each one opens into one item of Game Night's own set, After Hours: Tier 1 any
+              rarity, Tier 2 Uncommon or better, Tier 3 Epic or better with a chance of a Unique. The app shows the exact
+              rarity odds (under What's inside) before you buy or open one; it shows the odds only, not a list of the items. Once bought, a Game Night Intercept and the item it opens into work like any
+              Intercept you earn, as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe. Game Night
+            </>
+          )}
           tables are Play Online tables, so a win there also counts toward your Intercepts like any Play Online win, and
           your first game of the day there gives your daily Intercept.
         </P>

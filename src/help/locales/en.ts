@@ -695,8 +695,9 @@ const en: HelpText = {
               id: 'game-night-intercepts',
               q: 'What are Game Night Intercepts?',
               a: [
-                'Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
+                o.gnTiers4 ? `Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better), <b>Tier 3</b> for 4,000 (Rare or better) and <b>Tier 4</b> for 8,000 (Epic or better, with a chance of a Unique).` : 'Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
                 'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
+                ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item you opened yourself from a Game Night Intercept shreds for <b>Game Night Intel</b>, not Intel, at the amount the app shows (never your first copy). One you got in a trade shreds for Intel.`] : []),
                 ...(o.u6153 ? ["Game Night’s Legendary background is <b>Blackout</b>, which used to be called The Back Room. Its rest scene is <b>Rain Window</b>."] : []),
                 'A bought one waits in <b>To Open</b> in the <b>Vault</b>, and one you already own still opens from there. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
                 "Tap <b>What’s inside</b> on a tier to see its rarity odds. It shows the odds only, not the list of items.",
@@ -724,6 +725,7 @@ const en: HelpText = {
           q: 'What can I do with duplicates?',
           a: [
             '<b>Shred</b> a spare copy for Intel, at the amount the app shows.',
+            ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item you opened yourself from a Game Night Intercept shreds for Game Night Intel instead.`] : []),
             '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.' + (o.launch ? " With a gift among them, what you get is just for you too." : ''),
             'Only spares count, never your first copy or a Unique.',
             'A copy you bought or got in a trade counts as a spare when you hold another copy of that item. Your only copy always stays.',
@@ -819,7 +821,7 @@ const en: HelpText = {
               a: [
                 "SpySocial is still being tested. Before launch on December 8, items, Intercepts, Intel, Black Market deals and trades are reset, and everyone starts from scratch.",
                 "Your account, friends and packs stay, and so do your XP, level, achievements, stats, Practice Game grades, titles from codes and anything bought in a store.",
-                ...(o.gnRewards ? ["Your ★ Game Night titles stay, and you get back all the Game Night Intel you earned, even if you spent it."] : []),
+                ...(o.gnRewards ? [o.gnTiers4 ? `Your ★ Game Night titles stay, and you get back all the Game Night Intel you earned from games, even if you spent it. Game Night Intel from shredding isn’t part of it.` : "Your ★ Game Night titles stay, and you get back all the Game Night Intel you earned, even if you spent it."] : []),
                 "Memberships given for the test end at launch." + (o.intelZero ? " Your daily streak starts again from day 0." : ''),
                 "Testers get a special reward for helping.",
                 "The note shows in the Vault, the Black Market and the trading screens. Tap it to read more, or tap X to hide it on that phone.",

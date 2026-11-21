@@ -665,8 +665,9 @@ const ptBR: HelpText = {
               id: 'game-night-intercepts',
               q: 'O que são as interceptações da Noite de Jogos?',
               a: [
-                'Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
+                o.gnTiers4 ? `Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor), <b>Nível 3</b> por 4.000 (Raro ou melhor) e <b>Nível 4</b> por 8.000 (Épico ou melhor, com chance de um Único).` : 'Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
                 'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
+                ...(o.gnTiers4 ? [`Uma cópia repetida de um item do <b>After Hours</b> que você mesmo abriu de uma interceptação da Noite de Jogos é triturada por <b>Intel da Noite de Jogos</b>, não por Intel, no valor que o app mostra (nunca a sua primeira cópia). Uma que você recebeu numa troca é triturada por Intel.`] : []),
                 ...(o.u6153 ? ["O fundo Lendário da Noite de Jogos é <b>Apagão</b>, que antes se chamava Sala dos Fundos. A cena de descanso dele é <b>Rain Window</b>."] : []),
                 'Uma comprada espera em <b>Para abrir</b>, no <b>Cofre</b>, e as que você já tem continuam abrindo dali. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
                 "Toque em <b>O que tem dentro</b> em um nível para ver as chances por raridade. Mostra só as chances, não a lista de itens.",
@@ -694,6 +695,7 @@ const ptBR: HelpText = {
           q: 'O que faço com os repetidos?',
           a: [
             '<b>Triture</b> uma cópia repetida por Intel, no valor que o app mostra.',
+            ...(o.gnTiers4 ? [`Uma cópia repetida de um item do <b>After Hours</b> que você mesmo abriu de uma interceptação da Noite de Jogos é triturada por Intel da Noite de Jogos.`] : []),
             '<b>Fusão:</b> 5 cópias repetidas de uma raridade dão 1 item aleatório da raridade seguinte, e 10 cópias Lendárias repetidas dão um Único.' + (o.launch ? " Se houver um presente entre elas, o que você receber também será só seu." : ''),
             'Só contam os repetidos, nunca sua primeira cópia nem um Único.',
             'Uma cópia que você comprou ou recebeu numa troca conta como repetida se você tem outra cópia desse item. Sua única cópia sempre fica.',
@@ -789,7 +791,7 @@ const ptBR: HelpText = {
               a: [
                 "O SpySocial ainda está em teste. Antes do lançamento em 8 de dezembro, itens, interceptações, Intel, negociações do Mercado Negro e trocas serão zerados, e todo mundo começa do zero.",
                 "Sua conta, seus amigos e seus pacotes continuam, assim como seu XP, seu nível, suas conquistas, suas estatísticas, suas notas nas partidas de treino, os títulos de códigos e tudo o que você comprou na App Store ou no Google Play.",
-                ...(o.gnRewards ? ["Seus títulos ★ da Noite de Jogos continuam, e você recebe de volta todo o Intel da Noite de Jogos que ganhou, mesmo se gastou."] : []),
+                ...(o.gnRewards ? [o.gnTiers4 ? `Seus títulos ★ da Noite de Jogos continuam, e você recebe de volta todo o Intel da Noite de Jogos que ganhou jogando, mesmo se gastou. O que veio de trituração não volta.` : "Seus títulos ★ da Noite de Jogos continuam, e você recebe de volta todo o Intel da Noite de Jogos que ganhou, mesmo se gastou."] : []),
                 "Os planos de membro dados para o teste terminam no lançamento." + (o.intelZero ? " Sua sequência recomeça do dia 0." : ''),
                 "Quem testou vai ganhar uma recompensa especial pela ajuda.",
                 "O aviso aparece no Cofre, no Mercado Negro e nas telas de trocas. Toque nele para ler mais, ou no X para escondê-lo naquele celular.",

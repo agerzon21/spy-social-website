@@ -2291,6 +2291,22 @@ export const LIVE = {
    * PRIVACY_AHEAD. If the row is rolled back: --undo.
    */
   csAutoPreserve: true,
+  /**
+   * gn-tiers4-1120 (owner's Game Night asks, Nov 20; app server row 20261231999719 gn_tiers4_1120 + client feat/gn-tiers4-1120;
+   * plan gn-tiers4-1120/PLAN.md, site notes gn-tiers4-1120/SITE.md): Game Night Intercepts become FOUR tiers, 400 / 800 / 4,000 /
+   * 8,000 (Tier 3 Rare or better, no Unique; Tier 4 = the old Tier 3's contents, Epic or better with a chance of a Unique), and
+   * a spare After Hours copy you opened yourself from a Game Night Intercept shreds for Game Night Intel, not Intel (a copy got
+   * in a trade or bought still shreds for Intel). Turns on the Game Night Rules' Intercepts paragraph, Terms 9's Intercepts,
+   * Game Night Intel and Intel items, Privacy's Intel and Game Night items, the transparency change log (the prices, the
+   * contents, what an After Hours item shreds for) and Help's Game Night Intercepts / duplicates / reset lines in all 10
+   * languages. Written for the owner's recommended answers (gnshred own, gnunique t4, gntier3 4,000 with Rare 55 / Epic 31 /
+   * Mythic 11.5 / Legendary 2.5): SITE.md says what to change for the others. A change of what an event's rewards cost and
+   * what a copy shreds for (Terms 5 and 9 and the Rules already allow it), so no TERMS_PUBLISHED or terms_version raise.
+   * OFF until the row is applied live (client OTA first, then the row, then this flip the same day):
+   * node scripts/flip-switch.mjs gnTiers4_1120 --day "<apply day>". Off again (--undo) if the row is rolled back.
+   * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
+   */
+  gnTiers4_1120: false,
 }
 
 /**
@@ -2318,6 +2334,14 @@ export const TESTER_ONBOARD_DAY = 'November 21, 2026'
 export const GUEST_SAVE_BEFORE_BUY_DAY = 'November 20, 2026'
 /** LIVE.csAutoPreserve's day in PRIVACY_LAST_UPDATED only: the day 20261231999727 is applied and the site goes up with it (set by flip-switch --day). */
 export const CS_AUTO_PRESERVE_DAY = 'November 20, 2026'
+/**
+ * gn-tiers4-1120: LIVE.gnTiers4_1120's day in both Last Updated dates and the Game Night Rules' (set by flip-switch --day to the
+ * day the row is applied and the site goes up with it). The placeholder is refused at build time while the switch is on.
+ */
+export const GN_TIERS4_1120_DAY = '__SET_ON_APPLY_DAY__'
+if (LIVE.gnTiers4_1120 && !Number.isFinite(Date.parse(GN_TIERS4_1120_DAY))) {
+  throw new Error('LIVE.gnTiers4_1120 is on but GN_TIERS4_1120_DAY is not a date: node scripts/flip-switch.mjs gnTiers4_1120 --day "<apply day>"')
+}
 /** The latest of several "Month D, YYYY" days (null skipped): a switch's day can then move a date whatever the chain's order. */
 const latestOf = (...days: Array<string | null>): string =>
   days.reduce<string>((a, b) => (b !== null && Date.parse(b) > Date.parse(a) ? b : a), days[0] as string)
@@ -2769,7 +2793,7 @@ export const LEGAL_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // Terms 9: no Intel by hand, the ledger kept whole, the launch reset's Intel (E0, WI): set to the day the site goes up with it on
       : 'October 28, 2026' // Intercepts on (Terms 9; Safety; Game Night rules) and Terms 6's Post Anonymously / Show My Name (20261201680000) and Packs Studio wording; the Community Rules' swearing line (section 5: fine in private packs, censored in Community, 20261201790000), Terms 6's reviewer edits to a Community submission (a mild swear hidden, an entry taken out, the theme changed; told to the creator; 20261201860000); before it, October 27, 2026 (Custom, Community and featured Packs), October 25 (section 5: no votes at Play Online tables), October 24 (QA 110)
-), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && LIVE.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null)
+), COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && LIVE.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null)
 
 /**
  * "Last Updated" on the Privacy Policy and Delete Account, which can run ahead of the Terms (PRIVACY_AHEAD): the
@@ -2968,7 +2992,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
