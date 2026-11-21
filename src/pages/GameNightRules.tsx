@@ -133,7 +133,7 @@ const GameNightRules: React.FC = () => (
               opens into work like any Intercept you earn, as our <PageLink to="/terms">Terms of Service</PageLink> (section
               9) describe. A spare copy of any After Hours item, however you got it (opened, bought or traded), shreds
               for Game Night Intel instead of Intel, at the amount the app shows (never your first copy of an item; a
-              Unique never shreds). Game Night
+              Unique never shreds). Game Night{' '}
             </>
           ) : (
             <>
@@ -141,7 +141,7 @@ const GameNightRules: React.FC = () => (
               and <B>Tier 3</B> for 10,000. Each one opens into one item of Game Night's own set, After Hours: Tier 1 any
               rarity, Tier 2 Uncommon or better, Tier 3 Epic or better with a chance of a Unique. The app shows the exact
               rarity odds (under What's inside) before you buy or open one; it shows the odds only, not a list of the items. Once bought, a Game Night Intercept and the item it opens into work like any
-              Intercept you earn, as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe. Game Night
+              Intercept you earn, as our <PageLink to="/terms">Terms of Service</PageLink> (section 9) describe. Game Night{' '}
             </>
           )}
           tables are Play Online tables, so a win there also counts toward your Intercepts like any Play Online win, and

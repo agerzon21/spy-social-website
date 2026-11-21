@@ -787,7 +787,7 @@ const Terms: React.FC = () => {
             Dec 7: W1 wipes Game Night Intercepts and their items, row 84 gives back the Game Night Intel earned. */}
         {LIVE.gnRewardsRules && (
           <li>
-            Each game you finish at a Game Night table can give you Game Night Intel (for
+            Each game you finish at a Game Night table can give you Game Night Intel (for{' '}
             {LIVE.gnTiers4_1120 ? 'now 500 for a win in which you took at least half of your own turns, and nothing for a loss or for a game with no winner' : 'now 500 for a win and 200 for a loss, and nothing for a game with no winner'} or for the games the{' '}
             <PageLink to="/game-night-rules">Game Night Rules</PageLink> leave out, such as one you leave before it ends)
             and counts toward four cosmetic titles{LIVE.gnTiers4_1120 ? ' (a game counts only if you took at least half of your own turns in it; ★\u00a0Operative also counts a loss or a tie)' : ''}, ★&nbsp;Operative, ★&nbsp;Local Hero, ★&nbsp;Master Spy and ★&nbsp;Double Agent, each worn
