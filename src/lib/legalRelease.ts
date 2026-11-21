@@ -2306,7 +2306,7 @@ export const LIVE = {
    * node scripts/flip-switch.mjs gnTiers4_1120 --day "<apply day>". Off again (--undo) if the row is rolled back.
    * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.
    */
-  gnTiers4_1120: false,
+  gnTiers4_1120: true,
   /**
    * legal-1120 (legal audit Nov 20, scratchpad legal-audit-1120/REPORT.md): the Game Night Rules publish the exact Game Night
    * Intercept odds (each tier's rarities; the Unique Blackout's details and the Eclipse's ~1 in 100), and Terms 9 says a
@@ -2314,7 +2314,7 @@ export const LIVE = {
    * terms_version raise (it adds no duty and takes no right). Publish with or after gnTiers4_1120 (its odds follow that
    * switch): node scripts/flip-switch.mjs oddsPublic1120 --day "<publish day>". A site-only fact: LIVE.
    */
-  oddsPublic1120: false,
+  oddsPublic1120: true,
 }
 
 /**
@@ -2346,9 +2346,9 @@ export const CS_AUTO_PRESERVE_DAY = 'November 20, 2026'
  * gn-tiers4-1120: LIVE.gnTiers4_1120's day in both Last Updated dates and the Game Night Rules' (set by flip-switch --day to the
  * day the row is applied and the site goes up with it). The placeholder is refused at build time while the switch is on.
  */
-export const GN_TIERS4_1120_DAY = '__SET_ON_APPLY_DAY__'
+export const GN_TIERS4_1120_DAY = 'November 21, 2026'
 /** LIVE.oddsPublic1120's day in LEGAL_LAST_UPDATED and the Game Night Rules' date (set by flip-switch --day). */
-export const ODDS_PUBLIC_1120_DAY = '__SET_ON_PUBLISH_DAY__'
+export const ODDS_PUBLIC_1120_DAY = 'November 21, 2026'
 if (LIVE.oddsPublic1120 && !Number.isFinite(Date.parse(ODDS_PUBLIC_1120_DAY))) {
   throw new Error('LIVE.oddsPublic1120 is on but ODDS_PUBLIC_1120_DAY is not a date: node scripts/flip-switch.mjs oddsPublic1120 --day "<publish day>"')
 }
