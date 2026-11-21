@@ -68,10 +68,21 @@ const GameNightRules: React.FC = () => (
       <>
         <H2>Game Night Intel</H2>
         <P>
-          For each game you finish at a Game Night table that <B>starts</B> during the night's hours, you get Game Night
-          Intel: <B>500</B> for a win (the Locals win and you're a Local, or the spies win and you're a spy) and{' '}
-          <B>200</B> for a finished loss. A game with no winner gives <B>0</B>. A game that starts before the end and
-          finishes after it still counts. Game Over shows what you got.
+          For each game you {LIVE.gnTiers4_1120 ? 'win' : 'finish'} at a Game Night table that <B>starts</B> during the night's hours, you get Game Night
+          Intel: {LIVE.gnTiers4_1120 ? (
+            <>
+              <B>500</B> for a win (the Locals win and you're a Local, or the spies win and you're a spy), but only if you
+              took at least <B>half of your own turns</B> in that game. A loss gives <B>0</B>, and so does a game with no
+              winner. A game that starts before the end and finishes after it still counts.{' '}
+            </>
+          ) : (
+            <>
+              <B>500</B> for a win (the Locals win and you're a Local, or the spies win and you're a spy) and{' '}
+              <B>200</B> for a finished loss. A game with no winner gives <B>0</B>. A game that starts before the end and
+              finishes after it still counts.{' '}
+            </>
+          )}
+          Game Over shows what you got.
         </P>
         <P>For Game Night Intel and the ★ titles:</P>
         <Bullets>
@@ -84,9 +95,15 @@ const GameNightRules: React.FC = () => (
             removed from the table, a game that starts after the night's hours, a game that ends without a result because
             a player walked out, a game our fair-play checks flag, a table with a spybot, and accounts that are banned.
           </li>
+          {LIVE.gnTiers4_1120 && (
+            <li>
+              A win counts only if you took at least half of your own turns in that game. A win you sat out gives no Game
+              Night Intel, and the ★ titles follow the same check.
+            </li>
+          )}
         </Bullets>
         <P>
-          Game Night Intel is earned only by playing at Game Night{LIVE.gnTiers4_1120 ? ' and by shredding a spare After Hours item you opened yourself (see Game Night Intercepts below)' : ''}. It can't be bought, traded, sold or given to anyone,
+          Game Night Intel is earned only by playing at Game Night{LIVE.gnTiers4_1120 ? ' and by shredding a spare After Hours item (see Game Night Intercepts below)' : ''}. It can't be bought, traded, sold or given to anyone,
           a membership adds nothing to it, and it has <B>no cash value</B>. It's spent only on Game Night Intercepts.
           {LIVE.launchSite
             ? ''
@@ -107,14 +124,14 @@ const GameNightRules: React.FC = () => (
           {LIVE.gnTiers4_1120 ? (
             <>
               In the <B>Vault</B>, Game Night Intel buys Game Night Intercepts: <B>Tier 1</B> for 400, <B>Tier 2</B> for
-              800, <B>Tier 3</B> for 4,000 and <B>Tier 4</B> for 8,000. Each one opens into one item of Game Night's own
+              800, <B>Tier 3</B> for 1,600 and <B>Tier 4</B> for 3,200. Each one opens into one item of Game Night's own
               set, After Hours: Tier 1 any rarity, Tier 2 Uncommon or better, Tier 3 Rare or better, Tier 4 Epic or
               better with a chance of a Unique. The app shows the exact rarity odds (under What's inside) before you buy or
               open one; it shows the odds only, not a list of the items. Once bought, a Game Night Intercept and the item it
               opens into work like any Intercept you earn, as our <PageLink to="/terms">Terms of Service</PageLink> (section
-              9) describe. A spare copy of an After Hours item that you opened yourself from a Game Night Intercept shreds
-              for Game Night Intel instead of Intel, at the amount the app shows (never your first copy of an item). A copy
-              you got in a trade shreds for Intel, as any other item does. Game Night
+              9) describe. A spare copy of any After Hours item, however you got it (opened, bought or traded), shreds
+              for Game Night Intel instead of Intel, at the amount the app shows (never your first copy of an item; a
+              Unique never shreds). Game Night
             </>
           ) : (
             <>

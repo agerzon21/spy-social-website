@@ -633,7 +633,7 @@ const Terms: React.FC = () => {
             {LIVE.intercepts ? (
               <>
                 Intel is an earned currency: you get it only from playing (your games, and your first game of the day
-                and your daily streak, which you claim in the app) and from shredding spare copies of items{LIVE.gnTiers4_1120 && LIVE.gnRewardsRules ? ' (a spare After Hours item you opened yourself from a Game Night Intercept shreds for Game Night Intel instead, see below)' : ''}. It can't be bought, and like every virtual
+                and your daily streak, which you claim in the app) and from shredding spare copies of items{LIVE.gnTiers4_1120 && LIVE.gnRewardsRules ? ' (a spare After Hours item, however you got it, shreds for Game Night Intel instead, see below)' : ''}. It can't be bought, and like every virtual
                 item it has no cash value and can't be sold for money{LIVE.trading ? ` or moved to another account except in a trade between adults (see Trades below)${LIVE.blackMarket ? ' or on the Black Market' : ''}` : ', traded or moved to another account'}.{' '}
                 {LIVE.blackMarket
                   ? 'Adults can spend it on the Black Market (see below); we may add other uses for it later, and the app will say what they are.'
@@ -741,7 +741,7 @@ const Terms: React.FC = () => {
             {(LIVE.launchSite && LIVE.interceptsMarket) || LIVE.gnRewardsRules ? 'Before you open or buy one' : 'Before you open one'}, the app shows (under Odds, or What's inside)
             the chance of each tier and rarity and any guarantee. It shows rarity odds only, not a list of the items an Intercept can open into, and that includes Game Night Intercepts. These are the exact odds every opening uses, and the
             app always shows the ones in use, with the date they last changed.{LIVE.sameOdds ? ' Which item of a rarity you get never depends on what you already own.' : ''} If you get an item you already have, you
-            keep the extra copy and can shred it for Intel{LIVE.gnTiers4_1120 && LIVE.gnRewardsRules ? ' (a spare After Hours item you opened yourself from a Game Night Intercept shreds for Game Night Intel instead; one you got in a trade shreds for Intel)' : ''}, at the amount the app shows, or trade up: 5 spare copies of
+            keep the extra copy and can shred it for Intel{LIVE.gnTiers4_1120 && LIVE.gnRewardsRules ? ' (a spare After Hours item, however you got it, shreds for Game Night Intel instead)' : ''}, at the amount the app shows, or trade up: 5 spare copies of
             one rarity give you 1 random item of the next rarity{/* LIVE.sameOdds: server 999888 no_repeat_drop_1115 (legal-1116) */}{LIVE.sameOdds ? ', whatever you already own' : " (one you don't have yet, while there is one)"}, and{' '}
             {LIVE.uniquesRarer ? '10' : '5'} spare Legendary copies give you a Unique of one of those{' '}
             {LIVE.uniquesRarer ? 'ten' : 'five'} items, with the odds shown in the app before you trade. Only spare copies count (never your first copy of an item, your only copy of it, or a Unique; a copy you bought or got in a trade is a spare when you hold another copy of that item), and the copies you trade
@@ -787,13 +787,13 @@ const Terms: React.FC = () => {
             Dec 7: W1 wipes Game Night Intercepts and their items, row 84 gives back the Game Night Intel earned. */}
         {LIVE.gnRewardsRules && (
           <li>
-            Each game you finish at a Game Night table gives you Game Night Intel (for
-            now 500 for a win and 200 for a loss, and nothing for a game with no winner or for the games the{' '}
+            Each game you finish at a Game Night table can give you Game Night Intel (for
+            {LIVE.gnTiers4_1120 ? 'now 500 for a win in which you took at least half of your own turns, and nothing for a loss, for a game with no winner' : 'now 500 for a win and 200 for a loss, and nothing for a game with no winner'} or for the games the{' '}
             <PageLink to="/game-night-rules">Game Night Rules</PageLink> leave out, such as one you leave before it ends)
             and counts toward four cosmetic titles, ★&nbsp;Operative, ★&nbsp;Local Hero, ★&nbsp;Master Spy and ★&nbsp;Double Agent, each worn
-            with its count. Game Night Intel is separate from Intel. You earn it only by playing at Game Night{LIVE.gnTiers4_1120 ? ' and by shredding a spare After Hours item you opened yourself from a Game Night Intercept (the app shows the amount)' : ''}, a
+            with its count. Game Night Intel is separate from Intel. You earn it only by playing at Game Night{LIVE.gnTiers4_1120 ? ' and by shredding a spare After Hours item, however you got it (the app shows the amount)' : ''}, a
             membership adds nothing to it, and it can't be bought, traded, sold, given or moved to another account; like
-            every virtual item it has no cash value. You can spend it only on Game Night Intercepts in the Vault{LIVE.gnTiers4_1120 ? ' (four tiers, for now 400, 800, 4,000 and 8,000)' : ''}, and a
+            every virtual item it has no cash value. You can spend it only on Game Night Intercepts in the Vault{LIVE.gnTiers4_1120 ? ' (four tiers, for now 400, 800, 1,600 and 3,200)' : ''}, and a
             Game Night Intercept, once you have it, and the item it opens into work like any Intercept you earn (above).
             The ★&nbsp;titles stay with the account that earned them: they can't be traded, sold or given to anyone, and
             they aren't minted collectibles. We may change how much Game Night Intel a game gives and what Game Night

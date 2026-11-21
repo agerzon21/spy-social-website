@@ -254,7 +254,7 @@ const es: HelpText = {
               id: 'game-night-rewards',
               q: '¿Qué gano en la Noche de Juegos?',
               a: [
-                '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota, 0 si la partida termina sin ganador. El final de la partida muestra lo que ganaste.',
+                o.gnTiers4 ? `<b>Intel de Noche de Juegos</b> por cada partida que ganas: 500, pero solo si jugaste al menos la mitad de tus propios turnos. Una derrota, o una partida sin ganador, da 0. El final de la partida muestra lo que ganaste.` : '<b>Intel de Noche de Juegos</b> por cada partida que terminas: 500 por una victoria, 200 por una derrota, 0 si la partida termina sin ganador. El final de la partida muestra lo que ganaste.',
                 "No hay Intel de Noche de Juegos si sales antes del final, te sacan de la mesa o no participas, si la partida empieza después del cierre de la Noche de Juegos (una partida que empieza a tiempo y termina más tarde sí paga), si nuestras comprobaciones de juego limpio marcan la partida, o en una mesa con spybots. Una partida que termina antes porque alguien se fue no le paga a nadie.",
                 '<b>Títulos ★</b> que van sumando: <b>★ Operativo</b> por cada partida de la Noche de Juegos que terminas, <b>★ Héroe local</b> por cada victoria como local, <b>★ Maestro espía</b> por cada victoria como espía y <b>★ Agente doble</b> por cada noche en que ganas en los dos bandos. Llévalos con su número, como ★ Operativo ×12.',
                 'El Intel de Noche de Juegos y los títulos ★ son solo tuyos: no se pueden intercambiar, y la membresía no les suma nada. Gasta el Intel en intercepciones de Noche de Juegos.',
@@ -665,9 +665,9 @@ const es: HelpText = {
               id: 'game-night-intercepts',
               q: '¿Qué son las intercepciones de Noche de Juegos?',
               a: [
-                o.gnTiers4 ? `Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor), <b>Nivel 3</b> por 4.000 (Raro o mejor) y <b>Nivel 4</b> por 8.000 (Épico o mejor, con opción de un Único).` : 'Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
+                o.gnTiers4 ? `Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor), <b>Nivel 3</b> por 1.600 (Raro o mejor) y <b>Nivel 4</b> por 3.200 (Épico o mejor, con opción de un Único).` : 'Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
                 'Se abren en la colección propia de la Noche de Juegos, <b>After Hours</b>: 14 objetos de sala de cartas para tu agente que ninguna otra intercepción tiene. Como en toda intercepción, la app muestra las probabilidades exactas.',
-                ...(o.gnTiers4 ? [`Una copia repetida de un objeto de <b>After Hours</b> que abriste tú mismo de una intercepción de la Noche de Juegos se tritura por <b>Intel de Noche de Juegos</b>, no por Intel, por la cantidad que muestra la app (nunca tu primera copia). Una que recibiste en un intercambio se tritura por Intel.`] : []),
+                ...(o.gnTiers4 ? [`Una copia repetida de cualquier objeto de <b>After Hours</b>, la hayas conseguido como la hayas conseguido (abriéndola, comprándola o por intercambio), se tritura por <b>Intel de Noche de Juegos</b>, no por Intel, por la cantidad que muestra la app (nunca tu primera copia).`] : []),
                 ...(o.u6153 ? ["El fondo Legendario de la Noche de Juegos es <b>Apagón</b>, que antes se llamaba La Trastienda. Su escena de descanso es <b>Rain Window</b>."] : []),
                 'Una comprada espera en <b>Por abrir</b>, en la <b>Bóveda</b>, y las que ya tienes se siguen abriendo desde ahí. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
                 "Toca <b>Qué contiene</b> en un nivel para ver las probabilidades por rareza. Solo muestra las probabilidades, no la lista de objetos.",
@@ -695,7 +695,7 @@ const es: HelpText = {
           q: '¿Qué hago con los repetidos?',
           a: [
             '<b>Tritura</b> una copia repetida para obtener Intel, por la cantidad que muestra la app.',
-            ...(o.gnTiers4 ? [`Una copia repetida de un objeto de <b>After Hours</b> que abriste tú mismo de una intercepción de la Noche de Juegos se tritura por Intel de Noche de Juegos.`] : []),
+            ...(o.gnTiers4 ? [`Una copia repetida de cualquier objeto de <b>After Hours</b>, la hayas conseguido como la hayas conseguido, se tritura por Intel de Noche de Juegos.`] : []),
             '<b>Canje:</b> 5 copias repetidas de una rareza te dan 1 objeto al azar de la rareza siguiente, y 10 copias Legendarias repetidas te dan un Único.' + (o.launch ? " Si hay un regalo entre ellas, lo que consigas también será solo para ti." : ''),
             'Solo cuentan los repetidos, nunca tu primera copia ni un Único.',
             'Una copia que compraste o recibiste en un intercambio cuenta como repetida si tienes otra copia de ese objeto. Tu única copia siempre se queda.',

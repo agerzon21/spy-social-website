@@ -2292,16 +2292,16 @@ export const LIVE = {
    */
   csAutoPreserve: true,
   /**
-   * gn-tiers4-1120 (owner's Game Night asks, Nov 20; app server row 20261231999719 gn_tiers4_1120 + client feat/gn-tiers4-1120;
-   * plan gn-tiers4-1120/PLAN.md, site notes gn-tiers4-1120/SITE.md): Game Night Intercepts become FOUR tiers, 400 / 800 / 4,000 /
-   * 8,000 (Tier 3 Rare or better, no Unique; Tier 4 = the old Tier 3's contents, Epic or better with a chance of a Unique), and
-   * a spare After Hours copy you opened yourself from a Game Night Intercept shreds for Game Night Intel, not Intel (a copy got
-   * in a trade or bought still shreds for Intel). Turns on the Game Night Rules' Intercepts paragraph, Terms 9's Intercepts,
-   * Game Night Intel and Intel items, Privacy's Intel and Game Night items, the transparency change log (the prices, the
-   * contents, what an After Hours item shreds for) and Help's Game Night Intercepts / duplicates / reset lines in all 10
-   * languages. Written for the owner's recommended answers (gnshred own, gnunique t4, gntier3 4,000 with Rare 55 / Epic 31 /
-   * Mythic 11.5 / Legendary 2.5): SITE.md says what to change for the others. A change of what an event's rewards cost and
-   * what a copy shreds for (Terms 5 and 9 and the Rules already allow it), so no TERMS_PUBLISHED or terms_version raise.
+   * gn-tiers4-1120 (owner's final Game Night economy, Nov 21; app server row 20261231999719 gn_tiers4_1120 variant P + client
+   * feat/gn-tiers4-1120; plan gn-tiers4-1120/PLAN.md, PRICE-OPTIONS.md): Game Night Intercepts become FOUR tiers, 400 / 800 /
+   * 1,600 / 3,200 (Tier 3 Rare 45 / Epic 33 / Mythic 17.7 / Legendary 4.3, no Unique; Tier 4 Epic 58.8 / Mythic 32 /
+   * Legendary 7.5 / Unique 1.7, the Unique only there); every spare After Hours item shreds for Game Night Intel, however it was
+   * got (normal values 40 / 100 / 250 / 650 / 1,800 / 5,000); and a game pays Game Night Intel for a WIN only (500, loss and
+   * no winner 0), only if you took at least half of your own turns (server rows 999714 turn share + win-only pay: flip with them).
+   * Turns on the Game Night Rules' Intel and Intercepts paragraphs, Terms 9's Intercepts, Game Night Intel and Intel items, Privacy's
+   * Intel and Game Night items, the transparency change log and Help's pay / Game Night Intercepts / duplicates / reset lines in
+   * all 10 languages. A change of what an event's rewards cost and what a copy shreds for (Terms 5 and 9 and the Rules already
+   * allow it), so no TERMS_PUBLISHED or terms_version raise.
    * OFF until the row is applied live (client OTA first, then the row, then this flip the same day):
    * node scripts/flip-switch.mjs gnTiers4_1120 --day "<apply day>". Off again (--undo) if the row is rolled back.
    * A server switch for every app version at once: set in LIVE, never in PRIVACY_AHEAD.

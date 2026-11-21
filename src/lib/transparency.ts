@@ -191,10 +191,11 @@ const ECONOMY_VALUES_L: { day: string; what: string; from: string; to: string }[
  * its apply day. Rarity odds are the server's (crate_rarities, the app shows the same).
  */
 const GN_TIERS4: { day: string; what: string; from: string; to: string }[] = [
-  { day: GN_TIERS4_1120_DAY, what: 'the price of a Game Night Tier 3 Intercept', from: '10,000 Game Night Intel', to: '4,000 Game Night Intel' },
-  { day: GN_TIERS4_1120_DAY, what: "a Game Night Tier 3 Intercept's chances (Rare, Epic, Mythic, Legendary, Unique)", from: 'Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%', to: 'Rare 55%, Epic 31%, Mythic 11.5%, Legendary 2.5%, no Unique' },
-  { day: GN_TIERS4_1120_DAY, what: 'a Game Night Tier 4 Intercept (the old Tier 3 contents)', from: 'none', to: '8,000 Game Night Intel: Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%' },
-  { day: GN_TIERS4_1120_DAY, what: 'what a spare After Hours item you opened yourself from a Game Night Intercept shreds for (Common, Uncommon, Rare, Epic, Mythic, Legendary; a Unique never)', from: 'Intel: 40, 100, 250, 650, 1,800 and 5,000', to: 'Game Night Intel: the same 40, 100, 250, 650, 1,800 and 5,000 (a copy got in a trade still shreds for Intel)' },
+  { day: GN_TIERS4_1120_DAY, what: 'the price of a Game Night Tier 3 Intercept', from: '10,000 Game Night Intel', to: '1,600 Game Night Intel' },
+  { day: GN_TIERS4_1120_DAY, what: "a Game Night Tier 3 Intercept's chances (Rare, Epic, Mythic, Legendary, Unique)", from: 'Epic 65.7%, Mythic 28.8%, Legendary 5%, Unique 0.5%', to: 'Rare 45%, Epic 33%, Mythic 17.7%, Legendary 4.3%, no Unique' },
+  { day: GN_TIERS4_1120_DAY, what: 'a Game Night Tier 4 Intercept (the old Tier 3 contents; the Unique is only here)', from: 'none', to: '3,200 Game Night Intel: Epic 58.8%, Mythic 32%, Legendary 7.5%, Unique 1.7%' },
+  { day: GN_TIERS4_1120_DAY, what: 'what a spare After Hours item shreds for, however you got it (Common, Uncommon, Rare, Epic, Mythic, Legendary; a Unique never)', from: 'Intel: 40, 100, 250, 650, 1,800 and 5,000', to: 'Game Night Intel: the same 40, 100, 250, 650, 1,800 and 5,000' },
+  { day: GN_TIERS4_1120_DAY, what: 'what a Game Night game pays in Game Night Intel', from: '500 for a win, 200 for a loss, 0 with no winner', to: '500 for a win in which you took at least half of your own turns; 0 for a loss, with no winner, or after sitting out the win' },
 ]
 
 /** Earn-rate, price and odds changes, newest first: the day, what changed, from and to. */

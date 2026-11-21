@@ -282,7 +282,7 @@ const Privacy: React.FC = () => {
                 : ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).')}
             {/* PRIVACY.gnTiers4_1120 (gn-tiers4-1120, app server row 20261231999719): an After Hours copy you opened shreds for Game Night Intel, kept in its history. */}
             {PRIVACY.gnTiers4_1120 && PRIVACY.gameNightPrizes && PRIVACY.gnRewardsRules &&
-              ' A spare After Hours item you opened yourself from a Game Night Intercept shreds for Game Night Intel instead, and is recorded in your Game Night Intel history (see Game Night below), not here.'}
+              ' A spare After Hours item, however you got it, shreds for Game Night Intel instead, and is recorded in your Game Night Intel history (see Game Night below), not here.'}
             {PRIVACY.intelLedger &&
               " Each line of your Intel history (your Intel ledger) also records who caused it (a game, you, or us), when, and the app version and platform it came from, so that we can find everyone a bug affected. Lines are only ever added: we never change or delete one."}{' '}
             Other players never see your Intel or your streak, and we look at Intel only as totals across all
@@ -331,7 +331,7 @@ const Privacy: React.FC = () => {
             it's waiting for your first Play Online game that counts (one from a code); when you've seen the app's
             notices about your Intercepts (such as Welcome Back); and, once you open it, when, the item and
             its rarity, whether you already had that item, and for a Unique, its number and colour. We keep every copy
-            you get, the Intel{PRIVACY.gnTiers4_1120 && PRIVACY.gnRewardsRules ? ' (or Game Night Intel, for an After Hours item you opened yourself)' : ''} you get when you shred a spare one, and each trade-up (the spare copies it used, the odds
+            you get, the Intel{PRIVACY.gnTiers4_1120 && PRIVACY.gnRewardsRules ? ' (or Game Night Intel, for an After Hours item)' : ''} you get when you shred a spare one, and each trade-up (the spare copies it used, the odds
             it used and the item it gave). They also keep your progress toward your next
             Intercepts and the counts behind any guarantee the app shows. All of this comes from the games you play and
             the codes you enter: private-room games, and games that give no Intel (for example a game you left or one

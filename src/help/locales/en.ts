@@ -284,7 +284,7 @@ const en: HelpText = {
               id: 'game-night-rewards',
               q: 'What do I earn at Game Night?',
               a: [
-                '<b>Game Night Intel</b> for every game you finish: 500 for a win, 200 for a loss, 0 if the game has no winner. Game Over shows what you got.',
+                o.gnTiers4 ? `<b>Game Night Intel</b> for every game you win: 500, but only if you took at least half of your own turns. A loss, or a game with no winner, gives 0. Game Over shows what you got.` : '<b>Game Night Intel</b> for every game you finish: 500 for a win, 200 for a loss, 0 if the game has no winner. Game Over shows what you got.',
                 "No Game Night Intel if you leave before the end, are removed or don’t take part, if the game starts after Game Night closes (a game that starts in time and ends later still pays), if our fair-play checks flag the game, or at a table with spybots. A game that ends early because someone walked out pays no one.",
                 '<b>★ titles</b> that count up: <b>★ Operative</b> for each Game Night game you finish, <b>★ Local Hero</b> for each win as a Local, <b>★ Master Spy</b> for each win as a spy, and <b>★ Double Agent</b> for each night you win on both sides. Wear one with its count, like ★ Operative ×12.',
                 'Game Night Intel and the ★ titles are yours alone: they can’t be traded, and a membership adds nothing to them. Spend the Intel on Game Night Intercepts.',
@@ -695,9 +695,9 @@ const en: HelpText = {
               id: 'game-night-intercepts',
               q: 'What are Game Night Intercepts?',
               a: [
-                o.gnTiers4 ? `Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better), <b>Tier 3</b> for 4,000 (Rare or better) and <b>Tier 4</b> for 8,000 (Epic or better, with a chance of a Unique).` : 'Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
+                o.gnTiers4 ? `Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better), <b>Tier 3</b> for 1,600 (Rare or better) and <b>Tier 4</b> for 3,200 (Epic or better, with a chance of a Unique).` : 'Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
                 'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
-                ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item you opened yourself from a Game Night Intercept shreds for <b>Game Night Intel</b>, not Intel, at the amount the app shows (never your first copy). One you got in a trade shreds for Intel.`] : []),
+                ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item, however you got it (opened, bought or traded), shreds for <b>Game Night Intel</b>, not Intel, at the amount the app shows (never your first copy).`] : []),
                 ...(o.u6153 ? ["Game Night’s Legendary background is <b>Blackout</b>, which used to be called The Back Room. Its rest scene is <b>Rain Window</b>."] : []),
                 'A bought one waits in <b>To Open</b> in the <b>Vault</b>, and one you already own still opens from there. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
                 "Tap <b>What’s inside</b> on a tier to see its rarity odds. It shows the odds only, not the list of items.",
@@ -725,7 +725,7 @@ const en: HelpText = {
           q: 'What can I do with duplicates?',
           a: [
             '<b>Shred</b> a spare copy for Intel, at the amount the app shows.',
-            ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item you opened yourself from a Game Night Intercept shreds for Game Night Intel instead.`] : []),
+            ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item, however you got it, shreds for Game Night Intel instead.`] : []),
             '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.' + (o.launch ? " With a gift among them, what you get is just for you too." : ''),
             'Only spares count, never your first copy or a Unique.',
             'A copy you bought or got in a trade counts as a spare when you hold another copy of that item. Your only copy always stays.',
