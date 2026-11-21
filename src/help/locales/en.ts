@@ -260,7 +260,7 @@ const en: HelpText = {
               a: [
                 "<b>Compete</b> is a card on Home with three tabs: <b>Game Night</b>, <b>Ranked</b> and <b>Tournaments</b>.",
                 "Only the Game Night tab is in use today. Ranked and Tournaments are coming later, and say “Soon”.",
-                "On Home, the <b>Meanwhile at Game Night</b> card is one button: tap it to open the Game Night tab.",
+                "In <b>Compete</b>, the <b>Ranked</b> and <b>Tournaments</b> tabs show a <b>Meanwhile at Game Night</b> card. The whole card is one button: tap it to open the Game Night tab.",
               ],
             },
             ]
@@ -318,7 +318,7 @@ const en: HelpText = {
                   ? ['Members get AI feedback on every line they write, as they play, and a letter grade for every game. The AI feedback is for players 16 and older who tap <b>Try It</b> when the app asks; for everyone else, the phone grades. To stop it, turn off <b>Rate My Practice Lines with AI</b> in Settings. A line that only turns the question back (“What do you think?”) isn’t an answer, so it scores low.']
                   : []),
                 'The tutorials stay free for everyone, and passing one still counts for Play Online.',
-                'Without a membership, <b>Practice Game</b> on the tutorial’s last card is greyed out and says “Practice Games are for members”. The tutorial still counts.',
+                'Without a membership, <b>Practice Game</b> on the tutorial’s last card is greyed out and says “Practice Games are for members”. The tutorial still counts. The line under it is a link to <b>Membership</b>.',
                 'The phone’s own grade, used when AI feedback is off, treats a line that only turns the question back the same way.',
               ],
             },
