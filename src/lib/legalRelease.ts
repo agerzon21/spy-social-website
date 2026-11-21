@@ -145,7 +145,7 @@ export const LIVE = {
    * app_config role_reveal_online is 'everyone': node scripts/flip-switch.mjs helpRoleReveal. Off again if the reveal
    * is rolled back (role_reveal_online 'off' or 'owner_testers').
    */
-  helpRoleReveal: false,
+  helpRoleReveal: true,
   /**
    * help-new-1117: Help's Game Night rewards (app server 20261231999848_gamenight_rewards_1117, NEXT-BATCH row 83; client
    * feat/gn-rewards-client-1117b in app update 62.15; spec gamenight-rewards-1116/FINAL-SPEC.md): #game-night-rewards
@@ -2044,7 +2044,7 @@ export const LIVE = {
    * button, lib/glossary/roleReveal1113.ts): Privacy's Chat Messages item and Terms 6's "your content". Same chat, same
    * table, same retention; only the name. So it moves PRIVACY_LAST_UPDATED too.
    */
-  appU62: false,
+  appU62: true,
   /**
    * legal-cov2-1114 (app repo server files live Sat Nov 14: 20261231999944 drawing_minor_room_strike, 999942
    * drawing_minor_prior, 999936 child_safety_review_fixes, 999931 minor_join_drawing_checks, 999940
@@ -2366,8 +2366,8 @@ export const NO_PACK_PASS_1117_DAY = 'November 17, 2026'
 /** LIVE.appU61's day (with LIVE.memberLoyalty's and LIVE.modCoverHold's when they go with it): the day the u61 OTA ships. Set by flip-switch. */
 export const APP_U61_DAY = 'November 13, 2026'
 
-/** LIVE.appU62's day in LEGAL_LAST_UPDATED: the day role_reveal_online goes to 'everyone' (Beta 3). Set by flip-switch (--day). Never earlier than November 24, 2026. */
-export const APP_U62_DAY = 'November 24, 2026'
+/** LIVE.appU62's day in LEGAL_LAST_UPDATED: the day role_reveal_online goes to 'everyone' (Beta 3). Set by flip-switch (--day). Owner "reveal now" Nov 21, 2026: on since 00:29 ET that day. */
+export const APP_U62_DAY = 'November 21, 2026'
 
 /** LIVE.unconfirmedSignups's day in PRIVACY_LAST_UPDATED: the day the site goes up with it on (the day 20261231999800 is applied). Never earlier than November 12, 2026. */
 export const UNCONFIRMED_SIGNUPS_DAY = 'November 13, 2026'
@@ -2968,7 +2968,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null)
+), SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null, LIVE.appU62 ? APP_U62_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
