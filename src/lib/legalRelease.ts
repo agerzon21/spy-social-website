@@ -2320,7 +2320,7 @@ export const LIVE = {
    * open in Compete, 721 Vault "Trade protected" tag). Turns on three Help lines in ten languages (help/types r21). Help
    * only: no legal date moves. Flip when the round's OTA is out.
    */
-  helpR21_1123: false,
+  helpR21_1123: true,
   /**
    * help-launch-1122, STAGED OFF: the app's PASTE CODE button (otp-easy-1122, baf358d02) is in the released 2.2.1 build. Turns on
    * #code-not-arriving's "Tap Paste Code" line in ten languages (help/types pasteCode). Help only: no legal date moves. Flip
