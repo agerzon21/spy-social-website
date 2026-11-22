@@ -48,6 +48,8 @@ const en = {
       terms: 'Terms of Service',
       childSafety: 'Child Safety Standards',
       whatsNew: "What's New",
+      /** News and announcements (/news). */
+      news: "News",
       roadmap: 'Roadmap',
       /** The press kit (/press, press-page-1116). */
       press: 'Press kit',
@@ -78,6 +80,7 @@ const en = {
       terms: 'The terms for using SpySocial: who can play, your account and content, public rooms, the community rules, moderation and appeals.',
       childSafety: "SpySocial's standards against child sexual abuse and exploitation: what we prohibit, how to report a concern, what we do, and our child safety contact.",
       whatsNew: 'Release notes for SpySocial: new features, fixes and improvements in each version of the app.',
+      news: "SpySocial news and announcements: the beta tests, the launch on December 8 and Game Nights, with dates, times and how to take part.",
       roadmap:
         "What's coming to SpySocial: everything in version 2.2, from Play Online and Spy Sketch to automatic chat translation, and what's planned next: ranked games, seasons and tournaments.",
       press: "SpySocial's press kit: what the game is, the fact sheet, the launch date, logos and screenshots to download, and the press contact.",
@@ -128,6 +131,8 @@ const en = {
     legal: 'Legal & Safety',
     browser: 'Play in Your Browser',
     whatsNew: "What's New",
+    /** The link to the news page (/news). */
+    news: "News",
     /** The link to the roadmap page, once it's announced (LIVE.roadmap). */
     roadmap: 'Roadmap',
     /** The link to the press kit (/press). */
@@ -810,6 +815,24 @@ const en = {
     ],
   },
 
+  /**
+   * News (/news) and the home page's Latest strip: the page's own labels. The announcements themselves are ONE list,
+   * src/news/entries.ts (each with its words per language).
+   */
+  news: {
+    /** The small label over the poster line. */
+    eyebrow: "News",
+    /** The poster line, set huge, before the home hero's full stop (home.hero.titleMark). Short: it must fit a 320 px phone. */
+    title: "The latest",
+    lede: "Betas, launch day and Game Nights: what’s happening at SpySocial and when. All times are US Eastern Time (ET).",
+    /** The two runs of the timeline: what is still ahead, and what is behind. */
+    upcoming: "Coming up",
+    earlier: "Earlier",
+    /** The home page's strip: its label, and its link to /news. */
+    latest: "Latest",
+    all: "All news",
+    outro: "Follow us to hear it first.",
+  },
   /**
    * The roadmap (/roadmap): what 2.2 brings on the launch day, then what's planned, with no other dates. Short and
    * player-facing, in the app's own words (the stores' 2.2 What's New). Say "planned", never promise.

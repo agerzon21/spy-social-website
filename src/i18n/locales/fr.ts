@@ -29,6 +29,7 @@ const fr: Strings = {
       terms: "Conditions d'utilisation",
       childSafety: 'Protection des enfants',
       whatsNew: 'Nouveautés',
+      news: "Actualités",
       roadmap: 'Feuille de route',
       press: 'Kit presse',
       deleteAccount: 'Supprimer ton compte',
@@ -56,6 +57,7 @@ const fr: Strings = {
       terms: "Les conditions d'utilisation de SpySocial\u00A0: qui peut jouer, ton compte et ton contenu, les salons publics, les règles de la communauté, la modération et les recours.",
       childSafety: "Les standards de SpySocial contre les abus et l'exploitation sexuels des enfants\u00A0: ce que nous interdisons, comment signaler un problème, ce que nous faisons et notre contact pour la protection des enfants.",
       whatsNew: "Les notes de version de SpySocial\u00A0: nouveautés, corrections et améliorations de chaque version de l'appli.",
+      news: "Actualités et annonces de SpySocial : les bêtas, la sortie du 8 décembre et les soirées jeux, avec les dates, les horaires et comment participer.",
       roadmap:
         "Ce qui arrive sur SpySocial : tout sur la version 2.2, de « Jouer en ligne » et Spy Sketch à la traduction automatique du chat, et ce qui est prévu ensuite : mode classé, saisons et tournois.",
       press: "Le kit presse de SpySocial\u00A0: ce qu'est le jeu, la fiche technique, la date de sortie, les logos et captures d'écran à télécharger, et le contact presse.",
@@ -97,6 +99,7 @@ const fr: Strings = {
     legal: 'Mentions légales et sécurité',
     browser: 'Jouer dans le navigateur',
     whatsNew: 'Nouveautés',
+    news: "Actualités",
     roadmap: 'Feuille de route',
     press: 'Presse',
     rules: 'Règles',
@@ -744,6 +747,16 @@ const fr: Strings = {
     ],
   },
 
+  news: {
+    eyebrow: "Actualités",
+    title: "À la une",
+    lede: "Bêtas, sortie et soirées jeux\u00a0: ce qui se passe chez SpySocial, et quand. Toutes les heures sont à l’heure de l’Est américain (ET).",
+    upcoming: "À venir",
+    earlier: "Déjà passé",
+    latest: "À la une",
+    all: "Toutes les actualités",
+    outro: "Suis-nous pour l’apprendre en premier.",
+  },
   roadmap: {
     eyebrow: 'Feuille de route',
     title: 'À venir',

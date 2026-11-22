@@ -18,6 +18,8 @@ const SWITCHED_PAGES: { path: string; live: string | null }[] = [
   // The Beta 2 playtester page: listed until LIVE.beta2Off or the launch version (LIVE.launchSite) sends /beta home.
   { path: '/beta', live: 'BETA2_PAGE' },
   { path: '/roadmap', live: 'roadmap' },
+  // News (news-1122): always on; listed here rather than in public/sitemap.xml so its ten addresses are written by `entries`.
+  { path: '/news', live: null },
   { path: '/game-night-rules', live: 'gameNightRules' },
   { path: '/transparency', live: 'transparencyPage' },
   // The Safety page joins with the launch text (a switch of its own, beside LIVE).
@@ -142,6 +144,7 @@ const PREVIEW_PAGES: { path: string; key: string }[] = [
   { path: '/whats-new', key: 'whatsNew' },
   { path: '/roadmap', key: 'roadmap' },
   { path: '/press', key: 'press' },
+  { path: '/news', key: 'news' },
   { path: '/delete-account', key: 'deleteAccount' },
   { path: '/transparency', key: 'transparency' },
   { path: '/game-night-rules', key: 'gameNightRules' },

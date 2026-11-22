@@ -44,6 +44,8 @@ const Agree = page(() => import('./pages/Agree'))
 const Roadmap = page(() => import('./pages/Roadmap'))
 // The press kit (press-page-1116): facts, descriptions, logos and screenshots for journalists and creators.
 const Press = page(() => import('./pages/Press'))
+// News and announcements (news-1122): one list, src/news/entries.ts; the home page's Latest strip links here.
+const News = page(() => import('./pages/News'))
 // The Game Night rules: the route exists only while LIVE.gameNightRules is on (off: the 404 page).
 const GameNightRules = page(() => import('./pages/GameNightRules'))
 // The minted-collectibles ledger: the route exists only while LIVE.mintedCollectibles is on (from genesis).
@@ -73,6 +75,7 @@ const PRERENDERED: Record<string, { page: { preload: () => Promise<void> } | nul
   '/whats-new': { page: WhatsNew, src: 'src/pages/WhatsNew.tsx' },
   '/roadmap': { page: Roadmap, src: 'src/pages/Roadmap.tsx' },
   '/press': { page: Press, src: 'src/pages/Press.tsx' },
+  '/news': { page: News, src: 'src/pages/News.tsx' },
   ...(LIVE.launchSite || LIVE.beta2Off ? {} : { '/beta': { page: Beta, src: 'src/pages/Beta.tsx' } }),
   '/delete-account': { page: DeleteAccount, src: 'src/pages/DeleteAccount.tsx' },
   // /join alone (no code: the page says to open an invite); a room's /join/<code> stays the plain app.
@@ -155,6 +158,7 @@ function App({ helmetContext }: { helmetContext?: object } = {}) {
               <Route path="/whats-new" element={<Layout><WhatsNew /></Layout>} />
               <Route path="/roadmap" element={<Layout><Roadmap /></Layout>} />
               <Route path="/press" element={<Layout><Press /></Layout>} />
+              <Route path="/news" element={<Layout><News /></Layout>} />
               {/* After Beta 2, the old playtest link goes home (LIVE.beta2Off from Nov 15, then LIVE.launchSite). */}
               <Route path="/beta" element={LIVE.launchSite || LIVE.beta2Off ? <Navigate to="/" replace /> : <Layout><Beta /></Layout>} />
               {/* The plain reminder page answers /hello until the launch; from the launch flip its file is this app's, which goes home. */}

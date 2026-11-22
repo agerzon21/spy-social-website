@@ -54,6 +54,8 @@ const Footer = () => {
   const f = t.footer
   const play: FooterLinkItem[] = [
     ...(showBrowser ? [{ label: f.browser, href: PLAY_URL }] : []),
+    // News and announcements (news-1122).
+    { label: f.news, to: '/news' },
     { label: f.whatsNew, to: '/whats-new' },
     ...(betaClosed || LIVE.launchSite || LIVE.beta2Off ? [] : [{ label: f.beta, to: '/beta' }]),
     // The roadmap, once the owner has approved it (LIVE.roadmap).

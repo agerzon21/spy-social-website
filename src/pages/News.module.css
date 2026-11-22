@@ -1,0 +1,161 @@
+/*
+ * News (direction B, Film Noir): the roadmap's poster and timeline. One spotlight over a poster title, then two runs
+ * of the timeline down the page's start edge: what's ahead (a lit node, a solid card) and what's behind (an open node,
+ * plain words). Colours, faces and rules come from the skin (--ss-*, src/theme), so the light theme follows; every
+ * side is a logical one, so Arabic mirrors.
+ */
+
+.page {
+  flex: 1;
+  padding-bottom: 64px;
+  background: radial-gradient(90% 460px at 50% 0, var(--ss-glow), transparent 70%);
+}
+
+/* ---- the poster ---- */
+.hero { padding-block: 44px 4px; }
+.heroCopy { min-width: 0; }
+.title { margin: 0; }
+.mark { color: var(--ss-accent-text); }
+.lede { margin: 18px 0 0; max-width: 32em; font-size: clamp(17px, 4.6vw, 21px); line-height: 1.5; color: var(--ss-muted); }
+.heroArt { display: none; }
+
+/* ---- a run of the timeline: its label, then its entries ---- */
+.group { margin-top: 44px; }
+.group + .group { margin-top: 52px; }
+/* The run's label ("Coming up", "Earlier"): the small capitals of an eyebrow, on the timeline's edge. */
+.groupTitle {
+  margin: 0 0 22px;
+  font: 700 14px/1.25 var(--ss-font-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ss-highlight);
+  hyphens: manual;
+}
+.past .groupTitle { color: var(--ss-muted); }
+@media (max-width: 479px) {
+  .groupTitle { letter-spacing: 0.14em; }
+}
+
+.timeline { position: relative; list-style: none; margin: 0; padding: 0; }
+/* The line: lit where things are ahead, quiet where they're behind, fading out after the last entry. */
+.timeline::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 7px;
+  top: 8px;
+  bottom: 0;
+  width: 2px;
+}
+.coming .timeline::before { background: linear-gradient(180deg, var(--ss-accent) 0, var(--ss-line-strong) 70%, var(--ss-line)); }
+.past .timeline::before { background: linear-gradient(180deg, var(--ss-line-strong) 0, var(--ss-line) 70%, transparent); }
+
+/* An entry; a link to it (/news#beta-3) stops below the header. */
+.item { position: relative; padding-inline-start: 34px; padding-bottom: 28px; scroll-margin-top: 88px; }
+.item:last-child { padding-bottom: 0; }
+/* Its node on the line, level with its day. */
+.item::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 1px;
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+.coming .item::before {
+  background: var(--ss-accent);
+  box-shadow:
+    0 0 0 5px color-mix(in srgb, var(--ss-accent) 24%, transparent),
+    0 0 24px 2px color-mix(in srgb, var(--ss-accent) 50%, transparent);
+}
+.past .item::before { background: var(--ss-page); border: 2px solid var(--ss-line-strong); }
+
+/* The day, with its weekday, over the title. */
+.when {
+  min-height: 18px;
+  margin: 0 0 12px;
+  font: 700 14px/1.3 var(--ss-font-body);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ss-accent-text);
+  hyphens: manual;
+}
+.past .when { color: var(--ss-muted); }
+@media (max-width: 479px) {
+  .when { letter-spacing: 0.1em; }
+}
+
+/* What's ahead sits on a card; what's behind is plain. */
+.coming .item > article {
+  padding: 18px 18px 14px;
+  border: var(--ss-card-border) solid var(--ss-line);
+  border-radius: var(--ss-radius-card);
+  background: var(--ss-surface);
+  box-shadow: var(--ss-shadow-card);
+}
+.coming .item .when { margin-bottom: 14px; }
+.itemTitle { margin-bottom: 10px; }
+.text { margin: 0; max-width: 44em; font-size: 17px; line-height: 1.55; color: var(--ss-muted); }
+.coming .text { color: var(--ss-text); }
+.links { display: flex; flex-wrap: wrap; gap: 0 22px; margin: 8px 0 0; }
+/* An entry with no links keeps the card's bottom room even. */
+.coming .item > article:not(:has(.links)) { padding-bottom: 20px; }
+
+/* ---- the last word: follow for news ---- */
+.outro {
+  margin-top: 44px;
+  padding-top: 22px;
+  padding-inline-start: 34px;
+  border-top: var(--ss-hairline) solid var(--ss-line);
+}
+.outroText {
+  margin: 0 0 6px;
+  font: 800 24px/1.1 var(--ss-font-display);
+  text-transform: var(--ss-display-transform);
+  letter-spacing: 0.03em;
+  color: var(--ss-text);
+  hyphens: manual;
+}
+
+@media (min-width: 1000px) {
+  .page { padding-bottom: 96px; }
+  .hero { padding-top: 72px; }
+  .heroGrid { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 32px; align-items: end; }
+  .heroArt { display: block; position: relative; isolation: isolate; padding-top: 40px; }
+  .heroArt img { position: relative; z-index: 1; display: block; width: 100%; height: auto; }
+  /* The beam from above and its pool of light on the floor, as on the home page and the roadmap. */
+  .heroArt::before {
+    content: '';
+    position: absolute;
+    inset: -40px -50px 10px;
+    z-index: 0;
+    background: linear-gradient(180deg, var(--ss-art-beam-from), var(--ss-art-beam-mid) 70%, var(--ss-art-beam-to));
+    clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+    filter: blur(6px);
+    mix-blend-mode: var(--ss-art-beam-blend);
+  }
+  .heroArt::after {
+    content: '';
+    position: absolute;
+    inset-inline: -30px;
+    bottom: -6px;
+    height: 44px;
+    z-index: 0;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--ss-art-pool), transparent);
+  }
+  .group { margin-top: 72px; }
+  .group + .group { margin-top: 72px; }
+  .timeline::before { inset-inline-start: 9px; top: 10px; }
+  .item { padding-inline-start: 56px; padding-bottom: 32px; }
+  .item::before { width: 20px; height: 20px; top: 0; }
+  .groupTitle { margin-bottom: 26px; }
+  .coming .item > article { padding: 26px 28px 20px; max-width: 880px; }
+  .coming .item > article:not(:has(.links)) { padding-bottom: 28px; }
+  .outro { padding-inline-start: 56px; margin-top: 64px; }
+  .outroText { font-size: 30px; }
+}
+/* Scripts with no capitals need taller lines in the poster face (as ui.module.css does for the headings). */
+:global(html:is([lang='zh-Hans'], [lang='hi'], [lang='bn'], [lang='ar'])) .outroText { line-height: 1.3; letter-spacing: 0; }
+:global(html:is([lang='zh-Hans'], [lang='hi'], [lang='bn'], [lang='ar'])) :is(.when, .groupTitle) { letter-spacing: 0; }
