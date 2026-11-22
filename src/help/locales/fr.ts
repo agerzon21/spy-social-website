@@ -296,7 +296,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Puis-je jouer à SpySocial sur ordinateur ?",
         a: [
           "Oui : ouvre play.spysocial.app dans un navigateur. C'est le même jeu et le même compte que sur ton téléphone : connecte-toi ou commence en invité.",
-          o.browserPlay ? "Les salons, Jouer en ligne et la Soirée jeux fonctionnent aussi dans le navigateur." : "Pour l'instant, jouer dans le navigateur n'est ouvert qu'aux testeurs que nous invitons. Les autres peuvent se connecter et utiliser la partie compte (Compte, ton agent, réglages, Comment jouer), et voient <b>Le jeu dans le navigateur arrive bientôt</b> là où une partie commencerait. Nous l'annoncerons quand le jeu dans le navigateur s'ouvrira à tous.",
+          o.browserPlay ? "Les salons, Jouer en ligne et la Soirée jeux fonctionnent aussi dans le navigateur." : "Pour l'instant, jouer dans le navigateur n'est ouvert qu'aux testeurs et aux créateurs que nous invitons. Les autres peuvent se connecter et utiliser leur compte (Compte, ton agent, le Coffre, le Marché noir, les échanges, réglages, Comment jouer), et voient <b>Le jeu dans le navigateur arrive bientôt</b> là où une partie commencerait. Le jeu dans le navigateur s'ouvrira à tous après le lancement, avec la version PC ; nous l'annoncerons.",
         ],
       },
       ...(o.autoTranslation ? [
@@ -487,6 +487,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "C'est quoi, la protection de 7 jours ? Puis-je annuler un échange ?",
         a: [
           "Ce que tu reçois dans un échange est protégé pendant 7 jours. Tu peux porter un objet tout de suite, mais pas encore l'échanger, le déchiqueter ni l'utiliser dans un Échange, et l'Intel reçu ne se dépense pas encore.",
+          ...(o.r21 ? ["Dans le <b>Coffre</b>, un objet protégé porte l'étiquette <b>Protégé</b>. Touche-la pour voir le temps restant."] : []),
           ...(o.interceptsInTrades ? ["Une interception non ouverte que tu reçois reste scellée pendant ces 7 jours : tu ne peux pas encore l'ouvrir, l'échanger ni la mettre en vente."] : []),
           'Pendant ces 7 jours, tu peux annuler tes échanges, une fois tous les 90 jours. Ça défait tous tes échanges protégés, dans les deux sens, et met tes échanges en pause pendant 30 jours.',
           "L’annulation défait aussi tes achats et ventes sur les Trouvailles rares encore dans leurs 3 jours de protection.",
@@ -587,6 +588,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           'Une vente sur Objets est définitive tout de suite.',
           "Un Unique acheté sur Trouvailles rares est protégé pendant 3 jours : impossible de l'échanger, de le remettre en vente, de le déchiqueter ou de l'utiliser dans un Échange, et l'Intel du vendeur attend. Pendant ce temps, la vente peut être annulée, comme un échange.",
+          ...(o.r21 ? ["Tu peux le porter tout de suite : il est dans ton <b>Coffre</b> avec l'étiquette <b>Protégé</b>, qui affiche le temps restant."] : []),
           "Si l'acheteur ou le vendeur supprime son compte pendant ces 3 jours, la vente est annulée : l'acheteur récupère son Intel, ou le vendeur récupère l'Unique.",
         ],
       },
@@ -663,6 +665,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "C'est quoi, les interceptions de soirée jeux ?",
             a: [
               o.gnTiers4 ? `Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux), <b>Niveau 3</b> pour 1 600 (Rare ou mieux) et <b>Niveau 4</b> pour 3 200 (Épique ou mieux, avec une chance d'Unique).` : "Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
+              ...(o.r21 ? ["Tu peux en obtenir jusqu'à 5 d'un même niveau à la fois, autant que ton Intel de soirée jeux le permet, et les ouvrir sur place, dans l'onglet <b>Soirée jeux</b>."] : []),
               "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
               ...(o.gnTiers4 ? [`Un doublon de n'importe quel objet <b>After Hours</b>, quelle que soit la façon dont tu l'as obtenu (ouvert, acheté ou reçu dans un échange), se déchiquette contre de l'<b>Intel de soirée jeux</b>, pas de l'Intel, au montant affiché par l'appli (jamais ta première copie).`] : []),
               ...(o.u6153 ? ["Le fond Légendaire de la soirée jeux est <b>Black-out</b>, qui s'appelait avant L'Arrière-salle. Sa scène de repos est <b>Rain Window</b>."] : []),

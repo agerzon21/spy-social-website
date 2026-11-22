@@ -330,7 +330,7 @@ const en: HelpText = {
           q: "Can I play SpySocial on a computer?",
           a: [
             "Yes: open play.spysocial.app in a browser. It is the same game and the same account as on your phone: sign in, or start as a guest.",
-            o.browserPlay ? "Rooms, Play Online and Game Night work in the browser too." : "For now, playing games in the browser is open only to testers we invite. Everyone else can sign in and use the account side (Account, your agent, settings, How to Play), and sees <b>Browser Play Coming Soon</b> where a game would start. We will announce it when browser play opens to everyone.",
+            o.browserPlay ? "Rooms, Play Online and Game Night work in the browser too." : "For now, playing games in the browser is open only to testers and creators we invite. Everyone else can sign in and use their account there (Account, your agent, the Vault, the Black Market, trades, settings, How to Play), and sees <b>Browser Play Coming Soon</b> where a game would start. Browser play opens to everyone after launch, with the PC version; we will announce it.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -521,6 +521,7 @@ const en: HelpText = {
           q: 'What is the 7-day protection? Can I undo a trade?',
           a: [
             'What you get in a trade is protected for 7 days. You can wear an item at once, but you can’t trade it, shred it or trade it up yet, and Intel you get can’t be spent yet.',
+            ...(o.r21 ? ["In the <b>Vault</b>, a protected item shows a <b>Trade protected</b> tag. Tap it to see how much time is left."] : []),
             ...(o.interceptsInTrades ? ['An unopened Intercept you get stays sealed for those 7 days: you can’t open it, trade it or list it yet.'] : []),
             'In those 7 days you can reverse your trades, once every 90 days. It undoes all of your protected trades, both ways, and pauses your trading for 30 days.',
             "Reversing also undoes your Rare Finds buys and sales that are still in their 3 days of protection.",
@@ -621,6 +622,7 @@ const en: HelpText = {
           a: [
             'A sale on Items is final at once.',
             'A Unique bought on Rare Finds is protected for 3 days: it can’t be traded, listed, shredded or traded up, and the seller’s Intel waits. In that time the sale can be reversed, like a trade.',
+            ...(o.r21 ? ["You can wear it at once: it’s in your <b>Vault</b> with a <b>Trade protected</b> tag that shows the time left."] : []),
             'If the buyer or the seller deletes their account in those 3 days, the sale is undone: the buyer gets the Intel back, or the seller gets the Unique back.',
           ],
         },
@@ -697,6 +699,7 @@ const en: HelpText = {
               q: 'What are Game Night Intercepts?',
               a: [
                 o.gnTiers4 ? `Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better), <b>Tier 3</b> for 1,600 (Rare or better) and <b>Tier 4</b> for 3,200 (Epic or better, with a chance of a Unique).` : 'Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
+                ...(o.r21 ? ["You can get up to 5 of a tier at once, as many as your Game Night Intel covers, and open them right there on the <b>Game Night</b> tab."] : []),
                 'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
                 ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item, however you got it (opened, bought or traded), shreds for <b>Game Night Intel</b>, not Intel, at the amount the app shows (never your first copy).`] : []),
                 ...(o.u6153 ? ["Game Night’s Legendary background is <b>Blackout</b>, which used to be called The Back Room. Its rest scene is <b>Rain Window</b>."] : []),

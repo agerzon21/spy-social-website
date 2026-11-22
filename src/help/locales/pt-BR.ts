@@ -300,7 +300,7 @@ const ptBR: HelpText = {
           q: "Posso jogar SpySocial no computador?",
           a: [
             "Sim: abra play.spysocial.app em um navegador. É o mesmo jogo e a mesma conta do celular: entre ou comece como convidado.",
-            o.browserPlay ? "Salas, Jogar online e a Noite de jogo também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores que convidamos. Os demais podem entrar e usar a parte da conta (Conta, seu agente, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. Avisaremos quando o jogo no navegador abrir para todos.",
+            o.browserPlay ? "Salas, Jogar online e a Noite de jogo também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores e criadores que convidamos. Os demais podem entrar e usar a conta (Conta, seu agente, o Cofre, o Mercado Negro, trocas, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. O jogo no navegador abre para todos depois do lançamento, com a versão para PC; avisaremos.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -491,6 +491,7 @@ const ptBR: HelpText = {
           q: 'O que é a proteção de 7 dias? Posso desfazer uma troca?',
           a: [
             'O que você recebe numa troca fica protegido por 7 dias. Dá para usar um item na hora, mas ainda não dá para trocá-lo, triturá-lo nem usá-lo numa Fusão, e o Intel recebido ainda não pode ser gasto.',
+            ...(o.r21 ? ["No <b>Cofre</b>, um item protegido mostra a etiqueta <b>Protegido</b>. Toque nela para ver quanto tempo falta."] : []),
             ...(o.interceptsInTrades ? ['Uma Interceptação fechada que você recebe fica lacrada nesses 7 dias: ainda não dá para abrir, trocar nem anunciar.'] : []),
             'Nesses 7 dias, você pode reverter suas trocas, uma vez a cada 90 dias. Isso desfaz todas as suas trocas protegidas, nos dois sentidos, e pausa suas trocas por 30 dias.',
             "Reverter também desfaz suas compras e vendas nos Achados raros que ainda estão nos 3 dias de proteção.",
@@ -591,6 +592,7 @@ const ptBR: HelpText = {
           a: [
             'Uma venda em Itens é definitiva na hora.',
             'Um Único comprado nos Achados raros fica protegido por 3 dias: não pode ser trocado, anunciado, triturado nem usado numa Fusão, e o Intel de quem vendeu espera. Nesse tempo a venda pode ser revertida, como uma troca.',
+            ...(o.r21 ? ["Dá para usá-lo na hora: ele fica no seu <b>Cofre</b> com a etiqueta <b>Protegido</b>, que mostra o tempo que falta."] : []),
             'Se quem compra ou quem vende excluir a conta nesses 3 dias, a venda é desfeita: o comprador recebe o Intel de volta, ou o vendedor recebe o Único de volta.',
           ],
         },
@@ -667,6 +669,7 @@ const ptBR: HelpText = {
               q: 'O que são as interceptações da Noite de Jogos?',
               a: [
                 o.gnTiers4 ? `Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor), <b>Nível 3</b> por 1.600 (Raro ou melhor) e <b>Nível 4</b> por 3.200 (Épico ou melhor, com chance de um Único).` : 'Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
+                ...(o.r21 ? ["Dá para pegar até 5 de um nível de uma vez, quantas o seu Intel da Noite de Jogos cobrir, e abri-las ali mesmo, na aba <b>Noite de Jogos</b>."] : []),
                 'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
                 ...(o.gnTiers4 ? [`Uma cópia repetida de qualquer item do <b>After Hours</b>, não importa como você o conseguiu (abrindo, comprando ou numa troca), é triturada por <b>Intel da Noite de Jogos</b>, não por Intel, no valor que o app mostra (nunca a sua primeira cópia).`] : []),
                 ...(o.u6153 ? ["O fundo Lendário da Noite de Jogos é <b>Apagão</b>, que antes se chamava Sala dos Fundos. A cena de descanso dele é <b>Rain Window</b>."] : []),

@@ -742,7 +742,7 @@ const Privacy: React.FC = () => {
               To choose seats, we also use the email
               address you sign up with to look up a SpySocial account that has it (its age, when it was made, whether you
               tested before, and the app versions it used), and we email you about your seat through Resend. If your bug report
-              or idea wins the one bonus for the session (a gift card), we send it to your email address{PRIVACY.playtestTremendous ? ', through Tremendous in the same way' : ''}.
+              or idea wins the one bonus for the session{PRIVACY.bonusByPayPal1122 ? ', we send it through PayPal, to the PayPal email address you gave us, in the same way' : <> (a gift card), we send it to your email address{PRIVACY.playtestTremendous ? ', through Tremendous in the same way' : ''}</>}.
               {PRIVACY.playtestRetention
                 ? " If you agree in the sign-up form, our gameplay videos may use short clips of games you played in the test; they can show your in-game name and your drawings, never your voice. If you say no or don't answer, they won't."
                 : ''}

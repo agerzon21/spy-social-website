@@ -300,7 +300,7 @@ const es: HelpText = {
           q: "¿Puedo jugar a SpySocial en un ordenador?",
           a: [
             "Sí: abre play.spysocial.app en un navegador. Es el mismo juego y la misma cuenta que en el teléfono: inicia sesión o empieza como invitado.",
-            o.browserPlay ? "Las salas, Jugar en línea y la Noche de juego también funcionan en el navegador." : "Por ahora, jugar en el navegador solo está abierto a los probadores que invitamos. Los demás pueden iniciar sesión y usar la parte de la cuenta (Cuenta, tu agente, ajustes, Cómo jugar), y ven <b>Jugar en el navegador, muy pronto</b> donde empezaría una partida. Avisaremos cuando el juego en el navegador se abra a todos.",
+            o.browserPlay ? "Las salas, Jugar en línea y la Noche de juego también funcionan en el navegador." : "Por ahora, jugar en el navegador solo está abierto a los probadores y creadores que invitamos. Los demás pueden iniciar sesión y usar su cuenta (Cuenta, tu agente, la Bóveda, el Mercado Negro, intercambios, ajustes, Cómo jugar), y ven <b>Jugar en el navegador, muy pronto</b> donde empezaría una partida. El juego en el navegador se abrirá a todos después del lanzamiento, con la versión para PC; lo avisaremos.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -491,6 +491,7 @@ const es: HelpText = {
           q: '¿Qué es la protección de 7 días? ¿Puedo deshacer un intercambio?',
           a: [
             'Lo que recibes en un intercambio queda protegido 7 días. Puedes usar un objeto enseguida, pero aún no puedes intercambiarlo, triturarlo ni canjearlo, y el Intel recibido aún no se puede gastar.',
+            ...(o.r21 ? ["En la <b>Bóveda</b>, un objeto protegido lleva la etiqueta <b>Protegido</b>. Tócala para ver cuánto tiempo queda."] : []),
             ...(o.interceptsInTrades ? ['Una intercepción sin abrir que recibes sigue sellada esos 7 días: aún no puedes abrirla, intercambiarla ni ponerla a la venta.'] : []),
             'En esos 7 días puedes revertir tus intercambios, una vez cada 90 días. Se deshacen todos tus intercambios protegidos, en los dos sentidos, y tus intercambios se pausan 30 días.',
             "La reversión también deshace tus compras y ventas en Rarezas que siguen en sus 3 días de protección.",
@@ -591,6 +592,7 @@ const es: HelpText = {
           a: [
             'Una venta en Objetos es definitiva al instante.',
             'Un Único comprado en Rarezas queda protegido 3 días: no se puede intercambiar, publicar, triturar ni canjear, y el Intel de quien vende espera. En ese tiempo la venta se puede revertir, como un intercambio.',
+            ...(o.r21 ? ["Puedes usarlo enseguida: está en tu <b>Bóveda</b> con la etiqueta <b>Protegido</b>, que muestra el tiempo que queda."] : []),
             'Si quien compra o quien vende borra su cuenta en esos 3 días, la venta se deshace: el comprador recupera el Intel, o el vendedor recupera el Único.',
           ],
         },
@@ -667,6 +669,7 @@ const es: HelpText = {
               q: '¿Qué son las intercepciones de Noche de Juegos?',
               a: [
                 o.gnTiers4 ? `Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor), <b>Nivel 3</b> por 1.600 (Raro o mejor) y <b>Nivel 4</b> por 3.200 (Épico o mejor, con opción de un Único).` : 'Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
+                ...(o.r21 ? ["Puedes conseguir hasta 5 de un nivel a la vez, tantas como cubra tu Intel de Noche de Juegos, y abrirlas ahí mismo, en la pestaña <b>Noche de Juegos</b>."] : []),
                 'Se abren en la colección propia de la Noche de Juegos, <b>After Hours</b>: 14 objetos de sala de cartas para tu agente que ninguna otra intercepción tiene. Como en toda intercepción, la app muestra las probabilidades exactas.',
                 ...(o.gnTiers4 ? [`Una copia repetida de cualquier objeto de <b>After Hours</b>, la hayas conseguido como la hayas conseguido (abriéndola, comprándola o por intercambio), se tritura por <b>Intel de Noche de Juegos</b>, no por Intel, por la cantidad que muestra la app (nunca tu primera copia).`] : []),
                 ...(o.u6153 ? ["El fondo Legendario de la Noche de Juegos es <b>Apagón</b>, que antes se llamaba La Trastienda. Su escena de descanso es <b>Rain Window</b>."] : []),
