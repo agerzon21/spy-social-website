@@ -29,6 +29,7 @@ const es: Strings = {
       terms: 'Términos de servicio',
       childSafety: 'Estándares de seguridad infantil',
       whatsNew: 'Novedades',
+      news: "Noticias",
       roadmap: 'Hoja de ruta',
       press: 'Kit de prensa',
       deleteAccount: 'Eliminar tu cuenta',
@@ -56,6 +57,7 @@ const es: Strings = {
       terms: 'Los términos para usar SpySocial: quién puede jugar, tu cuenta y tu contenido, las salas públicas, las normas de la comunidad, la moderación y las apelaciones.',
       childSafety: 'Los estándares de SpySocial contra el abuso y la explotación sexual infantil: qué prohibimos, cómo reportar un problema, qué hacemos y nuestro contacto de seguridad infantil.',
       whatsNew: 'Notas de versión de SpySocial: funciones nuevas, correcciones y mejoras de cada versión de la app.',
+      news: "Noticias y anuncios de SpySocial: las betas, el lanzamiento del 8 de diciembre y las Noches de Juegos, con fechas, horarios y cómo participar.",
       roadmap:
         'Lo que viene a SpySocial: todo lo de la versión 2.2, de «Jugar en línea» y Spy Sketch a la traducción automática del chat, y lo que planeamos después: partidas competitivas, temporadas y torneos.',
       press: 'El kit de prensa de SpySocial: qué es el juego, la ficha técnica, la fecha de lanzamiento, logotipos y capturas para descargar, y el contacto de prensa.',
@@ -97,6 +99,7 @@ const es: Strings = {
     legal: 'Legal y seguridad',
     browser: 'Juega en tu navegador',
     whatsNew: 'Novedades',
+    news: "Noticias",
     roadmap: 'Hoja de ruta',
     press: 'Prensa',
     rules: 'Normas',
@@ -745,6 +748,16 @@ const es: Strings = {
     ],
   },
 
+  news: {
+    eyebrow: "Noticias",
+    title: "Lo último",
+    lede: "Betas, lanzamiento y Noches de Juegos: qué pasa en SpySocial y cuándo. Todas las horas son del Este de EE. UU. (ET).",
+    upcoming: "Próximamente",
+    earlier: "Anteriores",
+    latest: "Lo último",
+    all: "Todas las noticias",
+    outro: "Síguenos para enterarte primero.",
+  },
   roadmap: {
     eyebrow: 'Hoja de ruta',
     title: 'Lo que viene',

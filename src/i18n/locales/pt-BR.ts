@@ -29,6 +29,7 @@ const ptBR: Strings = {
       terms: 'Termos de uso',
       childSafety: 'Padrões de segurança infantil',
       whatsNew: 'Novidades',
+      news: "Notícias",
       roadmap: 'Roadmap',
       press: 'Kit de imprensa',
       deleteAccount: 'Excluir sua conta',
@@ -56,6 +57,7 @@ const ptBR: Strings = {
       terms: 'Os termos para usar o SpySocial: quem pode jogar, sua conta e seu conteúdo, salas públicas, regras da comunidade, moderação e recursos.',
       childSafety: 'Os padrões do SpySocial contra o abuso e a exploração sexual infantil: o que proibimos, como denunciar um problema, o que fazemos e nosso contato de segurança infantil.',
       whatsNew: 'Notas de versão do SpySocial: novos recursos, correções e melhorias em cada versão do app.',
+      news: "Notícias e anúncios do SpySocial: os betas, o lançamento em 8 de dezembro e as Noites de Jogos, com datas, horários e como participar.",
       roadmap:
         'O que vem aí no SpySocial: tudo da versão 2.2, do Jogar online e do Spy Sketch à tradução automática do chat, e o que está planejado depois: partidas ranqueadas, temporadas e torneios.',
       press: 'O kit de imprensa do SpySocial: o que é o jogo, a ficha técnica, a data de lançamento, logos e capturas de tela para baixar e o contato para imprensa.',
@@ -97,6 +99,7 @@ const ptBR: Strings = {
     legal: 'Legal e segurança',
     browser: 'Jogue no navegador',
     whatsNew: 'Novidades',
+    news: "Notícias",
     roadmap: 'Roadmap',
     press: 'Imprensa',
     rules: 'Regras',
@@ -745,6 +748,16 @@ const ptBR: Strings = {
     ],
   },
 
+  news: {
+    eyebrow: "Notícias",
+    title: "Últimas",
+    lede: "Betas, lançamento e Noites de Jogos: o que está rolando no SpySocial e quando. Todos os horários são do leste dos EUA (ET).",
+    upcoming: "Em breve",
+    earlier: "Já passou",
+    latest: "Últimas",
+    all: "Todas as notícias",
+    outro: "Siga a gente para saber primeiro.",
+  },
   roadmap: {
     eyebrow: 'Roadmap',
     title: 'O que vem aí',
