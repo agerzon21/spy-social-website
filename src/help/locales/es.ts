@@ -769,7 +769,7 @@ const es: HelpText = {
             ...(o.launch ? [] : ['Lo que tienes ahora en una versión de prueba es para probar y se borra antes del lanzamiento. Tus recompensas no dependen de eso, siempre que sigas con la misma cuenta guardada.']),
             'Para ponerte el pin: <b>Cuenta</b>, <b>Editar agente</b>, <b>Accesorios</b>, <b>Pin beta</b>, <b>Guardar</b>.',
             '¿Falta algo? Escribe a <email/> con tu nombre de usuario y el correo con el que entraste durante la prueba. Una cuenta de invitado no está en la lista, así que lo habitual es que se trate de otra cuenta.',
-            ...(o.launch ? [] : ["La Beta 3 es el martes 24 de noviembre, de 8 a 9 PM, hora del Este de EE. UU. (se entra desde las 7:30). Si el correo de tu lugar menciona el agradecimiento de 10 USD: juega al menos una partida esa noche y envía la encuesta antes del viernes 27 de noviembre a las 11:59 PM, hora del Este, y los 10 USD llegan por PayPal antes del 1 de diciembre. Además, un tester recibe una tarjeta regalo de 50 USD por el reporte o la idea más útil, elegido por nosotros."]),
+            ...(o.launch ? [] : ["La Beta 3 es el martes 24 de noviembre, de 8 a 9 PM, hora del Este de EE. UU. (se entra desde las 7:30). Si el correo de tu lugar menciona el agradecimiento de 10 USD: juega al menos una partida esa noche y envía la encuesta antes del viernes 27 de noviembre a las 11:59 PM, hora del Este, y los 10 USD llegan por PayPal antes del 1 de diciembre. La Beta 3 está abierta a todos: cualquiera que juegue esa noche y envíe la encuesta puede ganar los 50 USD por el reporte o la idea más útil, elegido por nosotros."]),
           ],
         },
         ...(o.launch ? [

@@ -765,7 +765,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
           "Il manque quelque chose ? Écris à <email/> avec ton nom d'utilisateur et l'e-mail utilisé pendant le test. Un compte invité n'est pas sur la liste : c'est souvent une question de compte différent.",
-          ...(o.launch ? [] : ["La Bêta 3 a lieu le mardi 24 novembre, de 20 h à 21 h, heure de l’Est des États-Unis (on peut rejoindre dès 19 h 30). Si l’e-mail de ta place parle du remerciement de 10 $ : joue au moins une partie ce soir-là et envoie le questionnaire avant le vendredi 27 novembre, 23 h 59 heure de l’Est, et les 10 $ arrivent par PayPal avant le 1er décembre. Un testeur reçoit aussi une carte cadeau de 50 $ pour le rapport ou l’idée la plus utile, choisi par nous."]),
+          ...(o.launch ? [] : ["La Bêta 3 a lieu le mardi 24 novembre, de 20 h à 21 h, heure de l’Est des États-Unis (on peut rejoindre dès 19 h 30). Si l’e-mail de ta place parle du remerciement de 10 $ : joue au moins une partie ce soir-là et envoie le questionnaire avant le vendredi 27 novembre, 23 h 59 heure de l’Est, et les 10 $ arrivent par PayPal avant le 1er décembre. La Bêta 3 est ouverte à tous : toute personne qui joue ce soir-là et envoie le questionnaire peut gagner les 50 $ pour le rapport ou l’idée la plus utile, choisi par nous."]),
         ],
       },
       ...(o.launch ? [
