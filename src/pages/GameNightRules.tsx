@@ -125,7 +125,7 @@ const GameNightRules: React.FC = () => (
         <P>
           {LIVE.gnTiers4_1120 ? (
             <>
-              In the <B>Vault</B>, Game Night Intel buys Game Night Intercepts: <B>Tier 1</B> for 400, <B>Tier 2</B> for
+              In <B>Compete</B>, on the <B>Game Night</B> tab, Game Night Intel buys Game Night Intercepts: <B>Tier 1</B> for 400, <B>Tier 2</B> for
               800, <B>Tier 3</B> for 1,600 and <B>Tier 4</B> for 3,200. Each one opens into one item of Game Night's own
               set, After Hours: Tier 1 any rarity, Tier 2 Uncommon or better, Tier 3 Rare or better, Tier 4 Epic or
               better with a chance of a Unique. The app shows the exact rarity odds (under What's inside) before you buy or

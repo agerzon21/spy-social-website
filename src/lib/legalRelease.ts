@@ -2315,6 +2315,18 @@ export const LIVE = {
    * switch): node scripts/flip-switch.mjs oddsPublic1120 --day "<publish day>". A site-only fact: LIVE.
    */
   oddsPublic1120: true,
+  /**
+   * policy-sync-1122, STAGED OFF: app round 21 (62.21.x, Monday Nov 23) is published with its server rows (707 buy x1-5 +
+   * open in Compete, 721 Vault "Trade protected" tag). Turns on three Help lines in ten languages (help/types r21). Help
+   * only: no legal date moves. Flip when the round's OTA is out.
+   */
+  helpR21_1123: false,
+  /**
+   * policy-sync-1122, STAGED OFF, OWNER DECIDES: the playtest's one $50 bonus is sent by PayPal (the Beta 3 form and day
+   * card say PayPal) instead of "a gift card" (Privacy's playtest paragraph). ON only if the owner picks PayPal; then
+   * also bump PRIVACY_LAST_UPDATED.
+   */
+  bonusByPayPal1122: false,
 }
 
 /**

@@ -126,6 +126,12 @@ export interface HelpOpts {
    * the win-only pay line and its shred line, #duplicates' After Hours line, and the reset line (Game Night Intel from games comes back, not from shredding).
    */
   gnTiers4: boolean
+  /**
+   * App round 21 (62.21.x) is published (LIVE.helpR21_1123, policy-sync-1122; TRANSLATIONS UNREVIEWED: every language but
+   * English is an agent's): #trade-protection and #black-market-protection's Vault tag lines (Trade protected, time left,
+   * wearable at once), #game-night-intercepts' "up to 5 at once, opened on the Game Night tab" line.
+   */
+  r21: boolean
 }
 
 export interface HelpItem {

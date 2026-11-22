@@ -300,7 +300,7 @@ const id: HelpText = {
           q: "Bisakah saya main SpySocial di komputer?",
           a: [
             "Bisa: buka play.spysocial.app di browser. Permainan dan akunnya sama dengan di ponselmu: masuk, atau mulai sebagai tamu.",
-            o.browserPlay ? "Ruangan, Main Online, dan Malam Permainan juga berjalan di browser." : "Untuk sekarang, bermain di browser hanya terbuka untuk penguji yang kami undang. Pemain lain bisa masuk dan memakai sisi akun (Akun, agenmu, pengaturan, Cara Bermain), dan melihat <b>Main di browser segera hadir</b> di tempat permainan akan dimulai. Kami akan mengumumkannya saat bermain di browser dibuka untuk semua orang.",
+            o.browserPlay ? "Ruangan, Main Online, dan Malam Permainan juga berjalan di browser." : "Untuk sekarang, bermain di browser hanya terbuka untuk penguji dan kreator yang kami undang. Pemain lain bisa masuk dan memakai akunnya (Akun, agenmu, Brankas, Pasar Gelap, pertukaran, pengaturan, Cara Bermain), dan melihat <b>Main di browser segera hadir</b> di tempat permainan akan dimulai. Bermain di browser dibuka untuk semua orang setelah peluncuran, bersama versi PC; kami akan mengumumkannya.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -491,6 +491,7 @@ const id: HelpText = {
           q: 'Apa itu perlindungan 7 hari? Bisakah membatalkan pertukaran?',
           a: [
             'Yang kamu dapat dari pertukaran dilindungi selama 7 hari. Item bisa langsung dipakai, tapi belum bisa ditukar, dihancurkan, atau dipakai untuk Tukar Tambah, dan Intel yang diterima belum bisa dipakai.',
+            ...(o.r21 ? ["Di <b>Brankas</b>, item yang dilindungi diberi label <b>Terlindungi</b>. Ketuk labelnya untuk melihat sisa waktunya."] : []),
             ...(o.interceptsInTrades ? ['Sadapan belum dibuka yang kamu dapat tetap tersegel selama 7 hari itu: belum bisa dibuka, ditukar, atau dijual.'] : []),
             'Dalam 7 hari itu kamu bisa membatalkan pertukaranmu, sekali tiap 90 hari. Semua pertukaranmu yang masih dilindungi dibatalkan di kedua arah, dan pertukaranmu dijeda 30 hari.',
             "Pembatalan itu juga membatalkan pembelian dan penjualanmu di Temuan Langka yang masih dalam 3 hari perlindungannya.",
@@ -591,6 +592,7 @@ const id: HelpText = {
           a: [
             'Penjualan di Item langsung final.',
             'Item Unik yang dibeli di Temuan Langka dilindungi 3 hari: tidak bisa ditukar, dipasang, dihancurkan, atau dipakai Tukar Tambah, dan Intel penjual menunggu. Dalam waktu itu penjualan bisa dibatalkan, seperti pertukaran.',
+            ...(o.r21 ? ["Item itu bisa langsung dipakai: ada di <b>Brankas</b>-mu dengan label <b>Terlindungi</b> yang menunjukkan sisa waktunya."] : []),
             'Kalau pembeli atau penjual menghapus akunnya dalam 3 hari itu, penjualan dibatalkan: pembeli mendapat Intel-nya kembali, atau penjual mendapat item Unik-nya kembali.',
           ],
         },
@@ -667,6 +669,7 @@ const id: HelpText = {
               q: 'Apa itu sadapan Malam Permainan?',
               a: [
                 o.gnTiers4 ? `Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b> (Brankas tidak lagi menampilkannya): <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), <b>Tingkat 3</b> seharga 1.600 (Langka atau lebih baik), dan <b>Tingkat 4</b> seharga 3.200 (Epik atau lebih baik, dengan peluang Unik).` : 'Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b> (Brankas tidak lagi menampilkannya): <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
+                ...(o.r21 ? ["Kamu bisa mengambil sampai 5 sadapan dari satu tingkat sekaligus, sebanyak yang cukup dengan Intel Malam Permainan-mu, dan membukanya langsung di tab <b>Malam Permainan</b>."] : []),
                 'Isinya dari koleksi khusus Malam Permainan, <b>After Hours</b>: 14 item ruang kartu untuk agenmu yang tidak ada di sadapan lain. Seperti semua sadapan, aplikasi menampilkan peluang pastinya.',
                 ...(o.gnTiers4 ? [`Salinan duplikat item <b>After Hours</b> apa pun, bagaimanapun kamu mendapatkannya (dibuka, dibeli, atau lewat pertukaran), dihancurkan menjadi <b>Intel Malam Permainan</b>, bukan Intel, sebanyak yang ditampilkan aplikasi (tidak pernah salinan pertamamu).`] : []),
                 ...(o.u6153 ? ["Latar Legendaris Malam Permainan adalah <b>Mati Lampu</b>, yang dulu bernama Ruang Belakang. Adegan istirahatnya adalah <b>Rain Window</b>."] : []),

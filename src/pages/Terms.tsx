@@ -793,7 +793,7 @@ const Terms: React.FC = () => {
             and counts toward four cosmetic titles{LIVE.gnTiers4_1120 ? ' (a game counts only if you took at least half of your own turns in it; ★\u00a0Operative also counts a loss or a tie)' : ''}, ★&nbsp;Operative, ★&nbsp;Local Hero, ★&nbsp;Master Spy and ★&nbsp;Double Agent, each worn
             with its count. Game Night Intel is separate from Intel. You earn it only by playing at Game Night{LIVE.gnTiers4_1120 ? ' and by shredding a spare After Hours item, however you got it (the app shows the amount)' : ''}, a
             membership adds nothing to it, and it can't be bought, traded, sold, given or moved to another account; like
-            every virtual item it has no cash value. You can spend it only on Game Night Intercepts in the Vault{LIVE.gnTiers4_1120 ? ' (four tiers, for now 400, 800, 1,600 and 3,200)' : ''}, and a
+            every virtual item it has no cash value. You can spend it only on Game Night Intercepts, in Compete on the Game Night tab{LIVE.gnTiers4_1120 ? ' (four tiers, for now 400, 800, 1,600 and 3,200)' : ''}, and a
             Game Night Intercept, once you have it, and the item it opens into work like any Intercept you earn (above).
             The ★&nbsp;titles stay with the account that earned them: they can't be traded, sold or given to anyone, and
             they aren't minted collectibles. We may change how much Game Night Intel a game gives and what Game Night
