@@ -302,7 +302,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'browser-play',
         q: "Puis-je jouer à SpySocial sur ordinateur ?",
         a: [
-          "Tu peux te connecter sur play.spysocial.app avec le compte créé dans l'appli. Tu y retrouves ton agent, ton Coffre, le Marché noir et tes échanges.",
+          "Tu peux te connecter sur play.spysocial.app avec le compte que tu as créé dans l'appli. Tu y retrouves ton agent, ton Coffre, le Marché noir et tes échanges.",
           o.browserPlay ? "Les salons, Jouer en ligne et la Soirée jeux fonctionnent aussi dans le navigateur." : "Pour l'instant, jouer dans le navigateur n'est ouvert qu'aux testeurs et aux créateurs que nous invitons. Les autres peuvent se connecter et utiliser leur compte (Compte, ton agent, le Coffre, le Marché noir, les échanges, réglages, Comment jouer), et voient <b>Le jeu dans le navigateur arrive bientôt</b> là où une partie commencerait. Le jeu dans le navigateur s'ouvrira à tous après le lancement, avec la version PC ; nous l'annoncerons.",
           "Les nouveaux comptes se créent dans l'appli, depuis l'App Store ou Google Play.",
         ],
@@ -311,7 +311,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'web-trading',
         q: "Puis-je faire des échanges ou utiliser le Marché noir sur le web ?",
         a: [
-          "Oui : les adultes qui peuvent échanger peuvent utiliser les échanges et le Marché noir dans le navigateur ou dans l'appli, avec le même compte et les mêmes règles. Les moins de 18 ans peuvent regarder, mais ni acheter ni vendre.",
+          "Oui : les adultes qui peuvent échanger peuvent utiliser les échanges et le Marché noir dans le navigateur ou dans l'appli, avec le même compte et les mêmes règles. Les moins de 18 ans peuvent regarder, mais pas acheter ni vendre.",
         ],
       },
       ...(o.autoTranslation ? [
@@ -680,7 +680,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: "C'est quoi, les interceptions de soirée jeux ?",
             a: [
               o.gnTiers4 ? `Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux), <b>Niveau 3</b> pour 1 600 (Rare ou mieux) et <b>Niveau 4</b> pour 3 200 (Épique ou mieux, avec une chance d'Unique).` : "Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
-              ...(o.r21 ? ["Tu peux en obtenir jusqu'à 5 d'un même niveau à la fois, autant que ton Intel de soirée jeux le permet, et les ouvrir sur place, dans l'onglet <b>Soirée jeux</b>."] : []),
+              ...(o.r21 ? ["Tu peux en obtenir jusqu'à 5 d'un même niveau à la fois, autant que ton Intel de Soirée jeux le permet, et les ouvrir sur place, dans l'onglet <b>Soirée jeux</b>."] : []),
               "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
               ...(o.gnTiers4 ? [`Un doublon de n'importe quel objet <b>After Hours</b>, quelle que soit la façon dont tu l'as obtenu (ouvert, acheté ou reçu dans un échange), se déchiquette contre de l'<b>Intel de soirée jeux</b>, pas de l'Intel, au montant affiché par l'appli (jamais ta première copie).`] : []),
               ...(o.u6153 ? ["Le fond Légendaire de la soirée jeux est <b>Black-out</b>, qui s'appelait avant L'Arrière-salle. Sa scène de repos est <b>Rain Window</b>."] : []),
@@ -783,7 +783,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
           "Il manque quelque chose ? Écris à <email/> avec ton nom d'utilisateur et l'e-mail utilisé pendant le test. Un compte invité n'est pas sur la liste : c'est souvent une question de compte différent.",
-          ...(o.launch ? [] : ["La Bêta 3 a lieu le mardi 24 novembre, de 20 h à 21 h, heure de l’Est des États-Unis (on peut rejoindre dès 19 h 30). Si l’e-mail de ta place parle du remerciement de 10 $ : joue au moins une partie ce soir-là et envoie le questionnaire avant le vendredi 27 novembre, 23 h 59 heure de l’Est, et les 10 $ arrivent par PayPal avant le 1er décembre. La Bêta 3 est ouverte à tous : toute personne qui joue ce soir-là et envoie le questionnaire peut gagner les 50 $ pour le rapport ou l’idée la plus utile, choisi par nous."]),
+          ...(o.launch ? [] : ["La Bêta 3 a lieu le mardi 24 novembre, de 20 h à 21 h, heure de l’Est des États-Unis (on peut rejoindre dès 19 h 30). Si l’e-mail de ta place parle du remerciement de 10 $ : joue au moins une partie ce soir-là et envoie le questionnaire avant le vendredi 27 novembre, 23 h 59 heure de l’Est, et les 10 $ arrivent par PayPal avant le 1er décembre. La Bêta 3 est ouverte à tous : toute personne qui joue ce soir-là et envoie le questionnaire peut gagner les 50 $ pour le rapport ou l’idée la plus utile, que nous choisirons."]),
         ],
       },
       ...(o.launch ? [

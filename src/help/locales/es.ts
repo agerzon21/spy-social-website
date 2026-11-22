@@ -307,7 +307,7 @@ const es: HelpText = {
           q: "¿Puedo jugar a SpySocial en un ordenador?",
           a: [
             "Puedes iniciar sesión en play.spysocial.app con la cuenta que creaste en la app. Ahí ves a tu agente, tu Bóveda, el Mercado Negro y tus intercambios.",
-            o.browserPlay ? "Las salas, Jugar en línea y la Noche de juego también funcionan en el navegador." : "Por ahora, jugar en el navegador solo está abierto a los probadores y creadores que invitamos. Los demás pueden iniciar sesión y usar su cuenta (Cuenta, tu agente, la Bóveda, el Mercado Negro, intercambios, ajustes, Cómo jugar), y ven <b>Jugar en el navegador, muy pronto</b> donde empezaría una partida. El juego en el navegador se abrirá a todos después del lanzamiento, con la versión para PC; lo avisaremos.",
+            o.browserPlay ? "Las salas, Jugar en línea y la Noche de Juegos también funcionan en el navegador." : "Por ahora, jugar en el navegador solo está abierto a los probadores y creadores que invitamos. Los demás pueden iniciar sesión y usar su cuenta (Cuenta, tu agente, la Bóveda, el Mercado Negro, intercambios, ajustes, Cómo jugar), y ven <b>Jugar en el navegador, muy pronto</b> donde empezaría una partida. El juego en el navegador se abrirá a todos después del lanzamiento, con la versión para PC; lo avisaremos.",
             "Las cuentas nuevas se crean en la app, desde la App Store o Google Play.",
           ],
         },
@@ -787,7 +787,7 @@ const es: HelpText = {
             ...(o.launch ? [] : ['Lo que tienes ahora en una versión de prueba es para probar y se borra antes del lanzamiento. Tus recompensas no dependen de eso, siempre que sigas con la misma cuenta guardada.']),
             'Para ponerte el pin: <b>Cuenta</b>, <b>Editar agente</b>, <b>Accesorios</b>, <b>Pin beta</b>, <b>Guardar</b>.',
             '¿Falta algo? Escribe a <email/> con tu nombre de usuario y el correo con el que entraste durante la prueba. Una cuenta de invitado no está en la lista, así que lo habitual es que se trate de otra cuenta.',
-            ...(o.launch ? [] : ["La Beta 3 es el martes 24 de noviembre, de 8 a 9 PM, hora del Este de EE. UU. (se entra desde las 7:30). Si el correo de tu lugar menciona el agradecimiento de 10 USD: juega al menos una partida esa noche y envía la encuesta antes del viernes 27 de noviembre a las 11:59 PM, hora del Este, y los 10 USD llegan por PayPal antes del 1 de diciembre. La Beta 3 está abierta a todos: cualquiera que juegue esa noche y envíe la encuesta puede ganar los 50 USD por el reporte o la idea más útil, elegido por nosotros."]),
+            ...(o.launch ? [] : ["La Beta 3 es el martes 24 de noviembre, de 8 a 9 PM, hora del Este de EE. UU. (se entra desde las 7:30). Si el correo de tu lugar menciona el agradecimiento de 10 USD: juega al menos una partida esa noche y envía la encuesta antes del viernes 27 de noviembre a las 11:59 PM, hora del Este, y los 10 USD llegan por PayPal antes del 1 de diciembre. La Beta 3 está abierta a todos: cualquiera que juegue esa noche y envíe la encuesta puede ganar los 50 USD por el reporte o la idea más útil, que elegiremos nosotros."]),
           ],
         },
         ...(o.launch ? [

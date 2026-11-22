@@ -29,7 +29,7 @@ const ptBR: HelpText = {
           id: 'from-a-video',
           q: "Vim de um vídeo. O que é SpySocial?",
           a: [
-            "SpySocial é um jogo de festa grátis de dedução social para 3 a 21 jogadores, no iPhone e no Android. Baixe na App Store ou Google Play, crie uma conta e jogue com amigos em uma sala privada ou online. O jogo no navegador chega depois, com a versão para PC.",
+            "SpySocial é um jogo de festa grátis de dedução social para 3 a 21 jogadores, no iPhone e no Android. Baixe na App Store ou no Google Play, crie uma conta e jogue com amigos em uma sala privada ou online. O jogo no navegador chega depois, com a versão para PC.",
           ],
         },
         {
@@ -307,8 +307,8 @@ const ptBR: HelpText = {
           q: "Posso jogar SpySocial no computador?",
           a: [
             "Você pode entrar em play.spysocial.app com a conta que criou no app. Lá você vê seu agente, seu Cofre, o Mercado Negro e suas trocas.",
-            o.browserPlay ? "Salas, Jogar online e a Noite de jogo também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores e criadores que convidamos. Os demais podem entrar e usar a conta (Conta, seu agente, o Cofre, o Mercado Negro, trocas, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. O jogo no navegador abre para todos depois do lançamento, com a versão para PC; avisaremos.",
-            "Contas novas são criadas no app, pela App Store ou Google Play.",
+            o.browserPlay ? "Salas, Jogar online e a Noite de Jogos também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores e criadores que convidamos. Os demais podem entrar e usar a conta (Conta, seu agente, o Cofre, o Mercado Negro, trocas, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. O jogo no navegador abre para todos depois do lançamento, com a versão para PC; avisaremos.",
+            "Contas novas são criadas no app, pela App Store ou pelo Google Play.",
           ],
         },
         {
@@ -684,7 +684,7 @@ const ptBR: HelpText = {
               q: 'O que são as interceptações da Noite de Jogos?',
               a: [
                 o.gnTiers4 ? `Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor), <b>Nível 3</b> por 1.600 (Raro ou melhor) e <b>Nível 4</b> por 3.200 (Épico ou melhor, com chance de um Único).` : 'Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
-                ...(o.r21 ? ["Dá para pegar até 5 de um nível de uma vez, quantas o seu Intel da Noite de Jogos cobrir, e abri-las ali mesmo, na aba <b>Noite de Jogos</b>."] : []),
+                ...(o.r21 ? ["Dá para pegar até 5 do mesmo nível de uma vez, até onde o seu Intel da Noite de Jogos der, e abri-las ali mesmo, na aba <b>Noite de Jogos</b>."] : []),
                 'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
                 ...(o.gnTiers4 ? [`Uma cópia repetida de qualquer item do <b>After Hours</b>, não importa como você o conseguiu (abrindo, comprando ou numa troca), é triturada por <b>Intel da Noite de Jogos</b>, não por Intel, no valor que o app mostra (nunca a sua primeira cópia).`] : []),
                 ...(o.u6153 ? ["O fundo Lendário da Noite de Jogos é <b>Apagão</b>, que antes se chamava Sala dos Fundos. A cena de descanso dele é <b>Rain Window</b>."] : []),
@@ -787,7 +787,7 @@ const ptBR: HelpText = {
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
             'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de visitante não está na lista, então o mais comum é ser outra conta.',
-            ...(o.launch ? [] : ["O Beta 3 é na terça-feira, 24 de novembro, das 20h às 21h no horário do leste dos EUA (dá para entrar a partir das 19h30). Se o e-mail da sua vaga fala do agradecimento de US$ 10: jogue pelo menos uma partida naquela noite e envie a pesquisa até sexta-feira, 27 de novembro, às 23h59 no horário do leste, e os US$ 10 chegam por PayPal até 1º de dezembro. O Beta 3 é aberto a todos: quem jogar naquela noite e enviar a pesquisa pode ganhar os US$ 50 pelo relato ou pela ideia mais útil, escolhido por nós."]),
+            ...(o.launch ? [] : ["O Beta 3 é na terça-feira, 24 de novembro, das 20h às 21h no horário do leste dos EUA (dá para entrar a partir das 19h30). Se o e-mail da sua vaga fala do agradecimento de US$ 10: jogue pelo menos uma partida naquela noite e envie a pesquisa até sexta-feira, 27 de novembro, às 23h59 no horário do leste, e os US$ 10 chegam por PayPal até 1º de dezembro. O Beta 3 é aberto a todos: quem jogar naquela noite e enviar a pesquisa pode ganhar os US$ 50 pelo relato ou pela ideia mais útil; a escolha é nossa."]),
           ],
         },
         ...(o.launch ? [
@@ -1024,7 +1024,7 @@ const ptBR: HelpText = {
             o.passwordless
               ? 'Você pode pedir um código novo depois de 60 segundos com <b>Reenviar código</b>. Cada código vale 1 hora: use o do e-mail mais recente. Se o app disser que há e-mails demais, espere alguns minutos e tente uma vez.'
               : 'Você pode pedir outro e-mail depois de 60 segundos. Use o mais recente.',
-            ...(o.pasteCode ? ["Copiou o código do seu e-mail? Toque em <b>Colar código</b> no app e ele preenche as caixas."] : []),
+            ...(o.pasteCode ? ["Copiou o código do seu e-mail? Toque em <b>Colar código</b> no app e as caixas são preenchidas."] : []),
             'Se sua conta usa Apple ou Google, você pode entrar com eles.',
             'Ainda nada? Escreva para <email/> com o endereço exato e mais ou menos quando você tentou, e verificamos do nosso lado.',
           ],
