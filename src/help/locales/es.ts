@@ -248,7 +248,7 @@ const es: HelpText = {
               id: 'game-night-weekly',
               q: '¿Cuándo es la Noche de Juegos?',
               a: [
-                'Una vez por semana: el viernes, normalmente de 8 a 10 PM, y la misma noche otra vez el sábado a las 2 PM, hora del Este de EE. UU.',
+                'Una vez por semana: el viernes, normalmente de 8 a 10 PM, y la misma Noche de Juegos se juega otra vez el sábado a las 2 PM, hora del Este de EE. UU.',
                 'Ven a cualquiera de las dos noches, o juega en ambas.',
                 o.launch ? "Anunciamos cada noche en la app, en el inicio, en Competir, en la pestaña Noche de Juegos." : 'Anunciamos cada noche en la app, en la tarjeta de la Noche de Juegos del inicio.',
               ],

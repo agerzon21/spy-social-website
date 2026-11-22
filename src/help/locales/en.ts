@@ -278,7 +278,7 @@ const en: HelpText = {
               id: 'game-night-weekly',
               q: 'When is Game Night?',
               a: [
-                'Once a week: on Friday, usually 8 to 10 PM Eastern, then the same night again on Saturday at 2 PM Eastern.',
+                'Once a week: on Friday, usually 8 to 10 PM Eastern, then the same Game Night is played again on Saturday at 2 PM Eastern.',
                 'Come to either night, or play both.',
                 o.launch ? "We announce each night in the app, on Home, in Compete, on the Game Night tab." : 'We announce each night in the app, on Home’s Game Night card.',
               ],

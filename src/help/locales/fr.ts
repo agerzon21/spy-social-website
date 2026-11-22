@@ -244,7 +244,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'game-night-weekly',
             q: "C'est quand, la soirée jeux ?",
             a: [
-              "Une fois par semaine : le vendredi, en général de 20 h à 22 h, puis la même soirée à nouveau le samedi à 14 h, heure de l'Est des États-Unis.",
+              "Une fois par semaine : le vendredi, en général de 20 h à 22 h, puis la même soirée jeux à nouveau le samedi à 14 h, heure de l'Est des États-Unis.",
               "Viens à l'une des deux, ou joue aux deux.",
               o.launch ? "Nous annonçons chaque soirée dans l’appli, sur l’accueil, dans Compétition, sur l’onglet Soirée jeux." : "Nous annonçons chaque soirée dans l'appli, sur la carte de la soirée jeux de l'accueil.",
             ],

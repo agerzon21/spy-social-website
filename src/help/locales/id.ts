@@ -248,7 +248,7 @@ const id: HelpText = {
               id: 'game-night-weekly',
               q: 'Kapan Malam Permainan diadakan?',
               a: [
-                'Seminggu sekali: hari Jumat, biasanya pukul 20.00–22.00, lalu malam yang sama diulang hari Sabtu pukul 14.00, waktu bagian timur AS.',
+                'Seminggu sekali: hari Jumat, biasanya pukul 20.00–22.00, lalu Malam Permainan yang sama dimainkan lagi hari Sabtu pukul 14.00, waktu bagian timur AS.',
                 'Datang di salah satu malam, atau main di keduanya.',
                 o.launch ? "Kami mengumumkan setiap malam di aplikasi, di Beranda, di Kompetisi, tab Malam Permainan." : 'Kami mengumumkan setiap malam di aplikasi, di kartu Malam Permainan di Beranda.',
               ],
