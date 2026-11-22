@@ -7,7 +7,8 @@
  *     id: 'beta-3',                      // its address: /news#beta-3 (lowercase letters, digits and dashes; never reuse one)
  *     date: 'November 24, 2026',         // the day it happens, in Eastern Time (or the day it was posted). The page adds the weekday.
  *     endDate: 'December 12, 2026',      // optional: the last day, for something that runs over several days
- *     links: [{ to: '/support', label: { en: 'Help' } }],   // optional, one or two: a page of this site or a full https:// address
+ *     links: [{ to: '/support', label: { en: 'Help' } }],   // optional, one or two: a page of this site or a full https:// address.
+ *                                                            // Check the page really shows what you point at (the Help answer #tester-rewards is hidden until launch).
  *     text: {
  *       en: { title: 'A short title', body: 'Two or three lines. Times in Eastern Time, with the weekday.' },
  *       ru: { title: '…', body: '…' },   // optional, like every language but English: a language left out shows English
@@ -30,7 +31,7 @@ export interface NewsText {
 }
 
 export interface NewsLink {
-  /** A page of this site ('/support#tester-rewards') or a full address ('https://…', opens in a new tab). */
+  /** A page of this site ('/roadmap', '/support#browser-play') or a full address ('https://…', opens in a new tab). */
   to: string
   label: { en: string } & Partial<Record<NewsLang, string>>
 }
@@ -63,21 +64,6 @@ export const NEWS: NewsEntry[] = [
           hi: 'Discord से जुड़ें',
           ar: 'انضموا عبر Discord',
           bn: 'Discord-এ যোগ দিন',
-        },
-      },
-      {
-        to: '/support#tester-rewards',
-        label: {
-          en: 'Details in Help',
-          ru: 'Подробности в «Помощи»',
-          es: 'Detalles en la Ayuda',
-          fr: 'Détails dans l’Aide',
-          'pt-BR': 'Detalhes na Ajuda',
-          id: 'Detail di Bantuan',
-          'zh-Hans': '在帮助中查看详情',
-          hi: 'सहायता में पूरी जानकारी',
-          ar: 'التفاصيل في المساعدة',
-          bn: 'বিস্তারিত সহায়তায়',
         },
       },
     ],
