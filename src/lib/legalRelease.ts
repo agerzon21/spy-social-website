@@ -2332,7 +2332,7 @@ export const LIVE = {
    * card say PayPal) instead of "a gift card" (Privacy's playtest paragraph). ON only if the owner picks PayPal; then
    * also bump PRIVACY_LAST_UPDATED.
    */
-  bonusByPayPal1122: false,
+  bonusByPayPal1122: true,
 }
 
 /**
@@ -2670,6 +2670,9 @@ export const PRACTICE_AI_DAY = 'November 18, 2026'
 /** LIVE.practiceStarts1120's day in PRIVACY_LAST_UPDATED: the day the site goes up with the practice_starts line (legal-practice-1120). */
 export const PRACTICE_START_DAY = 'November 20, 2026'
 
+/** bonusByPayPal1122: the day the playtest's $50 bonus is paid by PayPal in Privacy (owner picked PayPal, Nov 22). */
+export const BONUS_BY_PAYPAL_DAY = 'November 22, 2026'
+
 /** LIVE.partyLeaderLapse's day (Terms' party bullet): the day the site goes up with it on, after the server file is applied. Never earlier than November 11, 2026. */
 export const PARTY_LEADER_LAPSE_DAY = 'November 13, 2026'
 
@@ -2838,6 +2841,8 @@ export const SENTRY_SESSIONS_1119_DAY = 'November 19, 2026'
 export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // the Tournaments item: set to the day the site goes up with it on
+  : LIVE.bonusByPayPal1122
+    ? BONUS_BY_PAYPAL_DAY // Test Versions: the one $50 bonus is sent by PayPal, not a gift card (policy-sync-1122, owner pick Nov 22)
   : LIVE.practiceStarts1120
     ? PRACTICE_START_DAY // Practice Games: each started game's row (game, role, seats, time), kept 15 days (legal-practice-1120)
   : LIVE.playtestTremendous

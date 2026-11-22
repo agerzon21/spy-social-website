@@ -58,7 +58,7 @@ if (bodiesFor) {
  * Every page vercel.json's language rewrites name: each needs a file per language, rendered or (its route off) the
  * page's own file as it is, so a rewrite never points at a missing file. Keep in step with vercel.json.
  */
-const ROUTED = ['privacy', 'terms', 'rules', 'safety', 'game-night-rules', 'ledger', 'transparency', 'child-safety', 'contact-us', 'support', 'whats-new', 'roadmap', 'press', 'beta', 'delete-account', 'join']
+const ROUTED = ['privacy', 'terms', 'rules', 'safety', 'game-night-rules', 'ledger', 'transparency', 'child-safety', 'contact-us', 'support', 'whats-new', 'roadmap', 'press', 'news', 'beta', 'delete-account', 'join']
 /** Pages whose built file also answers other addresses (dist/join/index.html: every /join/<code>): moved, not dropped. */
 const MOVED = { join: '_page/join.html' }
 /** The pages whose built file is dist/_page/<page>.html (vite.config.ts SHARED_PAGES), not dist/<page>/index.html. */
