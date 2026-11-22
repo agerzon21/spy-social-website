@@ -26,6 +26,13 @@ const es: HelpText = {
           ],
         },
         {
+          id: 'from-a-video',
+          q: "Vengo de un vídeo. ¿Qué es SpySocial?",
+          a: [
+            "SpySocial es un juego de fiesta gratuito de engaño social para 3 a 21 jugadores, en iPhone y Android. Descárgalo de la App Store o Google Play, crea una cuenta y juega con amigos en una sala privada o en línea. El juego en el navegador llegará más adelante, con la versión para PC.",
+          ],
+        },
+        {
           id: 'how-many-players',
           q: '¿Cuántos jugadores hacen falta?',
           a: [
@@ -299,8 +306,16 @@ const es: HelpText = {
           id: 'browser-play',
           q: "¿Puedo jugar a SpySocial en un ordenador?",
           a: [
-            "Sí: abre play.spysocial.app en un navegador. Es el mismo juego y la misma cuenta que en el teléfono: inicia sesión o empieza como invitado.",
+            "Puedes iniciar sesión en play.spysocial.app con la cuenta que creaste en la app. Ahí ves a tu agente, tu Bóveda, el Mercado Negro y tus intercambios.",
             o.browserPlay ? "Las salas, Jugar en línea y la Noche de juego también funcionan en el navegador." : "Por ahora, jugar en el navegador solo está abierto a los probadores y creadores que invitamos. Los demás pueden iniciar sesión y usar su cuenta (Cuenta, tu agente, la Bóveda, el Mercado Negro, intercambios, ajustes, Cómo jugar), y ven <b>Jugar en el navegador, muy pronto</b> donde empezaría una partida. El juego en el navegador se abrirá a todos después del lanzamiento, con la versión para PC; lo avisaremos.",
+            "Las cuentas nuevas se crean en la app, desde la App Store o Google Play.",
+          ],
+        },
+        {
+          id: 'web-trading',
+          q: "¿Puedo intercambiar o usar el Mercado Negro en la web?",
+          a: [
+            "Sí: los adultos que pueden intercambiar pueden usar los intercambios y el Mercado Negro en el navegador o en la app, con la misma cuenta y las mismas reglas. Los menores de 18 pueden mirar, pero no comprar ni vender.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -856,6 +871,7 @@ const es: HelpText = {
             '<b>Agente</b> es la membresía mensual, <b>Élite</b> la anual, y <b>Mente maestra</b> es la membresía de por vida: un solo pago, sin renovación.',
             'Mente maestra añade los tres marcos metálicos, el título Tarjeta dorada, la celebración Tormenta dorada y objetos de avatar exclusivos.',
             'La membresía de por vida dura mientras ofrezcamos SpySocial, no toda tu vida. No hay pruebas gratis, y la membresía no se comparte con En familia.',
+            ...(o.purchases ? ["La App Store o Google Play te muestra el precio en tu propia moneda antes de comprar."] : []),
           ],
         },
         ...(o.membershipSwitch
@@ -1008,6 +1024,7 @@ const es: HelpText = {
             o.passwordless
               ? 'Puedes pedir un código nuevo a los 60 segundos con <b>Reenviar código</b>. Cada código sirve 1 hora: usa el del correo más reciente. Si la app dice que hay demasiados correos, espera unos minutos e inténtalo una vez.'
               : 'Puedes pedir otro correo a los 60 segundos. Usa el más reciente.',
+            ...(o.pasteCode ? ["¿Copiaste el código de tu correo? Toca <b>Pegar código</b> en la app y se rellenan las casillas."] : []),
             'Si tu cuenta usa Apple o Google, también puedes entrar con ellos.',
             '¿Sigue sin llegar? Escribe a <email/> con la dirección exacta y más o menos cuándo lo intentaste, y lo revisamos.',
           ],

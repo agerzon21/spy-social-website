@@ -55,6 +55,7 @@ const OPTS: HelpOpts = {
   guestSaveBeforeBuy: LIVE.guestSaveBeforeBuy,
   gnTiers4: LIVE.gnTiers4_1120 && LIVE.helpGameNightRewards,
   r21: LIVE.helpR21_1123,
+  pasteCode: LIVE.helpPasteCode,
 }
 
 // Every language but English, each its own chunk; English is in this page's chunk (the fallback, and no wait).

@@ -56,6 +56,13 @@ const en: HelpText = {
           ],
         },
         {
+          id: 'from-a-video',
+          q: "I came from a video. What is SpySocial?",
+          a: [
+            "SpySocial is a free party game of social deception for 3 to 21 players, on iPhone and Android. Download it from the App Store or Google Play, make an account, and play with friends in a private room or online. Browser play comes later with the PC version.",
+          ],
+        },
+        {
           id: 'how-many-players',
           q: 'How many players do I need?',
           a: [
@@ -329,8 +336,16 @@ const en: HelpText = {
           id: 'browser-play',
           q: "Can I play SpySocial on a computer?",
           a: [
-            "Yes: open play.spysocial.app in a browser. It is the same game and the same account as on your phone: sign in, or start as a guest.",
+            "You can sign in at play.spysocial.app with the account you made in the app. There you see your agent, your Vault, the Black Market and your trades.",
             o.browserPlay ? "Rooms, Play Online and Game Night work in the browser too." : "For now, playing games in the browser is open only to testers and creators we invite. Everyone else can sign in and use their account there (Account, your agent, the Vault, the Black Market, trades, settings, How to Play), and sees <b>Browser Play Coming Soon</b> where a game would start. Browser play opens to everyone after launch, with the PC version; we will announce it.",
+            "New accounts are made in the app, from the App Store or Google Play.",
+          ],
+        },
+        {
+          id: 'web-trading',
+          q: "Can I trade or use the Black Market on the web?",
+          a: [
+            "Yes, adults who can trade can use Trades and the Black Market in the browser or in the app: same account, same rules. Players under 18 can look but not buy or sell.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -886,6 +901,7 @@ const en: HelpText = {
             '<b>Agent</b> is the Monthly Membership, <b>Elite</b> the Yearly Membership, and <b>Spymaster</b> is Lifetime: one payment, no renewal.',
             'Spymaster adds all three metal borders, the Gold Card title, the Gold Storm celebration and Lifetime-only items for your agent.',
             'Lifetime lasts as long as we offer SpySocial, not for your lifetime. There are no free trials, and memberships aren’t shared through Family Sharing.',
+            ...(o.purchases ? ["The App Store or Google Play shows the price in your own currency before you buy."] : []),
           ],
         },
         ...(o.membershipSwitch
@@ -1038,6 +1054,7 @@ const en: HelpText = {
             o.passwordless
               ? 'You can ask for a new code after 60 seconds with <b>Resend Code</b>. A code works for 1 hour: use the one in the newest email. If the app says there are too many emails, wait a few minutes and try once.'
               : 'You can ask for another email after 60 seconds. Use the newest one.',
+            ...(o.pasteCode ? ["Copied the code from your email? Tap <b>Paste Code</b> in the app and it fills in the boxes."] : []),
             'If your account uses Apple or Google, you can sign in with those instead.',
             'Still nothing? Email <email/> with the exact address and roughly when you tried, and we’ll check on our side.',
           ],

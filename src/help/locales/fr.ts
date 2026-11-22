@@ -22,6 +22,13 @@ const sections = (o: HelpOpts): HelpSection[] => [
         ],
       },
       {
+        id: 'from-a-video',
+        q: "Je viens d'une vidéo. C'est quoi, SpySocial ?",
+        a: [
+          "SpySocial est un jeu d'ambiance gratuit de déduction sociale, de 3 à 21 joueurs, sur iPhone et Android. Télécharge-le sur l'App Store ou Google Play, crée un compte et joue avec tes amis dans un salon privé ou en ligne. Le jeu dans le navigateur arrivera plus tard, avec la version PC.",
+        ],
+      },
+      {
         id: 'how-many-players',
         q: 'Combien de joueurs faut-il ?',
         a: [
@@ -295,8 +302,16 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'browser-play',
         q: "Puis-je jouer à SpySocial sur ordinateur ?",
         a: [
-          "Oui : ouvre play.spysocial.app dans un navigateur. C'est le même jeu et le même compte que sur ton téléphone : connecte-toi ou commence en invité.",
+          "Tu peux te connecter sur play.spysocial.app avec le compte créé dans l'appli. Tu y retrouves ton agent, ton Coffre, le Marché noir et tes échanges.",
           o.browserPlay ? "Les salons, Jouer en ligne et la Soirée jeux fonctionnent aussi dans le navigateur." : "Pour l'instant, jouer dans le navigateur n'est ouvert qu'aux testeurs et aux créateurs que nous invitons. Les autres peuvent se connecter et utiliser leur compte (Compte, ton agent, le Coffre, le Marché noir, les échanges, réglages, Comment jouer), et voient <b>Le jeu dans le navigateur arrive bientôt</b> là où une partie commencerait. Le jeu dans le navigateur s'ouvrira à tous après le lancement, avec la version PC ; nous l'annoncerons.",
+          "Les nouveaux comptes se créent dans l'appli, depuis l'App Store ou Google Play.",
+        ],
+      },
+      {
+        id: 'web-trading',
+        q: "Puis-je faire des échanges ou utiliser le Marché noir sur le web ?",
+        a: [
+          "Oui : les adultes qui peuvent échanger peuvent utiliser les échanges et le Marché noir dans le navigateur ou dans l'appli, avec le même compte et les mêmes règles. Les moins de 18 ans peuvent regarder, mais ni acheter ni vendre.",
         ],
       },
       ...(o.autoTranslation ? [
@@ -852,6 +867,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           "<b>Agent</b> est la formule mensuelle, <b>Élite</b> la formule annuelle, et <b>Maître espion</b> l'accès à vie : un seul paiement, sans renouvellement.",
           'Maître espion ajoute les trois cadres métalliques, le titre Carte or, la célébration Tempête dorée et des objets pour ton agent réservés à l\'accès à vie.',
           "L'accès à vie dure tant que nous proposons SpySocial, pas toute ta vie. Pas d'essai gratuit, et le statut de membre ne se partage pas via le Partage familial.",
+          ...(o.purchases ? ["L'App Store ou Google Play affiche le prix dans ta monnaie avant l'achat."] : []),
         ],
       },
       ...(o.membershipSwitch
@@ -1004,6 +1020,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
           o.passwordless
             ? "Tu peux demander un nouveau code après 60 secondes avec <b>Renvoyer le code</b>. Un code marche 1 heure : utilise celui du dernier e-mail. Si l'appli dit qu'il y a trop d'e-mails, attends quelques minutes et réessaie une fois."
             : 'Tu peux demander un autre e-mail après 60 secondes. Utilise le plus récent.',
+          ...(o.pasteCode ? ["Tu as copié le code de ton e-mail ? Touche <b>Coller le code</b> dans l'appli et les cases se remplissent."] : []),
           'Si ton compte utilise Apple ou Google, tu peux te connecter avec eux.',
           "Toujours rien ? Écris à <email/> avec l'adresse exacte et à peu près quand tu as essayé, et nous vérifierons de notre côté.",
         ],

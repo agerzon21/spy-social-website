@@ -26,6 +26,13 @@ const ptBR: HelpText = {
           ],
         },
         {
+          id: 'from-a-video',
+          q: "Vim de um vídeo. O que é SpySocial?",
+          a: [
+            "SpySocial é um jogo de festa grátis de dedução social para 3 a 21 jogadores, no iPhone e no Android. Baixe na App Store ou Google Play, crie uma conta e jogue com amigos em uma sala privada ou online. O jogo no navegador chega depois, com a versão para PC.",
+          ],
+        },
+        {
           id: 'how-many-players',
           q: 'De quantos jogadores eu preciso?',
           a: [
@@ -299,8 +306,16 @@ const ptBR: HelpText = {
           id: 'browser-play',
           q: "Posso jogar SpySocial no computador?",
           a: [
-            "Sim: abra play.spysocial.app em um navegador. É o mesmo jogo e a mesma conta do celular: entre ou comece como convidado.",
+            "Você pode entrar em play.spysocial.app com a conta que criou no app. Lá você vê seu agente, seu Cofre, o Mercado Negro e suas trocas.",
             o.browserPlay ? "Salas, Jogar online e a Noite de jogo também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores e criadores que convidamos. Os demais podem entrar e usar a conta (Conta, seu agente, o Cofre, o Mercado Negro, trocas, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. O jogo no navegador abre para todos depois do lançamento, com a versão para PC; avisaremos.",
+            "Contas novas são criadas no app, pela App Store ou Google Play.",
+          ],
+        },
+        {
+          id: 'web-trading',
+          q: "Posso fazer trocas ou usar o Mercado Negro na web?",
+          a: [
+            "Sim: adultos que podem fazer trocas podem usar as trocas e o Mercado Negro no navegador ou no app, com a mesma conta e as mesmas regras. Menores de 18 anos podem olhar, mas não comprar nem vender.",
           ],
         },
         ...(o.autoTranslation ? [
@@ -856,6 +871,7 @@ const ptBR: HelpText = {
             '<b>Agente</b> é o plano mensal, <b>Elite</b> o plano anual, e <b>Mestre-espião</b> é o Vitalício: um pagamento só, sem renovação.',
             'Mestre-espião acrescenta as três molduras de metal, o título Cartão ouro, a comemoração Tempestade dourada e itens do Vitalício para o seu agente.',
             'Vitalício dura enquanto oferecermos o SpySocial, não a sua vida toda. Não há teste grátis, e o plano de membro não é compartilhado pelo Compartilhamento Familiar.',
+            ...(o.purchases ? ["A App Store ou o Google Play mostra o preço na sua moeda antes de você comprar."] : []),
           ],
         },
         ...(o.membershipSwitch
@@ -1008,6 +1024,7 @@ const ptBR: HelpText = {
             o.passwordless
               ? 'Você pode pedir um código novo depois de 60 segundos com <b>Reenviar código</b>. Cada código vale 1 hora: use o do e-mail mais recente. Se o app disser que há e-mails demais, espere alguns minutos e tente uma vez.'
               : 'Você pode pedir outro e-mail depois de 60 segundos. Use o mais recente.',
+            ...(o.pasteCode ? ["Copiou o código do seu e-mail? Toque em <b>Colar código</b> no app e ele preenche as caixas."] : []),
             'Se sua conta usa Apple ou Google, você pode entrar com eles.',
             'Ainda nada? Escreva para <email/> com o endereço exato e mais ou menos quando você tentou, e verificamos do nosso lado.',
           ],

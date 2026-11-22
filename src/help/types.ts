@@ -132,6 +132,8 @@ export interface HelpOpts {
    * wearable at once), #game-night-intercepts' "up to 5 at once, opened on the Game Night tab" line.
    */
   r21: boolean
+  /** The app's PASTE CODE button on the sign-in code step is on phones (LIVE.helpPasteCode, otp-easy-1122; 2.2.1): #code-not-arriving's Paste Code line. TRANSLATIONS UNREVIEWED: agent's, in the app's own button words (emailCode.ts pasteCode). */
+  pasteCode: boolean
 }
 
 export interface HelpItem {

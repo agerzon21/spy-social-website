@@ -2322,6 +2322,12 @@ export const LIVE = {
    */
   helpR21_1123: false,
   /**
+   * help-launch-1122, STAGED OFF: the app's PASTE CODE button (otp-easy-1122, baf358d02) is in the released 2.2.1 build. Turns on
+   * #code-not-arriving's "Tap Paste Code" line in ten languages (help/types pasteCode). Help only: no legal date moves. Flip
+   * when 2.2.1 with the button is public.
+   */
+  helpPasteCode: false,
+  /**
    * policy-sync-1122, STAGED OFF, OWNER DECIDES: the playtest's one $50 bonus is sent by PayPal (the Beta 3 form and day
    * card say PayPal) instead of "a gift card" (Privacy's playtest paragraph). ON only if the owner picks PayPal; then
    * also bump PRIVACY_LAST_UPDATED.
