@@ -244,7 +244,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'game-night-weekly',
             q: "C'est quand, la soirée jeux ?",
             a: [
-              "Une fois par semaine : le vendredi, puis la même soirée à nouveau le samedi, en général de 20 h à 22 h, heure de l'Est des États-Unis.",
+              "Une fois par semaine : le vendredi, en général de 20 h à 22 h, puis la même soirée à nouveau le samedi à 14 h, heure de l'Est des États-Unis.",
               "Viens à l'une des deux, ou joue aux deux.",
               o.launch ? "Nous annonçons chaque soirée dans l’appli, sur l’accueil, dans Compétition, sur l’onglet Soirée jeux." : "Nous annonçons chaque soirée dans l'appli, sur la carte de la soirée jeux de l'accueil.",
             ],
@@ -679,12 +679,12 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'game-night-intercepts',
             q: "C'est quoi, les interceptions de soirée jeux ?",
             a: [
-              o.gnTiers4 ? `Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux), <b>Niveau 3</b> pour 1 600 (Rare ou mieux) et <b>Niveau 4</b> pour 3 200 (Épique ou mieux, avec une chance d'Unique).` : "Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> (le Coffre ne les affiche plus) : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
+              o.gnTiers4 ? `Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux), <b>Niveau 3</b> pour 1 600 (Rare ou mieux) et <b>Niveau 4</b> pour 3 200 (Épique ou mieux, avec une chance d'Unique).` : "Des interceptions que tu obtiens avec l'Intel de soirée jeux, dans <b>Compétition</b>, sur l'onglet <b>Soirée jeux</b> : <b>Niveau 1</b> pour 400 (toute rareté, jusqu'à Légendaire), <b>Niveau 2</b> pour 800 (Peu commun ou mieux) et <b>Niveau 3</b> pour 10 000 (Épique ou mieux, avec une chance d'Unique).",
               ...(o.r21 ? ["Tu peux en obtenir jusqu'à 5 d'un même niveau à la fois, autant que ton Intel de Soirée jeux le permet, et les ouvrir sur place, dans l'onglet <b>Soirée jeux</b>."] : []),
               "Elles s'ouvrent sur la collection propre à la soirée jeux, <b>After Hours</b> : 14 objets de salle de cartes pour ton agent qu'aucune autre interception ne contient. Comme pour toute interception, l'appli affiche les chances exactes.",
               ...(o.gnTiers4 ? [`Un doublon de n'importe quel objet <b>After Hours</b>, quelle que soit la façon dont tu l'as obtenu (ouvert, acheté ou reçu dans un échange), se déchiquette contre de l'<b>Intel de soirée jeux</b>, pas de l'Intel, au montant affiché par l'appli (jamais ta première copie).`] : []),
               ...(o.u6153 ? ["Le fond Légendaire de la soirée jeux est <b>Black-out</b>, qui s'appelait avant L'Arrière-salle. Sa scène de repos est <b>Rain Window</b>."] : []),
-              "Une interception achetée attend dans <b>À ouvrir</b>, dans le <b>Coffre</b>, et celles que tu as déjà s'y ouvrent toujours. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
+              "Une interception achetée attend dans <b>À ouvrir</b>. Ouvre-la sur l'onglet <b>Soirée jeux</b> ou dans le <b>Coffre</b>, comme celles que tu as déjà. Contrairement à l'Intel de soirée jeux, les interceptions et ce qu'elles contiennent s'échangent comme tout ce que tu gagnes.",
               "Touche <b>Contenu</b> sur un palier pour voir les probabilités par rareté. Seules les probabilités sont affichées, pas la liste des objets.",
             ],
           },
@@ -695,6 +695,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Comment trier et filtrer dans Ton look ?",
         a: [
           "Sur l'accueil, touche <b>Ton look</b>. Là, la boîte <b>Trier et filtrer</b> règle l’ordre et un filtre de rareté. Les deux restent quand tu changes de catégorie, et un indicateur montre qu’un filtre est actif.",
+          ...(o.r21 ? ["Touche le sélecteur <b>Agent</b> / <b>Équipement</b> pour passer de l'apparence de ton agent (peau, cheveux, visage, pilosité) à ton équipement (chapeaux, lunettes, tenues, fonds)."] : []),
         ],
       },
       {

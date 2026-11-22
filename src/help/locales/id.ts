@@ -248,7 +248,7 @@ const id: HelpText = {
               id: 'game-night-weekly',
               q: 'Kapan Malam Permainan diadakan?',
               a: [
-                'Seminggu sekali: hari Jumat, lalu malam yang sama diulang hari Sabtu, biasanya pukul 20.00–22.00 waktu bagian timur AS.',
+                'Seminggu sekali: hari Jumat, biasanya pukul 20.00–22.00, lalu malam yang sama diulang hari Sabtu pukul 14.00, waktu bagian timur AS.',
                 'Datang di salah satu malam, atau main di keduanya.',
                 o.launch ? "Kami mengumumkan setiap malam di aplikasi, di Beranda, di Kompetisi, tab Malam Permainan." : 'Kami mengumumkan setiap malam di aplikasi, di kartu Malam Permainan di Beranda.',
               ],
@@ -683,12 +683,12 @@ const id: HelpText = {
               id: 'game-night-intercepts',
               q: 'Apa itu sadapan Malam Permainan?',
               a: [
-                o.gnTiers4 ? `Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b> (Brankas tidak lagi menampilkannya): <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), <b>Tingkat 3</b> seharga 1.600 (Langka atau lebih baik), dan <b>Tingkat 4</b> seharga 3.200 (Epik atau lebih baik, dengan peluang Unik).` : 'Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b> (Brankas tidak lagi menampilkannya): <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
+                o.gnTiers4 ? `Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b>: <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), <b>Tingkat 3</b> seharga 1.600 (Langka atau lebih baik), dan <b>Tingkat 4</b> seharga 3.200 (Epik atau lebih baik, dengan peluang Unik).` : 'Sadapan yang kamu dapat dengan Intel Malam Permainan, di <b>Kompetisi</b>, pada tab <b>Malam Permainan</b>: <b>Tingkat 1</b> seharga 400 (kelangkaan apa pun, sampai Legendaris), <b>Tingkat 2</b> seharga 800 (Tak Biasa atau lebih baik), dan <b>Tingkat 3</b> seharga 10.000 (Epik atau lebih baik, dengan peluang Unik).',
                 ...(o.r21 ? ["Kamu bisa mengambil sampai 5 sadapan dari satu tingkat sekaligus, sebanyak yang cukup dengan Intel Malam Permainan-mu, dan membukanya langsung di tab <b>Malam Permainan</b>."] : []),
                 'Isinya dari koleksi khusus Malam Permainan, <b>After Hours</b>: 14 item ruang kartu untuk agenmu yang tidak ada di sadapan lain. Seperti semua sadapan, aplikasi menampilkan peluang pastinya.',
                 ...(o.gnTiers4 ? [`Salinan duplikat item <b>After Hours</b> apa pun, bagaimanapun kamu mendapatkannya (dibuka, dibeli, atau lewat pertukaran), dihancurkan menjadi <b>Intel Malam Permainan</b>, bukan Intel, sebanyak yang ditampilkan aplikasi (tidak pernah salinan pertamamu).`] : []),
                 ...(o.u6153 ? ["Latar Legendaris Malam Permainan adalah <b>Mati Lampu</b>, yang dulu bernama Ruang Belakang. Adegan istirahatnya adalah <b>Rain Window</b>."] : []),
-                'Sadapan yang dibeli menunggu di <b>Belum dibuka</b> di <b>Brankas</b>, dan yang sudah kamu punya tetap dibuka dari sana. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
+                'Sadapan yang dibeli menunggu di <b>Belum dibuka</b>. Buka di tab <b>Malam Permainan</b> atau di <b>Brankas</b>, sama seperti yang sudah kamu punya. Berbeda dengan Intel Malam Permainan, sadapan ini dan isinya bisa ditukar seperti apa pun yang kamu dapat.',
                 "Ketuk <b>Isinya</b> pada sebuah tingkat untuk melihat peluang per kelangkaan. Hanya peluang yang ditampilkan, bukan daftar item.",
               ],
             },
@@ -699,6 +699,7 @@ const id: HelpText = {
           q: "Bagaimana cara mengurutkan dan memfilter di Gaya?",
           a: [
             "Di Beranda, ketuk <b>Gaya</b>. Di sana, kotak <b>Urutkan & filter</b> mengatur urutan dan filter kelangkaan. Keduanya tetap saat berpindah kategori, dan penanda menunjukkan filter sedang aktif.",
+            ...(o.r21 ? ["Ketuk tombol <b>Agen</b> / <b>Perlengkapan</b> untuk beralih antara tampilan agenmu (kulit, rambut, wajah, rambut wajah) dan perlengkapanmu (topi, kacamata, pakaian, latar)."] : []),
           ],
         },
         {

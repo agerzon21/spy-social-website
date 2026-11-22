@@ -278,7 +278,7 @@ const en: HelpText = {
               id: 'game-night-weekly',
               q: 'When is Game Night?',
               a: [
-                'Once a week: on Friday, then the same night again on Saturday, usually 8 to 10 PM Eastern.',
+                'Once a week: on Friday, usually 8 to 10 PM Eastern, then the same night again on Saturday at 2 PM Eastern.',
                 'Come to either night, or play both.',
                 o.launch ? "We announce each night in the app, on Home, in Compete, on the Game Night tab." : 'We announce each night in the app, on Home’s Game Night card.',
               ],
@@ -713,12 +713,12 @@ const en: HelpText = {
               id: 'game-night-intercepts',
               q: 'What are Game Night Intercepts?',
               a: [
-                o.gnTiers4 ? `Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better), <b>Tier 3</b> for 1,600 (Rare or better) and <b>Tier 4</b> for 3,200 (Epic or better, with a chance of a Unique).` : 'Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab (the Vault no longer shows them): <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
+                o.gnTiers4 ? `Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab: <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better), <b>Tier 3</b> for 1,600 (Rare or better) and <b>Tier 4</b> for 3,200 (Epic or better, with a chance of a Unique).` : 'Intercepts you get with Game Night Intel, in <b>Compete</b>, on the <b>Game Night</b> tab: <b>Tier 1</b> for 400 (any rarity, up to Legendary), <b>Tier 2</b> for 800 (Uncommon or better) and <b>Tier 3</b> for 10,000 (Epic or better, with a chance of a Unique).',
                 ...(o.r21 ? ["You can get up to 5 of a tier at once, as many as your Game Night Intel covers, and open them right there on the <b>Game Night</b> tab."] : []),
                 'They open into Game Night’s own set, <b>After Hours</b>: 14 card-room items for your agent that no other Intercept holds. As for every Intercept, the app shows the exact odds.',
                 ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item, however you got it (opened, bought or traded), shreds for <b>Game Night Intel</b>, not Intel, at the amount the app shows (never your first copy).`] : []),
                 ...(o.u6153 ? ["Game Night’s Legendary background is <b>Blackout</b>, which used to be called The Back Room. Its rest scene is <b>Rain Window</b>."] : []),
-                'A bought one waits in <b>To Open</b> in the <b>Vault</b>, and one you already own still opens from there. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
+                'A bought one waits under <b>To Open</b>. Open it on the <b>Game Night</b> tab or in the <b>Vault</b>, like one you already own. Unlike Game Night Intel, the Intercepts and what they open into trade like anything else you earn.',
                 "Tap <b>What’s inside</b> on a tier to see its rarity odds. It shows the odds only, not the list of items.",
               ],
             },
@@ -729,6 +729,7 @@ const en: HelpText = {
           q: "How do I sort and filter in Your Look?",
           a: [
             "On Home, tap <b>Your Look</b>. There, the <b>Sort & Filter</b> box sets the order and a rarity filter. Both stay as you switch between categories, and an indicator shows when a filter is on.",
+            ...(o.r21 ? ["Tap the <b>Agent</b> / <b>Gear</b> switch to move between your agent’s looks (skin, hair, face, facial hair) and your gear (hats, glasses, outfits, backgrounds)."] : []),
           ],
         },
         {

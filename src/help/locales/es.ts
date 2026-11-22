@@ -248,7 +248,7 @@ const es: HelpText = {
               id: 'game-night-weekly',
               q: '¿Cuándo es la Noche de Juegos?',
               a: [
-                'Una vez por semana: el viernes, y la misma noche otra vez el sábado, normalmente de 8 a 10 PM, hora del Este de EE. UU.',
+                'Una vez por semana: el viernes, normalmente de 8 a 10 PM, y la misma noche otra vez el sábado a las 2 PM, hora del Este de EE. UU.',
                 'Ven a cualquiera de las dos noches, o juega en ambas.',
                 o.launch ? "Anunciamos cada noche en la app, en el inicio, en Competir, en la pestaña Noche de Juegos." : 'Anunciamos cada noche en la app, en la tarjeta de la Noche de Juegos del inicio.',
               ],
@@ -683,12 +683,12 @@ const es: HelpText = {
               id: 'game-night-intercepts',
               q: '¿Qué son las intercepciones de Noche de Juegos?',
               a: [
-                o.gnTiers4 ? `Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor), <b>Nivel 3</b> por 1.600 (Raro o mejor) y <b>Nivel 4</b> por 3.200 (Épico o mejor, con opción de un Único).` : 'Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b> (la Bóveda ya no las muestra): <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
+                o.gnTiers4 ? `Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b>: <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor), <b>Nivel 3</b> por 1.600 (Raro o mejor) y <b>Nivel 4</b> por 3.200 (Épico o mejor, con opción de un Único).` : 'Intercepciones que consigues con Intel de Noche de Juegos, en <b>Competir</b>, en la pestaña <b>Noche de Juegos</b>: <b>Nivel 1</b> por 400 (cualquier rareza, hasta Legendario), <b>Nivel 2</b> por 800 (Poco común o mejor) y <b>Nivel 3</b> por 10.000 (Épico o mejor, con opción de un Único).',
                 ...(o.r21 ? ["Puedes conseguir hasta 5 de un nivel a la vez, tantas como cubra tu Intel de Noche de Juegos, y abrirlas ahí mismo, en la pestaña <b>Noche de Juegos</b>."] : []),
                 'Se abren en la colección propia de la Noche de Juegos, <b>After Hours</b>: 14 objetos de sala de cartas para tu agente que ninguna otra intercepción tiene. Como en toda intercepción, la app muestra las probabilidades exactas.',
                 ...(o.gnTiers4 ? [`Una copia repetida de cualquier objeto de <b>After Hours</b>, la hayas conseguido como la hayas conseguido (abriéndola, comprándola o por intercambio), se tritura por <b>Intel de Noche de Juegos</b>, no por Intel, por la cantidad que muestra la app (nunca tu primera copia).`] : []),
                 ...(o.u6153 ? ["El fondo Legendario de la Noche de Juegos es <b>Apagón</b>, que antes se llamaba La Trastienda. Su escena de descanso es <b>Rain Window</b>."] : []),
-                'Una comprada espera en <b>Por abrir</b>, en la <b>Bóveda</b>, y las que ya tienes se siguen abriendo desde ahí. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
+                'Una comprada espera en <b>Por abrir</b>. Ábrela en la pestaña <b>Noche de Juegos</b> o en la <b>Bóveda</b>, igual que las que ya tienes. A diferencia del Intel de Noche de Juegos, las intercepciones y lo que sale de ellas se intercambian como cualquier otra cosa que ganes.',
                 "Toca <b>Qué contiene</b> en un nivel para ver las probabilidades por rareza. Solo muestra las probabilidades, no la lista de objetos.",
               ],
             },
@@ -699,6 +699,7 @@ const es: HelpText = {
           q: "¿Cómo ordeno y filtro en Tu look?",
           a: [
             "En el inicio, toca <b>Tu look</b>. Ahí, el cuadro <b>Ordenar y filtrar</b> fija el orden y un filtro de rareza. Ambos se mantienen al cambiar de categoría, y un indicador muestra cuándo hay un filtro activo.",
+            ...(o.r21 ? ["Toca el interruptor <b>Agente</b> / <b>Equipo</b> para cambiar entre el aspecto de tu agente (piel, pelo, cara, vello facial) y tu equipo (sombreros, gafas, atuendos, fondos)."] : []),
           ],
         },
         {

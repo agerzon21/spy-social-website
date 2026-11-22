@@ -248,7 +248,7 @@ const ptBR: HelpText = {
               id: 'game-night-weekly',
               q: 'Quando é a Noite de Jogos?',
               a: [
-                'Uma vez por semana: na sexta, e a mesma noite de novo no sábado, normalmente das 20h às 22h no horário do leste dos EUA.',
+                'Uma vez por semana: na sexta, normalmente das 20h às 22h, e a mesma noite de novo no sábado às 14h, no horário do leste dos EUA.',
                 'Venha em qualquer uma das noites, ou jogue nas duas.',
                 o.launch ? "Anunciamos cada noite no app, no início, em Competir, na aba Noite de Jogos." : 'Anunciamos cada noite no app, no cartão da Noite de Jogos no início.',
               ],
@@ -683,12 +683,12 @@ const ptBR: HelpText = {
               id: 'game-night-intercepts',
               q: 'O que são as interceptações da Noite de Jogos?',
               a: [
-                o.gnTiers4 ? `Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor), <b>Nível 3</b> por 1.600 (Raro ou melhor) e <b>Nível 4</b> por 3.200 (Épico ou melhor, com chance de um Único).` : 'Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b> (o Cofre não as mostra mais): <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
+                o.gnTiers4 ? `Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b>: <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor), <b>Nível 3</b> por 1.600 (Raro ou melhor) e <b>Nível 4</b> por 3.200 (Épico ou melhor, com chance de um Único).` : 'Interceptações que você pega com Intel da Noite de Jogos, em <b>Competir</b>, na aba <b>Noite de Jogos</b>: <b>Nível 1</b> por 400 (qualquer raridade, até Lendário), <b>Nível 2</b> por 800 (Incomum ou melhor) e <b>Nível 3</b> por 10.000 (Épico ou melhor, com chance de um Único).',
                 ...(o.r21 ? ["Dá para pegar até 5 do mesmo nível de uma vez, até onde o seu Intel da Noite de Jogos der, e abri-las ali mesmo, na aba <b>Noite de Jogos</b>."] : []),
                 'O que sai delas é da coleção própria da Noite de Jogos, <b>After Hours</b>: 14 itens de salão de cartas para o seu agente que nenhuma outra interceptação tem. Como em toda interceptação, o app mostra as chances exatas.',
                 ...(o.gnTiers4 ? [`Uma cópia repetida de qualquer item do <b>After Hours</b>, não importa como você o conseguiu (abrindo, comprando ou numa troca), é triturada por <b>Intel da Noite de Jogos</b>, não por Intel, no valor que o app mostra (nunca a sua primeira cópia).`] : []),
                 ...(o.u6153 ? ["O fundo Lendário da Noite de Jogos é <b>Apagão</b>, que antes se chamava Sala dos Fundos. A cena de descanso dele é <b>Rain Window</b>."] : []),
-                'Uma comprada espera em <b>Para abrir</b>, no <b>Cofre</b>, e as que você já tem continuam abrindo dali. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
+                'Uma comprada espera em <b>Para abrir</b>. Abra na aba <b>Noite de Jogos</b> ou no <b>Cofre</b>, como as que você já tem. Ao contrário do Intel da Noite de Jogos, as interceptações e o que sai delas podem ser trocados como qualquer outra coisa que você ganha.',
                 "Toque em <b>O que tem dentro</b> em um nível para ver as chances por raridade. Mostra só as chances, não a lista de itens.",
               ],
             },
@@ -699,6 +699,7 @@ const ptBR: HelpText = {
           q: "Como ordeno e filtro em Visual?",
           a: [
             "No início, toque em <b>Visual</b>. Lá, a caixa <b>Ordenar e filtrar</b> define a ordem e um filtro de raridade. Os dois continuam ao trocar de categoria, e um indicador mostra quando há filtro ligado.",
+            ...(o.r21 ? ["Toque na chave <b>Agente</b> / <b>Equipamento</b> para alternar entre o visual do seu agente (pele, cabelo, rosto, pelos faciais) e o seu equipamento (chapéus, óculos, roupas, fundos)."] : []),
           ],
         },
         {
