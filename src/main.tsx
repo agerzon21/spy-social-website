@@ -39,6 +39,9 @@ const start = (strings: Awaited<ReturnType<typeof loadStrings>>, take: boolean) 
   if (take) {
     // A mismatch is put right by React itself (it draws that part again); kept for the site's checks, not logged.
     ReactDOM.hydrateRoot(root, app, { onRecoverableError: (err) => void state.errors.push(String((err as Error)?.message ?? err)) })
+    // The built HTML's guard (hidden unless <html lang> is data-pre's language) has done its job once React has taken
+    // the HTML over: without the mark, nothing that later touches <html lang> can blank the page (nav-blank-1122).
+    root.removeAttribute('data-pre')
     return
   }
   if (pre) {
