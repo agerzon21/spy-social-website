@@ -808,7 +808,7 @@ const id: Strings = {
         },
       ],
       more: 'Ada juga Statistik, gelar dan bingkai untuk dibuka, level hingga 100 dengan prestise, XP juga dari permainan singkat, kembali ke permainan dengan mulus setelah ponsel masuk mode tidur, link undangan yang langsung berfungsi, dan tampilan baru di setiap layar.',
-      launchWeek: 'Malam Pembukaan: hari Jumat, 11 Desember, dan sekali lagi hari Sabtu, 12 Desember, pukul 20.00–22.00 waktu bagian timur AS (ET). Malam Spy Talk yang sama dua kali, jadi pilih salah satu atau main di keduanya. Setelah itu, seminggu sekali: hari Jumat, lalu malam yang sama diulang hari Sabtu.',
+      launchWeek: 'Malam Pembukaan: hari Jumat, 11 Desember, pukul 20.00–22.00, dan sekali lagi hari Sabtu, 12 Desember, pukul 14.00–16.00 waktu bagian timur AS (ET). Malam Spy Talk yang sama dua kali, jadi pilih salah satu atau main di keduanya. Setelah itu, seminggu sekali: hari Jumat, lalu malam yang sama diulang hari Sabtu.',
     },
     next: {
       status: 'Direncanakan',
