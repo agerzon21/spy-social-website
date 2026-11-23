@@ -159,6 +159,15 @@
       ]
     },
     {
+      "source": "/creator/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/.well-known/apple-app-site-association",
       "headers": [
         {
@@ -378,6 +387,10 @@
     {
       "source": "/beta3(/?)",
       "destination": "/beta3/index.html"
+    },
+    {
+      "source": "/creator/:doc(brief|coplayer|recording){/}?",
+      "destination": "/creator/:doc/index.html"
     },
     {
       "source": "/join/e/:id",

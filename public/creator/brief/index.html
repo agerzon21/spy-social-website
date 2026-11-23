@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<title>SpySocial Creator Brief</title>
+<style>
+@font-face { font-family: 'Big Shoulders Display'; font-weight: 100 900; font-display: swap; src: url('/creator/fonts/big-shoulders-display-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-weight: 500; font-display: swap; src: url('/creator/fonts/barlow-500-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-weight: 500; font-style: italic; font-display: swap; src: url('/creator/fonts/barlow-500-italic-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-weight: 600; font-display: swap; src: url('/creator/fonts/barlow-600-latin.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow'; font-weight: 700; font-display: swap; src: url('/creator/fonts/barlow-700-latin.woff2') format('woff2'); }
+
+:root {
+  --page: #0a111c; --band: #10233a; --deep: #070c14;
+  --text: #fefaea; --body: rgba(254, 250, 234, 0.86); --muted: rgba(254, 250, 234, 0.66); --line: rgba(254, 250, 234, 0.16);
+  --ink: #0a0a0a; --cream: #fefaea; --paper: #f8f6f0;
+  --accent: #ff9500; --yellow: #ffd166; --amber: #f2b64d; --red: #e63946; --blue: #4e8cff; --green: #4ea173;
+  --display: 'Big Shoulders Display', Oswald, 'Arial Narrow', Impact, sans-serif;
+  --sans: Barlow, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #05080d; color: var(--text); font-family: var(--sans); font-weight: 500;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+@page { size: A4; margin: 0; }
+
+.page {
+  width: 210mm; height: 297mm; padding: 13mm 15mm 11mm; position: relative; overflow: hidden;
+  background:
+    radial-gradient(120mm 90mm at 78% -8%, rgba(255, 240, 205, 0.10), transparent 70%),
+    radial-gradient(160mm 120mm at 0% 110%, rgba(78, 140, 255, 0.10), transparent 70%),
+    var(--page);
+  display: flex; flex-direction: column; gap: 4.2mm;
+  break-after: page; page-break-after: always;
+  font-size: 9.6pt; line-height: 1.42;
+}
+.page:last-child { break-after: auto; page-break-after: auto; }
+@media screen { .page { margin: 10mm auto; box-shadow: 0 20px 60px rgba(0,0,0,.6); } }
+@media screen and (max-width: 840px) {
+  /* Site copy: on phones the A4 sheets reflow into one readable column (the print/desktop layout is unchanged). */
+  .page { zoom: 1.12; width: auto; height: auto; overflow: visible; margin: 0 0 3mm; padding: 6mm 4.2mm 5mm; box-shadow: none; gap: 4.4mm !important; }
+  .page .grid, .page .must, .page .dates, .page .rec, .page .keys, .page .tiles, .page .fyi, .page .plans { grid-template-columns: 1fr !important; }
+  .page .grid[style*="1fr 1fr 1fr 1fr"], .page .grid[style*=".62fr"], .page .rec .g2 { grid-template-columns: 1fr 1fr !important; }
+  .page .grid[style*=".62fr"] > .paper { grid-column: 1 / -1; }
+  .page > div[style*="space-between"] { flex-wrap: wrap; }
+  .run, .foot { flex-wrap: wrap; gap: 1mm 4mm; }
+  .foot { margin-top: 2mm; }
+  .dates div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .dates div:last-child { border-bottom: 0; }
+  .obs th { letter-spacing: .02em; }
+  .obs td:nth-child(n+3), .obs th:nth-child(n+3) { white-space: nowrap; }
+  .lead { max-width: none; }
+}
+
+/* Running head and foot */
+.run { display: flex; justify-content: space-between; align-items: center; font-family: var(--display); font-weight: 800;
+  letter-spacing: .18em; text-transform: uppercase; font-size: 7.4pt; color: var(--muted); }
+.run b { color: var(--yellow); font-weight: 900; }
+.foot { margin-top: auto; display: flex; justify-content: space-between; font-size: 7pt; color: var(--muted); border-top: 1px solid var(--line); padding-top: 2.4mm; }
+
+h1, h2, h3 { font-family: var(--display); font-weight: 900; text-transform: uppercase; margin: 0; line-height: .9; letter-spacing: .005em; }
+h2 { font-size: 30pt; }
+h2 .k { display: block; font-size: 9pt; letter-spacing: .22em; color: var(--accent); margin-bottom: 1.6mm; }
+h3 { font-size: 13.5pt; line-height: 1; letter-spacing: .02em; }
+p { margin: 0; color: var(--body); }
+.lead { font-size: 11pt; color: var(--body); max-width: 160mm; }
+strong { color: var(--text); font-weight: 700; }
+.paper strong { color: var(--ink); }
+
+/* Cut paper */
+.paper { background: var(--cream); color: var(--ink); border: 1.4px solid var(--ink); box-shadow: 1.8mm 1.8mm 0 #000; padding: 4mm 4.4mm; position: relative; }
+.paper p { color: #2b2b2b; }
+.paper.tilt-l { transform: rotate(-0.8deg); }
+.paper.tilt-r { transform: rotate(0.7deg); }
+.tape::before { content: ''; position: absolute; top: -3.2mm; left: 50%; width: 22mm; height: 6mm; transform: translateX(-50%) rotate(-2deg);
+  background: rgba(226, 205, 150, 0.82); box-shadow: 0 0.4mm 0.8mm rgba(0,0,0,.25); }
+.stamp { display: inline-block; font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .12em;
+  color: var(--red); border: 0.6mm solid var(--red); border-radius: 1.2mm; padding: .4mm 2mm; transform: rotate(-4deg); font-size: 9pt; }
+.tag { display: inline-block; font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .14em;
+  font-size: 7.6pt; background: var(--ink); color: var(--cream); padding: .6mm 2mm; border-radius: .8mm; }
+.tag.y { background: var(--yellow); color: var(--ink); }
+.tag.o { background: var(--accent); color: var(--ink); }
+
+/* Screenshots with their marks */
+.shot { position: relative; width: 100%; border: 1.4px solid var(--ink); box-shadow: 1.4mm 1.4mm 0 #000; overflow: hidden; background: #1b2f4d; }
+.shot img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.shot svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+figure { margin: 0; display: flex; flex-direction: column; gap: 2mm; }
+figcaption { font-size: 8.2pt; color: var(--muted); line-height: 1.35; }
+figcaption b { color: var(--text); }
+.n { display: inline-flex; align-items: center; justify-content: center; width: 4.6mm; height: 4.6mm; border-radius: 50%;
+  background: var(--accent); color: var(--ink); border: .35mm solid var(--ink); font-family: var(--display); font-weight: 900;
+  font-size: 8pt; line-height: 1; vertical-align: -0.9mm; margin-right: .6mm; flex: none; }
+
+.grid { display: grid; gap: 5mm; }
+.g2 { grid-template-columns: 1fr 1fr; }
+.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1.6mm; }
+.steps li { display: flex; gap: 1.6mm; align-items: baseline; color: var(--body); }
+.steps li .n { transform: translateY(0.3mm); }
+.paper .steps li { color: #2b2b2b; }
+ul.dots { margin: 0; padding-left: 4mm; display: flex; flex-direction: column; gap: 1.2mm; color: var(--body); }
+.paper ul.dots { color: #2b2b2b; }
+ul.dots li::marker { color: var(--accent); }
+
+.say { border-left: 1.2mm solid var(--yellow); padding: 2mm 0 2mm 3.4mm; background: rgba(255, 209, 102, 0.07); }
+.say h3 { color: var(--yellow); font-size: 11pt; margin-bottom: 1.4mm; }
+.avoid { border-left: 1.2mm solid var(--red); padding: 2mm 0 2mm 3.4mm; background: rgba(230, 57, 70, 0.08); }
+.avoid h3 { color: #ff8f94; font-size: 11pt; margin-bottom: 1.4mm; }
+
+/* Cover */
+.cover { padding-top: 13mm; gap: 4.6mm; }
+.cover .wm { width: 92mm; margin: 1mm 0 0 -2mm; filter: drop-shadow(0 4mm 8mm rgba(0,0,0,.5)); }
+.cover h1 { font-size: 42pt; line-height: .86; }
+.cover h1 em { font-style: normal; color: var(--yellow); }
+.pitch { font-family: var(--display); font-weight: 800; font-size: 17pt; line-height: 1.02; text-transform: uppercase; color: var(--ink); }
+.keys { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm; }
+.key h3 { font-size: 17pt; margin: 1.6mm 0 1.6mm; color: var(--ink); }
+.key p { font-size: 8.8pt; }
+.price { display: grid; grid-template-columns: auto 1fr; gap: .6mm 2.4mm; margin-top: 2mm; font-size: 8.6pt; color: #2b2b2b; }
+.price b { font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .06em; color: var(--ink); font-size: 9.4pt; }
+.dates { display: grid; grid-template-columns: repeat(4, 1fr); border: 1.4px solid var(--line); }
+.dates div { padding: 3mm 3.4mm; border-right: 1px solid var(--line); }
+.dates div:last-child { border-right: 0; }
+.dates .d { font-family: var(--display); font-weight: 900; font-size: 18pt; line-height: 1; color: var(--yellow); text-transform: uppercase; }
+.dates .l { font-size: 8pt; color: var(--muted); margin-top: 1mm; }
+
+.rarity { display: flex; flex-wrap: wrap; gap: 1.4mm; }
+.rarity span { font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .08em; font-size: 8pt;
+  padding: .6mm 2mm; border: .35mm solid var(--ink); border-radius: .8mm; color: var(--ink); }
+.tier { display: flex; flex-wrap: wrap; gap: 1.4mm; }
+.tier span { font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .1em; font-size: 8pt;
+  padding: .5mm 1.8mm; border: .5mm solid currentColor; border-radius: .8mm; transform: rotate(-2deg); background: var(--cream); }
+
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+.plan h3 { color: var(--ink); font-size: 16pt; margin: 2mm 0 1.6mm; }
+.must { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.must .paper h3 { color: var(--ink); font-size: 14pt; margin-bottom: 1.6mm; }
+.contact { font-family: var(--display); font-weight: 900; font-size: 22pt; text-transform: uppercase; color: var(--yellow); letter-spacing: .02em; }
+
+/* Quick-start tiles */
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.tile { background: var(--cream); color: var(--ink); border: 1.4px solid var(--ink); box-shadow: 1.2mm 1.2mm 0 #000; padding: 2.6mm 3mm 2.8mm; display: grid; grid-template-columns: 9mm 1fr; gap: 0 2.4mm; align-items: start; }
+.tile .big { grid-row: span 2; width: 9mm; height: 9mm; border-radius: 50%; background: var(--accent); border: .5mm solid var(--ink); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-weight: 900; font-size: 15pt; line-height: 1; }
+.tile b.t { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 11.5pt; letter-spacing: .03em; line-height: 1.05; }
+.tile strong { color: var(--ink); }
+.tile p { color: #2b2b2b; font-size: 8.6pt; line-height: 1.32; margin-top: .6mm; }
+.tile.y { background: #ffe9a8; } .tile.b { background: #d9e6ff; } .tile.g { background: #d6f0df; } .tile.p { background: #f3dcff; }
+.fyi { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2mm 4mm; }
+.fyi div { font-size: 8.4pt; color: var(--body); border-top: 1px solid var(--line); padding-top: 1.4mm; }
+.fyi b { color: var(--yellow); font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .06em; font-size: 8.4pt; display: block; }
+.banner { background: var(--accent); color: var(--ink); border: 1.4px solid var(--ink); box-shadow: 1.4mm 1.4mm 0 #000; padding: 3mm 4mm; transform: rotate(-0.4deg); }
+.banner b { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 14pt; letter-spacing: .02em; }
+.banner p { color: var(--ink); font-size: 9.4pt; margin-top: .6mm; }
+
+/* Record layout mock */
+.phone { width: 40mm; aspect-ratio: 9/16; border: 1.6px solid var(--ink); background: #0c1726; box-shadow: 1.6mm 1.6mm 0 #000; display: grid; grid-template-rows: 1fr 2fr; overflow: hidden; }
+.phone .cam { background: repeating-linear-gradient(135deg, #1f3557 0 3mm, #223a60 3mm 6mm); display: flex; align-items: center; justify-content: center; border-bottom: 1.4px solid var(--ink); }
+.phone .game { background: repeating-linear-gradient(135deg, #f1ecd9 0 3mm, #e9e3cc 3mm 6mm); display: flex; align-items: center; justify-content: center; }
+.phone span { font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .1em; font-size: 9pt; padding: .6mm 2mm; border: .4mm solid currentColor; }
+.phone .cam span { color: var(--yellow); } .phone .game span { color: var(--ink); }
+.pov { display: flex; gap: 2mm; align-items: center; flex-wrap: wrap; }
+.pov div { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 8.4pt; letter-spacing: .06em; background: var(--cream); color: var(--ink); border: 1.2px solid var(--ink); padding: 1mm 2.4mm; }
+.pov i { color: var(--accent); font-style: normal; font-weight: 900; }
+.placeholder { border: 1mm dashed var(--accent); padding: 4mm; position: relative; }
+.placeholder .ptag { position: absolute; top: -3.4mm; left: 4mm; background: var(--accent); color: var(--ink); font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .12em; font-size: 8pt; padding: .4mm 2mm; }
+
+/* Recording steps */
+.rec { display: grid; grid-template-columns: 38mm 1fr; gap: 5mm; align-items: start; }
+.rec .steps li { font-size: 8.5pt; line-height: 1.36; }
+.obs { width: 100%; border-collapse: collapse; font-size: 8pt; margin-top: 1mm; }
+.obs td, .obs th { border: 1px solid #c9c2a8; padding: .8mm 1.6mm; text-align: left; color: #2b2b2b; }
+.obs th { background: var(--ink); color: var(--cream); font-family: var(--display); font-weight: 900; text-transform: uppercase; letter-spacing: .08em; font-size: 7.6pt; }
+.obs code { font-family: var(--sans); font-weight: 700; color: var(--ink); }
+.obs.tight { font-size: 7.2pt; table-layout: fixed; margin-top: 0; }
+.obs.tight td, .obs.tight th { padding: .4mm 1.4mm; line-height: 1.25; }
+.plainshot { border: 1.4px solid var(--ink); box-shadow: 1.2mm 1.2mm 0 #000; width: 100%; display: block; }
+</style>
+</head>
+<body>
+
+<section class="page" style="gap:3.4mm">
+  <div class="run"><span>Creator guide · for <b>Levvis</b></span><span>Private until SpySocial announces it</span></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:6mm">
+    <div>
+      <img src="/creator/brief/img/wordmark-cream-outline.svg" alt="SpySocial" style="width:50mm;margin-left:-1mm">
+      <h2 style="margin-top:2mm"><span class="k">Creator guide · just what you need to record</span>Record your Short</h2>
+    </div>
+    <div class="stamp" style="font-size:10pt;margin-bottom:2mm;color:var(--yellow);border-color:var(--yellow)">5 pages, that's it</div>
+  </div>
+  <p class="lead">A free party game of social deception. In <strong>Spy Sketch</strong> everyone adds to one drawing of a secret word, except the spy, who bluffs along. You play with friends in your own private room, in your browser. Anything this guide doesn't cover: <strong>message us on Discord</strong> (page 5).</p>
+  <div class="grid" style="grid-template-columns: 1fr 1.12fr; gap:5mm; align-items:start">
+    <div class="paper tilt-l tape">
+      <span class="tag y">1 · Sign in, once before the day</span>
+      <ul class="steps" style="margin-top:2.4mm">
+        <li><span class="n">1</span><span>On a computer, open <strong>play.spysocial.app</strong> in <strong>Chrome</strong> and click <strong>Log In</strong> (even the first time).</span></li>
+        <li><span class="n">2</span><span>Type the <strong>email your manager sent us</strong>, then <strong>Continue with Email</strong>. Copy the 6-digit code from your inbox and click <strong>Paste Code</strong>. No password.</span></li>
+        <li><span class="n">3</span><span>Click <strong>Next</strong> (or Skip), then <strong>Let's Play</strong>: <strong>@levvis</strong> is already reserved for you, nothing to change.</span></li>
+        <li><span class="n">4</span><span>Home asks your <strong>Birth Year</strong>: type it (18 or older), <strong>Yes, That's Right</strong>, then <strong>I Agree</strong> to the rules. Your account switches on: <strong>Lifetime membership</strong>, browser play and <strong>Creator Mode</strong>.</span></li>        <li><span class="n">5</span><span>Tap through the one-time notes once (<strong>Drawings Are Checked</strong>, the rules; <strong>Skip</strong> a <strong>New to Spy Games?</strong> sheet), so they don't pop up while you record.</span></li>
+      </ul>
+      <p style="font-size:8.2pt;margin-top:2mm">Your co-players do the same with the emails we have for them, or log in from your room link: birth year at the room's door, then straight into your lobby in Creator Mode. Another email gets a plain account without the set-up, so tell us first.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:3mm">
+      <h3>2 · Creator Mode: what gets recorded</h3>
+      <figure><div class="shot" style="aspect-ratio:1920/1080"><img src="/creator/brief/img/wg-fb.jpg" alt=""><svg viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true"><rect x="27" y="28" width="474" height="1025" rx="34" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="26.4"/><rect x="27" y="28" width="474" height="1025" rx="34" fill="none" stroke="#ff9500" stroke-width="14.4"/><rect x="526" y="28" width="868" height="74" rx="34" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="26.4"/><rect x="526" y="28" width="868" height="74" rx="34" fill="none" stroke="#ff9500" stroke-width="14.4"/><rect x="1556" y="488" width="200" height="278" rx="34" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="26.4"/><rect x="1556" y="488" width="200" height="278" rx="34" fill="none" stroke="#ff9500" stroke-width="14.4"/><rect x="1440" y="782" width="434" height="58" rx="34" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="26.4"/><rect x="1440" y="782" width="434" height="58" rx="34" fill="none" stroke="#ff9500" stroke-width="14.4"/><circle cx="428" cy="608" r="56" fill="#0a0a0a"/><circle cx="420" cy="600" r="56" fill="#ff9500" stroke="#0a0a0a" stroke-width="14"/><text x="420" y="622.4" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="68" fill="#0a0a0a">1</text><circle cx="1338" cy="188" r="56" fill="#0a0a0a"/><circle cx="1330" cy="180" r="56" fill="#ff9500" stroke="#0a0a0a" stroke-width="14"/><text x="1330" y="202.4" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="68" fill="#0a0a0a">2</text><circle cx="1818" cy="528" r="56" fill="#0a0a0a"/><circle cx="1810" cy="520" r="56" fill="#ff9500" stroke="#0a0a0a" stroke-width="14"/><text x="1810" y="542.4" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="68" fill="#0a0a0a">3</text><circle cx="1844" cy="908" r="56" fill="#0a0a0a"/><circle cx="1836" cy="900" r="56" fill="#ff9500" stroke="#0a0a0a" stroke-width="14"/><text x="1836" y="922.4" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="68" fill="#0a0a0a">4</text></svg></div><figcaption>In a game the screen is three panels. <b>Centre</b>, framed in yellow and tagged <b>In the recording</b>: <span class="n">2</span>the game's bar and the board, the only part in your Short. <b>Left and right</b>, tagged <b>Only you see this</b>: <span class="n">1</span>chat, <span class="n">3</span>your card, <span class="n">4</span><b>Actions</b> (Vote). Pop-ups (dialogs, the Leave ask, the Accuse sheet) open in a side panel too.</figcaption></figure>
+    </div>
+  </div>
+  <div class="say">
+    <h3>Good to know</h3>
+    <ul class="dots">
+      <li><strong>Creator Mode opens by itself</strong> after your birth year. If it ever doesn't: your agent (top right of Home) › the gear › <strong>Recording › Creator Mode</strong>.</li>
+      <li>Press <strong>F11</strong> for full screen: it survives a reload (the page's own Full Screen button doesn't).</li>
+      <li><strong>Your card</strong> sits face down in the right panel: click to see your word or role, click again to hide it. It never shows in the recording.</li>
+      <li><strong>Same Sound for Every Role</strong> is already on, so nobody on the call can hear your role.</li>
+      <li>Before your first recording, play the 3-minute Spy Sketch tutorial: Home › <strong>How to Play › Spy Sketch › Tutorial › As a Local</strong>. It looks like the real game (the secret word stays off camera). <strong>End Tutorial › Leave</strong> quits any time; the back arrow brings you to Home, still in Creator Mode.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>SpySocial · Creator guide for Levvis</span><span>1 / 5</span></div>
+</section>
+
+<section class="page" style="gap:3.4mm">
+  <div class="run"><span>Host · before you record</span><span>Browser: play.spysocial.app · Creator Mode</span></div>
+  <h2><span class="k">3 · Host · Spy Sketch</span>Start your room, invite your crew</h2>
+  <p class="lead">Five clicks from Home. Every rule starts at its recommended value: leave them as they are.</p>
+  <div class="grid g3" style="gap:4mm;align-items:start">
+    <figure><div class="shot" style="aspect-ratio:1080/620"><img src="/creator/brief/img/rs1-09d0c38b.jpg" alt=""><svg viewBox="0 0 1080 620" preserveAspectRatio="none" aria-hidden="true"><rect x="17.0" y="95.0" width="93.0" height="37.0" rx="15.1" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="11.4"/><rect x="17.0" y="95.0" width="93.0" height="37.0" rx="15.1" fill="none" stroke="#ff9500" stroke-width="6.2"/><rect x="474.0" y="505.6" width="528.9" height="93.2" rx="15.1" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="11.4"/><rect x="474.0" y="505.6" width="528.9" height="93.2" rx="15.1" fill="none" stroke="#ff9500" stroke-width="6.2"/><circle cx="164.7" cy="109.7" r="34.0" fill="#0a0a0a"/><circle cx="160.0" cy="105.0" r="34.0" fill="#ff9500" stroke="#0a0a0a" stroke-width="7.3"/><text x="160.0" y="118.7" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="41.6" fill="#0a0a0a">1</text><circle cx="444.7" cy="557.9" r="34.0" fill="#0a0a0a"/><circle cx="440.0" cy="553.2" r="34.0" fill="#ff9500" stroke="#0a0a0a" stroke-width="7.3"/><text x="440.0" y="566.9" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="41.6" fill="#0a0a0a">2</text></svg></div><figcaption><span class="n">1</span>Creator Mode is on by itself: press <b>F11</b>. <span class="n">2</span><b>Private Room</b>.</figcaption></figure>
+    <figure><div class="shot" style="aspect-ratio:720/570"><img src="/creator/brief/img/rs2.jpg" alt=""><svg viewBox="0 0 720 570" preserveAspectRatio="none" aria-hidden="true"><rect x="32.5" y="428.3" width="655.0" height="96.7" rx="20.6" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="15.5"/><rect x="32.5" y="428.3" width="655.0" height="96.7" rx="20.6" fill="none" stroke="#ff9500" stroke-width="8.5"/><circle cx="656.4" cy="356.4" r="46.2" fill="#0a0a0a"/><circle cx="650.0" cy="350.0" r="46.2" fill="#ff9500" stroke="#0a0a0a" stroke-width="9.9"/><text x="650.0" y="368.6" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="56.5" fill="#0a0a0a">2</text></svg></div><figcaption><span class="n">2</span><b>Create a Room</b>, then <b>Enter Room</b>: your room opens Online.</figcaption></figure>
+    <figure><div class="shot" style="aspect-ratio:720/320"><img src="/creator/brief/img/rs3.jpg" alt=""><svg viewBox="0 0 720 320" preserveAspectRatio="none" aria-hidden="true"><rect x="550.0" y="122.5" width="128.3" height="41.7" rx="20.6" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="15.5"/><rect x="550.0" y="122.5" width="128.3" height="41.7" rx="20.6" fill="none" stroke="#ff9500" stroke-width="8.5"/><circle cx="381.4" cy="149.7" r="46.2" fill="#0a0a0a"/><circle cx="375.0" cy="143.3" r="46.2" fill="#ff9500" stroke="#0a0a0a" stroke-width="9.9"/><text x="375.0" y="161.9" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="56.5" fill="#0a0a0a">3</text></svg></div><figcaption><span class="n">3</span>It opens on <b>Spy Sketch</b> already: nothing to switch.</figcaption></figure>
+  </div>
+  <div class="grid g3" style="gap:4mm; align-items:start">
+    <figure><div class="shot" style="aspect-ratio:720/530"><img src="/creator/brief/img/rs4.jpg" alt=""><svg viewBox="0 0 720 530" preserveAspectRatio="none" aria-hidden="true"><rect x="572.5" y="159.2" width="96.7" height="43.3" rx="20.6" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="15.5"/><rect x="572.5" y="159.2" width="96.7" height="43.3" rx="20.6" fill="none" stroke="#ff9500" stroke-width="8.5"/><rect x="50.0" y="215.0" width="200.8" height="24.2" rx="20.6" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="15.5"/><rect x="50.0" y="215.0" width="200.8" height="24.2" rx="20.6" fill="none" stroke="#ff9500" stroke-width="8.5"/><circle cx="356.4" cy="233.1" r="46.2" fill="#0a0a0a"/><circle cx="350.0" cy="226.7" r="46.2" fill="#ff9500" stroke="#0a0a0a" stroke-width="9.9"/><text x="350.0" y="245.3" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="56.5" fill="#0a0a0a">4</text></svg></div><figcaption><span class="n">4</span><b>Check, don't change.</b> Each rule shows its recommended value with a tick. Game Length (5 min) shows a star: leave it, it fits up to 6 players.</figcaption></figure>
+    <figure><div class="shot" style="aspect-ratio:720/900"><img src="/creator/brief/img/rs5.jpg" alt=""><svg viewBox="0 0 720 900" preserveAspectRatio="none" aria-hidden="true"><rect x="10.0" y="15.8" width="145.0" height="53.3" rx="20.6" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="15.5"/><rect x="10.0" y="15.8" width="145.0" height="53.3" rx="20.6" fill="none" stroke="#ff9500" stroke-width="8.5"/><rect x="363.3" y="795.8" width="334.2" height="80.0" rx="20.6" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="15.5"/><rect x="363.3" y="795.8" width="334.2" height="80.0" rx="20.6" fill="none" stroke="#ff9500" stroke-width="8.5"/><circle cx="214.7" cy="106.4" r="46.2" fill="#0a0a0a"/><circle cx="208.3" cy="100.0" r="46.2" fill="#ff9500" stroke="#0a0a0a" stroke-width="9.9"/><text x="208.3" y="118.6" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="56.5" fill="#0a0a0a">5</text><circle cx="323.1" cy="748.1" r="46.2" fill="#0a0a0a"/><circle cx="316.7" cy="741.7" r="46.2" fill="#ff9500" stroke="#0a0a0a" stroke-width="9.9"/><text x="316.7" y="760.3" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="56.5" fill="#0a0a0a">5</text></svg></div><figcaption><span class="n">5</span>Click the <b>Room Code</b> (top left) › <b>Copy</b> and paste the link in Discord. When everyone shows <b>Ready</b>: <b>Start Game</b>.</figcaption></figure>
+    <figure><div class="shot" style="aspect-ratio:864/540"><img src="/creator/brief/img/f4a.jpg" alt=""><svg viewBox="0 0 864 540" preserveAspectRatio="none" aria-hidden="true"><rect x="232.0" y="108.0" width="402.0" height="98.0" rx="20.0" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="16.0"/><rect x="232.0" y="108.0" width="402.0" height="98.0" rx="20.0" fill="none" stroke="#ff9500" stroke-width="9.0"/><rect x="88.0" y="208.0" width="690.0" height="64.0" rx="20.0" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="16.0"/><rect x="88.0" y="208.0" width="690.0" height="64.0" rx="20.0" fill="none" stroke="#ff9500" stroke-width="9.0"/><circle cx="705.6" cy="165.6" r="40" fill="#0a0a0a"/><circle cx="700.0" cy="160.0" r="40" fill="#ff9500" stroke="#0a0a0a" stroke-width="8.4"/><text x="700.0" y="176.0" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="48.8" fill="#0a0a0a">1</text><circle cx="815.6" cy="245.6" r="40" fill="#0a0a0a"/><circle cx="810.0" cy="240.0" r="40" fill="#ff9500" stroke="#0a0a0a" stroke-width="8.4"/><text x="810.0" y="256.0" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="48.8" fill="#0a0a0a">2</text></svg></div><figcaption><b>Your co-players</b> open your link, or Private Room › <b>Join a Friend's Room</b>: <span class="n">1</span>type the code, <span class="n">2</span><b>Join</b>, then <b>Ready Up!</b></figcaption></figure>
+  </div>
+  <div class="say" style="font-size:8.8pt">
+    <h3>Good to know</h3>
+    <ul class="dots">
+      <li><strong>3 players minimum</strong> (one spy). Until launch, everyone plays on a computer.</li>
+      <li><strong>4 or more players:</strong> click <strong>Use Recommended</strong> once everyone is in, then <strong>Dismiss</strong>.</li>
+            <li><strong>Next game:</strong> Game Over › <strong>Back to Room</strong> (foot of the right panel), then Start Game. The rules and ready players stay.</li>
+      <li><strong>Record, don't stream live:</strong> the room code shows at the top of the lobby. Cut or cover it in the edit.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Screens: Creator Mode, test accounts</span><span>2 / 5</span></div>
+</section>
+
+<section class="page" style="gap:3.4mm">
+  <div class="run"><span>Spy Sketch · the game</span><span>Reveal, draw, vote</span></div>
+  <h2><span class="k">4 · Play · what you'll see and record</span>Draw it. Or fake it.</h2>
+  <div class="grid" style="grid-template-columns: .62fr .62fr 1.4fr; gap:4mm;align-items:start">
+    <figure><div class="shot" style="aspect-ratio:720/640"><img src="/creator/brief/img/r1.jpg" alt=""><svg viewBox="0 0 720 640" preserveAspectRatio="none" aria-hidden="true"></svg></div><figcaption><b>Click your card:</b> a Local sees <b>the secret word</b>. <b>Continue</b> closes it.</figcaption></figure>
+    <figure><div class="shot" style="aspect-ratio:720/640"><img src="/creator/brief/img/rspy.jpg" alt=""><svg viewBox="0 0 720 640" preserveAspectRatio="none" aria-hidden="true"></svg></div><figcaption><b>The spy</b> gets a dark card and no word. A great reaction shot.</figcaption></figure>
+    <div class="paper tape" style="font-size:8.8pt">
+      <h3 style="margin-bottom:1.6mm">How each side wins</h3>
+      <ul class="dots">
+        <li><strong>Locals:</strong> vote out the spy before time's up. When the clock runs out, everyone gets one <strong>Final Vote</strong>.</li>
+        <li><strong>The spy:</strong> survive it, or guess the word (<strong>Solve</strong>, from round 2). Right, the spy wins; wrong, the spy's out.</li>
+        <li><strong>Sketch break:</strong> everyone votes <strong>Keep this page</strong> or <strong>New page</strong>.</li>
+        <li><strong>Game Over</strong> shows the result in the centre panel: tap <strong>PAGE 1, 2…</strong> to jump to that page's last round. <strong>Your notes</strong> stay in the right panel; click them to open.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid" style="grid-template-columns: 1.5fr 1fr; gap:4mm; align-items:start">
+    <figure><div class="shot" style="aspect-ratio:1920/1080"><img src="/creator/brief/img/wd-fb.jpg" alt=""><svg viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true"><rect x="545" y="196" width="84" height="546" rx="34" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="26.4"/><rect x="545" y="196" width="84" height="546" rx="34" fill="none" stroke="#ff9500" stroke-width="14.4"/><rect x="830" y="942" width="338" height="68" rx="34" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="26.4"/><rect x="830" y="942" width="338" height="68" rx="34" fill="none" stroke="#ff9500" stroke-width="14.4"/><circle cx="593" cy="808" r="56" fill="#0a0a0a"/><circle cx="585" cy="800" r="56" fill="#ff9500" stroke="#0a0a0a" stroke-width="14"/><text x="585" y="822.4" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="68" fill="#0a0a0a">1</text><circle cx="1244" cy="983" r="56" fill="#0a0a0a"/><circle cx="1236" cy="975" r="56" fill="#ff9500" stroke="#0a0a0a" stroke-width="14"/><text x="1236" y="997.4" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="68" fill="#0a0a0a">2</text></svg></div><figcaption><b>Your turn:</b> <span class="n">1</span>the tools on the board's left edge, <span class="n">2</span><b>Finish Drawing</b> under the board, after your first stroke.</figcaption></figure>
+    <div class="say" style="font-size:8.8pt">
+      <h3>Drawing with a mouse</h3>
+      <ul class="dots">
+        <li>The mouse draws where it points; a ring shows your line's width.</li>
+        <li>The <strong>mouse wheel</strong> changes the width.</li>
+        <li>Hold <strong>Shift</strong> for a straight line (or a perfect circle or square with Shapes).</li>
+        <li>Hold the <strong>right button</strong> to rub out your own lines from this turn.</li>
+        <li><strong>Steady Hand</strong> (5th tool button, off until you click it): your line follows the mouse smoothly.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid" style="grid-template-columns: 1fr 1fr 1fr 1fr; gap:3mm;align-items:start">
+    <figure><div class="shot" style="aspect-ratio:864/1080"><img src="/creator/brief/img/n1-09d0c38b.jpg" alt=""><svg viewBox="0 0 864 1080" preserveAspectRatio="none" aria-hidden="true"></svg></div><figcaption><b>Your notes</b> sit under NOTES in the right panel, outside the recording: click them to open your Notes, then drag players into <b>Suspect</b>, <b>Undecided</b>, <b>Trust</b> and jot what seems off (or right-click a player). The spy gets a notes strip there too.</figcaption></figure>
+    <figure><div class="shot" style="aspect-ratio:864/1080"><img src="/creator/brief/img/n2.jpg" alt=""><svg viewBox="0 0 864 1080" preserveAspectRatio="none" aria-hidden="true"></svg></div><figcaption><b>The spy's board:</b> click words to move them: Ruled Out, Maybe, Likely.</figcaption></figure>
+    <figure><div class="shot" style="aspect-ratio:860/1020"><img src="/creator/brief/img/wv-fb.jpg" alt=""><svg viewBox="0 0 860 1020" preserveAspectRatio="none" aria-hidden="true"><rect x="226" y="922" width="588" height="76" rx="20" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="17"/><rect x="226" y="922" width="588" height="76" rx="20" fill="none" stroke="#ff9500" stroke-width="9.5"/><circle cx="778" cy="858" r="48" fill="#0a0a0a"/><circle cx="770" cy="850" r="48" fill="#ff9500" stroke="#0a0a0a" stroke-width="11"/><text x="770" y="869.8" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="60" fill="#0a0a0a">1</text></svg></div><figcaption><b>Actions › Vote</b> (right panel): pick the spy, <span class="n">1</span><b>Confirm Vote</b>.</figcaption></figure>
+    <figure><div class="shot" style="aspect-ratio:864/1080"><img src="/creator/brief/img/wq.jpg" alt=""><svg viewBox="0 0 864 1080" preserveAspectRatio="none" aria-hidden="true"></svg></div><figcaption><b>The spy's final guess:</b> the drawing, the clock, the words.</figcaption></figure>
+  </div>
+  <div class="foot"><span>Screens: Creator Mode at 1920 × 1080, test players</span><span>3 / 5</span></div>
+</section>
+
+<section class="page" style="gap:3.2mm">
+  <div class="run"><span>Recording</span><span>Once per person</span></div>
+  <h2><span class="k">5 · Recording setup · everyone does this</span>Record your side</h2>
+  <div class="rec">
+    <div style="display:flex;flex-direction:column;gap:2mm">
+      <div class="grid g2" style="gap:2mm"><div class="shot" style="aspect-ratio:1080/1920"><img src="/creator/brief/img/wrb-fb.jpg" alt=""><svg viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true"></svg></div><div class="shot" style="aspect-ratio:1080/1920"><img src="/creator/brief/img/wrq.jpg" alt=""><svg viewBox="0 0 1080 1920" preserveAspectRatio="none" aria-hidden="true"></svg></div></div>
+      <p style="font-size:7.6pt;color:var(--muted);line-height:1.3">Your Short's frame: <b style="color:var(--text)">the centre panel</b> (1080 × 1281) under a 639 px face cam, from the lobby to Game Over.</p>
+    </div>
+    <div class="paper" style="padding:3mm 3.6mm">
+      <ul class="steps">
+        <li><span class="n">1</span><span><strong>Chrome, Creator Mode, F11.</strong> Everyone on their own computer.</span></li>
+        <li><span class="n">2</span><span><strong>Discord.</strong> One voice channel, on headphones. <strong>Don't share your screen</strong>: your card is on it. Overlay and notifications off.</span></li>
+        <li><span class="n">3</span><span><strong>OBS, once.</strong> Settings › Video: base and output <strong>1920 × 1080</strong>, 60 fps (30 is fine). Chrome zoom at 100% (Ctrl+0). Crop the centre panel and put the webcam beside it, never over the game:</span></li>
+      </ul>
+      <table class="obs">
+        <tr><th>Source</th><th>Crop</th><th>Position</th><th>Size</th></tr>
+        <tr><td><code>Display Capture</code> (Mac: macOS Screen Capture)</td><td>1920 × 1080 screen: Left 528 · Right 528 · Top 28 · Bottom 27. Other screens: the <b>OBS CROP</b> numbers left of the panel</td><td>0, 0</td><td>864 × 1025</td></tr>
+        <tr><td><code>Video Capture Device</code> (webcam)</td><td>Scale to outer bounds, crop to bounds</td><td>864, 0</td><td>1056 × 1080</td></tr>
+      </table>
+      <p style="font-size:7.6pt;margin-top:1.2mm">Mic on track 1, desktop audio on track 2. Hybrid MP4 (or MKV), hardware encoder, High Quality.</p>
+      <ul class="steps" style="margin-top:1.6mm">
+        <li><span class="n">4</span><span><strong>Test.</strong> Do Not Disturb on; record 10 seconds and play it back with sound.</span></li>
+        <li><span class="n">5</span><span><strong>Sync.</strong> Everyone presses record, the host counts <strong>"3, 2, 1"</strong> and everyone <strong>claps once</strong>. Record the whole session and send your file to the editor.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid" style="grid-template-columns: 1.05fr 1fr; gap:4mm; align-items:start">
+    <figure><div class="shot" style="aspect-ratio:1920/1080"><img src="/creator/brief/img/wdesk-09d0c38b.jpg" alt=""><svg viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-hidden="true"><rect x="14.0" y="115.3" width="138.2" height="65.0" rx="26" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="20.2"/><rect x="14.0" y="115.3" width="138.2" height="65.0" rx="26" fill="none" stroke="#ff9500" stroke-width="11"/><rect x="16.0" y="899.6" width="496.0" height="164.4" rx="26" fill="rgba(255,149,0,0.10)" stroke="#0a0a0a" stroke-width="20.2"/><rect x="16.0" y="899.6" width="496.0" height="164.4" rx="26" fill="none" stroke="#ff9500" stroke-width="11"/><circle cx="264.2" cy="155.3" r="60" fill="#0a0a0a"/><circle cx="256.2" cy="147.3" r="60" fill="#ff9500" stroke="#0a0a0a" stroke-width="12.8"/><text x="256.2" y="171.4" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="73" fill="#0a0a0a">1</text><circle cx="582.0" cy="989.8" r="60" fill="#0a0a0a"/><circle cx="574.0" cy="981.8" r="60" fill="#ff9500" stroke="#0a0a0a" stroke-width="12.8"/><text x="574.0" y="1005.9" text-anchor="middle" font-family="Big Shoulders Display, Impact, sans-serif" font-weight="900" font-size="73" fill="#0a0a0a">2</text></svg></div><figcaption><span class="n">1</span><b>Full Screen</b> and <span class="n">2</span>the <b>OBS crop</b> numbers for your screen, foot of the left side (read them on Home, in the lobby or a menu).</figcaption></figure>
+    <div class="paper" style="padding:2.6mm 3.2mm;font-size:8.4pt">
+      <span class="tag">For the editor</span>
+      <ul class="dots" style="margin-top:1.6mm">
+        <li>One file per player, synced on the clap.</li>
+        <li>The cropped panel (864 × 1025) scaled × 1.25 is 1080 × 1281: it fills the game area under a 639 px face cam, nothing to cut again.</li>
+        <li>Cut to the drawer while drawing, the accused at the vote, the spy at the reveal.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="say" style="font-size:8.8pt">
+    <h3>Watch for</h3>
+    <ul class="dots">
+      <li><strong>Keep the SpySocial name on screen:</strong> a small tag in a corner for the first seconds and at the end, plus play.spysocial.app (logo files in the press kit).</li>
+      <li><strong>Stay in Creator Mode</strong> the whole time: leaving changes the crop. <strong>Exit Creator Mode</strong> (under Full Screen) leaves in one click; left by accident? Settings › <strong>Recording › Creator Mode</strong> turns it back on.</li>
+      <li><strong>Typing in chat:</strong> no emoji picker or Chinese, Japanese or Korean keyboard (the system pop-up can cover the game). Anything odd in the recorded box: pause and tell us.</li>
+      <li><strong>A screen sticks?</strong> Reload: the game comes back in a second or two, and F11 keeps you in full screen.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Screens: Creator Mode at 1920 × 1080, test players</span><span>4 / 5</span></div>
+</section>
+
+<section class="page" style="gap:3.6mm">
+  <div class="run"><span>Your code · publishing · help</span><span>Last page</span></div>
+  <h2><span class="k">Before you post</span>The must-dos</h2>
+  <div class="dates">
+    <div><b class="d" style="display:block">Nov 24</b><span class="l" style="display:block">Browser access opens</span></div>
+    <div><b class="d" style="display:block">Dec 8</b><span class="l" style="display:block">Launch, 10 AM ET. Keep the date private until we announce it.</span></div>
+    <div><b class="d" style="display:block">Dec 8–11</b><span class="l" style="display:block">Your Short goes live (after 11 AM ET on the 8th; Dec 18 at the latest)</span></div>
+    <div><b class="d" style="display:block">2 days before</b><span class="l" style="display:block">Send us the final cut</span></div>
+  </div>
+  <div class="must">
+    <div class="paper" style="padding:2.8mm 3.6mm;font-size:8.8pt">
+      <h3 style="font-size:12pt">1 · Say these, in your words</h3>
+      <ul class="dots">
+        <li>The Short is mainly <strong>Spy Sketch</strong>, with a quick mention of <strong>Spy Talk</strong> (the same idea with words instead of drawings), <strong>Intercepts</strong> (sealed files of items, earned by playing) and <strong>memberships</strong> (from $3.99 a month, the only thing we sell; no pay-to-win).</li>
+        <li>Viewers play free on <strong>iPhone and Android</strong>: <strong>spysocial.app</strong>.</li>
+        <li>Ranked seasons and tournaments: say "coming", no dates.</li>
+      </ul>
+    </div>
+    <div class="paper" style="padding:2.8mm 3.6mm;font-size:8.8pt">
+      <h3 style="font-size:12pt">2 · Disclose it, send the cut</h3>
+      <ul class="dots">
+        <li>Turn on YouTube's <strong>"includes paid promotion"</strong> and say <strong>"Paid partnership with SpySocial"</strong> (or #ad), best in the Short itself.</li>
+        <li>Send us the final cut with your go-live day at least <strong>2 days before</strong>. We check <strong>app facts only</strong> and reply within <strong>48 hours</strong>; no reply means it's approved.</li>
+        <li>Keep the Short public for at least <strong>6 months</strong>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid g2" style="gap:5mm;align-items:start">
+    <div class="paper tilt-l" style="padding:3mm 3.6mm">
+      <span class="stamp">Your code: LEVVIS</span>
+      <ul class="dots" style="margin-top:2mm;font-size:8.6pt">
+        <li>Fans enter it in Account › <strong>Code</strong>: they get the <strong>Levvis Syndicate</strong> title, plus <strong>3 Enigma Intercepts</strong> for the first two weeks after your Short goes live.</li>
+        <li>You get 10% of net revenue from accounts that use it before their first purchase.</li>
+      </ul>
+    </div>
+    <div class="paper tilt-r" style="padding:3mm 3.6mm">
+      <span class="tag o">Optional · your 100 Enigmas</span>
+      <p style="margin-top:2mm;font-size:8.6pt">The top Intercept tier. We add them after the <strong>Dec 7</strong> reset (anything opened before it isn't real), so film an opening <strong>on or after Dec 7</strong>. All 100: about a <strong>39% chance</strong> of a one-of-one Unique, so likely none.</p>
+    </div>
+  </div>
+  <div class="banner" style="margin-top:2mm">
+    <b>Questions? Message us on Discord: gerz.dev — happy to hop on a call too.</b>
+    <p>Before or while you record, we can go through everything with you.</p>
+  </div>
+  <div>
+    <p style="color:var(--muted);font-size:8.4pt;text-transform:uppercase;letter-spacing:.18em;font-family:var(--display);font-weight:800">Your point of contact</p>
+    <p class="contact">Discord: <span style="text-transform:none">gerz.dev</span></p>
+  </div>
+  <div class="foot"><span>SpySocial isn't affiliated with Psyonix or Epic Games · Agreement v5 · dates per our email with Clover</span><span>5 / 5</span></div>
+</section>
+
+</body>
+</html>
