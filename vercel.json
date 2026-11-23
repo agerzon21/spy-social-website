@@ -150,6 +150,15 @@
       ]
     },
     {
+      "source": "/beta3(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
       "source": "/.well-known/apple-app-site-association",
       "headers": [
         {
@@ -320,6 +329,11 @@
       "source": "/megan",
       "destination": "/",
       "permanent": false
+    },
+    {
+      "source": "/:alias(beta3-guide|beta-3-guide|beta-3){/}?",
+      "destination": "/beta3",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -360,6 +374,10 @@
     {
       "source": "/hello(/?)",
       "destination": "/hello/index.html"
+    },
+    {
+      "source": "/beta3(/?)",
+      "destination": "/beta3/index.html"
     },
     {
       "source": "/join/e/:id",
