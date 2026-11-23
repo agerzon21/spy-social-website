@@ -362,14 +362,17 @@ const Terms: React.FC = () => {
         The license ends when your content is deleted from SpySocial, except for{' '}
         {LIVE.communityPacks ? 'the packs you published to Community Packs (above) and ' : ''}copies we keep as our
         Privacy Policy describes (for example, content attached to a report). We won't use
-        your {photos ? 'photo or your messages' : 'messages'} in our advertising without asking you first.
+        your {photos ? 'photo or your messages' : 'messages'} in our own advertising without asking you first. Content
+        creators we work with (and may pay) record and publish games they play, which can show what you share in
+        their room: see Your responsibility below.
       </P>
       <H3>Your responsibility</H3>
       <P>
         You're responsible for your content. Only add content you have the right to share
         {photosSeen ? " (for example, don't upload a photo of someone else without their permission)" : ''}, and make
         sure it follows these Terms and the Community Rules. Other players can see, remember, take screenshots of and
-        record what you share in a room (for example, a content creator filming a game for a video), and we can't control what they do with it, so think before you share.
+        record what you share in a room (for example, a content creator filming a game for a video, where public play
+        shows you by agent name and private rooms by display name), and we can't control what they do with it, so think before you share.
       </P>
       <H3>Other players' content</H3>
       <P>

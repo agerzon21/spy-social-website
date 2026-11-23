@@ -716,7 +716,7 @@ const Privacy: React.FC = () => {
                 <>
                   If you sign up on our website for a live group playtest, we receive what you enter in the sign-up form.
                   After a session, we send its players a short survey (a sign-up form may ask some of this too): to get the
-                  session thank-you, you give us there your SpySocial username and{' '}
+                  session thank-you, you give us there the email address you signed up with, your SpySocial username and{' '}
                   {PRIVACY.playtestTremendous
                     ? 'an email address for it (the survey calls it your PayPal email).'
                     : 'the email address of your PayPal account.'}{' '}
@@ -728,8 +728,10 @@ const Privacy: React.FC = () => {
                       : "We use that address only to send your thank-you through PayPal, which handles it under its own terms and privacy policy, and we delete it once it's sent."}{' '}
                   Both forms are Google Forms, which Google handles for us.
                   To confirm a seat, you may also post your SpySocial username in our Discord server's sign-up channel,
-                  where its members can see it, or reply to our email with it. We keep your survey answers about the app,
-                  without your name, email address, PayPal address or username, to improve SpySocial.
+                  where its members can see it, or reply to our email with it. The survey may also ask, if you choose to answer,
+                  your Discord name and your phone or computer model. We copy the bugs and ideas you report into our own
+                  notes, without your name, email address, PayPal address, Discord name or username, to improve
+                  SpySocial; the survey answers themselves are deleted with the rest of your survey (see below).
                 </>
               ) : (
                 <>
@@ -860,7 +862,7 @@ const Privacy: React.FC = () => {
         )}
         <Item label="Age">
           {PRIVACY.ageGateEveryone
-            ? `Your birth year, which the app${from22 ? ' (from version 2.2)' : ''} asks everyone before their first game.`
+            ? `Your birth year, which the app${from22 ? ' (from version 2.2)' : ''} asks everyone before their first game (the browser version, play.spysocial.app, asks too).`
             : 'Your birth year, which the app asks before your first public room or event.'}
           {PRIVACY.birthMonth &&
             " If you turn 13 to 16 in the year you answer, the app also asks your birth month, because the year alone can't tell whether you've had your birthday yet; we keep the month only in that case."}
@@ -996,7 +998,7 @@ const Privacy: React.FC = () => {
         )}
         {PRIVACY.crashReports && (
           <Item label="Crash Reports">
-            {from22 ? 'From version 2.2, if' : 'If'} the app crashes or hits an error, it sends a report to Sentry, our
+            {from22 ? 'From version 2.2 (and already in test versions and the browser version), if' : 'If'} the app crashes or hits an error, it sends a report to Sentry, our
             crash-reporting service: what went wrong and where in the app, a short trail of what the app did just
             before (such as the screens it opened, with room codes removed), your device's model, operating system version and similar technical details
             (such as free memory, screen size and language), the app's version, and a random ID the app makes only for crash reports,
@@ -1603,9 +1605,13 @@ const Privacy: React.FC = () => {
           " A custom pack you submit to Community Packs is shown to every player once we approve it, with your username as its creator (or Anonymous, if you chose that), its ratings and how many players added it (see Custom Packs and Community Packs above); never who rated or added it."}{' '}
         {/* legal-coverage-1119: Terms 6 already says players can record a room; creators we work with record games for their videos (Levvis and friends on the browser version from Nov 24). */}
         Other players can take screenshots of what they see in a room or record it, and some content creators we work
-        with record the games they play for their videos (for example on YouTube or TikTok). What the room shows them,
-        such as names as the room shows them, avatars, chat messages and drawings, can then appear in those videos,
-        which the creator publishes under their own platform's terms; we don't control them. If a video shows your
+        with record the games they play for their videos (for example YouTube Shorts or TikTok), some of them in Creator
+        Mode, a layout of the browser version made for recording that changes only how the game looks on their screen.
+        What the room shows them, such as names as the room shows them (an agent name such as "Agent Blue" at Play
+        Online tables and game nights, display names in private rooms), avatars, chat messages, questions and answers,
+        and drawings, can then appear in those videos, which the creator publishes under their own platform's terms;
+        we don't receive or keep these recordings, and we don't control them. A creator's invited co-players are
+        adults (see Accounts We Set Up for Creators). If a video shows your
         personal information, write to support@spysocial.app and we'll ask the creator to remove it.{' '}
         Reports are
         reviewed by our moderators. We may share anonymous, aggregated data for analytics purposes.
@@ -1771,7 +1777,7 @@ const Privacy: React.FC = () => {
       <P>
         SpySocial is for players 13 and older.{' '}
         {PRIVACY.ageGateEveryone &&
-          `${from22 ? 'From version 2.2, the' : 'The'} app asks every player's birth year before their first game. `}
+          `${from22 ? 'From version 2.2, the' : 'The'} app asks every player's birth year before their first game, and so does the browser version (play.spysocial.app). `}
         {PRIVACY.under13Deletion
           ? "If the birth year entered in the app is under 13, the app stops, remembers this on the device and doesn't let them play, and we delete the account at once, as if they had deleted it themselves (see When you delete your account, above, for what stays for a while). "
           : PRIVACY.ageGateEveryone
