@@ -389,6 +389,10 @@
       "destination": "/beta3/index.html"
     },
     {
+      "source": "/beta3/:page(host|mod){/}?",
+      "destination": "/beta3/:page/index.html"
+    },
+    {
       "source": "/creator/:doc(brief|coplayer|recording){/}?",
       "destination": "/creator/:doc/index.html"
     },
