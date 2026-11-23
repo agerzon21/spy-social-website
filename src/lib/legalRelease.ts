@@ -2708,6 +2708,9 @@ export const CREATOR_INVITES_DAY = 'November 14, 2026'
 /** LIVE.creatorInviteData's day in PRIVACY_LAST_UPDATED: the day 20270101000010_creator_invite_data_1113 is applied live. Never earlier than CREATOR_INVITES_DAY. */
 export const CREATOR_INVITE_DATA_DAY = 'November 14, 2026'
 
+/** Your Browser's invite-list retention and launch-scope sentences (policy-1123): the day the site goes up with them. */
+export const BROWSER_LIST_1123_DAY = 'November 23, 2026'
+
 export const LEGAL_LAST_UPDATED: string = latestOf(sinceLlc(
   LIVE.tournaments
   ? 'December 4, 2026' // tournaments' Terms section: set to the day the site goes up with it on
@@ -3031,7 +3034,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), POLICY_AUDIT_1123_DAY, SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null, LIVE.appU62 ? APP_U62_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null)
+), POLICY_AUDIT_1123_DAY, SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null, LIVE.browserLegal ? BROWSER_LIST_1123_DAY : null, LIVE.appU62 ? APP_U62_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
