@@ -293,7 +293,7 @@ const id: HelpText = {
               a: [
                 'Permainan latihan khusus anggota: sampai 5 per hari. Hari baru dimulai tengah malam UTC. Setelah 5 permainanmu, permainan yang tersimpan masih bisa dilanjutkan.',
                 ...(o.practiceAi
-                  ? ['Anggota mendapat masukan AI untuk setiap kalimat yang mereka tulis, saat bermain, dan nilai huruf di setiap permainan. Masukan AI untuk pemain berusia 16 tahun ke atas yang mengetuk <b>Coba</b> saat aplikasi bertanya; untuk yang lain, ponsel yang menilai. Untuk berhenti, matikan <b>Nilai kalimat latihanku dengan AI</b> di Pengaturan. Baris yang hanya membalikkan pertanyaan (“Kamu sendiri bagaimana?”) bukan jawaban, jadi nilainya rendah.']
+                  ? ['Anggota mendapat nilai huruf di setiap permainan dan, kalau kamu berusia 16 tahun ke atas dan mengetuk <b>Coba</b> saat aplikasi bertanya, masukan AI opsional untuk kalimatmu saat bermain; untuk yang lain, ponsel yang menilai. Untuk berhenti, matikan <b>Nilai kalimat latihanku dengan AI</b> di Pengaturan. Baris yang hanya membalikkan pertanyaan (“Kamu sendiri bagaimana?”) bukan jawaban, jadi nilainya rendah.']
                   : []),
                 'Tutorial tetap gratis untuk semua orang, dan lulus salah satunya tetap dihitung untuk Main online.',
                 'Tanpa keanggotaan, <b>Permainan latihan</b> di kartu terakhir tutorial berwarna abu-abu dan bertuliskan «Permainan latihan khusus anggota». Tutorial tetap dihitung. Baris di bawahnya adalah tautan ke <b>Keanggotaan</b>.',

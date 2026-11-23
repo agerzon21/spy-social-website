@@ -323,7 +323,7 @@ const en: HelpText = {
               a: [
                 'Practice Games are for members: up to 5 a day. The day starts at midnight UTC. After your 5, a saved game can still be resumed.',
                 ...(o.practiceAi
-                  ? ['Members get AI feedback on every line they write, as they play, and a letter grade for every game. The AI feedback is for players 16 and older who tap <b>Try It</b> when the app asks; for everyone else, the phone grades. To stop it, turn off <b>Rate My Practice Lines with AI</b> in Settings. A line that only turns the question back (“What do you think?”) isn’t an answer, so it scores low.']
+                  ? ['Members get a letter grade for every game and, if you are 16 or older and tap <b>Try It</b> when the app asks, optional AI feedback on your lines as you play; for everyone else, the phone grades. To stop it, turn off <b>Rate My Practice Lines with AI</b> in Settings. A line that only turns the question back (“What do you think?”) isn’t an answer, so it scores low.']
                   : []),
                 'The tutorials stay free for everyone, and passing one still counts for Play Online.',
                 'Without a membership, <b>Practice Game</b> on the tutorial’s last card is greyed out and says “Practice Games are for members”. The tutorial still counts. The line under it is a link to <b>Membership</b>.',

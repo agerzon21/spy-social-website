@@ -289,7 +289,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             a: [
               "Les parties d'entraînement sont réservées aux membres : jusqu'à 5 par jour. La journée commence à minuit UTC. Après tes 5 parties, une partie sauvegardée peut toujours être reprise.",
               ...(o.practiceAi
-                ? ["Les membres ont les conseils de l'IA sur chaque phrase qu'ils écrivent, pendant la partie, et une note de A à F à chaque partie. Les conseils de l'IA sont pour les joueurs de 16 ans et plus qui touchent <b>Essayer</b> quand l'appli le propose ; pour les autres, c'est le téléphone qui note. Pour arrêter, désactive <b>Noter mes phrases d'entraînement avec l'IA</b> dans les Réglages. Une ligne qui ne fait que renvoyer la question (« Et toi, t'en penses quoi ? ») n'est pas une réponse : elle a une note basse."]
+                ? ["Les membres ont une note de A à F à chaque partie et, si tu as 16 ans ou plus et que tu touches <b>Essayer</b> quand l'appli le propose, des conseils facultatifs de l'IA sur tes phrases pendant la partie ; pour les autres, c'est le téléphone qui note. Pour arrêter, désactive <b>Noter mes phrases d'entraînement avec l'IA</b> dans les Réglages. Une ligne qui ne fait que renvoyer la question (« Et toi, t'en penses quoi ? ») n'est pas une réponse : elle a une note basse."]
                 : []),
               "Les tutoriels restent gratuits pour tous, et en réussir un compte toujours pour Jouer en ligne.",
               "Sans abonnement, <b>Partie d'entraînement</b> sur la dernière carte du tutoriel est grisé et indique « L'entraînement est réservé aux membres ». Le tutoriel compte quand même. La ligne en dessous est un lien vers <b>Membres</b>.",

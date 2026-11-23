@@ -293,7 +293,7 @@ const es: HelpText = {
               a: [
                 'Las partidas de práctica son para miembros: hasta 5 al día. El día empieza a medianoche UTC. Después de tus 5, puedes retomar una partida guardada.',
                 ...(o.practiceAi
-                  ? ['Los miembros reciben comentarios de IA sobre cada frase que escriben, mientras juegan, y una nota de la A a la F en cada partida. Los comentarios de IA son para jugadores de 16 años o más que tocan <b>Probar</b> cuando la app lo pregunta; para los demás, puntúa el teléfono. Para dejar de recibirlos, desactiva <b>Puntuar mis frases de práctica con IA</b> en Ajustes. Una línea que solo devuelve la pregunta (“¿Y tú qué opinas?”) no es una respuesta, así que puntúa bajo.']
+                  ? ['Los miembros reciben una nota de la A a la F en cada partida y, si tienes 16 años o más y tocas <b>Probar</b> cuando la app lo pregunta, comentarios opcionales de IA sobre tus frases mientras juegas; para los demás, puntúa el teléfono. Para dejar de recibirlos, desactiva <b>Puntuar mis frases de práctica con IA</b> en Ajustes. Una línea que solo devuelve la pregunta (“¿Y tú qué opinas?”) no es una respuesta, así que puntúa bajo.']
                   : []),
                 'Los tutoriales siguen siendo gratis para todos, y superar uno sigue contando para Jugar en línea.',
                 'Sin membresía, <b>Partida de práctica</b> en la última tarjeta del tutorial aparece en gris y dice «Las partidas de práctica son para miembros». El tutorial sigue contando. La línea de debajo es un enlace a <b>Membresía</b>.',

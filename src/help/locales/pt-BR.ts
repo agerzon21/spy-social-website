@@ -293,7 +293,7 @@ const ptBR: HelpText = {
               a: [
                 'As partidas de treino são para membros: até 5 por dia. O dia começa à meia-noite UTC. Depois das suas 5, uma partida salva ainda pode ser continuada.',
                 ...(o.practiceAi
-                  ? ['Membros recebem comentários da IA sobre cada frase que escrevem, enquanto jogam, e uma nota de A a F em toda partida. Os comentários da IA são para quem tem 16 anos ou mais e toca em <b>Experimentar</b> quando o app pergunta; para os outros, quem avalia é o celular. Para parar, desative <b>Avaliar minhas frases de treino com IA</b> nos Ajustes. Uma linha que só devolve a pergunta (“E você, o que acha?”) não é uma resposta e recebe nota baixa.']
+                  ? ['Membros recebem uma nota de A a F em toda partida e, se você tem 16 anos ou mais e toca em <b>Experimentar</b> quando o app pergunta, comentários opcionais da IA sobre suas frases enquanto joga; para os outros, quem avalia é o celular. Para parar, desative <b>Avaliar minhas frases de treino com IA</b> nos Ajustes. Uma linha que só devolve a pergunta (“E você, o que acha?”) não é uma resposta e recebe nota baixa.']
                   : []),
                 'Os tutoriais continuam grátis para todos, e passar em um ainda conta para o Jogar online.',
                 'Sem assinatura, <b>Partida de treino</b> no último cartão do tutorial fica cinza e diz «As partidas de treino são para membros». O tutorial continua valendo. A linha embaixo é um link para <b>Membros</b>.',
