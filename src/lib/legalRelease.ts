@@ -2339,6 +2339,40 @@ export const LIVE = {
    * also bump PRIVACY_LAST_UPDATED.
    */
   bonusByPayPal1122: true,
+  /**
+   * privacy-a40-1124 (OPEN-FINDINGS-1124 A40, NEW-TABLES-PRIVACY-1122): Your Look B's saved looks (app server row
+   * 20261231999689 player_saved_looks_1122: up to 5 per player, a name of up to 24 characters and item codes, owner-only,
+   * exported by the FK walk, cascade-deleted). Privacy's Account Information adds one sentence. OFF until the row is
+   * applied LIVE; then node scripts/flip-switch.mjs savedLooks1122 --day "<apply day>". A server fact: LIVE, never
+   * PRIVACY_AHEAD. If the row is rolled back: --undo.
+   */
+  savedLooks1122: false,
+  /**
+   * privacy-a40-1124 (A40): Black Market B's starred items (app server row 20261231999692 market_desk_1122:
+   * market_watch = the collectible code and when it was starred, up to 50 (app_config watch_max), only ever read for
+   * the owner's own rows, never counted per item; exported, cascade-deleted). Privacy's Black Market item adds one
+   * sentence. OFF until the row is applied LIVE; then node scripts/flip-switch.mjs marketWatch1122 --day "<apply day>".
+   * A server fact: LIVE, never PRIVACY_AHEAD.
+   */
+  marketWatch1122: false,
+  /**
+   * privacy-a40-1124 (A40; NEW-TABLES-PRIVACY-1122 fix 1): drawing_minor_left (app server row 20261231999688
+   * drawcheck_hardening_1122, H1): when a player under 18 or of unknown age leaves a private Spy Sketch game, the
+   * server keeps account, game and time for 2 days (cron drawing-minor-left-prune) so the turn they watched is still
+   * checked; cascade-deleted with the account. Privacy's Drawing Checks adds one sentence. OFF until the row is applied
+   * LIVE (it must go up in the same deploy); then node scripts/flip-switch.mjs drawingMinorLeft1122 --day "<apply day>".
+   * A server fact: LIVE, never PRIVACY_AHEAD.
+   */
+  drawingMinorLeft1122: false,
+  /**
+   * privacy-a40-1124 (A40; NEW-TABLES-PRIVACY-1122 LOW consistency): the data export WITHHOLDS drawing_minor_left
+   * like the other safety records. True only once a re-creation of _data_export adds 'drawing_minor_left' to
+   * c_skip_tables and to c_withheld's "safety and moderation case records" (no such server file is staged on Nov 24:
+   * until then the export lists the rows, and this stays false). Privacy's A copy of your data adds the note to what it
+   * leaves out; needs drawingMinorLeft1122 too. Then node scripts/flip-switch.mjs exportMinorLeftSkip --day "<apply day>".
+   * A server fact: LIVE, never PRIVACY_AHEAD.
+   */
+  exportMinorLeftSkip: false,
 }
 
 /**
@@ -2366,6 +2400,14 @@ export const TESTER_ONBOARD_DAY = 'November 21, 2026'
 export const GUEST_SAVE_BEFORE_BUY_DAY = 'November 20, 2026'
 /** LIVE.csAutoPreserve's day in PRIVACY_LAST_UPDATED only: the day 20261231999727 is applied and the site goes up with it (set by flip-switch --day). */
 export const CS_AUTO_PRESERVE_DAY = 'November 20, 2026'
+/** LIVE.savedLooks1122's day in PRIVACY_LAST_UPDATED only: the day 20261231999689 is applied and the site goes up with it (set by flip-switch --day). */
+export const SAVED_LOOKS_1122_DAY = 'November 24, 2026'
+/** LIVE.marketWatch1122's day in PRIVACY_LAST_UPDATED only: the day 20261231999692 is applied and the site goes up with it (set by flip-switch --day). */
+export const MARKET_WATCH_1122_DAY = 'November 24, 2026'
+/** LIVE.drawingMinorLeft1122's day in PRIVACY_LAST_UPDATED only: the day 20261231999688 is applied and the site goes up with it (set by flip-switch --day). */
+export const DRAWING_MINOR_LEFT_1122_DAY = 'November 24, 2026'
+/** LIVE.exportMinorLeftSkip's day in PRIVACY_LAST_UPDATED only: the day _data_export skips drawing_minor_left live (set by flip-switch --day). */
+export const EXPORT_MINOR_LEFT_SKIP_DAY = 'November 24, 2026'
 /**
  * gn-tiers4-1120: LIVE.gnTiers4_1120's day in both Last Updated dates and the Game Night Rules' (set by flip-switch --day to the
  * day the row is applied and the site goes up with it). The placeholder is refused at build time while the switch is on.
@@ -3040,7 +3082,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), POLICY_AUDIT_1123_DAY, SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null, LIVE.browserLegal ? BROWSER_LIST_1123_DAY : null, LIVE.appU62 ? APP_U62_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null)
+), POLICY_AUDIT_1123_DAY, SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null, LIVE.browserLegal ? BROWSER_LIST_1123_DAY : null, LIVE.appU62 ? APP_U62_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null, LIVE.savedLooks1122 ? SAVED_LOOKS_1122_DAY : null, LIVE.marketWatch1122 ? MARKET_WATCH_1122_DAY : null, LIVE.drawingMinorLeft1122 ? DRAWING_MINOR_LEFT_1122_DAY : null, LIVE.drawingMinorLeft1122 && LIVE.exportMinorLeftSkip ? EXPORT_MINOR_LEFT_SKIP_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
