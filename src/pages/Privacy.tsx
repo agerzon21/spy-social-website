@@ -1079,13 +1079,7 @@ const Privacy: React.FC = () => {
             tips you've seen) in your browser's storage, and while you're signed in, some game data so it loads
             quickly (such as recent room codes and, once you play, other players' avatars). Signing out removes your sign-in and that
             game data from the browser; your choices stay until you clear the browser's data. {PRIVACY.coverage1116 ? "The game itself uses no cookies (Vercel's security check can set one, see Vercel below)" : 'It uses no cookies'}, and
-            we don't use your browser's storage for advertising or tracking. At launch, the browser version is for signing in and
-            managing your account, Vault, Black Market and trades; playing games there is limited to invited players.
-            While playing in the browser version is invite-only, we keep a list of the players we've invited to play in
-            it (the email address or account we invited, with a short note), and use it only to let them play there. We
-            take you off it when your invite ends: a test's browser seats by the day that test's sign-ups are deleted
-            (Beta 3's by December 1, 2026), and a content creator's when their recording is done. We delete the whole
-            list once playing in a browser opens to everyone.
+            we don't use your browser's storage for advertising or tracking. During early access, playing in the browser version is open to everyone: you can sign in or play as a guest at play.spysocial.app. Any list we kept of invited browser players is deleted.
             {PRIVACY.siteStorage1115 &&
               " Our website (spysocial.app, with its Archive and Market pages) shows itself in the language named in the link you opened, the language you picked on it before, or else the first of your browser's preferred languages that it offers. It keeps the language and the light or dark look you pick in your browser's storage, and, for that visit only, short technical notes (such as whether a page already tried to open the app, or to reload after it failed to load). They stay on your device: the website doesn't send them to us, and we don't use them for advertising or tracking."}
           </Item>

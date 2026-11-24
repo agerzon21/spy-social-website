@@ -611,7 +611,7 @@ export const LIVE = {
    * fits open play then. VITE_PLAY_URL (Vercel env) can point the links elsewhere (a preview); unset, they go to
    * https://play.spysocial.app.
    */
-  browserLinks: false,
+  browserLinks: true,
   /**
    * "Sign in" on the site (header, footer, home hero), to the app's /login on play.spysocial.app (lib/playUrl).
    * Separate from browserLinks, so the "Play in Browser" invitations stay off. Launch: flip at the web release on
