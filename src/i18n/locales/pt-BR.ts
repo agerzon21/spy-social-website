@@ -990,7 +990,7 @@ const ptBR: Strings = {
       gameItems: ['O título <b>Tester de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
       trade: { tradable: 'Depois do lançamento, as interceptações de agradecimento podem ser trocadas como tudo o que você ganha.', bound: 'As interceptações de agradecimento ficam na sua conta.' },
       prizeTitle: 'US$\u00a010 de agradecimento pelo PayPal + um bônus de US$\u00a050',
-      prize: 'Um agradecimento de US$ 10 pelo PayPal pelo seu tempo na sessão ao vivo: cada jogador confirmado que participar da hora inteira e enviar a pesquisa de 5 minutos recebe em até 7 dias após a sessão, igual no iPhone e no Android. Só instalar a versão de teste não dá direito a ele. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil da sessão, escolhido pelo desenvolvedor em até uma semana.',
+      prize: 'Um agradecimento de US$ 10 pelo PayPal pelo seu tempo na sessão ao vivo: cada jogador confirmado que participar da hora inteira e enviar a pesquisa de 5 minutos recebe em até 7 dias após a sessão, igual no iPhone e no Android. Só instalar a versão de teste não dá direito a ele. Além disso, um bônus de US$ 50 (vale-presente) para o relato de bug ou a ideia mais útil da sessão, escolhido pelo desenvolvedor em até uma semana, entre quem jogou e enviou a pesquisa. Os pagamentos são só para maiores de 18 anos.',
       seats: (day: string) => `24 vagas. O agradecimento vai só para os jogadores que confirmarmos por e-mail (até ${day}) e que participarem da sessão; os demais entram na lista de espera do próximo teste.`,
     },
     friends: {
