@@ -791,6 +791,7 @@ const Privacy: React.FC = () => {
             : PRIVACY.emailCodes22
               ? " From version 2.2, the app signs you in, saves a guest account and checks it's you before Delete Account with a one-time code we email you, instead of a password (older versions still use a password). These codes are made, sent (through Resend) and checked by our sign-in service (Supabase Auth): a code has 6 digits, works only once and for 1 hour, and a new one can be asked for after a minute; the service keeps only a coded form of the code, never the code itself."
               : ''}
+          {' You stay signed in on a device until you sign out or go a long time without opening the app; after that the sign-in service ends the session and the app asks you to sign in again.'}
         </Item>
         <Item label="Safety Information">
           Reports you make or that are made about you, players you block (and when you unblock someone, which counts for 24 hours so a player can't be blocked and unblocked over and over{PRIVACY.retentionSweep ? ' and is then deleted' : ', and is deleted the next time you unblock someone or with your account'}), removals from rooms, and any warnings,
