@@ -224,8 +224,11 @@ const Privacy: React.FC = () => {
             reward once, to show your rewards on Game Over and in the Vault, and to check that they're earned fairly.
             Game Night seats you through Play Online, so your Game Night search is kept like a Play Online search
             {PRIVACY.playOnline ? ' (see Play Online above)' : ''}, with the night it was for. Other players can see
-            your ★&nbsp;titles with their counts (for example on your name plate or your profile); your Game Night Intel
-            isn't shown to anyone else. We also keep the record of the titles you got at the beta's Game Nights, which
+            your ★&nbsp;titles with their counts (for example on your name plate or your profile)
+            {/* LIVE.gnRecap1124 (app server row 20261231999699, gn-recap-privacy-1124): the last night's top five. */}
+            {PRIVACY.gnRecap1124
+              ? ". After a Game Night, signed-in players can see that night's top five players by wins (under their public name if their profile is public, otherwise as \"Agent\" and a colour), and only the players who played that night also see how much Game Night Intel each of the five earned that night; apart from that, your Game Night Intel isn't shown to anyone else."
+              : "; your Game Night Intel isn't shown to anyone else."} We also keep the record of the titles you got at the beta's Game Nights, which
             became counts on the ★&nbsp;titles. All of this is kept with your account and deleted with it, and apart from
             the ★&nbsp;counts it doesn't leave our servers and isn't shared with anyone. The ★&nbsp;titles aren't minted and
             aren't on the public ledger.

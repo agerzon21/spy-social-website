@@ -2298,6 +2298,15 @@ export const LIVE = {
    */
   csAutoPreserve: true,
   /**
+   * gn-recap-privacy-1124 (app server row 20261231999699 get_gamenight_recap, revised Nov 24 for SECURITY-DB-ROWS-1124
+   * P2-1): the PC Home / Compete panels show the last Game Night's top five (names as the server gives them: a public
+   * profile's name, else "Agent <Colour>"; wins; and each row's Game Night Intel earned that night ONLY to the players
+   * who played that night). Privacy's Game Night item says so in place of "isn't shown to anyone else" alone. No Terms
+   * text. OFF until the row is applied LIVE (Dec 2 batch, DEC2 #34); then node scripts/flip-switch.mjs gnRecap1124 --day
+   * "<apply day>". A server fact: LIVE, never PRIVACY_AHEAD. If the row is rolled back: --undo.
+   */
+  gnRecap1124: false,
+  /**
    * gn-tiers4-1120 (owner's final Game Night economy, Nov 21; app server row 20261231999719 gn_tiers4_1120 variant P + client
    * feat/gn-tiers4-1120; plan gn-tiers4-1120/PLAN.md, PRICE-OPTIONS.md): Game Night Intercepts become FOUR tiers, 400 / 800 /
    * 1,600 / 3,200 (Tier 3 Rare 45 / Epic 33 / Mythic 17.7 / Legendary 4.3, no Unique; Tier 4 Epic 58.8 / Mythic 32 /
@@ -2366,6 +2375,8 @@ export const TESTER_ONBOARD_DAY = 'November 21, 2026'
 export const GUEST_SAVE_BEFORE_BUY_DAY = 'November 20, 2026'
 /** LIVE.csAutoPreserve's day in PRIVACY_LAST_UPDATED only: the day 20261231999727 is applied and the site goes up with it (set by flip-switch --day). */
 export const CS_AUTO_PRESERVE_DAY = 'November 20, 2026'
+/** LIVE.gnRecap1124's day in PRIVACY_LAST_UPDATED only: the day 20261231999699 is applied and the site goes up with it (set by flip-switch --day). */
+export const GN_RECAP_1124_DAY = 'December 2, 2026'
 /**
  * gn-tiers4-1120: LIVE.gnTiers4_1120's day in both Last Updated dates and the Game Night Rules' (set by flip-switch --day to the
  * day the row is applied and the site goes up with it). The placeholder is refused at build time while the switch is on.
@@ -3040,7 +3051,7 @@ export const PRIVACY_LAST_UPDATED: string = latestOf(sinceLlc(
       : LIVE.intelLedger
       ? 'October 30, 2026' // the Intel ledger kept for good without the account, its client part 2 years (E0): set to the day the site goes up with it on
       : 'October 28, 2026' // the Intercepts item, AI Players (spybots), Test Versions, the packs' Post Anonymously / Show My Name and Studio facts, the pack review notices' push, child-safety preservation, every pack translated by OpenAI (Microsoft only as the fallback: translate-pack v4), the AI pre-review of Community submissions and the reviewer's edits told to the creator (app server 20261201860000; policy first, the same day); before it, October 27, 2026 (Custom, Community and featured Packs, pack auto-translate), October 25 (owner live moderation), October 24 (QA 110)
-), POLICY_AUDIT_1123_DAY, SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null, LIVE.browserLegal ? BROWSER_LIST_1123_DAY : null, LIVE.appU62 ? APP_U62_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null)
+), POLICY_AUDIT_1123_DAY, SENTRY_SESSIONS_1119_DAY, COVERAGE_1119_DAY, NP_1119_DAY, LIVE.helpGooglePassStop ? GOOGLE_PASS_STOP_DAY : null, LIVE.testerOnboard ? TESTER_ONBOARD_DAY : null, LIVE.intelZero1117 ? INTEL_ZERO_1117_DAY : null, LIVE.drawingMinorPeer1120 || LIVE.modDrawingsAdult1120 ? DRAWINGS_1120_DAY : null, LIVE.guestSaveBeforeBuy && PRIVACY.purchases ? GUEST_SAVE_BEFORE_BUY_DAY : null, LIVE.csAutoPreserve ? CS_AUTO_PRESERVE_DAY : null, LIVE.browserLegal ? BROWSER_LIST_1123_DAY : null, LIVE.appU62 ? APP_U62_DAY : null, LIVE.gnTiers4_1120 ? GN_TIERS4_1120_DAY : null, LIVE.gnRecap1124 ? GN_RECAP_1124_DAY : null)
 
 /**
  * The launch text that no feature switch covers: the UK online safety text (Terms section 7's line on suicide,
