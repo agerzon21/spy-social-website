@@ -23,6 +23,8 @@ const SWITCHES = {
   marketWatch1122: { live: [['marketWatch1122', true]], day: 'MARKET_WATCH_1122_DAY', step: 'row 999692' },
   drawingMinorLeft1122: { live: [['drawingMinorLeft1122', true]], day: 'DRAWING_MINOR_LEFT_1122_DAY', step: 'row 999688 (same deploy)' },
   exportMinorLeftSkip: { live: [['exportMinorLeftSkip', true]], day: 'EXPORT_MINOR_LEFT_SKIP_DAY', step: '_data_export skips drawing_minor_left (not staged)' },
+  // gn-recap-privacy-1124: the day server row 20261231999699 (get_gamenight_recap, Intel to that night's players only) is applied live; --day = that day. Privacy only.
+  gnRecap1124: { live: [['gnRecap1124', true]], day: 'GN_RECAP_1124_DAY', step: 'row 999699 (DEC2 #34)' },
   // gn-tiers4-1120: the day server row 20261231999719 (4 Game Night tiers, shred for Game Night Intel) is applied live, after the client OTA; --day = that day.
   gnTiers4_1120: { live: [['gnTiers4_1120', true]], day: 'GN_TIERS4_1120_DAY', step: 'row 999719 (gn-tiers4-1120)' },
   oddsPublic1120: { live: [['oddsPublic1120', true]], day: 'ODDS_PUBLIC_1120_DAY', step: 'with or after gnTiers4_1120 (legal-1120)' },
