@@ -709,6 +709,9 @@ const Privacy: React.FC = () => {
           (such as your answers to a test's survey) and, to let you install an Android test version, the email address
           of your Google account, which we add to the app's list of testers in Google Play and remove once the test is
           over. We use these only to run the test and improve the app.
+          {' '}Thank-yous and prizes are paid only to adults. Signing up for a test asks you to confirm you are 18 or older,
+          and before we send a prize we ask the winner to confirm it. We don't keep the email address or PayPal address of
+          anyone who tells us they are under 18. PayPal also requires its account holders to be adults under its own terms.
           {PRIVACY.playtestPayPal && (
             <>
               {' '}
@@ -1613,7 +1616,8 @@ const Privacy: React.FC = () => {
         What the room shows them, such as names as the room shows them (an agent name such as "Agent Blue" at Play
         Online tables and game nights, display names in private rooms), avatars, chat messages, questions and answers,
         and drawings, can then appear in those videos, which the creator publishes under their own platform's terms;
-        we don't receive or keep these recordings, and we don't control them. A creator's invited co-players are
+        we don't receive or keep these recordings, and we don't control them. If you join a room by a link from a content
+        creator, assume you may be recorded; leave before the game starts if you don't want to be. A creator's invited co-players are
         adults (see Accounts We Set Up for Creators). If a video shows your
         personal information, write to support@spysocial.app and we'll ask the creator to remove it.{' '}
         Reports are
