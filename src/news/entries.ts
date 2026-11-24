@@ -48,6 +48,84 @@ const DISCORD = 'https://discord.gg/B8MG3xrV6f'
 
 export const NEWS: NewsEntry[] = [
   {
+    id: 'in-the-stores',
+    date: 'December 3, 2026',
+    links: [
+      {
+        to: 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390',
+        label: {
+          en: 'App Store',
+          ru: 'App Store',
+          es: 'App Store',
+          fr: 'App Store',
+          'pt-BR': 'App Store',
+          id: 'App Store',
+          'zh-Hans': 'App Store',
+          hi: 'App Store',
+          ar: 'App Store',
+          bn: 'App Store',
+        },
+      },
+      {
+        to: 'https://play.google.com/store/apps/details?id=com.gerz.spysocial',
+        label: {
+          en: 'Google Play',
+          ru: 'Google Play',
+          es: 'Google Play',
+          fr: 'Google Play',
+          'pt-BR': 'Google Play',
+          id: 'Google Play',
+          'zh-Hans': 'Google Play',
+          hi: 'Google Play',
+          ar: 'Google Play',
+          bn: 'Google Play',
+        },
+      },
+    ],
+    text: {
+      en: {
+        title: 'SpySocial is in the App Store and Google Play',
+        body: 'SpySocial is now in the App Store and Google Play. Items and Intel earned until Monday, December 7 at 00:00 Eastern are reset then, and your account, friends and XP stay. You can keep playing in the browser until then. Questions? Ask in our Discord.',
+      },
+      ru: {
+        title: 'SpySocial теперь в App Store и Google Play',
+        body: 'SpySocial теперь в App Store и Google Play. Предметы и Intel, полученные до понедельника, 7 декабря, 00:00 по восточному времени США, в этот момент сбрасываются; аккаунт, друзья и XP остаются. До этого можно играть и в браузере. Вопросы? Пишите в наш Discord.',
+      },
+      es: {
+        title: 'SpySocial ya está en el App Store y Google Play',
+        body: 'SpySocial ya está en el App Store y en Google Play. Los objetos y el Intel obtenidos hasta el lunes 7 de diciembre a las 00:00 (hora del Este) se reinician entonces; tu cuenta, tus amigos y tu XP se quedan. Hasta entonces puedes seguir jugando en el navegador. ¿Dudas? Pregunta en nuestro Discord.',
+      },
+      fr: {
+        title: 'SpySocial est sur l’App Store et Google Play',
+        body: 'SpySocial est désormais sur l’App Store et Google Play. Les objets et l’Intel gagnés jusqu’au lundi 7 décembre à 00 h 00 (heure de l’Est) sont alors réinitialisés ; votre compte, vos amis et votre XP restent. Vous pouvez continuer à jouer dans le navigateur jusque-là. Des questions ? Posez-les sur notre Discord.',
+      },
+      'pt-BR': {
+        title: 'O SpySocial está na App Store e no Google Play',
+        body: 'O SpySocial já está na App Store e no Google Play. Os itens e o Intel obtidos até segunda-feira, 7 de dezembro, às 00:00 (horário do Leste) são zerados nesse momento; sua conta, seus amigos e seu XP continuam. Até lá, você pode seguir jogando no navegador. Dúvidas? Pergunte no nosso Discord.',
+      },
+      id: {
+        title: 'SpySocial kini ada di App Store dan Google Play',
+        body: 'SpySocial kini tersedia di App Store dan Google Play. Item dan Intel yang didapat hingga Senin, 7 Desember pukul 00.00 (Waktu Timur AS) direset saat itu; akun, teman, dan XP-mu tetap ada. Sampai saat itu kamu masih bisa bermain di browser. Ada pertanyaan? Tanyakan di Discord kami.',
+      },
+      'zh-Hans': {
+        title: 'SpySocial 已登陆 App Store 和 Google Play',
+        body: 'SpySocial 现已登陆 App Store 和 Google Play。截至 12 月 7 日（星期一）美东时间 00:00 获得的道具和 Intel 将在那时重置，你的账号、好友和 XP 会保留。在此之前你仍可在浏览器中游玩。有问题？欢迎到我们的 Discord 提问。',
+      },
+      hi: {
+        title: 'SpySocial अब App Store और Google Play पर है',
+        body: 'SpySocial अब App Store और Google Play पर उपलब्ध है। सोमवार, 7 दिसंबर को अमेरिकी ईस्टर्न टाइम 00:00 बजे तक कमाए गए आइटम और Intel उसी समय रीसेट हो जाएँगे; आपका अकाउंट, दोस्त और XP बने रहेंगे। तब तक आप ब्राउज़र में खेलना जारी रख सकते हैं। सवाल हैं? हमारे Discord पर पूछें।',
+      },
+      ar: {
+        title: 'SpySocial متاح الآن على App Store وGoogle Play',
+        body: 'أصبح SpySocial متاحًا الآن على App Store وGoogle Play. العناصر وIntel التي تكسبونها حتى الإثنين 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة تُعاد ضبطها حينها، ويبقى حسابكم وأصدقاؤكم وXP كما هي. يمكنكم مواصلة اللعب في المتصفح حتى ذلك الحين. لديكم أسئلة؟ اسألوا في Discord الخاص بنا.',
+      },
+      bn: {
+        title: 'SpySocial এখন App Store ও Google Play-তে',
+        body: 'SpySocial এখন App Store ও Google Play-তে পাওয়া যাচ্ছে। সোমবার, 7 ডিসেম্বর মার্কিন ইস্টার্ন টাইম 00:00 পর্যন্ত অর্জিত আইটেম ও Intel তখন রিসেট হবে; আপনার অ্যাকাউন্ট, বন্ধু ও XP থেকে যাবে। তার আগ পর্যন্ত ব্রাউজারে খেলা চালিয়ে যেতে পারবেন। প্রশ্ন আছে? আমাদের Discord-এ জিজ্ঞাসা করুন।',
+      },
+    },
+  },
+  {
     id: 'beta-3',
     date: 'November 24, 2026',
     links: [
