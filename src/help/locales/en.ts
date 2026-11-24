@@ -338,7 +338,7 @@ const en: HelpText = {
           a: [
             "You can sign in at play.spysocial.app with the account you made in the app. There you see your agent, your Vault, the Black Market and your trades.",
             o.browserPlay ? "Rooms, Play Online and Game Night work in the browser too." : "For now, playing games in the browser is open only to testers and creators we invite. Everyone else can sign in and use their account there (Account, your agent, the Vault, the Black Market, trades, settings, How to Play), and sees <b>Browser Play Coming Soon</b> where a game would start. Browser play opens to everyone later, with the PC version; we will announce it.",
-            "New accounts are made in the app, from the App Store or Google Play.",
+            "No account yet? Get the app from the App Store or Google Play and make one there.",
           ],
         },
         {

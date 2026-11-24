@@ -308,7 +308,7 @@ const ptBR: HelpText = {
           a: [
             "Você pode entrar em play.spysocial.app com a conta que criou no app. Lá você vê seu agente, seu Cofre, o Mercado Negro e suas trocas.",
             o.browserPlay ? "Salas, Jogar online e a Noite de Jogos também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores e criadores que convidamos. Os demais podem entrar e usar a conta (Conta, seu agente, o Cofre, o Mercado Negro, trocas, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. O jogo no navegador abre para todos mais tarde, com a versão para PC; avisaremos.",
-            "Contas novas são criadas no app, pela App Store ou pelo Google Play.",
+            "Ainda não tem conta? Baixe o app na App Store ou no Google Play e crie a sua lá.",
           ],
         },
         {

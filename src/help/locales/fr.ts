@@ -304,7 +304,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           "Tu peux te connecter sur play.spysocial.app avec le compte que tu as créé dans l'appli. Tu y retrouves ton agent, ton Coffre, le Marché noir et tes échanges.",
           o.browserPlay ? "Les salons, Jouer en ligne et la Soirée jeux fonctionnent aussi dans le navigateur." : "Pour l'instant, jouer dans le navigateur n'est ouvert qu'aux testeurs et aux créateurs que nous invitons. Les autres peuvent se connecter et utiliser leur compte (Compte, ton agent, le Coffre, le Marché noir, les échanges, réglages, Comment jouer), et voient <b>Le jeu dans le navigateur arrive bientôt</b> là où une partie commencerait. Le jeu dans le navigateur s'ouvrira à tous plus tard, avec la version PC ; nous l'annoncerons.",
-          "Les nouveaux comptes se créent dans l'appli, depuis l'App Store ou Google Play.",
+          "Pas encore de compte ? Télécharge l'appli sur l'App Store ou Google Play et crée-le là.",
         ],
       },
       {

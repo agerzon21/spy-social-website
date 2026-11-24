@@ -889,6 +889,8 @@ const ar: Strings = {
     goneBody: "صار تسجيل الدخول برمز يُستخدم مرة واحدة في التطبيق.",
     goneOpen: "فتح SpySocial",
     goneNoApp: "ليس لديك التطبيق؟",
+    goneWeb: "سجّل الدخول على الويب",
+    goneWebBody: "على الكمبيوتر؟ سجّل الدخول في play.spysocial.app برمز يصلك على بريدك الإلكتروني.",
     preview: (mode: string) => `وضع المعاينة: <b>${mode}</b>. الإرسال لن يصل إلى Supabase.`,
   },
 

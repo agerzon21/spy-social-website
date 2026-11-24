@@ -889,6 +889,8 @@ const hi: Strings = {
     goneBody: "ऐप में एक बार इस्तेमाल होने वाले कोड से साइन इन करें।",
     goneOpen: "SpySocial खोलें",
     goneNoApp: "ऐप नहीं है?",
+    goneWeb: "वेब पर साइन इन करें",
+    goneWebBody: "कंप्यूटर पर हैं? अपने ईमेल पर आए कोड से play.spysocial.app पर साइन इन करें।",
     preview: (mode: string) => `प्रीव्यू मोड: <b>${mode}</b>। सबमिट करने पर Supabase तक कुछ नहीं जाएगा।`,
   },
 

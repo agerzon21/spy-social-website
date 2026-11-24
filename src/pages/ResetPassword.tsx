@@ -9,6 +9,7 @@ import { LIVE, STORES_OPEN } from '../lib/legalRelease'
 import { LaunchLine } from '../components/ui/LaunchReminder'
 import { REMINDER_PAGE } from '../lib/launchDay'
 import { openAppHref } from '../lib/appLink'
+import { SIGN_IN_URL } from '../lib/playUrl'
 import { currentPlatform } from '../lib/platform'
 import StoreBadges from '../components/ui/StoreBadges'
 import { Helmet } from 'react-helmet-async'
@@ -18,7 +19,8 @@ type PreviewMode = 'form' | 'error' | 'success' | null
 /**
  * Passwordless sign-in (LIVE.passwordless, app repo feat/email-code-signin): no password to reset. Old reset emails
  * still land here, so the page says so and points to the app (Open SpySocial on a phone, the store badges for anyone
- * without it). ?preview=gone shows it before the switch flips.
+ * without it; a computer gets Sign in on the web to play.spysocial.app/login while LIVE.webSignIn is on). ?preview=gone
+ * shows it before the switch flips.
  */
 const PasswordsGone = () => {
   const strings = useT()
@@ -35,6 +37,13 @@ const PasswordsGone = () => {
           <Text fontSize="sm" color="ss.muted">{t.goneBody}</Text>
           {platform !== 'desktop' && (
             <Button as="a" href={STORES_OPEN ? openAppHref('', platform) : openAppHref('', platform, `${window.location.origin}${REMINDER_PAGE}`)} variant="primary" size="md" width="100%">{t.goneOpen}</Button>
+          )}
+          {/* A computer cannot open spysocial://, so it gets the app's web sign-in instead (once the site links to it). */}
+          {platform === 'desktop' && LIVE.webSignIn && (
+            <>
+              <Text fontSize="sm" color="ss.muted">{t.goneWebBody}</Text>
+              <Button as="a" href={SIGN_IN_URL} variant="primary" size="md" width="100%">{t.goneWeb}</Button>
+            </>
           )}
           {STORES_OPEN ? (
             <>

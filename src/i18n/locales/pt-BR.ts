@@ -887,6 +887,8 @@ const ptBR: Strings = {
     goneBody: "Entre com um código de uso único no app.",
     goneOpen: "Abrir o SpySocial",
     goneNoApp: "Não tem o app?",
+    goneWeb: "Entrar pela web",
+    goneWebBody: "No computador? Entre em play.spysocial.app com um código enviado para o seu e-mail.",
     preview: (mode: string) => `Modo de prévia: <b>${mode}</b>. Enviar não chega ao Supabase.`,
   },
 

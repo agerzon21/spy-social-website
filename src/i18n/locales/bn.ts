@@ -889,6 +889,8 @@ const bn: Strings = {
     goneBody: "অ্যাপে এককালীন কোড দিয়ে সাইন ইন করুন।",
     goneOpen: "SpySocial খুলুন",
     goneNoApp: "অ্যাপ নেই?",
+    goneWeb: "ওয়েবে সাইন ইন করুন",
+    goneWebBody: "কম্পিউটারে আছেন? ইমেলে পাঠানো কোড দিয়ে play.spysocial.app-এ সাইন ইন করুন।",
     preview: (mode: string) => `প্রিভিউ মোড: <b>${mode}</b>। জমা দিলে Supabase-এ কিছু যাবে না।`,
   },
 

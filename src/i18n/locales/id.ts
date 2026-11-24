@@ -887,6 +887,8 @@ const id: Strings = {
     goneBody: "Masuk dengan kode sekali pakai di aplikasi.",
     goneOpen: "Buka SpySocial",
     goneNoApp: "Belum punya aplikasinya?",
+    goneWeb: "Masuk lewat web",
+    goneWebBody: "Di komputer? Masuk di play.spysocial.app dengan kode yang dikirim ke email-mu.",
     preview: (mode: string) => `Mode pratinjau: <b>${mode}</b>. Mengirim tidak akan menyentuh Supabase.`,
   },
 

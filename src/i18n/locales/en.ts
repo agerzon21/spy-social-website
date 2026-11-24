@@ -978,6 +978,9 @@ const en = {
     goneBody: "Sign in with a one-time code in the app.",
     goneOpen: "Open SpySocial",
     goneNoApp: "Don't have the app?",
+    /** Computers only, once LIVE.webSignIn is on: the button to the app's /login on play.spysocial.app. */
+    goneWeb: "Sign in on the web",
+    goneWebBody: "On a computer? Sign in at play.spysocial.app with a code sent to your email.",
     preview: (mode: string) => `Preview mode: <b>${mode}</b>. Submitting won't hit Supabase.`,
   },
 

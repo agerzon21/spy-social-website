@@ -308,7 +308,7 @@ const id: HelpText = {
           a: [
             "Kamu bisa masuk di play.spysocial.app dengan akun yang kamu buat di aplikasi. Di sana kamu melihat agenmu, Brankasmu, Pasar Gelap, dan pertukaranmu.",
             o.browserPlay ? "Ruangan, Main Online, dan Malam Permainan juga berjalan di browser." : "Untuk sekarang, bermain di browser hanya terbuka untuk penguji dan kreator yang kami undang. Pemain lain bisa masuk dan memakai akunnya (Akun, agenmu, Brankas, Pasar Gelap, pertukaran, pengaturan, Cara Bermain), dan melihat <b>Main di browser segera hadir</b> di tempat permainan akan dimulai. Bermain di browser dibuka untuk semua orang nanti, bersama versi PC; kami akan mengumumkannya.",
-            "Akun baru dibuat di aplikasi, lewat App Store atau Google Play.",
+            "Belum punya akun? Unduh aplikasinya dari App Store atau Google Play, lalu buat akun di sana.",
           ],
         },
         {

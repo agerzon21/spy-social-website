@@ -888,6 +888,8 @@ const ru: Strings = {
     goneBody: "Входите с одноразовым кодом в приложении.",
     goneOpen: "Открыть SpySocial",
     goneNoApp: "Нет приложения?",
+    goneWeb: "Войти в браузере",
+    goneWebBody: "За компьютером? Входите на play.spysocial.app с кодом, который придёт на почту.",
     preview: (mode: string) => `Режим предпросмотра: <b>${mode}</b>. Отправка не затронет Supabase.`,
   },
 

@@ -864,6 +864,8 @@ const zhHans: Strings = {
     goneBody: "请在应用中使用一次性验证码登录。",
     goneOpen: "打开 SpySocial",
     goneNoApp: "还没有应用？",
+    goneWeb: "在网页上登录",
+    goneWebBody: "在电脑上？用发到你邮箱的验证码登录 play.spysocial.app。",
     preview: (mode: string) => `预览模式：<b>${mode}</b>。提交不会发送到 Supabase。`,
   },
 

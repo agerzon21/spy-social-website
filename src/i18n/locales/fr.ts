@@ -892,6 +892,8 @@ const fr: Strings = {
     goneBody: "Connecte-toi avec un code à usage unique dans l'appli.",
     goneOpen: "Ouvrir SpySocial",
     goneNoApp: "Tu n'as pas l'appli ?",
+    goneWeb: "Se connecter sur le web",
+    goneWebBody: "Sur un ordinateur ? Connecte-toi sur play.spysocial.app avec un code envoyé par e-mail.",
     preview: (mode: string) => `Mode aperçu\u00A0: <b>${mode}</b>. L'envoi ne contacte pas Supabase.`,
   },
 

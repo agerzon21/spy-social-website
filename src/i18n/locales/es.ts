@@ -884,6 +884,8 @@ const es: Strings = {
     goneBody: "Inicia sesión con un código de un solo uso en la app.",
     goneOpen: "Abrir SpySocial",
     goneNoApp: "¿No tienes la app?",
+    goneWeb: "Iniciar sesión en la web",
+    goneWebBody: "¿En un ordenador? Inicia sesión en play.spysocial.app con un código que te llega por correo.",
     preview: (mode: string) => `Modo de vista previa: <b>${mode}</b>. Enviar no llega a Supabase.`,
   },
 
