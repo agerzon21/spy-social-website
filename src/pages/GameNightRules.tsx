@@ -27,8 +27,8 @@ const GameNightRules: React.FC = () => (
   <LegalPage english title="Game Night Rules" updated={<>Last Updated: {UPDATED}</>}>
     <H2>What Game Night is</H2>
     <P>
-      Game Night is online play SpySocial hosts on the nights we announce in the app (usually from 8 to 10 PM
-      Eastern Time). While it runs, the Home screen shows a Game Night card. Press <B>PLAY NOW</B> on the card to be
+      Game Night is online play SpySocial hosts on the nights we announce in the app (usually Friday from 8 to 10 PM
+      Eastern Time, and Saturday at 2 PM). While it runs, the Home screen shows a Game Night card. Press <B>PLAY NOW</B> on the card to be
       seated with other Game Night players. Tables start by themselves as players arrive: bigger tables first, and
       smaller ones if not enough players are waiting.{' '}
       {LIVE.gnRewardsRules

@@ -249,7 +249,7 @@ const en: HelpText = {
           id: 'game-night',
           q: 'What is Game Night?',
           a: [
-            o.launch ? "Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. On Home, open <b>Compete</b>, then the <b>Game Night</b> tab, and tap <b>PLAY NOW</b>." : 'Online play we host, on the nights we announce in the app, usually 8 to 10 PM Eastern. Tap <b>PLAY NOW</b> on Home’s Game Night card.',
+            o.launch ? "Online play we host, on the nights we announce in the app (usually Friday 8 to 10 PM Eastern, and Saturday at 2 PM). On Home, open <b>Compete</b>, then the <b>Game Night</b> tab, and tap <b>PLAY NOW</b>." : 'Online play we host, on the nights we announce in the app (usually Friday 8 to 10 PM Eastern, and Saturday at 2 PM). Tap <b>PLAY NOW</b> on Home’s Game Night card.',
             "Game Night needs a saved account: guests save theirs first.",
             o.gnRewards
               ? 'Each night has its own packs and settings: the (i) next to the night shows them. <b>PRIZES</b> on the card shows what you earn: Game Night Intel and the ★ titles.'
@@ -337,7 +337,7 @@ const en: HelpText = {
           q: "Can I play SpySocial on a computer?",
           a: [
             "You can sign in at play.spysocial.app with the account you made in the app. There you see your agent, your Vault, the Black Market and your trades.",
-            o.browserPlay ? "Rooms, Play Online and Game Night work in the browser too." : "For now, playing games in the browser is open only to testers and creators we invite. Everyone else can sign in and use their account there (Account, your agent, the Vault, the Black Market, trades, settings, How to Play), and sees <b>Browser Play Coming Soon</b> where a game would start. Browser play opens to everyone after launch, with the PC version; we will announce it.",
+            o.browserPlay ? "Rooms, Play Online and Game Night work in the browser too." : "For now, playing games in the browser is open only to testers and creators we invite. Everyone else can sign in and use their account there (Account, your agent, the Vault, the Black Market, trades, settings, How to Play), and sees <b>Browser Play Coming Soon</b> where a game would start. Browser play opens to everyone later, with the PC version; we will announce it.",
             "New accounts are made in the app, from the App Store or Google Play.",
           ],
         },

@@ -856,7 +856,7 @@ const en = {
       features: [
         {
           title: 'Play Online',
-          text: 'Tap Find a Game for a table of 4 or 8 players, with the same standard rules for everyone. Catch a spy and everyone gets their vote call back; once nobody has one left, the game goes straight to its end. All you need is a free account.',
+          text: 'Tap Find a Game for a table of 4 or 8 players, with the same standard rules for everyone. Catch a spy and everyone gets their vote call back; once nobody has one left, the game goes straight to its end. All you need is a free account and the free tutorial for that game.',
         },
         { title: 'Spy Sketch', text: 'A new way to play: draw the secret word on one shared whiteboard, and catch the spies faking it.' },
         {
