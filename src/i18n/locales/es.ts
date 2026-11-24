@@ -771,7 +771,7 @@ const es: Strings = {
       features: [
         {
           title: 'Jugar en línea',
-          text: 'Toca «Buscar partida» para una mesa de 4 u 8 jugadores, con las mismas reglas estándar para todos. Si atrapan a un espía, todos recuperan su votación; cuando a nadie le queda una, la partida pasa directamente a su final. Solo necesitas una cuenta gratuita.',
+          text: 'Toca «Buscar partida» para una mesa de 4 u 8 jugadores, con las mismas reglas estándar para todos. Si atrapan a un espía, todos recuperan su votación; cuando a nadie le queda una, la partida pasa directamente a su final. Solo necesitas una cuenta gratuita y el tutorial gratuito de ese juego.',
         },
         { title: 'Spy Sketch', text: 'Una nueva forma de jugar: dibuja la palabra secreta en una pizarra compartida y atrapa a los espías que fingen saberla.' },
         {

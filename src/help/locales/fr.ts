@@ -215,7 +215,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'game-night',
         q: "C'est quoi, la soirée jeux ?",
         a: [
-          o.launch ? "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Sur l’accueil, ouvre <b>Compétition</b>, puis l’onglet <b>Soirée jeux</b> et touche <b>Jouer</b>." : "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général de 20 h à 22 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
+          o.launch ? "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général le vendredi de 20 h à 22 h et le samedi à 14 h, heure de l'Est des États-Unis. Sur l’accueil, ouvre <b>Compétition</b>, puis l’onglet <b>Soirée jeux</b> et touche <b>Jouer</b>." : "Des parties en ligne que nous organisons, les soirs annoncés dans l'appli, en général le vendredi de 20 h à 22 h et le samedi à 14 h, heure de l'Est des États-Unis. Touche <b>Jouer</b> sur la carte de la soirée jeux, sur l'accueil.",
           "La soirée jeux demande un compte sauvegardé : un invité sauvegarde d’abord le sien.",
           o.gnRewards
             ? "Chaque soirée a ses packs et ses réglages : le (i) à côté de la soirée les affiche. <b>Prix</b>, sur la carte, montre ce que tu gagnes : l'Intel de soirée jeux et les titres ★."
@@ -303,7 +303,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         q: "Puis-je jouer à SpySocial sur ordinateur ?",
         a: [
           "Tu peux te connecter sur play.spysocial.app avec le compte que tu as créé dans l'appli. Tu y retrouves ton agent, ton Coffre, le Marché noir et tes échanges.",
-          o.browserPlay ? "Les salons, Jouer en ligne et la Soirée jeux fonctionnent aussi dans le navigateur." : "Pour l'instant, jouer dans le navigateur n'est ouvert qu'aux testeurs et aux créateurs que nous invitons. Les autres peuvent se connecter et utiliser leur compte (Compte, ton agent, le Coffre, le Marché noir, les échanges, réglages, Comment jouer), et voient <b>Le jeu dans le navigateur arrive bientôt</b> là où une partie commencerait. Le jeu dans le navigateur s'ouvrira à tous après le lancement, avec la version PC ; nous l'annoncerons.",
+          o.browserPlay ? "Les salons, Jouer en ligne et la Soirée jeux fonctionnent aussi dans le navigateur." : "Pour l'instant, jouer dans le navigateur n'est ouvert qu'aux testeurs et aux créateurs que nous invitons. Les autres peuvent se connecter et utiliser leur compte (Compte, ton agent, le Coffre, le Marché noir, les échanges, réglages, Comment jouer), et voient <b>Le jeu dans le navigateur arrive bientôt</b> là où une partie commencerait. Le jeu dans le navigateur s'ouvrira à tous plus tard, avec la version PC ; nous l'annoncerons.",
           "Les nouveaux comptes se créent dans l'appli, depuis l'App Store ou Google Play.",
         ],
       },

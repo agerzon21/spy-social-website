@@ -771,7 +771,7 @@ const ptBR: Strings = {
       features: [
         {
           title: 'Jogar online',
-          text: 'Toque em “Buscar partida” para uma mesa de 4 ou 8 jogadores, com as mesmas regras padrão para todos. Se um espião for pego, todos recebem a votação de volta; quando ninguém tiver mais votações, o jogo vai direto para o fim. Você só precisa de uma conta grátis.',
+          text: 'Toque em “Buscar partida” para uma mesa de 4 ou 8 jogadores, com as mesmas regras padrão para todos. Se um espião for pego, todos recebem a votação de volta; quando ninguém tiver mais votações, o jogo vai direto para o fim. Você só precisa de uma conta grátis e do tutorial grátis desse jogo.',
         },
         {
           title: 'Spy Sketch',

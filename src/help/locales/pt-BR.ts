@@ -219,7 +219,7 @@ const ptBR: HelpText = {
           id: 'game-night',
           q: 'O que é a Noite de Jogos?',
           a: [
-            o.launch ? "Partidas online que organizamos, nas noites que anunciamos no app, normalmente das 20h às 22h no horário do leste dos EUA. No início, abra <b>Competir</b>, depois a aba <b>Noite de Jogos</b> e toque em <b>Jogar agora</b>." : 'Partidas online que organizamos, nas noites que anunciamos no app, normalmente das 20h às 22h no horário do leste dos EUA. Toque em <b>Jogar agora</b> no cartão da Noite de Jogos no início.',
+            o.launch ? "Partidas online que organizamos, nas noites que anunciamos no app, normalmente na sexta das 20h às 22h e no sábado às 14h, no horário do leste dos EUA. No início, abra <b>Competir</b>, depois a aba <b>Noite de Jogos</b> e toque em <b>Jogar agora</b>." : 'Partidas online que organizamos, nas noites que anunciamos no app, normalmente na sexta das 20h às 22h e no sábado às 14h, no horário do leste dos EUA. Toque em <b>Jogar agora</b> no cartão da Noite de Jogos no início.',
             "A Noite de Jogos pede uma conta salva: o visitante salva a dele primeiro.",
             o.gnRewards
               ? 'Cada noite tem seus pacotes e ajustes: o (i) ao lado da noite mostra tudo. <b>Prêmios</b>, no cartão, mostra o que você ganha: Intel da Noite de Jogos e os títulos ★.'
@@ -307,7 +307,7 @@ const ptBR: HelpText = {
           q: "Posso jogar SpySocial no computador?",
           a: [
             "Você pode entrar em play.spysocial.app com a conta que criou no app. Lá você vê seu agente, seu Cofre, o Mercado Negro e suas trocas.",
-            o.browserPlay ? "Salas, Jogar online e a Noite de Jogos também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores e criadores que convidamos. Os demais podem entrar e usar a conta (Conta, seu agente, o Cofre, o Mercado Negro, trocas, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. O jogo no navegador abre para todos depois do lançamento, com a versão para PC; avisaremos.",
+            o.browserPlay ? "Salas, Jogar online e a Noite de Jogos também funcionam no navegador." : "Por enquanto, jogar no navegador está aberto só a testadores e criadores que convidamos. Os demais podem entrar e usar a conta (Conta, seu agente, o Cofre, o Mercado Negro, trocas, configurações, Como jogar), e veem <b>Jogar no navegador em breve</b> onde uma partida começaria. O jogo no navegador abre para todos mais tarde, com a versão para PC; avisaremos.",
             "Contas novas são criadas no app, pela App Store ou pelo Google Play.",
           ],
         },

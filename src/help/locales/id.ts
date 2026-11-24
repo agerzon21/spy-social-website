@@ -219,7 +219,7 @@ const id: HelpText = {
           id: 'game-night',
           q: 'Apa itu Malam Permainan?',
           a: [
-            o.launch ? "Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Di Beranda, buka <b>Kompetisi</b>, lalu tab <b>Malam Permainan</b>, dan ketuk <b>Main Sekarang</b>." : 'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya pukul 20.00–22.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
+            o.launch ? "Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya Jumat pukul 20.00–22.00 dan Sabtu pukul 14.00 waktu bagian timur AS. Di Beranda, buka <b>Kompetisi</b>, lalu tab <b>Malam Permainan</b>, dan ketuk <b>Main Sekarang</b>." : 'Permainan online yang kami adakan, di malam yang kami umumkan di aplikasi, biasanya Jumat pukul 20.00–22.00 dan Sabtu pukul 14.00 waktu bagian timur AS. Ketuk <b>Main Sekarang</b> di kartu Malam Permainan di Beranda.',
             "Malam Permainan butuh akun tersimpan: tamu menyimpan akunnya dulu.",
             o.gnRewards
               ? 'Setiap malam punya paket dan pengaturannya sendiri: tombol (i) di samping malam itu menampilkannya. Tombol <b>Hadiah</b> di kartunya menampilkan apa yang bisa kamu dapat: Intel Malam Permainan dan gelar ★.'
@@ -307,7 +307,7 @@ const id: HelpText = {
           q: "Bisakah saya main SpySocial di komputer?",
           a: [
             "Kamu bisa masuk di play.spysocial.app dengan akun yang kamu buat di aplikasi. Di sana kamu melihat agenmu, Brankasmu, Pasar Gelap, dan pertukaranmu.",
-            o.browserPlay ? "Ruangan, Main Online, dan Malam Permainan juga berjalan di browser." : "Untuk sekarang, bermain di browser hanya terbuka untuk penguji dan kreator yang kami undang. Pemain lain bisa masuk dan memakai akunnya (Akun, agenmu, Brankas, Pasar Gelap, pertukaran, pengaturan, Cara Bermain), dan melihat <b>Main di browser segera hadir</b> di tempat permainan akan dimulai. Bermain di browser dibuka untuk semua orang setelah peluncuran, bersama versi PC; kami akan mengumumkannya.",
+            o.browserPlay ? "Ruangan, Main Online, dan Malam Permainan juga berjalan di browser." : "Untuk sekarang, bermain di browser hanya terbuka untuk penguji dan kreator yang kami undang. Pemain lain bisa masuk dan memakai akunnya (Akun, agenmu, Brankas, Pasar Gelap, pertukaran, pengaturan, Cara Bermain), dan melihat <b>Main di browser segera hadir</b> di tempat permainan akan dimulai. Bermain di browser dibuka untuk semua orang nanti, bersama versi PC; kami akan mengumumkannya.",
             "Akun baru dibuat di aplikasi, lewat App Store atau Google Play.",
           ],
         },

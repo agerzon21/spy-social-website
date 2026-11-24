@@ -771,7 +771,7 @@ const id: Strings = {
       features: [
         {
           title: 'Main online',
-          text: 'Ketuk “Cari permainan” untuk meja berisi 4 atau 8 pemain, dengan aturan standar yang sama untuk semua. Kalau mata-mata tertangkap, semua dapat jatah voting lagi; kalau jatah semua pemain habis, permainan langsung ke akhirnya. Cukup pakai akun gratis.',
+          text: 'Ketuk “Cari permainan” untuk meja berisi 4 atau 8 pemain, dengan aturan standar yang sama untuk semua. Kalau mata-mata tertangkap, semua dapat jatah voting lagi; kalau jatah semua pemain habis, permainan langsung ke akhirnya. Cukup pakai akun gratis dan tutorial gratis untuk permainan itu.',
         },
         {
           title: 'Spy Sketch',

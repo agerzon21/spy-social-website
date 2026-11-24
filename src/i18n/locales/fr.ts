@@ -770,7 +770,7 @@ const fr: Strings = {
       features: [
         {
           title: 'Jouer en ligne',
-          text: "Appuie sur « Trouver une partie » pour une table de 4 ou 8 joueurs, avec les mêmes règles standard pour tous. Si un espion est démasqué, chacun récupère son vote ; quand plus personne n'en a, la partie passe directement à sa fin. Il te faut juste un compte gratuit.",
+          text: "Appuie sur « Trouver une partie » pour une table de 4 ou 8 joueurs, avec les mêmes règles standard pour tous. Si un espion est démasqué, chacun récupère son vote ; quand plus personne n'en a, la partie passe directement à sa fin. Il te faut juste un compte gratuit et le tutoriel gratuit de ce jeu.",
         },
         {
           title: 'Spy Sketch',
