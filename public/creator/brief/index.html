@@ -37,7 +37,7 @@ html, body { margin: 0; background: #05080d; color: var(--text); font-family: va
   font-size: 9.6pt; line-height: 1.42;
 }
 .page:last-child { break-after: auto; page-break-after: auto; }
-@media screen { .page { margin: 10mm auto; box-shadow: 0 20px 60px rgba(0,0,0,.6); } }
+@media screen { .page { height: auto; min-height: 297mm; overflow: visible; margin: 10mm auto; box-shadow: 0 20px 60px rgba(0,0,0,.6); } }
 @media screen and (max-width: 840px) {
   /* Site copy: on phones the A4 sheets reflow into one readable column (the print/desktop layout is unchanged). */
   .page { zoom: 1.12; width: auto; height: auto; overflow: visible; margin: 0 0 3mm; padding: 6mm 4.2mm 5mm; box-shadow: none; gap: 4.4mm !important; }
