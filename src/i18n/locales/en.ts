@@ -1103,7 +1103,7 @@ const en = {
       /** Under the lists; LIVE.testerIntercepts picks one (server app_config tester_gift.intercepts_tradable). */
       trade: { tradable: 'The thank-you Intercepts trade after launch like anything you earn.', bound: 'The thank-you Intercepts stay with your account.' },
       prizeTitle: '$10 PayPal thank-you + one $50 bonus',
-      prize: 'A $10 thank-you by PayPal for your time in the live session: every confirmed player who joins the full hour and sends the 5-minute survey gets it within 7 days of the session, the same on iPhone and Android. Installing the test build doesn\'t earn it on its own. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week.',
+      prize: 'A $10 thank-you by PayPal for your time in the live session: every confirmed player who joins the full hour and sends the 5-minute survey gets it within 7 days of the session, the same on iPhone and Android. Installing the test build doesn\'t earn it on its own. Plus one $50 bonus (a gift card) for the single most useful bug report or idea from the session, chosen by the developer within a week, from someone who played and sent the survey. Payouts are for players 18 or older only.',
       /** `day`: the day we confirm seats by email ("Monday, November 9"). */
       seats: (day: string) => `24 seats. The thank-you goes only to players we confirm by email (by ${day}) who join the session; everyone else goes on the waitlist for the next test.`,
     },

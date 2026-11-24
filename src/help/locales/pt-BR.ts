@@ -788,7 +788,7 @@ const ptBR: HelpText = {
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
             'Faltou algo? Escreva para <email/> com seu nome de usuário e o e-mail que você usou durante o teste. Uma conta de visitante não está na lista, então o mais comum é ser outra conta.',
-            ...(o.launch ? [] : ["O Beta 3 é na terça-feira, 24 de novembro, das 20h às 21h no horário do leste dos EUA (dá para entrar a partir das 19h30). Se o e-mail da sua vaga fala do agradecimento de US$ 10: jogue pelo menos uma partida naquela noite e envie a pesquisa até sexta-feira, 27 de novembro, às 23h59 no horário do leste, e os US$ 10 chegam por PayPal até 1º de dezembro. O Beta 3 é aberto a todos: quem jogar naquela noite e enviar a pesquisa pode ganhar os US$ 50 pelo relato ou pela ideia mais útil; a escolha é nossa."]),
+            ...(o.launch ? [] : ["O Beta 3 é na terça-feira, 24 de novembro, das 20h às 21h no horário do leste dos EUA (dá para entrar a partir das 19h30). Se o e-mail da sua vaga fala do agradecimento de US$ 10: jogue pelo menos uma partida naquela noite e envie a pesquisa até sexta-feira, 27 de novembro, às 23h59 no horário do leste, e os US$ 10 chegam por PayPal até 1º de dezembro. O Beta 3 é aberto a todos. Os US$ 50 vão para o relato ou a ideia mais útil de alguém que jogou naquela noite e enviou a pesquisa; a escolha é nossa. Os pagamentos (US$ 10 e US$ 50) são só para maiores de 18 anos."]),
           ],
         },
         ...(o.launch ? [

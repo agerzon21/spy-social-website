@@ -818,7 +818,7 @@ const en: HelpText = {
             ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
             'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
             'Something missing? Email <email/> with your username and the email you signed in with during the test. A guest account isn’t on the list, so a different account is the usual reason.',
-            ...(o.launch ? [] : ["Beta 3 is on Tuesday, November 24, 8 to 9 PM Eastern (join from 7:30). If your seat email mentions the $10 thank-you: play at least one game that night and send the survey by Friday, November 27, 11:59 PM Eastern, and the $10 comes by PayPal by December 1. Beta 3 is open to everyone: anyone who plays that night and sends the survey can win the $50 for the most useful report or idea, chosen by us."]),
+            ...(o.launch ? [] : ["Beta 3 is on Tuesday, November 24, 8 to 9 PM Eastern (join from 7:30). If your seat email mentions the $10 thank-you: play at least one game that night and send the survey by Friday, November 27, 11:59 PM Eastern, and the $10 comes by PayPal by December 1. Beta 3 is open to everyone. The $50 goes to the most useful report or idea from someone who played that night and sent the survey, chosen by us. Payouts ($10 and $50) are for players 18 or older only."]),
           ],
         },
         ...(o.launch ? [

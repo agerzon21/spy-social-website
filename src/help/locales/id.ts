@@ -788,7 +788,7 @@ const id: HelpText = {
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
             'Ada yang kurang? Email ke <email/> dengan nama penggunamu dan email yang kamu pakai selama pengujian. Akun tamu tidak ada di daftar, jadi biasanya penyebabnya akun yang berbeda.',
-            ...(o.launch ? [] : ["Beta 3 diadakan Selasa, 24 November, pukul 20.00–21.00 waktu bagian timur AS (bisa masuk mulai 19.30). Jika email kursimu menyebut ucapan terima kasih $10: mainkan setidaknya satu permainan malam itu dan kirim survei sebelum Jumat, 27 November, pukul 23.59 waktu bagian timur, lalu $10 dikirim lewat PayPal paling lambat 1 Desember. Beta 3 terbuka untuk semua orang: siapa pun yang bermain malam itu dan mengirim survei bisa memenangkan $50 untuk laporan atau ide paling berguna, kami yang memilih."]),
+            ...(o.launch ? [] : ["Beta 3 diadakan Selasa, 24 November, pukul 20.00–21.00 waktu bagian timur AS (bisa masuk mulai 19.30). Jika email kursimu menyebut ucapan terima kasih $10: mainkan setidaknya satu permainan malam itu dan kirim survei sebelum Jumat, 27 November, pukul 23.59 waktu bagian timur, lalu $10 dikirim lewat PayPal paling lambat 1 Desember. Beta 3 terbuka untuk semua orang. $50 diberikan untuk laporan atau ide paling berguna dari orang yang bermain malam itu dan mengirim survei, kami yang memilih. Pembayaran ($10 dan $50) hanya untuk pemain berusia 18 tahun ke atas."]),
           ],
         },
         ...(o.launch ? [

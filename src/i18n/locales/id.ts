@@ -988,7 +988,7 @@ const id: Strings = {
       gameItems: ['Gelar <b>Penguji Lapangan</b>', '<b>10 sadapan</b> dari setiap tingkat', 'Keanggotaan <b>1 bulan</b>'],
       trade: { tradable: 'Setelah peluncuran, sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.', bound: 'Sadapan terima kasih tetap di akunmu.' },
       prizeTitle: 'Terima kasih $10 lewat PayPal + satu bonus $50',
-      prize: 'Ucapan terima kasih $10 lewat PayPal untuk waktumu di sesi live: setiap pemain terkonfirmasi yang ikut penuh satu jam dan mengirim survei 5 menit menerimanya dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Hanya memasang build uji tidak membuatmu mendapatkannya. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu.',
+      prize: 'Ucapan terima kasih $10 lewat PayPal untuk waktumu di sesi live: setiap pemain terkonfirmasi yang ikut penuh satu jam dan mengirim survei 5 menit menerimanya dalam 7 hari setelah sesi, sama untuk iPhone dan Android. Hanya memasang build uji tidak membuatmu mendapatkannya. Plus satu bonus $50 (kartu hadiah) untuk satu laporan bug atau ide paling berguna dari sesi, dipilih oleh developer dalam waktu seminggu, dari orang yang bermain dan mengirim survei. Pembayaran hanya untuk pemain berusia 18 tahun ke atas.',
       seats: (day: string) => `24 kursi. Ucapan terima kasih hanya untuk pemain yang kami konfirmasi lewat email (paling lambat ${day}) dan ikut sesi; yang lain masuk daftar tunggu untuk tes berikutnya.`,
     },
     friends: {
