@@ -12,6 +12,8 @@ import { readFileSync, writeFileSync } from 'node:fs'
 
 const SWITCHES = {
   // name: { live: [[LIVE key, value when flipped]], day: the *_DAY constant (null: no date), step: run sheet row }
+  // web-signin-flag-1123: Sign in links (header, footer, Home hero) to the app's /login; no legal text, no day. Dec 8 at the web release.
+  webSignIn: { live: [['webSignIn', true]], day: null, step: 'Dec 8 web release (E6b)' },
   codes: { live: [['membershipCodes', false], ['codesNoMembership', true]], day: 'CODES_NO_MEMBERSHIP_DAY', step: '11S' },
   // guest-save-before-buy-1120: the day round 14 is PUBLISHED (a guest saves before buying a membership); --day = that day.
   // safety-g6g8-1120: the day 20261231999727 cs_auto_preserve_1120 is applied live; --day = that day. Privacy only.

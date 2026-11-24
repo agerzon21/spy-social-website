@@ -3,7 +3,7 @@ import { rich } from '../../i18n/rich'
 import { LIVE, STORES_OPEN } from '../../lib/legalRelease'
 import { currentPlatform } from '../../lib/platform'
 import { useClientValue } from '../../lib/clientValue'
-import { PLAY_URL } from '../../lib/playUrl'
+import { PLAY_URL, SIGN_IN_URL } from '../../lib/playUrl'
 import DisplayHeading from '../ui/DisplayHeading'
 import Eyebrow from '../ui/Eyebrow'
 import IconLink from '../ui/IconLink'
@@ -63,6 +63,11 @@ const HomeHero = () => {
             {showBrowser && (
               <IconLink href={PLAY_URL} icon={<ScreenIcon />}>
                 {t.browser}
+              </IconLink>
+            )}
+            {LIVE.webSignIn && (
+              <IconLink href={SIGN_IN_URL} icon={<ArrowIcon />}>
+                {t.signIn}
               </IconLink>
             )}
             <IconLink to="/#join" icon={<ArrowIcon />}>

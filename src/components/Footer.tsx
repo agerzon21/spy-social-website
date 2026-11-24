@@ -4,7 +4,7 @@ import { useClosed } from '../lib/betaSignup'
 import { LIVE, LLC_SINCE, ONLINE_SAFETY_TEXT } from '../lib/legalRelease'
 import { currentPlatform } from '../lib/platform'
 import { useClientValue } from '../lib/clientValue'
-import { PLAY_URL } from '../lib/playUrl'
+import { PLAY_URL, SIGN_IN_URL } from '../lib/playUrl'
 import { SHOP_URL } from '../lib/shop'
 import SocialLinks from './SocialLinks'
 import Wordmark from './Wordmark'
@@ -54,6 +54,7 @@ const Footer = () => {
   const f = t.footer
   const play: FooterLinkItem[] = [
     ...(showBrowser ? [{ label: f.browser, href: PLAY_URL }] : []),
+    ...(LIVE.webSignIn ? [{ label: f.signIn, href: SIGN_IN_URL }] : []),
     // News and announcements (news-1122).
     { label: f.news, to: '/news' },
     { label: f.whatsNew, to: '/whats-new' },

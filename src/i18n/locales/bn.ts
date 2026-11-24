@@ -76,6 +76,7 @@ const bn: Strings = {
     nav: 'সাইট',
     join: 'রুমে যোগ দিন',
     joinShort: 'যোগ দিন',
+    signIn: 'সাইন ইন করুন',
     market: 'বাজার',
     archive: 'আর্কাইভ',
     shop: 'শপ',
@@ -98,6 +99,7 @@ const bn: Strings = {
     play: 'খেলুন',
     legal: 'আইনি তথ্য ও নিরাপত্তা',
     browser: 'ব্রাউজারে খেলুন',
+    signIn: 'সাইন ইন করুন',
     whatsNew: 'নতুন কী',
     news: "খবর",
     roadmap: 'রোডম্যাপ',
@@ -159,6 +161,7 @@ const bn: Strings = {
       facts: ['3–21 জন খেলোয়াড়', 'রিয়েল-টাইম মাল্টিপ্লেয়ার', 'খেলা ফ্রি'],
       browser: 'ব্রাউজারে খেলুন',
       joinCode: 'রুম কোড দিয়ে যোগ দিন',
+      signIn: 'সাইন ইন করুন',
     },
     creatorShort: {
       eyebrow: 'ক্রিয়েটর স্পটলাইট',

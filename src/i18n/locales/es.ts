@@ -76,6 +76,7 @@ const es: Strings = {
     nav: 'Sitio',
     join: 'Unirse a una sala',
     joinShort: 'Unirse',
+    signIn: 'Iniciar sesión',
     market: 'Mercado',
     archive: 'Archivo',
     shop: 'Tienda',
@@ -98,6 +99,7 @@ const es: Strings = {
     play: 'Jugar',
     legal: 'Legal y seguridad',
     browser: 'Juega en tu navegador',
+    signIn: 'Iniciar sesión',
     whatsNew: 'Novedades',
     news: "Noticias",
     roadmap: 'Hoja de ruta',
@@ -160,6 +162,7 @@ const es: Strings = {
       facts: ['De 3 a 21 jugadores', 'Multijugador en tiempo real', 'Gratis'],
       browser: 'Juega en tu navegador',
       joinCode: 'Únete con un código de sala',
+      signIn: 'Iniciar sesión',
     },
     creatorShort: {
       eyebrow: 'Creador destacado',

@@ -76,6 +76,7 @@ const ar: Strings = {
     nav: 'الموقع',
     join: 'الانضمام إلى غرفة',
     joinShort: 'انضمام',
+    signIn: 'تسجيل الدخول',
     market: 'السوق',
     archive: 'الأرشيف',
     shop: 'المتجر',
@@ -98,6 +99,7 @@ const ar: Strings = {
     play: 'اللعب',
     legal: 'القانون والسلامة',
     browser: 'اللعب في المتصفح',
+    signIn: 'تسجيل الدخول',
     whatsNew: 'الجديد',
     news: "الأخبار",
     roadmap: 'خارطة الطريق',
@@ -159,6 +161,7 @@ const ar: Strings = {
       facts: ['من 3 إلى 21 لاعبًا', 'لعب جماعي في الوقت الفعلي', 'مجانية'],
       browser: 'اللعب في المتصفح',
       joinCode: 'الانضمام برمز الغرفة',
+      signIn: 'تسجيل الدخول',
     },
     creatorShort: {
       eyebrow: 'صانع محتوى مميز',

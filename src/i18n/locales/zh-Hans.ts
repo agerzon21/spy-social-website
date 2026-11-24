@@ -75,6 +75,7 @@ const zhHans: Strings = {
     nav: '网站',
     join: '加入房间',
     joinShort: '加入',
+    signIn: '登录',
     market: '市场',
     archive: '档案馆',
     shop: '商店',
@@ -97,6 +98,7 @@ const zhHans: Strings = {
     play: '开玩',
     legal: '法律与安全',
     browser: '在浏览器中玩',
+    signIn: '登录',
     whatsNew: '更新内容',
     news: "最新消息",
     roadmap: '路线图',
@@ -158,6 +160,7 @@ const zhHans: Strings = {
       facts: ['3–21 名玩家', '实时多人', '免费畅玩'],
       browser: '在浏览器中玩',
       joinCode: '用房间码加入',
+      signIn: '登录',
     },
     creatorShort: {
       eyebrow: '创作者推荐',

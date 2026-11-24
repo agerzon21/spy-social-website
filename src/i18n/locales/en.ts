@@ -104,6 +104,7 @@ const en = {
     join: 'Join a room',
     /** The same link on a phone, where the header has little room: one short word if you can. */
     joinShort: 'Join',
+    signIn: 'Sign in',
     /** The Market (market.spysocial.app) and the Archive (archive.spysocial.app), in the words their own headers use (their nav's
      * first link). www's pages only, and only where the row has room (shell.module.css); the footer carries both everywhere. */
     market: 'Market',
@@ -130,6 +131,7 @@ const en = {
     play: 'Play',
     legal: 'Legal & Safety',
     browser: 'Play in Your Browser',
+    signIn: 'Sign in',
     whatsNew: "What's New",
     /** The link to the news page (/news). */
     news: "News",
@@ -207,6 +209,7 @@ const en = {
       facts: ['3–21 players', 'Real-time multiplayer', 'Free to play'],
       browser: 'Play in your browser',
       joinCode: 'Join with a room code',
+      signIn: 'Sign in',
     },
     /** A creator's YouTube Short under the hero (LIVE.creatorShort). The page fills in the creator's name. */
     creatorShort: {

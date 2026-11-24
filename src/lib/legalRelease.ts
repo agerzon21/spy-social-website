@@ -613,6 +613,12 @@ export const LIVE = {
    */
   browserLinks: false,
   /**
+   * "Sign in" on the site (header, footer, home hero), to the app's /login on play.spysocial.app (lib/playUrl).
+   * Separate from browserLinks, so the "Play in Browser" invitations stay off. Launch: flip at the web release on
+   * Dec 8 (web = sign-in, Vault, Black Market, trading; no web play). No legal text reads it.
+   */
+  webSignIn: false,
+  /**
    * The fair-play network codes recorded (migration 20261006480200_web_fair_play_signals, app_config
    * fair_play.record true): a keyed, daily-rotated code of the network, never the address.
    */

@@ -76,6 +76,7 @@ const hi: Strings = {
     nav: 'साइट',
     join: 'रूम से जुड़ें',
     joinShort: 'जुड़ें',
+    signIn: 'साइन इन करें',
     market: 'बाज़ार',
     archive: 'आर्काइव',
     shop: 'शॉप',
@@ -98,6 +99,7 @@ const hi: Strings = {
     play: 'खेलें',
     legal: 'कानूनी और सुरक्षा',
     browser: 'ब्राउज़र में खेलें',
+    signIn: 'साइन इन करें',
     whatsNew: 'नया क्या है',
     news: "समाचार",
     roadmap: 'रोडमैप',
@@ -159,6 +161,7 @@ const hi: Strings = {
       facts: ['3–21 खिलाड़ी', 'रियल-टाइम मल्टीप्लेयर', 'खेलना मुफ़्त'],
       browser: 'ब्राउज़र में खेलें',
       joinCode: 'रूम कोड से जुड़ें',
+      signIn: 'साइन इन करें',
     },
     creatorShort: {
       eyebrow: 'क्रिएटर स्पॉटलाइट',

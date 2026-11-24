@@ -76,6 +76,7 @@ const ptBR: Strings = {
     nav: 'Site',
     join: 'Entrar numa sala',
     joinShort: 'Entrar',
+    signIn: 'Fazer login',
     market: 'Mercado',
     archive: 'Arquivo',
     shop: 'Loja',
@@ -98,6 +99,7 @@ const ptBR: Strings = {
     play: 'Jogar',
     legal: 'Legal e segurança',
     browser: 'Jogue no navegador',
+    signIn: 'Fazer login',
     whatsNew: 'Novidades',
     news: "Notícias",
     roadmap: 'Roadmap',
@@ -160,6 +162,7 @@ const ptBR: Strings = {
       facts: ['De 3 a 21 jogadores', 'Multijogador em tempo real', 'Grátis para jogar'],
       browser: 'Jogue no navegador',
       joinCode: 'Entre com um código da sala',
+      signIn: 'Fazer login',
     },
     creatorShort: {
       eyebrow: 'Criador em destaque',

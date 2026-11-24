@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom'
 import Link from './SiteLink'
 import { useT } from '../i18n'
 import { LIVE } from '../lib/legalRelease'
+import { SIGN_IN_URL } from '../lib/playUrl'
 import { SHOP_URL } from '../lib/shop'
 import LanguageMenu from './LanguageMenu'
 import ThemeToggle from './ThemeToggle'
@@ -57,6 +58,11 @@ const Header = ({ isHome = false }: { isHome?: boolean }) => {
               <Link to="/archive" className={`${s.navLink} ${s.roomy}`}>
                 {t.header.archive}
               </Link>
+            )}
+            {LIVE.webSignIn && (
+              <a href={SIGN_IN_URL} className={s.navLink}>
+                {t.header.signIn}
+              </a>
             )}
             {LIVE.merchShop && (
               <a href={SHOP_URL} className={s.navLink}>

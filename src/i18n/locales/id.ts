@@ -76,6 +76,7 @@ const id: Strings = {
     nav: 'Situs',
     join: 'Gabung ke room',
     joinShort: 'Gabung',
+    signIn: 'Masuk',
     market: 'Pasar',
     archive: 'Arsip',
     shop: 'Toko',
@@ -98,6 +99,7 @@ const id: Strings = {
     play: 'Main',
     legal: 'Hukum & keamanan',
     browser: 'Main di browser',
+    signIn: 'Masuk',
     whatsNew: 'Yang baru',
     news: "Kabar",
     roadmap: 'Roadmap',
@@ -160,6 +162,7 @@ const id: Strings = {
       facts: ['3–21 pemain', 'Multipemain real-time', 'Gratis dimainkan'],
       browser: 'Main di browser',
       joinCode: 'Gabung dengan kode room',
+      signIn: 'Masuk',
     },
     creatorShort: {
       eyebrow: 'Sorotan kreator',

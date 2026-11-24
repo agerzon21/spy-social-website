@@ -76,6 +76,7 @@ const fr: Strings = {
     nav: 'Site',
     join: 'Rejoindre un salon',
     joinShort: 'Entrer',
+    signIn: 'Se connecter',
     market: 'Marché',
     archive: 'Archives',
     shop: 'Boutique',
@@ -98,6 +99,7 @@ const fr: Strings = {
     play: 'Jouer',
     legal: 'Mentions légales et sécurité',
     browser: 'Jouer dans le navigateur',
+    signIn: 'Se connecter',
     whatsNew: 'Nouveautés',
     news: "Actualités",
     roadmap: 'Feuille de route',
@@ -159,6 +161,7 @@ const fr: Strings = {
       facts: ['3–21 joueurs', 'Multijoueur en temps réel', 'Gratuit'],
       browser: 'Jouer dans le navigateur',
       joinCode: 'Entrer avec un code de salon',
+      signIn: 'Se connecter',
     },
     creatorShort: {
       eyebrow: 'Créateur à l’affiche',

@@ -31,3 +31,6 @@ export function playJoinUrl(code: string, passcode = ''): string | null {
   if (!LIVE.browserLinks || !code) return null
   return `${PLAY_URL}/join/${encodeURIComponent(code)}${passcode ? `?p=${encodeURIComponent(passcode)}` : ''}`
 }
+
+/** The app's sign-in page (the "Sign in" links, once LIVE.webSignIn is on). */
+export const SIGN_IN_URL = `${PLAY_URL}/login`
