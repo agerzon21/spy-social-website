@@ -72,6 +72,15 @@
       ]
     },
     {
+      "source": "/creator/video/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/archive/:dir(art|item|motion|scene|worn)/index.json",
       "headers": [
         {

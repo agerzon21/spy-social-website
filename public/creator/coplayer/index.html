@@ -176,8 +176,29 @@ ul.dots li::marker { color: var(--accent); }
 .obs code { font-family: var(--sans); font-weight: 700; color: var(--ink); }
 .plainshot { border: 1.4px solid var(--ink); box-shadow: 1.2mm 1.2mm 0 #000; width: 100%; display: block; }
 </style>
+<style>
+.vembed { max-width: 190mm; margin: 10mm auto 0; padding: 0 4mm; font-family: var(--sans, sans-serif); color: var(--text, #f5f0e0); }
+.vembed h2 { font-size: 14pt; margin: 0 0 2mm; }
+.vembed video { display: block; width: 100%; max-height: 70vh; background: #000; border: 1.4px solid #000; }
+.vembed .vfall, .vembed .vsoon { font-size: 10pt; margin: 2mm 0 0; }
+.vembed .vsoon { display: none; }
+.vembed.soon video, .vembed.soon .vfall { display: none; }
+.vembed.soon .vsoon { display: block; }
+@media print { .vembed { display: none !important; } }
+</style>
 </head>
 <body>
+<aside class="vembed" aria-labelledby="vh">
+  <h2 id="vh">Watch: co-player setup video</h2>
+  <!-- TODO-HASH: replace TODO-HASH with the 8-char sha256 prefix of the mp4 (see CREATOR-SITE-PUSH-1125.md) -->
+  <video controls preload="metadata" playsinline aria-label="Watch: co-player setup video">
+    <source src="/creator/video/SpySocial-Coplayer-Setup-TODO-HASH.mp4" type="video/mp4">
+    <p class="vfall">Your browser can't play this video. <a href="/creator/video/SpySocial-Coplayer-Setup-TODO-HASH.mp4">Open the video file</a> (10 MB max).</p>
+  </video>
+  <p class="vsoon" role="status">Video coming soon.</p>
+</aside>
+<script src="/creator/video-embed.js" defer></script>
+
 
 <section class="page" style="gap:3.6mm">
   <div class="run"><span>Co-player guide · <b>for anyone playing with Levvis</b></span><span>play.spysocial.app</span></div>
