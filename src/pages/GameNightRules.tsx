@@ -109,7 +109,7 @@ const GameNightRules: React.FC = () => (
           a membership adds nothing to it, and it has <B>no cash value</B>. It's spent only on Game Night Intercepts.
           {LIVE.launchSite
             ? ''
-            : ' Before SpySocial 2.2 opens to everyone on December 8, 2026, Game Night Intercepts and their items are reset with everything else, and each account gets back all the Game Night Intel it earned from games before the reset, even Intel it spent.'}
+            : ' Before SpySocial 2.2 opens to everyone, Game Night Intercepts and their items are reset with everything else, and each account gets back all the Game Night Intel it earned from games before the reset, even Intel it spent.'}
         </P>
 
         <H2>The ★ titles</H2>

@@ -57,7 +57,7 @@ const zhHans: Strings = {
       terms: 'SpySocial 服务条款：谁可以玩、你的账号和内容、公开房间、社区规则、内容审核与申诉。',
       childSafety: 'SpySocial 打击儿童性虐待和性剥削的标准：我们禁止什么、如何举报问题、我们会怎么做，以及我们的儿童安全联系人。',
       whatsNew: 'SpySocial 版本说明：应用每个版本的新功能、修复和改进。',
-      news: "SpySocial 的消息与公告：内测、12 月 8 日上线和游戏之夜，包括日期、时间和参与方式。",
+      news: "SpySocial 的消息与公告：内测、上线和游戏之夜，包括日期、时间和参与方式。",
       roadmap: 'SpySocial 即将推出的内容：2.2 版本的全部更新，从在线游戏、Spy Sketch 到聊天自动翻译，以及之后的计划：排位赛、赛季和锦标赛。',
       press: 'SpySocial 媒体资料：游戏简介、基本信息、上线日期、可下载的标志和截图，以及媒体联系方式。',
       deleteAccount: '如何在应用内或通过邮件删除你的 SpySocial 账号及其数据，以及删除后哪些内容会暂时保留。',

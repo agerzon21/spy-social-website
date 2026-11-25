@@ -57,7 +57,7 @@ const id: Strings = {
       terms: 'Ketentuan memakai SpySocial: siapa yang boleh bermain, akun dan kontenmu, room publik, aturan komunitas, moderasi, dan banding.',
       childSafety: 'Standar SpySocial melawan pelecehan dan eksploitasi seksual anak: apa yang kami larang, cara melaporkan masalah, apa yang kami lakukan, dan kontak keselamatan anak kami.',
       whatsNew: 'Catatan rilis SpySocial: fitur baru, perbaikan, dan peningkatan di setiap versi aplikasi.',
-      news: "Kabar dan pengumuman SpySocial: beta, peluncuran 8 Desember, dan Malam Permainan, lengkap dengan tanggal, jam, dan cara ikut.",
+      news: "Kabar dan pengumuman SpySocial: beta, peluncuran, dan Malam Permainan, lengkap dengan tanggal, jam, dan cara ikut.",
       roadmap:
         'Yang akan datang di SpySocial: semua isi versi 2.2, dari Main online dan Spy Sketch sampai terjemahan otomatis chat, dan rencana berikutnya: ranked, season, dan turnamen.',
       press: 'Kit pers SpySocial: tentang game-nya, lembar fakta, tanggal rilis, logo dan screenshot untuk diunduh, serta kontak pers.',

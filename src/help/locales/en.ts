@@ -757,7 +757,7 @@ const en: HelpText = {
           a: [
             'The currency you earn by playing: from your games, your first game of the day and your daily streak, and from shredding spare copies.',
             'Your streak: one Play Online game a day keeps it. A game you start before the new day keeps it too, even if it ends after.',
-            o.launch ? 'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.' : "Intel is never sold and has no cash value. Adults can trade it with other adults and spend it on the Black Market. During the beta, every deal is undone before the launch on December 8.",
+            o.launch ? 'Intel is never sold and has no cash value. Adults spend it on the Black Market and can trade it with other adults.' : "Intel is never sold and has no cash value. Adults can trade it with other adults and spend it on the Black Market. During the beta, every deal is undone before launch.",
             'Every change to your Intel is a line in your Intel ledger, with its reason. Read yours under <b>Intel History</b> in How Intel Works, on the app’s newest update.',
             'In the <b>Vault</b>, your Intel has its own tile, a stack that grows with the amount. Tap it for what you earned today, earned in all and spent in all. Intel held in an open Black Market offer counts as spent until it comes back.',
           ],
@@ -770,7 +770,7 @@ const en: HelpText = {
               q: 'Why are the shops closed?',
               a: [
                 'Just before launch, the Intel shop and the Game Night shop close, from Monday, December 7. The app says <b>Shops reopen at launch</b>, with the date.',
-                'They open again at launch, on Tuesday, December 8.',
+                'They open again at launch.',
               ],
             },
             ]),
@@ -778,7 +778,7 @@ const en: HelpText = {
           id: 'verifying',
           q: 'Why does a reward say “Verifying”?',
           a: [
-            'From December 8, 2026, our fair-play checks may hold an account’s new rewards for up to 72 hours while someone on our team looks at a strong sign of farming, bots or cheating.',
+            'From launch day, our fair-play checks may hold an account’s new rewards for up to 72 hours while someone on our team looks at a strong sign of farming, bots or cheating.',
             'You can ask for a review in the app.',
           ],
         },
@@ -802,7 +802,7 @@ const en: HelpText = {
               ? [
                 o.launch
                   ? 'They were added at the 2.2 launch and are yours to keep. Everyone on the tester list got the <b>Beta Pin</b> and the <b>Beta Tester</b> title. A thank-you card shows when you first open the app after launch.'
-                  : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep. Everyone on the tester list gets the <b>Beta Pin</b> and the <b>Beta Tester</b> title.',
+                  : 'They arrive at the 2.2 launch, on a thank-you card when you open the app, and they’re yours to keep. Everyone on the tester list gets the <b>Beta Pin</b> and the <b>Beta Tester</b> title.',
                 o.launch
                   ? "Testers who finished at least one game with other players before December 7 (played to the end, in any room, so it shows in their Stats; Practice Games don’t count) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership."
                   : "Finish at least one game with other players before December 7 (played to the end, in any room, so it shows in your Stats; Practice Games don’t count) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.",
@@ -813,7 +813,7 @@ const en: HelpText = {
               : [
                 o.launch
                   ? 'They were added at the 2.2 launch and are yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership. A thank-you card shows when you first open the app after launch.'
-                  : 'They arrive at the 2.2 launch on December 8, on a thank-you card when you open the app, and they’re yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership.',
+                  : 'They arrive at the 2.2 launch, on a thank-you card when you open the app, and they’re yours to keep: the <b>Beta Pin</b>, the <b>Beta Tester</b> and <b>Field Tester</b> titles, 10 Intercepts of each tier and 1 month of membership.',
               ]),
             ...(o.launch ? [] : ['What you hold in a test version now is for testing and is wiped before launch. Your rewards don’t depend on it, as long as you keep the same saved account.']),
             'To wear the pin: <b>Account</b>, <b>Edit Agent</b>, <b>Accessories</b>, <b>Beta Pin</b>, <b>Save</b>.',
@@ -839,7 +839,7 @@ const en: HelpText = {
               id: 'beta-reset',
               q: "The app says everything resets before launch. What does that mean?",
               a: [
-                "SpySocial is still being tested. Before launch on December 8, items, Intercepts, Intel, Black Market deals and trades are reset, and everyone starts from scratch.",
+                "SpySocial is still being tested. Before launch, items, Intercepts, Intel, Black Market deals and trades are reset, and everyone starts from scratch.",
                 "Your account, friends and packs stay, and so do your XP, level, achievements, stats, Practice Game grades, titles from codes and anything bought in a store.",
                 ...(o.gnRewards ? [o.gnTiers4 ? `Your ★ Game Night titles stay, and you get back all the Game Night Intel you earned from games, even if you spent it. Game Night Intel from shredding isn’t part of it.` : "Your ★ Game Night titles stay, and you get back all the Game Night Intel you earned, even if you spent it."] : []),
                 "Memberships given for the test end at launch." + (o.intelZero ? " Your daily streak starts again from day 0." : ''),

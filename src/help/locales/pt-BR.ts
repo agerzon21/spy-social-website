@@ -727,7 +727,7 @@ const ptBR: HelpText = {
           a: [
             'A moeda que você ganha jogando: com suas partidas, sua primeira partida do dia e sua sequência diária, e triturando cópias repetidas.',
             'Sua sequência: uma partida de Jogar online por dia a mantém. Uma partida que você começa antes do novo dia também a mantém, mesmo se terminar depois.',
-            o.launch ? 'O Intel nunca é vendido e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-lo com outros adultos.' : "O Intel nunca é vendido e não vale dinheiro. Adultos podem trocá-lo com outros adultos e gastá-lo no Mercado Negro. Durante o beta, todos os negócios são desfeitos antes do lançamento de 8 de dezembro.",
+            o.launch ? 'O Intel nunca é vendido e não vale dinheiro. Adultos gastam no Mercado Negro e podem trocá-lo com outros adultos.' : "O Intel nunca é vendido e não vale dinheiro. Adultos podem trocá-lo com outros adultos e gastá-lo no Mercado Negro. Durante o beta, todos os negócios são desfeitos antes do lançamento.",
             'Cada mudança no seu Intel é uma linha no seu registro de Intel, com o motivo. Veja o seu em <b>Histórico de Intel</b>, em “Como o Intel funciona”, na atualização mais recente do app.',
             'No <b>Cofre</b>, seu Intel tem um bloco próprio, uma pilha que cresce com o valor. Toque nele para ver o ganho hoje, o ganho no total e o gasto no total. O Intel preso numa oferta aberta do Mercado Negro conta como gasto até voltar.',
           ],
@@ -740,7 +740,7 @@ const ptBR: HelpText = {
               q: 'Por que as lojas estão fechadas?',
               a: [
                 'Pouco antes do lançamento, a loja de Intel e a loja da Noite de Jogos fecham, a partir de segunda-feira, 7 de dezembro. O app mostra <b>As lojas reabrem no lançamento</b>, com a data.',
-                'Elas reabrem no lançamento, na terça-feira, 8 de dezembro.',
+                'Elas reabrem no lançamento.',
               ],
             },
             ]),
@@ -748,7 +748,7 @@ const ptBR: HelpText = {
           id: 'verifying',
           q: 'Por que uma recompensa diz “Verificando”?',
           a: [
-            'A partir de 8 de dezembro de 2026, nossas checagens de jogo limpo podem segurar as recompensas novas de uma conta por até 72 horas enquanto alguém da equipe olha um sinal forte de farm, bots ou trapaça.',
+            'A partir do lançamento, nossas checagens de jogo limpo podem segurar as recompensas novas de uma conta por até 72 horas enquanto alguém da equipe olha um sinal forte de farm, bots ou trapaça.',
             'Você pode pedir uma revisão no app.',
           ],
         },
@@ -772,7 +772,7 @@ const ptBR: HelpText = {
               ? [
                 o.launch
                   ? 'Elas foram adicionadas no lançamento da 2.2 e são suas. Todos da lista de testadores ganharam o <b>Pin beta</b> e o título <b>Beta tester</b>. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
-                  : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
+                  : 'Elas chegam no lançamento da 2.2, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
                 o.launch
                   ? "Quem terminou pelo menos uma partida com outros jogadores antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas Estatísticas; partidas de treino não contam) também ganhou o título <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro."
                   : "Termine pelo menos uma partida com outros jogadores antes de 7 de dezembro (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas; partidas de treino não contam) e você também ganha o título <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro.",
@@ -783,7 +783,7 @@ const ptBR: HelpText = {
               : [
                 o.launch
                   ? 'Elas foram adicionadas no lançamento da 2.2 e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
-                  : 'Elas chegam no lançamento da 2.2, em 8 de dezembro, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro.',
+                  : 'Elas chegam no lançamento da 2.2, num cartão de agradecimento quando você abre o app, e são suas: o <b>Pin beta</b>, os títulos <b>Beta tester</b> e <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro.',
               ]),
             ...(o.launch ? [] : ['O que você tem agora numa versão de teste é para testar e será apagado antes do lançamento. Suas recompensas não dependem disso, desde que você continue na mesma conta salva.']),
             'Para usar o pin: <b>Conta</b>, <b>Editar agente</b>, <b>Acessórios</b>, <b>Pin beta</b>, <b>Salvar</b>.',
@@ -809,7 +809,7 @@ const ptBR: HelpText = {
               id: 'beta-reset',
               q: "O app diz que tudo será zerado antes do lançamento. O que isso significa?",
               a: [
-                "O SpySocial ainda está em teste. Antes do lançamento em 8 de dezembro, itens, interceptações, Intel, negociações do Mercado Negro e trocas serão zerados, e todo mundo começa do zero.",
+                "O SpySocial ainda está em teste. Antes do lançamento, itens, interceptações, Intel, negociações do Mercado Negro e trocas serão zerados, e todo mundo começa do zero.",
                 "Sua conta, seus amigos e seus pacotes continuam, assim como seu XP, seu nível, suas conquistas, suas estatísticas, suas notas nas partidas de treino, os títulos de códigos e tudo o que você comprou na App Store ou no Google Play.",
                 ...(o.gnRewards ? [o.gnTiers4 ? `Seus títulos ★ da Noite de Jogos continuam, e você recebe de volta todo o Intel da Noite de Jogos que ganhou jogando, mesmo se gastou. O que veio de trituração não volta.` : "Seus títulos ★ da Noite de Jogos continuam, e você recebe de volta todo o Intel da Noite de Jogos que ganhou, mesmo se gastou."] : []),
                 "Os planos de membro dados para o teste terminam no lançamento." + (o.intelZero ? " Sua sequência recomeça do dia 0." : ''),
