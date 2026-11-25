@@ -151,43 +151,43 @@ export const NEWS: NewsEntry[] = [
     text: {
       en: {
         title: 'SpySocial is in the App Store and Google Play',
-        body: 'SpySocial is now in the App Store and Google Play. Intercepts and items reset Dec 7. Intel from games goes to 0 by launch morning, Dec 8. Game Night Intel you earned comes back. Your account, level and store-bought membership stay. Membership can be bought from launch day, Dec 8. Browser play ends Dec 7 at 00:00 Eastern. Questions? Ask in our Discord.',
+        body: 'SpySocial is now in the App Store and Google Play. Intercepts and items reset Dec 7. Intel from games goes to 0 by launch morning, Dec 8. Game Night Intel you earned comes back. Your account, level and store-bought membership stay. Membership can be bought from launch day. Browser play ends Dec 7 at 00:00 Eastern. Questions? Ask in our Discord.',
       },
       ru: {
         title: 'SpySocial теперь в App Store и Google Play',
-        body: 'SpySocial теперь в App Store и Google Play. Перехваты и предметы обнулятся 7 декабря. Разведданные за игры обнулятся к утру запуска, 8 декабря. Заработанные разведданные игрового вечера вернутся. Аккаунт, уровень и купленная в магазине подписка останутся. Подписку можно купить с дня запуска, 8 декабря. Игра в браузере заканчивается 7 декабря в 00:00 по восточному времени США. Вопросы? Пишите в наш Discord.',
+        body: 'SpySocial теперь в App Store и Google Play. Перехваты и предметы обнулятся 7 декабря. Разведданные за игры обнулятся к утру запуска, 8 декабря. Заработанные разведданные игрового вечера вернутся. Аккаунт, уровень и купленная в магазине подписка останутся. Подписку можно купить с дня запуска. Игра в браузере заканчивается 7 декабря в 00:00 по восточному времени США. Вопросы? Пишите в наш Discord.',
       },
       es: {
         title: 'SpySocial ya está en el App Store y Google Play',
-        body: 'SpySocial ya está en el App Store y en Google Play. Las intercepciones y los objetos se reinician el 7 de diciembre. El Intel de las partidas baja a 0 antes de la mañana del lanzamiento, el 8 de diciembre. El Intel de Noche de Juegos que ganaste vuelve. Tu cuenta, tu nivel y tu membresía comprada en la tienda se mantienen. La membresía se puede comprar desde el día del lanzamiento, el 8 de diciembre. El juego en el navegador termina el 7 de diciembre a las 00:00 (hora del Este). ¿Dudas? Pregunta en nuestro Discord.',
+        body: 'SpySocial ya está en el App Store y en Google Play. Las intercepciones y los objetos se reinician el 7 de diciembre. El Intel de las partidas baja a 0 antes de la mañana del lanzamiento, el 8 de diciembre. El Intel de Noche de Juegos que ganaste vuelve. Tu cuenta, tu nivel y tu membresía comprada en la tienda se mantienen. La membresía se puede comprar desde el día del lanzamiento. El juego en el navegador termina el 7 de diciembre a las 00:00 (hora del Este). ¿Dudas? Pregunta en nuestro Discord.',
       },
       fr: {
         title: 'SpySocial est sur l’App Store et Google Play',
-        body: 'SpySocial est désormais sur l’App Store et Google Play. Les interceptions et objets seront réinitialisés le 7 décembre. L’Intel des parties tombera à 0 d’ici le matin du lancement, le 8 décembre. L’Intel de Soirée jeux que tu as gagné te sera rendu. Ton compte, ton niveau et ton statut de membre acheté en boutique restent. Tu peux acheter l’abonnement de membre dès le jour du lancement, le 8 décembre. Le jeu dans le navigateur prend fin le 7 décembre à 00 h 00 (heure de l’Est). Des questions ? Pose-les sur notre Discord.',
+        body: 'SpySocial est désormais sur l’App Store et Google Play. Les interceptions et objets seront réinitialisés le 7 décembre. L’Intel des parties tombera à 0 d’ici le matin du lancement, le 8 décembre. L’Intel de Soirée jeux que tu as gagné te sera rendu. Ton compte, ton niveau et ton statut de membre acheté en boutique restent. Tu peux acheter l’abonnement de membre dès le jour du lancement. Le jeu dans le navigateur prend fin le 7 décembre à 00 h 00 (heure de l’Est). Des questions ? Pose-les sur notre Discord.',
       },
       'pt-BR': {
         title: 'O SpySocial está na App Store e no Google Play',
-        body: 'O SpySocial já está na App Store e no Google Play. Interceptações e itens serão zerados em 7 de dezembro. O Intel das partidas vai a 0 até a manhã do lançamento, 8 de dezembro. O Intel da Noite de Jogos que você ganhou volta. Sua conta, seu nível e seu plano de membro comprado na loja continuam. O plano de membro pode ser comprado a partir do dia do lançamento, 8 de dezembro. O jogo no navegador termina em 7 de dezembro, às 00:00 (horário do Leste). Dúvidas? Pergunte no nosso Discord.',
+        body: 'O SpySocial já está na App Store e no Google Play. Interceptações e itens serão zerados em 7 de dezembro. O Intel das partidas vai a 0 até a manhã do lançamento, 8 de dezembro. O Intel da Noite de Jogos que você ganhou volta. Sua conta, seu nível e seu plano de membro comprado na loja continuam. O plano de membro pode ser comprado a partir do dia do lançamento. O jogo no navegador termina em 7 de dezembro, às 00:00 (horário do Leste). Dúvidas? Pergunte no nosso Discord.',
       },
       id: {
         title: 'SpySocial kini ada di App Store dan Google Play',
-        body: 'SpySocial kini tersedia di App Store dan Google Play. Sadapan dan item direset pada 7 Desember. Intel dari permainan menjadi 0 sebelum pagi peluncuran, 8 Desember. Intel Malam Permainan yang kamu dapat akan kembali. Akun, level, dan keanggotaan yang kamu beli di toko tetap ada. Keanggotaan bisa dibeli mulai hari peluncuran, 8 Desember. Bermain di browser berakhir pada 7 Desember pukul 00.00 (Waktu Timur AS). Ada pertanyaan? Tanyakan di Discord kami.',
+        body: 'SpySocial kini tersedia di App Store dan Google Play. Sadapan dan item direset pada 7 Desember. Intel dari permainan menjadi 0 sebelum pagi peluncuran, 8 Desember. Intel Malam Permainan yang kamu dapat akan kembali. Akun, level, dan keanggotaan yang kamu beli di toko tetap ada. Keanggotaan bisa dibeli mulai hari peluncuran. Bermain di browser berakhir pada 7 Desember pukul 00.00 (Waktu Timur AS). Ada pertanyaan? Tanyakan di Discord kami.',
       },
       'zh-Hans': {
         title: 'SpySocial 已登陆 App Store 和 Google Play',
-        body: 'SpySocial 现已登陆 App Store 和 Google Play。密函和物品将于12 月 7 日重置。对局获得的情报会在上线当天早上（12 月 8 日）前清零。你获得的游戏之夜情报会返还。你的账号、等级和在商店购买的会员保持不变。会员从上线当天（12 月 8 日）起可购买。浏览器游玩将于 12 月 7 日美东时间 00:00 结束。有问题？欢迎到我们的 Discord 提问。',
+        body: 'SpySocial 现已登陆 App Store 和 Google Play。密函和物品将于12 月 7 日重置。对局获得的情报会在上线当天早上（12 月 8 日）前清零。你获得的游戏之夜情报会返还。你的账号、等级和在商店购买的会员保持不变。会员从上线当天起可购买。浏览器游玩将于 12 月 7 日美东时间 00:00 结束。有问题？欢迎到我们的 Discord 提问。',
       },
       hi: {
         title: 'SpySocial अब App Store और Google Play पर है',
-        body: 'SpySocial अब App Store और Google Play पर उपलब्ध है। 7 दिसंबर को इंटरसेप्ट और आइटम रीसेट होंगे। गेम से मिला इंटेल लॉन्च की सुबह, 8 दिसंबर तक 0 हो जाएगा। आपका कमाया गेम नाइट इंटेल वापस मिलेगा। आपका अकाउंट, लेवल और स्टोर से खरीदी गई मेंबरशिप बने रहेंगे। मेंबरशिप लॉन्च के दिन, 8 दिसंबर से खरीदी जा सकेगी। ब्राउज़र में खेलना 7 दिसंबर को अमेरिकी ईस्टर्न टाइम 00:00 बजे बंद हो जाएगा। सवाल हैं? हमारे Discord पर पूछें।',
+        body: 'SpySocial अब App Store और Google Play पर उपलब्ध है। 7 दिसंबर को इंटरसेप्ट और आइटम रीसेट होंगे। गेम से मिला इंटेल लॉन्च की सुबह, 8 दिसंबर तक 0 हो जाएगा। आपका कमाया गेम नाइट इंटेल वापस मिलेगा। आपका अकाउंट, लेवल और स्टोर से खरीदी गई मेंबरशिप बने रहेंगे। मेंबरशिप लॉन्च के दिन से खरीदी जा सकेगी। ब्राउज़र में खेलना 7 दिसंबर को अमेरिकी ईस्टर्न टाइम 00:00 बजे बंद हो जाएगा। सवाल हैं? हमारे Discord पर पूछें।',
       },
       ar: {
         title: 'SpySocial متاح الآن على App Store وGoogle Play',
-        body: 'أصبح SpySocial متاحًا الآن على App Store وGoogle Play. يُعاد ضبط الملفات والعناصر في 7 ديسمبر. ويصبح إنتل الألعاب 0 بحلول صباح الإطلاق، 8 ديسمبر. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك ومستواك وعضويتك المشتراة من المتجر. يمكن شراء العضوية اعتبارًا من يوم الإطلاق، 8 ديسمبر. ينتهي اللعب في المتصفح في 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة. للأسئلة والأفكار: Discord الخاص بنا.',
+        body: 'أصبح SpySocial متاحًا الآن على App Store وGoogle Play. يُعاد ضبط الملفات والعناصر في 7 ديسمبر. ويصبح إنتل الألعاب 0 بحلول صباح الإطلاق، 8 ديسمبر. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك ومستواك وعضويتك المشتراة من المتجر. يمكن شراء العضوية اعتبارًا من يوم الإطلاق. ينتهي اللعب في المتصفح في 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة. للأسئلة والأفكار: Discord الخاص بنا.',
       },
       bn: {
         title: 'SpySocial এখন App Store ও Google Play-তে',
-        body: 'SpySocial এখন App Store ও Google Play-তে পাওয়া যাচ্ছে। 7 ডিসেম্বর ইন্টারসেপ্ট আর আইটেম রিসেট হবে। গেম থেকে পাওয়া ইন্টেল লঞ্চের সকালে, 8 ডিসেম্বরের মধ্যে 0 হবে। আপনার অর্জিত গেম নাইট ইন্টেল ফিরে আসবে। আপনার অ্যাকাউন্ট, লেভেল আর স্টোর থেকে কেনা সদস্যপদ থাকবে। লঞ্চের দিন, 8 ডিসেম্বর থেকে সদস্যপদ কেনা যাবে। ব্রাউজারে খেলা 7 ডিসেম্বর মার্কিন ইস্টার্ন টাইম 00:00-এ শেষ হবে। প্রশ্ন আছে? আমাদের Discord-এ জিজ্ঞাসা করুন।',
+        body: 'SpySocial এখন App Store ও Google Play-তে পাওয়া যাচ্ছে। 7 ডিসেম্বর ইন্টারসেপ্ট আর আইটেম রিসেট হবে। গেম থেকে পাওয়া ইন্টেল লঞ্চের সকালে, 8 ডিসেম্বরের মধ্যে 0 হবে। আপনার অর্জিত গেম নাইট ইন্টেল ফিরে আসবে। আপনার অ্যাকাউন্ট, লেভেল আর স্টোর থেকে কেনা সদস্যপদ থাকবে। লঞ্চের দিন থেকে সদস্যপদ কেনা যাবে। ব্রাউজারে খেলা 7 ডিসেম্বর মার্কিন ইস্টার্ন টাইম 00:00-এ শেষ হবে। প্রশ্ন আছে? আমাদের Discord-এ জিজ্ঞাসা করুন।',
       },
     },
   },
