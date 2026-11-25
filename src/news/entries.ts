@@ -64,7 +64,7 @@ export const NEWS: NewsEntry[] = [
           id: 'Ada pertanyaan? Tanya di Discord',
           'zh-Hans': '有问题？到 Discord 提问',
           hi: 'सवाल? Discord पर पूछें',
-          ar: 'أسئلة؟ اسألوا في Discord',
+          ar: 'للأسئلة: Discord',
           bn: 'প্রশ্ন? Discord-এ জিজ্ঞাসা করুন',
         },
       },
@@ -163,7 +163,7 @@ export const NEWS: NewsEntry[] = [
       },
       fr: {
         title: 'SpySocial est sur l’App Store et Google Play',
-        body: 'SpySocial est désormais sur l’App Store et Google Play. Les interceptions et objets seront réinitialisés le 7 décembre. L\'Intel des parties tombera à 0 d\'ici le matin du lancement, le 8 décembre. L\'Intel de Soirée jeux que tu as gagné te sera rendu. Ton compte, ton niveau et ton statut de membre acheté en boutique restent. Le jeu dans le navigateur prend fin le 7 décembre à 00 h 00 (heure de l’Est). Des questions ? Posez-les sur notre Discord.',
+        body: 'SpySocial est désormais sur l’App Store et Google Play. Les interceptions et objets seront réinitialisés le 7 décembre. L’Intel des parties tombera à 0 d’ici le matin du lancement, le 8 décembre. L’Intel de Soirée jeux que tu as gagné te sera rendu. Ton compte, ton niveau et ton statut de membre acheté en boutique restent. Le jeu dans le navigateur prend fin le 7 décembre à 00 h 00 (heure de l’Est). Des questions ? Pose-les sur notre Discord.',
       },
       'pt-BR': {
         title: 'O SpySocial está na App Store e no Google Play',
@@ -175,7 +175,7 @@ export const NEWS: NewsEntry[] = [
       },
       'zh-Hans': {
         title: 'SpySocial 已登陆 App Store 和 Google Play',
-        body: 'SpySocial 现已登陆 App Store 和 Google Play。密函和物品将于12月7日重置。对局获得的情报会在上线当天早上（12月8日）前清零。你获得的游戏之夜情报会返还。你的账号、等级和在商店购买的会员保持不变。浏览器游玩将于 12 月 7 日美东时间 00:00 结束。有问题？欢迎到我们的 Discord 提问。',
+        body: 'SpySocial 现已登陆 App Store 和 Google Play。密函和物品将于12 月 7 日重置。对局获得的情报会在上线当天早上（12 月 8 日）前清零。你获得的游戏之夜情报会返还。你的账号、等级和在商店购买的会员保持不变。浏览器游玩将于 12 月 7 日美东时间 00:00 结束。有问题？欢迎到我们的 Discord 提问。',
       },
       hi: {
         title: 'SpySocial अब App Store और Google Play पर है',
@@ -183,7 +183,7 @@ export const NEWS: NewsEntry[] = [
       },
       ar: {
         title: 'SpySocial متاح الآن على App Store وGoogle Play',
-        body: 'أصبح SpySocial متاحًا الآن على App Store وGoogle Play. يُعاد ضبط الملفات والعناصر في 7 ديسمبر. ويصبح إنتل الألعاب 0 بحلول صباح الإطلاق، 8 ديسمبر. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك ومستواك وعضويتك المشتراة من المتجر. ينتهي اللعب في المتصفح في 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة. لديكم أسئلة؟ اسألوا في Discord الخاص بنا.',
+        body: 'أصبح SpySocial متاحًا الآن على App Store وGoogle Play. يُعاد ضبط الملفات والعناصر في 7 ديسمبر. ويصبح إنتل الألعاب 0 بحلول صباح الإطلاق، 8 ديسمبر. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك ومستواك وعضويتك المشتراة من المتجر. ينتهي اللعب في المتصفح في 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة. للأسئلة والأفكار: Discord الخاص بنا.',
       },
       bn: {
         title: 'SpySocial এখন App Store ও Google Play-তে',
@@ -206,7 +206,7 @@ export const NEWS: NewsEntry[] = [
           id: 'Gabung di Discord',
           'zh-Hans': '加入 Discord',
           hi: 'Discord से जुड़ें',
-          ar: 'انضموا عبر Discord',
+          ar: 'الانضمام عبر Discord',
           bn: 'Discord-এ যোগ দিন',
         },
       },
@@ -226,7 +226,7 @@ export const NEWS: NewsEntry[] = [
       },
       fr: {
         title: 'La bêta 3 est terminée : merci',
-        body: 'La bêta 3 a eu lieu le mardi 24 novembre. Merci à toutes celles et ceux qui ont joué, signalé des bugs et envoyé des idées. Vous nous avez aidés à corriger beaucoup de choses avant la sortie. Des questions ou des idées ? Retrouvez-nous sur Discord.',
+        body: 'La bêta 3 a eu lieu le mardi 24 novembre. Merci à toutes celles et ceux qui ont joué, signalé des bugs et envoyé des idées. Tu nous as aidés à corriger beaucoup de choses avant la sortie. Des questions ou des idées ? Retrouve-nous sur Discord.',
       },
       'pt-BR': {
         title: 'O Beta 3 acabou: obrigado',
@@ -245,8 +245,8 @@ export const NEWS: NewsEntry[] = [
         body: 'बीटा 3 मंगलवार, 24 नवंबर को हुआ। खेलने, बग बताने और आइडिया भेजने वाले सभी का धन्यवाद। आपने लॉन्च से पहले बहुत कुछ ठीक करने में हमारी मदद की। सवाल या आइडिया हैं? हमें Discord पर मिलें।',
       },
       ar: {
-        title: 'انتهت بيتا 3: شكرًا لكم',
-        body: 'أُقيمت بيتا 3 يوم الثلاثاء 24 نوفمبر. شكرًا لكل من لعب وأبلغ عن الأخطاء وأرسل أفكاره. ساعدتمونا على إصلاح الكثير قبل الإطلاق. لديكم أسئلة أو أفكار؟ تجدوننا على Discord.',
+        title: 'انتهت بيتا 3: شكرًا للجميع',
+        body: 'أُقيمت بيتا 3 يوم الثلاثاء 24 نوفمبر. شكرًا لكل من لعب وأبلغ عن الأخطاء وأرسل أفكاره وساهم في إصلاح الكثير قبل الإطلاق. للأسئلة والأفكار: Discord.',
       },
       bn: {
         title: 'বিটা 3 শেষ: ধন্যবাদ',
@@ -269,7 +269,7 @@ export const NEWS: NewsEntry[] = [
           id: 'Lihat isi versi 2.2',
           'zh-Hans': '看看 2.2 有什么',
           hi: 'देखिए 2.2 में क्या है',
-          ar: 'تعرّفوا على ما في 2.2',
+          ar: 'التعرّف على ما في 2.2',
           bn: 'দেখুন 2.2-এ কী আছে',
         },
       },
@@ -309,7 +309,7 @@ export const NEWS: NewsEntry[] = [
       },
       ar: {
         title: 'يوم الإطلاق: 8 ديسمبر',
-        body: 'النسخة الجديدة من SpySocial (الإصدار 2.2) تصل يوم الثلاثاء 8 ديسمبر على iPhone وAndroid: اللعب عبر الإنترنت وSpy Sketch وعميلكم الخاص والمزيد.',
+        body: 'النسخة الجديدة من SpySocial (الإصدار 2.2) تصل يوم الثلاثاء 8 ديسمبر على iPhone وAndroid: اللعب عبر الإنترنت وSpy Sketch وعميلك الخاص والمزيد.',
       },
       bn: {
         title: 'লঞ্চের দিন: 8 ডিসেম্বর',
@@ -373,7 +373,7 @@ export const NEWS: NewsEntry[] = [
       },
       ar: {
         title: 'ليلة الافتتاح',
-        body: 'أول ليلة ألعاب بعد الإطلاق تُقام مرتين: يوم الجمعة 11 ديسمبر، من 8 إلى 10 مساءً بتوقيت شرق الولايات المتحدة، ومرة أخرى يوم السبت 12 ديسمبر، من 2 إلى 4 عصرًا بتوقيت شرق الولايات المتحدة. هي ليلة Spy Talk نفسها في اليومين، فاختاروا إحداهما أو العبوا في الاثنتين.',
+        body: 'أول ليلة ألعاب بعد الإطلاق تُقام مرتين: يوم الجمعة 11 ديسمبر، من 8 إلى 10 مساءً بتوقيت شرق الولايات المتحدة، ومرة أخرى يوم السبت 12 ديسمبر، من 2 إلى 4 عصرًا بتوقيت شرق الولايات المتحدة. هي ليلة Spy Talk نفسها في اليومين، فيمكن اختيار إحداهما أو اللعب في الاثنتين.',
       },
       bn: {
         title: 'উদ্বোধনী রাত',
