@@ -87,6 +87,7 @@ ul.dots li::marker { color: var(--accent); }
 .g2 { grid-template-columns: 1fr 1fr; }
 .say { border-left: 1.2mm solid var(--yellow); padding: 2mm 0 2mm 3.4mm; background: rgba(255, 209, 102, 0.07); }
 .say p { color: var(--text); font-size: 10.4pt; }
+.steps li.mute { background: #ffe9a8; border-left: 1.2mm solid var(--accent); margin: 0 -2mm; padding: 1.4mm 2mm; }
 .avoid { border-left: 1.2mm solid var(--red); padding: 2mm 0 2mm 3.4mm; background: rgba(230, 57, 70, 0.08); }
 .avoid p { color: var(--text); font-size: 10.4pt; }
 
@@ -97,11 +98,11 @@ figure { margin: 0; display: flex; flex-direction: column; gap: 2mm; }
 figcaption { font-size: 8.4pt; color: var(--muted); line-height: 1.35; }
 figcaption b { color: var(--text); }
 
-.pitch { font-family: var(--display); font-weight: 800; line-height: 1.02; text-transform: uppercase; color: var(--ink); font-size: 12pt; margin-top: 1.6mm; }
+.pitch { font-family: var(--display); font-weight: 800; line-height: 1.02; text-transform: uppercase; color: var(--ink); font-size: 17pt; margin-top: 1.6mm; }
 .dates { display: grid; grid-template-columns: repeat(3, 1fr); border: 1.4px solid var(--line); }
 .dates div { padding: 2.6mm 3.2mm; border-right: 1px solid var(--line); }
 .dates div:last-child { border-right: 0; }
-.dates .d { display: block; font-family: var(--display); font-weight: 900; font-size: 15pt; line-height: 1; color: var(--yellow); text-transform: uppercase; }
+.dates .d { display: block; font-family: var(--display); font-weight: 900; font-size: 18pt; line-height: 1; color: var(--yellow); text-transform: uppercase; }
 .dates .l { display: block; font-size: 8.8pt; color: var(--body); margin-top: 1mm; }
 .must { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
 .banner { background: var(--accent); color: var(--ink); border: 1.4px solid var(--ink); box-shadow: 1.4mm 1.4mm 0 #000; padding: 2.6mm 4mm; }
@@ -142,13 +143,13 @@ figcaption b { color: var(--text); }
   <div class="paper">
     <span class="tag y">1 · Sign in once, by Fri Nov 27</span>
     <ul class="steps">
-      <li><span class="n">1</span><span>On your computer, open <strong>play.spysocial.app</strong> in <strong>Chrome</strong>. Click <strong>I Have an Account</strong> (not Play Now).</span></li>
+      <li><span class="n">1</span><span>On your computer, open <strong>play.spysocial.app</strong> in <strong>Chrome</strong>. Click <strong>I HAVE AN ACCOUNT</strong> (not PLAY NOW).</span></li>
       <!-- EMAIL-SLOT: put Levvis's exact sign-in email in the <strong> below (it was not in the setup docs). -->
-      <li><span class="n">2</span><span>In <strong>Email</strong>, type <strong>the email address you gave us</strong>, then click <strong>Continue with Email</strong>.</span></li>
-      <li><span class="n">3</span><span>Copy the 6-digit code from our email, then click <strong>Paste Code</strong>.</span></li>
-      <li><span class="n">4</span><span><strong>Set Up Your Profile</strong>: your name <strong>@levvis</strong> is already filled in. Click <strong>Next</strong>, then <strong>Let's Play</strong>.</span></li>
-      <li><span class="n">5</span><span><strong>What Year Were You Born?</strong> Type your birth year › <strong>Continue</strong> › <strong>Yes, That's Right</strong> › <strong>I Agree</strong>.</span></li>
-      <li><span class="n">6</span><span>If <strong>New to Spy Games?</strong> shows, click <strong>I Know How to Play</strong>. If the Home tour shows, click <strong>Skip</strong>.</span></li>
+      <li><span class="n">2</span><span>In <strong>EMAIL</strong>, type <strong>the email address you gave us</strong>, then click <strong>CONTINUE WITH EMAIL</strong>.</span></li>
+      <li><span class="n">3</span><span>Copy the 6-digit code from our email, then click <strong>PASTE CODE</strong>.</span></li>
+      <li><span class="n">4</span><span>Your name <strong>@levvis</strong> is already filled in. Click <strong>NEXT</strong>, then <strong>LET'S PLAY</strong>.</span></li>
+      <li><span class="n">5</span><span>Type your birth year › <strong>CONTINUE</strong> › <strong>YES, THAT'S RIGHT</strong> › <strong>I AGREE</strong>.</span></li>
+      <li><span class="n">6</span><span>If you're asked whether you're new to spy games, click <strong>I KNOW HOW TO PLAY</strong>. If the Home tour shows, click <strong>SKIP</strong>.</span></li>
     </ul>
     <p style="margin-top:2mm;font-size:9pt">Creator Mode then turns on by itself. Your co-players do the same (their guide: <a href="https://www.spysocial.app/creator/coplayer"><strong>spysocial.app/creator/coplayer</strong></a>).</p>
   </div>
@@ -156,10 +157,9 @@ figcaption b { color: var(--text); }
   <div class="paper">
     <span class="tag y">2 · On recording day: open your room</span>
     <ul class="steps">
-      <li><span class="n">1</span><span>On Home: <strong>Private Room</strong> › <strong>Create a Room</strong> › <strong>Online</strong>.</span></li>
-      <li><span class="n">2</span><span>In the lobby, under <strong>Game Type</strong>, click <strong>Spy Sketch</strong>. Leave the other rules as they are.</span></li>
-      <li><span class="n">3</span><span>Click <strong>Copy invite link</strong> and paste it in your Discord chat. Your crew opens it and clicks <strong>Ready Up!</strong> (3 players minimum).</span></li>
-      <li><span class="n">4</span><span>If the <strong>Drawings Are Checked</strong> card shows, click <strong>Got It</strong>. If the lobby tour shows, click <strong>Skip</strong>.</span></li>
+      <li><span class="n">1</span><span>On Home: <strong>Private Room</strong> › <strong>Create a Room</strong> › <strong>ENTER ROOM</strong>.</span></li>
+      <li><span class="n">2</span><span>The lobby opens on <strong>Spy Sketch</strong>. Leave the rules as they are. If a card about drawing checks shows, click <strong>GOT IT</strong>. If the lobby tour shows, click <strong>SKIP</strong>.</span></li>
+      <li><span class="n">3</span><span>Click <strong>COPY INVITE LINK</strong> and paste it in your Discord chat. Your crew opens it (3 players minimum).</span></li>
     </ul>
     <p style="margin-top:2mm;font-size:9pt">The room code shows at the top of the lobby: cut or cover it in the edit.</p>
   </div>
@@ -169,7 +169,7 @@ figcaption b { color: var(--text); }
     <ul class="steps">
       <li><span class="n">1</span><span><strong>Chrome</strong> at 100% zoom (Ctrl+0), then <strong>F11</strong> for full screen.</span></li>
       <li><span class="n">2</span><span><strong>Discord</strong> voice on headphones. <strong>Don't share your screen</strong>: your card is on it.</span></li>
-      <li><span class="n">3</span><span><strong>OBS</strong>, canvas 1920 × 1080: crop <strong>Display Capture</strong> with the numbers under <strong>OBS crop</strong> (left side of the screen), so only the centre panel (<strong>In the recording</strong>) is captured. Webcam beside the game, never over it.</span></li>
+      <li><span class="n">3</span><span><strong>OBS</strong>, canvas 1920 × 1080: crop <strong>Display Capture</strong> with the numbers under <strong>OBS CROP</strong> (left side of the screen), so only the centre panel (<strong>IN THE RECORDING</strong>) is captured. Webcam beside the game, never over it.</span></li>
       <li><span class="n">4</span><span>Everyone presses record, you count <strong>"3, 2, 1"</strong>, everyone <strong>claps once</strong>. Each player sends their file to your editor.</span></li>
     </ul>
   </div>
@@ -178,12 +178,13 @@ figcaption b { color: var(--text); }
 <section class="page">
   <div class="run"><span>Play, the ending, posting</span><span>Code LEVVIS</span></div>
   <h2><span class="k">4 · Play</span>Just play. Like always.</h2>
-  <div class="say"><p><strong>Before you press Start Game, have everyone on the call mute their mic:</strong> each role plays a different sound. Unmute once everyone has seen their role.</p></div>
   <div class="paper">
     <ul class="steps" style="margin-top:0">
-      <li><span class="n">1</span><span>When everyone is ready, click <strong>Start Game</strong>.</span></li>
-      <li><span class="n">2</span><span>Play a normal round or two, exactly like your other drawing-imposter Shorts. <strong>No feature tour</strong>: don't explain items, memberships or menus.</span></li>
-      <li><span class="n">3</span><span>Next game: on Game Over, click <strong>Back to Room</strong>, then <strong>Start Game</strong> (mute first again).</span></li>
+      <li><span class="n">1</span><span>Only once everyone is recording: your crew clicks <strong>READY UP!</strong></span></li>
+      <li class="mute"><span class="n">2</span><span><strong>Before you press START GAME, have everyone on the call mute their mic:</strong> each role plays a different sound. Unmute once everyone has seen their role.</span></li>
+      <li><span class="n">3</span><span>Click <strong>START GAME</strong>.</span></li>
+      <li><span class="n">4</span><span>Play a normal round or two, exactly like your other drawing-imposter Shorts. <strong>No feature tour</strong>: don't explain items, memberships or menus.</span></li>
+      <li><span class="n">5</span><span>Next game: when the game ends, click <strong>BACK TO ROOM</strong>, then <strong>START GAME</strong> (mute first again).</span></li>
     </ul>
     <p style="margin-top:2mm;font-size:9pt">Viewers can be under 18: don't open Intercepts on camera, and no prize or money talk.</p>
   </div>
