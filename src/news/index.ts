@@ -1,7 +1,10 @@
 import { useSyncExternalStore } from 'react'
-import { NEWS, type NewsEntry, type NewsLang, type NewsLink, type NewsText } from './entries'
+import { NEWS as ALL_NEWS, type NewsEntry, type NewsLang, type NewsLink, type NewsText } from './entries'
 
-export { NEWS }
+import { STORES_OPEN } from '../lib/legalRelease'
+
+/** The entries on the site now: one gated 'stores' shows only while STORES_OPEN is on (the same switch as every store button). */
+export const NEWS: NewsEntry[] = ALL_NEWS.filter((e) => e.gate !== 'stores' || STORES_OPEN)
 export type { NewsEntry, NewsLink }
 
 const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
