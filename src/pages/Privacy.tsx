@@ -282,7 +282,7 @@ const Privacy: React.FC = () => {
             fairly.
             {PRIVACY.intercepts &&
               (PRIVACY.intelLedger && !PRIVACY.giftsTradable
-                ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is held on your account (Intel that can never be traded: Intel from shredding a spare of an item from a code or a gift, or test Intel on our own test accounts).'
+                ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel that can never be traded: test Intel on our own test accounts).'
                 : PRIVACY.intelLedger
                 ? ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel that will never be tradable: Intel we give everyone an announced outage affected, a bug refund we give one player, or test Intel on our own test accounts).'
                 : ' The history also records the Intel you get by shredding a spare copy of an item, and which part of your balance is locked (Intel we added ourselves, which will never be tradable).')}

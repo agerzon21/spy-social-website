@@ -496,6 +496,7 @@ const ptBR: HelpText = {
             ...(o.interceptsInTrades && !o.launch ? ['Durante o teste beta, até o reset pré-lançamento, qualquer Interceptação fechada pode entrar numa troca, não importa como você a conseguiu. De qualquer forma, as Interceptações recomeçam do zero no lançamento.'] : []),
             'O que você coloca numa troca aberta fica reservado para ela: não pode ir para outra troca nem para o Mercado Negro ao mesmo tempo. Se o Intel de uma troca for gasto antes de a troca acontecer, aparece um aviso naquele lado, e a troca não pode acontecer até a quantia ser reduzida.',
             'O app marca quais itens dá para trocar. O plano de membro e o que ele inclui, as recompensas de nível e os itens dos jogos de arcade nunca dão.' + (o.gnRewardsRules ? " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você: fica na sua conta." : " Nem o que vem de um código, nem o que nós ou nossa equipe damos a você, incluindo uma Escolha do desenvolvedor: fica na sua conta.") + (o.launch ? " O Intel nunca fica preso a uma conta, venha de onde vier." : ''),
+            "Os itens com a marca de presente vieram de um presente ou de um código: ficam na sua conta.",
             'Intel só pode ser trocado entre adultos.',
             ...(o.launch ? [] : ["Durante o teste beta, até o reset pré-lançamento, todos os adultos também podem trocar Intel." + (o.intelZero ? " Logo antes do lançamento, o Intel de toda conta vai a 0, inclusive o ganho no teste." : " No reset pré-lançamento, todo o Intel trocado volta: quem deu recebe de volta, e cada um fica só com o Intel que ganhou."), "Os itens de um código ou presente ficam na sua conta: não dá para trocar, vender nem usar na Fusão."]),
             'Comprar ou vender itens, Intel ou contas por dinheiro de verdade é contra as regras.',
@@ -569,6 +570,7 @@ const ptBR: HelpText = {
             ...(o.launch ? [] : ['Durante o teste beta, até o reset pré-lançamento, as regras de idade da conta e de partidas contadas também estão desligadas aqui.']),
             'Menores de 18 podem olhar, mas não podem comprar, vender nem fazer ofertas.',
             ...(o.launch ? [] : ["Durante o beta, todos os adultos podem comprar e vender aqui. Toda venda feita durante o teste é desfeita antes do lançamento: quem comprou recebe de volta o Intel que pagou, e quem vendeu devolve o que recebeu."]),
+            "Os itens com a marca de presente vieram de um presente ou de um código: ficam na sua conta.",
           ],
         },
         {
@@ -669,7 +671,7 @@ const ptBR: HelpText = {
             '<b>Vitórias:</b> a cada 10 vitórias no Jogar online, você ganha 5 interceptações, uma delas de nível Secreto ou melhor.',
             "<b>Diária:</b> sua primeira partida do dia no Jogar online dá uma. A cada 7 dias seguidos vem mais uma Secreto ou melhor, e a cada 30 dias, uma Enigma.",
             ...(o.gnRewards ? ["<b>Noite de Jogos:</b> suas partidas lá dão Intel da Noite de Jogos, que você usa para pegar interceptações da Noite de Jogos (abaixo)."] : o.gnRewardsRules ? [] : ["<b>Noite de Jogos:</b> ganhe uma partida lá, como local ou espião, e você recebe uma Enigma, uma por noite."]),
-            `<b>Códigos e presentes:</b> um código de um criador ou nosso vale uma vez por conta, e as interceptações dele são liberadas depois da sua primeira partida contada no Jogar online. Também damos algumas de presente. Interceptações de código ou de presente, o que sai delas e o que você consegue com elas na Fusão são só seus: não podem ser trocados, vendidos nem dados, não importa quantas partidas você jogue. Você ainda pode abri-las, usar o que sair, fundir e triturar repetidos. Triturar um repetido dá Intel comum.`,
+            `<b>Códigos e presentes:</b> um código de um criador ou nosso vale uma vez por conta, e as interceptações dele são liberadas depois da sua primeira partida contada no Jogar online. Também damos algumas de presente. Interceptações de código ou de presente e o que sai delas são só seus: não podem ser trocados, vendidos, usados na Fusão nem dados, não importa quantas partidas você jogue. Você ainda pode abri-las e usar o que sair. Elas ficam na sua conta.`,
             "<b>Boas-vindas:</b> uma conta salva ganha uma primeira interceptação de graça. Como as de código ou de presente, ela e o que sai dela ficam na sua conta: não podem ser trocadas nem vendidas.",
             'Salas privadas não dão interceptações.',
             ...(o.launch
@@ -716,7 +718,7 @@ const ptBR: HelpText = {
           a: [
             '<b>Triture</b> uma cópia repetida por Intel, no valor que o app mostra.',
             ...(o.gnTiers4 ? [`Uma cópia repetida de qualquer item do <b>After Hours</b>, não importa como você o conseguiu, é triturada por Intel da Noite de Jogos.`] : []),
-            '<b>Fusão:</b> 5 cópias repetidas de uma raridade dão 1 item aleatório da raridade seguinte, e 10 cópias Lendárias repetidas dão um Único.' + " Se houver um presente entre elas, o que você receber também será só seu.",
+            '<b>Fusão:</b> 5 cópias repetidas de uma raridade dão 1 item aleatório da raridade seguinte, e 10 cópias Lendárias repetidas dão um Único.' + " Itens de um presente ou de um código não podem entrar numa Fusão.",
             'Só contam os repetidos, nunca sua primeira cópia nem um Único.',
             'Uma cópia que você comprou ou recebeu numa troca conta como repetida se você tem outra cópia desse item. Sua única cópia sempre fica.',
           ],
