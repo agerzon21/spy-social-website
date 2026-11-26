@@ -1461,7 +1461,7 @@ export const LIVE = {
    * corrections section); set LEGAL_LAST_UPDATED's entry to that day. A server switch for every app version at once:
    * set in LIVE.
    */
-  giftsTradable: true,
+  giftsTradable: false,
   /**
    * The 2.2 testers' thank-you Intercepts (owner 2026-11-11; app server tester_gift_game_1111, staged): every account on
    * the 2.2 tester list gets the Beta Pin and the Beta Tester title; only one with at least one counted game (played to

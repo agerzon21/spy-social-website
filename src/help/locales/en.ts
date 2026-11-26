@@ -525,9 +525,9 @@ const en: HelpText = {
             ...(o.interceptsInTrades ? ['Adults can also put unopened Intercepts in a trade: choose how many of each tier. Each one counts as one of the 10.'] : []),
             ...(o.interceptsInTrades && !o.launch ? ['During the beta test, until the pre-launch reset, every unopened Intercept can go in a trade, however you got it. Intercepts start fresh at launch anyway.'] : []),
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
-            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? (o.gnRewardsRules ? " Neither can anything from a code, or anything we or our staff give you: it stays with your account. Intel is never tied to an account, whatever it came from." : " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel is never tied to an account, whatever it came from.") : ''),
+            'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.gnRewardsRules ? " Neither can anything from a code, or anything we or our staff give you: it stays with your account." : " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account.") + (o.launch ? " Intel is never tied to an account, whatever it came from." : ''),
             'Intel can be traded only between adults.',
-            ...(o.launch ? [] : ["During the beta test, until the pre-launch reset, every adult player can trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " At the pre-launch reset, every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "From the pre-launch reset, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them."]),
+            ...(o.launch ? [] : ["During the beta test, until the pre-launch reset, every adult player can trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " At the pre-launch reset, every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "Items from a code or a gift stay with your account: they can’t be traded, sold or used in Trade Up."]),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
           ],
         },
@@ -699,8 +699,8 @@ const en: HelpText = {
             '<b>Wins:</b> every 10 Play Online wins give you 5 Intercepts, one of them Secret or better.',
             "<b>Daily:</b> your first Play Online game of the day gives you one. Every 7th day in a row adds one Secret or better, and every 30th day an Enigma.",
             ...(o.gnRewards ? ["<b>Game Night:</b> your games there earn Game Night Intel, which gets you Game Night Intercepts (below)."] : o.gnRewardsRules ? [] : ["<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night."]),
-            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts.${o.launch ? " Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding a spare gives ordinary Intel." : ''}`,
-            ...(o.launch ? ["<b>Welcome:</b> a saved account gets a first Intercept, free. Like Intercepts from a code or a gift, it and what comes out of it stay with your account: they can’t be traded or sold."] : []),
+            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts. Intercepts from a code or a gift, what they open into and what you trade up from them are just for you: they can’t be traded, sold or given away, however many games you play. You can still open them, wear what comes out, trade them up and shred spares. Shredding a spare gives ordinary Intel.`,
+            "<b>Welcome:</b> a saved account gets a first Intercept, free. Like Intercepts from a code or a gift, it and what comes out of it stay with your account: they can’t be traded or sold.",
             'Private rooms don’t give Intercepts.',
             ...(o.launch
               ? []
@@ -746,7 +746,7 @@ const en: HelpText = {
           a: [
             '<b>Shred</b> a spare copy for Intel, at the amount the app shows.',
             ...(o.gnTiers4 ? [`A spare <b>After Hours</b> item, however you got it, shreds for Game Night Intel instead.`] : []),
-            '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.' + (o.launch ? " With a gift among them, what you get is just for you too." : ''),
+            '<b>Trade Up:</b> 5 spare copies of one rarity give you 1 random item of the next rarity, and 10 spare Legendary copies give you a Unique.' + " With a gift among them, what you get is just for you too.",
             'Only spares count, never your first copy or a Unique.',
             'A copy you bought or got in a trade counts as a spare when you hold another copy of that item. Your only copy always stays.',
           ],
