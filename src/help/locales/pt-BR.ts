@@ -774,8 +774,8 @@ const ptBR: HelpText = {
                   ? 'Elas foram adicionadas no lançamento da 2.2 e são suas. Todos da lista de testadores ganharam o <b>Pin beta</b> e o título <b>Beta tester</b>. Um cartão de agradecimento aparece quando você abre o app pela primeira vez após o lançamento.'
                   : 'Elas chegam no lançamento oficial da 2.2, num cartão de agradecimento quando você abre o app, e são suas. Todos da lista de testadores ganham o <b>Pin beta</b> e o título <b>Beta tester</b>.',
                 o.launch
-                  ? "Quem terminou pelo menos uma partida com outros jogadores antes do reset pré-lançamento (jogada até o fim, em qualquer sala, então aparece nas Estatísticas; partidas de treino não contam) também ganhou o título <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro."
-                  : "Termine pelo menos uma partida com outros jogadores antes do reset pré-lançamento (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas; partidas de treino não contam) e você também ganha o título <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro.",
+                  ? "Quem terminou pelo menos uma partida com outros jogadores até o reset pré-lançamento (jogada até o fim, em qualquer sala, então aparece nas Estatísticas; partidas de treino não contam) também ganhou o título <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro."
+                  : "Termine pelo menos uma partida com outros jogadores até o reset pré-lançamento (jogada até o fim, em qualquer sala, então aparece nas suas Estatísticas; partidas de treino não contam) e você também ganha o título <b>Tester de campo</b>, 10 interceptações de cada nível e 1 mês como membro.",
                 o.testerInterceptsTradable
                   ? 'O <b>Pin beta</b>, o título <b>Tester de campo</b> e as interceptações de agradecimento podem ser trocados como tudo o que você ganha.'
                   : 'O <b>Pin beta</b> e o título <b>Tester de campo</b> podem ser trocados como tudo o que você ganha; como outros presentes, as interceptações de agradecimento ficam na sua conta.',

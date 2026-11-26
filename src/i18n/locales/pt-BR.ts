@@ -935,7 +935,7 @@ const ptBR: Strings = {
     },
     eyebrow: 'Beta 2 · Teste ao vivo',
     title: 'Jogue primeiro',
-    lede: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta e um título para cada testador e, com uma partida terminada antes do reset pré-lançamento, outro título, 10 interceptações de cada nível e 1 mês como membro.',
+    lede: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta e um título para cada testador e, com uma partida terminada até o reset pré-lançamento, outro título, 10 interceptações de cada nível e 1 mês como membro.',
     ledeBefore: '<b>US$\u00a010 pelo PayPal como agradecimento</b> para cada jogador confirmado que participar da hora inteira desta sessão de teste de jogo em grupo e ao vivo do SpySocial, o jogo grátis de dedução social para festas, e enviar a pesquisa de 5 minutos, igual no iPhone e no Android, mais um bônus de US$\u00a050 para o relato de bug ou a ideia mais útil da sessão. Além disso, recompensas beta que ficam com você depois do lançamento: o Pin beta, dois títulos, 10 interceptações de cada nível e 1 mês como membro.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
     reset: 'Partidas, XP e itens do teste são zerados no lançamento.',
@@ -986,7 +986,7 @@ const ptBR: Strings = {
       title: 'Recompensas beta que ficam com você depois do lançamento',
       items: ['O <b>Pin beta</b>', 'O título <b>Beta tester</b>'],
       itemsBefore: ['O <b>Pin beta</b>', 'Os títulos <b>Beta tester</b> e <b>Tester de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
-      gameTitle: 'Termine uma partida antes do reset pré-lançamento e ganhe também',
+      gameTitle: 'Termine uma partida até o reset pré-lançamento e ganhe também',
       gameItems: ['O título <b>Tester de campo</b>', '<b>10 interceptações</b> de cada nível', '<b>1 mês</b> como membro'],
       trade: { tradable: 'Depois do lançamento, as interceptações de agradecimento podem ser trocadas como tudo o que você ganha.', bound: 'As interceptações de agradecimento ficam na sua conta.' },
       prizeTitle: 'US$\u00a010 de agradecimento pelo PayPal + um bônus de US$\u00a050',
