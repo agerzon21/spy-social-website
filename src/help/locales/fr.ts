@@ -805,7 +805,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             id: 'beta-reset',
             q: "L'appli dit que tout sera réinitialisé avant le lancement. Ça veut dire quoi ?",
             a: [
-              "SpySocial est encore en test. Avant le lancement public, les objets, les interceptions, l'Intel, les transactions du Marché noir et les échanges seront réinitialisés, et tout le monde repartira de zéro.",
+              "SpySocial est encore en test. Avant le lancement officiel, les objets, les interceptions, l'Intel, les transactions du Marché noir et les échanges seront réinitialisés, et tout le monde repartira de zéro.",
               "Ton compte, tes amis et tes packs restent, tout comme ton XP, ton niveau, tes succès, tes stats, tes notes des parties d'entraînement, les titres obtenus par code et tout ce que tu as acheté sur l'App Store ou Google Play.",
               ...(o.gnRewards ? [o.gnTiers4 ? `Tes titres ★ de soirée jeux restent, et tu récupères tout l'Intel de soirée jeux que tu as gagné en jouant, même si tu l'as dépensé. Celui obtenu en déchiquetant n'est pas rendu.` : "Tes titres ★ de soirée jeux restent, et tu récupères tout l'Intel de soirée jeux que tu as gagné, même si tu l'as dépensé."] : []),
               "Les statuts de membre offerts pour le test prennent fin au lancement." + (o.intelZero ? " Ta série repart du jour 0." : ''),
