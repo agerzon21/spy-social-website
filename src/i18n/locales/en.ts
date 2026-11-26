@@ -844,7 +844,7 @@ const en = {
     eyebrow: 'Roadmap',
     /** The poster line, set huge, before the home hero's full stop (home.hero.titleMark). Short: it must fit a 320 px phone. */
     title: "What's coming",
-    /** Under it until 2.2 is out. `day` is the launch day in the page's language, without the year ("December 8", "8 декабря"). */
+    /** Under it until 2.2 is out: 2.2 lands at the full launch (no date in player text). */
     lede: (): string => `SpySocial\u00A02.2 lands at the full launch. See what's in it, and what we're building next.`,
     /** The same once 2.2 is out. */
     ledeOut: "SpySocial\u00A02.2 is out now. See what's in it, and what we're building next.",
@@ -1033,7 +1033,7 @@ const en = {
     eyebrow: 'Beta 2 · Live playtest',
     /** The poster line, set huge: it must fit a 320 px phone. The full stop after it is home.hero.titleMark. */
     title: 'Play it first',
-    lede: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin and a title for every tester, and with one finished game before full launch, a second title, 10 Intercepts of each tier and a month of membership.',
+    lede: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin and a title for every tester, and with one finished game before the pre-launch reset, a second title, 10 Intercepts of each tier and a month of membership.',
     /** LIVE.testerGiftGame off: the words live before the switch (friday-flips-1111). */
     ledeBefore: '<b>A $10 PayPal thank-you</b> for every confirmed player who joins the full hour of this live group playtest session of SpySocial, the free social deduction party game, and sends the 5-minute survey, the same on iPhone and Android, plus one $50 bonus for the single most useful bug report or idea from the session. Plus beta rewards you keep after launch: the Beta Pin, two titles, 10 Intercepts of each tier and a month of membership.',
     /** Short note under the lede and in the rewards: the test's progress does not carry over. */
@@ -1100,8 +1100,8 @@ const en = {
       items: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> title'],
       /** LIVE.testerGiftGame off: the words live before the switch (friday-flips-1111). */
       itemsBefore: ['The <b>Beta Pin</b>', 'The <b>Beta Tester</b> and <b>Field Tester</b> titles', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
-      /** The rest needs one counted game (played to the end, any room) before full launch (owner Nov 11; was December 7, site-dates-1126). */
-      gameTitle: 'Finish one game before full launch to also get',
+      /** The rest needs one counted game (played to the end, any room) before the pre-launch reset (owner Nov 11 and Nov 26 "cutoff at reset"; was December 7). */
+      gameTitle: 'Finish one game before the pre-launch reset to also get',
       gameItems: ['The <b>Field Tester</b> title', '<b>10 Intercepts</b> of each tier', '<b>1 month</b> of membership'],
       /** Under the lists; LIVE.testerIntercepts picks one (server app_config tester_gift.intercepts_tradable). */
       trade: { tradable: 'The thank-you Intercepts trade after launch like anything you earn.', bound: 'The thank-you Intercepts stay with your account.' },

@@ -8,7 +8,7 @@ import type { MarketStrings } from '../strings'
 const id: MarketStrings = {
   nav: { market: 'Pasar', movers: 'Pergerakan', catalogue: 'Katalog', archive: 'Unik', label: 'Harga Pasar Gelap' },
   name: 'Pasar Gelap',
-  beta: 'Pasar beta: harga ini berasal dari transaksi para pemain selama beta dan akan dihapus saat reset rilis. Pasar sungguhan dibuka saat peluncuran resmi.',
+  beta: 'Pasar beta: harga ini berasal dari transaksi para pemain selama beta dan akan dihapus saat reset sebelum peluncuran. Pasar sungguhan dibuka saat peluncuran resmi.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Harga dalam Intel, mata uang khusus game. Intel tidak punya nilai uang, tidak bisa dibeli atau diuangkan, dan tidak ada yang dijual dengan uang sungguhan di sini.',
   sample: 'DATA CONTOH: dibuat untuk pratinjau desain ini. Tidak ada transaksi sungguhan yang ditampilkan.',

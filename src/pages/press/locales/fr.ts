@@ -65,7 +65,7 @@ const fr: PressStrings = {
     release: (out) =>
       out
         ? `La version\u00A02.2 est disponible, en mise à jour gratuite sur l'App Store et Google Play.`
-        : `La version\u00A02.2 arrive au lancement complet. SpySocial est déjà sur l'App Store et Google Play, et la\u00A02.2 est une mise à jour gratuite.`,
+        : `La version\u00A02.2 arrive bientôt. SpySocial est déjà sur l'App Store et Google Play, et la\u00A02.2 est une mise à jour gratuite.`,
     price: 'Gratuit à télécharger et à jouer. Sans pub.',
     membership: (month, year, life) =>
       `Facultatif, et la seule chose vendue\u00A0: l'abonnement mensuel à ${month} par mois ou annuel à ${year} par an (renouvelés jusqu'à résiliation), ou l'accès à vie à ${life}, en un seul paiement. Prix américains\u00A0; ils varient selon le pays. Aucun pack ni lot n'est vendu à l'unité.`,

@@ -6,7 +6,7 @@ const pl = (n: number, one: string, many: string) => (n === 1 ? one : many)
 const ptBR: MarketStrings = {
   nav: { market: 'Mercado', movers: 'Movimentos', catalogue: 'Catálogo', archive: 'Únicos', label: 'Preços do Mercado Negro' },
   name: 'Mercado Negro',
-  beta: 'Mercado da beta: estes preços vêm das vendas dos jogadores durante a beta e serão zerados no reset do lançamento. O mercado de verdade abre no lançamento oficial.',
+  beta: 'Mercado da beta: estes preços vêm das vendas dos jogadores durante a beta e serão zerados no reset pré-lançamento. O mercado de verdade abre no lançamento oficial.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Os preços são em Intel, a moeda do próprio jogo. O Intel não tem valor em dinheiro, não pode ser comprado nem convertido em dinheiro, e nada aqui é vendido por dinheiro real.',
   sample: 'DADOS DE EXEMPLO: inventados para esta prévia do design. Nenhuma venda real aparece aqui.',

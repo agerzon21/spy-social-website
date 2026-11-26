@@ -73,11 +73,11 @@ const en = {
     genre: 'Social deduction party game',
     platforms: 'iPhone, iPad, and Android phones and tablets. iPhone and Android players play together.',
     players: '3 to 21 in a private room. Play Online: tables of 4 or 8.',
-    /** `out` once 2.2 is out; before it, "at full launch" with no date (no fixed launch date in player text). */
+    /** `out` once 2.2 is out; before it, "coming soon" with no date (no fixed launch date in player text). */
     release: (out: boolean): string =>
       out
         ? `Version 2.2 is out now, a free update on the App Store and Google Play.`
-        : `Version 2.2 comes out at full launch. SpySocial is already on the App Store and Google Play, and 2.2 is a free update.`,
+        : `Version 2.2 is coming soon. SpySocial is already on the App Store and Google Play, and 2.2 is a free update.`,
     price: 'Free to download and play. No ads.',
     /** The US prices, formatted in the page's language: a month, a year, Lifetime. */
     membership: (month: string, year: string, life: string) =>

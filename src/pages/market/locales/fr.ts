@@ -11,7 +11,7 @@ const sales = (n: number) => (n < 2 ? `${n}\u00a0vente` : `${n}\u00a0ventes`)
 const fr: MarketStrings = {
   nav: { market: 'Marché', movers: 'Tendances', catalogue: 'Catalogue', archive: 'Uniques', label: 'Prix du Marché noir' },
   name: 'Marché noir',
-  beta: 'Marché de la bêta\u00a0: ces prix viennent des ventes des joueurs pendant la bêta et seront effacés à la réinitialisation de la sortie. Le vrai marché ouvre au lancement officiel.',
+  beta: 'Marché de la bêta\u00a0: ces prix viennent des ventes des joueurs pendant la bêta et seront effacés à la réinitialisation d’avant le lancement. Le vrai marché ouvre au lancement officiel.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Les prix sont en Intel, la monnaie du jeu. L’Intel n’a aucune valeur réelle, ne s’achète pas et ne se convertit pas en argent, et rien ici n’est vendu contre de l’argent réel.',
   sample: 'DONNÉES FICTIVES\u00a0: inventées pour cet aperçu du design. Aucune vraie vente n’est montrée.',

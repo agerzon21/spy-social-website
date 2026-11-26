@@ -62,7 +62,7 @@ const id: PressStrings = {
     release: (out) =>
       out
         ? `Versi 2.2 sudah hadir, sebagai update gratis di App Store dan Google Play.`
-        : `Versi 2.2 hadir saat peluncuran penuh. SpySocial sudah ada di App Store dan Google Play, dan 2.2 adalah update gratis.`,
+        : `Versi 2.2 segera hadir. SpySocial sudah ada di App Store dan Google Play, dan 2.2 adalah update gratis.`,
     price: 'Gratis diunduh dan dimainkan. Tanpa iklan.',
     membership: (month, year, life) =>
       `Opsional, dan satu-satunya yang dijual: keanggotaan bulanan seharga ${month} per bulan atau tahunan seharga ${year} per tahun (diperpanjang sampai dibatalkan), atau keanggotaan seumur hidup seharga ${life}, sekali bayar. Harga AS; berbeda di tiap negara. Paket satuan atau bundel tidak dijual.`,

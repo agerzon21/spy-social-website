@@ -519,15 +519,15 @@ const en: HelpText = {
           a: [
             'You trade with friends, inside the app. You need an account at least 7 days old, a confirmed email and 3 counted games (finished games that count toward your stats, with at least 2 other saved accounts on other phones).',
             "The 7 days count from when the account was saved: time as a guest doesn’t count.",
-            ...(o.launch ? [] : ['During the beta test, until the release reset, the account-age, counted-games and new-device rules are off: every adult player can trade once their email is confirmed.']),
+            ...(o.launch ? [] : ['During the beta test, until the pre-launch reset, the account-age, counted-games and new-device rules are off: every adult player can trade once their email is confirmed.']),
             ...(o.launch ? ["Testers who played 3 counted games during the beta test don’t need 3 more."] : ["Testers who play 3 counted games during the beta test won’t need 3 more after launch."]),
             'Each side offers up to 10 items, and both confirm before the trade happens. Big trades ask for a code we email you.',
             ...(o.interceptsInTrades ? ['Adults can also put unopened Intercepts in a trade: choose how many of each tier. Each one counts as one of the 10.'] : []),
-            ...(o.interceptsInTrades && !o.launch ? ['During the beta test, until the release reset, every unopened Intercept can go in a trade, however you got it. Intercepts start fresh at launch anyway.'] : []),
+            ...(o.interceptsInTrades && !o.launch ? ['During the beta test, until the pre-launch reset, every unopened Intercept can go in a trade, however you got it. Intercepts start fresh at launch anyway.'] : []),
             'What you put in an open trade is held for it: it can’t go into another trade or onto the Black Market at the same time. If Intel in a trade is spent before the trade happens, a warning shows on that side, and the trade can’t go through until the amount is lowered.',
             'The app marks which items can be traded. Memberships and what they include, level rewards and arcade items never can.' + (o.launch ? (o.gnRewardsRules ? " Neither can anything from a code, or anything we or our staff give you: it stays with your account. Intel is never tied to an account, whatever it came from." : " Neither can anything from a code, or anything we or our staff give you, a Developer’s Pick included: it stays with your account. Intel is never tied to an account, whatever it came from.") : ''),
             'Intel can be traded only between adults.',
-            ...(o.launch ? [] : ["During the beta test, until the release reset, every adult player can trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " At the release reset, every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "From the release reset, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them."]),
+            ...(o.launch ? [] : ["During the beta test, until the pre-launch reset, every adult player can trade Intel too." + (o.intelZero ? " Right before launch, every account’s Intel goes to 0, the Intel earned in the test included." : " At the pre-launch reset, every Intel amount traded goes back: whoever gave it gets it back, and everyone keeps only the Intel they earned."), "From the pre-launch reset, Intercepts from a code or a gift, what they open into and what you make with them in a Trade Up stay with your account: you can still use them, but you can’t trade or sell them."]),
             'Buying or selling items, Intel or accounts for real money is against the rules.',
           ],
         },
@@ -566,7 +566,7 @@ const en: HelpText = {
           a: [
             'Trading pauses for a while after your email or sign-in method changes, after a sign-in on a new device, after you reverse your trades (30 days), or when you lock it yourself.',
             'A new device’s pause lasts 24 hours; an email or sign-in change’s, 3 days.',
-            ...(o.launch ? [] : ['During the beta test, until the release reset, a sign-in on a new device or an email or sign-in change doesn’t pause trading.']),
+            ...(o.launch ? [] : ['During the beta test, until the pre-launch reset, a sign-in on a new device or an email or sign-in change doesn’t pause trading.']),
             'It’s there to protect your items if someone else gets into your account.',
             'We can also pause an account’s trading ourselves, to protect it or while we look into fraud.',
             "A fair-play hold pauses trading and the Black Market while it lasts. With a Banned reputation, trading, gifts and the Black Market stay closed until it recovers: see <b>Reputation</b> in Settings.",
@@ -596,7 +596,7 @@ const en: HelpText = {
           a: [
             'Adults who can trade: an account at least 7 days old, a confirmed email, 3 counted games and no trading pause.',
             "The 7 days count from when the account was saved: time as a guest doesn’t count.",
-            ...(o.launch ? [] : ['During the beta test, until the release reset, the account-age and counted-games rules are off here too.']),
+            ...(o.launch ? [] : ['During the beta test, until the pre-launch reset, the account-age and counted-games rules are off here too.']),
             'Players under 18 can look, but can’t buy, sell or make offers.',
             ...(o.launch ? [] : ["During the beta, every adult player can buy and sell here. Every sale made while SpySocial is being tested is undone before the launch: buyers get back the Intel they paid, and sellers give back what they received."]),
           ],
@@ -804,8 +804,8 @@ const en: HelpText = {
                   ? 'They were added at the 2.2 launch and are yours to keep. Everyone on the tester list got the <b>Beta Pin</b> and the <b>Beta Tester</b> title. A thank-you card shows when you first open the app after launch.'
                   : 'They arrive at the 2.2 full launch, on a thank-you card when you open the app, and they’re yours to keep. Everyone on the tester list gets the <b>Beta Pin</b> and the <b>Beta Tester</b> title.',
                 o.launch
-                  ? "Testers who finished at least one game with other players before full launch (played to the end, in any room, so it shows in their Stats; Practice Games don’t count) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership."
-                  : "Finish at least one game with other players before full launch (played to the end, in any room, so it shows in your Stats; Practice Games don’t count) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.",
+                  ? "Testers who finished at least one game with other players before the pre-launch reset (played to the end, in any room, so it shows in their Stats; Practice Games don’t count) also got the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership."
+                  : "Finish at least one game with other players before the pre-launch reset (played to the end, in any room, so it shows in your Stats; Practice Games don’t count) and you also get the <b>Field Tester</b> title, 10 Intercepts of each tier and 1 month of membership.",
                 o.testerInterceptsTradable
                   ? 'The <b>Beta Pin</b>, the <b>Field Tester</b> title and the thank-you Intercepts trade like anything you earn.'
                   : 'The <b>Beta Pin</b> and the <b>Field Tester</b> title trade like anything you earn; like other gifts, the thank-you Intercepts stay with your account.',

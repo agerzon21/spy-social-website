@@ -62,7 +62,7 @@ const es: PressStrings = {
     release: (out) =>
       out
         ? `La versión 2.2 ya está disponible, como actualización gratuita en App Store y Google Play.`
-        : `La versión 2.2 llega con el lanzamiento completo. SpySocial ya está en App Store y Google Play, y la 2.2 es una actualización gratuita.`,
+        : `La versión 2.2 llega pronto. SpySocial ya está en App Store y Google Play, y la 2.2 es una actualización gratuita.`,
     price: 'Gratis para descargar y jugar. Sin anuncios.',
     membership: (month, year, life) =>
       `Opcional, y lo único que se vende: la membresía mensual a ${month} al mes o la anual a ${year} al año (se renuevan hasta cancelarlas), o la membresía de por vida a ${life}, en un solo pago. Precios de EE. UU.; varían según el país. No se venden paquetes sueltos ni lotes.`,
