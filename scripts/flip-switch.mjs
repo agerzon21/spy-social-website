@@ -102,6 +102,9 @@ const SWITCHES = {
   tutorialGate1117: { live: [['tutorialGate1117', true]], day: 'TUTORIAL_GATE_1117_DAY', step: 'publish' },
   // archive-origins-1119 (B12): the Archive's Origins seal, Dec 6 (website commit A), before the Dec 8 genesis. No legal text, no date.
   archiveOrigins: { live: [['archiveOrigins', true]], day: null, step: 'B12 Dec 6' },
+  // site-storeswitch-1126: release day, after BOTH stores show the app publicly (STORES_OPEN: store buttons on, /hello goes home).
+  // Website only, no legal text, no date. --undo if a store pulls the app.
+  storesLive: { live: [['storesLive', true]], day: null, step: 'release day, both stores public' },
 }
 
 const args = process.argv.slice(2)
