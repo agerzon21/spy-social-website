@@ -46,10 +46,15 @@ export function newsBy(today: string, entries: NewsEntry[] = NEWS): { upcoming: 
   return { upcoming: sorted.filter(ahead), earlier: sorted.filter((e) => !ahead(e)).reverse() }
 }
 
-/** The home page's Latest strip: the next three ahead, or the latest two when nothing is ahead. */
+/**
+ * The home page's Latest strip: the next three ahead, or the latest two when nothing is ahead. A 'stores' entry
+ * (shown once STORES_OPEN) comes on top of the three, so the store flip adds it without pushing a dated event such as
+ * Opening Night off Home; each event still leaves the strip once its last day has passed.
+ */
 export function latestNews(today: string, entries: NewsEntry[] = NEWS): NewsEntry[] {
   const { upcoming, earlier } = newsBy(today, entries)
-  return upcoming.length ? upcoming.slice(0, 3) : earlier.slice(0, 2)
+  const extra = upcoming.filter((e) => e.gate === 'stores').length
+  return upcoming.length ? upcoming.slice(0, 3 + extra) : earlier.slice(0, 2)
 }
 
 /** An entry's words in `lang` (English where the entry has none). */
