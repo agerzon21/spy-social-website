@@ -4,7 +4,7 @@ import type { MarketStrings } from '../strings'
 const zh: MarketStrings = {
   nav: { market: '市场', movers: '市场动向', catalogue: '目录', archive: '唯一物品', label: '黑市价格' },
   name: '黑市',
-  beta: '测试版市场：这些价格来自测试期间玩家的交易，将在 12 月 7 日清空。正式市场上线时开放。',
+  beta: '测试版市场：这些价格来自测试期间玩家的交易，将在 12 月 7 日清空。正式市场正式上线时开放。',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: '价格以情报计，情报是游戏自己的货币。情报没有现金价值，无法购买或兑现，这里也没有任何东西用真钱出售。',
   sample: '示例数据：为设计预览而编造，不含任何真实交易。',
@@ -13,7 +13,7 @@ const zh: MarketStrings = {
   demoMovers: '正式上线前，市场动向里还会列出几件标有“示例”的物品：用来展示榜单效果的示例历史，并非真实交易。真实交易始终排在前面，示例会在上线时消失。',
   halted: '黑市目前已暂停。价格停留在暂停那一刻。',
   busy: '市场暂时无法获取价格，请一分钟后再试。',
-  soon: { title: '市场上线时开放', text: '玩家开始交易后，价格会显示在这里。在此之前，黑市上的一切都只是测试。' },
+  soon: { title: '市场正式上线时开放', text: '玩家开始交易后，价格会显示在这里。在此之前，黑市上的一切都只是测试。' },
   retry: '重试',
   intel: '情报',
   noPrice: '成交次数还不够',

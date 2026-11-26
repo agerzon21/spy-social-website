@@ -727,7 +727,7 @@ const es: HelpText = {
           a: [
             'La moneda que ganas jugando: con tus partidas, tu primera partida del día y tu racha diaria, y al triturar copias repetidas.',
             'Tu racha: una partida de Jugar en línea al día la mantiene. Una partida que empiezas antes del nuevo día también la mantiene, aunque termine después.',
-            o.launch ? 'El Intel nunca se vende y no vale dinero. Los adultos lo gastan en el Mercado Negro y pueden intercambiarlo con otros adultos.' : "El Intel nunca se vende y no vale dinero. Los adultos pueden intercambiarlo con otros adultos y gastarlo en el Mercado Negro. Durante la beta, todos los tratos se deshacen antes del lanzamiento.",
+            o.launch ? 'El Intel nunca se vende y no vale dinero. Los adultos lo gastan en el Mercado Negro y pueden intercambiarlo con otros adultos.' : "El Intel nunca se vende y no vale dinero. Los adultos pueden intercambiarlo con otros adultos y gastarlo en el Mercado Negro. Durante la beta, todos los tratos se deshacen antes del lanzamiento oficial.",
             'Cada cambio en tu Intel es una línea en tu registro de Intel, con su motivo. Consulta el tuyo en <b>Historial de Intel</b>, dentro de «Cómo funciona Intel», en la actualización más reciente de la app.',
             'En la <b>Bóveda</b>, tu Intel tiene su propia ficha, una pila que crece con la cantidad. Tócala para ver lo ganado hoy, lo ganado en total y lo gastado en total. El Intel retenido en una oferta abierta del Mercado Negro cuenta como gastado hasta que vuelve.',
           ],
@@ -740,7 +740,7 @@ const es: HelpText = {
               q: '¿Por qué están cerradas las tiendas?',
               a: [
                 'Justo antes del lanzamiento se cierran la tienda de Intel y la tienda de la Noche de Juegos, desde el lunes 7 de diciembre. La app dice <b>Las tiendas reabren con el lanzamiento</b>, con la fecha.',
-                'Vuelven a abrir con el lanzamiento.',
+                'Vuelven a abrir con el lanzamiento oficial.',
               ],
             },
             ]),
@@ -748,7 +748,7 @@ const es: HelpText = {
           id: 'verifying',
           q: '¿Por qué una recompensa dice «Verificando»?',
           a: [
-            'Desde el día del lanzamiento, nuestras comprobaciones de juego limpio pueden retener las recompensas nuevas de una cuenta hasta 72 horas mientras alguien del equipo revisa una señal clara de farmeo, bots o trampas.',
+            'Desde el día del lanzamiento oficial, nuestras comprobaciones de juego limpio pueden retener las recompensas nuevas de una cuenta hasta 72 horas mientras alguien del equipo revisa una señal clara de farmeo, bots o trampas.',
             'Puedes pedir una revisión en la app.',
           ],
         },
@@ -772,7 +772,7 @@ const es: HelpText = {
               ? [
                 o.launch
                   ? 'Se añadieron en el lanzamiento de la 2.2 y son tuyas. Todos los de la lista de testers recibieron el <b>Pin beta</b> y el título <b>Tester beta</b>. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
-                  : 'Llegan con el lanzamiento de la 2.2, en una tarjeta de agradecimiento al abrir la app, y son tuyas. Todos los de la lista de testers reciben el <b>Pin beta</b> y el título <b>Tester beta</b>.',
+                  : 'Llegan con el lanzamiento oficial de la 2.2, en una tarjeta de agradecimiento al abrir la app, y son tuyas. Todos los de la lista de testers reciben el <b>Pin beta</b> y el título <b>Tester beta</b>.',
                 o.launch
                   ? "Quienes terminaron al menos una partida con otros jugadores antes del 7 de diciembre (jugada hasta el final, en cualquier sala, así que aparece en sus Estadísticas; las partidas de práctica no cuentan) recibieron además el título <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía."
                   : "Termina al menos una partida con otros jugadores antes del 7 de diciembre (jugada hasta el final, en cualquier sala, así que aparece en tus Estadísticas; las partidas de práctica no cuentan) y recibirás además el título <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.",
@@ -783,7 +783,7 @@ const es: HelpText = {
               : [
                 o.launch
                   ? 'Se añadieron en el lanzamiento de la 2.2 y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
-                  : 'Llegan con el lanzamiento de la 2.2, en una tarjeta de agradecimiento al abrir la app, y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.',
+                  : 'Llegan con el lanzamiento oficial de la 2.2, en una tarjeta de agradecimiento al abrir la app, y son tuyas: el <b>Pin beta</b>, los títulos <b>Tester beta</b> y <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.',
               ]),
             ...(o.launch ? [] : ['Lo que tienes ahora en una versión de prueba es para probar y se borra antes del lanzamiento. Tus recompensas no dependen de eso, siempre que sigas con la misma cuenta guardada.']),
             'Para ponerte el pin: <b>Cuenta</b>, <b>Editar agente</b>, <b>Accesorios</b>, <b>Pin beta</b>, <b>Guardar</b>.',
@@ -809,7 +809,7 @@ const es: HelpText = {
               id: 'beta-reset',
               q: "La app dice que todo se reinicia antes del lanzamiento. ¿Qué significa?",
               a: [
-                "SpySocial todavía está en pruebas. Antes del lanzamiento se reinician los objetos, las intercepciones, el Intel, las operaciones del Mercado Negro y los intercambios, y todos empiezan de cero.",
+                "SpySocial todavía está en pruebas. Antes del lanzamiento oficial se reinician los objetos, las intercepciones, el Intel, las operaciones del Mercado Negro y los intercambios, y todos empiezan de cero.",
                 "Tu cuenta, tus amigos y tus paquetes se quedan, y también tu XP, tu nivel, tus logros, tus estadísticas, tus notas de las partidas de práctica, los títulos de códigos y todo lo que compraste en la App Store o Google Play.",
                 ...(o.gnRewards ? [o.gnTiers4 ? `Tus títulos ★ de Noche de Juegos se quedan, y recuperas todo el Intel de Noche de Juegos que ganaste jugando, aunque lo hayas gastado. El que conseguiste triturando no se devuelve.` : "Tus títulos ★ de Noche de Juegos se quedan, y recuperas todo el Intel de Noche de Juegos que ganaste, aunque lo hayas gastado."] : []),
                 "Las membresías dadas para la prueba terminan en el lanzamiento." + (o.intelZero ? " Tu racha vuelve a empezar desde el día 0." : ''),

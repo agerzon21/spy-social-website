@@ -80,7 +80,7 @@ const en = {
       terms: 'The terms for using SpySocial: who can play, your account and content, public rooms, the community rules, moderation and appeals.',
       childSafety: "SpySocial's standards against child sexual abuse and exploitation: what we prohibit, how to report a concern, what we do, and our child safety contact.",
       whatsNew: 'Release notes for SpySocial: new features, fixes and improvements in each version of the app.',
-      news: "SpySocial news and announcements: the beta tests, the launch and Game Nights, with dates, times and how to take part.",
+      news: "SpySocial news and announcements: the beta tests, the full launch and Game Nights, with dates, times and how to take part.",
       roadmap:
         "What's coming to SpySocial: everything in version 2.2, from Play Online and Spy Sketch to automatic chat translation, and what's planned next: ranked games, seasons and tournaments.",
       press: "SpySocial's press kit: what the game is, the fact sheet, the launch date, logos and screenshots to download, and the press contact.",

@@ -9,7 +9,7 @@ import type { Category, MoverList, Win } from '../../lib/market'
 const en = {
   nav: { market: 'Market', movers: 'Market Movers', catalogue: 'Catalogue', archive: 'Uniques', label: 'Black Market prices' },
   name: 'Black Market',
-  beta: 'Beta market: these prices come from players’ trades during the beta and are wiped on December 7. The real market opens at launch.',
+  beta: 'Beta market: these prices come from players’ trades during the beta and are wiped on December 7. The real market opens at full launch.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Prices are in Intel, the game’s own currency. Intel has no cash value and can’t be bought or cashed out, and nothing here is for sale for real money.',
   sample: 'SAMPLE DATA: made up for this design preview. No real trade is shown.',
@@ -20,7 +20,7 @@ const en = {
   demoMovers: 'Until launch, Market Movers also lists a few items tagged Sample: example history to show how the lists work, not real trades. Real trades always rank first, and the samples are gone at launch.',
   halted: 'The Black Market is paused right now. Prices stay as they were when it stopped.',
   busy: 'The Market can’t reach the prices right now. Try again in a minute.',
-  soon: { title: 'Market opens at launch', text: 'Prices appear here once players trade. Until then, everything on the Black Market is a test.' },
+  soon: { title: 'Market opens at full launch', text: 'Prices appear here once players trade. Until then, everything on the Black Market is a test.' },
   retry: 'Try again',
   intel: 'Intel',
   noPrice: 'Not enough trades yet',
@@ -128,7 +128,7 @@ export function ruPlural(n: number, one: string, few: string, many: string): str
 const ru: MarketStrings = {
   nav: { market: 'Рынок', movers: 'Взлёты и падения', catalogue: 'Каталог', archive: 'Уникальные', label: 'Цены Чёрного рынка' },
   name: 'Чёрный рынок',
-  beta: 'Бета-рынок: эти цены сложились из сделок игроков во время беты и будут стёрты 7 декабря. Настоящий рынок откроется в день запуска.',
+  beta: 'Бета-рынок: эти цены сложились из сделок игроков во время беты и будут стёрты 7 декабря. Настоящий рынок откроется в день публичного запуска.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Цены указаны в разведданных, внутриигровой валюте. У разведданных нет денежной стоимости: их нельзя купить или обменять на деньги, и ничего здесь не продаётся за реальные деньги.',
   sample: 'ДЕМОДАННЫЕ: придуманы для показа дизайна. Настоящих сделок здесь нет.',
@@ -137,7 +137,7 @@ const ru: MarketStrings = {
   demoMovers: 'До запуска во «Взлётах и падениях» есть и несколько предметов с пометкой «Пример»: их история условная и только показывает, как работают списки. Настоящие сделки всегда идут первыми, а к запуску примеры исчезнут.',
   halted: 'Чёрный рынок сейчас приостановлен. Цены остаются такими, какими были в момент остановки.',
   busy: 'Рынок сейчас не может получить цены. Попробуйте через минуту.',
-  soon: { title: 'Рынок откроется в день запуска', text: 'Цены появятся здесь, когда игроки начнут торговать. До тех пор Чёрный рынок работает в тестовом режиме.' },
+  soon: { title: 'Рынок откроется в день публичного запуска', text: 'Цены появятся здесь, когда игроки начнут торговать. До тех пор Чёрный рынок работает в тестовом режиме.' },
   retry: 'Повторить',
   intel: 'разведданных',
   noPrice: 'Пока мало сделок',

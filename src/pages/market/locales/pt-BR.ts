@@ -6,7 +6,7 @@ const pl = (n: number, one: string, many: string) => (n === 1 ? one : many)
 const ptBR: MarketStrings = {
   nav: { market: 'Mercado', movers: 'Movimentos', catalogue: 'Catálogo', archive: 'Únicos', label: 'Preços do Mercado Negro' },
   name: 'Mercado Negro',
-  beta: 'Mercado da beta: estes preços vêm das vendas dos jogadores durante a beta e serão zerados em 7 de dezembro. O mercado de verdade abre no lançamento.',
+  beta: 'Mercado da beta: estes preços vêm das vendas dos jogadores durante a beta e serão zerados em 7 de dezembro. O mercado de verdade abre no lançamento oficial.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Os preços são em Intel, a moeda do próprio jogo. O Intel não tem valor em dinheiro, não pode ser comprado nem convertido em dinheiro, e nada aqui é vendido por dinheiro real.',
   sample: 'DADOS DE EXEMPLO: inventados para esta prévia do design. Nenhuma venda real aparece aqui.',
@@ -15,7 +15,7 @@ const ptBR: MarketStrings = {
   demoMovers: 'Até o lançamento, Movimentos também mostra alguns itens com a etiqueta Exemplo: um histórico fictício para mostrar como as listas funcionam, não vendas reais. As vendas reais sempre vêm primeiro, e os exemplos somem no lançamento.',
   halted: 'O Mercado Negro está pausado agora. Os preços ficam como estavam quando ele parou.',
   busy: 'O Mercado não consegue acessar os preços agora. Tente de novo em um minuto.',
-  soon: { title: 'O mercado abre no lançamento', text: 'Os preços aparecem aqui quando os jogadores começarem a negociar. Até lá, tudo no Mercado Negro é um teste.' },
+  soon: { title: 'O mercado abre no lançamento oficial', text: 'Os preços aparecem aqui quando os jogadores começarem a negociar. Até lá, tudo no Mercado Negro é um teste.' },
   retry: 'Tentar de novo',
   intel: 'Intel',
   noPrice: 'Ainda não há vendas suficientes',

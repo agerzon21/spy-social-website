@@ -8,7 +8,7 @@ import type { MarketStrings } from '../strings'
 const id: MarketStrings = {
   nav: { market: 'Pasar', movers: 'Pergerakan', catalogue: 'Katalog', archive: 'Unik', label: 'Harga Pasar Gelap' },
   name: 'Pasar Gelap',
-  beta: 'Pasar beta: harga ini berasal dari transaksi para pemain selama beta dan akan dihapus pada 7 Desember. Pasar sungguhan dibuka saat peluncuran.',
+  beta: 'Pasar beta: harga ini berasal dari transaksi para pemain selama beta dan akan dihapus pada 7 Desember. Pasar sungguhan dibuka saat peluncuran resmi.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Harga dalam Intel, mata uang khusus game. Intel tidak punya nilai uang, tidak bisa dibeli atau diuangkan, dan tidak ada yang dijual dengan uang sungguhan di sini.',
   sample: 'DATA CONTOH: dibuat untuk pratinjau desain ini. Tidak ada transaksi sungguhan yang ditampilkan.',
@@ -17,7 +17,7 @@ const id: MarketStrings = {
   demoMovers: 'Sampai peluncuran, Pergerakan juga menampilkan beberapa item bertanda Contoh: riwayat contoh untuk menunjukkan cara kerja daftar, bukan transaksi sungguhan. Transaksi sungguhan selalu di urutan teratas, dan contohnya hilang saat peluncuran.',
   halted: 'Pasar Gelap sedang dijeda. Harga tetap seperti saat pasar berhenti.',
   busy: 'Pasar tidak bisa memuat harga sekarang. Coba lagi dalam semenit.',
-  soon: { title: 'Pasar dibuka saat peluncuran', text: 'Harga muncul di sini setelah pemain mulai bertransaksi. Sampai saat itu, semua yang ada di Pasar Gelap hanyalah uji coba.' },
+  soon: { title: 'Pasar dibuka saat peluncuran resmi', text: 'Harga muncul di sini setelah pemain mulai bertransaksi. Sampai saat itu, semua yang ada di Pasar Gelap hanyalah uji coba.' },
   retry: 'Coba lagi',
   intel: 'Intel',
   noPrice: 'Transaksi belum cukup',

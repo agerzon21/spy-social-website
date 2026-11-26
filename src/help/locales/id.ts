@@ -727,7 +727,7 @@ const id: HelpText = {
           a: [
             'Mata uang yang kamu dapat dengan bermain: dari permainanmu, permainan pertama tiap hari dan rentetan harian, serta dari menghancurkan duplikat.',
             'Rentetan harianmu: satu permainan Main online sehari menjaganya. Permainan yang kamu mulai sebelum hari baru juga menjaganya, walau selesai setelahnya.',
-            o.launch ? 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.' : "Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa bisa menukarnya dengan orang dewasa lain dan memakainya di Pasar Gelap. Selama beta, semua transaksi dibatalkan sebelum peluncuran.",
+            o.launch ? 'Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa memakainya di Pasar Gelap dan bisa menukarnya dengan orang dewasa lain.' : "Intel tidak pernah dijual dan tidak bernilai uang. Orang dewasa bisa menukarnya dengan orang dewasa lain dan memakainya di Pasar Gelap. Selama beta, semua transaksi dibatalkan sebelum peluncuran resmi.",
             'Setiap perubahan Intel-mu tercatat sebagai satu baris di catatan Intel-mu, beserta alasannya. Lihat milikmu di <b>Riwayat Intel</b>, di dalam “Cara Kerja Intel”, pada pembaruan terbaru aplikasi.',
             'Di <b>Brankas</b>, Intel-mu punya ubin sendiri, tumpukan yang tumbuh sesuai jumlahnya. Ketuk untuk melihat yang didapat hari ini, didapat seluruhnya, dan dipakai seluruhnya. Intel yang tertahan di penawaran Pasar Gelap yang masih terbuka dihitung terpakai sampai kembali.',
           ],
@@ -740,7 +740,7 @@ const id: HelpText = {
               q: 'Kenapa toko tutup?',
               a: [
                 'Tepat sebelum peluncuran, toko Intel dan toko Malam Permainan tutup, mulai Senin, 7 Desember. Aplikasi menulis <b>Toko dibuka kembali saat peluncuran</b>, lengkap dengan tanggalnya.',
-                'Toko dibuka lagi saat peluncuran.',
+                'Toko dibuka lagi saat peluncuran resmi.',
               ],
             },
             ]),
@@ -748,7 +748,7 @@ const id: HelpText = {
           id: 'verifying',
           q: 'Kenapa hadiah bertuliskan “Memverifikasi”?',
           a: [
-            'Mulai hari peluncuran, pemeriksaan permainan adil kami bisa menahan hadiah baru sebuah akun sampai 72 jam selama tim kami memeriksa tanda kuat farming, bot, atau curang.',
+            'Mulai hari peluncuran resmi, pemeriksaan permainan adil kami bisa menahan hadiah baru sebuah akun sampai 72 jam selama tim kami memeriksa tanda kuat farming, bot, atau curang.',
             'Kamu bisa meminta peninjauan di aplikasi.',
           ],
         },
@@ -772,7 +772,7 @@ const id: HelpText = {
               ? [
                 o.launch
                   ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
-                  : 'Hadiahnya datang saat peluncuran 2.2, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>.',
+                  : 'Hadiahnya datang saat peluncuran resmi 2.2, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>.',
                 o.launch
                   ? "Penguji yang menyelesaikan setidaknya satu game dengan pemain lain sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka; permainan latihan tidak dihitung) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan."
                   : "Selesaikan setidaknya satu game dengan pemain lain sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu; permainan latihan tidak dihitung), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.",
@@ -783,7 +783,7 @@ const id: HelpText = {
               : [
                 o.launch
                   ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
-                  : 'Hadiahnya datang saat peluncuran 2.2, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
+                  : 'Hadiahnya datang saat peluncuran resmi 2.2, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu: <b>Pin Beta</b>, gelar <b>Penguji Beta</b> dan <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.',
               ]),
             ...(o.launch ? [] : ['Yang kamu punya sekarang di versi uji hanya untuk pengujian dan dihapus sebelum peluncuran. Hadiahmu tidak bergantung padanya, selama kamu tetap memakai akun tersimpan yang sama.']),
             'Cara memakai pin: <b>Akun</b>, <b>Ubah agen</b>, <b>Aksesori</b>, <b>Pin Beta</b>, <b>Simpan</b>.',
@@ -809,7 +809,7 @@ const id: HelpText = {
               id: 'beta-reset',
               q: "Aplikasi bilang semuanya direset sebelum peluncuran. Apa artinya?",
               a: [
-                "SpySocial masih diuji. Sebelum peluncuran, item, sadapan, Intel, transaksi Pasar Gelap, dan pertukaran direset, dan semua mulai dari nol.",
+                "SpySocial masih diuji. Sebelum peluncuran resmi, item, sadapan, Intel, transaksi Pasar Gelap, dan pertukaran direset, dan semua mulai dari nol.",
                 "Akun, teman, dan paketmu tetap ada, begitu juga XP, level, pencapaian, statistik, nilai permainan latihan, gelar dari kode, dan semua yang kamu beli di App Store atau Google Play.",
                 ...(o.gnRewards ? [o.gnTiers4 ? `Gelar ★ Malam Permainanmu tetap ada, dan semua Intel Malam Permainan yang kamu dapat dari bermain kembali utuh, walau sudah dipakai. Yang didapat dari menghancurkan salinan tidak kembali.` : "Gelar ★ Malam Permainanmu tetap ada, dan semua Intel Malam Permainan yang kamu dapatkan kembali utuh, walau sudah dipakai."] : []),
                 "Keanggotaan yang diberikan untuk uji coba berakhir saat peluncuran." + (o.intelZero ? " Rentetan harianmu mulai lagi dari hari 0." : ''),

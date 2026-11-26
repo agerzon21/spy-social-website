@@ -57,7 +57,7 @@ const ptBR: Strings = {
       terms: 'Os termos para usar o SpySocial: quem pode jogar, sua conta e seu conteúdo, salas públicas, regras da comunidade, moderação e recursos.',
       childSafety: 'Os padrões do SpySocial contra o abuso e a exploração sexual infantil: o que proibimos, como denunciar um problema, o que fazemos e nosso contato de segurança infantil.',
       whatsNew: 'Notas de versão do SpySocial: novos recursos, correções e melhorias em cada versão do app.',
-      news: "Notícias e anúncios do SpySocial: os betas, o lançamento e as Noites de Jogos, com datas, horários e como participar.",
+      news: "Notícias e anúncios do SpySocial: os betas, o lançamento oficial e as Noites de Jogos, com datas, horários e como participar.",
       roadmap:
         'O que vem aí no SpySocial: tudo da versão 2.2, do Jogar online e do Spy Sketch à tradução automática do chat, e o que está planejado depois: partidas ranqueadas, temporadas e torneios.',
       press: 'O kit de imprensa do SpySocial: o que é o jogo, a ficha técnica, a data de lançamento, logos e capturas de tela para baixar e o contato para imprensa.',
