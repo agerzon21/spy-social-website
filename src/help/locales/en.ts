@@ -701,7 +701,7 @@ const en: HelpText = {
             '<b>Wins:</b> every 10 Play Online wins give you 5 Intercepts, one of them Secret or better.',
             "<b>Daily:</b> your first Play Online game of the day gives you one. Every 7th day in a row adds one Secret or better, and every 30th day an Enigma.",
             ...(o.gnRewards ? ["<b>Game Night:</b> your games there earn Game Night Intel, which gets you Game Night Intercepts (below)."] : o.gnRewardsRules ? [] : ["<b>Game Night:</b> win a game there, as a Local or a Spy, and you get an Enigma, once a night."]),
-            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts. Intercepts from a code or a gift and what they open into are just for you: they can’t be traded, sold, used in a Trade Up or given away, however many games you play. You can still open them and wear what comes out. They stay with your account.`,
+            `<b>Codes and gifts:</b> a code from a creator or from us works once per account, and its Intercepts unlock after your first counted Play Online game. We also give some as gifts. Intercepts from a code or a gift, and what they open into, stay with your account: they can’t be traded, sold, used in a Trade Up or given away, however many games you play. You can still open them and wear what comes out.`,
             "<b>Welcome:</b> a saved account gets a first Intercept, free. Like Intercepts from a code or a gift, it and what comes out of it stay with your account: they can’t be traded or sold.",
             'Private rooms don’t give Intercepts.',
             ...(o.launch

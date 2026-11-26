@@ -15,7 +15,7 @@ const UPDATED = LIVE.launchSite
   ? 'December 8, 2026' // 2.2 is out: the monthly report's first date and the Intel fingerprint's start told in the past (site-launch-walk)
   : LIVE.launchResetIncident
   ? 'December 7, 2026' // incident I-1 and the Dec 7 gift-trading rule change (website update U0, the day WI runs)
-  : 'November 16, 2026' // incident I-3, Beta Black Market sales undone (published Nov 16), in the list; it came after every
+  : 'November 26, 2026' // the gift rule (gift and code items bound; Transparency rows). Before it, November 16, 2026: incident I-3, Beta Black Market sales undone (published Nov 16), in the list; it came after every
   // earlier change this chain named (I-2 Nov 9 / coverage1110, Intercepts in trades, account notices, trade limits, gifts, Uniques)
 
 const KIND: Record<string, string> = { reset: 'Reset', bug: 'Bug', outage: 'Outage' }
