@@ -31,7 +31,8 @@ interface Section {
 
 interface Release {
   version: string
-  date: string
+  /** Left out on 2.2.0: no fixed launch date in player text (site-dates-1126). */
+  date?: string
   tag?: string
   summary: string
   sections: Section[]
@@ -73,19 +74,17 @@ function releasesIn(words: Strings['whatsNew']['releases'], locale: string, laun
  * 2.2 ships and to the store's What's New (whatsnew-22-1105); the Roadmap's cards are live before the launch, so the
  * entry adds to them instead of changing them.
  */
-const LAUNCH_DATE = 'December 8, 2026'
 /** roadmap.now.features by position: 2 Automatic translation, 3 Your agent and the Vault, 5 Agent Colors, 6 Creator
  * codes, 7 Music and sounds, 8 Recommended game time, 9 Safety built in (0, 1, 4 are in the cards). */
 const R = { translation: 2, agent: 3, colors: 5, codes: 6, music: 7, time: 8, safety: 9 } as const
 /** launch.notes.items by position. */
 const N = { practice: 0, clues: 1, rules: 2, friends: 3, intercepts: 4, intel: 5, community: 6, languages: 7, alerts: 8 } as const
 
-function launchRelease(strings: Strings, locale: string): Release {
+function launchRelease(strings: Strings): Release {
   const n = strings.launch.notes
   const r = strings.roadmap.now.features
   return {
     version: '2.2.0',
-    date: formatDate(LAUNCH_DATE, locale),
     tag: n.tag,
     summary: n.summary,
     sections: [
@@ -171,7 +170,7 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
   >
     <VStack spacing={6} align="stretch" position="relative">
       <Box>
-        <HStack spacing={3} mb={2} flexWrap="wrap">
+        <HStack spacing={3} mb={release.date ? 2 : 4} flexWrap="wrap">
           <Heading as="h2" size="lg" dir="ltr">
             v{release.version}
           </Heading>
@@ -191,9 +190,11 @@ const ReleaseBlock = ({ release, isFirst }: { release: Release; isFirst: boolean
             </Badge>
           )}
         </HStack>
-        <Text textStyle="meta" mb={4} suppressHydrationWarning>
-          {release.date}
-        </Text>
+        {release.date && (
+          <Text textStyle="meta" mb={4} suppressHydrationWarning>
+            {release.date}
+          </Text>
+        )}
         <Text fontSize={{ base: '17px', md: '18px' }} color="ss.body" lineHeight="1.6">
           {release.summary}
         </Text>
@@ -215,7 +216,7 @@ const WhatsNew = () => {
   const t = strings.whatsNew
   const { language } = useLang()
   const releases = [
-    ...(LIVE.launchSite ? [launchRelease(strings, language.locale)] : []),
+    ...(LIVE.launchSite ? [launchRelease(strings)] : []),
     ...releasesIn(t.releases, language.locale, LIVE.launchSite),
   ]
   return (

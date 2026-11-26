@@ -10,7 +10,7 @@ const zh: PressStrings = {
   about: {
     eyebrow: '一段话介绍',
     title: '关于 SpySocial',
-    short: (_day, out) =>
+    short: (out) =>
       `SpySocial 是一款免费的虚张声势与推理派对游戏，支持 3 到 21 名玩家，每人用自己的手机或平板。除了卧底，所有人都知道秘密。在 Spy Talk 里，秘密是一个地点，玩家轮流提问和回答。在 Spy Sketch 里，秘密是一个词语，玩家轮流在同一块画板上画出来，卧底则假装自己也知道。最后全桌投票。2.2 版本${out ? '已' : '将'}登陆 iPhone、iPad 和 Android，带来 Spy Sketch、在线游戏桌、引导教程、游戏之夜、好友、交易和 10 种语言。没有广告，唯一出售的是可选的会员。`,
     moreTitle: '详细介绍',
     sections: [
@@ -59,10 +59,10 @@ const zh: PressStrings = {
     genre: '社交推理派对游戏',
     platforms: 'iPhone、iPad，以及 Android 手机和平板。iPhone 和 Android 玩家可以一起玩。',
     players: '私密房间 3 到 21 人。在线游戏：4 人或 8 人桌。',
-    release: (_day, out) =>
+    release: (out) =>
       out
         ? `2.2 版本现已上线，是 App Store 和 Google Play 上的免费更新。`
-        : `2.2 版本即将上线。SpySocial 已在 App Store 和 Google Play 上架，2.2 是一次免费更新。`,
+        : `2.2 版本将于正式上线时推出。SpySocial 已在 App Store 和 Google Play 上架，2.2 是一次免费更新。`,
     price: '免费下载，免费游玩。没有广告。',
     membership: (month, year, life) =>
       `可选，也是唯一出售的东西：月度会员每月 ${month}，年度会员每年 ${year}（均自动续订直至取消），或终身会员 ${life}，一次付款。以上为美国价格，各国价格不同。不单独出售主题包或礼包。`,

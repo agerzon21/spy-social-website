@@ -10,7 +10,7 @@ const es: PressStrings = {
   about: {
     eyebrow: 'En un párrafo',
     title: 'Sobre SpySocial',
-    short: (_day, out) =>
+    short: (out) =>
       `SpySocial es un juego de fiesta gratuito de faroles y deducción para 3 a 21 jugadores, cada uno con su propio teléfono o tablet. Todos conocen el secreto menos los espías. En Spy Talk el secreto es un lugar, y los jugadores se turnan para hacer y responder preguntas. En Spy Sketch es una palabra, y los jugadores se turnan para dibujarla en una misma pizarra mientras los espías disimulan. Después, la mesa vota. La versión 2.2 ${out ? 'salió' : 'sale'} en iPhone, iPad y Android, con Spy Sketch, mesas de Jugar en línea, un tutorial guiado, Noches de Juegos, amigos, intercambios y 10 idiomas. No hay anuncios, y lo único que se vende es una membresía opcional.`,
     moreTitle: 'La versión larga',
     sections: [
@@ -59,10 +59,10 @@ const es: PressStrings = {
     genre: 'Juego de fiesta de deducción social',
     platforms: 'iPhone, iPad y teléfonos y tablets Android. Los jugadores de iPhone y Android juegan juntos.',
     players: 'De 3 a 21 en una sala privada. Jugar en línea: mesas de 4 u 8.',
-    release: (_day, out) =>
+    release: (out) =>
       out
         ? `La versión 2.2 ya está disponible, como actualización gratuita en App Store y Google Play.`
-        : `La versión 2.2 llega pronto. SpySocial ya está en App Store y Google Play, y la 2.2 es una actualización gratuita.`,
+        : `La versión 2.2 llega con el lanzamiento completo. SpySocial ya está en App Store y Google Play, y la 2.2 es una actualización gratuita.`,
     price: 'Gratis para descargar y jugar. Sin anuncios.',
     membership: (month, year, life) =>
       `Opcional, y lo único que se vende: la membresía mensual a ${month} al mes o la anual a ${year} al año (se renuevan hasta cancelarlas), o la membresía de por vida a ${life}, en un solo pago. Precios de EE. UU.; varían según el país. No se venden paquetes sueltos ni lotes.`,

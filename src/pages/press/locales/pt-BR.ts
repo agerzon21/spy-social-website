@@ -10,7 +10,7 @@ const ptBR: PressStrings = {
   about: {
     eyebrow: 'Em um parágrafo',
     title: 'Sobre o SpySocial',
-    short: (_day, out) =>
+    short: (out) =>
       `SpySocial é um jogo de festa gratuito de blefe e dedução para 3 a 21 jogadores, cada um no seu celular ou tablet. Todo mundo sabe o segredo, menos os espiões. No Spy Talk o segredo é um local, e os jogadores se revezam fazendo e respondendo perguntas. No Spy Sketch é uma palavra, e os jogadores se revezam desenhando-a num mesmo quadro enquanto os espiões disfarçam. Depois, a mesa vota. A versão 2.2 ${out ? 'chegou' : 'chega'} ao iPhone, iPad e Android, com Spy Sketch, mesas do Jogar online, um tutorial guiado, Noites de Jogos, amigos, trocas e 10 idiomas. Não tem anúncios, e a única coisa à venda é um plano de membro opcional.`,
     moreTitle: 'A versão completa',
     sections: [
@@ -59,10 +59,10 @@ const ptBR: PressStrings = {
     genre: 'Jogo de festa de dedução social',
     platforms: 'iPhone, iPad e celulares e tablets Android. Jogadores de iPhone e Android jogam juntos.',
     players: 'De 3 a 21 numa sala privada. Jogar online: mesas de 4 ou 8.',
-    release: (_day, out) =>
+    release: (out) =>
       out
         ? `A versão 2.2 já chegou, como atualização gratuita na App Store e no Google Play.`
-        : `A versão 2.2 chega em breve. O SpySocial já está na App Store e no Google Play, e a 2.2 é uma atualização gratuita.`,
+        : `A versão 2.2 chega no lançamento completo. O SpySocial já está na App Store e no Google Play, e a 2.2 é uma atualização gratuita.`,
     price: 'Grátis para baixar e jogar. Sem anúncios.',
     membership: (month, year, life) =>
       `Opcional, e a única coisa vendida: a assinatura mensal por ${month} ao mês ou anual por ${year} ao ano (renovam até serem canceladas), ou o Vitalício por ${life}, em pagamento único. Preços dos EUA; variam conforme o país. Não vendemos pacotes avulsos nem combos.`,

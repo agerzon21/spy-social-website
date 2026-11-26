@@ -9,7 +9,7 @@ import type { Category, MoverList, Win } from '../../lib/market'
 const en = {
   nav: { market: 'Market', movers: 'Market Movers', catalogue: 'Catalogue', archive: 'Uniques', label: 'Black Market prices' },
   name: 'Black Market',
-  beta: 'Beta market: these prices come from players’ trades during the beta and are wiped on December 7. The real market opens at full launch.',
+  beta: 'Beta market: these prices come from players’ trades during the beta and are wiped at the release reset. The real market opens at full launch.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Prices are in Intel, the game’s own currency. Intel has no cash value and can’t be bought or cashed out, and nothing here is for sale for real money.',
   sample: 'SAMPLE DATA: made up for this design preview. No real trade is shown.',
@@ -128,7 +128,7 @@ export function ruPlural(n: number, one: string, few: string, many: string): str
 const ru: MarketStrings = {
   nav: { market: 'Рынок', movers: 'Взлёты и падения', catalogue: 'Каталог', archive: 'Уникальные', label: 'Цены Чёрного рынка' },
   name: 'Чёрный рынок',
-  beta: 'Бета-рынок: эти цены сложились из сделок игроков во время беты и будут стёрты 7 декабря. Настоящий рынок откроется в день публичного запуска.',
+  beta: 'Бета-рынок: эти цены сложились из сделок игроков во время беты и будут стёрты при обнулении в день релиза. Настоящий рынок откроется в день публичного запуска.',
   /** store-review R4: the prices are Intel, never money. Shown on every Market page. */
   noCash: 'Цены указаны в разведданных, внутриигровой валюте. У разведданных нет денежной стоимости: их нельзя купить или обменять на деньги, и ничего здесь не продаётся за реальные деньги.',
   sample: 'ДЕМОДАННЫЕ: придуманы для показа дизайна. Настоящих сделок здесь нет.',

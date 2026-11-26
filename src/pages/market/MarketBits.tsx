@@ -71,7 +71,7 @@ export function MarketPage({ head, children, movers = false }: { head?: MarketHe
   )
 }
 
-/** The server's Market reads aren't on yet: "Market opens December 8". Busy: a plain line and a retry. */
+/** The server's Market reads aren't on yet: "Market opens at full launch". Busy: a plain line and a retry. */
 export function MarketState({ kind, onRetry }: { kind: LoadState; onRetry?: () => void }) {
   const { w } = useMarketWords()
   if (kind === 'soon') {

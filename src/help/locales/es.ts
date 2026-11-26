@@ -489,15 +489,15 @@ const es: HelpText = {
           a: [
             'Intercambias con amigos, dentro de la app. Necesitas una cuenta de al menos 7 días, el correo confirmado y 3 partidas que cuenten (partidas terminadas que suman a tus estadísticas, con al menos otras 2 cuentas guardadas en otros teléfonos).',
             "Los 7 días cuentan desde que se guardó la cuenta: el tiempo como invitado no cuenta.",
-            ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, no se aplican las reglas de antigüedad de la cuenta, partidas contadas ni dispositivo nuevo: cualquier jugador adulto puede intercambiar en cuanto confirme su correo.']),
+            ...(o.launch ? [] : ['Durante la prueba beta, hasta el reinicio del lanzamiento, no se aplican las reglas de antigüedad de la cuenta, partidas contadas ni dispositivo nuevo: cualquier jugador adulto puede intercambiar en cuanto confirme su correo.']),
             ...(o.launch ? ["Los testers que jugaron 3 partidas que cuentan durante la prueba beta no necesitan otras 3."] : ["Los testers que jueguen 3 partidas que cuenten durante la prueba beta no necesitarán otras 3 después del lanzamiento."]),
             'Cada lado ofrece hasta 10 objetos, y los dos confirman antes de que se haga. Los intercambios grandes piden un código que te enviamos por correo.',
             ...(o.interceptsInTrades ? ['Los adultos también pueden poner intercepciones sin abrir en un intercambio: eligen cuántas de cada nivel. Cada una cuenta como uno de los 10.'] : []),
-            ...(o.interceptsInTrades && !o.launch ? ['Durante la beta, hasta el 7 de diciembre, cualquier intercepción sin abrir puede entrar en un intercambio, sea cual sea su origen. De todos modos, las intercepciones empiezan de cero con el lanzamiento.'] : []),
+            ...(o.interceptsInTrades && !o.launch ? ['Durante la beta, hasta el reinicio del lanzamiento, cualquier intercepción sin abrir puede entrar en un intercambio, sea cual sea su origen. De todos modos, las intercepciones empiezan de cero con el lanzamiento.'] : []),
             'Lo que pones en un intercambio abierto queda reservado para él: no puede ir a otro intercambio ni al Mercado Negro al mismo tiempo. Si el Intel de un intercambio se gasta antes de que se haga, aparece un aviso en ese lado y el intercambio no puede hacerse hasta que se baje la cantidad.',
             'La app marca qué objetos se pueden intercambiar. La membresía y lo que incluye, las recompensas de nivel y los objetos de los juegos arcade nunca se pueden.' + (o.launch ? (o.gnRewardsRules ? " Tampoco lo que venga de un código ni lo que te demos nosotros o nuestro equipo: se queda en tu cuenta. El Intel nunca queda ligado a una cuenta, venga de donde venga." : " Tampoco lo que venga de un código ni lo que te demos nosotros o nuestro equipo, incluida una Elección del desarrollador: se queda en tu cuenta. El Intel nunca queda ligado a una cuenta, venga de donde venga.") : ''),
             'El Intel solo se puede intercambiar entre adultos.',
-            ...(o.launch ? [] : ["Durante la prueba beta, hasta el 7 de diciembre, todos los jugadores adultos también pueden intercambiar Intel." + (o.intelZero ? " Justo antes del lanzamiento, el Intel de cada cuenta pasa a 0, incluido el que se ganó en la prueba." : " El 7 de diciembre se devuelve todo el Intel intercambiado: quien lo dio lo recupera y cada uno se queda solo con el Intel que ganó."), "Desde el 7 de diciembre, las intercepciones de un código o un regalo, lo que salga de ellas y lo que consigas con ellas en un Canje se quedan en tu cuenta: puedes usarlas, pero no intercambiarlas ni venderlas."]),
+            ...(o.launch ? [] : ["Durante la prueba beta, hasta el reinicio del lanzamiento, todos los jugadores adultos también pueden intercambiar Intel." + (o.intelZero ? " Justo antes del lanzamiento, el Intel de cada cuenta pasa a 0, incluido el que se ganó en la prueba." : " Con el reinicio del lanzamiento se devuelve todo el Intel intercambiado: quien lo dio lo recupera y cada uno se queda solo con el Intel que ganó."), "Desde el reinicio del lanzamiento, las intercepciones de un código o un regalo, lo que salga de ellas y lo que consigas con ellas en un Canje se quedan en tu cuenta: puedes usarlas, pero no intercambiarlas ni venderlas."]),
             'Comprar o vender objetos, Intel o cuentas por dinero real va contra las reglas.',
           ],
         },
@@ -536,7 +536,7 @@ const es: HelpText = {
           a: [
             'Los intercambios se pausan un tiempo tras un cambio de correo o de forma de inicio de sesión, tras iniciar sesión en un dispositivo nuevo, tras revertir tus intercambios (30 días) o cuando los bloqueas tú.',
             'La pausa por un dispositivo nuevo dura 24 horas; la de un cambio de correo o de inicio de sesión, 3 días.',
-            ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, iniciar sesión en un dispositivo nuevo o cambiar el correo o el método de inicio de sesión no pausa los intercambios.']),
+            ...(o.launch ? [] : ['Durante la prueba beta, hasta el reinicio del lanzamiento, iniciar sesión en un dispositivo nuevo o cambiar el correo o el método de inicio de sesión no pausa los intercambios.']),
             'Así se protegen tus objetos si alguien más entra en tu cuenta.',
             'También podemos pausar nosotros los intercambios de una cuenta, para protegerla o mientras revisamos un posible fraude.',
             "Una revisión de juego limpio pausa los intercambios y el Mercado Negro mientras dura. Con la reputación Bloqueada, los intercambios, los regalos y el Mercado Negro siguen cerrados hasta que se recupere: mira <b>Reputación</b> en Ajustes.",
@@ -566,7 +566,7 @@ const es: HelpText = {
           a: [
             'Los adultos que pueden intercambiar: una cuenta de al menos 7 días, el correo confirmado, 3 partidas que cuenten y sin pausa de intercambios.',
             "Los 7 días cuentan desde que se guardó la cuenta: el tiempo como invitado no cuenta.",
-            ...(o.launch ? [] : ['Durante la prueba beta, hasta el 7 de diciembre, aquí tampoco se aplican las reglas de antigüedad de la cuenta ni de partidas contadas.']),
+            ...(o.launch ? [] : ['Durante la prueba beta, hasta el reinicio del lanzamiento, aquí tampoco se aplican las reglas de antigüedad de la cuenta ni de partidas contadas.']),
             'Los menores de 18 pueden mirar, pero no comprar, vender ni hacer ofertas.',
             ...(o.launch ? [] : ["Durante la beta, todos los jugadores adultos pueden comprar y vender aquí. Todas las ventas hechas durante la prueba se deshacen antes del lanzamiento: quien compró recupera el Intel que pagó y quien vendió devuelve lo que recibió."]),
           ],
@@ -739,7 +739,7 @@ const es: HelpText = {
               id: 'shops-closed',
               q: '¿Por qué están cerradas las tiendas?',
               a: [
-                'Justo antes del lanzamiento se cierran la tienda de Intel y la tienda de la Noche de Juegos, desde el lunes 7 de diciembre. La app dice <b>Las tiendas reabren con el lanzamiento</b>, con la fecha.',
+                'Justo antes del lanzamiento se cierran la tienda de Intel y la tienda de la Noche de Juegos. La app dice <b>Las tiendas reabren con el lanzamiento</b>.',
                 'Vuelven a abrir con el lanzamiento oficial.',
               ],
             },
@@ -774,8 +774,8 @@ const es: HelpText = {
                   ? 'Se añadieron en el lanzamiento de la 2.2 y son tuyas. Todos los de la lista de testers recibieron el <b>Pin beta</b> y el título <b>Tester beta</b>. La primera vez que abres la app tras el lanzamiento aparece una tarjeta de agradecimiento.'
                   : 'Llegan con el lanzamiento oficial de la 2.2, en una tarjeta de agradecimiento al abrir la app, y son tuyas. Todos los de la lista de testers reciben el <b>Pin beta</b> y el título <b>Tester beta</b>.',
                 o.launch
-                  ? "Quienes terminaron al menos una partida con otros jugadores antes del 7 de diciembre (jugada hasta el final, en cualquier sala, así que aparece en sus Estadísticas; las partidas de práctica no cuentan) recibieron además el título <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía."
-                  : "Termina al menos una partida con otros jugadores antes del 7 de diciembre (jugada hasta el final, en cualquier sala, así que aparece en tus Estadísticas; las partidas de práctica no cuentan) y recibirás además el título <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.",
+                  ? "Quienes terminaron al menos una partida con otros jugadores antes del lanzamiento oficial (jugada hasta el final, en cualquier sala, así que aparece en sus Estadísticas; las partidas de práctica no cuentan) recibieron además el título <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía."
+                  : "Termina al menos una partida con otros jugadores antes del lanzamiento oficial (jugada hasta el final, en cualquier sala, así que aparece en tus Estadísticas; las partidas de práctica no cuentan) y recibirás además el título <b>Tester de campo</b>, 10 intercepciones de cada nivel y 1 mes de membresía.",
                 o.testerInterceptsTradable
                   ? 'El <b>Pin beta</b>, el título <b>Tester de campo</b> y las intercepciones de agradecimiento se intercambian como todo lo que ganas.'
                   : 'El <b>Pin beta</b> y el título <b>Tester de campo</b> se intercambian como todo lo que ganas; como otros regalos, las intercepciones de agradecimiento se quedan en tu cuenta.',
@@ -796,7 +796,7 @@ const es: HelpText = {
             id: 'after-launch-reset',
             q: "¿Adónde fueron mi Intel y mis objetos de la beta?",
             a: [
-              "Antes del lanzamiento, el 7 de diciembre, se restableció todo lo de las versiones de prueba: Intel, intercepciones, objetos, ofertas del Mercado Negro, intercambios y membresías de prueba. Todos empezaron de cero en el lanzamiento.",
+              "Antes del lanzamiento se restableció todo lo de las versiones de prueba: Intel, intercepciones, objetos, ofertas del Mercado Negro, intercambios y membresías de prueba. Todos empezaron de cero en el lanzamiento.",
               "Se conservan tu cuenta, tus amigos, tus paquetes, tu XP, tu nivel, tus logros, tus estadísticas, los títulos que ganaste con códigos y lo que compraste en la tienda. Los probadores conservaron el <b>Beta Pin</b> y recibieron sus recompensas de agradecimiento (mira «¿Dónde están mis recompensas de la beta?»).",
               "¿Crees que algo falla? Escribe a <email/> con tu nombre de usuario.",
             ],

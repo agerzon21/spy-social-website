@@ -13,7 +13,7 @@ const fr: PressStrings = {
   about: {
     eyebrow: 'En un paragraphe',
     title: 'À propos de SpySocial',
-    short: (_day, out) =>
+    short: (out) =>
       `SpySocial est un jeu d'ambiance gratuit de bluff et de déduction pour 3 à 21\u00A0joueurs, chacun sur son téléphone ou sa tablette. Tout le monde connaît le secret, sauf les espions. Dans Spy Talk, le secret est un lieu, et les joueurs posent des questions et y répondent à tour de rôle. Dans Spy Sketch, c'est un mot, que les joueurs dessinent à tour de rôle sur un tableau commun pendant que les espions font semblant. Puis la table vote. La version\u00A02.2 ${out ? 'est sortie' : 'sort'} sur iPhone, iPad et Android, avec Spy Sketch, les tables de Jouer en ligne, un tutoriel guidé, les soirées jeux, les amis, les échanges et 10\u00A0langues. Il n'y a pas de pub, et la seule chose à vendre est un statut de membre facultatif.`,
     moreTitle: 'La version longue',
     sections: [
@@ -62,10 +62,10 @@ const fr: PressStrings = {
     genre: "Jeu d'ambiance de déduction sociale",
     platforms: 'iPhone, iPad, et téléphones et tablettes Android. Les joueurs iPhone et Android jouent ensemble.',
     players: 'De 3 à 21 dans un salon privé. Jouer en ligne\u00A0: tables de 4 ou 8.',
-    release: (_day, out) =>
+    release: (out) =>
       out
         ? `La version\u00A02.2 est disponible, en mise à jour gratuite sur l'App Store et Google Play.`
-        : `La version\u00A02.2 arrive bientôt. SpySocial est déjà sur l'App Store et Google Play, et la\u00A02.2 est une mise à jour gratuite.`,
+        : `La version\u00A02.2 arrive au lancement complet. SpySocial est déjà sur l'App Store et Google Play, et la\u00A02.2 est une mise à jour gratuite.`,
     price: 'Gratuit à télécharger et à jouer. Sans pub.',
     membership: (month, year, life) =>
       `Facultatif, et la seule chose vendue\u00A0: l'abonnement mensuel à ${month} par mois ou annuel à ${year} par an (renouvelés jusqu'à résiliation), ou l'accès à vie à ${life}, en un seul paiement. Prix américains\u00A0; ils varient selon le pays. Aucun pack ni lot n'est vendu à l'unité.`,

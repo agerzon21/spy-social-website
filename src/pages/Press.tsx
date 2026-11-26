@@ -10,8 +10,7 @@ import DisplayHeading from '../components/ui/DisplayHeading'
 import Eyebrow from '../components/ui/Eyebrow'
 import ui from '../components/ui/ui.module.css'
 import { useLang, useT } from '../i18n'
-import { formatDate, rich } from '../i18n/rich'
-import { LAUNCH_DAY } from '../lib/launchDay'
+import { rich } from '../i18n/rich'
 import { LIVE, ONLINE_SAFETY_TEXT, OPERATOR, STORES_OPEN, avatarsLive } from '../lib/legalRelease'
 import { SHOTS, shot } from '../lib/shots22'
 import { PRESS_EMAIL } from '../lib/social'
@@ -84,7 +83,7 @@ const Fact = ({ label, children }: { label: string; children: ReactNode }) => (
 /**
  * The press page (www.spysocial.app/press, press-page-1116): a short and a long description, the fact sheet, the
  * logos, icon, banner and store screenshots to download (the site's own files), the safety stance and the press
- * contact. Words in ./press/strings (ten languages). Until 2.2 is out it says the launch day is coming; the store
+ * contact. Words in ./press/strings (ten languages). Until 2.2 is out it says 2.2 comes at full launch (no date: owner rule, no fixed launch date in player text); the store
  * links join the fact sheet when the stores open (STORES_OPEN), as on the rest of the site.
  */
 const Press = () => {
@@ -93,7 +92,6 @@ const Press = () => {
   const p = pressStrings(lang)
   // Out from the launch, as the Roadmap reads it.
   const out = avatarsLive(LIVE) || LIVE.launchSite
-  const day = formatDate(LAUNCH_DAY, language.locale)
   const money = (n: number) => {
     try {
       return new Intl.NumberFormat(language.locale, { style: 'currency', currency: 'USD' }).format(n)
@@ -137,7 +135,7 @@ const Press = () => {
           <Eyebrow>{p.about.eyebrow}</Eyebrow>
           <DisplayHeading id="press-about">{p.about.title}</DisplayHeading>
           <p className={s.short} suppressHydrationWarning>
-            {p.about.short(day, out)}
+            {p.about.short(out)}
           </p>
           <DisplayHeading as="h3" size={4} className={s.subhead}>
             {p.about.moreTitle}
@@ -167,7 +165,7 @@ const Press = () => {
             <Fact label={p.facts.labels.platforms}>{p.facts.platforms}</Fact>
             <Fact label={p.facts.labels.players}>{p.facts.players}</Fact>
             <Fact label={p.facts.labels.release}>
-              <span suppressHydrationWarning>{p.facts.release(day, out)}</span>
+              <span suppressHydrationWarning>{p.facts.release(out)}</span>
             </Fact>
             <Fact label={p.facts.labels.price}>{p.facts.price}</Fact>
             <Fact label={p.facts.labels.membership}>
