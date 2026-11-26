@@ -171,7 +171,7 @@ function prelaunch(text) {
     const stores = ' Available on iOS and Google Play.';
     if (!text.includes(stores))
         throw new Error('prelaunch: the description no longer names the stores as this expects');
-    return text.split(stores).join(' The new SpySocial launches December 8.');
+    return text.split(stores).join(' The new SpySocial is almost here.');
 }
 async function loadSite(root) {
     const legal = (await siteModule(root, 'src/lib/legalRelease.ts'));
@@ -704,8 +704,8 @@ function helloPage() {
                 rpcUrl: supabaseUrl ? `${supabaseUrl.replace(/\/+$/, '')}/rest/v1/rpc/launch_reminder_signup` : '',
                 anonKey,
                 closesAt: closes.toISOString(),
-                metaTitle: 'SpySocial: the new version launches December 8',
-                metaDescription: 'SpySocial is the party game of social deception. The new version launches December 8. The version in the stores today is the old one, so wait for this one.',
+                metaTitle: 'SpySocial: the new version is almost here',
+                metaDescription: 'SpySocial is the party game of social deception. The new version is almost here. The version in the stores today is the old one, so wait for this one.',
                 origin: ORIGIN,
             });
             await mkdir(resolve(outDir, 'hello'), { recursive: true });

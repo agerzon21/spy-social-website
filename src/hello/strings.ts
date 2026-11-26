@@ -41,6 +41,8 @@ export interface HelloStrings {
   }
   /** Until the launch, one sentence for pages that had store buttons, and the home page's description. */
   launchLine: (day: string) => string
+  /** The same line with no date (the site's meta description). */
+  soonLine: string
   /** /join with a room code, until the launch: the one page that keeps a store button, and why it isn't the main way. */
   joinStores: string
   /** The end of this language's meta.description that names the stores, taken off until the launch. */
@@ -56,6 +58,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'The SpySocial on the App Store and Google Play today is the old version.',
     wait: 'Wait for this one.',
     launchLine: (day) => `The new SpySocial launches ${day}.`,
+    soonLine: 'The new SpySocial is almost here.',
     joinStores: 'The version in the stores today is the old one. It only helps if your friend is playing on it too.',
     storeTail: ' Available on iOS and Google Play.',
     remind: {
@@ -81,6 +84,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'El SpySocial que hoy está en la App Store y Google Play es la versión antigua.',
     wait: 'Espera a la nueva.',
     launchLine: (day) => `El nuevo SpySocial llega el ${day}.`,
+    soonLine: 'El nuevo SpySocial ya casi está aquí.',
     joinStores: 'La versión que hoy está en las tiendas es la antigua. Solo te sirve si tu amigo también juega con ella.',
     storeTail: ' Disponible en iOS y Google Play.',
     remind: {
@@ -106,6 +110,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'SpySocial, который сейчас в App Store и Google Play, — это старая версия.',
     wait: 'Дождитесь новой.',
     launchLine: (day) => `Новый SpySocial выйдет ${day}.`,
+    soonLine: 'Новый SpySocial скоро выйдет.',
     joinStores: 'В магазинах сейчас старая версия. Она пригодится, только если ваш друг тоже играет в ней.',
     storeTail: ' В App Store и Google Play.',
     remind: {
@@ -131,6 +136,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: '目前 App Store 和 Google Play 上的 SpySocial 是旧版本。',
     wait: '请等待新版。',
     launchLine: (day) => `全新 SpySocial 将于${day}上线。`,
+    soonLine: '全新 SpySocial 即将上线。',
     joinStores: '商店里现在是旧版本。只有你的朋友也在用旧版本时才有用。',
     storeTail: 'iOS 和 Google Play 均可下载。',
     remind: {
@@ -156,6 +162,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'App Store और Google Play पर अभी मौजूद SpySocial पुराना वर्ज़न है।',
     wait: 'नए वर्ज़न का इंतज़ार करें।',
     launchLine: (day) => `नया SpySocial ${day} को आ रहा है।`,
+    soonLine: 'नया SpySocial जल्द ही आ रहा है।',
     joinStores: 'स्टोर में अभी पुराना वर्ज़न है। यह तभी काम आएगा जब आपका दोस्त भी इसी पर खेल रहा हो।',
     storeTail: ' iOS और Google Play पर उपलब्ध।',
     remind: {
@@ -181,6 +188,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'النسخة الموجودة اليوم على App Store وGoogle Play هي النسخة القديمة.',
     wait: 'انتظروا النسخة الجديدة.',
     launchLine: (day) => `النسخة الجديدة من SpySocial تصل في ${day}.`,
+    soonLine: 'النسخة الجديدة من SpySocial على الأبواب.',
     joinStores: 'النسخة الموجودة في المتاجر اليوم هي القديمة. لن تفيدك إلا إذا كان صديقك يلعب عليها أيضًا.',
     storeTail: ' متوفرة على iOS وGoogle Play.',
     remind: {
@@ -206,6 +214,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'Le SpySocial de l’App Store et de Google Play est aujourd’hui l’ancienne version.',
     wait: 'Attends le nouveau.',
     launchLine: (day) => `Le nouveau SpySocial arrive le ${day}.`,
+    soonLine: 'Le nouveau SpySocial arrive bientôt.',
     joinStores: 'La version dans les stores aujourd’hui est l’ancienne. Elle ne sert que si ton ami joue aussi dessus.',
     storeTail: ', sur iOS et Google Play',
     remind: {
@@ -231,6 +240,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'App Store আর Google Play-এ এখন যে SpySocial আছে, সেটি পুরোনো ভার্সন।',
     wait: 'নতুনটির জন্য অপেক্ষা করুন।',
     launchLine: (day) => `নতুন SpySocial আসছে ${day}।`,
+    soonLine: 'নতুন SpySocial খুব শিগগিরই আসছে।',
     joinStores: 'স্টোরে এখন পুরোনো ভার্সন আছে। আপনার বন্ধুও এতে খেললে তবেই এটি কাজে লাগবে।',
     storeTail: ' iOS আর Google Play-তে পাওয়া যাচ্ছে।',
     remind: {
@@ -256,6 +266,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'O SpySocial que está hoje na App Store e no Google Play é a versão antiga.',
     wait: 'Espere pelo novo.',
     launchLine: (day) => `O novo SpySocial chega em ${day}.`,
+    soonLine: 'O novo SpySocial chega em breve.',
     joinStores: 'A versão nas lojas hoje é a antiga. Ela só serve se seu amigo também estiver jogando nela.',
     storeTail: ' Para iOS e Google Play.',
     remind: {
@@ -281,6 +292,7 @@ export const HELLO_STRINGS: Record<string, HelloStrings> = {
     stores: 'SpySocial di App Store dan Google Play saat ini adalah versi lama.',
     wait: 'Tunggu yang baru.',
     launchLine: (day) => `SpySocial baru hadir pada ${day}.`,
+    soonLine: 'SpySocial baru segera hadir.',
     joinStores: 'Versi di toko saat ini adalah versi lama. Itu hanya berguna kalau temanmu juga bermain di versi itu.',
     storeTail: ' Di iOS dan Google Play.',
     remind: {

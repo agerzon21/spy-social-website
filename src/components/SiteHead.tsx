@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import { useLocation } from 'react-router-dom'
 import { LANGUAGES, matchLang, useLang, useT, type Strings } from '../i18n'
 import { HELLO_STRINGS } from '../hello/strings'
-import { launchDayText } from '../lib/launchDay'
 import { LIVE, ONLINE_SAFETY_TEXT, STORES_OPEN } from '../lib/legalRelease'
 import { LEDGER_DESCRIPTION_UNIQUES } from '../lib/ledgerScope'
 import { canonicalPath, publicUrl } from '../lib/siteHost'
@@ -85,7 +84,7 @@ const SiteHead = () => {
   // Until the launch the site's own description doesn't name the stores: it says when the new version comes.
   const general = STORES_OPEN
     ? t.meta.description
-    : `${t.meta.description.replace(words.storeTail, '')} ${words.launchLine(launchDayText(language.locale))}`
+    : `${t.meta.description.replace(words.storeTail, '')} ${words.soonLine}`
   // ledger-uniques-1111: with LIVE.ledgerUniquesOnly the ledger is described as the record of every Unique
   const description = page === 'ledger' && LIVE.ledgerUniquesOnly
     ? LEDGER_DESCRIPTION_UNIQUES[lang]
