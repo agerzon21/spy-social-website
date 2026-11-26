@@ -54,6 +54,7 @@ export const NEWS: NewsEntry[] = [
   {
     id: 'reset',
     date: 'December 7, 2026',
+    undated: true,
     links: [
       {
         to: DISCORD,
@@ -73,44 +74,44 @@ export const NEWS: NewsEntry[] = [
     ],
     text: {
       en: {
-        title: 'The reset: Monday, December 7, 00:00 Eastern',
-        body: 'On Monday, December 7 at 00:00 Eastern, Intercepts and items reset. Intel from games is reset by launch morning. Game Night Intel you earned comes back. Your account, name, level and store-bought membership stay.',
+        title: 'The reset happens at release',
+        body: 'When SpySocial is released in the stores, Intercepts and items reset. Intel from games is reset by release morning. Game Night Intel you earned comes back. Your account, name, level, XP and store-bought membership stay.',
       },
       ru: {
-        title: 'Обнуление: понедельник, 7 декабря, 00:00 по восточному времени',
-        body: 'В понедельник, 7 декабря, в 00:00 по восточному времени США перехваты и предметы обнулятся. Разведданные за игры обнулятся к утру запуска. Заработанные разведданные игрового вечера вернутся. Аккаунт, имя, уровень и купленная в магазине подписка останутся.',
+        title: 'Обнуление произойдёт в день релиза',
+        body: 'Когда SpySocial выйдет в магазинах, перехваты и предметы обнулятся. Разведданные за игры обнулятся к утру релиза. Заработанные разведданные игрового вечера вернутся. Аккаунт, имя, уровень, опыт и купленная в магазине подписка останутся.',
       },
       es: {
-        title: 'El reinicio: lunes 7 de diciembre, 00:00 (hora del Este)',
-        body: 'El lunes 7 de diciembre a las 00:00 (hora del Este), las intercepciones y los objetos se reinician. El Intel de las partidas se reinicia antes de la mañana del lanzamiento. El Intel de Noche de Juegos que ganaste vuelve. Tu cuenta, tu nombre, tu nivel y tu membresía comprada en la tienda se mantienen.',
+        title: 'El reinicio llega con el lanzamiento',
+        body: 'Cuando SpySocial salga en las tiendas, las intercepciones y los objetos se reinician. El Intel de las partidas se reinicia antes de la mañana del lanzamiento. El Intel de Noche de Juegos que ganaste vuelve. Tu cuenta, tu nombre, tu nivel, tu XP y tu membresía comprada en la tienda se mantienen.',
       },
       fr: {
-        title: 'La réinitialisation : lundi 7 décembre, 00 h 00 (heure de l’Est)',
-        body: 'Le lundi 7 décembre à 00 h 00 (heure de l’Est), les interceptions et les objets sont réinitialisés. L’Intel des parties l’est d’ici le matin du lancement. L’Intel de Soirée jeux que tu as gagné te revient. Ton compte, ton nom, ton niveau et ton statut de membre acheté en boutique restent.',
+        title: 'La réinitialisation a lieu à la sortie',
+        body: 'À la sortie de SpySocial sur les stores, les interceptions et les objets sont réinitialisés. L’Intel des parties l’est d’ici le matin de la sortie. L’Intel de Soirée jeux que tu as gagné te revient. Ton compte, ton nom, ton niveau, ton XP et ton statut de membre acheté en boutique restent.',
       },
       'pt-BR': {
-        title: 'O reset: segunda-feira, 7 de dezembro, 00:00 (horário do Leste)',
-        body: 'Na segunda-feira, 7 de dezembro, às 00:00 (horário do Leste), interceptações e itens são zerados. O Intel das partidas é zerado até a manhã do lançamento. O Intel da Noite de Jogos que você ganhou volta. Sua conta, seu nome, seu nível e seu plano de membro comprado na loja continuam.',
+        title: 'O reset acontece no lançamento',
+        body: 'Quando o SpySocial for lançado nas lojas, interceptações e itens são zerados. O Intel das partidas é zerado até a manhã do lançamento. O Intel da Noite de Jogos que você ganhou volta. Sua conta, seu nome, seu nível, seu XP e seu plano de membro comprado na loja continuam.',
       },
       id: {
-        title: 'Reset: Senin, 7 Desember, pukul 00.00 (Waktu Timur AS)',
-        body: 'Pada Senin, 7 Desember pukul 00.00 (Waktu Timur AS), sadapan dan item direset. Intel dari permainan direset sebelum pagi peluncuran. Intel Malam Permainan yang kamu dapat akan kembali. Akun, nama, level, dan keanggotaan yang kamu beli di toko tetap ada.',
+        title: 'Reset terjadi saat rilis',
+        body: 'Saat SpySocial dirilis di toko aplikasi, sadapan dan item direset. Intel dari permainan direset sebelum pagi rilis. Intel Malam Permainan yang kamu dapat akan kembali. Akun, nama, level, XP, dan keanggotaan yang kamu beli di toko tetap ada.',
       },
       'zh-Hans': {
-        title: '重置：12 月 7 日（星期一）美东时间 00:00',
-        body: '12 月 7 日（星期一）美国东部时间 00:00，密函和物品会重置。对局获得的情报会在上线当天早上之前重置。你获得的游戏之夜情报会返还。你的账号、名字、等级和在商店购买的会员保持不变。',
+        title: '重置将在发布时进行',
+        body: 'SpySocial 在应用商店发布时，密函和物品会重置。对局获得的情报会在发布当天早上之前重置。你获得的游戏之夜情报会返还。你的账号、名字、等级、经验值和在商店购买的会员保持不变。',
       },
       hi: {
-        title: 'रीसेट: सोमवार, 7 दिसंबर, अमेरिकी ईस्टर्न टाइम 00:00',
-        body: 'सोमवार, 7 दिसंबर को अमेरिकी ईस्टर्न टाइम 00:00 बजे इंटरसेप्ट और आइटम रीसेट होंगे। गेम से मिला इंटेल लॉन्च की सुबह तक रीसेट हो जाएगा। आपका कमाया गेम नाइट इंटेल वापस मिलेगा। आपका अकाउंट, नाम, लेवल और स्टोर से खरीदी गई मेंबरशिप बने रहेंगे।',
+        title: 'रीसेट रिलीज़ के समय होगा',
+        body: 'जब SpySocial स्टोर में रिलीज़ होगा, तब इंटरसेप्ट और आइटम रीसेट होंगे। गेम से मिला इंटेल रिलीज़ की सुबह तक रीसेट हो जाएगा। आपका कमाया गेम नाइट इंटेल वापस मिलेगा। आपका अकाउंट, नाम, लेवल, XP और स्टोर से खरीदी गई मेंबरशिप बने रहेंगे।',
       },
       ar: {
-        title: 'إعادة الضبط: الاثنين 7 ديسمبر، 00:00 بتوقيت شرق الولايات المتحدة',
-        body: 'يوم الاثنين 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة، يُعاد ضبط الملفات والعناصر. ويُعاد ضبط إنتل الألعاب بحلول صباح الإطلاق. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك واسمك ومستواك وعضويتك المشتراة من المتجر.',
+        title: 'إعادة الضبط تتم عند الإصدار',
+        body: 'عند إصدار SpySocial في المتجرين، يُعاد ضبط الملفات والعناصر. ويُعاد ضبط إنتل الألعاب بحلول صباح الإصدار. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك واسمك ومستواك ونقاط الخبرة وعضويتك المشتراة من المتجر.',
       },
       bn: {
-        title: 'রিসেট: সোমবার, 7 ডিসেম্বর, মার্কিন ইস্টার্ন টাইম 00:00',
-        body: 'সোমবার, 7 ডিসেম্বর মার্কিন ইস্টার্ন টাইম 00:00-এ ইন্টারসেপ্ট আর আইটেম রিসেট হবে। গেম থেকে পাওয়া ইন্টেল লঞ্চের সকালের মধ্যে রিসেট হবে। আপনার অর্জিত গেম নাইট ইন্টেল ফিরে আসবে। আপনার অ্যাকাউন্ট, নাম, লেভেল আর স্টোর থেকে কেনা সদস্যপদ থাকবে।',
+        title: 'রিসেট হবে রিলিজের সময়',
+        body: 'SpySocial স্টোরে রিলিজ হলে ইন্টারসেপ্ট আর আইটেম রিসেট হবে। গেম থেকে পাওয়া ইন্টেল রিলিজের সকালের মধ্যে রিসেট হবে। আপনার অর্জিত গেম নাইট ইন্টেল ফিরে আসবে। আপনার অ্যাকাউন্ট, নাম, লেভেল, XP আর স্টোর থেকে কেনা সদস্যপদ থাকবে।',
       },
     },
   },
@@ -118,6 +119,7 @@ export const NEWS: NewsEntry[] = [
     id: 'in-the-stores',
     gate: 'stores',
     date: 'December 3, 2026',
+    undated: true,
     links: [
       {
         to: 'https://apps.apple.com/us/app/spysocial-a-party-game/id6746734390',
@@ -152,44 +154,44 @@ export const NEWS: NewsEntry[] = [
     ],
     text: {
       en: {
-        title: 'SpySocial is in the App Store and Google Play',
-        body: 'SpySocial is now in the App Store and Google Play. Intercepts and items reset Dec 7. Intel from games goes to 0 by launch morning. Game Night Intel you earned comes back. Your account, level and store-bought membership stay. Membership can be bought from launch day. Browser play ends Dec 7 at 00:00 Eastern. Questions? Ask in our Discord.',
+        title: 'Store release: App Store and Google Play',
+        body: 'SpySocial is coming to the App Store and Google Play. Your account, level and store-bought membership stay. Questions? Ask in our Discord.',
       },
       ru: {
-        title: 'SpySocial теперь в App Store и Google Play',
-        body: 'SpySocial теперь в App Store и Google Play. Перехваты и предметы обнулятся 7 декабря. Разведданные за игры обнулятся к утру запуска, 8 декабря. Заработанные разведданные игрового вечера вернутся. Аккаунт, уровень и купленная в магазине подписка останутся. Подписку можно купить с дня запуска. Игра в браузере заканчивается 7 декабря в 00:00 по восточному времени США. Вопросы? Пишите в наш Discord.',
+        title: 'Релиз в магазинах: App Store и Google Play',
+        body: 'SpySocial выходит в App Store и Google Play. Аккаунт, уровень и купленная в магазине подписка останутся. Вопросы? Пишите в наш Discord.',
       },
       es: {
-        title: 'SpySocial ya está en el App Store y Google Play',
-        body: 'SpySocial ya está en el App Store y en Google Play. Las intercepciones y los objetos se reinician el 7 de diciembre. El Intel de las partidas baja a 0 antes de la mañana del lanzamiento, el 8 de diciembre. El Intel de Noche de Juegos que ganaste vuelve. Tu cuenta, tu nivel y tu membresía comprada en la tienda se mantienen. La membresía se puede comprar desde el día del lanzamiento. El juego en el navegador termina el 7 de diciembre a las 00:00 (hora del Este). ¿Dudas? Pregunta en nuestro Discord.',
+        title: 'Lanzamiento en tiendas: App Store y Google Play',
+        body: 'SpySocial llega al App Store y a Google Play. Tu cuenta, tu nivel y tu membresía comprada en la tienda se mantienen. ¿Dudas? Pregunta en nuestro Discord.',
       },
       fr: {
-        title: 'SpySocial est sur l’App Store et Google Play',
-        body: 'SpySocial est désormais sur l’App Store et Google Play. Les interceptions et objets seront réinitialisés le 7 décembre. L’Intel des parties tombera à 0 d’ici le matin du lancement, le 8 décembre. L’Intel de Soirée jeux que tu as gagné te sera rendu. Ton compte, ton niveau et ton statut de membre acheté en boutique restent. Tu peux acheter l’abonnement de membre dès le jour du lancement. Le jeu dans le navigateur prend fin le 7 décembre à 00 h 00 (heure de l’Est). Des questions ? Pose-les sur notre Discord.',
+        title: 'Sortie sur les stores : App Store et Google Play',
+        body: 'SpySocial arrive sur l’App Store et Google Play. Ton compte, ton niveau et ton statut de membre acheté en boutique restent. Des questions ? Pose-les sur notre Discord.',
       },
       'pt-BR': {
-        title: 'O SpySocial está na App Store e no Google Play',
-        body: 'O SpySocial já está na App Store e no Google Play. Interceptações e itens serão zerados em 7 de dezembro. O Intel das partidas vai a 0 até a manhã do lançamento, 8 de dezembro. O Intel da Noite de Jogos que você ganhou volta. Sua conta, seu nível e seu plano de membro comprado na loja continuam. O plano de membro pode ser comprado a partir do dia do lançamento. O jogo no navegador termina em 7 de dezembro, às 00:00 (horário do Leste). Dúvidas? Pergunte no nosso Discord.',
+        title: 'Lançamento nas lojas: App Store e Google Play',
+        body: 'O SpySocial está chegando à App Store e ao Google Play. Sua conta, seu nível e seu plano de membro comprado na loja continuam. Dúvidas? Pergunte no nosso Discord.',
       },
       id: {
-        title: 'SpySocial kini ada di App Store dan Google Play',
-        body: 'SpySocial kini tersedia di App Store dan Google Play. Sadapan dan item direset pada 7 Desember. Intel dari permainan menjadi 0 sebelum pagi peluncuran, 8 Desember. Intel Malam Permainan yang kamu dapat akan kembali. Akun, level, dan keanggotaan yang kamu beli di toko tetap ada. Keanggotaan bisa dibeli mulai hari peluncuran. Bermain di browser berakhir pada 7 Desember pukul 00.00 (Waktu Timur AS). Ada pertanyaan? Tanyakan di Discord kami.',
+        title: 'Rilis di toko: App Store dan Google Play',
+        body: 'SpySocial segera hadir di App Store dan Google Play. Akun, level, dan keanggotaan yang kamu beli di toko tetap ada. Ada pertanyaan? Tanyakan di Discord kami.',
       },
       'zh-Hans': {
-        title: 'SpySocial 已登陆 App Store 和 Google Play',
-        body: 'SpySocial 现已登陆 App Store 和 Google Play。密函和物品将于12 月 7 日重置。对局获得的情报会在上线当天早上之前清零。你获得的游戏之夜情报会返还。你的账号、等级和在商店购买的会员保持不变。会员从上线当天起可购买。浏览器游玩将于 12 月 7 日美东时间 00:00 结束。有问题？欢迎到我们的 Discord 提问。',
+        title: '商店发布：App Store 和 Google Play',
+        body: 'SpySocial 即将登陆 App Store 和 Google Play。你的账号、等级和在商店购买的会员保持不变。有问题？欢迎到我们的 Discord 提问。',
       },
       hi: {
-        title: 'SpySocial अब App Store और Google Play पर है',
-        body: 'SpySocial अब App Store और Google Play पर उपलब्ध है। 7 दिसंबर को इंटरसेप्ट और आइटम रीसेट होंगे। गेम से मिला इंटेल लॉन्च की सुबह, 8 दिसंबर तक 0 हो जाएगा। आपका कमाया गेम नाइट इंटेल वापस मिलेगा। आपका अकाउंट, लेवल और स्टोर से खरीदी गई मेंबरशिप बने रहेंगे। मेंबरशिप लॉन्च के दिन से खरीदी जा सकेगी। ब्राउज़र में खेलना 7 दिसंबर को अमेरिकी ईस्टर्न टाइम 00:00 बजे बंद हो जाएगा। सवाल हैं? हमारे Discord पर पूछें।',
+        title: 'स्टोर रिलीज़: App Store और Google Play',
+        body: 'SpySocial जल्द ही App Store और Google Play पर आ रहा है। आपका अकाउंट, लेवल और स्टोर से खरीदी गई मेंबरशिप बने रहेंगे। सवाल हैं? हमारे Discord पर पूछें।',
       },
       ar: {
-        title: 'SpySocial متاح الآن على App Store وGoogle Play',
-        body: 'أصبح SpySocial متاحًا الآن على App Store وGoogle Play. يُعاد ضبط الملفات والعناصر في 7 ديسمبر. ويصبح إنتل الألعاب 0 بحلول صباح الإطلاق، 8 ديسمبر. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك ومستواك وعضويتك المشتراة من المتجر. يمكن شراء العضوية اعتبارًا من يوم الإطلاق. ينتهي اللعب في المتصفح في 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة. للأسئلة والأفكار: Discord الخاص بنا.',
+        title: 'الإصدار في المتجرين: App Store وGoogle Play',
+        body: 'سيصل SpySocial قريبًا إلى App Store وGoogle Play. ويبقى حسابك ومستواك وعضويتك المشتراة من المتجر. للأسئلة والأفكار: Discord الخاص بنا.',
       },
       bn: {
-        title: 'SpySocial এখন App Store ও Google Play-তে',
-        body: 'SpySocial এখন App Store ও Google Play-তে পাওয়া যাচ্ছে। 7 ডিসেম্বর ইন্টারসেপ্ট আর আইটেম রিসেট হবে। গেম থেকে পাওয়া ইন্টেল লঞ্চের সকালে, 8 ডিসেম্বরের মধ্যে 0 হবে। আপনার অর্জিত গেম নাইট ইন্টেল ফিরে আসবে। আপনার অ্যাকাউন্ট, লেভেল আর স্টোর থেকে কেনা সদস্যপদ থাকবে। লঞ্চের দিন থেকে সদস্যপদ কেনা যাবে। ব্রাউজারে খেলা 7 ডিসেম্বর মার্কিন ইস্টার্ন টাইম 00:00-এ শেষ হবে। প্রশ্ন আছে? আমাদের Discord-এ জিজ্ঞাসা করুন।',
+        title: 'স্টোর রিলিজ: App Store ও Google Play',
+        body: 'SpySocial শীঘ্রই App Store ও Google Play-তে আসছে। আপনার অ্যাকাউন্ট, লেভেল আর স্টোর থেকে কেনা সদস্যপদ থাকবে। প্রশ্ন আছে? আমাদের Discord-এ জিজ্ঞাসা করুন।',
       },
     },
   },
