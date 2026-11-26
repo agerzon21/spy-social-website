@@ -45,7 +45,7 @@ const I2: PublishedIncident = {
   title: 'Test-phase Intel',
   published: 'November 9, 2026',
   summary:
-    'While SpySocial is being tested, Intel is given to the developer\'s accounts and to every tester who signs in to a test version before November 13, so the Black Market and trades can be tried for real. All of it is taken back at launch, on December 7: nobody keeps any of it, and nothing it paid for stays.',
+    'While SpySocial is being tested, Intel is given to the developer\'s accounts and to every tester who signs in to a test version before November 13, so the Black Market and trades can be tried for real. All of it is taken back at the pre-launch reset: nobody keeps any of it, and nothing it paid for stays.',
   rule: "Each tester account that signs in to a 2.2 test version before 2026-11-13 03:00 UTC (published as 01:30 UTC; extended on November 10, 2026, to 10 PM Eastern on November 12): 100,000 Intel, once (published as 50,000; raised to 100,000 on November 10, 2026, when item values went up, and testers already given 50,000 got the other 50,000). The developer's accounts: what the owner sets. At the launch reset each account gives back what it was given, never below 0, after the Black Market's and trades' undo; test accounts' Black Market and trade Intel since this incident is undone too.",
 }
 
@@ -166,8 +166,8 @@ const ECONOMY_NOV3: { day: string; what: string; from: string; to: string }[] = 
  * WT's incident gets its own entry the day it's published. When the phase ends, add the reverse changes with their day.
  */
 const TEST_PHASE_NOV: { day: string; what: string; from: string; to: string }[] = [
-  { day: 'November 6, 2026', what: 'whether adults can trade Intel while SpySocial is being tested (every amount traded goes back on December 7)', from: 'only from the launch', to: 'yes, until December 7' },
-  { day: 'November 4, 2026', what: "the account-age, counted-games, new-device and sign-in-change rules for trades and the Black Market while SpySocial is being tested", from: 'on', to: 'off, until December 7' },
+  { day: 'November 6, 2026', what: 'whether adults can trade Intel while SpySocial is being tested (every amount traded goes back at the pre-launch reset)', from: 'only from the launch', to: 'yes, until the pre-launch reset' },
+  { day: 'November 4, 2026', what: "the account-age, counted-games, new-device and sign-in-change rules for trades and the Black Market while SpySocial is being tested", from: 'on', to: 'off, until the pre-launch reset' },
 ]
 
 /** The owner's economy calls of Nov 6 (app server market_own_lock, market_min_fee). */
