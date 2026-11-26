@@ -19,9 +19,7 @@ import SocialLinks from '../components/SocialLinks'
 import DisplayHeading from '../components/ui/DisplayHeading'
 import Eyebrow from '../components/ui/Eyebrow'
 import ui from '../components/ui/ui.module.css'
-import { useLang, useT } from '../i18n'
-import { formatDate } from '../i18n/rich'
-import { LAUNCH_DAY } from '../lib/launchDay'
+import { useT } from '../i18n'
 import { LIVE, avatarsLive } from '../lib/legalRelease'
 import s from './Roadmap.module.css'
 
@@ -40,11 +38,8 @@ const PLAN_ICONS: IconType[] = [FaRankingStar, FaMedal, FaTrophy]
 const Roadmap = () => {
   const t = useT()
   const r = t.roadmap
-  const { language } = useLang()
   // Out from the launch: the avatar creator's switch, or the site's launch version (LIVE.launchSite), whichever is first.
   const out = avatarsLive(LIVE) || LIVE.launchSite
-  // "December 8" stays on one line.
-  const day = formatDate(LAUNCH_DAY, language.locale, { year: false }).replace(/ /g, ' ')
 
   return (
     <div className={s.page}>
@@ -56,7 +51,7 @@ const Roadmap = () => {
               {r.title}
               <span className={s.mark}>{t.home.hero.titleMark}</span>
             </DisplayHeading>
-            <p className={s.lede} suppressHydrationWarning>{out ? r.ledeOut : r.lede(day)}</p>
+            <p className={s.lede} suppressHydrationWarning>{out ? r.ledeOut : r.lede()}</p>
           </div>
           {/* Decoration (a computer's width only): the agent in the fedora from the home line-up, in the spotlight. */}
           <div className={s.heroArt} aria-hidden="true">
@@ -69,7 +64,7 @@ const Roadmap = () => {
         <ol className={s.timeline}>
           <li className={`${s.stage} ${s.now}`}>
             <section aria-labelledby="roadmap-now">
-              <p className={s.when} suppressHydrationWarning>{out ? r.now.out : r.now.coming(day)}</p>
+              <p className={s.when} suppressHydrationWarning>{out ? r.now.out : r.now.coming()}</p>
               <DisplayHeading id="roadmap-now">{r.now.title}</DisplayHeading>
               <p className={s.sub}>{r.now.sub}</p>
               <ul className={s.features}>

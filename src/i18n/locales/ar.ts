@@ -763,10 +763,10 @@ const ar: Strings = {
   roadmap: {
     eyebrow: 'خارطة الطريق',
     title: 'ما القادم',
-    lede: (day: string) => `يصل تحديث SpySocial\u00A02.2 في ${day}. هذا ما يحمله، وما نعمل عليه بعده.`,
+    lede: () => `يصل تحديث SpySocial\u00A02.2 مع الإطلاق الكامل. هذا ما يحمله، وما نعمل عليه بعده.`,
     ledeOut: 'وصل تحديث SpySocial\u00A02.2. هذا ما يحمله، وما نعمل عليه بعده.',
     now: {
-      coming: (day: string) => `يصل في ${day}`,
+      coming: () => 'يصل مع الإطلاق الكامل',
       out: 'متاح الآن',
       title: 'SpySocial 2.2',
       sub: 'أكبر تحديث لنا حتى الآن.',

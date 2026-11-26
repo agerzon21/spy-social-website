@@ -763,10 +763,10 @@ const fr: Strings = {
   roadmap: {
     eyebrow: 'Feuille de route',
     title: 'À venir',
-    lede: (day: string) => `La mise à jour SpySocial\u00A02.2 arrive le ${day}. Découvre ce qu'elle apporte et ce qu'on prépare pour la suite.`,
+    lede: () => `La mise à jour SpySocial\u00A02.2 arrive au lancement complet. Découvre ce qu'elle apporte et ce qu'on prépare pour la suite.`,
     ledeOut: "La mise à jour SpySocial\u00A02.2 est là. Découvre ce qu'elle apporte et ce qu'on prépare pour la suite.",
     now: {
-      coming: (day: string) => `Disponible le ${day}`,
+      coming: () => 'Disponible au lancement complet',
       out: 'Disponible',
       title: 'SpySocial 2.2',
       sub: 'Notre plus grosse mise à jour.',

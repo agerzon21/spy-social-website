@@ -61,7 +61,8 @@ const es: ArchiveStrings = {
     },
     empty: {
       stampTop: 'Primera acuñación',
-      caption: 'Los primeros Únicos se acuñarán con el lanzamiento, el {day}. Cada uno parte de uno de los {n} Legendarios, como estos.',
+      stampDay: 'Lanzamiento completo',
+      caption: 'Los primeros Únicos se acuñarán con el lanzamiento completo. Cada uno parte de uno de los {n} Legendarios, como estos.',
       statDay: 'Primeros Únicos acuñados',
       statSerial: 'Primer número de cada uno',
       statOdds: 'Probabilidad de Único en una Enigma',

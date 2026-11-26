@@ -6,7 +6,6 @@ import DisplayHeading from '../../components/ui/DisplayHeading'
 import Eyebrow from '../../components/ui/Eyebrow'
 import ui from '../../components/ui/ui.module.css'
 import { artKey, artOf, attributesOf, codenameOf, copyNameOf, lookOf, nameOf, ownArtOf, serialText, uniquePath } from '../../lib/archive'
-import { launchDayShort, launchDayWeekday } from '../../lib/launchDay'
 import { LIVE } from '../../lib/legalRelease'
 import { TRADE_UP_TEXT_UNIQUES } from '../../lib/ledgerScope'
 import { ArchiveState, BetaNotice, FloatDigits, Piece, UniqueCard } from './ArchiveBits'
@@ -118,11 +117,11 @@ const ArchiveHome = () => {
                   ))}
                   <div className={s.mintStamp}>
                     <span className={s.mintStampTop}>{h.empty.stampTop}</span>
-                    <span className={s.mintStampDay} suppressHydrationWarning>{launchDayShort(locale)}</span>
+                    <span className={s.mintStampDay} suppressHydrationWarning>{h.empty.stampDay}</span>
                   </div>
                 </div>
                 <figcaption className={s.mintCaption} suppressHydrationWarning>
-                  {fillCaption(h.empty.caption, launchDayWeekday(locale), fmt(legendaries, locale))}
+                  {fillCaption(h.empty.caption, '', fmt(legendaries, locale))}
                 </figcaption>
               </figure>
             ) : (
@@ -142,7 +141,7 @@ const ArchiveHome = () => {
         <dl className={s.stats}>
           {(empty
             ? [
-                [launchDayShort(locale), h.empty.statDay],
+                [h.empty.stampDay, h.empty.statDay],
                 [fmt(legendaries, locale), h.stats.items],
                 [`#${fmt(1, locale)}`, h.empty.statSerial],
                 [(0.005).toLocaleString(locale, { style: 'percent', maximumFractionDigits: 1 }), h.empty.statOdds],

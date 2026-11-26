@@ -845,12 +845,12 @@ const en = {
     /** The poster line, set huge, before the home hero's full stop (home.hero.titleMark). Short: it must fit a 320 px phone. */
     title: "What's coming",
     /** Under it until 2.2 is out. `day` is the launch day in the page's language, without the year ("December 8", "8 декабря"). */
-    lede: (day: string) => `SpySocial\u00A02.2 lands on ${day}. See what's in it, and what we're building next.`,
+    lede: (): string => `SpySocial\u00A02.2 lands at the full launch. See what's in it, and what we're building next.`,
     /** The same once 2.2 is out. */
     ledeOut: "SpySocial\u00A02.2 is out now. See what's in it, and what we're building next.",
     now: {
       /** Over the 2.2 heading until it's out (a short label in capitals). */
-      coming: (day: string) => `Coming ${day}`,
+      coming: (): string => 'Coming at the full launch',
       /** The same label once it's out. */
       out: 'Out now',
       title: 'SpySocial 2.2',

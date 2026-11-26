@@ -3,7 +3,7 @@ import { FaDiscord } from 'react-icons/fa6'
 import Link from '../SiteLink'
 import { HELLO_STRINGS } from '../../hello/strings'
 import { useLang, useT } from '../../i18n'
-import { launchDayText, REMINDER_PAGE } from '../../lib/launchDay'
+import { REMINDER_PAGE } from '../../lib/launchDay'
 import { askForReminder, looksLikeEmail, type ReminderResult } from '../../lib/launchReminder'
 import { DISCORD_URL } from '../../lib/social'
 import ui from './ui.module.css'
@@ -14,9 +14,9 @@ import s from './LaunchReminder.module.css'
  * reminder, in the words and look of /hello (src/hello). A filled honeypot sends nothing and shows success.
  */
 export const LaunchReminder = ({ center = false }: { center?: boolean }) => {
-  const { lang, language } = useLang()
+  const { lang } = useLang()
   const w = HELLO_STRINGS[lang].remind
-  const day = launchDayText(language.locale)
+  const day = HELLO_STRINGS[lang].word
   const id = useId()
   const emailRef = useRef<HTMLInputElement>(null)
   const ageRef = useRef<HTMLInputElement>(null)
@@ -99,12 +99,12 @@ export const LaunchReminder = ({ center = false }: { center?: boolean }) => {
 
 /** The launch day, set huge, and the plain words about the version in the stores: the home hero's, as on /hello. */
 export const LaunchDate = () => {
-  const { lang, language } = useLang()
+  const { lang } = useLang()
   const w = HELLO_STRINGS[lang]
   return (
     <div className={s.when}>
       <p className={s.before}>{w.before}</p>
-      <p className={s.day} suppressHydrationWarning>{launchDayText(language.locale)}</p>
+      <p className={s.day} suppressHydrationWarning>{w.word}</p>
       {w.after && <p className={s.before}>{w.after}</p>}
       <p className={s.stores}>
         {w.stores} <b>{w.wait}</b>
@@ -126,9 +126,9 @@ export const DiscordLink = () => {
 
 /** One line for the pages that had store buttons: the launch day and a link to the reminder page. */
 export const LaunchLine = ({ note }: { note?: boolean }) => {
-  const { lang, language } = useLang()
+  const { lang } = useLang()
   const w = HELLO_STRINGS[lang]
-  const day = launchDayText(language.locale)
+  const day = HELLO_STRINGS[lang].word
   return (
     <p className={s.line}>
       {note && <span className={s.lineNote}>{w.joinStores} </span>}

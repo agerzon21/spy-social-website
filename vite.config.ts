@@ -632,7 +632,7 @@ function helloPage(): Plugin {
       const { noir } = (await siteModule(root, 'src/theme/skins/noir.ts')) as { noir: Skinish }
       const { daylight } = (await siteModule(root, 'src/theme/skins/daylight.ts')) as { daylight: Skinish }
 
-      const launch = await sourceDate(root, 'src/lib/launchDay.ts', 'LAUNCH_DAY')
+      
       const closes = await sourceDate(root, 'src/lib/betaSignup.ts', 'CLOSES_AT')
       const start = await sourceDate(root, 'src/pages/Beta.tsx', 'START')
       const closeShown = await sourceDate(root, 'src/pages/Beta.tsx', 'CLOSE_SHOWN')
@@ -647,9 +647,9 @@ function helloPage(): Plugin {
           const t = deepOver(site.en, own) as Locale
           const pitch = /<b>(.*?)<\/b>/.exec(t.home.hero.lede)?.[1]
           if (!pitch) throw new Error(`helloPage: no bold line in ${code}'s home.hero.lede`)
-          const words = HELLO_STRINGS[code] as { remind: { button: (day: string) => string; doneDetail: (day: string) => string }; launchLine: (day: string) => string }
+          const words = HELLO_STRINGS[code] as { word: string; remind: { button: (day: string) => string; doneDetail: (day: string) => string }; launchLine: (day: string) => string }
           if (!words) throw new Error(`helloPage: no words for ${code} in src/hello/strings.ts`)
-          const day = new Intl.DateTimeFormat(locale, { month: 'long', day: 'numeric' }).format(launch)
+          const day = words.word
           const when = new Intl.DateTimeFormat(locale, DATE).format(start)
           // The date stays on one line (8\u00a0ноября), wherever the sentence wraps.
           const closeDay = new Intl.DateTimeFormat(locale, DAY).format(closeShown).replace(/(\d) (?=\S)|(\S) (?=\d)/g, '$1$2\u00a0')

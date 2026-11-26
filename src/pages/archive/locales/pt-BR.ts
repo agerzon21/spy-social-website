@@ -61,7 +61,8 @@ const ptBR: ArchiveStrings = {
     },
     empty: {
       stampTop: 'Primeira cunhagem',
-      caption: 'Os primeiros Únicos serão cunhados no lançamento, {day}. Cada um começa como um dos {n} Lendários, como estes.',
+      stampDay: 'Lançamento completo',
+      caption: 'Os primeiros Únicos serão cunhados no lançamento completo. Cada um começa como um dos {n} Lendários, como estes.',
       statDay: 'Primeiros Únicos cunhados',
       statSerial: 'Primeiro número de cada',
       statOdds: 'Chance de Único numa Enigma',

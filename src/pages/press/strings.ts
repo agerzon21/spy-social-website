@@ -22,8 +22,8 @@ const en = {
     eyebrow: 'In one paragraph',
     title: 'About SpySocial',
     /** `day` is the 2.2 launch day with its year in the page's language; `out` once it's out. */
-    short: (day: string, out: boolean) =>
-      `SpySocial is a free party game of bluffing and deduction for 3 to 21 players, each on their own phone or tablet. Everyone knows the secret except the spies. In Spy Talk the secret is a location, and players take turns asking and answering questions. In Spy Sketch it's a word, and players take turns drawing it on one shared board while the spies fake along. Then the table votes. Version 2.2 ${out ? 'came out' : 'comes out'} on iPhone, iPad and Android on ${day}, with Spy Sketch, Play Online tables, a guided tutorial, Game Night, friends, trading and 10 languages. There are no ads, and the only thing for sale is an optional membership.`,
+    short: (_day: string, out: boolean): string =>
+      `SpySocial is a free party game of bluffing and deduction for 3 to 21 players, each on their own phone or tablet. Everyone knows the secret except the spies. In Spy Talk the secret is a location, and players take turns asking and answering questions. In Spy Sketch it's a word, and players take turns drawing it on one shared board while the spies fake along. Then the table votes. Version 2.2 ${out ? 'came out' : 'comes out'} on iPhone, iPad and Android, with Spy Sketch, Play Online tables, a guided tutorial, Game Night, friends, trading and 10 languages. There are no ads, and the only thing for sale is an optional membership.`,
     moreTitle: 'The longer version',
     /** In this order: the two games, ways to play, languages, progress, what's free. */
     sections: [
@@ -74,10 +74,10 @@ const en = {
     platforms: 'iPhone, iPad, and Android phones and tablets. iPhone and Android players play together.',
     players: '3 to 21 in a private room. Play Online: tables of 4 or 8.',
     /** `day` is the launch day with its year. */
-    release: (day: string, out: boolean) =>
+    release: (_day: string, out: boolean): string =>
       out
-        ? `Version 2.2 came out on ${day}, a free update on the App Store and Google Play.`
-        : `Version 2.2 comes out on ${day}. SpySocial is already on the App Store and Google Play, and 2.2 is a free update.`,
+        ? `Version 2.2 is out now, a free update on the App Store and Google Play.`
+        : `Version 2.2 is coming soon. SpySocial is already on the App Store and Google Play, and 2.2 is a free update.`,
     price: 'Free to download and play. No ads.',
     /** The US prices, formatted in the page's language: a month, a year, Lifetime. */
     membership: (month: string, year: string, life: string) =>

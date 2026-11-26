@@ -764,10 +764,10 @@ const id: Strings = {
   roadmap: {
     eyebrow: 'Roadmap',
     title: 'Yang akan datang',
-    lede: (day: string) => `SpySocial\u00A02.2 hadir pada ${day}. Lihat apa saja isinya dan apa yang kami siapkan berikutnya.`,
+    lede: () => `SpySocial\u00A02.2 hadir saat peluncuran penuh. Lihat apa saja isinya dan apa yang kami siapkan berikutnya.`,
     ledeOut: 'SpySocial\u00A02.2 sudah hadir. Lihat apa saja isinya dan apa yang kami siapkan berikutnya.',
     now: {
-      coming: (day: string) => `Hadir ${day}`,
+      coming: () => 'Hadir saat peluncuran penuh',
       out: 'Sudah tersedia',
       title: 'SpySocial 2.2',
       sub: 'Update terbesar kami sejauh ini.',

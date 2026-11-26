@@ -107,7 +107,7 @@ h1 span{color:var(--accent);text-shadow:none}
 .when{width:100%;margin:auto 0;padding:12px 0}
 .when p{margin:0}
 .before,.after{font-size:clamp(18px,5.2vw,22px);line-height:1.2;color:var(--text)}
-.day{font-family:var(--font-display);font-weight:900;text-transform:uppercase;line-height:.98;letter-spacing:.01em;font-size:calc(min(19vw,92px)*var(--fit-day,1));color:var(--accent-text);white-space:nowrap}
+.day{font-family:var(--font-display);font-weight:900;text-transform:uppercase;line-height:.98;letter-spacing:.01em;font-size:min(10.5vw,62px);color:var(--accent-text);white-space:normal}
 .when .stores{margin-top:8px;font-size:clamp(15px,4.4vw,18px);line-height:1.32;color:var(--body);text-wrap:balance}
 .stores b{font-weight:600;color:var(--text);white-space:nowrap}
 .remind{width:100%}
@@ -156,11 +156,9 @@ html:is([lang='es'],[lang='fr'],[lang='pt-BR']){--fit:.8}
 html[lang='id']{--fit:.86}
 html[lang='ru']{--fit:.68}
 html:is([lang='ar'],[lang='hi'],[lang='bn'],[lang='zh-Hans']){--fit:.72}
-html:is([lang='es'],[lang='pt-BR']){--fit-day:.72}
-html[lang='fr']{--fit-day:.92}
-html[lang='bn']{--fit:.6;--fit-day:.8}
-html[lang='hi']{--fit:.66;--fit-day:.86}
-html[lang='zh-Hans']{--fit:.68;--fit-day:.86}
+html[lang='bn']{--fit:.6}
+html[lang='hi']{--fit:.66}
+html[lang='zh-Hans']{--fit:.68}
 html[lang='ru'] h1{line-height:1;font-weight:700}
 html[lang='ru'] :is(.pitch,.stores){hyphens:auto;-webkit-hyphens:auto}
 html:is([lang='ar'],[lang='hi'],[lang='bn'],[lang='zh-Hans']) :is(h1,.day,.btn){line-height:1.25}

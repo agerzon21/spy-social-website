@@ -762,10 +762,10 @@ const zhHans: Strings = {
   roadmap: {
     eyebrow: '路线图',
     title: '即将到来',
-    lede: (day: string) => `SpySocial\u00A02.2 将于 ${day}上线。来看看这次更新有什么，以及我们接下来在做什么。`,
+    lede: () => `SpySocial\u00A02.2 将于正式上线时推出。来看看这次更新有什么，以及我们接下来在做什么。`,
     ledeOut: 'SpySocial\u00A02.2 现已上线。来看看这次更新有什么，以及我们接下来在做什么。',
     now: {
-      coming: (day: string) => `${day}上线`,
+      coming: () => '正式上线时推出',
       out: '现已上线',
       title: 'SpySocial 2.2',
       sub: '我们迄今最大的一次更新。',

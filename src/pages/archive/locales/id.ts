@@ -63,7 +63,8 @@ const id: ArchiveStrings = {
     trust: { title: 'Periksa sendiri', text: 'Buku besarnya publik dan terantai, dan laporan transparansi bulanan kami mencakup setiap item yang dicetak, dikoreksi, atau ditarik kembali.' },
     empty: {
       stampTop: 'Cetakan pertama',
-      caption: 'Unik pertama dicetak saat peluncuran, {day}. Masing-masing berawal dari salah satu dari {n} Legendaris, seperti ini.',
+      stampDay: 'Peluncuran penuh',
+      caption: 'Unik pertama dicetak saat peluncuran penuh. Masing-masing berawal dari salah satu dari {n} Legendaris, seperti ini.',
       statDay: 'Unik pertama dicetak',
       statSerial: 'Nomor seri pertama tiap item',
       statOdds: 'Peluang Unik di Enigma',

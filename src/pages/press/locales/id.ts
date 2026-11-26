@@ -10,8 +10,8 @@ const id: PressStrings = {
   about: {
     eyebrow: 'Dalam satu paragraf',
     title: 'Tentang SpySocial',
-    short: (day, out) =>
-      `SpySocial adalah game pesta gratis tentang menggertak dan menebak untuk 3 sampai 21 pemain, masing-masing di ponsel atau tabletnya sendiri. Semua orang tahu rahasianya, kecuali para mata-mata. Di Spy Talk rahasianya adalah lokasi, dan pemain bergiliran bertanya dan menjawab. Di Spy Sketch rahasianya adalah kata, dan pemain bergiliran menggambarnya di satu papan bersama sementara mata-mata pura-pura tahu. Lalu semua pemain memilih. Versi 2.2 ${out ? 'sudah hadir' : 'hadir'} di iPhone, iPad, dan Android pada ${day}, dengan Spy Sketch, meja Main online, tutorial terpandu, Malam Permainan, teman, tukar item, dan 10 bahasa. Tidak ada iklan, dan satu-satunya yang dijual adalah keanggotaan opsional.`,
+    short: (_day, out) =>
+      `SpySocial adalah game pesta gratis tentang menggertak dan menebak untuk 3 sampai 21 pemain, masing-masing di ponsel atau tabletnya sendiri. Semua orang tahu rahasianya, kecuali para mata-mata. Di Spy Talk rahasianya adalah lokasi, dan pemain bergiliran bertanya dan menjawab. Di Spy Sketch rahasianya adalah kata, dan pemain bergiliran menggambarnya di satu papan bersama sementara mata-mata pura-pura tahu. Lalu semua pemain memilih. Versi 2.2 ${out ? 'sudah hadir' : 'hadir'} di iPhone, iPad, dan Android, dengan Spy Sketch, meja Main online, tutorial terpandu, Malam Permainan, teman, tukar item, dan 10 bahasa. Tidak ada iklan, dan satu-satunya yang dijual adalah keanggotaan opsional.`,
     moreTitle: 'Versi lengkapnya',
     sections: [
       {
@@ -59,10 +59,10 @@ const id: PressStrings = {
     genre: 'Game pesta deduksi sosial',
     platforms: 'iPhone, iPad, serta ponsel dan tablet Android. Pemain iPhone dan Android bisa main bersama.',
     players: '3 sampai 21 di room pribadi. Main online: meja berisi 4 atau 8.',
-    release: (day, out) =>
+    release: (_day, out) =>
       out
-        ? `Versi 2.2 hadir pada ${day}, sebagai update gratis di App Store dan Google Play.`
-        : `Versi 2.2 hadir pada ${day}. SpySocial sudah ada di App Store dan Google Play, dan 2.2 adalah update gratis.`,
+        ? `Versi 2.2 sudah hadir, sebagai update gratis di App Store dan Google Play.`
+        : `Versi 2.2 segera hadir. SpySocial sudah ada di App Store dan Google Play, dan 2.2 adalah update gratis.`,
     price: 'Gratis diunduh dan dimainkan. Tanpa iklan.',
     membership: (month, year, life) =>
       `Opsional, dan satu-satunya yang dijual: keanggotaan bulanan seharga ${month} per bulan atau tahunan seharga ${year} per tahun (diperpanjang sampai dibatalkan), atau keanggotaan seumur hidup seharga ${life}, sekali bayar. Harga AS; berbeda di tiap negara. Paket satuan atau bundel tidak dijual.`,

@@ -60,7 +60,8 @@ const en = {
     // The empty Archive before the first mint (pick 10A, archive-empty-1115): {day} is the launch day with its weekday, {n} the Legendaries.
     empty: {
       stampTop: 'First mint',
-      caption: 'The first Uniques are minted at launch, {day}. Each one starts as one of the {n} Legendaries, like these.',
+      stampDay: 'Full launch',
+      caption: 'The first Uniques are minted at the full launch. Each one starts as one of the {n} Legendaries, like these.',
       statDay: 'First Uniques minted',
       statSerial: 'First serial of each',
       statOdds: 'Unique odds in an Enigma',
@@ -208,7 +209,8 @@ const ru: ArchiveStrings = {
     trust: { title: 'Проверьте сами', text: 'Реестр публичный и выстроен цепочкой, а ежемесячный отчёт о прозрачности показывает каждый выпущенный, исправленный и изъятый предмет.' },
     empty: {
       stampTop: 'Первый выпуск',
-      caption: 'Запуск — {day}: в этот день выпустят первые уникальные предметы. Каждый из них — особый экземпляр одного из {n} легендарных предметов, вроде этих.',
+      stampDay: 'Полный запуск',
+      caption: 'Первые уникальные предметы выпустят при полном запуске. Каждый из них — особый экземпляр одного из {n} легендарных предметов, вроде этих.',
       statDay: 'Выпуск первых уникальных',
       statSerial: 'Первый номер каждого',
       statOdds: 'Шанс уникального в «Энигме»',

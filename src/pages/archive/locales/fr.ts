@@ -63,7 +63,8 @@ const fr: ArchiveStrings = {
     trust: { title: 'Vérifie par toi-même', text: 'Le registre est public et enchaîné, et notre rapport de transparence mensuel couvre chaque objet frappé, corrigé ou repris.' },
     empty: {
       stampTop: 'Première frappe',
-      caption: 'Les premiers Uniques seront frappés au lancement, le {day}. Chacun part de l’un des {n} Légendaires, comme ceux-ci.',
+      stampDay: 'Lancement complet',
+      caption: 'Les premiers Uniques seront frappés au lancement complet. Chacun part de l’un des {n} Légendaires, comme ceux-ci.',
       statDay: 'Premiers Uniques frappés',
       statSerial: 'Premier numéro de chacun',
       statOdds: 'Chance d’Unique dans une Enigma',

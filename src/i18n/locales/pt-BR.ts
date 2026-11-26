@@ -764,10 +764,10 @@ const ptBR: Strings = {
   roadmap: {
     eyebrow: 'Roadmap',
     title: 'O que vem aí',
-    lede: (day: string) => `O SpySocial\u00A02.2 chega em ${day}. Veja o que vem nele e o que estamos preparando depois.`,
+    lede: () => `O SpySocial\u00A02.2 chega no lançamento completo. Veja o que vem nele e o que estamos preparando depois.`,
     ledeOut: 'O SpySocial\u00A02.2 já chegou. Veja o que vem nele e o que estamos preparando depois.',
     now: {
-      coming: (day: string) => `Chega em ${day}`,
+      coming: () => 'Chega no lançamento completo',
       out: 'Já disponível',
       title: 'SpySocial 2.2',
       sub: 'Nossa maior atualização até agora.',
