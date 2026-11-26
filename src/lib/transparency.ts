@@ -101,7 +101,7 @@ const GIFTS_TRADABLE: { day: string; what: string; from: string; to: string }[] 
  */
 const GIFTS_BOUND_DEC7: { day: string; what: string; from: string; to: string }[] = [
   // stale-help-1118: no Developer's Pick once LIVE.gnRewardsRules is on (row 83 ends the developer's bonus title).
-  { day: 'November 26, 2026', what: `when items we or our staff give${LIVE.gnRewardsRules ? '' : " (a Developer's Pick included)"} and items from a code can be traded (opened or not, with what comes out of them)`, from: 'at once', to: 'never: they stay with the account (for new gifts and codes from this day; copies from before it can still be traded until the pre-launch reset, which removes them)' },
+  { day: 'November 26, 2026', what: `when items we or our staff give${LIVE.gnRewardsRules ? '' : " (a Developer's Pick included)"} and items from a code can be traded (opened or not, with what comes out of them)`, from: 'at once', to: `never: they stay with the account (for new gifts and codes from this day; ${LIVE.launchSite ? 'copies from before it could be traded until the pre-launch reset, which removed them' : 'copies from before it can still be traded until the pre-launch reset, which removes them'})` },
   { day: 'November 26, 2026', what: 'when Intel we add ourselves (a bug refund to one player, an outage make-good) can be traded', from: 'never: it was locked', to: 'like any other Intel' },
 ]
 
