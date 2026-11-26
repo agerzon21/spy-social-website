@@ -685,7 +685,7 @@ export const LIVE = {
   roadmap: true,
   /**
    * The launch Game Nights' days and hours (owner Nov 17: no Game Night on launch day Tue Dec 8; Opening Night, Spy
-   * Talk, runs Friday, December 11 and again Saturday, December 12, 2026, the same night twice, Fri 8 to 10 PM ET and Sat 2 to 4 PM ET;
+   * Talk, runs the first Friday and again the first Saturday after the full launch, the same night twice, Fri 8 to 10 PM ET and Sat 2 to 4 PM ET;
    * after launch one Game Night a week, played Friday and repeated Saturday; Owner Console > Game Night). On, the Roadmap's Game nights card and What's New's 2.2 Game
    * nights line name them (src/i18n: roadmap.now.launchWeek; What's New has no launchWeek line yet). Off until the owner OKs the
    * schedule and the nights are published (app_config.events_enabled on); if a day or hour changes, change those
@@ -767,7 +767,7 @@ export const LIVE = {
    * Turns on Privacy's Game Night item (after Play Online). The developer's watch at these tables is developerWatch's
    * text (20261106130000): flip both in the same deploy. POLICY FIRST: deploy the site with it on before the server
    * files are applied (QA 110 step 3), even though app_config gamenight.enabled stays false until the owner turns the
-   * launch Game Nights on (owner Nov 17: no night on launch day; Opening Night Fri Dec 11 + Sat Dec 12, 2 PM ET); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
+   * launch Game Nights on (owner Nov 17: no night on launch day; Opening Night the first Fri + Sat after the full launch); flipping it also moves PRIVACY_LAST_UPDATED (below) to its date: set
    * that date to the deploy day. Off only if the Game Night v2 files are rolled back. A server switch for every app
    * version at once: set in LIVE, never in PRIVACY_AHEAD.
    */

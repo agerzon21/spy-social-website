@@ -324,8 +324,8 @@ export const NEWS: NewsEntry[] = [
   },
   {
     id: 'opening-night',
-    date: 'December 11, 2026',
-    endDate: 'December 12, 2026',
+    date: 'December 11, 2026',   // sort key only (undated): after the full launch, the first Friday
+    undated: true,
     links: [
       {
         to: '/game-night-rules',
@@ -346,43 +346,43 @@ export const NEWS: NewsEntry[] = [
     text: {
       en: {
         title: 'Opening Night',
-        body: 'The first Game Night after launch runs twice: Friday, December 11, 8 to 10 PM Eastern, and again Saturday, December 12, 2 to 4 PM Eastern. It’s the same Spy Talk night both days, so come to either or play both.',
+        body: 'The first Game Night after the full launch runs twice: the first Friday after it, 8 to 10 PM Eastern, and again the first Saturday after it, 2 to 4 PM Eastern. It’s the same Spy Talk night both days, so come to either or play both.',
       },
       ru: {
         title: 'Вечер премьеры',
-        body: 'Первый игровой вечер после запуска пройдёт дважды: в пятницу, 11 декабря, с 20:00 до 22:00 по восточному времени США, и ещё раз в субботу, 12 декабря, с 14:00 до 16:00 по восточному времени. Оба дня это один и тот же вечер Spy Talk: приходите в любой или на оба.',
+        body: 'Первый игровой вечер после полного запуска пройдёт дважды: в первую пятницу после него, с 20:00 до 22:00 по восточному времени США, и ещё раз в первую субботу после него, с 14:00 до 16:00 по восточному времени. Оба дня это один и тот же вечер Spy Talk: приходите в любой или на оба.',
       },
       es: {
         title: 'Noche de Estreno',
-        body: 'La primera Noche de Juegos tras el lanzamiento se juega dos veces: el viernes 11 de diciembre, de 8 a 10 p. m., hora del Este de EE. UU., y otra vez el sábado 12 de diciembre, de 2 a 4 p. m., hora del Este. Es la misma noche de Spy Talk los dos días: ven a una o a las dos.',
+        body: 'La primera Noche de Juegos tras el lanzamiento completo se juega dos veces: el primer viernes después, de 8 a 10 p. m., hora del Este de EE. UU., y otra vez el primer sábado después, de 2 a 4 p. m., hora del Este. Es la misma noche de Spy Talk los dos días: ven a una o a las dos.',
       },
       fr: {
         title: 'Soirée de première',
-        body: 'La première soirée jeux après la sortie a lieu deux fois : le vendredi 11 décembre, de 20 h à 22 h, heure de l’Est américain, puis à nouveau le samedi 12 décembre, de 14 h à 16 h, heure de l’Est. C’est la même soirée Spy Talk les deux jours : viens à l’une ou aux deux.',
+        body: 'La première soirée jeux après le lancement complet a lieu deux fois : le premier vendredi qui suit, de 20 h à 22 h, heure de l’Est américain, puis à nouveau le premier samedi qui suit, de 14 h à 16 h, heure de l’Est. C’est la même soirée Spy Talk les deux jours : viens à l’une ou aux deux.',
       },
       'pt-BR': {
         title: 'Noite de Estreia',
-        body: 'A primeira Noite de Jogos depois do lançamento acontece duas vezes: na sexta, 11 de dezembro, das 20h às 22h no horário do leste dos EUA, e de novo no sábado, 12 de dezembro, das 14h às 16h no horário do leste. É a mesma noite de Spy Talk nos dois dias: venha a uma ou às duas.',
+        body: 'A primeira Noite de Jogos depois do lançamento completo acontece duas vezes: na primeira sexta depois dele, das 20h às 22h no horário do leste dos EUA, e de novo no primeiro sábado depois dele, das 14h às 16h no horário do leste. É a mesma noite de Spy Talk nos dois dias: venha a uma ou às duas.',
       },
       id: {
         title: 'Malam Pembukaan',
-        body: 'Malam Permainan pertama setelah peluncuran digelar dua kali: Jumat, 11 Desember, pukul 20.00–22.00 waktu bagian timur AS, dan sekali lagi Sabtu, 12 Desember, pukul 14.00–16.00 waktu bagian timur AS. Keduanya malam Spy Talk yang sama, jadi pilih salah satu atau main di keduanya.',
+        body: 'Malam Permainan pertama setelah peluncuran penuh digelar dua kali: Jumat pertama setelahnya, pukul 20.00–22.00 waktu bagian timur AS, dan sekali lagi Sabtu pertama setelahnya, pukul 14.00–16.00 waktu bagian timur AS. Keduanya malam Spy Talk yang sama, jadi pilih salah satu atau main di keduanya.',
       },
       'zh-Hans': {
         title: '首映之夜',
-        body: '上线后的第一场游戏之夜共两场：12 月 11 日（周五）美国东部时间晚上 8 点至 10 点，以及 12 月 12 日（周六）美国东部时间下午 2 点至 4 点。两场是同一场 Spy Talk 之夜，任选一场或两场都来。',
+        body: '正式上线后的第一场游戏之夜共两场：正式上线后的第一个周五美国东部时间晚上 8 点至 10 点，以及第一个周六美国东部时间下午 2 点至 4 点。两场是同一场 Spy Talk 之夜，任选一场或两场都来。',
       },
       hi: {
         title: 'ओपनिंग नाइट',
-        body: 'लॉन्च के बाद की पहली गेम नाइट दो बार होगी: शुक्रवार, 11 दिसंबर को अमेरिकी ईस्टर्न टाइम के मुताबिक रात 8 से 10 बजे तक, और फिर शनिवार, 12 दिसंबर को दोपहर 2 से 4 बजे तक (ईस्टर्न टाइम)। दोनों दिन वही Spy Talk नाइट है, तो कोई भी एक चुनें या दोनों खेलें।',
+        body: 'पूर्ण लॉन्च के बाद की पहली गेम नाइट दो बार होगी: उसके बाद के पहले शुक्रवार को अमेरिकी ईस्टर्न टाइम के मुताबिक रात 8 से 10 बजे तक, और फिर उसके बाद के पहले शनिवार को दोपहर 2 से 4 बजे तक (ईस्टर्न टाइम)। दोनों दिन वही Spy Talk नाइट है, तो कोई भी एक चुनें या दोनों खेलें।',
       },
       ar: {
         title: 'ليلة الافتتاح',
-        body: 'أول ليلة ألعاب بعد الإطلاق تُقام مرتين: يوم الجمعة 11 ديسمبر، من 8 إلى 10 مساءً بتوقيت شرق الولايات المتحدة، ومرة أخرى يوم السبت 12 ديسمبر، من 2 إلى 4 عصرًا بتوقيت شرق الولايات المتحدة. هي ليلة Spy Talk نفسها في اليومين، فيمكن اختيار إحداهما أو اللعب في الاثنتين.',
+        body: 'أول ليلة ألعاب بعد الإطلاق الكامل تُقام مرتين: يوم الجمعة الأول بعده، من 8 إلى 10 مساءً بتوقيت شرق الولايات المتحدة، ومرة أخرى يوم السبت الأول بعده، من 2 إلى 4 عصرًا بتوقيت شرق الولايات المتحدة. هي ليلة Spy Talk نفسها في اليومين، فيمكن اختيار إحداهما أو اللعب في الاثنتين.',
       },
       bn: {
         title: 'উদ্বোধনী রাত',
-        body: 'লঞ্চের পর প্রথম গেম নাইট হবে দুবার: শুক্রবার, 11 ডিসেম্বর, মার্কিন ইস্টার্ন টাইম রাত 8টা থেকে 10টা, আবার শনিবার, 12 ডিসেম্বর, ইস্টার্ন টাইম দুপুর 2টা থেকে বিকেল 4টা। দুই দিনই একই Spy Talk রাত, তাই যেকোনো একটিতে আসুন বা দুটোতেই খেলুন।',
+        body: 'অফিশিয়াল লঞ্চের পর প্রথম গেম নাইট হবে দুবার: তার পরের প্রথম শুক্রবার, মার্কিন ইস্টার্ন টাইম রাত 8টা থেকে 10টা, আবার তার পরের প্রথম শনিবার, ইস্টার্ন টাইম দুপুর 2টা থেকে বিকেল 4টা। দুই দিনই একই Spy Talk রাত, তাই যেকোনো একটিতে আসুন বা দুটোতেই খেলুন।',
       },
     },
   },

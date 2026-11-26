@@ -25,7 +25,7 @@ import s from './Roadmap.module.css'
 
 /** The icons of the 2.2 cards and of the plans, by position (src/i18n: roadmap.now.features, roadmap.next.plans). */
 const FEATURE_ICONS: IconType[] = [FaGlobe, FaPencil, FaLanguage, FaUserSecret, FaMoon, FaPalette, FaTicket, FaMusic, FaStopwatch, FaShieldHalved]
-/** The Game nights card's position: it names the launch Game Nights (Opening Night, Fri Dec 11 + Sat Dec 12) once LIVE.launchGameNights is on (roadmap.now.launchWeek). */
+/** The Game nights card's position: it names the launch Game Nights (Opening Night, the first Fri + Sat after the full launch) once LIVE.launchGameNights is on (roadmap.now.launchWeek). */
 const GAME_NIGHTS_CARD = 4
 const PLAN_ICONS: IconType[] = [FaRankingStar, FaMedal, FaTrophy]
 
