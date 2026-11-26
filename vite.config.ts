@@ -184,6 +184,10 @@ type Site = {
   en: { meta: { siteName: string; defaultTitle: string; description: string; titles: Record<string, string>; descriptions: Record<string, string> } }
   langs: string[]
 }
+/** STORES_OPEN (src/lib/legalRelease.ts) for the build: the launch flip, or LIVE.storesLive. */
+function storesOpen(live: Record<string, unknown>): boolean {
+  return live.launchSite === true || live.storesLive === true
+}
 /** index.html's and en.ts's description, without the stores: what src/components/SiteHead.tsx says in English. */
 function prelaunch(text: string): string {
   const stores = ' Available on iOS and Google Play.'
@@ -196,7 +200,7 @@ async function loadSite(root: string): Promise<Site> {
   const { default: en } = (await siteModule(root, 'src/i18n/locales/en.ts')) as { default: Site['en'] }
   const { LANGUAGES } = (await siteModule(root, 'src/i18n/languages.ts')) as { LANGUAGES: { code: string }[] }
   // Until the launch the description doesn't name the stores (STORES_OPEN, src/lib/legalRelease.ts).
-  const words = legal.LIVE.launchSite === true ? en : { ...en, meta: { ...en.meta, description: prelaunch(en.meta.description) } }
+  const words = storesOpen(legal.LIVE) ? en : { ...en, meta: { ...en.meta, description: prelaunch(en.meta.description) } }
   return { LIVE: legal.LIVE, ONLINE_SAFETY_TEXT: legal.ONLINE_SAFETY_TEXT, en: words, langs: LANGUAGES.map((l) => l.code) }
 }
 
@@ -206,7 +210,7 @@ async function loadSite(root: string): Promise<Site> {
  * rating or review is claimed (Google ignores self-made ones, and the stores' aren't ours to restate).
  */
 function structuredData(site: Site): string {
-  const launched = site.LIVE.launchSite === true
+  const launched = storesOpen(site.LIVE)
   const data = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -269,7 +273,7 @@ function launchHead(): Plugin {
       if (!/(^|\/)index\.html$/.test(ctx.filename)) return html
       const site = await loadSite(root)
       if (!/<meta property="og:image" content="[^"]*\/images\/share\/site-en\.jpg"/.test(html)) throw new Error('launchHead: index.html has no site card')
-      if (site.LIVE.launchSite !== true) html = prelaunch(html)
+      if (!storesOpen(site.LIVE)) html = prelaunch(html)
       return html.replace('</head>', `    ${structuredData(site)}\n  </head>`)
     },
   }
@@ -620,7 +624,7 @@ function helloPage(): Plugin {
       }
       const site = await loadSite(root)
       // From the launch flip /hello is the app's own file, whose route goes home: nobody is told to wait for what's out.
-      if (site.LIVE.launchSite === true) {
+      if (storesOpen(site.LIVE)) {
         await mkdir(resolve(outDir, 'hello'), { recursive: true })
         await writeFile(resolve(outDir, 'hello', 'index.html'), await readFile(resolve(outDir, 'index.html'), 'utf8'))
         return

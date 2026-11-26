@@ -1636,6 +1636,14 @@ export const LIVE = {
    */
   launchSite: false,
   /**
+   * Store buttons switch (website only; no legal or Help text, no Last Updated date). Off: the home page, /join, /join/e,
+   * the password page, Support and Press show the launch reminder; the page description and structured data omit the stores.
+   * On: STORES_OPEN, so the App Store and Google Play buttons and links appear and /hello goes home.
+   * Release day, after both stores show the app publicly: set this to true (one line), npm run build (exit 0), commit, safe_push.
+   * Off again the same way if a store pulls the app.
+   */
+  storesLive: false,
+  /**
    * The launch reminder form on /hello (RPC launch_reminder_signup, owner Nov 7): Privacy's Launch Reminder section, Resend's item, a Data
    * Retention sentence and Consent. Stays on until the launch email is sent and the addresses are deleted; then off with its own Last Updated.
    */
@@ -3115,7 +3123,7 @@ export const ONLINE_SAFETY_TEXT: boolean = LIVE.launchSite
  * /join, /join/e, the password page and Contact show the launch date and the reminder instead (components/ui/LaunchReminder).
  * It follows LIVE.launchSite: the launch flip brings every store button and line back, with nothing else to change.
  */
-export const STORES_OPEN: boolean = LIVE.launchSite
+export const STORES_OPEN: boolean = LIVE.launchSite || LIVE.storesLive
 
 /**
  * The May 1, 2026 Terms promised at least 30 days' notice before material new terms take effect.
