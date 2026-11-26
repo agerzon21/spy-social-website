@@ -489,15 +489,15 @@ const id: HelpText = {
           a: [
             'Kamu bertukar dengan teman, di dalam aplikasi. Kamu butuh akun berusia minimal 7 hari, email terkonfirmasi, dan 3 permainan yang dihitung (permainan selesai yang masuk ke statistikmu, dengan minimal 2 akun tersimpan lain di ponsel lain).',
             "7 hari itu dihitung sejak akun disimpan: waktu sebagai tamu tidak dihitung.",
-            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun, permainan yang dihitung, dan perangkat baru tidak berlaku: setiap pemain dewasa bisa bertukar begitu email-nya dikonfirmasi.']),
+            ...(o.launch ? [] : ['Selama uji beta, sampai reset saat rilis, aturan umur akun, permainan yang dihitung, dan perangkat baru tidak berlaku: setiap pemain dewasa bisa bertukar begitu email-nya dikonfirmasi.']),
             ...(o.launch ? ["Penguji yang memainkan 3 permainan yang dihitung selama uji beta tidak perlu 3 lagi."] : ["Penguji yang memainkan 3 permainan yang dihitung selama uji beta tidak perlu 3 lagi setelah peluncuran."]),
             'Tiap pihak menawarkan sampai 10 item, dan keduanya mengonfirmasi sebelum pertukaran terjadi. Pertukaran besar meminta kode yang kami kirim lewat email.',
             ...(o.interceptsInTrades ? ['Orang dewasa juga bisa memasukkan sadapan yang belum dibuka ke pertukaran: pilih berapa dari tiap tingkat. Masing-masing dihitung sebagai satu dari 10 item.'] : []),
-            ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai 7 Desember, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
+            ...(o.interceptsInTrades && !o.launch ? ['Selama uji beta, sampai reset saat rilis, sadapan belum dibuka apa pun bisa masuk pertukaran, dari mana pun asalnya. Toh sadapan mulai dari nol saat peluncuran.'] : []),
             'Yang kamu masukkan ke pertukaran yang masih terbuka disimpan untuknya: tidak bisa masuk ke pertukaran lain atau ke Pasar Gelap pada saat yang sama. Jika Intel dalam pertukaran terpakai sebelum pertukaran terjadi, muncul peringatan di sisi itu, dan pertukaran tidak bisa terjadi sampai jumlahnya diturunkan.',
             'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.launch ? (o.gnRewardsRules ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu. Intel tidak pernah terikat ke satu akun, dari mana pun asalnya.") : ''),
             'Intel hanya bisa ditukar antar orang dewasa.',
-            ...(o.launch ? [] : ["Selama uji beta, sampai 7 Desember, semua pemain dewasa juga bisa menukar Intel." + (o.intelZero ? " Tepat sebelum peluncuran, Intel setiap akun menjadi 0, termasuk Intel yang didapat selama uji coba." : " Pada 7 Desember semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri."), "Mulai 7 Desember, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual."]),
+            ...(o.launch ? [] : ["Selama uji beta, sampai reset saat rilis, semua pemain dewasa juga bisa menukar Intel." + (o.intelZero ? " Tepat sebelum peluncuran, Intel setiap akun menjadi 0, termasuk Intel yang didapat selama uji coba." : " Saat reset rilis, semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri."), "Mulai reset saat rilis, sadapan dari kode atau hadiah, isinya, dan hasil Tukar Tambah dengan sadapan itu tetap di akunmu: bisa kamu pakai, tetapi tidak bisa ditukar atau dijual."]),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
           ],
         },
@@ -536,7 +536,7 @@ const id: HelpText = {
           a: [
             'Pertukaran dijeda sebentar setelah email atau cara masuk berubah, setelah masuk dari perangkat baru, setelah kamu membatalkan pertukaranmu (30 hari), atau saat kamu menguncinya sendiri.',
             'Jeda karena perangkat baru berlangsung 24 jam; karena perubahan email atau cara masuk, 3 hari.',
-            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, masuk di perangkat baru atau mengganti email atau cara masuk tidak menjeda pertukaran.']),
+            ...(o.launch ? [] : ['Selama uji beta, sampai reset saat rilis, masuk di perangkat baru atau mengganti email atau cara masuk tidak menjeda pertukaran.']),
             'Ini melindungi itemmu kalau ada orang lain yang masuk ke akunmu.',
             'Kami juga bisa menjeda pertukaran sebuah akun, untuk melindunginya atau selama kami memeriksa dugaan penipuan.',
             "Pemeriksaan permainan adil menjeda pertukaran dan Pasar Gelap selama berlangsung. Selama reputasimu Diblokir, tukar item, hadiah, dan Pasar Gelap tetap tertutup sampai reputasi pulih: lihat <b>Reputasi</b> di Pengaturan.",
@@ -566,7 +566,7 @@ const id: HelpText = {
           a: [
             'Orang dewasa yang bisa bertukar: akun minimal 7 hari, email terkonfirmasi, 3 permainan yang dihitung, dan pertukaran tidak sedang dijeda.',
             "7 hari itu dihitung sejak akun disimpan: waktu sebagai tamu tidak dihitung.",
-            ...(o.launch ? [] : ['Selama uji beta, sampai 7 Desember, aturan umur akun dan permainan yang dihitung juga tidak berlaku di sini.']),
+            ...(o.launch ? [] : ['Selama uji beta, sampai reset saat rilis, aturan umur akun dan permainan yang dihitung juga tidak berlaku di sini.']),
             'Pemain di bawah 18 tahun bisa melihat, tapi tidak bisa membeli, menjual, atau menawar.',
             ...(o.launch ? [] : ["Selama beta, semua pemain dewasa bisa membeli dan menjual di sini. Semua penjualan selama pengujian dibatalkan sebelum peluncuran: pembeli mendapatkan kembali Intel yang dibayarnya, dan penjual mengembalikan apa yang diterimanya."]),
           ],
@@ -739,7 +739,7 @@ const id: HelpText = {
               id: 'shops-closed',
               q: 'Kenapa toko tutup?',
               a: [
-                'Tepat sebelum peluncuran, toko Intel dan toko Malam Permainan tutup, mulai Senin, 7 Desember. Aplikasi menulis <b>Toko dibuka kembali saat peluncuran</b>, lengkap dengan tanggalnya.',
+                'Tepat sebelum peluncuran, toko Intel dan toko Malam Permainan tutup. Aplikasi menulis <b>Toko dibuka kembali saat peluncuran</b>.',
                 'Toko dibuka lagi saat peluncuran resmi.',
               ],
             },
@@ -774,8 +774,8 @@ const id: HelpText = {
                   ? 'Hadiahnya sudah ditambahkan saat peluncuran 2.2 dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>. Kartu terima kasih muncul saat kamu pertama kali membuka aplikasi setelah peluncuran.'
                   : 'Hadiahnya datang saat peluncuran resmi 2.2, di kartu terima kasih saat kamu membuka aplikasi, dan jadi milikmu. Semua yang ada di daftar penguji mendapat <b>Pin Beta</b> dan gelar <b>Penguji Beta</b>.',
                 o.launch
-                  ? "Penguji yang menyelesaikan setidaknya satu game dengan pemain lain sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka; permainan latihan tidak dihitung) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan."
-                  : "Selesaikan setidaknya satu game dengan pemain lain sebelum 7 Desember (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu; permainan latihan tidak dihitung), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.",
+                  ? "Penguji yang menyelesaikan setidaknya satu game dengan pemain lain sebelum peluncuran resmi (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistik mereka; permainan latihan tidak dihitung) juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan."
+                  : "Selesaikan setidaknya satu game dengan pemain lain sebelum peluncuran resmi (dimainkan sampai selesai, di room mana pun, sehingga muncul di Statistikmu; permainan latihan tidak dihitung), dan kamu juga mendapat gelar <b>Penguji Lapangan</b>, 10 sadapan dari setiap tingkat, dan keanggotaan 1 bulan.",
                 o.testerInterceptsTradable
                   ? '<b>Pin Beta</b>, gelar <b>Penguji Lapangan</b>, dan sadapan terima kasih bisa ditukar seperti apa pun yang kamu dapatkan sendiri.'
                   : '<b>Pin Beta</b> dan gelar <b>Penguji Lapangan</b> bisa ditukar seperti apa pun yang kamu dapatkan sendiri; seperti hadiah lain, sadapan terima kasih tetap di akunmu.',
@@ -796,7 +796,7 @@ const id: HelpText = {
             id: 'after-launch-reset',
             q: "Ke mana Intel dan item beta saya?",
             a: [
-              "Sebelum peluncuran, pada 7 Desember, semua dari versi uji coba direset: Intel, sadapan, item, penawaran Pasar Gelap, pertukaran, dan keanggotaan uji coba. Semua orang memulai peluncuran dari nol.",
+              "Sebelum peluncuran, semua dari versi uji coba direset: Intel, sadapan, item, penawaran Pasar Gelap, pertukaran, dan keanggotaan uji coba. Semua orang memulai peluncuran dari nol.",
               "Akun, teman, paket, XP, level, pencapaian, statistik, gelar dari kode, dan apa pun yang kamu beli di toko tetap ada. Para penguji tetap memiliki <b>Beta Pin</b> dan menerima hadiah terima kasih (lihat «Di mana hadiah penguji betaku?»).",
               "Merasa ada yang salah? Kirim email ke <email/> dengan nama penggunamu.",
             ],
