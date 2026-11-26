@@ -15,11 +15,13 @@ const Item = ({ entry }: { entry: NewsEntry }) => {
   return (
     <li id={entry.id} className={s.item}>
       <article aria-labelledby={`news-${entry.id}`}>
-        <p className={s.when}>
-          <time dateTime={isoDay(entry.date)} suppressHydrationWarning>
-            {newsDate(entry, language.locale)}
-          </time>
-        </p>
+        {entry.undated ? null : (
+          <p className={s.when}>
+            <time dateTime={isoDay(entry.date)} suppressHydrationWarning>
+              {newsDate(entry, language.locale)}
+            </time>
+          </p>
+        )}
         <DisplayHeading as="h3" size={4} id={`news-${entry.id}`} className={s.itemTitle}>
           {words.title}
         </DisplayHeading>

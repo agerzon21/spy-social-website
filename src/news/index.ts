@@ -61,6 +61,7 @@ export const linkLabel = (link: NewsLink, lang: string): string => link.label[la
  * with an endDate, both days ('Friday, December 11 – Saturday, December 12, 2026'). Anything unreadable stays as written.
  */
 export function newsDate(entry: NewsEntry, locale: string, short = false): string {
+  if (entry.undated) return ''
   const from = dayOf(entry.date)
   if (!from) return entry.date
   const to = entry.endDate ? dayOf(entry.endDate) : null

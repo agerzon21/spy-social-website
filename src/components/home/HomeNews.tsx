@@ -37,9 +37,11 @@ const HomeNews = () => {
           {entries.map((entry) => (
             <li key={entry.id} className={s.item}>
               <Link to={`/news#${entry.id}`} className={s.link}>
-                <time className={s.when} dateTime={isoDay(entry.date)} suppressHydrationWarning>
-                  {newsDate(entry, language.locale, true)}
-                </time>
+                {entry.undated ? null : (
+                  <time className={s.when} dateTime={isoDay(entry.date)} suppressHydrationWarning>
+                    {newsDate(entry, language.locale, true)}
+                  </time>
+                )}
                 <span className={s.title}>{newsText(entry, lang).title}</span>
               </Link>
             </li>

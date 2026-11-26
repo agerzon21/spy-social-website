@@ -41,6 +41,8 @@ export interface NewsEntry {
   /** 'stores': listed only while the site sends people to the stores (STORES_OPEN, src/lib/legalRelease.ts: the launch flip or the early store release). */
   gate?: 'stores'
   date: string
+  /** True: the page shows no date for this entry (date still places it in the list). */
+  undated?: boolean
   endDate?: string
   links?: NewsLink[]
   text: { en: NewsText } & Partial<Record<NewsLang, NewsText>>
@@ -72,43 +74,43 @@ export const NEWS: NewsEntry[] = [
     text: {
       en: {
         title: 'The reset: Monday, December 7, 00:00 Eastern',
-        body: 'On Monday, December 7 at 00:00 Eastern, Intercepts and items reset. Intel from games is reset by launch morning, December 8. Game Night Intel you earned comes back. Your account, name, level and store-bought membership stay.',
+        body: 'On Monday, December 7 at 00:00 Eastern, Intercepts and items reset. Intel from games is reset by launch morning. Game Night Intel you earned comes back. Your account, name, level and store-bought membership stay.',
       },
       ru: {
         title: 'Обнуление: понедельник, 7 декабря, 00:00 по восточному времени',
-        body: 'В понедельник, 7 декабря, в 00:00 по восточному времени США перехваты и предметы обнулятся. Разведданные за игры обнулятся к утру запуска, 8 декабря. Заработанные разведданные игрового вечера вернутся. Аккаунт, имя, уровень и купленная в магазине подписка останутся.',
+        body: 'В понедельник, 7 декабря, в 00:00 по восточному времени США перехваты и предметы обнулятся. Разведданные за игры обнулятся к утру запуска. Заработанные разведданные игрового вечера вернутся. Аккаунт, имя, уровень и купленная в магазине подписка останутся.',
       },
       es: {
         title: 'El reinicio: lunes 7 de diciembre, 00:00 (hora del Este)',
-        body: 'El lunes 7 de diciembre a las 00:00 (hora del Este), las intercepciones y los objetos se reinician. El Intel de las partidas se reinicia antes de la mañana del lanzamiento, el 8 de diciembre. El Intel de Noche de Juegos que ganaste vuelve. Tu cuenta, tu nombre, tu nivel y tu membresía comprada en la tienda se mantienen.',
+        body: 'El lunes 7 de diciembre a las 00:00 (hora del Este), las intercepciones y los objetos se reinician. El Intel de las partidas se reinicia antes de la mañana del lanzamiento. El Intel de Noche de Juegos que ganaste vuelve. Tu cuenta, tu nombre, tu nivel y tu membresía comprada en la tienda se mantienen.',
       },
       fr: {
         title: 'La réinitialisation : lundi 7 décembre, 00 h 00 (heure de l’Est)',
-        body: 'Le lundi 7 décembre à 00 h 00 (heure de l’Est), les interceptions et les objets sont réinitialisés. L’Intel des parties l’est d’ici le matin du lancement, le 8 décembre. L’Intel de Soirée jeux que tu as gagné te revient. Ton compte, ton nom, ton niveau et ton statut de membre acheté en boutique restent.',
+        body: 'Le lundi 7 décembre à 00 h 00 (heure de l’Est), les interceptions et les objets sont réinitialisés. L’Intel des parties l’est d’ici le matin du lancement. L’Intel de Soirée jeux que tu as gagné te revient. Ton compte, ton nom, ton niveau et ton statut de membre acheté en boutique restent.',
       },
       'pt-BR': {
         title: 'O reset: segunda-feira, 7 de dezembro, 00:00 (horário do Leste)',
-        body: 'Na segunda-feira, 7 de dezembro, às 00:00 (horário do Leste), interceptações e itens são zerados. O Intel das partidas é zerado até a manhã do lançamento, 8 de dezembro. O Intel da Noite de Jogos que você ganhou volta. Sua conta, seu nome, seu nível e seu plano de membro comprado na loja continuam.',
+        body: 'Na segunda-feira, 7 de dezembro, às 00:00 (horário do Leste), interceptações e itens são zerados. O Intel das partidas é zerado até a manhã do lançamento. O Intel da Noite de Jogos que você ganhou volta. Sua conta, seu nome, seu nível e seu plano de membro comprado na loja continuam.',
       },
       id: {
         title: 'Reset: Senin, 7 Desember, pukul 00.00 (Waktu Timur AS)',
-        body: 'Pada Senin, 7 Desember pukul 00.00 (Waktu Timur AS), sadapan dan item direset. Intel dari permainan direset sebelum pagi peluncuran, 8 Desember. Intel Malam Permainan yang kamu dapat akan kembali. Akun, nama, level, dan keanggotaan yang kamu beli di toko tetap ada.',
+        body: 'Pada Senin, 7 Desember pukul 00.00 (Waktu Timur AS), sadapan dan item direset. Intel dari permainan direset sebelum pagi peluncuran. Intel Malam Permainan yang kamu dapat akan kembali. Akun, nama, level, dan keanggotaan yang kamu beli di toko tetap ada.',
       },
       'zh-Hans': {
         title: '重置：12 月 7 日（星期一）美东时间 00:00',
-        body: '12 月 7 日（星期一）美国东部时间 00:00，密函和物品会重置。对局获得的情报会在上线当天早上（12 月 8 日）前重置。你获得的游戏之夜情报会返还。你的账号、名字、等级和在商店购买的会员保持不变。',
+        body: '12 月 7 日（星期一）美国东部时间 00:00，密函和物品会重置。对局获得的情报会在上线当天早上之前重置。你获得的游戏之夜情报会返还。你的账号、名字、等级和在商店购买的会员保持不变。',
       },
       hi: {
         title: 'रीसेट: सोमवार, 7 दिसंबर, अमेरिकी ईस्टर्न टाइम 00:00',
-        body: 'सोमवार, 7 दिसंबर को अमेरिकी ईस्टर्न टाइम 00:00 बजे इंटरसेप्ट और आइटम रीसेट होंगे। गेम से मिला इंटेल लॉन्च की सुबह, 8 दिसंबर तक रीसेट हो जाएगा। आपका कमाया गेम नाइट इंटेल वापस मिलेगा। आपका अकाउंट, नाम, लेवल और स्टोर से खरीदी गई मेंबरशिप बने रहेंगे।',
+        body: 'सोमवार, 7 दिसंबर को अमेरिकी ईस्टर्न टाइम 00:00 बजे इंटरसेप्ट और आइटम रीसेट होंगे। गेम से मिला इंटेल लॉन्च की सुबह तक रीसेट हो जाएगा। आपका कमाया गेम नाइट इंटेल वापस मिलेगा। आपका अकाउंट, नाम, लेवल और स्टोर से खरीदी गई मेंबरशिप बने रहेंगे।',
       },
       ar: {
         title: 'إعادة الضبط: الاثنين 7 ديسمبر، 00:00 بتوقيت شرق الولايات المتحدة',
-        body: 'يوم الاثنين 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة، يُعاد ضبط الملفات والعناصر. ويُعاد ضبط إنتل الألعاب بحلول صباح الإطلاق، 8 ديسمبر. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك واسمك ومستواك وعضويتك المشتراة من المتجر.',
+        body: 'يوم الاثنين 7 ديسمبر الساعة 00:00 بتوقيت شرق الولايات المتحدة، يُعاد ضبط الملفات والعناصر. ويُعاد ضبط إنتل الألعاب بحلول صباح الإطلاق. ويعود إليك إنتل ليلة الألعاب الذي كسبته. ويبقى حسابك واسمك ومستواك وعضويتك المشتراة من المتجر.',
       },
       bn: {
         title: 'রিসেট: সোমবার, 7 ডিসেম্বর, মার্কিন ইস্টার্ন টাইম 00:00',
-        body: 'সোমবার, 7 ডিসেম্বর মার্কিন ইস্টার্ন টাইম 00:00-এ ইন্টারসেপ্ট আর আইটেম রিসেট হবে। গেম থেকে পাওয়া ইন্টেল লঞ্চের সকালে, 8 ডিসেম্বরের মধ্যে রিসেট হবে। আপনার অর্জিত গেম নাইট ইন্টেল ফিরে আসবে। আপনার অ্যাকাউন্ট, নাম, লেভেল আর স্টোর থেকে কেনা সদস্যপদ থাকবে।',
+        body: 'সোমবার, 7 ডিসেম্বর মার্কিন ইস্টার্ন টাইম 00:00-এ ইন্টারসেপ্ট আর আইটেম রিসেট হবে। গেম থেকে পাওয়া ইন্টেল লঞ্চের সকালের মধ্যে রিসেট হবে। আপনার অর্জিত গেম নাইট ইন্টেল ফিরে আসবে। আপনার অ্যাকাউন্ট, নাম, লেভেল আর স্টোর থেকে কেনা সদস্যপদ থাকবে।',
       },
     },
   },
@@ -151,7 +153,7 @@ export const NEWS: NewsEntry[] = [
     text: {
       en: {
         title: 'SpySocial is in the App Store and Google Play',
-        body: 'SpySocial is now in the App Store and Google Play. Intercepts and items reset Dec 7. Intel from games goes to 0 by launch morning, Dec 8. Game Night Intel you earned comes back. Your account, level and store-bought membership stay. Membership can be bought from launch day. Browser play ends Dec 7 at 00:00 Eastern. Questions? Ask in our Discord.',
+        body: 'SpySocial is now in the App Store and Google Play. Intercepts and items reset Dec 7. Intel from games goes to 0 by launch morning. Game Night Intel you earned comes back. Your account, level and store-bought membership stay. Membership can be bought from launch day. Browser play ends Dec 7 at 00:00 Eastern. Questions? Ask in our Discord.',
       },
       ru: {
         title: 'SpySocial теперь в App Store и Google Play',
@@ -175,7 +177,7 @@ export const NEWS: NewsEntry[] = [
       },
       'zh-Hans': {
         title: 'SpySocial 已登陆 App Store 和 Google Play',
-        body: 'SpySocial 现已登陆 App Store 和 Google Play。密函和物品将于12 月 7 日重置。对局获得的情报会在上线当天早上（12 月 8 日）前清零。你获得的游戏之夜情报会返还。你的账号、等级和在商店购买的会员保持不变。会员从上线当天起可购买。浏览器游玩将于 12 月 7 日美东时间 00:00 结束。有问题？欢迎到我们的 Discord 提问。',
+        body: 'SpySocial 现已登陆 App Store 和 Google Play。密函和物品将于12 月 7 日重置。对局获得的情报会在上线当天早上之前清零。你获得的游戏之夜情报会返还。你的账号、等级和在商店购买的会员保持不变。会员从上线当天起可购买。浏览器游玩将于 12 月 7 日美东时间 00:00 结束。有问题？欢迎到我们的 Discord 提问。',
       },
       hi: {
         title: 'SpySocial अब App Store और Google Play पर है',
@@ -257,6 +259,7 @@ export const NEWS: NewsEntry[] = [
   {
     id: 'launch',
     date: 'December 8, 2026',
+    undated: true,
     links: [
       {
         to: '/roadmap',
@@ -276,44 +279,44 @@ export const NEWS: NewsEntry[] = [
     ],
     text: {
       en: {
-        title: 'Launch day: December 8',
-        body: 'The new SpySocial (version 2.2) comes out on Tuesday, December 8, on iPhone and Android: Play Online, Spy Sketch, your own agent and more.',
+        title: 'Full launch',
+        body: 'The new SpySocial (version 2.2) is coming to iPhone and Android: Play Online, Spy Sketch, your own agent and more.',
       },
       ru: {
-        title: 'Запуск: 8 декабря',
-        body: 'Новый SpySocial (версия 2.2) выйдет во вторник, 8 декабря, на iPhone и Android: «Играть онлайн», Spy Sketch, собственный агент и многое другое.',
+        title: 'Полный запуск',
+        body: 'Новый SpySocial (версия 2.2) скоро выйдет на iPhone и Android: «Играть онлайн», Spy Sketch, собственный агент и многое другое.',
       },
       es: {
-        title: 'Lanzamiento: 8 de diciembre',
-        body: 'El nuevo SpySocial (versión 2.2) llega el martes 8 de diciembre a iPhone y Android: Jugar en línea, Spy Sketch, tu propio agente y más.',
+        title: 'Lanzamiento completo',
+        body: 'El nuevo SpySocial (versión 2.2) llega a iPhone y Android: Jugar en línea, Spy Sketch, tu propio agente y más.',
       },
       fr: {
-        title: 'Sortie : le 8 décembre',
-        body: 'Le nouveau SpySocial (version 2.2) arrive le mardi 8 décembre sur iPhone et Android : Jouer en ligne, Spy Sketch, ton propre agent et plus encore.',
+        title: 'Lancement complet',
+        body: 'Le nouveau SpySocial (version 2.2) arrive sur iPhone et Android : Jouer en ligne, Spy Sketch, ton propre agent et plus encore.',
       },
       'pt-BR': {
-        title: 'Lançamento: 8 de dezembro',
-        body: 'O novo SpySocial (versão 2.2) chega na terça-feira, 8 de dezembro, ao iPhone e ao Android: Jogar online, Spy Sketch, seu próprio agente e mais.',
+        title: 'Lançamento completo',
+        body: 'O novo SpySocial (versão 2.2) chega ao iPhone e ao Android: Jogar online, Spy Sketch, seu próprio agente e mais.',
       },
       id: {
-        title: 'Hari peluncuran: 8 Desember',
-        body: 'SpySocial baru (versi 2.2) hadir pada Selasa, 8 Desember, di iPhone dan Android: Main online, Spy Sketch, agenmu sendiri, dan lainnya.',
+        title: 'Peluncuran penuh',
+        body: 'SpySocial baru (versi 2.2) hadir di iPhone dan Android: Main online, Spy Sketch, agenmu sendiri, dan lainnya.',
       },
       'zh-Hans': {
-        title: '上线日：12 月 8 日',
-        body: '全新 SpySocial（2.2 版）将于 12 月 8 日（星期二）在 iPhone 和 Android 上线：在线游戏、Spy Sketch、属于你自己的特工，还有更多。',
+        title: '正式上线',
+        body: '全新 SpySocial（2.2 版）即将在 iPhone 和 Android 上推出：在线游戏、Spy Sketch、属于你自己的特工，还有更多。',
       },
       hi: {
-        title: 'लॉन्च का दिन: 8 दिसंबर',
-        body: 'नया SpySocial (वर्ज़न 2.2) मंगलवार, 8 दिसंबर को iPhone और Android पर आ रहा है: ऑनलाइन खेलें, Spy Sketch, आपका अपना एजेंट और भी बहुत कुछ।',
+        title: 'पूर्ण लॉन्च',
+        body: 'नया SpySocial (वर्ज़न 2.2) iPhone और Android पर आ रहा है: ऑनलाइन खेलें, Spy Sketch, आपका अपना एजेंट और भी बहुत कुछ।',
       },
       ar: {
-        title: 'يوم الإطلاق: 8 ديسمبر',
-        body: 'النسخة الجديدة من SpySocial (الإصدار 2.2) تصل يوم الثلاثاء 8 ديسمبر على iPhone وAndroid: اللعب عبر الإنترنت وSpy Sketch وعميلك الخاص والمزيد.',
+        title: 'الإطلاق الكامل',
+        body: 'النسخة الجديدة من SpySocial (الإصدار 2.2) قادمة إلى iPhone وAndroid: اللعب عبر الإنترنت وSpy Sketch وعميلك الخاص والمزيد.',
       },
       bn: {
-        title: 'লঞ্চের দিন: 8 ডিসেম্বর',
-        body: 'নতুন SpySocial (ভার্সন 2.2) আসছে মঙ্গলবার, 8 ডিসেম্বর, iPhone ও Android-এ: অনলাইনে খেলা, Spy Sketch, আপনার নিজের এজেন্ট এবং আরও অনেক কিছু।',
+        title: 'অফিশিয়াল লঞ্চ',
+        body: 'নতুন SpySocial (ভার্সন 2.2) আসছে iPhone ও Android-এ: অনলাইনে খেলা, Spy Sketch, আপনার নিজের এজেন্ট এবং আরও অনেক কিছু।',
       },
     },
   },
