@@ -498,7 +498,7 @@ const id: HelpText = {
             'Aplikasi menandai item yang bisa ditukar. Keanggotaan dan isinya, hadiah level, dan item dari game arkade tidak pernah bisa.' + (o.gnRewardsRules ? " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu: tetap di akunmu." : " Begitu juga yang berasal dari kode, atau yang kami atau staf kami berikan kepadamu, termasuk Pilihan Developer: tetap di akunmu.") + (o.launch ? " Intel tidak pernah terikat ke satu akun, dari mana pun asalnya." : ''),
             "Item dengan tanda hadiah berasal dari hadiah atau kode: tetap di akunmu.",
             'Intel hanya bisa ditukar antar orang dewasa.',
-            ...(o.launch ? [] : ["Selama uji beta, sampai reset sebelum peluncuran, semua pemain dewasa juga bisa menukar Intel." + (o.intelZero ? " Tepat sebelum peluncuran, Intel setiap akun menjadi 0, termasuk Intel yang didapat selama uji coba." : " Saat reset sebelum peluncuran, semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri."), "Item dari kode atau hadiah tetap di akunmu: tidak bisa ditukar, dijual, atau dipakai di Tukar Tambah."]),
+            ...(o.launch ? [] : ["Selama uji beta, sampai reset sebelum peluncuran, semua pemain dewasa juga bisa menukar Intel." + (o.intelZero ? " Tepat sebelum peluncuran, Intel setiap akun menjadi 0, termasuk Intel yang didapat selama uji coba." : " Saat reset sebelum peluncuran, semua Intel yang ditukar dikembalikan: yang memberi mendapatkannya kembali, dan setiap orang hanya menyimpan Intel yang ia dapatkan sendiri."), "Item dari kode atau hadiah tetap di akunmu: tidak bisa ditukar, dijual, atau dipakai di Tukar Tambah. (Item hadiah dari sebelum 26 November masih bisa ditukar sampai reset sebelum peluncuran, yang menghapusnya.)"]),
             'Membeli atau menjual item, Intel, atau akun dengan uang sungguhan melanggar aturan.',
           ],
         },
@@ -671,7 +671,7 @@ const id: HelpText = {
             '<b>Kemenangan:</b> setiap 10 kemenangan di Main online memberimu 5 sadapan, salah satunya tingkat Rahasia atau lebih.',
             "<b>Harian:</b> permainan Main online pertamamu tiap hari memberi satu. Tiap hari ke-7 berturut-turut menambah satu Rahasia atau lebih tinggi, dan tiap hari ke-30, satu Enigma.",
             ...(o.gnRewards ? ["<b>Malam Permainan:</b> permainanmu di sana memberi Intel Malam Permainan, yang bisa kamu pakai untuk mendapatkan sadapan Malam Permainan (di bawah)."] : o.gnRewardsRules ? [] : ["<b>Malam Permainan:</b> menangkan satu permainan di sana, sebagai warga atau mata-mata, dan kamu dapat satu Enigma, sekali per malam."]),
-            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah. Sadapan dari kode atau hadiah dan isinya hanya untukmu: tidak bisa ditukar, dijual, dipakai di Tukar Tambah, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya dan memakai isinya. Semuanya tetap di akunmu.`,
+            `<b>Kode dan hadiah:</b> kode dari kreator atau dari kami berlaku sekali per akun, dan sadapannya terbuka setelah permainan Main online pertamamu yang dihitung. Kami juga memberi sebagian sebagai hadiah. Sadapan dari kode atau hadiah dan isinya hanya untukmu: tidak bisa ditukar, dijual, dipakai di Tukar Tambah, atau diberikan, berapa pun permainan yang kamu mainkan. Kamu tetap bisa membukanya dan memakai isinya. Semuanya tetap di akunmu.${o.launch ? '' : " (Item hadiah dari sebelum 26 November masih bisa ditukar sampai reset sebelum peluncuran, yang menghapusnya.)"}`,
             "<b>Sambutan:</b> akun tersimpan mendapat sadapan pertama gratis. Seperti sadapan dari kode atau hadiah, sadapan itu dan isinya tetap di akunmu: tidak bisa ditukar atau dijual.",
             'Room privat tidak memberi sadapan.',
             ...(o.launch
@@ -718,7 +718,7 @@ const id: HelpText = {
           a: [
             '<b>Hancurkan</b> salinan duplikat untuk mendapat Intel, sebanyak yang ditampilkan aplikasi.',
             ...(o.gnTiers4 ? [`Salinan duplikat item <b>After Hours</b> apa pun, bagaimanapun kamu mendapatkannya, dihancurkan menjadi Intel Malam Permainan.`] : []),
-            '<b>Tukar Tambah:</b> 5 duplikat dari satu kelangkaan memberimu 1 item acak dari kelangkaan berikutnya, dan 10 duplikat Legendaris memberimu satu item Unik.' + " Item dari hadiah atau kode tidak bisa dipakai di Tukar Tambah.",
+            '<b>Tukar Tambah:</b> 5 duplikat dari satu kelangkaan memberimu 1 item acak dari kelangkaan berikutnya, dan 10 duplikat Legendaris memberimu satu item Unik.' + " Item dari hadiah atau kode tidak bisa dipakai di Tukar Tambah." + (o.launch ? '' : " (Item hadiah dari sebelum 26 November masih bisa ditukar sampai reset sebelum peluncuran, yang menghapusnya.)"),
             'Hanya duplikat yang dihitung, bukan salinan pertamamu atau item Unik.',
             'Salinan yang kamu beli atau dapat dari pertukaran dihitung sebagai duplikat jika kamu punya salinan lain dari item itu. Satu-satunya salinanmu selalu tetap ada.',
           ],
