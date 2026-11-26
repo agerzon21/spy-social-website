@@ -723,7 +723,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         a: [
           'La monnaie que tu gagnes en jouant : avec tes parties, ta première partie du jour et ta série quotidienne, et en déchiquetant des doublons.',
           'Ta série : une partie de Jouer en ligne par jour la garde. Une partie lancée avant le nouveau jour la garde aussi, même si elle finit après.',
-          o.launch ? "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes." : "L’Intel n’est jamais vendu et n’a aucune valeur en argent. Les adultes peuvent l’échanger avec d’autres adultes et le dépenser au Marché noir. Pendant la bêta, tous les échanges sont annulés avant le lancement public.",
+          o.launch ? "L'Intel n'est jamais vendu et n'a aucune valeur en argent. Les adultes le dépensent au Marché noir et peuvent l'échanger avec d'autres adultes." : "L’Intel n’est jamais vendu et n’a aucune valeur en argent. Les adultes peuvent l’échanger avec d’autres adultes et le dépenser au Marché noir. Pendant la bêta, tous les échanges sont annulés avant le lancement officiel.",
           "Chaque changement de ton Intel est une ligne de ton registre Intel, avec son motif. Consulte le tien dans <b>Historique d'Intel</b>, depuis « Comment fonctionne l'Intel », sur la dernière mise à jour de l'appli.",
           "Dans le <b>Coffre</b>, ton Intel a sa propre tuile, une pile qui grandit avec le montant. Touche-la pour voir ce que tu as gagné aujourd'hui, gagné en tout et dépensé en tout. L'Intel bloqué dans une offre ouverte du Marché noir compte comme dépensé jusqu'à son retour.",
         ],
@@ -736,7 +736,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             q: 'Pourquoi les boutiques sont-elles fermées ?',
             a: [
               "Juste avant le lancement, la boutique Intel et la boutique Soirée jeux ferment, à partir du lundi 7 décembre. L'appli affiche <b>Les boutiques rouvrent au lancement</b>, avec la date.",
-              'Elles rouvrent au lancement public.',
+              'Elles rouvrent au lancement officiel.',
             ],
           },
           ]),
@@ -744,7 +744,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
         id: 'verifying',
         q: 'Pourquoi une récompense affiche-t-elle « Vérification » ?',
         a: [
-          "À partir du lancement public, nos contrôles de fair-play peuvent retenir les nouvelles récompenses d'un compte jusqu'à 72 heures, le temps qu'un membre de l'équipe examine un signe net de farm, de bots ou de triche.",
+          "À partir du lancement officiel, nos contrôles de fair-play peuvent retenir les nouvelles récompenses d'un compte jusqu'à 72 heures, le temps qu'un membre de l'équipe examine un signe net de farm, de bots ou de triche.",
           "Tu peux demander un réexamen dans l'appli.",
         ],
       },
@@ -768,7 +768,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             ? [
               o.launch
                 ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi. Tous les testeurs de la liste ont reçu le <b>Pin bêta</b> et le titre <b>« Équipe bêta »</b>. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
-                : "Elles arrivent au lancement public de la 2.2, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi. Tous les testeurs de la liste reçoivent le <b>Pin bêta</b> et le titre <b>« Équipe bêta »</b>.",
+                : "Elles arrivent au lancement officiel de la 2.2, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi. Tous les testeurs de la liste reçoivent le <b>Pin bêta</b> et le titre <b>« Équipe bêta »</b>.",
               o.launch
                 ? "Les testeurs qui ont terminé au moins une partie avec d'autres joueurs avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans leurs Stats ; les parties d'entraînement ne comptent pas) ont aussi reçu le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre."
                 : "Termine au moins une partie avec d'autres joueurs avant le 7 décembre (jouée jusqu'au bout, dans n'importe quel salon, donc visible dans tes Stats ; les parties d'entraînement ne comptent pas) et tu reçois aussi le titre <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre.",
@@ -779,7 +779,7 @@ const sections = (o: HelpOpts): HelpSection[] => [
             : [
               o.launch
                 ? "Elles ont été ajoutées au lancement de la 2.2 et restent à toi : le <b>Pin bêta</b>, les titres <b>« Équipe bêta »</b> et <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre. Une carte de remerciement s'affiche à ta première ouverture de l'appli après le lancement."
-                : "Elles arrivent au lancement public de la 2.2, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi : le <b>Pin bêta</b>, les titres <b>« Équipe bêta »</b> et <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre.",
+                : "Elles arrivent au lancement officiel de la 2.2, sur une carte de remerciement à l'ouverture de l'appli, et elles restent à toi : le <b>Pin bêta</b>, les titres <b>« Équipe bêta »</b> et <b>« Test de terrain »</b>, 10 interceptions de chaque niveau et 1 mois en tant que membre.",
             ]),
           ...(o.launch ? [] : ["Ce que tu as maintenant dans une version de test sert à tester et sera effacé avant le lancement. Tes récompenses n'en dépendent pas, tant que tu gardes le même compte sauvegardé."]),
           "Pour porter le pin : <b>Compte</b>, <b>Modifier l'agent</b>, <b>Accessoires</b>, <b>Pin bêta</b>, <b>Enregistrer</b>.",
